@@ -1,0 +1,23 @@
+{
+  "name": "helix-ui",
+  "version": "0.0.1",
+  "description": "Web Component Library",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "less": "^2.7.2",
+    "less-loader": "^4.0.3",
+    "webpack": "^2.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -fr node_modules"
+  },
+  "repository": "git+https://github.com/rackerlabs/helix-ui.git",
+  "author": "Rackspace",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rackerlabs/helix-ui/issues"
+  },
+  "homepage": "https://github.com/rackerlabs/helix-ui#readme"
+}
