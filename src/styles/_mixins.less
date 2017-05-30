@@ -1,9 +1,10 @@
 /* HelixUI Mixins */
 
 /* ----- GRID ----- */
+//e.g. .hxSpan--1, .hxSpan--md-12
 .make-grid-columns (@prefix, @n) when (@n > 0 ) and (@prefix = xs) {
-  .span-@{n},
-  .span-@{prefix}-@{n} {
+  .hxSpan--@{n},
+  .hxSpan--@{prefix}-@{n} {
     @width: (@n * @grid-column-unit);
     min-width: @width;
     width: @width;
@@ -11,39 +12,42 @@
   .make-grid-columns(@prefix, (@n - 1));
 }
 .make-grid-columns (@prefix, @n) when (@n > 0 ) and not (@prefix = xs) {
-  .span-@{prefix}-@{n} {
+  .hxSpan--@{prefix}-@{n} {
     @width: (@n * @grid-column-unit);
     min-width: @width;
     width: @width;
   }
   .make-grid-columns(@prefix, (@n - 1));
 }
+//e.g. .hxOffset--1, .hxOffset--md-6
 .make-grid-offsets (@prefix, @n) when (@n > 0) and (@prefix = xs) {
-  .offset-@{n},
-  .offset-@{prefix}-@{n} {
+  .hxOffset--@{n},
+  .hxOffset--@{prefix}-@{n} {
     margin-left: (@n * @grid-column-unit) !important;
   }
   .make-grid-offsets(@prefix, (@n - 1));
 }
 .make-grid-offsets (@prefix, @n) when (@n > 0) and not (@prefix = xs) {
-  .offset-@{prefix}-@{n} {
+  .hxOffset--@{prefix}-@{n} {
     margin-left: (@n * @grid-column-unit) !important;
   }
   .make-grid-offsets(@prefix, (@n - 1));
 }
+//e.g. .hxOrder--1, .hxOrder--md-4
 .make-grid-orders (@prefix, @n) when (@n > 0) and (@prefix = xs) {
-  .order-@{n},
-  .order-@{prefix}-@{n} {
+  .hxOrder--@{n},
+  .hxOrder--@{prefix}-@{n} {
     order: @n;
   }
   .make-grid-orders(@prefix, (@n - 1));
 }
 .make-grid-orders (@prefix, @n) when (@n > 0) and not (@prefix = xs) {
-  .order-@{prefix}-@{n} {
+  .hxOrder--@{prefix}-@{n} {
     order: @n;
   }
   .make-grid-orders(@prefix, (@n - 1));
 }
+
 .make-grid (@prefix) {
   .make-grid-columns(@prefix, @grid-column-count);
   .make-grid-offsets(@prefix, @grid-column-count);
