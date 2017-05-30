@@ -1,3 +1,4 @@
+const pkg = require('./package.json');
 const gulp = require('gulp');
 const plugins = require('gulp-load-plugins')();
 const runSequence = require('run-sequence');
@@ -8,7 +9,7 @@ const compilePath = 'dist';
 gulp.task('compile:styles', function () {
     let sources = [
         `${srcPath}/styles/bootstrap.less`,
-        `${srcPath}/styles/helix.less`,
+        `${srcPath}/styles/${pkg.name}.less`,
     ];
     return gulp.src(sources)
         .pipe(plugins.plumber(function (err) {
@@ -17,10 +18,10 @@ gulp.task('compile:styles', function () {
         }))
         .pipe(sourcemaps.init())
         .pipe(plugins.less())
-        .pipe(plugins.concat('helix-ui.css'))
+        .pipe(plugins.concat(`${pkg.name}.css`))
         .pipe(gulp.dest(compilePath))
         .pipe(plugins.csso({ sourceMap: true }))
-        .pipe(plugins.rename('helix-ui.min.css'))
+        .pipe(plugins.rename(`${pkg.name}.min.css`))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(compilePath));
 });
