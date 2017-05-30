@@ -1,27 +1,33 @@
+@import (reference) "_mixins.less";
 /* HelixUI Grid */
-.flex-row {
+
+// ROWS
+// without gutter
+.hxRow--flex {
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
 }
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  flex-grow: 1;
-}
-
-.grid-row {
-  &:extend(.flex-row);
+// with gutter
+.hxRow--grid {
+  &:extend(.hxRow--flex);
   background-clip: content-box;
   border: 0;
   margin: 0 -(@grid-gutter-width * 0.5);
   padding: 0;
 }
 
-.grid-col {
-  &:extend(.flex-col);
+/* COLUMNS */
+// without gutter
+.hxCol--flex {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+// with gutter
+.hxCol--grid {
+  &:extend(.hxCol--flex);
   background-clip: content-box;
   border: 0;
   margin: 0;
