@@ -2,7 +2,7 @@
 
 /* ----- GRID ----- */
 //e.g. .hxSpan--1, .hxSpan--md-12
-.make-grid-columns (@prefix, @n) when (@n > 0 ) and (@prefix = xs) {
+.make-grid-columns (@prefix, @n) when (@n > 0) and (@prefix = xs) {
   .hxSpan--@{n},
   .hxSpan--@{prefix}-@{n} {
     @width: (@n * @grid-column-unit);
@@ -11,7 +11,7 @@
   }
   .make-grid-columns(@prefix, (@n - 1));
 }
-.make-grid-columns (@prefix, @n) when (@n > 0 ) and not (@prefix = xs) {
+.make-grid-columns (@prefix, @n) when (@n > 0) and not (@prefix = xs) {
   .hxSpan--@{prefix}-@{n} {
     @width: (@n * @grid-column-unit);
     min-width: @width;
@@ -19,6 +19,7 @@
   }
   .make-grid-columns(@prefix, (@n - 1));
 }
+
 //e.g. .hxOffset--1, .hxOffset--md-6
 .make-grid-offsets (@prefix, @n) when (@n > 0) and (@prefix = xs) {
   .hxOffset--@{n},
@@ -33,6 +34,7 @@
   }
   .make-grid-offsets(@prefix, (@n - 1));
 }
+
 //e.g. .hxOrder--1, .hxOrder--md-4
 .make-grid-orders (@prefix, @n) when (@n > 0) and (@prefix = xs) {
   .hxOrder--@{n},
@@ -49,8 +51,11 @@
 }
 
 .make-grid (@prefix) {
+  // 1 to N
   .make-grid-columns(@prefix, @grid-column-count);
-  .make-grid-offsets(@prefix, @grid-column-count);
+  // 1 to (N-1)
+  .make-grid-offsets(@prefix, (@grid-column-count - 1));
+  // 1 to N
   .make-grid-orders(@prefix, @grid-column-count);
 }
 

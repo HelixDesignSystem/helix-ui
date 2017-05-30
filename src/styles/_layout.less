@@ -1,0 +1,47 @@
+#header {
+  // top section of the layout
+}
+
+#footer {
+  // bottom section of the layout
+}
+
+main {
+  // this is where the page content will live
+}
+
+nav {}
+
+.hxStage {
+  &:extend(.hxRow--grid);
+
+  &__left {
+    &:extend(.hxCol--grid);
+  }
+
+  // center will require additional classes to specify how many columns it should consume
+  &__center {
+    &:extend(.hxCol--grid);
+  }
+
+  // right will require additional classes to specify how many columns it should consume
+  &__right {
+    &:extend(.hxCol--grid);
+  }
+}//.hxStage
+
+.hxNav {
+  &--eyebrow {
+    &:extend(.hxRow--grid);
+  }
+
+  &--primary {
+    // this may be either a ROW or COL layout depending on
+    // where it's placed in the markup
+  }
+
+  &--crumbs {
+    &:extend(.hxRow--grid);
+  }
+}
+
