@@ -8,6 +8,8 @@ let less = require('less');
 let CleanCss = require('clean-css');
 let pkg = require('../package.json');
 
+const DIST = 'docs/dist';
+
 exports.lessToCss = (lessSource) => {
     console.log('Rendering CSS');
     return less.render(lessSource, {
@@ -22,9 +24,9 @@ exports.lessToCss = (lessSource) => {
         }).minify(output.css);
 
         console.log('Writing CSS');
-        fs.writeFileSync(`docs/${pkg.name}.css`, output.css);
-        fs.writeFileSync(`dist/${pkg.name}.min.css`, minified.styles);
-        fs.writeFileSync(`dist/${pkg.name}.min.css.map`, minified.sourceMap);
+        fs.writeFileSync(`${DIST}/${pkg.name}.css`, output.css);
+        fs.writeFileSync(`${DIST}/${pkg.name}.min.css`, minified.styles);
+        fs.writeFileSync(`${DIST}/${pkg.name}.min.css.map`, minified.sourceMap);
     }, message => {
         console.warn(message);
         process.exit(1);
