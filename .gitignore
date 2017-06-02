@@ -1,2 +1,11 @@
+.DS_Store
 node_modules
 *.swp
+debug.log
+
+# Generated Hexo Files/Directories
+docs/db.json
+docs/*.log
+docs/public/
+docs/.deploy*/
+docs/node_modules/
