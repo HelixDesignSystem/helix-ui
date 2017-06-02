@@ -15,8 +15,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -fr node_modules",
-    "less": "node scripts/lessToCss.js",
-    "start": "npm run less; node scripts/server.js"
+    "less": "bin/lessToCss.js",
+    "start": "npm run less; bin/server.js"
   },
   "repository": "git+https://github.com/rackerlabs/helix-ui.git",
   "author": "Rackspace",
