@@ -20,7 +20,8 @@
   },
   "repository": "git+https://github.com/rackerlabs/helix-ui.git",
   "author": "Rackspace",
-  "license": "MIT",
+  "license": "UNLICENSED",
+  "private": true,
   "bugs": {
     "url": "https://github.com/rackerlabs/helix-ui/issues"
   },
