@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- partial('_partials/head') %>
+<body id="top">
+  <%- partial('_partials/global_nav') %>
+
+  <div id="app-container" class="hxRow">
+    <header class="hxCol-2">
+      <nav class="hxNav--app">APP NAV</nav>
+    </header>
+
+    <main id="app-content" class="hxCol-10">
+      <%- body %>
+    </main>
+  </div>
+
+  <%- partial('_partials/footer') %>
+
+  <%- js('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js') %>
+  <%- js('scripts/docs.js') %>
+</body>
+</html>

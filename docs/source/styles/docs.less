@@ -1,0 +1,59 @@
+@import '_kitchen-sink';
+
+body {
+  background-color: #fafafa;
+}
+
+#hxGlobalHeader {
+  background-color: #333;
+  color: #fff;
+}
+#hxGlobalNav {}
+#hxGlobalFooter {}
+
+#hxAppContainer {}
+#hxAppBreadcrumbs {}
+
+.nav {
+  &.crumbs {
+    background-color: blue;
+    color: white;
+  }
+  &.eyebrow {
+    background-color: #333;
+    color: #fff;
+  }
+  &.primary {
+    background-color: red;
+    color: white;
+  }
+  &.left {
+    background-color: #333;
+    color: #fff;
+    width: 200px;
+  }
+}
+
+/* Table of Contents */
+.sticky-top {
+  display: block;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+}
+
+.toc,
+.toc-child {
+  list-style: disc;
+  padding-left: 2em;
+}
+/* Hide h3-h6 */
+.toc {
+  &-level-2,
+  &-level-3,
+  &-level-4,
+  &-level-5,
+  &-level-6 {
+    display: none;
+  }
+}
