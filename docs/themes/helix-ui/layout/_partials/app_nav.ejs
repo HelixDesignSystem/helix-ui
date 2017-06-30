@@ -1,0 +1,10 @@
+<nav class="app-nav">
+  <% for (var _item in theme.menu) { %>
+    <a
+      class="hxNavItem theme-nav <%= is_current(theme.menu[_item]) ? 'current' : '' %>"
+      href="<%- url_for(theme.menu[_item]) %>"
+    >
+      <%= _item %>
+    </a>
+  <% } %>
+</nav>

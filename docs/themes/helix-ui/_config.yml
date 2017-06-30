@@ -1,1 +1,4 @@
 name: HelixUI
+menu:
+  Overview: /
+  "Bootstrap Theme": /bootstrap-theme
