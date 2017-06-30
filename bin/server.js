@@ -5,36 +5,40 @@ let hexo = require('./hexo').hexo;
 let browserSync = require('browser-sync').create();
 
 function initServer () {
+    let publicDir = 'docs/public';
+
     browserSync.init({
+        files: [ // (See 'watchEvents')
+            `${publicDir}/**/*`,
+            {
+                match: [
+                    'docs/source/**/*',
+                    'docs/themes/**/*'
+                ],
+                fn: (evt, file) => {
+                    // force regeneration of hexo assets on change of source or theme
+                    hexo.call('generate', { force: true });
+                }
+            }
+        ],
+        logLevel: 'debug',
         open: false,
         reloadOnRestart: true,
         reloadDebounce: 250, // prevent calling numerous reloads on forced hexo generate
-        server: 'docs/public'
+        server: {
+            baseDir: publicDir,
+            routes: {
+                '/helix-ui/': publicDir // account for Hexo "root" configuration
+            }
+        },
+        watchEvents: ['change']
     });
-
-    /* ==================== WARNING ==================== */
-    // don't watch on just everything -- only 'change' events
-    // https://www.browsersync.io/docs/api#api-watch
-    // if you do, it'll launch the less conversion task on every
-    // 'add' event that occurs (one for every less file bs sees on startup!)
-
-    // Regenerate docs when source or theme files change
-    browserSync.watch([
-        'docs/source/**/*',
-        'docs/themes/helix-ui/**/*'
-    ]).on('change', () => {
-        hexo.call('generate', {
-            force: true
-        });
-    });
-
-    // Reload when generated files change
-    browserSync.watch('docs/public/**/*', browserSync.reload);
 }//initServer()
 
 hexo.init().then(() => {
     hexo.call('clean')
         .then(() => {
+            // MUST have empty obj as 2nd arg or the call will fail
             return hexo.call('generate', {});
         })
         .then(initServer)
