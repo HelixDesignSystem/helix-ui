@@ -1,18 +1,6 @@
-@import '_kitchen-sink';
-
 body {
   background-color: #fafafa;
 }
-
-#hxGlobalHeader {
-  background-color: #333;
-  color: #fff;
-}
-#hxGlobalNav {}
-#hxGlobalFooter {}
-
-#hxAppContainer {}
-#hxAppBreadcrumbs {}
 
 .nav {
   &.crumbs {
@@ -30,7 +18,7 @@ body {
   &.left {
     background-color: #333;
     color: #fff;
-    width: 200px;
+    width: 15rem;
   }
 }
 
@@ -39,7 +27,7 @@ body {
   display: block;
   position: -webkit-sticky;
   position: sticky;
-  top: 20px;
+  top: 1rem;
 }
 
 .toc,
@@ -47,13 +35,44 @@ body {
   list-style: disc;
   padding-left: 2em;
 }
-/* Hide h3-h6 */
-.toc {
-  &-level-2,
-  &-level-3,
-  &-level-4,
-  &-level-5,
-  &-level-6 {
-    display: none;
+
+// Bootstrap Theme Example
+.dropdown-example {
+  .dropdown-menu {
+    display: block;
+    margin-bottom: 1.25em;
+    position: static;
+  }
+}
+
+.tooltip-example {
+  &::before {
+    content: '';
+  }
+
+  .tooltip {
+    display: inline-block;
+    margin: 10px;
+    opacity: 1;
+    padding: 5px;
+    position: relative;
+  }
+}
+
+.popover-example {
+  z-index: 0;
+  display: flex;
+  flex-wrap: wrap;
+
+  &::before {
+    content: '';
+  }
+
+  .popover {
+    display: block;
+    flex: 0 0 260px;
+    margin: 20px;
+    position: relative;
+    z-index: auto;
   }
 }
