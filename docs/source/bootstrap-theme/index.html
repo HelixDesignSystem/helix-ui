@@ -1,0 +1,1315 @@
+---
+title: Kitchen Sink
+date: 2017-06-12 13:01:23
+---
+<section><!-- NOTES -->
+  <header>
+    <h1 id="notes">Notes</h1>
+  </header>
+  <ul>
+    <li>
+      Avoid using <code>.container</code> within a Helix grid. It will cause a
+      <code>.hxRow</code> to expand beyond what is expected.
+    </li>
+    <li>
+      If you have strange layout issues, try wrapping in a <code>&lt;p&gt;</code>.
+    </li>
+  </ul>
+</section>
+
+<hr />
+
+<section><!-- Navigation -->
+  <header class="page-header">
+    <h1 id="navigation">Navigation</h1>
+  </header>
+
+  <nav class="navbar navbar-eyebrow">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#eyebrow-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <img src="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/img/rs-logo-white.svg" alt="Rackspace Logo" />
+      </a>
+    </div>
+    <div id="eyebrow-collapse" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Product 1</a></li>
+        <li class="active"><a href="#">Product 2</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Support</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle"
+            data-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false">
+
+            myUserName <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Account #123456</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">My Profile &amp; Settings</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">Rackspace</li>
+            <li><a href="#">Billing Overview</a></li>
+            <li><a href="#">Account Settings</a></li>
+            <li><a href="#">User Management</a></li>
+            <li><a href="#">Documents and Forms</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </nav>
+  <nav class="navbar navbar-inverse">
+    <div id="topnav-collapse" class="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Dashboard</a></li>
+        <li><a href="#">Servers</a></li>
+        <li><a href="#">Networking</a></li>
+        <li><a href="#">Storage</a></li>
+        <li><a href="#">Databases</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </nav>
+</section>
+
+<section><!-- Address -->
+  <header>
+    <h1 id="addresses">Addresses</h1>
+  </header>
+  <address>
+    <strong>Rackspace</strong><br />
+    1 Fanatical Place<br />
+    City of Windcrest<br />
+    San Antonio, TX 78218<br />
+    <abbr title="Phone">P:</abbr> (123) 456-7890
+  </address>
+
+  <address>
+    <strong>Full Name</strong><br />
+    <a href="mailto:#">first.last@example.com</a>
+  </address>
+</section>
+
+<section><!-- Alerts -->
+  <header class="page-header">
+    <h1 id="alerts">Alerts</h1>
+  </header>
+  <div class="alert alert-success" role="alert">
+    <strong>Well done!</strong> You successfully read this important alert message.
+    <a href="#">Celebrate</a>
+  </div>
+  <div class="alert alert-info" role="alert">
+    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+    <a href="#">Acknowledge</a>
+  </div>
+  <div class="alert alert-warning" role="alert">
+    <strong>Warning!</strong> Best check yo self, you're not looking too good.
+    <a href="#">Double Check</a>
+  </div>
+  <div class="alert alert-danger" role="alert">
+    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+    <a href="#">Correct Issue</a>
+  </div>
+</section>
+
+<section><!-- Badges -->
+  <header class="page-header">
+    <h1 id="badges">Badges</h1>
+  </header>
+  <p>
+    <a href="#">Inbox <span class="badge">42</span></a>
+  </p>
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>
+    <li role="presentation"><a href="#">Profile</a></li>
+    <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>
+  </ul>
+</section>
+
+<section><!-- Blockquotes -->
+  <header>
+    <h1 id="blockquotes">Blockquotes</h1>
+  </header>
+  <div class="row">
+    <div class="col-xs-6">
+      <blockquote>
+        This is a blockquote with a source. It's totally legit.
+        <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+      </blockquote>
+    </div>
+
+    <div class="col-xs-6">
+      <blockquote class="blockquote-reverse">
+        This is a reverse blockquote with a source. It's also legit.
+        <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section><!-- Breadcrumbs -->
+  <header class="page-header">
+    <h1 id="breadcrumbs">Breadcrumbs</h1>
+  </header>
+  <ul class="breadcrumb">
+    <li class="active">Home</li>
+  </ul>
+
+  <ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">Library</li>
+  </ul>
+
+  <ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Library</a></li>
+    <li class="active">Data</li>
+  </ul>
+</section>
+
+<section><!-- Buttons -->
+  <header class="page-header">
+    <h1 id="buttons">Buttons</h1>
+  </header>
+
+  <!-- Size variants -->
+  <p>
+    <button type="button" class="btn btn-default btn-lg">Large Button</button>
+    <button type="button" class="btn btn-default">Default Button</button>
+    <button type="button" class="btn btn-default btn-sm">Small Button</button>
+    <button type="button" class="btn btn-default btn-xs">Mini Button</button>
+  </p>
+  <!-- Color Variants -->
+  <p>
+    <button type="button" class="btn btn-default">Default</button>
+    <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-success">Success</button>
+    <button type="button" class="btn btn-info">Info</button>
+    <button type="button" class="btn btn-warning">Warning</button>
+    <button type="button" class="btn btn-danger">Danger</button>
+    <button type="button" class="btn btn-link">Link</button>
+  </p>
+
+  <!-- Disabled Styles -->
+  <p>
+    <button type="button" disabled class="btn btn-default">Default</button>
+    <button type="button" disabled class="btn btn-primary">Primary</button>
+    <button type="button" disabled class="btn btn-success">Success</button>
+    <button type="button" disabled class="btn btn-info">Info</button>
+    <button type="button" disabled class="btn btn-warning">Warning</button>
+    <button type="button" disabled class="btn btn-danger">Danger</button>
+    <button type="button" disabled class="btn btn-link">Link</button>
+  </p>
+
+  <!-- button group w/ dropdown -->
+  <p>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default">Default</button>
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary">Primary</button>
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-success">Success</button>
+      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-info">Info</button>
+      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-warning">Warning</button>
+      <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-danger">Danger</button>
+      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+  </p>
+
+  <p>
+    <div class="btn-toolbar">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default">1</button>
+        <button type="button" class="btn btn-default">2</button>
+        <button type="button" class="btn btn-default">3</button>
+        <button type="button" class="btn btn-default">4</button>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-default">5</button>
+        <button type="button" class="btn btn-default">6</button>
+        <button type="button" class="btn btn-default">7</button>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-default">8</button>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Dropdown link</a></li>
+            <li><a href="#">Dropdown link</a></li>
+            <li><a href="#">Dropdown link</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </p>
+
+  <p>
+    <button type="button" class="btn btn-default btn-block">Block Level Button</button>
+  </p>
+
+  <p>
+    <div class="btn-group btn-group-justified">
+      <a href="#" class="btn btn-default">Left</a>
+      <a href="#" class="btn btn-default">Middle</a>
+      <a href="#" class="btn btn-default">Right</a>
+    </div>
+  </p>
+
+  <p>
+    <div class="btn-group-vertical">
+      <button type="button" class="btn btn-default">Button</button>
+      <button type="button" class="btn btn-default">Button</button>
+      <button type="button" class="btn btn-default">Button</button>
+      <button type="button" class="btn btn-default">Button</button>
+    </div>
+  </p>
+</section>
+
+<section><!-- Code -->
+  <header>
+    <h1 id="code">Code</h1>
+  </header>
+
+  <h2>Inline</h2>
+  <p>
+    For example, <code>&lt;code&gt;...&lt;/code&gt;</code> should be wrapped as inline.
+  </p>
+
+  <h2>Code block</h2>
+  <pre>&lt;pre&gt;Preserved content goes here ...&lt;/pre&gt;</pre>
+
+  <h2>User Input</h2>
+  <p>
+    <code>&lt;kbd&gt;</code>: To switch directories, type <kbd>cd</kbd> followed
+    by the name of the directory.<br />
+    To edit settings, press <kbd>ctrl + ,</kbd>
+  </p>
+
+  <h2>Variables</h2>
+  <p>
+    <code>&lt;var&gt;</code>:
+    <var>y</var> = <var>m</var><var>x</var> + <var>b</var>
+  </p>
+</section>
+
+<section><!-- Dropdown Menus -->
+  <header class="page-header">
+    <h1 id="dropdown-menus">Dropdown Menus</h1>
+  </header>
+  <div class="row">
+    <div class="col-xs-12 col-md-4">
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Dropdown
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <li class="active">
+            <a href="#">Active Action</a>
+          </li>
+          <li>
+            <a href="#">Another Action</a>
+          </li>
+          <li class="disabled">
+            <a href="#">Something else here</a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li class="dropdown-header">Dropdown Header</li>
+          <li>
+            <a href="#">Separated link</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-md-4">
+      <div class="dropdown-example">
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li class="active">
+            <a href="#">Active Action</a>
+          </li>
+          <li>
+            <a href="#">Another Action</a>
+          </li>
+          <li class="disabled">
+            <a href="#">Something else here</a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li class="dropdown-header">Dropdown Header</li>
+          <li>
+            <a href="#">Separated link</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section><!-- Forms -->
+  <header>
+    <h1 id="forms">Forms</h1>
+  </header>
+  <form>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="ks-email">Email address</label>
+          <input type="email" class="form-control" id="ks-email" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label for="ks-password">Password</label>
+          <input type="password" class="form-control" id="ks-password" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <label for="ks-file-input">File input</label>
+          <input type="file" id="ks-file-input">
+          <p class="help-block">Example block-level help text here.</p>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Checkbox
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ks-textarea" class="control-label">Textarea</label>
+          <textarea class="form-control" rows="3" id="ks-textarea"></textarea>
+          <span class="help-block">
+            A longer block of help text that breaks onto a new line and may extend beyond one line.
+          </span>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label class="control-label">Radios</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="ks-radios" id="ks-rad-1" value="option1" checked />
+              Option one is this
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="ks-radios" id="ks-rad-2" value="option2" />
+              Option two can be something else
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ks-select" class="control-label">Selects</label>
+          <select class="form-control" id="ks-select">
+            <option>1</option>
+            <option checked>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+          <br>
+          <select multiple="" class="form-control">
+            <option>1</option>
+            <option checked>2</option>
+            <option checked>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="normalInput">Normal input</label>
+          <input class="form-control" id="normalInput" type="text" value="This is normal...">
+        </div>
+
+        <div class="form-group">
+          <label for="disabledInput">Disabled input</label>
+          <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled="">
+        </div>
+
+        <div class="form-group has-warning">
+          <label class="control-label" for="inputWarning">Input warning</label>
+          <input type="text" class="form-control" id="inputWarning">
+        </div>
+
+        <div class="form-group has-error">
+          <label class="control-label" for="inputError">Input error</label>
+          <input type="text" class="form-control" id="inputError">
+        </div>
+
+        <div class="form-group has-success">
+          <label class="control-label" for="inputSuccess">Input success</label>
+          <input type="text" class="form-control" id="inputSuccess">
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label class="control-label" for="inputLarge">Large input</label>
+          <input class="form-control input-lg" type="text" id="inputLarge">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="inputDefault">Default input</label>
+          <input type="text" class="form-control" id="inputDefault">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="inputSmall">Small input</label>
+          <input class="form-control input-sm" type="text" id="inputSmall">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Input addons</label>
+          <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input type="text" class="form-control">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Button</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <button class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<section><!-- Headings -->
+  <h1 id="headings-with-secondary-text">
+    Heading 1 <small>Secondary Text</small>
+  </h1>
+  <p class="lead">
+    Lead body copy. Try to review the acceptance bug,
+    maybe it will help groom the MVP bottlenecks.
+  </p>
+  <p>
+    Body copy. Reviewing the story points should allow our unit testing to
+    prevent the burndown planning poker till the collaboration. A simple
+    deadline always takes less time than a prioritized one. We must
+    periodically open the monthly PR manifesto! If we spike without the
+    methodologies, we can get the certified trend upon the VOC bug. As a user,
+    I should be able to adapt the beta pair programming so that I can work the
+    quarterly XP blockers around the upward wikis.
+  </p>
+
+  <h2>Heading 2 <small>Secondary Text</small></h2>
+  <h3>Heading 3 <small>Secondary Text</small></h3>
+  <h4>Heading 4 <small>Secondary Text</small></h4>
+  <h5>Heading 5 <small>Secondary Text</small></h5>
+  <h6>Heading 6 <small>Secondary Text</small></h6>
+</section>
+
+<section><!-- Inline -->
+  <header class="page-header">
+    <h1 id="inline-text-elements">Inline Text Elements</h1>
+  </header>
+  <div class="row">
+    <div class="col-xs-6">
+      <p>
+        <strong>Marked</strong>: <code>&lt;mark&gt;</code><br />
+        You can use the mark tag to <mark>highlight</mark> text.
+      </p>
+      <p>
+        <strong>Deleted</strong>: <code>&lt;del&gt;</code><br />
+        <del>This line of text is meant to be treated as deleted text.</del>
+      </p>
+      <p>
+        <strong>Strikethrough</strong>: <code>&lt;s&gt;</code><br />
+        <s>This line of text is meant to be treated as no longer accurate.</s>
+      </p>
+      <p>
+        <strong>Inserted</strong>: <code>&lt;ins&gt;</code><br />
+        <ins>This line of text is meant to be treated as an addition to the document.</ins>
+      </p>
+      <p>
+        <strong>Underlined</strong>: <code>&lt;u&gt;</code><br />
+        <u>This line of text will render as underlined</u>
+      </p>
+    </div>
+
+    <div class="col-xs-6">
+      <p>
+        <strong>Small</strong>: <code>&lt;small&gt;</code><br />
+        <small>This line of text is meant to be treated as fine print.</small>
+      </p>
+      <p>
+        <strong>Bold</strong>: <code>&lt;strong&gt;</code>, <code>&lt;b&gt;</code><br />
+        <strong>This line rendered as bold text.</strong><br />
+        <b>This line also rendered as bold text.</b>
+      </p>
+      <p>
+        <strong>Italics</strong>: <code>&lt;em&gt;</code>, <code>&lt;i&gt;</code><br />
+        <em>This line rendered as italicized text.</em>
+        <i>This line also rendered as italicized text.</i>
+      </p>
+      <p>
+        <strong>Abbreviation</strong>: <code>&lt;abbr&gt;</code><br />
+        <abbr title="attribute">attr</abbr>
+      </p>
+      <p>
+        <strong>Initialism</strong>: <code>abbr.initialism</code><br />
+        <abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
+      </p>
+    </div>
+  </div>
+
+  <b>Muted:</b>
+  <p class="text-muted">
+    If it takes you too long to detail the flexible XP spec, then you are not spiking enough. A simple lifecycle management always takes less time than a burnup one. The best way to detail minimum sequence is to almost satify their application. If it takes you too long to measure the major VOC sprint, then you are not working enough.
+  </p>
+
+  <b>Primary:</b>
+  <p class="text-primary">
+    If it takes you too long to detail the flexible XP spec, then you are not spiking enough. A simple lifecycle management always takes less time than a burnup one. The best way to detail minimum sequence is to almost satify their application. If it takes you too long to measure the major VOC sprint, then you are not working enough.
+  </p>
+
+  <b>Warning:</b>
+  <p class="text-warning">
+    If it takes you too long to detail the flexible XP spec, then you are not spiking enough. A simple lifecycle management always takes less time than a burnup one. The best way to detail minimum sequence is to almost satify their application. If it takes you too long to measure the major VOC sprint, then you are not working enough.
+  </p>
+
+  <b>Danger:</b>
+  <p class="text-danger">
+    If it takes you too long to detail the flexible XP spec, then you are not spiking enough. A simple lifecycle management always takes less time than a burnup one. The best way to detail minimum sequence is to almost satify their application. If it takes you too long to measure the major VOC sprint, then you are not working enough.
+  </p>
+
+  <b>Success:</b>
+  <p class="text-success">
+    If it takes you too long to detail the flexible XP spec, then you are not spiking enough. A simple lifecycle management always takes less time than a burnup one. The best way to detail minimum sequence is to almost satify their application. If it takes you too long to measure the major VOC sprint, then you are not working enough.
+  </p>
+
+  <b>Info:</b>
+  <p class="text-info">
+    If it takes you too long to detail the flexible XP spec, then you are not spiking enough. A simple lifecycle management always takes less time than a burnup one. The best way to detail minimum sequence is to almost satify their application. If it takes you too long to measure the major VOC sprint, then you are not working enough.
+  </p>
+</section>
+
+<section><!-- Labels -->
+  <header class="page-header">
+    <h1 id="labels">Labels</h1>
+  </header>
+  <p>
+    <span class="label label-default">Default</span>
+    <span class="label label-primary">Primary</span>
+    <span class="label label-success">Success</span>
+    <span class="label label-info">Info</span>
+    <span class="label label-warning">Warning</span>
+    <span class="label label-danger">Danger</span>
+  </p>
+</section>
+
+<section><!-- Lists -->
+  <header class="page-header">
+    <h1 id="lists">Lists</h1>
+  </header>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h2>Unordered</h2>
+      <ul>
+        <li>the lazy dog</li>
+        <li>fox jumps over
+          <ul>
+            <li>dog lazy quick</li>
+            <li>brown jumps fox</li>
+          </ul>
+        </li>
+        <li>the quick brown</li>
+      </ul>
+    </div>
+    <div class="col-xs-6">
+      <h2>Ordered</h2>
+      <ol>
+        <li>the lazy dog</li>
+        <li>fox jumps over
+          <ol>
+            <li>dog lazy quick</li>
+            <li>brown jumps fox</li>
+          </ol>
+        </li>
+        <li>the quick brown</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h2>Unstyled</h2>
+      <ul class="list-unstyled">
+        <li>the lazy dog</li>
+        <li>fox jumps over
+          <ul>
+            <li>dog lazy quick</li>
+            <li>brown jumpst fox</li>
+          </ul>
+        </li>
+        <li>the quick brown</li>
+      </ul>
+    </div>
+    <div class="col-xs-6">
+      <h2>Inline</h2>
+      <ul class="list-inline">
+        <li>First</li>
+        <li>Second</li>
+        <li>Third</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Vertical Description</h2>
+  <dl>
+    <dt>Description list</dt>
+    <dd>A description list is useful for defining terms or key/value pairs of metadata.</dd>
+
+    <dt>Lorem</dt>
+    <dd>Try to estimate the pirate interface, maybe it will help adjust the VOC specs.</dd>
+
+    <dt>Ipsum</dt>
+    <dd>It was discovered that by usually satifying the MVP applications, we can plan the test-driven MVP feedback for the rapid development.</dd>
+  </dl>
+
+  <h2>Horizontal Description</h2>
+  <dl class="dl-horizontal">
+    <dt>Description list</dt>
+    <dd>A description list is useful for defining terms or key/value pairs of metadata.</dd>
+
+    <dt>Lorem</dt>
+    <dd>Try to estimate the pirate interface, maybe it will help adjust the VOC specs.</dd>
+
+    <dt>Ipsum</dt>
+    <dd>It was discovered that by usually satifying the MVP applications, we can plan the test-driven MVP feedback for the rapid development.</dd>
+  </dl>
+
+  <h2 id="list-groups">List Groups</h2>
+  <div class="row">
+    <div class="col-xs-6">
+      <ul class="list-group">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item active">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item disabled">Porta ac consectetur ac</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section><!-- Navs -->
+  <header class="page-header">
+    <h1 id="navs">Navs</h1>
+  </header>
+
+  <b>Tabs:</b>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#">Home</a></li>
+    <li role="presentation"><a href="#">Profile</a></li>
+    <li role="presentation"><a href="#">Messages</a></li>
+    <li role="presentation" class="disabled"><a href="#">Not Available</a></li>
+  </ul>
+  <br />
+
+  <b>Pills:</b>
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#">Home</a></li>
+    <li role="presentation"><a href="#">Profile</a></li>
+    <li role="presentation"><a href="#">Messages</a></li>
+    <li role="presentation" class="disabled"><a href="#">Not Available</a></li>
+  </ul>
+</section>
+
+<section><!-- Modals -->
+  <header class="page-header">
+    <h1 id="modals">Modals</h1>
+  </header>
+  <div class="modal-example">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">h4.modal-title</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            If it takes you too long to detail the flexible XP spec, then you
+            are not spiking enough. A simple lifecycle management always takes
+            less time than a burnup one. The best way to detail minimum sequence
+            is to almost satify their application. If it takes you too long to
+            measure the major VOC sprint, then you are not working enough.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              If it takes you too long to detail the flexible XP spec, then you
+              are not spiking enough. A simple lifecycle management always takes
+              less time than a burnup one. The best way to detail minimum sequence
+              is to almost satify their application. If it takes you too long to
+              measure the major VOC sprint, then you are not working enough.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section><!-- Pagers -->
+  <header class="page-header">
+    <h1 id="pagers">Pagers</h1>
+  </header>
+  <ul class="pager">
+    <li class="disabled"><a href="#">&larr; Older (disabled)</a></li>
+    <li ><a href="#">Newer (enabled) &rarr;</a></li>
+  </ul>
+
+  <ul class="pager">
+    <li class="previous disabled"><a href="#">&larr; Previous (disabled)</a></li>
+    <li class="next"><a href="#">Next (endabled) &rarr;</a></li>
+  </ul>
+</section>
+
+<section><!-- Pagination -->
+  <header class="page-header">
+    <h1 id="pagination">Pagination</h1>
+  </header>
+  <p>
+    <ul class="pagination">
+      <li class="disabled"><a href="#">«</a></li>
+      <li class="active"><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">»</a></li>
+    </ul>
+  </p>
+
+  <p>
+    <ul class="pagination pagination-lg">
+      <li class="disabled"><a href="#">«</a></li>
+      <li class="active"><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">»</a></li>
+    </ul>
+  </p>
+
+  <p>
+    <ul class="pagination pagination-sm">
+      <li class="disabled"><a href="#">«</a></li>
+      <li class="active"><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">»</a></li>
+    </ul>
+  </p>
+</section>
+
+<section><!-- Panels -->
+  <header class="page-header">
+    <h1 id="panels">Panels</h1>
+  </header>
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">Default</div>
+        </div>
+        <div class="panel-body">Panel content</div>
+        <div class="panel-footer">Panel Footer</div>
+      </div>
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <div class="panel-title">Primary</div>
+        </div>
+        <div class="panel-body">Panel content</div>
+        <div class="panel-footer">Panel Footer</div>
+      </div>
+
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <div class="panel-title">Success</div>
+        </div>
+        <div class="panel-body">Panel content</div>
+        <div class="panel-footer">Panel Footer</div>
+      </div>
+    </div>
+
+    <div class="col-xs-6">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <div class="panel-title">Info</div>
+        </div>
+        <div class="panel-body">Panel content</div>
+        <div class="panel-footer">Panel Footer</div>
+      </div>
+
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <div class="panel-title">Warning</div>
+        </div>
+        <div class="panel-body">Panel content</div>
+        <div class="panel-footer">Panel Footer</div>
+      </div>
+
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <div class="panel-title">Danger</div>
+        </div>
+        <div class="panel-body">Panel content</div>
+        <div class="panel-footer">Panel Footer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section><!-- Popovers -->
+  <header class="page-header">
+    <h1 id="popovers">Popovers</h1>
+  </header>
+  <div class="popover-example">
+    <div class="popover top">
+      <div class="arrow"></div>
+      <h3 class="popover-title">h3.popover-title</h3>
+      <div class="popover-content">
+        <p>
+          <code>.popover-content</code>
+          Sed posuere consectetur est at lobortis. Aenean eu leo quam.
+          Pellentesque ornare sem lacinia quam venenatis vestibulum.
+        </p>
+      </div>
+    </div>
+    <div class="popover right">
+      <div class="arrow"></div>
+      <h3 class="popover-title">h3.popover-title</h3>
+      <div class="popover-content">
+        <p>
+          <code>.popover-content</code>
+          Sed posuere consectetur est at lobortis. Aenean eu leo quam.
+          Pellentesque ornare sem lacinia quam venenatis vestibulum.
+        </p>
+      </div>
+    </div>
+    <div class="popover bottom">
+      <div class="arrow"></div>
+      <h3 class="popover-title">h3.popover-title</h3>
+      <div class="popover-content">
+        <p>
+          <code>.popover-content</code>
+          Sed posuere consectetur est at lobortis. Aenean eu leo quam.
+          Pellentesque ornare sem lacinia quam venenatis vestibulum.
+        </p>
+      </div>
+    </div>
+    <div class="popover left">
+      <div class="arrow"></div>
+      <h3 class="popover-title">h3.popover-title</h3>
+      <div class="popover-content">
+        <p>
+          <code>.popover-content</code>
+          Sed posuere consectetur est at lobortis. Aenean eu leo quam.
+          Pellentesque ornare sem lacinia quam venenatis vestibulum.
+        </p>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</section>
+
+<section><!-- Progress Bars -->
+  <header class="page-header">
+    <h1 id="progress-bars">Progress Bars</h1>
+  </header>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+      <span class="sr-only">60% Complete</span>
+      60%
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+      <span class="sr-only">40% Complete (success)</span>
+      40%
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+      <span class="sr-only">20% Complete</span>
+      20%
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+      <span class="sr-only">60% Complete (warning)</span>
+      60%
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+      <span class="sr-only">80% Complete (danger)</span>
+      80%
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+      <span class="sr-only">60% Complete</span>
+      60%
+    </div>
+  </div>
+</section>
+
+<section><!-- Tables -->
+  <header class="page-header">
+    <h1 id="tables">Tables</h1>
+  </header>
+
+  <h2>Default Table</h2>
+  <table class="table">
+    <caption>Optional table caption.</caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>W</td>
+        <td>X</td>
+        <td>Y</td>
+        <td>Z</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <h2>Striped Table</h2>
+  <table class="table table-striped">
+    <caption>Optional table caption.</caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Bordered Table</h2>
+  <table class="table table-bordered">
+    <caption>Optional table caption.</caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Condensed Table</h2>
+  <table class="table table-condensed">
+    <caption>Optional table caption.</caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Hoverable Table</h2>
+  <table class="table table-hover">
+    <caption>Optional table caption.</caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Contextual Classes</h2>
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>---</code></td>
+        <td>Normal table row</td>
+      </tr>
+      <tr>
+        <td><code>---</code></td>
+        <td>Normal table row</td>
+      </tr>
+      <tr class="active">
+        <td><code>.active</code></td>
+        <td>Applies the hover color to a particular row or cell.</td>
+      </tr>
+      <tr class="success">
+        <td><code>.success</code></td>
+        <td>Indicates a successful or positive action</td>
+      </tr>
+      <tr class="info">
+        <td><code>.info</code></td>
+        <td>Indicates a neutral informative change or action</td>
+      </tr>
+      <tr class="warning">
+        <td><code>.warning</code></td>
+        <td>Indicates a warning that might need attention</td>
+      </tr>
+      <tr class="danger">
+        <td><code>.danger</code></td>
+        <td>Indicates a dangerous or potential negative action</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section><!-- Tooltips -->
+  <header class="page-header">
+    <h1 id="tooltips">Tooltips</h1>
+  </header>
+  <div class="tooltip-example">
+    <div class="tooltip left" role="tooltip">
+      <div class="tooltip-arrow"></div>
+      <div class="tooltip-inner">.tooltip.left</div>
+    </div>
+    <div class="tooltip top" role="tooltip">
+      <div class="tooltip-arrow"></div>
+      <div class="tooltip-inner">.tooltip.top</div>
+    </div>
+    <div class="tooltip bottom" role="tooltip">
+      <div class="tooltip-arrow"></div>
+      <div class="tooltip-inner">.tooltip.bottom</div>
+    </div>
+    <div class="tooltip right" role="tooltip">
+      <div class="tooltip-arrow"></div>
+      <div class="tooltip-inner">.tooltip.right</div>
+    </div>
+  </div>
+</section>
+
+<section><!-- Wells -->
+  <header class="page-header">
+    <h1 id="wells">Wells</h1>
+  </header>
+  <div class="well">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>
+  </div>
+</section>
