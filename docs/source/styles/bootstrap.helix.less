@@ -128,6 +128,11 @@
     .round-bottom();
   }
 
+  .flat-top {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
   .flat-bottom {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -254,6 +259,10 @@ blockquote {
 
 
 /* ========== Buttons ========== */
+.btn {
+  border-radius: @border-radius-base;
+}
+
 .btn-primary {
   background-color: @brand-primary;
   border-color: transparent;
@@ -278,6 +287,14 @@ blockquote {
   background-color: @brand-danger;
   border-color: transparent;
   color: @gray-0;
+}
+.btn-group-vertical > .btn:first-child:not(:last-child) {
+  #mix.flat-bottom();
+  #mix.round-top();
+}
+.btn-group-vertical > .btn:last-child:not(:first-child) {
+  #mix.round-bottom();
+  #mix.flat-top();
 }
 
 
