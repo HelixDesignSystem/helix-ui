@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,100,100italic,300,300italic,400italic,700,700italic");
 /* REFERENCE
   # Bootstrap Breakpoints
   -----------------------
@@ -146,6 +148,7 @@ html {
   font-size: @font-size-base;
 }
 body {
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: @font-size-base;
   line-height: 1.25; // 20px (?? @line-height-base?)
   background-color: @gray-25;
@@ -871,48 +874,164 @@ dd, dt {
 
 
 /* ========== Tables ========== */
-// TODO: Finish styling with helix specs (bordered always)
+// Table style reset
 .table {
-  width: 100%;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
 
-  & > tbody {
+  & > thead,
+  & > tbody,
+  & > tfoot {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+
     & > tr {
-      &.success {
-        & > td,
-        & > th {
-          background-color: @state-success-bg;
-        }
-      }
+      background-color: transparent;
+      border: none;
+      margin: 0;
+      padding: 0;
 
-      &.info {
-        & > td,
-        & > th {
-          background-color: @state-info-bg;
-        }
-      }
-
-      &.warning {
-        & > td,
-        & > th {
-          background-color: @state-warning-bg;
-        }
-      }
-
-      &.danger {
-        & > td,
-        & > th {
-          background-color: @state-danger-bg;
-        }
+      & > th,
+      & > td {
+        background-color: transparent;
+        border: none;
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+        font-size: 1em;
       }
     }
   }
 }
-.table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: @gray-200;
-}
-.table-bordered {
-  border-width: 1px 0 0 1px;
-  border-color: @table-border-color;
+
+/*
+  ---------
+  | thead |
+      +
+  ---------
+  | tbody |
+  ---------
+      +
+  | tfoot |
+  ---------
+*/
+.table {
+  font-size: 1em; // 16px
+  margin: 1.5em 0;
+
+  & > thead {
+    border-color: transparent;
+    border-style: solid;
+    border-width: 1px 1px 0;
+    font-weight: 500;
+
+    & > tr {
+      & > th,
+      & > td {
+        padding: 0.75rem 0.5rem; // 12px 8px
+      }
+
+      &:first-child {
+        text-transform: uppercase;
+      }
+    }
+  }//thead
+
+  & > tbody {
+    border-color: @table-border-color transparent;
+    border-style: solid;
+    border-width: 1px;
+    font-weight: 400;
+
+    & > tr {
+      & + tr {
+        border-top: 1px solid @table-border-color;
+      }
+
+      & > th,
+      & > td {
+        padding: 1rem 0.5rem; // 16px 8px
+      }
+    }
+
+    & > tr.success {
+      & > td,
+      & > th {
+        background-color: @state-success-bg;
+      }
+    }//tr.success
+
+    & > tr.info {
+      & > td,
+      & > th {
+        background-color: @state-info-bg;
+      }
+    }//tr.info
+
+    & > tr.warning {
+      & > td,
+      & > th {
+        background-color: @state-warning-bg;
+      }
+    }//tr.warning
+
+    & > tr.danger {
+      & > td,
+      & > th {
+        background-color: @state-danger-bg;
+      }
+    }//tr.danger
+  }//tbody
+
+  & > tfoot {
+    border-color: transparent;
+    border-style: solid;
+    border-width: 0 1px 1px;
+    font-weight: 300;
+    font-size: 1.25em; // 20px
+
+    & > tr {
+      & > th,
+      & > td {
+        padding: 0.75rem 0.5rem; // 12px 8px
+      }
+    }
+  }//tfoot
+
+  .col-control {
+    color: @gray-700;
+    font-size: 1rem;
+    width: 1rem;
+  }
+
+  // variants
+  &-bordered {
+    & > tbody {
+      border: 1px solid @table-border-color;
+    }
+  }
+
+  &-condensed {
+    & > thead,
+    & > tfoot {
+      & > tr {
+        & > th,
+        & > td {
+          padding: 0.5rem 0.25rem; // 8px 4px
+        }
+      }
+    }
+
+    & > tbody > tr {
+      & > th,
+      & > td {
+        padding: 0.5rem 0.25rem; // 8px 4px
+      }
+    }
+  }
 }
 
 
