@@ -13,6 +13,7 @@
 */
 
 // Helix Color Palette
+@blue-500: #3391ff;
 @blue-700: #0d74d1;
 @cyan-500: #16b9d4;
 @cyan-700: #0e94a6;
@@ -264,40 +265,116 @@ blockquote {
 /* ========== Buttons ========== */
 .btn {
   border-radius: @border-radius-base;
+  box-shadow: none;
+  text-transform: uppercase;
+
+  &:focus {
+    outline: 4px auto @blue-500;
+  }
+
+  &:active,
+  &:active:hover {
+    box-shadow: none;
+  }
+
+  &[disabled] {
+    opacity: 1;
+    outline: none;
+    pointer-events: none;
+  }
+}
+
+.btn-default {
+  background-color: @gray-0;
+  border-color: @brand-primary;
+  color: @brand-primary;
+
+  &:focus {
+    background-color: @gray-0;
+    border-color: @brand-primary;
+    color: @brand-primary;
+  }
+
+  &:hover {
+    background-color: @cyan-500;
+    border-color: transparent;
+    color: @gray-0;
+  }
+
+  &:active,
+  &:active:hover {
+    background-color: @cyan-700;
+    border-color: transparent;
+    color: @gray-0;
+  }
+
+  &[disabled] {
+    background-color: @gray-0;
+    border-color: @gray-400;
+    color: @gray-400;
+  }
 }
 
 .btn-primary {
   background-color: @brand-primary;
   border-color: transparent;
   color: @gray-0;
+
+  &:focus {
+    background-color: @brand-primary;
+    border-color: transparent;
+    color: @gray-0;
+  }
+
+  &:hover {
+    &:extend(.btn-default:hover);
+  }
+
+  &:active {
+    &:extend(.btn-default:active);
+  }
+
+  &:active:hover {
+    &:extend(.btn-default:active:hover);
+  }
+
+  &[disabled] {
+    background-color: @gray-400;
+    border-color: transparent;
+    color: @gray-900;
+  }
 }
-.btn-success {
-  background-color: @brand-success;
+
+// should be same as link styles
+.btn-link {
+  background-color: transparent;
   border-color: transparent;
-  color: @gray-0;
-}
-.btn-info {
-  background-color: @brand-info;
-  border-color: transparent;
-  color: @gray-0;
-}
-.btn-warning {
-  background-color: @brand-warning;
-  border-color: transparent;
-  color: @gray-0;
-}
-.btn-danger {
-  background-color: @brand-danger;
-  border-color: transparent;
-  color: @gray-0;
-}
-.btn-group-vertical > .btn:first-child:not(:last-child) {
-  #mix.flat-bottom();
-  #mix.round-top();
-}
-.btn-group-vertical > .btn:last-child:not(:first-child) {
-  #mix.round-bottom();
-  #mix.flat-top();
+  color: @cyan-700;
+
+  &:focus {
+    background-color: transparent;
+    border-color: transparent;
+    color: @cyan-500;
+  }
+
+  &:hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: @cyan-500;
+  }
+
+  &:active,
+  &:active:hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: @cyan-500;
+  }
+
+  &[disabled] {
+    background-color: transparent;
+    border-color: transparent;
+    color: @gray-400;
+  }
 }
 
 
