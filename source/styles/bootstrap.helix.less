@@ -102,7 +102,8 @@
 // Tables
 @table-border-color: @gray-300;
 // Tooltips
-@tooltip-bg: @purple-500;
+@tooltip-bg: @gray-800;
+@tooltip-fg: @gray-25;
 
 // ===== MIXINS =====
 #mix {
@@ -155,13 +156,14 @@ body {
   background-color: @gray-25;
 }
 a {
-  color: @cyan-700;
+  color: @blue-700;
   text-decoration: none;
 
   &:hover,
   &:focus {
-    color: @cyan-500;
-    text-decoration: underline;
+    color: @blue-500;
+    text-decoration: none;
+    cursor: pointer;
   }
 
   &:focus {
@@ -977,12 +979,17 @@ dd, dt {
 
 /* ========== Tooltips ========== */
 .tooltip-inner {
-  padding: 1em;
   background-color: @tooltip-bg;
-  color: @gray-0;
+  color: @tooltip-fg;
   max-width: 440px;
+  padding: 0.5em 1em;
+  font-size: 0.75rem; // 12px
 }
 .tooltip {
+  &.in {
+    opacity: 1;
+  }
+
   &.left {
     .tooltip-arrow {
       border-left-color: @tooltip-bg;
