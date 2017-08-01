@@ -509,30 +509,6 @@ abbr {
 }
 
 
-/* ========== Labels ========== */
-.label {
-  border-radius: @border-radius-base;
-}
-.label-default {
-  background-color: @gray-700;
-}
-.label-primary {
-  background-color: @brand-primary;
-}
-.label-success {
-  background-color: @brand-success;
-}
-.label-info {
-  background-color: @brand-info;
-}
-.label-warning {
-  background-color: @brand-warning;
-}
-.label-danger {
-  background-color: @brand-danger;
-}
-
-
 /* ========== Lists ========== */
 ul {
   list-style-type: square;
@@ -544,27 +520,9 @@ ul ol {
   // remove bottom margin for nested lists
   margin-bottom: 0;
 }
-// inline list
-.list-inline > li {
-  display: inline-block;
-  padding: 0 @padding-base-horizontal;
-}
-// vertical description
+
 dd, dt {
   line-height: @line-height-base;
-}
-// horizontal description
-//TBD
-// list groups
-.list-group-item:first-child {
-  #mix.round-top();
-}
-.list-group-item:last-child {
-  #mix.round-bottom();
-}
-.list-group-item.active {
-  background-color: @brand-primary;
-  color: @gray-0;
 }
 
 
@@ -582,19 +540,6 @@ dd, dt {
 .nav-tabs > li.disabled > a:hover,
 .nav-tabs > li.disabled > a:focus {
   border-color: transparent;
-}
-.nav-pills > li > a {
-  #mix.rounded();
-}
-.nav-pills > li.active > a {
-  background-color: @brand-primary;
-}
-.nav-pills > li.active > a:hover,
-.nav-pills > li.active > a:focus {
-  background-color: lighten(@brand-primary, 10%);
-}
-.nav-pills > li.disabled > a {
-  color: @gray-700;
 }
 
 
@@ -733,10 +678,6 @@ dd, dt {
 //TBD
 
 
-/* ========== Pagers ========== */
-//TBD
-
-
 /* ========== Pagination ========== */
 .pagination {
   background: @gray-0;
@@ -783,101 +724,6 @@ dd, dt {
       background-color: lighten(@pagination-active-bg, 10%);
       border-color: lighten(@pagination-active-bg, 10%);
     }
-  }
-}
-
-
-/* ========== Panels ========== */
-.panel {
-  border-radius: 0;
-  background-color: @gray-0;
-}
-.panel-heading {
-  border: 0 solid @table-border-color;
-  border-bottom-width: 1px;
-  border-radius: 0;
-  padding: @padding-large-vertical @padding-large-horizontal;
-}
-.panel-body {
-  padding: @padding-base-vertical @padding-large-horizontal;
-}
-.panel-footer {
-  background-color: @gray-50;
-  border: 0 solid @table-border-color;
-  border-top-width: 1px;
-  padding: @padding-base-vertical @padding-large-horizontal;
-}
-// Panel Variants
-.panel-default {
-  border-color: @table-border-color;
-
-  .panel-title {
-    color: @gray-900;
-  }
-
-  & > .panel-heading {
-    border-color: @table-border-color;
-    background-color: @gray-50;
-  }
-}
-.panel-primary {
-  border-color: @brand-primary;
-
-  .panel-title {
-    color: @gray-0;
-  }
-
-  & > .panel-heading {
-    border-color: @brand-primary;
-    background-color: @brand-primary;
-  }
-}
-.panel-success {
-  border-color: @state-success-border;
-
-  .panel-title {
-    color: @state-success-text;
-  }
-
-  & > .panel-heading {
-    border-color: @state-success-border;
-    background-color: @state-success-bg;
-  }
-}
-.panel-info {
-  border-color: darken(@state-info-border, 10%);
-
-  .panel-title {
-    color: @state-info-text;
-  }
-
-  & > .panel-heading {
-    border-color: darken(@state-info-border, 10%);
-    background-color: @state-info-bg;
-  }
-}
-.panel-warning {
-  border-color: @state-warning-border;
-
-  .panel-title {
-    color: @state-warning-text;
-  }
-
-  & > .panel-heading {
-    border-color: @state-warning-border;
-    background-color: @state-warning-bg;
-  }
-}
-.panel-danger {
-  border-color: @state-danger-border;
-
-  .panel-title {
-    color: @state-danger-text;
-  }
-
-  & > .panel-heading {
-    border-color: @state-danger-border;
-    background-color: @state-danger-bg;
   }
 }
 
@@ -1143,11 +989,4 @@ dd, dt {
       border-bottom-color: @tooltip-bg;
     }
   }
-}
-
-
-/* ========== Wells ========== */
-.well {
-  background-color: @gray-50;
-  border-color: @table-border-color;
 }
