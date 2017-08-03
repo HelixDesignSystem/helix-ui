@@ -1,8 +1,5 @@
 <div class="sticky-top">
-  <%- toc(page.content, {
-     max_depth: 1,
-     list_number: false
+  <%- flat_toc(page.content, {
+      topLink: true
   }) %>
-
-  <a href="#top">^ Back to Top</a>
 </div>

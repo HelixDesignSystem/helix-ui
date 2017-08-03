@@ -91,7 +91,7 @@ body {
   display: flex;
 
   .app-nav-container {
-    background-color: #333;
+    background-color: @gray-975;
     display: flex;
     flex-direction: column;
     width: @app-nav-width;
@@ -111,13 +111,36 @@ body {
 }
 
 .app-nav {
-  color: white;
+  color: @gray-600;
+  //padding-top: 3.75rem;
+
+  header {
+    padding: 10px;
+    margin: 0;
+    text-transform: uppercase;
+    color: @gray-0;
+  }
 
   a {
     display: block;
     padding: 10px;
     margin: 0;
     color: inherit;
+
+    &.current {
+      color: @gray-0;
+      background-color: @gray-900;
+    }
+
+    &:hover {
+      background-color: @gray-800;
+      color: @gray-0;
+      text-decoration: none;
+    }
+  }
+
+  section a {
+    padding-left: 1.5rem; /* 24px */
   }
 }
 
