@@ -98,7 +98,7 @@
 @popover-bg: @gray-0;
 @popover-arrow-color: @popover-bg;
 @popover-border-color: @gray-400;
-@popover-title-bg: @gray-100;
+@popover-title-bg: @gray-0;
 // Tables
 @table-border-color: @gray-300;
 // Tooltips
@@ -731,14 +731,28 @@ dd, dt {
 /* ========== Popovers ========== */
 .popover {
   background-color: @popover-bg;
-  padding: 0;
-  border-radius: @border-radius-base;
   border-color: @popover-border-color;
-  max-width: 440px;
+  border-radius: @border-radius-base;
+  font-size: 1rem;
+  max-width: 30rem; /* ~480px */
+  min-width: 20rem; /* ~320px */
+  padding: 1.25em;
 }
 .popover-title {
   background-color: @popover-title-bg;
   border-radius: 0;
+  border: none;
+  font-weight: 500;
+  padding: 0;
+  text-transform: capitalize;
+
+  & + .popover-content {
+    margin-top: 1.25em;
+  }
+}
+.popover-content {
+  margin: 0;
+  padding: 0;
 }
 .popover {
   &.left > .arrow {
