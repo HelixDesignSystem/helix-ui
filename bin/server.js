@@ -5,15 +5,15 @@ let hexo = require('./hexo').hexo;
 let browserSync = require('browser-sync').create();
 
 function initServer () {
-    let publicDir = 'docs/public';
+    let publicDir = 'public';
 
     browserSync.init({
         files: [ // (See 'watchEvents')
             `${publicDir}/**/*`,
             {
                 match: [
-                    'docs/source/**/*',
-                    'docs/themes/**/*'
+                    'source/**/*',
+                    'themes/**/*'
                 ],
                 fn: (evt, file) => {
                     // force regeneration of hexo assets on change of source or theme

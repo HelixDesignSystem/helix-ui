@@ -1,0 +1,25 @@
+<h1>HelixUI</h1>
+
+<p>We're still building. Content will arrive as it's built.</p>
+
+<section>
+    <!-- common links and getting started stuff goes here -->
+</section>
+
+<hr />
+
+<section>
+    <header>
+        <h2>Releases</h2>
+    </header>
+    <% site.posts.data.forEach(function (post) { %>
+        <h3>
+            <a href="<%- url_for(post.path) %>"><%- post.title %></a>
+        </h3>
+        <p><%- post.excerpt %></p>
+        <p>
+            <a href="<%- url_for(post.path) %>">Read More...</a>
+        </p>
+    <% }) %>
+    <!-- release notes go here -->
+</section>

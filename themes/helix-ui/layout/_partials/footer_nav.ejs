@@ -1,0 +1,8 @@
+<nav class="footer-nav">
+  <div class="links">
+    <% var latestPost = site.posts.data[0]; %>
+    <a href="<%- url_for(latestPost.path) %>">
+        <%- latestPost.title %>
+    </a>
+  </div>
+</nav>
