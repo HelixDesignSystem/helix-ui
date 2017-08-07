@@ -20,13 +20,17 @@ body {
   display: flex;
   flex-wrap: wrap;
 
+  .link,
   a {
     align-items: center;
     color: #bdbdbd;
     display: inline-flex;
     position: relative;
     white-space: nowrap;
+  }
 
+  .link,
+  a {
     &.current {
       color: #fff;
 
@@ -55,14 +59,8 @@ body {
   }
 
   .links {
-    display: flex;
     flex-wrap: wrap;
     flex: 1;
-
-    a {
-      height: 3em;
-      padding: 0 1em;
-    }
   }
 }
 
@@ -70,6 +68,7 @@ body {
   display: flex;
   flex-wrap: wrap;
 
+  .link,
   a {
     display: inline-flex;
     align-items: center;
@@ -80,9 +79,14 @@ body {
 .links {
   display: flex;
 
+  .link,
   a {
     height: 3em;
     padding: 0 1em;
+  }
+
+  &.align-right {
+    justify-content: flex-end;
   }
 }
 
@@ -158,5 +162,9 @@ body {
       text-decoration: none;
     }
   }
+}
+
+.align-right {
+  text-align: right;
 }
 /* ===== end:LAYOUT ===== */

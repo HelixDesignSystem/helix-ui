@@ -1,7 +1,5 @@
 name: HelixUI
 nav:
-  top:
-    Overview: /
   components:
     Alerts: /alerts
     Badges: /badges

@@ -2,7 +2,7 @@
 'use strict';
 
 const Hexo = require('hexo');
-let hexo = new Hexo(`${process.cwd()}/docs`, {
+let hexo = new Hexo(`${process.cwd()}`, {
     //debug: true
 });
 

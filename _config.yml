@@ -64,7 +64,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 less:
   paths:
-    - source/styles
+    - source/_less
 
 ## Themes: https://hexo.io/themes/
 theme: helix-ui
