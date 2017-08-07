@@ -1,0 +1,126 @@
+---
+title: Forms
+---
+<!-- explanation goes here -->
+
+<div class="demo">
+  <form>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="ks-email">Email address</label>
+          <input type="email" class="form-control" id="ks-email" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label for="ks-password">Password</label>
+          <input type="password" class="form-control" id="ks-password" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <label for="ks-file-input">File input</label>
+          <input type="file" id="ks-file-input">
+          <p class="help-block">Example block-level help text here.</p>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Checkbox
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ks-textarea" class="control-label">Textarea</label>
+          <textarea class="form-control" rows="3" id="ks-textarea"></textarea>
+          <span class="help-block">
+            A longer block of help text that breaks onto a new line and may extend beyond one line.
+          </span>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label class="control-label">Radios</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="ks-radios" id="ks-rad-1" value="option1" checked />
+              Option one is this
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="ks-radios" id="ks-rad-2" value="option2" />
+              Option two can be something else
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ks-select" class="control-label">Selects</label>
+          <select class="form-control" id="ks-select">
+            <option>1</option>
+            <option checked>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+          <br>
+          <select multiple="" class="form-control">
+            <option>1</option>
+            <option checked>2</option>
+            <option checked>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="searchInput">Search input</label>
+          <input type="search" class="form-control" id="searchInput" placeholder="Search for...">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="normalInput">Normal input</label>
+          <input class="form-control" id="normalInput" type="text" value="This is normal...">
+        </div>
+
+        <div class="form-group">
+          <label for="disabledInput">Disabled input</label>
+          <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled="">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Input addons</label>
+          <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input type="text" class="form-control">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Button</button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <div class="form-group has-warning">
+          <label class="control-label" for="inputWarning">Input warning</label>
+          <input type="text" class="form-control" id="inputWarning">
+        </div>
+
+        <div class="form-group has-error">
+          <label class="control-label" for="inputError">Input error</label>
+          <input type="text" class="form-control" id="inputError">
+        </div>
+
+        <div class="form-group has-success">
+          <label class="control-label" for="inputSuccess">Input success</label>
+          <input type="text" class="form-control" id="inputSuccess">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button class="btn btn-default">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

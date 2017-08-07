@@ -1,4 +1,23 @@
 name: HelixUI
-menu:
-  Overview: /
-  "Bootstrap Theme": /bootstrap-theme
+nav:
+  top:
+    Overview: /
+  components:
+    Alerts: /alerts
+    Badges: /badges
+    Blockquotes: /blockquotes
+    Breadcrumbs: /breadcrumbs
+    Buttons: /buttons
+    Code: /code
+    Dropdowns: /dropdowns
+    Forms: /forms
+    Lists: /lists
+    Modals: /modals
+    Navigation: /navigation
+    Pagination: /pagination
+    Popovers: /popovers
+    "Progress Bars": /progressbars
+    Tables: /tables
+    Tabs: /tabs
+    Tooltips: /tooltips
+    Typography: /typography
