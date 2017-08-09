@@ -48,13 +48,6 @@ function helper(str, options) {
 
     var result = `<ul class="${className}">${items.join('')}</ul>`;
 
-    if (options.topLink === true) {
-        result += `
-            <a class="${className}-link" href="#top">
-                <span class="${className}-text">^ Back to Top</span>
-            </a>`;
-    }
-
     return result;
 }
 
