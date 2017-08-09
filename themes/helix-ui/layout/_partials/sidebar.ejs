@@ -25,6 +25,13 @@
     <dl>
         <dt>Last Updated:</dt>
         <dd><%- page.updated.format('YYYY-MM-DD') %></dd>
+
+        <% if (page.assets) { %>
+            <dt>Assets:</dt>
+            <% _.forEach(page.assets, function (asset) { %>
+                <dd><code><%- asset %></code></dd>
+            <% }) %>
+        <% } %>
     </dl>
 </aside>
 
