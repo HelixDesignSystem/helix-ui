@@ -39,7 +39,7 @@ relative_link: false
 future: true
 highlight:
   enable: true
-  line_number: true
+  line_number: false
   auto_detect: false
   tab_replace:
 
@@ -81,6 +81,8 @@ deploy:
 
 # Additional Configurations
 nav:
+  guides:
+    Installing: /install
   components:
     Alerts: /alerts
     Badges: /badges
@@ -90,6 +92,7 @@ nav:
     Code: /code
     Dropdowns: /dropdowns
     Forms: /forms
+    Grid: /grid
     Lists: /lists
     Modals: /modals
     Navigation: /navigation

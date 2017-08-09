@@ -21,7 +21,7 @@ Path | Ship? | Notes
 `themes/helix-ui/` | No | Component explorer layout
 
 
-## Deploy Docs
-* `hexo deploy -g`
-  * See https://hexo.io/docs/commands.html#deploy
-  * See https://github.com/hexojs/hexo-deployer-git
+## Publish Documentation
+```
+yarn run publish
+```

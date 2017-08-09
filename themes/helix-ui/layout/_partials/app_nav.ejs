@@ -1,4 +1,19 @@
 <nav class="app-nav">
+<!--
+    <section>
+        <header>Guides</header>
+        <% for (var _item in theme.nav.guides) {
+            var items = theme.nav.guides;
+        %>
+            <a
+                class="hxNavItem theme-nav <%= is_current('guides' + items[_item]) ? 'current' : '' %>"
+                href="<%- url_for('/guides/' + items[_item]) %>"
+            >
+                <%= _item %>
+            </a>
+        <% } %>
+    </section>
+-->
     <section>
         <header>Components</header>
         <% for (var _item in theme.nav.components) {
