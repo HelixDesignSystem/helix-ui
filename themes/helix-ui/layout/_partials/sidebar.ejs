@@ -21,6 +21,13 @@
     </div>
 <% } %>
 
+<aside>
+    <dl>
+        <dt>Last Updated:</dt>
+        <dd><%- page.updated.format('YYYY-MM-DD') %></dd>
+    </dl>
+</aside>
+
 <aside class="article-toc" role="navigation">
     <header class="article-toc-title">Content</header>
     <% var toc = flat_toc(page.content, {}) %>
