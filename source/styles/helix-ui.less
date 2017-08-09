@@ -4,14 +4,13 @@
 @import 'imports';
 
 // LESS Vars and Mixins
-@import 'vars';
-@import 'mixins';
+@import (less, reference) 'vars';
+@import (less, reference) 'mixins';
 
 // Normalization and Resets
-//@import '_less/normalize';
+//@import 'normalize'; // TODO: needed?
 @import  'reset';
 
 // Core CSS
 @import 'scaffold';
 @import 'grid/_grid';
-@import 'layout';

@@ -1,0 +1,385 @@
+---
+title: Grid
+---
+<h2>12-column Grid</h2>
+<p>
+  The grid system requires loading the <a href="/helix-ui/styles/helix-ui.css" target="_blank">HelixUI CSS</a>
+  into your application.
+</p>
+
+<section>
+  <h3 id="responsive">Responsive</h3>
+
+  <div class="demo">
+    <div class="demo-container">
+      <div id="querySize"></div>
+      <div class="hxRow">
+        <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+        <div class="demoCol hxCol-6 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-10"></div>
+        <div class="demoCol hxCol-6 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+      </div>
+      <div class="hxRow">
+        <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+        <div class="demoCol hxCol-12 hxCol-sm-8 hxCol-md-9 hxCol-lg-10 hxCol-xl-11"></div>
+      </div>
+      <div class="hxRow">
+        <div class="demoCol hxCol-12 hxCol-sm-8 hxCol-md-6 hxCol-lg-4 hxCol-xl-3"></div>
+        <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-9"></div>
+      </div>
+    </div>
+  </div>
+
+  ```html
+  <div class="hxRow">
+    <div class="hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+    <div class="hxCol-6 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-10"></div>
+    <div class="hxCol-6 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+    <div class="hxCol-12 hxCol-sm-8 hxCol-md-9 hxCol-lg-10 hxCol-xl-11"></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-12 hxCol-sm-8 hxCol-md-6 hxCol-lg-4 hxCol-xl-3"></div>
+    <div class="hxCol-12 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-9"></div>
+  </div>
+  ```
+</section>
+
+<section>
+  <h3 id="gutterless">Gutterless</h3>
+  <p>
+    By adding the <code>.no-gutters</code> class to a <code>.hxRow</code>,
+    you can remove the gutters from the grid.
+  </p>
+
+  <div class="demo">
+    <div class="demo-container">
+      <div class="hxRow no-gutters">
+        <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+        <div class="demoCol hxCol-6 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-10"></div>
+        <div class="demoCol hxCol-6 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+      </div>
+      <div class="hxRow no-gutters">
+        <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+        <div class="demoCol hxCol-12 hxCol-sm-8 hxCol-md-9 hxCol-lg-10 hxCol-xl-11"></div>
+      </div>
+      <div class="hxRow no-gutters">
+        <div class="demoCol hxCol-12 hxCol-sm-8 hxCol-md-6 hxCol-lg-4 hxCol-xl-3"></div>
+        <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-9"></div>
+      </div>
+    </div>
+  </div>
+
+  ```html
+  <div class="hxRow no-gutters">
+    <div class="hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+    <div class="hxCol-6 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-10"></div>
+    <div class="hxCol-6 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+  </div>
+  <div class="hxRow no-gutters">
+    <div class="hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+    <div class="hxCol-12 hxCol-sm-8 hxCol-md-9 hxCol-lg-10 hxCol-xl-11"></div>
+  </div>
+  <div class="hxRow no-gutters">
+    <div class="hxCol-12 hxCol-sm-8 hxCol-md-6 hxCol-lg-4 hxCol-xl-3"></div>
+    <div class="hxCol-12 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-9"></div>
+  </div>
+  ```
+</section>
+
+<section>
+  <h3 id="nestable">Nestable</h3>
+  <div class="demo">
+    <div class="demo-container">
+      <div class="hxRow">
+        <div class="hxCol-2"><p>.hxCol-2</p></div>
+        <div class="hxCol-8">
+          <p>.hxCol-8</p>
+          <div class="hxRow">
+            <div class="hxCol-6">
+              <p>.hxCol-6</p>
+              <div class="hxRow">
+                <div class="hxCol-4"><p>.hxCol-4</p></div>
+                <div class="hxCol-4"><p>.hxCol-4</p></div>
+                <div class="hxCol-4"><p>.hxCol-4</p></div>
+              </div>
+            </div>
+            <div class="hxCol-6">
+              <p>.hxCol-6</p>
+              <div class="hxRow">
+                <div class="hxCol-6"><p>.hxCol-6</p></div>
+                <div class="hxCol-6"><p>.hxCol-6</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hxCol-2"><p>.hxCol-2</p></div>
+      </div>
+    </div>
+  </div>
+
+  ```html
+  <div class="hxRow">
+    <div class="hxCol-2"><p>.hxCol-2</p></div>
+    <div class="hxCol-8">
+      <p>.hxCol-8</p>
+      <div class="hxRow">
+        <div class="hxCol-6">
+          <p>.hxCol-6</p>
+          <div class="hxRow">
+            <div class="hxCol-4"><p>.hxCol-4</p></div>
+            <div class="hxCol-4"><p>.hxCol-4</p></div>
+            <div class="hxCol-4"><p>.hxCol-4</p></div>
+          </div>
+        </div>
+        <div class="hxCol-6">
+          <p>.hxCol-6</p>
+          <div class="hxRow">
+            <div class="hxCol-6"><p>.hxCol-6</p></div>
+            <div class="hxCol-6"><p>.hxCol-6</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hxCol-2"><p>.hxCol-2</p></div>
+  </div>
+  ```
+</section>
+
+<section>
+  <h3 id="orderable">Orderable</h3>
+  <p>
+    The columns below are coded in HTML in the order of 2-4-1-3,
+    but the <code>.hxOrder-N</code> classes (1 &le; N &le; 12)
+    placed them in the proper numerical order.
+  </p>
+
+  <div class="demo">
+    <div class="demo-container">
+      <div class="hxRow">
+        <div class="hxOrder-2 hxCol-3"><p>.hxOrder-2</p></div>
+        <div class="hxOrder-4 hxCol-3"><p>.hxOrder-4</p></div>
+        <div class="hxOrder-1 hxCol-3"><p>.hxOrder-1</p></div>
+        <div class="hxOrder-3 hxCol-3"><p>.hxOrder-3</p></div>
+      </div>
+    </div>
+  </div>
+
+  ```html
+  <div class="hxRow">
+    <div class="hxOrder-2 hxCol-3"><p>.hxOrder-2</p></div>
+    <div class="hxOrder-4 hxCol-3"><p>.hxOrder-4</p></div>
+    <div class="hxOrder-1 hxCol-3"><p>.hxOrder-1</p></div>
+    <div class="hxOrder-3 hxCol-3"><p>.hxOrder-3</p></div>
+  </div>
+  ```
+</section>
+
+<section>
+  <h3 id="automatic">Automatic</h3>
+  <p>
+    Automatic columns will share row width equally among other automatic columns.
+  </p>
+
+  <div class="demo">
+    <div class="demo-container">
+      <div class="hxRow">
+        <div class="hxCol"><p>.hxCol (100%)</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol"><p>.hxCol (50%)</p></div>
+        <div class="hxCol"><p>.hxCol (50%)</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol"><p>.hxCol (1/3)</p></div>
+        <div class="hxCol"><p>.hxCol (1/3)</p></div>
+        <div class="hxCol"><p>.hxCol (1/3)</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol"><p>.hxCol (25%)</p></div>
+        <div class="hxCol"><p>.hxCol (25%)</p></div>
+        <div class="hxCol"><p>.hxCol (25%)</p></div>
+        <div class="hxCol"><p>.hxCol (25%)</p></div>
+      </div>
+    </div>
+  </div>
+
+  ```html
+  <div class="hxRow">
+    <div class="hxCol"><p>.hxCol (100%)</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol"><p>.hxCol (50%)</p></div>
+    <div class="hxCol"><p>.hxCol (50%)</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol"><p>.hxCol (1/3)</p></div>
+    <div class="hxCol"><p>.hxCol (1/3)</p></div>
+    <div class="hxCol"><p>.hxCol (1/3)</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol"><p>.hxCol (25%)</p></div>
+    <div class="hxCol"><p>.hxCol (25%)</p></div>
+    <div class="hxCol"><p>.hxCol (25%)</p></div>
+    <div class="hxCol"><p>.hxCol (25%)</p></div>
+  </div>
+  ```
+</section>
+
+<section>
+  <h3 id="explicit">Explicit</h3>
+  <p>
+    Explicit columns will take up a defined percentage of the row.
+  </p>
+  <p>
+    Use the <code>.hxCol-N</code> class (1 &le; N &le; 12)
+    to create columns that are a fraction of the hxRow width.
+  </p>
+
+  <div class="demo">
+    <div class="demo-container">
+      <div class="hxRow">
+        <div class="hxCol-12">
+          <p>.hxCol-12</p>
+        </div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol-1"><p>.hxCol-1</p></div>
+        <div class="hxCol-11"><p>.hxCol-11</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol-2"><p>.hxCol-2</p></div>
+        <div class="hxCol-10"><p>.hxCol-10</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol-3"><p>.hxCol-3</p></div>
+        <div class="hxCol-9"><p>.hxCol-9</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol-4"><p>.hxCol-4</p></div>
+        <div class="hxCol-8"><p>.hxCol-8</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol-5"><p>.hxCol-5</p></div>
+        <div class="hxCol-7"><p>.hxCol-7</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol-6"><p>.hxCol-6</p></div>
+        <div class="hxCol-6"><p>.hxCol-6</p></div>
+      </div>
+    </div>
+  </div>
+
+  ```html
+  <div class="hxRow">
+    <div class="hxCol-12">
+      <p>.hxCol-12</p>
+    </div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-1"><p>.hxCol-1</p></div>
+    <div class="hxCol-11"><p>.hxCol-11</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-2"><p>.hxCol-2</p></div>
+    <div class="hxCol-10"><p>.hxCol-10</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-3"><p>.hxCol-3</p></div>
+    <div class="hxCol-9"><p>.hxCol-9</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-4"><p>.hxCol-4</p></div>
+    <div class="hxCol-8"><p>.hxCol-8</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-5"><p>.hxCol-5</p></div>
+    <div class="hxCol-7"><p>.hxCol-7</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-6"><p>.hxCol-6</p></div>
+    <div class="hxCol-6"><p>.hxCol-6</p></div>
+  </div>
+  ```
+</section>
+
+<section>
+  <h3 id="offsettable">Offsettable</h3>
+  <p>
+    You can use the <code>.hxOffset-N</code> class (1 &le; N &le; 11)
+    to offset your column from the start of the hxRow.
+  </p>
+
+  <div class="demo">
+    <div class="demo-container">
+      <div class="hxRow">
+        <div class="hxCol-1 hxOffset-1"><p>.hxCol-1<br />.hxOffset-1</p></div>
+        <div class="hxCol-6 hxOffset-1"><p>.hxCol-6<br />.hxOffset-1</p></div>
+        <div class="hxCol-1 hxOffset-1"><p>.hxCol-1<br />.hxOffset-1</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol-1 hxOffset-1"><p>.hxCol-1<br />.hxOffset-1</p></div>
+        <div class="hxCol-8"><p>.hxCol-8</p></div>
+        <div class="hxCol-1"><p>.hxCol-1</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
+        <div class="hxCol-4 hxOffset-1"><p>.hxCol-4<br />.hxOffset-1</p></div>
+        <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
+        <div class="hxCol-6 hxOffset-2"><p>.hxCol-6<br />.hxOffset-2</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol-3 hxOffset-1"><p>.hxCol-3<br />.hxOffset-1</p></div>
+        <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
+        <div class="hxCol-3 hxOffset-1"><p>.hxCol-3<br />.hxOffset-1</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol-3 hxOffset-1"><p>.hxCol-3<br />.hxOffset-1</p></div>
+        <div class="hxCol-3 hxOffset-4"><p>.hxCol-3<br />.hxOffset-4</p></div>
+      </div>
+      <div class="hxRow">
+        <div class="hxCol-5 hxOffset-1"><p>.hxCol-5<br />.hxOffset-1</p></div>
+        <div class="hxCol-5"><p>.hxCol-5</p></div>
+      </div>
+    </div>
+  </div>
+
+  ```html
+  <div class="hxRow">
+    <div class="hxCol-1 hxOffset-1"><p>.hxCol-1<br />.hxOffset-1</p></div>
+    <div class="hxCol-6 hxOffset-1"><p>.hxCol-6<br />.hxOffset-1</p></div>
+    <div class="hxCol-1 hxOffset-1"><p>.hxCol-1<br />.hxOffset-1</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-1 hxOffset-1"><p>.hxCol-1<br />.hxOffset-1</p></div>
+    <div class="hxCol-8"><p>.hxCol-8</p></div>
+    <div class="hxCol-1"><p>.hxCol-1</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
+    <div class="hxCol-4 hxOffset-1"><p>.hxCol-4<br />.hxOffset-1</p></div>
+    <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
+    <div class="hxCol-6 hxOffset-2"><p>.hxCol-6<br />.hxOffset-2</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-3 hxOffset-1"><p>.hxCol-3<br />.hxOffset-1</p></div>
+    <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
+    <div class="hxCol-3 hxOffset-1"><p>.hxCol-3<br />.hxOffset-1</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-3 hxOffset-1"><p>.hxCol-3<br />.hxOffset-1</p></div>
+    <div class="hxCol-3 hxOffset-4"><p>.hxCol-3<br />.hxOffset-4</p></div>
+  </div>
+  <div class="hxRow">
+    <div class="hxCol-5 hxOffset-1"><p>.hxCol-5<br />.hxOffset-1</p></div>
+    <div class="hxCol-5"><p>.hxCol-5</p></div>
+  </div>
+  ```
+</section>

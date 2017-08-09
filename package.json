@@ -26,6 +26,7 @@
   "scripts": {
     "clean": "rm -fr node_modules",
     "less": "bin/lessToCss.js",
+    "publish": "hexo deploy -g",
     "start": "bin/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

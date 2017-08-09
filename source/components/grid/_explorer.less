@@ -1,0 +1,64 @@
+.demo {
+  & > .demo-container {
+    border: 1px dotted @gray-400;
+  }
+
+  .hxCol,
+  [class*="hxCol-"] {
+    background-clip: content-box;
+    background-color: fade(@cyan-900, 25%);
+    font-size: 0.75rem;
+  }
+}
+
+// Automatically Set Column Content based on breakpoint (lg-2, md-8, etc.)
+.demoColumns (@prefix, @n) when (@n > 0) and (@prefix = xs) {
+  .demoCol.hxCol-@{n}::before {
+    content: '@{prefix}-@{n}';
+  }
+  .demoColumns(@prefix, @n - 1);
+}//.demoColumns()
+.demoColumns (@prefix, @n) when (@n > 0) and not (@prefix = xs) {
+  .demoCol.hxCol-@{prefix}-@{n}::before {
+    content: '@{prefix}-@{n}';
+  }
+  .demoColumns(@prefix, @n - 1);
+}//.demoColumns()
+
+@media (min-width: @grid-break-wrist) {
+  #querySize::before {
+    content: 'Size: XS';
+    display: block;
+    font-weight: bold;
+    font-variant: small-caps;
+  }
+  .demoColumns(xs, @grid-column-count);
+}
+
+@media (min-width: @grid-break-palm) {
+  #querySize::before {
+    content: 'Size: SM';
+  }
+  .demoColumns(sm, @grid-column-count);
+}
+
+@media (min-width: @grid-break-lap) {
+  #querySize::before {
+    content: 'Size: MD';
+  }
+  .demoColumns(md, @grid-column-count);
+}
+
+@media (min-width: @grid-break-desk) {
+  #querySize::before {
+    content: 'Size: LG';
+  }
+  .demoColumns(lg, @grid-column-count);
+}
+
+@media (min-width: @grid-break-wall) {
+  #querySize::before {
+    content: 'Size: XL';
+  }
+  .demoColumns(xl, @grid-column-count);
+}
