@@ -2,8 +2,13 @@
 'use strict';
 
 const Hexo = require('hexo');
-let hexo = new Hexo(`${process.cwd()}`, {
-    //debug: true
-});
+const YAML = require('js-yaml');
+const cwd = process.cwd();
+const fs = require('fs');
 
-exports.hexo = hexo;
+exports.hexo = new Hexo(cwd);
+
+exports.config = YAML.safeLoad(
+    fs.readFileSync(`${cwd}/_config.yml`, 'utf8')
+);
+
