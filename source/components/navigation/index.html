@@ -2,53 +2,14 @@
 title: Navigation
 assets:
   - bootstrap.helix.css
+  - helix-ui.css
+  - helix-ui.js
 ---
-<div class="alert alert-info">
-  <ul>
-    <li>
-      Avoid using <code>.container</code> within a Helix grid. It will cause a
-      <code>.hxRow</code> to expand beyond what is expected.
-    </li>
-    <li>
-      If you have strange layout issues, try wrapping in a <code>&lt;p&gt;</code>.
-    </li>
-  </ul>
-</div>
-
 <section>
-  <header>
-    <h2 id="global-nav">Global Navigation</h2>
-  </header>
+  <h2 id="global-nav">Global Navigation</h2>
   <p>
+    (<em>a.k.a. "Eyebrow"</em>)
     Styles the <a href="http://getbootstrap.com/components/#navbar">Navbar Component</a> from Bootstrap.
-    <ul>
-      <li>Eyebrow:
-        <ul>
-          <li>CSS Class: <code>.navbar-eyebrow</code></li>
-          <li>Rackspace Logo:
-            <ul>
-              <li>
-                HTTP: (
-                <a href="http://c1ee333499ed5f44e56a-fa12562cfe810d69bedcc36a0ac289ef.r55.cf1.rackcdn.com/img/rs-logo-white.svg" target="_blank">SVG</a> /
-                <a href="http://c1ee333499ed5f44e56a-fa12562cfe810d69bedcc36a0ac289ef.r55.cf1.rackcdn.com/img/rs-logo-white.png" target="_blank">PNG</a>
-                )
-              </li>
-              <li>
-                HTTPS: (
-                <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/img/rs-logo-white.svg" target="_blank">SVG</a> /
-                <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/img/rs-logo-white.png" target="_blank">PNG</a>
-                )
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>Top Nav:
-        <ul>
-          <li>CSS Class: <code>.navbar-inverse</code></li>
-        </ul>
-      </li>
-    </ul>
   </p>
 
   <div class="demo">
@@ -96,16 +57,71 @@ assets:
         </ul>
       </div><!--/.nav-collapse -->
     </nav>
-    <nav class="navbar navbar-inverse">
-      <div id="topnav-collapse" class="navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Dashboard</a></li>
-          <li><a href="#">Servers</a></li>
-          <li><a href="#">Networking</a></li>
-          <li><a href="#">Storage</a></li>
-          <li><a href="#">Databases</a></li>
-        </ul>
-      </div><!--/.nav-collapse -->
+  </div>
+</section>
+
+<section>
+  <h2 id="app-nav">Application Navigation</h2>
+  <p>
+    Custom HelixUI classes for styling a left-hand, application layer, navigation list.
+  </p>
+
+  <div class="demo">
+    <nav class="hx-app-nav">
+      <a href="#">Link 1-1</a>
+      <a href="#">Link 1-2</a>
+      <a href="#">Link 1-3</a>
+      <section class="open">
+        <header>
+          L1 Section
+          <span class="toggle-icon fa fa-fw fa-angle-down"></span>
+        </header>
+        <div>
+          <a href="#">Link 2-1</a>
+          <a href="#">Link 2-2</a>
+          <a href="#">Link 2-3</a>
+          <section class="open">
+            <header>
+              L2 Section
+              <span class="toggle-icon fa fa-fw fa-angle-down"></span>
+            </header>
+            <div>
+              <a href="#">Link 3-1</a>
+              <a href="#">Link 3-2</a>
+              <a href="#">Link 3-3</a>
+            </div>
+          </section>
+        </div>
+      </section>
     </nav>
   </div>
+  ```html
+    <nav class="hx-app-nav">
+      <a href="#">Link 1-1</a>
+      <a href="#">Link 1-2</a>
+      <a href="#">Link 1-3</a>
+      <section class="open">
+        <header>
+          L1 Section
+          <span class="toggle-icon fa fa-fw fa-angle-down"></span>
+        </header>
+        <div>
+          <a href="#">Link 2-1</a>
+          <a href="#">Link 2-2</a>
+          <a href="#">Link 2-3</a>
+          <section class="open">
+            <header>
+              L2 Section
+              <span class="toggle-icon fa fa-fw fa-angle-down"></span>
+            </header>
+            <div>
+              <a href="#">Link 3-1</a>
+              <a href="#">Link 3-2</a>
+              <a href="#">Link 3-3</a>
+            </div>
+          </section>
+        </div>
+      </section>
+    </nav>
+  ```
 </section>
