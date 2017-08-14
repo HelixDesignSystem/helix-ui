@@ -1,15 +1,18 @@
 #!/usr/bin/env node
 'use strict';
 
-let hexo = require('./hexo').hexo;
-let browserSync = require('browser-sync').create();
+const browserSync = require('browser-sync').create();
+const { hexo, config } = require('./hexo');
 
 function initServer () {
-    let publicDir = 'public';
+    const serverRoutes = {}
+
+    // account for Hexo "root" configuration
+    serverRoutes[`${config.root}`] = config.public_dir;
 
     browserSync.init({
         files: [ // (See 'watchEvents')
-            `${publicDir}/**/*`,
+            `${config.public_dir}/**/*`,
             {
                 match: [
                     'source/**/*',
@@ -26,10 +29,8 @@ function initServer () {
         reloadOnRestart: true,
         reloadDebounce: 250, // prevent calling numerous reloads on forced hexo generate
         server: {
-            baseDir: publicDir,
-            routes: {
-                '/helix-ui/': publicDir // account for Hexo "root" configuration
-            }
+            baseDir: config.public_dir,
+            routes: serverRoutes
         },
         watchEvents: ['change']
     });
@@ -46,5 +47,3 @@ hexo.init().then(() => {
             hexo.exit(err);
         });
 });//hexo.init()
-
-// TODO: "release" task to generate, copy, and minify CSS assets

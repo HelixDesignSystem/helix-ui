@@ -19,6 +19,7 @@
     "gulp": "3.x",
     "gulp-bump": "2.x",
     "gulp-load-plugins": "1.5.0",
+    "js-yaml": "^3.9.1",
     "less": "2.x",
     "less-plugin-clean-css": "^1.5.1",
     "lodash": "4.x"
