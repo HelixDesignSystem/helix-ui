@@ -3,6 +3,18 @@ title: Grid
 assets:
   - helix-ui.css
 ---
+<div class="alert alert-info">
+  <ul>
+    <li>
+      Avoid using <code>.container</code> within a Helix grid. It will cause a
+      <code>.hxRow</code> to expand beyond what is expected.
+    </li>
+    <li>
+      If you have strange layout issues, try wrapping in a <code>&lt;p&gt;</code>.
+    </li>
+  </ul>
+</div>
+
 <h2>12-column Grid</h2>
 <p>
   The grid system requires loading <code>helix-ui.css</code> into your application.

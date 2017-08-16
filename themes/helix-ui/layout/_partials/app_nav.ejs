@@ -1,29 +1,37 @@
-<nav class="app-nav">
-    <section>
-        <header>Guides</header>
-        <% for (var _item in theme.nav.guides) {
-            var items = theme.nav.guides;
-        %>
-            <a
-                class="hxNavItem theme-nav <%= is_current('guides' + items[_item]) ? 'current' : '' %>"
-                href="<%- url_for('/guides/' + items[_item]) %>"
-            >
-                <%= _item %>
-            </a>
-        <% } %>
-    </section>
+<nav class="hx-app-nav">
+  <section class="<%= is_current('guides') ? 'open' : '' %>">
+    <header>
+      Guides
+      <span class="toggle-icon fa fa-fw fa-angle-down"></span>
+    </header>
+    <div>
+      <% for (var _item in theme.nav.guides) { %>
+        <% var items = theme.nav.guides; %>
+        <a
+          class="<%= is_current('guides' + items[_item]) ? 'current' : '' %>"
+          href="<%- url_for('/guides/' + items[_item]) %>"
+        >
+          <%= _item %>
+        </a>
+      <% } %>
+    </div>
+  </section>
 
-    <section>
-        <header>Components</header>
-        <% for (var _item in theme.nav.components) {
-            var items = theme.nav.components;
-        %>
-            <a
-                class="hxNavItem theme-nav <%= is_current('components' + items[_item]) ? 'current' : '' %>"
-                href="<%- url_for('/components/' + items[_item]) %>"
-            >
-                <%= _item %>
-            </a>
-        <% } %>
-    </section>
+  <section class="<%= is_current('components') ? 'open' : '' %>">
+    <header>
+      Components
+      <span class="toggle-icon fa fa-fw fa-angle-down"></span>
+    </header>
+    <div>
+      <% for (var _item in theme.nav.components) { %>
+        <% var items = theme.nav.components; %>
+        <a
+          class="<%= is_current('components' + items[_item]) ? 'current' : '' %>"
+          href="<%- url_for('/components/' + items[_item]) %>"
+        >
+          <%= _item %>
+        </a>
+      <% } %>
+    </div>
+  </section>
 </nav>
