@@ -1,6 +1,7 @@
 // ----- GRID MIXINS ----- //
 //e.g. .hxCol-1, .hxCol-md-8, .hxCol-lg-12
 .make-grid-columns (@prefix, @n) when (@n > 0) and (@prefix = xs) {
+  .hxCol-@{prefix}-@{n},
   .hxCol-@{n} {
     @width: (@n * @grid-column-unit);
     flex: 0 0 @width;
@@ -19,6 +20,7 @@
 
 //e.g. .hxOffset-1, .hxOffset-md-3, .hxOffset-lg-0
 .make-grid-offsets (@prefix, @n) when (@n >= 0) and (@prefix = xs) {
+  .hxOffset-@{prefix}-@{n},
   .hxOffset-@{n} {
     margin-left: (@n * @grid-column-unit) !important;
   }
@@ -33,6 +35,7 @@
 
 //e.g. .hxOrder-1, .hxOrder-md-4
 .make-grid-orders (@prefix, @n) when (@n > 0) and (@prefix = xs) {
+  .hxOrder-@{prefix}-@{n},
   .hxOrder-@{n} {
     order: @n;
   }
@@ -56,10 +59,11 @@
 //end:mixins
 
 /* ===== GRID ===== */
-@col-padding: (@grid-gutter-width * 0.5);
+@col-padding: (@grid-gutter-size * 0.5);
 @row-margin: -(@col-padding);
 
-.hxCol {
+.hxCol,
+[class*="hxCol-"] {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -68,14 +72,13 @@
   border: 0;
   display: flex;
   flex-wrap: wrap;
-  margin-left: @row-margin;
-  margin-right: @row-margin;
+  margin: 0 @row-margin -(@grid-gutter-size);
   padding: 0;
 
   .hxCol,
   [class*="hxCol-"] {
     padding: 0 @col-padding;
-    margin: 0;
+    margin: 0 0 @grid-gutter-size;
   }
 
   &.no-gutters {
