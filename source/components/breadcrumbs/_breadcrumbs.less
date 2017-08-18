@@ -1,0 +1,31 @@
+/* ========== hxBreadcrumbs ========== */
+.hxBreadcrumb {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 12px;
+  font-weight: 500;
+  height: 1.75rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+
+  & > a {
+    margin-right: 0.5rem;
+
+    &:last-of-type {
+      color: @gray-600;
+      font-weight: 300;
+      pointer-events: none;
+    }
+  }
+
+  .delimiter {
+    color: @gray-600;
+    margin-right: 0.5rem;
+
+    svg {
+      fill: currentColor;
+      stroke: none;
+    }
+  }
+}
