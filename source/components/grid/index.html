@@ -3,38 +3,458 @@ title: Grid
 assets:
   - helix-ui.css
 ---
-<div class="alert alert-info">
-  <ul>
-    <li>
-      Avoid using <code>.container</code> within a Helix grid. It will cause a
-      <code>.hxRow</code> to expand beyond what is expected.
-    </li>
-    <li>
-      If you have strange layout issues, try wrapping in a <code>&lt;p&gt;</code>.
-    </li>
-  </ul>
-</div>
-
 <h2>12-column Grid</h2>
 <p>
   The grid system requires loading <code>helix-ui.css</code> into your application.
 </p>
 
 <section>
-  <h3 id="responsive">Responsive</h3>
+  <h3 id="bootstrap">Bootstrap Compatibility</h3>
+  <ol>
+    <li>
+      <b>Avoid using Bootstrap containers</b>
+      <ul>
+        <li>
+          The Bootstrap <code>.container</code> class will cause an
+          <code>.hxRow</code> to expand beyond what is expected.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <b>Please use the Bootstrap grid with Bootstrap form classes.</b>
+      <ul>
+        <li>
+          The <code>.form-section</code>, <code>.form-control</code>, and other form-related
+          Bootstrap CSS classes are known to have compatibility issues with the HelixUI grid.
+        </li>
+      </ul>
+    </li>
+  </ol>
+</section>
+
+<section>
+  <h3 id="automatic">Automatic Columns</h3>
+  <div class="alert alert-info">
+    <p>
+      <b>NOTE:</b> Automatic columns are overridden by <a href="#responsive">responsive classes</a>.
+    </p>
+  </div>
+
+  <p>
+    Automatic columns will share row width equally among other automatic columns.
+  </p>
 
   <div class="demo grid-demo">
-    <div class="demo-container">
+    <div class="demo-container text-center">
+      <div class="hxRow">
+        <div class="hxCol">1/1</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol">1/2</div>
+        <div class="hxCol">1/2</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol">1/3</div>
+        <div class="hxCol">1/3</div>
+        <div class="hxCol">1/3</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol">1/4</div>
+        <div class="hxCol">1/4</div>
+        <div class="hxCol">1/4</div>
+        <div class="hxCol">1/4</div>
+      </div>
+    </div>
+  </div>
+
+  ```html
+    <div class="hxRow">
+      <div class="hxCol">1/1</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol">1/2</div>
+      <div class="hxCol">1/2</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol">1/3</div>
+      <div class="hxCol">1/3</div>
+      <div class="hxCol">1/3</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol">1/4</div>
+      <div class="hxCol">1/4</div>
+      <div class="hxCol">1/4</div>
+      <div class="hxCol">1/4</div>
+    </div>
+  ```
+</section>
+
+<section>
+  <h3 id="explicit">Explicit Columns</h3>
+  <div class="alert alert-info">
+    <p>
+      If the sum of a row's columns exceeds 12, the columns will wrap.
+      See <a href="#wrapping">Column Wrapping</a> for more details.
+    </p>
+  </div>
+
+  <p>
+    Explicit columns will take up a defined percentage of the row.
+  </p>
+
+  <p>
+    Use the <code>.hxCol-N</code> class (1 &le; N &le; 12)
+    to create columns that are a fraction of the row width.
+  </p>
+
+  <ul>
+    <li>
+      <code>.hxCol-B-N</code> responsive classes are available
+    </li>
+    <li>
+      <code>.hxCol-N</code> is shorthand for <code>.hxCol-xs-N</code>
+    </li>
+  </ul>
+
+  <div class="demo grid-demo">
+    <div class="demo-container text-center">
+      <div class="hxRow">
+        <div class="hxCol-12">12</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol-1">1</div>
+        <div class="hxCol-11">11</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol-2">2</div>
+        <div class="hxCol-10">10</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol-3">3</div>
+        <div class="hxCol-9">9</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol-4">4</div>
+        <div class="hxCol-8">8</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol-5">5</div>
+        <div class="hxCol-7">7</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol-6">6</div>
+        <div class="hxCol-6">6</div>
+      </div>
+    </div>
+  </div>
+
+  ```html
+    <div class="hxRow">
+      <div class="hxCol-12">12</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol-1">1</div>
+      <div class="hxCol-11">11</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol-2">2</div>
+      <div class="hxCol-10">10</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol-3">3</div>
+      <div class="hxCol-9">9</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol-4">4</div>
+      <div class="hxCol-8">8</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol-5">5</div>
+      <div class="hxCol-7">7</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol-6">6</div>
+      <div class="hxCol-6">6</div>
+    </div>
+  ```
+</section>
+
+<section>
+  <h3 id="nesting">Nesting Elements</h3>
+  <div class="alert alert-info">
+    <p>
+      <b>Do not apply row and column classes to the same element.</b>
+      Rows and columns must be nested within one another.
+    </p>
+  </div>
+
+  <p>
+    You can nest rows and columns as deep as necessary. Gutters will align automatically.
+  </p>
+
+  <div class="demo grid-demo">
+    <div class="demo-container text-center">
+      <div class="hxRow">
+        <div class="hxCol-2">2</div>
+        <div class="hxCol-8">8
+          <div class="hxRow">
+            <div class="hxCol-6">6
+              <div class="hxRow">
+                <div class="hxCol-4">4</div>
+                <div class="hxCol-4">4</div>
+                <div class="hxCol-4">4</div>
+              </div>
+            </div>
+            <div class="hxCol-6">6
+              <div class="hxRow">
+                <div class="hxCol-6">6</div>
+                <div class="hxCol-6">6</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hxCol-2">2</div>
+      </div>
+    </div>
+  </div>
+
+  ```html
+    <div class="hxRow">
+      <div class="hxCol-2">2</div>
+      <div class="hxCol-8">8
+        <div class="hxRow">
+          <div class="hxCol-6">6
+            <div class="hxRow">
+              <div class="hxCol-4">4</div>
+              <div class="hxCol-4">4</div>
+              <div class="hxCol-4">4</div>
+            </div>
+          </div>
+          <div class="hxCol-6">6
+            <div class="hxRow">
+              <div class="hxCol-6">6</div>
+              <div class="hxCol-6">6</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hxCol-2">2</div>
+    </div>
+  ```
+</section>
+
+<section>
+  <h3 id="offsetting">Offsetting Columns</h3>
+  <p>
+    You can use the <code>.hxOffset-N</code> class (1 &le; N &le; 11)
+    to offset your column from the start of the row.
+  </p>
+
+  <ul>
+    <li>
+      <code>.hxOffset-B-N</code> responsive classes are available
+    </li>
+    <li>
+      <code>.hxOffset-N</code> is shorthand for <code>.hxOffset-xs-N</code>
+    </li>
+  </ul>
+
+  <div class="demo grid-demo">
+    <div class="demo-container text-center">
+      <div class="hxRow">
+        <div class="hxCol-2">2</div>
+        <div class="hxCol-6 hxOffset-1">6</div>
+        <div class="hxCol-2 hxOffset-1">2</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol-1">1</div>
+        <div class="hxCol-8 hxOffset-1">8</div>
+        <div class="hxCol-1 hxOffset-1">1</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol-2 hxOffset-1">2</div>
+        <div class="hxCol-4 hxOffset-1">4</div>
+        <div class="hxCol-2 hxOffset-1">2</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol-4">4</div>
+        <div class="hxCol-4 hxOffset-4">4</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol-3 hxOffset-1">3</div>
+        <div class="hxCol-2 hxOffset-1">2</div>
+        <div class="hxCol-3 hxOffset-1">3</div>
+      </div>
+      <br />
+      <div class="hxRow">
+        <div class="hxCol-5 hxOffset-1">5</div>
+        <div class="hxCol-5">5</div>
+      </div>
+    </div>
+  </div>
+
+  ```html
+    <div class="hxRow">
+      <div class="hxCol-1 hxOffset-1">1</div>
+      <div class="hxCol-6 hxOffset-1">6</div>
+      <div class="hxCol-1 hxOffset-1">1</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol-1">1</div>
+      <div class="hxCol-8 hxOffset-1">8</div>
+      <div class="hxCol-1 hxOffset-1">1</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol-2 hxOffset-1">2</div>
+      <div class="hxCol-4 hxOffset-1">4</div>
+      <div class="hxCol-2 hxOffset-1">2</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol-4">4</div>
+      <div class="hxCol-4 hxOffset-4">4</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol-3 hxOffset-1">3</div>
+      <div class="hxCol-2 hxOffset-1">2</div>
+      <div class="hxCol-3 hxOffset-1">3</div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol-5 hxOffset-1">5</div>
+      <div class="hxCol-5">5</div>
+    </div>
+  ```
+</section>
+
+<section>
+  <h3 id="reordering">Reordering Columns</h3>
+  <p>
+    Use the <code>.hxOrder-N</code> classes (1 &le; N &le; 12) to
+    reorder your columns.
+  </p>
+
+  <ul>
+    <li>
+      <code>.hxOrder-B-N</code> responsive classes are available
+    </li>
+    <li>
+      <code>.hxOrder-N</code> is shorthand for <code>.hxOrder-xs-N</code>
+    </li>
+  </ul>
+
+  <p>
+    The columns below are coded in HTML in the order of 2-4-1-3.<br />
+    The <code>.hxOrder-*</code> classes reordered them in the proper
+    numerical order.
+  </p>
+
+  <div class="demo grid-demo">
+    <div class="demo-container text-center">
+      <div class="hxRow">
+        <div class="hxCol hxOrder-2">#2</div>
+        <div class="hxCol hxOrder-4">#4</div>
+        <div class="hxCol hxOrder-1">#1</div>
+        <div class="hxCol hxOrder-3">#3</div>
+      </div>
+    </div>
+  </div>
+
+  ```html
+    <div class="hxRow">
+      <div class="hxCol hxOrder-2">#2</div>
+      <div class="hxCol hxOrder-4">#4</div>
+      <div class="hxCol hxOrder-1">#1</div>
+      <div class="hxCol hxOrder-3">#3</div>
+    </div>
+  ```
+</section>
+
+<section>
+  <h3 id="responsive">Responsive Layout</h3>
+  <div class="alert alert-info">
+    <p>
+      Responsive column classes override <a href="#automatic">automatic columns</a>.
+    </p>
+  </div>
+
+  <p>
+    Each responsive class corresponds to the <em>minimum breakpoint</em>
+    required to achieve that layout.
+  </p>
+
+  <p>
+    If you mix responsive clases, larger breakpoints will trump smaller ones.
+  </p>
+
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>CSS Class</th>
+        <th>Minimum Breakpoint</th>
+        <th>Overrides</th>
+        <th>Overridden By</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>.<i>hxClass</i>-<b>xs</b>-N</code></td>
+        <td><code>0em (0px)</code></td>
+        <td>N/A</td>
+        <td>all below</td>
+      </tr>
+      <tr>
+        <td><code>.<i>hxClass</i>-<b>sm</b>-N</code></td>
+        <td><code>40em (~640px)</code></td>
+        <td>all above</td>
+        <td>all below</td>
+      </tr>
+      <tr>
+        <td><code>.<i>hxClass</i>-<b>md</b>-N</code></td>
+        <td><code>64em (~1024px)</code></td>
+        <td>all above</td>
+        <td>all below</td>
+      </tr>
+      <tr>
+        <td><code>.<i>hxClass</i>-<b>lg</b>-N</code></td>
+        <td><code>75em (~1200px)</code></td>
+        <td>all above</td>
+        <td>all below</td>
+      </tr>
+      <tr>
+        <td><code>.<i>hxClass</i>-<b>xl</b>-N</code></td>
+        <td><code>90em (~1440px)</code></td>
+        <td>all above</td>
+        <td>N/A</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="demo grid-demo">
+    <div class="demo-container text-center">
       <div id="querySize"></div>
       <div class="hxRow">
         <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
         <div class="demoCol hxCol-6 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-10"></div>
         <div class="demoCol hxCol-6 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
       </div>
+      <br />
       <div class="hxRow">
         <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
         <div class="demoCol hxCol-12 hxCol-sm-8 hxCol-md-9 hxCol-lg-10 hxCol-xl-11"></div>
       </div>
+      <br />
       <div class="hxRow">
         <div class="demoCol hxCol-12 hxCol-sm-8 hxCol-md-6 hxCol-lg-4 hxCol-xl-3"></div>
         <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-9"></div>
@@ -43,356 +463,174 @@ assets:
   </div>
 
   ```html
-  <div class="hxRow">
-    <div class="hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
-    <div class="hxCol-6 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-10"></div>
-    <div class="hxCol-6 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
-    <div class="hxCol-12 hxCol-sm-8 hxCol-md-9 hxCol-lg-10 hxCol-xl-11"></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-12 hxCol-sm-8 hxCol-md-6 hxCol-lg-4 hxCol-xl-3"></div>
-    <div class="hxCol-12 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-9"></div>
-  </div>
+    <div class="hxRow">
+      <div class="hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+      <div class="hxCol-6 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-10"></div>
+      <div class="hxCol-6 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
+      <div class="hxCol-12 hxCol-sm-8 hxCol-md-9 hxCol-lg-10 hxCol-xl-11"></div>
+    </div>
+    <div class="hxRow">
+      <div class="hxCol-12 hxCol-sm-8 hxCol-md-6 hxCol-lg-4 hxCol-xl-3"></div>
+      <div class="hxCol-12 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-9"></div>
+    </div>
   ```
 </section>
 
 <section>
-  <h3 id="gutterless">Gutterless</h3>
+  <h3 id="wrapping">Column Wrapping</h3>
   <p>
-    By adding the <code>.no-gutters</code> class to a <code>.hxRow</code>,
-    you can remove the gutters from the grid.
+    The following example should arrange the content into 3 columns on small
+    screens, 4 columns on medium screens, and 6 columns on all other sizes.
   </p>
 
-  <div class="demo">
-    <div class="demo-container">
-      <div class="hxRow no-gutters">
-        <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
-        <div class="demoCol hxCol-6 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-10"></div>
-        <div class="demoCol hxCol-6 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
-      </div>
-      <div class="hxRow no-gutters">
-        <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
-        <div class="demoCol hxCol-12 hxCol-sm-8 hxCol-md-9 hxCol-lg-10 hxCol-xl-11"></div>
-      </div>
-      <div class="hxRow no-gutters">
-        <div class="demoCol hxCol-12 hxCol-sm-8 hxCol-md-6 hxCol-lg-4 hxCol-xl-3"></div>
-        <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-9"></div>
-      </div>
-    </div>
-  </div>
-
-  ```html
-  <div class="hxRow no-gutters">
-    <div class="hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
-    <div class="hxCol-6 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-10"></div>
-    <div class="hxCol-6 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
-  </div>
-  <div class="hxRow no-gutters">
-    <div class="hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
-    <div class="hxCol-12 hxCol-sm-8 hxCol-md-9 hxCol-lg-10 hxCol-xl-11"></div>
-  </div>
-  <div class="hxRow no-gutters">
-    <div class="hxCol-12 hxCol-sm-8 hxCol-md-6 hxCol-lg-4 hxCol-xl-3"></div>
-    <div class="hxCol-12 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-9"></div>
-  </div>
-  ```
-</section>
-
-<section>
-  <h3 id="nestable">Nestable</h3>
-  <div class="demo">
-    <div class="demo-container">
+  <div class="demo grid-demo">
+    <div class="demo-container text-left drop-cap">
       <div class="hxRow">
-        <div class="hxCol-2"><p>.hxCol-2</p></div>
-        <div class="hxCol-8">
-          <p>.hxCol-8</p>
-          <div class="hxRow">
-            <div class="hxCol-6">
-              <p>.hxCol-6</p>
-              <div class="hxRow">
-                <div class="hxCol-4"><p>.hxCol-4</p></div>
-                <div class="hxCol-4"><p>.hxCol-4</p></div>
-                <div class="hxCol-4"><p>.hxCol-4</p></div>
-              </div>
-            </div>
-            <div class="hxCol-6">
-              <p>.hxCol-6</p>
-              <div class="hxRow">
-                <div class="hxCol-6"><p>.hxCol-6</p></div>
-                <div class="hxCol-6"><p>.hxCol-6</p></div>
-              </div>
-            </div>
-          </div>
+        <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">
+          <p>
+            A The best way to rank cross-functional methodology is
+            to appropriately get their task.
+          </p>
         </div>
-        <div class="hxCol-2"><p>.hxCol-2</p></div>
-      </div>
-    </div>
-  </div>
-
-  ```html
-  <div class="hxRow">
-    <div class="hxCol-2"><p>.hxCol-2</p></div>
-    <div class="hxCol-8">
-      <p>.hxCol-8</p>
-      <div class="hxRow">
-        <div class="hxCol-6">
-          <p>.hxCol-6</p>
-          <div class="hxRow">
-            <div class="hxCol-4"><p>.hxCol-4</p></div>
-            <div class="hxCol-4"><p>.hxCol-4</p></div>
-            <div class="hxCol-4"><p>.hxCol-4</p></div>
-          </div>
+        <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">
+          <p>
+            B It was discovered that by nearly preventing the WIP
+            stories, we can work the acceptance VOC emergence around
+            the pirate velocity.
+          </p>
         </div>
-        <div class="hxCol-6">
-          <p>.hxCol-6</p>
-          <div class="hxRow">
-            <div class="hxCol-6"><p>.hxCol-6</p></div>
-            <div class="hxCol-6"><p>.hxCol-6</p></div>
-          </div>
+        <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">
+          <p>
+            C Try to adapt the relative sprint planning meeting,
+            maybe it will help close the VOC sprints.
+          </p>
+        </div>
+        <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">
+          <p>
+            D Given standup specs, efficiently launching the visible
+            commitment until the domain kanban will eventually code
+            the alpha lifecycle management.
+          </p>
+        </div>
+        <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">
+          <p>
+            E As a user, I should be able to inspect the distributed
+            product vision so that I can detail the patch-level MVP
+            sprints outside the sustainable bugs.
+          </p>
+        </div>
+        <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">
+          <p>
+            F If we block except the story points, we can get the
+            extended planning game above the VOC collaboration.
+          </p>
+        </div>
+        <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">
+          <p>
+            G As a user, I should be able to burn out the pirate
+            collaboration so that I can code the standup VOC wikis
+            along the single customers.
+          </p>
         </div>
       </div>
     </div>
-    <div class="hxCol-2"><p>.hxCol-2</p></div>
   </div>
-  ```
-</section>
-
-<section>
-  <h3 id="orderable">Orderable</h3>
-  <p>
-    The columns below are coded in HTML in the order of 2-4-1-3,
-    but the <code>.hxOrder-N</code> classes (1 &le; N &le; 12)
-    placed them in the proper numerical order.
-  </p>
-
-  <div class="demo">
-    <div class="demo-container">
-      <div class="hxRow">
-        <div class="hxOrder-2 hxCol-3"><p>.hxOrder-2</p></div>
-        <div class="hxOrder-4 hxCol-3"><p>.hxOrder-4</p></div>
-        <div class="hxOrder-1 hxCol-3"><p>.hxOrder-1</p></div>
-        <div class="hxOrder-3 hxCol-3"><p>.hxOrder-3</p></div>
-      </div>
-    </div>
-  </div>
-
   ```html
-  <div class="hxRow">
-    <div class="hxOrder-2 hxCol-3"><p>.hxOrder-2</p></div>
-    <div class="hxOrder-4 hxCol-3"><p>.hxOrder-4</p></div>
-    <div class="hxOrder-1 hxCol-3"><p>.hxOrder-1</p></div>
-    <div class="hxOrder-3 hxCol-3"><p>.hxOrder-3</p></div>
-  </div>
-  ```
-</section>
-
-<section>
-  <h3 id="automatic">Automatic</h3>
-  <p>
-    Automatic columns will share row width equally among other automatic columns.
-  </p>
-
-  <div class="demo">
-    <div class="demo-container">
-      <div class="hxRow">
-        <div class="hxCol"><p>.hxCol (100%)</p></div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol"><p>.hxCol (50%)</p></div>
-        <div class="hxCol"><p>.hxCol (50%)</p></div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol"><p>.hxCol (1/3)</p></div>
-        <div class="hxCol"><p>.hxCol (1/3)</p></div>
-        <div class="hxCol"><p>.hxCol (1/3)</p></div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol"><p>.hxCol (25%)</p></div>
-        <div class="hxCol"><p>.hxCol (25%)</p></div>
-        <div class="hxCol"><p>.hxCol (25%)</p></div>
-        <div class="hxCol"><p>.hxCol (25%)</p></div>
-      </div>
+    <div class="hxRow">
+      <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">...</div>
+      <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">...</div>
+      <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">...</div>
+      <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">...</div>
+      <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">...</div>
+      <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">...</div>
+      <div class="hxCol-sm-4 hxCol-md-3 hxCol-lg-2">...</div>
     </div>
-  </div>
-
-  ```html
-  <div class="hxRow">
-    <div class="hxCol"><p>.hxCol (100%)</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol"><p>.hxCol (50%)</p></div>
-    <div class="hxCol"><p>.hxCol (50%)</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol"><p>.hxCol (1/3)</p></div>
-    <div class="hxCol"><p>.hxCol (1/3)</p></div>
-    <div class="hxCol"><p>.hxCol (1/3)</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol"><p>.hxCol (25%)</p></div>
-    <div class="hxCol"><p>.hxCol (25%)</p></div>
-    <div class="hxCol"><p>.hxCol (25%)</p></div>
-    <div class="hxCol"><p>.hxCol (25%)</p></div>
-  </div>
   ```
 </section>
 
 <section>
-  <h3 id="explicit">Explicit</h3>
+  <h3 id="styling">Styling the Grid</h3>
+  <div class="alert alert-info">
+    <p>
+      <b>Avoid styling rows and columns.</b>
+      Add a container within a column to apply styling.
+    </p>
+  </div>
+
   <p>
-    Explicit columns will take up a defined percentage of the row.
-  </p>
-  <p>
-    Use the <code>.hxCol-N</code> class (1 &le; N &le; 12)
-    to create columns that are a fraction of the hxRow width.
+    Because styles for rows and columns are meticulously defined to support
+    the grid definition, any modification to the <code>margin</code>,
+    <code>padding</code>, or geometry of these elements will affect the
+    layout.
   </p>
 
-  <div class="demo">
-    <div class="demo-container">
-      <div class="hxRow">
-        <div class="hxCol-12">
-          <p>.hxCol-12</p>
+  <ul>
+    <li>
+      Wrap your content in a <code>&lt;div&gt;</code> and style
+      using a custom CSS class.
+    </li>
+  </ul>
+
+  <div class="demo grid-demo">
+    <div class="hxRow">
+      <div class="hxCol-4">
+        <p>
+          As a user, I should be able to measure the flexible project
+          management so that I can decide the alpha VOC relationships
+          outside the big interactions. If we adjust upon the relationships,
+          we can get the pair meeting outside the WIP commitment. Opening
+          the trends should allow our software development to adjust the
+          vanity colocation behind the item. It was discovered that by never
+          satifying the PR deadlines, we can satify the pirate XP impediment
+          around the major standard.
+        </p>
+      </div>
+      <div class="hxCol-4">
+        <div class="styled-container">
+          <p>
+            This is a custom styled container! Notice how it fits inside the
+            green areas of the grid columns.
+          </p>
+          <p>
+            As a user, I should be able to measure the flexible project
+            management so that I can decide the alpha VOC relationships
+            outside the big interactions. If we adjust upon the relationships,
+            we can get the pair meeting outside the WIP commitment. Opening
+            the trends should allow our software development to adjust the
+            vanity colocation behind the item.
+          </p>
         </div>
       </div>
-      <div class="hxRow">
-        <div class="hxCol-1"><p>.hxCol-1</p></div>
-        <div class="hxCol-11"><p>.hxCol-11</p></div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol-2"><p>.hxCol-2</p></div>
-        <div class="hxCol-10"><p>.hxCol-10</p></div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol-3"><p>.hxCol-3</p></div>
-        <div class="hxCol-9"><p>.hxCol-9</p></div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol-4"><p>.hxCol-4</p></div>
-        <div class="hxCol-8"><p>.hxCol-8</p></div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol-5"><p>.hxCol-5</p></div>
-        <div class="hxCol-7"><p>.hxCol-7</p></div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol-6"><p>.hxCol-6</p></div>
-        <div class="hxCol-6"><p>.hxCol-6</p></div>
+      <div class="hxCol-4">
+        <p>
+          As a user, I should be able to measure the flexible project
+          management so that I can decide the alpha VOC relationships
+          outside the big interactions. If we adjust upon the relationships,
+          we can get the pair meeting outside the WIP commitment. Opening
+          the trends should allow our software development to adjust the
+          vanity colocation behind the item. It was discovered that by never
+          satifying the PR deadlines, we can satify the pirate XP impediment
+          around the major standard.
+        </p>
       </div>
     </div>
   </div>
-
   ```html
-  <div class="hxRow">
-    <div class="hxCol-12">
-      <p>.hxCol-12</p>
-    </div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-1"><p>.hxCol-1</p></div>
-    <div class="hxCol-11"><p>.hxCol-11</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-2"><p>.hxCol-2</p></div>
-    <div class="hxCol-10"><p>.hxCol-10</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-3"><p>.hxCol-3</p></div>
-    <div class="hxCol-9"><p>.hxCol-9</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-4"><p>.hxCol-4</p></div>
-    <div class="hxCol-8"><p>.hxCol-8</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-5"><p>.hxCol-5</p></div>
-    <div class="hxCol-7"><p>.hxCol-7</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-6"><p>.hxCol-6</p></div>
-    <div class="hxCol-6"><p>.hxCol-6</p></div>
-  </div>
-  ```
-</section>
-
-<section>
-  <h3 id="offsettable">Offsettable</h3>
-  <p>
-    You can use the <code>.hxOffset-N</code> class (1 &le; N &le; 11)
-    to offset your column from the start of the hxRow.
-  </p>
-
-  <div class="demo">
-    <div class="demo-container">
-      <div class="hxRow">
-        <div class="hxCol-1 hxOffset-1"><p>.hxCol-1<br />.hxOffset-1</p></div>
-        <div class="hxCol-6 hxOffset-1"><p>.hxCol-6<br />.hxOffset-1</p></div>
-        <div class="hxCol-1 hxOffset-1"><p>.hxCol-1<br />.hxOffset-1</p></div>
+    <div class="hxRow">
+      <div class="hxCol-4">
+        <p>...</p>
       </div>
-      <div class="hxRow">
-        <div class="hxCol-1 hxOffset-1"><p>.hxCol-1<br />.hxOffset-1</p></div>
-        <div class="hxCol-8"><p>.hxCol-8</p></div>
-        <div class="hxCol-1"><p>.hxCol-1</p></div>
+      <div class="hxCol-4">
+        <div class="styled-container">
+          <p>This is a custom styled container.</p>
+        </div>
       </div>
-      <div class="hxRow">
-        <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
-        <div class="hxCol-4 hxOffset-1"><p>.hxCol-4<br />.hxOffset-1</p></div>
-        <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
-        <div class="hxCol-6 hxOffset-2"><p>.hxCol-6<br />.hxOffset-2</p></div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol-3 hxOffset-1"><p>.hxCol-3<br />.hxOffset-1</p></div>
-        <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
-        <div class="hxCol-3 hxOffset-1"><p>.hxCol-3<br />.hxOffset-1</p></div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol-3 hxOffset-1"><p>.hxCol-3<br />.hxOffset-1</p></div>
-        <div class="hxCol-3 hxOffset-4"><p>.hxCol-3<br />.hxOffset-4</p></div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol-5 hxOffset-1"><p>.hxCol-5<br />.hxOffset-1</p></div>
-        <div class="hxCol-5"><p>.hxCol-5</p></div>
+      <div class="hxCol-4">
+        <p>...</p>
       </div>
     </div>
-  </div>
-
-  ```html
-  <div class="hxRow">
-    <div class="hxCol-1 hxOffset-1"><p>.hxCol-1<br />.hxOffset-1</p></div>
-    <div class="hxCol-6 hxOffset-1"><p>.hxCol-6<br />.hxOffset-1</p></div>
-    <div class="hxCol-1 hxOffset-1"><p>.hxCol-1<br />.hxOffset-1</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-1 hxOffset-1"><p>.hxCol-1<br />.hxOffset-1</p></div>
-    <div class="hxCol-8"><p>.hxCol-8</p></div>
-    <div class="hxCol-1"><p>.hxCol-1</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
-    <div class="hxCol-4 hxOffset-1"><p>.hxCol-4<br />.hxOffset-1</p></div>
-    <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
-    <div class="hxCol-6 hxOffset-2"><p>.hxCol-6<br />.hxOffset-2</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-3 hxOffset-1"><p>.hxCol-3<br />.hxOffset-1</p></div>
-    <div class="hxCol-2 hxOffset-1"><p>.hxCol-2<br />.hxOffset-1</p></div>
-    <div class="hxCol-3 hxOffset-1"><p>.hxCol-3<br />.hxOffset-1</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-3 hxOffset-1"><p>.hxCol-3<br />.hxOffset-1</p></div>
-    <div class="hxCol-3 hxOffset-4"><p>.hxCol-3<br />.hxOffset-4</p></div>
-  </div>
-  <div class="hxRow">
-    <div class="hxCol-5 hxOffset-1"><p>.hxCol-5<br />.hxOffset-1</p></div>
-    <div class="hxCol-5"><p>.hxCol-5</p></div>
-  </div>
   ```
 </section>

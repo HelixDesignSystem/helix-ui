@@ -6,8 +6,15 @@
   .hxCol,
   [class*="hxCol-"] {
     background-clip: content-box;
-    background-color: fade(@cyan-900, 25%);
+    background-color: fade(@green-700, 25%);
     font-size: 0.75rem;
+  }
+}
+
+.drop-cap {
+  p::first-letter {
+    font-size: 2em;
+    font-weight: 700;
   }
 }
 
@@ -61,4 +68,12 @@
     content: 'Size: XL';
   }
   .demoColumns(xl, @grid-column-count);
+}
+
+.styled-container {
+  background-color: @cyan-100;
+  border-radius: 0;
+  border: 1px solid @cyan-500;
+  height: 100%;
+  padding: 1em 0.5em;
 }
