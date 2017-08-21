@@ -2,11 +2,11 @@
   <section class="<%= is_current('guides') ? 'open' : '' %>">
     <header>
       Guides
-      <span class="toggle-icon fa fa-fw fa-angle-down"></span>
+      <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
     </header>
     <div>
-      <% for (var _item in theme.nav.guides) { %>
-        <% var items = theme.nav.guides; %>
+      <% for (var _item in site.data.nav.guides) { %>
+        <% var items = site.data.nav.guides; %>
         <a
           class="<%= is_current('guides' + items[_item]) ? 'current' : '' %>"
           href="<%- url_for('/guides/' + items[_item]) %>"
@@ -20,11 +20,11 @@
   <section class="<%= is_current('components') ? 'open' : '' %>">
     <header>
       Components
-      <span class="toggle-icon fa fa-fw fa-angle-down"></span>
+      <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
     </header>
     <div>
-      <% for (var _item in theme.nav.components) { %>
-        <% var items = theme.nav.components; %>
+      <% for (var _item in site.data.nav.components) { %>
+        <% var items = site.data.nav.components; %>
         <a
           class="<%= is_current('components' + items[_item]) ? 'current' : '' %>"
           href="<%- url_for('/components/' + items[_item]) %>"
