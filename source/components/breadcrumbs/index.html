@@ -1,24 +1,76 @@
 ---
 title: Breadcrumbs
 assets:
-  - bootstrap.helix.css
+  - helix-ui.css
 ---
 <!-- explanation goes here -->
 
 <div class="demo">
-  <ul class="breadcrumb">
-    <li class="active">Home</li>
-  </ul>
+  <nav class="hxBreadcrumb">
+    <a href="#">Home</a>
+  </nav>
 
-  <ul class="breadcrumb">
-    <li><a href="#">Home</a></li>
-    <li class="active">Library</li>
-  </ul>
+  <nav class="hxBreadcrumb">
+    <a href="#">Home</a>
+    <span class="delimiter">
+      <svg width="5" height="7.05" viewBox="0 0 5 8" xmlns="http://www.w3.org/2000/svg">
+        <path d="M.59.558l-.43.627L3.266 4.08.16 6.978l.43.627 3.442-3.21c." +
+        "082-.075.13-.19.13-.313 0-.12-.048-.236-.13-.312L.59.558z"/>
+      </svg>
+    </span>
+    <a href="#">Library</a>
+  </nav>
 
-  <ul class="breadcrumb">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Library</a></li>
-    <li class="active">Data</li>
-  </ul>
+  <nav class="hxBreadcrumb">
+    <a href="#">Home</a>
+    <span class="delimiter">
+      <svg width="5" height="7.05" viewBox="0 0 5 8" xmlns="http://www.w3.org/2000/svg">
+        <path d="M.59.558l-.43.627L3.266 4.08.16 6.978l.43.627 3.442-3.21c." +
+        "082-.075.13-.19.13-.313 0-.12-.048-.236-.13-.312L.59.558z"/>
+      </svg>
+    </span>
+    <a href="#">Library</a>
+    <span class="delimiter">
+      <svg width="5" height="7.05" viewBox="0 0 5 8" xmlns="http://www.w3.org/2000/svg">
+        <path d="M.59.558l-.43.627L3.266 4.08.16 6.978l.43.627 3.442-3.21c." +
+        "082-.075.13-.19.13-.313 0-.12-.048-.236-.13-.312L.59.558z"/>
+      </svg>
+    </span>
+    <a href="#">Current</a>
+  </nav>
 </div>
 
+```html
+  <nav class="hxBreadcrumb">
+    <a href="#">Home</a>
+  </nav>
+
+  <nav class="hxBreadcrumb">
+    <a href="#">Home</a>
+    <span class="delimiter">
+      <svg width="5" height="7.05" viewBox="0 0 5 8" xmlns="http://www.w3.org/2000/svg">
+        <path d="M.59.558l-.43.627L3.266 4.08.16 6.978l.43.627 3.442-3.21c." +
+        "082-.075.13-.19.13-.313 0-.12-.048-.236-.13-.312L.59.558z"/>
+      </svg>
+    </span>
+    <a href="#">Library</a>
+  </nav>
+
+  <nav class="hxBreadcrumb">
+    <a href="#">Home</a>
+    <span class="delimiter">
+      <svg width="5" height="7.05" viewBox="0 0 5 8" xmlns="http://www.w3.org/2000/svg">
+        <path d="M.59.558l-.43.627L3.266 4.08.16 6.978l.43.627 3.442-3.21c." +
+        "082-.075.13-.19.13-.313 0-.12-.048-.236-.13-.312L.59.558z"/>
+      </svg>
+    </span>
+    <a href="#">Library</a>
+    <span class="delimiter">
+      <svg width="5" height="7.05" viewBox="0 0 5 8" xmlns="http://www.w3.org/2000/svg">
+        <path d="M.59.558l-.43.627L3.266 4.08.16 6.978l.43.627 3.442-3.21c." +
+        "082-.075.13-.19.13-.313 0-.12-.048-.236-.13-.312L.59.558z"/>
+      </svg>
+    </span>
+    <a href="#">Current</a>
+  </nav>
+```
