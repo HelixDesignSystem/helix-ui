@@ -1,3 +1,5 @@
+@import (reference) '_typography';
+
 .font-roboto {
   font-family: "Roboto", sans-serif;
 }
@@ -11,3 +13,9 @@
 .weight-regular { font-weight: 400; }
 .weight-medium { font-weight: 500; }
 .weight-bold { font-weight: 700; }
+
+a {
+  &.pseudo-active {
+    &:extend(a:active);
+  }
+}
