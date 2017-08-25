@@ -1,42 +1,145 @@
 ---
 title: Installing HexoUI
 ---
-<h2 id="assets">Assets</h2>
-<table class="table table-condensed">
-  <thead>
-    <tr>
-      <th>File</th>
-      <th>Testing</th>
-      <th>Production (CDN)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>bootstrap.helix.css</th>
-      <td>
-        <a href="/helix-ui/styles/bootstrap.helix.css" target="_blank">bootstrap.helix.css</a>
-      </td>
-      <td>
-        <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/css/bootstrap.helix.css">HTTPS</a>
-      </td>
-    </tr>
-    <tr>
-      <th>helix-ui.css</th>
-      <td>
-        <a href="/helix-ui/styles/helix-ui.css" target="_blank">helix-ui.css</a>
-      </td>
-      <td>
-        <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/css/helix-ui.css">HTTPS</a>
-      </td>
-    </tr>
-    <tr>
-      <th>Rackspace Logo</th>
-      <td>N/A</td>
-      <td>
-        <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/img/rs-logo-white.svg" target="_blank">SVG</a>
-        /
-        <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/img/rs-logo-white.png" target="_blank">PNG</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<section>
+  <h2 id="assets">Assets</h2>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>File</th>
+        <th>Testing</th>
+        <th>Production (CDN)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>bootstrap.helix.css</th>
+        <td>
+          <a href="/helix-ui/styles/bootstrap.helix.css" target="_blank">bootstrap.helix.css</a>
+        </td>
+        <td>
+          <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/css/bootstrap.helix.css">HTTPS</a>
+        </td>
+      </tr>
+      <tr>
+        <th>helix-ui.css</th>
+        <td>
+          <a href="/helix-ui/styles/helix-ui.css" target="_blank">helix-ui.css</a>
+        </td>
+        <td>
+          <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/css/helix-ui.css">HTTPS</a>
+        </td>
+      </tr>
+      <tr>
+        <th>helix-ui.js</th>
+        <td>
+          <a href="/helix-ui/scripts/helix-ui.js" target="_blank">helix-ui.js</a>
+        </td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <th>Rackspace Logo</th>
+        <td>N/A</td>
+        <td>
+          <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/img/rs-logo-white.svg" target="_blank">SVG</a>
+          /
+          <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/img/rs-logo-white.png" target="_blank">PNG</a>
+        </td>
+      </tr>
+      <tr>
+        <th>ES5 Adapter</th>
+        <td>N/A</td>
+        <td>
+          <a href="http://6466346649f7416b8b7f-2c8b94bcec8e01c366189541a4035ea4.r88.cf5.rackcdn.com/custom-elements-es5-adapter.js" target="_blank">HTTP</a>
+          /
+          <a href="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js" target="_blank">HTTPS</a>
+        </td>
+      </tr>
+      <tr>
+        <th>Web Components Polyfill Loader</th>
+        <td>N/A</td>
+        <td>
+          <a href="http://6466346649f7416b8b7f-2c8b94bcec8e01c366189541a4035ea4.r88.cf5.rackcdn.com/webcomponents-loader.js" target="_blank">HTTP</a>
+          /
+          <a href="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js" target="_blank">HTTPS</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2 id="web-components">Web Components</h2>
+
+  <p>
+    To begin using the custom elements defined in HelixUI, you must first
+    ensure that the browser can load them.  To do so, copy and paste the
+    following to the bottom of the <code>&lt;head&gt;</code> in your applicaton.
+  </p>
+  ```html
+    <!-- ES5 Adapter -->
+    <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
+    <!-- Polyfill Loader -->
+    <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
+  ```
+
+  <section>
+    <h3>ES5 Adapter</h3>
+    <div class="alert alert-warning">
+      <b>DO NOT attempt to concatenate or compile the adapter into ES5.</b>
+      This will break the adapter logic.
+    </div>
+    <div class="alert alert-info">
+      The adapter <em>will raise a syntax exception in browsers
+      that do not support ES6 (e.g. IE)</em>. <br />
+      This should not affect functionality of any web components.
+    </div>
+    <div class="alert alert-info">
+      The ES5 adapter must be loaded before the Polyfill Loader.
+    </div>
+    <p>
+      To make sure that web components work in all supported browsers,
+      we have to compile our definitions in ES5-compatible JavaScript.
+      However, web component APIs require defining custom elements
+      using ES6 class syntax.
+    </p>
+    <p>
+      This is where the ES5 adapter comes in. It wraps native APIs
+      to make them compatible with ES5 browsers, but ensures that
+      ES6-compatible browsers still follow spec.
+    </p>
+  </section>
+
+  <section>
+    <h3>Polyfill Loader</h3>
+    <div class="alert alert-info">
+      Load the polyfill loader <em>after</em> the ES5 Adapter in the
+      <code>&lt;head&gt;</code>.
+    </div>
+    <p>
+      Using feature detection, the polyfill loader script will
+      automatically determine the minimum polyfills needed for the
+      user's browser. The loader will add the polyfills via an additional
+      <code>&lt;script&gt;</code> to the <code>&lt;head&gt;</code>.
+    </p>
+    <p>
+      If the user's browser doesn't need any polyfills, this additional
+      script will not be added.
+    </p>
+  </section>
+
+  <section>
+    <h3>HelixUI Components</h3>
+    <div class="alert alert-info">
+      Load HelixUI components and your application JavaScript at the bottom
+      of the <code>&lt;body&gt;</code> of your application.
+    </div>
+    <p>
+      To ensure maximum compatibility, please make sure that HelixUI
+      JavaScript is loaded after both the ES5 Adapter and the Polyfill Loader.
+    </p>
+    <p>
+      It'skk
+    </p>
+  </section>
+</section>

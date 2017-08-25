@@ -3,6 +3,21 @@
 
 const browserSync = require('browser-sync').create();
 const { hexo, config } = require('./hexo');
+const webpack = require('./webpack').compiler;
+
+function runWebpack () {
+    webpack.run((err, stats) => {
+        if (err || stats.hasErrors()) {
+            // Handle errors here
+            console.log('there was an error running webpack');
+        }
+
+        console.log(stats.toString({
+            chunks: false,  // Makes the build much quieter
+            colors: true    // Shows colors in the console
+        }))
+    });
+}//runWebpack()
 
 function initServer () {
     const serverRoutes = {}
@@ -15,12 +30,12 @@ function initServer () {
             `${config.public_dir}/**/*`,
             {
                 match: [
-                    'source/**/*',
-                    'themes/**/*'
+                    `(source|themes)/**/*`
                 ],
                 fn: (evt, file) => {
                     // force regeneration of hexo assets on change of source or theme
-                    hexo.call('generate', { force: true });
+                    hexo.call('generate', { force: true })
+                        .then(runWebpack);
                 }
             }
         ],
@@ -40,7 +55,9 @@ hexo.init().then(() => {
     hexo.call('clean')
         .then(() => {
             // MUST have empty obj as 2nd arg or the call will fail
-            return hexo.call('generate', {});
+            return hexo.call('generate', {}).then(() => {
+                runWebpack();
+            });
         })
         .then(initServer)
         .catch((err) => {

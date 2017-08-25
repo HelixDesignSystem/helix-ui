@@ -1,0 +1,23 @@
+guides:
+  Installing: /install
+components:
+  Alerts: /alerts
+  Badges: /badges
+  Blockquotes: /blockquotes
+  Breadcrumbs: /breadcrumbs
+  Buttons: /buttons
+  Code: /code
+  Dropdowns: /dropdowns
+  Forms: /forms
+  Grid: /grid
+  Icons: /icons
+  Lists: /lists
+  Modals: /modals
+  Navigation: /navigation
+  Pagination: /pagination
+  Popovers: /popovers
+  "Progress Bars": /progressbars
+  Tables: /tables
+  Tabs: /tabs
+  Tooltips: /tooltips
+  Typography: /typography

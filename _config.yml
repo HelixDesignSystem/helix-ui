@@ -77,29 +77,3 @@ deploy:
   repo: git@github.com:rackerlabs/helix-ui.git
   branch: gh-pages
   message: "Docs Updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"
-
-
-# Additional Configurations
-nav:
-  guides:
-    Installing: /install
-  components:
-    Alerts: /alerts
-    Badges: /badges
-    Blockquotes: /blockquotes
-    Breadcrumbs: /breadcrumbs
-    Buttons: /buttons
-    Code: /code
-    Dropdowns: /dropdowns
-    Forms: /forms
-    Grid: /grid
-    Lists: /lists
-    Modals: /modals
-    Navigation: /navigation
-    Pagination: /pagination
-    Popovers: /popovers
-    "Progress Bars": /progressbars
-    Tables: /tables
-    Tabs: /tabs
-    Tooltips: /tooltips
-    Typography: /typography
