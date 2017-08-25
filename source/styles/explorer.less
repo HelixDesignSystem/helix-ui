@@ -13,65 +13,10 @@
   For distributed HelixUI CSS styles, see source/styles/helix-ui.less
 */
 @import 'vars.less';
-@import 'grid/_explorer';
-@import 'typography/_explorer';
 @import 'layout';
 
 body {
   background-color: @gray-25;
-}
-
-.nav {
-  &.eyebrow {
-    background-color: @gray-950;
-    color: @gray-0;
-  }
-  &.primary {
-    background-color: red;
-    color: @gray-0;
-  }
-  &.left {
-    background-color: @gray-950;
-    color: @gray-0;
-    width: 15rem;
-  }
-}
-
-// Bootstrap Theme Example
-.dropdown-example {
-  .dropdown-menu {
-    display: block;
-    margin-bottom: 1.25em;
-    position: static;
-  }
-}
-
-// Bootstrap Tooltip Example
-.tooltip-example {
-  .tooltip {
-    display: inline-block;
-    margin: 1em;
-    opacity: 1;
-    position: relative;
-  }
-}
-
-.popover-example {
-  z-index: 0;
-  display: flex;
-  flex-wrap: wrap;
-
-  &::before {
-    content: '';
-  }
-
-  .popover {
-    display: block;
-    flex: 0 0 260px;
-    margin: 20px;
-    position: relative;
-    z-index: auto;
-  }
 }
 
 .demo {
@@ -93,6 +38,10 @@ body {
     width: 5rem;
     text-align: center;
     clear: both;
+  }
+
+  &.no-label::before {
+    display: none;
   }
 }
 
@@ -160,3 +109,10 @@ main {
     margin-top: 3rem;
   }
 }
+
+@import 'dropdowns/_explorer';
+@import 'grid/_explorer';
+@import 'icons/_explorer';
+@import 'popovers/_explorer';
+@import 'tooltips/_explorer';
+@import 'typography/_explorer';

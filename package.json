@@ -14,6 +14,9 @@
     "hexo-server": "^0.2.1"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
     "browser-sync": "2.x",
     "clean-css": "4.1.3",
     "gulp": "3.x",
@@ -22,7 +25,9 @@
     "js-yaml": "^3.9.1",
     "less": "2.x",
     "less-plugin-clean-css": "^1.5.1",
-    "lodash": "4.x"
+    "lodash": "4.x",
+    "svg-inline-loader": "^0.8.0",
+    "webpack": "^3.5.5"
   },
   "scripts": {
     "clean": "rm -fr node_modules",
