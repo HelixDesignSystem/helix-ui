@@ -1,0 +1,80 @@
+.hxAlerts {
+  //reserved for future styling
+}
+
+.hxAlert {
+  background-color: @blue-100;
+  color: @gray-1000;
+  display: flex;
+  font-weight: 300;
+  line-height: 1.25em;
+
+  & > * {
+    padding-bottom: 0.875em;
+    padding-top: 0.875em;
+  }
+
+  &--error {
+    background-color: @red-900;
+    color: @gray-0;
+  }
+
+  &--warning {
+    background-color: @yellow-700;
+  }
+
+  &--success {
+    background-color: @green-700;
+    color: @gray-0;
+  }
+
+  &__icon {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 1em;
+    margin-left: 1em;
+  }
+
+  &__text {
+    flex-grow: 1;
+    margin-left: 1em;
+  }
+
+  &__status {
+    font-weight: 500;
+    text-transform: uppercase;
+
+    &:after {
+      content: ":";
+    }
+  }
+
+  &__action {
+    margin-left: 1em;
+    text-align: right;
+    
+    a {
+      color: inherit;
+      font-weight: 500;
+      text-transform: uppercase;
+
+      &:hover {
+        color: inherit;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__dismiss {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0.875em 1em;
+
+    hx-icon {
+      height: 0.75em;
+      width: 0.75em;
+    }
+  }
+}

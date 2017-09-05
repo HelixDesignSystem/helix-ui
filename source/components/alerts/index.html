@@ -1,25 +1,127 @@
 ---
 title: Alerts
 assets:
-  - bootstrap.helix.css
+  - helix-ui.css
 ---
 <!-- explanation goes here -->
 
 <div class="demo">
-  <div class="alert alert-success" role="alert">
-    <strong>Well done!</strong> You successfully read this important alert message.
-    <a href="#">Celebrate</a>
-  </div>
-  <div class="alert alert-info" role="alert">
-    <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-    <a href="#">Acknowledge</a>
-  </div>
-  <div class="alert alert-warning" role="alert">
-    <strong>Warning!</strong> Best check yo self, you're not looking too good.
-    <a href="#">Double Check</a>
-  </div>
-  <div class="alert alert-danger" role="alert">
-    <strong>Oh snap!</strong> Change a few things up and try submitting again.
-    <a href="#">Correct Issue</a>
+
+  <div role="status" class="hxAlerts" aria-live="polite">
+    <div class="hxAlert">
+      <div class="hxAlert__icon">
+        <hx-icon type="info-circle"></hx-icon>
+      </div>
+      <div class="hxAlert__text">
+        <span class="hxAlert__status">Info</span> 
+        Here is helpful information.
+      </div>
+      <div class="hxAlert__action">
+        <a href="#">Acknowledge</a>
+      </div>
+      <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+    </div>
+
+    <div class="hxAlert hxAlert--error">
+      <div class="hxAlert__icon">
+        <hx-icon type="exclamation-circle"></hx-icon>
+      </div>
+      <div class="hxAlert__text">
+        <span class="hxAlert__status">Error</span> 
+        Change a few things up and try submitting again.
+      </div>
+      <div class="hxAlert__action">
+        <a href="#">Correct Issue</a>
+      </div>
+      <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+    </div>
+
+    <div class="hxAlert hxAlert--warning">
+      <div class="hxAlert__icon">
+        <hx-icon type="exclamation-triangle"></hx-icon>
+      </div>
+      <div class="hxAlert__text">
+        <span class="hxAlert__status">Warning</span> 
+        Best check yo self, you're not looking too good.
+      </div>
+      <div class="hxAlert__action">
+        <a href="#">Double Check</a>
+      </div>
+      <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+    </div>
+
+    <div class="hxAlert hxAlert--success">
+      <div class="hxAlert__icon">
+        <hx-icon type="checkmark"></hx-icon>
+      </div>
+      <div class="hxAlert__text">
+        <span class="hxAlert__status ">Success</span> 
+        You successfully read this important alert message.
+      </div>
+      <div class="hxAlert__action">
+        <a href="#">Celebrate</a>
+      </div>
+      <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+    </div>
   </div>
 </div>
+
+```html
+<div role="status" class="hxAlerts" aria-live="polite">
+  <div class="hxAlert">
+    <div class="hxAlert__icon">
+      <hx-icon type="info-circle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">Info</span> 
+      Here is helpful information.
+    </div>
+    <div class="hxAlert__action">
+      <a href="#">Acknowledge</a>
+    </div>
+    <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+  </div>
+
+  <div class="hxAlert hxAlert--error">
+    <div class="hxAlert__icon">
+      <hx-icon type="exclamation-circle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">Error</span> 
+      Change a few things up and try submitting again.
+    </div>
+    <div class="hxAlert__action">
+      <a href="#">Correct Issue</a>
+    </div>
+    <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+  </div>
+
+  <div class="hxAlert hxAlert--warning">
+    <div class="hxAlert__icon">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">Warning</span> 
+      Best check yo self, you're not looking too good.
+    </div>
+    <div class="hxAlert__action">
+      <a href="#">Double Check</a>
+    </div>
+    <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+  </div>
+
+  <div class="hxAlert hxAlert--success">
+    <div class="hxAlert__icon">
+      <hx-icon type="checkmark"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status ">Success</span> 
+      You successfully read this important alert message.
+    </div>
+    <div class="hxAlert__action">
+      <a href="#">Celebrate</a>
+    </div>
+    <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+  </div>
+</div>
+```
