@@ -43,11 +43,33 @@ window.addEventListener('WebComponentsReady', function () {
           return 'hx-icon';
       }
 
+      static get observedAttributes() {
+          return ['type'];
+      }
+
       static get icons () {
           return icons;
       }
 
+      constructor (type) {
+          super();
+
+          if (type) {
+              this.setAttribute('type', type);
+          }
+      }
+
       connectedCallback () {
+          this._render();
+      }
+
+      attributeChangedCallback (attr, oldValue, newValue) {
+          if (attr === 'type') {
+              this._render();
+          }
+      }
+
+      _render () {
           const type = this.getAttribute('type');
 
           // erase previously injected markup
@@ -63,7 +85,7 @@ window.addEventListener('WebComponentsReady', function () {
               // inject SVG into Light DOM
               this.appendChild(svg);
           }
-      }//connectedCallback
+      }//_render()
   }//HxIcon
 
   customElements.define(HxIcon.is, HxIcon);
