@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <title>Typography | HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="shortcut icon" href="/helix-ui/images/favicon.png">
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/helix-ui/styles/bootstrap.helix.css">
+  <link rel="stylesheet" href="/helix-ui/styles/helix-ui.css">
+  <link rel="stylesheet" href="/helix-ui/styles/explorer.css">
+
+  <!-- ES5 Adapter -->
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
+  <!-- Polyfill Loader -->
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
+</head>
+
+<body id="top">
+  <header id="global-header">
+    <nav class="global-nav">
+    <a class="brand-logo" href="/helix-ui/">
+        <img src="/helix-ui/images/helix-logo.svg" alt="Helix Logo">
+    </a>
+    <div class="links">
+        
+            <a class="current">Typography</a>
+        
+    </div>
+</nav>
+
+  </header>
+
+  <div id="app-container">
+    <div class="app-nav-container">
+      <nav class="hx-app-nav">
+  <section class="">
+    <header>
+      Guides
+      <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+    </header>
+    <div>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/guides/install"
+        >
+          Installing
+        </a>
+      
+    </div>
+  </section>
+
+  <section class="open">
+    <header>
+      Components
+      <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+    </header>
+    <div>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/alerts"
+        >
+          Alerts
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/badges"
+        >
+          Badges
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/blockquotes"
+        >
+          Blockquotes
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/breadcrumbs"
+        >
+          Breadcrumbs
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/buttons"
+        >
+          Buttons
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/code"
+        >
+          Code
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/dropdowns"
+        >
+          Dropdowns
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/forms"
+        >
+          Forms
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/grid"
+        >
+          Grid
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/icons"
+        >
+          Icons
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/lists"
+        >
+          Lists
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/modals"
+        >
+          Modals
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/navigation"
+        >
+          Navigation
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/pagination"
+        >
+          Pagination
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/popovers"
+        >
+          Popovers
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/progressbars"
+        >
+          Progress Bars
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/tables"
+        >
+          Tables
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/tabs"
+        >
+          Tabs
+        </a>
+      
+        
+        <a
+          class=""
+          href="/helix-ui/components/tooltips"
+        >
+          Tooltips
+        </a>
+      
+        
+        <a
+          class="current"
+          href="/helix-ui/components/typography"
+        >
+          Typography
+        </a>
+      
+    </div>
+  </section>
+</nav>
+
+    </div>
+
+    <main id="app-content">
+      <article>
+    <header class="page-header">
+        <span class="page-title">
+            Typography
+            
+        </span>
+    </header>
+
+    <div class="hxRow">
+        <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
+            
+
+<aside>
+    <dl>
+        <dt>Last Updated:</dt>
+        <dd>2017-09-06</dd>
+
+        
+            <dt>Assets:</dt>
+            
+                <dd><code>bootstrap.helix.css</code></dd>
+            
+        
+    </dl>
+</aside>
+
+<aside class="article-toc" role="navigation">
+    <header class="article-toc-title">Content</header>
+    
+    
+        <ul class="toc"><li class="toc-item">
+                <a class="toc-link" href="#font-weight">
+                    <span class="toc-text">Font Weight</span>
+                </a>
+            </li><li class="toc-item">
+                <a class="toc-link" href="#addresses">
+                    <span class="toc-text">Addresses</span>
+                </a>
+            </li><li class="toc-item">
+                <a class="toc-link" href="#headings">
+                    <span class="toc-text">Headings</span>
+                </a>
+            </li><li class="toc-item">
+                <a class="toc-link" href="#inline-text-elements">
+                    <span class="toc-text">Inline Text Elements
+  </span>
+                </a>
+            </li><li class="toc-item">
+                <a class="toc-link" href="#links">
+                    <span class="toc-text">Links</span>
+                </a>
+            </li></ul>
+        <a class="article-toc-top" href="#top">Back to Top</a>
+    
+</aside>
+
+        </div>
+        <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
+            <section><!-- Font -->
+  <h2 id="font-weight">Font Weight</h2>
+
+  <div class="demo">
+    <div class="hxRow">
+      <div class="hxCol font-roboto">
+        <p class="weight-thin">Roboto Thin (100)</p>
+        <p class="weight-light">Roboto Light (300)</p>
+        <p class="weight-regular">Roboto Regular (400)</p>
+        <p class="weight-medium">Roboto Medium (500)</p>
+        <p class="weight-bold">Roboto Bold (700)</p>
+      </div>
+      <div class="hxCol font-roboto-mono">
+        <p class="weight-thin">Roboto Mono Thin (100)</p>
+        <p class="weight-light">Roboto Mono Light (300)</p>
+        <p class="weight-regular">Roboto Mono Regular (400)</p>
+        <p class="weight-medium">Roboto Mono Medium (500)</p>
+        <p class="weight-bold">Roboto Mono Bold (700)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section><!-- Address -->
+  <header>
+    <h2 id="addresses">Addresses</h2>
+  </header>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <address>
+      <strong>Rackspace</strong><br>
+      1 Fanatical Place<br>
+      City of Windcrest<br>
+      San Antonio, TX 78218<br>
+      <abbr title="Phone">P:</abbr> (123) 456-7890
+    </address>
+
+    <address>
+      <strong>Full Name</strong><br>
+      <a href="mailto:#" target="_blank" rel="external">first.last@example.com</a>
+    </address>
+  </div>
+</section>
+
+<section><!-- Headings -->
+  <header>
+    <h2 id="headings">Headings</h2>
+  </header>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <h1>
+      Heading 1 <small>Secondary Text</small>
+    </h1>
+    <p class="lead">
+      Lead body copy. Try to review the acceptance bug,
+      maybe it will help groom the MVP bottlenecks.
+    </p>
+    <p>
+      Body copy. Reviewing the story points should allow our unit testing to
+      prevent the burndown planning poker till the collaboration. A simple
+      deadline always takes less time than a prioritized one. We must
+      periodically open the monthly PR manifesto! If we spike without the
+      methodologies, we can get the certified trend upon the VOC bug. As a user,
+      I should be able to adapt the beta pair programming so that I can work the
+      quarterly XP blockers around the upward wikis.
+    </p>
+
+    <h2>Heading 2 <small>Secondary Text</small></h2>
+    <h3>Heading 3 <small>Secondary Text</small></h3>
+    <h4>Heading 4 <small>Secondary Text</small></h4>
+    <h5>Heading 5 <small>Secondary Text</small></h5>
+    <h6>Heading 6 <small>Secondary Text</small></h6>
+  </div>
+</section>
+
+<section><!-- Inline -->
+  <header class="page-header">
+    <h2 id="inline-text-elements">Inline Text Elements
+  </h2></header>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <div class="row">
+      <div class="col-xs-6">
+        <p>
+          <strong>Marked</strong>: <code>&lt;mark&gt;</code><br>
+          You can use the mark tag to <mark>highlight</mark> text.
+        </p>
+        <p>
+          <strong>Deleted</strong>: <code>&lt;del&gt;</code><br>
+          <del>This line of text is meant to be treated as deleted text.</del>
+        </p>
+        <p>
+          <strong>Strikethrough</strong>: <code>&lt;s&gt;</code><br>
+          <s>This line of text is meant to be treated as no longer accurate.</s>
+        </p>
+        <p>
+          <strong>Inserted</strong>: <code>&lt;ins&gt;</code><br>
+          <ins>This line of text is meant to be treated as an addition to the document.</ins>
+        </p>
+        <p>
+          <strong>Underlined</strong>: <code>&lt;u&gt;</code><br>
+          <u>This line of text will render as underlined</u>
+        </p>
+      </div>
+
+      <div class="col-xs-6">
+        <p>
+          <strong>Small</strong>: <code>&lt;small&gt;</code><br>
+          <small>This line of text is meant to be treated as fine print.</small>
+        </p>
+        <p>
+          <strong>Bold</strong>: <code>&lt;strong&gt;</code>, <code>&lt;b&gt;</code><br>
+          <strong>This line rendered as bold text.</strong><br>
+          <b>This line also rendered as bold text.</b>
+        </p>
+        <p>
+          <strong>Italics</strong>: <code>&lt;em&gt;</code>, <code>&lt;i&gt;</code><br>
+          <em>This line rendered as italicized text.</em>
+          <i>This line also rendered as italicized text.</i>
+        </p>
+        <p>
+          <strong>Abbreviation</strong>: <code>&lt;abbr&gt;</code><br>
+          <abbr title="attribute">attr</abbr>
+        </p>
+        <p>
+          <strong>Initialism</strong>: <code>abbr.initialism</code><br>
+          <abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
+        </p>
+      </div>
+    </div>
+
+    <b>Muted:</b>
+    <p class="text-muted">
+      If it takes you too long to detail the flexible XP spec, then you are not spiking enough. A simple lifecycle management always takes less time than a burnup one. The best way to detail minimum sequence is to almost satify their application. If it takes you too long to measure the major VOC sprint, then you are not working enough.
+    </p>
+
+    <b>Primary:</b>
+    <p class="text-primary">
+      If it takes you too long to detail the flexible XP spec, then you are not spiking enough. A simple lifecycle management always takes less time than a burnup one. The best way to detail minimum sequence is to almost satify their application. If it takes you too long to measure the major VOC sprint, then you are not working enough.
+    </p>
+  </div>
+</section>
+
+<section><!-- Links -->
+  <h2 id="links">Links</h2>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p>
+      <strong>Reference Links</strong><br>
+      Reference links are super common and typically used to, well, refer, you
+      to something and somewhere else, whether that's in our interface or not.
+      For Rackspace, this likely means to help and support articles. If you
+      want to ask someone to do something, use a <a href="#">button.</a>
+    </p>
+    <p>
+      <strong>Pressed State</strong><br>
+      <a href="#" class="pseudo-active">Pressed Link</a>
+    </p>
+  </div>
+</section>
+
+        </div>
+    </div>
+</article>
+
+    </main>
+  </div>
+
+  <footer id="global-footer">
+    <nav class="footer-nav">
+  <div class="links">
+    
+    <a href="/helix-ui/2000/01/01/v0000-00-00/">
+        v0000-00-00
+    </a>
+  </div>
+</nav>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/helix-ui/scripts/helix-ui.js"></script>
+<script src="/helix-ui/scripts/explorer.js"></script>
+
+</body>
+</html>
