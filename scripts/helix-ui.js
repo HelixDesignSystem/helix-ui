@@ -79,16 +79,7 @@
 
 __webpack_require__(1);
 
-/* Left Nav Toggle Behavior */
-(function () {
-    var _headers = document.querySelectorAll('.hx-app-nav header');
-
-    _headers.forEach(function (header) {
-        header.addEventListener('click', function (evt) {
-            evt.target.parentElement.classList.toggle('open');
-        });
-    });
-})();
+__webpack_require__(38);
 
 /***/ }),
 /* 1 */
@@ -431,6 +422,101 @@ module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.835 0 16 0zm7.531 21.269L21.27 23.53 16 18.264l-5.269 5.267L8.47 21.27 13.736 16l-5.269-5.269 2.263-2.26 5.268 5.268 5.27-5.269 2.262 2.261L18.262 16l5.27 5.269z\"></path></svg>"
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+window.addEventListener('WebComponentsReady', function () {
+    var template = document.createElement('template');
+
+    template.innerHTML = '\n      <style>\n        :host {\n          display: block;\n        }\n\n        :host([open]) #content {\n          display: block;\n        }\n    \n        #content {\n          display: none;\n        }\n\n        #toggle {\n          background-color: transparent;\n          border: none;\n          color: inherit;\n          font-size: 1em;\n          margin: 0px;\n          padding: 0px;\n          text-align: left;\n          width: 100%;\n        }\n\n        #toggle:empty {\n          display: none;\n        }\n\n        #toggle:hover {\n          cursor: pointer;\n        }\n      </style>\n\n      <button id="toggle" aria-expanded="false">\n        <slot name="summary"></slot>\n      </button>\n      <div id="content">\n        <slot></slot>\n      </div>\n    ';
+
+    var HxReveal = function (_HTMLElement) {
+        _inherits(HxReveal, _HTMLElement);
+
+        _createClass(HxReveal, null, [{
+            key: 'is',
+            get: function get() {
+                return 'hx-reveal';
+            }
+        }, {
+            key: 'observedAttributes',
+            get: function get() {
+                return ['open'];
+            }
+        }]);
+
+        function HxReveal() {
+            _classCallCheck(this, HxReveal);
+
+            var _this = _possibleConstructorReturn(this, (HxReveal.__proto__ || Object.getPrototypeOf(HxReveal)).call(this));
+
+            _this.attachShadow({ mode: 'open' });
+            if (window.ShadyCSS) {
+                ShadyCSS.prepareTemplate(template, 'hx-reveal');
+                ShadyCSS.styleElement(_this);
+            }
+            _this.shadowRoot.appendChild(template.content.cloneNode(true));
+            _this._btnToggle = _this.shadowRoot.querySelector('#toggle');
+            _this.toggle = _this.toggle.bind(_this);
+            return _this;
+        }
+
+        _createClass(HxReveal, [{
+            key: 'connectedCallback',
+            value: function connectedCallback() {
+                this._btnToggle.addEventListener('click', this.toggle);
+            }
+        }, {
+            key: 'disconnectedCallback',
+            value: function disconnectedCallback() {
+                this._btnToggle.removeEventListener('click', this.toggle);
+            }
+        }, {
+            key: 'attributeChangedCallback',
+            value: function attributeChangedCallback(attr, oldValue, newValue) {
+                if (attr === 'open') {
+                    this._btnToggle.setAttribute('aria-expanded', newValue === '');
+                }
+            }
+        }, {
+            key: 'toggle',
+            value: function toggle() {
+                if (this.getAttribute('open') === '') {
+                    this.close();
+                } else {
+                    this.open();
+                }
+            }
+        }, {
+            key: 'open',
+            value: function open() {
+                this.setAttribute('open', '');
+            }
+        }, {
+            key: 'close',
+            value: function close() {
+                this.removeAttribute('open');
+            }
+        }]);
+
+        return HxReveal;
+    }(HTMLElement);
+
+    customElements.define(HxReveal.is, HxReveal);
+});
 
 /***/ })
 /******/ ]);

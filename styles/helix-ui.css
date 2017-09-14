@@ -825,6 +825,10 @@ hx-icon svg {
   fill: currentColor;
   stroke: none;
 }
+dd {
+  margin-bottom: 0.5em;
+  margin-left: 1em;
+}
 .hx-app-nav {
   background-color: #212121;
   color: #d8d8d8;
@@ -867,34 +871,28 @@ hx-icon svg {
   background-color: #616161;
   color: #ffffff;
 }
-.hx-app-nav section {
+.hx-app-nav hx-reveal {
   /* Indentation */
 }
-.hx-app-nav section > div {
-  display: none;
-}
-.hx-app-nav section.open > header .toggle-icon {
+.hx-app-nav hx-reveal[open] > header .toggle-icon {
   transform: scaleY(-1);
 }
-.hx-app-nav section.open > div {
-  display: block;
-}
-.hx-app-nav section header {
+.hx-app-nav hx-reveal header {
   padding-left: 1.25rem;
 }
-.hx-app-nav section a {
+.hx-app-nav hx-reveal a {
   padding-left: 2.5rem;
 }
-.hx-app-nav section section header {
+.hx-app-nav hx-reveal hx-reveal header {
   padding-left: 2.5rem;
 }
-.hx-app-nav section section a {
+.hx-app-nav hx-reveal hx-reveal a {
   padding-left: 3.75rem;
 }
-.hx-app-nav section section section header {
+.hx-app-nav hx-reveal hx-reveal hx-reveal header {
   padding-left: 3.75rem;
 }
-.hx-app-nav section section section a {
+.hx-app-nav hx-reveal hx-reveal hx-reveal a {
   padding-left: 5rem;
 }
 a {

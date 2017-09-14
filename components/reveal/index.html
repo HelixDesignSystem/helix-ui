@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   
-  <title>Forms | HelixUI</title>
+  <title>Reveal | HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,7 +31,7 @@
     </a>
     <div class="links">
         
-            <a class="current">Forms</a>
+            <a class="current">Reveal</a>
         
     </div>
 </nav>
@@ -121,7 +121,7 @@
     
       
       <a
-        class="current"
+        class=""
         href="/helix-ui/components/forms"
       >
         Forms
@@ -193,7 +193,7 @@
     
       
       <a
-        class=""
+        class="current"
         href="/helix-ui/components/reveal"
       >
         Reveal
@@ -240,7 +240,7 @@
       <article>
     <header class="page-header">
         <span class="page-title">
-            Forms
+            Reveal
             
         </span>
     </header>
@@ -252,12 +252,12 @@
 <aside>
     <dl>
         <dt>Last Updated:</dt>
-        <dd>2017-09-06</dd>
+        <dd>2017-09-14</dd>
 
         
             <dt>Assets:</dt>
             
-                <dd><code>bootstrap.helix.css</code></dd>
+                <dd><code>helix-ui.js</code></dd>
             
         
     </dl>
@@ -267,137 +267,79 @@
     <header class="article-toc-title">Content</header>
     
     
-        <p>
-            <em>Unavailable</em>
-        </p>
+        <ul class="toc"><li class="toc-item">
+                <a class="toc-link" href="#default-reveal">
+                    <span class="toc-text">Default Reveal</span>
+                </a>
+            </li><li class="toc-item">
+                <a class="toc-link" href="#open-reveal">
+                    <span class="toc-text">Open Reveal</span>
+                </a>
+            </li><li class="toc-item">
+                <a class="toc-link" href="#attributes">
+                    <span class="toc-text">Attributes</span>
+                </a>
+            </li><li class="toc-item">
+                <a class="toc-link" href="#functions">
+                    <span class="toc-text">Functions</span>
+                </a>
+            </li></ul>
+        <a class="article-toc-top" href="#top">Back to Top</a>
     
 </aside>
 
         </div>
         <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
-            <!-- explanation goes here -->
+            
+<p>
+  A reveal is a behavior-only web component that implements almost no styling.
+</p>
 
-<div class="demo">
-  <form>
-    <div class="row">
-      <div class="col-xs-6">
-        <div class="form-group">
-          <label for="ks-email">Email address</label>
-          <input type="email" class="form-control" id="ks-email" placeholder="Email">
-        </div>
-        <div class="form-group">
-          <label for="ks-password">Password</label>
-          <input type="password" class="form-control" id="ks-password" placeholder="Password">
-        </div>
-        <div class="form-group">
-          <label for="ks-file-input">File input</label>
-          <input type="file" id="ks-file-input">
-          <p class="help-block">Example block-level help text here.</p>
-        </div>
-        <div class="form-group">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"> Checkbox
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="ks-textarea" class="control-label">Textarea</label>
-          <textarea class="form-control" rows="3" id="ks-textarea"></textarea>
-          <span class="help-block">
-            A longer block of help text that breaks onto a new line and may extend beyond one line.
-          </span>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <div class="form-group">
-          <label class="control-label">Radios</label>
-          <div class="radio">
-            <label>
-              <input type="radio" name="ks-radios" id="ks-rad-1" value="option1" checked>
-              Option one is this
-            </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input type="radio" name="ks-radios" id="ks-rad-2" value="option2">
-              Option two can be something else
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="ks-select" class="control-label">Selects</label>
-          <select class="form-control" id="ks-select">
-            <option>1</option>
-            <option checked>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-          <br>
-          <select multiple class="form-control">
-            <option>1</option>
-            <option checked>2</option>
-            <option checked>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="searchInput">Search input</label>
-          <input type="search" class="form-control" id="searchInput" placeholder="Search for...">
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-6">
-        <div class="form-group">
-          <label for="normalInput">Normal input</label>
-          <input class="form-control" id="normalInput" type="text" value="This is normal...">
-        </div>
+<section>
+  <h2 id="default-reveal">Default Reveal</h2>
+  <p>Closed by default</p>
+  <div class="demo">
+    <hx-reveal>
+      <span slot="summary">Click me to show content</span>
+      <p>You can't see me.</p>
+    </hx-reveal>
+  </div>
+  <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hx-reveal</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">slot</span>=<span class="string">"summary"</span>&gt;</span>Click me to show content<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>You can't see me.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">hx-reveal</span>&gt;</span></div></pre></td></tr></table></figure>
 
-        <div class="form-group">
-          <label for="disabledInput">Disabled input</label>
-          <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
-        </div>
+</section>
+<section>
+  <h2 id="open-reveal">Open Reveal</h2>
+  <p>Add <code>open</code> attribute to set the reveal in an open state</p>
+  <div class="demo">
+    <hx-reveal open>
+      <span slot="summary">Click me to hide content!</span>
+      <p>You should see me.</p>
+    </hx-reveal>
+  </div>
+  <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hx-reveal</span> <span class="attr">open</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">slot</span>=<span class="string">"summary"</span>&gt;</span>Click me to hide content!<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>You should see me.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">hx-reveal</span>&gt;</span></div></pre></td></tr></table></figure>
 
-        <div class="form-group">
-          <label class="control-label">Input addons</label>
-          <div class="input-group">
-            <span class="input-group-addon">$</span>
-            <input type="text" class="form-control">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Button</button>
-            </span>
-          </div>
-        </div>
-      </div>
+</section>
+<section>
+  <h2 id="attributes">Attributes</h2>
+  <dl>
+    <dt>open</dt>
+    <dd>Opens the reveal</dd>
+  </dl>
+</section>
+<section>
+  <h2 id="functions">Functions</h2>
+  <p>The following functions are available on the element.</p>
+  <dl>
+    <dt>close()</dt>
+    <dd>Closes the reveal</dd>
 
-      <div class="col-xs-6">
-        <div class="form-group has-warning">
-          <label class="control-label" for="inputWarning">Input warning</label>
-          <input type="text" class="form-control" id="inputWarning">
-        </div>
+    <dt>open()</dt>
+    <dd>Opens the reveal</dd>
 
-        <div class="form-group has-error">
-          <label class="control-label" for="inputError">Input error</label>
-          <input type="text" class="form-control" id="inputError">
-        </div>
-
-        <div class="form-group has-success">
-          <label class="control-label" for="inputSuccess">Input success</label>
-          <input type="text" class="form-control" id="inputSuccess">
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-6">
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button class="btn btn-default">Cancel</button>
-      </div>
-    </div>
-  </form>
-</div>
+    <dt>toggle()</dt>
+    <dd>Inverts the open state</dd>
+  </dl>
+</section>
 
         </div>
     </div>
