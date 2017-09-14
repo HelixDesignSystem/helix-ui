@@ -1,37 +1,33 @@
 <nav class="hx-app-nav">
-  <section class="<%= is_current('guides') ? 'open' : '' %>">
-    <header>
+  <hx-reveal <%= is_current('guides') ? 'open' : '' %>>
+    <header slot="summary">
       Guides
       <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
     </header>
-    <div>
-      <% for (var _item in site.data.nav.guides) { %>
-        <% var items = site.data.nav.guides; %>
-        <a
-          class="<%= is_current('guides' + items[_item]) ? 'current' : '' %>"
-          href="<%- url_for('/guides/' + items[_item]) %>"
-        >
-          <%= _item %>
-        </a>
-      <% } %>
-    </div>
-  </section>
+    <% for (var _item in site.data.nav.guides) { %>
+      <% var items = site.data.nav.guides; %>
+      <a
+        class="<%= is_current('guides' + items[_item]) ? 'current' : '' %>"
+        href="<%- url_for('/guides/' + items[_item]) %>"
+      >
+        <%= _item %>
+      </a>
+    <% } %>
+  </hx-reveal>
 
-  <section class="<%= is_current('components') ? 'open' : '' %>">
-    <header>
+  <hx-reveal <%= is_current('components') ? 'open' : '' %>>
+    <header slot="summary">
       Components
       <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
     </header>
-    <div>
-      <% for (var _item in site.data.nav.components) { %>
-        <% var items = site.data.nav.components; %>
-        <a
-          class="<%= is_current('components' + items[_item]) ? 'current' : '' %>"
-          href="<%- url_for('/components/' + items[_item]) %>"
-        >
-          <%= _item %>
-        </a>
-      <% } %>
-    </div>
-  </section>
+    <% for (var _item in site.data.nav.components) { %>
+      <% var items = site.data.nav.components; %>
+      <a
+        class="<%= is_current('components' + items[_item]) ? 'current' : '' %>"
+        href="<%- url_for('/components/' + items[_item]) %>"
+      >
+        <%= _item %>
+      </a>
+    <% } %>
+  </hx-reveal>
 </nav>

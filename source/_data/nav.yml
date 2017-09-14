@@ -17,6 +17,7 @@ components:
   Pagination: /pagination
   Popovers: /popovers
   "Progress Bars": /progressbars
+  Reveal: /reveal
   Tables: /tables
   Tabs: /tabs
   Tooltips: /tooltips

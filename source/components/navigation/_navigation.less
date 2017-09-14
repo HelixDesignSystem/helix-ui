@@ -53,20 +53,12 @@
     }
   }
 
-  section {
-    & > div {
-      display: none;
-    }
-
-    &.open {
+  hx-reveal {
+    &[open] {
       & > header {
         .toggle-icon {
           transform: scaleY(-1);
         }
-      }
-
-      & > div {
-        display: block;
       }
     }
 
@@ -81,7 +73,7 @@
     }
 
     // Level 2
-    section {
+    hx-reveal {
       header {
         padding-left: @l2-indent;
       }
@@ -91,7 +83,7 @@
       }
 
       // Level 3
-      section {
+      hx-reveal {
         header {
           padding-left: @l3-indent;
         }
@@ -101,6 +93,6 @@
         }
       }
     }
-  }//section
+  }//hx-reveal
 }
 
