@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{site.language}}">
+  {% include 'partials/head.njk' %}
+  <body id="top">
+    <header id="global-header">
+      {% include 'partials/global_nav.njk' %}
+    </header>
+
+    <div id="app-container">
+      <div class="app-nav-container">
+        {% include 'partials/app_nav.njk' %}
+      </div>
+
+      <main id="app-content">
+        {% block layout %}
+          {# compiled content goes here #}
+        {% endblock %}
+      </main>
+    </div>
+
+    <footer id="global-footer">
+      {% include 'partials/footer_nav.njk' %}
+    </footer>
+
+    {% include 'partials/after_footer.njk' %}
+  </body>
+</html>

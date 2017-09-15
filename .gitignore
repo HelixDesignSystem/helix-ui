@@ -8,3 +8,6 @@ db.json
 *.log
 public/
 .deploy*/
+
+# Private credentials/config
+_config.private.js

@@ -1,0 +1,34 @@
+{% macro navSection(category, items, basePath) %}
+  {% if _.isUndefined(basePath) %}
+    {% set categoryPath = category %}
+  {% else %}
+    {% set categoryPath = basePath + '/' + category %}
+  {% endif %}
+  {% set isCurrentCategory = page.path.indexOf(categoryPath) === 0 %}
+
+  <hx-reveal {% if isCurrentCategory %}open{% endif %}>
+    <header slot="summary">
+      {{category | capitalize}}
+      <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+    </header>
+
+    {% for key,val in items %}
+      {% if _.isPlainObject(val) %}
+        {% set subpath = basePath + '/' + key %}
+        {{ navSection(key, val, subpath) }}
+      {% else %}
+        {% set linkPath = categoryPath + '/' + val %}
+        {% set isCurrentLink = page.path.indexOf(linkPath) === 0 %}
+        <a href="{{linkPath}}"
+           {% if isCurrentLink %}class="current"{% endif %}
+        >{{key}}</a>
+      {% endif %}
+    {% endfor %}
+  </hx-reveal>
+{% endmacro %}
+
+<nav class="hx-app-nav">
+  {% for category,items in data.nav %}
+    {{ navSection(category, items) }}
+  {% endfor %}
+</nav>

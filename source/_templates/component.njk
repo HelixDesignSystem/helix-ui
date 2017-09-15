@@ -1,0 +1,26 @@
+{% extends 'application.njk' %}
+
+{% block layout %}
+  <article>
+    <header class="page-header">
+      <span class="page-title">
+        {{ page.title }}
+        {% if page.subtitle %}
+          <br />
+          <small>{{ page.subtitle }}</small>
+        {% endif %}
+      </span>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
+        {% include 'partials/sidebar.njk' %}
+      </div>
+      <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
+        {% block content %}
+          {# page content goes here #}
+        {% endblock %}
+      </div>
+    </div>
+  </article>
+{% endblock %}

@@ -1,5 +1,5 @@
+const bump = require('gulp-bump');
 const gulp = require('gulp');
-const plugins = require('gulp-load-plugins')();
 
 /* ===== BUMP ===== */
 const bumpFiles = [ './package.json' ];
@@ -14,7 +14,7 @@ const bumpFiles = [ './package.json' ];
 ].forEach( (ilk) => {
     gulp.task(`bump:${ilk}`, function () {
         gulp.src(bumpFiles)
-            .pipe(plugins.bump({ type: ilk }))
+            .pipe(bump({ type: ilk }))
             .pipe(gulp.dest('./'));
     });
 });

@@ -1,9 +1,10 @@
 ---
 title: Reveal
-assets: 
+assets:
   - helix-ui.js
 ---
-
+{% extends 'component.njk' %}
+{% block content %}
 <p>
   A reveal is a behavior-only web component that implements almost no styling.
 </p>
@@ -17,13 +18,14 @@ assets:
       <p>You can't see me.</p>
     </hx-reveal>
   </div>
-  ```html
+  {% code %}html
     <hx-reveal>
       <span slot="summary">Click me to show content</span>
       <p>You can't see me.</p>
     </hx-reveal>
-  ```
+  {% endcode %}
 </section>
+
 <section>
   <h2 id="open-reveal">Open Reveal</h2>
   <p>Add <code>open</code> attribute to set the reveal in an open state</p>
@@ -33,13 +35,14 @@ assets:
       <p>You should see me.</p>
     </hx-reveal>
   </div>
-  ```html
+  {% code %}html
     <hx-reveal open>
       <span slot="summary">Click me to hide content!</span>
       <p>You should see me.</p>
     </hx-reveal>
-  ```
+  {% endcode %}
 </section>
+
 <section>
   <h2 id="attributes">Attributes</h2>
   <dl>
@@ -47,6 +50,7 @@ assets:
     <dd>Opens the reveal</dd>
   </dl>
 </section>
+
 <section>
   <h2 id="functions">Functions</h2>
   <p>The following functions are available on the element.</p>
@@ -61,3 +65,4 @@ assets:
     <dd>Inverts the open state</dd>
   </dl>
 </section>
+{% endblock %}

@@ -1,0 +1,18 @@
+<aside>
+  <dl>
+    <dt>Last Updated:</dt>
+    <dd>{{ page.updated.format(site.dateFormat) }}</dd>
+
+    {% if page.assets %}
+      <dt>Assets:</dt>
+      {% for asset in page.assets %}
+        <dd><code>{{asset}}</code></dd>
+      {% endfor %}
+    {% endif %}
+  </dl>
+</aside>
+
+<aside class="article-toc" role="navigation">
+  <header class="article-toc-title">Content</header>
+  {{ page.raw | toc | safe }}
+</aside>

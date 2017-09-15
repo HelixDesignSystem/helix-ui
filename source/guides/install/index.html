@@ -1,6 +1,9 @@
 ---
 title: Installing HelixUI
+cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com
 ---
+{% extends 'fullpage.njk' %}
+{% block content %}
 <section>
   <h2 id="assets">Assets</h2>
   <table class="table table-condensed">
@@ -18,7 +21,7 @@ title: Installing HelixUI
           <a href="/helix-ui/styles/bootstrap.helix.css" target="_blank">bootstrap.helix.css</a>
         </td>
         <td>
-          <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/css/bootstrap.helix.css">HTTPS</a>
+          <a href="{{page.cdn}}/css/bootstrap.helix.css">HTTPS</a>
         </td>
       </tr>
       <tr>
@@ -27,7 +30,7 @@ title: Installing HelixUI
           <a href="/helix-ui/styles/helix-ui.css" target="_blank">helix-ui.css</a>
         </td>
         <td>
-          <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/css/helix-ui.css">HTTPS</a>
+          <a href="{{page.cdn}}/css/helix-ui.css">HTTPS</a>
         </td>
       </tr>
       <tr>
@@ -36,30 +39,30 @@ title: Installing HelixUI
           <a href="/helix-ui/scripts/helix-ui.js" target="_blank">helix-ui.js</a>
         </td>
         <td>
-          <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/javascript/helix-ui.js" target="_blank">HTTPS</a>
+          <a href="{{page.cdn}}/javascript/helix-ui.js" target="_blank">HTTPS</a>
         </td>
       </tr>
       <tr>
         <th>Rackspace Logo</th>
         <td>N/A</td>
         <td>
-          <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/img/rs-logo-white.svg" target="_blank">SVG</a>
+          <a href="{{page.cdn}}/img/rs-logo-white.svg" target="_blank">SVG</a>
           /
-          <a href="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/img/rs-logo-white.png" target="_blank">PNG</a>
+          <a href="{{page.cdn}}/img/rs-logo-white.png" target="_blank">PNG</a>
         </td>
       </tr>
       <tr>
         <th>ES5 Adapter</th>
         <td>N/A</td>
         <td>
-          <a href="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js" target="_blank">HTTPS</a>
+          <a href="{{page.cdn}}/javascript/custom-elements-es5-adapter.js" target="_blank">HTTPS</a>
         </td>
       </tr>
       <tr>
         <th>Web Components Polyfill Loader</th>
         <td>N/A</td>
         <td>
-          <a href="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js" target="_blank">HTTPS</a>
+          <a href="{{page.cdn}}/javascript/webcomponents-loader.js" target="_blank">HTTPS</a>
         </td>
       </tr>
     </tbody>
@@ -74,12 +77,12 @@ title: Installing HelixUI
     ensure that the browser can load them.  To do so, copy and paste the
     following to the bottom of the <code>&lt;head&gt;</code> in your applicaton.
   </p>
-  ```html
+  {% code %}html
     <!-- ES5 Adapter -->
-    <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
+    <script src="{{page.cdn}}/javascript/custom-elements-es5-adapter.js"></script>
     <!-- Polyfill Loader -->
-    <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
-  ```
+    <script src="{{page.cdn}}/javascript/webcomponents-loader.js"></script>
+  {% endcode %}
 
   <section>
     <h3>ES5 Adapter</h3>
@@ -136,8 +139,6 @@ title: Installing HelixUI
       To ensure maximum compatibility, please make sure that HelixUI
       JavaScript is loaded after both the ES5 Adapter and the Polyfill Loader.
     </p>
-    <p>
-      It'skk
-    </p>
   </section>
 </section>
+{% endblock %}

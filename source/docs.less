@@ -1,0 +1,116 @@
+/* ===================================== *\
+ * DO NOT INCLUDE IN DISTRIBUTED ASSETS! *
+\* ===================================== */
+
+/*
+  Component Explorer Styles
+  -------------------------
+  Styles contained within this or any imported file within are
+  for the purposes of styling the component explorere documentation.
+
+  CSS generated from this file will NOT be distributed with HelixUI.
+  -------------------------
+  For distributed HelixUI CSS styles, see source/styles/helix-ui.less
+*/
+@import 'vars';
+@import 'layout';
+
+@code-bg-color: @gray-900;
+
+body {
+  background-color: @gray-25;
+}
+
+.demo {
+  background-color: #fff;
+  border: 1px solid @code-bg-color;
+  padding: 1rem;
+
+  &:before {
+    background-color: @gray-300;
+    border: 1px solid @gray-400;
+    box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    content: 'DEMO';
+    display: block;
+    font-size: 0.75em;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    padding: 0.25em;
+    width: 5rem;
+    text-align: center;
+    clear: both;
+  }
+
+  &.no-label::before {
+    display: none;
+  }
+}
+
+// Table Of Contents
+.article-toc {
+  display: block;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 1rem;
+
+  &-title {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: 1em;
+  }
+
+  .toc {
+    padding-left: 1.5em;
+    margin: 0;
+
+    &__item {
+      margin-bottom: 0.5em;
+    }
+
+    &__top-link {
+      display: inline-block;
+      margin-top: 1em;
+      font-size: 0.875em;
+    }
+  }
+}//.article-toc
+
+.page-header {
+  margin-top: 1em;
+}
+.page-title {
+  font-size: 3em;
+  font-weight: 100;
+}
+
+// Code Highlighting
+.demo + .highlight {
+  //margin-top: 1rem;
+}
+
+pre.highlight {
+  border-radius: 0;
+  border: 0;
+  margin: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0;
+  background-color: @code-bg-color;
+
+  code {
+    background-color: @code-bg-color;
+  }
+}
+
+main {
+  section + section {
+    margin-top: 3rem;
+  }
+}
+
+@import 'dropdown/dropdown-docs';
+@import 'grid/grid-docs';
+@import 'icon/icon-docs';
+@import 'popover/popover-docs';
+@import 'tooltip/tooltip-docs';
+@import 'typography/typography-docs';
