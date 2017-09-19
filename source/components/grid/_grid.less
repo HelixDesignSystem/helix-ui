@@ -75,6 +75,10 @@
   margin: 0 @row-margin -(@grid-gutter-size);
   padding: 0;
 
+  & + & {
+    margin-top: @grid-gutter-size;
+  }
+
   .hxCol,
   [class*="hxCol-"] {
     padding: 0 @col-padding;
