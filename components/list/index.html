@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Code | HelixUI</title>
+  <title>List | HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -31,7 +31,7 @@
     <img src="images/helix-logo.svg" alt="Logo" />
   </a>
   <div class="links">
-      <a class="current">Code</a>
+      <a class="current">List</a>
   </div>
 </nav>
     </header>
@@ -69,7 +69,7 @@
         <a href="components/button"
         >Button</a>
         <a href="components/code"
-class="current"        >Code</a>
+        >Code</a>
         <a href="components/dropdown"
         >Dropdown</a>
         <a href="components/form"
@@ -79,7 +79,7 @@ class="current"        >Code</a>
         <a href="components/icon"
         >Icon</a>
         <a href="components/list"
-        >List</a>
+class="current"        >List</a>
         <a href="components/modal"
         >Modal</a>
         <a href="components/navigation"
@@ -109,7 +109,7 @@ class="current"        >Code</a>
   <article>
     <header class="page-header">
       <span class="page-title">
-        Code
+        List
       </span>
     </header>
 
@@ -132,36 +132,36 @@ class="current"        >Code</a>
             <li class="toc__item">
                 <a
                     class="toc__link"
-                    onclick="document.location.hash='inline';">
+                    onclick="document.location.hash='unordered';">
 
-                    <span class="toc__text">Inline</span>
+                    <span class="toc__text">Unordered</span>
                 </a>
             </li>
         
             <li class="toc__item">
                 <a
                     class="toc__link"
-                    onclick="document.location.hash='block';">
+                    onclick="document.location.hash='ordered';">
 
-                    <span class="toc__text">Code Block</span>
+                    <span class="toc__text">Ordered Lists</span>
                 </a>
             </li>
         
             <li class="toc__item">
                 <a
                     class="toc__link"
-                    onclick="document.location.hash='user-input';">
+                    onclick="document.location.hash='vertical-description';">
 
-                    <span class="toc__text">User Input</span>
+                    <span class="toc__text">Vertical Description</span>
                 </a>
             </li>
         
             <li class="toc__item">
                 <a
                     class="toc__link"
-                    onclick="document.location.hash='variables';">
+                    onclick="document.location.hash='horizontal-description';">
 
-                    <span class="toc__text">Variables</span>
+                    <span class="toc__text">Horizontal Description</span>
                 </a>
             </li>
         </ul>
@@ -175,64 +175,87 @@ class="current"        >Code</a>
 </aside>
       </div>
       <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
-<!-- explanation goes here -->
-
-<section><!-- inline -->
+<section>
   <header>
-    <h2 id="inline">Inline</h2>
+    <h2 id="unordered">Unordered</h2>
   </header>
 
   <!-- explanation goes here -->
 
   <div class="demo">
-    <p>
-      Inline code should be wrapped like <code>&lt;code&gt;...&lt;/code&gt;</code>.
-    </p>
+    <ul>
+      <li>the lazy dog</li>
+      <li>fox jumps over
+        <ul>
+          <li>dog lazy quick</li>
+          <li>brown jumps fox</li>
+        </ul>
+      </li>
+      <li>the quick brown</li>
+    </ul>
   </div>
 </section>
 
-<section><!-- block -->
+<section>
   <header>
-    <h2 id="block">Code Block</h2>
+    <h2 id="ordered">Ordered Lists</h2>
   </header>
 
   <!-- explanation goes here -->
 
   <div class="demo">
-    <pre>&lt;pre&gt;Preserved content goes here ...&lt;/pre&gt;</pre>
+    <ol>
+      <li>the lazy dog</li>
+      <li>fox jumps over
+        <ol>
+          <li>dog lazy quick</li>
+          <li>brown jumps fox</li>
+        </ol>
+      </li>
+      <li>the quick brown</li>
+    </ol>
   </div>
 </section>
 
-<section><!-- user input -->
+<section>
   <header>
-    <h2 id="user-input">User Input</h2>
+    <h2 id="vertical-description">Vertical Description</h2>
   </header>
 
   <!-- explanation goes here -->
-  <p>
-    <i>a.k.a. Keyboard Shortcuts</i> using the <code>&lt;kbd&gt;</code> tag.
-  </p>
 
   <div class="demo">
-    <p>
-      To switch directories, type <kbd>cd</kbd> followed
-      by the name of the directory.<br />
-      To edit settings, press <kbd>ctrl + ,</kbd>
-    </p>
+    <dl>
+      <dt>Description list</dt>
+      <dd>A description list is useful for defining terms or key/value pairs of metadata.</dd>
+
+      <dt>Lorem</dt>
+      <dd>Try to estimate the pirate interface, maybe it will help adjust the VOC specs.</dd>
+
+      <dt>Ipsum</dt>
+      <dd>It was discovered that by usually satifying the MVP applications, we can plan the test-driven MVP feedback for the rapid development.</dd>
+    </dl>
   </div>
 </section>
 
-<section><!-- variable -->
+<section>
   <header>
-    <h2 id="variables">Variables</h2>
+    <h2 id="horizontal-description">Horizontal Description</h2>
   </header>
 
   <!-- explanation goes here -->
 
   <div class="demo">
-    <p>
-      <var>y</var> = <var>m</var><var>x</var> + <var>b</var>
-    </p>
+    <dl class="dl-horizontal">
+      <dt>Description list</dt>
+      <dd>A description list is useful for defining terms or key/value pairs of metadata.</dd>
+
+      <dt>Lorem</dt>
+      <dd>Try to estimate the pirate interface, maybe it will help adjust the VOC specs.</dd>
+
+      <dt>Ipsum</dt>
+      <dd>It was discovered that by usually satifying the MVP applications, we can plan the test-driven MVP feedback for the rapid development.</dd>
+    </dl>
   </div>
 </section>
       </div>

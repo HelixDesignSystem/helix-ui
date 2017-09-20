@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>HelixUI</title>
+  <title>Progress Bar | HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -31,6 +31,7 @@
     <img src="images/helix-logo.svg" alt="Logo" />
   </a>
   <div class="links">
+      <a class="current">Progress Bar</a>
   </div>
 </nav>
     </header>
@@ -51,7 +52,7 @@
   </hx-reveal>
 
     
-  <hx-reveal >
+  <hx-reveal open>
     <header slot="summary">
       Components
       <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
@@ -88,7 +89,7 @@
         <a href="components/popover"
         >Popover</a>
         <a href="components/progressbar"
-        >Progress Bar</a>
+class="current"        >Progress Bar</a>
         <a href="components/reveal"
         >Reveal</a>
         <a href="components/table"
@@ -105,13 +106,74 @@
       </div>
 
       <main id="app-content">
-<h1>HelixUI</h1>
+  <article>
+    <header class="page-header">
+      <span class="page-title">
+        Progress Bar
+      </span>
+    </header>
 
-<p>We're still building. Content will arrive as it's built.</p>
+    <div class="hxRow">
+      <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
+<aside>
+  <dl>
+    <dt>Last Updated:</dt>
+    <dd>2017-09-19</dd>
 
-<section>
-    <!-- common links and getting started stuff goes here -->
-</section>
+      <dt>Assets:</dt>
+        <dd><code>bootstrap.helix.css</code></dd>
+  </dl>
+</aside>
+
+<aside class="article-toc" role="navigation">
+  <header class="article-toc-title">Content</header>
+  <p><em>Unavailable</em></p>
+</aside>
+      </div>
+      <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
+<!-- explanation goes here -->
+
+<div class="demo">
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+      <span class="sr-only">60% Complete</span>
+      60%
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+      <span class="sr-only">40% Complete (success)</span>
+      40%
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+      <span class="sr-only">20% Complete</span>
+      20%
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+      <span class="sr-only">60% Complete (warning)</span>
+      60%
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+      <span class="sr-only">80% Complete (danger)</span>
+      80%
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+      <span class="sr-only">60% Complete</span>
+      60%
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+  </article>
       </main>
     </div>
 

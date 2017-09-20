@@ -1,316 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
   <title>Grid | HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
 
-  <link rel="shortcut icon" href="/helix-ui/images/favicon.png">
+  <link rel="shortcut icon" href="images/favicon.png">
 
+  <!-- Bootstrap 3 -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     rel="stylesheet"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
 
-  <link rel="stylesheet" href="/helix-ui/styles/bootstrap.helix.css">
-  <link rel="stylesheet" href="/helix-ui/styles/helix-ui.css">
-  <link rel="stylesheet" href="/helix-ui/styles/explorer.css">
+  <link rel="stylesheet" href="bootstrap.helix.css">
+  <link rel="stylesheet" href="vendor/hljs.agate.css">
+  <link rel="stylesheet" href="helix-ui.css">
+  <link rel="stylesheet" href="docs.css">
 
   <!-- ES5 Adapter -->
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
   <!-- Polyfill Loader -->
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
 </head>
-
-<body id="top">
-  <header id="global-header">
-    <nav class="global-nav">
-    <a class="brand-logo" href="/helix-ui/">
-        <img src="/helix-ui/images/helix-logo.svg" alt="Helix Logo">
-    </a>
-    <div class="links">
-        
-            <a class="current">Grid</a>
-        
-    </div>
+  <body id="top">
+    <header id="global-header">
+<nav class="global-nav">
+  <a class="brand-logo" href="">
+    <img src="images/helix-logo.svg" alt="Logo" />
+  </a>
+  <div class="links">
+      <a class="current">Grid</a>
+  </div>
 </nav>
+    </header>
 
-  </header>
+    <div id="app-container">
+      <div class="app-nav-container">
 
-  <div id="app-container">
-    <div class="app-nav-container">
-      <nav class="hx-app-nav">
+<nav class="hx-app-nav">
+    
   <hx-reveal >
     <header slot="summary">
       Guides
       <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
     </header>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/guides/install"
-      >
-        Installing
-      </a>
-    
+
+        <a href="guides/install"
+        >Installing</a>
   </hx-reveal>
 
+    
   <hx-reveal open>
     <header slot="summary">
       Components
       <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
     </header>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/alerts"
-      >
-        Alerts
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/badges"
-      >
-        Badges
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/blockquotes"
-      >
-        Blockquotes
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/breadcrumbs"
-      >
-        Breadcrumbs
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/buttons"
-      >
-        Buttons
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/code"
-      >
-        Code
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/dropdowns"
-      >
-        Dropdowns
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/forms"
-      >
-        Forms
-      </a>
-    
-      
-      <a
-        class="current"
-        href="/helix-ui/components/grid"
-      >
-        Grid
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/icons"
-      >
-        Icons
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/lists"
-      >
-        Lists
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/modals"
-      >
-        Modals
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/navigation"
-      >
-        Navigation
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/pagination"
-      >
-        Pagination
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/popovers"
-      >
-        Popovers
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/progressbars"
-      >
-        Progress Bars
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/reveal"
-      >
-        Reveal
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/tables"
-      >
-        Tables
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/tabs"
-      >
-        Tabs
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/tooltips"
-      >
-        Tooltips
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/typography"
-      >
-        Typography
-      </a>
-    
+
+        <a href="components/alert"
+        >Alert</a>
+        <a href="components/badge"
+        >Badge</a>
+        <a href="components/blockquote"
+        >Blockquote</a>
+        <a href="components/breadcrumb"
+        >Breadcrumb</a>
+        <a href="components/button"
+        >Button</a>
+        <a href="components/code"
+        >Code</a>
+        <a href="components/dropdown"
+        >Dropdown</a>
+        <a href="components/form"
+        >Form</a>
+        <a href="components/grid"
+class="current"        >Grid</a>
+        <a href="components/icon"
+        >Icon</a>
+        <a href="components/list"
+        >List</a>
+        <a href="components/modal"
+        >Modal</a>
+        <a href="components/navigation"
+        >Navigation</a>
+        <a href="components/pagination"
+        >Pagination</a>
+        <a href="components/popover"
+        >Popover</a>
+        <a href="components/progressbar"
+        >Progress Bar</a>
+        <a href="components/reveal"
+        >Reveal</a>
+        <a href="components/table"
+        >Table</a>
+        <a href="components/tabset"
+        >Tabset</a>
+        <a href="components/tooltip"
+        >Tooltip</a>
+        <a href="components/typography"
+        >Typography</a>
   </hx-reveal>
+
 </nav>
+      </div>
 
-    </div>
-
-    <main id="app-content">
-      <article>
+      <main id="app-content">
+  <article>
     <header class="page-header">
-        <span class="page-title">
-            Grid
-            
-        </span>
+      <span class="page-title">
+        Grid
+      </span>
     </header>
 
     <div class="hxRow">
-        <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
-            
-
+      <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
 <aside>
-    <dl>
-        <dt>Last Updated:</dt>
-        <dd>2017-09-06</dd>
+  <dl>
+    <dt>Last Updated:</dt>
+    <dd>2017-09-19</dd>
 
-        
-            <dt>Assets:</dt>
-            
-                <dd><code>helix-ui.css</code></dd>
-            
-        
-    </dl>
+      <dt>Assets:</dt>
+        <dd><code>helix-ui.css</code></dd>
+  </dl>
 </aside>
 
 <aside class="article-toc" role="navigation">
-    <header class="article-toc-title">Content</header>
-    
-    
-        <ul class="toc"><li class="toc-item">
-                <a class="toc-link" href="#bootstrap">
-                    <span class="toc-text">Bootstrap Compatibility</span>
+  <header class="article-toc-title">Content</header>
+  
+        <ul class="toc">
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='bootstrap';">
+
+                    <span class="toc__text">Bootstrap Compatibility</span>
                 </a>
-            </li><li class="toc-item">
-                <a class="toc-link" href="#automatic">
-                    <span class="toc-text">Automatic Columns</span>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='automatic';">
+
+                    <span class="toc__text">Automatic Columns</span>
                 </a>
-            </li><li class="toc-item">
-                <a class="toc-link" href="#explicit">
-                    <span class="toc-text">Explicit Columns</span>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='explicit';">
+
+                    <span class="toc__text">Explicit Columns</span>
                 </a>
-            </li><li class="toc-item">
-                <a class="toc-link" href="#nesting">
-                    <span class="toc-text">Nesting Elements</span>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='nesting';">
+
+                    <span class="toc__text">Nesting Elements</span>
                 </a>
-            </li><li class="toc-item">
-                <a class="toc-link" href="#offsetting">
-                    <span class="toc-text">Offsetting Columns</span>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='offsetting';">
+
+                    <span class="toc__text">Offsetting Columns</span>
                 </a>
-            </li><li class="toc-item">
-                <a class="toc-link" href="#reordering">
-                    <span class="toc-text">Reordering Columns</span>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='reordering';">
+
+                    <span class="toc__text">Reordering Columns</span>
                 </a>
-            </li><li class="toc-item">
-                <a class="toc-link" href="#responsive">
-                    <span class="toc-text">Responsive Layout</span>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='responsive';">
+
+                    <span class="toc__text">Responsive Layout</span>
                 </a>
-            </li><li class="toc-item">
-                <a class="toc-link" href="#wrapping">
-                    <span class="toc-text">Column Wrapping</span>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='wrapping';">
+
+                    <span class="toc__text">Column Wrapping</span>
                 </a>
-            </li><li class="toc-item">
-                <a class="toc-link" href="#styling">
-                    <span class="toc-text">Styling the Grid</span>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='styling';">
+
+                    <span class="toc__text">Styling the Grid</span>
                 </a>
-            </li></ul>
-        <a class="article-toc-top" href="#top">Back to Top</a>
+            </li>
+        </ul>
+        <a
+            class="toc__top-link"
+            onclick="document.location.hash='top'">
+
+            Back to Top
+        </a>
     
 </aside>
-
-        </div>
-        <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
-            <h2>12-column Grid</h2>
+      </div>
+      <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
+<h2>12-column Grid</h2>
 <p>
   The grid system requires loading <code>helix-ui.css</code> into your application.
 </p>
@@ -356,18 +266,15 @@
       <div class="hxRow">
         <div class="hxCol">1/1</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol">1/2</div>
         <div class="hxCol">1/2</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol">1/3</div>
         <div class="hxCol">1/3</div>
         <div class="hxCol">1/3</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol">1/4</div>
         <div class="hxCol">1/4</div>
@@ -377,9 +284,26 @@
     </div>
   </div>
 
-  <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol"</span>&gt;</span>1/1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol"</span>&gt;</span>1/2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol"</span>&gt;</span>1/2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol"</span>&gt;</span>1/3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol"</span>&gt;</span>1/3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol"</span>&gt;</span>1/3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol"</span>&gt;</span>1/4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol"</span>&gt;</span>1/4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol"</span>&gt;</span>1/4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol"</span>&gt;</span>1/4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
-</section>
+            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        </section>
 
 <section>
   <h3 id="explicit">Explicit Columns</h3>
@@ -413,32 +337,26 @@
       <div class="hxRow">
         <div class="hxCol-12">12</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol-1">1</div>
         <div class="hxCol-11">11</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol-2">2</div>
         <div class="hxCol-10">10</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol-3">3</div>
         <div class="hxCol-9">9</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol-4">4</div>
         <div class="hxCol-8">8</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol-5">5</div>
         <div class="hxCol-7">7</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol-6">6</div>
         <div class="hxCol-6">6</div>
@@ -446,9 +364,35 @@
     </div>
   </div>
 
-  <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-12"</span>&gt;</span>12<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-11"</span>&gt;</span>11<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-10"</span>&gt;</span>10<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-9"</span>&gt;</span>9<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-8"</span>&gt;</span>8<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-5"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-7"</span>&gt;</span>7<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-6"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-6"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
-</section>
+            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-12"</span>&gt;</span>12<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-11"</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-10"</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-3"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-9"</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-8"</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-5"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-7"</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-6"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-6"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        </section>
 
 <section>
   <h3 id="nesting">Nesting Elements</h3>
@@ -489,9 +433,28 @@
     </div>
   </div>
 
-  <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-8"</span>&gt;</span>8</div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-6"</span>&gt;</span>6</div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-6"</span>&gt;</span>6</div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-6"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-6"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-
-</section>
+            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-8"</span>&gt;</span>8
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-6"</span>&gt;</span>6
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-6"</span>&gt;</span>6
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-6"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-6"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        </section>
 
 <section>
   <h3 id="offsetting">Offsetting Columns</h3>
@@ -516,30 +479,25 @@
         <div class="hxCol-6 hxOffset-1">6</div>
         <div class="hxCol-2 hxOffset-1">2</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol-1">1</div>
         <div class="hxCol-8 hxOffset-1">8</div>
         <div class="hxCol-1 hxOffset-1">1</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol-2 hxOffset-1">2</div>
         <div class="hxCol-4 hxOffset-1">4</div>
         <div class="hxCol-2 hxOffset-1">2</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol-4">4</div>
         <div class="hxCol-4 hxOffset-4">4</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol-3 hxOffset-1">3</div>
         <div class="hxCol-2 hxOffset-1">2</div>
         <div class="hxCol-3 hxOffset-1">3</div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="hxCol-5 hxOffset-1">5</div>
         <div class="hxCol-5">5</div>
@@ -547,9 +505,36 @@
     </div>
   </div>
 
-  <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-1 hxOffset-1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-6 hxOffset-1"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-1 hxOffset-1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-8 hxOffset-1"</span>&gt;</span>8<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-1 hxOffset-1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-2 hxOffset-1"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-4 hxOffset-1"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-2 hxOffset-1"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-4 hxOffset-4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-3 hxOffset-1"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-2 hxOffset-1"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-3 hxOffset-1"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-5 hxOffset-1"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-5"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
-</section>
+            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-1 hxOffset-1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-6 hxOffset-1"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-1 hxOffset-1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-8 hxOffset-1"</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-1 hxOffset-1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-2 hxOffset-1"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-4 hxOffset-1"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-2 hxOffset-1"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-4 hxOffset-4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-3 hxOffset-1"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-2 hxOffset-1"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-3 hxOffset-1"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-5 hxOffset-1"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-5"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        </section>
 
 <section>
   <h3 id="reordering">Reordering Columns</h3>
@@ -568,7 +553,7 @@
   </ul>
 
   <p>
-    The columns below are coded in HTML in the order of 2-4-1-3.<br>
+    The columns below are coded in HTML in the order of 2-4-1-3.<br />
     The <code>.hxOrder-*</code> classes reordered them in the proper
     numerical order.
   </p>
@@ -584,9 +569,13 @@
     </div>
   </div>
 
-  <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol hxOrder-2"</span>&gt;</span>#2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol hxOrder-4"</span>&gt;</span>#4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol hxOrder-1"</span>&gt;</span>#1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol hxOrder-3"</span>&gt;</span>#3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-
-</section>
+            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxOrder-2"</span>&gt;</span>#2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxOrder-4"</span>&gt;</span>#4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxOrder-1"</span>&gt;</span>#1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxOrder-3"</span>&gt;</span>#3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        </section>
 
 <section>
   <h3 id="responsive">Responsive Layout</h3>
@@ -656,12 +645,10 @@
         <div class="demoCol hxCol-6 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-10"></div>
         <div class="demoCol hxCol-6 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"></div>
         <div class="demoCol hxCol-12 hxCol-sm-8 hxCol-md-9 hxCol-lg-10 hxCol-xl-11"></div>
       </div>
-      <br>
       <div class="hxRow">
         <div class="demoCol hxCol-12 hxCol-sm-8 hxCol-md-6 hxCol-lg-4 hxCol-xl-3"></div>
         <div class="demoCol hxCol-12 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-9"></div>
@@ -669,9 +656,21 @@
     </div>
   </div>
 
-  <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-6 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-10"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-6 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-12 hxCol-sm-8 hxCol-md-9 hxCol-lg-10 hxCol-xl-11"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-12 hxCol-sm-8 hxCol-md-6 hxCol-lg-4 hxCol-xl-3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-12 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-9"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
-</section>
+            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-6 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-10"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-6 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-12 hxCol-sm-4 hxCol-md-3 hxCol-lg-2 hxCol-xl-1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-12 hxCol-sm-8 hxCol-md-9 hxCol-lg-10 hxCol-xl-11"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-12 hxCol-sm-8 hxCol-md-6 hxCol-lg-4 hxCol-xl-3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-12 hxCol-sm-4 hxCol-md-6 hxCol-lg-8 hxCol-xl-9"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        </section>
 
 <section>
   <h3 id="wrapping">Column Wrapping</h3>
@@ -732,9 +731,17 @@
       </div>
     </div>
   </div>
-  <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
-</section>
+            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-sm-4 hxCol-md-3 hxCol-lg-2"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        </section>
 
 <section>
   <h3 id="styling">Styling the Grid</h3>
@@ -803,36 +810,42 @@
       </div>
     </div>
   </div>
-  <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxRow"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-4"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-4"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"styled-container"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>This is a custom styled container.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hxCol-4"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
-</section>
-
-        </div>
+            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-4"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-4"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"styled-container"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a custom styled container.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol-4"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        </section>
+      </div>
     </div>
-</article>
+  </article>
+      </main>
+    </div>
 
-    </main>
-  </div>
-
-  <footer id="global-footer">
-    <nav class="footer-nav">
+    <footer id="global-footer">
+<nav class="footer-nav">
   <div class="links">
-    
-    <a href="/helix-ui/2000/01/01/v0000-00-00/">
-        v0000-00-00
-    </a>
+    <a href="#">v0000-00-00</a>
   </div>
 </nav>
+    </footer>
 
-  </footer>
-
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="/helix-ui/scripts/helix-ui.js"></script>
-<script src="/helix-ui/scripts/explorer.js"></script>
-
-</body>
+<script src="helix-ui.js"></script>
+<script src="docs.js"></script>
+  </body>
 </html>

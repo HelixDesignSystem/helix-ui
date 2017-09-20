@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Code | HelixUI</title>
+  <title>Breadcrumb | HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -31,7 +31,7 @@
     <img src="images/helix-logo.svg" alt="Logo" />
   </a>
   <div class="links">
-      <a class="current">Code</a>
+      <a class="current">Breadcrumb</a>
   </div>
 </nav>
     </header>
@@ -65,11 +65,11 @@
         <a href="components/blockquote"
         >Blockquote</a>
         <a href="components/breadcrumb"
-        >Breadcrumb</a>
+class="current"        >Breadcrumb</a>
         <a href="components/button"
         >Button</a>
         <a href="components/code"
-class="current"        >Code</a>
+        >Code</a>
         <a href="components/dropdown"
         >Dropdown</a>
         <a href="components/form"
@@ -109,7 +109,7 @@ class="current"        >Code</a>
   <article>
     <header class="page-header">
       <span class="page-title">
-        Code
+        Breadcrumb
       </span>
     </header>
 
@@ -121,121 +121,57 @@ class="current"        >Code</a>
     <dd>2017-09-19</dd>
 
       <dt>Assets:</dt>
-        <dd><code>bootstrap.helix.css</code></dd>
+        <dd><code>helix-ui.css</code></dd>
   </dl>
 </aside>
 
 <aside class="article-toc" role="navigation">
   <header class="article-toc-title">Content</header>
-  
-        <ul class="toc">
-            <li class="toc__item">
-                <a
-                    class="toc__link"
-                    onclick="document.location.hash='inline';">
-
-                    <span class="toc__text">Inline</span>
-                </a>
-            </li>
-        
-            <li class="toc__item">
-                <a
-                    class="toc__link"
-                    onclick="document.location.hash='block';">
-
-                    <span class="toc__text">Code Block</span>
-                </a>
-            </li>
-        
-            <li class="toc__item">
-                <a
-                    class="toc__link"
-                    onclick="document.location.hash='user-input';">
-
-                    <span class="toc__text">User Input</span>
-                </a>
-            </li>
-        
-            <li class="toc__item">
-                <a
-                    class="toc__link"
-                    onclick="document.location.hash='variables';">
-
-                    <span class="toc__text">Variables</span>
-                </a>
-            </li>
-        </ul>
-        <a
-            class="toc__top-link"
-            onclick="document.location.hash='top'">
-
-            Back to Top
-        </a>
-    
+  <p><em>Unavailable</em></p>
 </aside>
       </div>
       <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
 <!-- explanation goes here -->
 
-<section><!-- inline -->
-  <header>
-    <h2 id="inline">Inline</h2>
-  </header>
+<div class="demo">
+  <nav class="hxBreadcrumb">
+    <a href="#">Home</a>
+  </nav>
 
-  <!-- explanation goes here -->
+  <nav class="hxBreadcrumb">
+    <a href="#">Home</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">Library</a>
+  </nav>
 
-  <div class="demo">
-    <p>
-      Inline code should be wrapped like <code>&lt;code&gt;...&lt;/code&gt;</code>.
-    </p>
-  </div>
-</section>
+  <nav class="hxBreadcrumb">
+    <a href="#">Home</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">Library</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">Current</a>
+  </nav>
+</div>
 
-<section><!-- block -->
-  <header>
-    <h2 id="block">Code Block</h2>
-  </header>
 
-  <!-- explanation goes here -->
+            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
 
-  <div class="demo">
-    <pre>&lt;pre&gt;Preserved content goes here ...&lt;/pre&gt;</pre>
-  </div>
-</section>
+  <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delimiter"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Library<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
 
-<section><!-- user input -->
-  <header>
-    <h2 id="user-input">User Input</h2>
-  </header>
-
-  <!-- explanation goes here -->
-  <p>
-    <i>a.k.a. Keyboard Shortcuts</i> using the <code>&lt;kbd&gt;</code> tag.
-  </p>
-
-  <div class="demo">
-    <p>
-      To switch directories, type <kbd>cd</kbd> followed
-      by the name of the directory.<br />
-      To edit settings, press <kbd>ctrl + ,</kbd>
-    </p>
-  </div>
-</section>
-
-<section><!-- variable -->
-  <header>
-    <h2 id="variables">Variables</h2>
-  </header>
-
-  <!-- explanation goes here -->
-
-  <div class="demo">
-    <p>
-      <var>y</var> = <var>m</var><var>x</var> + <var>b</var>
-    </p>
-  </div>
-</section>
-      </div>
+  <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delimiter"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Library<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delimiter"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Current<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></code></pre>
+              </div>
     </div>
   </article>
       </main>

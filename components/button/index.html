@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>HelixUI</title>
+  <title>Button | HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -31,6 +31,7 @@
     <img src="images/helix-logo.svg" alt="Logo" />
   </a>
   <div class="links">
+      <a class="current">Button</a>
   </div>
 </nav>
     </header>
@@ -51,7 +52,7 @@
   </hx-reveal>
 
     
-  <hx-reveal >
+  <hx-reveal open>
     <header slot="summary">
       Components
       <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
@@ -66,7 +67,7 @@
         <a href="components/breadcrumb"
         >Breadcrumb</a>
         <a href="components/button"
-        >Button</a>
+class="current"        >Button</a>
         <a href="components/code"
         >Code</a>
         <a href="components/dropdown"
@@ -105,13 +106,140 @@
       </div>
 
       <main id="app-content">
-<h1>HelixUI</h1>
+  <article>
+    <header class="page-header">
+      <span class="page-title">
+        Button
+      </span>
+    </header>
 
-<p>We're still building. Content will arrive as it's built.</p>
+    <div class="hxRow">
+      <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
+<aside>
+  <dl>
+    <dt>Last Updated:</dt>
+    <dd>2017-09-19</dd>
+
+      <dt>Assets:</dt>
+        <dd><code>bootstrap.helix.css</code></dd>
+  </dl>
+</aside>
+
+<aside class="article-toc" role="navigation">
+  <header class="article-toc-title">Content</header>
+  
+        <ul class="toc">
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='size-variants';">
+
+                    <span class="toc__text">Size Variants</span>
+                </a>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='default';">
+
+                    <span class="toc__text">Default Buttons</span>
+                </a>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='default';">
+
+                    <span class="toc__text">Primary Buttons</span>
+                </a>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='default';">
+
+                    <span class="toc__text">Link Buttons</span>
+                </a>
+            </li>
+        </ul>
+        <a
+            class="toc__top-link"
+            onclick="document.location.hash='top'">
+
+            Back to Top
+        </a>
+    
+</aside>
+      </div>
+      <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
+<!-- explanation goes here -->
 
 <section>
-    <!-- common links and getting started stuff goes here -->
+  <header>
+    <h2 id="size-variants">Size Variants</h2>
+  </header>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p>
+      <button type="button" class="btn btn-default btn-lg">Large Button</button>
+      <button type="button" class="btn btn-default">Default Button</button>
+      <button type="button" class="btn btn-default btn-sm">Compact Button</button>
+    </p>
+  </div>
 </section>
+
+<section>
+  <header>
+    <h2 id="default">Default Buttons</h2>
+  </header>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p>
+      <button class="btn btn-default">Default Button</button>
+      <button class="btn btn-default" disabled>Default Button (disabled)</button>
+    </p>
+  </div>
+</section>
+
+<section>
+  <header>
+    <h2 id="default">Primary Buttons</h2>
+  </header>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p>
+      <button class="btn btn-primary">Primary Button</button>
+      <button class="btn btn-primary" disabled>Primary Button (disabled)</button>
+    </p>
+  </div>
+</section>
+
+<section>
+  <header>
+    <h2 id="default">Link Buttons</h2>
+  </header>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p>
+      <button class="btn btn-link">Link Button</button>
+      <button class="btn btn-link" disabled>Link Button (disabled)</button>
+    </p>
+  </div>
+</section>
+      </div>
+    </div>
+  </article>
       </main>
     </div>
 

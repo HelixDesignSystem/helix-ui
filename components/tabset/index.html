@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>HelixUI</title>
+  <title>Tabset | HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -31,6 +31,7 @@
     <img src="images/helix-logo.svg" alt="Logo" />
   </a>
   <div class="links">
+      <a class="current">Tabset</a>
   </div>
 </nav>
     </header>
@@ -51,7 +52,7 @@
   </hx-reveal>
 
     
-  <hx-reveal >
+  <hx-reveal open>
     <header slot="summary">
       Components
       <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
@@ -94,7 +95,7 @@
         <a href="components/table"
         >Table</a>
         <a href="components/tabset"
-        >Tabset</a>
+class="current"        >Tabset</a>
         <a href="components/tooltip"
         >Tooltip</a>
         <a href="components/typography"
@@ -105,13 +106,46 @@
       </div>
 
       <main id="app-content">
-<h1>HelixUI</h1>
+  <article>
+    <header class="page-header">
+      <span class="page-title">
+        Tabset
+      </span>
+    </header>
 
-<p>We're still building. Content will arrive as it's built.</p>
+    <div class="hxRow">
+      <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
+<aside>
+  <dl>
+    <dt>Last Updated:</dt>
+    <dd>2017-09-19</dd>
 
-<section>
-    <!-- common links and getting started stuff goes here -->
-</section>
+      <dt>Assets:</dt>
+        <dd><code>bootstrap.helix.css</code></dd>
+  </dl>
+</aside>
+
+<aside class="article-toc" role="navigation">
+  <header class="article-toc-title">Content</header>
+  <p><em>Unavailable</em></p>
+</aside>
+      </div>
+      <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
+<!-- explanation goes here -->
+
+<div class="demo">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#">Home</a></li>
+    <li role="presentation"><a href="#">Profile</a></li>
+    <li role="presentation"><a href="#">Messages</a></li>
+    <li role="presentation" class="disabled"><a href="#">Not Available</a></li>
+  </ul>
+</div>
+
+<!-- TODO: need content in tab body -->
+      </div>
+    </div>
+  </article>
       </main>
     </div>
 

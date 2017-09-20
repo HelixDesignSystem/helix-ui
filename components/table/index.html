@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Table | HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
+
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  <!-- Bootstrap 3 -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="bootstrap.helix.css">
+  <link rel="stylesheet" href="vendor/hljs.agate.css">
+  <link rel="stylesheet" href="helix-ui.css">
+  <link rel="stylesheet" href="docs.css">
+
+  <!-- ES5 Adapter -->
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
+  <!-- Polyfill Loader -->
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
+</head>
+  <body id="top">
+    <header id="global-header">
+<nav class="global-nav">
+  <a class="brand-logo" href="">
+    <img src="images/helix-logo.svg" alt="Logo" />
+  </a>
+  <div class="links">
+      <a class="current">Table</a>
+  </div>
+</nav>
+    </header>
+
+    <div id="app-container">
+      <div class="app-nav-container">
+
+<nav class="hx-app-nav">
+    
+  <hx-reveal >
+    <header slot="summary">
+      Guides
+      <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+    </header>
+
+        <a href="guides/install"
+        >Installing</a>
+  </hx-reveal>
+
+    
+  <hx-reveal open>
+    <header slot="summary">
+      Components
+      <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+    </header>
+
+        <a href="components/alert"
+        >Alert</a>
+        <a href="components/badge"
+        >Badge</a>
+        <a href="components/blockquote"
+        >Blockquote</a>
+        <a href="components/breadcrumb"
+        >Breadcrumb</a>
+        <a href="components/button"
+        >Button</a>
+        <a href="components/code"
+        >Code</a>
+        <a href="components/dropdown"
+        >Dropdown</a>
+        <a href="components/form"
+        >Form</a>
+        <a href="components/grid"
+        >Grid</a>
+        <a href="components/icon"
+        >Icon</a>
+        <a href="components/list"
+        >List</a>
+        <a href="components/modal"
+        >Modal</a>
+        <a href="components/navigation"
+        >Navigation</a>
+        <a href="components/pagination"
+        >Pagination</a>
+        <a href="components/popover"
+        >Popover</a>
+        <a href="components/progressbar"
+        >Progress Bar</a>
+        <a href="components/reveal"
+        >Reveal</a>
+        <a href="components/table"
+class="current"        >Table</a>
+        <a href="components/tabset"
+        >Tabset</a>
+        <a href="components/tooltip"
+        >Tooltip</a>
+        <a href="components/typography"
+        >Typography</a>
+  </hx-reveal>
+
+</nav>
+      </div>
+
+      <main id="app-content">
+  <article>
+    <header class="page-header">
+      <span class="page-title">
+        Table
+      </span>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
+<aside>
+  <dl>
+    <dt>Last Updated:</dt>
+    <dd>2017-09-19</dd>
+
+      <dt>Assets:</dt>
+        <dd><code>bootstrap.helix.css</code></dd>
+  </dl>
+</aside>
+
+<aside class="article-toc" role="navigation">
+  <header class="article-toc-title">Content</header>
+  
+        <ul class="toc">
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='default-table';">
+
+                    <span class="toc__text">Default Table</span>
+                </a>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='condensed-table';">
+
+                    <span class="toc__text">Condensed Table</span>
+                </a>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='bound-table';">
+
+                    <span class="toc__text">Bound Table</span>
+                </a>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='hoverable-table';">
+
+                    <span class="toc__text">Hoverable Table</span>
+                </a>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='contextual-classes';">
+
+                    <span class="toc__text">Contextual Classes</span>
+                </a>
+            </li>
+        </ul>
+        <a
+            class="toc__top-link"
+            onclick="document.location.hash='top'">
+
+            Back to Top
+        </a>
+    
+</aside>
+      </div>
+      <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
+<section>
+  <header>
+    <h2 id="default-table">Default Table</h2>
+  </header>
+
+  <p>
+    <em>a.k.a. "Unbound Table"</em>
+  </p>
+
+  <div class="demo">
+    <table class="table">
+      <caption>Most popular Twitter accounts</caption>
+      <thead>
+        <tr>
+          <th class="col-control"><input type="checkbox" /></th>
+          <th class="col-control"></th>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Handle</th>
+          <th class="text-right">Followers</th>
+          <th class="col-control"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-control"><input type="checkbox" /></td>
+          <td class="col-control">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>1</td>
+          <td>Katy Perry</td>
+          <td>
+            <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
+          </td>
+          <td class="text-right">100,381,853</td>
+          <td class="col-control">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-control"><input type="checkbox" /></td>
+          <td class="col-control">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>2</td>
+          <td>Justin Beiber</td>
+          <td>
+            <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
+          </td>
+          <td class="text-right">97,350,145</td>
+          <td class="col-control">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-control"><input type="checkbox" /></td>
+          <td class="col-control">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>3</td>
+          <td>Barack Obama</td>
+          <td>
+            <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
+          </td>
+          <td class="text-right">91,387,642</td>
+          <td class="col-control">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+      </tbody>
+      <!--
+      <tfoot>
+        <tr>
+          <td colspan="5" class="text-right">Total</td>
+          <td class="text-right">289,119,640</td>
+        </tr>
+      </tfoot>
+      -->
+    </table>
+  </div>
+</section>
+
+<section>
+  <header>
+    <h2 id="condensed-table">Condensed Table</h2>
+  </header>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <table class="table table-condensed">
+      <caption>Most popular Twitter accounts</caption>
+      <thead>
+        <tr>
+          <th class="col-control"><input type="checkbox" /></th>
+          <th class="col-control"></th>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Handle</th>
+          <th class="text-right">Followers</th>
+          <th class="col-control"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-control"><input type="checkbox" /></td>
+          <td class="col-control">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>1</td>
+          <td>Katy Perry</td>
+          <td>
+            <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
+          </td>
+          <td class="text-right">100,381,853</td>
+          <td class="col-control">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-control"><input type="checkbox" /></td>
+          <td class="col-control">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>2</td>
+          <td>Justin Beiber</td>
+          <td>
+            <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
+          </td>
+          <td class="text-right">97,350,145</td>
+          <td class="col-control">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-control"><input type="checkbox" /></td>
+          <td class="col-control">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>3</td>
+          <td>Barack Obama</td>
+          <td>
+            <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
+          </td>
+          <td class="text-right">91,387,642</td>
+          <td class="col-control">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+      </tbody>
+      <!--
+      <tfoot>
+        <tr>
+          <td colspan="5" class="text-right">Total</td>
+          <td class="text-right">289,119,640</td>
+        </tr>
+      </tfoot>
+      -->
+    </table>
+  </div>
+</section>
+
+<section>
+  <header>
+    <h2 id="bound-table">Bound Table</h2>
+  </header>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <table class="table table-bordered">
+      <caption>Most popular Twitter accounts</caption>
+      <thead>
+        <tr>
+          <th class="col-control"><input type="checkbox" /></th>
+          <th class="col-control"></th>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Handle</th>
+          <th class="text-right">Followers</th>
+          <th class="col-control"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-control"><input type="checkbox" /></td>
+          <td class="col-control">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>1</td>
+          <td>Katy Perry</td>
+          <td>
+            <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
+          </td>
+          <td class="text-right">100,381,853</td>
+          <td class="col-control">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-control"><input type="checkbox" /></td>
+          <td class="col-control">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>2</td>
+          <td>Justin Beiber</td>
+          <td>
+            <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
+          </td>
+          <td class="text-right">97,350,145</td>
+          <td class="col-control">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-control"><input type="checkbox" /></td>
+          <td class="col-control">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>3</td>
+          <td>Barack Obama</td>
+          <td>
+            <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
+          </td>
+          <td class="text-right">91,387,642</td>
+          <td class="col-control">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+      </tbody>
+      <!--
+      <tfoot>
+        <tr>
+          <td colspan="5" class="text-right">Total</td>
+          <td class="text-right">289,119,640</td>
+        </tr>
+      </tfoot>
+      -->
+    </table>
+  </div>
+</section>
+
+<section>
+  <header>
+    <h2 id="hoverable-table">Hoverable Table</h2>
+  </header>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <table class="table table-hover">
+      <caption>Most popular Twitter accounts</caption>
+      <thead>
+        <tr>
+          <th class="col-control"><input type="checkbox" /></th>
+          <th class="col-control"></th>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Handle</th>
+          <th class="text-right">Followers</th>
+          <th class="col-control"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-control"><input type="checkbox" /></td>
+          <td class="col-control">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>1</td>
+          <td>Katy Perry</td>
+          <td>
+            <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
+          </td>
+          <td class="text-right">100,381,853</td>
+          <td class="col-control">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-control"><input type="checkbox" /></td>
+          <td class="col-control">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>2</td>
+          <td>Justin Beiber</td>
+          <td>
+            <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
+          </td>
+          <td class="text-right">97,350,145</td>
+          <td class="col-control">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-control"><input type="checkbox" /></td>
+          <td class="col-control">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>3</td>
+          <td>Barack Obama</td>
+          <td>
+            <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
+          </td>
+          <td class="text-right">91,387,642</td>
+          <td class="col-control">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+      </tbody>
+      <!--
+      <tfoot>
+        <tr>
+          <td colspan="5">Total</td>
+          <td class="text-right">289,119,640</td>
+        </tr>
+      </tfoot>
+      -->
+    </table>
+  </div>
+</section>
+
+<section>
+  <header>
+    <h2 id="contextual-classes">Contextual Classes</h2>
+  </header>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><em>n/a</em></td>
+          <td>Normal table row</td>
+        </tr>
+        <tr class="active">
+          <td><code>.active</code></td>
+          <td>Applies the hover color to a particular row or cell.</td>
+        </tr>
+        <tr class="success">
+          <td><code>.success</code></td>
+          <td>Indicates a successful or positive action</td>
+        </tr>
+        <tr class="info">
+          <td><code>.info</code></td>
+          <td>Indicates a neutral informative change or action</td>
+        </tr>
+        <tr class="warning">
+          <td><code>.warning</code></td>
+          <td>Indicates a warning that might need attention</td>
+        </tr>
+        <tr class="danger">
+          <td><code>.danger</code></td>
+          <td>Indicates a dangerous or potential negative action</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+      </div>
+    </div>
+  </article>
+      </main>
+    </div>
+
+    <footer id="global-footer">
+<nav class="footer-nav">
+  <div class="links">
+    <a href="#">v0000-00-00</a>
+  </div>
+</nav>
+    </footer>
+
+    
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="helix-ui.js"></script>
+<script src="docs.js"></script>
+  </body>
+</html>

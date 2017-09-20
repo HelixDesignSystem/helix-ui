@@ -1,296 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
   <title>Navigation | HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
 
-  <link rel="shortcut icon" href="/helix-ui/images/favicon.png">
+  <link rel="shortcut icon" href="images/favicon.png">
 
+  <!-- Bootstrap 3 -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     rel="stylesheet"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
 
-  <link rel="stylesheet" href="/helix-ui/styles/bootstrap.helix.css">
-  <link rel="stylesheet" href="/helix-ui/styles/helix-ui.css">
-  <link rel="stylesheet" href="/helix-ui/styles/explorer.css">
+  <link rel="stylesheet" href="bootstrap.helix.css">
+  <link rel="stylesheet" href="vendor/hljs.agate.css">
+  <link rel="stylesheet" href="helix-ui.css">
+  <link rel="stylesheet" href="docs.css">
 
   <!-- ES5 Adapter -->
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
   <!-- Polyfill Loader -->
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
 </head>
-
-<body id="top">
-  <header id="global-header">
-    <nav class="global-nav">
-    <a class="brand-logo" href="/helix-ui/">
-        <img src="/helix-ui/images/helix-logo.svg" alt="Helix Logo">
-    </a>
-    <div class="links">
-        
-            <a class="current">Navigation</a>
-        
-    </div>
+  <body id="top">
+    <header id="global-header">
+<nav class="global-nav">
+  <a class="brand-logo" href="">
+    <img src="images/helix-logo.svg" alt="Logo" />
+  </a>
+  <div class="links">
+      <a class="current">Navigation</a>
+  </div>
 </nav>
+    </header>
 
-  </header>
+    <div id="app-container">
+      <div class="app-nav-container">
 
-  <div id="app-container">
-    <div class="app-nav-container">
-      <nav class="hx-app-nav">
+<nav class="hx-app-nav">
+    
   <hx-reveal >
     <header slot="summary">
       Guides
       <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
     </header>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/guides/install"
-      >
-        Installing
-      </a>
-    
+
+        <a href="guides/install"
+        >Installing</a>
   </hx-reveal>
 
+    
   <hx-reveal open>
     <header slot="summary">
       Components
       <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
     </header>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/alerts"
-      >
-        Alerts
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/badges"
-      >
-        Badges
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/blockquotes"
-      >
-        Blockquotes
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/breadcrumbs"
-      >
-        Breadcrumbs
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/buttons"
-      >
-        Buttons
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/code"
-      >
-        Code
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/dropdowns"
-      >
-        Dropdowns
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/forms"
-      >
-        Forms
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/grid"
-      >
-        Grid
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/icons"
-      >
-        Icons
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/lists"
-      >
-        Lists
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/modals"
-      >
-        Modals
-      </a>
-    
-      
-      <a
-        class="current"
-        href="/helix-ui/components/navigation"
-      >
-        Navigation
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/pagination"
-      >
-        Pagination
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/popovers"
-      >
-        Popovers
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/progressbars"
-      >
-        Progress Bars
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/reveal"
-      >
-        Reveal
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/tables"
-      >
-        Tables
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/tabs"
-      >
-        Tabs
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/tooltips"
-      >
-        Tooltips
-      </a>
-    
-      
-      <a
-        class=""
-        href="/helix-ui/components/typography"
-      >
-        Typography
-      </a>
-    
+
+        <a href="components/alert"
+        >Alert</a>
+        <a href="components/badge"
+        >Badge</a>
+        <a href="components/blockquote"
+        >Blockquote</a>
+        <a href="components/breadcrumb"
+        >Breadcrumb</a>
+        <a href="components/button"
+        >Button</a>
+        <a href="components/code"
+        >Code</a>
+        <a href="components/dropdown"
+        >Dropdown</a>
+        <a href="components/form"
+        >Form</a>
+        <a href="components/grid"
+        >Grid</a>
+        <a href="components/icon"
+        >Icon</a>
+        <a href="components/list"
+        >List</a>
+        <a href="components/modal"
+        >Modal</a>
+        <a href="components/navigation"
+class="current"        >Navigation</a>
+        <a href="components/pagination"
+        >Pagination</a>
+        <a href="components/popover"
+        >Popover</a>
+        <a href="components/progressbar"
+        >Progress Bar</a>
+        <a href="components/reveal"
+        >Reveal</a>
+        <a href="components/table"
+        >Table</a>
+        <a href="components/tabset"
+        >Tabset</a>
+        <a href="components/tooltip"
+        >Tooltip</a>
+        <a href="components/typography"
+        >Typography</a>
   </hx-reveal>
+
 </nav>
+      </div>
 
-    </div>
-
-    <main id="app-content">
-      <article>
+      <main id="app-content">
+  <article>
     <header class="page-header">
-        <span class="page-title">
-            Navigation
-            
-        </span>
+      <span class="page-title">
+        Navigation
+      </span>
     </header>
 
     <div class="hxRow">
-        <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
-            
-
+      <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
 <aside>
-    <dl>
-        <dt>Last Updated:</dt>
-        <dd>2017-09-14</dd>
+  <dl>
+    <dt>Last Updated:</dt>
+    <dd>2017-09-19</dd>
 
-        
-            <dt>Assets:</dt>
-            
-                <dd><code>bootstrap.helix.css</code></dd>
-            
-                <dd><code>helix-ui.css</code></dd>
-            
-                <dd><code>helix-ui.js</code></dd>
-            
-        
-    </dl>
+      <dt>Assets:</dt>
+        <dd><code>bootstrap.helix.css</code></dd>
+        <dd><code>helix-ui.css</code></dd>
+        <dd><code>helix-ui.js</code></dd>
+  </dl>
 </aside>
 
 <aside class="article-toc" role="navigation">
-    <header class="article-toc-title">Content</header>
-    
-    
-        <ul class="toc"><li class="toc-item">
-                <a class="toc-link" href="#global-nav">
-                    <span class="toc-text">Global Navigation</span>
+  <header class="article-toc-title">Content</header>
+  
+        <ul class="toc">
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='global-nav';">
+
+                    <span class="toc__text">Global Navigation</span>
                 </a>
-            </li><li class="toc-item">
-                <a class="toc-link" href="#app-nav">
-                    <span class="toc-text">Application Navigation</span>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='app-nav';">
+
+                    <span class="toc__text">Application Navigation</span>
                 </a>
-            </li></ul>
-        <a class="article-toc-top" href="#top">Back to Top</a>
+            </li>
+        </ul>
+        <a
+            class="toc__top-link"
+            onclick="document.location.hash='top'">
+
+            Back to Top
+        </a>
     
 </aside>
-
-        </div>
-        <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
-            <section>
+      </div>
+      <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
+<section>
   <h2 id="global-nav">Global Navigation</h2>
   <p>
     (<em>a.k.a. "Eyebrow"</em>)
-    Styles the <a href="http://getbootstrap.com/components/#navbar" target="_blank" rel="external">Navbar Component</a> from Bootstrap.
+    Styles the <a href="http://getbootstrap.com/components/#navbar">Navbar Component</a> from Bootstrap.
   </p>
 
   <div class="demo">
@@ -303,7 +176,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <img src="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/img/rs-logo-white.svg" alt="Rackspace Logo">
+          <img src="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/img/rs-logo-white.svg" alt="Rackspace Logo" />
         </a>
       </div>
       <div id="eyebrow-collapse" class="navbar-collapse collapse">
@@ -313,7 +186,11 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="#">Support</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false">
 
               myUserName <span class="caret"></span>
             </a>
@@ -368,36 +245,52 @@
       </hx-reveal>
     </nav>
   </div>
-  <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">"hx-app-nav"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Link 1-1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Link 1-2<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Link 1-3<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">hx-reveal</span> <span class="attr">open</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">header</span> <span class="attr">slot</span>=<span class="string">"summary"</span>&gt;</span></div><div class="line">      L1 Section</div><div class="line">      <span class="tag">&lt;<span class="name">hx-icon</span> <span class="attr">class</span>=<span class="string">"toggle-icon"</span> <span class="attr">type</span>=<span class="string">"angle-down"</span>&gt;</span><span class="tag">&lt;/<span class="name">hx-icon</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Link 2-1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Link 2-2<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Link 2-3<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">hx-reveal</span> <span class="attr">open</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">header</span> <span class="attr">slot</span>=<span class="string">"summary"</span>&gt;</span></div><div class="line">        L2 Section</div><div class="line">        <span class="tag">&lt;<span class="name">hx-icon</span> <span class="attr">class</span>=<span class="string">"toggle-icon"</span> <span class="attr">type</span>=<span class="string">"angle-down"</span>&gt;</span><span class="tag">&lt;/<span class="name">hx-icon</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Link 3-1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Link 3-2<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Link 3-3<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">hx-reveal</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">hx-reveal</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></div></pre></td></tr></table></figure>
 
-</section>
-
-        </div>
+            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hx-app-nav"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">open</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"summary"</span>&gt;</span>
+        L1 Section
+        <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">open</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"summary"</span>&gt;</span>
+          L2 Section
+          <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></code></pre>
+        </section>
+      </div>
     </div>
-</article>
+  </article>
+      </main>
+    </div>
 
-    </main>
-  </div>
-
-  <footer id="global-footer">
-    <nav class="footer-nav">
+    <footer id="global-footer">
+<nav class="footer-nav">
   <div class="links">
-    
-    <a href="/helix-ui/2000/01/01/v0000-00-00/">
-        v0000-00-00
-    </a>
+    <a href="#">v0000-00-00</a>
   </div>
 </nav>
+    </footer>
 
-  </footer>
-
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="/helix-ui/scripts/helix-ui.js"></script>
-<script src="/helix-ui/scripts/explorer.js"></script>
-
-</body>
+<script src="helix-ui.js"></script>
+<script src="docs.js"></script>
+  </body>
 </html>

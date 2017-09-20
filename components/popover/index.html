@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>HelixUI</title>
+  <title>Popover | HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -31,6 +31,7 @@
     <img src="images/helix-logo.svg" alt="Logo" />
   </a>
   <div class="links">
+      <a class="current">Popover</a>
   </div>
 </nav>
     </header>
@@ -51,7 +52,7 @@
   </hx-reveal>
 
     
-  <hx-reveal >
+  <hx-reveal open>
     <header slot="summary">
       Components
       <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
@@ -86,7 +87,7 @@
         <a href="components/pagination"
         >Pagination</a>
         <a href="components/popover"
-        >Popover</a>
+class="current"        >Popover</a>
         <a href="components/progressbar"
         >Progress Bar</a>
         <a href="components/reveal"
@@ -105,13 +106,85 @@
       </div>
 
       <main id="app-content">
-<h1>HelixUI</h1>
+  <article>
+    <header class="page-header">
+      <span class="page-title">
+        Popover
+      </span>
+    </header>
 
-<p>We're still building. Content will arrive as it's built.</p>
+    <div class="hxRow">
+      <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
+<aside>
+  <dl>
+    <dt>Last Updated:</dt>
+    <dd>2017-09-19</dd>
 
-<section>
-    <!-- common links and getting started stuff goes here -->
-</section>
+      <dt>Assets:</dt>
+        <dd><code>bootstrap.helix.css</code></dd>
+  </dl>
+</aside>
+
+<aside class="article-toc" role="navigation">
+  <header class="article-toc-title">Content</header>
+  <p><em>Unavailable</em></p>
+</aside>
+      </div>
+      <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
+<!-- explanation goes here -->
+
+<div class="demo">
+  <div class="popover-example">
+    <div class="popover top">
+      <div class="arrow"></div>
+      <h3 class="popover-title">h3 popover title</h3>
+      <div class="popover-content">
+        <p>
+          <code>.popover-content</code>
+          Sed posuere consectetur est at lobortis. Aenean eu leo quam.
+          Pellentesque ornare sem lacinia quam venenatis vestibulum.
+        </p>
+      </div>
+    </div>
+    <div class="popover right">
+      <div class="arrow"></div>
+      <h3 class="popover-title">h3 popover title</h3>
+      <div class="popover-content">
+        <p>
+          <code>.popover-content</code>
+          Sed posuere consectetur est at lobortis. Aenean eu leo quam.
+          Pellentesque ornare sem lacinia quam venenatis vestibulum.
+        </p>
+      </div>
+    </div>
+    <div class="popover bottom">
+      <div class="arrow"></div>
+      <h3 class="popover-title">h3 popover title</h3>
+      <div class="popover-content">
+        <p>
+          <code>.popover-content</code>
+          Sed posuere consectetur est at lobortis. Aenean eu leo quam.
+          Pellentesque ornare sem lacinia quam venenatis vestibulum.
+        </p>
+      </div>
+    </div>
+    <div class="popover left">
+      <div class="arrow"></div>
+      <h3 class="popover-title">h3 popover title</h3>
+      <div class="popover-content">
+        <p>
+          <code>.popover-content</code>
+          Sed posuere consectetur est at lobortis. Aenean eu leo quam.
+          Pellentesque ornare sem lacinia quam venenatis vestibulum.
+        </p>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+      </div>
+    </div>
+  </article>
       </main>
     </div>
 

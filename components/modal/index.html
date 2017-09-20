@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Code | HelixUI</title>
+  <title>Modal | HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -31,7 +31,7 @@
     <img src="images/helix-logo.svg" alt="Logo" />
   </a>
   <div class="links">
-      <a class="current">Code</a>
+      <a class="current">Modal</a>
   </div>
 </nav>
     </header>
@@ -69,7 +69,7 @@
         <a href="components/button"
         >Button</a>
         <a href="components/code"
-class="current"        >Code</a>
+        >Code</a>
         <a href="components/dropdown"
         >Dropdown</a>
         <a href="components/form"
@@ -81,7 +81,7 @@ class="current"        >Code</a>
         <a href="components/list"
         >List</a>
         <a href="components/modal"
-        >Modal</a>
+class="current"        >Modal</a>
         <a href="components/navigation"
         >Navigation</a>
         <a href="components/pagination"
@@ -109,7 +109,7 @@ class="current"        >Code</a>
   <article>
     <header class="page-header">
       <span class="page-title">
-        Code
+        Modal
       </span>
     </header>
 
@@ -132,36 +132,9 @@ class="current"        >Code</a>
             <li class="toc__item">
                 <a
                     class="toc__link"
-                    onclick="document.location.hash='inline';">
+                    onclick="document.location.hash='myModalLabel';">
 
-                    <span class="toc__text">Inline</span>
-                </a>
-            </li>
-        
-            <li class="toc__item">
-                <a
-                    class="toc__link"
-                    onclick="document.location.hash='block';">
-
-                    <span class="toc__text">Code Block</span>
-                </a>
-            </li>
-        
-            <li class="toc__item">
-                <a
-                    class="toc__link"
-                    onclick="document.location.hash='user-input';">
-
-                    <span class="toc__text">User Input</span>
-                </a>
-            </li>
-        
-            <li class="toc__item">
-                <a
-                    class="toc__link"
-                    onclick="document.location.hash='variables';">
-
-                    <span class="toc__text">Variables</span>
+                    <span class="toc__text">Modal title</span>
                 </a>
             </li>
         </ul>
@@ -177,64 +150,62 @@ class="current"        >Code</a>
       <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
 <!-- explanation goes here -->
 
-<section><!-- inline -->
-  <header>
-    <h2 id="inline">Inline</h2>
-  </header>
-
-  <!-- explanation goes here -->
-
-  <div class="demo">
-    <p>
-      Inline code should be wrapped like <code>&lt;code&gt;...&lt;/code&gt;</code>.
-    </p>
+<div class="demo">
+  <div class="modal-example">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">h4.modal-title</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            If it takes you too long to detail the flexible XP spec, then you
+            are not spiking enough. A simple lifecycle management always takes
+            less time than a burnup one. The best way to detail minimum sequence
+            is to almost satify their application. If it takes you too long to
+            measure the major VOC sprint, then you are not working enough.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
-</section>
 
-<section><!-- block -->
-  <header>
-    <h2 id="block">Code Block</h2>
-  </header>
+  <div>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Launch demo modal
+    </button>
 
-  <!-- explanation goes here -->
-
-  <div class="demo">
-    <pre>&lt;pre&gt;Preserved content goes here ...&lt;/pre&gt;</pre>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              If it takes you too long to detail the flexible XP spec, then you
+              are not spiking enough. A simple lifecycle management always takes
+              less time than a burnup one. The best way to detail minimum sequence
+              is to almost satify their application. If it takes you too long to
+              measure the major VOC sprint, then you are not working enough.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</section>
-
-<section><!-- user input -->
-  <header>
-    <h2 id="user-input">User Input</h2>
-  </header>
-
-  <!-- explanation goes here -->
-  <p>
-    <i>a.k.a. Keyboard Shortcuts</i> using the <code>&lt;kbd&gt;</code> tag.
-  </p>
-
-  <div class="demo">
-    <p>
-      To switch directories, type <kbd>cd</kbd> followed
-      by the name of the directory.<br />
-      To edit settings, press <kbd>ctrl + ,</kbd>
-    </p>
-  </div>
-</section>
-
-<section><!-- variable -->
-  <header>
-    <h2 id="variables">Variables</h2>
-  </header>
-
-  <!-- explanation goes here -->
-
-  <div class="demo">
-    <p>
-      <var>y</var> = <var>m</var><var>x</var> + <var>b</var>
-    </p>
-  </div>
-</section>
+</div>
       </div>
     </div>
   </article>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>HelixUI</title>
+  <title>Blockquote | HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -31,6 +31,7 @@
     <img src="images/helix-logo.svg" alt="Logo" />
   </a>
   <div class="links">
+      <a class="current">Blockquote</a>
   </div>
 </nav>
     </header>
@@ -51,7 +52,7 @@
   </hx-reveal>
 
     
-  <hx-reveal >
+  <hx-reveal open>
     <header slot="summary">
       Components
       <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
@@ -62,7 +63,7 @@
         <a href="components/badge"
         >Badge</a>
         <a href="components/blockquote"
-        >Blockquote</a>
+class="current"        >Blockquote</a>
         <a href="components/breadcrumb"
         >Breadcrumb</a>
         <a href="components/button"
@@ -105,13 +106,89 @@
       </div>
 
       <main id="app-content">
-<h1>HelixUI</h1>
+  <article>
+    <header class="page-header">
+      <span class="page-title">
+        Blockquote
+      </span>
+    </header>
 
-<p>We're still building. Content will arrive as it's built.</p>
+    <div class="hxRow">
+      <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
+<aside>
+  <dl>
+    <dt>Last Updated:</dt>
+    <dd>2017-09-19</dd>
+
+      <dt>Assets:</dt>
+        <dd><code>bootstrap.helix.css</code></dd>
+  </dl>
+</aside>
+
+<aside class="article-toc" role="navigation">
+  <header class="article-toc-title">Content</header>
+  
+        <ul class="toc">
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='default';">
+
+                    <span class="toc__text">Default Blockquotes</span>
+                </a>
+            </li>
+        
+            <li class="toc__item">
+                <a
+                    class="toc__link"
+                    onclick="document.location.hash='right-aligned';">
+
+                    <span class="toc__text">Right-Aligned Blockquotes</span>
+                </a>
+            </li>
+        </ul>
+        <a
+            class="toc__top-link"
+            onclick="document.location.hash='top'">
+
+            Back to Top
+        </a>
+    
+</aside>
+      </div>
+      <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
+<!-- explanation goes here -->
 
 <section>
-    <!-- common links and getting started stuff goes here -->
+  <header>
+    <h2 id="default">Default Blockquotes</h2>
+  </header>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <blockquote>
+      This is a blockquote with a source. It's totally legit.
+      <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+    </blockquote>
+  </div>
 </section>
+
+<section><!-- Blockquotes -->
+  <header>
+    <h2 id="right-aligned">Right-Aligned Blockquotes</h1>
+  </header>
+
+  <div class="demo">
+    <blockquote class="blockquote-reverse">
+      This is a reverse blockquote with a source. It's also legit.
+      <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+    </blockquote>
+  </div>
+</section>
+      </div>
+    </div>
+  </article>
       </main>
     </div>
 
