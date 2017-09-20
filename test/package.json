@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/lodash": "^4.14.74",
+    "@types/mocha": "^2.2.43",
+    "@types/node": "^8.0.28",
+    "@types/opn": "^3.0.28",
+    "@types/reflect-metadata": "^0.0.5",
+    "@types/selenium-webdriver": "^3.0.7",
+    "chai": "^4.1.2",
+    "inquirer-promise": "^1.0.0",
+    "inquirer-shortcuts": "^1.1.0",
+    "lodash": "^4.17.4",
+    "mocha": "^3.5.3",
+    "opn": "^5.1.0",
+    "selenium-webdriver": "^3.5.0",
+    "snappit-visual-regression": "^0.6.4",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "npm run clean:js && npm run clean:screenshots",
+    "clean:screenshots": "rm -rf screenshots",
+    "clean:js": "rm -rf built/",
+    "lint": "tslint index.ts",
+    "test": "npm run build && mocha --timeout 15000 built/index.js",
+    "previsreg": "[ -f ./bin/visreg.config.ts ] || cp bin/visreg{.example,}.config.ts",
+    "visreg": "npm run clean:js && npm run build && node ./built/bin/util.js && node ./built/bin/visreg.js",
+    "webdriver": "npm run webdriver:update && npm run webdriver:start",
+    "webdriver:update": "scripts/webdriver-update",
+    "webdriver:start": "scripts/webdriver-start"
+  }
+}

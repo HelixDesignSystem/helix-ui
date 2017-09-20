@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "strict":true,
+        "strictNullChecks": false,
+        "declaration": true,
+        "target": "es6",
+        "lib": ["es6"],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "types": [
+            "reflect-metadata",
+            "node",
+            "mocha"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "*": ["types/*"]
+        },
+        "outDir": "./built"
+    },
+    "include": [
+        "index.ts",
+        "bin/util.ts",
+        "bin/visreg.ts",
+        "bin/util.ts",
+        "bin/visreg.config.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

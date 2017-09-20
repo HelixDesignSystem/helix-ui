@@ -1,0 +1,6 @@
+.github-token
+bin/*.js
+bin/visreg.config.ts
+built/
+index.js
+screenshots
