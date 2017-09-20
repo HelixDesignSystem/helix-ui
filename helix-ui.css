@@ -898,8 +898,12 @@ dd {
 .hx-app-nav hx-reveal hx-reveal hx-reveal a {
   padding-left: 5rem;
 }
+/* prevent FOUC before element is upgraded */
 hx-reveal:not([open]) > *:not([slot="summary"]) {
   display: none;
+}
+#toggle.hx-reveal {
+  display: block;
 }
 a {
   color: #0d74d1;
