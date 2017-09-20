@@ -1,13 +1,13 @@
 import {expect} from "chai";
 
-import {Snappit} from "snappit-visual-regression";
+import {$, Snappit, IConfig} from "snappit-visual-regression";
 
 describe('helix', () => {
     let snappit: Snappit;
     let driver: any;
 
     before(() => {
-        const config = {
+        const config: IConfig = {
             browser: "chrome",
             screenshotsDir: "screenshots",
             threshold: 0.1,
@@ -22,7 +22,7 @@ describe('helix', () => {
         // Cast here as TypeScript thinks driver might not be initialized.
         driver.get("http://localhost:3000/");
 
-        expect(await driver.getCurrentUrl()).to.contain('localhost:3000');
+        expect(await $("body").isDisplayed()).to.eql(true);
     });
 
     it("should terminate the driver instances", async () => {
