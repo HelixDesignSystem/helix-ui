@@ -1,12 +1,23 @@
 import {expect} from "chai";
 
 import {$, snap, Snappit, IConfig} from "snappit-visual-regression";
+import {ScreenshotNotPresentException} from "snappit-visual-regression";
 
 const ss = async (name: string, elem?: any, xpect?: any, error?: any) => {
     try {
-        snap(name, elem);
+        await snap(name, elem);
     } catch (e) {
-        return error(e);
+        if (error === undefined && e instanceof ScreenshotNotPresentException) {
+            error = async () => {
+                e.stack = "";
+                e.name = "";
+                e.message = `📷 📸 📷  New Screenshot, "${name}" 📷 📸 📷`;
+                throw new ScreenshotNotPresentException(e);
+            };
+            error();
+        }  else if (e) {
+            return error(e);
+        }
     } finally {
         if (xpect === undefined) {
             xpect = async () => {
@@ -37,6 +48,7 @@ describe("helix", () => {
 
     it("full-screen", async () => {
         await ss("index");
+        expect(await $("body").isDisplayed()).to.eql(true);
     });
 
     it("nav", async () => {
