@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "tslint index.ts",
-    "test": "npm run build; mocha index.js",
+    "test": "npm run build && mocha index.js",
     "webdriver": "npm run webdriver:update && npm run webdriver:start",
     "webdriver:update": "scripts/webdriver-update",
     "webdriver:start": "scripts/webdriver-start"
