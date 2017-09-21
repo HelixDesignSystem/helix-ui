@@ -1,31 +1,21 @@
 import {expect} from "chai";
+import * as _ from "lodash";
 
 import {$, snap, Snappit, IConfig} from "snappit-visual-regression";
+
 import {ScreenshotNotPresentException} from "snappit-visual-regression";
 
-const ss = async (name: string, elem?: any, xpect?: any, error?: any) => {
+const ss = async (name: string, elem?: any) => {
     try {
         await snap(name, elem);
     } catch (e) {
-        if (error === undefined && e instanceof ScreenshotNotPresentException) {
-            error = async () => {
-                e.stack = "";
-                e.name = "";
-                e.message = `📷 📸 📷  New Screenshot, "${name}" 📷 📸 📷`;
-                throw new ScreenshotNotPresentException(e);
-            };
-            error();
-        }  else if (e) {
-            return error(e);
+        if (e instanceof ScreenshotNotPresentException) {
+            e.stack = "";
+            e.name = "";
+            const cameras = () => _.times(3, () =>  _.sample([ "📷", "📸" ])).join("  ");
+            e.message = `${cameras()}  New Screenshot, "${name}" ${cameras()}`;
+            throw e;
         }
-    } finally {
-        if (xpect === undefined) {
-            xpect = async () => {
-                expect(await $("body").isDisplayed()).to.eql(true);
-            };
-        }
-
-        await xpect();
     }
 };
 
