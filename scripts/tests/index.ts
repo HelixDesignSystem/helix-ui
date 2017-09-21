@@ -16,7 +16,7 @@ describe("helix", () => {
     let snappit: Snappit;
     let driver: any;
 
-    it("should navigate to the localhost page", async () => {
+    before(async () => {
         const config: IConfig = {
             browser: "chrome",
             screenshotsDir: "screenshots",
@@ -27,6 +27,9 @@ describe("helix", () => {
         snappit = new Snappit(config);
         driver = await snappit.start();
         driver.get("http://localhost:3000/");
+    });
+
+    it("full-screen", async () => {
         await ss("helix-ui", undefined, async () => {
             expect(await $("body").isDisplayed()).to.eql(true);
         });
