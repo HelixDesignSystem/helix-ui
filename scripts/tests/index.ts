@@ -14,8 +14,8 @@ const ss = async (name: string, elem?: any) => {
             e.name = "";
             const cameras = () => _.times(3, () =>  _.sample([ "📷", "📸" ])).join("  ");
             e.message = `${cameras()}  New Screenshot, "${name}" ${cameras()}`;
-            throw e;
         }
+        throw e;
     }
 };
 
