@@ -12,7 +12,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/lodash@^4.14.74":
+"@types/lodash@^4.14.68", "@types/lodash@^4.14.74":
   version "4.14.74"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.74.tgz#ac3bd8db988e7f7038e5d22bd76a7ba13f876168"
 
@@ -20,7 +20,7 @@
   version "2.2.43"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.43.tgz#03c54589c43ad048cbcbfd63999b55d0424eec27"
 
-"@types/node@*", "@types/node@^8.0.28":
+"@types/node@*", "@types/node@^8.0.19", "@types/node@^8.0.28":
   version "8.0.28"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.28.tgz#86206716f8d9251cf41692e384264cbd7058ad60"
 
@@ -28,7 +28,7 @@
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@types/reflect-metadata/-/reflect-metadata-0.0.5.tgz#9c042bfa9803d577aad4f57dfbca4b7cae4286fe"
 
-"@types/selenium-webdriver@^3.0.7":
+"@types/selenium-webdriver@^3.0.4", "@types/selenium-webdriver@^3.0.7":
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-3.0.7.tgz#5d3613d1ab3ca08b74d19683a3a7c573129ab18f"
 
@@ -406,11 +406,14 @@ semver@^5.3.0:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
 
-snappit-visual-regression@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/snappit-visual-regression/-/snappit-visual-regression-0.3.2.tgz#8b90b5176dc8b104e63045dcd75156886cb19b7d"
+snappit-visual-regression@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/snappit-visual-regression/-/snappit-visual-regression-0.4.0.tgz#daff8f562defbd2ead7090abe87447fd2110c050"
   dependencies:
     "@types/fs-extra" "^4.0.0"
+    "@types/lodash" "^4.14.68"
+    "@types/node" "^8.0.19"
+    "@types/selenium-webdriver" "^3.0.4"
     fs-extra "^4.0.1"
     lodash "^4.17.4"
     pngjs "3.2.0"
