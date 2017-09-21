@@ -27,7 +27,6 @@ describe("helix", () => {
         snappit = new Snappit(config);
         driver = await snappit.start();
         driver.get("http://localhost:3000/");
-        console.log(await $("body").isDisplayed());
         await ss("helix-ui", undefined, async () => {
             expect(await $("body").isDisplayed()).to.eql(true);
         });
