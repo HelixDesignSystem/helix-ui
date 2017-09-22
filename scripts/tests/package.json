@@ -10,7 +10,7 @@
     "lodash": "^4.17.4",
     "mocha": "^3.5.3",
     "selenium-webdriver": "^3.5.0",
-    "snappit-visual-regression": "^0.4.0",
+    "snappit-visual-regression": "^0.4.2",
     "tslint": "^5.7.0",
     "typescript": "^2.5.2"
   },

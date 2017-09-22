@@ -5,20 +5,6 @@ import {$, snap, Snappit, IConfig} from "snappit-visual-regression";
 
 import {ScreenshotNotPresentException} from "snappit-visual-regression";
 
-const ss = async (name: string, elem?: any) => {
-    try {
-        await snap(name, elem);
-    } catch (e) {
-        if (e instanceof ScreenshotNotPresentException) {
-            e.stack = "";
-            e.name = "";
-            const cameras = () => _.times(3, () =>  _.sample([ "📷", "📸" ])).join("  ");
-            e.message = `${cameras()}  New Screenshot, "${name}" ${cameras()}`;
-        }
-        throw e;
-    }
-};
-
 describe("helix", () => {
     let snappit: Snappit;
     let driver: any;
@@ -27,6 +13,7 @@ describe("helix", () => {
         const config: IConfig = {
             browser: "chrome",
             screenshotsDir: "screenshots",
+            throwNoBaseline: true,
             threshold: 0.1,
             useDirect: true,
         };
@@ -37,12 +24,12 @@ describe("helix", () => {
     });
 
     it("full-screen", async () => {
-        await ss("index");
+        await snap("index");
         expect(await $("body").isDisplayed()).to.eql(true);
     });
 
     it("nav", async () => {
-        await ss("nav", $("nav"));
+        await snap("nav", $("nav"));
     });
 
     after(async () => {

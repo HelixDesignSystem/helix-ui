@@ -406,9 +406,9 @@ semver@^5.3.0:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
 
-snappit-visual-regression@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/snappit-visual-regression/-/snappit-visual-regression-0.4.0.tgz#daff8f562defbd2ead7090abe87447fd2110c050"
+snappit-visual-regression@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/snappit-visual-regression/-/snappit-visual-regression-0.4.2.tgz#735d2ba0519e40f2fcaef9acd8b1e93bc609cd87"
   dependencies:
     "@types/fs-extra" "^4.0.0"
     "@types/lodash" "^4.14.68"
