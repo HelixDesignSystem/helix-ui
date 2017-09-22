@@ -1,10 +1,25 @@
 import {expect} from "chai";
 import * as _ from "lodash";
+import {By, ISize, ThenableWebDriver, WebDriver, WebElementPromise} from "selenium-webdriver";
 
 import {$, snap, Snappit, IConfig} from "snappit-visual-regression";
-
 import {ScreenshotNotPresentException} from "snappit-visual-regression";
 
+async function setViewportSize (
+    driver: ThenableWebDriver,
+    size: ISize,
+): Promise<void> {
+    const jsGetPadding: string = `return {
+        width: window.outerWidth - window.innerWidth,
+        height: window.outerHeight - window.innerHeight
+    }`;
+
+    const padding: ISize = await driver.executeScript(jsGetPadding) as ISize;
+    return driver.manage().window().setSize(
+        size.width + padding.width,
+        size.height + padding.height,
+    );
+}
 describe("helix", () => {
     let snappit: Snappit;
     let driver: any;
@@ -20,6 +35,7 @@ describe("helix", () => {
 
         snappit = new Snappit(config);
         driver = await snappit.start();
+        await setViewportSize(driver, { width: 1366, height: 768 });
         driver.get("http://localhost:3000/");
     });
 
