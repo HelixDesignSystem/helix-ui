@@ -61,6 +61,11 @@ describe("helix", () => {
         await snap("nav", $(".app-nav-container"));
     });
 
+    it("guides", async () => {
+        await $x("//nav/hx-reveal/header", "Guides").click();
+        await snap("nav/guides", $(".app-nav-container"));
+    });
+
     it("components", async () => {
         await $x("//nav/hx-reveal/header", "Components").click();
         await snap("nav/componenets", $(".app-nav-container"));
