@@ -1,0 +1,10 @@
+/* prevent FOUC before element is upgraded */
+// Modern Browsers
+hx-reveal:not([open]) > *:not([slot="summary"]) {
+  display: none;
+}
+
+// Polyfilled Browsers
+#toggle.hx-reveal {
+  display: block;
+}

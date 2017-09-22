@@ -10,15 +10,17 @@
 ### Key Files/Directories
 Path | Ship? | Notes
 ----- | ----- | -----
-`source/_posts/` | No | HelixUI release notes
+`source/bootstrap.helix.less` | Yes | Helix theme of Bootstrap 3
 `source/components/` | No | Source files for components and their documentation
-`source/scripts/explorer.js` | No | Component explorer behavior
-`source/scripts/helix-ui.js` | Yes | HelixUI behaviors
-`source/styles/helix-ui.less` | Yes | HelixUI styles
-`source/styles/bootstrap.helix.less` | Yes | Helix theme of Bootstrap 3
-`source/styles/explorer.less` | No | Component explorer appearance
+`source/docs.js` | No | Documentation functionality
+`source/docs.less` | No | Documentation styles
+`source/helix-ui.js` | Yes | HelixUI behaviors (including web component definitions)
+`source/helix-ui.less` | Yes | HelixUI styles
 `public/` | No | Generated output
-`themes/helix-ui/` | No | Component explorer layout
+`source/_templates` | No | Component explorer layout templates
+
+Changes within `source/_templates` or `source/_data` will require
+restarting the development server.
 
 
 ## Publish Documentation

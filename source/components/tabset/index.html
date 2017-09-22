@@ -1,0 +1,20 @@
+---
+title: Tabset
+assets:
+  - bootstrap.helix.css
+---
+{% extends 'component.njk' %}
+{% block content %}
+<!-- explanation goes here -->
+
+<div class="demo">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#">Home</a></li>
+    <li role="presentation"><a href="#">Profile</a></li>
+    <li role="presentation"><a href="#">Messages</a></li>
+    <li role="presentation" class="disabled"><a href="#">Not Available</a></li>
+  </ul>
+</div>
+
+<!-- TODO: need content in tab body -->
+{% endblock %}

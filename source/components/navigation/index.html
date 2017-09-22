@@ -5,6 +5,8 @@ assets:
   - helix-ui.css
   - helix-ui.js
 ---
+{% extends 'component.njk' %}
+{% block content %}
 <section>
   <h2 id="global-nav">Global Navigation</h2>
   <p>
@@ -91,7 +93,7 @@ assets:
       </hx-reveal>
     </nav>
   </div>
-  ```html
+  {% code %}html
     <nav class="hx-app-nav">
       <a href="#">Link 1-1</a>
       <a href="#">Link 1-2</a>
@@ -115,5 +117,6 @@ assets:
         </hx-reveal>
       </hx-reveal>
     </nav>
-  ```
+  {% endcode %}
 </section>
+{% endblock %}
