@@ -20,6 +20,8 @@ async function setViewportSize (
         size.height + padding.height,
     );
 }
+
+let $x: any;
 describe("helix", () => {
     let snappit: Snappit;
     let driver: any;
@@ -37,6 +39,17 @@ describe("helix", () => {
         driver = await snappit.start();
         await setViewportSize(driver, { width: 1366, height: 768 });
         driver.get("http://localhost:3000/");
+
+        $x = (
+            xpath: string,
+            byText = "",
+        ): WebElementPromise => {
+            if (byText.length) {
+                xpath += `[contains(text(), '${byText}')]`;
+            }
+
+            return driver.findElement(By.xpath(xpath));
+        }
     });
 
     it("full-screen", async () => {
@@ -45,7 +58,12 @@ describe("helix", () => {
     });
 
     it("nav", async () => {
-        await snap("nav", $("nav"));
+        await snap("nav", $(".app-nav-container"));
+    });
+
+    it("components", async () => {
+        await $x("//nav/hx-reveal/header", "Components").click();
+        await snap("nav/componenets", $(".app-nav-container"));
     });
 
     after(async () => {
