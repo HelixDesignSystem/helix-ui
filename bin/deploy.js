@@ -7,8 +7,14 @@
 const Build = require('./build');
 const CONFIG = require('../_config');
 const Clean = require('./clean');
+const _ = require('lodash');
 const fs = require('fs');
 const pkgcloud = require('pkgcloud');
+
+// Do not continue without configuration
+if (_.isEmpty(CONFIG.cdn.storage)) {
+    throw new Error('Storage configuration is not defined');
+}
 
 const storageClient = pkgcloud.storage.createClient(CONFIG.cdn.storage);
 

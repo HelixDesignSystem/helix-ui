@@ -3,7 +3,13 @@
 const _ = require('lodash');
 const path = require('path');
 
-const _privateConfig = require('./_config.private') || {};
+let _privateConfig;
+
+try {
+    _privateConfig = require('./_config.private');
+} catch (e) {
+    _privateConfig = {};
+}
 const CONFIG = {};
 
 // PATHS
