@@ -24,88 +24,17 @@
   <!-- Polyfill Loader -->
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
 </head>
-  <body id="top">
-    <header id="global-header">
+<body class="hxApp" id="top">
+  <header class="hxApp__header">
 <nav class="global-nav">
   <a class="brand-logo" href="">
     <img src="images/helix-logo.svg" alt="Logo" />
   </a>
-  <div class="links">
-      <a class="current">Alert</a>
-  </div>
 </nav>
-    </header>
+  </header>
 
-    <div id="app-container">
-      <div class="app-nav-container">
-
-<nav class="hx-app-nav">
-    
-  <hx-reveal >
-    <header slot="summary">
-      Guides
-      <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-    </header>
-
-        <a href="guides/install"
-        >Installing</a>
-  </hx-reveal>
-
-    
-  <hx-reveal open>
-    <header slot="summary">
-      Components
-      <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-    </header>
-
-        <a href="components/alert"
-class="current"        >Alert</a>
-        <a href="components/badge"
-        >Badge</a>
-        <a href="components/blockquote"
-        >Blockquote</a>
-        <a href="components/breadcrumb"
-        >Breadcrumb</a>
-        <a href="components/button"
-        >Button</a>
-        <a href="components/code"
-        >Code</a>
-        <a href="components/dropdown"
-        >Dropdown</a>
-        <a href="components/form"
-        >Form</a>
-        <a href="components/grid"
-        >Grid</a>
-        <a href="components/icon"
-        >Icon</a>
-        <a href="components/list"
-        >List</a>
-        <a href="components/modal"
-        >Modal</a>
-        <a href="components/navigation"
-        >Navigation</a>
-        <a href="components/pagination"
-        >Pagination</a>
-        <a href="components/popover"
-        >Popover</a>
-        <a href="components/progressbar"
-        >Progress Bar</a>
-        <a href="components/reveal"
-        >Reveal</a>
-        <a href="components/table"
-        >Table</a>
-        <a href="components/tabset"
-        >Tabset</a>
-        <a href="components/tooltip"
-        >Tooltip</a>
-        <a href="components/typography"
-        >Typography</a>
-  </hx-reveal>
-
-</nav>
-      </div>
-
-      <main id="app-content">
+  <div class="hxApp__container">
+    <main class="hxApp__content">
   <article>
     <header class="page-header">
       <span class="page-title">
@@ -118,7 +47,7 @@ class="current"        >Alert</a>
 <aside>
   <dl>
     <dt>Last Updated:</dt>
-    <dd>2017-09-19</dd>
+    <dd>2017-09-25</dd>
 
       <dt>Assets:</dt>
         <dd><code>helix-ui.css</code></dd>
@@ -197,8 +126,7 @@ class="current"        >Alert</a>
       </div>
     </div>
   </div>
-
-            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"status"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlerts"</span> <span class="hljs-attr">aria-live</span>=<span class="hljs-string">"polite"</span>&gt;</span>
+<pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"status"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlerts"</span> <span class="hljs-attr">aria-live</span>=<span class="hljs-string">"polite"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlert"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlert__icon"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"info-circle"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
@@ -212,8 +140,7 @@ class="current"        >Alert</a>
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlert__dismiss"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"times"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        </section>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></section>
 
 <section>
   <h2 id="error">Error</h2>
@@ -235,8 +162,7 @@ class="current"        >Alert</a>
       </div>
     </div>
   </div>
-
-            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"status"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlerts"</span> <span class="hljs-attr">aria-live</span>=<span class="hljs-string">"polite"</span>&gt;</span>
+<pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"status"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlerts"</span> <span class="hljs-attr">aria-live</span>=<span class="hljs-string">"polite"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlert hxAlert--error"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlert__icon"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"exclamation-circle"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
@@ -250,8 +176,7 @@ class="current"        >Alert</a>
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlert__dismiss"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"times"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        </section>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></section>
 
 <section>
   <h2 id="warning">Warning</h2>
@@ -273,8 +198,7 @@ class="current"        >Alert</a>
       </div>
     </div>
   </div>
-
-            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"status"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlerts"</span> <span class="hljs-attr">aria-live</span>=<span class="hljs-string">"polite"</span>&gt;</span>
+<pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"status"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlerts"</span> <span class="hljs-attr">aria-live</span>=<span class="hljs-string">"polite"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlert hxAlert--warning"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlert__icon"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"exclamation-triangle"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
@@ -288,8 +212,7 @@ class="current"        >Alert</a>
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlert__dismiss"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"times"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        </section>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></section>
 
 <section>
   <h2 id="success">Success</h2>
@@ -311,8 +234,7 @@ class="current"        >Alert</a>
       </div>
     </div>
   </div>
-
-            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"status"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlerts"</span> <span class="hljs-attr">aria-live</span>=<span class="hljs-string">"polite"</span>&gt;</span>
+<pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"status"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlerts"</span> <span class="hljs-attr">aria-live</span>=<span class="hljs-string">"polite"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlert hxAlert--success"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlert__icon"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkmark"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
@@ -326,23 +248,87 @@ class="current"        >Alert</a>
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxAlert__dismiss"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"times"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        </section>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></section>
       </div>
     </div>
   </article>
-      </main>
-    </div>
+    </main>
+    <nav class="hxApp__nav">
 
-    <footer id="global-footer">
-<nav class="footer-nav">
-  <div class="links">
-    <a href="#">v0000-00-00</a>
+  
+  <hx-reveal >
+    <header slot="summary">
+      Guides
+      <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+    </header>
+
+        <a href="guides/install"
+        >Installing</a>
+  </hx-reveal>
+
+  
+  <hx-reveal open>
+    <header slot="summary">
+      Components
+      <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+    </header>
+
+        <a href="components/alert"
+class="current"        >Alert</a>
+        <a href="components/badge"
+        >Badge</a>
+        <a href="components/blockquote"
+        >Blockquote</a>
+        <a href="components/breadcrumb"
+        >Breadcrumb</a>
+        <a href="components/button"
+        >Button</a>
+        <a href="components/code"
+        >Code</a>
+        <a href="components/dropdown"
+        >Dropdown</a>
+        <a href="components/form"
+        >Form</a>
+        <a href="components/grid"
+        >Grid</a>
+        <a href="components/icon"
+        >Icon</a>
+        <a href="components/list"
+        >List</a>
+        <a href="components/modal"
+        >Modal</a>
+        <a href="components/navigation"
+        >Navigation</a>
+        <a href="components/pagination"
+        >Pagination</a>
+        <a href="components/popover"
+        >Popover</a>
+        <a href="components/progressbar"
+        >Progress Bar</a>
+        <a href="components/reveal"
+        >Reveal</a>
+        <a href="components/table"
+        >Table</a>
+        <a href="components/tabset"
+        >Tabset</a>
+        <a href="components/tooltip"
+        >Tooltip</a>
+        <a href="components/typography"
+        >Typography</a>
+  </hx-reveal>
+
+    </nav>
   </div>
-</nav>
-    </footer>
 
-    
+  <footer class="hxApp__footer">
+&copy; 2017 Rackspace US, Inc.
+<nav>
+  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+</nav>
+     
+  </footer>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
@@ -350,5 +336,5 @@ class="current"        >Alert</a>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="helix-ui.js"></script>
 <script src="docs.js"></script>
-  </body>
+</body>
 </html>

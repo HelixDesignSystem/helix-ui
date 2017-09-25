@@ -24,23 +24,87 @@
   <!-- Polyfill Loader -->
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
 </head>
-  <body id="top">
-    <header id="global-header">
+<body class="hxApp" id="top">
+  <header class="hxApp__header">
 <nav class="global-nav">
   <a class="brand-logo" href="">
     <img src="images/helix-logo.svg" alt="Logo" />
   </a>
-  <div class="links">
-      <a class="current">Breadcrumb</a>
-  </div>
 </nav>
+  </header>
+
+  <div class="hxApp__container">
+    <main class="hxApp__content">
+  <article>
+    <header class="page-header">
+      <span class="page-title">
+        Breadcrumb
+      </span>
     </header>
 
-    <div id="app-container">
-      <div class="app-nav-container">
+    <div class="hxRow">
+      <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
+<aside>
+  <dl>
+    <dt>Last Updated:</dt>
+    <dd>2017-09-25</dd>
 
-<nav class="hx-app-nav">
-    
+      <dt>Assets:</dt>
+        <dd><code>helix-ui.css</code></dd>
+  </dl>
+</aside>
+
+<aside class="article-toc" role="navigation">
+  <header class="article-toc-title">Content</header>
+  <p><em>Unavailable</em></p>
+</aside>
+      </div>
+      <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
+<!-- explanation goes here -->
+
+<div class="demo">
+  <nav class="hxBreadcrumb">
+    <a href="#">Home</a>
+  </nav>
+
+  <nav class="hxBreadcrumb">
+    <a href="#">Home</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">Library</a>
+  </nav>
+
+  <nav class="hxBreadcrumb">
+    <a href="#">Home</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">Library</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">Current</a>
+  </nav>
+</div>
+
+<pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delimiter"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Library<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delimiter"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Library<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delimiter"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Current<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></code></pre>      </div>
+    </div>
+  </article>
+    </main>
+    <nav class="hxApp__nav">
+
+  
   <hx-reveal >
     <header slot="summary">
       Guides
@@ -51,7 +115,7 @@
         >Installing</a>
   </hx-reveal>
 
-    
+  
   <hx-reveal open>
     <header slot="summary">
       Components
@@ -102,90 +166,18 @@ class="current"        >Breadcrumb</a>
         >Typography</a>
   </hx-reveal>
 
-</nav>
-      </div>
-
-      <main id="app-content">
-  <article>
-    <header class="page-header">
-      <span class="page-title">
-        Breadcrumb
-      </span>
-    </header>
-
-    <div class="hxRow">
-      <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
-<aside>
-  <dl>
-    <dt>Last Updated:</dt>
-    <dd>2017-09-19</dd>
-
-      <dt>Assets:</dt>
-        <dd><code>helix-ui.css</code></dd>
-  </dl>
-</aside>
-
-<aside class="article-toc" role="navigation">
-  <header class="article-toc-title">Content</header>
-  <p><em>Unavailable</em></p>
-</aside>
-      </div>
-      <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
-<!-- explanation goes here -->
-
-<div class="demo">
-  <nav class="hxBreadcrumb">
-    <a href="#">Home</a>
-  </nav>
-
-  <nav class="hxBreadcrumb">
-    <a href="#">Home</a>
-    <hx-icon class="delimiter" type="angle-right"></hx-icon>
-    <a href="#">Library</a>
-  </nav>
-
-  <nav class="hxBreadcrumb">
-    <a href="#">Home</a>
-    <hx-icon class="delimiter" type="angle-right"></hx-icon>
-    <a href="#">Library</a>
-    <hx-icon class="delimiter" type="angle-right"></hx-icon>
-    <a href="#">Current</a>
-  </nav>
-</div>
-
-
-            <pre class="highlight"><code class="hljs">  <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delimiter"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Library<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delimiter"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Library<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delimiter"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Current<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></code></pre>
-              </div>
-    </div>
-  </article>
-      </main>
-    </div>
-
-    <footer id="global-footer">
-<nav class="footer-nav">
-  <div class="links">
-    <a href="#">v0000-00-00</a>
+    </nav>
   </div>
-</nav>
-    </footer>
 
-    
+  <footer class="hxApp__footer">
+&copy; 2017 Rackspace US, Inc.
+<nav>
+  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+</nav>
+     
+  </footer>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
@@ -193,5 +185,5 @@ class="current"        >Breadcrumb</a>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="helix-ui.js"></script>
 <script src="docs.js"></script>
-  </body>
+</body>
 </html>

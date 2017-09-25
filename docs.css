@@ -11,140 +11,59 @@
   -------------------------
   For distributed HelixUI CSS styles, see source/styles/helix-ui.less
 */
-/* Component Explorer Layout */
-/* ===== LAYOUT ===== */
-body {
+html {
+  height: 100%;
+}
+.hxApp {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100%;
+  margin: 0;
 }
-#global-header {
-  z-index: 10;
-  background-color: black;
+.hxApp__header {
+  background-color: #000000;
+  flex-shrink: 0;
+  height: 3.5rem;
 }
-.global-nav {
-  display: flex;
-  flex-wrap: wrap;
-}
-.global-nav .link,
-.global-nav a {
+.hxApp__footer {
   align-items: center;
-  color: #bdbdbd;
-  display: inline-flex;
-  position: relative;
-  white-space: nowrap;
-}
-.global-nav .link.current,
-.global-nav a.current {
-  color: #fff;
-}
-.global-nav .link.current::after,
-.global-nav a.current::after {
-  content: '';
-  position: absolute;
-  height: 4px;
-  background-color: #d32f2f;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-.global-nav .brand-logo {
-  align-items: center;
+  background-color: #333333;
+  color: #e0e0e0;
   display: flex;
-  justify-content: center;
-  height: 3rem;
-  width: 15rem;
+  flex-shrink: 0;
+  height: 2.5rem;
+  padding: 0 20px;
 }
-.global-nav .brand-logo img {
-  height: 2rem;
+.hxApp__footer nav {
+  display: inline-block;
 }
-.global-nav .links {
-  flex-wrap: wrap;
-  flex: 1;
+.hxApp__footer a {
+  color: #16b9d4;
+  margin-left: 32px;
 }
-.footer-nav {
+.hxApp__container {
   display: flex;
-  flex-wrap: wrap;
-}
-.footer-nav .link,
-.footer-nav a {
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-}
-.links {
-  display: flex;
-}
-.links .link,
-.links a {
-  height: 3em;
-  padding: 0 1em;
-}
-.links.align-right {
-  justify-content: flex-end;
-}
-#app-container {
-  flex: 1;
-  display: flex;
-}
-#app-container .app-nav-container {
-  background-color: #212121;
-  display: flex;
-  flex-direction: column;
-  width: 15rem;
+  flex-grow: 1;
   flex-shrink: 0;
 }
-#app-content {
-  padding: 20px;
-  flex: 1;
+.hxApp__nav {
+  flex-shrink: 0;
+  order: -1;
+  width: 15rem;
 }
-#global-footer {
-  background-color: black;
-  color: white;
+.hxApp__content {
+  flex-grow: 1;
+  padding: 1em;
 }
-.app-nav {
-  color: #9e9e9e;
+.brand-logo {
+  align-items: center;
+  display: flex;
+  height: 3.5rem;
+  justify-content: center;
+  width: 15rem;
 }
-.app-nav header {
-  padding: 10px;
-  margin: 0;
-  text-transform: uppercase;
-  color: #ffffff;
-}
-.app-nav a {
-  display: block;
-  padding: 10px;
-  margin: 0;
-  color: inherit;
-}
-.app-nav a.current {
-  color: #ffffff;
-  background-color: #424242;
-}
-.app-nav a:hover {
-  background-color: #616161;
-  color: #ffffff;
-  text-decoration: none;
-}
-.app-nav section a {
-  padding-left: 1.5rem;
-  /* 24px */
-}
-.hxNav--app {
-  color: white;
-}
-.hxNav--app .hxNavItem {
-  display: block;
-  padding: 10px;
-  margin: 0;
-  color: inherit;
-}
-.hxNav--app .hxNavItem:hover {
-  background-color: #757575;
-  text-decoration: none;
-}
-.align-right {
-  text-align: right;
+.brand-logo img {
+  height: 2rem;
 }
 body {
   background-color: #fafafa;
