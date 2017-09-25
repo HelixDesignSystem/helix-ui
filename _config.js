@@ -92,7 +92,7 @@ CONFIG.cdn = {
     storage: {} // override in _config.private.js
 };
 
-const combinedConfig = Object.assign({}, CONFIG, _privateConfig);
+const combinedConfig = _.merge({}, CONFIG, _privateConfig);
 
 /* Define Exports */
 module.exports = combinedConfig;
