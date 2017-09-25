@@ -5,10 +5,13 @@
 - calendar
 - checkmark
 - cog
+- download
 - envelope
 - exclamation-circle
 - exclamation-triangle
+- export
 - fanatiguy
+- filter
 - info-circle
 - input-file
 - input-number
@@ -31,6 +34,9 @@
 - phone
 - plus-or-minus
 - search
+- sort
+- sort-down
+- sort-up
 - support
 - times
 - times-circle
