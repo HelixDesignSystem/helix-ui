@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="{{site.language}}">
-  {% include 'partials/head.njk' %}
-  <body id="top">
-    <header id="global-header">
-      {% include 'partials/global_nav.njk' %}
-    </header>
+{% include 'partials/head.njk' %}
+<body class="hxApp" id="top">
+  <header class="hxApp__header">
+    {% include 'partials/global_nav.njk' %}
+  </header>
 
-    <div id="app-container">
-      <div class="app-nav-container">
-        {% include 'partials/app_nav.njk' %}
-      </div>
+  <div class="hxApp__container">
+    <main class="hxApp__content">
+      {% block layout %}
+        {# compiled content goes here #}
+      {% endblock %}
+    </main>
+    <nav class="hxApp__nav">
+      {% include 'partials/app_nav.njk' %}
+    </nav>
+  </div>
 
-      <main id="app-content">
-        {% block layout %}
-          {# compiled content goes here #}
-        {% endblock %}
-      </main>
-    </div>
+  <footer class="hxApp__footer">
+    {% include 'partials/footer_nav.njk' %}     
+  </footer>
 
-    <footer id="global-footer">
-      {% include 'partials/footer_nav.njk' %}
-    </footer>
-
-    {% include 'partials/after_footer.njk' %}
-  </body>
+  {% include 'partials/after_footer.njk' %}
+</body>
 </html>

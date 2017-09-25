@@ -27,8 +27,6 @@
   </hx-reveal>
 {% endmacro %}
 
-<nav class="hx-app-nav">
-  {% for category,items in data.nav %}
-    {{ navSection(category, items) }}
-  {% endfor %}
-</nav>
+{% for category,items in data.nav %}
+  {{ navSection(category, items) }}
+{% endfor %}
