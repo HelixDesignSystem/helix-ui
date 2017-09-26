@@ -26,52 +26,107 @@ describe("helix", () => {
     let snappit: Snappit;
     let driver: any;
 
-    before(async () => {
-        const config: IConfig = {
-            browser: "chrome",
-            screenshotsDir: "screenshots",
-            throwNoBaseline: true,
-            threshold: 0.1,
-            useDirect: true,
-        };
+    describe("chrome", () => {
+        before(async () => {
+            const config: IConfig = {
+                browser: "chrome",
+                includeDevicePixelRatio: true,
+                screenshotsDir: "screenshots",
+                throwNoBaseline: true,
+                threshold: 0.1,
+                useDirect: true,
+            };
 
-        snappit = new Snappit(config);
-        driver = await snappit.start();
-        await setViewportSize(driver, { width: 1366, height: 768 });
-        driver.get("http://localhost:3000/");
+            snappit = new Snappit(config);
+            driver = await snappit.start();
+            await setViewportSize(driver, { width: 1366, height: 768 });
+            driver.get("http://localhost:3000/");
 
-        $x = (
-            xpath: string,
-            byText = "",
-        ): WebElementPromise => {
-            if (byText.length) {
-                xpath += `[contains(text(), '${byText}')]`;
+            $x = (
+                xpath: string,
+                byText = "",
+            ): WebElementPromise => {
+                if (byText.length) {
+                    xpath += `[contains(text(), '${byText}')]`;
+                }
+
+                return driver.findElement(By.xpath(xpath));
             }
+        });
 
-            return driver.findElement(By.xpath(xpath));
-        }
+        it("full-screen", async () => {
+            await snap("{browserName}/index");
+            expect(await $("body").isDisplayed()).to.eql(true);
+        });
+
+        it("nav", async () => {
+            await snap("{browserName}/nav", $(".app-nav-container"));
+        });
+
+        it("guides", async () => {
+            await $x("//nav/hx-reveal//header", "Guides").click();
+            await snap("{browserName}/nav/guides", $(".app-nav-container"));
+        });
+
+        it("components", async () => {
+            await $x("//nav/hx-reveal//header", "Components").click();
+            await snap("{browserName}/nav/componenets", $(".app-nav-container"));
+        });
+
+        after(async () => {
+            await snappit.stop();
+        });
     });
 
-    it("full-screen", async () => {
-        await snap("index");
-        expect(await $("body").isDisplayed()).to.eql(true);
-    });
+    describe("firefox", () => {
+        before(async () => {
+            const config: IConfig = {
+                browser: "firefox",
+                includeDevicePixelRatio: true,
+                screenshotsDir: "screenshots",
+                throwNoBaseline: true,
+                threshold: 0.1,
+                useDirect: true,
+            };
 
-    it("nav", async () => {
-        await snap("nav", $(".app-nav-container"));
-    });
+            snappit = new Snappit(config);
+            driver = await snappit.start();
+            await setViewportSize(driver, { width: 1366, height: 768 });
+            driver.get("http://localhost:3000/");
 
-    it("guides", async () => {
-        await $x("//nav/hx-reveal/header", "Guides").click();
-        await snap("nav/guides", $(".app-nav-container"));
-    });
+            $x = (
+                xpath: string,
+                byText = "",
+            ): WebElementPromise => {
+                if (byText.length) {
+                    xpath += `[contains(text(), '${byText}')]`;
+                }
 
-    it("components", async () => {
-        await $x("//nav/hx-reveal/header", "Components").click();
-        await snap("nav/componenets", $(".app-nav-container"));
-    });
+                return driver.findElement(By.xpath(xpath));
+            }
+        });
 
-    after(async () => {
-        await snappit.stop();
+        it("full-screen", async () => {
+            await snap("{browserName}/index");
+            expect(await $("body").isDisplayed()).to.eql(true);
+        });
+
+        it("nav", async () => {
+            await snap("{browserName}/nav", $(".app-nav-container"));
+        });
+
+        it("guides", async () => {
+            await $x("//nav/hx-reveal//header", "Guides").click();
+            await snap("{browserName}/nav/guides", $(".app-nav-container"));
+        });
+
+        it("components", async () => {
+            await $x("//nav/hx-reveal//header", "Components").click();
+            await snap("{browserName}/nav/componenets", $(".app-nav-container"));
+        });
+
+        after(async () => {
+            await snappit.stop();
+        });
     });
 });
