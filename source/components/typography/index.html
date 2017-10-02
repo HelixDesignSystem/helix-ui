@@ -1,12 +1,12 @@
 ---
 title: Typography
 assets:
-  - bootstrap.helix.css
+  - helix-ui.css
 ---
 {% extends 'component.njk' %}
 {% block content %}
 <section><!-- Font -->
-  <h2 id="font-weight">Font Weight</h2>
+  <h2 class="hxSectionTitle" id="font-weight">Font Weight</h2>
 
   <div class="demo">
     <div class="hxRow">
@@ -29,12 +29,7 @@ assets:
 </section>
 
 <section><!-- Address -->
-  <header>
-    <h2 id="addresses">Addresses</h2>
-  </header>
-
-  <!-- explanation goes here -->
-
+  <h2 class="hxSectionTitle" id="addresses">Addresses</h2>
   <div class="demo">
     <address>
       <strong>Rackspace</strong><br />
@@ -49,113 +44,160 @@ assets:
       <a href="mailto:#">first.last@example.com</a>
     </address>
   </div>
+  {% code 'html' %}
+    <address>
+      <strong>Rackspace</strong><br />
+      1 Fanatical Place<br />
+      City of Windcrest<br />
+      San Antonio, TX 78218<br />
+      <abbr title="Phone">P:</abbr> (123) 456-7890
+    </address>
+
+    <address>
+      <strong>Full Name</strong><br />
+      <a href="mailto:#">first.last@example.com</a>
+    </address>
+  {% endcode %}
 </section>
 
-<section><!-- Headings -->
-  <header>
-    <h2 id="headings">Headings</h2>
-  </header>
+<section><!-- Page Title -->
+  <h2 class="hxSectionTitle" id="page-title">Page Title</h2>
+  <p>Use the <code>.hxPageTitle</code> css class to achieve the page title style</p>
 
   <!-- explanation goes here -->
 
   <div class="demo">
-    <h1>
-      Heading 1 <small>Secondary Text</small>
-    </h1>
-    <p class="lead">
-      Lead body copy. Try to review the acceptance bug,
-      maybe it will help groom the MVP bottlenecks.
-    </p>
-    <p>
-      Body copy. Reviewing the story points should allow our unit testing to
-      prevent the burndown planning poker till the collaboration. A simple
-      deadline always takes less time than a prioritized one. We must
-      periodically open the monthly PR manifesto! If we spike without the
-      methodologies, we can get the certified trend upon the VOC bug. As a user,
-      I should be able to adapt the beta pair programming so that I can work the
-      quarterly XP blockers around the upward wikis.
-    </p>
-
-    <h2>Heading 2 <small>Secondary Text</small></h2>
-    <h3>Heading 3 <small>Secondary Text</small></h3>
-    <h4>Heading 4 <small>Secondary Text</small></h4>
-    <h5>Heading 5 <small>Secondary Text</small></h5>
-    <h6>Heading 6 <small>Secondary Text</small></h6>
+    <h1 class="hxPageTitle">Page Title</h1>
   </div>
+  {% code 'html' %}
+    <h1 class="hxPageTitle">Page Title</h1>
+    <!-- or -->
+    <header class="hxPageTitle">Page Title</header>
+  {% endcode %}
 </section>
 
-<section><!-- Inline -->
-  <header class="page-header">
-    <h2 id="inline-text-elements">Inline Text Elements</h1>
-  </header>
+<section><!-- Section Title -->
+  <h2 class="hxSectionTitle" id="section-title">Section Title</h2>
+  <p>Use the <code>.hxSectionTitle</code> css class to achieve the section title style</p>
 
   <!-- explanation goes here -->
 
   <div class="demo">
-    <div class="row">
-      <div class="col-xs-6">
-        <p>
-          <strong>Marked</strong>: <code>&lt;mark&gt;</code><br />
-          You can use the mark tag to <mark>highlight</mark> text.
-        </p>
-        <p>
-          <strong>Deleted</strong>: <code>&lt;del&gt;</code><br />
-          <del>This line of text is meant to be treated as deleted text.</del>
-        </p>
-        <p>
-          <strong>Strikethrough</strong>: <code>&lt;s&gt;</code><br />
-          <s>This line of text is meant to be treated as no longer accurate.</s>
-        </p>
-        <p>
-          <strong>Inserted</strong>: <code>&lt;ins&gt;</code><br />
-          <ins>This line of text is meant to be treated as an addition to the document.</ins>
-        </p>
-        <p>
-          <strong>Underlined</strong>: <code>&lt;u&gt;</code><br />
-          <u>This line of text will render as underlined</u>
-        </p>
-      </div>
-
-      <div class="col-xs-6">
-        <p>
-          <strong>Small</strong>: <code>&lt;small&gt;</code><br />
-          <small>This line of text is meant to be treated as fine print.</small>
-        </p>
-        <p>
-          <strong>Bold</strong>: <code>&lt;strong&gt;</code>, <code>&lt;b&gt;</code><br />
-          <strong>This line rendered as bold text.</strong><br />
-          <b>This line also rendered as bold text.</b>
-        </p>
-        <p>
-          <strong>Italics</strong>: <code>&lt;em&gt;</code>, <code>&lt;i&gt;</code><br />
-          <em>This line rendered as italicized text.</em>
-          <i>This line also rendered as italicized text.</i>
-        </p>
-        <p>
-          <strong>Abbreviation</strong>: <code>&lt;abbr&gt;</code><br />
-          <abbr title="attribute">attr</abbr>
-        </p>
-        <p>
-          <strong>Initialism</strong>: <code>abbr.initialism</code><br />
-          <abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
-        </p>
-      </div>
-    </div>
-
-    <b>Muted:</b>
-    <p class="text-muted">
-      If it takes you too long to detail the flexible XP spec, then you are not spiking enough. A simple lifecycle management always takes less time than a burnup one. The best way to detail minimum sequence is to almost satify their application. If it takes you too long to measure the major VOC sprint, then you are not working enough.
-    </p>
-
-    <b>Primary:</b>
-    <p class="text-primary">
-      If it takes you too long to detail the flexible XP spec, then you are not spiking enough. A simple lifecycle management always takes less time than a burnup one. The best way to detail minimum sequence is to almost satify their application. If it takes you too long to measure the major VOC sprint, then you are not working enough.
-    </p>
+    <h2 class="hxSectionTitle">Section Title</h2>
   </div>
+  {% code 'html' %}
+    <h2 class="hxSectionTitle">Section Title</h2>
+    <!-- or -->
+    <header class="hxSectionTitle">Section Title</header>
+  {% endcode %}
+</section>
+
+<section><!-- Sub-Section Title -->
+  <h2 class="hxSectionTitle" id="subsection-title">Sub-Section Title</h2>
+  <p>Use the <code>.hxSubSectionTitle</code> css class to achieve the sub-section title style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <h3 class="hxSubSectionTitle">Sub-Section Title</h3>
+  </div>
+  {% code 'html' %}
+    <h3 class="hxSubSectionTitle">Sub-Section Title</h3>
+    <!-- or -->
+    <header class="hxSubSectionTitle">Sub-Section Title</header>
+  {% endcode %}
+</section>
+
+<section><!-- Container Title -->
+  <h2 class="hxSectionTitle" id="container-title">Container Title</h2>
+  <p>Use the <code>.hxContainerTitle</code> css class to achieve the container title style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <h4 class="hxContainerTitle">Container Title</h4>
+  </div>
+  {% code 'html' %}
+    <h4 class="hxContainerTitle">Container Title</h4>
+    <!-- or -->
+    <header class="hxContainerTitle">Container Title</header>
+  {% endcode %}
+</section>
+
+<section><!-- Label -->
+  <h2 class="hxSectionTitle" id="label">Label</h2>
+  <p>Use the <code>.hxLabel</code> css class to achieve the label text style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <label>Label</label>
+  </div>
+  {% code 'html' %}
+    <label>Label</label>
+    <!-- or -->
+    <span class="hxLabel">Label</span>
+  {% endcode %}
+</section>
+
+<section><!-- Subdued -->
+  <h2 class="hxSectionTitle" id="subdued">Subdued</h2>
+  <p>Use the <code>.hxSubdued</code> css class to achieve the subdued text style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <span class="hxSubdued">Subdued</span>
+  </div>
+  {% code 'html' %}
+    <div class="hxSubdued">Subdued</div>
+    <!-- or -->
+    <p class="hxSubdued">Subdued</p>
+    <!-- or -->
+    <span class="hxSubdued">Subdued</span>
+  {% endcode %}
+</section>
+
+<section><!-- Caption -->
+  <h2 class="hxSectionTitle" id="caption">Caption</h2>
+  <p>Use the <code>.hxCaption</code> css class to achieve the caption text style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p class="hxCaption">Caption</p>
+  </div>
+  {% code 'html' %}
+    <p class="hxCaption">Caption</p>
+    <!-- or -->
+    <figure>
+      <figcaption>Caption</figcaption>
+    </figure>
+    <!-- or -->
+    <table>
+      <caption>Caption</caption>
+    </table>
+  {% endcode %}
+</section>
+
+<section><!-- Sub-Body -->
+  <h2 class="hxSectionTitle" id="sub-body">Sub-Body</h2>
+  <p>Use the <code>.hxSubBody</code> css class to achieve the sub-body text style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p class="hxSubBody">Sub-Body</p>
+  </div>
+  {% code 'html' %}
+    <p class="hxSubBody">Sub-Body</p>
+    <!-- or -->
+    <small>Sub-Body</small>
+  {% endcode %}
 </section>
 
 <section><!-- Links -->
-  <h2 id="links">Links</h2>
+  <h2 class="hxSectionTitle" id="links">Links</h2>
 
   <!-- explanation goes here -->
 
@@ -172,5 +214,19 @@ assets:
       <a href="#" class="pseudo-active">Pressed Link</a>
     </p>
   </div>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="classes">Classes</h2>
+  <dl>
+    <dt><code>.hxPageTitle</code></dt>
+    <dt><code>.hxSectionTitle</code></dt>
+    <dt><code>.hxSubSectionTitle</code></dt>
+    <dt><code>.hxContainerTitle</code></dt>
+    <dt><code>.hxLabel</code></dt>
+    <dt><code>.hxSubdued</code></dt>
+    <dt><code>.hxCaption</code></dt>
+    <dt><code>.hxSubbody</code></dt>
+  </dl>
 </section>
 {% endblock %}
