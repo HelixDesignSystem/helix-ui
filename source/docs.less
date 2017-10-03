@@ -14,15 +14,13 @@
 */
 @import 'vars';
 
-@code-bg-color: @gray-900;
-
 body {
   background-color: @gray-25;
 }
 
 .demo {
   background-color: #fff;
-  border: 1px solid @code-bg-color;
+  border: 1px solid @gray-400;
   padding: 1rem;
 
   &:before {
@@ -80,25 +78,6 @@ body {
 .page-title {
   font-size: 3em;
   font-weight: 100;
-}
-
-// Code Highlighting
-.demo + .highlight {
-  //margin-top: 1rem;
-}
-
-pre.highlight {
-  border-radius: 0;
-  border: 0;
-  margin: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 0;
-  background-color: @code-bg-color;
-
-  code {
-    background-color: @code-bg-color;
-  }
 }
 
 main {
