@@ -5,13 +5,13 @@ assets:
 ---
 {% extends 'component.njk' %}
 {% block content %}
-<h2>12-column Grid</h2>
+<h2 class="hxSectionTitle">12-column Grid</h2>
 <p>
   The grid system requires loading <code>helix-ui.css</code> into your application.
 </p>
 
 <section>
-  <h3 id="bootstrap">Bootstrap Compatibility</h3>
+  <h3 class="hxSubSectionTitle" id="bootstrap">Bootstrap Compatibility</h3>
   <ol>
     <li>
       <b>Avoid using Bootstrap containers</b>
@@ -35,7 +35,7 @@ assets:
 </section>
 
 <section>
-  <h3 id="automatic">Automatic Columns</h3>
+  <h3 class="hxSubSectionTitle" id="automatic">Automatic Columns</h3>
   <div class="alert alert-info">
     <p>
       <b>NOTE:</b> Automatic columns are overridden by <a href="#responsive">responsive classes</a>.
@@ -92,7 +92,7 @@ assets:
 </section>
 
 <section>
-  <h3 id="explicit">Explicit Columns</h3>
+  <h3 class="hxSubSectionTitle" id="explicit">Explicit Columns</h3>
   <div class="alert alert-info">
     <p>
       If the sum of a row's columns exceeds 12, the columns will wrap.
@@ -182,7 +182,7 @@ assets:
 </section>
 
 <section>
-  <h3 id="nesting">Nesting Elements</h3>
+  <h3 class="hxSubSectionTitle" id="nesting">Nesting Elements</h3>
   <div class="alert alert-info">
     <p>
       <b>Do not apply row and column classes to the same element.</b>
@@ -245,7 +245,7 @@ assets:
 </section>
 
 <section>
-  <h3 id="offsetting">Offsetting Columns</h3>
+  <h3 class="hxSubSectionTitle" id="offsetting">Offsetting Columns</h3>
   <p>
     You can use the <code>.hxOffset-N</code> class (1 &le; N &le; 11)
     to offset your column from the start of the row.
@@ -326,7 +326,7 @@ assets:
 </section>
 
 <section>
-  <h3 id="reordering">Reordering Columns</h3>
+  <h3 class="hxSubSectionTitle" id="reordering">Reordering Columns</h3>
   <p>
     Use the <code>.hxOrder-N</code> classes (1 &le; N &le; 12) to
     reorder your columns.
@@ -368,7 +368,7 @@ assets:
 </section>
 
 <section>
-  <h3 id="responsive">Responsive Layout</h3>
+  <h3 class="hxSubSectionTitle" id="responsive">Responsive Layout</h3>
   <div class="alert alert-info">
     <p>
       Responsive column classes override <a href="#automatic">automatic columns</a>.
@@ -464,7 +464,7 @@ assets:
 </section>
 
 <section>
-  <h3 id="wrapping">Column Wrapping</h3>
+  <h3 class="hxSubSectionTitle" id="wrapping">Column Wrapping</h3>
   <p>
     The following example should arrange the content into 3 columns on small
     screens, 4 columns on medium screens, and 6 columns on all other sizes.
@@ -536,7 +536,7 @@ assets:
 </section>
 
 <section>
-  <h3 id="styling">Styling the Grid</h3>
+  <h3 class="hxSubSectionTitle" id="styling">Styling the Grid</h3>
   <div class="alert alert-info">
     <p>
       <b>Avoid styling rows and columns.</b>

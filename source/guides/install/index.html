@@ -5,7 +5,7 @@ cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackc
 {% extends 'fullpage.njk' %}
 {% block content %}
 <section>
-  <h2 id="assets">Assets</h2>
+  <h2 class="hxSectionTitle" id="assets">Assets</h2>
   <table class="table table-condensed">
     <thead>
       <tr>
@@ -70,22 +70,24 @@ cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackc
 </section>
 
 <section>
-  <h2 id="web-components">Web Components</h2>
+  <section>
+    <h2 class="hxSectionTitle" id="web-components">Web Components</h2>
 
-  <p>
-    To begin using the custom elements defined in HelixUI, you must first
-    ensure that the browser can load them.  To do so, copy and paste the
-    following to the bottom of the <code>&lt;head&gt;</code> in your applicaton.
-  </p>
-  {% code 'html' %}
-    <!-- ES5 Adapter -->
-    <script src="{{page.cdn}}/javascript/custom-elements-es5-adapter.js"></script>
-    <!-- Polyfill Loader -->
-    <script src="{{page.cdn}}/javascript/webcomponents-loader.js"></script>
-  {% endcode %}
+    <p>
+      To begin using the custom elements defined in HelixUI, you must first
+      ensure that the browser can load them.  To do so, copy and paste the
+      following to the bottom of the <code>&lt;head&gt;</code> in your applicaton.
+    </p>
+    {% code 'html' %}
+      <!-- ES5 Adapter -->
+      <script src="{{page.cdn}}/javascript/custom-elements-es5-adapter.js"></script>
+      <!-- Polyfill Loader -->
+      <script src="{{page.cdn}}/javascript/webcomponents-loader.js"></script>
+    {% endcode %}
+  </section>
 
   <section>
-    <h3>ES5 Adapter</h3>
+    <h3 class="hxSubSectionTitle">ES5 Adapter</h3>
     <div class="alert alert-warning">
       <b>DO NOT attempt to concatenate or compile the adapter into ES5.</b>
       This will break the adapter logic.
@@ -112,7 +114,7 @@ cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackc
   </section>
 
   <section>
-    <h3>Polyfill Loader</h3>
+    <h3 class="hxSubSectionTitle">Polyfill Loader</h3>
     <div class="alert alert-info">
       Load the polyfill loader <em>after</em> the ES5 Adapter in the
       <code>&lt;head&gt;</code>.
@@ -130,7 +132,7 @@ cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackc
   </section>
 
   <section>
-    <h3>HelixUI Components</h3>
+    <h3 class="hxSubSectionTitle">HelixUI Components</h3>
     <div class="alert alert-info">
       Load HelixUI components and your application JavaScript at the bottom
       of the <code>&lt;body&gt;</code> of your application.

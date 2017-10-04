@@ -2,15 +2,9 @@
 
 {% block layout %}
   <article>
-    <header class="page-header">
-      <span class="page-title">
-        {{ page.title }}
-        {% if page.subtitle %}
-          <br />
-          <small>{{ page.subtitle }}</small>
-        {% endif %}
-      </span>
-    </header>
+    <h1 class="hxPageTitle">
+      {{ page.title }}
+    </h1>
 
     <div class="hxRow">
       <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
