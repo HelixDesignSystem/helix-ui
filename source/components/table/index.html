@@ -1,7 +1,7 @@
 ---
 title: Table
 assets:
-  - bootstrap.helix.css
+  - helix-ui.css
 ---
 {% extends 'component.njk' %}
 {% block content %}
@@ -13,7 +13,7 @@ assets:
   </p>
 
   <div class="demo">
-    <table class="table">
+    <table>
       <caption>Most popular Twitter accounts</caption>
       <thead>
         <tr>
@@ -73,14 +73,12 @@ assets:
           </td>
         </tr>
       </tbody>
-      <!--
       <tfoot>
         <tr>
           <td colspan="5" class="text-right">Total</td>
           <td class="text-right">289,119,640</td>
         </tr>
       </tfoot>
-      -->
     </table>
   </div>
 </section>
@@ -91,7 +89,7 @@ assets:
   <!-- explanation goes here -->
 
   <div class="demo">
-    <table class="table table-condensed">
+    <table class="table--condensed">
       <caption>Most popular Twitter accounts</caption>
       <thead>
         <tr>
@@ -151,14 +149,12 @@ assets:
           </td>
         </tr>
       </tbody>
-      <!--
       <tfoot>
         <tr>
           <td colspan="5" class="text-right">Total</td>
           <td class="text-right">289,119,640</td>
         </tr>
       </tfoot>
-      -->
     </table>
   </div>
 </section>
@@ -169,7 +165,7 @@ assets:
   <!-- explanation goes here -->
 
   <div class="demo">
-    <table class="table table-bordered">
+    <table class="table--bordered">
       <caption>Most popular Twitter accounts</caption>
       <thead>
         <tr>
@@ -229,14 +225,12 @@ assets:
           </td>
         </tr>
       </tbody>
-      <!--
       <tfoot>
         <tr>
           <td colspan="5" class="text-right">Total</td>
           <td class="text-right">289,119,640</td>
         </tr>
       </tfoot>
-      -->
     </table>
   </div>
 </section>
@@ -247,7 +241,7 @@ assets:
   <!-- explanation goes here -->
 
   <div class="demo">
-    <table class="table table-hover">
+    <table class="table--hover">
       <caption>Most popular Twitter accounts</caption>
       <thead>
         <tr>
@@ -307,14 +301,12 @@ assets:
           </td>
         </tr>
       </tbody>
-      <!--
       <tfoot>
         <tr>
           <td colspan="5">Total</td>
           <td class="text-right">289,119,640</td>
         </tr>
       </tfoot>
-      -->
     </table>
   </div>
 </section>
@@ -325,7 +317,7 @@ assets:
   <!-- explanation goes here -->
 
   <div class="demo">
-    <table class="table">
+    <table>
       <thead>
         <tr>
           <th>Class</th>
@@ -340,6 +332,10 @@ assets:
         <tr class="active">
           <td><code>.active</code></td>
           <td>Applies the hover color to a particular row or cell.</td>
+        </tr>
+        <tr class="selected">
+          <td><code>.selected</code></td>
+          <td>Indicates a row that has a selected input or that has been used as navigation</td>
         </tr>
         <tr class="success">
           <td><code>.success</code></td>
