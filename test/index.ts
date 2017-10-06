@@ -35,6 +35,7 @@ describe("helix", () => {
                 browser: "chrome",
                 screenshotsDir: "screenshots",
                 throwNoBaseline: false,
+                throwScreenshotMismatch: false,
                 threshold: 0.1,
                 useDirect: true,
             };
@@ -62,26 +63,17 @@ describe("helix", () => {
         });
 
         it("nav", async () => {
-            const error = await snap("{browserName}/nav", $(".hxApp__nav")).catch(err => err);
-            if (!(error instanceof ScreenshotMismatchException)) {
-                throw new Error("Something went wrong.");
-            }
+            await snap("{browserName}/nav", $(".hxApp__nav"));
         });
 
         it("guides", async () => {
             await $x("//nav/hx-reveal//header", "Guides").click();
-            const error = await snap("{browserName}/nav/guides", $(".hxApp__nav")).catch(err => err);;
-            if (!(error instanceof ScreenshotMismatchException)) {
-                throw new Error("Something went wrong.");
-            }
+            await snap("{browserName}/nav/guides", $(".hxApp__nav"));
         });
 
         it("components", async () => {
             await $x("//nav/hx-reveal//header", "Components").click();
-            const error = await snap("{browserName}/nav/componenets", $(".hxApp__nav")).catch(err => err);
-            if (!(error instanceof ScreenshotMismatchException)) {
-                throw new Error("Something went wrong.");
-            }
+            await snap("{browserName}/nav/componenets", $(".hxApp__nav"));
         });
 
         after(async () => {
