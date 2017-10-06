@@ -77,7 +77,7 @@ describe("helix", () => {
         });
     });
 
-    describe("firefox", () => {
+    describe.skip("firefox", () => {
         before(async () => {
             const config: IConfig = {
                 browser: "firefox",
