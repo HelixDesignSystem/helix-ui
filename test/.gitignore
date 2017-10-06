@@ -1,5 +1,5 @@
-index.js
-screenshots
-bin/.github-token
+.github-token
 bin/*.js
 built/
+index.js
+screenshots

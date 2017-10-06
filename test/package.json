@@ -20,12 +20,12 @@
   },
   "scripts": {
     "build": "tsc",
-    "clean": "clean:js && clean:screenshots",
-    "clean:screenshots": "rm -r screenshots",
-    "clean:js": "rm index.js",
+    "clean": "npm run clean:js && npm run clean:screenshots",
+    "clean:screenshots": "rm -rf screenshots",
+    "clean:js": "rm -rf built/",
     "lint": "tslint index.ts",
     "test": "npm run build && mocha --timeout 5000 built/index.js",
-    "visreg": "npm run build && node ./built/bin/visreg.js",
+    "visreg": "npm run clean && npm run build && node ./built/bin/visreg.js",
     "webdriver": "npm run webdriver:update && npm run webdriver:start",
     "webdriver:update": "scripts/webdriver-update",
     "webdriver:start": "scripts/webdriver-start"
