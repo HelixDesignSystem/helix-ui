@@ -59,17 +59,17 @@ describe("helix", () => {
         });
 
         it("nav", async () => {
-            await snap("{browserName}/nav", $(".app-nav-container"));
+            await snap("{browserName}/nav", $(".hxApp__nav"));
         });
 
         it("guides", async () => {
             await $x("//nav/hx-reveal//header", "Guides").click();
-            await snap("{browserName}/nav/guides", $(".app-nav-container"));
+            await snap("{browserName}/nav/guides", $(".hxApp__nav"));
         });
 
         it("components", async () => {
             await $x("//nav/hx-reveal//header", "Components").click();
-            await snap("{browserName}/nav/componenets", $(".app-nav-container"));
+            await snap("{browserName}/nav/componenets", $(".hxApp__nav"));
         });
 
         after(async () => {
@@ -110,17 +110,17 @@ describe("helix", () => {
         });
 
         it("nav", async () => {
-            await snap("{browserName}/nav", $(".app-nav-container"));
+            await snap("{browserName}/nav", $("hxApp__nav"));
         });
 
         it("guides", async () => {
             await $x("//nav/hx-reveal//header", "Guides").click();
-            await snap("{browserName}/nav/guides", $(".app-nav-container"));
+            await snap("{browserName}/nav/guides", $("hxApp__nav"));
         });
 
         it("components", async () => {
             await $x("//nav/hx-reveal//header", "Components").click();
-            await snap("{browserName}/nav/componenets", $(".app-nav-container"));
+            await snap("{browserName}/nav/componenets", $("hxApp__nav"));
         });
 
         after(async () => {
