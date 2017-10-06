@@ -64,182 +64,196 @@ assets:
     Below are some examples of the syntax highlighting in action.
   </p>
 
-  <h3>HTML</h3>
-  {% code 'html' %}
-    <script type="text/javascript" src="path/to/script.js"></script>
-    <link rel="stylesheet" href="path/to/style.css" />
-    <!-- HTML Comment -->
-    <form method="POST" action="submit.html">
-      <fieldset>
-        <legend>Login</legend>
+  <figure>
+    <figcaption>HTML Syntax Highlighting Example</figcaption>
+    {% code 'html' %}
+      <script type="text/javascript" src="path/to/script.js"></script>
+      <link rel="stylesheet" href="path/to/style.css" />
+      <!-- HTML Comment -->
+      <form method="POST" action="submit.html">
+        <fieldset>
+          <legend>Login</legend>
+          <p>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" />
+          </p>
+          <p>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" />
+          </p>
+        </fieldset>
         <p>
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" />
+          <button type="submit">Log In</button>
         </p>
         <p>
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" />
+          <img src="path/to/file.png" alt="pretty picture" />
         </p>
-      </fieldset>
-      <p>
-        <button type="submit">Log In</button>
-      </p>
-      <p>
-        <img src="path/to/file.png" alt="pretty picture" />
-      </p>
-    </form>
-  {% endcode %}
+      </form>
+    {% endcode %}
+  </figure>
 
-  <h3>JavaScript</h3>
-  {% code 'javascript' %}
-    /**
-     * @description Multi-line comment
-     * @returns {String}
-     */
-    // Inline Comment
-    var legacyVariable;
-    const REGEXP = /h(iy|ell)o*/ig;
-    const array = [ null, true, false ];
-    const obj = {
-      number: 42,
-      integer: 42.0,
-      s_string: 'single quotes',
-      d_string: "double quotes"
-    };
-    function greet (name: 'World') {
-      if (foo !== 'bar') {
-        return 'nope';
-      } else if (foo || bar) {
-        return 'maybe';
-      } else if (foo && bar) {
-        return 'wut';
+  <figure>
+    <figcaption>JavaScript Syntax Highlighting Example</figcaption>
+    {% code 'javascript' %}
+      /**
+       * @description Multi-line comment
+       * @returns {String}
+       */
+      // Inline Comment
+      var legacyVariable;
+      const REGEXP = /h(iy|ell)o*/ig;
+      const array = [ null, true, false ];
+      const obj = {
+        number: 42,
+        integer: 42.0,
+        s_string: 'single quotes',
+        d_string: "double quotes"
+      };
+      function greet (name: 'World') {
+        if (foo !== 'bar') {
+          return 'nope';
+        } else if (foo || bar) {
+          return 'maybe';
+        } else if (foo && bar) {
+          return 'wut';
+        }
+        return `Hello ${name}!`;
       }
-      return `Hello ${name}!`;
-    }
-  {% endcode %}
+    {% endcode %}
+  </figure>
 
-  <h3>CSS</h3>
-  {% code 'css' %}
-    /* CSS Comment */
-    @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,700,700i');
-    :root {
-      --border-color: #bada55;
-    }
-    html {
-      box-sizing: border-box;
-    }
-    *,
-    *::before,
-    *::after {
-      box-sizing: inherit;
-    }
-    #navigation {
-      border: 1px solid var(--border-color);
-      padding: 1em;
-      margin: 0;
-      background-image: linear-gradient(90deg, rgba(0, 0, 0, 0,5), white);
-    }
-    input[type="checkbox"]:checked {
-      /* ... */
-    }
-    .text-center {
-      text-align: center !important;
-    }
-  {% endcode %}
+  <figure>
+    <figcaption>CSS Syntax Highlighting Example</figcaption>
+    {% code 'css' %}
+      /* CSS Comment */
+      @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,700,700i');
+      :root {
+        --border-color: #bada55;
+      }
+      html {
+        box-sizing: border-box;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      #navigation {
+        border: 1px solid var(--border-color);
+        padding: 1em;
+        margin: 0;
+        background-image: linear-gradient(90deg, rgba(0, 0, 0, 0,5), white);
+      }
+      input[type="checkbox"]:checked {
+        /* ... */
+      }
+      .text-center {
+        text-align: center !important;
+      }
+    {% endcode %}
+  </figure>
 
-  <h3>Diff</h3>
-  {% code 'diff' %}
-    Index: languages/ini.js
-    ===================================================================
-    --- languages/ini.js    (revision 199)
-    +++ languages/ini.js    (revision 200)
-    @@ -1,8 +1,7 @@
-     hljs.LANGUAGES.ini =
-     {
-       case_insensitive: true,
-    -  defaultMode:
-    -  {
-    +  defaultMode: {
-         contains: ['comment', 'title', 'setting'],
-         illegal: '[^\\s]'
-       },
+  <figure>
+    <figcaption>diff Syntax Highlighting Example</figcaption>
+    {% code 'diff' %}
+      Index: languages/ini.js
+      ===================================================================
+      --- languages/ini.js    (revision 199)
+      +++ languages/ini.js    (revision 200)
+      @@ -1,8 +1,7 @@
+       hljs.LANGUAGES.ini =
+       {
+         case_insensitive: true,
+      -  defaultMode:
+      -  {
+      +  defaultMode: {
+           contains: ['comment', 'title', 'setting'],
+           illegal: '[^\\s]'
+         },
 
-    *** /path/to/original timestamp
-    --- /path/to/new      timestamp
-    ***************
-    *** 1,3 ****
-    --- 1,9 ----
-    + This is an important
-    + notice! It should
-    + therefore be located at
-    + the beginning of this
-    + document!
+      *** /path/to/original timestamp
+      --- /path/to/new      timestamp
+      ***************
+      *** 1,3 ****
+      --- 1,9 ----
+      + This is an important
+      + notice! It should
+      + therefore be located at
+      + the beginning of this
+      + document!
 
-    ! compress the size of the
-    ! changes.
+      ! compress the size of the
+      ! changes.
 
-      It is important to spell
-  {% endcode %}
+        It is important to spell
+    {% endcode %}
+  </figure>
 
-  <h3>bash</h3>
-  {% code 'bash' %}
-    #!/bin/bash
+  <figure>
+    <figcaption>bash Syntax Highlighting Example</figcaption>
+    {% code 'bash' %}
+      #!/bin/bash
 
-    ###### CONFIG
-    ACCEPTED_HOSTS="/root/.hag_accepted.conf"
-    BE_VERBOSE=false
+      ###### CONFIG
+      ACCEPTED_HOSTS="/root/.hag_accepted.conf"
+      BE_VERBOSE=false
 
-    if [ "$UID" -ne 0 ]
-    then
-      echo "Superuser rights required"
-      exit 2
-    fi
+      if [ "$UID" -ne 0 ]
+      then
+        echo "Superuser rights required"
+        exit 2
+      fi
 
-    genApacheConf(){
-      echo -e "# Host ${HOME_DIR}$1/$2 :"
-    }
-  {% endcode %}
+      genApacheConf(){
+        echo -e "# Host ${HOME_DIR}$1/$2 :"
+      }
+    {% endcode %}
+  </figure>
 
-  <h3>INI</h3>
-  {% code 'ini' %}
-    ; boilerplate
-    [package]
-    name = "some_name"
-    authors = ["Author"]
-    description = "This is \
-    a description"
+  <figure>
+    <figcaption>.ini Syntax Highlighting Example</figcaption>
+    {% code 'ini' %}
+      ; boilerplate
+      [package]
+      name = "some_name"
+      authors = ["Author"]
+      description = "This is \
+      a description"
 
-    [[lib]]
-    name = ${NAME}
-    default = True
-    auto = no
-    counter = 1_000
-  {% endcode %}
+      [[lib]]
+      name = ${NAME}
+      default = True
+      auto = no
+      counter = 1_000
+    {% endcode %}
+  </figure>
 
-  <h3>Markdown</h3>
-  {% code 'markdown' %}
-    # hello world
+  <figure>
+    <figcaption>Markdown Syntax Highlighting Example</figcaption>
+    {% code 'markdown' %}
+      # hello world
 
-    you can write text [with links](http://example.com) inline or [link references][1].
+      you can write text [with links](http://example.com) inline or [link references][1].
 
-    * one _thing_ has *em*phasis
-    * two __things__ are **bold**
+      * one _thing_ has *em*phasis
+      * two __things__ are **bold**
 
-    [1]: http://example.com
+      [1]: http://example.com
 
-    ---
+      ---
 
-    hello world
-    ===========
+      hello world
+      ===========
 
-    <this_is inline="xml"></this_is>
+      <this_is inline="xml"></this_is>
 
-    > markdown is so cool
+      > markdown is so cool
 
-        so are code segments
+          so are code segments
 
-    1. one thing (yeah!)
-    2. two thing `i can write code`, and `more` wipee!
-  {% endcode %}
+      1. one thing (yeah!)
+      2. two thing `i can write code`, and `more` wipee!
+    {% endcode %}
+  </figure>
 </section>
 {% endblock %}
