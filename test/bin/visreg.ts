@@ -191,7 +191,7 @@ async function visreg(
         throw new Error("Malformed baseline. Try again having a clean working state, and double check your branches..");
     }
 
-    cmd(`cd ${config.screenshotsDirectory}; git checkout -b anon-${new Date().valueOf()}; cd -; npm test`);
+    cmd(`cd ${config.screenshotsDirectory}; git checkout -b anon-${new Date().valueOf()}; cd -; git checkout -; npm test`);
     const afterCommitData = commitScreenshots().toString();
     const afterCommitMatch = afterCommitData.match(hasCommitRegex);
     const afterCommit = afterCommitMatch && afterCommitMatch[1];
