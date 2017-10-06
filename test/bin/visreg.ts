@@ -20,10 +20,10 @@ async function visreg(
 
     const branch = await input("branch", options);
 
-    const f = ".github-token";
+    const f = "./.github-token";
 
-    const storedToken = fs.existsSync(f) && fs.readFileSync("./.github-token");
-    const githubToken = (storedToken || (await password("github PAT")));
+    const storedToken: any = fs.existsSync(f) && fs.readFileSync(f);
+    const githubToken = (storedToken || (await password("github PAT: ")));
     if (!(/[a-f0-9]{40}/).test(githubToken)) {
         opn("https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/");
         throw new Error("Invalid Token");

@@ -18,7 +18,7 @@
         "paths": {
             "*": ["types/*"]
         },
-        "outDir": "."
+        "outDir": "./built"
     },
     "include": [
         "index.ts",
