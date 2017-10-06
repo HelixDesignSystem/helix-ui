@@ -1,6 +1,9 @@
-import * as fs from "fs";
-import * as url from "url";
+import * as _ from "lodash";
 import * as child_process from "child_process";
+import * as fs from "fs";
+import * as https from "https";
+import * as path from "path";
+import * as url from "url";
 
 import {
     IOptions,
@@ -10,6 +13,25 @@ import {
 
 import * as opn from "opn"
 
+interface IConfig {
+    githubEmail: string,
+    githubName: string,
+    repo: string,
+    screenshotsDirectory: string,
+    username: string,
+};
+
+const config: IConfig = {
+    githubEmail: "andrew.yurisich@rackspace.com",
+    githubName: "andr6283",
+    repo: "catalog-helix-ui-0",
+    screenshotsDirectory: "screenshots",
+    username: "andr6283",
+};
+
+function cmd(command: string) {
+    child_process.execSync(`${command}`, { stdio: [0, 1, 2] })
+};
 
 function buildApiUrl(repoUrl: url.Url, resource: string) {
     if (repoUrl.hostname !== "github.com") {
@@ -18,6 +40,19 @@ function buildApiUrl(repoUrl: url.Url, resource: string) {
     }
 
     return url.parse(`https://api.${repoUrl.hostname}${resource}`);
+};
+
+function commitScreenshots() {
+    let cmds = [
+        `cd ${config.screenshotsDirectory}`,
+        `git add -A`,
+        `git status -sb`,
+        `git commit -m "Baseline"`,
+        `cd -`
+    ];
+    try {
+        cmd(cmds.join('; '));
+    } catch (e) { /* Nothing to commit */ }
 };
 
 async function visreg(
@@ -39,12 +74,8 @@ async function visreg(
         throw new Error("Invalid Token");
     }
     fs.writeFileSync(f, token);
-    // get git info to find their anonymous repo
-    const githubUser = "andr6283";
-    const anonymousRepo = "catalog-helix-ui-0";
-    const repoUrl = url.parse(`https://github.rackspace.com/${githubUser}/${anonymousRepo}`);
 
-    // console.log(`Generating baseline from ${branch}...`);
+    const repoUrl = url.parse(`https://github.rackspace.com/${config.githubName}/${config.repo}`);
 
     function safeExecSync(command: string) {
         try {
@@ -63,20 +94,85 @@ async function visreg(
             '-H "User-Agent: snappit"'
         ];
 
-        return flags.join(' ');
+        return flags.join(" ");
     };
 
     // check github creds here by asking github api for all repos for user
     function repositoryExists(repoUrl: url.Url) {
         let u =  buildApiUrl(repoUrl, `/repos${repoUrl.pathname}`);
-        let output = safeExecSync(`curl ${buildCurlFlags()} ${u.href} 2>/dev/null`).toString('utf-8');
+        let output = safeExecSync(`curl ${buildCurlFlags()} ${u.href} 2>/dev/null`).toString("utf-8");
         let repositoryInfo = JSON.parse(output);
-        return repositoryInfo.message !== 'Not Found';
+        return repositoryInfo.message !== "Not Found";
     };
 
+    const createRepository = (repoUrl: url.Url) => {
+        let u =  buildApiUrl(repoUrl, `/user/repos`);
+        let data = {
+            name: _.last(repoUrl.path.split("/")),
+            auto_init: true,
+            private: false,
+        };
+
+        let options = {
+            hostname: u.hostname,
+            path: u.path,
+            method: "POST",
+            headers: {
+                "User-Agent": "snappit",
+                "Content-Type": "application/json",
+                "Authorization": "token " + token
+            }
+        };
+
+        return new Promise((resolve, reject) => {
+            let req = https.request(options, res => {
+                let data: string[];
+                data = [];
+                res.on("data", d => { data.push(d.toString())});
+                if (res.statusCode !== 201) {
+                    res.on("end", () => {
+                        const msg = `(HTTP ${res.statusCode}) Something went wrong while creating the repository ${repoUrl.href}:\n${data.join("")}`;
+                        throw new Error(msg);
+                    });
+                }
+                res.on("end", () => {
+                    if (!repositoryExists(repoUrl)) {
+                        do {
+                            setTimeout(() => {
+                                console.log(`Waiting on newly created repository ${repoUrl.href} to appear...`)
+                            }, 1000);
+                        } while (!repositoryExists(repoUrl))
+                    }
+                    resolve(`Created a new repository at ${repoUrl.href}`);
+                });
+            });
+
+            req.write(JSON.stringify(data));
+
+            req.end();
+        });
+
+    };
+
+    function cloneRepo(repoUrl: url.Url) {
+        let cloneUrl = `https://${token}@${repoUrl.host}${repoUrl.path}.git`;
+        safeExecSync(`git clone ${cloneUrl} screenshots/ > /dev/null`)
+
+        console.log(`Cloned a screenshots project into "${path.resolve(config.screenshotsDirectory)}"`);
+    };
+
+
     if (!repositoryExists(repoUrl)) {
-        throw new Error("No repo");
+        await createRepository(repoUrl);
+        // const master = "174fc2f2aef371f0efc9bd1db27cf1ba3b0eec1f";
+        // opn(`${repoUrl.href}/commit/${master}`);
     }
+
+    console.log("Creating a new baseline...");
+    cmd(`cd ${config.screenshotsDirectory}; npm run visreg`);
+    commitScreenshots();
+    cmd(`cd ${config.screenshotsDirectory}; git checkout -b ${branch}; npm run visreg`);
+    commitScreenshots();
 
 }
 

@@ -25,7 +25,7 @@
     "clean:js": "rm -rf built/",
     "lint": "tslint index.ts",
     "test": "npm run build && mocha --timeout 5000 built/index.js",
-    "visreg": "npm run clean && npm run build && node ./built/bin/visreg.js",
+    "visreg": "npm run build && npm run clean && npm run build && node ./built/bin/visreg.js",
     "webdriver": "npm run webdriver:update && npm run webdriver:start",
     "webdriver:update": "scripts/webdriver-update",
     "webdriver:start": "scripts/webdriver-start"
