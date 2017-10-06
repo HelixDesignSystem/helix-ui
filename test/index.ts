@@ -31,7 +31,7 @@ describe("helix", () => {
             const config: IConfig = {
                 browser: "chrome",
                 screenshotsDir: "screenshots",
-                throwNoBaseline: true,
+                throwNoBaseline: false,
                 threshold: 0.1,
                 useDirect: true,
             };
@@ -82,7 +82,7 @@ describe("helix", () => {
             const config: IConfig = {
                 browser: "firefox",
                 screenshotsDir: "screenshots",
-                throwNoBaseline: true,
+                throwNoBaseline: false,
                 threshold: 0.1,
                 useDirect: true,
             };

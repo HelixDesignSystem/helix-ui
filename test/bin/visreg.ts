@@ -42,19 +42,6 @@ function buildApiUrl(repoUrl: url.Url, resource: string) {
     return url.parse(`https://api.${repoUrl.hostname}${resource}`);
 };
 
-function commitScreenshots() {
-    let cmds = [
-        `cd ${config.screenshotsDirectory}`,
-        `git add -A`,
-        `git status -sb`,
-        `git commit -m "Baseline"`,
-        `cd -`
-    ];
-    try {
-        cmd(cmds.join('; '));
-    } catch (e) { /* Nothing to commit */ }
-};
-
 async function visreg(
 
 ): Promise<void> {
@@ -161,6 +148,17 @@ async function visreg(
         console.log(`Cloned a screenshots project into "${path.resolve(config.screenshotsDirectory)}"`);
     };
 
+    function commitScreenshots() {
+        let cmds = [
+            `cd ${config.screenshotsDirectory}`,
+            `git add -A`,
+            `git status -sb`,
+            `git commit -m "Baseline"`,
+            `cd -`
+        ];
+        return safeExecSync(cmds.join('; '));
+
+    };
 
     if (!repositoryExists(repoUrl)) {
         await createRepository(repoUrl);
@@ -168,12 +166,15 @@ async function visreg(
         // opn(`${repoUrl.href}/commit/${master}`);
     }
 
+    cloneRepo(repoUrl);
     console.log("Creating a new baseline...");
-    cmd(`cd ${config.screenshotsDirectory}; npm run visreg`);
-    commitScreenshots();
-    cmd(`cd ${config.screenshotsDirectory}; git checkout -b ${branch}; npm run visreg`);
-    commitScreenshots();
+    cmd(`git checkout ${branch}; npm test`);
+    const baseCommit = commitScreenshots().toString().match(/\[master ([0-9a-f]{7})] Baseline/)[1];
+    cmd(`cd ${config.screenshotsDirectory}; git checkout -b anon-${new Date().valueOf()}; cd -; npm test`);
+    const afterCommit = commitScreenshots();
 
+    console.log(baseCommit);
+    console.log(afterCommit.toString());
 }
 
 visreg()
