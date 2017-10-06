@@ -33,6 +33,7 @@ window.addEventListener('WebComponentsReady', function () {
       'kbd-space': require('./_images/kbd-space.svg'),
       'kbd-tab': require('./_images/kbd-tab.svg'),
       'lock': require('./_images/lock.svg'),
+      'minus': require('./_images/minus.svg'),
       'phone': require('./_images/phone.svg'),
       'plus-or-minus': require('./_images/plus-or-minus.svg'),
       'search': require('./_images/search.svg'),

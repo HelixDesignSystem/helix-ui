@@ -6,6 +6,7 @@ components:
   Blockquote: blockquote
   Breadcrumb: breadcrumb
   Button: button
+  Checkbox: checkbox
   Code: code
   Dropdown: dropdown
   Form: form
