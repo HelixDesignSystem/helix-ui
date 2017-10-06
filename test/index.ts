@@ -3,7 +3,10 @@ import * as _ from "lodash";
 import {By, ISize, ThenableWebDriver, WebDriver, WebElementPromise} from "selenium-webdriver";
 
 import {$, snap, Snappit, IConfig} from "snappit-visual-regression";
-import {ScreenshotNotPresentException} from "snappit-visual-regression";
+import {
+    ScreenshotMismatchException,
+    ScreenshotNotPresentException
+} from "snappit-visual-regression";
 
 async function setViewportSize (
     driver: ThenableWebDriver,
@@ -59,17 +62,26 @@ describe("helix", () => {
         });
 
         it("nav", async () => {
-            await snap("{browserName}/nav", $(".hxApp__nav"));
+            const error = await snap("{browserName}/nav", $(".hxApp__nav")).catch(err => err);
+            if (!(error instanceof ScreenshotMismatchException)) {
+                throw new Error("Something went wrong.");
+            }
         });
 
         it("guides", async () => {
             await $x("//nav/hx-reveal//header", "Guides").click();
-            await snap("{browserName}/nav/guides", $(".hxApp__nav"));
+            const error = await snap("{browserName}/nav/guides", $(".hxApp__nav")).catch(err => err);;
+            if (!(error instanceof ScreenshotMismatchException)) {
+                throw new Error("Something went wrong.");
+            }
         });
 
         it("components", async () => {
             await $x("//nav/hx-reveal//header", "Components").click();
-            await snap("{browserName}/nav/componenets", $(".hxApp__nav"));
+            const error = await snap("{browserName}/nav/componenets", $(".hxApp__nav")).catch(err => err);
+            if (!(error instanceof ScreenshotMismatchException)) {
+                throw new Error("Something went wrong.");
+            }
         });
 
         after(async () => {
