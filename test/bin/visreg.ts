@@ -205,13 +205,14 @@ async function visreg(
     }
 
     if (unknownError) {
-        throw new Error("Something has gone very wrong");
+        throw new Error("Something has gone very wrong " + afterCommitData);
     }
+
+    console.log(baseCommit);
+    console.log(afterCommit);
 
     pushCommit(baseCommit);
     pushCommit(afterCommit);
-    console.log(baseCommit);
-    console.log(afterCommit);
 }
 
 visreg()
