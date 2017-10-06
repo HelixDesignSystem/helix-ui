@@ -183,7 +183,7 @@ async function visreg(
     console.log("Creating a new baseline...");
     cmd(`git checkout ${branch}; npm test`);
 
-    const hasCommitRegex = /\[master ([0-9a-f]{7})] Baseline/;
+    const hasCommitRegex = /\[.*([0-9a-f]{7})] Baseline/;
     const baseCommitMatch = commitScreenshots().toString().match(hasCommitRegex);
     const baseCommit = baseCommitMatch && baseCommitMatch[1];
 
@@ -208,11 +208,10 @@ async function visreg(
         throw new Error("Something has gone very wrong " + afterCommitData);
     }
 
-    console.log(baseCommit);
-    console.log(afterCommit);
-
     pushCommit(baseCommit);
     pushCommit(afterCommit);
+
+    opn(`${repoUrl.href}/compare/${baseCommit}...${afterCommit}`);
 }
 
 visreg()
