@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Installing HelixUI | HelixUI</title>
+  <title>Installing HelixUI - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -15,7 +15,6 @@
     crossorigin="anonymous">
 
   <link rel="stylesheet" href="bootstrap.helix.css">
-  <link rel="stylesheet" href="vendor/hljs.agate.css">
   <link rel="stylesheet" href="helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
@@ -36,7 +35,7 @@
   <div class="hxApp__container">
     <main class="hxApp__content">
 <section>
-  <h2 id="assets">Assets</h2>
+  <h2 class="hxSectionTitle" id="assets">Assets</h2>
   <table class="table table-condensed">
     <thead>
       <tr>
@@ -101,19 +100,22 @@
 </section>
 
 <section>
-  <h2 id="web-components">Web Components</h2>
-
-  <p>
-    To begin using the custom elements defined in HelixUI, you must first
-    ensure that the browser can load them.  To do so, copy and paste the
-    following to the bottom of the <code>&lt;head&gt;</code> in your applicaton.
-  </p>
-<pre class="highlight"><code class="hljs">  <span class="hljs-comment">&lt;!-- ES5 Adapter --&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/javascript/custom-elements-es5-adapter.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-  <span class="hljs-comment">&lt;!-- Polyfill Loader --&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/javascript/webcomponents-loader.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
   <section>
-    <h3>ES5 Adapter</h3>
+    <h2 class="hxSectionTitle" id="web-components">Web Components</h2>
+
+    <p>
+      To begin using the custom elements defined in HelixUI, you must first
+      ensure that the browser can load them.  To do so, copy and paste the
+      following to the bottom of the <code>&lt;head&gt;</code> in your applicaton.
+    </p>
+<pre><code class="html"><span class="hljs-comment">&lt;!-- ES5 Adapter --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/javascript/custom-elements-es5-adapter.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- Polyfill Loader --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/javascript/webcomponents-loader.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>  </section>
+
+  <section>
+    <h3 class="hxSubSectionTitle">ES5 Adapter</h3>
     <div class="alert alert-warning">
       <b>DO NOT attempt to concatenate or compile the adapter into ES5.</b>
       This will break the adapter logic.
@@ -140,7 +142,7 @@
   </section>
 
   <section>
-    <h3>Polyfill Loader</h3>
+    <h3 class="hxSubSectionTitle">Polyfill Loader</h3>
     <div class="alert alert-info">
       Load the polyfill loader <em>after</em> the ES5 Adapter in the
       <code>&lt;head&gt;</code>.
@@ -158,7 +160,7 @@
   </section>
 
   <section>
-    <h3>HelixUI Components</h3>
+    <h3 class="hxSubSectionTitle">HelixUI Components</h3>
     <div class="alert alert-info">
       Load HelixUI components and your application JavaScript at the bottom
       of the <code>&lt;body&gt;</code> of your application.

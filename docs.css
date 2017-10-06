@@ -16,7 +16,7 @@ body {
 }
 .demo {
   background-color: #fff;
-  border: 1px solid #424242;
+  border: 1px solid #d8d8d8;
   padding: 1rem;
 }
 .demo:before {
@@ -59,27 +59,56 @@ body {
   margin-top: 1em;
   font-size: 0.875em;
 }
-.page-header {
-  margin-top: 1em;
-}
-.page-title {
-  font-size: 3em;
-  font-weight: 100;
-}
-pre.highlight {
-  border-radius: 0;
-  border: 0;
-  margin: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 0;
-  background-color: #424242;
-}
-pre.highlight code {
-  background-color: #424242;
-}
 main section + section {
   margin-top: 3rem;
+}
+.hxBtn.pseudo-hover {
+  background-color: #16b9d4;
+  border-color: transparent;
+  color: #ffffff;
+}
+.hxBtn.pseudo-active {
+  background-color: #0e94a6;
+  border-color: transparent;
+  color: #ffffff;
+}
+.hxBtn.pseudo-focus {
+  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);
+  outline: none;
+}
+.hxBtn--link.pseudo-hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: #16b9d4;
+}
+.hxBtn--link.pseudo-active {
+  background-color: transparent;
+  border-color: transparent;
+  color: #0e94a6;
+}
+.hxBtn.pseudo-hover {
+  pointer-events: none;
+}
+.hxBtn.pseudo-active {
+  pointer-events: none;
+}
+.hxBtn.pseudo-focus {
+  pointer-events: none;
+}
+.hxBtn--primary.pseudo-hover {
+  pointer-events: none;
+}
+.hxBtn--primary.pseudo-active {
+  pointer-events: none;
+}
+.hxBtn--primary.pseudo-focus {
+  pointer-events: none;
+}
+.hxBtn--link.pseudo-hover {
+  pointer-events: none;
+}
+.hxBtn--link.pseudo-active {
+  pointer-events: none;
 }
 .dropdown-example .dropdown-menu {
   display: block;
