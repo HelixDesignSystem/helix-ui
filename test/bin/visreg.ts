@@ -23,14 +23,16 @@ async function visreg(
     const f = "./.github-token";
 
     const storedToken: any = fs.existsSync(f) && fs.readFileSync(f);
+    debugger;
     const githubToken = (storedToken || (await password("github PAT: ")));
     if (!(/[a-f0-9]{40}/).test(githubToken)) {
         opn("https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/");
         throw new Error("Invalid Token");
     }
     // save it to .github-token if it doesn't already exist
+
 }
 
 visreg()
     .then(() => { console.log("Goodbye!"); process.exit(0); })
-    .catch(err => { console.log(err.message); process.exit(1); });
+    .catch(err => { console.log(err.message); process.exit(0); });
