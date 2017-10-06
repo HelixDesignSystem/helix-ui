@@ -160,6 +160,19 @@ async function visreg(
 
     };
 
+    function pushCommit(commit: string) {
+        let pushUrl = `https://${token}@${repoUrl.hostname}/${config.githubName}/${config.repo}.git`;
+
+        let sensitiveCommand = [
+            `cd ${config.screenshotsDirectory}`,
+            `git push ${pushUrl} ${commit}:master  > /dev/null 2>&1`,
+            `cd -`
+        ].join('; ');
+
+        safeExecSync(sensitiveCommand);
+    };
+
+
     if (!repositoryExists(repoUrl)) {
         await createRepository(repoUrl);
         // const master = "174fc2f2aef371f0efc9bd1db27cf1ba3b0eec1f";
@@ -169,12 +182,36 @@ async function visreg(
     cloneRepo(repoUrl);
     console.log("Creating a new baseline...");
     cmd(`git checkout ${branch}; npm test`);
-    const baseCommit = commitScreenshots().toString().match(/\[master ([0-9a-f]{7})] Baseline/)[1];
-    cmd(`cd ${config.screenshotsDirectory}; git checkout -b anon-${new Date().valueOf()}; cd -; npm test`);
-    const afterCommit = commitScreenshots();
 
+    const hasCommitRegex = /\[master ([0-9a-f]{7})] Baseline/;
+    const baseCommitMatch = commitScreenshots().toString().match(hasCommitRegex);
+    const baseCommit = baseCommitMatch && baseCommitMatch[1];
+
+    if (!baseCommit) {
+        throw new Error("Malformed baseline. Try again having a clean working state, and double check your branches..");
+    }
+
+    cmd(`cd ${config.screenshotsDirectory}; git checkout -b anon-${new Date().valueOf()}; cd -; npm test`);
+    const afterCommitData = commitScreenshots().toString();
+    const afterCommitMatch = afterCommitData.match(hasCommitRegex);
+    const afterCommit = afterCommitMatch && afterCommitMatch[1];
+
+    const unknownError = (!afterCommit && !(/nothing to commit, working tree clean/).test(afterCommitData));
+    const nothingToCommit = (!afterCommit && (/nothing to commit, working tree clean/).test(afterCommitData));
+    if (nothingToCommit) {
+        console.log(afterCommitData);
+        cmd("git checkout -;");
+        process.exit(0);
+    }
+
+    if (unknownError) {
+        throw new Error("Something has gone very wrong");
+    }
+
+    pushCommit(baseCommit);
+    pushCommit(afterCommit);
     console.log(baseCommit);
-    console.log(afterCommit.toString());
+    console.log(afterCommit);
 }
 
 visreg()
