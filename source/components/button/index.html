@@ -1,62 +1,103 @@
 ---
 title: Button
 assets:
-  - bootstrap.helix.css
+  - helix-ui.css
 ---
 {% extends 'component.njk' %}
 {% block content %}
 <!-- explanation goes here -->
 
 <section>
-  <h2 class="hxSectionTitle" id="size-variants">Size Variants</h2>
+  <h2 class="hxSectionTitle" id="default-button">Default Button</h2>
 
   <!-- explanation goes here -->
 
   <div class="demo">
-    <p>
-      <button type="button" class="btn btn-default btn-lg">Large Button</button>
-      <button type="button" class="btn btn-default">Default Button</button>
-      <button type="button" class="btn btn-default btn-sm">Compact Button</button>
-    </p>
+    <button class="hxBtn">Default Button</button>
   </div>
+  {% code 'html' %}
+    <button class="hxBtn">Default Button</button>
+  {% endcode %}
 </section>
 
 <section>
-  <h2 class="hxSectionTitle" id="default">Default Buttons</h2>
+  <h2 class="hxSectionTitle" id="primary-button">Primary Button</h2>
 
   <!-- explanation goes here -->
 
   <div class="demo">
-    <p>
-      <button class="btn btn-default">Default Button</button>
-      <button class="btn btn-default" disabled>Default Button (disabled)</button>
-    </p>
+    <button class="hxBtn hxBtn--primary">Primary Button</button>
   </div>
+  {% code 'html' %}
+    <button class="hxBtn hxBtn--primary">Primary Button</button>
+  {% endcode %}
 </section>
 
 <section>
-  <h2 class="hxSectionTitle" id="default">Primary Buttons</h2>
+  <h2 class="hxSectionTitle" id="link-button">Link Button</h2>
 
   <!-- explanation goes here -->
 
   <div class="demo">
-    <p>
-      <button class="btn btn-primary">Primary Button</button>
-      <button class="btn btn-primary" disabled>Primary Button (disabled)</button>
-    </p>
+    <button class="hxBtn hxBtn--link">Link Button</button>
   </div>
+  {% code 'html' %}
+    <button class="hxBtn hxBtn--link">Link Button</button>
+  {% endcode %}
 </section>
 
 <section>
-  <h2 class="hxSectionTitle" id="link-buttons">Link Buttons</h2>
-  
+  <h2 class="hxSectionTitle" id="button-sizing">Button Sizing</h2>
+
   <!-- explanation goes here -->
 
   <div class="demo">
-    <p>
-      <button class="btn btn-link">Link Button</button>
-      <button class="btn btn-link" disabled>Link Button (disabled)</button>
-    </p>
+    <button type="button" class="hxBtn hxBtn--lg">Large Button</button>
+    <button type="button" class="hxBtn">Default Button</button>
+    <button type="button" class="hxBtn hxBtn--sm">Compact Button</button>
   </div>
+
+  {% code 'html' %}
+    <button type="button" class="hxBtn hxBtn--lg">Large Button</button>
+    <button type="button" class="hxBtn">Default Button</button>
+    <button type="button" class="hxBtn hxBtn--sm">Compact Button</button>
+  {% endcode %}
+</section>
+
+<section data-visreg="button-states">
+  <h2 class="hxSectionTitle" id="button-states">Button States</h2>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>Default</td>
+        <td><button class="hxBtn">Normal</button></td>
+        <td><button class="hxBtn pseudo-hover">Hover</button></td>
+        <td><button class="hxBtn pseudo-active">Pressed</button></td>
+        <td><button class="hxBtn" disabled>Disabled</button></td>
+      </tr>
+      <tr>
+        <td>Primary</td>
+        <td><button class="hxBtn hxBtn--primary">Normal</button></td>
+        <td><button class="hxBtn hxBtn--primary pseudo-hover">Hover</button></td>
+        <td><button class="hxBtn hxBtn--primary pseudo-active">Pressed</button></td>
+        <td><button class="hxBtn hxBtn--primary" disabled>Disabled</button></td>
+      </tr>
+      <tr>
+        <td>Link</td>
+        <td><button class="hxBtn hxBtn--link">Normal</button></td>
+        <td><button class="hxBtn hxBtn--link pseudo-hover">Hover</button></td>
+        <td><button class="hxBtn hxBtn--link pseudo-active">Pressed</button></td>
+        <td><button class="hxBtn hxBtn--link" disabled>Disabled</button></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+  <dl>
+    <dt>disabled</dt>
+    <dd>Boolean attribute. When present, prevents button interaction.</dd>
+  </dl>
 </section>
 {% endblock %}
