@@ -73,6 +73,9 @@ html {
 html {
   font-family: "Roboto", sans-serif;
 }
+figure {
+  margin-bottom: 1rem;
+}
 .hxAlert {
   background-color: #bbdefb;
   color: #000000;
