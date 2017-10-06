@@ -21,7 +21,8 @@
         "outDir": "."
     },
     "include": [
-        "index.ts"
+        "index.ts",
+        "bin/visreg.ts"
     ],
     "exclude": [
         "node_modules"

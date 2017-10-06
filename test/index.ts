@@ -30,7 +30,6 @@ describe("helix", () => {
         before(async () => {
             const config: IConfig = {
                 browser: "chrome",
-                includeDevicePixelRatio: true,
                 screenshotsDir: "screenshots",
                 throwNoBaseline: true,
                 threshold: 0.1,
@@ -82,7 +81,6 @@ describe("helix", () => {
         before(async () => {
             const config: IConfig = {
                 browser: "firefox",
-                includeDevicePixelRatio: true,
                 screenshotsDir: "screenshots",
                 throwNoBaseline: true,
                 threshold: 0.1,
