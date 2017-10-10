@@ -1,33 +1,41 @@
+// ===== States =====
+@state-selected-bg: @cyan-50;
+
+// ===== Tables =====
+@table-border-color: @gray-300;
+
 /* ========== Tables ========== */
 // Table style reset
 table {
   background-color: transparent;
   border: none;
+  font-size: 1rem; // 16px
   margin: 0;
   padding: 0;
   width: 100%;
 
-  & > thead,
-  & > tbody,
-  & > tfoot {
+  thead,
+  tbody,
+  tfoot {
     background-color: transparent;
+    border: none;
     margin: 0;
     padding: 0;
 
-    & > tr {
+    tr {
       background-color: transparent;
       border: none;
       margin: 0;
       padding: 0;
 
-      & > th,
-      & > td {
+      th,
+      td {
         background-color: transparent;
         border: none;
+        font-size: 1rem;
         line-height: 1;
         margin: 0;
         padding: 0;
-        font-size: 1rem;
       }
     }
   }
@@ -44,26 +52,20 @@ table {
   | tfoot |
   ---------
 */
-// NOTE The Table Font Color is coming from scaffolding.less and nothing specified here.
-table {
-  // font-size: 1em; // 16px
-  font-size: 1rem; // 16px
-  margin: 1.5em 0;
 
-  // NOTE Why is everything only targeting immediate children?
-  // Are there situations where we would have other things in headers?
-  & > thead {
+.hxTable {
+  margin: 1.5rem 0;
+
+  thead {
     border-color: transparent;
     border-style: solid;
     border-width: 1px 1px 0;
 
-    & > tr {
-      & > th,
-      & > td {
-        // padding: 0.75rem 0.5rem; // 12px 8px
-        padding: 1.5rem 1rem 1rem; // 24px top, 16px for the rest (As per Design)
-        // font-size: 0.875rem; // 14px (Desired by Design Mockup)
-        font-weight: 500; // Specific to override browser agent
+    tr {
+      th,
+      td {
+        font-weight: 500;
+        padding: 1.5rem 1rem 1rem; // 24px top, 16px for the rest
       }
 
       &:first-child {
@@ -72,107 +74,78 @@ table {
     }
   }//thead
 
-  & > tbody {
+  tbody {
     border-color: @table-border-color transparent;
     border-style: solid;
     border-width: 1px;
-    // font-weight: 400; NOTE I'm suggesting maybe not having this. Reason is that its
-    // probably equivalent to body content info and should inherit from that level.
 
-    & > tr {
-      & + tr {
+    tr {
+      + tr {
         border-top: 1px solid @table-border-color;
       }
 
-      & > th,
-      & > td {
-        // padding: 1rem 0.5rem; // 16px 8px
+      th,
+      td {
         padding: 1.25rem 1rem; // 20px 16px (As per Design)
       }
+
+      &.selected {
+        td,
+        th {
+          background-color: @state-selected-bg;
+        }
+      }//.success
     }
-
-    & > tr.success {
-      & > td,
-      & > th {
-        background-color: @state-success-bg;
-      }
-    }//tr.success
-
-    & > tr.selected {
-      & > td,
-      & > th {
-        background-color: @state-selected-bg;
-      }
-    }//tr.success
-
-    & > tr.info {
-      & > td,
-      & > th {
-        background-color: @state-info-bg;
-      }
-    }//tr.info
-
-    & > tr.warning {
-      & > td,
-      & > th {
-        background-color: @state-warning-bg;
-      }
-    }//tr.warning
-
-    & > tr.danger {
-      & > td,
-      & > th {
-        background-color: @state-danger-bg;
-      }
-    }//tr.danger
   }//tbody
 
-  // NOTE: tfoot (Wasn't Documented in Design)
-  & > tfoot {
+  // NOTE: tfoot (Not Documented in Design Specs)
+  tfoot {
     border-color: transparent;
     border-style: solid;
     border-width: 0 1px 1px;
     font-weight: 300;
 
-    & > tr {
-      & > th,
-      & > td {
-        // padding: 0.75rem 0.5rem; // 12px 8px
+    tr {
+      th,
+      td {
         padding: 1.25rem 1rem; // 20px 16px (Same as regular tbody td)
       }
     }
   }//tfoot
 
-  .col-control {
+  .hxTable__control-col {
     color: @gray-700;
-    // font-size: 1rem; Do we need this?
     width: 1rem;
   }
 
   // variants
-  &.table--bordered {
-    & > tbody {
-      border: 1px solid @table-border-color;
+  &--bordered {
+    tbody {
+      border-color: @table-border-color;
     }
-  }
+  }//&--bordered
 
-  &.table--condensed {
-    & > tbody > tr {
-      & > th,
-      & > td {
-        padding: 0.75rem 1rem; // 12px 16px
+  &--condensed {
+    tbody {
+      tr {
+        th,
+        td {
+          padding: 0.75rem 1rem; // 12px 16px
+        }
       }
     }
-  }
+  }//&--condensed
 
-  &.table--hover {
-    & > tbody {
-      > tr:hover {
-       > td,
-       > th {
-         background-color: @gray-50;
-       }
+  &--hover {
+    tbody {
+      tr {
+        &:hover {
+          td,
+          th {
+            background-color: @gray-50;
+          }
+        }
       }
     }
-  }//.table--hover
+  }//&--hover
 }

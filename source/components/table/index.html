@@ -13,23 +13,23 @@ assets:
   </p>
 
   <div class="demo">
-    <table>
+    <table class="hxTable">
       <caption>Most popular Twitter accounts</caption>
       <thead>
         <tr>
-          <th class="col-control"><input type="checkbox" /></th>
-          <th class="col-control"></th>
+          <th class="hxTable__control-col"><input type="checkbox" /></th>
+          <th class="hxTable__control-col"></th>
           <th>Rank</th>
           <th>Name</th>
           <th>Handle</th>
           <th class="text-right">Followers</th>
-          <th class="col-control"></th>
+          <th class="hxTable__control-col"></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="col-control"><input type="checkbox" /></td>
-          <td class="col-control">
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
             <hx-icon type="cog"></hx-icon>
           </td>
           <td>1</td>
@@ -38,13 +38,13 @@ assets:
             <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
           </td>
           <td class="text-right">100,381,853</td>
-          <td class="col-control">
+          <td class="hxTable__control-col">
             <hx-icon type="angle-down"></hx-icon>
           </td>
         </tr>
         <tr>
-          <td class="col-control"><input type="checkbox" /></td>
-          <td class="col-control">
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
             <hx-icon type="cog"></hx-icon>
           </td>
           <td>2</td>
@@ -53,13 +53,13 @@ assets:
             <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
           </td>
           <td class="text-right">97,350,145</td>
-          <td class="col-control">
+          <td class="hxTable__control-col">
             <hx-icon type="angle-down"></hx-icon>
           </td>
         </tr>
         <tr>
-          <td class="col-control"><input type="checkbox" /></td>
-          <td class="col-control">
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
             <hx-icon type="cog"></hx-icon>
           </td>
           <td>3</td>
@@ -68,7 +68,7 @@ assets:
             <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
           </td>
           <td class="text-right">91,387,642</td>
-          <td class="col-control">
+          <td class="hxTable__control-col">
             <hx-icon type="angle-down"></hx-icon>
           </td>
         </tr>
@@ -81,6 +81,75 @@ assets:
       </tfoot>
     </table>
   </div>
+  {% code 'html' %}
+    <table class="hxTable">
+      <caption>Most popular Twitter accounts</caption>
+      <thead>
+        <tr>
+          <th class="hxTable__control-col"><input type="checkbox" /></th>
+          <th class="hxTable__control-col"></th>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Handle</th>
+          <th class="text-right">Followers</th>
+          <th class="hxTable__control-col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>1</td>
+          <td>Katy Perry</td>
+          <td>
+            <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
+          </td>
+          <td class="text-right">100,381,853</td>
+          <td class="hxTable__control-col">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>2</td>
+          <td>Justin Beiber</td>
+          <td>
+            <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
+          </td>
+          <td class="text-right">97,350,145</td>
+          <td class="hxTable__control-col">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>3</td>
+          <td>Barack Obama</td>
+          <td>
+            <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
+          </td>
+          <td class="text-right">91,387,642</td>
+          <td class="hxTable__control-col">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5" class="text-right">Total</td>
+          <td class="text-right">289,119,640</td>
+        </tr>
+      </tfoot>
+    </table>
+  {% endcode %}
 </section>
 
 <section>
@@ -89,23 +158,23 @@ assets:
   <!-- explanation goes here -->
 
   <div class="demo">
-    <table class="table--condensed">
+    <table class="hxTable hxTable--condensed">
       <caption>Most popular Twitter accounts</caption>
       <thead>
         <tr>
-          <th class="col-control"><input type="checkbox" /></th>
-          <th class="col-control"></th>
+          <th class="hxTable__control-col"><input type="checkbox" /></th>
+          <th class="hxTable__control-col"></th>
           <th>Rank</th>
           <th>Name</th>
           <th>Handle</th>
           <th class="text-right">Followers</th>
-          <th class="col-control"></th>
+          <th class="hxTable__control-col"></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="col-control"><input type="checkbox" /></td>
-          <td class="col-control">
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
             <hx-icon type="cog"></hx-icon>
           </td>
           <td>1</td>
@@ -114,13 +183,13 @@ assets:
             <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
           </td>
           <td class="text-right">100,381,853</td>
-          <td class="col-control">
+          <td class="hxTable__control-col">
             <hx-icon type="angle-down"></hx-icon>
           </td>
         </tr>
         <tr>
-          <td class="col-control"><input type="checkbox" /></td>
-          <td class="col-control">
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
             <hx-icon type="cog"></hx-icon>
           </td>
           <td>2</td>
@@ -129,13 +198,13 @@ assets:
             <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
           </td>
           <td class="text-right">97,350,145</td>
-          <td class="col-control">
+          <td class="hxTable__control-col">
             <hx-icon type="angle-down"></hx-icon>
           </td>
         </tr>
         <tr>
-          <td class="col-control"><input type="checkbox" /></td>
-          <td class="col-control">
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
             <hx-icon type="cog"></hx-icon>
           </td>
           <td>3</td>
@@ -144,7 +213,7 @@ assets:
             <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
           </td>
           <td class="text-right">91,387,642</td>
-          <td class="col-control">
+          <td class="hxTable__control-col">
             <hx-icon type="angle-down"></hx-icon>
           </td>
         </tr>
@@ -157,6 +226,75 @@ assets:
       </tfoot>
     </table>
   </div>
+  {% code 'html' %}
+    <table class="hxTable hxTable--condensed">
+      <caption>Most popular Twitter accounts</caption>
+      <thead>
+        <tr>
+          <th class="hxTable__control-col"><input type="checkbox" /></th>
+          <th class="hxTable__control-col"></th>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Handle</th>
+          <th class="text-right">Followers</th>
+          <th class="hxTable__control-col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>1</td>
+          <td>Katy Perry</td>
+          <td>
+            <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
+          </td>
+          <td class="text-right">100,381,853</td>
+          <td class="hxTable__control-col">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>2</td>
+          <td>Justin Beiber</td>
+          <td>
+            <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
+          </td>
+          <td class="text-right">97,350,145</td>
+          <td class="hxTable__control-col">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>3</td>
+          <td>Barack Obama</td>
+          <td>
+            <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
+          </td>
+          <td class="text-right">91,387,642</td>
+          <td class="hxTable__control-col">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5" class="text-right">Total</td>
+          <td class="text-right">289,119,640</td>
+        </tr>
+      </tfoot>
+    </table>
+  {% endcode %}
 </section>
 
 <section>
@@ -165,23 +303,23 @@ assets:
   <!-- explanation goes here -->
 
   <div class="demo">
-    <table class="table--bordered">
+    <table class="hxTable hxTable--bordered">
       <caption>Most popular Twitter accounts</caption>
       <thead>
         <tr>
-          <th class="col-control"><input type="checkbox" /></th>
-          <th class="col-control"></th>
+          <th class="hxTable__control-col"><input type="checkbox" /></th>
+          <th class="hxTable__control-col"></th>
           <th>Rank</th>
           <th>Name</th>
           <th>Handle</th>
           <th class="text-right">Followers</th>
-          <th class="col-control"></th>
+          <th class="hxTable__control-col"></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="col-control"><input type="checkbox" /></td>
-          <td class="col-control">
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
             <hx-icon type="cog"></hx-icon>
           </td>
           <td>1</td>
@@ -190,13 +328,13 @@ assets:
             <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
           </td>
           <td class="text-right">100,381,853</td>
-          <td class="col-control">
+          <td class="hxTable__control-col">
             <hx-icon type="angle-down"></hx-icon>
           </td>
         </tr>
         <tr>
-          <td class="col-control"><input type="checkbox" /></td>
-          <td class="col-control">
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
             <hx-icon type="cog"></hx-icon>
           </td>
           <td>2</td>
@@ -205,13 +343,13 @@ assets:
             <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
           </td>
           <td class="text-right">97,350,145</td>
-          <td class="col-control">
+          <td class="hxTable__control-col">
             <hx-icon type="angle-down"></hx-icon>
           </td>
         </tr>
         <tr>
-          <td class="col-control"><input type="checkbox" /></td>
-          <td class="col-control">
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
             <hx-icon type="cog"></hx-icon>
           </td>
           <td>3</td>
@@ -220,7 +358,7 @@ assets:
             <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
           </td>
           <td class="text-right">91,387,642</td>
-          <td class="col-control">
+          <td class="hxTable__control-col">
             <hx-icon type="angle-down"></hx-icon>
           </td>
         </tr>
@@ -233,31 +371,24 @@ assets:
       </tfoot>
     </table>
   </div>
-</section>
-
-<section>
-  <h2 class="hxSectionTitle" id="hoverable-table">Hoverable Table</h2>
-
-  <!-- explanation goes here -->
-
-  <div class="demo">
-    <table class="table--hover">
+  {% code 'html' %}
+    <table class="hxTable hxTable--bordered">
       <caption>Most popular Twitter accounts</caption>
       <thead>
         <tr>
-          <th class="col-control"><input type="checkbox" /></th>
-          <th class="col-control"></th>
+          <th class="hxTable__control-col"><input type="checkbox" /></th>
+          <th class="hxTable__control-col"></th>
           <th>Rank</th>
           <th>Name</th>
           <th>Handle</th>
           <th class="text-right">Followers</th>
-          <th class="col-control"></th>
+          <th class="hxTable__control-col"></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="col-control"><input type="checkbox" /></td>
-          <td class="col-control">
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
             <hx-icon type="cog"></hx-icon>
           </td>
           <td>1</td>
@@ -266,13 +397,13 @@ assets:
             <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
           </td>
           <td class="text-right">100,381,853</td>
-          <td class="col-control">
+          <td class="hxTable__control-col">
             <hx-icon type="angle-down"></hx-icon>
           </td>
         </tr>
         <tr>
-          <td class="col-control"><input type="checkbox" /></td>
-          <td class="col-control">
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
             <hx-icon type="cog"></hx-icon>
           </td>
           <td>2</td>
@@ -281,13 +412,13 @@ assets:
             <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
           </td>
           <td class="text-right">97,350,145</td>
-          <td class="col-control">
+          <td class="hxTable__control-col">
             <hx-icon type="angle-down"></hx-icon>
           </td>
         </tr>
         <tr>
-          <td class="col-control"><input type="checkbox" /></td>
-          <td class="col-control">
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
             <hx-icon type="cog"></hx-icon>
           </td>
           <td>3</td>
@@ -296,19 +427,164 @@ assets:
             <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
           </td>
           <td class="text-right">91,387,642</td>
-          <td class="col-control">
+          <td class="hxTable__control-col">
             <hx-icon type="angle-down"></hx-icon>
           </td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="5">Total</td>
+          <td colspan="5" class="text-right">Total</td>
+          <td class="text-right">289,119,640</td>
+        </tr>
+      </tfoot>
+    </table>
+  {% endcode %}
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="hoverable-table">Hoverable Table</h2>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <table class="hxTable hxTable--hover">
+      <caption>Most popular Twitter accounts</caption>
+      <thead>
+        <tr>
+          <th class="hxTable__control-col"><input type="checkbox" /></th>
+          <th class="hxTable__control-col"></th>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Handle</th>
+          <th class="text-right">Followers</th>
+          <th class="hxTable__control-col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>1</td>
+          <td>Katy Perry</td>
+          <td>
+            <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
+          </td>
+          <td class="text-right">100,381,853</td>
+          <td class="hxTable__control-col">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>2</td>
+          <td>Justin Beiber</td>
+          <td>
+            <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
+          </td>
+          <td class="text-right">97,350,145</td>
+          <td class="hxTable__control-col">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>3</td>
+          <td>Barack Obama</td>
+          <td>
+            <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
+          </td>
+          <td class="text-right">91,387,642</td>
+          <td class="hxTable__control-col">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5" class="text-right">Total</td>
           <td class="text-right">289,119,640</td>
         </tr>
       </tfoot>
     </table>
   </div>
+  {% code 'html' %}
+    <table class="hxTable hxTable--hover">
+      <caption>Most popular Twitter accounts</caption>
+      <thead>
+        <tr>
+          <th class="hxTable__control-col"><input type="checkbox" /></th>
+          <th class="hxTable__control-col"></th>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Handle</th>
+          <th class="text-right">Followers</th>
+          <th class="hxTable__control-col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>1</td>
+          <td>Katy Perry</td>
+          <td>
+            <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
+          </td>
+          <td class="text-right">100,381,853</td>
+          <td class="hxTable__control-col">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>2</td>
+          <td>Justin Beiber</td>
+          <td>
+            <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
+          </td>
+          <td class="text-right">97,350,145</td>
+          <td class="hxTable__control-col">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+        <tr>
+          <td class="hxTable__control-col"><input type="checkbox" /></td>
+          <td class="hxTable__control-col">
+            <hx-icon type="cog"></hx-icon>
+          </td>
+          <td>3</td>
+          <td>Barack Obama</td>
+          <td>
+            <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
+          </td>
+          <td class="text-right">91,387,642</td>
+          <td class="hxTable__control-col">
+            <hx-icon type="angle-down"></hx-icon>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5" class="text-right">Total</td>
+          <td class="text-right">289,119,640</td>
+        </tr>
+      </tfoot>
+    </table>
+  {% endcode %}
 </section>
 
 <section>
@@ -317,7 +593,7 @@ assets:
   <!-- explanation goes here -->
 
   <div class="demo">
-    <table>
+    <table class="hxTable">
       <thead>
         <tr>
           <th>Class</th>
@@ -329,32 +605,32 @@ assets:
           <td><em>n/a</em></td>
           <td>Normal table row</td>
         </tr>
-        <tr class="active">
-          <td><code>.active</code></td>
-          <td>Applies the hover color to a particular row or cell.</td>
+        <tr class="selected">
+          <td><code>.selected</code></td>
+          <td>Indicates a row that has a selected input or that has been used as navigation</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  {% code 'html' %}
+    <table class="hxTable">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><em>n/a</em></td>
+          <td>Normal table row</td>
         </tr>
         <tr class="selected">
           <td><code>.selected</code></td>
           <td>Indicates a row that has a selected input or that has been used as navigation</td>
         </tr>
-        <tr class="success">
-          <td><code>.success</code></td>
-          <td>Indicates a successful or positive action</td>
-        </tr>
-        <tr class="info">
-          <td><code>.info</code></td>
-          <td>Indicates a neutral informative change or action</td>
-        </tr>
-        <tr class="warning">
-          <td><code>.warning</code></td>
-          <td>Indicates a warning that might need attention</td>
-        </tr>
-        <tr class="danger">
-          <td><code>.danger</code></td>
-          <td>Indicates a dangerous or potential negative action</td>
-        </tr>
       </tbody>
     </table>
-  </div>
+  {% endcode %}
 </section>
 {% endblock %}
