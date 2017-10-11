@@ -208,10 +208,10 @@ async function visreg(
         throw new Error("Something has gone very wrong " + afterCommitData);
     }
 
-    pushCommit(baseCommit);
-    pushCommit(afterCommit);
-
-    opn(`${repoUrl.href}/compare/${baseCommit}...${afterCommit}`);
+    Promise.all([
+        Promise.resolve(pushCommit(baseCommit)),
+        Promise.resolve(pushCommit(afterCommit)),
+    ]).then(() => opn(`${repoUrl.href}/compare/${baseCommit}...${afterCommit}`));
 }
 
 visreg()
