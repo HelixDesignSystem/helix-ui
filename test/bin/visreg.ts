@@ -42,15 +42,17 @@ function buildApiUrl(repoUrl: url.Url, resource: string) {
     return url.parse(`https://api.${repoUrl.hostname}${resource}`);
 };
 
-async function visreg(
 
+
+async function visreg(
+    targetBranch?: string,
 ): Promise<void> {
     const options: IOptions = {
         default: "master",
         message: "Baseline branch? (master)",
     };
 
-    const branch = await input("branch", options);
+    const branch = targetBranch || await input("branch", options);
 
     const f = "./.github-token";
 
@@ -169,6 +171,7 @@ async function visreg(
             `cd -`
         ].join('; ');
 
+        console.log(`Pushing commit ${commit}`);
         safeExecSync(sensitiveCommand);
     };
 
@@ -217,6 +220,12 @@ async function visreg(
 
 }
 
-visreg()
-    .then(() => { console.log("Goodbye!"); process.exit(0); })
-    .catch(err => { console.log(err.message); process.exit(0); });
+if (require.main === module) {
+    const args = Array.prototype.slice.call(process.argv, 2);
+    const action = args[1];
+    const branch = args;
+
+    visreg(branch)
+        .then(() => { process.exit(0); })
+        .catch(err => { console.log(err.message); process.exit(0); });
+};
