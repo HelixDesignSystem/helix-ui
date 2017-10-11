@@ -211,8 +211,8 @@ async function visreg(
     Promise.all([
         Promise.resolve(pushCommit(baseCommit)),
         Promise.resolve(pushCommit(afterCommit)),
-    ]).then(() => opn(`${repoUrl.href}/compare/${baseCommit}...${afterCommit}`))
-        .catch((e) => throw new Error(e));
+    ]).then(() => { opn(`${repoUrl.href}/compare/${baseCommit}...${afterCommit}`); })
+        .catch((e) => { throw new Error(e); });
 }
 
 visreg()
