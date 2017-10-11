@@ -162,6 +162,10 @@ diff@3.2.0, diff@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.2.0.tgz#c9ce393a4b7cbd0b058a725c93df299027868ff9"
 
+dom-to-image@^2.5.2:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/dom-to-image/-/dom-to-image-2.6.0.tgz#8a503608088c87b1c22f9034ae032e1898955867"
+
 es6-promise@~3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-3.0.2.tgz#010d5858423a5f118979665f46486a95c6ee2bb6"
@@ -575,14 +579,15 @@ semver@^5.3.0:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
 
-snappit-visual-regression@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/snappit-visual-regression/-/snappit-visual-regression-0.4.2.tgz#735d2ba0519e40f2fcaef9acd8b1e93bc609cd87"
+snappit-visual-regression@^0.6.4:
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/snappit-visual-regression/-/snappit-visual-regression-0.6.4.tgz#67a7ba05beac1a5142b7498b16f3fc32d2409dca"
   dependencies:
     "@types/fs-extra" "^4.0.0"
     "@types/lodash" "^4.14.68"
     "@types/node" "^8.0.19"
     "@types/selenium-webdriver" "^3.0.4"
+    dom-to-image "^2.5.2"
     fs-extra "^4.0.1"
     lodash "^4.17.4"
     pngjs "3.2.0"

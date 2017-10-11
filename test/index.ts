@@ -3,10 +3,6 @@ import * as _ from "lodash";
 import {By, ISize, ThenableWebDriver, WebDriver, WebElementPromise} from "selenium-webdriver";
 
 import {$, snap, Snappit, IConfig} from "snappit-visual-regression";
-import {
-    ScreenshotMismatchException,
-    ScreenshotNotPresentException
-} from "snappit-visual-regression";
 
 async function setViewportSize (
     driver: ThenableWebDriver,
@@ -34,8 +30,11 @@ describe("helix", () => {
             const config: IConfig = {
                 browser: "chrome",
                 screenshotsDir: "screenshots",
-                throwNoBaseline: false,
-                throwScreenshotMismatch: false,
+                logException: [
+                    "MISMATCH",
+                    "NO_BASELINE",
+                    "SIZE_DIFFERENCE",
+                ],
                 threshold: 0.1,
                 useDirect: true,
             };
@@ -86,7 +85,11 @@ describe("helix", () => {
             const config: IConfig = {
                 browser: "firefox",
                 screenshotsDir: "screenshots",
-                throwNoBaseline: false,
+                logException: [
+                    "MISMATCH",
+                    "NO_BASELINE",
+                    "SIZE_DIFFERENCE",
+                ],
                 threshold: 0.1,
                 useDirect: true,
             };
