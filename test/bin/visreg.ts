@@ -173,6 +173,7 @@ async function visreg(
 
         console.log(`Pushing commit ${commit}`);
         safeExecSync(sensitiveCommand);
+
     };
 
 
@@ -212,8 +213,8 @@ async function visreg(
     }
 
     return Promise.all([
-        Promise.resolve(pushCommit(baseCommit)),
-        Promise.resolve(pushCommit(afterCommit)),
+        new Promise(resolve => { setTimeout(resolve, 10, pushCommit(baseCommit)); }),
+        new Promise(resolve => { setTimeout(resolve, 50, pushCommit(afterCommit)); }),
     ]).then(() => {
         opn(`${repoUrl.href}/compare/${baseCommit}...${afterCommit}`);
     }).catch((e) => { throw new Error(e); });
