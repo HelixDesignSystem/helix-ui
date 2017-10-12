@@ -55,7 +55,7 @@ async function visreg(
         throw new Error("Check your VPN connection and try again.");
     }
 
-    const branch = targetBranch || await input("branch", options);
+    const branch = targetBranch || await input("branch", options) as string;
 
     const f = "./.github-token";
 
