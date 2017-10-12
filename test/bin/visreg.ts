@@ -172,7 +172,7 @@ async function visreg(
     function pushBranch(branch: string) {
         let pushUrl = `https://${token}@${repoUrl.hostname}/${config.githubName}/${config.repo}.git`;
         console.log(`Pushing branch ${branch}`);
-        safeExecSync(`cd {config.screenshotsDirectory}; git push ${pushUrl} ${branch}  > /dev/null 2>&1`);
+        safeExecSync(`cd ${config.screenshotsDirectory}; git push ${pushUrl} ${branch}  > /dev/null 2>&1`);
     };
 
     if (!repositoryExists(repoUrl)) {
