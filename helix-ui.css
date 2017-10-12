@@ -1156,6 +1156,112 @@ hx-reveal:not([open]) > *:not([slot="summary"]) {
 #toggle.hx-reveal {
   display: block;
 }
+/* ========== Tables ========== */
+table {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+table thead,
+table tbody,
+table tfoot {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+table thead tr,
+table tbody tr,
+table tfoot tr {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+table thead tr th,
+table tbody tr th,
+table tfoot tr th,
+table thead tr td,
+table tbody tr td,
+table tfoot tr td {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+/*
+  ---------
+  | thead |
+      +
+  ---------
+  | tbody |
+  ---------
+      +
+  | tfoot |
+  ---------
+*/
+.hxTable {
+  margin: 1.5rem 0;
+}
+.hxTable thead {
+  border-color: transparent;
+  border-style: solid;
+  border-width: 1px 1px 0;
+}
+.hxTable thead tr th,
+.hxTable thead tr td {
+  font-weight: 500;
+  padding: 1.5rem 1rem 1rem;
+}
+.hxTable thead tr:first-child {
+  text-transform: uppercase;
+}
+.hxTable tbody {
+  border-color: #e0e0e0 transparent;
+  border-style: solid;
+  border-width: 1px;
+}
+.hxTable tbody tr + tr {
+  border-top: 1px solid #e0e0e0;
+}
+.hxTable tbody tr th,
+.hxTable tbody tr td {
+  padding: 1.25rem 1rem;
+}
+.hxTable tbody tr.selected td,
+.hxTable tbody tr.selected th {
+  background-color: #e4f9f9;
+}
+.hxTable tfoot {
+  border-color: transparent;
+  border-style: solid;
+  border-width: 0 1px 1px;
+  font-weight: 300;
+}
+.hxTable tfoot tr th,
+.hxTable tfoot tr td {
+  padding: 1.25rem 1rem;
+}
+.hxTable .hxTable__control-col {
+  color: #757575;
+  width: 1rem;
+}
+.hxTable--bordered tbody {
+  border-color: #e0e0e0;
+}
+.hxTable--condensed tbody tr th,
+.hxTable--condensed tbody tr td {
+  padding: 0.75rem 1rem;
+}
+.hxTable--hover tbody tr:hover td,
+.hxTable--hover tbody tr:hover th {
+  background-color: #f5f5f5;
+}
 body {
   color: #424242;
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
