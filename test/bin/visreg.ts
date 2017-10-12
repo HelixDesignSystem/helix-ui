@@ -29,8 +29,6 @@ const config: IConfig = {
     username: "andr6283",
 };
 
-const currentBranch = child_process.execSync("git rev-parse --abbrev-ref HEAD");
-
 function cmd(command: string) {
     child_process.execSync(`${command}`, { stdio: [0, 1, 2] })
 };
@@ -45,6 +43,7 @@ function buildApiUrl(repoUrl: url.Url, resource: string) {
 };
 
 async function visreg(
+    currentBranch: string,
     targetBranch?: string,
 ): Promise<void> {
     const options: IOptions = {
@@ -222,11 +221,12 @@ if (require.main === module) {
     const action = args[1];
     const branch = args;
 
-    visreg(branch)
+    const currentBranch = child_process.execSync("git rev-parse --abbrev-ref HEAD").toString();
+    visreg(currentBranch, branch)
         .then(() => { process.exit(0); })
         .catch(err => {
-            child_process.execSync("git rev-parse --abbrev-ref HEAD");
+            cmd(`git checkout ${currentBranch}`);
             console.log(err.message);
-            process.exit(0);
+            process.exit(1);
         });
 };
