@@ -50,7 +50,7 @@ async function visreg(
         message: "Baseline branch? (master)",
     };
 
-    const online = child_process.execSync("ping -t 3 -n 1 rax.io").toString().match(/1 packets transmitted, 1 packets received/);
+    const online = child_process.execSync("ping -t 3 -c 1 rax.io").toString().match(/1 packets transmitted, 1 packets received/);
     if (_.isEmpty(online)) {
         throw new Error("Check your VPN connection and try again.");
     }
