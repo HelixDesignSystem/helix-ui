@@ -181,7 +181,10 @@ async function visreg(
         // opn(`${repoUrl.href}/commit/${master}`);
     }
 
-    cloneRepo(repoUrl);
+    if (!fs.existsSync(`${config.screenshotsDirectory}/.git`)) {
+        cloneRepo(repoUrl);
+    }
+
     const anonymousBranch = `anon-${new Date().valueOf()}`;
     cmd(`cd ${config.screenshotsDirectory}; git checkout -b ${anonymousBranch}; cd -;`);
     console.log("Creating a new baseline...");
