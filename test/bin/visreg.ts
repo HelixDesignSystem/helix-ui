@@ -42,8 +42,6 @@ function buildApiUrl(repoUrl: url.Url, resource: string) {
     return url.parse(`https://api.${repoUrl.hostname}${resource}`);
 };
 
-
-
 async function visreg(
     targetBranch?: string,
 ): Promise<void> {
@@ -51,6 +49,11 @@ async function visreg(
         default: "master",
         message: "Baseline branch? (master)",
     };
+
+    const online = child_process.execSync("ping -t 3 -n 1 rax.io").toString().match(/1 packets transmitted, 1 packets received/);
+    if (_.isEmpty(online)) {
+        throw new Error("Check your VPN connection and try again.");
+    }
 
     const branch = targetBranch || await input("branch", options);
 
@@ -164,16 +167,8 @@ async function visreg(
 
     function pushCommit(commit: string) {
         let pushUrl = `https://${token}@${repoUrl.hostname}/${config.githubName}/${config.repo}.git`;
-
-        let sensitiveCommand = [
-            `cd ${config.screenshotsDirectory}`,
-            `git push ${pushUrl} ${commit}:master  > /dev/null 2>&1`,
-            `cd -`
-        ].join('; ');
-
         console.log(`Pushing commit ${commit}`);
-        safeExecSync(sensitiveCommand);
-
+        safeExecSync(`git push ${pushUrl} ${commit}:master  > /dev/null 2>&1`);
     };
 
 
@@ -212,12 +207,16 @@ async function visreg(
         throw new Error("Something has gone very wrong " + afterCommitData);
     }
 
+    cmd(`cd ${config.screenshotsDirectory}`);
+    const pwd = child_process.execSync("pwd");
+
     return Promise.all([
         new Promise(resolve => { setTimeout(resolve, 10, pushCommit(baseCommit)); }),
         new Promise(resolve => { setTimeout(resolve, 50, pushCommit(afterCommit)); }),
     ]).then(() => {
+        cmd(`cd ${pwd}`);
         opn(`${repoUrl.href}/compare/${baseCommit}...${afterCommit}`);
-    }).catch((e) => { throw new Error(e); });
+    }).catch((e) => { cmd(`cd ${pwd}`); throw new Error(e); });
 
 }
 
