@@ -224,7 +224,7 @@ if (require.main === module) {
     const action = args[1];
     const branch = args;
 
-    const currentBranch = child_process.execSync("git rev-parse --abbrev-ref HEAD").toString();
+    const currentBranch = child_process.execSync("git rev-parse --abbrev-ref HEAD").toString().trim();
     visreg(currentBranch, branch)
         .then(() => { process.exit(0); })
         .catch(err => {
