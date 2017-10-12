@@ -178,7 +178,8 @@ async function visreg(
     }
 
     cloneRepo(repoUrl);
-    cmd(`cd ${config.screenshotsDirectory}; git checkout -b anon-${new Date().valueOf()}; cd -;`);
+    const anonymousBranch = `anon-${new Date().valueOf()}`;
+    cmd(`cd ${config.screenshotsDirectory}; git checkout -b ${anonymousBranch}; cd -;`);
     console.log("Creating a new baseline...");
     cmd(`git checkout ${branch}; npm test`);
 
@@ -206,7 +207,7 @@ async function visreg(
         throw new Error("Something has gone very wrong " + afterCommitData);
     }
 
-    pushBranch(branch);
+    pushBranch(anonymousBranch);
     opn(`${repoUrl.href}/compare/${baseCommit}...${afterCommit}`);
 
 }
