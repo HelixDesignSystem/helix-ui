@@ -177,8 +177,6 @@ async function visreg(
 
     if (!repositoryExists(repoUrl)) {
         await createRepository(repoUrl);
-        // const master = "174fc2f2aef371f0efc9bd1db27cf1ba3b0eec1f";
-        // opn(`${repoUrl.href}/commit/${master}`);
     }
 
     if (!fs.existsSync(`${config.screenshotsDirectory}/.git`)) {
