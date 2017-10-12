@@ -165,12 +165,11 @@ async function visreg(
 
     };
 
-    function pushCommit(commit: string) {
+    function pushBranch(branch: string) {
         let pushUrl = `https://${token}@${repoUrl.hostname}/${config.githubName}/${config.repo}.git`;
-        console.log(`Pushing commit ${commit}`);
-        safeExecSync(`git push ${pushUrl} ${commit}:master  > /dev/null 2>&1`);
+        console.log(`Pushing branch ${branch}`);
+        safeExecSync(`cd {config.screenshotsDirectory}; git push ${pushUrl} ${branch}  > /dev/null 2>&1`);
     };
-
 
     if (!repositoryExists(repoUrl)) {
         await createRepository(repoUrl);
@@ -179,6 +178,7 @@ async function visreg(
     }
 
     cloneRepo(repoUrl);
+    cmd(`cd ${config.screenshotsDirectory}; git checkout -b anon-${new Date().valueOf()}; cd -;`);
     console.log("Creating a new baseline...");
     cmd(`git checkout ${branch}; npm test`);
 
@@ -190,7 +190,7 @@ async function visreg(
         throw new Error("Malformed baseline. Try again having a clean working state, and double check your branches..");
     }
 
-    cmd(`cd ${config.screenshotsDirectory}; git checkout -b anon-${new Date().valueOf()}; cd -; git checkout -; npm test`);
+    cmd(`git checkout -; npm test`);
     const afterCommitData = commitScreenshots().toString();
     const afterCommitMatch = afterCommitData.match(hasCommitRegex);
     const afterCommit = afterCommitMatch && afterCommitMatch[1];
@@ -199,7 +199,6 @@ async function visreg(
     const nothingToCommit = (!afterCommit && (/nothing to commit, working tree clean/).test(afterCommitData));
     if (nothingToCommit) {
         console.log(afterCommitData);
-        cmd("git checkout -;");
         process.exit(0);
     }
 
@@ -207,16 +206,8 @@ async function visreg(
         throw new Error("Something has gone very wrong " + afterCommitData);
     }
 
-    cmd(`cd ${config.screenshotsDirectory}`);
-    const pwd = child_process.execSync("pwd");
-
-    return Promise.all([
-        new Promise(resolve => { setTimeout(resolve, 10, pushCommit(baseCommit)); }),
-        new Promise(resolve => { setTimeout(resolve, 50, pushCommit(afterCommit)); }),
-    ]).then(() => {
-        cmd(`cd ${pwd}`);
-        opn(`${repoUrl.href}/compare/${baseCommit}...${afterCommit}`);
-    }).catch((e) => { cmd(`cd ${pwd}`); throw new Error(e); });
+    pushBranch(branch);
+    opn(`${repoUrl.href}/compare/${baseCommit}...${afterCommit}`);
 
 }
 
