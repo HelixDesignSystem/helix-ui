@@ -22,7 +22,8 @@
     },
     "include": [
         "index.ts",
-        "bin/visreg.ts"
+        "bin/visreg.ts",
+        "bin/visreg.config.ts"
     ],
     "exclude": [
         "node_modules"

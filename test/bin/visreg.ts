@@ -13,21 +13,7 @@ import {
 
 import * as opn from "opn"
 
-interface IConfig {
-    githubEmail: string,
-    githubName: string,
-    repo: string,
-    screenshotsDirectory: string,
-    username: string,
-};
-
-const config: IConfig = {
-    githubEmail: "andrew.yurisich@rackspace.com",
-    githubName: "andr6283",
-    repo: "catalog-helix-ui-0",
-    screenshotsDirectory: "screenshots",
-    username: "andr6283",
-};
+import {config, IConfig} from "./visreg.config";
 
 function cmd(command: string) {
     child_process.execSync(`${command}`, { stdio: [0, 1, 2] })
