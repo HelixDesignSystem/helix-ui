@@ -29,6 +29,8 @@ const config: IConfig = {
     username: "andr6283",
 };
 
+const currentBranch = child_process.execSync("git rev-parse --abbrev-ref HEAD");
+
 function cmd(command: string) {
     child_process.execSync(`${command}`, { stdio: [0, 1, 2] })
 };
@@ -50,10 +52,12 @@ async function visreg(
         message: "Baseline branch? (master)",
     };
 
+    process.stdout.write("Checking connection to VPN...");
     const online = child_process.execSync("ping -t 3 -c 1 rax.io").toString().match(/1 packets transmitted, 1 packets received/);
     if (_.isEmpty(online)) {
         throw new Error("Check your VPN connection and try again.");
     }
+    console.log(" ✔");
 
     const branch = targetBranch || await input("branch", options) as string;
 
@@ -148,6 +152,7 @@ async function visreg(
 
     function cloneRepo(repoUrl: url.Url) {
         let cloneUrl = `https://${token}@${repoUrl.host}${repoUrl.path}.git`;
+        console.log(`Cloning a screenshots project into "${path.resolve(config.screenshotsDirectory)}"`);
         safeExecSync(`git clone ${cloneUrl} screenshots/ > /dev/null`)
 
         console.log(`Cloned a screenshots project into "${path.resolve(config.screenshotsDirectory)}"`);
@@ -191,7 +196,7 @@ async function visreg(
         throw new Error("Malformed baseline. Try again having a clean working state, and double check your branches..");
     }
 
-    cmd(`git checkout -; npm test`);
+    cmd(`git checkout ${currentBranch}; npm test`);
     const afterCommitData = commitScreenshots().toString();
     const afterCommitMatch = afterCommitData.match(hasCommitRegex);
     const afterCommit = afterCommitMatch && afterCommitMatch[1];
@@ -219,5 +224,9 @@ if (require.main === module) {
 
     visreg(branch)
         .then(() => { process.exit(0); })
-        .catch(err => { console.log(err.message); process.exit(0); });
+        .catch(err => {
+            child_process.execSync("git rev-parse --abbrev-ref HEAD");
+            console.log(err.message);
+            process.exit(0);
+        });
 };
