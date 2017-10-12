@@ -50,13 +50,17 @@ async function visreg(
 
     const storedToken: any = fs.existsSync(f) && fs.readFileSync(f);
     const token = (storedToken || (await password("github PAT: ")));
-    if (!(/[a-f0-9]{40}/).test(token)) {
+    const repoUrl = url.parse(`https://github.rackspace.com/${config.githubName}/${config.repo}`);
+
+    process.stdout.write("Checking github enterprise PAT...");
+    if (!isValidToken()) {
+        console.log(" ✘");
         opn("https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/");
         throw new Error("Invalid Token");
     }
-    fs.writeFileSync(f, token);
 
-    const repoUrl = url.parse(`https://github.rackspace.com/${config.githubName}/${config.repo}`);
+    fs.writeFileSync(f, token);
+    console.log(" ✔");
 
     function safeExecSync(command: string) {
         try {
@@ -69,7 +73,7 @@ async function visreg(
     };
 
     // need to know what token is, it's set up near the top of this block
-    const buildCurlFlags = () => {
+    function buildCurlFlags() {
         const flags = [
             `-H "Authorization: token ${token}"`,
             '-H "User-Agent: snappit"'
@@ -77,6 +81,13 @@ async function visreg(
 
         return flags.join(" ");
     };
+
+    function isValidToken() {
+        let u =  buildApiUrl(repoUrl, `/user`);
+        let output = safeExecSync(`curl ${buildCurlFlags()} ${u.href} 2>/dev/null`).toString("utf-8");
+        let repositoryInfo = JSON.parse(output);
+        return repositoryInfo.message !== "Bad credentials";
+    }
 
     // check github creds here by asking github api for all repos for user
     function repositoryExists(repoUrl: url.Url) {
@@ -157,7 +168,7 @@ async function visreg(
 
     function pushBranch(branch: string) {
         let pushUrl = `https://${token}@${repoUrl.hostname}/${config.githubName}/${config.repo}.git`;
-        console.log(`Pushing branch ${branch}`);
+        console.log(`Generating remote screenshot diff...`);
         safeExecSync(`cd ${config.screenshotsDirectory}; git push ${pushUrl} ${branch}  > /dev/null 2>&1`);
     };
 
@@ -199,6 +210,7 @@ async function visreg(
     }
 
     pushBranch(anonymousBranch);
+    console.log("Opening remote screenshot diff.");
     opn(`${repoUrl.href}/compare/${baseCommit}...${afterCommit}`);
 
 }
