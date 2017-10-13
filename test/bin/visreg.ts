@@ -72,7 +72,6 @@ async function visreg(
         }
     };
 
-    // need to know what token is, it's set up near the top of this block
     function buildCurlFlags() {
         const flags = [
             `-H "Authorization: token ${token}"`,
@@ -89,7 +88,6 @@ async function visreg(
         return repositoryInfo.message !== "Bad credentials";
     }
 
-    // check github creds here by asking github api for all repos for user
     function repositoryExists(repoUrl: url.Url) {
         let u =  buildApiUrl(repoUrl, `/repos${repoUrl.pathname}`);
         let output = safeExecSync(`curl ${buildCurlFlags()} ${u.href} 2>/dev/null`).toString("utf-8");
