@@ -164,12 +164,6 @@ async function visreg(
 
     };
 
-    function pushBranch(branch: string) {
-        let pushUrl = `https://${token}@${repoUrl.hostname}/${config.githubName}/${config.repo}.git`;
-        console.log(`Generating remote screenshot diff...`);
-        safeExecSync(`cd ${config.screenshotsDirectory}; git push ${pushUrl} ${branch}  > /dev/null 2>&1`);
-    };
-
     if (!repositoryExists(repoUrl)) {
         await createRepository(repoUrl);
     }
@@ -206,6 +200,12 @@ async function visreg(
     if (unknownError) {
         throw new Error("Something has gone very wrong " + afterCommitData);
     }
+
+    function pushBranch(branch: string) {
+        let pushUrl = `https://${token}@${repoUrl.hostname}/${config.githubName}/${config.repo}.git`;
+        console.log(`Generating remote screenshot diff...`);
+        safeExecSync(`cd ${config.screenshotsDirectory}; git push ${pushUrl} ${branch}  > /dev/null 2>&1`);
+    };
 
     pushBranch(anonymousBranch);
     console.log("Opening remote screenshot diff.");
