@@ -3,7 +3,6 @@ export interface IConfig {
     githubName: string,
     repo: string,
     screenshotsDirectory: string,
-    username: string,
 };
 
 export var config: IConfig = {
@@ -11,5 +10,4 @@ export var config: IConfig = {
     "githubName": "andr6283",
     "repo": "catalog-helix-ui-0",
     "screenshotsDirectory": "screenshots",
-    "username": "andr6283",
 }
