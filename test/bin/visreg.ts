@@ -166,13 +166,7 @@ async function visreg(
 
     };
 
-    if (!repositoryExists(repoUrl)) {
-        await createRepository(repoUrl);
-    }
-
-    if (!fs.existsSync(`${screenshotsDirectory}/.git`)) {
-        cloneRepo(repoUrl);
-    } else {
+    if (fs.existsSync(`${screenshotsDirectory}/.git`)) {
         // check the current remote in case it's been updated
         const remote = child_process.execSync(`cd ${screenshotsDirectory}; git remote -v | head -n 1`).toString();
         const remoteRegex = new RegExp(`\bgit@${config.githubHostname}:${config.githubName}/${config.repo}.git\b`);
@@ -180,6 +174,14 @@ async function visreg(
             console.log("Updated screenshots repository detected -- cleaning.");
             cmd("npm run clean:screenshots");
         }
+    }
+
+    if (!repositoryExists(repoUrl)) {
+        await createRepository(repoUrl);
+    }
+
+    if (!fs.existsSync(`${screenshotsDirectory}/.git`)) {
+        cloneRepo(repoUrl);
     }
 
     const anonymousBranch = `anon-${new Date().valueOf()}`;
@@ -193,8 +195,9 @@ async function visreg(
     console.log("Creating a new baseline...");
     cmd(`git checkout ${branch}; npm test`);
 
-    const hasCommitRegex = /\[.*([0-9a-f]{7})] Baseline/;
-    const baseCommitMatch = commitScreenshots().toString().match(hasCommitRegex);
+    const hasCommitRegex = /\[.*([0-9a-f]{7})] Checking in screenshots.../;;
+    const commit = commitScreenshots().toString();
+    const baseCommitMatch = commit.match(hasCommitRegex);
     const baseCommit = baseCommitMatch && baseCommitMatch[1];
 
     if (!baseCommit) {
