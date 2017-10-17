@@ -172,6 +172,14 @@ async function visreg(
 
     if (!fs.existsSync(`${screenshotsDirectory}/.git`)) {
         cloneRepo(repoUrl);
+    } else {
+        // check the current remote in case it's been updated
+        const remote = child_process.execSync(`cd ${screenshotsDirectory}; git remote -v | head -n 1`).toString();
+        const remoteRegex = new RegExp(`\bgit@${config.githubHostname}:${config.githubName}/${config.repo}.git\b`);
+        if (!remoteRegex.test(remote)) {
+            console.log("Updated screenshots repository detected -- cleaning.");
+            cmd("npm run clean:screenshots");
+        }
     }
 
     const anonymousBranch = `anon-${new Date().valueOf()}`;
