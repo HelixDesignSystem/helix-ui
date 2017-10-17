@@ -52,7 +52,7 @@ async function visreg(
 
     const storedToken: any = fs.existsSync(f) && fs.readFileSync(f);
     const token = (storedToken || (await password("github PAT: ")));
-    const repoUrl = url.parse(`https://github.rackspace.com/${config.githubName}/${config.repo}`);
+    const repoUrl = url.parse(`https://${config.githubHostname}/${config.githubName}/${config.repo}`);
 
     process.stdout.write("Checking github enterprise PAT...");
     if (!isValidToken()) {

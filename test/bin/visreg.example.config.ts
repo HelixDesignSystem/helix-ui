@@ -4,6 +4,7 @@
  */
 export interface IConfig {
     githubEmail: string,
+    githubHostname: string,
     githubName: string,
     repo: string,
 };
@@ -17,6 +18,7 @@ export interface IConfig {
  */
 export var config: IConfig = {
     "githubEmail": "your.email@rackspace.com",
+    "githubHostname": "github.rackspace.com",
     "githubName": "name1234",
     "repo": "catalog-helix-ui-0",
 }
