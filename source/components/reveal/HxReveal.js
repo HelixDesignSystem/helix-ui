@@ -6,13 +6,13 @@ window.addEventListener('WebComponentsReady', function () {
         :host {
           display: block;
         }
-
-        :host([open]) #content {
-          display: block;
-        }
     
         #content {
           display: none;
+        }
+
+        :host([open]) > #content {
+          display: block;
         }
 
         #toggle {
@@ -55,7 +55,7 @@ window.addEventListener('WebComponentsReady', function () {
         constructor() {                   
             super();
             this.attachShadow({mode: 'open'});
-            if (window.ShadyCSS ) { 
+            if (window.ShadyCSS) { 
                 ShadyCSS.prepareTemplate(template, 'hx-reveal');
                 ShadyCSS.styleElement(this);
             }

@@ -54,14 +54,14 @@
 
   hx-reveal {
     &[open] {
-      header {
+      & > #toggle.hx-reveal, //polyfilled browsers
+      & > header { //modern browsers
         .toggle-icon {
           transform: scaleY(-1);
         }
       }
     }
 
-    /* Indentation */
     // Level 1
     header {
       padding-left: @l1-indent;
@@ -75,6 +75,7 @@
     hx-reveal {
       header {
         padding-left: @l2-indent;
+        text-transform: capitalize;
       }
 
       a {
