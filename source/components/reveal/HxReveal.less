@@ -1,0 +1,30 @@
+:host {
+  display: block;
+
+  &([open]) > #content {
+    display: block;
+  }
+}
+
+#content {
+  display: none;
+}
+
+#toggle {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+
+  &:empty {
+    display: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

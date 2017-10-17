@@ -4,123 +4,11 @@ const KEY = require('../../lib/KEY');
  */
 
 window.addEventListener('WebComponentsReady', function () {
+    const tagName = 'hx-checkbox';
     const template = document.createElement('template');
 
     template.innerHTML = `
-      <style>
-        :host {
-            background-color: #ffffff;
-            border-color: currentColor;
-            border-radius: 2px;
-            border-style: solid;
-            border-width: 1px;
-            color: #bdbdbd;
-            display: inline-block;
-            height: 1rem;
-            vertical-align: middle;
-            width: 1rem;
-        }
-
-        :host([hidden]) { display: none; }
-
-        /* default unchecked */
-
-        :host(:hover) {
-            background-color: #e4f9f9;
-            color: #16b9d4;
-        }
-
-        /* default checked */
-
-        :host([checked]) {
-            color: #0c7c84;
-        }
-
-        :host([checked]:hover) {
-            background-color: #e4f9f9;
-            color: #16b9d4;
-        }
-
-        /* default indeterminate (checked or unchecked) */
-
-        :host([indeterminate]) {
-            color: #0c7c84;
-        }
-
-        :host([indeterminate]:hover) {
-            color: #16b9d4;
-        }
-
-        /* invalid unchecked */
-
-        :host([invalid]) {
-            border-width: 2px;
-            color: #d32f2f;
-        }
-
-        :host([invalid]:hover) {
-            background-color: #FFCDD2;
-            color: #d32f2f;
-        }
-
-        /* invalid checked */
-
-        /* invalid indeterminate (checked or unchecked) */
-
-        /* disabled unchecked */
-
-        :host([disabled]) {
-            background-color: #eeeeee;
-            color: #bdbdbd;
-            cursor: not-allowed;
-        }
-
-        :host([disabled]:hover) {
-            background-color: #eeeeee;
-            color: #bdbdbd;
-        }
-
-        /* disabled checked */
-
-        /* disabled indeterminate (checked or unchecked) */
-        :host([disabled][indeterminate]) {
-            color: #bdbdbd;
-        }
-
-        /* ^^ light dom overridable ^^ */
-        #container {
-            align-content: center;
-            align-items: center;
-            display: flex;
-            font-size: 0.625em; /* ~10px */
-            height: 100%;
-            justify-content: center;
-            width: 100%;
-        }
-
-        #minus,
-        #tick {
-            display: none;
-            height: 1em;
-            line-height: 1;
-            width: 1em;
-        }
-
-        /* FIXME: redefine due to bug in hxIcon */
-        hx-icon svg {
-            fill: currentColor;
-            stroke: none;
-        }
-
-        :host([checked]:not([indeterminate])) #tick {
-            display: block;
-        }
-
-        :host([indeterminate]) #minus {
-            display: block;
-        }
-      </style>
-
+      <style>${require('./HxCheckbox.less')}</style>
       <div id="container">
         <hx-icon type="checkmark" id="tick"></hx-icon>
         <hx-icon type="minus" id="minus"></hx-icon>
@@ -135,7 +23,7 @@ window.addEventListener('WebComponentsReady', function () {
 
     class HxCheckbox extends HTMLElement {
         static get is () {
-            return 'hx-checkbox';
+            return tagName;
         }
 
         static get observedAttributes () {
@@ -150,7 +38,7 @@ window.addEventListener('WebComponentsReady', function () {
             super();
             this.attachShadow({mode: 'open'});
             if (window.ShadyCSS) {
-                ShadyCSS.prepareTemplate(template, 'hx-checkbox');
+                ShadyCSS.prepareTemplate(template, tagName);
                 ShadyCSS.styleElement(this);
             }
             this.shadowRoot.appendChild(template.content.cloneNode(true));
