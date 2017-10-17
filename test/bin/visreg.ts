@@ -159,7 +159,7 @@ async function visreg(
             `cd ${screenshotsDirectory}`,
             `git add -A`,
             `git status -sb`,
-            `git commit -m "Baseline"`,
+            `git commit -m "Checking in screenshots..."`,
             `cd -`
         ];
         return safeExecSync(cmds.join('; '));
@@ -175,7 +175,13 @@ async function visreg(
     }
 
     const anonymousBranch = `anon-${new Date().valueOf()}`;
-    cmd(`cd ${screenshotsDirectory}; git checkout -b ${anonymousBranch}; cd -;`);
+    cmd([
+        `cd ${screenshotsDirectory}`,
+        `git checkout --orphan ${anonymousBranch} $(git rev-list --max-parents=0 HEAD)`,
+        "find . -maxdepth 1 -mindepth 1 -type d | grep -v \"./\.git\" | xargs rm -rf",
+        "git commit --allow-empty -m \"Baseline.\"",
+        "cd -"
+    ].join('; '));
     console.log("Creating a new baseline...");
     cmd(`git checkout ${branch}; npm test`);
 
