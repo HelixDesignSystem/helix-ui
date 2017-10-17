@@ -15,6 +15,8 @@ import * as opn from "opn"
 
 import {config, IConfig} from "./visreg.config";
 
+const screenshotsDirectory = "screenshots";
+
 function cmd(command: string) {
     child_process.execSync(`${command}`, { stdio: [0, 1, 2] })
 };
@@ -146,15 +148,15 @@ async function visreg(
 
     function cloneRepo(repoUrl: url.Url) {
         let cloneUrl = `https://${token}@${repoUrl.host}${repoUrl.path}.git`;
-        console.log(`Cloning a screenshots project into "${path.resolve(config.screenshotsDirectory)}"`);
+        console.log(`Cloning a screenshots project into "${path.resolve(screenshotsDirectory)}"`);
         safeExecSync(`git clone ${cloneUrl} screenshots/ > /dev/null`)
 
-        console.log(`Cloned a screenshots project into "${path.resolve(config.screenshotsDirectory)}"`);
+        console.log(`Cloned a screenshots project into "${path.resolve(screenshotsDirectory)}"`);
     };
 
     function commitScreenshots() {
         let cmds = [
-            `cd ${config.screenshotsDirectory}`,
+            `cd ${screenshotsDirectory}`,
             `git add -A`,
             `git status -sb`,
             `git commit -m "Baseline"`,
@@ -168,12 +170,12 @@ async function visreg(
         await createRepository(repoUrl);
     }
 
-    if (!fs.existsSync(`${config.screenshotsDirectory}/.git`)) {
+    if (!fs.existsSync(`${screenshotsDirectory}/.git`)) {
         cloneRepo(repoUrl);
     }
 
     const anonymousBranch = `anon-${new Date().valueOf()}`;
-    cmd(`cd ${config.screenshotsDirectory}; git checkout -b ${anonymousBranch}; cd -;`);
+    cmd(`cd ${screenshotsDirectory}; git checkout -b ${anonymousBranch}; cd -;`);
     console.log("Creating a new baseline...");
     cmd(`git checkout ${branch}; npm test`);
 
@@ -204,7 +206,7 @@ async function visreg(
     function pushBranch(branch: string) {
         let pushUrl = `https://${token}@${repoUrl.hostname}/${config.githubName}/${config.repo}.git`;
         console.log(`Generating remote screenshot diff...`);
-        safeExecSync(`cd ${config.screenshotsDirectory}; git push ${pushUrl} ${branch}  > /dev/null 2>&1`);
+        safeExecSync(`cd ${screenshotsDirectory}; git push ${pushUrl} ${branch}  > /dev/null 2>&1`);
     };
 
     pushBranch(anonymousBranch);
