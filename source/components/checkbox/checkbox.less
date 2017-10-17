@@ -1,0 +1,9 @@
+hx-checkbox {
+  & + * {
+    margin-left: 0.5rem;
+  }
+
+  &[disabled] + label {
+    &:extend(.hxSubdued);
+  }
+}
