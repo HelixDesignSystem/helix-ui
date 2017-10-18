@@ -233,11 +233,9 @@ async function visreg(
 }
 
 if (require.main === module) {
-    const args = Array.prototype.slice.call(process.argv, 2);
-    const action = args[1];
-    const branch = args;
-
+    const branch = Array.prototype.slice.call(process.argv, 2)[0];
     const currentBranch = child_process.execSync("git rev-parse --abbrev-ref HEAD").toString().trim();
+
     visreg(currentBranch, branch)
         .then(() => { process.exit(0); })
         .catch(err => {
