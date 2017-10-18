@@ -40,10 +40,14 @@ async function visreg(
     };
 
     process.stdout.write("Checking connection to VPN...");
-    const online = child_process.execSync("ping -t 3 -c 1 rax.io").toString().match(/1 packets transmitted, 1 packets received/);
-    if (_.isEmpty(online)) {
-        throw new Error("Check your VPN connection and try again.");
+    try {
+        child_process.execSync("ping -t 3 -c 1 rax.io").toString().match(/1 packets transmitted, 1 packets received/);
+    } catch (e) {
+        console.log(" ✘");
+        console.log("Check your VPN connection and try again.");
+        throw new Error(e);
     }
+
     console.log(" ✔");
 
     const branch = targetBranch || await input("branch", options) as string;
@@ -239,7 +243,7 @@ if (require.main === module) {
     visreg(currentBranch, branch)
         .then(() => { process.exit(0); })
         .catch(err => {
-            cmd(`git checkout ${currentBranch}`);
+            child_process.execSync(`git checkout ${currentBranch} > /dev/null 2>&1`);
             console.log(err.message);
             process.exit(1);
         });
