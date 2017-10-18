@@ -1,20 +1,68 @@
 ---
 title: Tabset
 assets:
-  - bootstrap.helix.css
+  - helix-ui.css
+  - helix-ui.js
 ---
 {% extends 'component.njk' %}
 {% block content %}
 <!-- explanation goes here -->
 
+<section>
+<h2 class="hxSectionTitle" id="tabset">Tabset</h2>
 <div class="demo">
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#">Home</a></li>
-    <li role="presentation"><a href="#">Profile</a></li>
-    <li role="presentation"><a href="#">Messages</a></li>
-    <li role="presentation" class="disabled"><a href="#">Not Available</a></li>
-  </ul>
+  <hx-tabset>
+    <div slot="tabs">
+      <a href="#" role="tab" class="hxTab">Cupcake Ipsum</a>
+      <a href="#" role="tab" class="hxTab">Biscuit Marshmallow</a>
+      <a href="#" role="tab" class="hxTab">Caramels Marzipan</a>
+    </div>
+    <hx-tabpanel id="cupcake">
+      <p>
+        Cupcake ipsum dolor sit amet pie. Tiramisu icing cake. Macaroon halvah apple pie. Carrot cake cheesecake chocolate bar toffee biscuit candy gummi bears. Apple pie chocolate cake dessert liquorice biscuit cupcake. Jelly sugar plum chocolate bar chocolate. Wafer fruitcake carrot cake jelly jujubes cookie danish. Sesame snaps gingerbread gingerbread pastry gummies jelly beans icing. Sesame snaps wafer lollipop. Cookie gummies icing marshmallow powder soufflé topping tart.
+      </p>
+    </hx-tabpanel>
+    <hx-tabpanel id="biscuit">
+      <p>
+        Biscuit marshmallow chocolate cake tiramisu cupcake. Powder liquorice jelly cheesecake chocolate bar. Chocolate cake icing pudding. Tart ice cream cupcake. Cake chocolate bar carrot cake pie marshmallow sugar plum dessert. Pudding lollipop sugar plum topping sugar plum chocolate bar jelly-o pastry donut. Candy canes icing apple pie pie.
+      </p>
+    </hx-tabpanel>
+    <hx-tabpanel id="caramel">
+      <p>
+        Caramels marzipan gummi bears. Cake chocolate bar cake jelly-o tart topping. Jelly sweet jelly soufflé jelly toffee fruitcake. Toffee tart pastry liquorice bonbon sugar plum sweet. Jelly-o tiramisu cotton candy candy canes jelly beans dragée macaroon dessert toffee. Sesame snaps danish jujubes gummies marshmallow sesame snaps chocolate cake bonbon dessert. Candy canes cupcake sugar plum jelly beans bear claw icing candy canes bear claw. Marshmallow gingerbread biscuit jelly-o.
+      </p>
+    </hx-tabpanel>
+  </hx-tabset>
 </div>
+{% code 'html' %}
+  <hx-tabset>
+    <div slot="tabs">
+      <a href="#" role="tab" class="hxTab">Cupcake Ipsum</a>
+      <a href="#" role="tab" class="hxTab">Biscuit Marshmallow</a>
+      <a href="#" role="tab" class="hxTab">Caramel Marzipan</a>
+    </div>
+    <hx-tabpanel id="cupcake">...</hx-tabpanel>
+    <hx-tabpanel id="biscuit">...</hx-tabpanel>
+    <hx-tabpanel id="caramel">...</hx-tabpanel>
+  </hx-tabset>
+{% endcode %}
+</section>
 
-<!-- TODO: need content in tab body -->
+<section>
+  <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+  <dl>
+    <dt>selected</dt>
+    <dd>Selects the tab and panel</dd>
+  </dl>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="properties">Properties</h2>
+  <dl>
+    <dt>panels <small>(read-only) Array&lt;Element&gt;</small></dt>
+    <dt>selected</dt>
+    <dd>Determines if tab and panel is selected</dd>
+    <dt>tabs <small>(read-only) Array&lt;Element&gt;</small></dt>
+  </dl>
+</section>
 {% endblock %}
