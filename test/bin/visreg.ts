@@ -36,7 +36,7 @@ async function visreg(
 ): Promise<void> {
     const options: IOptions = {
         default: "master",
-        message: "Baseline branch? (master)",
+        message: "Baseline branch?",
     };
 
     process.stdout.write("Checking connection to VPN...");
@@ -50,12 +50,12 @@ async function visreg(
 
     console.log(" ✔");
 
-    const branch = targetBranch || await input("branch", options) as string;
+    const branch = targetBranch || await input(options.message, options) as string;
 
     const f = "./.github-token";
 
     const storedToken: any = fs.existsSync(f) && fs.readFileSync(f);
-    const token = (storedToken || (await password("github PAT: ")));
+    const token = (storedToken || (await password("github PAT")));
     const repoUrl = url.parse(`https://${config.githubHostname}/${config.githubName}/${config.repo}`);
 
     process.stdout.write("Checking github enterprise PAT...");
