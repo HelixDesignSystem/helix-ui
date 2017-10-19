@@ -20,34 +20,11 @@ browserSync.init({
     files: [ // (See 'watchEvents')
         // Reload browser if any file in public directory changes
         `${CONFIG.publicDir}/**/*`,
-
-        // Rebuild compiled JavaScript if any source JS file changes
+        // Rebuild if anything changes in source directory
         {
-            match: `${CONFIG.sourceDir}/**/*.js`,
-            fn: (evt, file) => {
-                Build.scriptsSync();
-            }
-        },
-
-        // Rebuild compiled CSS if any source LESS file changes
-        {
-            match: `${CONFIG.sourceDir}/**/*.less`,
-            fn: (evt, file) => {
-                Build.stylesSync();
-            }
-        },
-
-        // Rebuild docs if any markup file changes
-        {
-            match: `${CONFIG.sourceDir}/**/*.html`,
-            fn: (evt, file) => {
-                Build.docsSync();
-            }
-        },
-
-        // Rebuild everything if anything else changes
-        {
-            match: `${CONFIG.sourceDir}/**/!(*.js|*.less|*.html)`,
+            match: [
+                `${CONFIG.sourceDir}/**/*`
+            ],
             fn: (evt, file) => {
                 Build.buildSync();
             }

@@ -1,62 +1,26 @@
 window.addEventListener('WebComponentsReady', function () {
+    const tagName = 'hx-reveal';
     const template = document.createElement('template');
 
     template.innerHTML = `
-      <style>
-        :host {
-          display: block;
-        }
-    
-        #content {
-          display: none;
-        }
-
-        :host([open]) > #content {
-          display: block;
-        }
-
-        #toggle {
-          background-color: transparent;
-          border: none;
-          color: inherit;
-          font-size: 1em;
-          margin: 0px;
-          padding: 0px;
-          text-align: left;
-          width: 100%;
-        }
-
-        #toggle:empty {
-          display: none;
-        }
-
-        #toggle:hover {
-          cursor: pointer;
-        }
-      </style>
-
-      <button id="toggle" aria-expanded="false">
-        <slot name="summary"></slot>
-      </button>
-      <div id="content">
-        <slot></slot>
-      </div>
+      <style>${require('./HxReveal.less')}</style>
+      ${require('./HxReveal.html')}
     `;
 
     class HxReveal extends HTMLElement {
         static get is () {
-            return 'hx-reveal';
+            return tagName;
         }
 
         static get observedAttributes () {
             return ['open'];
         }
 
-        constructor() {                   
+        constructor () {
             super();
             this.attachShadow({mode: 'open'});
-            if (window.ShadyCSS) { 
-                ShadyCSS.prepareTemplate(template, 'hx-reveal');
+            if (window.ShadyCSS) {
+                ShadyCSS.prepareTemplate(template, tagName);
                 ShadyCSS.styleElement(this);
             }
             this.shadowRoot.appendChild(template.content.cloneNode(true));
@@ -74,7 +38,7 @@ window.addEventListener('WebComponentsReady', function () {
 
         attributeChangedCallback (attr, oldValue, newValue) {
             if (attr === 'open') {
-                this._btnToggle.setAttribute('aria-expanded', newValue === '');    
+                this._btnToggle.setAttribute('aria-expanded', newValue === '');
             }
         }
 

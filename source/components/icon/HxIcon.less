@@ -1,5 +1,4 @@
-// Legacy browser support (IE)
-hx-icon {
+:host {
   background-color: inherit;
   color: inherit;
   display: inline-block;
@@ -14,9 +13,9 @@ hx-icon {
     height: 0;
     width: 0;
   }
+}
 
-  svg {
-    fill: currentColor;
-    stroke: none;
-  }
+::slotted(svg) {
+  fill: currentColor;
+  stroke: none;
 }
