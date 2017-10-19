@@ -43,9 +43,9 @@ async function visreg(
     console.log("Creating screenshot diff...");
     const afterCommit = util.createDiff(token, currentBranch, screenshotsDirectory);
     util.pushBranch(token, repoUrl, anonymousBranch, screenshotsDirectory);
-    console.log("Opening remote screenshot diff.");
-    opn(`${repoUrl.href}/compare/${baseCommit}...${afterCommit}`);
-
+    const remoteUrl = `${repoUrl.href}/compare/${baseCommit}...${afterCommit}`;
+    console.log(`Opening remote screenshot diff located at: ${remoteUrl}`);
+    opn(remoteUrl);
 }
 
 if (require.main === module) {
