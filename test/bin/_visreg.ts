@@ -21,6 +21,29 @@ export const f = "./.github-token";
 export const repoUrl = url.parse(`https://${config.githubHostname}/${config.githubName}/${config.repo}`);
 export const hasCommitRegex = /\[.*([0-9a-f]{7})] Checking in screenshots.../;
 
+export async function checkConfig(configFile: string) {
+    if (fs.existsSync(configFile)) {
+        const data = fs.readFileSync(configFile).toString();
+        if (/name1234/.test(data)) {
+            const options: IOptions = {
+            default: "your sso",
+                message: "Github Enterprise username?",
+            };
+
+            const name = await input(options.message, options) as string;
+            data.replace("name1234", name);
+        }
+
+        fs.writeFileSync(configFile, data);
+    }
+}
+
+if (config.githubName === "your sso") {
+    console.log(`Visit ${config.githubHostname} and log in to make sure this works.`);
+    console.log("After logging in, copy the last part of the url on your homepage. It's likely your sso.");
+    throw new Error("Please enter a valid Github Enterprise username.");
+}
+
 export async function getBranchName(targetBranch: string) {
     const options: IOptions = {
         default: "master",

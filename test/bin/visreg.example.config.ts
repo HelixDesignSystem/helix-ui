@@ -18,5 +18,5 @@ export interface IConfig {
 export var config: IConfig = {
     "githubHostname": "github.rackspace.com",
     "githubName": "name1234",
-    "repo": "catalog-helix-ui-0",
+    "repo": "snappit-helix-ui",
 }

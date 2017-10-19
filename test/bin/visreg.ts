@@ -13,15 +13,20 @@ async function visreg(
     currentBranch: string,
     targetBranch?: string,
 ): Promise<void> {
-    process.stdout.write("Checking connection to VPN...");
-    try {
-        child_process.execSync("ping -t 3 -c 1 rax.io").toString().match(/1 packets transmitted, 1 packets received/);
-    } catch (e) {
-        console.log(" ✘");
-        console.log("Check your VPN connection and try again.");
-        throw new Error(e);
+    const v = "./visreg.config.ts";
+    await util.checkConfig(v);
+
+    if (config.githubHostname === "github.rackspace.com") {
+        process.stdout.write("Checking connection to VPN...");
+        try {
+            child_process.execSync("ping -t 3 -c 1 rax.io").toString().match(/1 packets transmitted, 1 packets received/);
+        } catch (e) {
+            console.log(" ✘");
+            console.log("Check your VPN connection and try again.");
+            throw new Error(e);
+        }
+        console.log(" ✔");
     }
-    console.log(" ✔");
 
     const branch = await util.getBranchName(targetBranch);
     const token = await util.getGithubToken();
