@@ -106,7 +106,7 @@ export function createBaseline(
     ].join('; '));
     cmd(`git checkout ${targetBranch}; npm test`);
 
-    const commit = commitScreenshots(token, screenshotsDirectory).toString();
+    const commit = commitScreenshots(token, screenshotsDirectory, "before").toString();
     const baseCommitMatch = commit.match(hasCommitRegex);
     const baseCommit = baseCommitMatch && baseCommitMatch[1];
 
@@ -119,7 +119,7 @@ export function createBaseline(
 
 export function createDiff(token: string, currentBranch: string, screenshotsDirectory: string) {
     cmd(`git checkout ${currentBranch}; npm test`);
-    const afterCommitData = commitScreenshots(token, screenshotsDirectory).toString();
+    const afterCommitData = commitScreenshots(token, screenshotsDirectory, "after").toString();
     const afterCommitMatch = afterCommitData.match(hasCommitRegex);
     const afterCommit = afterCommitMatch && afterCommitMatch[1];
 
@@ -256,12 +256,12 @@ export function cloneRepo(token: string, screenshotsDirectory: string, repoUrl: 
     console.log(`Cloned a screenshots project into "${path.resolve(screenshotsDirectory)}"`);
 };
 
-function commitScreenshots(token: string, screenshotsDirectory: string) {
+function commitScreenshots(token: string, screenshotsDirectory: string, message: string) {
     let cmds = [
         `cd ${screenshotsDirectory}`,
         `git add -A`,
         `git status -sb`,
-        `git commit -m "Checking in screenshots..."`,
+        `git commit -m "Checking in screenshots...${message}"`,
         `cd -`
     ];
 
