@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # https://stackoverflow.com/a/4785518/881224
-which wget >/dev/null 2>&1 || { echo "Install wget. Try 'brew install wget' on mac. Aborting." >&2; exit 1; }
+which wget >/dev/null 2>&1 || { echo "Install wget and try again. Aborting." >&2; exit 1; }
 
 # remove sources
 find bin/selenium/. ! -name '.gitignore' -type f -exec rm -f {} +
