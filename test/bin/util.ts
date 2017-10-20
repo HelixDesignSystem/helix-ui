@@ -236,7 +236,7 @@ export function createRepository(token: string, repoUrl: url.Url) {
 
 };
 
-export function resetRepo(screenshotsDirectory: string) {
+export function resetRepository(screenshotsDirectory: string) {
     if (fs.existsSync(`${screenshotsDirectory}/.git`)) {
         // check the current remote in case it's been updated
         const remote = child_process.execSync(`cd ${screenshotsDirectory}; git remote -v | head -n 1`).toString();

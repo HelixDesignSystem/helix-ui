@@ -31,7 +31,7 @@ async function visreg(
 
     process.exit(0);
 
-    util.resetRepo(screenshotsDirectory);
+    util.resetRepository(screenshotsDirectory);
     if (!util.repositoryExists(token, repoUrl)) {
         console.log(`Creating a new screenshots repository at ${repoUrl.href}`);
         await util.createRepository(token, repoUrl);
