@@ -25,15 +25,15 @@ window.addEventListener('WebComponentsReady', function () {
             }
             this.shadowRoot.appendChild(template.content.cloneNode(true));
             this._btnToggle = this.shadowRoot.querySelector('#toggle');
-            this.toggle = this.toggle.bind(this);
+            this._toggle = this._toggle.bind(this);
         }
 
         connectedCallback () {
-            this._btnToggle.addEventListener('click', this.toggle);
+            this._btnToggle.addEventListener('click', this._toggle);
         }
 
         disconnectedCallback () {
-            this._btnToggle.removeEventListener('click', this.toggle);
+            this._btnToggle.removeEventListener('click', this._toggle);
         }
 
         attributeChangedCallback (attr, oldValue, newValue) {
@@ -42,20 +42,20 @@ window.addEventListener('WebComponentsReady', function () {
             }
         }
 
-        toggle () {
-            if (this.getAttribute('open') === '') {
-                this.close();
+        set open (value) {
+            if (Boolean(value)) {
+                this.setAttribute('open', '');
             } else {
-                this.open();
+                this.removeAttribute('open');
             }
         }
 
-        open () {
-            this.setAttribute('open', '');
+        get open () {
+            return this.hasAttribute('open');
         }
 
-        close () {
-            this.removeAttribute('open');
+        _toggle () {
+            this.open = !this.open;
         }
     }
     customElements.define(HxReveal.is, HxReveal)
