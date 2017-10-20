@@ -21,31 +21,39 @@ export const f = "./.github-token";
 export const repoUrl = url.parse(`https://${config.githubHostname}/${config.githubName}/${config.repo}`);
 export const hasCommitRegex = /\[.*([0-9a-f]{7})] Checking in screenshots.../;
 
-export async function checkConfig(configFile: string) {
-    const typescriptConfigFile = "./bin/visreg.config.ts";
-    if (fs.existsSync(configFile)) {
-        const dataJs = fs.readFileSync(configFile).toString();
-        const dataTs = fs.readFileSync(typescriptConfigFile).toString();
-        if (/name1234/.test(data)) {
+export async function checkConfig() {
+    const javascriptConfig = "./built/bin/visreg.config.js";
+    const typescriptConfig = "./bin/visreg.config.ts";
+
+    if (fs.existsSync(javascriptConfig)) {
+        const dataJs = fs.readFileSync(javascriptConfig).toString();
+        const updateJs = /name1234/.test(dataJs);
+
+        const dataTs = fs.readFileSync(typescriptConfig).toString();
+        const updateTs = /name1234/.test(dataTs);
+
+        if (updateJs || updateTs) {
+            const defaultUsername = "your sso";
             const options: IOptions = {
-            default: "your sso",
+            default: defaultUsername,
                 message: "Github Enterprise username?",
             };
 
             const name = await input(options.message, options) as string;
-            dataJs.replace("name1234", name);
-            dataTs.replace("name1234", name);
+            if (name === defaultUsername) {
+                console.log(`Visit ${config.githubHostname} and log in to make sure this works.`);
+                console.log("After logging in, copy the last part of the url on your homepage. It's likely your sso.");
+                throw new Error("Please enter a valid Github Enterprise username.");
+            }
+
+            const js = dataJs.replace(/name1234/, name);
+            updateJs && fs.writeFileSync(javascriptConfig, js);
+
+            const ts = dataTs.replace(/name1234/, name);
+            updateTs && fs.writeFileSync(typescriptConfig, ts);
         }
-
-        fs.writeFileSync(configFile, dataJs);
-        fs.writeFileSync(typescriptConfigFile, dataTs);
     }
-}
 
-if (config.githubName === "your sso") {
-    console.log(`Visit ${config.githubHostname} and log in to make sure this works.`);
-    console.log("After logging in, copy the last part of the url on your homepage. It's likely your sso.");
-    throw new Error("Please enter a valid Github Enterprise username.");
 }
 
 export async function getBranchName(targetBranch: string) {
@@ -61,6 +69,7 @@ export async function getBranchName(targetBranch: string) {
 export async function getGithubToken() {
     const storedToken: any = fs.existsSync(f) && fs.readFileSync(f);
     const token = (storedToken || (await password("github PAT")));
+
     return token;
 }
 
@@ -75,6 +84,7 @@ export async function validateToken(token: string) {
     fs.writeFileSync(f, token);
     console.log(" ✔");
 
+    return token;
 }
 
 export function cmd(command: string) {
@@ -257,3 +267,11 @@ function commitScreenshots(token: string, screenshotsDirectory: string) {
 
     return safeExecSync(token, cmds.join('; '));
 };
+
+
+if (require.main === module) {
+    checkConfig().catch(e => {
+        console.log(e.message);
+        process.exit(1);
+    });
+}

@@ -13,9 +13,6 @@ async function visreg(
     currentBranch: string,
     targetBranch?: string,
 ): Promise<void> {
-    const v = "./built/bin/visreg.config.js";
-    await util.checkConfig(v);
-
     if (config.githubHostname === "github.rackspace.com") {
         process.stdout.write("Checking connection to VPN...");
         try {
@@ -29,8 +26,10 @@ async function visreg(
     }
 
     const branch = await util.getBranchName(targetBranch);
-    const token = await util.getGithubToken();
+    const token = await util.validateToken(await util.getGithubToken());
     const repoUrl = url.parse(`https://${config.githubHostname}/${config.githubName}/${config.repo}`);
+
+    process.exit(0);
 
     util.resetRepo(screenshotsDirectory);
     if (!util.repositoryExists(token, repoUrl)) {
