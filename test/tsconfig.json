@@ -22,7 +22,9 @@
     },
     "include": [
         "index.ts",
+        "bin/util.ts",
         "bin/visreg.ts",
+        "bin/util.ts",
         "bin/visreg.config.ts"
     ],
     "exclude": [
