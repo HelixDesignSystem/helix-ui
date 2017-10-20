@@ -4,7 +4,7 @@ import * as url from "url";
 
 import * as opn from "opn"
 
-import * as util from "./_visreg";
+import * as util from "./util";
 
 import {config, IConfig} from "./visreg.config";
 const screenshotsDirectory = "screenshots";
@@ -13,7 +13,7 @@ async function visreg(
     currentBranch: string,
     targetBranch?: string,
 ): Promise<void> {
-    const v = "./visreg.config.ts";
+    const v = "./built/bin/visreg.config.js";
     await util.checkConfig(v);
 
     if (config.githubHostname === "github.rackspace.com") {

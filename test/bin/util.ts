@@ -22,8 +22,10 @@ export const repoUrl = url.parse(`https://${config.githubHostname}/${config.gith
 export const hasCommitRegex = /\[.*([0-9a-f]{7})] Checking in screenshots.../;
 
 export async function checkConfig(configFile: string) {
+    const typescriptConfigFile = "./bin/visreg.config.ts";
     if (fs.existsSync(configFile)) {
-        const data = fs.readFileSync(configFile).toString();
+        const dataJs = fs.readFileSync(configFile).toString();
+        const dataTs = fs.readFileSync(typescriptConfigFile).toString();
         if (/name1234/.test(data)) {
             const options: IOptions = {
             default: "your sso",
@@ -31,10 +33,12 @@ export async function checkConfig(configFile: string) {
             };
 
             const name = await input(options.message, options) as string;
-            data.replace("name1234", name);
+            dataJs.replace("name1234", name);
+            dataTs.replace("name1234", name);
         }
 
-        fs.writeFileSync(configFile, data);
+        fs.writeFileSync(configFile, dataJs);
+        fs.writeFileSync(typescriptConfigFile, dataTs);
     }
 }
 
