@@ -1,17 +1,14 @@
 {
   "dependencies": {
-    "@types/chai": "^4.0.4",
     "@types/lodash": "^4.14.74",
-    "@types/mocha": "^2.2.43",
     "@types/node": "^8.0.28",
     "@types/opn": "^3.0.28",
     "@types/reflect-metadata": "^0.0.5",
     "@types/selenium-webdriver": "^3.0.7",
-    "chai": "^4.1.2",
+    "ava": "^0.23.0",
     "inquirer-promise": "^1.0.0",
     "inquirer-shortcuts": "^1.1.0",
     "lodash": "^4.17.4",
-    "mocha": "^3.5.3",
     "opn": "^5.1.0",
     "selenium-webdriver": "^3.5.0",
     "snappit-visual-regression": "^0.6.4",
@@ -20,15 +17,21 @@
   },
   "scripts": {
     "build": "tsc",
-    "clean": "npm run clean:js && npm run clean:screenshots",
-    "clean:screenshots": "rm -rf screenshots",
-    "clean:js": "rm -rf built/",
-    "lint": "tslint index.ts",
-    "test": "npm run build && mocha --timeout 15000 built/index.js",
-    "previsreg": "[ -f ./bin/visreg.config.ts ] || cp bin/visreg{.example,}.config.ts",
-    "visreg": "npm run clean:js && npm run build && node ./built/bin/util.js && node ./built/bin/visreg.js",
+    "clean": "npm run clean:visreg && npm run clean:func",
+    "clean:func": "find built/functional -mindepth 1 \\( ! -path 'built/functional/*.js.snap' ! -path 'built/functional/*.js.md' \\) -delete",
+    "clean:visreg": "rm -rf visreg/screenshots built/visreg",
+    "lint": "tslint -c tslint.json visreg/ functional/",
+    "test:func": "npm run build && ava built/functional/*.js",
+    "test:visreg": "npm run build && ava built/visreg/{chrome,firefox}.js --verbose",
+    "postinstall": "[ -f bin/visreg.config.ts ] || cp bin/visreg{.example,}.config.ts",
+    "previsreg": "npm run clean:visreg",
+    "visreg": "npm run build && node built/bin/util.js && node built/bin/visreg.js",
     "webdriver": "npm run webdriver:update && npm run webdriver:start",
-    "webdriver:update": "scripts/webdriver-update",
-    "webdriver:start": "scripts/webdriver-start"
+    "webdriver:start": "scripts/webdriver-start",
+    "webdriver:update": "scripts/webdriver-update"
+  },
+  "ava": {
+    "snapshotLocation": "~/code/js/helix-ui/test/snapshots",
+    "failWithoutAssertions": false
   }
 }

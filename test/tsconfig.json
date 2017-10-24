@@ -12,22 +12,19 @@
         "types": [
             "reflect-metadata",
             "node",
-            "mocha"
+            "ava"
         ],
         "baseUrl": ".",
         "paths": {
             "*": ["types/*"]
         },
-        "outDir": "./built"
+        "outDir": "built"
     },
+    "exclude": ["node_modules"],
     "include": [
-        "index.ts",
-        "bin/util.ts",
-        "bin/visreg.ts",
-        "bin/util.ts",
-        "bin/visreg.config.ts"
-    ],
-    "exclude": [
-        "node_modules"
+        "common/*.ts",
+        "functional/*.ts",
+        "visreg/*.ts",
+        "bin/*.ts"
     ]
 }

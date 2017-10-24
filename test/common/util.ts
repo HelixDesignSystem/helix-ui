@@ -2,6 +2,7 @@
  * Helper functions for the tests in `index.ts`.
  */
 import {By, ISize, ThenableWebDriver, WebDriver, WebElementPromise} from "selenium-webdriver";
+
 export async function setViewportSize (
     driver: ThenableWebDriver,
     size: ISize,
@@ -30,7 +31,12 @@ export function $x(
     return driver.findElement(By.xpath(xpath));
 }
 
-// "page object"
-export var $ = {
+/* A "starter page object" until there's a greater need for something more robust.
+ * For now this only contains common CSS selectors used throughout tests in the
+ * visreg/functional directories, but may also contain functions in the future.
+ *
+ * Once that happens, pull this out of `util.ts` and move it someplace more page-object-y.
+ */
+export var selectors = {
     nav: ".hxApp__nav",
 }
