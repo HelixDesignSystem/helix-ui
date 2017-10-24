@@ -34,7 +34,6 @@
     "testRegex": "built/(chrome|firefox).js",
     "moduleFileExtensions": [
       "js"
-    ],
-    "verbose": true
+    ]
   }
 }
