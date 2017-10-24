@@ -29,8 +29,6 @@ async function visreg(
     const token = await util.validateToken(await util.getGithubToken());
     const repoUrl = url.parse(`https://${config.githubHostname}/${config.githubName}/${config.repo}`);
 
-    process.exit(0);
-
     util.resetRepository(screenshotsDirectory);
     if (!util.repositoryExists(token, repoUrl)) {
         console.log(`Creating a new screenshots repository at ${repoUrl.href}`);
