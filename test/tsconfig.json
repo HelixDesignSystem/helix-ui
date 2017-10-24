@@ -22,7 +22,8 @@
     },
     "include": [
         "chrome.ts",
-        "firefox.ts"
+        "firefox.ts",
+        "util.js"
     ],
     "exclude": [
         "node_modules"
