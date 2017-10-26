@@ -40,6 +40,8 @@ export var selectors = {
 }
 
 export function visregSuite(browserName: string) {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 60e3;
+
     return () => {
         let snappit: Snappit;
         let driver: any;
@@ -56,6 +58,7 @@ export function visregSuite(browserName: string) {
                     ],
                     threshold: 0.1,
                     useDirect: true,
+                    useGeckoDriver: (browserName === "firefox"),
                 };
 
                 snappit = new Snappit(config);
