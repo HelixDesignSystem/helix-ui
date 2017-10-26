@@ -1,3 +1,3 @@
-import * as util from "./util";
+import * as tests from "./index";
 
-describe("helix", util.visregSuite("chrome"));
+describe("helix", tests.visregSuite("chrome"));
