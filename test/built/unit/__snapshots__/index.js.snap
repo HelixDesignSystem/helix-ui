@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`helix hx-reveal should not be open 1`] = `
+"<hx-reveal>
+      <span slot=\\"summary\\">Click me to show content</span>
+      <p>You can't see me.</p>
+    </hx-reveal>"
+`;
+
+exports[`helix hx-reveal should open 1`] = `
+"<hx-reveal open=\\"\\">
+      <span slot=\\"summary\\">Click me to show content</span>
+      <p>You can't see me.</p>
+    </hx-reveal>"
+`;

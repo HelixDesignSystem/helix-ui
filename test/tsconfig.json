@@ -24,7 +24,8 @@
         "chrome.ts",
         "firefox.ts",
         "index.ts",
-        "util.ts"
+        "util.ts",
+        "unit/index.ts"
     ],
     "exclude": [
         "node_modules"

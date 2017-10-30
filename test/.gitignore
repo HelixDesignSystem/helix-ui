@@ -2,5 +2,6 @@
 bin/*.js
 bin/visreg.config.ts
 built/
+!built/unit/__snapshots__/*
 index.js
 screenshots
