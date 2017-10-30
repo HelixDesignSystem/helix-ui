@@ -139,6 +139,108 @@ figure {
   height: 0.75em;
   width: 0.75em;
 }
+/* ========== hxBreadcrumbs ========== */
+.hxBreadcrumb {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 0.75rem;
+  font-weight: 500;
+  height: 1.75rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+.hxBreadcrumb > a {
+  margin-right: 0.5rem;
+}
+.hxBreadcrumb > a:last-of-type {
+  color: #9e9e9e;
+  font-weight: 300;
+  pointer-events: none;
+}
+.hxBreadcrumb .delimiter {
+  color: #9e9e9e;
+  font-size: 0.5rem;
+  margin-right: 0.5rem;
+}
+.hxBreadcrumb .delimiter svg {
+  fill: currentColor;
+  stroke: none;
+}
+.hxBtn {
+  background-color: transparent;
+  border: 1px solid #0c7c84;
+  border-radius: 2px;
+  color: #0c7c84;
+  font-weight: 500;
+  line-height: 1;
+  margin: 0;
+  font-size: 0.875rem;
+  padding: 8px 12px;
+}
+.hxBtn:hover {
+  background-color: #16b9d4;
+  border-color: transparent;
+  color: #ffffff;
+}
+.hxBtn:active {
+  background-color: #0e94a6;
+  border-color: transparent;
+  color: #ffffff;
+}
+.hxBtn:focus {
+  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);
+  outline: none;
+}
+.hxBtn[disabled] {
+  background-color: transparent;
+  border-color: #d8d8d8;
+  color: #d8d8d8;
+  cursor: not-allowed;
+}
+.hxBtn--lg {
+  font-size: 1rem;
+  padding: 15px 16px;
+}
+.hxBtn--sm {
+  padding: 2px 8px;
+}
+.hxBtn--primary {
+  background-color: #0c7c84;
+  color: #ffffff;
+}
+.hxBtn--primary[disabled] {
+  background-color: #d8d8d8;
+  border-color: transparent;
+  color: #757575;
+}
+.hxBtn--link {
+  background-color: transparent;
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+.hxBtn--link:hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: #16b9d4;
+}
+.hxBtn--link:active {
+  background-color: transparent;
+  border-color: transparent;
+  color: #0e94a6;
+}
+.hxBtn--link:focus {
+  box-shadow: none;
+}
+.hxBtn--link[disabled] {
+  background-color: transparent;
+  border-color: transparent;
+  color: #d8d8d8;
+}
+hx-checkbox + * {
+  margin-left: 0.5rem;
+}
 kbd {
   background: none;
   border-radius: 0;
@@ -266,105 +368,6 @@ pre code {
 }
 .hljs-deletion {
   background-color: #f8bbd0;
-}
-/* ========== hxBreadcrumbs ========== */
-.hxBreadcrumb {
-  align-content: center;
-  align-items: center;
-  display: flex;
-  font-size: 0.75rem;
-  font-weight: 500;
-  height: 1.75rem;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-}
-.hxBreadcrumb > a {
-  margin-right: 0.5rem;
-}
-.hxBreadcrumb > a:last-of-type {
-  color: #9e9e9e;
-  font-weight: 300;
-  pointer-events: none;
-}
-.hxBreadcrumb .delimiter {
-  color: #9e9e9e;
-  font-size: 0.5rem;
-  margin-right: 0.5rem;
-}
-.hxBreadcrumb .delimiter svg {
-  fill: currentColor;
-  stroke: none;
-}
-.hxBtn {
-  background-color: transparent;
-  border: 1px solid #0c7c84;
-  border-radius: 2px;
-  color: #0c7c84;
-  font-weight: 500;
-  line-height: 1;
-  margin: 0;
-  font-size: 0.875rem;
-  padding: 8px 12px;
-}
-.hxBtn:hover {
-  background-color: #16b9d4;
-  border-color: transparent;
-  color: #ffffff;
-}
-.hxBtn:active {
-  background-color: #0e94a6;
-  border-color: transparent;
-  color: #ffffff;
-}
-.hxBtn:focus {
-  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);
-  outline: none;
-}
-.hxBtn[disabled] {
-  background-color: transparent;
-  border-color: #d8d8d8;
-  color: #d8d8d8;
-  cursor: not-allowed;
-}
-.hxBtn--lg {
-  font-size: 1rem;
-  padding: 15px 16px;
-}
-.hxBtn--sm {
-  padding: 2px 8px;
-}
-.hxBtn--primary {
-  background-color: #0c7c84;
-  color: #ffffff;
-}
-.hxBtn--primary[disabled] {
-  background-color: #d8d8d8;
-  border-color: transparent;
-  color: #757575;
-}
-.hxBtn--link {
-  background-color: transparent;
-  border: none;
-  padding-left: 0;
-  padding-right: 0;
-}
-.hxBtn--link:hover {
-  background-color: transparent;
-  border-color: transparent;
-  color: #16b9d4;
-}
-.hxBtn--link:active {
-  background-color: transparent;
-  border-color: transparent;
-  color: #0e94a6;
-}
-.hxBtn--link:focus {
-  box-shadow: none;
-}
-.hxBtn--link[disabled] {
-  background-color: transparent;
-  border-color: transparent;
-  color: #d8d8d8;
 }
 /* ===== GRID ===== */
 .hxCol,
@@ -1061,25 +1064,6 @@ pre code {
   }
 }
 /* ===== end:GRID ===== */
-hx-icon {
-  background-color: inherit;
-  color: inherit;
-  display: inline-block;
-  height: 1em;
-  width: 1em;
-  /*
-    if the requested icon type is not valid (nothing injected),
-    make sure the element doesn't consume space on the page.
-  */
-}
-hx-icon:empty {
-  height: 0;
-  width: 0;
-}
-hx-icon svg {
-  fill: currentColor;
-  stroke: none;
-}
 dd {
   margin-bottom: 0.5em;
   margin-left: 1em;
@@ -1125,10 +1109,8 @@ dd {
   background-color: #616161;
   color: #ffffff;
 }
-.hxApp__nav hx-reveal {
-  /* Indentation */
-}
-.hxApp__nav hx-reveal[open] header .toggle-icon {
+.hxApp__nav hx-reveal[open] > #toggle.hx-reveal .toggle-icon,
+.hxApp__nav hx-reveal[open] > header .toggle-icon {
   transform: scaleY(-1);
 }
 .hxApp__nav hx-reveal header {
@@ -1139,6 +1121,7 @@ dd {
 }
 .hxApp__nav hx-reveal hx-reveal header {
   padding-left: 2.5rem;
+  text-transform: capitalize;
 }
 .hxApp__nav hx-reveal hx-reveal a {
   padding-left: 3.75rem;
@@ -1278,9 +1261,27 @@ h6 {
   line-height: 1;
   margin: 0;
 }
+label {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  padding: 0;
+}
 caption {
   padding: 0;
   text-align: left;
+}
+legend {
+  border: none;
+  color: inherit;
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 0;
+  padding: 0;
+  width: 100%;
 }
 .hxPageTitle {
   font-size: 3rem;
@@ -1301,13 +1302,13 @@ caption {
   font-weight: 500;
   margin-bottom: 1.5rem;
 }
-label,
 .hxLabel {
   color: #6b6b6b;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 500;
 }
-.hxSubdued {
+.hxSubdued,
+hx-checkbox[disabled] + label {
   color: #6b6b6b;
 }
 caption,
@@ -1335,6 +1336,9 @@ a:active {
 a.disabled {
   color: #616161;
   pointer-events: none;
+}
+fieldset label {
+  font-size: 0.875rem;
 }
 /* ===== Text Helpers ===== */
 .text-left {
