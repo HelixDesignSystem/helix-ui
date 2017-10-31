@@ -18,24 +18,17 @@
   },
   "scripts": {
     "build": "tsc",
-    "build:visreg": "tsc bin/visreg.ts bin/visreg.config.ts --outdir built/bin --lib es6 && tsc",
-    "clean": "npm run clean:js && npm run clean:screenshots",
-    "clean:screenshots": "rm -rf screenshots",
-    "clean:js": "find built \\( ! -path 'built/unit/__snapshots__/*' \\) -delete",
-    "lint": "tslint index.ts",
-    "test": "npm run build && jest",
-    "test:unit": "npm run build && jest --config unit/jest.config.json",
-    "previsreg": "[ -f ./bin/visreg.config.ts ] || cp bin/visreg{.example,}.config.ts",
-    "visreg": "npm run clean:js && npm run build:visreg && node ./built/bin/util.js && node ./built/bin/visreg.js",
+    "clean": "npm run clean:visreg && npm run clean:func",
+    "clean:func": "find functional/built -mindepth 1 \\( ! -path 'functional/built/functional/__snapshots__/*' \\) -delete ",
+    "clean:visreg": "rm -rf visreg/screenshots visreg/built",
+    "lint": "tslint -c tslint.json visreg/ functional/",
+    "test:func": "npm run build && jest --config functional/jest.config.json",
+    "test:visreg": "npm run build && jest --config visreg/jest.config.json",
+    "postinstall": "[ -f ./visreg/bin/visreg.config.ts ] || cp visreg/bin/visreg{.example,}.config.ts",
+    "previsreg": "npm run clean:visreg",
+    "visreg": "npm run build:visreg && node ./visreg/built/bin/util.js && node ./visreg/built/bin/visreg.js",
     "webdriver": "npm run webdriver:update && npm run webdriver:start",
-    "webdriver:update": "scripts/webdriver-update",
-    "webdriver:start": "scripts/webdriver-start"
-  },
-  "jest": {
-    "testRegex": "built/(chrome|firefox).js",
-    "testEnvironment": "node",
-    "moduleFileExtensions": [
-      "js"
-    ]
+    "webdriver:start": "scripts/webdriver-start",
+    "webdriver:update": "scripts/webdriver-update"
   }
 }

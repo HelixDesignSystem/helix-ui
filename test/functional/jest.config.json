@@ -1,0 +1,7 @@
+{
+    "testRegex": "../built/functional/.*\\.js$",
+    "rootDir": "../built/functional/",
+    "moduleFileExtensions": [
+        "js"
+    ]
+}

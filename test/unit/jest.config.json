@@ -1,7 +1,0 @@
-{
-    "testRegex": "built/unit/.*\\.js$",
-    "rootDir": "../built/unit/",
-    "moduleFileExtensions": [
-        "js"
-    ]
-}

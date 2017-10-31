@@ -1,8 +1,8 @@
 import {$, snap, Snappit, IConfig} from "snappit-visual-regression";
 
-import * as util from "./util";
+import * as util from "../common/util";
 
-export function visregSuite(browserName: string) {
+export function suite(browserName: string) {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60e3;
 
     return () => {
@@ -13,7 +13,7 @@ export function visregSuite(browserName: string) {
             beforeAll(async () => {
                 const config: IConfig = {
                     browser: browserName,
-                    screenshotsDir: "screenshots",
+                    screenshotsDir: "visreg/screenshots",
                     logException: [
                         "MISMATCH",
                         "NO_BASELINE",

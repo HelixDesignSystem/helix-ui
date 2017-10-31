@@ -7,7 +7,7 @@ import * as opn from "opn"
 import * as util from "./util";
 
 import {config, IConfig} from "./visreg.config";
-const screenshotsDirectory = "screenshots";
+const screenshotsDirectory = "visreg/screenshots";
 
 async function visreg(
     currentBranch: string,

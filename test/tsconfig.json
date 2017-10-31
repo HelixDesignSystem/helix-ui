@@ -14,20 +14,13 @@
             "node",
             "jest"
         ],
-        "baseUrl": ".",
-        "paths": {
-            "*": ["types/*"]
-        },
-        "outDir": "./built"
+        "outDir": "built"
     },
+    "exclude": ["node_modules"],
     "include": [
-        "chrome.ts",
-        "firefox.ts",
-        "index.ts",
-        "util.ts",
-        "unit/index.ts"
-    ],
-    "exclude": [
-        "node_modules"
+        "common/*.ts",
+        "functional/*.ts",
+        "visreg/*.ts",
+        "bin/*.ts"
     ]
 }
