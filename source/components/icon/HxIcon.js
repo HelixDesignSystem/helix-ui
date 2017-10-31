@@ -37,6 +37,7 @@ window.addEventListener('WebComponentsReady', function () {
         'lock': require('./_images/lock.svg'),
         'minus': require('./_images/minus.svg'),
         'phone': require('./_images/phone.svg'),
+        'plus': require('./_images/plus.svg'),
         'plus-or-minus': require('./_images/plus-or-minus.svg'),
         'search': require('./_images/search.svg'),
         'sort': require('./_images/sort.svg'),
