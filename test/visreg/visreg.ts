@@ -3,7 +3,7 @@ import {$, snap, Snappit, IConfig} from "snappit-visual-regression";
 import * as util from "../common/util";
 
 export function suite(browserName: string) {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 60e3;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 60 * 1000;
 
     return () => {
         let snappit: Snappit;
