@@ -1,4 +1,5 @@
 {
+    "testEnvironment": "node",
     "testRegex": "../built/visreg/(?!visreg).*\\.js$",
     "rootDir": "../built/visreg/",
     "moduleFileExtensions": [
