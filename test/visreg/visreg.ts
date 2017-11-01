@@ -30,10 +30,6 @@ export function suite(browserName: string) {
                 driver.get("http://localhost:3000/");
             });
 
-            it("full-screen", async () => {
-                await snap("{browserName}/index");
-            });
-
             it("nav", async () => {
                 await snap("{browserName}/nav", $(util.selectors.nav));
             });
