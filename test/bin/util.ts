@@ -104,7 +104,7 @@ export function createBaseline(
         "git commit --allow-empty -m \"Baseline.\"",
         "cd -"
     ].join('; '));
-    cmd(`git checkout ${targetBranch}; npm test`);
+    cmd(`git checkout ${targetBranch}; npm run test:visreg`);
 
     const commit = commitScreenshots(token, screenshotsDirectory, "before").toString();
     const baseCommitMatch = commit.match(hasCommitRegex);
@@ -118,7 +118,7 @@ export function createBaseline(
 }
 
 export function createDiff(token: string, currentBranch: string, screenshotsDirectory: string) {
-    cmd(`git checkout ${currentBranch}; npm test`);
+    cmd(`git checkout ${currentBranch}; npm run test:visreg`);
     const afterCommitData = commitScreenshots(token, screenshotsDirectory, "after").toString();
     const afterCommitMatch = afterCommitData.match(hasCommitRegex);
     const afterCommit = afterCommitMatch && afterCommitMatch[1];
