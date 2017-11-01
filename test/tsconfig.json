@@ -14,6 +14,10 @@
             "node",
             "jest"
         ],
+        "baseUrl": ".",
+        "paths": {
+            "*": ["types/*"]
+        },
         "outDir": "built"
     },
     "exclude": ["node_modules"],
