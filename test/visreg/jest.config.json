@@ -1,6 +1,12 @@
 {
     "testEnvironment": "node",
-    "testRegex": "../built/visreg/(?!visreg).*\\.js$",
+    "unmockedModulePathPatterns": [".*"],
+    "setupFiles": [
+        "snappit-visual-regression",
+        "pngjs",
+        "selenium-webdriver"
+    ],
+    "testRegex": "../built/visreg/chrome.js$",
     "rootDir": "../built/visreg/",
     "moduleFileExtensions": [
         "js"

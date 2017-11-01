@@ -23,7 +23,7 @@
     "clean:visreg": "rm -rf visreg/screenshots visreg/built",
     "lint": "tslint -c tslint.json visreg/ functional/",
     "test:func": "npm run build && jest --config functional/jest.config.json",
-    "test:visreg": "npm run build && jest --config visreg/jest.config.json",
+    "test:visreg": "npm run build && jest --config visreg/jest.config.json --runInBand",
     "postinstall": "[ -f bin/visreg.config.ts ] || cp bin/visreg{.example,}.config.ts",
     "previsreg": "npm run clean:visreg",
     "visreg": "npm run build && node built/bin/util.js && node built/bin/visreg.js",
