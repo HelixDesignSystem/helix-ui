@@ -251,7 +251,7 @@ export function resetRepository(screenshotsDirectory: string) {
 export function cloneRepo(token: string, screenshotsDirectory: string, repoUrl: url.Url) {
     let cloneUrl = `https://${token}@${repoUrl.host}${repoUrl.path}.git`;
     console.log(`Cloning a screenshots project into "${path.resolve(screenshotsDirectory)}"`);
-    safeExecSync(token, `git clone ${cloneUrl} screenshots/ > /dev/null`)
+    safeExecSync(token, `git clone ${cloneUrl} ${screenshotsDirectory}/ > /dev/null`)
 
     console.log(`Cloned a screenshots project into "${path.resolve(screenshotsDirectory)}"`);
 };
