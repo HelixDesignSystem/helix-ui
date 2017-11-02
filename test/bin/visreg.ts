@@ -7,7 +7,7 @@ import * as opn from "opn"
 import * as util from "./util";
 
 import {config, IConfig} from "./visreg.config";
-const screenshotsDirectory = "screenshots";
+const screenshotsDirectory = "visreg/screenshots";
 
 async function visreg(
     currentBranch: string,
@@ -28,8 +28,6 @@ async function visreg(
     const branch = await util.getBranchName(targetBranch);
     const token = await util.validateToken(await util.getGithubToken());
     const repoUrl = url.parse(`https://${config.githubHostname}/${config.githubName}/${config.repo}`);
-
-    process.exit(0);
 
     util.resetRepository(screenshotsDirectory);
     if (!util.repositoryExists(token, repoUrl)) {
