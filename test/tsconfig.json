@@ -12,7 +12,7 @@
         "types": [
             "reflect-metadata",
             "node",
-            "jest"
+            "ava"
         ],
         "baseUrl": ".",
         "paths": {

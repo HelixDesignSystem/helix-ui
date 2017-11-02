@@ -1,52 +1,48 @@
 import {$, snap, Snappit, IConfig} from "snappit-visual-regression";
 
 import * as util from "../common/util";
+import {test} from "ava";
 
 export function suite(browserName: string) {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 60 * 1000;
+    let snappit: Snappit;
+    let driver: any;
 
-    return () => {
-        let snappit: Snappit;
-        let driver: any;
+    test.before(async () => {
+        const config: IConfig = {
+            browser: browserName,
+            screenshotsDir: "visreg/screenshots",
+            logException: [
+                "MISMATCH",
+                "NO_BASELINE",
+                "SIZE_DIFFERENCE",
+            ],
+            threshold: 0.1,
+            // serverUrl: "http://localhost:4444/wd/hub",
+            useDirect: true,
+            useGeckoDriver: (browserName === "firefox"),
+        };
 
-        describe(browserName, () => {
-            beforeAll(async () => {
-                const config: IConfig = {
-                    browser: browserName,
-                    screenshotsDir: "visreg/screenshots",
-                    logException: [
-                        "MISMATCH",
-                        "NO_BASELINE",
-                        "SIZE_DIFFERENCE",
-                    ],
-                    threshold: 0.1,
-                    serverUrl: "http://localhost:4444/wd/hub",
-                    useGeckoDriver: (browserName === "firefox"),
-                };
+        snappit = new Snappit(config);
+        driver = await snappit.start();
+        await util.setViewportSize(driver, { width: 1366, height: 768 });
+        driver.get("http://localhost:3000/");
+    });
 
-                snappit = new Snappit(config);
-                driver = await snappit.start();
-                await util.setViewportSize(driver, { width: 1366, height: 768 });
-                driver.get("http://localhost:3000/");
-            });
+    test(`nav`, async () => {
+        await snap("{browserName}/nav", $(util.selectors.nav));
+    });
 
-            it("nav", async () => {
-                await snap("{browserName}/nav", $(util.selectors.nav));
-            });
+    test(`guides`, async () => {
+        await util.$x(driver, "//nav/hx-reveal//header", "Guides").click();
+        await snap("{browserName}/nav/guides", $(util.selectors.nav));
+    });
 
-            it("guides", async () => {
-                await util.$x(driver, "//nav/hx-reveal//header", "Guides").click();
-                await snap("{browserName}/nav/guides", $(util.selectors.nav));
-            });
+    test(`components`, async () => {
+        await util.$x(driver, "//nav/hx-reveal//header", "Components").click();
+        await snap("{browserName}/nav/componenets", $(util.selectors.nav));
+    });
 
-            it("components", async () => {
-                await util.$x(driver, "//nav/hx-reveal//header", "Components").click();
-                await snap("{browserName}/nav/componenets", $(util.selectors.nav));
-            });
-
-            afterAll(async () => {
-                await snappit.stop();
-            });
-        });
-    }
+    test.after.always(async () => {
+        await snappit.stop();
+    });
 }

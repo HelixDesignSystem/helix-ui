@@ -1,5 +1,6 @@
 .github-token
 bin/visreg.config.ts
 built/
-!built/functional/__snapshots__/*
+!built/functional/*.js.snap
+!built/functional/*.js.md
 screenshots
