@@ -27,16 +27,16 @@ export function suite(browserName: string) {
         driver.get("http://localhost:3000/");
     });
 
-    test(`nav`, async () => {
+    test("nav", async () => {
         await snap("{browserName}/nav", $(util.selectors.nav));
     });
 
-    test(`guides`, async () => {
+    test("guides", async () => {
         await util.$x(driver, "//nav/hx-reveal//header", "Guides").click();
         await snap("{browserName}/nav/guides", $(util.selectors.nav));
     });
 
-    test(`components`, async () => {
+    test("components", async () => {
         await util.$x(driver, "//nav/hx-reveal//header", "Components").click();
         await snap("{browserName}/nav/componenets", $(util.selectors.nav));
     });
