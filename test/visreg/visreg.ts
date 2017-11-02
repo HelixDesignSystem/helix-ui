@@ -17,7 +17,6 @@ export function suite(browserName: string) {
                 "SIZE_DIFFERENCE",
             ],
             threshold: 0.1,
-            // serverUrl: "http://localhost:4444/wd/hub",
             useDirect: true,
             useGeckoDriver: (browserName === "firefox"),
         };
