@@ -24,21 +24,25 @@ export function suite(browserName: string) {
         snappit = new Snappit(config);
         driver = await snappit.start();
         await util.setViewportSize(driver, { width: 1366, height: 768 });
-        driver.get("http://localhost:3000/");
+        driver.get(util.baseUrl);
     });
 
     test("nav", async () => {
         await snap("{browserName}/nav", $(util.selectors.nav));
-    });
-
-    test("guides", async () => {
         await util.$x(driver, "//nav/hx-reveal//header", "Guides").click();
         await snap("{browserName}/nav/guides", $(util.selectors.nav));
-    });
-
-    test("components", async () => {
         await util.$x(driver, "//nav/hx-reveal//header", "Components").click();
         await snap("{browserName}/nav/componenets", $(util.selectors.nav));
+    });
+
+    test("buttons", async () => {
+        await util.go("buttons");
+        await snap("{browserName}/buttons", $(util.selectors.visreg));
+    });
+
+    test("checkbox", async () => {
+        await util.go("checkbox");
+        await snap("{browserName}/checkboxes", $(util.selectors.visreg));
     });
 
     test.after.always(async () => {

@@ -3,6 +3,16 @@
  */
 import {By, ISize, ThenableWebDriver, WebDriver, WebElementPromise} from "selenium-webdriver";
 
+export const baseUrl = "http://localhost:3000/helix-ui";
+
+export async function go(driver: ThenableWebDriver, component: string) {
+    await driver.get(`${baseUrl}/components/${component}`);
+}
+
+export async function snapshot(t: TestContext, element: WebElementPromise) {
+    t.snapshot(await element.getAttribute("outerHTML"));
+}
+
 export async function setViewportSize (
     driver: ThenableWebDriver,
     size: ISize,
@@ -39,4 +49,5 @@ export function $x(
  */
 export var selectors = {
     nav: ".hxApp__nav",
+    visreg: "*[data-visreg]",
 }

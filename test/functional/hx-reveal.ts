@@ -3,10 +3,7 @@ import {WebDriver, WebElementPromise} from "selenium-webdriver";
 
 import {test, TestContext} from "ava";
 
-const baseUrl = "http://localhost:3000/helix-ui";
-const snapshot = async (t: TestContext, element: WebElementPromise) => {
-    t.snapshot(await element.getAttribute("outerHTML"));
-};
+import * as util from "../common/util";
 
 let snappit: Snappit;
 let driver: WebDriver;
@@ -20,19 +17,19 @@ test.before(async () => {
 
     snappit = new Snappit(config);
     driver = await snappit.start();
-    await driver.get(`${baseUrl}/components/reveal`);
+    await driver.get(`${util.baseUrl}/components/reveal`);
     reveal = $(".demo hx-reveal");
 });
 
 test("should not be open", async t => {
     t.is(await reveal.getAttribute("open"), null);
-    await snapshot(t, reveal);
+    await util.snapshot(t, reveal);
 });
 
 test("should open", async t => {
     await reveal.click();
     t.is(await reveal.getAttribute("open"), "true");
-    await snapshot(t, reveal);
+    await util.snapshot(t, reveal);
 });
 
 test.after.always(async () => {
