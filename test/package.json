@@ -22,7 +22,7 @@
     "clean:visreg": "rm -rf visreg/screenshots built/visreg",
     "lint": "tslint -c tslint.json visreg/ functional/",
     "test:func": "npm run build && ava built/functional/*.js",
-    "test:visreg": "npm run build && ava built/visreg/{chrome,firefox}.js --verbose",
+    "test:visreg": "npm run build && ava built/visreg/{chrome,firefox}.js --verbose --serial",
     "postinstall": "[ -f bin/visreg.config.ts ] || cp bin/visreg{.example,}.config.ts",
     "previsreg": "npm run clean:visreg",
     "visreg": "npm run build && node built/bin/util.js && node built/bin/visreg.js",

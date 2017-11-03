@@ -1,7 +1,7 @@
 import {$, snap, Snappit, IConfig} from "snappit-visual-regression";
 import {WebDriver, WebElementPromise} from "selenium-webdriver";
 
-import {test, TestContext} from "ava";
+import {test} from "ava";
 
 import * as util from "../common/util";
 
@@ -17,7 +17,7 @@ test.before(async () => {
 
     snappit = new Snappit(config);
     driver = await snappit.start();
-    await driver.get(`${util.baseUrl}/components/reveal`);
+    await util.go(driver, "reveal");
     reveal = $(".demo hx-reveal");
 });
 
