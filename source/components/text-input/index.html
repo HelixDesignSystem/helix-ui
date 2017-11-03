@@ -1,0 +1,162 @@
+---
+title: Text Input
+assets:
+  - helix-ui.css
+---
+{% extends 'component.njk' %}
+{% block content %}
+
+<section>
+  <h2 class="hxSectionTitle" id="text">Text</h2>
+  <div class="demo">
+    <form>
+      <div class="hxFormGroup">
+        <label for="txt">Default</label>
+        <input type="text" id="txt" placeholder="Text">
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtInvalid">Invalid</label>
+        <input type="text" class="-hxInvalid" id="txtInvalid" placeholder="Text">
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtDisabled">Disabled</label>
+        <input type="text" id="txtDisabled" placeholder="Text" disabled>
+      </div>
+    </form>
+  </div>
+  {% code 'html' %}
+    <form>
+      <div class="hxFormGroup">
+        <label for="txt">Default</label>
+        <input type="text" id="txt" placeholder="Text">
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtInvalid">Invalid</label>
+        <input type="text" class="-hxInvalid" id="txtInvalid" placeholder="Text">
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtDisabled">Disabled</label>
+        <input type="text" id="txtDisabled" placeholder="Text" disabled>
+      </div>
+    </form>
+  {% endcode %}
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="email">Email</h2>
+  <div class="demo">
+    <form>
+      <div class="hxFormGroup">
+        <label for="txtEmail">Default</label>
+        <input type="email" id="txtEmail" placeholder="Email">
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtInvalidEmail">Invalid</label>
+        <input type="email" class="-hxInvalid" id="txtInvalidEmail" placeholder="Email">
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtDisabledEmail">Disabled</label>
+        <input type="email" id="txtDisabledEmail" placeholder="Email" disabled>
+      </div>
+    </form>
+  </div>
+  {% code 'html' %}
+    <form>
+      <div class="hxFormGroup">
+        <label for="txtEmail">Default</label>
+        <input type="email" id="txtEmail" placeholder="Email">
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtInvalidEmail">Invalid</label>
+        <input type="email" class="-hxInvalid" id="txtInvalidEmail" placeholder="Email">
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtDisabledEmail">Disabled</label>
+        <input type="email" id="txtDisabledEmail" placeholder="Email" disabled>
+      </div>
+    </form>
+  {% endcode %}
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="password">Password</h2>
+  <div class="demo">
+    <form>
+      <div class="hxFormGroup">
+        <label for="txtPassword">Password</label>
+        <input type="password" id="txtPassword" placeholder="Password">
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtInvalidPassword">Invalid</label>
+        <input type="password" class="-hxInvalid" id="txtInvalidPassword" placeholder="Password">
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtDisabledPassword">Disabled</label>
+        <input type="password" id="txtDisabledPassword" placeholder="Password" disabled>
+      </div>
+    </form>
+  </div>
+  {% code 'html' %}
+    <form>
+      <div class="hxFormGroup">
+        <label for="txtPassword">Password</label>
+        <input type="password" id="txtPassword" placeholder="Password">
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtInvalidPassword">Invalid</label>
+        <input type="password" class="-hxInvalid" id="txtInvalidPassword" placeholder="Password">
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtDisabledPassword">Disabled</label>
+        <input type="password" id="txtDisabledPassword" placeholder="Password" disabled>
+      </div>
+    </form>
+  {% endcode %}
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="text-area">Text Area</h2>
+  <div class="demo">
+    <form>
+      <div class="hxFormGroup">
+        <label for="txtArea">Default</label>
+        <textarea rows="3" id="txtArea" placeholder="Enter your comment here"></textarea>
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtAreaInvalid">Invalid</label>
+        <textarea rows="3" class="-hxInvalid" id="txtAreaInvalid" placeholder="Enter your comment here"></textarea>
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtAreaDisabled">Disabled</label>
+        <textarea rows="3" id="txtAreaDisabled" placeholder="Enter your comment here" disabled></textarea>
+      </div>
+    </form>
+  </div>
+  {% code 'html' %}
+    <form>
+      <div class="hxFormGroup">
+        <label for="txtArea">Default</label>
+        <textarea rows="3" id="txtArea" placeholder="Enter your comment here"></textarea>
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtAreaInvalid">Invalid</label>
+        <textarea rows="3" class="-hxInvalid" id="txtAreaInvalid" placeholder="Enter your comment here"></textarea>
+      </div>
+      <div class="hxFormGroup">
+        <label for="txtAreaDisabled">Disabled</label>
+        <textarea rows="3" id="txtAreaDisabled" placeholder="Enter your comment here" disabled></textarea>
+      </div>
+    </form>
+  {% endcode %}
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="css-classes">CSS Classes</h2>
+
+  <dl>
+    <dt><code>.-hxInvalid</code></dt>
+    <dd>Add to form input to apply invalid styling</dd>
+  </dl>
+</section>
+
+{% endblock %}

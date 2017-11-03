@@ -13,5 +13,6 @@ components:
   Reveal: reveal
   Table: table
   Tabset: tabset
+  "Text Input": text-input
   Tooltip: tooltip
   Typography: typography
