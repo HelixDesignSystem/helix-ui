@@ -11,6 +11,7 @@ components:
   Navigation: navigation
   Popover: popover
   Reveal: reveal
+  "Status Label": status-label
   Table: table
   Tabset: tabset
   "Text Input": text-input
