@@ -7,7 +7,6 @@ import {test} from "ava";
 export function suite(browserName: string) {
     let snappit: Snappit;
     let driver: WebDriver;
-    let nav: WebElementPromise;
 
     test.before(async () => {
         const config: IConfig = {
