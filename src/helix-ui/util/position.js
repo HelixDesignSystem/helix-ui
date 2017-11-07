@@ -178,9 +178,8 @@ export function getPosition (offsetElement, referenceElement, config) {
         margin: 0,
         offset: 0,
     };
-
     let cfg = Object.assign({}, defaults, config);
-
+    
     let coords = _getCoords(cfg.position, offsetElement, referenceElement, cfg);
     let isOffscreen = _getOffscreenMetadata(offsetElement, coords);
 

@@ -5,6 +5,8 @@ import pkg from './package.json';
 import uglify from 'rollup-plugin-uglify';
 import { minify } from 'uglify-es';
 import less from './lib/rollup-plugin-less';
+import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
 
 let htmlPlugin = html ({
     include: [
@@ -43,6 +45,8 @@ export default [
         ],
         plugins: [
             json(),
+            resolve(),
+            commonjs(),
             htmlPlugin,
             lessPlugin,
             babelPlugin,
@@ -66,6 +70,8 @@ export default [
         ],
         plugins: [
             json(),
+            resolve(),
+            commonjs(),
             htmlPlugin,
             lessPlugin,
             babelPlugin,
@@ -95,6 +101,8 @@ export default [
         ],
         plugins: [
             json(),
+            resolve(),
+            commonjs(),
             htmlPlugin,
             lessPlugin,
         ],
