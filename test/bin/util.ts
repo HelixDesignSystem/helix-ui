@@ -21,6 +21,20 @@ export const f = "./.github-token";
 export const repoUrl = url.parse(`https://${config.githubHostname}/${config.githubName}/${config.repo}`);
 export const hasCommitRegex = /\[.*([0-9a-f]{7})] Checking in screenshots.../;
 
+export function validateVPN(githubHostname: string) {
+   if (githubHostname === "github.rackspace.com") {
+        process.stdout.write("Checking connection to VPN...");
+        try {
+            child_process.execSync("ping -t 3 -c 1 rax.io").toString().match(/1 packets transmitted, 1 packets received/);
+        } catch (e) {
+            console.log(" ✘");
+            console.log("Check your VPN connection and try again.");
+            throw new Error(e);
+        }
+        console.log(" ✔");
+    }
+}
+
 export async function checkConfig() {
     const javascriptConfig = "./built/bin/visreg.config.js";
     const typescriptConfig = "./bin/visreg.config.ts";
