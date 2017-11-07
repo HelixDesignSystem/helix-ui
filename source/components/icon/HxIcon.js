@@ -20,7 +20,6 @@ window.addEventListener('WebComponentsReady', function () {
         'exclamation-triangle': require('./_images/exclamation-triangle.svg'),
         'export': require('./_images/export.svg'),
         'external-link': require('./_images/external-link.svg'),
-        'fanatiguy': require('./_images/fanatiguy.svg'),
         'filter': require('./_images/filter.svg'),
         'help-circle': require('./_images/help-circle.svg'),
         'info-circle': require('./_images/info-circle.svg'),
