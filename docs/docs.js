@@ -3,7 +3,7 @@
 import './styleguide/box/box-demo';
 import './components/panels/panel-demo';
 import './components/tooltip/tooltip-demo';
-import './components/popovers/popover-demo';
+import './elements/hx-popover/popover-demo';
 
 (function () {
     let hashAnchors = document.querySelectorAll('[href^="#"]');
