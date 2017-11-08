@@ -2,22 +2,14 @@ guides:
   Installing: install
 components:
   Alert: alert
-  Badge: badge
-  Blockquote: blockquote
   Breadcrumb: breadcrumb
   Button: button
   Checkbox: checkbox
   Code: code
-  Dropdown: dropdown
-  Form: form
   Grid: grid
   Icon: icon
-  List: list
-  Modal: modal
   Navigation: navigation
-  Pagination: pagination
   Popover: popover
-  "Progress Bar": progressbar
   Reveal: reveal
   Table: table
   Tabset: tabset
