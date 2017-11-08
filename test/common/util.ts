@@ -1,10 +1,22 @@
 /*
- * Helper functions for the tests in `index.ts`.
+ * Helper functions for the tests in `../visreg/` and `../functional/`.
  */
-import {By, ISize, ThenableWebDriver, WebDriver, WebElementPromise} from "selenium-webdriver";
+import {By, ISize, WebDriver, WebElementPromise} from "selenium-webdriver";
+
+import {TestContext} from "ava";
+
+export const baseUrl = "http://localhost:3000/helix-ui";
+
+export async function go(driver: WebDriver, component: string) {
+    await driver.get(`${baseUrl}/components/${component}`);
+}
+
+export async function snapshot(t: TestContext, element: WebElementPromise) {
+    t.snapshot(await element.getAttribute("outerHTML"));
+}
 
 export async function setViewportSize (
-    driver: ThenableWebDriver,
+    driver: WebDriver,
     size: ISize,
 ) {
     const jsGetPadding: string = `return {
@@ -20,7 +32,7 @@ export async function setViewportSize (
 }
 
 export function $x(
-    driver: ThenableWebDriver,
+    driver: WebDriver,
     xpath: string,
     byText = "",
 ) {
@@ -39,4 +51,5 @@ export function $x(
  */
 export var selectors = {
     nav: ".hxApp__nav",
+    visreg: "*[data-visreg]",
 }

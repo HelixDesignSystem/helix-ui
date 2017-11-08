@@ -17,19 +17,11 @@ test.before(async () => {
 
     snappit = new Snappit(config);
     driver = await snappit.start();
-    await util.go(driver, "reveal");
-    reveal = $(".demo hx-reveal");
+    await util.go(driver, "button");
 });
 
-test("should not be open", async t => {
-    t.is(await reveal.getAttribute("open"), null);
-    await util.snapshot(t, reveal);
-});
-
-test("should open", async t => {
-    await reveal.click();
-    t.is(await reveal.getAttribute("open"), "true");
-    await util.snapshot(t, reveal);
+test("states", async t => {
+    await util.snapshot(t, $(util.selectors.visreg));
 });
 
 test.after.always(async () => {
