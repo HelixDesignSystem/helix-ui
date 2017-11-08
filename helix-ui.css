@@ -15,6 +15,9 @@ html {
 *::after {
   box-sizing: inherit;
 }
+a {
+  background-color: transparent;
+}
 html {
   height: 100%;
 }
@@ -1064,10 +1067,6 @@ pre code {
   }
 }
 /* ===== end:GRID ===== */
-dd {
-  margin-bottom: 0.5em;
-  margin-left: 1em;
-}
 .hxApp__nav {
   background-color: #212121;
   color: #d8d8d8;
@@ -1244,6 +1243,44 @@ table tfoot tr td {
 .hxTable--hover tbody tr:hover td,
 .hxTable--hover tbody tr:hover th {
   background-color: #f5f5f5;
+}
+hx-tabset {
+  display: block;
+}
+hx-tabset [slot="tabs"] {
+  background-color: inherit;
+}
+hx-tabset .hxTab {
+  background-color: transparent;
+  border-radius: 2px 2px 0 0;
+  border: 1px solid transparent;
+  bottom: -1px;
+  box-sizing: border-box;
+  color: #757575;
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  margin-left: 8px;
+  padding: 0.75rem 0.75rem 0.5rem;
+  position: relative;
+}
+hx-tabset .hxTab:hover {
+  color: #16b9d4;
+}
+hx-tabset .hxTab:active {
+  color: #0e94a6;
+}
+hx-tabset .hxTab.current {
+  background-color: inherit;
+  border-color: #e0e0e0 #e0e0e0 transparent;
+  color: #0c7c84;
+}
+hx-tabset hx-tabpanel {
+  min-height: 172px;
+}
+hx-tabset hx-tabpanel:not([open]) {
+  display: none;
 }
 body {
   color: #424242;

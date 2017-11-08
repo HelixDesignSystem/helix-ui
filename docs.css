@@ -110,11 +110,6 @@ main section + section {
 .hxBtn--link.pseudo-active {
   pointer-events: none;
 }
-.dropdown-example .dropdown-menu {
-  display: block;
-  margin-bottom: 1.25em;
-  position: static;
-}
 .grid-demo > .demo-container {
   border: 1px dotted #d8d8d8;
 }
@@ -365,27 +360,6 @@ hx-icon.size-3x {
 hx-icon.danger {
   color: #d32f2f;
 }
-.popover-example {
-  z-index: 0;
-  display: flex;
-  flex-wrap: wrap;
-}
-.popover-example::before {
-  content: '';
-}
-.popover-example .popover {
-  display: block;
-  flex: 0 0 260px;
-  margin: 20px;
-  position: relative;
-  z-index: auto;
-}
-.tooltip-example .tooltip {
-  display: inline-block;
-  margin: 1em;
-  opacity: 1;
-  position: relative;
-}
 a.pseudo-active {
   color: #3391ff;
   cursor: pointer;
@@ -411,4 +385,8 @@ a.pseudo-active {
 }
 .weight-bold {
   font-weight: 700;
+}
+dd {
+  margin-bottom: 0.5em;
+  margin-left: 1em;
 }

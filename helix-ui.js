@@ -60,11 +60,17 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+module.exports = "<button id=\"toggle\" aria-expanded=\"false\">\n  <slot name=\"summary\"></slot>\n</button>\n<div id=\"content\">\n  <slot></slot>\n</div>\n"
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77,14 +83,18 @@
 // Each file will be responsible for defining itself
 // with the custom element registry
 
-__webpack_require__(1);
+__webpack_require__(2);
 
-__webpack_require__(4);
+__webpack_require__(5);
 
 __webpack_require__(64);
 
+__webpack_require__(66);
+
+__webpack_require__(68);
+
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98,7 +108,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var KEY = __webpack_require__(2);
+var KEY = __webpack_require__(3);
 /*
  * See "Using the checkbox role" (https://goo.gl/jDZFpH)
  */
@@ -107,7 +117,7 @@ window.addEventListener('WebComponentsReady', function () {
     var tagName = 'hx-checkbox';
     var template = document.createElement('template');
 
-    template.innerHTML = '\n      <style>' + __webpack_require__(3) + '</style>\n      <div id="container">\n        <hx-icon type="checkmark" id="tick"></hx-icon>\n        <hx-icon type="minus" id="minus"></hx-icon>\n      </div>\n    ';
+    template.innerHTML = '\n      <style>' + __webpack_require__(4) + '</style>\n      <div id="container">\n        <hx-icon type="checkmark" id="tick"></hx-icon>\n        <hx-icon type="minus" id="minus"></hx-icon>\n      </div>\n    ';
 
     function _preventScroll(event) {
         if (event.keyCode == KEY.Space) {
@@ -293,7 +303,7 @@ window.addEventListener('WebComponentsReady', function () {
 });
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -333,13 +343,13 @@ KEYCODE['Return'] = KEYCODE['Enter'];
 module.exports = KEYCODE;
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = ":host {\n  background-color: #ffffff;\n  border-color: currentColor;\n  border-radius: 2px;\n  border-style: solid;\n  border-width: 1px;\n  color: #bdbdbd;\n  display: inline-block;\n  height: 1rem;\n  vertical-align: middle;\n  width: 1rem;\n  /* default unchecked */\n  /* default checked */\n  /* default indeterminate (checked or unchecked) */\n  /* invalid unchecked */\n  /* invalid checked */\n  /* invalid indeterminate (checked or unchecked) */\n  /* disabled unchecked */\n  /* disabled checked */\n  /* disabled indeterminate (checked or unchecked) */\n}\n:host([hidden]) {\n  display: none;\n}\n:host(:hover) {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n:host([checked]) {\n  color: #0c7c84;\n}\n:host([checked]:hover) {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n:host([indeterminate]) {\n  color: #0c7c84;\n}\n:host([indeterminate]:hover) {\n  color: #16b9d4;\n}\n:host([invalid]) {\n  border-width: 2px;\n  color: #d32f2f;\n}\n:host([invalid]:hover) {\n  background-color: #ffcdd2;\n  color: #d32f2f;\n}\n:host([disabled]) {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n  cursor: not-allowed;\n}\n:host([disabled]:hover) {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n}\n:host([disabled][indeterminate]) {\n  color: #bdbdbd;\n}\n#container {\n  align-content: center;\n  align-items: center;\n  display: flex;\n  font-size: 0.625em;\n  /* ~10px */\n  height: 100%;\n  justify-content: center;\n  width: 100%;\n}\n#minus,\n#tick {\n  display: none;\n  height: 1em;\n  line-height: 1;\n  width: 1em;\n}\n:host([checked]:not([indeterminate])) #tick {\n  display: block;\n}\n:host([indeterminate]) #minus {\n  display: block;\n}\n"
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -357,25 +367,24 @@ window.addEventListener('WebComponentsReady', function () {
     var tagName = 'hx-icon';
     var template = document.createElement('template');
     var icons = {
-        'account': __webpack_require__(5),
-        'angle-down': __webpack_require__(6),
-        'angle-left': __webpack_require__(7),
-        'angle-right': __webpack_require__(8),
-        'angle-up': __webpack_require__(9),
-        'bell': __webpack_require__(10),
-        'billing': __webpack_require__(11),
-        'calendar': __webpack_require__(12),
-        'checkmark': __webpack_require__(13),
-        'checkmark-circle': __webpack_require__(14),
-        'cog': __webpack_require__(15),
-        'copy': __webpack_require__(16),
-        'download': __webpack_require__(17),
-        'envelope': __webpack_require__(18),
-        'exclamation-circle': __webpack_require__(19),
-        'exclamation-triangle': __webpack_require__(20),
-        'export': __webpack_require__(21),
-        'external-link': __webpack_require__(22),
-        'fanatiguy': __webpack_require__(23),
+        'account': __webpack_require__(6),
+        'angle-down': __webpack_require__(7),
+        'angle-left': __webpack_require__(8),
+        'angle-right': __webpack_require__(9),
+        'angle-up': __webpack_require__(10),
+        'bell': __webpack_require__(11),
+        'billing': __webpack_require__(12),
+        'calendar': __webpack_require__(13),
+        'checkmark': __webpack_require__(14),
+        'checkmark-circle': __webpack_require__(15),
+        'cog': __webpack_require__(16),
+        'copy': __webpack_require__(17),
+        'download': __webpack_require__(18),
+        'envelope': __webpack_require__(19),
+        'exclamation-circle': __webpack_require__(20),
+        'exclamation-triangle': __webpack_require__(21),
+        'export': __webpack_require__(22),
+        'external-link': __webpack_require__(23),
         'filter': __webpack_require__(24),
         'help-circle': __webpack_require__(25),
         'info-circle': __webpack_require__(26),
@@ -498,118 +507,112 @@ window.addEventListener('WebComponentsReady', function () {
 });
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M15.2 2c.44 0 .8.36.8.8v10.4c0 .44-.36.8-.8.8h-2.4a1.2 1.2 0 1 0-2.4 0H5.6a1.2 1.2 0 0 0-2.4 0H.8c-.44 0-.8-.36-.8-.8V2.8c0-.44.36-.8.8-.8h14.4zM9 10.562v-.437a.44.44 0 0 0-.242-.392c-.075-.037-1.859-.92-3.258-.92s-3.183.883-3.258.92a.44.44 0 0 0-.242.392v.437c0 .242.196.438.438.438h6.125A.438.438 0 0 0 9 10.562zm-5.287-4.74v.875c0 .965.785 1.75 1.75 1.75s1.75-.785 1.75-1.75v-.875c0-.965-.785-1.75-1.75-1.75s-1.75.785-1.75 1.75zM10 11h4v-1h-4v1zm0-3h4V7h-4v1zm0-3h4V4h-4v1z\"></path></svg>"
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M8.004 12.561l-5.771-6.92a1 1 0 1 1 1.535-1.282l4.236 5.08 4.229-5.072a1 1 0 0 1 1.535 1.281l-5.764 6.913z\"></path></svg>"
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M11.409 13.985a.997.997 0 0 1-.64-.232L3.857 7.988l6.92-5.77a1 1 0 1 1 1.282 1.535l-5.08 4.235 5.072 4.23a1.001 1.001 0 0 1-.642 1.767z\"></path></svg>"
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M5.65 2.232a1 1 0 1 0-1.282 1.536l5.07 4.229-5.079 4.235a1 1 0 0 0 1.281 1.536l6.921-5.771L5.65 2.232z\"></path></svg>"
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M13.001 11.562c-.287 0-.571-.123-.769-.36L7.996 6.125l-4.228 5.07a1 1 0 1 1-1.536-1.281L7.996 3l5.772 6.92a1.001 1.001 0 0 1-.767 1.642\"></path></svg>"
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M8 13.752c-2.651 0-4.8-.373-4.8-.832 0-.46 2.149-.832 4.8-.832s4.8.372 4.8.832c0 .46-2.149.832-4.8.832m6.371-1.69c-1.196-1.06-2.186-2.333-2.186-6.422 0-1.597-1.243-3.329-3.31-3.724C8.875 1.408 8.483 1 8 1s-.875.41-.875.915v.001c-2.067.395-3.31 2.127-3.31 3.724 0 4.09-.99 5.361-2.186 6.422-.4.262-.629.552-.629.858C1 14.068 4.134 15 8 15s7-.932 7-2.08c0-.306-.229-.596-.629-.858\"></path></svg>"
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M15.2 14H.8c-.44 0-.8-.36-.8-.8V2.8c0-.44.36-.8.8-.8h14.4c.44 0 .8.36.8.8v10.4c0 .44-.36.8-.8.8zM1.6 10.8h1.6v.8h1.6v-.84a2.007 2.007 0 0 0 1.507-2.576C6.052 7.337 5.213 6.8 4.329 6.8h-.695a.397.397 0 0 1-.394-.4c0-.22.176-.4.394-.4H6.4V4.4H4.8v-.8H3.2v.84A1.997 1.997 0 0 0 1.62 6.4c0 1.103.885 2 1.975 2h.803c.218 0 .395.18.395.4 0 .22-.177.4-.395.4H1.6v1.6zM9 11h5v-1H9v1zm0-3h5V7H9v1zm0-3h5V4H9v1z\"></path></svg>"
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M7 12.981h2v-2.02H7v2.02zm-3.999 0h2v-2.02H3v2.02zm8-4.029H13v-2.02h-2v2.02zm-4 0h2v-2.02H7v2.02zm-4 0h2v-2.02H3v2.02zm8.769-6.66c0-.112-.127-.21-.27-.21h-.537c-.144 0-.27.098-.27.21v2.556c0 .11.126.209.27.209h.536c.144 0 .27-.099.27-.21V2.292zm-6.462 0c0-.112-.126-.21-.27-.21h-.537c-.144 0-.27.098-.27.21v2.556c0 .11.126.209.27.209h.537c.144 0 .27-.099.27-.21V2.292zM15 13.918c0 .59-.487 1.081-1.076 1.081H2.077C1.488 15 1 14.51 1 13.919V4.246c0-.592.488-1.082 1.077-1.082h1.077v-.811C3.154 1.609 3.761 1 4.501 1h.537c.74 0 1.348.609 1.348 1.353v.81h3.23v-.81c0-.744.606-1.353 1.347-1.353h.536c.741 0 1.347.609 1.347 1.353v.81h1.078c.589 0 1.076.49 1.076 1.083v9.673z\"></path></svg>"
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M7.038 14.997c-.438 0-.858-.192-1.145-.53L1.355 9.111a1.5 1.5 0 0 1 2.289-1.939l3.171 3.742 5.392-9.175a1.5 1.5 0 0 1 2.586 1.52L8.331 14.257a1.5 1.5 0 0 1-1.293.74\"></path></svg>"
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M12.16 5.9l-4.164 5.418a1 1 0 0 1-.74.39c-.018.002-.035.002-.053.002-.273 0-.535-.113-.725-.312L3.91 8.694a1 1 0 0 1 1.45-1.378l1.763 1.856 3.451-4.492A1 1 0 0 1 12.16 5.9M8 1C4.14 1 1 4.14 1 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7\"></path></svg>"
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M8.006 10.16A2.19 2.19 0 0 1 5.82 7.973a2.19 2.19 0 0 1 2.187-2.188 2.19 2.19 0 0 1 2.188 2.188 2.19 2.19 0 0 1-2.188 2.187m6.778-3.458l-1.292-.209a5.673 5.673 0 0 0-.73-1.635l.807-.972a.246.246 0 0 0-.014-.323L12.22 2.23a.253.253 0 0 0-.326-.019l-1.058.834a5.634 5.634 0 0 0-1.615-.626l-.085-1.2A.238.238 0 0 0 8.904 1H7.019a.243.243 0 0 0-.237.218l-.102 1.23a5.63 5.63 0 0 0-1.539.618L4.03 2.209a.256.256 0 0 0-.327.021L2.369 3.563a.253.253 0 0 0-.019.326l.845 1.059a5.65 5.65 0 0 0-.688 1.597l-1.29.1A.241.241 0 0 0 1 6.88v1.886c0 .12.098.23.217.245l1.228.148a5.62 5.62 0 0 0 .647 1.669l-.741.93a.25.25 0 0 0 .018.325l1.333 1.333a.263.263 0 0 0 .33.024l.915-.677c.547.35 1.157.609 1.81.756l.094 1.263a.24.24 0 0 0 .235.218h1.761c.12 0 .232-.097.247-.217l.16-1.264a5.634 5.634 0 0 0 1.776-.735l.862.654a.26.26 0 0 0 .329-.022l1.334-1.333a.263.263 0 0 0 .023-.331l-.671-.903c.33-.563.568-1.187.69-1.852l1.185-.094A.24.24 0 0 0 15 8.668V6.955a.267.267 0 0 0-.216-.253\"></path></svg>"
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M9 6c.55 0 1 .45 1 1v7c0 .55-.45 1-1 1H2c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h7zm5-5a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-2a1 1 0 1 1 0-2h1V3H8v1a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1h7z\"></path></svg>"
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M8.081 12.581L4.22 8.701a.999.999 0 0 1 .004-1.414.999.999 0 0 1 1.414.003l1.377 1.384.04-6.68c.003-.552.483-.976 1.006-.994a1 1 0 0 1 .994 1.006l-.04 6.804 1.512-1.52a1.001 1.001 0 0 1 1.418 1.411l-3.863 3.88zM14 8a1 1 0 0 1 1 1v4.5c0 .827-.673 1.5-1.5 1.5h-11c-.827 0-1.5-.673-1.5-1.5V9a1 1 0 1 1 2 0v4h10V9a1 1 0 0 1 1-1z\"></path></svg>"
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M14.995 2C15.55 2 16 2.458 16 3.019v1.055L8.017 8.861 0 4.062V3.019C0 2.458.453 2 1.005 2h13.99zm-6.978 8.885c.189 0 .379-.05.545-.15L16 6.276V12.982c0 .56-.45 1.019-1 1.019H1c-.549 0-1-.458-1-1.02V6.263l7.473 4.474c.165.099.355.149.544.149z\"></path></svg>"
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M8.654 10H7.466a.52.52 0 0 1-.515-.5l-.15-5a.485.485 0 0 1 .485-.5H8.87c.275 0 .515.201.482.5l-.179 5c.013.251-.244.5-.518.5M8.5 13h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1c.275 0 .5.225.5.5v1c0 .275-.225.5-.5.5M8 1C4.15 1 1 4.15 1 8s3.15 7 7 7 7-3.15 7-7-3.15-7-7-7\"></path></svg>"
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M9.19 9.008c-.01.275-.072.612-.14.75-.067.137-.622.25-.896.25h-.189c-.274 0-.614-.05-.752-.113-.14-.062-.269-.612-.277-.887l-.12-4c-.008-.276.032-.613.09-.75.058-.138.605-.25.88-.25h.584c.275 0 .616.045.758.1.14.055.216.624.207.9l-.146 4zm-.19 3c0 .274-.05.612-.113.75-.062.137-.612.25-.886.25-.276 0-.613-.05-.75-.113-.139-.062-.25-.613-.25-.887 0-.275.05-.613.111-.75.063-.138.612-.25.889-.25.274 0 .612.05.75.112.136.062.25.613.25.888zm5.832 1.292c-.28-.562-.567-1.12-.85-1.679-1.683-3.315-3.366-6.63-5.046-9.947-.204-.402-.49-.667-.925-.674-.423-.007-.724.234-.924.627-1.982 3.906-3.965 7.812-5.94 11.724a1.395 1.395 0 0 0-.145.663c.03.595.476.984 1.084.984 1.97.003 3.942.001 5.913.001 1.962 0 3.926.002 5.89 0 .928-.002 1.38-.819.944-1.699z\"></path></svg>"
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M5.452 6.138c-.2.19-.463.285-.724.285-.261 0-.522-.093-.721-.282a.937.937 0 0 1-.004-1.373L8 1l3.896 3.768a.938.938 0 0 1-.003 1.373c-.4.378-1.048.375-1.445-.003L9.043 4.796 9 11.28c-.004.534-.46.964-1.027.964-.566-.003-1.02-.44-1.016-.976L7 4.658 5.452 6.138zM14 7.835a1 1 0 0 1 1 1V13.5c0 .827-.673 1.5-1.5 1.5h-11c-.827 0-1.5-.673-1.5-1.5V8.836a1 1 0 1 1 2 0V13h10V8.836a1 1 0 0 1 1-1z\"></path></svg>"
 
 /***/ }),
-/* 22 */
-/***/ (function(module, exports) {
-
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M10 1h5v5a1 1 0 1 1-2 0V4.509L8.099 9.411a1 1 0 0 1-1.414-1.414L11.682 3H10a1 1 0 1 1 0-2zm2 7a1 1 0 0 1 1 1v4.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 1 13.5v-9A1.5 1.5 0 0 1 2.5 3H7a1 1 0 1 1 0 2H3v8h8V9a1 1 0 0 1 1-1z\"></path></svg>"
-
-/***/ }),
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M8.565 5.403h-.01c-.136-.002-.237-.054-.301-.155-.125-.198-.09-.556.094-.934.301-.623.907-1.13 1.35-1.13h.009c.136.003.238.056.302.157.125.197.089.555-.094.933-.301.623-.907 1.13-1.35 1.13zM7.479 1.835C3.119 2.917-.231 7.132.012 11.232.148 13.375 1.37 15.169 3.222 16a21.401 21.401 0 0 1 .969-6.958c.792-2.527 2.01-4.79 3.622-6.729a.184.184 0 0 1 .072-.052c.338-.086.66-.148.978-.191.13-.003.21.077.21.178l-.02.079a.191.191 0 0 1-.026.036 6.762 6.762 0 0 0-.703.86c-.732 1.065-1.047 1.902-.91 2.421.06.225.202.391.437.509.284.142.536.211.768.211.735 0 1.208-.721 1.808-1.634.115-.176.234-.357.36-.54.443-.646.876-1.472 1.15-2.19A6.942 6.942 0 0 0 9.51 1.58c-.664 0-1.347.086-2.031.256zM6.484 15.33c-.683 0-1.343-.09-1.964-.27-.07-1.635.279-3.257.939-4.357.496-.827 1.12-1.283 1.756-1.283.725 0 1.422.598 1.912 1.64.36.764.586 1.707.651 2.726a.181.181 0 0 0 .183.167l.057-.01c.376-.195.72-.402 1.05-.627a.176.176 0 0 0 .079-.146l-.009-.055c-.487-1.162-.947-2.587-.705-4.442.254-1.943 1.245-4.087 3.028-6.553l.025-.051.008-.05a.174.174 0 0 0-.068-.14C12.446 1.114 11.088.71 9.5.71c-.281 0-.57.012-.865.038.226-.25.461-.497.703-.738.134-.007.269-.01.401-.01 3.481 0 6.05 2.335 6.249 5.678.241 4.093-3.103 8.307-7.454 9.394a8.552 8.552 0 0 1-2.05.26zM13.127 14a.989.989 0 0 1 .502-.866c.157-.089.326-.133.508-.133a1.016 1.016 0 0 1 .877.497.989.989 0 0 1 .133.502.985.985 0 0 1-.504.869 1.01 1.01 0 0 1-.506.132 1.007 1.007 0 0 1-.876-.499.987.987 0 0 1-.134-.502zm1.845 0a.83.83 0 0 0-.107-.413.828.828 0 0 0-.728-.42.84.84 0 0 0-.725.413.826.826 0 0 0-.111.42.83.83 0 0 0 .836.835.828.828 0 0 0 .727-.42.835.835 0 0 0 .108-.415zm-1.04.101v.45h-.214v-1.136h.4c.142 0 .255.031.338.092a.304.304 0 0 1 .124.26c0 .1-.054.177-.161.233a.244.244 0 0 1 .121.115c.024.05.035.111.035.184s.002.125.005.155c.004.03.01.056.02.076v.022h-.221a1.002 1.002 0 0 1-.019-.26c0-.067-.015-.116-.046-.146-.032-.03-.084-.045-.157-.045h-.225zm0-.179h.194c.07 0 .128-.014.173-.043.045-.028.067-.066.067-.112 0-.062-.017-.107-.05-.133-.034-.026-.095-.04-.183-.04h-.2v.328z\"></path></svg>"
+module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\"><path d=\"M10 1h5v5a1 1 0 1 1-2 0V4.509L8.099 9.411a1 1 0 0 1-1.414-1.414L11.682 3H10a1 1 0 1 1 0-2zm2 7a1 1 0 0 1 1 1v4.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 1 13.5v-9A1.5 1.5 0 0 1 2.5 3H7a1 1 0 1 1 0 2H3v8h8V9a1 1 0 0 1 1-1z\"></path></svg>"
 
 /***/ }),
 /* 24 */
@@ -870,7 +873,7 @@ window.addEventListener('WebComponentsReady', function () {
     var tagName = 'hx-reveal';
     var template = document.createElement('template');
 
-    template.innerHTML = '\n      <style>' + __webpack_require__(65) + '</style>\n      ' + __webpack_require__(66) + '\n    ';
+    template.innerHTML = '\n      <style>' + __webpack_require__(65) + '</style>\n      ' + __webpack_require__(0) + '\n    ';
 
     var HxReveal = function (_HTMLElement) {
         _inherits(HxReveal, _HTMLElement);
@@ -949,13 +952,241 @@ window.addEventListener('WebComponentsReady', function () {
 /* 65 */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  display: block;\n}\n:host([open]) > #content {\n  display: block;\n}\n#content {\n  display: none;\n}\n#toggle {\n  background-color: transparent;\n  border: none;\n  color: inherit;\n  font-size: 1em;\n  margin: 0;\n  padding: 0;\n  text-align: left;\n  width: 100%;\n}\n#toggle:empty {\n  display: none;\n}\n#toggle:hover {\n  cursor: pointer;\n}\n"
+module.exports = ":host {\n  display: block;\n}\n:host([open]) > #content {\n  display: block;\n}\n#content {\n  display: none;\n}\n#toggle {\n  background-color: transparent;\n  border: none;\n  color: inherit;\n  font-size: 1em;\n  margin: 0;\n  padding: 0;\n  text-align: left;\n  width: 100%;\n}\n#toggle:hover {\n  cursor: pointer;\n}\n"
 
 /***/ }),
 /* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+window.addEventListener('WebComponentsReady', function () {
+    var tagName = 'hx-tabpanel';
+    var template = document.createElement('template');
+
+    template.innerHTML = '\n      <style>' + __webpack_require__(67) + '</style>\n      ' + __webpack_require__(0) + '\n    ';
+
+    var HxTabpanel = function (_HTMLElement) {
+        _inherits(HxTabpanel, _HTMLElement);
+
+        _createClass(HxTabpanel, null, [{
+            key: 'is',
+            get: function get() {
+                return tagName;
+            }
+        }]);
+
+        function HxTabpanel() {
+            _classCallCheck(this, HxTabpanel);
+
+            var _this = _possibleConstructorReturn(this, (HxTabpanel.__proto__ || Object.getPrototypeOf(HxTabpanel)).call(this));
+
+            _this.attachShadow({ mode: 'open' });
+            if (window.ShadyCSS) {
+                ShadyCSS.prepareTemplate(template, tagName);
+                ShadyCSS.styleElement(_this);
+            }
+            _this.shadowRoot.appendChild(template.content.cloneNode(true));
+            return _this;
+        }
+
+        _createClass(HxTabpanel, [{
+            key: 'connectedCallback',
+            value: function connectedCallback() {
+                if (!this.hasAttribute('role')) {
+                    this.setAttribute('role', 'tabpanel');
+                }
+            }
+        }, {
+            key: 'open',
+            set: function set(value) {
+                if (Boolean(value)) {
+                    this.setAttribute('open', '');
+                } else {
+                    this.removeAttribute('open');
+                }
+            },
+            get: function get() {
+                return this.hasAttribute('open');
+            }
+        }]);
+
+        return HxTabpanel;
+    }(HTMLElement);
+
+    customElements.define(HxTabpanel.is, HxTabpanel);
+});
+
+/***/ }),
+/* 67 */
 /***/ (function(module, exports) {
 
-module.exports = "<button id=\"toggle\" aria-expanded=\"false\">\n  <slot name=\"summary\"></slot>\n</button>\n<div id=\"content\">\n  <slot></slot>\n</div>\n"
+module.exports = ":host {\n  display: block;\n}\n:host([open]) > #content {\n  display: block;\n}\n#content {\n  display: none;\n}\n#toggle {\n  background-color: transparent;\n  border: none;\n  color: inherit;\n  font-size: 1em;\n  margin: 0;\n  padding: 0;\n  text-align: left;\n  width: 100%;\n}\n#toggle:hover {\n  cursor: pointer;\n}\n:host([open]) {\n  border-color: #e0e0e0 transparent;\n  border-style: solid;\n  border-width: 1px;\n  padding: 1.5rem 1.25rem;\n}\n#toggle {\n  display: none;\n}\n"
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+window.addEventListener('WebComponentsReady', function () {
+    var tagName = 'hx-tabset';
+    var template = document.createElement('template');
+
+    template.innerHTML = '\n        <style>' + __webpack_require__(69) + '</style>\n        ' + __webpack_require__(70) + '\n    ';
+
+    var HxTabset = function (_HTMLElement) {
+        _inherits(HxTabset, _HTMLElement);
+
+        _createClass(HxTabset, null, [{
+            key: 'is',
+            get: function get() {
+                return tagName;
+            }
+        }, {
+            key: 'observedAttributes',
+            get: function get() {
+                return ['selected'];
+            }
+        }]);
+
+        function HxTabset() {
+            _classCallCheck(this, HxTabset);
+
+            var _this = _possibleConstructorReturn(this, (HxTabset.__proto__ || Object.getPrototypeOf(HxTabset)).call(this));
+
+            _this.attachShadow({ mode: 'open' });
+            if (window.ShadyCSS) {
+                ShadyCSS.prepareTemplate(template, tagName);
+                ShadyCSS.styleElement(_this);
+            }
+            _this.shadowRoot.appendChild(template.content.cloneNode(true));
+            _this.$head = _this.shadowRoot.querySelector('#head');
+            _this._onHeadClick = _this._onHeadClick.bind(_this);
+            return _this;
+        }
+
+        _createClass(HxTabset, [{
+            key: 'connectedCallback',
+            value: function connectedCallback() {
+                this.$head.addEventListener('click', this._onHeadClick);
+                if (!this.hasAttribute('role')) {
+                    this.setAttribute('role', 'tablist');
+                }
+
+                if (!this.hasAttribute('selected')) {
+                    this._selectPanelByIndex(0);
+                }
+            }
+        }, {
+            key: 'disconnectedCallback',
+            value: function disconnectedCallback() {
+                this.$head.removeEventListener('click', this._onHeadClick);
+            }
+        }, {
+            key: 'attributeChangedCallback',
+            value: function attributeChangedCallback(attr, oldValue, newValue) {
+                this._selectPanelById(newValue);
+            }
+        }, {
+            key: '_selectPanelById',
+            value: function _selectPanelById(id) {
+                this._selectPanel(this.querySelector('hx-tabpanel#' + id));
+            }
+        }, {
+            key: '_selectPanelByIndex',
+            value: function _selectPanelByIndex(idx) {
+                if (idx < 0 || idx >= this.panels.length) {
+                    throw new Error('Panel index out of bounds');
+                } else {
+                    this._selectPanel(this.panels[idx]);
+                }
+            }
+        }, {
+            key: '_selectPanel',
+            value: function _selectPanel(panel) {
+                if (panel) {
+                    this._reset();
+                    panel.open = true;
+                    var selectedIndex = this.panels.indexOf(panel);
+                    this.tabs[selectedIndex].classList.add('current');
+                }
+            }
+        }, {
+            key: '_reset',
+            value: function _reset() {
+                this.panels.forEach(function (panel) {
+                    return panel.open = false;
+                });
+                this.tabs.forEach(function (tab) {
+                    return tab.classList.remove('current');
+                });
+            }
+        }, {
+            key: '_onHeadClick',
+            value: function _onHeadClick(event) {
+                event.preventDefault();
+                this._selectPanelByIndex(this.tabs.indexOf(event.target));
+            }
+        }, {
+            key: 'selected',
+            get: function get() {
+                return this.getAttribute('selected');
+            },
+            set: function set(id) {
+                if (this.querySelector('hx-tabpanel#' + id)) {
+                    this.setAttribute('selected', id);
+                } else {
+                    throw new Error('Tab with id "' + id + '" not found');
+                }
+            }
+        }, {
+            key: 'tabs',
+            get: function get() {
+                return Array.from(this.querySelectorAll('.hxTab'));
+            }
+        }, {
+            key: 'panels',
+            get: function get() {
+                return Array.from(this.querySelectorAll('hx-tabpanel'));
+            }
+        }]);
+
+        return HxTabset;
+    }(HTMLElement);
+
+    customElements.define(HxTabset.is, HxTabset);
+});
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports) {
+
+module.exports = ":host {\n  background-color: inherit;\n  display: block;\n}\nslot {\n  background-color: inherit;\n}\n#head {\n  background-color: inherit;\n}\n"
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id =\"head\">\n  <slot name=\"tabs\"></slot>\n</div>\n<div id =\"body\">\n  <slot></slot>\n</div>\n"
 
 /***/ })
 /******/ ]);
