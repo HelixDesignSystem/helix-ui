@@ -1,0 +1,60 @@
+html input,
+textarea {
+  background-color: @gray-0;
+  border: 1px solid @gray-500;
+  border-radius: 2px;
+  color: @gray-800;
+  display: block;
+  font-size: 1rem; // 16px
+  padding: 8px;
+  width: 100%;
+
+  /*
+  https://css-tricks.com/snippets/css/style-placeholder-text/
+  */
+  &::-webkit-input-placeholder { // Chrome
+    color: @gray-600;
+  }
+
+  &::-moz-placeholder { // Firefox 19+
+    color: @gray-600;
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder { // IE 10+
+    color: @gray-600;
+  }
+
+  &::placeholder {
+    color: @gray-600;
+  }
+
+  &:focus {
+    outline: 0;
+    border-color: @cyan-700;
+    box-shadow: @focus-glow;
+    &.-hxInvalid {
+      box-shadow: @focus-glow-invalid;
+    }
+  }
+
+  &.-hxInvalid {
+    border: 2px solid @red-900;
+  }
+
+  &[disabled] {
+    background-color: @gray-50;
+    border-color: @gray-300;
+    color: @gray-400;
+    cursor: not-allowed;
+  }
+}
+
+textarea[disabled] {
+  resize: none;
+}
+
+// TODO: move to appropriate file
+.hxFormGroup {
+  margin-bottom: 1rem;
+}
