@@ -19,9 +19,11 @@
     "build": "tsc",
     "clean": "npm run clean:visreg && npm run clean:func",
     "clean:func": "find built/functional -mindepth 1 \\( ! -path 'built/functional/*.js.snap' ! -path 'built/functional/*.js.md' \\) -delete",
+    "clean:regression": "find built/regression -mindepth 1 \\( ! -path 'built/regression/*.js.snap' ! -path 'built/regression/*.js.md' \\) -delete",
     "clean:visreg": "rm -rf visreg/screenshots built/visreg",
     "lint": "tslint -c tslint.json visreg/ functional/",
     "test:func": "npm run build && ava built/functional/*.js",
+    "test:regression": "npm run build && ava node built/regression/generateRegressionTests.js --verbose",
     "test:visreg": "npm run build && ava built/visreg/{chrome,firefox}.js --verbose --serial",
     "postinstall": "[ -f bin/visreg.config.ts ] || cp bin/visreg{.example,}.config.ts",
     "previsreg": "npm run clean:visreg",
@@ -31,7 +33,7 @@
     "webdriver:update": "scripts/webdriver-update"
   },
   "ava": {
-    "snapshotLocation": "~/code/js/helix-ui/test/snapshots",
+    "snapshotLocation": "test/snapshots",
     "failWithoutAssertions": false
   }
 }

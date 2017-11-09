@@ -24,6 +24,7 @@
     "include": [
         "common/*.ts",
         "functional/*.ts",
+        "regression/*.ts",
         "visreg/*.ts",
         "bin/*.ts"
     ]
