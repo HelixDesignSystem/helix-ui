@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 'use strict';
 
+<<<<<<< HEAD
+=======
+const fs = require('fs');
+>>>>>>> feat(server): Hook testing into watch tasks
 const exec = require('child_process').exec;
 
 const Build = require('./build');

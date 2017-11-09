@@ -34,9 +34,9 @@
     "clean:regression": "find built/regression -mindepth 1 \\( ! -path 'built/regression/*.js.snap' ! -path 'built/regression/*.js.md' \\) -delete",
     "clean:visreg": "rm -rf visreg/screenshots built/visreg",
     "lint": "tslint -c tslint.json visreg/ functional/",
-    "test:func": "npm run build && ava built/functional/*.js",
-    "test:regression": "npm run build && ava node built/regression/generateRegressionTests.js --verbose",
-    "test:visreg": "npm run build && ava built/visreg/{chrome,firefox}.js --verbose --serial",
+    "test:func": "ava built/functional/*.js",
+    "test:regression": "ava node built/regression/generateRegressionTests.js --verbose --serial",
+    "test:visreg": "ava built/visreg/{chrome,firefox}.js --verbose --serial",
     "postinstall": "[ -f bin/visreg.config.ts ] || cp bin/visreg{.example,}.config.ts",
 >>>>>>> test(regression): Auto generate from html attr
     "previsreg": "npm run clean:visreg",
