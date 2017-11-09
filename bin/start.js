@@ -2,9 +2,12 @@
 'use strict';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 const fs = require('fs');
 >>>>>>> feat(server): Hook testing into watch tasks
+=======
+>>>>>>> fix(tests): Run one big auto-generated test
 const exec = require('child_process').exec;
 
 const Build = require('./build');

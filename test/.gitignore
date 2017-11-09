@@ -5,4 +5,8 @@ built/*
 built/{functional,regression}/*
 !built/{functional,regression}/*.js.snap
 !built/{functional,regression}/*.js.md
+<<<<<<< HEAD
 screenshots
+=======
+screenshots
+>>>>>>> fix(tests): Run one big auto-generated test

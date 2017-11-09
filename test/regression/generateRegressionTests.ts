@@ -43,6 +43,7 @@ test.before(async () => {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 test(`auto-generated regression cases`, async t => {
     let component: string;
     for (component of matches) {
@@ -51,6 +52,11 @@ let component: string;
 for (component of matches) {
     test(`auto-generated regression case: ${component}`, async t => {
 >>>>>>> test(regression): Auto generate from html attr
+=======
+test(`auto-generated regression cases`, async t => {
+    let component: string;
+    for (component of matches) {
+>>>>>>> fix(tests): Run one big auto-generated test
         await util.go(driver, component);
         let e: WebElement;
         for (e of await driver.findElements(By.css(util.selectors.visreg))) {
@@ -67,9 +73,14 @@ for (component of matches) {
 =======
             await snap(sectionName, e as WebElementPromise);
         }
+<<<<<<< HEAD
     });
 }
 >>>>>>> test(regression): Auto generate from html attr
+=======
+    };
+});
+>>>>>>> fix(tests): Run one big auto-generated test
 
 test.after.always(async () => {
     await snappit.stop();
