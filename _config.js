@@ -39,7 +39,6 @@ CONFIG.less = {
     files: [
         `${CONFIG.sourceDir}/helix-ui.less`,
         `${CONFIG.sourceDir}/docs.less`,
-        `${CONFIG.sourceDir}/bootstrap.helix.less`,
     ],
 };
 
@@ -83,7 +82,6 @@ CONFIG.copy = {
 // Configuration to publish assets to Cloud Files
 // Local-to-Remote path mapping
 const _cdnFiles = {};
-_cdnFiles[`${CONFIG.publicDir}/bootstrap.helix.css`] = 'css/bootstrap.helix.css';
 _cdnFiles[`${CONFIG.publicDir}/helix-ui.css`] = 'css/helix-ui.css';
 _cdnFiles[`${CONFIG.publicDir}/helix-ui.js`] = 'javascript/helix-ui.js';
 CONFIG.cdn = {
