@@ -11,7 +11,7 @@ const bumpFiles = [ './package.json' ];
     'preminor',
     'prepatch',
     'prerelease'
-].forEach( (ilk) => {
+].forEach((ilk) => {
     gulp.task(`bump:${ilk}`, function () {
         gulp.src(bumpFiles)
             .pipe(bump({ type: ilk }))

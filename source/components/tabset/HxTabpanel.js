@@ -29,7 +29,7 @@ window.addEventListener('WebComponentsReady', function () {
         }
 
         set open (value) {
-            if (Boolean(value)) {
+            if (value) {
                 this.setAttribute('open', '');
             } else {
                 this.removeAttribute('open');

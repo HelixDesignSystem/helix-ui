@@ -71,7 +71,7 @@ window.addEventListener('WebComponentsReady', function () {
             return tagName;
         }
 
-        static get observedAttributes() {
+        static get observedAttributes () {
             return ['type'];
         }
 
@@ -81,8 +81,8 @@ window.addEventListener('WebComponentsReady', function () {
 
         constructor (type) {
             super();
-            this.attachShadow({mode: 'open'});
-            if (window.ShadyCSS ) {
+            this.attachShadow({ mode: 'open' });
+            if (window.ShadyCSS) {
                 ShadyCSS.prepareTemplate(template, tagName);
                 ShadyCSS.styleElement(this);
             }
@@ -97,7 +97,7 @@ window.addEventListener('WebComponentsReady', function () {
             this._render();
         }
 
-        attributeChangedCallback (attr, oldValue, newValue) {
+        attributeChangedCallback (attr) {
             if (attr === 'type') {
                 this._render();
             }
