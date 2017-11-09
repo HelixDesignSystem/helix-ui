@@ -18,7 +18,7 @@ window.addEventListener('WebComponentsReady', function () {
 
         constructor () {
             super();
-            this.attachShadow({mode: 'open'});
+            this.attachShadow({ mode: 'open' });
             if (window.ShadyCSS) {
                 ShadyCSS.prepareTemplate(template, tagName);
                 ShadyCSS.styleElement(this);

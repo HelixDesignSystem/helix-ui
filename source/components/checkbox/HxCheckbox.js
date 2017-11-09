@@ -16,7 +16,7 @@ window.addEventListener('WebComponentsReady', function () {
     `;
 
     function _preventScroll (event) {
-        if (event.keyCode == KEY.Space) {
+        if (event.keyCode === KEY.Space) {
             event.preventDefault();
         }
     }
@@ -36,7 +36,7 @@ window.addEventListener('WebComponentsReady', function () {
 
         constructor () {
             super();
-            this.attachShadow({mode: 'open'});
+            this.attachShadow({ mode: 'open' });
             if (window.ShadyCSS) {
                 ShadyCSS.prepareTemplate(template, tagName);
                 ShadyCSS.styleElement(this);
@@ -110,13 +110,13 @@ window.addEventListener('WebComponentsReady', function () {
                     if (hasValue) {
                         this.setAttribute('aria-checked', 'mixed');
                     }
-                break;
+                    break;
 
                 case 'checked':
                     if (!this.indeterminate) {
                         this.setAttribute('aria-checked', hasValue);
                     }
-                break;
+                    break;
 
                 case 'disabled':
                     this.setAttribute('aria-disabled', hasValue);
@@ -126,7 +126,7 @@ window.addEventListener('WebComponentsReady', function () {
                     } else {
                         this.setAttribute('tabindex', '0');
                     }
-                break;
+                    break;
             }
         }//attributeChangedCallback()
 
@@ -135,13 +135,13 @@ window.addEventListener('WebComponentsReady', function () {
                 return;
             }
 
-            if (event.keyCode == KEY.Space) {
+            if (event.keyCode === KEY.Space) {
                 event.preventDefault();
                 this._toggleChecked();
             }
         }
 
-        _onClick (event) {
+        _onClick () {
             this._toggleChecked();
         }
 

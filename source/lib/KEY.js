@@ -16,7 +16,7 @@ const KEYCODE = {
     Shift: 16,
     Space: 32,
     Tab: 9,
-    Up: 38,
+    Up: 38
 };
 
 // ALIASES
