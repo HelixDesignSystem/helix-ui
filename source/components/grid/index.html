@@ -36,11 +36,16 @@ assets:
 
 <section>
   <h3 class="hxSubSectionTitle" id="automatic">Automatic Columns</h3>
-  <div class="alert alert-info">
-    <p>
-      <b>NOTE:</b> Automatic columns are overridden by <a href="#responsive">responsive classes</a>.
-    </p>
+  <div class="hxAlert">
+    <div class="hxAlert__icon">
+      <hx-icon type="info-circle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">NOTE</span>
+      Automatic columns are overridden by <a href="#responsive">responsive classes</a>.
+    </div>
   </div>
+  <br />
 
   <p>
     Automatic columns will share row width equally among other automatic columns.
@@ -93,12 +98,17 @@ assets:
 
 <section>
   <h3 class="hxSubSectionTitle" id="explicit">Explicit Columns</h3>
-  <div class="alert alert-info">
-    <p>
-      If the sum of a row's columns exceeds 12, the columns will wrap.
+  <div class="hxAlert">
+    <div class="hxAlert__icon">
+      <hx-icon type="info-circle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">NOTE</span>
+      If the sum of a row's columns exceeds 12, the columns will wrap.<br />
       See <a href="#wrapping">Column Wrapping</a> for more details.
-    </p>
+    </div>
   </div>
+  <br />
 
   <p>
     Explicit columns will take up a defined percentage of the row.
@@ -183,12 +193,17 @@ assets:
 
 <section>
   <h3 class="hxSubSectionTitle" id="nesting">Nesting Elements</h3>
-  <div class="alert alert-info">
-    <p>
-      <b>Do not apply row and column classes to the same element.</b>
+  <div class="hxAlert hxAlert--warning">
+    <div class="hxAlert__icon">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">Warning</span>
+      Do not apply row and column classes to the same element.<br />
       Rows and columns must be nested within one another.
-    </p>
+    </div>
   </div>
+  <br />
 
   <p>
     You can nest rows and columns as deep as necessary. Gutters will align automatically.
@@ -369,11 +384,16 @@ assets:
 
 <section>
   <h3 class="hxSubSectionTitle" id="responsive">Responsive Layout</h3>
-  <div class="alert alert-info">
-    <p>
+  <div class="hxAlert">
+    <div class="hxAlert__icon">
+      <hx-icon type="info-circle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">NOTE</span>
       Responsive column classes override <a href="#automatic">automatic columns</a>.
-    </p>
+    </div>
   </div>
+  <br />
 
   <p>
     Each responsive class corresponds to the <em>minimum breakpoint</em>
@@ -537,12 +557,17 @@ assets:
 
 <section>
   <h3 class="hxSubSectionTitle" id="styling">Styling the Grid</h3>
-  <div class="alert alert-info">
-    <p>
-      <b>Avoid styling rows and columns.</b>
+  <div class="hxAlert">
+    <div class="hxAlert__icon">
+      <hx-icon type="info-circle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">NOTE</span>
+      Avoid styling rows and columns.<br />
       Add a container within a column to apply styling.
-    </p>
+    </div>
   </div>
+  <br />
 
   <p>
     Because styles for rows and columns are meticulously defined to support

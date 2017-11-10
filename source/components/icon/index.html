@@ -6,17 +6,10 @@ assets:
 ---
 {% extends 'component.njk' %}
 {% block content %}
-<div class="alert alert-info">
-  You will need to include both <code>helix-ui.css</code> and <code>helix-ui.js</code>
-  in your application to use Icons. Please read the
-  <a href="/helix-ui/guides/install#web-components">installation guide</a> for more details.
-</div>
 
 <p>
-  The <code>&lt;hx-icon&gt;</code> element takes advantage of HTML
-  <a href="https://www.webcomponents.org/" target="_blank">Web Components</a>
-  to deliver consistent, stylable, icons for use in Helix applications across
-  IE 11, Edge, Chrome, Firefox, and Safari.
+  The <code>&lt;hx-icon&gt;</code> element delivers consistent, stylable,
+  icons for use in Helix applications.
 </p>
 
 <section>
@@ -56,10 +49,18 @@ assets:
 
 <section>
   <h2 class="hxSectionTitle" id="styling">Styling</h2>
-  <div class="alert alert-info">
-    Icons inherit the <code>color</code> and <code>background-color</code>
-    of their parent.
+  <div class="hxAlert">
+    <div class="hxAlert__icon">
+      <hx-icon type="info-circle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">NOTE</span>
+      Icons inherit the <code>color</code> and <code>background-color</code>
+      of their parent.
+    </div>
   </div>
+  <br />
+
   <p>
     Styling Icons is similar to styling text. You can change properties like,
     <code>font-size</code>, <code>color</code>, <code>background-color</code>,
