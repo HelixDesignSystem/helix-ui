@@ -1,7 +1,7 @@
 /*
  * Helper functions for the tests in `../visreg/` and `../functional/`.
  */
-import {By, ISize, WebDriver, WebElement} from "selenium-webdriver";
+import {By, ISize, WebDriver, WebElement, WebElementPromise} from "selenium-webdriver";
 import {TestContext} from "ava";
 
 export const baseUrl = "http://localhost:3000/helix-ui";
