@@ -33,12 +33,8 @@
     "deploy": "bin/deploy.js",
     "postinstall": "cd test; yarn install; yarn run webdriver:update; cd -;",
     "publish": "bin/publish.js",
-<<<<<<< HEAD
     "start": "bin/start.js",
     "test": "cd test; yarn test"
-=======
-    "start": "bin/start.js"
->>>>>>> feat(server): Hook testing into watch tasks
   },
   "repository": "git+https://github.com/rackerlabs/helix-ui.git",
   "author": "Rackspace",

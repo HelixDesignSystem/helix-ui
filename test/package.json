@@ -34,11 +34,17 @@
     "clean:regression": "find built/regression -mindepth 1 \\( ! -path 'built/regression/*.js.snap' ! -path 'built/regression/*.js.md' \\) -delete",
     "clean:visreg": "rm -rf visreg/screenshots built/visreg",
     "lint": "tslint -c tslint.json visreg/ functional/",
+    "pretest": "npm run build",
+    "test": "npm run test:func && npm run test:regression && npm run test:visreg",
     "test:func": "ava built/functional/*.js",
     "test:regression": "ava node built/regression/generateRegressionTests.js --verbose --serial",
     "test:visreg": "ava built/visreg/{chrome,firefox}.js --verbose --serial",
+<<<<<<< HEAD
     "postinstall": "[ -f bin/visreg.config.ts ] || cp bin/visreg{.example,}.config.ts",
 >>>>>>> test(regression): Auto generate from html attr
+=======
+    "postinstall": "[ -f bin/visreg.config.ts ] || cp bin/visreg.example.config.ts bin/visreg.config.ts",
+>>>>>>> chore(travis): Basic setup
     "previsreg": "npm run clean:visreg",
     "visreg": "node built/bin/util.js && node built/bin/visreg.js",
     "webdriver": "npm run webdriver:update && npm run webdriver:start",
