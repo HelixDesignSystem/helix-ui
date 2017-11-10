@@ -2,136 +2,238 @@
 title: Installing HelixUI
 cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com
 ---
-{% extends 'fullpage.njk' %}
+{% extends 'component.njk' %}
 {% block content %}
 <section>
   <h2 class="hxSectionTitle" id="assets">Assets</h2>
-  <table class="table table-condensed">
+  <table class="hxTable hxTable--condensed">
     <thead>
       <tr>
-        <th>File</th>
-        <th>Testing</th>
-        <th>Production (CDN)</th>
+        <th></th>
+        <th>Development (unminified)</th>
+        <th>Production (minified)</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th>bootstrap.helix.css</th>
+        <th>Appearance</th>
         <td>
-          <a href="/helix-ui/styles/bootstrap.helix.css" target="_blank">bootstrap.helix.css</a>
+          <a href="{{page.cdn}}/css/helix-ui.css" target="_blank">
+            <hx-icon type="external-link"></hx-icon>
+            helix-ui.css
+          </a>
         </td>
-        <td>
-          <a href="{{page.cdn}}/css/bootstrap.helix.css">HTTPS</a>
-        </td>
-      </tr>
-      <tr>
-        <th>helix-ui.css</th>
-        <td>
-          <a href="/helix-ui/styles/helix-ui.css" target="_blank">helix-ui.css</a>
-        </td>
-        <td>
-          <a href="{{page.cdn}}/css/helix-ui.css">HTTPS</a>
-        </td>
-      </tr>
-      <tr>
-        <th>helix-ui.js</th>
-        <td>
-          <a href="/helix-ui/scripts/helix-ui.js" target="_blank">helix-ui.js</a>
-        </td>
-        <td>
-          <a href="{{page.cdn}}/javascript/helix-ui.js" target="_blank">HTTPS</a>
-        </td>
-      </tr>
-      <tr>
-        <th>ES5 Adapter</th>
         <td>N/A</td>
-        <td>
-          <a href="{{page.cdn}}/javascript/custom-elements-es5-adapter.js" target="_blank">HTTPS</a>
-        </td>
       </tr>
       <tr>
-        <th>Web Components Polyfill Loader</th>
-        <td>N/A</td>
+        <th>Behavior</th>
         <td>
-          <a href="{{page.cdn}}/javascript/webcomponents-loader.js" target="_blank">HTTPS</a>
+          <a href="{{page.cdn}}/javascript/helix-ui.js" target="_blank">
+            <hx-icon type="external-link"></hx-icon>
+            helix-ui.js
+          </a>
         </td>
+        <td>N/A</td>
       </tr>
     </tbody>
   </table>
 </section>
 
-<section>
+<section><!-- Web Components -->
+  <h2 class="hxSectionTitle" id="web-components">Web Components</h2>
   <section>
-    <h2 class="hxSectionTitle" id="web-components">Web Components</h2>
+    <table class="hxTable hxTable--condensed">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Production (CDN)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>ES5 Adapter</th>
+          <td>
+            <a href="{{page.cdn}}/javascript/custom-elements-es5-adapter.js" target="_blank">
+              <hx-icon type="external-link"></hx-icon>
+              custom-elements-es5-adapter.js
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th>Web Components Loader</th>
+          <td>
+            <a href="{{page.cdn}}/javascript/webcomponents-loader.js" target="_blank">
+              <hx-icon type="external-link"></hx-icon>
+              webcomponents-loader.js
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <p>
       To begin using the custom elements defined in HelixUI, you must first
-      ensure that the browser can load them.  To do so, copy and paste the
-      following to the bottom of the <code>&lt;head&gt;</code> in your applicaton.
+      ensure that the browser can load them. To do so, you'll need to insert
+      both the ES5 Adapter and the Polyfill Loader into your markup.
     </p>
+  </section>
+
+  <section><!-- TL;DR -->
+    <h3 class="hxSubSectionTitle">TL;DR</h3>
     {% code 'html' %}
-      <!-- ES5 Adapter -->
-      <script src="{{page.cdn}}/javascript/custom-elements-es5-adapter.js"></script>
-      <!-- Polyfill Loader -->
-      <script src="{{page.cdn}}/javascript/webcomponents-loader.js"></script>
+      <html>
+        <head>
+          ...
+
+          <script src="cdn/path/to/webcomponents-loader.js"></script>
+          <!-- polyfills automatically injected here (if needed) -->
+        </head>
+        <body>
+          ...
+
+          <!-- intelligently load ES5 Adapter (if needed) -->
+          <span id="ce-es5-adapter">
+            <script>
+              if (!window.customElements) {
+                var elAdapter = document.querySelector('#ce-es5-adapter');
+                elAdapter.parentElement.removeChild(elAdapter);
+              }
+            </script>
+            <script src="cdn/path/to/custom-elements-es5-adapter.js"></script>
+          </span>
+
+          <!-- HelixUI custom element definitions -->
+          <script src="cdn/path/to/helix-ui.js"></script>
+
+          <!-- load your application logic here -->
+          <script src="domain/path/to/your/app.js"></script>
+        </body>
+      </html>
     {% endcode %}
   </section>
 
-  <section>
-    <h3 class="hxSubSectionTitle">ES5 Adapter</h3>
-    <div class="alert alert-warning">
-      <b>DO NOT attempt to concatenate or compile the adapter into ES5.</b>
-      This will break the adapter logic.
+  <section><!-- web components loader -->
+    <h3 class="hxSubSectionTitle" id="web-components-loader">Web Components Loader</h3>
+    <div class="hxAlert">
+      <div class="hxAlert__icon">
+        <hx-icon type="info-circle"></hx-icon>
+      </div>
+      <div class="hxAlert__text">
+        <span class="hxAlert__status">NOTE</span>
+        Currently, the loader only supports being loaded in the <code>&lt;head&gt;</code>
+        of an HTML document.
+      </div>
     </div>
-    <div class="alert alert-info">
-      The adapter <em>will raise a syntax exception in browsers
-      that do not support ES6 (e.g. IE)</em>. <br />
-      This should not affect functionality of any web components.
-    </div>
-    <div class="alert alert-info">
-      The ES5 adapter must be loaded before the Polyfill Loader.
-    </div>
+    <br />
+
     <p>
-      To make sure that web components work in all supported browsers,
-      we have to compile our definitions in ES5-compatible JavaScript.
-      However, web component APIs require defining custom elements
-      using ES6 class syntax.
+      The web components loader comes from the
+      <a href="https://github.com/webcomponents/webcomponentsjs">webcomponentsjs</a>
+      project. Its job is to perform feature detection on the current browser
+      so that it can dynamically inject the smallest polyfill needed to
+      support web components into the head of the HTML document.
     </p>
     <p>
-      This is where the ES5 adapter comes in. It wraps native APIs
-      to make them compatible with ES5 browsers, but ensures that
-      ES6-compatible browsers still follow spec.
+      Once the polyfills are loaded (if needed), the "WebComponentsReady" event
+      will be fired on the document to announce availability of Web Component
+      functionality.
     </p>
+    <ul>
+      <li>
+        <code>Array.from</code> is polyfilled along with the
+        <code>webcomponents-lite.js</code> polyfill.
+      </li>
+      <li>
+        A <a href="https://github.com/webcomponents/webcomponentsjs/pull/861">pull request</a>
+        is open to allow inserting the loader in the <code>&lt;body&gt;</code>.
+      </li>
+    </ul>
+    {% code 'html' %}
+      <head>
+        ...
+
+        <script src="cdn/path/to/webcomponents-loader.js"></script>
+        <!-- polyfills injected here (if needed) -->
+      </head>
+    {% endcode %}
   </section>
 
-  <section>
-    <h3 class="hxSubSectionTitle">Polyfill Loader</h3>
-    <div class="alert alert-info">
-      Load the polyfill loader <em>after</em> the ES5 Adapter in the
-      <code>&lt;head&gt;</code>.
-    </div>
+  <section><!-- ES5 Adapter -->
+    <h3 class="hxSubSectionTitle" id="es5-adapter">ES5 Adapter</h3>
     <p>
-      Using feature detection, the polyfill loader script will
-      automatically determine the minimum polyfills needed for the
-      user's browser. The loader will add the polyfills via an additional
-      <code>&lt;script&gt;</code> to the <code>&lt;head&gt;</code>.
+      The Custom Elements v1 spec requires that constructor classes be defined
+      using ES6 class syntax.  This is problematic, given that we have to
+      support legacy browsers like Internet Explorer that do not support ES6.
     </p>
     <p>
-      If the user's browser doesn't need any polyfills, this additional
-      script will not be added.
+      The ES5 Adapter corrects this problem by converting ES5 classes to ES6
+      syntax so that modern browsers can load custom element definitions.
     </p>
-  </section>
+    <p>
+      A complication arises when a legacy browser tries to run the ES5 Adapter.
+      Because the adapter is written in ES6 syntax, it will raise an exception
+      in any browser that doesn't support ES6.  To get around this we can wrap
+      the injection of the ES5 adapter in a container that can be dynamically
+      removed if it isn't needed.
+    </p>
 
-  <section>
-    <h3 class="hxSubSectionTitle">HelixUI Components</h3>
-    <div class="alert alert-info">
-      Load HelixUI components and your application JavaScript at the bottom
-      of the <code>&lt;body&gt;</code> of your application.
-    </div>
-    <p>
-      To ensure maximum compatibility, please make sure that HelixUI
-      JavaScript is loaded after both the ES5 Adapter and the Polyfill Loader.
-    </p>
+    {% code 'html' %}
+      <body>
+        ...
+
+        <!-- intelligently load ES5 Adapter (if needed) -->
+        <span id="ce-es5-adapter">
+          <script>
+            if (!window.customElements) {
+              var elAdapter = document.querySelector('#ce-es5-adapter');
+              elAdapter.parentElement.removeChild(elAdapter);
+            }
+          </script>
+          <script src="path/to/custom-elements-es5-adapter.js"></script>
+        </span>
+
+        <!-- HelixUI custom element definitions -->
+        <script src="cdn/path/to/helix-ui.js"></script>
+
+        <!-- load your application logic here -->
+        <script src="domain/path/to/your/app.js"></script>
+      </body>
+    {% endcode %}
   </section>
+</section>
+
+<section><!-- Bootstrap Theme -->
+  <h2 class="hxSectionTitle" id="bootstrap-theme">Bootstrap Theme</h2>
+  <div class="hxAlert hxAlert--warning">
+    <div class="hxAlert__icon">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">Warning</span>
+      The Bootstrap theme <b>does not comply</b> to current Helix design specs.
+    </div>
+  </div>
+
+  <table class="hxTable hxTable--condensed">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Development (unminified)</th>
+        <th>Production (minified)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Helix Bootstrap Theme</th>
+        <td>
+          <a href="{{page.cdn}}/css/bootstrap.helix.css" target="_blank">
+            <hx-icon type="external-link"></hx-icon>
+            bootstrap.helix.css
+          </a>
+        </td>
+        <td>N/A</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 {% endblock %}
