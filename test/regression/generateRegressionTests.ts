@@ -13,7 +13,7 @@ let driver: WebDriver;
 const grepCommand = 'grep "\\bdata-visreg=" ../source/components/**/*.html';
 const taggedForRegression = child_process.execSync(grepCommand).toString().trim();
 
-const componentExtractor = /\.\.\/source\/components\/(\w+)\/index\.html/gm;
+const componentExtractor = new RegExp("components/(\\w+)/index\\.html", "gm");
 let matches: string[] = [];
 let matched: RegExpExecArray;
 while (matched = componentExtractor.exec(taggedForRegression)) {
@@ -46,7 +46,10 @@ test(`auto-generated regression cases`, async t => {
         for (e of await driver.findElements(By.css(util.selectors.visreg))) {
             const sectionName = await e.getAttribute("data-visreg");
             await util.snapshot(t, e);
+            console.log(`${sectionName}:`);
+            console.log("  ✔ DOM Snapshot");
             await snap(sectionName, e as WebElementPromise);
+            console.log("  ✔ Image Snapshot");
         }
     };
 });
