@@ -31,9 +31,10 @@
     "build": "bin/build.js",
     "clean": "rm -fr node_modules",
     "deploy": "bin/deploy.js",
+    "postinstall": "cd test; yarn install; yarn run webdriver:update; cd -;",
     "publish": "bin/publish.js",
     "start": "bin/start.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cd test; yarn test"
   },
   "repository": "git+https://github.com/rackerlabs/helix-ui.git",
   "author": "Rackspace",

@@ -13,7 +13,7 @@ platform_chrome='linux64'
 [ `uname` == 'Darwin' ] && platform_gecko='macos' && platform_chrome='mac64'
 
 TARFILE_GECKO=v0.18.0/geckodriver-v0.18.0-${platform_gecko}.tar.gz
-TARFILE_CHROME=2.31/chromedriver_${platform_chrome}.zip
+TARFILE_CHROME=2.33/chromedriver_${platform_chrome}.zip
 TARFILE_STANDALONE='3.4/selenium-server-standalone-3.4.0.jar'
 
 echo Downloading ${TARFILE_GECKO}
