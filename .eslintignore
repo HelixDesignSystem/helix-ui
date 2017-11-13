@@ -1,0 +1,10 @@
+# directories
+bin
+lib
+node_modules
+public
+source/vendor
+test
+
+# files
+_config.*

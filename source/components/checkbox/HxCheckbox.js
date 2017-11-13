@@ -173,6 +173,6 @@ window.addEventListener('WebComponentsReady', function () {
                 this[prop] = value;
             }
         }
-     }
+    }
     customElements.define(HxCheckbox.is, HxCheckbox)
 });
