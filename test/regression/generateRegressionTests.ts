@@ -13,11 +13,7 @@ let driver: WebDriver;
 const grepCommand = 'grep "\\bdata-visreg=" ../source/components/**/*.html';
 const taggedForRegression = child_process.execSync(grepCommand).toString().trim();
 
-<<<<<<< HEAD
 const componentExtractor = new RegExp("components/(\\w+)/index\\.html", "gm");
-=======
-const componentExtractor = /\.\.\/source\/components\/(\w+)\/index\.html/gm;
->>>>>>> test(regression): Auto generate from html attr
 let matches: string[] = [];
 let matched: RegExpExecArray;
 while (matched = componentExtractor.exec(taggedForRegression)) {
@@ -42,27 +38,14 @@ test.before(async () => {
     await util.go(driver, "button");
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 test(`auto-generated regression cases`, async t => {
     let component: string;
     for (component of matches) {
-=======
-let component: string;
-for (component of matches) {
-    test(`auto-generated regression case: ${component}`, async t => {
->>>>>>> test(regression): Auto generate from html attr
-=======
-test(`auto-generated regression cases`, async t => {
-    let component: string;
-    for (component of matches) {
->>>>>>> fix(tests): Run one big auto-generated test
         await util.go(driver, component);
         let e: WebElement;
         for (e of await driver.findElements(By.css(util.selectors.visreg))) {
             const sectionName = await e.getAttribute("data-visreg");
             await util.snapshot(t, e);
-<<<<<<< HEAD
             console.log(`${sectionName}:`);
             console.log("  ✔ DOM Snapshot");
             await snap(sectionName, e as WebElementPromise);
@@ -70,17 +53,6 @@ test(`auto-generated regression cases`, async t => {
         }
     };
 });
-=======
-            await snap(sectionName, e as WebElementPromise);
-        }
-<<<<<<< HEAD
-    });
-}
->>>>>>> test(regression): Auto generate from html attr
-=======
-    };
-});
->>>>>>> fix(tests): Run one big auto-generated test
 
 test.after.always(async () => {
     await snappit.stop();
