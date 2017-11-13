@@ -8,6 +8,7 @@
 // with the custom element registry
 import './components/checkbox/HxCheckbox';
 import './components/icon/HxIcon';
+import './components/reveal/crap.js';
 import './components/reveal/HxReveal';
 import './components/tabset/HxTabpanel';
 import './components/tabset/HxTabset';
