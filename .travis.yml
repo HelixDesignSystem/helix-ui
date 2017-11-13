@@ -1,0 +1,22 @@
+sudo: false
+dist: trusty
+language: node_js
+node_js:
+- '8'
+addons:
+  firefox: '54.0'
+  chrome: stable
+branch:
+  only:
+  - master
+install:
+- npm i -g yarn
+- travis_retry yarn install
+before_script:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- jdk_switcher use oraclejdk8
+- yarn start > /dev/null 2>&1 &
+- sleep 5
+script:
+- yarn test
