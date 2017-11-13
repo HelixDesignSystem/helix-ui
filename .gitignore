@@ -2,6 +2,7 @@
 node_modules
 *.swp
 debug.log
+package-lock.json
 
 # Generated Hexo Files/Directories
 db.json
