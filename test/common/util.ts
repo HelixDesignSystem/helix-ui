@@ -1,8 +1,7 @@
 /*
  * Helper functions for the tests in `../visreg/` and `../functional/`.
  */
-import {By, ISize, WebDriver, WebElementPromise} from "selenium-webdriver";
-
+import {By, ISize, WebDriver, WebElement, WebElementPromise} from "selenium-webdriver";
 import {TestContext} from "ava";
 
 export const baseUrl = "http://localhost:3000/helix-ui";
@@ -11,7 +10,7 @@ export async function go(driver: WebDriver, component: string) {
     await driver.get(`${baseUrl}/components/${component}`);
 }
 
-export async function snapshot(t: TestContext, element: WebElementPromise) {
+export async function snapshot(t: TestContext, element: WebElement) {
     t.snapshot(await element.getAttribute("outerHTML"));
 }
 
