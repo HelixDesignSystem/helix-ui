@@ -18,8 +18,8 @@
   "scripts": {
     "build": "tsc",
     "clean": "npm run clean:visreg && npm run clean:func",
-    "clean:func": "find built/functional -mindepth 1 \\( ! -path 'built/functional/*.js.snap' ! -path 'built/functional/*.js.md' \\) -delete",
-    "clean:regression": "find built/regression -mindepth 1 \\( ! -path 'built/regression/*.js.snap' ! -path 'built/regression/*.js.md' \\) -delete",
+    "clean:func": "scripts/deleteEverythingButSnapshots.sh functional",
+    "clean:regression": "scripts/deleteEverythingButSnapshots.sh regression",
     "clean:visreg": "rm -rf visreg/screenshots built/visreg",
     "lint": "tslint -c tslint.json visreg/ functional/",
     "pretest": "npm run build",
