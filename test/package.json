@@ -17,10 +17,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "clean": "npm run clean:visreg && npm run clean:func",
-    "clean:func": "scripts/deleteEverythingButSnapshots.sh functional",
-    "clean:regression": "scripts/deleteEverythingButSnapshots.sh regression",
-    "clean:visreg": "rm -rf visreg/screenshots built/visreg",
+    "clean": "npm run clean:visreg && rm -rf built",
+    "clean:visreg": "rm -rf visreg/screenshots",
     "lint": "tslint -c tslint.json visreg/ functional/",
     "pretest": "npm run build",
     "test": "npm run test:func && npm run test:regression && npm run test:visreg",
@@ -35,7 +33,7 @@
     "webdriver:update": "scripts/webdriver-update"
   },
   "ava": {
-    "snapshotLocation": "test/snapshots",
+    "snapshotDir": "snapshots",
     "failWithoutAssertions": false
   }
 }
