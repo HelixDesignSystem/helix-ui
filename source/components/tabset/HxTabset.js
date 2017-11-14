@@ -18,7 +18,7 @@ window.addEventListener('WebComponentsReady', function () {
 
         constructor () {
             super();
-            this.attachShadow({mode: 'open'});
+            this.attachShadow({ mode: 'open' });
             if (window.ShadyCSS) {
                 ShadyCSS.prepareTemplate(template, tagName);
                 ShadyCSS.styleElement(this);
@@ -60,8 +60,8 @@ window.addEventListener('WebComponentsReady', function () {
         }
 
         get tabs () {
-            return Array.from(this.querySelectorAll(`.hxTab`));
-         }
+            return Array.from(this.querySelectorAll('.hxTab'));
+        }
 
         get panels () {
             return Array.from(this.querySelectorAll('hx-tabpanel'));
@@ -73,7 +73,7 @@ window.addEventListener('WebComponentsReady', function () {
 
         _selectPanelByIndex (idx) {
             if (idx < 0 || idx >= this.panels.length) {
-                throw new Error(`Panel index out of bounds`);
+                throw new Error('Panel index out of bounds');
             } else {
                 this._selectPanel(this.panels[idx]);
             }

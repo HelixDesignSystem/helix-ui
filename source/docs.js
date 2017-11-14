@@ -7,6 +7,6 @@
 // Demonstrate BS3 Tooltips
 $(function () {
     $('[data-toggle="tooltip"]').tooltip({
-        container: 'body'
+        container: 'body',
     });
 });

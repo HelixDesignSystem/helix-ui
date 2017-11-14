@@ -18,7 +18,7 @@ window.addEventListener('WebComponentsReady', function () {
 
         constructor () {
             super();
-            this.attachShadow({mode: 'open'});
+            this.attachShadow({ mode: 'open' });
             if (window.ShadyCSS) {
                 ShadyCSS.prepareTemplate(template, tagName);
                 ShadyCSS.styleElement(this);
@@ -43,7 +43,7 @@ window.addEventListener('WebComponentsReady', function () {
         }
 
         set open (value) {
-            if (Boolean(value)) {
+            if (value) {
                 this.setAttribute('open', '');
             } else {
                 this.removeAttribute('open');

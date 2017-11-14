@@ -16,7 +16,7 @@ window.addEventListener('WebComponentsReady', function () {
     `;
 
     function _preventScroll (event) {
-        if (event.keyCode == KEY.Space) {
+        if (event.keyCode === KEY.Space) {
             event.preventDefault();
         }
     }
@@ -30,13 +30,13 @@ window.addEventListener('WebComponentsReady', function () {
             return [
                 'checked',
                 'disabled',
-                'indeterminate'
+                'indeterminate',
             ];
         }
 
         constructor () {
             super();
-            this.attachShadow({mode: 'open'});
+            this.attachShadow({ mode: 'open' });
             if (window.ShadyCSS) {
                 ShadyCSS.prepareTemplate(template, tagName);
                 ShadyCSS.styleElement(this);
@@ -68,7 +68,7 @@ window.addEventListener('WebComponentsReady', function () {
         }
 
         set checked (value) {
-            if (Boolean(value)) {
+            if (value) {
                 this.setAttribute('checked', '');
             } else {
                 this.removeAttribute('checked');
@@ -80,7 +80,7 @@ window.addEventListener('WebComponentsReady', function () {
         }
 
         set disabled (value) {
-            if (Boolean(value)) {
+            if (value) {
                 this.setAttribute('disabled', '');
             } else {
                 this.removeAttribute('disabled');
@@ -92,7 +92,7 @@ window.addEventListener('WebComponentsReady', function () {
         }
 
         set indeterminate (value) {
-            if (Boolean(value)) {
+            if (value) {
                 this.setAttribute('indeterminate', '');
             } else {
                 this.removeAttribute('indeterminate');
@@ -110,13 +110,13 @@ window.addEventListener('WebComponentsReady', function () {
                     if (hasValue) {
                         this.setAttribute('aria-checked', 'mixed');
                     }
-                break;
+                    break;
 
                 case 'checked':
                     if (!this.indeterminate) {
                         this.setAttribute('aria-checked', hasValue);
                     }
-                break;
+                    break;
 
                 case 'disabled':
                     this.setAttribute('aria-disabled', hasValue);
@@ -126,7 +126,7 @@ window.addEventListener('WebComponentsReady', function () {
                     } else {
                         this.setAttribute('tabindex', '0');
                     }
-                break;
+                    break;
             }
         }//attributeChangedCallback()
 
@@ -135,13 +135,13 @@ window.addEventListener('WebComponentsReady', function () {
                 return;
             }
 
-            if (event.keyCode == KEY.Space) {
+            if (event.keyCode === KEY.Space) {
                 event.preventDefault();
                 this._toggleChecked();
             }
         }
 
-        _onClick (event) {
+        _onClick () {
             this._toggleChecked();
         }
 
@@ -154,9 +154,9 @@ window.addEventListener('WebComponentsReady', function () {
 
             let changeEvent = new CustomEvent('change', {
                 detail: {
-                    checked: this.checked
+                    checked: this.checked,
                 },
-                bubbles: true
+                bubbles: true,
             });
 
             this.dispatchEvent(changeEvent);
@@ -173,6 +173,6 @@ window.addEventListener('WebComponentsReady', function () {
                 this[prop] = value;
             }
         }
-     }
+    }
     customElements.define(HxCheckbox.is, HxCheckbox)
 });
