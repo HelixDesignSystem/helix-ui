@@ -41,7 +41,7 @@ browserSync.init({
                  * synchronous build events to complete so that browserSync can finish
                  * and reload the page (and therefore, allow selenium to connnect).
                  */
-                const tests = exec('yarn run test:regression -- -u', { cwd: CONFIG.testDir });
+                const tests = exec('yarn run test:regression -u', { cwd: CONFIG.testDir });
                 // this *is* asynchronous, see comment above
                 tests.stdout.pipe(process.stdout);
                 tests.stderr.pipe(process.stderr);
