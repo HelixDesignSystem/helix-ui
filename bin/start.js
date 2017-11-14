@@ -52,7 +52,8 @@ browserSync.init({
         {
             match: [
                 `${CONFIG.testDir}/**/*.ts`,
-                `!${CONFIG.testDir}/built/**/*`
+                `!${CONFIG.testDir}/node_modules/**`,
+                `!${CONFIG.testDir}/built/**/*`,
             ],
             fn: () => {
                 const tsc = exec('yarn run build', { cwd: CONFIG.testDir });

@@ -3,10 +3,19 @@
 # https://stackoverflow.com/a/4785518/881224
 which wget >/dev/null 2>&1 || { echo "Install wget and try again. Aborting." >&2; exit 1; }
 
+reinstall=0
+[ "$1" == '-f' ] && reinstall=1
+has_chrome=0
+[ -f 'bin/selenium/chromedriver' ] && has_chrome=1
+has_gecko=0
+[ -f 'bin/selenium/geckodriver' ] && has_gecko=1
+has_standalone=0
+[ -f 'bin/selenium/selenium-server-standalone.jar' ] && has_standalone=1
+
 # remove sources
-find bin/selenium/. ! -name '.gitignore' -type f -exec rm -f {} +
+[ $reinstall == "1" ] && find bin/selenium/. ! -name '.gitignore' -type f -exec rm -f {} +
 # remove symlinks (see bottom of script, "ln -s")
-rm -f node_modules/.bin/{gecko,chromedriver,selenium}*
+[ $reinstall == "1" ] && rm -f node_modules/.bin/{gecko,chromedriver,selenium}*
 
 platform_gecko='linux64'
 platform_chrome='linux64'
@@ -16,14 +25,22 @@ TARFILE_GECKO=v0.18.0/geckodriver-v0.18.0-${platform_gecko}.tar.gz
 TARFILE_CHROME=2.33/chromedriver_${platform_chrome}.zip
 TARFILE_STANDALONE='3.4/selenium-server-standalone-3.4.0.jar'
 
-echo Downloading ${TARFILE_GECKO}
-wget -nc -q https://{GH_TOKEN}@github.com/mozilla/geckodriver/releases/download/${TARFILE_GECKO} -O bin/selenium/geckodriver-v0.18.0.tar.gz
-echo Downloading ${TARFILE_CHROME}
-wget -nc -q https://chromedriver.storage.googleapis.com/${TARFILE_CHROME} -O bin/selenium/chromedriver_2.31.zip
-echo Downloading ${TARFILE_STANDALONE}
-wget -nc -q https://selenium-release.storage.googleapis.com/${TARFILE_STANDALONE} -O bin/selenium/selenium-server-standalone.jar
-tar -xzf bin/selenium/geckodriver-v0.18.0.tar.gz -C bin/selenium/
-unzip -o bin/selenium/chromedriver_2.31.zip -d bin/selenium/
+if [ $reinstall == "1" ] || [ $has_gecko == "0" ]; then
+    echo Downloading ${TARFILE_GECKO}
+    wget -nc -q https://{GH_TOKEN}@github.com/mozilla/geckodriver/releases/download/${TARFILE_GECKO} -O bin/selenium/geckodriver-v0.18.0.tar.gz
+    tar -xzf bin/selenium/geckodriver-v0.18.0.tar.gz -C bin/selenium/
+fi
+
+if [ $reinstall == "1" ] || [ $has_chrome == "0" ]; then
+    echo Downloading ${TARFILE_CHROME}
+    wget -nc -q https://chromedriver.storage.googleapis.com/${TARFILE_CHROME} -O bin/selenium/chromedriver_2.31.zip
+    unzip -o bin/selenium/chromedriver_2.31.zip -d bin/selenium/
+fi
+
+if [ $reinstall == "1" ] || [ $has_chrome == "0" ]; then
+    echo Downloading ${TARFILE_STANDALONE}
+    wget -nc -q https://selenium-release.storage.googleapis.com/${TARFILE_STANDALONE} -O bin/selenium/selenium-server-standalone.jar
+fi
 
 # puts `bin/selenium/*` (chromedriver/geckodriver/selenium) on the PATH via `node_modules/.bin`
-cd node_modules/.bin/ && ln -s ../../bin/selenium/* .
+cd node_modules/.bin/ && ln -sf ../../bin/selenium/* .
