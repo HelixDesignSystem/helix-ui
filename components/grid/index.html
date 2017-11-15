@@ -14,12 +14,9 @@
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
 
-  <link rel="stylesheet" href="bootstrap.helix.css">
   <link rel="stylesheet" href="helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
-  <!-- ES5 Adapter -->
-  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
   <!-- Polyfill Loader -->
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
 </head>
@@ -44,7 +41,7 @@
 <aside>
   <dl>
     <dt>Last Updated:</dt>
-    <dd>2017-10-06</dd>
+    <dd>2017-11-15</dd>
 
       <dt>Assets:</dt>
         <dd><code>helix-ui.css</code></dd>
@@ -177,11 +174,16 @@
 
 <section>
   <h3 class="hxSubSectionTitle" id="automatic">Automatic Columns</h3>
-  <div class="alert alert-info">
-    <p>
-      <b>NOTE:</b> Automatic columns are overridden by <a href="#responsive">responsive classes</a>.
-    </p>
+  <div class="hxAlert">
+    <div class="hxAlert__icon">
+      <hx-icon type="info-circle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">NOTE</span>
+      Automatic columns are overridden by <a href="#responsive">responsive classes</a>.
+    </div>
   </div>
+  <br />
 
   <p>
     Automatic columns will share row width equally among other automatic columns.
@@ -232,12 +234,17 @@
 
 <section>
   <h3 class="hxSubSectionTitle" id="explicit">Explicit Columns</h3>
-  <div class="alert alert-info">
-    <p>
-      If the sum of a row's columns exceeds 12, the columns will wrap.
+  <div class="hxAlert">
+    <div class="hxAlert__icon">
+      <hx-icon type="info-circle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">NOTE</span>
+      If the sum of a row's columns exceeds 12, the columns will wrap.<br />
       See <a href="#wrapping">Column Wrapping</a> for more details.
-    </p>
+    </div>
   </div>
+  <br />
 
   <p>
     Explicit columns will take up a defined percentage of the row.
@@ -320,12 +327,17 @@
 
 <section>
   <h3 class="hxSubSectionTitle" id="nesting">Nesting Elements</h3>
-  <div class="alert alert-info">
-    <p>
-      <b>Do not apply row and column classes to the same element.</b>
+  <div class="hxAlert hxAlert--warning">
+    <div class="hxAlert__icon">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">Warning</span>
+      Do not apply row and column classes to the same element.<br />
       Rows and columns must be nested within one another.
-    </p>
+    </div>
   </div>
+  <br />
 
   <p>
     You can nest rows and columns as deep as necessary. Gutters will align automatically.
@@ -500,11 +512,16 @@
 
 <section>
   <h3 class="hxSubSectionTitle" id="responsive">Responsive Layout</h3>
-  <div class="alert alert-info">
-    <p>
+  <div class="hxAlert">
+    <div class="hxAlert__icon">
+      <hx-icon type="info-circle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">NOTE</span>
       Responsive column classes override <a href="#automatic">automatic columns</a>.
-    </p>
+    </div>
   </div>
+  <br />
 
   <p>
     Each responsive class corresponds to the <em>minimum breakpoint</em>
@@ -664,12 +681,17 @@
 
 <section>
   <h3 class="hxSubSectionTitle" id="styling">Styling the Grid</h3>
-  <div class="alert alert-info">
-    <p>
-      <b>Avoid styling rows and columns.</b>
+  <div class="hxAlert">
+    <div class="hxAlert__icon">
+      <hx-icon type="info-circle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">NOTE</span>
+      Avoid styling rows and columns.<br />
       Add a container within a column to apply styling.
-    </p>
+    </div>
   </div>
+  <br />
 
   <p>
     Because styles for rows and columns are meticulously defined to support
@@ -791,6 +813,8 @@ class="current"        >Grid</a>
         >Table</a>
         <a href="components/tabset"
         >Tabset</a>
+        <a href="components/text-input"
+        >Text Input</a>
         <a href="components/tooltip"
         >Tooltip</a>
         <a href="components/typography"
@@ -808,6 +832,17 @@ class="current"        >Grid</a>
 </nav>
      
   </footer>
+
+<!-- intelligently load ES5 Adapter (if needed) -->
+<span id="ce-es5-adapter">
+  <script>
+    if (!window.customElements) {
+      var elAdapter = document.querySelector('#ce-es5-adapter');
+      elAdapter.parentElement.removeChild(elAdapter);
+    }
+  </script>
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
+</span>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

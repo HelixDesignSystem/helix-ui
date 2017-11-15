@@ -120,7 +120,7 @@ window.addEventListener('WebComponentsReady', function () {
     template.innerHTML = '\n      <style>' + __webpack_require__(4) + '</style>\n      <div id="container">\n        <hx-icon type="checkmark" id="tick"></hx-icon>\n        <hx-icon type="minus" id="minus"></hx-icon>\n      </div>\n    ';
 
     function _preventScroll(event) {
-        if (event.keyCode == KEY.Space) {
+        if (event.keyCode === KEY.Space) {
             event.preventDefault();
         }
     }
@@ -215,14 +215,14 @@ window.addEventListener('WebComponentsReady', function () {
                     return;
                 }
 
-                if (event.keyCode == KEY.Space) {
+                if (event.keyCode === KEY.Space) {
                     event.preventDefault();
                     this._toggleChecked();
                 }
             }
         }, {
             key: '_onClick',
-            value: function _onClick(event) {
+            value: function _onClick() {
                 this._toggleChecked();
             }
         }, {
@@ -261,7 +261,7 @@ window.addEventListener('WebComponentsReady', function () {
         }, {
             key: 'checked',
             set: function set(value) {
-                if (Boolean(value)) {
+                if (value) {
                     this.setAttribute('checked', '');
                 } else {
                     this.removeAttribute('checked');
@@ -273,7 +273,7 @@ window.addEventListener('WebComponentsReady', function () {
         }, {
             key: 'disabled',
             set: function set(value) {
-                if (Boolean(value)) {
+                if (value) {
                     this.setAttribute('disabled', '');
                 } else {
                     this.removeAttribute('disabled');
@@ -285,7 +285,7 @@ window.addEventListener('WebComponentsReady', function () {
         }, {
             key: 'indeterminate',
             set: function set(value) {
-                if (Boolean(value)) {
+                if (value) {
                     this.setAttribute('indeterminate', '');
                 } else {
                     this.removeAttribute('indeterminate');
@@ -473,7 +473,7 @@ window.addEventListener('WebComponentsReady', function () {
             }
         }, {
             key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldValue, newValue) {
+            value: function attributeChangedCallback(attr) {
                 if (attr === 'type') {
                     this._render();
                 }
@@ -852,7 +852,7 @@ module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\
 /* 63 */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  background-color: inherit;\n  color: inherit;\n  display: inline-block;\n  height: 1em;\n  width: 1em;\n  /*\n    if the requested icon type is not valid (nothing injected),\n    make sure the element doesn't consume space on the page.\n  */\n}\n:host:empty {\n  height: 0;\n  width: 0;\n}\n::slotted(svg) {\n  fill: currentColor;\n  stroke: none;\n}\n"
+module.exports = ":host {\n  background-color: inherit;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  width: 1em;\n}\n::slotted(svg) {\n  fill: currentColor;\n  stroke: none;\n}\n"
 
 /***/ }),
 /* 64 */
@@ -931,7 +931,7 @@ window.addEventListener('WebComponentsReady', function () {
         }, {
             key: 'open',
             set: function set(value) {
-                if (Boolean(value)) {
+                if (value) {
                     this.setAttribute('open', '');
                 } else {
                     this.removeAttribute('open');
@@ -1009,7 +1009,7 @@ window.addEventListener('WebComponentsReady', function () {
         }, {
             key: 'open',
             set: function set(value) {
-                if (Boolean(value)) {
+                if (value) {
                     this.setAttribute('open', '');
                 } else {
                     this.removeAttribute('open');

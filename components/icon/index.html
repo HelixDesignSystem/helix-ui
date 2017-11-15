@@ -14,12 +14,9 @@
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
 
-  <link rel="stylesheet" href="bootstrap.helix.css">
   <link rel="stylesheet" href="helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
-  <!-- ES5 Adapter -->
-  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
   <!-- Polyfill Loader -->
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
 </head>
@@ -44,7 +41,7 @@
 <aside>
   <dl>
     <dt>Last Updated:</dt>
-    <dd>2017-11-08</dd>
+    <dd>2017-11-15</dd>
 
       <dt>Assets:</dt>
         <dd><code>helix-ui.css</code></dd>
@@ -93,17 +90,10 @@
 </aside>
       </div>
       <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
-<div class="alert alert-info">
-  You will need to include both <code>helix-ui.css</code> and <code>helix-ui.js</code>
-  in your application to use Icons. Please read the
-  <a href="/helix-ui/guides/install#web-components">installation guide</a> for more details.
-</div>
 
 <p>
-  The <code>&lt;hx-icon&gt;</code> element takes advantage of HTML
-  <a href="https://www.webcomponents.org/" target="_blank">Web Components</a>
-  to deliver consistent, stylable, icons for use in Helix applications across
-  IE 11, Edge, Chrome, Firefox, and Safari.
+  The <code>&lt;hx-icon&gt;</code> element delivers consistent, stylable,
+  icons for use in Helix applications.
 </p>
 
 <section>
@@ -141,10 +131,18 @@
 
 <section>
   <h2 class="hxSectionTitle" id="styling">Styling</h2>
-  <div class="alert alert-info">
-    Icons inherit the <code>color</code> and <code>background-color</code>
-    of their parent.
+  <div class="hxAlert">
+    <div class="hxAlert__icon">
+      <hx-icon type="info-circle"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">NOTE</span>
+      Icons inherit the <code>color</code> and <code>background-color</code>
+      of their parent.
+    </div>
   </div>
+  <br />
+
   <p>
     Styling Icons is similar to styling text. You can change properties like,
     <code>font-size</code>, <code>color</code>, <code>background-color</code>,
@@ -671,6 +669,8 @@ class="current"        >Icon</a>
         >Table</a>
         <a href="components/tabset"
         >Tabset</a>
+        <a href="components/text-input"
+        >Text Input</a>
         <a href="components/tooltip"
         >Tooltip</a>
         <a href="components/typography"
@@ -688,6 +688,17 @@ class="current"        >Icon</a>
 </nav>
      
   </footer>
+
+<!-- intelligently load ES5 Adapter (if needed) -->
+<span id="ce-es5-adapter">
+  <script>
+    if (!window.customElements) {
+      var elAdapter = document.querySelector('#ce-es5-adapter');
+      elAdapter.parentElement.removeChild(elAdapter);
+    }
+  </script>
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
+</span>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

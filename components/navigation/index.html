@@ -14,12 +14,9 @@
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
 
-  <link rel="stylesheet" href="bootstrap.helix.css">
   <link rel="stylesheet" href="helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
-  <!-- ES5 Adapter -->
-  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
   <!-- Polyfill Loader -->
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
 </head>
@@ -44,7 +41,7 @@
 <aside>
   <dl>
     <dt>Last Updated:</dt>
-    <dd>2017-10-06</dd>
+    <dd>2017-11-15</dd>
 
       <dt>Assets:</dt>
         <dd><code>bootstrap.helix.css</code></dd>
@@ -57,15 +54,6 @@
   <header class="article-toc-title">Content</header>
   
         <ul class="toc">
-            <li class="toc__item">
-                <a
-                    class="toc__link"
-                    onclick="document.location.hash='global-nav';">
-
-                    <span class="toc__text">Global Navigation</span>
-                </a>
-            </li>
-        
             <li class="toc__item">
                 <a
                     class="toc__link"
@@ -86,65 +74,7 @@
       </div>
       <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
 <section>
-  <h2 class="hxSectionTitle" id="global-nav">Global Navigation</h2>
-  <p>
-    (<em>a.k.a. "Eyebrow"</em>)
-    Styles the <a href="http://getbootstrap.com/components/#navbar">Navbar Component</a> from Bootstrap.
-  </p>
-
-  <div class="demo">
-    <nav class="navbar navbar-eyebrow">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#eyebrow-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">
-          <img src="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/img/rs-logo-white.svg" alt="Rackspace Logo" />
-        </a>
-      </div>
-      <div id="eyebrow-collapse" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#">Rackspace Cloud</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#">Support</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle"
-              data-toggle="dropdown"
-              role="button"
-              aria-haspopup="true"
-              aria-expanded="false">
-
-              myUserName <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Account #123456</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">My Profile &amp; Settings</a></li>
-              <li role="separator" class="divider"></li>
-              <li class="dropdown-header">Rackspace</li>
-              <li><a href="#">Billing Overview</a></li>
-              <li><a href="#">Account Settings</a></li>
-              <li><a href="#">User Management</a></li>
-              <li><a href="#">Documents and Forms</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Logout</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </nav>
-  </div>
-</section>
-
-<section>
   <h2 class="hxSectionTitle" id="app-nav">Application Navigation</h2>
-  <p>
-    Custom HelixUI classes for styling a left-hand, application layer, navigation list.
-  </p>
 
   <div class="demo">
     <nav class="hxApp__nav">
@@ -243,6 +173,8 @@ class="current"        >Navigation</a>
         >Table</a>
         <a href="components/tabset"
         >Tabset</a>
+        <a href="components/text-input"
+        >Text Input</a>
         <a href="components/tooltip"
         >Tooltip</a>
         <a href="components/typography"
@@ -260,6 +192,17 @@ class="current"        >Navigation</a>
 </nav>
      
   </footer>
+
+<!-- intelligently load ES5 Adapter (if needed) -->
+<span id="ce-es5-adapter">
+  <script>
+    if (!window.customElements) {
+      var elAdapter = document.querySelector('#ce-es5-adapter');
+      elAdapter.parentElement.removeChild(elAdapter);
+    }
+  </script>
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
+</span>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
