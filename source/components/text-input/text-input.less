@@ -1,5 +1,4 @@
-html input,
-textarea {
+.hxTextCtrl {
   background-color: @gray-0;
   border: 1px solid @gray-500;
   border-radius: 2px;
@@ -9,8 +8,13 @@ textarea {
   padding: 8px;
   width: 100%;
 
+  textarea& {
+    min-height: 5.75rem; // ~92px
+    resize: vertical;
+  }
+
   /*
-  https://css-tricks.com/snippets/css/style-placeholder-text/
+    https://css-tricks.com/snippets/css/style-placeholder-text/
   */
   &::-webkit-input-placeholder { // Chrome
     color: @gray-600;
@@ -25,7 +29,7 @@ textarea {
     color: @gray-600;
   }
 
-  &::placeholder {
+  &::placeholder { // w3c spec
     color: @gray-600;
   }
 
@@ -38,7 +42,7 @@ textarea {
     }
   }
 
-  &.-hxInvalid {
+  &[invalid] {
     border: 2px solid @red-900;
   }
 
@@ -47,14 +51,6 @@ textarea {
     border-color: @gray-300;
     color: @gray-400;
     cursor: not-allowed;
+    resize: none;
   }
-}
-
-textarea[disabled] {
-  resize: none;
-}
-
-// TODO: move to appropriate file
-.hxFormGroup {
-  margin-bottom: 1rem;
 }
