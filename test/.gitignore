@@ -1,4 +1,5 @@
 .github-token
 bin/visreg.config.ts
 built/*
-screenshots
+artifacts/visregScreenshots
+artifacts/regressionScreenshots

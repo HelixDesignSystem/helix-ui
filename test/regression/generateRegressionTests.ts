@@ -23,7 +23,7 @@ while (matched = componentExtractor.exec(taggedForRegression)) {
 test.before(async () => {
     const config: IConfig = {
         browser: "firefox",
-        screenshotsDir: "regression/screenshots",
+        screenshotsDir: "artifacts/regressionScreenshots",
         logException: [
             "MISMATCH",
             "NO_BASELINE",

@@ -11,7 +11,7 @@ export function suite(browserName: string) {
     test.before(async () => {
         const config: IConfig = {
             browser: browserName,
-            screenshotsDir: "visreg/screenshots",
+            screenshotsDir: "artifacts/visregScreenshots",
             logException: [
                 "MISMATCH",
                 "NO_BASELINE",
