@@ -1,8 +1,5 @@
 .github-token
 bin/visreg.config.ts
 built/*
-!built/{functional,regression}/
-built/{functional,regression}/*
-!built/{functional,regression}/*.js.snap
-!built/{functional,regression}/*.js.md
-screenshots
+artifacts/visregScreenshots
+artifacts/regressionScreenshots
