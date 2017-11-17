@@ -1,16 +1,14 @@
 @import "../HxElement";
+@import (reference) './checkbox';
 
 :host {
+  &:extend(hx-checkbox);
   background-color: @gray-0;
   border-color: currentColor;
   border-radius: 2px;
   border-style: solid;
   border-width: 1px;
   color: @gray-500;
-  display: inline-block;
-  height: 1rem;
-  vertical-align: middle;
-  width: 1rem;
 
   /* default unchecked */
   &(:hover) {
