@@ -1,8 +1,10 @@
+@import "../HxElement";
+
 :host {
   display: block;
 
-  &([open]) > #content {
-    display: block;
+  &([open]) #content {
+    display: contents;
   }
 }
 
@@ -13,8 +15,6 @@
 #toggle {
   background-color: transparent;
   border: none;
-  color: inherit;
-  font-size: 1em;
   margin: 0;
   padding: 0;
   text-align: left;
