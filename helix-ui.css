@@ -15,6 +15,9 @@ html {
 *::after {
   box-sizing: inherit;
 }
+[hidden] {
+  display: none;
+}
 a {
   background-color: transparent;
 }

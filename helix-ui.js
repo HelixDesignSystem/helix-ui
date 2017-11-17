@@ -67,7 +67,7 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = "<button id=\"toggle\" aria-expanded=\"false\">\n  <slot name=\"summary\"></slot>\n</button>\n<div id=\"content\">\n  <slot></slot>\n</div>\n"
+module.exports = "<button id=\"toggle\" aria-expanded=\"false\">\n  <slot name=\"summary\"></slot>\n</button>\n<slot id=\"content\"></slot>\n"
 
 /***/ }),
 /* 1 */
@@ -346,7 +346,7 @@ module.exports = KEYCODE;
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  background-color: #ffffff;\n  border-color: currentColor;\n  border-radius: 2px;\n  border-style: solid;\n  border-width: 1px;\n  color: #bdbdbd;\n  display: inline-block;\n  height: 1rem;\n  vertical-align: middle;\n  width: 1rem;\n  /* default unchecked */\n  /* default checked */\n  /* default indeterminate (checked or unchecked) */\n  /* invalid unchecked */\n  /* invalid checked */\n  /* invalid indeterminate (checked or unchecked) */\n  /* disabled unchecked */\n  /* disabled checked */\n  /* disabled indeterminate (checked or unchecked) */\n}\n:host([hidden]) {\n  display: none;\n}\n:host(:hover) {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n:host([checked]) {\n  color: #0c7c84;\n}\n:host([checked]:hover) {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n:host([indeterminate]) {\n  color: #0c7c84;\n}\n:host([indeterminate]:hover) {\n  color: #16b9d4;\n}\n:host([invalid]) {\n  border-width: 2px;\n  color: #d32f2f;\n}\n:host([invalid]:hover) {\n  background-color: #ffcdd2;\n  color: #d32f2f;\n}\n:host([disabled]) {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n  cursor: not-allowed;\n}\n:host([disabled]:hover) {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n}\n:host([disabled][indeterminate]) {\n  color: #bdbdbd;\n}\n#container {\n  align-content: center;\n  align-items: center;\n  display: flex;\n  font-size: 0.625em;\n  /* ~10px */\n  height: 100%;\n  justify-content: center;\n  width: 100%;\n}\n#minus,\n#tick {\n  display: none;\n  height: 1em;\n  line-height: 1;\n  width: 1em;\n}\n:host([checked]:not([indeterminate])) #tick {\n  display: block;\n}\n:host([indeterminate]) #minus {\n  display: block;\n}\n"
+module.exports = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font-family: inherit;\n  font-size: inherit;\n  letter-spacing: inherit;\n  line-height: inherit;\n}\n:host {\n  background-color: #ffffff;\n  border-color: currentColor;\n  border-radius: 2px;\n  border-style: solid;\n  border-width: 1px;\n  color: #bdbdbd;\n  display: inline-block;\n  height: 1rem;\n  vertical-align: middle;\n  width: 1rem;\n  /* default unchecked */\n  /* default checked */\n  /* default indeterminate (checked or unchecked) */\n  /* invalid unchecked */\n  /* invalid checked */\n  /* invalid indeterminate (checked or unchecked) */\n  /* disabled unchecked */\n  /* disabled checked */\n  /* disabled indeterminate (checked or unchecked) */\n}\n:host(:hover) {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n:host([checked]) {\n  color: #0c7c84;\n}\n:host([checked]:hover) {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n:host([indeterminate]) {\n  color: #0c7c84;\n}\n:host([indeterminate]:hover) {\n  color: #16b9d4;\n}\n:host([invalid]) {\n  border-width: 2px;\n  color: #d32f2f;\n}\n:host([invalid]:hover) {\n  background-color: #ffcdd2;\n  color: #d32f2f;\n}\n:host([disabled]) {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n  cursor: not-allowed;\n}\n:host([disabled]:hover) {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n}\n:host([disabled][indeterminate]) {\n  color: #bdbdbd;\n}\n#container {\n  align-content: center;\n  align-items: center;\n  display: flex;\n  font-size: 0.625em;\n  /* ~10px */\n  height: 100%;\n  justify-content: center;\n  width: 100%;\n}\n#minus,\n#tick {\n  display: none;\n  height: 1em;\n  line-height: 1;\n  width: 1em;\n}\n:host([checked]:not([indeterminate])) #tick {\n  display: block;\n}\n:host([indeterminate]) #minus {\n  display: block;\n}\n"
 
 /***/ }),
 /* 5 */
@@ -952,7 +952,7 @@ window.addEventListener('WebComponentsReady', function () {
 /* 65 */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  display: block;\n}\n:host([open]) > #content {\n  display: block;\n}\n#content {\n  display: none;\n}\n#toggle {\n  background-color: transparent;\n  border: none;\n  color: inherit;\n  font-size: 1em;\n  margin: 0;\n  padding: 0;\n  text-align: left;\n  width: 100%;\n}\n#toggle:hover {\n  cursor: pointer;\n}\n"
+module.exports = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font-family: inherit;\n  font-size: inherit;\n  letter-spacing: inherit;\n  line-height: inherit;\n}\n:host {\n  display: block;\n}\n:host([open]) #content {\n  display: contents;\n}\n#content {\n  display: none;\n}\n#toggle {\n  background-color: transparent;\n  border: none;\n  margin: 0;\n  padding: 0;\n  text-align: left;\n  width: 100%;\n}\n#toggle:hover {\n  cursor: pointer;\n}\n"
 
 /***/ }),
 /* 66 */
@@ -1030,7 +1030,7 @@ window.addEventListener('WebComponentsReady', function () {
 /* 67 */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  display: block;\n}\n:host([open]) > #content {\n  display: block;\n}\n#content {\n  display: none;\n}\n#toggle {\n  background-color: transparent;\n  border: none;\n  color: inherit;\n  font-size: 1em;\n  margin: 0;\n  padding: 0;\n  text-align: left;\n  width: 100%;\n}\n#toggle:hover {\n  cursor: pointer;\n}\n:host([open]) {\n  border-color: #e0e0e0 transparent;\n  border-style: solid;\n  border-width: 1px;\n  padding: 1.5rem 1.25rem;\n}\n#toggle {\n  display: none;\n}\n"
+module.exports = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font-family: inherit;\n  font-size: inherit;\n  letter-spacing: inherit;\n  line-height: inherit;\n}\n:host {\n  display: block;\n}\n:host([open]) #content {\n  display: contents;\n}\n#content {\n  display: none;\n}\n#toggle {\n  background-color: transparent;\n  border: none;\n  margin: 0;\n  padding: 0;\n  text-align: left;\n  width: 100%;\n}\n#toggle:hover {\n  cursor: pointer;\n}\n:host([open]) {\n  border-color: #e0e0e0 transparent;\n  border-style: solid;\n  border-width: 1px;\n  padding: 1.5rem 1.25rem;\n}\n#toggle {\n  display: none;\n}\n"
 
 /***/ }),
 /* 68 */
@@ -1180,7 +1180,7 @@ window.addEventListener('WebComponentsReady', function () {
 /* 69 */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  background-color: inherit;\n  display: block;\n}\nslot {\n  background-color: inherit;\n}\n#head {\n  background-color: inherit;\n}\n"
+module.exports = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font-family: inherit;\n  font-size: inherit;\n  letter-spacing: inherit;\n  line-height: inherit;\n}\n:host {\n  background-color: inherit;\n  display: block;\n}\nslot {\n  background-color: inherit;\n}\n#head {\n  background-color: inherit;\n}\n"
 
 /***/ }),
 /* 70 */
