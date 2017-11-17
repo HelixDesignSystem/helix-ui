@@ -1,8 +1,11 @@
+@import "./hx-tabset";
+
 hx-tabset {
-  display: block;
+  border-bottom: 1px solid @gray-300;
 
   [slot="tabs"] {
     background-color: inherit;
+    border-bottom: 1px solid @gray-300;
   }
 
   .hxTab {
@@ -28,15 +31,15 @@ hx-tabset {
       color: @cyan-700;
     }
 
+    &:focus {
+      text-decoration: none;
+    }
+
     &.current {
       background-color: inherit;
       border-color: @gray-300 @gray-300 transparent;
       color: @cyan-900;
     }
-  }
-
-  hx-tabpanel {
-    min-height: 172px; //min height
   }
 
   hx-tabpanel:not([open]) {
