@@ -3,34 +3,27 @@
     border: 1px dotted @gray-400;
   }
 
-  .hxCol,
-  [class*="hxCol-"] {
+  .hxCol {
     background-clip: content-box;
     background-color: fade(@green-500, 25%);
     font-size: 0.75rem;
   }
 }
 
-.drop-cap {
-  p::first-letter {
-    font-size: 2em;
-    font-weight: 700;
-  }
-}
-
 // Automatically Set Column Content based on breakpoint (lg-2, md-8, etc.)
-.demoColumns (@prefix, @n) when (@n > 0) and (@prefix = xs) {
-  .demoCol.hxCol-@{n}::before {
-    content: '@{prefix}-@{n}';
+.demoColumns (@size, @n) when (@n > 0) and (@size = xs) {
+  .demoCol.hxSpan-@{n}-xs::before,
+  .demoCol.hxSpan-@{n}::before {
+    content: '@{n}-@{size}';
   }
-  .demoColumns(@prefix, @n - 1);
-}//.demoColumns()
-.demoColumns (@prefix, @n) when (@n > 0) and not (@prefix = xs) {
-  .demoCol.hxCol-@{prefix}-@{n}::before {
-    content: '@{prefix}-@{n}';
+  .demoColumns(@size, @n - 1);
+}
+.demoColumns (@size, @n) when (@n > 0) and not (@size = xs) {
+  .demoCol.hxSpan-@{n}-@{size}::before {
+    content: '@{n}-@{size}';
   }
-  .demoColumns(@prefix, @n - 1);
-}//.demoColumns()
+  .demoColumns(@size, @n - 1);
+}
 
 @media (min-width: @grid-break-wrist) {
   #querySize::before {
@@ -70,7 +63,7 @@
   .demoColumns(xl, @grid-column-count);
 }
 
-.styled-container {
+.example-styled-container {
   background-color: @cyan-100;
   border-radius: 0;
   border: 1px solid @cyan-500;

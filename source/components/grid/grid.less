@@ -1,73 +1,83 @@
+// GRID CONFIG
+@col-padding: (@grid-gutter-size * 0.5);
+@row-margin: -(@col-padding);
+
 // ----- GRID MIXINS ----- //
-//e.g. .hxCol-1, .hxCol-md-8, .hxCol-lg-12
-.make-grid-columns (@prefix, @n) when (@n > 0) and (@prefix = xs) {
-  .hxCol-@{prefix}-@{n},
-  .hxCol-@{n} {
-    @width: (@n * @grid-column-unit);
-    flex: 0 0 @width;
-    max-width: @width;
+#grid {
+  .span(@n) {
+    @basis: (@n * @grid-column-unit);
+    flex: 0 0 @basis;
+    max-width: @basis;
   }
-  .make-grid-columns(@prefix, (@n - 1));
+
+  .offset(@n) {
+    margin-left: (@n * @grid-column-unit) !important;
+  }
+}//#grid
+
+
+// hxCol-{N}-xs
+// hxCol-{N}
+.make-grid-columns (@size, @n) when (@n > 0) and (@size = xs) {
+  .hxSpan-@{n}-@{size},
+  .hxSpan-@{n} {
+    #grid.span(@n);
+  }
+  .make-grid-columns(@size, (@n - 1));
 }
-.make-grid-columns (@prefix, @n) when (@n > 0) and not (@prefix = xs) {
-  .hxCol-@{prefix}-@{n} {
-    @width: (@n * @grid-column-unit);
-    flex: 0 0 @width;
-    max-width: @width;
+// hxCol-{N}-{size}
+.make-grid-columns (@size, @n) when (@n > 0) and not (@size = xs) {
+  .hxSpan-@{n}-@{size} {
+    #grid.span(@n);
   }
-  .make-grid-columns(@prefix, (@n - 1));
+  .make-grid-columns(@size, (@n - 1));
 }
 
-//e.g. .hxOffset-1, .hxOffset-md-3, .hxOffset-lg-0
-.make-grid-offsets (@prefix, @n) when (@n >= 0) and (@prefix = xs) {
-  .hxOffset-@{prefix}-@{n},
+// hxOffset-{N}-xs
+// hxOffset-{N}
+.make-grid-offsets (@size, @n) when (@n > 0) and (@size = xs) {
+  .hxOffset-@{n}-@{size},
   .hxOffset-@{n} {
-    margin-left: (@n * @grid-column-unit) !important;
+    #grid.offset(@n);
   }
-  .make-grid-offsets(@prefix, (@n - 1));
+  .make-grid-offsets(@size, (@n - 1));
 }
-.make-grid-offsets (@prefix, @n) when (@n >= 0) and not (@prefix = xs) {
-  .hxOffset-@{prefix}-@{n} {
-    margin-left: (@n * @grid-column-unit) !important;
+// hxOffset-{N}-{size}
+.make-grid-offsets (@size, @n) when (@n > 0) and not (@size = xs) {
+  .hxOffset-@{n}-@{size} {
+    #grid.offset(@n);
   }
-  .make-grid-offsets(@prefix, (@n - 1));
+  .make-grid-offsets(@size, (@n - 1));
 }
 
-//e.g. .hxOrder-1, .hxOrder-md-4
-.make-grid-orders (@prefix, @n) when (@n > 0) and (@prefix = xs) {
-  .hxOrder-@{prefix}-@{n},
+// hxOrder-{N}-xs
+// hxOrder-{N}
+.make-grid-orders (@size, @n) when (@n > 0) and (@size = xs) {
+  .hxOrder-@{n}-@{size},
   .hxOrder-@{n} {
     order: @n;
   }
-  .make-grid-orders(@prefix, (@n - 1));
+  .make-grid-orders(@size, (@n - 1));
 }
-.make-grid-orders (@prefix, @n) when (@n > 0) and not (@prefix = xs) {
-  .hxOrder-@{prefix}-@{n} {
+// hxOrder-{N}-{size}
+.make-grid-orders (@size, @n) when (@n > 0) and not (@size = xs) {
+  .hxOrder-@{n}-@{size} {
     order: @n;
   }
-  .make-grid-orders(@prefix, (@n - 1));
+  .make-grid-orders(@size, (@n - 1));
 }
 
-.make-grid (@prefix) {
+.make-grid (@size) {
   // 1 to N
-  .make-grid-columns(@prefix, @grid-column-count);
+  .make-grid-columns(@size, @grid-column-count);
   // 0 to N
-  .make-grid-offsets(@prefix, @grid-column-count);
+  .make-grid-offsets(@size, @grid-column-count);
   // 1 to N
-  .make-grid-orders(@prefix, @grid-column-count);
+  .make-grid-orders(@size, @grid-column-count);
 }
 //end:mixins
 
 /* ===== GRID ===== */
-@col-padding: (@grid-gutter-size * 0.5);
-@row-margin: -(@col-padding);
-
-.hxCol,
-[class*="hxCol-"] {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
 .hxRow {
   border: 0;
   display: flex;
@@ -79,21 +89,22 @@
     margin-top: @grid-gutter-size;
   }
 
-  .hxCol,
-  [class*="hxCol-"] {
-    padding: 0 @col-padding;
+  & > .hxCol {
+    flex-grow: 1;
     margin: 0 0 @grid-gutter-size;
+    padding: 0 @col-padding;
   }
 
-  &.no-gutters {
-    margin-left: 0;
-    margin-right: 0;
+  &.hxGutterless {
+    margin: 0;
 
-    .hxCol,
-    [class*="hxCol-"] {
+    & > .hxRow + .hxRow {
+      margin-top: 0;
+    }
+
+    & > .hxCol {
       margin: 0;
-      padding-left: 0;
-      padding-right: 0;
+      padding: 0;
     }
   }
 }
