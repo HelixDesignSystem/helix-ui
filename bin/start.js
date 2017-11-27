@@ -35,16 +35,6 @@ browserSync.init({
             ],
             fn: () => {
                 Build.buildSync();
-
-                /**
-                 * Always ensure that this task runs last, as it needs to wait for all
-                 * synchronous build events to complete so that browserSync can finish
-                 * and reload the page (and therefore, allow selenium to connnect).
-                 */
-                const tests = exec('yarn run test:regression -u', { cwd: CONFIG.testDir });
-                // this *is* asynchronous, see comment above
-                tests.stdout.pipe(process.stdout);
-                tests.stderr.pipe(process.stderr);
             }
         },
 
