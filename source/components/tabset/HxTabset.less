@@ -1,15 +1,27 @@
 @import "../HxElement";
+@import (reference) "./hx-tabset";
 
 :host {
+  &:extend(hx-tabset);
   background-color: inherit;
-  display: block;
 }
 
-slot {
-  // Because Safari
+#wrapper {
   background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 #head {
   background-color: inherit;
+  flex-shrink: 0;
+}
+
+#body {
+  background-color: inherit;
+  flex-grow: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 1.5rem 1.25rem;
 }
