@@ -1,5 +1,5 @@
 export interface IOptions {
-    default: String;
+    default?: String;
     message: String;
 }
 

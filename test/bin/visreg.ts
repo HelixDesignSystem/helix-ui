@@ -7,8 +7,8 @@ import * as opn from "opn";
 import * as util from "./util";
 
 import {config, IConfig} from "./visreg.config";
-const screenshotsDirectory = "visreg/screenshots";
-const repoUrl = url.parse(`https://${config.githubHostname}/${config.githubName}/${config.repo}`);
+const screenshotsDirectory = "artifacts/visregScreenshots";
+const repoUrl = url.parse(`https://${config.githubHostname}/${config.githubUsername}/${config.repo}`);
 
 async function prepareRepository(token: string) {
     util.validateVPN(config.githubHostname);
@@ -34,7 +34,7 @@ async function visreg(
 
     const anonymousBranch = `anon-${new Date().valueOf()}`;
     console.log("Creating a new baseline...");
-    const baseCommit = util.createBaseline(token, anonymousBranch, screenshotsDirectory, targetBranch);
+    const baseCommit = util.createBaseline(token, anonymousBranch, screenshotsDirectory, branch);
     console.log("Creating screenshot diff...");
     const afterCommit = util.createDiff(token, currentBranch, screenshotsDirectory);
     util.pushBranch(token, repoUrl, anonymousBranch, screenshotsDirectory);
