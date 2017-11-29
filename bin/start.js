@@ -35,7 +35,7 @@ browserSync.init({
             match: [
                 `${CONFIG.sourceDir}/**/*`
             ],
-            fn: _.debounce(Build.buildSync, 2000, { trailing: true }),
+            fn: _.debounce(Build.buildSync, 2000),
         },
 
         // Re-transpile test files
@@ -49,7 +49,7 @@ browserSync.init({
                 const tsc = exec('yarn build', { cwd: CONFIG.testDir });
                 tsc.stdout.pipe(process.stdout);
                 tsc.stderr.pipe(process.stderr);
-            }, 2000, { trailing: true }),
+            }, 2000),
         },
     ],
     logLevel: 'debug',
