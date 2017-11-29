@@ -3,6 +3,8 @@
 
 const exec = require('child_process').exec;
 
+const _ = require('lodash');
+
 const Build = require('./build');
 const CONFIG = require('../_config');
 const Clean = require('./clean');
@@ -17,12 +19,6 @@ Build.buildSync();
 // Start Server
 const serverRoutes = {}
 serverRoutes[CONFIG.site.baseHref] = CONFIG.publicDir;
-
-let devDebounceMarker = new Date().valueOf();
-let testDebounceMarker = new Date().valueOf();
-const timeSinceDebounce = (marker) => {
-    return (new Date().valueOf() - marker) / 1000;
-};
 
 browserSync.emitter.on('init', () => {
     console.log('Starting a selenium webdriver instance...');
@@ -39,16 +35,7 @@ browserSync.init({
             match: [
                 `${CONFIG.sourceDir}/**/*`
             ],
-            fn: () => {
-                if (timeSinceDebounce(devDebounceMarker) > 5) {
-                    const lint = exec('yarn lint');
-                    lint.stderr.pipe(process.stderr);
-
-                    Build.buildSync();
-                }
-
-                devDebounceMarker = new Date().valueOf();
-            }
+            fn: _.debounce(Build.buildSync, 2000, { trailing: true }),
         },
 
         // Re-transpile test files
@@ -58,15 +45,11 @@ browserSync.init({
                 `!${CONFIG.testDir}/node_modules/**`,
                 `!${CONFIG.testDir}/built/**/*`,
             ],
-            fn: () => {
-                if (timeSinceDebounce(testDebounceMarker) > 5) {
-                    const tsc = exec('yarn build', { cwd: CONFIG.testDir });
-                    tsc.stdout.pipe(process.stdout);
-                    tsc.stderr.pipe(process.stderr);
-                }
-
-                testDebounceMarker = new Date().valueOf();
-            }
+            fn: _.debounce(() => {
+                const tsc = exec('yarn build', { cwd: CONFIG.testDir });
+                tsc.stdout.pipe(process.stdout);
+                tsc.stderr.pipe(process.stderr);
+            }, 2000, { trailing: true }),
         },
     ],
     logLevel: 'debug',
