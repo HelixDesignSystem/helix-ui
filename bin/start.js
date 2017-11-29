@@ -18,9 +18,15 @@ Build.buildSync();
 const serverRoutes = {}
 serverRoutes[CONFIG.site.baseHref] = CONFIG.publicDir;
 
+let devDebounceMarker = new Date().valueOf();
+let testDebounceMarker = new Date().valueOf();
+const timeSinceDebounce = (marker) => {
+    return (new Date().valueOf() - marker) / 1000;
+};
+
 browserSync.emitter.on('init', () => {
     console.log('Starting a selenium webdriver instance...');
-    exec('yarn run webdriver:start', { cwd: CONFIG.testDir }); // don't log anything to the dev server
+    exec('yarn webdriver:start', { cwd: CONFIG.testDir }); // don't log anything to the dev server
 });
 
 browserSync.init({
@@ -34,7 +40,14 @@ browserSync.init({
                 `${CONFIG.sourceDir}/**/*`
             ],
             fn: () => {
-                Build.buildSync();
+                if (timeSinceDebounce(devDebounceMarker) > 5) {
+                    const lint = exec('yarn lint');
+                    lint.stderr.pipe(process.stderr);
+
+                    Build.buildSync();
+                }
+
+                devDebounceMarker = new Date().valueOf();
             }
         },
 
@@ -46,9 +59,13 @@ browserSync.init({
                 `!${CONFIG.testDir}/built/**/*`,
             ],
             fn: () => {
-                const tsc = exec('yarn run build', { cwd: CONFIG.testDir });
-                tsc.stdout.pipe(process.stdout);
-                tsc.stderr.pipe(process.stderr);
+                if (timeSinceDebounce(testDebounceMarker) > 5) {
+                    const tsc = exec('yarn build', { cwd: CONFIG.testDir });
+                    tsc.stdout.pipe(process.stdout);
+                    tsc.stderr.pipe(process.stderr);
+                }
+
+                testDebounceMarker = new Date().valueOf();
             }
         },
     ],
