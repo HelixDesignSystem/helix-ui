@@ -3,6 +3,8 @@
 
 const exec = require('child_process').exec;
 
+const _ = require('lodash');
+
 const Build = require('./build');
 const CONFIG = require('../_config');
 const Clean = require('./clean');
@@ -20,7 +22,7 @@ serverRoutes[CONFIG.site.baseHref] = CONFIG.publicDir;
 
 browserSync.emitter.on('init', () => {
     console.log('Starting a selenium webdriver instance...');
-    exec('yarn run webdriver:start', { cwd: CONFIG.testDir }); // don't log anything to the dev server
+    exec('yarn webdriver:start', { cwd: CONFIG.testDir }); // don't log anything to the dev server
 });
 
 browserSync.init({
@@ -33,9 +35,7 @@ browserSync.init({
             match: [
                 `${CONFIG.sourceDir}/**/*`
             ],
-            fn: () => {
-                Build.buildSync();
-            }
+            fn: _.debounce(Build.buildSync, 2000),
         },
 
         // Re-transpile test files
@@ -45,11 +45,11 @@ browserSync.init({
                 `!${CONFIG.testDir}/node_modules/**`,
                 `!${CONFIG.testDir}/built/**/*`,
             ],
-            fn: () => {
-                const tsc = exec('yarn run build', { cwd: CONFIG.testDir });
+            fn: _.debounce(() => {
+                const tsc = exec('yarn build', { cwd: CONFIG.testDir });
                 tsc.stdout.pipe(process.stdout);
                 tsc.stderr.pipe(process.stderr);
-            }
+            }, 2000),
         },
     ],
     logLevel: 'debug',
