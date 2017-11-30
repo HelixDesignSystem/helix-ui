@@ -1,0 +1,52 @@
+---
+title: Action Menu
+assets:
+  - helix-ui.css
+  - helix-ui.js
+---
+{% extends 'component.njk' %}
+{% block content %}
+
+<section>
+  <h2 class="hxSectionTitle" id="action-menu">Action Menu</h2>
+  <hx-action-menu position="top-right">
+    <button slot="head" class="hxBtn" hx-menu-toggle>
+      <hx-icon class="icon" type="cog"></hx-icon>
+      Actions
+      <hx-icon class="icon" type="angle-down"></hx-icon>
+    </button>
+    <title>Optional Title</title>
+    <button class="hxBtn hxBtn--link">Action 1</button>
+    <button class="hxBtn hxBtn--link">Action 2</button>
+    <button class="hxBtn hxBtn--link">Action 3</button>
+  </hx-action-menu>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="split-action-menu">Split Action Menu</h2>
+  <hx-action-menu position="top-right">
+    <button slot="head" class="hxBtn hxBtn--primary btn-group">
+      Actions
+    </button>
+    <button slot="head" class="hxBtn hxBtn--primary btn-group" hx-menu-toggle>
+      <hx-icon class="icon" type="angle-down"></hx-icon>
+    </button>
+    <button class="hxBtn hxBtn--link">Action 1</button>
+    <button class="hxBtn hxBtn--link">Action 2</button>
+    <button class="hxBtn hxBtn--link">Action 3</button>
+  </hx-action-menu>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="action-menu">Action Menu</h2>
+  <hx-action-menu position="top-right">
+    <button slot="head" class="hxBtn btn-cog" hx-menu-toggle>
+      <hx-icon class="icon" type="cog"></hx-icon>
+    </button>
+    <button class="hxBtn hxBtn--link">Action 1</button>
+    <button class="hxBtn hxBtn--link">Action 2</button>
+    <button class="hxBtn hxBtn--link">Action 3</button>
+  </hx-action-menu>
+</section>
+
+{% endblock %}
