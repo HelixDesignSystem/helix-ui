@@ -1,20 +1,19 @@
-const KEYS = require('../../lib/KEY');
+const KEY = require('../../lib/KEY');
 
 window.addEventListener('WebComponentsReady', function () {
-    const tagName = 'hx-disclosure';
+    function _preventScroll (event) {
+        if (event.keyCode === KEY.Space) {
+            event.preventDefault();
+        }
+    }
 
     class HxDisclosure extends HTMLElement {
         static get is () {
-            return tagName;
+            return 'hx-disclosure';
         }
 
         static get observedAttributes () {
             return [ 'aria-expanded' ];
-        }
-
-        constructor () {
-            super();
-            this._toggle = this._toggle.bind(this);
         }
 
         connectedCallback () {
@@ -28,13 +27,13 @@ window.addEventListener('WebComponentsReady', function () {
             }
 
             this.addEventListener('click', this._toggle);
-            this.addEventListener('keydown', this.$preventScroll);
+            this.addEventListener('keydown', _preventScroll);
             this.addEventListener('keyup', this._keyUp);
         }
 
         disconnectedCallback () {
             this.removeEventListener('click', this._toggle);
-            this.removeEventListener('keydown', this.$preventScroll);
+            this.removeEventListener('keydown', _preventScroll);
             this.removeEventListener('keyup', this._keyUp);
         }
 
@@ -62,8 +61,8 @@ window.addEventListener('WebComponentsReady', function () {
     
         _keyUp (event) {
             switch (event.keyCode) {
-                case KEYS.Space:
-                case KEYS.Enter:
+                case KEY.Space:
+                case KEY.Enter:
                     this._toggle();
                     break;
                 default: 
@@ -75,5 +74,5 @@ window.addEventListener('WebComponentsReady', function () {
             this.expanded = !this.expanded;
         }
     }
-    customElements.define(HxDisclosure.is, HxDisclosure)
+    customElements.define(HxDisclosure.is, HxDisclosure);
 });
