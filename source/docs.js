@@ -1,5 +1,7 @@
 'use strict';
 
+import './components/box/box-demo';
+
 /* ====================================== *\
  * DO NOT INCLUDE IN DISTRIBUTED ASSETS!! *
 \* ====================================== */

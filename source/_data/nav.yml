@@ -3,6 +3,7 @@ guides:
 components:
   Alert: alert
   Breadcrumb: breadcrumb
+  Box: box
   Button: button
   Checkbox: checkbox
   Code: code
