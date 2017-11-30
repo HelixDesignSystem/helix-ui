@@ -11,6 +11,7 @@ components:
   Grid: grid
   Icon: icon
   Navigation: navigation
+  Panel: panel
   Popover: popover
   Reveal: reveal
   "Status Label": status-label
