@@ -11,7 +11,8 @@
         "$": false,
         "module": false,
         "require": false,
-        "ShadyCSS": false
+        "ShadyCSS": false,
+        "Vue": false
     },
     "rules": {
         "array-bracket-newline": [2, { "minItems": 2 }],
