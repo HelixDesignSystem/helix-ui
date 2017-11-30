@@ -7,6 +7,7 @@
 // Each file will be responsible for defining itself
 // with the custom element registry
 import './components/checkbox/HxCheckbox';
+import './components/disclosure/HxDisclosure';
 import './components/icon/HxIcon';
 import './components/reveal/HxReveal';
 import './components/tabset/HxTabpanel';

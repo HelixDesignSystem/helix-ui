@@ -6,6 +6,7 @@ components:
   Button: button
   Checkbox: checkbox
   Code: code
+  Disclosure: disclosure
   Grid: grid
   Icon: icon
   Navigation: navigation

@@ -1,0 +1,28 @@
+---
+title: Disclosure
+assets:
+  - helix-ui.js
+---
+{% extends 'component.njk' %}
+{% block content %}
+
+<section>
+  <h2 class="hxSectionTitle" id="disclosure">Disclosure</h2>
+  <div class="demo">
+    <hx-disclosure aria-controls="demo-disclosure">
+      Click me to show content
+    </hx-disclosure>
+    <hx-reveal id="demo-disclosure">
+      <p>You can't see me</p>
+    </hx-reveal>
+  </div>
+  {% code 'html' %}
+    <hx-disclosure aria-controls="demo-disclosure">
+      Click me to show content
+    </hx-disclosure>
+    <hx-reveal id="demo-disclosure">
+      <p>You can't see me</p>
+    </hx-reveal>
+  {% endcode %}
+</section>
+{% endblock %}
