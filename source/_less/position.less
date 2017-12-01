@@ -12,8 +12,8 @@
 [position-arrow] {
   background-color: @container-background-color;
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     border-color: transparent;
     border-style: solid;
     display: block;
@@ -22,7 +22,7 @@
     width: 0;
   }
 
-  &:before {
+  &::before {
     border-color: @container-border-color;
     border-width: @arrow-size;
     content: " ";
@@ -30,7 +30,7 @@
     z-index: -1;
   }
 
-  &:after {
+  &::after {
     border-color: @container-background-color;
     border-width: @arrow-size;
     content: " ";
@@ -40,29 +40,29 @@
 
 :host {
   &([position$='top']) [position-arrow] {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       bottom: @arrow-corner-spacing;
     }
   }
 
   &([position$='bottom']) [position-arrow] {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       top: @arrow-corner-spacing;
     }
   }
 
   &([position$='left']) [position-arrow] {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       right: @arrow-corner-spacing;
     }
   }
 
   &([position$='right']) [position-arrow] {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       left: @arrow-corner-spacing;
     }
   }
@@ -111,32 +111,32 @@
   }
 
   &([position='top']) [position-arrow] {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       left: 50%;
       transform: translateX(50%) @arrow-rotation;
     }
   }
 
   &([position='bottom']) [position-arrow] {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       left: 50%;
       transform: translateX(50%) @arrow-rotation;
     }
   }
 
   &([position='left']) [position-arrow] {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       bottom: 50%;
       transform: translateY(50%) @arrow-rotation;
     }
   }
 
   &([position='right']) [position-arrow] {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       bottom: 50%;
       transform: translateY(50%) @arrow-rotation;
     }
