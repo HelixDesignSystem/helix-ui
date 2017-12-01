@@ -40,5 +40,5 @@ window.addEventListener('WebComponentsReady', function () {
             return this.hasAttribute('open');
         }
     }
-    customElements.define(HxTabpanel.is, HxTabpanel)
+    customElements.define(HxTabpanel.is, HxTabpanel);
 });

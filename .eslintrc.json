@@ -14,11 +14,14 @@
         "ShadyCSS": false
     },
     "rules": {
-        "brace-style": [2, "1tbs", { 
-            "allowSingleLine": true 
+        "array-bracket-newline": [2, { "minItems": 2 }],
+        "array-bracket-spacing": [2, "always"],
+        "array-element-newline": [2, "always"],
+        "brace-style": [2, "1tbs", {
+            "allowSingleLine": false
         }],
         "camelcase": 2,
-        "comma-dangle": [2, "always-multiline"],        
+        "comma-dangle": [2, "always-multiline"],
         "comma-style": [2, "last"],
         "complexity": [2, 10],
         "curly": [2, "all"],
@@ -33,19 +36,20 @@
         "no-bitwise": 2,
         "no-caller": 2,
         "no-empty": 2,
-        "no-multiple-empty-lines": [2, { 
-            "max": 1, 
-            "maxBOF": 0 
+        "no-multiple-empty-lines": [2, {
+            "max": 1,
+            "maxBOF": 0
         }],
         "no-undef": 2,
-        "no-unused-expressions": [2, { 
-            "allowTernary": true, 
+        "no-unused-expressions": [2, {
+            "allowTernary": true,
             "allowShortCircuit": true
         }],
         "no-unused-vars": 2,
         "no-use-before-define": [2, { "functions": false }],
         "object-curly-spacing": [2, "always"],
         "quotes": [2, "single"],
+        "semi": [2, "always"],
         "space-before-function-paren": [2, "always"],
         "space-in-parens": [2, "never"],
         "space-infix-ops": 2,

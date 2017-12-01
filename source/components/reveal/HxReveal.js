@@ -13,7 +13,7 @@ window.addEventListener('WebComponentsReady', function () {
         }
 
         static get observedAttributes () {
-            return ['open'];
+            return [ 'open' ];
         }
 
         constructor () {
@@ -58,5 +58,5 @@ window.addEventListener('WebComponentsReady', function () {
             this.open = !this.open;
         }
     }
-    customElements.define(HxReveal.is, HxReveal)
+    customElements.define(HxReveal.is, HxReveal);
 });

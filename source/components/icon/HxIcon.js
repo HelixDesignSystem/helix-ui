@@ -72,7 +72,7 @@ window.addEventListener('WebComponentsReady', function () {
         }
 
         static get observedAttributes () {
-            return ['type'];
+            return [ 'type' ];
         }
 
         static get icons () {
