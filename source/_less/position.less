@@ -1,182 +1,144 @@
 @import 'vars';
 
-@popover-arrow-outer-width: 8px;
-@popover-arrow-width: 7px;
-@popover-background-color: @gray-0;
-@popover-border-color: @gray-300;
-@popover-shadow-color: fade(@gray-900, 16%);
+@arrow-corner-spacing: 12px;
+@arrow-inner-offset: -6px;
+@arrow-outer-offset: -7px;
+@arrow-rotation: rotate(-45deg);
+@arrow-size: 8px;
+@container-background-color: @gray-0;
+@container-border-color: @gray-300;
+@container-shadow-color: fade(@gray-900, 16%);
 
-:host {
-  #arrow {
-    background-color: @gray-0;
-    border-width: @popover-arrow-outer-width;
-    transform: rotate(-45deg);
-    &:after {
-      background-color: @gray-0;
-      border-width: @popover-arrow-width;
-      content: " ";
-    }
-    &,
-    &:after {
-      display: block;
-      border-color: transparent;
-      border-style: solid;
-      height: 0;
-      position: absolute;
-      width: 0;
-    }
+[position-arrow] {
+  background-color: @container-background-color;
+
+  &:before,
+  &:after {
+    border-color: transparent;
+    border-style: solid;
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 0;
+  }
+
+  &:before {
+    border-color: @container-border-color;
+    border-width: @arrow-size;
+    content: " ";
+    transform: @arrow-rotation;
+    z-index: -1;
+  }
+
+  &:after {
+    border-color: @container-background-color;
+    border-width: @arrow-size;
+    content: " ";
+    transform: @arrow-rotation;
   }
 }
 
 :host {
-  &([position='top']) #arrow {
-    border-color: transparent transparent @popover-border-color @popover-border-color;
-    bottom: -8px;
-    box-shadow: -3px 3px 3px 0 @popover-shadow-color;
-    left: 50%;
-    margin-left: -8px;
-    &::after {
-      border-color: transparent transparent @popover-background-color @popover-background-color;
-      left: -7px;
-      top: -7px;
+  &([position$='top']) [position-arrow] {
+    &:before,
+    &:after {
+      bottom: @arrow-corner-spacing;
     }
   }
 
-  &([position='top-right']) #arrow {
-    border-color: transparent transparent @popover-border-color @popover-border-color;
-    bottom: -8px;
-    box-shadow: -3px 3px 3px 0 @popover-shadow-color;
-    left: 12px;
-    &::after {
-      border-color: transparent transparent @popover-background-color @popover-background-color;
-      left: -7px;
-      top: -7px;
+  &([position$='bottom']) [position-arrow] {
+    &:before,
+    &:after {
+      top: @arrow-corner-spacing;
     }
   }
 
-  &([position='top-left']) #arrow {
-    border-color: transparent transparent @popover-border-color @popover-border-color;
-    bottom: -8px;
-    box-shadow: -3px 3px 3px 0 @popover-shadow-color;
-    right: 12px;
-    &::after {
-      border-color: transparent transparent @popover-background-color @popover-background-color;
-      left: -7px;
-      top: -7px;
+  &([position$='left']) [position-arrow] {
+    &:before,
+    &:after {
+      right: @arrow-corner-spacing;
     }
   }
 
-  &([position='bottom']) #arrow {
-    border-color: @popover-border-color @popover-border-color transparent transparent;
-    left: 50%;
-    margin-left: -8px;
-    top: -9px;
-    &::after {
-      border-color: @popover-background-color @popover-background-color transparent transparent;
-      left: -7px;
-      top: -7px;
+  &([position$='right']) [position-arrow] {
+    &:before,
+    &:after {
+      left: @arrow-corner-spacing;
     }
   }
 
-  &([position='bottom-right']) #arrow {
-    border-color: @popover-border-color @popover-border-color transparent transparent;
-    left: 12px;
-    top: -9px;
+  &([position^='top']) [position-arrow] {
+    &::before {
+      bottom: @arrow-outer-offset;
+      box-shadow: -3px 3px 3px 0 @container-shadow-color;
+    }
+
     &::after {
-      border-color: @popover-background-color @popover-background-color transparent transparent;
-      left: -7px;
-      top: -7px;
+      bottom: @arrow-inner-offset;
     }
   }
 
-  &([position='bottom-left']) #arrow {
-    border-color: @popover-border-color @popover-border-color transparent transparent;
-    right: 12px;
-    top: -9px;
+  &([position^='bottom']) [position-arrow] {
+    &::before {
+      top: @arrow-outer-offset;
+    }
+
     &::after {
-      border-color: @popover-background-color @popover-background-color transparent transparent;
-      left: -7px;
-      top: -7px;
+      top: @arrow-inner-offset;
     }
   }
 
-  &([position='right']) #arrow {
-    border-color: @popover-border-color transparent transparent @popover-border-color;
-    bottom: 50%;
-    box-shadow: -3px 0px 3px 0 @popover-shadow-color;
-    left: -9px;
-    margin-bottom: -8px;
+  &([position^='left']) [position-arrow] {
+    &::before {
+      box-shadow: 0px 3px 3px 0 @container-shadow-color;
+      right: @arrow-outer-offset;
+    }
+
     &::after {
-      border-color: @popover-background-color transparent transparent @popover-background-color;
-      border-width: 9px;
-      left: -7px;
-      top: -7px;
+      right: @arrow-inner-offset;
     }
   }
 
-  &([position='right-top']) #arrow {
-    border-color: @popover-border-color transparent transparent @popover-border-color;
-    bottom: 12px;
-    box-shadow: -3px 0px 3px 0 @popover-shadow-color;
-    left: -9px;
+  &([position^='right']) [position-arrow] {
+    &::before {
+      box-shadow: -3px 0px 3px 0 @container-shadow-color;
+      left: @arrow-outer-offset;
+    }
+
     &::after {
-      left: -7px;
-      top: -7px;
-      border-color: @popover-background-color transparent transparent @popover-background-color;
-      border-width: 9px;
+      left: @arrow-inner-offset;
     }
   }
 
-  &([position='right-bottom']) #arrow {
-    border-color: @popover-border-color transparent transparent @popover-border-color;
-    box-shadow: -3px 0px 3px 0 @popover-shadow-color;
-    left: -9px;
-    top: 12px;
-    &::after {
-      border-color: @popover-background-color transparent transparent @popover-background-color;
-      border-width: 9px;
-      left: -7px;
-      top: -7px;
+  &([position='top']) [position-arrow] {
+    &:before,
+    &:after {
+      left: 50%;
+      transform: translateX(50%) @arrow-rotation;
     }
   }
 
-  &([position='left']) #arrow {
-    border-color: transparent @popover-border-color @popover-border-color transparent;
-    bottom: 50%;
-    box-shadow: 0px 3px 3px 0 @popover-shadow-color;
-    margin-bottom: -8px;
-    right: -9px;
-    &::after {
-      border-color: transparent @popover-background-color @popover-background-color transparent;
-      border-width: 9px;
-      left: -11px;
-      top: -11px;
+  &([position='bottom']) [position-arrow] {
+    &:before,
+    &:after {
+      left: 50%;
+      transform: translateX(50%) @arrow-rotation;
     }
   }
 
-  &([position='left-top']) #arrow {
-    border-color: transparent @popover-border-color @popover-border-color transparent;
-    bottom: 12px;
-    box-shadow: 0px 3px 3px 0 @popover-shadow-color;
-    right: -9px;
-    &::after {
-      border-color: transparent @popover-background-color @popover-background-color transparent;
-      border-width: 9px;
-      left: -11px;
-      top: -11px;
+  &([position='left']) [position-arrow] {
+    &:before,
+    &:after {
+      bottom: 50%;
+      transform: translateY(50%) @arrow-rotation;
     }
   }
 
-  &([position='left-bottom']) #arrow {
-    border-color: transparent @popover-border-color @popover-border-color transparent;
-    box-shadow: 0px 3px 3px 0 @popover-shadow-color;
-    right: -9px;
-    top: 12px;
-    &::after {
-      border-color: transparent @popover-background-color @popover-background-color transparent;
-      border-width: 9px;
-      left: -11px;
-      top: -11px;
+  &([position='right']) [position-arrow] {
+    &:before,
+    &:after {
+      bottom: 50%;
+      transform: translateY(50%) @arrow-rotation;
     }
   }
 }
