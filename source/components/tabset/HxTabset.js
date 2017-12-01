@@ -13,7 +13,7 @@ window.addEventListener('WebComponentsReady', function () {
         }
 
         static get observedAttributes () {
-            return ['selected'];
+            return [ 'selected' ];
         }
 
         constructor () {
@@ -98,5 +98,5 @@ window.addEventListener('WebComponentsReady', function () {
             this._selectPanelByIndex(this.tabs.indexOf(event.target));
         }
     }
-    customElements.define(HxTabset.is, HxTabset)
+    customElements.define(HxTabset.is, HxTabset);
 });

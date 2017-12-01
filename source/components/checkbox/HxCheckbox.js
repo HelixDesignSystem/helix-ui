@@ -174,5 +174,5 @@ window.addEventListener('WebComponentsReady', function () {
             }
         }
     }
-    customElements.define(HxCheckbox.is, HxCheckbox)
+    customElements.define(HxCheckbox.is, HxCheckbox);
 });
