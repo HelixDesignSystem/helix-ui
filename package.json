@@ -2,6 +2,12 @@
   "name": "helix-ui",
   "version": "0.0.1",
   "description": "Web Component Library",
+  "keywords": [
+    "custom elements",
+    "shadow dom",
+    "ui toolkit",
+    "v1"
+  ],
   "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -39,10 +45,16 @@
     "start": "bin/start.js",
     "test": "cd test; yarn test"
   },
-  "repository": "git+https://github.com/rackerlabs/helix-ui.git",
-  "author": "Rackspace",
-  "license": "UNLICENSED",
-  "private": true,
+  "repository": "https://github.com/rackerlabs/helix-ui.git",
+  "author": "Ryan Johnson <rhino.citguy@gmail.com>",
+  "contributors": [
+    "Andrew Yurisich",
+    "Cathy Siller",
+    "Evan Nabors",
+    "Steven Salinas",
+    "Ty Taylor"
+  ],
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/rackerlabs/helix-ui/issues"
   },
