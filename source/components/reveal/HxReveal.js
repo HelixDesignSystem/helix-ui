@@ -30,6 +30,19 @@ window.addEventListener('WebComponentsReady', function () {
 
         connectedCallback () {
             this._btnToggle.addEventListener('click', this._toggle);
+            this._upgradeProperty('open');
+        }
+
+        // A user may set a property on an _instance_ of an element, before its
+        // prototype has been connected to this class. The `_upgradeProperty()`
+        // method will check for any instance properties and run them through
+        // the proper class setters.
+        _upgradeProperty (prop) {
+            if (this.hasOwnProperty(prop)) {
+                let value = this[prop];
+                delete this[prop];
+                this[prop] = value;
+            }
         }
 
         disconnectedCallback () {

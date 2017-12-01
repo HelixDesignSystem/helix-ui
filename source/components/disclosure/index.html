@@ -1,0 +1,84 @@
+---
+title: Disclosure
+assets:
+  - helix-ui.js
+---
+{% extends 'component.njk' %}
+{% block content %}
+
+<section>
+  <h2 class="hxSectionTitle" id="summary">Summary</h2>
+  <p>When activated, a disclosure toggles the visibility of a target element.</p>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="demo">Demo</h2>
+  <div class="demo">
+    <hx-disclosure aria-controls="demo-disclosure">
+      Click me to show content
+    </hx-disclosure>
+    <hx-reveal id="demo-disclosure">
+      <p>You can't see me</p>
+    </hx-reveal>
+  </div>
+  {% code 'html' %}
+    <hx-disclosure aria-controls="demo-disclosure">
+      Click me to show content
+    </hx-disclosure>
+    <hx-reveal id="demo-disclosure">
+      <p>You can't see me</p>
+    </hx-reveal>
+  {% endcode %}
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="target-element">Target Element</h2>
+  <p>A target element should adhere to the following contract:</p>
+  <ol>
+    <li>It should have an <code>id</code> attribute.</li>
+    <li>
+      It should respond to an <code>open</code> property that reflects to an <code>open</code> attribute.
+    </li>
+  </ol>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+  <dl>
+    <dt>aria-controls</dt>
+    <dd>
+      The ID of a target element to associate behavior. 
+      Required to wire up display functionality between elements.
+    </dd>
+  </dl>
+  <dl>
+    <dt>aria-expanded*</dt>
+    <dd>
+      Automatically initialized to the same state as the target element.
+      When attribute is updated, target element is updated as well.
+    </dd>
+  </dl>
+  <dl>
+    <dt>role*</dt>
+    <dd>Automatically set to "button", unless explicitly defined in markup.</dd>
+  </dl>
+  <dl>
+    <dt>tabindex*</dt>
+    <dd>Automatically set to "0", unless explicitly defined in markup.</dd>
+  </dl>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="properties">Properties</h2>
+  <dl>
+    <dt>expanded <small>(Boolean)</small></dt>
+    <dd>
+      Mirrors the <code>aria-expanded</code> attribute.
+      <ul>
+        <li>Set to <code>true</code> to expand the target element.</li>
+        <li>Set to <code>false</code> to collapse the target element.</li>
+      </ul>
+    </dd>
+  </dl>
+</section>
+{% endblock %}
