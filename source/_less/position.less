@@ -110,14 +110,7 @@
     }
   }
 
-  &([position='top']) [position-arrow] {
-    &::before,
-    &::after {
-      left: 50%;
-      transform: translateX(50%) @arrow-rotation;
-    }
-  }
-
+  &([position='top']) [position-arrow],
   &([position='bottom']) [position-arrow] {
     &::before,
     &::after {
@@ -126,14 +119,7 @@
     }
   }
 
-  &([position='left']) [position-arrow] {
-    &::before,
-    &::after {
-      bottom: 50%;
-      transform: translateY(50%) @arrow-rotation;
-    }
-  }
-
+  &([position='left']) [position-arrow],
   &([position='right']) [position-arrow] {
     &::before,
     &::after {
