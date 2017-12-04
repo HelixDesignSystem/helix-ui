@@ -1,4 +1,4 @@
-import { PositionUtil } from '../../lib/position';
+import { getPosition } from '../../lib/position';
 
 window.addEventListener('WebComponentsReady', function () {
     const tagName = 'hx-menu';
@@ -17,24 +17,15 @@ window.addEventListener('WebComponentsReady', function () {
 
         constructor () {
             super();
-            this.$toggle = this.querySelector('[hx-menu-toggle]');
-            this._toggleMenu = this._toggleMenu.bind(this);
-            this.$menu = this.getElementById('menu');
+            var menuId = this.getAttribute('id');
+            this.$menu = document.querySelector(`[aria-controls="${menuId}"]`);
         }
 
         connectedCallback () {
-            if (!this.$menu) {
-                return;
-            }
-
-            this.$toggle.addEventListener('click', this._toggleMenu);
-            this.$menu.addEventListener('click', this._toggleMenu);            
+            this._upgradeProperty('open');
         }
 
         disconnectedCallback () {
-            this.$toggle.removeEventListener('click', this._toggleMenu);
-            this.$menu.removeEventListener('click', this._toggleMenu);
-            this.$menu = null;
         }
 
         attributeChangedCallback (attr, oldValue, newValue) {
@@ -59,12 +50,16 @@ window.addEventListener('WebComponentsReady', function () {
         }
 
         get position () {
-            return this.getAttribute('position');
+            if (this.hasAttribute('position')) {
+                return this.getAttribute('position');
+            }
+            return undefined;
         }
 
         set open (value) {
             if (value) {
                 this.setAttribute('open', '');
+                this._setPosition();
             } else {
                 this.removeAttribute('open');
             }
@@ -74,20 +69,25 @@ window.addEventListener('WebComponentsReady', function () {
             return this.hasAttribute('open');
         }
 
-        _toggleMenu () {
-            this.open = !this.open;
-
-            if (this.open) {
-                this._setPosition();
-            }
-        }
-
         _setPosition () {
-            var offset = PositionUtil.getOffsetValues(this, this.$menu, this.position);
-
-            this.position = offset.position;
+            var offset = getPosition(this, this.$menu, {
+                position: 'bottom-start',
+            });
             this.style.top = offset.y + 'px';
             this.style.left = offset.x + 'px';
+            this.position = offset.position;
+        }
+
+        // A user may set a property on an _instance_ of an element, before its
+        // prototype has been connected to this class. The `_upgradeProperty()`
+        // method will check for any instance properties and run them through
+        // the proper class setters.
+        _upgradeProperty (prop) {
+            if (this.hasOwnProperty(prop)) {
+                let value = this[prop];
+                delete this[prop];
+                this[prop] = value;
+            }
         }
     }
     customElements.define(HxMenu.is, HxMenu);
