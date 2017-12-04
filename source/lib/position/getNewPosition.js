@@ -13,7 +13,7 @@ function getNewPosition (position, offsetElementRect, offsets) {
         newPosition = shiftPositionHorizontally(newPosition);
     }
 
-    return newPosition
+    return newPosition;
 }
 
 /* TODO: refactor */
@@ -69,4 +69,4 @@ function shiftPositionHorizontally (position) {
     }
 }
 
-export { getNewPosition }
+export { getNewPosition };

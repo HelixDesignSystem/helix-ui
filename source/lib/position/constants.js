@@ -2,7 +2,7 @@ const ARROW = {
     WIDTH: 16,
     HEIGHT: 12,
     OFFSET: 12,
-}
+};
 
 const POSITIONS = {
     TOP: 'top',
@@ -19,4 +19,4 @@ const POSITIONS = {
     LEFT_BOTTOM:'left-bottom',
 };
 
-export { ARROW, POSITIONS }
+export { ARROW, POSITIONS };

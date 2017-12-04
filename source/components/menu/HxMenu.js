@@ -1,15 +1,9 @@
 import { PositionUtil } from '../../lib/position';
 
 window.addEventListener('WebComponentsReady', function () {
-    const tagName = 'hx-action-menu';
-    const template = document.createElement('template');
+    const tagName = 'hx-menu';
 
-    template.innerHTML = `
-        <style>${require('./HxActionMenu.less')}</style>
-        ${require('./HxActionMenu.html')}
-    `;
-
-    class HxActionMenu extends HTMLElement {
+    class HxMenu extends HTMLElement {
         static get is () {
             return tagName;
         }
@@ -23,15 +17,9 @@ window.addEventListener('WebComponentsReady', function () {
 
         constructor () {
             super();
-            this.attachShadow({ mode: 'open' });
-            if (window.ShadyCSS) {
-                ShadyCSS.prepareTemplate(template, tagName);
-                ShadyCSS.styleElement(this);
-            }
-            this.shadowRoot.appendChild(template.content.cloneNode(true));
             this.$toggle = this.querySelector('[hx-menu-toggle]');
             this._toggleMenu = this._toggleMenu.bind(this);
-            this.$menu = this.shadowRoot.getElementById('body');
+            this.$menu = this.getElementById('menu');
         }
 
         connectedCallback () {
@@ -102,5 +90,5 @@ window.addEventListener('WebComponentsReady', function () {
             this.style.left = offset.x + 'px';
         }
     }
-    customElements.define(HxActionMenu.is, HxActionMenu)
+    customElements.define(HxMenu.is, HxMenu);
 });

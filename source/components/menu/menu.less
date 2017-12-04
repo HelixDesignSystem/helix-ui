@@ -1,0 +1,25 @@
+@import 'vars';
+@import 'position';
+
+hx-menu:not([open]) > *:not([slot="head"]) {
+  display: none;
+}
+
+hx-menu {
+  box-shadow: 0 2px 7px fade(@gray-1000, 16%);
+  margin-top: 1px;
+  width: 15rem;
+  
+  .hxBtn--link {
+    display: block;
+    padding: 4px 12px 4px;
+  }
+
+  .btn-cog {
+    border: none;
+
+    hx-icon {
+      color: @gray-1000;
+    }
+  }
+}

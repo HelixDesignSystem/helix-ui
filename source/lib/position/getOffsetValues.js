@@ -1,4 +1,4 @@
-import { POSITIONS } from './constants'
+import { POSITIONS } from './constants';
 import { getNewPosition } from './getNewPosition';
 import { getOffScreenValidationObject } from './getOffScreenValidationObject';
 import { calculateOffsetValues } from './calculateOffsetValues';
@@ -25,4 +25,4 @@ function isElementOffscreen (offsetElementRect, offsets) {
     return (offscreen.top || offscreen.right || offscreen.bottom || offscreen.left);
 }
 
-export { getOffsetValues }
+export { getOffsetValues };

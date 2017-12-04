@@ -1,5 +1,5 @@
 ---
-title: Action Menu
+title: Menu
 assets:
   - helix-ui.css
   - helix-ui.js
@@ -8,18 +8,17 @@ assets:
 {% block content %}
 
 <section>
-  <h2 class="hxSectionTitle" id="action-menu">Action Menu</h2>
-  <hx-action-menu position="top-right">
-    <button slot="head" class="hxBtn" hx-menu-toggle>
-      <hx-icon class="icon" type="cog"></hx-icon>
-      Actions
-      <hx-icon class="icon" type="angle-down"></hx-icon>
-    </button>
-    <title>Optional Title</title>
-    <button class="hxBtn hxBtn--link">Action 1</button>
-    <button class="hxBtn hxBtn--link">Action 2</button>
-    <button class="hxBtn hxBtn--link">Action 3</button>
-  </hx-action-menu>
+  <h2 class="hxSectionTitle" id="menu">Menu</h2>
+  <hx-disclosure aria-controls="menu">
+    <hx-icon class="icon" type="cog"></hx-icon>
+    Actions
+    <hx-icon class="icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-menu id="menu" position="top-right">
+    <hx-menuitem class="hxBtn hxBtn--link">Action 1</hx-menuitem>
+    <hx-menuitem class="hxBtn hxBtn--link">Action 2</hx-menuitem>
+    <hx-menuitem class="hxBtn hxBtn--link">Action 3</hx-menuitem>
+  </hx-menu>
 </section>
 
 <section>

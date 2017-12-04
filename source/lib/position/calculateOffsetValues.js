@@ -1,14 +1,14 @@
 /* TODO: refactor */
 /*eslint complexity: 0*/
 
-import { ARROW, POSITIONS } from './constants'
+import { ARROW, POSITIONS } from './constants';
 
 function calculateOffsetValues (position, offsetElementRect, targetElementRect) {
     var offsets = {
         position: position,
         y: 0,
         x: 0,
-    }
+    };
 
     switch (position) {
         case POSITIONS.TOP:
@@ -77,4 +77,4 @@ function calculateOffsetValues (position, offsetElementRect, targetElementRect) 
     return offsets;
 }
 
-export { calculateOffsetValues }
+export { calculateOffsetValues };
