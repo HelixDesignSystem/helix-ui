@@ -1,0 +1,20 @@
+hx-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  & > &head {
+    flex-shrink: 0;
+  }
+
+  & > &foot {
+    flex-shrink: 0;
+  }
+
+  & > &body {
+    flex-grow: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
