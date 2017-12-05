@@ -1,0 +1,130 @@
+@import 'vars';
+
+@arrow-corner-spacing: 12px;
+@arrow-inner-offset: -6px;
+@arrow-outer-offset: -7px;
+@arrow-rotation: rotate(-45deg);
+@arrow-size: 8px;
+@container-background-color: @gray-0;
+@container-border-color: @gray-300;
+@container-shadow-color: fade(@gray-900, 16%);
+
+[position-arrow] {
+  background-color: @container-background-color;
+
+  &::before,
+  &::after {
+    border-color: transparent;
+    border-style: solid;
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 0;
+  }
+
+  &::before {
+    border-color: @container-border-color;
+    border-width: @arrow-size;
+    content: " ";
+    transform: @arrow-rotation;
+    z-index: -1;
+  }
+
+  &::after {
+    border-color: @container-background-color;
+    border-width: @arrow-size;
+    content: " ";
+    transform: @arrow-rotation;
+  }
+}
+
+:host {
+  &([position$='top']) [position-arrow] {
+    &::before,
+    &::after {
+      bottom: @arrow-corner-spacing;
+    }
+  }
+
+  &([position$='bottom']) [position-arrow] {
+    &::before,
+    &::after {
+      top: @arrow-corner-spacing;
+    }
+  }
+
+  &([position$='left']) [position-arrow] {
+    &::before,
+    &::after {
+      right: @arrow-corner-spacing;
+    }
+  }
+
+  &([position$='right']) [position-arrow] {
+    &::before,
+    &::after {
+      left: @arrow-corner-spacing;
+    }
+  }
+
+  &([position^='top']) [position-arrow] {
+    &::before {
+      bottom: @arrow-outer-offset;
+      box-shadow: -3px 3px 3px 0 @container-shadow-color;
+    }
+
+    &::after {
+      bottom: @arrow-inner-offset;
+    }
+  }
+
+  &([position^='bottom']) [position-arrow] {
+    &::before {
+      top: @arrow-outer-offset;
+    }
+
+    &::after {
+      top: @arrow-inner-offset;
+    }
+  }
+
+  &([position^='left']) [position-arrow] {
+    &::before {
+      box-shadow: 0px 3px 3px 0 @container-shadow-color;
+      right: @arrow-outer-offset;
+    }
+
+    &::after {
+      right: @arrow-inner-offset;
+    }
+  }
+
+  &([position^='right']) [position-arrow] {
+    &::before {
+      box-shadow: -3px 0px 3px 0 @container-shadow-color;
+      left: @arrow-outer-offset;
+    }
+
+    &::after {
+      left: @arrow-inner-offset;
+    }
+  }
+
+  &([position='top']) [position-arrow],
+  &([position='bottom']) [position-arrow] {
+    &::before,
+    &::after {
+      left: 50%;
+      transform: translateX(50%) @arrow-rotation;
+    }
+  }
+
+  &([position='left']) [position-arrow],
+  &([position='right']) [position-arrow] {
+    &::before,
+    &::after {
+      bottom: 50%;
+      transform: translateY(50%) @arrow-rotation;
+    }
+  }
+}
