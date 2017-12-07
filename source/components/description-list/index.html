@@ -1,0 +1,109 @@
+---
+title: Description List
+assets:
+  - helix-ui.css
+---
+{% extends 'component.njk' %}
+{% block content %}
+
+<section>
+  <h2 class="hxSectionTitle" id="default-list">Default List</h2>
+  <p>
+    Use a Description List <code>hx-dl</code> along with children Definition
+    <code>hx-def</code>, Term <code>hx-dt</code>, and Description Detail
+    <code>hx-dd</code> custom element tags. These are all required to construct
+    a Description List.
+  </p>
+  <div class="demo">
+    <hx-dl>
+      <hx-def>
+        <hx-dt>First Key Term</hx-dt>
+        <hx-dd>This is the description and/or data value.</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Second Key Term</hx-dt>
+        <hx-dd>
+          This is the description and/or data value. This paragraph shows the
+          default wrapping that exists on this element. Description Detail tags
+          will wrap across multiple lines by default.
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Third Key Term</hx-dt>
+        <hx-dd class="hxForceWordBreak">
+          This is the description and/or data value. This third
+          description is an example of when you may have long strings
+          (https://swapi.co/api/people/1/) in your content that usually
+          don't wrap across lines. The <code>.hxForceWordBreak</code> CSS
+          modifier class can be used on the <code>hx-dd</code> to achieve
+          the wrapping when needed. This will break up strings and break a word.
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  </div>
+  {% code 'html' %}
+    <hx-dl>
+      <hx-def>
+        <hx-dt>Key Term</hx-dt>
+        <hx-dd>This is the description and/or data value.</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Key Term</hx-dt>
+        <hx-dd class="hxForceWordBreak">
+          https://swapi.co/api/people/1/
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  {% endcode %}
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="vertical-list">Vertical List</h2>
+  <p>
+    An <code>.hxVertical</code> modifier class can be applied to the
+    description List <code>hx-dl</code> for a vertical list layout.
+  </p>
+  <div class="demo">
+    <hx-dl class="hxVertical">
+      <hx-def>
+        <hx-dt>First Key Term</hx-dt>
+        <hx-dd>This is the description and/or data value.</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Second Key Term</hx-dt>
+        <hx-dd>
+          This is the description and/or data value. This paragraph shows the
+          default wrapping that exists on this element. Description Detail tags
+          will wrap across multiple lines by default.
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Third Key Term</hx-dt>
+        <hx-dd class="hxForceWordBreak">
+          This is the description and/or data value. This third
+          description is an example of when you may have long strings
+          (https://swapi.co/api/people/1/) in your content that usually
+          don't wrap across lines. The <code>.hxForceWordBreak</code> CSS
+          modifier class can be used on the <code>hx-dd</code> to achieve
+          the wrapping when needed. This will break up strings and break a word.
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  </div>
+  {% code 'html' %}
+    <hx-dl class="hxVertical">
+      <hx-def>
+        <hx-dt>Key Term</hx-dt>
+        <hx-dd>This is the description and/or data value.</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Key Term</hx-dt>
+        <hx-dd class="hxForceWordBreak">
+          https://swapi.co/api/people/1/
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  {% endcode %}
+</section>
+
+{% endblock %}

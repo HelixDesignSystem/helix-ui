@@ -9,6 +9,7 @@ components:
   Disclosure: disclosure
   Grid: grid
   Icon: icon
+  "Description List": description-list
   Navigation: navigation
   Popover: popover
   Reveal: reveal
