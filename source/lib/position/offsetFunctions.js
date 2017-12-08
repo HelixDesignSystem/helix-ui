@@ -1,104 +1,169 @@
-let _arrow = {
-    width: 16,
-    height: 12,
-    margin: 12,
+export function getCenter (off, ref) {
+    let x = ref.left + (ref.width / 2) - (off.width / 2);
+    let y = ref.top + (ref.height / 2) - (off.height / 2);
+    return [ x, y ];
+}
+
+export function getTop (off, ref, config) {
+    let [ x, y ] = getCenter(off, ref);
+    y = ref.top - off.height;
+    y -= config.margin;
+    return [ x, y ];
+}
+
+export function getBottom (off, ref, config) {
+    let [ x, y ] = getCenter(off, ref);
+    y = ref.top + ref.height;
+    y += config.margin;
+    return [ x, y ];
+}
+
+export function getLeft (off, ref, config) {
+    let [ x, y ] = getCenter(off, ref);
+    x = ref.left - off.width - config.margin;
+    return [ x, y ];
+}
+
+export function getRight (off, ref, config) {
+    let [ x, y ] = getCenter(off, ref);
+    x = ref.left + ref.width + config.margin;
+    return [ x, y ];
+}
+
+export function getTopLeft (off, ref, config) {
+    let [ x, y ] = getTop(off, ref, config);
+    x -= (off.width / 2);
+    x += config.offset;
+    return [ x, y ];
+}
+
+export function getTopStart (off, ref, config) {
+    let [ x, y ] = getTop(off, ref, config);
+    x = ref.left;
+    x += config.offset;
+    return [ x, y ];
+}
+
+export function getTopEnd (off, ref, config) {
+    let [ x, y ] = getTop(off, ref, config);
+    x = ref.right - off.width;
+    x -= config.offset;
+    return [ x, y ];
+}
+
+export function getTopRight (off, ref, config) {
+    let [ x, y ] = getTop(off, ref, config);
+    x -= (off.width / 2);
+    x -= config.offset;
+    return [ x, y ];
+}
+
+export function getRightTop (off, ref, config) {
+    let [ x, y ] = getRight(off, ref, config);
+    y -= (ref.height / 2);
+    y += config.offset;
+    return [ x, y ];
+}
+
+export function getRightStart (off, ref, config) {
+    let [ x, y ] = getRight(off, ref, config);
+    y = ref.top;
+    y += config.offset;
+    return [ x, y ];
+}
+
+export function getRightEnd (off, ref, config) {
+    let [ x, y ] = getRight(off, ref, config);
+    y = ref.bottom - off.height;
+    y -= config.offset;
+    return [ x, y ];
+}
+
+export function getRightBottom (off, ref, config) {
+    let [ x, y ] = getRight(off, ref, config);
+    y += off.height / 2;
+    y -= config.offset;
+    return [ x, y ];
+}
+
+export function getBottomRight (off, ref, config) {
+    let [ x, y ] = getBottom(off, ref, config);
+    x += (off.width / 2);
+    x -= config.offset;
+    return [ x, y ];
+}
+
+export function getBottomEnd (off, ref, config) {
+    let [ x, y ] = getBottom(off, ref, config);
+    x = ref.right - off.width;
+    x -= config.offset;
+    return [ x, y ];
+}
+
+export function getBottomStart (off, ref, config) {
+    let [ x, y ] = getBottom(off, ref, config);
+    x = ref.left;
+    x += config.offset;
+    return [ x, y ];
+}
+
+export function getBottomLeft (off, ref, config) {
+    let [ x, y ] = getBottom(off, ref, config);
+    x -= (off.width / 2);
+    x += config.offset;
+    return [ x, y ];
+}
+
+export function getLeftBottom (off, ref, config) {
+    let [ x, y ] = getLeft(off, ref, config);
+    y += off.height / 2;
+    y -= config.offset;
+    return [ x, y ];
+}
+
+export function getLeftEnd (off, ref, config) {
+    let [ x, y ] = getLeft(off, ref, config);
+    y = ref.bottom - off.height;
+    y -= config.offset;
+    return [ x, y ];
+}
+
+export function getLeftStart (off, ref, config) {
+    let [ x, y ] = getLeft(off, ref, config);
+    y = ref.top;
+    y += config.offset;
+    return [ x, y ];
+}
+
+export function getLeftTop (off, ref, config) {
+    let [ x, y ] = getLeft(off, ref, config);
+    y -= (ref.height / 2); 
+    y += config.offset;
+    return [ x, y ];
+}
+
+const offsetFunctions = {
+    'top-left': getTopLeft,
+    'top-start': getTopStart,
+    'top': getTop,
+    'top-end': getTopEnd,
+    'top-right': getTopRight,
+    'right-top': getRightTop,
+    'right-start': getRightStart,
+    'right': getRight,
+    'right-end': getRightEnd,
+    'right-bottom': getRightBottom,
+    'bottom-right': getBottomRight,
+    'bottom-end': getBottomEnd,
+    'bottom': getBottom,
+    'bottom-start': getBottomStart,
+    'bottom-left': getBottomLeft,
+    'left-bottom': getLeftBottom,
+    'left-end': getLeftEnd,    
+    'left': getLeft,
+    'left-start': getLeftStart,    
+    'left-top': getLeftTop,
+    'center': getCenter,
 };
 
-/* ========== VERTICAL ========== */
-function _yMiddle (offsetElementRect, refElementRect) {
-    return refElementRect.left +
-        (refElementRect.width / 2) -
-        (offsetElementRect.width / 2);
-}
-
-function _yTop (offsetElementRect, refElementRect) {
-    return refElementRect.top -
-        offsetElementRect.height -
-        _arrow.height;
-}
-
-function _yBottom (offsetElementRect, refElementRect) {
-    return refElementRect.top +
-        refElementRect.height +
-        _arrow.height;
-}
-
-function _yRight (offsetElementRect, refElementRect) {
-    return refElementRect.left +
-        (refElementRect.width / 2) -
-        (_arrow.width / 2) -
-        _arrow.margin;
-}
-
-function _yLeft (offsetElementRect, refElementRect) {
-    return refElementRect.left +
-        (refElementRect.width / 2) -
-        offsetElementRect.width +
-        (_arrow.width / 2) +
-        _arrow.margin;
-}
-
-/* ========== HORIZONTAL ========== */
-function _xMiddle (offsetElementRect, refElementRect) {
-    return refElementRect.top +
-        (refElementRect.height / 2) -
-        (offsetElementRect.height / 2);
-}
-
-function _xTop (offsetElementRect, refElementRect) {
-    return refElementRect.top +
-        (refElementRect.height / 2) -
-        offsetElementRect.height +
-        (_arrow.width / 2) +
-        _arrow.margin;
-}
-
-function _xBottom (offsetElementRect, refElementRect) {
-    return refElementRect.top +
-        (refElementRect.height / 2) -
-        (_arrow.width / 2) -
-        _arrow.margin;
-}
-
-function _xRight (offsetElementRect, refElementRect) {
-    return refElementRect.left +
-        refElementRect.width +
-        _arrow.height;
-}
-
-function _xLeft (offsetElementRect, refElementRect) {
-    return refElementRect.left -
-        offsetElementRect.width -
-        _arrow.height;
-}
-
-/* ========== EXPORTS ========== */
-export const yOffsetFnMap = {
-    'top': _yTop,
-    'bottom': _yBottom,
-    'right': _xMiddle,
-    'left': _xMiddle,
-    'top-right': _yTop,
-    'top-left': _yTop,
-    'bottom-right': _yBottom,
-    'bottom-left': _yBottom,
-    'right-top': _xTop,
-    'right-bottom': _xBottom,
-    'left-top': _xTop,
-    'left-bottom': _xBottom,
-};
-
-export const xOffsetFnMap = {
-    'top': _yMiddle,
-    'bottom': _yMiddle,
-    'right': _xRight,
-    'left': _xLeft,
-    'top-right': _yRight,
-    'top-left': _yLeft,
-    'bottom-right': _yRight,
-    'bottom-left': _yLeft,
-    'right-top': _xRight,
-    'right-bottom': _xRight,
-    'left-top': _xLeft,
-    'left-bottom': _xLeft,
-};
+export default offsetFunctions;
