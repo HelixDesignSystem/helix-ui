@@ -1,0 +1,23 @@
+@import (reference) 'base/links';
+
+.demo-typography {
+  .font-roboto {
+    font-family: "Roboto", sans-serif;
+  }
+
+  .font-roboto-mono {
+    font-family: "Roboto Mono", monospace;
+  }
+
+  .weight-thin { font-weight: 100; }
+  .weight-light { font-weight: 300; }
+  .weight-regular { font-weight: 400; }
+  .weight-medium { font-weight: 500; }
+  .weight-bold { font-weight: 700; }
+}
+
+a {
+  &.pseudo-active {
+    &:extend(a[href]:active);
+  }
+}

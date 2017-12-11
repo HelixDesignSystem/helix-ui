@@ -20,7 +20,9 @@ function publishSync () {
         if (err) {
             console.log(`ERROR publishing: ${err.message}`);
         } else {
-            console.log('obj', obj);
+            if (obj) {
+                console.log('obj', obj);
+            }
             console.log('Successfully published!');
         }
     });

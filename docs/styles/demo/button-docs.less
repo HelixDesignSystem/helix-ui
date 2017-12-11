@@ -1,0 +1,47 @@
+@import (reference) 'modules/button';
+
+.hxBtn {
+  &.pseudo-hover {
+    &:extend(.hxBtn:hover);
+    pointer-events: none;
+  }
+
+  &.pseudo-active {
+    &:extend(.hxBtn:active);
+    pointer-events: none;
+  }
+
+  &.pseudo-focus {
+    &:extend(.hxBtn:focus);
+    pointer-events: none;
+  }
+
+  &--primary {
+    &.pseudo-hover {
+      &:extend(.hxBtn--primary:hover);
+      pointer-events: none;
+    }
+
+    &.pseudo-active {
+      &:extend(.hxBtn--primary:active);
+      pointer-events: none;
+    }
+
+    &.pseudo-focus {
+      &:extend(.hxBtn--primary:focus);
+      pointer-events: none;
+    }
+  }
+
+  &--link {
+    &.pseudo-hover {
+      &:extend(.hxBtn--link:hover);
+      pointer-events: none;
+    }
+
+    &.pseudo-active {
+      &:extend(.hxBtn--link:active);
+      pointer-events: none;
+    }
+  }
+}

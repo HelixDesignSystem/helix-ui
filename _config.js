@@ -2,21 +2,14 @@
 
 const _ = require('lodash');
 const path = require('path');
-
-let _privateConfig;
-
-try {
-    _privateConfig = require('./_config.private');
-} catch (e) {
-    _privateConfig = {};
-}
 const CONFIG = {};
 
 // PATHS
 CONFIG.root = path.resolve(__dirname);// absolute path to project directory
 CONFIG.publicDir = 'public';
-CONFIG.sourceDir = 'source';
-CONFIG.templateDir = `${CONFIG.sourceDir}/_templates`;
+CONFIG.sourceDir = 'src';
+CONFIG.docsDir = 'docs';
+CONFIG.templateDir = `${CONFIG.docsDir}/_templates`;
 CONFIG.testDir = 'test';
 
 // Component Explorer configuration
@@ -34,33 +27,31 @@ CONFIG.site = {
 // Configuration for the LESS precompiler
 CONFIG.less = {
     paths: [
-        `${CONFIG.sourceDir}/_less`,
-        `${CONFIG.sourceDir}/components`
+        `${CONFIG.docsDir}/styles`,
+        `${CONFIG.sourceDir}/helix-ui/styles`
     ],
+    // [src, dest]
     files: [
-        `${CONFIG.sourceDir}/helix-ui.less`,
-        `${CONFIG.sourceDir}/docs.less`,
+        [ `${CONFIG.sourceDir}/helix-ui.less`, 'dist/helix-ui.css' ],
+        [ `${CONFIG.docsDir}/docs.less`, 'public/docs.css' ],
     ],
 };
 
+// TODO: move to lib/webpack.js
 // Configuration for the webpack build tool
 CONFIG.webpack = {
-    // entrypoints for compilation
-    entry: {
-        // TODO: see if key/value object is still needed, given we have proper names
-        /* <name>: <source file> */
-        // NOTE: source fileneeds to be full path, not relative
-        'helix-ui': `${CONFIG.root}/${CONFIG.sourceDir}/helix-ui.js`,
-        'docs': `${CONFIG.root}/${CONFIG.sourceDir}/docs.js`
+    entry: `${CONFIG.root}/${CONFIG.docsDir}/docs.js`,
+    output: {
+        path: path.resolve(__dirname, 'public'),
+        filename: 'docs.js',
     }
 };
 
 // Configuration for generating static documentation
 CONFIG.docs = {
     files: [
-        'index.html',
-        'components/**/index.html',
-        'guides/**/index.html'
+        '*.html',
+        '**/*.html',
     ],
     // settings for deployment to github pages
     ghPages: {
@@ -75,22 +66,8 @@ CONFIG.docs = {
 // Files and directories to copy to publicDir
 // All paths are relative to {CONFIG.sourceDir}
 CONFIG.copy = {
-    dirs: [
-        'images',
-    ]
+    dirs: [ 'images' ]
 };
-
-// Configuration to publish assets to Cloud Files
-// Local-to-Remote path mapping
-const _cdnFiles = {};
-_cdnFiles[`${CONFIG.publicDir}/helix-ui.css`] = 'css/helix-ui.css';
-_cdnFiles[`${CONFIG.publicDir}/helix-ui.js`] = 'javascript/helix-ui.js';
-CONFIG.cdn = {
-    files: _cdnFiles,
-    storage: {} // override in _config.private.js
-};
-
-const combinedConfig = _.merge({}, CONFIG, _privateConfig);
 
 /* Define Exports */
-module.exports = combinedConfig;
+module.exports = CONFIG;

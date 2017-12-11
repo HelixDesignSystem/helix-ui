@@ -1,0 +1,62 @@
+[
+    {
+        label: 'Guides',
+        path: 'guides',
+        children: [
+            { label: 'Installing', path: 'install' },
+        ]
+    },
+    {
+        label: 'Components',
+        path: 'components',
+        children: [
+            { label: 'Alert', path: 'alert' },
+            { label: 'Breadcrumb', path: 'breadcrumb' },
+            { label: 'Box', path: 'box' },
+            { label: 'Button', path: 'button' },
+            { label: 'Checkbox', path: 'checkbox' },
+            { label: 'Code', path: 'code' },
+            { label: 'Description List', path: 'description-list' },
+            { label: 'Disclosure', path: 'disclosure' },
+            { label: 'Grid', path: 'grid' },
+            { label: 'Icon', path: 'icon' },
+            { label: 'Navigation', path: 'navigation' },
+            { label: 'Panel', path: 'panel' },
+            { label: 'Popover', path: 'popover' },
+            { label: 'Reveal', path: 'reveal' },
+            { label: 'Status Label', path: 'status-label' },
+            { label: 'Table', path: 'table' },
+            { label: 'Tabset', path: 'Tabset' },
+            { label: 'Text Input', path: 'text-input' },
+            { label: 'Tooltip', path: 'tooltip' },
+            { label: 'Typography', path: 'typography' },
+        ],
+    },
+
+    /* COMING SOON...
+    {
+        label: 'CSS Modules',
+        path: 'CSS',
+        children: [
+            { label: 'Grid', path: 'grid' },
+            ...
+        ],
+    },
+    {
+        label: 'Elements',
+        path: 'Elements',
+        children: [
+            { label: '<hx-checkbox>', path: 'hx-checkbox' },
+            ...
+        ],
+    },
+    {
+        label: 'API',
+        path: 'API',
+        children: [
+            { label: 'HXElement', path: 'HXElement' },
+            ...
+        ],
+    }
+    */
+]

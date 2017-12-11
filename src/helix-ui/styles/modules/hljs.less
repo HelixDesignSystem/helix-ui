@@ -1,0 +1,162 @@
+/* ===== Helix Theme for Highlight.js ===== */
+// See goo.gl/1sa5iw for HLJS API
+.hljs {
+  /* ---- General Purpose ----- */
+  // keyword in a regular Algol-style language
+  &-keyword {}
+  // built-in or library object
+  // (constant, class, function)
+  &-built_in {}
+  // user-defined type in a language with first-class syntactically
+  // significant types, like Haskell
+  &-type {
+    font-style: italic;
+  }
+  // special identifier for a built-in value
+  // (“true”, “false”, “null”)
+  &-literal {
+    color: @blue-500;
+  }
+  // number, including units and modifiers, if any.
+  &-number {
+    color: @blue-500;
+  }
+  // literal regular expression
+  &-regexp {
+    color: @orange-700;
+  }
+  // literal string, character
+  &-string {
+    color: @blue-900;
+  }
+  // parsed section inside a literal string
+  &-subst	{
+    font-weight: 700;
+  }
+  // symbolic constant, interned string, goto label
+  &-symbol {
+    font-weight: 100;
+  }
+  // class or class-level declaration
+  // (interfaces, traits, modules, etc)
+  &-class {
+    font-weight: 700;
+  }
+  // function or method declaration
+  // (full function line)
+  &-function {}
+  // name of a class or a function at the place of declaration
+  &-title {
+    color: @gray-1000;
+  }
+  // block of function arguments (parameters) at the place of declaration
+  &-params {
+    font-style: italic;
+  }
+
+  /* ----- Meta ----- */
+  &-comment {
+    font-style: italic;
+    font-weight: 300;
+  }
+  // documentation markup within comments
+  &-doctag {
+    font-style: italic;
+    font-weight: 300;
+  }
+  // * flags
+  // * modifiers
+  // * annotations
+  // * processing instructions
+  // * preprocessor directive
+  // * etc
+  &-meta {
+    color: @magenta-700;
+    font-weight: 700;
+  }
+  // keyword or built-in within meta construct
+  &-meta-keyword {}
+  // string within meta construct
+  &-meta-string {}
+
+  /* ----- Tags, Attributes, Configs ----- */
+  // heading of a section in a config file, heading in text markup
+  &-section {
+    font-weight: 700;
+  }
+  // XML/HTML tag
+  &-tag {}
+  // name of an XML tag, the first word in an s-expression
+  &-name {}
+  // s-expression name from the language standard library
+  &-builtin-name {}
+  // * name of an attribute with no language defined semantics
+  //   * keys in JSON,
+  //   * setting names in .ini
+  //   * also sub-attribute within another highlighted object (like XML tag)
+  &-attr {}
+  // name of an attribute followed by a structured value part
+  // (like CSS properties)
+  &-attribute {}
+  // * variable in a config or a template file
+  // * environment var expansion in a script
+  &-variable {}
+
+  /* ----- Markup ----- */
+  // list item bullet in text markup
+  &-bullet {}
+  // code block in text markup
+  &-code {
+    font-weight: 300;
+  }
+  // emphasis in text markup
+  &-emphasis {
+    font-style: italic;
+  }
+  // strong emphasis in text markup
+  &-strong {
+    font-weight: 700;
+  }
+  // mathematical formula in text markup
+  &-formula {}
+  // hyperlink in text markup
+  &-link {
+    text-decoration: underline;
+  }
+  // quotation in text markup
+  &-quote {}
+
+  /* ----- CSS ----- */
+  &-selector-tag, // tag selector in CSS
+  &-selector-id,  // #id selector in CSS
+  &-selector-class { // .class selector in CSS
+    color: @gray-1000;
+  }
+  // [attr] selector in CSS
+  &-selector-attr {}
+  // :pseudo selector in CSS
+  &-selector-pseudo {
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  /* ----- Templates ----- */
+  // tag of a template language
+  &-template-tag {
+    font-weight: 300;
+  }
+  // variable in a template language
+  &-template-variable {
+    color: @blue-500;
+  }
+
+  /* ----- diff ----- */
+  // added or changed line in a diff
+  &-addition {
+    background-color: @green-500;
+  }
+  // deleted line in a diff
+  &-deletion {
+    background-color: @magenta-100;
+  }
+}

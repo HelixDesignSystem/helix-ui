@@ -1,0 +1,156 @@
+/* HelixUI */
+
+/* ========== CONFIGURATION ========== *\
+  - @import
+  - LESS/CSS Variables
+  - LESS Mixins
+  - NO Element Selectors
+  - NO Pseudo Selectors
+  - NO !important
+\* ========== CONFIGURATION ========== */
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,100,100italic,300,300italic,400italic,700,700italic");
+@import (reference) 'vars';
+/* ====== end:CONFIGURATION ========== */
+
+
+/* ========== RESETS ========== *\
+  - Element & Pseudo Selectors
+  - No Class Selectors
+  - NO !important
+\* ========== RESETS ========== */
+@import 'reset';
+@import 'reset/table';
+@import 'reset/typography';
+/* ====== end:RESETS ========== */
+
+
+/* ========== BASE ========== *\
+  - Elements Selectors ONLY
+  - No Class Selectors
+  - NO !important
+\* ========================== */
+html {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  color: @gray-900;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+small {
+  font-size: 0.75rem;
+}
+
+caption,
+figcaption {
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.5; // TODO: check if this is inherited?
+}
+
+// TODO: update this once spacing system is defined
+figure {
+  margin-bottom: 1rem;
+}
+
+// TODO move to base-lists.less
+ul {
+  list-style-type: square;
+}
+ul ol,
+ul ul,
+ol ol
+ol ul {
+  margin-bottom: 0;
+}
+dd,
+dt {
+  line-height: 1.5;
+}
+
+@import 'base/links';
+
+fieldset label {
+  font-size: 0.875rem;
+}
+@import 'code';
+
+// Core CSS
+@import 'core/hx-checkbox';
+@import 'core/hx-dd';
+@import 'core/hx-def';
+@import 'core/hx-disclosure';
+@import 'core/hx-dl';
+@import 'core/hx-icon';
+@import 'core/hx-status';
+@import 'core/hx-panel';
+@import 'core/hx-reveal';
+/* ====== end:BASE ========== */
+
+
+/* ========== COMPONENTS ========== *\
+    - Class Selectors ONLY
+    - No Element Selectors
+    - NO !important
+\* ========== COMPONENTS ========== */
+// MODULES
+@import 'modules/box';
+@import 'modules/breadcrumb';
+@import 'modules/button';
+@import 'modules/grid';
+@import 'modules/hljs';
+@import 'modules/table';
+@import 'modules/text-input';
+@import 'modules/typography';
+/* ====== end:COMPONENTS ========== */
+
+
+/* ========== HELPERS ========== *\
+    - Class Selectors ONLY
+    - NO Elements Selectors
+    - NO !important
+\* ============================= */
+// TODO: rename with hx prefix
+// Ripped from Boostrap (may not need all of these)
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
+.text-nowrap {
+  white-space: nowrap;
+}
+
+// Helix Helpers
+.hxForceWordBreak {
+    word-break: break-all;
+}
+/* ====== end:HELPERS ========== */
+
+
+/* ========== OVERRIDES ========== *\
+    - Allow !important
+\* =============================== */
+// Theme
+@import 'description-list';
+
+// Shame
+@import 'layout'; // to be rewritten as a component/module
+@import 'alert'; // needs turned into core element + theme
+@import 'tabset'; // needs rewritten as several custom elements
+@import 'navigation'; // component and theme need separated
+/* ====== end:OVERRIDES ========== */

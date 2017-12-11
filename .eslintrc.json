@@ -31,7 +31,6 @@
         "curly": [2, "all"],
         "eol-last": 2,
         "eqeqeq": 2,
-        "guard-for-in": 2,
         "indent": [2, 4, { "SwitchCase": 1 }],
         "keyword-spacing": 2,
         "max-depth": [2, 3],
