@@ -9,34 +9,29 @@ window.addEventListener('WebComponentsReady', function () {
         }
 
         static get observedAttributes () {
-            return [
-                'open',
-                'position',
-            ];
+            return [ 'open' ];
         }
 
         constructor () {
             super();
             var menuId = this.getAttribute('id');
             this.$menu = document.querySelector(`[aria-controls="${menuId}"]`);
+            this._onDocumentClick = this._onDocumentClick.bind(this);
         }
 
         connectedCallback () {
-            this._upgradeProperty('open');
+            this._upgradeProperty('open', 'position');
+            document.addEventListener('click', this._onDocumentClick);
         }
 
         disconnectedCallback () {
+            document.removeEventListener('click', this._onDocumentClick);       
         }
 
         attributeChangedCallback (attr, oldValue, newValue) {
             switch (attr) {
                 case 'open':
                     this.setAttribute('aria-expanded', newValue !== '');
-                    break;
-                case 'position':
-                    if (this.open && oldValue !== newValue) {
-                        this._setPosition();
-                    }
                     break;
             }
         }
@@ -60,10 +55,18 @@ window.addEventListener('WebComponentsReady', function () {
             if (value) {
                 this.setAttribute('open', '');
                 this._setPosition();
+                let openEvent = new CustomEvent('open', {
+                    bubbles: true,
+                });
+                this.dispatchEvent(openEvent);
             } else {
                 this.removeAttribute('open');
+                let closeEvent = new CustomEvent('close', {
+                    bubbles: true,
+                });
+                this.dispatchEvent(closeEvent);
             }
-        }
+        } 
 
         get open () {
             return this.hasAttribute('open');
@@ -87,6 +90,26 @@ window.addEventListener('WebComponentsReady', function () {
                 let value = this[prop];
                 delete this[prop];
                 this[prop] = value;
+            }
+        }
+
+        _isDescendant (el) {
+            if (el.closest(`hx-menu[id="${this.id}"]`)) {
+                return true;
+            }
+            return false;
+        }
+
+        _isDisclosure (el) {
+            if (el.closest(`hx-disclosure[aria-controls="${this.id}"]`)) {
+                return true;
+            }
+            return false;
+        }
+
+        _onDocumentClick (event) {
+            if (!this._isDescendant(event.target) && !this._isDisclosure(event.target)) {
+                this.open = false;
             }
         }
     }
