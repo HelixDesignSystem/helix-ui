@@ -1,4 +1,14 @@
-import { yOffsetFnMap, xOffsetFnMap } from './offsetFunctions';
+import offsetFunctions from './offsetFunctions';
+
+/** 
+ * @typedef {Object} Config
+ * @param {String} [config.position='top']
+ * position of offsetElement in relation to referenceElement
+ * @param {Integer} [config.margin=0]
+ * distance in pixels between offset element and reference element
+ * @param {Integer} [config.offset=0]
+ * offset in pixels towards the center axis
+*/
 
 /**
  * Calculate the top, right, bottom, and left x/y values of
@@ -26,11 +36,12 @@ function _getElementBox (element, coord) {
  * @param {String} position - the position of the offset element
  * @param {HTMLElement} offsetElement - the element to calculate (x,y) coordinates
  * @param {HTMLElement} referenceElement - the element that is being offset from
+ * @param {Config} config - configuration object
  *
  * @returns {Object} absolute (x,y) coordinates and metadata to position offsetElement
  * in relation to referenceElement
  */
-function _getCoords (position, offsetElement, referenceElement) {
+function _getCoords (position, offsetElement, referenceElement, config) {
     // The 'position' property is added to provide information about final
     // calculated position of offset element in relation to reference element
     let coords = {
@@ -38,13 +49,12 @@ function _getCoords (position, offsetElement, referenceElement) {
         y: 0,
         position,
     };
+
     let offRect = offsetElement.getBoundingClientRect();
     let refRect = referenceElement.getBoundingClientRect();
 
-    coords.x = xOffsetFnMap[position](offRect, refRect);
+    [ coords.x, coords.y ] = offsetFunctions[position](offRect, refRect, config);
     coords.x += window.pageXOffset;
-
-    coords.y = yOffsetFnMap[position](offRect, refRect);
     coords.y += window.pageYOffset;
 
     return coords;
@@ -97,30 +107,46 @@ function _repositionTowardCenter (position, offscreen) {
         'top': 'bottom',
         'top-right': 'bottom-right',
         'top-left': 'bottom-left',
+        'top-start': 'bottom-start',
+        'top-end': 'bottom-end',
         'right': 'right',
         'right-top': 'right-bottom',
         'right-bottom': 'right-top',
+        'right-start': 'right-end',
+        'right-end': 'right-start',
         'bottom': 'top',
         'bottom-right': 'top-right',
         'bottom-left': 'top-left',
+        'bottom-start': 'top-start',
+        'bottom-end': 'top-end',
         'left': 'left',
         'left-top': 'left-bottom',
         'left-bottom': 'left-top',
+        'left-start': 'left-end',
+        'left-end': 'left-start',
     };
 
     let hShiftMap = {
         'top': 'top',
         'top-right': 'top-left',
         'top-left': 'top-right',
+        'top-start': 'top-end',
+        'top-end': 'top-start',
         'right': 'left',
         'right-top': 'left-top',
         'right-bottom': 'left-bottom',
+        'right-start': 'left-start',
+        'right-end': 'left-end',
         'bottom': 'bottom',
         'bottom-right': 'bottom-left',
         'bottom-left': 'bottom-right',
+        'bottom-start': 'bottom-end',
+        'bottom-end': 'bottom-start',
         'left': 'right',
         'left-top': 'right-top',
         'left-bottom': 'right-bottom',
+        'left-start': 'right-start',
+        'left-end': 'right-end',
     };
 
     if (offscreen.vertically) {
@@ -142,18 +168,23 @@ function _repositionTowardCenter (position, offscreen) {
  * @param {Element} offsetElement element to position
  * @param {Element} referenceElement
  * reference element used to calculate position of offsetElement
- * @param {String} [position='bottom-right']
- * position of offsetElement in relation to referenceElement
+ * @param {Config} config - configuration object
  *
  * @returns {Object} (x,y) coordinates
  */
-export function getPosition (offsetElement, referenceElement, position = 'bottom-right') {
-    let coords = _getCoords(position, offsetElement, referenceElement);
+export function getPosition (offsetElement, referenceElement, config) {
+    let cfg = Object.assign({}, config, {
+        position: 'top', 
+        margin: 0,
+        offset: 0,
+    });
+    
+    let coords = _getCoords(cfg.position, offsetElement, referenceElement, cfg);
     let isOffscreen = _getOffscreenMetadata(offsetElement, coords);
 
     if (isOffscreen.anywhere) {
-        let newPosition = _repositionTowardCenter(position, isOffscreen);
-        let newCoords = _getCoords(newPosition, offsetElement, referenceElement);
+        let newPosition = _repositionTowardCenter(cfg.position, isOffscreen);
+        let newCoords = _getCoords(newPosition, offsetElement, referenceElement, cfg);
 
         //If the repositioned element is no longer offscreen,
         //use the respositioned element coordinates
@@ -164,4 +195,29 @@ export function getPosition (offsetElement, referenceElement, position = 'bottom
     }
 
     return coords;
+}
+
+/**
+ * Calculate coordinates of an element in relation to a reference element
+ * while attempting to keep the element visible in the viewport.
+ *
+ * @function
+ * @param {Element} offsetElement element to position
+ * @param {Element} referenceElement
+ * reference element used to calculate position of offsetElement
+ * @param {Config} config - configuration object
+ * @param {Integer} [config.margin=12]
+ * distance in pixels between the base and the tip of the arrow
+ * @param {Integer} [config.offset=20]
+ * distance in pixels from the edge of the offset element to the center of the arrow
+ *
+ * @returns {Object} (x,y) coordinates
+ */
+export function getPositionWithArrow (offsetElement, referenceElement, config) {
+    let cfg = Object.assign({}, config, {
+        margin: 12, // base to tip of the arrow 
+        offset: 20, // distance from the edge to the center of the arrow
+    });
+
+    return getPosition(offsetElement, referenceElement, cfg);
 }

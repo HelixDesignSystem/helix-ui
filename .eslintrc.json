@@ -15,9 +15,12 @@
         "Vue": false
     },
     "rules": {
-        "array-bracket-newline": [2, { "minItems": 2 }],
+        "array-bracket-newline": [2, { "minItems": 3 }],
         "array-bracket-spacing": [2, "always"],
-        "array-element-newline": [2, "always"],
+        "array-element-newline": [2, { 
+          "minItems": 3,
+          "multiline": true
+        }],
         "brace-style": [2, "1tbs", {
             "allowSingleLine": false
         }],
