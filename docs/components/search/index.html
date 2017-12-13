@@ -1,0 +1,39 @@
+--- 
+  title: Search 
+--- 
+{% extends 'component.njk' %} 
+{% block content %}
+  <section id="vue-searchDemo">
+    <h2 class="hxSectionTitle" id="search">Basic Search Bar</h2>
+    <div class="hxRow">
+      <div class="hxCol hxSpan-9-xs">
+        <div class="demo">
+          <hx-search :invalid="state === 'invalid' ? true : false"
+                     :value="state === 'value' ? 'foo' : false ">
+          </hx-search>
+        </div>
+        <div v-if="state === 'invalid'">
+          {% code 'html' %}
+            <hx-search invalid="true"></hx-search>
+          {% endcode %}
+        </div>
+        <div v-else-if="state === 'value'">
+          {% code 'html' %}
+            <hx-search value="foo"></hx-search>
+          {% endcode %}
+        </div>
+        <div v-else>
+          {% code 'html' %}
+          <hx-search></hx-search>
+          {% endcode %}
+        </div>
+      </div>
+      <div class="hxCol hxSpan-3-xs">
+        State:
+        <select v-model="state">
+          <option :value="_state" v-for="_state in states" v-text="_state"></option>
+        </select>
+      </div>
+    </div>
+  </section>
+{% endblock %}

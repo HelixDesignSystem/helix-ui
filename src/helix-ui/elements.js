@@ -4,6 +4,7 @@ export { HXMenuElement } from './elements/HXMenuElement.js';
 export { HXIconElement } from './elements/HXIconElement.js';
 export { HXPopoverElement } from './elements/HXPopoverElement.js';
 export { HXRevealElement } from './elements/HXRevealElement.js';
+export { HXSearchElement } from './elements/HXSearchElement.js';
 export { HXTabcontentElement } from './elements/HXTabcontentElement.js';
 export { HXTabElement } from './elements/HXTabElement.js';
 export { HXTablistElement } from './elements/HXTablistElement.js';

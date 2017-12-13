@@ -1,0 +1,49 @@
+@import './_hx-element.less';
+@import '/core/hx-icon.less';
+
+:host {
+    &([invalid]) {
+        #search-input {
+            border: 2px solid @red-900;
+            &:focus {
+                box-shadow: @focus-glow-invalid;
+            }
+        }
+    }
+}
+
+#search-input {
+    background: @gray-0;
+    border: 1px solid @gray-500;
+    border-radius: 2px;
+    color: @gray-900;
+    font-size: 1rem;
+    height: 2rem;
+    outline: none;
+    text-indent: 2rem;
+    width: 100%;
+    &:focus {
+        box-shadow: @focus-glow;
+    }
+    &::placeholder {
+        color: @gray-750;
+        font-size: 1rem;
+    }
+}
+
+hx-icon[type=search] {
+    left: 8px;
+    position: absolute;
+    top: 0px;
+}
+
+#clear-btn {
+    background: transparent;
+    border: none;
+    right: 8px;
+    position: absolute;
+    top: -4px;
+    & > hx-icon {
+        width: 0.75rem;
+    }
+}

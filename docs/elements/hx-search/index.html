@@ -1,0 +1,35 @@
+---
+  title: <hx-search>
+---
+{% extends 'element.njk' %} 
+{% block content %}
+  <section>
+    <p>
+      The custom
+      <code>{{page.title}}</code> element renders search control that accepts user input.
+    </p>
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>none (content will be removed upon element upgrade)</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
+
+{% block properties %}
+  <dl>
+    <dt>Invalid</dt>
+    <dd>
+      Will apply invalid styling. 
+    </dd>
+    <dt>Value</dt>
+    <dd>
+      Sets input's value.
+    </dd>
+  </dl>
+{% endblock %}
