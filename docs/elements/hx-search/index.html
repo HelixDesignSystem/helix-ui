@@ -1,0 +1,75 @@
+---
+title: <hx-search>
+also:
+  components/search: Search
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>{{page.title}}</code> element renders a search control
+      that accepts user input.
+    </p>
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>none (content will be removed upon element upgrade)</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Events</hx-dt>
+        <hx-dd>
+          Any of the following:
+          <ul>
+            <li><code>input</code> as user types</li>
+            <li><code>change</code> on clear</li>
+          </ul>
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+<dl>
+  <dt>disabled</dt>
+  <dd>Disables user interaction</dd>
+
+  <dt>invalid</dt>
+  <dd>Marks input as invalid</dd>
+
+  <dt>placeholder</dt>
+  <dd>Hint of what can be entered into the control</dd>
+
+  <dt>value</dt>
+  <dd>Initial value of the control</dd>
+</dl>
+{% endblock %}
+
+{% block properties %}
+  <dl>
+    <dt>disabled <small>(Boolean [false])</small></dt>
+    <dd>
+      Get / Set the disabled state of the control.
+    </dd>
+
+    <dt>invalid <small>(Boolean [false])</small></dt>
+    <dd>
+      Get / Set the invalid state of the control.
+    </dd>
+
+    <dt>placeholder <small>(String)</small></dt>
+    <dd>
+      Get / Set the control's placeholder text.
+      The placeholder text must not contain carriage returns or line-feeds
+    </dd>
+
+    <dt>value <small>(String)</small></dt>
+    <dd>
+      Get / Set the current value of the control.
+    </dd>
+  </dl>
+{% endblock %}

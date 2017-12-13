@@ -1,0 +1,55 @@
+.u-placeholder() {
+  color: @gray-700; // contrast @ 4.6:1
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+#Util {
+  // https://css-tricks.com/snippets/css/style-placeholder-text/
+  .placeholder {
+    // Firefox 19+
+    &::-moz-placeholder {
+      .u-placeholder;
+    }
+    // IE 10+
+    &::-ms-input-placeholder {
+      .u-placeholder;
+    }
+    // Chrome, Safari, Opera
+    &::-webkit-input-placeholder {
+      .u-placeholder;
+    }
+    // W3C Spec
+    &::placeholder {
+      .u-placeholder;
+    }
+  }//.placeholder();
+
+  .disabledPlaceholder {
+    &::-moz-placeholder {
+      color: inherit;
+    }
+    &::-ms-input-placeholder {
+      color: inherit;
+    }
+    &::-webkit-input-placeholder {
+      color: inherit;
+    }
+    &::placeholder {
+      color: inherit;
+    }
+  }//.disabledPlaceholder()
+
+  .resetFocus {
+    &::-moz-focus-inner {
+      outline: none;
+      border: none;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }//.resetFocus
+}//#Util
+

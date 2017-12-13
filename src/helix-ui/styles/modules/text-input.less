@@ -1,11 +1,16 @@
+@import (reference) "_utils";
+
 .hxTextCtrl {
+  #Util.placeholder();
+
   background-color: @gray-0;
-  border: 1px solid @gray-500;
   border-radius: 2px;
-  color: @gray-800;
+  border: 1px solid @gray-500;
+  color: @gray-900;
   display: block;
   font-size: 1rem; // 16px
-  padding: 8px;
+  height: 2rem;
+  padding: 0 8px;
   width: 100%;
 
   textarea& {
@@ -13,30 +18,11 @@
     resize: vertical;
   }
 
-  /*
-    https://css-tricks.com/snippets/css/style-placeholder-text/
-  */
-  &::-webkit-input-placeholder { // Chrome
-    color: @gray-600;
-  }
-
-  &::-moz-placeholder { // Firefox 19+
-    color: @gray-600;
-    opacity: 1;
-  }
-
-  &:-ms-input-placeholder { // IE 10+
-    color: @gray-600;
-  }
-
-  &::placeholder { // w3c spec
-    color: @gray-600;
-  }
-
   &:focus {
-    outline: 0;
     border-color: @cyan-700;
     box-shadow: @focus-glow;
+    outline: 0;
+
     &[invalid] {
       box-shadow: @focus-glow-invalid;
     }
@@ -49,6 +35,7 @@
   &[disabled] {
     background-color: @gray-50;
     border-color: @gray-300;
+    border-width: 1px;
     color: @gray-400;
     cursor: not-allowed;
     resize: none;
