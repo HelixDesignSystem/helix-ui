@@ -1,0 +1,37 @@
+// THEME
+@import (reference) 'modules/grid';
+
+hx-def + hx-def {
+  margin-top: @grid-gutter-size; // 20px
+}
+
+hx-dt {
+  #grid.span(2);
+  color: @gray-750;
+  flex-shrink: 1;
+  text-align: right;
+}
+
+hx-dd {
+  #grid.span(10);
+  flex-shrink: 1;
+  margin-left: @grid-gutter-size; // 20px
+}
+
+hx-dl.hxVertical {
+  hx-def {
+    flex-direction: column;
+  }
+
+  hx-dt {
+    #grid.span(12);
+    font-weight: 700;
+    text-align: left;
+  }
+
+  hx-dd {
+    #grid.span(12);
+    display: block;
+    margin: 0;
+  }
+}

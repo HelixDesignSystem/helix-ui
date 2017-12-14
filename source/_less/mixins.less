@@ -1,8 +1,0 @@
-/* HelixUI Mixins */
-
-/* ----- Custom Props ----- */
-// EXAMPLE: .customProp(color, --my-var, #333);
-.customProp (@prop, @val, @fallback) {
-  @{prop}: @fallback; // doesn't support custom property
-  @{prop}: var(@val, @fallback); // supports custom property
-}

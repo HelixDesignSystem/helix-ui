@@ -1,0 +1,29 @@
+@import 'core/hx-icon';
+
+#container {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 0.625em; /* ~10px */
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+#minus,
+#tick {
+  display: none;
+  height: 1em;
+  line-height: 1;
+  width: 1em;
+}
+
+:host {
+  &([checked]:not([indeterminate])) #tick {
+    display: block;
+  }
+
+  &([indeterminate]) #minus {
+    display: block;
+  }
+}

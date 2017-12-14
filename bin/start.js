@@ -6,6 +6,7 @@ const exec = require('child_process').exec;
 const _ = require('lodash');
 
 const Build = require('./build');
+const Copy = require('./copy');
 const CONFIG = require('../_config');
 const Clean = require('./clean');
 const browserSync = require('browser-sync').create();
@@ -33,9 +34,18 @@ browserSync.init({
         // Rebuild if anything changes in source directory
         {
             match: [
+                `${CONFIG.docsDir}/**/*`,
                 `${CONFIG.sourceDir}/**/*`
             ],
-            fn: _.debounce(Build.buildSync, 2000),
+            fn: _.debounce(Build.buildSync, 1500),
+        },
+
+        // Only copy when files change in dist/
+        {
+            match: [
+                `${CONFIG.root}/dist/**/*`,
+            ],
+            fn: _.debounce(Copy.copySync, 1500),
         },
 
         // Re-transpile test files
@@ -49,7 +59,7 @@ browserSync.init({
                 const tsc = exec('yarn build', { cwd: CONFIG.testDir });
                 tsc.stdout.pipe(process.stdout);
                 tsc.stderr.pipe(process.stderr);
-            }, 2000),
+            }, 1500),
         },
     ],
     logLevel: 'debug',

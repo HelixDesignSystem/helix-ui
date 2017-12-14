@@ -1,0 +1,41 @@
+{% macro renderItem(item, path) %}
+  {% if path %}
+    {% set normpath = path + '/' + item.path %}
+  {% else %}
+    {% set normpath = item.path %}
+  {% endif %}
+
+  {% if item.children %}
+    {{ section(item) }}
+  {% else %}
+    {{ link(item.label, normpath) }}
+  {% endif %}
+{% endmacro %}
+
+{% macro link(label, href) %}
+  {% set isCurrentLink = page.path.indexOf(href) === 0 %}
+  <a href="{{href}}" {% if isCurrentLink %}class="current"{% endif %}>
+    {{label}}
+  </a>
+{% endmacro %}
+
+{% macro section(section) %}
+  {% set isCurrentCategory = (page.path.indexOf(section.path) === 0) %}
+  {% set revealId = 'nav-' + section.label %}{# TODO: CHECK THIS #}
+
+  <hx-disclosure
+    aria-controls="{{revealId}}"
+    {% if isCurrentCategory %}class="current"{% endif %}>
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+    {{ section.label | capitalize }}
+  </hx-disclosure>
+  <hx-reveal id="{{revealId}}" {% if isCurrentCategory %}open{% endif %}>
+    {% for child in section.children %}
+      {{renderItem(child, section.path)}}
+    {% endfor %}
+  </hx-reveal>
+{% endmacro %}
+
+{% for item in data.nav %}
+  {{renderItem(item)}}
+{% endfor %}
