@@ -71,7 +71,6 @@ export class HXMenuElement extends HXElement {
         } else {
             this.removeAttribute('open');
             this.$emit('close');
-            //this.position = this._initialPosition;
         }
     }
 
