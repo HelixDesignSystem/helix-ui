@@ -49,4 +49,12 @@ export class HXElement extends HTMLElement {
                 break;
         }
     }//$preventScroll()
+
+    $emit (evtName, details) {
+        let evt = new CustomEvent(evtName, {
+            bubbles: true,
+            details: details
+        });
+        this.dispatchEvent(evt);
+    }//$emit
 }//HXElement

@@ -10,6 +10,12 @@ export class HXDisclosureElement extends HXElement {
         return [ 'aria-expanded' ];
     }
 
+    constructor () {
+        super();
+        this._onTargetOpen = this._onTargetOpen.bind(this);
+        this._onTargetClose = this._onTargetClose.bind(this);
+    }
+
     connectedCallback () {
         this.$upgradeProperty('expanded');
         this.setAttribute('role', 'button');
@@ -17,6 +23,8 @@ export class HXDisclosureElement extends HXElement {
 
         if (this.target) {
             this.expanded = this.target.hasAttribute('open');
+            this.target.addEventListener('open', this._onTargetOpen);
+            this.target.addEventListener('close', this._onTargetClose);
         } else {
             this.expanded = false;
         }
@@ -30,11 +38,19 @@ export class HXDisclosureElement extends HXElement {
         this.removeEventListener('click', this._toggle);
         this.removeEventListener('keydown', this.$preventScroll);
         this.removeEventListener('keyup', this._keyUp);
+
+        if (this.target) {
+            this.target.removeEventListener('open', this._onTargetOpen);
+            this.target.removeEventListener('close', this._onTargetClose);
+        }
     }
 
     attributeChangedCallback (attr, oldVal, newVal) {
         if (this.target) {
-            this.target.open = (newVal === 'true');
+            let setTo = (newVal === 'true');
+            if (this.target.open !== setTo) {
+                this.target.open = setTo;
+            }
         }
     }
 
@@ -67,5 +83,13 @@ export class HXDisclosureElement extends HXElement {
 
     _toggle () {
         this.expanded = !this.expanded;
+    }
+
+    _onTargetOpen () {
+        this.expanded = true;
+    }
+
+    _onTargetClose () {
+        this.expanded = false;
     }
 }//HXDisclosureElement
