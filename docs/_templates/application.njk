@@ -9,7 +9,10 @@
   <div class="hxApp__container">
     <main class="hxApp__content">
       {% block layout %}
-        {# compiled content goes here #}
+        {# layouts can override this #}
+        {% block content %}
+          {# compiled content goes here #}
+        {% endblock %}
       {% endblock %}
     </main>
     <nav class="hxApp__nav">
@@ -17,8 +20,8 @@
     </nav>
   </div>
 
-  <footer class="hxApp__footer">
-    {% include 'partials/footer_nav.njk' %}     
+  <footer class="hxApp__footer hxRow hxGutterless">
+    {% include 'partials/footer_nav.njk' %}
   </footer>
 
   {% include 'partials/after_footer.njk' %}

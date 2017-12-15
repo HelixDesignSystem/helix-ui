@@ -1,0 +1,132 @@
+---
+title: <hx-checkbox>
+---
+{% extends 'element.njk' %}
+{% block content %}
+<!-- explanation goes here -->
+
+<section>
+  <h2 class="hxSectionTitle" id="checkbox">Checkbox</h2>
+
+  <div class="demo">
+    <fieldset>
+      <legend class="hxLabel">Selector Title</legend>
+      <div>
+        <hx-checkbox></hx-checkbox>
+        <label>Option 1</label>
+      </div>
+      <div>
+        <hx-checkbox indeterminate></hx-checkbox>
+        <label>Option 2 (Indeterminate)</label>
+      </div>
+      <div>
+        <hx-checkbox disabled></hx-checkbox>
+        <label>Option 3 (Disabled)</label>
+      </div>
+      <div>
+        <hx-checkbox checked disabled></hx-checkbox>
+        <label>Option 4 (Disabled and Checked)</label>
+      </div>
+      <div>
+        <hx-checkbox invalid></hx-checkbox>
+        <label>Option 5 (Invalid)</label>
+      </div>
+    </fieldset>
+  </div>
+  {% code 'html' %}
+    <fieldset>
+      <legend class="hxLabel">Selector Title</legend>
+      <div>
+        <hx-checkbox></hx-checkbox>
+        <label>Option 1</label>
+      </div>
+      <div>
+        <hx-checkbox indeterminate></hx-checkbox>
+        <label>Option 2 (Indeterminate)</label>
+      </div>
+      <div>
+        <hx-checkbox disabled></hx-checkbox>
+        <label>Option 3 (Disabled)</label>
+      </div>
+      <div>
+        <hx-checkbox checked disabled></hx-checkbox>
+        <label>Option 4 (Disabled and Checked)</label>
+      </div>
+      <div>
+        <hx-checkbox invalid></hx-checkbox>
+        <label>Option 5 (Invalid)</label>
+      </div>
+    </fieldset>
+  {% endcode %}
+</section>
+
+<section data-visreg="checkbox-states">
+  <h2 class="hxSectionTitle" id="checkbox-states">Checkbox States</h2>
+  <table class="hxTable">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Unchecked</th>
+        <th>Checked</th>
+        <th>Indeterminate Unchecked</th>
+        <th>Indeterminate Checked</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Default</td>
+        <td><hx-checkbox></hx-checkbox></td>
+        <td><hx-checkbox checked></hx-checkbox></td>
+        <td><hx-checkbox indeterminate></hx-checkbox></td>
+        <td><hx-checkbox checked indeterminate></hx-checkbox></td>
+      </tr>
+      <tr>
+        <td>Invalid</td>
+        <td><hx-checkbox invalid></hx-checkbox></td>
+        <td><hx-checkbox invalid checked></hx-checkbox></td>
+        <td><hx-checkbox invalid indeterminate></hx-checkbox></td>
+        <td><hx-checkbox invalid checked indeterminate></hx-checkbox></td>
+      </tr>
+      <tr>
+        <td>Disabled</td>
+        <td><hx-checkbox disabled></hx-checkbox></td>
+        <td><hx-checkbox disabled checked></hx-checkbox></td>
+        <td><hx-checkbox disabled indeterminate></hx-checkbox></td>
+        <td><hx-checkbox disabled checked indeterminate></hx-checkbox></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="html-attributes">HTML Attributes</h2>
+  <dl>
+    <dt>checked</dt>
+    <dd>Checks the checkbox</dd>
+  </dl>
+  <dl>
+    <dt>invalid</dt>
+    <dd>Invalidates the checkbox</dd>
+  </dl>
+  <dl>
+    <dt>disabled</dt>
+    <dd>Disables the checkbox</dd>
+  </dl>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="properties">Properties</h2>
+  <dl>
+    <dt>checked <small>(Boolean [false])</small></dt>
+    <dd>Determines if checkbox is checked.</dd>
+  </dl>
+  <dl>
+    <dt>disabled <small>(Boolean [false])</small></dt>
+    <dd>Determines if checkbox is disabled.</dd>
+  </dl>
+  <dl>
+    <dt>indeterminate <small>(Boolean [false])</small></dt>
+    <dd>Determines if checkbox is indeterminate.</dd>
+  </dl>
+</section>
+{% endblock %}

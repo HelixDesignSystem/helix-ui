@@ -1,0 +1,230 @@
+---
+title: Typography
+---
+{% extends 'styleguide.njk' %}
+{% block content %}
+<section><!-- Font -->
+  <h2 class="hxSectionTitle" id="font-weight">Font Weight</h2>
+
+  <div class="demo demo-typography">
+    <div class="hxRow">
+      <div class="hxCol font-roboto">
+        <p class="weight-thin">Roboto Thin (100)</p>
+        <p class="weight-light">Roboto Light (300)</p>
+        <p class="weight-regular">Roboto Regular (400)</p>
+        <p class="weight-medium">Roboto Medium (500)</p>
+        <p class="weight-bold">Roboto Bold (700)</p>
+      </div>
+      <div class="hxCol font-roboto-mono">
+        <p class="weight-thin">Roboto Mono Thin (100)</p>
+        <p class="weight-light">Roboto Mono Light (300)</p>
+        <p class="weight-regular">Roboto Mono Regular (400)</p>
+        <p class="weight-medium">Roboto Mono Medium (500)</p>
+        <p class="weight-bold">Roboto Mono Bold (700)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section><!-- Address -->
+  <h2 class="hxSectionTitle" id="addresses">Addresses</h2>
+  <div class="demo">
+    <address>
+      <strong>Rackspace</strong><br />
+      1 Fanatical Place<br />
+      City of Windcrest<br />
+      San Antonio, TX 78218<br />
+      <abbr title="Phone">P:</abbr> (123) 456-7890
+    </address>
+
+    <address>
+      <strong>Full Name</strong><br />
+      <a href="mailto:#">first.last@example.com</a>
+    </address>
+  </div>
+  {% code 'html' %}
+    <address>
+      <strong>Rackspace</strong><br />
+      1 Fanatical Place<br />
+      City of Windcrest<br />
+      San Antonio, TX 78218<br />
+      <abbr title="Phone">P:</abbr> (123) 456-7890
+    </address>
+
+    <address>
+      <strong>Full Name</strong><br />
+      <a href="mailto:#">first.last@example.com</a>
+    </address>
+  {% endcode %}
+</section>
+
+<section><!-- Page Title -->
+  <h2 class="hxSectionTitle" id="page-title">Page Title</h2>
+  <p>Use the <code>.hxPageTitle</code> css class to achieve the page title style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <h1 class="hxPageTitle">Page Title</h1>
+  </div>
+  {% code 'html' %}
+    <h1 class="hxPageTitle">Page Title</h1>
+    <!-- or -->
+    <header class="hxPageTitle">Page Title</header>
+  {% endcode %}
+</section>
+
+<section><!-- Section Title -->
+  <h2 class="hxSectionTitle" id="section-title">Section Title</h2>
+  <p>Use the <code>.hxSectionTitle</code> css class to achieve the section title style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <h2 class="hxSectionTitle">Section Title</h2>
+  </div>
+  {% code 'html' %}
+    <h2 class="hxSectionTitle">Section Title</h2>
+    <!-- or -->
+    <header class="hxSectionTitle">Section Title</header>
+  {% endcode %}
+</section>
+
+<section><!-- Sub-Section Title -->
+  <h2 class="hxSectionTitle" id="subsection-title">Sub-Section Title</h2>
+  <p>Use the <code>.hxSubSectionTitle</code> css class to achieve the sub-section title style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <h3 class="hxSubSectionTitle">Sub-Section Title</h3>
+  </div>
+  {% code 'html' %}
+    <h3 class="hxSubSectionTitle">Sub-Section Title</h3>
+    <!-- or -->
+    <header class="hxSubSectionTitle">Sub-Section Title</header>
+  {% endcode %}
+</section>
+
+<section><!-- Container Title -->
+  <h2 class="hxSectionTitle" id="container-title">Container Title</h2>
+  <p>Use the <code>.hxContainerTitle</code> css class to achieve the container title style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <h4 class="hxContainerTitle">Container Title</h4>
+  </div>
+  {% code 'html' %}
+    <h4 class="hxContainerTitle">Container Title</h4>
+    <!-- or -->
+    <header class="hxContainerTitle">Container Title</header>
+  {% endcode %}
+</section>
+
+<section><!-- Label -->
+  <h2 class="hxSectionTitle" id="label">Label</h2>
+  <p>Use the <code>.hxLabel</code> css class to achieve the label text style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <label class="hxLabel">Helix Label</label>
+  </div>
+  {% code 'html' %}
+    <label class="hxLabel">Label</label>
+    <!-- or -->
+    <span class="hxLabel">Label</span>
+  {% endcode %}
+</section>
+
+<section><!-- Subdued -->
+  <h2 class="hxSectionTitle" id="subdued">Subdued</h2>
+  <p>Use the <code>.hxSubdued</code> css class to achieve the subdued text style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <span class="hxSubdued">Subdued</span>
+  </div>
+  {% code 'html' %}
+    <div class="hxSubdued">Subdued</div>
+    <!-- or -->
+    <p class="hxSubdued">Subdued</p>
+    <!-- or -->
+    <span class="hxSubdued">Subdued</span>
+  {% endcode %}
+</section>
+
+<section><!-- Caption -->
+  <h2 class="hxSectionTitle" id="caption">Caption</h2>
+  <p>Use the <code>.hxCaption</code> css class to achieve the caption text style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p class="hxCaption">Caption</p>
+  </div>
+  {% code 'html' %}
+    <p class="hxCaption">Caption</p>
+    <!-- or -->
+    <figure>
+      <figcaption>Caption</figcaption>
+    </figure>
+    <!-- or -->
+    <table>
+      <caption>Caption</caption>
+    </table>
+  {% endcode %}
+</section>
+
+<section><!-- Sub-Body -->
+  <h2 class="hxSectionTitle" id="sub-body">Sub-Body</h2>
+  <p>Use the <code>.hxSubBody</code> css class to achieve the sub-body text style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p class="hxSubBody">Sub-Body</p>
+  </div>
+  {% code 'html' %}
+    <p class="hxSubBody">Sub-Body</p>
+    <!-- or -->
+    <small>Sub-Body</small>
+  {% endcode %}
+</section>
+
+<section><!-- Links -->
+  <h2 class="hxSectionTitle" id="links">Links</h2>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p>
+      <strong>Reference Links</strong><br />
+      Reference links are super common and typically used to, well, refer, you
+      to something and somewhere else, whether that's in our interface or not.
+      For Rackspace, this likely means to help and support articles. If you
+      want to ask someone to do something, use a <a href="#">button.</a>
+    </p>
+    <p>
+      <strong>Pressed State</strong><br />
+      <a href="#" class="pseudo-active">Pressed Link</a>
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="classes">Classes</h2>
+  <dl>
+    <dt><code>.hxPageTitle</code></dt>
+    <dt><code>.hxSectionTitle</code></dt>
+    <dt><code>.hxSubSectionTitle</code></dt>
+    <dt><code>.hxContainerTitle</code></dt>
+    <dt><code>.hxLabel</code></dt>
+    <dt><code>.hxSubdued</code></dt>
+    <dt><code>.hxCaption</code></dt>
+    <dt><code>.hxSubbody</code></dt>
+  </dl>
+</section>
+{% endblock %}

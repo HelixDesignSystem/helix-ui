@@ -6,52 +6,58 @@
             { label: 'Installing', path: 'install' },
         ]
     },
+
+    {
+        label: 'Styleguide',
+        path: 'styleguide',
+        children: [
+            { label: 'Box', path: 'box' },
+            { label: 'Code', path: 'code' },
+            //{ label: 'Colors', path: 'colors' },
+            { label: 'Grid', path: 'grid' },
+            //{ label: 'Iconography', path: 'iconography' },
+            { label: 'Typography', path: 'typography' },
+        ]
+    },
+
+    /*
+    {
+        label: 'Asset Stability',
+        path: 'stability.html',
+    },
+    */
+
     {
         label: 'Components',
         path: 'components',
         children: [
-            { label: 'Alert', path: 'alert' },
-            { label: 'Breadcrumb', path: 'breadcrumb' },
-            { label: 'Box', path: 'box' },
-            { label: 'Button', path: 'button' },
-            { label: 'Checkbox', path: 'checkbox' },
-            { label: 'Code', path: 'code' },
-            { label: 'Component Status', path: 'component-status' },
-            { label: 'Description List', path: 'description-list' },
-            { label: 'Disclosure', path: 'disclosure' },
-            { label: 'Grid', path: 'grid' },
-            { label: 'Icon', path: 'icon' },
-            { label: 'Menu', path: 'menu' },
+            { label: 'Alerts', path: 'alerts' },
+            { label: 'Breadcrumbs', path: 'breadcrumbs' },
+            { label: 'Buttons', path: 'buttons' },
+            { label: 'Forms', path: 'forms' },
+            { label: 'Lists', path: 'lists' },
             { label: 'Navigation', path: 'navigation' },
-            { label: 'Panel', path: 'panel' },
-            { label: 'Popover', path: 'popover' },
-            { label: 'Reveal', path: 'reveal' },
-            { label: 'Status Label', path: 'status-label' },
-            { label: 'Table', path: 'table' },
-            { label: 'Tabset', path: 'Tabset' },
-            { label: 'Text Input', path: 'text-input' },
-            { label: 'Tooltip', path: 'tooltip' },
-            { label: 'Typography', path: 'typography' },
+            { label: 'Panels', path: 'panels' },
+            { label: 'Tables', path: 'tables' },
+            { label: 'Tabs', path: 'tabs' },
+        ],
+    },
+
+    {
+        label: 'Custom Elements',
+        path: 'elements',
+        children: [
+            { label: '<hx-checkbox>', path: 'hx-checkbox' },
+            { label: '<hx-disclosure>', path: 'hx-disclosure' },
+            { label: '<hx-icon>', path: 'hx-icon' },
+            { label: '<hx-popover>', path: 'hx-popover' },
+            { label: '<hx-reveal>', path: 'hx-reveal' },
+            { label: '<hx-status>', path: 'hx-status' },
+            { label: '<hx-tooltip>', path: 'hx-tooltip' },
         ],
     },
 
     /* COMING SOON...
-    {
-        label: 'CSS Modules',
-        path: 'CSS',
-        children: [
-            { label: 'Grid', path: 'grid' },
-            ...
-        ],
-    },
-    {
-        label: 'Elements',
-        path: 'Elements',
-        children: [
-            { label: '<hx-checkbox>', path: 'hx-checkbox' },
-            ...
-        ],
-    },
     {
         label: 'API',
         path: 'API',

@@ -1,5 +1,15 @@
-&copy; 2017 Rackspace US, Inc.
-<nav>
-  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
-  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
-</nav>
+<div class="hxCol">
+  &copy; 2017 Rackspace US, Inc.
+  <nav>
+    <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+    <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+  </nav>
+</div>
+<div class="hxCol text-right">
+  {% if page.updated %}
+    <small>
+      Last Updated:
+      {{ page.updated.format(site.dateFormat) }}
+    </small>
+  {% endif %}
+</div>

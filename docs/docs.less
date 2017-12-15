@@ -59,6 +59,28 @@ main {
   }
 }
 
+hx-status {
+  &.-hxFill {
+    &.-hxDeprecated {
+      background-color: @gray-1000;
+      border-color: @gray-900;
+      color: @gray-0;
+    }
+
+    &.-hxInProgress {
+      background-color: @yellow-900;
+      border-color: @yellow-500;
+      color: @gray-1000;
+    }
+
+    &.-hxStable {
+      background-color: @green-900;
+      border-color: @green-900;
+      color: @gray-0;
+    }
+  }
+}
+
 @import 'demo/box-docs';
 @import 'demo/button-docs';
 @import 'demo/grid-docs';
@@ -67,6 +89,11 @@ main {
 @import 'demo/popover-docs';
 @import 'demo/tooltip-docs';
 @import 'demo/typography-docs';
+
+// OVERRIDES
+.hxApp__nav a {
+  text-transform: none; // allow for <hx-icon> not <Hx-icon>
+}
 
 // SHAME
 dd {
