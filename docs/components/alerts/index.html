@@ -1,0 +1,163 @@
+---
+title: Alert
+---
+{% extends 'component.njk' %}
+{% block content %}
+<!-- explanation goes here -->
+
+<section>
+  <h2 class="hxSectionTitle" id="default">Default</h2>
+
+  <div class="demo">
+    <div role="status" class="hxAlerts" aria-live="polite">
+      <div class="hxAlert">
+        <div class="hxAlert__icon">
+          <hx-icon type="info-circle"></hx-icon>
+        </div>
+        <div class="hxAlert__text">
+          <span class="hxAlert__status">Info</span>
+          Here is helpful information.
+        </div>
+        <div class="hxAlert__action">
+          <a href="#">Acknowledge</a>
+        </div>
+        <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+      </div>
+    </div>
+  </div>
+  {% code 'html' %}
+    <div role="status" class="hxAlerts" aria-live="polite">
+      <div class="hxAlert">
+        <div class="hxAlert__icon">
+          <hx-icon type="info-circle"></hx-icon>
+        </div>
+        <div class="hxAlert__text">
+          <span class="hxAlert__status">Info</span>
+          Here is helpful information.
+        </div>
+        <div class="hxAlert__action">
+          <a href="#">Acknowledge</a>
+        </div>
+        <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+      </div>
+    </div>
+  {% endcode %}
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="error">Error</h2>
+
+  <div class="demo">
+    <div role="status" class="hxAlerts" aria-live="polite">
+      <div class="hxAlert hxAlert--error">
+        <div class="hxAlert__icon">
+          <hx-icon type="exclamation-circle"></hx-icon>
+        </div>
+        <div class="hxAlert__text">
+          <span class="hxAlert__status">Error</span>
+          Change a few things up and try submitting again.
+        </div>
+        <div class="hxAlert__action">
+          <a href="#">Correct Issue</a>
+        </div>
+        <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+      </div>
+    </div>
+  </div>
+  {% code 'html' %}
+    <div role="status" class="hxAlerts" aria-live="polite">
+      <div class="hxAlert hxAlert--error">
+        <div class="hxAlert__icon">
+          <hx-icon type="exclamation-circle"></hx-icon>
+        </div>
+        <div class="hxAlert__text">
+          <span class="hxAlert__status">Error</span>
+          Change a few things up and try submitting again.
+        </div>
+        <div class="hxAlert__action">
+          <a href="#">Correct Issue</a>
+        </div>
+        <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+      </div>
+    </div>
+  {% endcode %}
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="warning">Warning</h2>
+
+  <div class="demo">
+    <div role="status" class="hxAlerts" aria-live="polite">
+      <div class="hxAlert hxAlert--warning">
+        <div class="hxAlert__icon">
+          <hx-icon type="exclamation-triangle"></hx-icon>
+        </div>
+        <div class="hxAlert__text">
+          <span class="hxAlert__status">Warning</span>
+          Best check yo self, you're not looking too good.
+        </div>
+        <div class="hxAlert__action">
+          <a href="#">Double Check</a>
+        </div>
+        <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+      </div>
+    </div>
+  </div>
+  {% code 'html' %}
+    <div role="status" class="hxAlerts" aria-live="polite">
+      <div class="hxAlert hxAlert--warning">
+        <div class="hxAlert__icon">
+          <hx-icon type="exclamation-triangle"></hx-icon>
+        </div>
+        <div class="hxAlert__text">
+          <span class="hxAlert__status">Warning</span>
+          Best check yo self, you're not looking too good.
+        </div>
+        <div class="hxAlert__action">
+          <a href="#">Double Check</a>
+        </div>
+        <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+      </div>
+    </div>
+  {% endcode %}
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="success">Success</h2>
+
+  <div class="demo">
+    <div role="status" class="hxAlerts" aria-live="polite">
+      <div class="hxAlert hxAlert--success">
+        <div class="hxAlert__icon">
+          <hx-icon type="checkmark"></hx-icon>
+        </div>
+        <div class="hxAlert__text">
+          <span class="hxAlert__status ">Success</span>
+          You successfully read this important alert message.
+        </div>
+        <div class="hxAlert__action">
+          <a href="#">Celebrate</a>
+        </div>
+        <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+      </div>
+    </div>
+  </div>
+  {% code 'html' %}
+    <div role="status" class="hxAlerts" aria-live="polite">
+      <div class="hxAlert hxAlert--success">
+        <div class="hxAlert__icon">
+          <hx-icon type="checkmark"></hx-icon>
+        </div>
+        <div class="hxAlert__text">
+          <span class="hxAlert__status ">Success</span>
+          You successfully read this important alert message.
+        </div>
+        <div class="hxAlert__action">
+          <a href="#">Celebrate</a>
+        </div>
+        <button class="hxAlert__dismiss"><hx-icon type="times"></hx-icon></button>
+      </div>
+    </div>
+  {% endcode %}
+</section>
+{% endblock %}

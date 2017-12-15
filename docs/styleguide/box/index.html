@@ -1,0 +1,95 @@
+---
+title: Box
+---
+{% extends 'styleguide.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The box component provides a set of CSS classes to apply
+      padding evenly around the inside of an element.
+    </p>
+  </section>
+
+  <section id="vue-boxDemo">
+    <h2 class="hxSectionTitle" id="demo">Demo</h2>
+    <div class="hxRow">
+      <div class="hxCol hxSpan-12-xs hxSpan-4-md hxOrder-2-md">
+        <p>
+          Size:<br />
+          <select v-model="size">
+            <option v-for="_size in sizes" :value="_size">
+              {% raw %}{{ _size.label }}{% endraw %}
+            </option>
+          </select>
+        </p>
+        <p>
+          <code>
+            {% raw %}&lt;div class="{{size.value}}"&gt;{% endraw %}
+          </code>
+        </p>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-8-md hxOrder-1-md">
+        <div class="demo box-demo">
+          <div :class="size.value">
+            <p>
+              There was a young lady of Wight,<br />
+              Who traveled much faster than light,<br />
+              She departed one day,<br />
+              In a relative way,<br />
+              And arrived on the previous night.
+            </p>
+          </div>
+        </div>
+        <span class="hxCaption">
+          *Visual styling added for demonstration purpopses.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="hxSectionTitle" id="sizes">Sizes</h2>
+    <table class="hxTable hxSpan-12-xs hxSpan-8-md">
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>CSS Class</th>
+          <th>REM</th>
+          <th>PX</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">XS</th>
+          <td><code>.hxBox-xs</code></td>
+          <td><code>0.5rem</code></td>
+          <td><code>8px<code></td>
+        </tr>
+        <tr>
+          <th scope="row">SM</th>
+          <td><code>.hxBox-sm</code></td>
+          <td><code>0.75rem<code></td>
+          <td><code>12px<code></td>
+        </tr>
+        <tr>
+          <th scope="row">MD</th>
+          <td><code>.hxBox-md</code></td>
+          <td><code>1.0rem<code></td>
+          <td><code>16px<code></td>
+        </tr>
+        <tr>
+          <th scope="row">LG</th>
+          <td><code>.hxBox-lg</code></td>
+          <td><code>1.25rem<code></td>
+          <td><code>20px<code></td>
+        </tr>
+        <tr>
+          <th scope="row">XL</th>
+          <td><code>.hxBox-xl</code></td>
+          <td><code>1.50rem<code></td>
+          <td><code>24px<code></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

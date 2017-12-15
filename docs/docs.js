@@ -1,15 +1,15 @@
 'use strict';
 
-import './components/box/box-demo';
-import './components/panel/panel-demo';
+import './styleguide/box/box-demo';
+import './components/panels/panel-demo';
 
-/* ====================================== *\
- * DO NOT INCLUDE IN DISTRIBUTED ASSETS!! *
-\* ====================================== */
+(function () {
+    let hashAnchors = document.querySelectorAll('[href^="#"]');
 
-// Demonstrate BS3 Tooltips
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip({
-        container: 'body',
+    [].forEach.call(hashAnchors, function (anchor) {
+        anchor.addEventListener('click', function (evt) {
+            evt.preventDefault();
+            document.location.hash = evt.target.getAttribute('href');
+        });
     });
-});
+})();
