@@ -20,6 +20,7 @@
             { label: 'Disclosure', path: 'disclosure' },
             { label: 'Grid', path: 'grid' },
             { label: 'Icon', path: 'icon' },
+            { label: 'Menu', path: 'menu' },
             { label: 'Navigation', path: 'navigation' },
             { label: 'Panel', path: 'panel' },
             { label: 'Popover', path: 'popover' },

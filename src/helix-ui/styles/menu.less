@@ -1,0 +1,53 @@
+hx-disclosure {
+  &[aria-expanded="true"] {
+    .menu-icon {
+      transform: scaleY(-1);
+    }
+  }
+}
+
+hx-menu {
+  background-color: @gray-0;
+  border: 1px solid @gray-300;
+  box-shadow: 0px 3px 3px 0 @shadow-color;
+  display: none;
+  max-width: 20rem;
+  min-width: 10rem;
+  position: absolute;
+  z-index: @menu-z-index;
+
+  &[open] {
+    display: block;
+  }
+
+  & > &item-group + &item-group {
+    margin-top: 0.5rem;
+  }
+
+  hx-menuitem-group header {
+    color: @gray-600;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .hxBtn--link {
+    padding: 0.25rem 0;
+  }
+}
+
+hx-menuitem-group {
+  display: block;
+}
+
+hx-menuitem {
+  display: block;
+}
+
+.btn-cog {
+  border: none;
+
+  hx-icon {
+    color: @gray-1000;
+  }
+}

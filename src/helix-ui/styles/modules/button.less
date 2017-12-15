@@ -11,6 +11,7 @@
     background-color: @cyan-500;
     border-color: transparent;
     color: @gray-0;
+    cursor: pointer;
   }
 
   &:active {
@@ -83,5 +84,42 @@
     background-color: transparent;
     border-color: transparent;
     color: @gray-400;
+  }
+}
+
+.hxBtnGroup {
+  display: inline-flex;
+
+  .hxBtn {
+    border-radius: 0;
+    margin-left: 1px;
+
+    &:first-child {
+      border-bottom-left-radius: 2px;
+      border-top-left-radius: 2px;
+    }
+
+    &:last-child {
+      border-bottom-right-radius: 2px;
+      border-top-right-radius: 2px;
+    }
+  }
+}
+
+.hxBtn {
+  hx-icon {
+    box-sizing: content-box;
+
+    &:first-of-type {
+      padding-right: 8px;
+    }
+
+    &:last-of-type {
+      padding-left: 8px;
+    }
+
+    &:only-child {
+      padding: 0;
+    }
   }
 }

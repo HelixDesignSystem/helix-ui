@@ -173,11 +173,13 @@ function _repositionTowardCenter (position, offscreen) {
  * @returns {Object} (x,y) coordinates
  */
 export function getPosition (offsetElement, referenceElement, config) {
-    let cfg = Object.assign({}, config, {
+    let defaults = {
         position: 'top',
         margin: 0,
         offset: 0,
-    });
+    };
+
+    let cfg = Object.assign({}, defaults, config);
 
     let coords = _getCoords(cfg.position, offsetElement, referenceElement, cfg);
     let isOffscreen = _getOffscreenMetadata(offsetElement, coords);
@@ -214,10 +216,12 @@ export function getPosition (offsetElement, referenceElement, config) {
  * @returns {Object} (x,y) coordinates
  */
 export function getPositionWithArrow (offsetElement, referenceElement, config) {
-    let cfg = Object.assign({}, config, {
+    let defaults = {
         margin: 12, // base to tip of the arrow
         offset: 20, // distance from the edge to the center of the arrow
-    });
+    };
+
+    let cfg = Object.assign({}, defaults, config);
 
     return getPosition(offsetElement, referenceElement, cfg);
 }
