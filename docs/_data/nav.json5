@@ -16,6 +16,7 @@
             { label: 'Button', path: 'button' },
             { label: 'Checkbox', path: 'checkbox' },
             { label: 'Code', path: 'code' },
+            { label: 'Component Status', path: 'component-status' },
             { label: 'Description List', path: 'description-list' },
             { label: 'Disclosure', path: 'disclosure' },
             { label: 'Grid', path: 'grid' },
