@@ -1,0 +1,58 @@
+---
+title: Asset Stability
+---
+{% extends 'component.njk' %}
+{% block content %}
+
+<section>
+  <h2 class="hxSectionTitle" id="legend">Legend</h2>
+
+  <div class="demo">
+    <hx-dl>
+      <hx-def>
+        <hx-dt>
+          <hx-status class="-hxFill -hxDeprecated">Deprecated</hx-status>
+        </hx-dt>
+        <hx-dd>
+          High Risk, Stop using, Will be removed
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>
+          <hx-status class="-hxFill -hxInProgress">In Progress</hx-status><br/>
+        </hx-dt>
+        <hx-dd>
+          Medium Risk, In Flux, Use with caution
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>
+          <hx-status class="-hxFill -hxStable">Stable</hx-status>
+        </hx-dt>
+        <hx-dd>
+          Low Risk, Good to Go, Production Ready
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  </div>
+</section>
+
+<section>
+  <hx-dl>
+    {% for key,val in data.stability %}
+      <hx-def>
+        <hx-dt>{{key}}</hx-dt>
+        <hx-dd>
+          {% if val === 2 %}
+            <hx-status class="-hxFill -hxStable">Stable</hx-status>
+          {% elseif val === 1 %}
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+          {% else %}
+            <hx-status class="-hxFill -hxDeprecated">Deprecated</hx-status>
+          {% endif %}
+        </hx-dd>
+      </hx-def>
+    {% endfor %}
+  </hx-dl>
+</section>
+{% endblock %}

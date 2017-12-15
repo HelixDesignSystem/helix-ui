@@ -20,6 +20,13 @@
         ]
     },
 
+    /*
+    {
+        label: 'Asset Stability',
+        path: 'stability.html',
+    },
+    */
+
     {
         label: 'Components',
         path: 'components',
