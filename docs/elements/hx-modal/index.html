@@ -1,0 +1,49 @@
+---
+title: <hx-modal>
+also:
+  components/modals: Modals
+  elements/hx-modalhead: <hx-modalhead>
+  elements/hx-modalbody: <hx-modalbody>
+  elements/hx-modalfoot: <hx-modalfoot>
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>&lt;hx-modal&gt;</code> element defines a section of
+      floating content that needs a forced action from the user.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>
+          in this order:
+          <ol>
+            <li>an optional <a href="elements/hx-modalhead">&lt;hx-modalhead&gt;</a> element</li>
+            <li>an <a href="elements/hx-modalbody">&lt;hx-modalbody&gt;</a> element</li>
+            <li>an optional <a href="elements/hx-modalfoot">&lt;hx-modalfoot&gt;</a> element</li>
+          </ol>
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl>
+    <dt>open</dt>
+    <dd>Opens the modal</dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl>
+    <dt>open <small>(Boolean [false])</small></dt>
+    <dd>Determines if modal is open.</dd>
+  </dl>
+{% endblock %}

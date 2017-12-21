@@ -1,0 +1,30 @@
+---
+title: <hx-modalhead>
+also:
+  components/modals: Modals
+  elements/hx-modal: <hx-modal>
+  elements/hx-modalbody: <hx-modalbody>
+  elements/hx-modalfoot: <hx-modalfoot>
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>&lt;hx-modalhead&gt;</code> element ensures proper spacing
+      and margins for modal headings.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>
+          an <a href="elements/hx-modal">&lt;hx-modal&gt;</a> element
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
