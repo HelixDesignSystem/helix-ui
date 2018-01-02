@@ -29,12 +29,17 @@ let lessPlugin = less({
     }
 });
 
+let intro = `window.addEventListener('WebComponentsReady', function () {`;
+let outro = `});`;
+
 export default [
     // src/browser-entry.js --> dist/helix-ui.browser.js (UMD)
     {
         input: 'src/browser-entry.js',
         name: 'HelixUI',
         sourcemap: false,
+        intro,
+        outro,
         output: [
             {
                 file: 'dist/helix-ui.browser.js',
@@ -58,6 +63,8 @@ export default [
         input: 'src/browser-entry.js',
         name: 'HelixUI',
         sourcemap: true,
+        intro,
+        outro,
         output: [
             {
                 file: 'dist/helix-ui.browser.min.js',
