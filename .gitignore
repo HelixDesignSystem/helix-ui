@@ -9,6 +9,7 @@ db.json
 *.log
 public/
 .deploy*/
+dist/
 
 # Private credentials/config
 _config.private.js
