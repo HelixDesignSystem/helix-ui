@@ -8,13 +8,19 @@ function _defineElements () {
 }
 
 function initialize () {
-    // If polyfills are used, initialize when polyfills are ready
-    // otherwise, initialize immediately
     if (window.WebComponents) {
-        window.addEventListener('WebComponentsReady', function () {
+        // Polyfill detected
+        if (window.WebComponents.ready) {
+            // polyfill already finished loading, initialize immediately
             _defineElements();
-        });
+        } else {
+            // initialize when polyfill has finished loading
+            window.addEventListener('WebComponentsReady', function () {
+                _defineElements();
+            });
+        }
     } else {
+        // No polyfills detected, initialize immediately
         _defineElements();
     }
 }
