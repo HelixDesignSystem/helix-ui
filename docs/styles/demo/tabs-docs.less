@@ -1,0 +1,16 @@
+.tabs-demo {
+  display: flex;
+  flex-direction: column;
+  /*
+  max-height: 400px;
+  min-height: 200px;
+  overflow: hidden;
+  resize: vertical;
+  */
+
+  // overflow scroll fix for firefox
+  hx-tabset {
+    flex-grow: 1;
+    min-height: 0;
+  }
+}

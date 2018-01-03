@@ -1,0 +1,23 @@
+---
+title: <hx-tablist>
+---
+{% extends 'element.njk' %}
+{% block content %}
+<!-- explanation goes here -->
+
+<section>
+  <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+  <dl>
+    <dt>aria-orientation</dt>
+    <dd>
+      Automatically set by <code>hx-tabset</code> when setting the 
+      <small>tab-side</small> attribute or <small>tabSide</small> property.
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>role</dt>
+    <dd>Automatically set to "tablist", if not explicitly defined in markup.</dd>
+  </dl>
+</section>
+{% endblock %}
