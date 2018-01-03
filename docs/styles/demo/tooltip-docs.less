@@ -1,1 +1,30 @@
-// TBD
+@import 'vars';
+
+.tooltip-examples {
+  hx-tooltip {
+    display: inline-block;
+    margin: 1em;
+    position: relative;
+  }
+}
+
+.demo-target {
+  border: 3px dotted @gray-1000;
+  padding: 10px;
+  text-align: center;
+  hx-icon {
+    color: @gray-700;
+    vertical-align: text-top;
+  }
+}
+
+.demo {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 6rem;
+  & > p {
+    margin: 0;
+    text-align: center;
+  }
+}

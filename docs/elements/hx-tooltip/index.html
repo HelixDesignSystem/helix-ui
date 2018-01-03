@@ -3,6 +3,177 @@ title: <hx-tooltip>
 ---
 {% extends 'element.njk' %}
 {% block content %}
-<!-- explanation goes here -->
-<p>TBD</p>
+  <section id="vue-tooltipDemo">
+    <h2 class="hxSectionTitle" id="tooltip">Tooltip </h2>
+    <div class="hxRow">
+      <div class="hxCol">
+        <div class="demo">
+          <p>
+            Hover over icon to trigger tooltips
+            <hx-icon data-tooltip="tooltip1" type="help-circle"></hx-icon>
+          </p>
+          <hx-tooltip id="tooltip1" v-for="_position in positions" :key="_position.id" :position="_position.value"  v-if="_position.value === position.value" >
+            {% raw %}{{ position.label }}{% endraw %}
+          </hx-tooltip>
+        </div>
+        <div class="demo">
+          <div class="demo-target" data-tooltip="tooltip2">
+            Manually trigger tooltip via click
+          </div>
+          <hx-tooltip id="tooltip2" trigger-event="click" v-for="_position in positions" :key="_position.id" :position="_position.value" v-if="_position.value === position.value">
+            {% raw %}{{ position.label }}{% endraw %}
+          </hx-tooltip>
+        </div>
+        {% code 'html' %}
+          <hx-icon data-tooltip="tooltip1" type="help-circle"></hx-icon>
+          <div class="demo-target" data-tooltip="tooltip2">
+            Manually set trigger-event to click
+          </div>
+          <hx-tooltip id="tooltip1" position="{position}">
+            {position}
+          </hx-tooltip>
+          <hx-tooltip id="tooltip2" position="{position}" trigger-event="click">
+            {position}
+          </hx-tooltip>
+        {% endcode %}
+      </div>
+      <div class="hxCol">
+        Position:
+        <select v-model="position">
+          <option v-for="_position in positions" :value="_position">
+            {% raw %}{{ _position.label }}{% endraw %}
+          </option>
+        </select>
+      </div>
+    </div>
+  </section>
+  <section class="tooltip-examples">
+    <h2 class="hxSectionTitle" id="appearance">Appearance</h2>
+    <table class="hxTable">
+      <thead>
+        <tr>
+          <th>position</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Top</td>
+          <td>
+            <hx-tooltip position="top" open>
+              position: top
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="top-right" open>
+              position: top-right
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="top-left" open>
+              position: top-left
+            </hx-tooltip>
+          </td>
+        </tr>
+        <tr>
+          <td>Bottom</td>
+          <td>
+            <hx-tooltip position="bottom" open>
+              position: bottom
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="bottom-right" open>
+              position: bottom-right
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="bottom-left" open>
+              position: bottom-left
+            </hx-tooltip>
+          </td>
+        </tr>
+        <tr>
+          <td>Right</td>
+          <td>
+            <hx-tooltip position="right" open>
+              position: right
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="right-top" open>
+              position: right-top
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="right-bottom" open>
+              position: right-bottom
+            </hx-tooltip>
+          </td>
+        </tr>
+        <tr>
+          <td>Left</td>
+          <td>
+            <hx-tooltip position="left" open>
+              position: left
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="left-top" open>
+              position: left-top
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="left-bottom" open>
+              position: left-bottom
+            </hx-tooltip>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section>
+    <h2 class="hxSectionTitle" id="Attributes">Attribute</h2>
+    <dl>
+      <dt>
+        id
+        <small>(String) Required</small>
+      </dt>
+      <dd>
+        <p>Links element to target data-element attr placed on the target element.</p>
+        <p>
+          <strong>NOTE:</strong> Currently this will only find the first element with data-tooltip attr on the page. 
+        </p>
+      </dd>
+    </dl>
+  </section>
+  <section>
+    <h2 class="hxSectionTitle" id="properties">Properties</h2>
+    <dl>
+      <dt>
+        open
+        <small>(Boolean [false])</small>
+      </dt>
+      <dd>Determines whether or not tooltip is shown</dd>
+      <dt>
+        position
+        <small>(String [top])</small>
+      </dt>
+      <dd>Determines where tooltip is positioned</dd>
+      <dt>
+         trigger-event
+        <small>(String [hover])</small>
+      </dt>
+      <dd>
+        Determines what fires the tooltip
+        possible values:
+        <ul>
+          <li>click</li>
+          <li>hover</li>
+        </ul>
+      </dd>
+    </dl>
+  </section>
 {% endblock %}
