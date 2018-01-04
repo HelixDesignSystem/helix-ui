@@ -7,7 +7,7 @@ title: <hx-tooltip>
     <h2 class="hxSectionTitle" id="tooltip">Tooltip </h2>
     <div class="hxRow">
       <div class="hxCol">
-        <div class="demo">
+        <div class="demo tooltip-demo">
           <p>
             Hover over icon to trigger tooltips
             <hx-icon data-tooltip="tooltip1" type="help-circle"></hx-icon>
@@ -16,7 +16,7 @@ title: <hx-tooltip>
             {% raw %}{{ position.label }}{% endraw %}
           </hx-tooltip>
         </div>
-        <div class="demo">
+        <div class="demo tooltip-demo">
           <div class="demo-target" data-tooltip="tooltip2">
             Manually trigger tooltip via click
           </div>
@@ -144,7 +144,7 @@ title: <hx-tooltip>
       <dd>
         <p>Links element to target data-element attr placed on the target element.</p>
         <p>
-          <strong>NOTE:</strong> Currently this will only find the first element with data-tooltip attr on the page. 
+          <strong>NOTE:</strong> Currently this will only find the first element with data-tooltip attr on the page.
         </p>
       </dd>
     </dl>
