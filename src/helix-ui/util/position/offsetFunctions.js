@@ -137,7 +137,7 @@ function getLeftStart (off, ref, config) {
 
 function getLeftTop (off, ref, config) {
     let [ x, y ] = getLeft(off, ref, config);
-    y -= (off.height / 2); 
+    y -= (off.height / 2);
     y += config.offset;
     return [ x, y ];
 }
@@ -159,9 +159,9 @@ const offsetFunctions = {
     'bottom-start': getBottomStart,
     'bottom-left': getBottomLeft,
     'left-bottom': getLeftBottom,
-    'left-end': getLeftEnd,    
+    'left-end': getLeftEnd,
     'left': getLeft,
-    'left-start': getLeftStart,    
+    'left-start': getLeftStart,
     'left-top': getLeftTop,
     'center': getCenter,
 };

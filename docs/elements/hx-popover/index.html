@@ -4,6 +4,86 @@ title: <hx-popover>
 {% extends 'element.njk' %}
 {% block content %}
 <!-- explanation goes here -->
-<p>TBD</p>
 
+<section id="vue-popoverDemo">
+  <h2 class="hxSectionTitle" id="demo">Demo</h2>
+  <p>
+    Position:
+    <select v-model="position">
+      <option
+        :value="_position"
+        v-for="_position in positions"
+        v-text="_position.label">
+      </option>
+    <select>
+  </p>
+  <div class="demo popover-demo">
+    <button data-popover="myPopover" class="hxBtn">Toggle</button>
+
+    <hx-popover id="myPopover"
+      :position="position.value"
+      v-for="_position in positions"
+      v-if="_position.value === position.value">
+
+      <header slot="header">
+        <h4 class="hxContainerTitle">Popover Header</h4>
+      </header>
+      <p>This is my popover body</p>
+      <footer slot="footer">
+        <button class="hxBtn hxBtn--primary">Submit</button>
+        <button class="hxBtn">Cancel</button>
+      </footer>
+    </hx-popover>
+  </div>
+  {% code 'html' %}
+    <button data-popover="myPopover" class="hxBtn">Toggle</button>
+
+    <hx-popover id="myPopover" position="bottom-right">
+      <header slot="header">
+        <h4 class="hxContainerTitle">Popover Header</h4>
+      </header>
+      <p>This is my popover body</p>
+      <footer slot="footer">
+        <button class="hxBtn hxBtn--primary">Submit</button>
+        <button class="hxBtn">Cancel</button>
+      </footer>
+    </hx-popover>
+  {% endcode %}
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="appearance">Appearance</h2>
+  <div class="popover-appearance">
+    {% for _position in [
+      'top', 'top-left', 'top-right',
+      'bottom', 'bottom-left', 'bottom-right',
+      'right', 'right-top', 'right-bottom',
+      'left', 'left-top', 'left-bottom'
+    ] %}
+      <hx-popover position="{{_position}}">
+        <code>position="{{_position}}"</code>
+      </hx-popover>
+    {% endfor %}
+  </div>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="html-attributes">Attributes</h2>
+  <dl>
+    <dt>open</dt>
+    <dd>Opens the popover</dd>
+  </dl>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="properties">Properties</h2>
+  <dl>
+    <dt>open <small>(Boolean [false])</small></dt>
+    <dd>Determines if the popover is open.</dd>
+  </dl>
+  <dl>
+    <dt>position <small>(String [bottom-right])</small></dt>
+    <dd>Determines the position of the popover.</dd>
+  </dl>
+</section>
 {% endblock %}
