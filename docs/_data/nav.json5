@@ -36,6 +36,7 @@
             { label: 'Buttons', path: 'buttons' },
             { label: 'Forms', path: 'forms' },
             { label: 'Lists', path: 'lists' },
+            { label: 'Menus', path: 'menus' },
             { label: 'Navigation', path: 'navigation' },
             { label: 'Panels', path: 'panels' },
             { label: 'Tables', path: 'tables' },
