@@ -2601,15 +2601,6 @@ sax@>=0.6.0:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
-selenium-webdriver@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-3.5.0.tgz#9036c82874e6c0f5cbff0a0f18223bc31c99cb77"
-  dependencies:
-    jszip "^3.1.3"
-    rimraf "^2.5.4"
-    tmp "0.0.30"
-    xml2js "^0.4.17"
-
 selenium-webdriver@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/selenium-webdriver/-/selenium-webdriver-3.6.0.tgz#2ba87a1662c020b8988c981ae62cb2a01298eafc"
@@ -2665,9 +2656,9 @@ slide@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
 
-snappit-visual-regression@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/snappit-visual-regression/-/snappit-visual-regression-0.7.0.tgz#aa8d7c017c3dfab82368d121654059913615b7a2"
+snappit-visual-regression@0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/snappit-visual-regression/-/snappit-visual-regression-0.7.1.tgz#f977525278e25124d3803ec0cd3b793d053c16ee"
   dependencies:
     "@types/fs-extra" "^5.0.0"
     "@types/lodash" "^4.14.80"
