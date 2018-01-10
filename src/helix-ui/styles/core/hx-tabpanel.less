@@ -1,10 +1,18 @@
-  hx-tabpanel {
-    &:extend(hx-reveal all);
-    background-color: white;
-    flex-grow: 1;
-    min-height: 172px; //min height
-    //overflow-x: hidden;
-    //overflow-y: auto;
-    padding: 1.5rem 1.25rem;
-  }//hx-tabpanel
-  
+@import (reference) './hx-reveal.less';
+
+hx-tabpanel {
+  &:extend(hx-reveal all);
+  background-color: transparent;
+  overflow-y: auto;
+  padding: 1.5rem 1.25rem;
+
+  &[open] {
+    display: block;
+  }
+}
+
+// Legacy Browsers (IE and early Edge)
+hx-tabpanel {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+}

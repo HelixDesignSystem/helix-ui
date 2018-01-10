@@ -3,35 +3,46 @@ title: <hx-tabpanel>
 ---
 {% extends 'element.njk' %}
 {% block content %}
-<!-- explanation goes here -->
-
 
 <section>
   <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
   <dl>
-    <dt>aria-expanded <small>{String="top"}</small></dt>
+    <dt>
+      aria-expanded <small>{String="top"}</small>
+    </dt>
     <dd>
-      Automatically set as the <small>open</small> attribute/property changes.
+      Automatically set as the <code>open</code> attribute/property changes.
     </dd>
   </dl>
 
   <dl>
-    <dt>id</dt>
+    <dt>
+      id
+    </dt>
     <dd>
-      Used by <code>hx-tabset</code> to wire up a Tab to its Tabpanel using the 
-      aria-controls and aria-labeled by attributes. If you do not define an id 
-      attribute, one will be automatically generated.
+      Used by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a> to
+      wire up a tab to its tabpanel using the <code>aria-controls</code> and
+      <code>aria-labelledby</code> attributes. If you do not define an
+      <code>id</code> attribute, one will be automatically generated.
     </dd>
   </dl>
 
   <dl>
-    <dt>open</dt>
-    <dd>When present, contents are visible.</dd>
+    <dt>
+      open
+    </dt>
+    <dd>
+      When present, contents are visible.
+    </dd>
   </dl>
 
   <dl>
-    <dt>role</dt>
-    <dd>Automatically set to "tabpanel", if not explicitly defined in markup.</dd>
+    <dt>
+      role
+    </dt>
+    <dd>
+      Automatically set to <code>tabpanel</code>, if not explicitly defined in markup.
+    </dd>
   </dl>
 </section>
 {% endblock %}

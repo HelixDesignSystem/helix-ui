@@ -1,5 +1,19 @@
 hx-tabset {
   background-color: inherit;
-  display: flex;
-  flex-direction: column;
-}//hx-tabset
+  height: 100%;
+}
+
+// Legacy Browsers (IE and early Edge)
+hx-tabset {
+  display: -ms-grid;
+  -ms-grid-rows: auto 1fr;
+  -ms-grid-columns: 1fr;
+}
+
+// Evergreen Browsers
+@supports (--is-modern: true) {
+  hx-tabset {
+    display: flex;
+    flex-direction: column;
+  }
+}

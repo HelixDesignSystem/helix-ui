@@ -3,32 +3,49 @@ title: <hx-tab>
 ---
 {% extends 'element.njk' %}
 {% block content %}
-<!-- explanation goes here -->
 
 <section>
   <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
   <dl>
-    <dt>aria-controls</dt>
-    <dd>Automatically set by <code>hx-tabset</code> when attached to the DOM.</dd>
-
-    <dt>aria-selected</dt>
-    <dd>Automatically set as the current attribute/property changes.</dd>
-
-    <dt>current</dt>
+    <dt>
+      aria-controls
+    </dt>
     <dd>
-      Automatically applied by <code>hx-tabset</code> to identify the current 
-      Tab in a Tablist.
+      Automatically set by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a>
+      when attached to the DOM.
     </dd>
 
-    <dt>id</dt>
+    <dt>
+      aria-selected
+    </dt>
     <dd>
-      Used by <code>hx-tabset</code> to wire up a Tab to its Tabpanel using the 
-      aria-controls and aria-labeled by attributes. If you do not define an id 
-      attribute, one will be automatically generated.
+      Automatically set as the <code>current</code> attribute/property changes.
     </dd>
-    
-    <dt>role</dt>
-    <dd>Automatically set, if not explicitly defined in markup.</dd>
+
+    <dt>
+      current
+    </dt>
+    <dd>
+      Automatically applied by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a>
+      to identify the current tab in a tablist.
+    </dd>
+
+    <dt>
+      id
+    </dt>
+    <dd>
+      Used by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a> to
+      wire up a tab to its tabpanel using the <code>aria-controls</code> and
+      <code>aria-labelledby</code> attributes. If you do not define an
+      <code>id</code> attribute, one will be automatically generated.
+    </dd>
+
+    <dt>
+      role
+    </dt>
+    <dd>
+      Automatically set, if not explicitly defined in markup.
+    </dd>
   </dl>
 </section>
 {% endblock %}

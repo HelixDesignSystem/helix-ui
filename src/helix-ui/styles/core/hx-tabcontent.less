@@ -3,5 +3,26 @@ hx-tabcontent {
   border-color: @gray-300 transparent;
   border-style: solid;
   border-width: 1px;
-  //overflow: hidden;
-}//hx-tabcontent
+  overflow: hidden;
+}
+
+// Legacy Browsers (IE and early Edge)
+hx-tabcontent {
+  // as tabset grid cell
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  
+  // as sub-grid container
+  display: -ms-grid;  
+  -ms-grid-rows: 1fr;
+  -ms-grid-columns: 1fr;
+}
+
+// Evergreen Browsers
+@supports (--is-modern: true) {
+  hx-tabcontent {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }                                                                                                                 
+}

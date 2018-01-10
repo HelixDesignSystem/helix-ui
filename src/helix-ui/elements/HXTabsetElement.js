@@ -7,7 +7,7 @@ export class HXTabsetElement extends HXElement {
     }
 
     static get observedAttributes () {
-        return [ 'current-tab', 'tab-side' ];
+        return [ 'current-tab' ];
     }
 
     constructor () {
@@ -19,8 +19,6 @@ export class HXTabsetElement extends HXElement {
 
     connectedCallback () {
         this.$upgradeProperty('current-tab');
-        this.$defaultAttribute('tab-side', 'top');
-
         this._setupIds();
         this.currentTab = Number(this.getAttribute('current-tab')) || 0;
         this.$tablist.addEventListener('keyup', this._onKeyUp);
@@ -39,28 +37,9 @@ export class HXTabsetElement extends HXElement {
     }
 
     attributeChangedCallback (attr, oldValue, newVal) {
-        switch (attr) {
-            case 'current-tab':
-                if (!isNaN(newVal)) {
-                    this.currentTab = Number(newVal);
-                }
-                break;
-
-            case 'tab-side':
-                switch (newVal) {
-                    case 'top':
-                    case 'bottom':
-                        this.$tablist.setAttribute('aria-orientation', 'horizontal');
-                        break;
-                    case 'left':
-                    case 'right':
-                        this.$tablist.setAttribute('aria-orientation', 'vertical');
-                        break;
-                    default: /* do nothing */ break;
-                }
-                break;//tab-side
-            default: /* do nothing */ break;
-        }//switch
+        if (!isNaN(newVal)) {
+            this.currentTab = Number(newVal);
+        }
     }
 
     get currentTab () {
@@ -93,14 +72,6 @@ export class HXTabsetElement extends HXElement {
             tabpanel.open = (idx === panelIdx);
         });
     }//SET:currentTab
-
-    get tabSide () {
-        return this.getAttribute('tab-side');
-    }
-
-    set tabSide (newVal) {
-        this.setAttribute('tab-side', newVal);
-    }
 
     get tabs () {
         return Array.from(this.querySelectorAll('hx-tablist > hx-tab'));
@@ -136,29 +107,13 @@ export class HXTabsetElement extends HXElement {
 
     // Handle navigating the tabs via arrow keys
     _onKeyUp (evt) {
-        switch (this.tabSide) {
-            case 'top':
-            case 'bottom':
-                if (evt.keyCode === KEYS.Right) {
-                    this._selectNext();
-                }
+        if (evt.keyCode === KEYS.Right) {
+            this._selectNext();
+        }
 
-                if (evt.keyCode === KEYS.Left) {
-                    this._selectPrevious();
-                }
-                break;
-            case 'left':
-            case 'right':
-                if (evt.keyCode === KEYS.Down) {
-                    this._selectNext();
-                }
-
-                if (evt.keyCode === KEYS.Up) {
-                    this._selectPrevious();
-                }
-                break;
-            default: /* do nothing */ break;
-        }//tabSide
+        if (evt.keyCode === KEYS.Left) {
+            this._selectPrevious();
+        }
     }//_onKeyUp()
 
     _onTabClick (evt) {
@@ -172,14 +127,14 @@ export class HXTabsetElement extends HXElement {
             let tabId = `hxTab-${this.$generateId()}`;
             let tabpanelId = `hxTabPanel-${this.$generateId()}`;
 
-            // Set or keep Tab ID
+            // Set or keep tab ID
             if (tab.hasAttribute('id')) {
                 tabId = tab.getAttribute('id');
             } else {
                 tab.setAttribute('id', tabId);
             }
 
-            // Set or keep Panel ID
+            // Set or keep panel ID
             if (tabpanel.hasAttribute('id')) {
                 tabpanelId = tabpanel.getAttribute('id');
             } else {
@@ -187,7 +142,7 @@ export class HXTabsetElement extends HXElement {
             }
 
             tab.setAttribute('aria-controls', tabpanelId);
-            tabpanel.setAttribute('aria-labeledby', tabId);
+            tabpanel.setAttribute('aria-labelledby', tabId);
         });
     }//_setupIds
 }//HXTabsetElement

@@ -7,17 +7,14 @@ export class HXTabpanelElement extends HXRevealElement {
     }
 
     connectedCallback () {
-        this.$upgradeProperty('open');
+        super.connectedCallback();
         this.$defaultAttribute('role', 'tabpanel');
-        // initialize
-        this.setAttribute('aria-expanded', this.open);
     }
 
     // because we are inheriting HXReveal, the only attribute we are watching
     // is "open"
     attributeChangedCallback (attr, oldVal, newVal) {
-        let hasValue = (newVal !== null);
-        this.setAttribute('aria-expanded', hasValue);
-        this.setAttribute('tabindex', hasValue ? 0 : -1);
+        super.attributeChangedCallback(arguments);
+        this.setAttribute('tabindex', (newVal !== null) ? 0 : -1);
     }
 }//HXTabpanelElement

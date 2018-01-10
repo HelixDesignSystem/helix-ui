@@ -8,4 +8,4 @@ export class HXTabcontentElement extends HXElement {
     connectedCallback () {
         this.$defaultAttribute('role', 'presentation');
     }
-}//HXTabContentElement
+}//HXTabcontentElement
