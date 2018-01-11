@@ -35,6 +35,16 @@
             { label: 'Breadcrumbs', path: 'breadcrumbs' },
             { label: 'Buttons', path: 'buttons' },
             { label: 'Forms', path: 'forms' },
+            {
+                label: 'Layouts',
+                path: 'layouts',
+                /* TODO: on hold until nav is updated to allow for link title + section toggle
+                children: [
+                    { label: 'Horizontal', path: 'horizontal-layout-template.html' },
+                    { label: 'Vertical', path: 'vertical-layout-template.html' },
+                ],
+                */
+            },
             { label: 'Lists', path: 'lists' },
             { label: 'Menus', path: 'menus' },
             { label: 'Navigation', path: 'navigation' },

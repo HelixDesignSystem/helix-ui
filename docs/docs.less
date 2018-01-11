@@ -14,8 +14,16 @@
 */
 @import (reference) 'vars';
 
-body {
-  background-color: @gray-25;
+.brand-logo {
+  align-items: center;
+  display: flex;
+  height: 3.5rem;
+  justify-content: center;
+  width: @app-nav-width;
+
+  img {
+    height: 2rem;
+  }
 }
 
 .demo {
@@ -85,16 +93,12 @@ hx-status {
 @import 'demo/button-docs';
 @import 'demo/grid-docs';
 @import 'demo/icon-docs';
+@import 'demo/nav-docs';
 @import 'demo/panel-docs';
 @import 'demo/popover-docs';
 @import 'demo/tabs-docs';
 @import 'demo/tooltip-docs';
 @import 'demo/typography-docs';
-
-// OVERRIDES
-.hxApp__nav a {
-  text-transform: none; // allow for <hx-icon> not <Hx-icon>
-}
 
 // SHAME
 dd {

@@ -31,12 +31,13 @@
   - NO !important
 \* ========================== */
 html {
+  // TODO: move to base/typography.less
   font-family: "Roboto", sans-serif;
   font-size: 16px;
-  height: 100%;
 }
 
 body {
+  // TODO: move to base/typography.less
   color: @gray-900;
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1rem;
@@ -45,11 +46,13 @@ body {
 }
 
 small {
+  // TODO: move to base/typography.less
   font-size: 0.75rem;
 }
 
 caption,
 figcaption {
+  // TODO: move to base/typography.less
   font-size: 0.875rem;
   font-weight: 300;
   line-height: 1.5; // TODO: check if this is inherited?
@@ -60,7 +63,7 @@ figure {
   margin-bottom: 1rem;
 }
 
-// TODO move to base-lists.less
+// TODO move to base/lists.less
 ul {
   list-style-type: square;
 }
@@ -78,9 +81,10 @@ dt {
 @import 'base/links';
 
 fieldset label {
+  // TODO: move to base/typography.less
   font-size: 0.875rem;
 }
-@import 'code';
+@import 'code'; // TODO: move to base/typography.less
 
 // Core CSS
 @import 'core/hx-checkbox';
@@ -106,7 +110,8 @@ fieldset label {
     - No Element Selectors
     - NO !important
 \* ========== COMPONENTS ========== */
-// MODULES
+@import 'components/layouts';
+// MODULES (convert to components)
 @import 'modules/box';
 @import 'modules/breadcrumb';
 @import 'modules/button';
@@ -155,7 +160,6 @@ fieldset label {
 @import 'description-list';
 
 // Shame
-@import 'layout'; // to be rewritten as a component/module
 @import 'alert'; // needs turned into core element + theme
 @import 'navigation'; // component and theme need separated
 @import 'menu'; // likely needs refactored

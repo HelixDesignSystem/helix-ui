@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="{{site.language}}">
 {% include 'partials/head.njk' %}
-<body class="hxApp" id="top">
-  <header class="hxApp__header">
+<body class="hxVertical" id="top">
+  <header id="head">
     {% include 'partials/global_nav.njk' %}
   </header>
 
-  <div class="hxApp__container">
-    <main class="hxApp__content">
-      {% block layout %}
-        {# layouts can override this #}
-        {% block content %}
-          {# compiled content goes here #}
-        {% endblock %}
-      {% endblock %}
-    </main>
-    <nav class="hxApp__nav">
+  <div id="stage">
+    <nav id="nav" class="hxNav">
       {% include 'partials/app_nav.njk' %}
     </nav>
+    {% block layout %}
+      <main id="content" class="hxBox-md">
+        {% block content %}
+          {# page content goes here #}
+        {% endblock %}
+      </main>
+      <aside class="hxSiderail hxBox-md">
+        {% block sidebar %}
+          {% include 'partials/sidebar.njk' %}
+        {% endblock %}
+      </aside>
+    {% endblock %}
   </div>
 
-  <footer class="hxApp__footer hxRow hxGutterless">
+  <footer id="foot" class="hxRow hxGutterless">
     {% include 'partials/footer_nav.njk' %}
   </footer>
 

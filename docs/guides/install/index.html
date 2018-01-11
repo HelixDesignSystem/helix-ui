@@ -1,6 +1,5 @@
 ---
 title: Installing HelixUI
-cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com
 ---
 {% extends 'guide.njk' %}
 {% block content %}
@@ -18,7 +17,7 @@ cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackc
       <tr>
         <th>Appearance</th>
         <td>
-          <a href="{{page.cdn}}/css/helix-ui.css" target="_blank">
+          <a href="{{data.url.cdn}}/{{data.cdn.css.helixUi}}" target="_blank">
             <hx-icon type="external-link"></hx-icon>
             helix-ui.css
           </a>
@@ -28,7 +27,7 @@ cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackc
       <tr>
         <th>Behavior</th>
         <td>
-          <a href="{{page.cdn}}/javascript/helix-ui.js" target="_blank">
+          <a href="{{data.url.cdn}}/{{data.cdn.js.helixUi}}" target="_blank">
             <hx-icon type="external-link"></hx-icon>
             helix-ui.js
           </a>
@@ -53,7 +52,7 @@ cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackc
         <tr>
           <th>ES5 Adapter</th>
           <td>
-            <a href="{{page.cdn}}/javascript/custom-elements-es5-adapter.js" target="_blank">
+            <a href="{{data.url.cdn}}/{{data.cdn.js.es5adapter}}" target="_blank">
               <hx-icon type="external-link"></hx-icon>
               custom-elements-es5-adapter.js
             </a>
@@ -62,7 +61,7 @@ cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackc
         <tr>
           <th>Web Components Loader</th>
           <td>
-            <a href="{{page.cdn}}/javascript/webcomponents-loader.js" target="_blank">
+            <a href="{{data.url.cdn}}/{{data.cdn.js.polyfillLoader}}" target="_blank">
               <hx-icon type="external-link"></hx-icon>
               webcomponents-loader.js
             </a>
@@ -76,40 +75,6 @@ cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackc
       ensure that the browser can load them. To do so, you'll need to insert
       both the ES5 Adapter and the Polyfill Loader into your markup.
     </p>
-  </section>
-
-  <section><!-- TL;DR -->
-    <h3 class="hxSubSectionTitle">TL;DR</h3>
-    {% code 'html' %}
-      <html>
-        <head>
-          ...
-
-          <script src="cdn/path/to/webcomponents-loader.js"></script>
-          <!-- polyfills automatically injected here (if needed) -->
-        </head>
-        <body>
-          ...
-
-          <!-- intelligently load ES5 Adapter (if needed) -->
-          <span id="ce-es5-adapter">
-            <script>
-              if (!window.customElements) {
-                var elAdapter = document.querySelector('#ce-es5-adapter');
-                elAdapter.parentElement.removeChild(elAdapter);
-              }
-            </script>
-            <script src="cdn/path/to/custom-elements-es5-adapter.js"></script>
-          </span>
-
-          <!-- HelixUI custom element definitions -->
-          <script src="cdn/path/to/helix-ui.js"></script>
-
-          <!-- load your application logic here -->
-          <script src="domain/path/to/your/app.js"></script>
-        </body>
-      </html>
-    {% endcode %}
   </section>
 
   <section><!-- web components loader -->
@@ -210,7 +175,7 @@ cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackc
     </div>
     <div class="hxAlert__text">
       <span class="hxAlert__status">Warning</span>
-      The Bootstrap theme <b>does not comply</b> to current Helix design specs.
+      The Bootstrap theme does not comply to current Helix design specs.
     </div>
   </div>
 
@@ -226,7 +191,7 @@ cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackc
       <tr>
         <th>Helix Bootstrap Theme</th>
         <td>
-          <a href="{{page.cdn}}/css/bootstrap.helix.css" target="_blank">
+          <a href="{{data.url.cdn}}/{{data.cdn.css.bootstrapHelix}}" target="_blank">
             <hx-icon type="external-link"></hx-icon>
             bootstrap.helix.css
           </a>
@@ -235,5 +200,18 @@ cdn: https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackc
       </tr>
     </tbody>
   </table>
+</section>
+
+<section><!-- Supporting Legacy Browsers -->
+  <h2 class="hxSectionTitle" id="maximum-compatibility">Maximum Compatibility</h2>
+  <p>
+    To ensure maximum functionality for legacy browsers (i.e., bring IE
+    functionality up to an acceptable level), we highly recommend taking advantage of the
+    <a href="https://polyfill.io">polyfill.io</a> browser polyfill service.
+  </p>
+  {% code 'html' %}
+    <!-- Required for modern functionality -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+  {% endcode %}
 </section>
 {% endblock %}

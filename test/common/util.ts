@@ -46,6 +46,6 @@ export function $x(
  * Once that happens, pull this out of `util.ts` and move it someplace more page-object-y.
  */
 export var selectors = {
-    nav: ".hxApp__nav",
+    nav: "#stage > #nav",
     visreg: "*[data-visreg]",
 }

@@ -1,0 +1,11 @@
+{
+    css: {
+        helixUi: 'css/helix-ui.css',
+        bootstrapHelix: 'css/bootstrap.helix.css',
+    },
+    js: {
+        helixUi: 'javascript/helix-ui.js',
+        es5adapter: 'javascript/custom-elements-es5-adapter.js',
+        polyfillLoader: 'javascript/webcomponents-loader.js',
+    },
+}
