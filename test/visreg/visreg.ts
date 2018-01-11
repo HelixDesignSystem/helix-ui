@@ -1,5 +1,4 @@
-import {$, snap, Snappit, IConfig} from "snappit-visual-regression";
-import {WebDriver, WebElementPromise} from "selenium-webdriver";
+import {$, snap, Snappit, IConfig, WebDriver} from "snappit-visual-regression";
 
 import * as util from "../common/util";
 import {test} from "ava";
@@ -18,32 +17,37 @@ export function suite(browserName: string) {
                 "SIZE_DIFFERENCE",
             ],
             threshold: 0.1,
-            useDirect: true,
-            useGeckoDriver: (browserName === "firefox"),
+            headless: true,
+            initialViewportSize: [1366, 768],
         };
 
         snappit = new Snappit(config);
         driver = await snappit.start();
-        await util.setViewportSize(driver, { width: 1366, height: 768 });
         await driver.get(util.baseUrl);
     });
 
     test("nav", async () => {
         await snap("{browserName}/nav", $(util.selectors.nav));
-        await util.$x(driver, "//nav/hx-reveal//header", "Guides").click();
+    });
+
+    test("nav/guides", async () => {
+        await util.$x(driver, "//nav//hx-disclosure", "Guides").click();
         await snap("{browserName}/nav/guides", $(util.selectors.nav));
-        await util.$x(driver, "//nav/hx-reveal//header", "Components").click();
+    });
+
+    test("nav/styleguide", async () => {
+        await util.$x(driver, "//nav//hx-disclosure", "Styleguide").click()
+        await snap("{browserName}/nav/styleguide", $(util.selectors.nav));
+    });
+
+    test("nav/components", async () => {
+        await util.$x(driver, "//nav//hx-disclosure", "Components").click();
         await snap("{browserName}/nav/components", $(util.selectors.nav));
     });
 
-    test("buttons", async () => {
-        await util.go(driver, "button");
-        await snap("{browserName}/buttons", $(util.selectors.visreg));
-    });
-
-    test("checkbox", async () => {
-        await util.go(driver, "checkbox");
-        await snap("{browserName}/checkboxes", $(util.selectors.visreg));
+    test("nav/custom-elements", async () => {
+        await util.$x(driver, "//nav//hx-disclosure", "Custom Elements").click();
+        await snap("{browserName}/nav/custom-elements", $(util.selectors.nav));
     });
 
     test.after.always(async () => {

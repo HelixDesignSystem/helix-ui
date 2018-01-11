@@ -26,8 +26,8 @@
   <hx-disclosure
     aria-controls="{{revealId}}"
     {% if isCurrentCategory %}class="current"{% endif %}>
+    {{ section.label }}
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-    {{ section.label | capitalize }}
   </hx-disclosure>
   <hx-reveal id="{{revealId}}" {% if isCurrentCategory %}open{% endif %}>
     {% for child in section.children %}
