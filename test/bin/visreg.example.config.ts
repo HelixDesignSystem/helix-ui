@@ -4,7 +4,7 @@
  */
 export interface IConfig {
     githubHostname: string,
-    githubName: string,
+    githubUsername: string,
     repo: string,
 };
 
@@ -16,7 +16,7 @@ export interface IConfig {
  * `visreg.config.ts` file.
  */
 export var config: IConfig = {
-    "githubHostname": "github.rackspace.com",
-    "githubName": "name1234",
+    "githubHostname": "github.com",
+    "githubUsername": "name1234",
     "repo": "snappit-helix-ui",
 }

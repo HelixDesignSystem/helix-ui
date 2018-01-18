@@ -18,7 +18,7 @@ import * as opn from "opn"
 import {config, IConfig} from "./visreg.config";
 
 export const f = "./.github-token";
-export const repoUrl = url.parse(`https://${config.githubHostname}/${config.githubName}/${config.repo}`);
+export const repoUrl = url.parse(`https://${config.githubHostname}/${config.githubUsername}/${config.repo}`);
 export const hasCommitRegex = /\[.*([0-9a-f]{7})] Checking in screenshots.../;
 
 export function validateVPN(githubHostname: string) {
@@ -47,19 +47,11 @@ export async function checkConfig() {
         const updateTs = /name1234/.test(dataTs);
 
         if (updateJs || updateTs) {
-            const defaultUsername = "your sso";
             const options: IOptions = {
-            default: defaultUsername,
-                message: "Github Enterprise username?",
+                message: "Github username?",
             };
 
             const name = await input(options.message, options) as string;
-            if (name === defaultUsername) {
-                console.log(`Visit ${config.githubHostname} and log in to make sure this works.`);
-                console.log("After logging in, copy the last part of the url on your homepage. It's likely your sso.");
-                throw new Error("Please enter a valid Github Enterprise username.");
-            }
-
             const js = dataJs.replace(/name1234/, name);
             updateJs && fs.writeFileSync(javascriptConfig, js);
 
@@ -152,7 +144,7 @@ export function createDiff(token: string, currentBranch: string, screenshotsDire
 }
 
 export function pushBranch(token: string, repoUrl: url.Url, branch: string, screenshotsDirectory: string) {
-    let pushUrl = `https://${token}@${repoUrl.hostname}/${config.githubName}/${config.repo}.git`;
+    let pushUrl = `https://${token}@${repoUrl.hostname}/${config.githubUsername}/${config.repo}.git`;
     console.log(`Generating remote screenshot diff...`);
     safeExecSync(token, `cd ${screenshotsDirectory}; git push ${pushUrl} ${branch}  > /dev/null 2>&1`);
 };
@@ -254,7 +246,7 @@ export function resetRepository(screenshotsDirectory: string) {
     if (fs.existsSync(`${screenshotsDirectory}/.git`)) {
         // check the current remote in case it's been updated
         const remote = child_process.execSync(`cd ${screenshotsDirectory}; git remote -v | head -n 1`).toString();
-        const remoteRegex = new RegExp(`\bgit@${config.githubHostname}:${config.githubName}/${config.repo}.git\b`);
+        const remoteRegex = new RegExp(`\bgit@${config.githubHostname}:${config.githubUsername}/${config.repo}.git\b`);
         if (!remoteRegex.test(remote)) {
             console.log("Updated screenshots repository detected -- cleaning.");
             cmd("npm run clean:screenshots");
