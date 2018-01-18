@@ -1,0 +1,18 @@
+hx-tablist {
+  background-color: inherit;
+  display: block;
+  padding: 0 0.5rem;
+}
+
+// Legacy Browsers (IE and early Edge)
+hx-tablist {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+}
+
+// Evergreen Browsers
+@supports (--is-modern: true) {
+  hx-tablist {
+    flex-grow: 0;
+  }
+}

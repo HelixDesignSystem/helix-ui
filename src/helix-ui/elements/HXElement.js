@@ -37,6 +37,14 @@ export class HXElement extends HTMLElement {
         }
     }
 
+    // Utility method to generate a unique ID
+    $generateId () {
+        return Math
+            .random()     // 0.7093288430261266
+            .toString(36) // "0.pjag2nwxb2o"
+            .substr(2,8); // "pjag2nwx"
+    }//$generateId()
+
     // 'keydown' event listener to prevent page scrolling
     $preventScroll (evt) {
         switch (evt.keyCode) {
