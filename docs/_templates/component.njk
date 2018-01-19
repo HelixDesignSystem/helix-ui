@@ -8,7 +8,12 @@
       {# page content goes here #}
     {% endblock %}
   </main>
-  <aside class="hxSiderail hxBox-md">
-    {% include 'partials/sidebar.njk' %}
+  <aside class="hxSiderail hxBox-xl">
+    <h1 class="hxContainerTitle">On this page:</h1>
+    <nav class="article-toc">
+      {{ page.raw | toc | safe }}
+      <hr />
+      <a class="top-link" href="#top">Back to Top</a>
+    </aside>
   </aside>
 {% endblock %}

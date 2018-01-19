@@ -97,9 +97,9 @@ title: <hx-checkbox>
     </tbody>
   </table>
 </section>
+{% endblock %}
 
-<section>
-  <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+{% block attributes %}
   <dl>
     <dt>checked</dt>
     <dd>Checks the checkbox</dd>
@@ -110,10 +110,9 @@ title: <hx-checkbox>
     <dt>disabled</dt>
     <dd>Disables the checkbox</dd>
   </dl>
-</section>
+{% endblock %}
 
-<section>
-  <h2 class="hxSectionTitle" id="properties">Properties</h2>
+{% block properties %}
   <dl>
     <dt>checked <small>(Boolean [false])</small></dt>
     <dd>Determines if checkbox is checked.</dd>
@@ -124,5 +123,4 @@ title: <hx-checkbox>
     <dt>indeterminate <small>(Boolean [false])</small></dt>
     <dd>Determines if checkbox is indeterminate.</dd>
   </dl>
-</section>
 {% endblock %}

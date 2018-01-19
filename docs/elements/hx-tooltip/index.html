@@ -47,6 +47,7 @@ title: <hx-tooltip>
       </div>
     </div>
   </section>
+
   <section class="tooltip-examples">
     <h2 class="hxSectionTitle" id="appearance">Appearance</h2>
     <table class="hxTable">
@@ -134,46 +135,36 @@ title: <hx-tooltip>
       </tbody>
     </table>
   </section>
-  <section>
-    <h2 class="hxSectionTitle" id="Attributes">Attribute</h2>
-    <dl>
-      <dt>
-        id
-        <small>(String) Required</small>
-      </dt>
-      <dd>
-        <p>Links element to target data-element attr placed on the target element.</p>
-        <p>
-          <strong>NOTE:</strong> Currently this will only find the first element with data-tooltip attr on the page.
-        </p>
-      </dd>
-    </dl>
-  </section>
-  <section>
-    <h2 class="hxSectionTitle" id="properties">Properties</h2>
-    <dl>
-      <dt>
-        open
-        <small>(Boolean [false])</small>
-      </dt>
-      <dd>Determines whether or not tooltip is shown</dd>
-      <dt>
-        position
-        <small>(String [top])</small>
-      </dt>
-      <dd>Determines where tooltip is positioned</dd>
-      <dt>
-         trigger-event
-        <small>(String [hover])</small>
-      </dt>
-      <dd>
-        Determines what fires the tooltip
-        possible values:
-        <ul>
-          <li>click</li>
-          <li>hover</li>
-        </ul>
-      </dd>
-    </dl>
-  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl>
+    <dt>id <small>(String) Required</small></dt>
+    <dd>
+      <p>Links element to target data-element attr placed on the target element.</p>
+      <p>
+        <strong>NOTE:</strong> Currently this will only find the first element with data-tooltip attr on the page.
+      </p>
+    </dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl>
+    <dt>open <small>(Boolean [false])</small></dt>
+    <dd>Determines whether or not tooltip is shown</dd>
+
+    <dt>position <small>(String [top])</small></dt>
+    <dd>Determines where tooltip is positioned</dd>
+
+    <dt>trigger-event <small>(String [hover])</small></dt>
+    <dd>
+      Determines what fires the tooltip
+      possible values:
+      <ul>
+        <li>click</li>
+        <li>hover</li>
+      </ul>
+    </dd>
+  </dl>
 {% endblock %}

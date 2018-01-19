@@ -64,24 +64,21 @@ title: <hx-popover>
     {% endfor %}
   </div>
 </section>
+{% endblock %}
 
-<section>
-  <h2 class="hxSectionTitle" id="html-attributes">Attributes</h2>
+{% block attributes %}
   <dl>
     <dt>open</dt>
     <dd>Opens the popover</dd>
   </dl>
-</section>
+{% endblock %}
 
-<section>
-  <h2 class="hxSectionTitle" id="properties">Properties</h2>
+{% block properties %}
   <dl>
     <dt>open <small>(Boolean [false])</small></dt>
     <dd>Determines if the popover is open.</dd>
-  </dl>
-  <dl>
+
     <dt>position <small>(String [bottom-right])</small></dt>
     <dd>Determines the position of the popover.</dd>
   </dl>
-</section>
 {% endblock %}

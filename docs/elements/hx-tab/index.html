@@ -3,36 +3,29 @@ title: <hx-tab>
 ---
 {% extends 'element.njk' %}
 {% block content %}
+  <!-- TBD -->
+{% endblock %}
 
-<section>
-  <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+{% block attributes %}
   <dl>
-    <dt>
-      aria-controls
-    </dt>
+    <dt>aria-controls</dt>
     <dd>
       Automatically set by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a>
       when attached to the DOM.
     </dd>
 
-    <dt>
-      aria-selected
-    </dt>
+    <dt>aria-selected</dt>
     <dd>
       Automatically set as the <code>current</code> attribute/property changes.
     </dd>
 
-    <dt>
-      current
-    </dt>
+    <dt>current</dt>
     <dd>
       Automatically applied by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a>
       to identify the current tab in a tablist.
     </dd>
 
-    <dt>
-      id
-    </dt>
+    <dt>id</dt>
     <dd>
       Used by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a> to
       wire up a tab to its tabpanel using the <code>aria-controls</code> and
@@ -40,12 +33,9 @@ title: <hx-tab>
       <code>id</code> attribute, one will be automatically generated.
     </dd>
 
-    <dt>
-      role
-    </dt>
+    <dt>role</dt>
     <dd>
       Automatically set, if not explicitly defined in markup.
     </dd>
   </dl>
-</section>
 {% endblock %}

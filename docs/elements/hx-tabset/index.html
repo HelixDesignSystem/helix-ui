@@ -3,16 +3,12 @@ title: <hx-tabset>
 ---
 {% extends 'element.njk' %}
 {% block content %}
+  <!-- TBD -->
+{% endblock %}
 
-<section>
-  <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+{% block attributes %}
   <dl>
-    <dt>
-      current-tab <small>{Number=0}</small>
-    </dt>
-    <dd>
-      Zero-based index of the currently active tab + tabpanel.
-    </dd>
+    <dt>current-tab <small>{Number=0}</small></dt>
+    <dd>Zero-based index of the currently active tab + tabpanel.</dd>
   </dl>
-</section>
 {% endblock %}

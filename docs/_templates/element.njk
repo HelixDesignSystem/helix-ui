@@ -7,8 +7,47 @@
     {% block content %}
       {# page content goes here #}
     {% endblock %}
+
+    <section>
+      <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+      <p>
+        Attributes allow you to configure an element in a
+        declarative manner via markup.
+      </p>
+      {% block attributes %}
+        <p class="hxSubdued">
+          <small>
+            <hx-icon type="info-circle"></hx-icon>
+            This element does not have any configurable attributes.
+          </small>
+        </p>
+      {% endblock %}
+    </section>
+
+    <section>
+      <h2 class="hxSectionTitle" id="properties">Properties</h2>
+      <p>
+        Properties allow you to configure an element in an
+        imperative manner via JavaScript.
+      </p>
+      {% block properties %}
+        <p class="hxSubdued">
+          <small>
+            <hx-icon type="info-circle"></hx-icon>
+            This element does not have any configurable properties.
+          </small>
+        </p>
+      {% endblock %}
+    </section>
   </main>
-  <aside class="hxSiderail hxBox-md">
-    {% include 'partials/sidebar.njk' %}
+  <aside class="hxSiderail hxBox-xl">
+    <h1 class="hxContainerTitle">On this page:</h1>
+    <nav class="article-toc">
+      {{ page.raw | toc | safe }}
+      <a href="#attributes">Attributes</a>
+      <a href="#properties">Properties</a>
+      <hr />
+      <a class="top-link" href="#top">Back to Top</a>
+    </aside>
   </aside>
 {% endblock %}
