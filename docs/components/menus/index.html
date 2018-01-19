@@ -5,7 +5,7 @@ title: Menus
 {% block content %}
 
 <section>
-  <h2 class="hxSectionTitle" id="menu">Demo</h2>
+  <h2 class="hxSectionTitle" id="menu">Basic Menu</h2>
   <div class="demo">
     <hx-disclosure class="hxBtn" aria-controls="menuId">
       <hx-icon type="cog"></hx-icon>
@@ -131,23 +131,5 @@ title: Menus
       <hx-menuitem class="hxBtn hxBtn--link">Action 3</hx-menuitem>
     </hx-menu>
   {% endcode %}
-</section>
-
-<section>
-  <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
-  <dl>
-    <dt>open</dt>
-    <dd>Opens the menu</dd>
-
-    <dt>position</dt>
-    <dd>Positions the menu</dd>
-
-    <dt>relative-to <small>(optional)</small></dt>
-    <dd>
-      ID of an element to relatively position the menu. If not
-      set, the menu will be positioned relative to the element with the
-      <code>aria-controls</code> attribute matching the menu id.
-    </dd>
-  </dl>
 </section>
 {% endblock %}

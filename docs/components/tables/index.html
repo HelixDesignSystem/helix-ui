@@ -10,6 +10,17 @@ title: Table
     <em>a.k.a. "Unbound Table"</em>
   </p>
 
+  <dl>
+    <dt><code>.hxTable</code></dt>
+    <dd>
+      Use on a table element to apply Helix styles.
+      <em>This class is required to apply any modified table styling.</em>
+    </dd>
+
+    <dt><code>.hxTable__control-col</code></dt>
+    <dd>Use on a table cell to propery set its width for use with a checkbox, radio, or action icon.</dd>
+  </dl>
+
   <div class="demo">
     <table class="hxTable">
       <caption>Most popular Twitter accounts</caption>
@@ -136,7 +147,10 @@ title: Table
 <section>
   <h2 class="hxSectionTitle" id="condensed-table">Condensed Table</h2>
 
-  <!-- explanation goes here -->
+  <dl>
+    <dt><code>.hxTable--condensed</code></dt>
+    <dd>Use along with the <code>.hxTable</code> class to apply Helix styles for condensed data.</dd>
+  </dl>
 
   <div class="demo">
     <table class="hxTable hxTable--condensed">
@@ -228,7 +242,10 @@ title: Table
 <section>
   <h2 class="hxSectionTitle" id="bound-table">Bound Table</h2>
 
-  <!-- explanation goes here -->
+  <dl>
+    <dt><code>.hxTable--bordered</code></dt>
+    <dd>Use along with the <code>.hxTable</code> class to apply Helix styles for bound table data.</dd>
+  </dl>
 
   <div class="demo">
     <table class="hxTable hxTable--bordered">
@@ -320,7 +337,10 @@ title: Table
 <section>
   <h2 class="hxSectionTitle" id="hoverable-table">Hoverable Table</h2>
 
-  <!-- explanation goes here -->
+  <dl>
+    <dt><code>.hxTable--hover</code></dt>
+    <dd>Use along with the <code>.hxTable</code> class to apply Helix styles when hovering over a table row.</dd>
+  </dl>
 
   <div class="demo">
     <table class="hxTable hxTable--hover">
@@ -407,32 +427,5 @@ title: Table
       <tfoot><!-- Footer Here --></tbody>
     </table>
   {% endcode %}
-</section>
-
-<section>
-  <h2 class="hxSectionTitle" id="css-classes">CSS Classes</h2>
-
-  <dl>
-    <dt><code>.hxTable</code></dt>
-    <dd>
-      Use on a table element to apply Helix styles.
-      <em>This class is required to apply any modified table styling.</em>
-    </dd>
-
-    <dt><code>.hxTable--bordered</code></dt>
-    <dd>Use along with the <code>.hxTable</code> class to apply Helix styles for bound table data.</dd>
-
-    <dt><code>.hxTable--condensed</code></dt>
-    <dd>Use along with the <code>.hxTable</code> class to apply Helix styles for condensed data.</dd>
-
-    <dt><code>.hxTable--hover</code></dt>
-    <dd>Use along with the <code>.hxTable</code> class to apply Helix styles when hovering over a table row.</dd>
-
-    <dt><code>.hxTable__control-col</code></dt>
-    <dd>Use on a table cell to propery set its width for use with a checkbox, radio, or action icon.</dd>
-
-    <dt><code>.selected</code></dt>
-    <dd>Use on a table row to indicate selection.</dd>
-  </dl>
 </section>
 {% endblock %}

@@ -1,0 +1,25 @@
+---
+title: <hx-menu>
+---
+{% extends 'element.njk' %}
+{% block content %}
+
+<section>
+  <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+  <dl>
+    <dt>open</dt>
+    <dd>Opens the menu</dd>
+
+    <dt>position</dt>
+    <dd>Positions the menu</dd>
+
+    <dt>relative-to <small>(optional)</small></dt>
+    <dd>
+      ID of an element that the menu is positioned relative to. If not
+      set, the menu will be positioned relative to the element with the
+      <code>aria-controls</code> attribute matching the menu ID.
+    </dd>
+  </dl>
+</section>
+
+{% endblock %}
