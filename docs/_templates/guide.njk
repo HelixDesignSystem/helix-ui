@@ -1,18 +1,14 @@
 {% extends 'application.njk' %}
 
 {% block layout %}
-  <article>
+  <main id="content" class="hxBox-md">
     <h1 class="hxPageTitle">{{ page.title }}</h1>
 
-    <div class="hxRow">
-      <div class="hxCol hxSpan-12-xs hxSpan-3-md hxOrder-2-md">
-        {% include 'partials/sidebar.njk' %}
-      </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-md hxOrder-1-md">
-        {% block content %}
-          {# page content goes here #}
-        {% endblock %}
-      </div>
-    </div>
-  </article>
+    {% block content %}
+      {# page content goes here #}
+    {% endblock %}
+  </main>
+  <aside class="hxSiderail hxBox-md">
+    {% include 'partials/sidebar.njk' %}
+  </aside>
 {% endblock %}

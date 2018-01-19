@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"><!-- lang is necessary for screen reader compatibility -->
+<head>
+  <title>Horizontal - App Title</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- CHANGE ME: update or remove -->
+  <base href="{{site.baseHref}}" />
+
+  <link rel="shortcut icon" href="images/favicon.png" />
+
+  <!-- Helix Styles -->
+  <!-- CHANGE ME: point to HelixUI styles -->
+  <link rel="stylesheet" href="dist/helix-ui.css" />
+  <!-- CHANGE ME: point to your application styles -->
+  <link rel="stylesheet" href="docs.css" />
+
+  <!-- Polyfill Loader -->
+  <script src="{{data.url.cdn}}/{{data.cdn.js.polyfillLoader}}"></script>
+</head>
+<body class="hxHorizontal" id="top">
+  <header id="head">
+    <!-- Eyebrow Goes Here -->
+  </header>
+
+  <div id="stage">
+    <nav id="nav" class="hxNav">
+      {% include 'partials/app_nav.njk' %}
+    </nav>
+
+    <main id="content">
+      <hx-panel class="hxSpan-7-xs">
+        <hx-panelbody class="hxBox-md">
+          <!--
+            NOTE: not all apps will have use for breadcrumbs in a Horizontal layout.
+          -->
+          <nav class="hxBreadcrumb">
+            <a href="#">Home</a>
+            <hx-icon class="delimiter" type="angle-right"></hx-icon>
+            <a href="components/layouts">Layouts</a>
+            <hx-icon class="delimiter" type="angle-right"></hx-icon>
+            <a href="#">Horizontal Layout</a>
+          </nav>
+          <h1 class="hxPageTitle">Left Panel</h1>
+
+          <div class="hxAlert">
+            <div class="hxAlert__icon">
+              <hx-icon type="info-circle"></hx-icon>
+            </div>
+            <div class="hxAlert__text">
+              Copy the source of this page to use as a template for your application.
+            </div>
+          </div>
+
+          <ul>
+            <li>
+              The application footer will remain at the bottom of the screen.
+            </li>
+            <li>
+              Content is arranged using panels.
+              <ul>
+                <li>
+                  The main content area (<code>main#content</code>) is styled to
+                  provide a row-based flexbox layout. You can use the column
+                  width classes available in the Grid to divide the space.
+                </li>
+                <li>
+                  Each panel scrolls vertically, independently of other panels.
+                </li>
+              </ul>
+            </li>
+            <li>
+              Use your best judgement to size panels so that content within each
+              panel is readable.
+            </li>
+          </ul>
+        </hx-panelbody>
+      </hx-panel>
+
+      <hx-panel class="hxSpan-5-xs">
+        <hx-panelbody class="hxBox-md">
+          <h2 class="hxSectionTitle">Right Panel</h2>
+        </hx-panelbody>
+      </hx-panel>
+    </main>
+  </div>
+
+  <footer id="foot">
+    {% include 'partials/footer_legal.njk' %}
+  </footer>
+
+  <!-- Browser polyfills (mainly for IE) -->
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+  <!-- intelligently load ES5 Adapter (if needed) -->
+  <span id="ce-es5-adapter">
+    <script>
+      if (!window.customElements) {
+        var elAdapter = document.querySelector('#ce-es5-adapter');
+        elAdapter.parentElement.removeChild(elAdapter);
+      }
+    </script>
+    <script src="{{data.url.cdn}}/{{data.cdn.js.es5adapter}}"></script>
+  </span>
+  <!-- HelixUI Behavior -->
+  <script src="dist/helix-ui.browser.min.js"></script>
+
+  <a id="bottom"></a>
+
+  <!-- CHANGE ME: point to your application logic -->
+  <script src="docs.js"></script>
+</body>
+</html>

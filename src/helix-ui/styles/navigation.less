@@ -1,5 +1,5 @@
 // THEME
-.hxApp__nav {
+.hxNav {
   @vpad: 0.5rem;
   @rpad: 0.75rem;
 
@@ -14,13 +14,11 @@
   font-size: 0.875rem; /* ~14px */
   letter-spacing: 0.75px;
   padding-top: 2rem;
-  width: 15rem; /* ~240px */
 
   hx-disclosure {
     color: inherit;
     display: block;
     padding: @vpad @rpad @vpad @l1-indent;
-    text-transform: uppercase;
     position: relative;
 
     &:hover {
@@ -50,13 +48,17 @@
     }
   }
 
+  // Level 1 ONLY
+  > hx-disclosure {
+    text-transform: uppercase;
+  }
+
   a {
     color: inherit;
     display: block;
     font-weight: 300;
     padding: @vpad @rpad @vpad @l1-indent;
     text-decoration: none;
-    text-transform: capitalize;
 
     &.current {
       background-color: @gray-900;
