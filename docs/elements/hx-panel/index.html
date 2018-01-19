@@ -1,5 +1,10 @@
 ---
 title: <hx-panel>
+also:
+  components/panels: Panels
+  elements/hx-panelbody: <hx-panelbody>
+  elements/hx-panelfoot: <hx-panelfoot>
+  elements/hx-panelhead: <hx-panelhead>
 ---
 {% extends 'element.njk' %}
 {% block content %}
@@ -10,18 +15,18 @@ title: <hx-panel>
     </p>
     <ul>
       <li>
-        The <a href="elements/hx-panelhead">&lt;hx-panelhead&gt;</a> 
+        The <a href="elements/hx-panelhead">&lt;hx-panelhead&gt;</a>
         element is fixed to the top of the panel.
         <ul>
           <li><em>This element is optional.</em></li>
         </ul>
       </li>
       <li>
-        The <a href="elements/hx-panelbody">&lt;hx-panelbody&gt;</a> element 
+        The <a href="elements/hx-panelbody">&lt;hx-panelbody&gt;</a> element
         fills the space between the head and foot.
       </li>
       <li>
-        The <a href="elements/hx-panelfoot">&lt;hx-panelfoot&gt;</a> element is 
+        The <a href="elements/hx-panelfoot">&lt;hx-panelfoot&gt;</a> element is
         fixed to the bottom of the panel.
         <ul>
           <li><em>This element is optional.</em></li>

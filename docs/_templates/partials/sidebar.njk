@@ -1,6 +1,9 @@
 <h1 class="hxContainerTitle">On this page:</h1>
 <nav class="article-toc">
   {{ page.raw | toc | safe }}
+  {% if page.also %}
+    <a href="#see-also">See Also</a>
+  {% endif %}
   <hr />
   <a class="top-link" href="#top">Back to Top</a>
-</aside>
+</nav>

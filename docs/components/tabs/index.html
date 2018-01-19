@@ -1,102 +1,108 @@
 ---
 title: Tabs
+also:
+  elements/hx-tab: <hx-tab>
+  elements/hx-tabcontent: <hx-tabcontent>
+  elements/hx-tablist: <hx-tablist>
+  elements/hx-tabpanel: <hx-tabpanel>
+  elements/hx-tabset: <hx-tabset>
 ---
 {% extends 'component.njk' %}
 {% block content %}
-
-<section>
-<div class="demo tabs-demo">
-  <hx-tabset>
-    <hx-tablist>
-      <hx-tab>Cupcake Ipsum</hx-tab>
-      <hx-tab>Biscuit Marshmallow</hx-tab>
-      <hx-tab>Caramels Marzipan</hx-tab>
-    </hx-tablist>
-    <hx-tabcontent>
-      <hx-tabpanel>
-        <h3 class="hxSubSectionTitle">First Panel</h3>
-        <div class="hxRow">
-          <div class="hxCol hxSpan-6">
+  <section>
+    <h2 class="hxSectionTitle" id="basic-tabs">Basic Tabs</h2>
+    <div class="demo tabs-demo">
+      <hx-tabset>
+        <hx-tablist>
+          <hx-tab>Cupcake Ipsum</hx-tab>
+          <hx-tab>Biscuit Marshmallow</hx-tab>
+          <hx-tab>Caramels Marzipan</hx-tab>
+        </hx-tablist>
+        <hx-tabcontent>
+          <hx-tabpanel>
+            <h3 class="hxSubSectionTitle">First Panel</h3>
+            <div class="hxRow">
+              <div class="hxCol hxSpan-6">
+                <p>
+                  Cupcake ipsum dolor sit amet bonbon topping caramels. Sesame snaps
+                  gummi bears liquorice cookie chupa chups fruitcake croissant
+                  chocolate topping. Brownie biscuit wafer marshmallow liquorice
+                  soufflé powder jelly.
+                </p>
+              </div>
+              <div class="hxCol hxSpan-6">
+                <p>
+                  Sweet roll sesame snaps danish I love jelly wafer dragée soufflé
+                  cake. Cookie chocolate cake gingerbread powder icing. Ice cream
+                  cotton candy gummi bears oat cake sweet pastry.
+                </p>
+              </div>
+            </div>
+          </hx-tabpanel>
+          <hx-tabpanel>
+            <h3 class="hxSubSectionTitle">Second Panel</h3>
             <p>
-              Cupcake ipsum dolor sit amet bonbon topping caramels. Sesame snaps
-              gummi bears liquorice cookie chupa chups fruitcake croissant
-              chocolate topping. Brownie biscuit wafer marshmallow liquorice
-              soufflé powder jelly.
+              Cupcake ipsum dolor sit. Amet danish jelly gummi bears. Danish
+              caramels danish candy canes macaroon donut icing. Cupcake tiramisu
+              soufflé fruitcake. Caramels muffin tootsie roll lemon drops bear claw
+              cotton candy tootsie roll tootsie roll chupa chups. Pudding fruitcake
+              ice cream marshmallow. Candy sugar plum chupa chups cotton candy
+              gingerbread pastry gingerbread marshmallow wafer. Jelly-o bonbon
+              dessert donut.
             </p>
-          </div>
-          <div class="hxCol hxSpan-6">
+            <p><a href="#">Link inside the panel</a></p>
             <p>
-              Sweet roll sesame snaps danish I love jelly wafer dragée soufflé
-              cake. Cookie chocolate cake gingerbread powder icing. Ice cream
-              cotton candy gummi bears oat cake sweet pastry.
+              Sweet toffee pie icing croissant halvah chupa chups. Cotton candy pie
+              sesame snaps. Muffin sesame snaps cake toffee liquorice apple pie
+              apple pie chupa chups. Lemon drops caramels sugar plum. Sweet oat cake
+              chocolate pudding cake toffee chocolate topping. Caramels caramels
+              candy muffin topping toffee. Topping candy canes sesame snaps carrot
+              cake dragée wafer jelly beans. Macaroon gummies tootsie roll cookie
+              chocolate cake chocolate cake dragée cupcake. Wafer bonbon sweet roll
+              sweet roll.
             </p>
-          </div>
-        </div>
-      </hx-tabpanel>
-      <hx-tabpanel>
-        <h3 class="hxSubSectionTitle">Second Panel</h3>
-        <p>
-          Cupcake ipsum dolor sit. Amet danish jelly gummi bears. Danish 
-          caramels danish candy canes macaroon donut icing. Cupcake tiramisu 
-          soufflé fruitcake. Caramels muffin tootsie roll lemon drops bear claw 
-          cotton candy tootsie roll tootsie roll chupa chups. Pudding fruitcake 
-          ice cream marshmallow. Candy sugar plum chupa chups cotton candy 
-          gingerbread pastry gingerbread marshmallow wafer. Jelly-o bonbon 
-          dessert donut.
-        </p>
-        <p><a href="#">Link inside the panel</a></p>
-        <p>
-          Sweet toffee pie icing croissant halvah chupa chups. Cotton candy pie 
-          sesame snaps. Muffin sesame snaps cake toffee liquorice apple pie 
-          apple pie chupa chups. Lemon drops caramels sugar plum. Sweet oat cake 
-          chocolate pudding cake toffee chocolate topping. Caramels caramels 
-          candy muffin topping toffee. Topping candy canes sesame snaps carrot 
-          cake dragée wafer jelly beans. Macaroon gummies tootsie roll cookie 
-          chocolate cake chocolate cake dragée cupcake. Wafer bonbon sweet roll 
-          sweet roll.
-        </p>
-        <p>
-          Sugar plum bonbon tiramisu tart candy canes sesame snaps tiramisu. 
-          Soufflé chocolate bar macaroon sweet bear claw dragée muffin dragée 
-          jelly. Apple pie gummies cake tiramisu dessert ice cream sweet roll. 
-          Pie fruitcake dragée. Gummi bears pudding muffin tart. Cake liquorice 
-          cheesecake donut. Cake chocolate marshmallow marshmallow dragée cupcake 
-          chocolate cake chocolate. Candy canes chocolate sweet roll apple pie 
-          icing danish chocolate bar. Jujubes toffee gummies powder cupcake 
-          topping chocolate. Cake sugar plum fruitcake brownie.
-        </p>
-      </hx-tabpanel>
-      <hx-tabpanel>
-        <h3 class="hxSubSectionTitle">Third Panel</h3>
-          <img src="http://via.placeholder.com/200x150" />
-          <img src="http://via.placeholder.com/200x150" />
-          <img src="http://via.placeholder.com/200x150" />
-          <img src="http://via.placeholder.com/200x150" />
-          <img src="http://via.placeholder.com/200x150" />
-          <img src="http://via.placeholder.com/200x150" />
-          <img src="http://via.placeholder.com/200x150" />
-          <img src="http://via.placeholder.com/200x150" />
-          <img src="http://via.placeholder.com/200x150" />
-          <img src="http://via.placeholder.com/200x150" />
-          <img src="http://via.placeholder.com/200x150" />
-          <img src="http://via.placeholder.com/200x150" />
-      </hx-tabpanel>
-    </hx-tabcontent>
-  </hx-tabset>
-</div>
-{% code 'html' %}
-  <hx-tabset>
-    <hx-tablist>
-      <hx-tab>First</hx-tab>
-      <hx-tab>Second</hx-tab>
-      <hx-tab>Third</hx-tab>
-    </hx-tablist>
-    <hx-tabcontent>
-      <hx-tabpanel>...</hx-tabpanel>
-      <hx-tabpanel>...</hx-tabpanel>
-      <hx-tabpanel>...</hx-tabpanel>
-    </hx-tabcontent>
-  </hx-tabset>
-{% endcode %}
-</section>
+            <p>
+              Sugar plum bonbon tiramisu tart candy canes sesame snaps tiramisu.
+              Soufflé chocolate bar macaroon sweet bear claw dragée muffin dragée
+              jelly. Apple pie gummies cake tiramisu dessert ice cream sweet roll.
+              Pie fruitcake dragée. Gummi bears pudding muffin tart. Cake liquorice
+              cheesecake donut. Cake chocolate marshmallow marshmallow dragée cupcake
+              chocolate cake chocolate. Candy canes chocolate sweet roll apple pie
+              icing danish chocolate bar. Jujubes toffee gummies powder cupcake
+              topping chocolate. Cake sugar plum fruitcake brownie.
+            </p>
+          </hx-tabpanel>
+          <hx-tabpanel>
+            <h3 class="hxSubSectionTitle">Third Panel</h3>
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+          </hx-tabpanel>
+        </hx-tabcontent>
+      </hx-tabset>
+    </div>
+    {% code 'html' %}
+      <hx-tabset>
+        <hx-tablist>
+          <hx-tab>First</hx-tab>
+          <hx-tab>Second</hx-tab>
+          <hx-tab>Third</hx-tab>
+        </hx-tablist>
+        <hx-tabcontent>
+          <hx-tabpanel>...</hx-tabpanel>
+          <hx-tabpanel>...</hx-tabpanel>
+          <hx-tabpanel>...</hx-tabpanel>
+        </hx-tabcontent>
+      </hx-tabset>
+    {% endcode %}
+  </section>
 {% endblock %}

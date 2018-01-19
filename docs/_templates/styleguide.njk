@@ -7,6 +7,10 @@
     {% block content %}
       {# page content goes here #}
     {% endblock %}
+
+    {% if page.also %}
+      {% include 'partials/see-also.njk' %}
+    {% endif %}
   </main>
   <aside class="hxSiderail hxBox-xl">
     {% include 'partials/sidebar.njk' %}

@@ -1,11 +1,16 @@
 ---
 title: <hx-panelbody>
+also:
+  components/panels: Panels
+  elements/hx-panel: <hx-panel>
+  elements/hx-panelfoot: <hx-panelfoot>
+  elements/hx-panelhead: <hx-panelhead>
 ---
 {% extends 'element.njk' %}
 {% block content %}
   <section>
     <p>
-       An <code>hx-panelbody</code> fills the space between an optional 
+       An <code>hx-panelbody</code> fills the space between an optional
        <a href="elements/hx-panelhead">&lt;hx-panelhead&gt;</a> and an optional
        <a href="elements/hx-panelfoot">&lt;hx-panelfoot&gt;</a>, scrolling
        vertically if constrained.

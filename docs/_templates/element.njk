@@ -5,9 +5,10 @@
     <h1 class="hxPageTitle">{{ page.title }}</h1>
 
     {% block content %}
-      {# page content goes here #}
+      {# freeform page content goes here #}
     {% endblock %}
 
+    {# ATTRIBUTES #}
     <section>
       <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
       <p>
@@ -24,6 +25,7 @@
       {% endblock %}
     </section>
 
+    {# PROPERTIES #}
     <section>
       <h2 class="hxSectionTitle" id="properties">Properties</h2>
       <p>
@@ -39,6 +41,10 @@
         </p>
       {% endblock %}
     </section>
+
+    {% if page.also %}
+      {% include 'partials/see-also.njk' %}
+    {% endif %}
   </main>
   <aside class="hxSiderail hxBox-xl">
     <h1 class="hxContainerTitle">On this page:</h1>
@@ -46,8 +52,11 @@
       {{ page.raw | toc | safe }}
       <a href="#attributes">Attributes</a>
       <a href="#properties">Properties</a>
+      {% if page.also %}
+        <a href="#see-also">See Also</a>
+      {% endif %}
       <hr />
       <a class="top-link" href="#top">Back to Top</a>
-    </aside>
+    </nav>
   </aside>
 {% endblock %}

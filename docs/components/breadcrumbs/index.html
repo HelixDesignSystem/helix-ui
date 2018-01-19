@@ -1,47 +1,50 @@
 ---
-title: Breadcrumb
+title: Breadcrumbs
 ---
 {% extends 'component.njk' %}
 {% block content %}
 <!-- explanation goes here -->
 
-<div class="demo">
-  <nav class="hxBreadcrumb">
-    <a href="#">Home</a>
-  </nav>
+<section>
+  <h2 class="hxSectionTitle" id="basic-breadcrumbs">Basic Breadcrumbs</h2>
+  <div class="demo">
+    <nav class="hxBreadcrumb">
+      <a href="#">Home</a>
+    </nav>
 
-  <nav class="hxBreadcrumb">
-    <a href="#">Home</a>
-    <hx-icon class="delimiter" type="angle-right"></hx-icon>
-    <a href="#">Library</a>
-  </nav>
+    <nav class="hxBreadcrumb">
+      <a href="#">Home</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">Library</a>
+    </nav>
 
-  <nav class="hxBreadcrumb">
-    <a href="#">Home</a>
-    <hx-icon class="delimiter" type="angle-right"></hx-icon>
-    <a href="#">Library</a>
-    <hx-icon class="delimiter" type="angle-right"></hx-icon>
-    <a href="#">Current</a>
-  </nav>
-</div>
+    <nav class="hxBreadcrumb">
+      <a href="#">Home</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">Library</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">Current</a>
+    </nav>
+  </div>
+  {% code 'html' %}
+    <nav class="hxBreadcrumb">
+      <a href="#">Home</a>
+    </nav>
 
-{% code 'html' %}
-  <nav class="hxBreadcrumb">
-    <a href="#">Home</a>
-  </nav>
+    <nav class="hxBreadcrumb">
+      <a href="#">Home</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">Library</a>
+    </nav>
 
-  <nav class="hxBreadcrumb">
-    <a href="#">Home</a>
-    <hx-icon class="delimiter" type="angle-right"></hx-icon>
-    <a href="#">Library</a>
-  </nav>
+    <nav class="hxBreadcrumb">
+      <a href="#">Home</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">Library</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">Current</a>
+    </nav>
+  {% endcode %}
+</section>
 
-  <nav class="hxBreadcrumb">
-    <a href="#">Home</a>
-    <hx-icon class="delimiter" type="angle-right"></hx-icon>
-    <a href="#">Library</a>
-    <hx-icon class="delimiter" type="angle-right"></hx-icon>
-    <a href="#">Current</a>
-  </nav>
-{% endcode %}
 {% endblock %}
