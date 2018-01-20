@@ -13,6 +13,8 @@
   For distributed HelixUI CSS styles, see source/styles/helix-ui.less
 */
 @import (reference) 'vars';
+// import grid mixins from toolkit
+@import (reference) 'modules/grid';
 
 .homepage {
   background-image: linear-gradient(0deg, @cyan-100, @gray-0 20%);
@@ -90,6 +92,19 @@ hx-status {
       border-color: @green-900;
       color: @gray-0;
     }
+  }
+}
+
+.metadata {
+  background-color: @cyan-50;
+  border: 1px solid @cyan-100;
+  box-shadow: inset 0.5rem 0 0 0 @cyan-100;
+
+  hx-dt {
+    #grid.span(3);
+  }
+  hx-dd {
+    #grid.span(9);
   }
 }
 

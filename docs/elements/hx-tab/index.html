@@ -9,7 +9,25 @@ also:
 ---
 {% extends 'element.njk' %}
 {% block content %}
-  <!-- TBD -->
+  <section>
+    <p>
+      The custom <code>&lt;hx-tab&gt;</code> element labels a companion
+      <a href="elements/hx-tabpanel">&lt;hx-tabpanel&gt;</a> element.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>
+          an <a href="elements/hx-tablist">&lt;hx-tablist&gt;</a> element
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>Any</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
 {% endblock %}
 
 {% block attributes %}

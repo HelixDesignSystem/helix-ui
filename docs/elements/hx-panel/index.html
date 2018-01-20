@@ -10,28 +10,26 @@ also:
 {% block content %}
   <section>
     <p>
-      A panel is a utility for sectioning content vertically into a head,
-      body, and foot. A panel will consist of a head, body, and foot.
+      The custom <code>&lt;hx-panel&gt;</code> element sections content
+      vertically into a head, body, and foot.
     </p>
-    <ul>
-      <li>
-        The <a href="elements/hx-panelhead">&lt;hx-panelhead&gt;</a>
-        element is fixed to the top of the panel.
-        <ul>
-          <li><em>This element is optional.</em></li>
-        </ul>
-      </li>
-      <li>
-        The <a href="elements/hx-panelbody">&lt;hx-panelbody&gt;</a> element
-        fills the space between the head and foot.
-      </li>
-      <li>
-        The <a href="elements/hx-panelfoot">&lt;hx-panelfoot&gt;</a> element is
-        fixed to the bottom of the panel.
-        <ul>
-          <li><em>This element is optional.</em></li>
-        </ul>
-      </li>
-    </ul>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>Any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>
+          In this order:
+          <ol>
+            <li>an optional <a href="elements/hx-panelhead">&lt;hx-panelhead&gt;</a> element</li>
+            <li>an <a href="elements/hx-panelbody">&lt;hx-panelbody&gt;</a> element</li>
+            <li>an optional <a href="elements/hx-panelfoot">&lt;hx-panelfoot&gt;</a> element</li>
+          </ol>
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
   </section>
 {% endblock %}

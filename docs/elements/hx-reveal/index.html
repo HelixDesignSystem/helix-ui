@@ -3,10 +3,24 @@ title: <hx-reveal>
 ---
 {% extends 'element.njk' %}
 {% block content %}
+  <section>
+    <p>
+      The custom <code>&lt;hx-reveal&gt;</code> element wraps disclosable content
+      to be toggled by a companion
+      <a href="elements/hx-disclosure">&lt;hx-disclosure&gt;</a> element.
+    </p>
 
-<section>
-  <p>A reveal is a behavior-only web component that implements almost no styling.</p>
-</section>
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>Any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>Flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
 
 <section>
   <h2 class="hxSectionTitle" id="default-reveal">Default Reveal</h2>

@@ -10,7 +10,20 @@ also:
 {% block content %}
   <section>
     <p>
-      The HTML <code>&lt;hx-dt&gt;</code> element defines a definition term.
+      The custom <code>&lt;hx-dt&gt;</code> element defines a description term.
     </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>
+          an <a href="elements/hx-def">&lt;hx-def&gt;</a> element
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>Flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
   </section>
 {% endblock %}

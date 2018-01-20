@@ -10,7 +10,20 @@ also:
 {% block content %}
   <section>
     <p>
-      The HTML <code>&lt;hx-dl&gt;</code> element defines a description list (a.k.a. "Key/Value List").
+      The custom <code>&lt;hx-dl&gt;</code> element defines a description list.
     </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>Any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>
+          Zero or more <a href="elements/hx-def">&lt;hx-def&gt;</a> elements
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
   </section>
 {% endblock %}

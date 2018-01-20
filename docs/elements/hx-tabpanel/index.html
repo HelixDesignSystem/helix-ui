@@ -9,7 +9,27 @@ also:
 ---
 {% extends 'element.njk' %}
 {% block content %}
-  <!-- TBD -->
+  <section>
+    <p>
+      The custom <code>&lt;hx-tabpanel&gt;</code> element provides automatic
+      scrolling when content is too long to fit within a height-constrained
+      tabset. It is usually accompanied by a companion
+      <a href="elements/hx-tab">&lt;hx-tab&gt;</a> element.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>
+          an <a href="elements/hxtabcontent">&lt;hx-tabcontent&gt;</a> element
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>Flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
 {% endblock %}
 
 {% block attributes %}

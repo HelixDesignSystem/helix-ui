@@ -7,7 +7,29 @@ also:
 ---
 {% extends 'element.njk' %}
 {% block content %}
-  <!-- TBD -->
+  <section>
+    <p>
+      The custom <code>&lt;hx-menu&gt;</code> element defines a list of choices
+      to the user, such as a list of actions or functions.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>Any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>
+          Either of the following:
+          <ul>
+            <li>zero or more <a href="elements/hx-menuitem">&lt;hx-menuitem&gt;</a> elements</li>
+            <li>zero or more <a href="elements/hx-menuitem-group">&lt;hx-menuitem-group&gt;</a> elements</li>
+          </ul>
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
 {% endblock %}
 
 {% block attributes %}

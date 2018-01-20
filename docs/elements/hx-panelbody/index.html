@@ -10,10 +10,21 @@ also:
 {% block content %}
   <section>
     <p>
-       An <code>hx-panelbody</code> fills the space between an optional
-       <a href="elements/hx-panelhead">&lt;hx-panelhead&gt;</a> and an optional
-       <a href="elements/hx-panelfoot">&lt;hx-panelfoot&gt;</a>, scrolling
-       vertically if constrained.
+      The custom <code>&lt;hx-panelbody&gt;</code> element provides automatic
+      scrolling if its contents grow too tall.
     </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>
+          an <a href="elements/hx-panel">&lt;hx-panel&gt;</a> element
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>Flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
   </section>
 {% endblock %}

@@ -10,7 +10,27 @@ also:
 {% block content %}
   <section>
     <p>
-      The HTML <code>&lt;hx-def&gt;</code> element defines a single definition within a description list.
+      The custom <code>&lt;hx-def&gt;</code> element defines a single definition
+      within a description list.
     </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>
+          an <a href="elements/hx-dl">&lt;hx-dl&gt;</a> element
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>
+          One or more of the following:
+          <ul>
+            <li>an <a href="elements/hx-dt">&lt;hx-dt&gt;</a> element</li>
+            <li>an <a href="elements/hx-dd">&lt;hx-dd&gt;</a> element</li>
+          </ul>
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
   </section>
 {% endblock %}
