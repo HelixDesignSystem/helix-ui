@@ -1,5 +1,8 @@
 ---
 title: <hx-reveal>
+also:
+  components/reveals: Reveals
+  elements/hx-disclosure: <hx-disclosure>
 ---
 {% extends 'element.njk' %}
 {% block content %}
@@ -21,48 +24,6 @@ title: <hx-reveal>
       </hx-def>
     </hx-dl>
   </section>
-
-<section>
-  <h2 class="hxSectionTitle" id="default-reveal">Default Reveal</h2>
-  <p>Closed by default</p>
-  <div class="demo">
-    <hx-disclosure class="hxBtn" aria-controls="demo-default-reveal">
-      Click me to show content!
-    </hx-disclosure>
-    <hx-reveal id="demo-default-reveal">
-      <p>You can't see me</p>
-    </hx-reveal>
-  </div>
-  {% code 'html' %}
-    <hx-disclosure class="hxBtn" aria-controls="demo-default-reveal">
-      Click me to show content!
-    </hx-disclosure>
-    <hx-reveal id="demo-default-reveal">
-      <p>You can't see me</p>
-    </hx-reveal>
-  {% endcode %}
-</section>
-
-<section>
-  <h2 class="hxSectionTitle" id="open-reveal">Open Reveal</h2>
-  <p>Add <code>open</code> attribute to set the reveal in an open state</p>
-  <div class="demo">
-    <hx-disclosure class="hxBtn" aria-controls="demo-open-reveal">
-      Click me to hide content!
-    </hx-disclosure>
-    <hx-reveal id="demo-open-reveal" open>
-      <p>You should see me</p>
-    </hx-reveal>
-  </div>
-  {% code 'html' %}
-    <hx-disclosure class="hxBtn" aria-controls="demo-open-reveal">
-      Click me to hide content!
-    </hx-disclosure>
-    <hx-reveal id="demo-open-reveal" open>
-      <p>You should see me</p>
-    </hx-reveal>
-  {% endcode %}
-</section>
 {% endblock %}
 
 {% block attributes %}

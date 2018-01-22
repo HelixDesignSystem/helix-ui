@@ -1,9 +1,10 @@
 'use strict';
 
-import './styleguide/box/box-demo';
+import './components/box/box-demo';
 import './components/panels/panel-demo';
-import './components/tooltip/tooltip-demo';
-import './elements/hx-popover/popover-demo';
+import './components/popovers/popover-demo';
+import './components/status-pills/status-demo';
+import './components/tooltips/tooltip-demo';
 
 (function () {
     let hashAnchors = document.querySelectorAll('[href^="#"]');

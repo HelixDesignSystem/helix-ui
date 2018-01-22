@@ -11,11 +11,8 @@
         label: 'Styleguide',
         path: 'styleguide',
         children: [
-            { label: 'Box', path: 'box' },
-            { label: 'Code', path: 'code' },
             //{ label: 'Colors', path: 'colors' },
-            { label: 'Grid', path: 'grid' },
-            //{ label: 'Iconography', path: 'iconography' },
+            { label: 'Iconography', path: 'iconography' },
             { label: 'Typography', path: 'typography' },
         ]
     },
@@ -32,9 +29,11 @@
         path: 'components',
         children: [
             { label: 'Alerts', path: 'alerts' },
+            { label: 'Box', path: 'box' },
             { label: 'Breadcrumbs', path: 'breadcrumbs' },
             { label: 'Buttons', path: 'buttons' },
-            { label: 'Forms', path: 'forms' },
+            { label: 'Checkboxes', path: 'checkboxes' },
+            { label: 'Grid', path: 'grid' },
             {
                 label: 'Layouts',
                 path: 'layouts',
@@ -47,10 +46,14 @@
             },
             { label: 'Lists', path: 'lists' },
             { label: 'Menus', path: 'menus' },
-            { label: 'Navigation', path: 'navigation' },
             { label: 'Panels', path: 'panels' },
+            { label: 'Popovers', path: 'popovers' },
+            { label: 'Reveals', path: 'reveals' },
+            { label: 'Status Pills', path: 'status-pills' },
             { label: 'Tables', path: 'tables' },
             { label: 'Tabs', path: 'tabs' },
+            { label: 'Text Inputs', path: 'text-inputs' },
+            { label: 'Tooltips', path: 'tooltips' },
         ],
     },
 

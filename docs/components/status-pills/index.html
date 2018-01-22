@@ -1,0 +1,38 @@
+---
+title: Status Pills
+also:
+  elements/hx-status: <hx-status>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section id="vue-statusDemo">
+    <h2 class="hxSectionTitle" id="demo">Demo</h2>
+    <div class="hxRow">
+      <div class="hxCol hxSpan-9-xs">
+        <div class="demo status-demo">
+          <hx-status 
+            v-text="variant.label"
+            v-bind:class="cssClasses">
+          </hx-status>
+        </div>
+        {% code 'html' %}
+          {% raw %}<hx-status class="{{cssClasses}}">...</hx-status>{% endraw %}
+        {% endcode %}
+      </div>
+      <div class="hxCol hxSpan-3-xs">
+        <p>
+        Variant:
+        <select v-model="variant">
+          <option v-for="_variant in variants" :value="_variant">
+            {% raw %}{{ _variant.label }}{% endraw %}
+          </option>
+        </select>
+        </p>
+        <p>
+        Filled: 
+        <input type="checkbox" v-model="isFilled">
+        </p>
+      </div>
+    </div>
+  </section>
+{% endblock %}

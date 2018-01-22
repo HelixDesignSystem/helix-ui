@@ -1,0 +1,89 @@
+---
+title: Text Inputs
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <p>
+      Use the <code>.hxTextCtrl</code> CSS class to apply styles to text-like form controls.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="hxSectionTitle" id="single-line-text">Single-Line Text</h2>
+    <div class="demo">
+      <input
+        class="hxTextCtrl"
+        placeholder="Default Text Input"
+        type="text" />
+      <br />
+
+      <input
+        class="hxTextCtrl"
+        invalid
+        placeholder="Invalid Text Input"
+        type="text" />
+      <br />
+
+      <input
+        class="hxTextCtrl"
+        disabled
+        placeholder="Disabled Text Input"
+        type="text" />
+    </div>
+    {% code 'html' %}
+      <input
+        class="hxTextCtrl"
+        placeholder="Default Text Input"
+        type="text" />
+
+      <input
+        class="hxTextCtrl"
+        invalid
+        placeholder="Invalid Text Input"
+        type="text" />
+
+      <input
+        class="hxTextCtrl"
+        disabled
+        placeholder="Disabled Text Input"
+        type="text" />
+    {% endcode %}
+  </section>
+
+  <section>
+    <h2 class="hxSectionTitle" id="multi-line-text">Multi-line Text</h2>
+    <div class="demo">
+      <textarea
+        class="hxTextCtrl"
+        placeholder="Default Text Area"></textarea>
+      <br />
+
+      <textarea
+        class="hxTextCtrl"
+        invalid
+        placeholder="Invalid Text Area"></textarea>
+      <br />
+
+      <textarea
+        class="hxTextCtrl"
+        disabled
+        placeholder="Disabled Text Area"></textarea>
+    </div>
+    {% code 'html' %}
+      <textarea
+        class="hxTextCtrl"
+        placeholder="Default Text Area"></textarea>
+
+      <textarea
+        class="hxTextCtrl"
+        invalid
+        placeholder="Invalid Text Area"></textarea>
+
+      <textarea
+        class="hxTextCtrl"
+        disabled
+        placeholder="Disabled Text Area"></textarea>
+    {% endcode %}
+  </section>
+{% endblock %}

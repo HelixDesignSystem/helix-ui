@@ -1,0 +1,55 @@
+---
+title: Checkboxes
+also:
+  elements/hx-checkbox: <hx-checkbox>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <h2 class="hxSectionTitle" id="checkbox"> Basic Checkbox</h2>
+    <div class="demo">
+      <hx-checkbox></hx-checkbox>
+    </div>
+    {% code 'html' %}
+      <hx-checkbox></hx-checkbox>
+    {% endcode %}
+  </section>
+
+  <section data-visreg="checkbox-states">
+    <h2 class="hxSectionTitle" id="checkbox-states">Checkbox States</h2>
+    <table class="hxTable">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Unchecked</th>
+          <th>Checked</th>
+          <th>Indeterminate Unchecked</th>
+          <th>Indeterminate Checked</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Default</td>
+          <td><hx-checkbox></hx-checkbox></td>
+          <td><hx-checkbox checked></hx-checkbox></td>
+          <td><hx-checkbox indeterminate></hx-checkbox></td>
+          <td><hx-checkbox checked indeterminate></hx-checkbox></td>
+        </tr>
+        <tr>
+          <td>Invalid</td>
+          <td><hx-checkbox invalid></hx-checkbox></td>
+          <td><hx-checkbox invalid checked></hx-checkbox></td>
+          <td><hx-checkbox invalid indeterminate></hx-checkbox></td>
+          <td><hx-checkbox invalid checked indeterminate></hx-checkbox></td>
+        </tr>
+        <tr>
+          <td>Disabled</td>
+          <td><hx-checkbox disabled></hx-checkbox></td>
+          <td><hx-checkbox disabled checked></hx-checkbox></td>
+          <td><hx-checkbox disabled indeterminate></hx-checkbox></td>
+          <td><hx-checkbox disabled checked indeterminate></hx-checkbox></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+{% endblock %}
