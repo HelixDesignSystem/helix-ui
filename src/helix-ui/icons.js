@@ -39,6 +39,7 @@ import _lock from './icons/lock.svg';
 import _minus from './icons/minus.svg';
 import _minusCircle from './icons/minus-circle.svg';
 import _monitoring from './icons/monitoring.svg';
+import _payment from './icons/payment.svg';
 import _pencil from './icons/pencil.svg';
 import _phone from './icons/phone.svg';
 import _plus from './icons/plus.svg';
@@ -50,6 +51,8 @@ import _sortDown from './icons/sort-down.svg';
 import _sortUp from './icons/sort-up.svg';
 import _support from './icons/support.svg';
 import _tag from './icons/tag.svg';
+import _technicalChange from './icons/technical-change.svg';
+import _technicalIncident from './icons/technical-incident.svg';
 import _ticketing from './icons/ticketing.svg';
 import _times from './icons/times.svg';
 import _timesCircle from './icons/times-circle.svg';
@@ -98,6 +101,7 @@ export default {
     'minus': _minus,
     'minus-circle': _minusCircle,
     'monitoring': _monitoring,
+    'payment': _payment,
     'pencil': _pencil,
     'phone': _phone,
     'plus': _plus,
@@ -109,6 +113,8 @@ export default {
     'sort-up': _sortUp,
     'support': _support,
     'tag': _tag,
+    'technical-change': _technicalChange,
+    'technical-incident': _technicalIncident,
     'ticketing': _ticketing,
     'times': _times,
     'times-circle': _timesCircle,
