@@ -59,7 +59,11 @@
         path: 'elements',
         children: [
             { label: '<hx-checkbox>', path: 'hx-checkbox' },
+            { label: '<hx-dd>', path: 'hx-dd' },
+            { label: '<hx-def>', path: 'hx-def' },
             { label: '<hx-disclosure>', path: 'hx-disclosure' },
+            { label: '<hx-dl>', path: 'hx-dl' },
+            { label: '<hx-dt>', path: 'hx-dt' },
             { label: '<hx-icon>', path: 'hx-icon' },
             { label: '<hx-menu>', path: 'hx-menu ' },
             { label: '<hx-menuitem>', path: 'hx-menuitem' },

@@ -3,10 +3,24 @@ title: <hx-disclosure>
 ---
 {% extends 'element.njk' %}
 {% block content %}
+  <section>
+    <p>
+      The custom <code>&lt;hx-disclosure&gt;</code> element provides behavior
+      required to toggle content visibility of a companion
+      <a href="elements/hx-reveal">&lt;hx-reveal&gt;</a> element.
+    </p>
 
-<section>
-  <p>When activated, a disclosure toggles the visibility of a target element.</p>
-</section>
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
 
 <section>
   <div class="demo">
@@ -37,35 +51,31 @@ title: <hx-disclosure>
     </li>
   </ol>
 </section>
+{% endblock %}
 
-<section>
-  <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+{% block attributes %}
   <dl>
     <dt>aria-controls</dt>
     <dd>
       The ID of a target element to associate behavior.
       Required to wire up display functionality between elements.
     </dd>
-  </dl>
-  <dl>
+
     <dt>aria-expanded*</dt>
     <dd>
       Automatically initialized to the same state as the target element.
       When attribute is updated, target element is updated as well.
     </dd>
-  </dl>
-  <dl>
+
     <dt>role*</dt>
     <dd>Automatically set to "button", unless explicitly defined in markup.</dd>
-  </dl>
-  <dl>
+
     <dt>tabindex*</dt>
     <dd>Automatically set to "0", unless explicitly defined in markup.</dd>
   </dl>
-</section>
+{% endblock %}
 
-<section>
-  <h2 class="hxSectionTitle" id="properties">Properties</h2>
+{% block properties %}
   <dl>
     <dt>expanded <small>(Boolean)</small></dt>
     <dd>
@@ -76,5 +86,4 @@ title: <hx-disclosure>
       </ul>
     </dd>
   </dl>
-</section>
 {% endblock %}

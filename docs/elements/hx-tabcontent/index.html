@@ -1,18 +1,42 @@
 ---
 title: <hx-tabcontent>
+also:
+  components/tabs: Tabs
+  elements/hx-tab: <hx-tab>
+  elements/hx-tablist: <hx-tablist>
+  elements/hx-tabpanel: <hx-tabpanel>
+  elements/hx-tabset: <hx-tabset>
 ---
 {% extends 'element.njk' %}
 {% block content %}
+  <section>
+    <p>
+      The custom <code>&lt;hx-tabcontent&gt;</code> element arranges tab panels
+      within a tabset.
+    </p>
 
-<section>
-  <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>
+          an <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a> element
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>
+          zero or more <a href="elements/hx-tabpanel">&lt;hx-tabpanel&gt;</a> elements
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
   <dl>
-    <dt>
-      role
-    </dt>
+    <dt>role</dt>
     <dd>
       Automatically set to <code>presentation</code>, if not explicitly defined in markup.
     </dd>
   </dl>
-</section>
 {% endblock %}

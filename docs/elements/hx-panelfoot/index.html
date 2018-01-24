@@ -1,11 +1,30 @@
 ---
 title: <hx-panelfoot>
+also:
+  components/panels: Panels
+  elements/hx-panel: <hx-panel>
+  elements/hx-panelbody: <hx-panelbody>
+  elements/hx-panelhead: <hx-panelhead>
 ---
 {% extends 'element.njk' %}
 {% block content %}
   <section>
     <p>
-      An <code>hx-panelfoot</code> is fixed to the bottom of an <a href="elements/hx-panel">&lt;hx-panel&gt;</a>.
+      The custom <code>hx-panelfoot</code> element aligns content to the
+      bottom of a panel.
     </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>
+          an <a href="elements/hx-panel">&lt;hx-panel&gt;</a> element
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
   </section>
 {% endblock %}

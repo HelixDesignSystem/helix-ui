@@ -1,0 +1,8 @@
+<section>
+  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
+  <ul>
+    {% for href,label in page.also %}
+      <li><a href="{{href}}">{{label}}</a></li>
+    {% endfor %}
+  </ul>
+</section>

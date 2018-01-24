@@ -3,6 +3,23 @@ title: <hx-popover>
 ---
 {% extends 'element.njk' %}
 {% block content %}
+  <section>
+    <p>
+      The custom <code>&lt;hx-popover&gt;</code> element defines a section of
+      floating content to appear nearby other elements.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
 
 <section id="vue-popoverDemo">
   <p>
@@ -64,24 +81,21 @@ title: <hx-popover>
     {% endfor %}
   </div>
 </section>
+{% endblock %}
 
-<section>
-  <h2 class="hxSectionTitle" id="html-attributes">Attributes</h2>
+{% block attributes %}
   <dl>
     <dt>open</dt>
     <dd>Opens the popover</dd>
   </dl>
-</section>
+{% endblock %}
 
-<section>
-  <h2 class="hxSectionTitle" id="properties">Properties</h2>
+{% block properties %}
   <dl>
     <dt>open <small>(Boolean [false])</small></dt>
     <dd>Determines if the popover is open.</dd>
-  </dl>
-  <dl>
+
     <dt>position <small>(String [bottom-right])</small></dt>
     <dd>Determines the position of the popover.</dd>
   </dl>
-</section>
 {% endblock %}

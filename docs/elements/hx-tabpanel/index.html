@@ -1,48 +1,60 @@
 ---
 title: <hx-tabpanel>
+also:
+  components/tabs: Tabs
+  elements/hx-tab: <hx-tab>
+  elements/hx-tabcontent: <hx-tabcontent>
+  elements/hx-tablist: <hx-tablist>
+  elements/hx-tabset: <hx-tabset>
 ---
 {% extends 'element.njk' %}
 {% block content %}
+  <section>
+    <p>
+      The custom <code>&lt;hx-tabpanel&gt;</code> element provides automatic
+      scrolling when content is too long to fit within a height-constrained
+      tabset. It is usually accompanied by a companion
+      <a href="elements/hx-tab">&lt;hx-tab&gt;</a> element.
+    </p>
 
-<section>
-  <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>
+          an <a href="elements/hx-tabcontent">&lt;hx-tabcontent&gt;</a> element
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
   <dl>
-    <dt>
-      aria-expanded <small>{String="top"}</small>
-    </dt>
+    <dt>aria-expanded <small>{String="top"}</small></dt>
     <dd>
       Automatically set as the <code>open</code> attribute/property changes.
     </dd>
-  </dl>
 
-  <dl>
-    <dt>
-      id
-    </dt>
+    <dt>id</dt>
     <dd>
       Used by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a> to
       wire up a tab to its tabpanel using the <code>aria-controls</code> and
       <code>aria-labelledby</code> attributes. If you do not define an
       <code>id</code> attribute, one will be automatically generated.
     </dd>
-  </dl>
 
-  <dl>
-    <dt>
-      open
-    </dt>
+    <dt>open</dt>
     <dd>
       When present, contents are visible.
     </dd>
-  </dl>
 
-  <dl>
-    <dt>
-      role
-    </dt>
+    <dt>role</dt>
     <dd>
       Automatically set to <code>tabpanel</code>, if not explicitly defined in markup.
     </dd>
   </dl>
-</section>
 {% endblock %}

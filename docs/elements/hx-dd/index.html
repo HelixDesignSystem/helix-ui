@@ -1,24 +1,23 @@
 ---
-title: <hx-panelhead>
+title: <hx-dd>
 also:
-  components/panels: Panels
-  elements/hx-panel: <hx-panel>
-  elements/hx-panelbody: <hx-panelbody>
-  elements/hx-panelfoot: <hx-panelfoot>
+  components/lists: Lists
+  elements/hx-def: <hx-def>
+  elements/hx-dl: <hx-dl>
+  elements/hx-dt: <hx-dt>
 ---
 {% extends 'element.njk' %}
 {% block content %}
   <section>
     <p>
-      The custom <code>hx-panelhead</code> element aligns content to the
-      top of a panel.
+      The custom <code>&lt;hx-dd&gt;</code> element defines a definition description.
     </p>
 
     <hx-dl class="hxBox-md metadata">
       <hx-def>
         <hx-dt>Permitted Parents</hx-dt>
         <hx-dd>
-          an <a href="elements/hx-panel">&lt;hx-panel&gt;</a> element
+          an <a href="elements/hx-def">&lt;hx-def&gt;</a> element
         </hx-dd>
       </hx-def>
       <hx-def>

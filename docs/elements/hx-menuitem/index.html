@@ -1,12 +1,33 @@
 ---
 title: <hx-menuitem>
+also:
+  components/menus: Menus
+  elements/hx-menu: <hx-menu>
+  elements/hx-menuitem-group: <hx-menuitem-group>
 ---
 {% extends 'element.njk' %}
 {% block content %}
+  <section>
+    <p>
+      The custom <code>&lt;hx-menuitem&gt;</code> element represents an action
+      or function that a user can initiate.
+    </p>
 
-<section>
-  <p>Individual items within an <a href="elements/hx-menu">&lt;hx-menu&gt;</a></p>
-  <p></p>
-</section>
-
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>
+          either of the following:
+          <ul>
+            <li>an <a href="elements/hx-menu">&lt;hx-menu&gt;</a> element</li>
+            <li>an <a href="elements/hx-menuitem-group">&lt;hx-menuitem-group&gt;</a> element</li>
+          </ul>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
 {% endblock %}

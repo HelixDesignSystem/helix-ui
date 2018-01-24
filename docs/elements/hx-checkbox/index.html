@@ -3,7 +3,23 @@ title: <hx-checkbox>
 ---
 {% extends 'element.njk' %}
 {% block content %}
-<!-- explanation goes here -->
+<section>
+  <p>
+    The custom <code>&lt;hx-checkbox&gt;</code> element renders an interactive
+    checkbox control for use within forms.
+  </p>
+
+  <hx-dl class="hxBox-md metadata">
+    <hx-def>
+      <hx-dt>Permitted Parents</hx-dt>
+      <hx-dd>any</hx-dd>
+    </hx-def>
+    <hx-def>
+      <hx-dt>Permitted Children</hx-dt>
+      <hx-dd>none (content will be removed upon element upgrade)</hx-dd>
+    </hx-def>
+  </hx-dl>
+</section>
 
 <section>
   <h2 class="hxSectionTitle" id="checkbox">Checkbox</h2>
@@ -97,9 +113,9 @@ title: <hx-checkbox>
     </tbody>
   </table>
 </section>
+{% endblock %}
 
-<section>
-  <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+{% block attributes %}
   <dl>
     <dt>checked</dt>
     <dd>Checks the checkbox</dd>
@@ -110,10 +126,9 @@ title: <hx-checkbox>
     <dt>disabled</dt>
     <dd>Disables the checkbox</dd>
   </dl>
-</section>
+{% endblock %}
 
-<section>
-  <h2 class="hxSectionTitle" id="properties">Properties</h2>
+{% block properties %}
   <dl>
     <dt>checked <small>(Boolean [false])</small></dt>
     <dd>Determines if checkbox is checked.</dd>
@@ -124,5 +139,4 @@ title: <hx-checkbox>
     <dt>indeterminate <small>(Boolean [false])</small></dt>
     <dd>Determines if checkbox is indeterminate.</dd>
   </dl>
-</section>
 {% endblock %}
