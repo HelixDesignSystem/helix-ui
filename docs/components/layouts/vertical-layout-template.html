@@ -10,12 +10,12 @@
   <link rel="shortcut icon" href="images/favicon.png" />
 
   <!-- Helix Styles -->
-  <!-- CHANGE ME: point to HelixUI styles -->
-  <link rel="stylesheet" href="dist/helix-ui.css" />
-  <!-- CHANGE ME: point to your application styles -->
-  <link rel="stylesheet" href="docs.css" />
+  <!-- FIXME: point to HelixUI styles in node_modules/helix-ui -->
+  <link rel="stylesheet" href="dist/styles/helix-ui.min.css" />
 
-  <!-- Polyfill Loader -->
+  <!-- FIXME: Add your application styles here! -->
+
+  <!-- FIXME: point to loader in node_modules/@webcomponents/webcomponentsjs -->
   <script src="{{data.url.cdn}}/{{data.cdn.js.polyfillLoader}}"></script>
 </head>
 <body class="hxVertical" id="top">
@@ -95,14 +95,14 @@
         elAdapter.parentElement.removeChild(elAdapter);
       }
     </script>
+    <!-- FIXME: point to adapter in node_modules/@webcomponents/webcomponentsjs -->
     <script src="{{data.url.cdn}}/{{data.cdn.js.es5adapter}}"></script>
   </span>
-  <!-- HelixUI Behavior -->
-  <script src="dist/helix-ui.browser.min.js"></script>
+  <!-- FIXME: point to HelixUI behavior in node_modules/helix-ui -->
+  <script src="dist/scripts/helix-ui.browser.min.js"></script>
 
   <a id="bottom"></a>
 
-  <!-- CHANGE ME: point to your application logic -->
-  <script src="docs.js"></script>
+  <!-- FIXME: Add your application logic here! -->
 </body>
 </html>

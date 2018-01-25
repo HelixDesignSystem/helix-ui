@@ -1,23 +1,14 @@
 #!/usr/bin/env node
 'use strict';
 
-const exec = require('child_process').exec;
-
-const _ = require('lodash');
-
-const Build = require('./build');
-const Copy = require('./copy');
 const CONFIG = require('../_config');
-const Clean = require('./clean');
+const _ = require('lodash');
 const browserSync = require('browser-sync').create();
+const exec = require('child_process').exec;
+const { compileScripts, compileStyles } = require('../lib/compile');
+const { copyDist } = require('../lib/copy');
+const { generateAll } = require('../lib/generate');
 
-// Clean out old assets
-Clean.cleanSync();
-
-// Build new assets
-Build.buildSync();
-
-// Start Server
 const serverRoutes = {}
 serverRoutes[CONFIG.site.baseHref] = CONFIG.publicDir;
 
@@ -27,25 +18,54 @@ browserSync.emitter.on('init', () => {
 });
 
 browserSync.init({
-    files: [ // (See 'watchEvents')
+    logLevel: 'debug',
+    open: false,
+    reloadOnRestart: true,
+    reloadDebounce: 250,
+    server: {
+        baseDir: CONFIG.publicDir,
+        routes: serverRoutes
+    },
+    watchEvents: ['change'],
+    files: [
         // Reload browser if any file in public directory changes
+        `${CONFIG.publicDir}/*`,
         `${CONFIG.publicDir}/**/*`,
 
-        // Rebuild if anything changes in source directory
+        // Regenerate docs if anything changes in the docs source
         {
             match: [
+                `${CONFIG.docsDir}/*`,
                 `${CONFIG.docsDir}/**/*`,
-                `${CONFIG.sourceDir}/**/*`
             ],
-            fn: _.debounce(Build.buildSync, 1500),
+            fn: _.debounce(generateAll, 1500),
+        },
+
+        // Recompile toolkit scripts if any JS file changes in source directory
+        {
+            match: [
+                `${CONFIG.sourceDir}/*.js`,
+                `${CONFIG.sourceDir}/**/*.js`,
+            ],
+            fn: _.debounce(compileScripts, 1500),
+        },
+
+        // Recompile toolkit styles if any LESS file changes in source directory
+        {
+            match: [
+                `${CONFIG.sourceDir}/*.less`,
+                `${CONFIG.sourceDir}/**/*.less`,
+            ],
+            fn: _.debounce(compileStyles, 1500),
         },
 
         // Only copy when files change in dist/
         {
             match: [
-                `${CONFIG.root}/dist/**/*`,
+                `${CONFIG.distDir}/*`,
+                `${CONFIG.distDir}/**/*`,
             ],
-            fn: _.debounce(Copy.copySync, 1500),
+            fn: _.debounce(copyDist, 1500),
         },
 
         // Re-transpile test files
@@ -62,13 +82,4 @@ browserSync.init({
             }, 1500),
         },
     ],
-    logLevel: 'debug',
-    open: false,
-    reloadOnRestart: true,
-    reloadDebounce: 250, // prevent calling numerous reloads on forced hexo generate
-    server: {
-        baseDir: CONFIG.publicDir,
-        routes: serverRoutes
-    },
-    watchEvents: ['change']
 });
