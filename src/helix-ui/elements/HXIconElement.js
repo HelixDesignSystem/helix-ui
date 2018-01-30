@@ -28,7 +28,7 @@ export class HXIconElement extends HXElement {
         this._render();
     }
 
-    attributeChangedCallback (attr) {
+    attributeChangedCallback () {
         this._render();
     }
 

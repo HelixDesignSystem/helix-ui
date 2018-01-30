@@ -60,7 +60,7 @@
     "generate": "bin/generate.js",
     "preghpages": "yarn generate",
     "ghpages": "bin/ghpages.js",
-    "lint": "eslint -c .eslintrc.json source #FIXME",
+    "lint": "eslint -c .eslintrc.json src",
     "postinstall": "cd test; yarn install; yarn run webdriver:update; cd -;",
     "postpublish": "yarn ghpages",
     "postversion": "yarn compile",
