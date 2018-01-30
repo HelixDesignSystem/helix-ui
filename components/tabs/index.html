@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Navigation - HelixUI</title>
+  <title>Tabs - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -143,7 +143,7 @@ class="current">
 
 
       
-      <a href="components/navigation" class="current">
+      <a href="components/navigation" >
     Navigation
   </a>
 
@@ -161,7 +161,7 @@ class="current">
 
 
       
-      <a href="components/tabs" >
+      <a href="components/tabs" class="current">
     Tabs
   </a>
 
@@ -322,69 +322,111 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Navigation</h1>
+    <h1 class="hxPageTitle">Tabs</h1>
 
-<section>
-  <h2 class="hxSectionTitle" id="app-nav">Application Navigation</h2>
-
-  <div class="demo nav-demo">
-    <nav class="hxNav">
-      <a href="#">Link 1-1</a>
-      <a href="#">Link 1-2</a>
-      <a href="#">Link 1-3</a>
-
-      <hx-disclosure aria-controls="section-1">
-        L1 Section
-        <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-      </hx-disclosure>
-      <hx-reveal id="section-1" open>
-        <a href="#">Link 2-1</a>
-        <a href="#">Link 2-2</a>
-        <a href="#">Link 2-3</a>
-
-        <hx-disclosure aria-controls="section-1-2">
-          L2 Section
-          <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-        </hx-disclosure>
-        <hx-reveal id="section-1-2" open>
-          <a href="#">Link 3-1</a>
-          <a href="#">Link 3-2</a>
-          <a href="#">Link 3-3</a>
-        </hx-reveal>
-      </hx-reveal>
-    </nav>
-  </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxNav"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1"</span>&gt;</span>
-    L1 Section
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1"</span> <span class="hljs-attr">open</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1-2"</span>&gt;</span>
-      L2 Section
-      <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1-2"</span> <span class="hljs-attr">open</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
-</code></pre></section>
+  <section>
+    <h2 class="hxSectionTitle" id="basic-tabs">Basic Tabs</h2>
+    <div class="demo tabs-demo">
+      <hx-tabset>
+        <hx-tablist>
+          <hx-tab>Cupcake Ipsum</hx-tab>
+          <hx-tab>Biscuit Marshmallow</hx-tab>
+          <hx-tab>Caramels Marzipan</hx-tab>
+        </hx-tablist>
+        <hx-tabcontent>
+          <hx-tabpanel>
+            <h3 class="hxSubSectionTitle">First Panel</h3>
+            <div class="hxRow">
+              <div class="hxCol hxSpan-6">
+                <p>
+                  Cupcake ipsum dolor sit amet bonbon topping caramels. Sesame snaps
+                  gummi bears liquorice cookie chupa chups fruitcake croissant
+                  chocolate topping. Brownie biscuit wafer marshmallow liquorice
+                  soufflé powder jelly.
+                </p>
+              </div>
+              <div class="hxCol hxSpan-6">
+                <p>
+                  Sweet roll sesame snaps danish I love jelly wafer dragée soufflé
+                  cake. Cookie chocolate cake gingerbread powder icing. Ice cream
+                  cotton candy gummi bears oat cake sweet pastry.
+                </p>
+              </div>
+            </div>
+          </hx-tabpanel>
+          <hx-tabpanel>
+            <h3 class="hxSubSectionTitle">Second Panel</h3>
+            <p>
+              Cupcake ipsum dolor sit. Amet danish jelly gummi bears. Danish
+              caramels danish candy canes macaroon donut icing. Cupcake tiramisu
+              soufflé fruitcake. Caramels muffin tootsie roll lemon drops bear claw
+              cotton candy tootsie roll tootsie roll chupa chups. Pudding fruitcake
+              ice cream marshmallow. Candy sugar plum chupa chups cotton candy
+              gingerbread pastry gingerbread marshmallow wafer. Jelly-o bonbon
+              dessert donut.
+            </p>
+            <p><a href="#">Link inside the panel</a></p>
+            <p>
+              Sweet toffee pie icing croissant halvah chupa chups. Cotton candy pie
+              sesame snaps. Muffin sesame snaps cake toffee liquorice apple pie
+              apple pie chupa chups. Lemon drops caramels sugar plum. Sweet oat cake
+              chocolate pudding cake toffee chocolate topping. Caramels caramels
+              candy muffin topping toffee. Topping candy canes sesame snaps carrot
+              cake dragée wafer jelly beans. Macaroon gummies tootsie roll cookie
+              chocolate cake chocolate cake dragée cupcake. Wafer bonbon sweet roll
+              sweet roll.
+            </p>
+            <p>
+              Sugar plum bonbon tiramisu tart candy canes sesame snaps tiramisu.
+              Soufflé chocolate bar macaroon sweet bear claw dragée muffin dragée
+              jelly. Apple pie gummies cake tiramisu dessert ice cream sweet roll.
+              Pie fruitcake dragée. Gummi bears pudding muffin tart. Cake liquorice
+              cheesecake donut. Cake chocolate marshmallow marshmallow dragée cupcake
+              chocolate cake chocolate. Candy canes chocolate sweet roll apple pie
+              icing danish chocolate bar. Jujubes toffee gummies powder cupcake
+              topping chocolate. Cake sugar plum fruitcake brownie.
+            </p>
+          </hx-tabpanel>
+          <hx-tabpanel>
+            <h3 class="hxSubSectionTitle">Third Panel</h3>
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+              <img src="http://via.placeholder.com/200x150" />
+          </hx-tabpanel>
+        </hx-tabcontent>
+      </hx-tabset>
+    </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-tabset</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-tablist</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tab</span>&gt;</span>First<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tab</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tab</span>&gt;</span>Second<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tab</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tab</span>&gt;</span>Third<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tab</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-tablist</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-tabcontent</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tabpanel</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tabpanel</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tabpanel</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tabpanel</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tabpanel</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tabpanel</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-tabcontent</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tabset</span>&gt;</span>
+</code></pre>  </section>
 
 <section>
   <h2 class="hxSectionTitle" id="see-also">See Also</h2>
   <ul>
-      <li><a href="components/layouts">Layouts</a></li>
+      <li><a href="elements/hx-tab">&lt;hx-tab&gt;</a></li>
+      <li><a href="elements/hx-tabcontent">&lt;hx-tabcontent&gt;</a></li>
+      <li><a href="elements/hx-tablist">&lt;hx-tablist&gt;</a></li>
+      <li><a href="elements/hx-tabpanel">&lt;hx-tabpanel&gt;</a></li>
+      <li><a href="elements/hx-tabset">&lt;hx-tabset&gt;</a></li>
   </ul>
 </section>
   </main>
@@ -392,7 +434,7 @@ class="current">
     <h1 class="hxContainerTitle">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#app-nav">Application Navigation</a>
+            <a href="#basic-tabs">Basic Tabs</a>
         
         <a href="#see-also">See Also</a>
       <hr />

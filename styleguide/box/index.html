@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Navigation - HelixUI</title>
+  <title>Box - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -58,13 +58,13 @@
 
   <hx-disclosure
     aria-controls="nav-Styleguide"
->
+class="current">
     Styleguide
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Styleguide" >
+  <hx-reveal id="nav-Styleguide" open>
       
-      <a href="styleguide/box" >
+      <a href="styleguide/box" class="current">
     Box
   </a>
 
@@ -95,11 +95,11 @@
 
   <hx-disclosure
     aria-controls="nav-Components"
-class="current">
+>
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" open>
+  <hx-reveal id="nav-Components" >
       
       <a href="components/alerts" >
     Alerts
@@ -143,7 +143,7 @@ class="current">
 
 
       
-      <a href="components/navigation" class="current">
+      <a href="components/navigation" >
     Navigation
   </a>
 
@@ -322,82 +322,119 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Navigation</h1>
+    <h1 class="hxPageTitle">Box</h1>
 
-<section>
-  <h2 class="hxSectionTitle" id="app-nav">Application Navigation</h2>
+  <section>
+    <p>
+      The box component provides a set of CSS classes to apply
+      padding evenly around the inside of an element.
+    </p>
+  </section>
 
-  <div class="demo nav-demo">
-    <nav class="hxNav">
-      <a href="#">Link 1-1</a>
-      <a href="#">Link 1-2</a>
-      <a href="#">Link 1-3</a>
+  <section id="vue-boxDemo">
+    <h2 class="hxSectionTitle" id="demo">Demo</h2>
+    <div class="hxRow">
+      <div class="hxCol hxSpan-12-xs hxSpan-4-md hxOrder-2-md">
+        <p>
+          Size:<br />
+          <select v-model="size">
+            <option v-for="_size in sizes" :value="_size">
+{{ _size.label }}
+            </option>
+          </select>
+        </p>
+        <p>
+          <code>
+&lt;div class="{{size.value}}"&gt;
+          </code>
+        </p>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-8-md hxOrder-1-md">
+        <div class="demo box-demo">
+          <div :class="size.value">
+            <p>
+              There was a young lady of Wight,<br />
+              Who traveled much faster than light,<br />
+              She departed one day,<br />
+              In a relative way,<br />
+              And arrived on the previous night.
+            </p>
+          </div>
+        </div>
+        <span class="hxCaption">
+          *Visual styling added for demonstration purpopses.
+        </span>
+      </div>
+    </div>
+  </section>
 
-      <hx-disclosure aria-controls="section-1">
-        L1 Section
-        <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-      </hx-disclosure>
-      <hx-reveal id="section-1" open>
-        <a href="#">Link 2-1</a>
-        <a href="#">Link 2-2</a>
-        <a href="#">Link 2-3</a>
-
-        <hx-disclosure aria-controls="section-1-2">
-          L2 Section
-          <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-        </hx-disclosure>
-        <hx-reveal id="section-1-2" open>
-          <a href="#">Link 3-1</a>
-          <a href="#">Link 3-2</a>
-          <a href="#">Link 3-3</a>
-        </hx-reveal>
-      </hx-reveal>
-    </nav>
-  </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxNav"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1"</span>&gt;</span>
-    L1 Section
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1"</span> <span class="hljs-attr">open</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1-2"</span>&gt;</span>
-      L2 Section
-      <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1-2"</span> <span class="hljs-attr">open</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
-</code></pre></section>
+  <section>
+    <h2 class="hxSectionTitle" id="sizes">Sizes</h2>
+    <table class="hxTable hxSpan-12-xs hxSpan-8-md">
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>CSS Class</th>
+          <th>REM</th>
+          <th>PX</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">XS</th>
+          <td><code>.hxBox-xs</code></td>
+          <td><code>0.5rem</code></td>
+          <td><code>8px<code></td>
+        </tr>
+        <tr>
+          <th scope="row">SM</th>
+          <td><code>.hxBox-sm</code></td>
+          <td><code>0.75rem<code></td>
+          <td><code>12px<code></td>
+        </tr>
+        <tr>
+          <th scope="row">MD</th>
+          <td><code>.hxBox-md</code></td>
+          <td><code>1.0rem<code></td>
+          <td><code>16px<code></td>
+        </tr>
+        <tr>
+          <th scope="row">LG</th>
+          <td><code>.hxBox-lg</code></td>
+          <td><code>1.25rem<code></td>
+          <td><code>20px<code></td>
+        </tr>
+        <tr>
+          <th scope="row">XL</th>
+          <td><code>.hxBox-xl</code></td>
+          <td><code>1.50rem<code></td>
+          <td><code>24px<code></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
 <section>
   <h2 class="hxSectionTitle" id="see-also">See Also</h2>
   <ul>
       <li><a href="components/layouts">Layouts</a></li>
+      <li><a href="styleguide/grid">Grid</a></li>
   </ul>
 </section>
   </main>
   <aside class="hxSiderail hxBox-md">
-    <h1 class="hxContainerTitle">On this page:</h1>
-    <nav class="article-toc">
-      
-            <a href="#app-nav">Application Navigation</a>
+<h1 class="hxContainerTitle">On this page:</h1>
+<nav class="article-toc">
+  
+            <a href="#demo">Demo</a>
         
-        <a href="#see-also">See Also</a>
-      <hr />
-      <a class="top-link" href="#top">Back to Top</a>
-    </nav>
+
+            <a href="#sizes">Sizes</a>
+        
+    <a href="#see-also">See Also</a>
+  <hr />
+  <a class="top-link" href="#top">Back to Top</a>
+</nav>
   </aside>
   </div>
 

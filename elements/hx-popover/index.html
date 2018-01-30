@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Navigation - HelixUI</title>
+  <title>&lt;hx-popover&gt; - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -95,11 +95,11 @@
 
   <hx-disclosure
     aria-controls="nav-Components"
-class="current">
+>
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" open>
+  <hx-reveal id="nav-Components" >
       
       <a href="components/alerts" >
     Alerts
@@ -143,7 +143,7 @@ class="current">
 
 
       
-      <a href="components/navigation" class="current">
+      <a href="components/navigation" >
     Navigation
   </a>
 
@@ -174,11 +174,11 @@ class="current">
 
   <hx-disclosure
     aria-controls="nav-Custom Elements"
->
+class="current">
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Custom Elements" >
+  <hx-reveal id="nav-Custom Elements" open>
       
       <a href="elements/hx-checkbox" >
     &lt;hx-checkbox&gt;
@@ -264,7 +264,7 @@ class="current">
 
 
       
-      <a href="elements/hx-popover" >
+      <a href="elements/hx-popover" class="current">
     &lt;hx-popover&gt;
   </a>
 
@@ -322,79 +322,149 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Navigation</h1>
+    <h1 class="hxPageTitle">&lt;hx-popover&gt;</h1>
 
-<section>
-  <h2 class="hxSectionTitle" id="app-nav">Application Navigation</h2>
+  <section>
+    <p>
+      The custom <code>&lt;hx-popover&gt;</code> element defines a section of
+      floating content to appear nearby other elements.
+    </p>
 
-  <div class="demo nav-demo">
-    <nav class="hxNav">
-      <a href="#">Link 1-1</a>
-      <a href="#">Link 1-2</a>
-      <a href="#">Link 1-3</a>
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
 
-      <hx-disclosure aria-controls="section-1">
-        L1 Section
-        <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-      </hx-disclosure>
-      <hx-reveal id="section-1" open>
-        <a href="#">Link 2-1</a>
-        <a href="#">Link 2-2</a>
-        <a href="#">Link 2-3</a>
+<section id="vue-popoverDemo">
+  <p>
+    Position:
+    <select v-model="position">
+      <option
+        :value="_position"
+        v-for="_position in positions"
+        v-text="_position.label">
+      </option>
+    <select>
+  </p>
+  <div class="demo popover-demo">
+    <button data-popover="myPopover" class="hxBtn">Toggle</button>
 
-        <hx-disclosure aria-controls="section-1-2">
-          L2 Section
-          <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-        </hx-disclosure>
-        <hx-reveal id="section-1-2" open>
-          <a href="#">Link 3-1</a>
-          <a href="#">Link 3-2</a>
-          <a href="#">Link 3-3</a>
-        </hx-reveal>
-      </hx-reveal>
-    </nav>
+    <hx-popover id="myPopover"
+      :position="position.value"
+      v-for="_position in positions"
+      v-if="_position.value === position.value">
+
+      <header slot="header">
+        <h4 class="hxContainerTitle">Popover Header</h4>
+      </header>
+      <p>This is my popover body</p>
+      <footer slot="footer">
+        <button class="hxBtn hxBtn--primary">Submit</button>
+        <button class="hxBtn">Cancel</button>
+      </footer>
+    </hx-popover>
   </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxNav"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">data-popover</span>=<span class="hljs-string">"myPopover"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Toggle<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1"</span>&gt;</span>
-    L1 Section
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1"</span> <span class="hljs-attr">open</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1-2"</span>&gt;</span>
-      L2 Section
-      <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1-2"</span> <span class="hljs-attr">open</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-popover</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myPopover"</span> <span class="hljs-attr">position</span>=<span class="hljs-string">"bottom-right"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxContainerTitle"</span>&gt;</span>Popover Header<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is my popover body<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">footer</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--primary"</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-popover</span>&gt;</span>
 </code></pre></section>
 
 <section>
-  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
-  <ul>
-      <li><a href="components/layouts">Layouts</a></li>
-  </ul>
+  <h2 class="hxSectionTitle" id="appearance">Appearance</h2>
+  <div class="popover-appearance">
+      <hx-popover position="top">
+        <code>position="top"</code>
+      </hx-popover>
+      <hx-popover position="top-left">
+        <code>position="top-left"</code>
+      </hx-popover>
+      <hx-popover position="top-right">
+        <code>position="top-right"</code>
+      </hx-popover>
+      <hx-popover position="bottom">
+        <code>position="bottom"</code>
+      </hx-popover>
+      <hx-popover position="bottom-left">
+        <code>position="bottom-left"</code>
+      </hx-popover>
+      <hx-popover position="bottom-right">
+        <code>position="bottom-right"</code>
+      </hx-popover>
+      <hx-popover position="right">
+        <code>position="right"</code>
+      </hx-popover>
+      <hx-popover position="right-top">
+        <code>position="right-top"</code>
+      </hx-popover>
+      <hx-popover position="right-bottom">
+        <code>position="right-bottom"</code>
+      </hx-popover>
+      <hx-popover position="left">
+        <code>position="left"</code>
+      </hx-popover>
+      <hx-popover position="left-top">
+        <code>position="left-top"</code>
+      </hx-popover>
+      <hx-popover position="left-bottom">
+        <code>position="left-bottom"</code>
+      </hx-popover>
+  </div>
 </section>
+
+    
+    <section>
+      <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+      <p>
+        Attributes allow you to configure an element in a
+        declarative manner via markup.
+      </p>
+  <dl>
+    <dt>open</dt>
+    <dd>Opens the popover</dd>
+  </dl>
+    </section>
+
+    
+    <section>
+      <h2 class="hxSectionTitle" id="properties">Properties</h2>
+      <p>
+        Properties allow you to configure an element in an
+        imperative manner via JavaScript.
+      </p>
+  <dl>
+    <dt>open <small>(Boolean [false])</small></dt>
+    <dd>Determines if the popover is open.</dd>
+
+    <dt>position <small>(String [bottom-right])</small></dt>
+    <dd>Determines the position of the popover.</dd>
+  </dl>
+    </section>
+
   </main>
   <aside class="hxSiderail hxBox-md">
     <h1 class="hxContainerTitle">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#app-nav">Application Navigation</a>
+            <a href="#appearance">Appearance</a>
         
-        <a href="#see-also">See Also</a>
+      <a href="#attributes">Attributes</a>
+      <a href="#properties">Properties</a>
       <hr />
       <a class="top-link" href="#top">Back to Top</a>
     </nav>

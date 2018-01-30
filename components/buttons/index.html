@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Navigation - HelixUI</title>
+  <title>Buttons - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -113,7 +113,7 @@ class="current">
 
 
       
-      <a href="components/buttons" >
+      <a href="components/buttons" class="current">
     Buttons
   </a>
 
@@ -143,7 +143,7 @@ class="current">
 
 
       
-      <a href="components/navigation" class="current">
+      <a href="components/navigation" >
     Navigation
   </a>
 
@@ -322,79 +322,107 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Navigation</h1>
+    <h1 class="hxPageTitle">Buttons</h1>
+
+<!-- explanation goes here -->
 
 <section>
-  <h2 class="hxSectionTitle" id="app-nav">Application Navigation</h2>
+  <h2 class="hxSectionTitle" id="default-button">Default Button</h2>
 
-  <div class="demo nav-demo">
-    <nav class="hxNav">
-      <a href="#">Link 1-1</a>
-      <a href="#">Link 1-2</a>
-      <a href="#">Link 1-3</a>
+  <!-- explanation goes here -->
 
-      <hx-disclosure aria-controls="section-1">
-        L1 Section
-        <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-      </hx-disclosure>
-      <hx-reveal id="section-1" open>
-        <a href="#">Link 2-1</a>
-        <a href="#">Link 2-2</a>
-        <a href="#">Link 2-3</a>
-
-        <hx-disclosure aria-controls="section-1-2">
-          L2 Section
-          <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-        </hx-disclosure>
-        <hx-reveal id="section-1-2" open>
-          <a href="#">Link 3-1</a>
-          <a href="#">Link 3-2</a>
-          <a href="#">Link 3-3</a>
-        </hx-reveal>
-      </hx-reveal>
-    </nav>
+  <div class="demo">
+    <button class="hxBtn">Default Button</button>
   </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxNav"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1"</span>&gt;</span>
-    L1 Section
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1"</span> <span class="hljs-attr">open</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1-2"</span>&gt;</span>
-      L2 Section
-      <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1-2"</span> <span class="hljs-attr">open</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Default Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 </code></pre></section>
 
 <section>
-  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
-  <ul>
-      <li><a href="components/layouts">Layouts</a></li>
-  </ul>
+  <h2 class="hxSectionTitle" id="primary-button">Primary Button</h2>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <button class="hxBtn hxBtn--primary">Primary Button</button>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--primary"</span>&gt;</span>Primary Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre></section>
+
+<section>
+  <h2 class="hxSectionTitle" id="link-button">Link Button</h2>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <button class="hxBtn hxBtn--link">Link Button</button>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--link"</span>&gt;</span>Link Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre></section>
+
+<section>
+  <h2 class="hxSectionTitle" id="button-sizing">Button Sizing</h2>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <button type="button" class="hxBtn hxBtn--lg">Large Button</button>
+    <button type="button" class="hxBtn">Default Button</button>
+    <button type="button" class="hxBtn hxBtn--sm">Compact Button</button>
+  </div>
+
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--lg"</span>&gt;</span>Large Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Default Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--sm"</span>&gt;</span>Compact Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre></section>
+
+<section data-visreg="button-states">
+  <h2 class="hxSectionTitle" id="button-states">Button States</h2>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>Default</td>
+        <td><button class="hxBtn">Normal</button></td>
+        <td><button class="hxBtn pseudo-hover">Hover</button></td>
+        <td><button class="hxBtn pseudo-active">Pressed</button></td>
+        <td><button class="hxBtn" disabled>Disabled</button></td>
+      </tr>
+      <tr>
+        <td>Primary</td>
+        <td><button class="hxBtn hxBtn--primary">Normal</button></td>
+        <td><button class="hxBtn hxBtn--primary pseudo-hover">Hover</button></td>
+        <td><button class="hxBtn hxBtn--primary pseudo-active">Pressed</button></td>
+        <td><button class="hxBtn hxBtn--primary" disabled>Disabled</button></td>
+      </tr>
+      <tr>
+        <td>Link</td>
+        <td><button class="hxBtn hxBtn--link">Normal</button></td>
+        <td><button class="hxBtn hxBtn--link pseudo-hover">Hover</button></td>
+        <td><button class="hxBtn hxBtn--link pseudo-active">Pressed</button></td>
+        <td><button class="hxBtn hxBtn--link" disabled>Disabled</button></td>
+      </tr>
+    </tbody>
+  </table>
 </section>
+
   </main>
   <aside class="hxSiderail hxBox-md">
     <h1 class="hxContainerTitle">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#app-nav">Application Navigation</a>
+            <a href="#default-button">Default Button</a>
         
-        <a href="#see-also">See Also</a>
+
+            <a href="#primary-button">Primary Button</a>
+        
+
+            <a href="#link-button">Link Button</a>
+        
+
+            <a href="#button-sizing">Button Sizing</a>
+        
+
+            <a href="#button-states">Button States</a>
+        
       <hr />
       <a class="top-link" href="#top">Back to Top</a>
     </nav>

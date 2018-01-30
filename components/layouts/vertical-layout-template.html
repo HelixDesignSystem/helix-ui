@@ -1,36 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"><!-- lang is necessary for screen reader compatibility -->
 <head>
-  <title>HelixUI</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <base href="/helix-ui/">
+  <title>Vertical - App Title</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- CHANGE ME: update or remove -->
+  <base href="/helix-ui/" />
 
-  <link rel="shortcut icon" href="images/favicon.png">
+  <link rel="shortcut icon" href="images/favicon.png" />
 
-  <!-- Bootstrap 3 -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
+  <!-- Helix Styles -->
+  <!-- FIXME: point to HelixUI styles in node_modules/helix-ui -->
+  <link rel="stylesheet" href="dist/styles/helix-ui.min.css" />
 
-  <link rel="stylesheet" href="dist/styles/helix-ui.css">
-  <link rel="stylesheet" href="docs.css">
+  <!-- FIXME: Add your application styles here! -->
 
-  <!-- Polyfill Loader -->
-  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
+  <!-- FIXME: point to loader in node_modules/@webcomponents/webcomponentsjs -->
+  <script src="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/javascript/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
   <header id="head">
-<nav class="global-nav">
-  <a class="brand-logo" href="">
-    <img src="images/helix-logo.svg" alt="Logo" />
-  </a>
-</nav>
+    <!-- Eyebrow Goes Here -->
   </header>
 
   <div id="stage">
     <nav id="nav" class="hxNav">
+      <!-- Left Navigation -->
 
 
 
@@ -95,11 +90,11 @@
 
   <hx-disclosure
     aria-controls="nav-Components"
->
+class="current">
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" >
+  <hx-reveal id="nav-Components" open>
       
       <a href="components/alerts" >
     Alerts
@@ -125,7 +120,7 @@
 
 
       
-      <a href="components/layouts" >
+      <a href="components/layouts" class="current">
     Layouts
   </a>
 
@@ -320,70 +315,86 @@
   </hx-reveal>
 
 
+      <!-- end:Left Navigation -->
     </nav>
-  <main id="content" class="hxBox-md homepage">
-    <section>
-      <h1 class="hxPageTitle">HelixUI</h1>
-      <p>HelixUI is a UI library, created with custom elements to help you develop applications.</p>
-    </section>
-    <section class="hxSpan-12-xs hxSpan-6-md">
-      <h3 class="hxSubSectionTitle">Getting Started</h3>
-      <p>
-        To learn how to get HelixUI into your projects, check out the 
-        <a href="guides/install">install guide</a>.
-      </p>
-    </section>
-    <section class="hxSpan-12-xs hxSpan-6-md">
-      <h3 class="hxSubSectionTitle">Browser Support</h3>
-      <p>
-        HelixUI supports IE11 and all current versions of evergreen browsers
-        (Chrome, Firefox, Safari, and Edge).
-      </p>
-    </section>
-    <section class="hxSpan-12-xs hxSpan-6-md">
-      <h3 class="hxSubSectionTitle">Getting Involved</h3>
-      <p>We welcome issue and code contributions. A contribution guide is coming soon.</p>
-     </section>
-    </section>
-  </main>
+    <main id="content" class="hxBox-md">
+      <nav class="hxBreadcrumb">
+        <a href="#">Home</a>
+        <hx-icon class="delimiter" type="angle-right"></hx-icon>
+        <a href="components/layouts">Layouts</a>
+        <hx-icon class="delimiter" type="angle-right"></hx-icon>
+        <a href="#">Vertical Layout</a>
+      </nav>
+
+      <h1 class="hxPageTitle">Page Content</h1>
+
+      <div class="hxAlert">
+        <div class="hxAlert__icon">
+          <hx-icon type="info-circle"></hx-icon>
+        </div>
+        <div class="hxAlert__text">
+          Copy the source of this page to use as a template for your application.
+        </div>
+      </div>
+
+      <ul>
+        <li>
+          Footer will be pushed off viewport by lengthy content.
+        </li>
+        <li>
+          All content scrolls vertically as a <i>single document</i>.
+        </li>
+        <li>
+          <b>No padding, by default.</b>
+          Add Box styling to apply padding.
+        </li>
+      </ul>
+    </main>
+    <aside class="hxSiderail hxBox-md">
+      <p>Side Rail</p>
+      <ul>
+        <li>
+          A side rail may appear before (left rail) or
+          after (right rail) the main content.
+        </li>
+        <li>
+          <b>A side rail is optional</b>. If you do not include a
+          side rail, the main content will grow to fill space.
+        <li>
+          <b>No padding, by default.</b>
+          Add Box styles to apply padding.
+        </li>
+      </ul>
+    </aside>
   </div>
 
-  <footer id="foot" class="hxRow hxGutterless">
-<div class="hxCol">
+  <footer id="foot">
 &copy; 2018 Rackspace US, Inc.
 <nav>
   <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
   <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
 </nav>
-</div>
-<div class="hxCol text-right">
-    <small>
-      Last Updated:
-      2018-01-27
-    </small>
-</div>
   </footer>
 
-<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+  <!-- Browser polyfills (mainly for IE) -->
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 
-<!-- intelligently load ES5 Adapter (if needed) -->
-<span id="ce-es5-adapter">
-  <script>
-    if (!window.customElements) {
-      var elAdapter = document.querySelector('#ce-es5-adapter');
-      elAdapter.parentElement.removeChild(elAdapter);
-    }
-  </script>
-  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
-</span>
+  <!-- intelligently load ES5 Adapter (if needed) -->
+  <span id="ce-es5-adapter">
+    <script>
+      if (!window.customElements) {
+        var elAdapter = document.querySelector('#ce-es5-adapter');
+        elAdapter.parentElement.removeChild(elAdapter);
+      }
+    </script>
+    <!-- FIXME: point to adapter in node_modules/@webcomponents/webcomponentsjs -->
+    <script src="https://2d2bf231b82dfe76fe36-fa12562cfe810d69bedcc36a0ac289ef.ssl.cf1.rackcdn.com/javascript/custom-elements-es5-adapter.js"></script>
+  </span>
+  <!-- FIXME: point to HelixUI behavior in node_modules/helix-ui -->
+  <script src="dist/scripts/helix-ui.browser.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+  <a id="bottom"></a>
 
-<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="dist/scripts/helix-ui.browser.js"></script>
-<script src="docs.js"></script>
+  <!-- FIXME: Add your application logic here! -->
 </body>
 </html>

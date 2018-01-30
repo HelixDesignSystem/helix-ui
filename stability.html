@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Navigation - HelixUI</title>
+  <title>Asset Stability - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -95,11 +95,11 @@
 
   <hx-disclosure
     aria-controls="nav-Components"
-class="current">
+>
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" open>
+  <hx-reveal id="nav-Components" >
       
       <a href="components/alerts" >
     Alerts
@@ -143,7 +143,7 @@ class="current">
 
 
       
-      <a href="components/navigation" class="current">
+      <a href="components/navigation" >
     Navigation
   </a>
 
@@ -322,79 +322,168 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Navigation</h1>
+    <h1 class="hxPageTitle">Asset Stability</h1>
+
 
 <section>
-  <h2 class="hxSectionTitle" id="app-nav">Application Navigation</h2>
+  <h2 class="hxSectionTitle" id="legend">Legend</h2>
 
-  <div class="demo nav-demo">
-    <nav class="hxNav">
-      <a href="#">Link 1-1</a>
-      <a href="#">Link 1-2</a>
-      <a href="#">Link 1-3</a>
-
-      <hx-disclosure aria-controls="section-1">
-        L1 Section
-        <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-      </hx-disclosure>
-      <hx-reveal id="section-1" open>
-        <a href="#">Link 2-1</a>
-        <a href="#">Link 2-2</a>
-        <a href="#">Link 2-3</a>
-
-        <hx-disclosure aria-controls="section-1-2">
-          L2 Section
-          <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-        </hx-disclosure>
-        <hx-reveal id="section-1-2" open>
-          <a href="#">Link 3-1</a>
-          <a href="#">Link 3-2</a>
-          <a href="#">Link 3-3</a>
-        </hx-reveal>
-      </hx-reveal>
-    </nav>
+  <div class="demo">
+    <hx-dl>
+      <hx-def>
+        <hx-dt>
+          <hx-status class="-hxFill -hxDeprecated">Deprecated</hx-status>
+        </hx-dt>
+        <hx-dd>
+          High Risk, Stop using, Will be removed
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>
+          <hx-status class="-hxFill -hxInProgress">In Progress</hx-status><br/>
+        </hx-dt>
+        <hx-dd>
+          Medium Risk, In Flux, Use with caution
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>
+          <hx-status class="-hxFill -hxStable">Stable</hx-status>
+        </hx-dt>
+        <hx-dd>
+          Low Risk, Good to Go, Production Ready
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
   </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxNav"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1"</span>&gt;</span>
-    L1 Section
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1"</span> <span class="hljs-attr">open</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1-2"</span>&gt;</span>
-      L2 Section
-      <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1-2"</span> <span class="hljs-attr">open</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
-</code></pre></section>
+</section>
 
 <section>
-  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
-  <ul>
-      <li><a href="components/layouts">Layouts</a></li>
-  </ul>
+  <hx-dl>
+      <hx-def>
+        <hx-dt>Alert</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Box</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Breadcrumb</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxStable">Stable</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Button</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Checkbox</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Description List</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Disclosure</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Grid</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxStable">Stable</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Icon</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Navigation</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Panel</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxStable">Stable</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Popover</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Reveal</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Status Label</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Table</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Tabset</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Text Input</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Toolitp</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Typography</hx-dt>
+        <hx-dd>
+            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+        </hx-dd>
+      </hx-def>
+  </hx-dl>
 </section>
+
   </main>
   <aside class="hxSiderail hxBox-md">
     <h1 class="hxContainerTitle">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#app-nav">Application Navigation</a>
+            <a href="#legend">Legend</a>
         
-        <a href="#see-also">See Also</a>
       <hr />
       <a class="top-link" href="#top">Back to Top</a>
     </nav>
@@ -412,7 +501,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-01-29
+      2017-12-15
     </small>
 </div>
   </footer>

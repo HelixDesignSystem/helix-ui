@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Typography - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
+
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  <!-- Bootstrap 3 -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  <link rel="stylesheet" href="docs.css">
+
+  <!-- Polyfill Loader -->
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
+</head>
+<body class="hxVertical" id="top">
+  <header id="head">
+<nav class="global-nav">
+  <a class="brand-logo" href="">
+    <img src="images/helix-logo.svg" alt="Logo" />
+  </a>
+</nav>
+  </header>
+
+  <div id="stage">
+    <nav id="nav" class="hxNav">
+
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Guides"
+>
+    Guides
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Guides" >
+      
+      <a href="guides/install" >
+    Installing
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Styleguide"
+class="current">
+    Styleguide
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Styleguide" open>
+      
+      <a href="styleguide/box" >
+    Box
+  </a>
+
+
+      
+      <a href="styleguide/code" >
+    Code
+  </a>
+
+
+      
+      <a href="styleguide/grid" >
+    Grid
+  </a>
+
+
+      
+      <a href="styleguide/typography" class="current">
+    Typography
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Components"
+>
+    Components
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Components" >
+      
+      <a href="components/alerts" >
+    Alerts
+  </a>
+
+
+      
+      <a href="components/breadcrumbs" >
+    Breadcrumbs
+  </a>
+
+
+      
+      <a href="components/buttons" >
+    Buttons
+  </a>
+
+
+      
+      <a href="components/forms" >
+    Forms
+  </a>
+
+
+      
+      <a href="components/layouts" >
+    Layouts
+  </a>
+
+
+      
+      <a href="components/lists" >
+    Lists
+  </a>
+
+
+      
+      <a href="components/menus" >
+    Menus
+  </a>
+
+
+      
+      <a href="components/navigation" >
+    Navigation
+  </a>
+
+
+      
+      <a href="components/panels" >
+    Panels
+  </a>
+
+
+      
+      <a href="components/tables" >
+    Tables
+  </a>
+
+
+      
+      <a href="components/tabs" >
+    Tabs
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Custom Elements"
+>
+    Custom Elements
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Custom Elements" >
+      
+      <a href="elements/hx-checkbox" >
+    &lt;hx-checkbox&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dd" >
+    &lt;hx-dd&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-def" >
+    &lt;hx-def&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-disclosure" >
+    &lt;hx-disclosure&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dl" >
+    &lt;hx-dl&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dt" >
+    &lt;hx-dt&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-icon" >
+    &lt;hx-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menu" >
+    &lt;hx-menu&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem" >
+    &lt;hx-menuitem&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem-group" >
+    &lt;hx-menuitem-group&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panel" >
+    &lt;hx-panel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelbody" >
+    &lt;hx-panelbody&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelfoot" >
+    &lt;hx-panelfoot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelhead" >
+    &lt;hx-panelhead&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover" >
+    &lt;hx-popover&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-reveal" >
+    &lt;hx-reveal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-status" >
+    &lt;hx-status&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tab" >
+    &lt;hx-tab&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabcontent" >
+    &lt;hx-tabcontent&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tablist" >
+    &lt;hx-tablist&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabpanel" >
+    &lt;hx-tabpanel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabset" >
+    &lt;hx-tabset&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tooltip" >
+    &lt;hx-tooltip&gt;
+  </a>
+
+
+  </hx-reveal>
+
+
+    </nav>
+  <main id="content" class="hxBox-md">
+    <h1 class="hxPageTitle">Typography</h1>
+
+<section><!-- Font -->
+  <h2 class="hxSectionTitle" id="font-weight">Font Weight</h2>
+
+  <div class="demo demo-typography">
+    <div class="hxRow">
+      <div class="hxCol font-roboto">
+        <p class="weight-thin">Roboto Thin (100)</p>
+        <p class="weight-light">Roboto Light (300)</p>
+        <p class="weight-regular">Roboto Regular (400)</p>
+        <p class="weight-medium">Roboto Medium (500)</p>
+        <p class="weight-bold">Roboto Bold (700)</p>
+      </div>
+      <div class="hxCol font-roboto-mono">
+        <p class="weight-thin">Roboto Mono Thin (100)</p>
+        <p class="weight-light">Roboto Mono Light (300)</p>
+        <p class="weight-regular">Roboto Mono Regular (400)</p>
+        <p class="weight-medium">Roboto Mono Medium (500)</p>
+        <p class="weight-bold">Roboto Mono Bold (700)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section><!-- Address -->
+  <h2 class="hxSectionTitle" id="addresses">Addresses</h2>
+  <div class="demo">
+    <address>
+      <strong>Rackspace</strong><br />
+      1 Fanatical Place<br />
+      City of Windcrest<br />
+      San Antonio, TX 78218<br />
+      <abbr title="Phone">P:</abbr> (123) 456-7890
+    </address>
+
+    <address>
+      <strong>Full Name</strong><br />
+      <a href="mailto:#">first.last@example.com</a>
+    </address>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">address</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Rackspace<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+  1 Fanatical Place<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+  City of Windcrest<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+  San Antonio, TX 78218<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">abbr</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"Phone"</span>&gt;</span>P:<span class="hljs-tag">&lt;/<span class="hljs-name">abbr</span>&gt;</span> (123) 456-7890
+<span class="hljs-tag">&lt;/<span class="hljs-name">address</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">address</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Full Name<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"mailto:#"</span>&gt;</span>first.last@example.com<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">address</span>&gt;</span>
+</code></pre></section>
+
+<section><!-- Page Title -->
+  <h2 class="hxSectionTitle" id="page-title">Page Title</h2>
+  <p>Use the <code>.hxPageTitle</code> css class to achieve the page title style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <h1 class="hxPageTitle">Page Title</h1>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxPageTitle"</span>&gt;</span>Page Title<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- or --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxPageTitle"</span>&gt;</span>Page Title<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+</code></pre></section>
+
+<section><!-- Section Title -->
+  <h2 class="hxSectionTitle" id="section-title">Section Title</h2>
+  <p>Use the <code>.hxSectionTitle</code> css class to achieve the section title style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <h2 class="hxSectionTitle">Section Title</h2>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSectionTitle"</span>&gt;</span>Section Title<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- or --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSectionTitle"</span>&gt;</span>Section Title<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+</code></pre></section>
+
+<section><!-- Sub-Section Title -->
+  <h2 class="hxSectionTitle" id="subsection-title">Sub-Section Title</h2>
+  <p>Use the <code>.hxSubSectionTitle</code> css class to achieve the sub-section title style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <h3 class="hxSubSectionTitle">Sub-Section Title</h3>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSubSectionTitle"</span>&gt;</span>Sub-Section Title<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- or --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSubSectionTitle"</span>&gt;</span>Sub-Section Title<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+</code></pre></section>
+
+<section><!-- Container Title -->
+  <h2 class="hxSectionTitle" id="container-title">Container Title</h2>
+  <p>Use the <code>.hxContainerTitle</code> css class to achieve the container title style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <h4 class="hxContainerTitle">Container Title</h4>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxContainerTitle"</span>&gt;</span>Container Title<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- or --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxContainerTitle"</span>&gt;</span>Container Title<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+</code></pre></section>
+
+<section><!-- Label -->
+  <h2 class="hxSectionTitle" id="label">Label</h2>
+  <p>Use the <code>.hxLabel</code> css class to achieve the label text style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <label class="hxLabel">Helix Label</label>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxLabel"</span>&gt;</span>Label<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- or --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxLabel"</span>&gt;</span>Label<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+</code></pre></section>
+
+<section><!-- Subdued -->
+  <h2 class="hxSectionTitle" id="subdued">Subdued</h2>
+  <p>Use the <code>.hxSubdued</code> css class to achieve the subdued text style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <span class="hxSubdued">Subdued</span>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSubdued"</span>&gt;</span>Subdued<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- or --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSubdued"</span>&gt;</span>Subdued<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- or --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSubdued"</span>&gt;</span>Subdued<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+</code></pre></section>
+
+<section><!-- Caption -->
+  <h2 class="hxSectionTitle" id="caption">Caption</h2>
+  <p>Use the <code>.hxCaption</code> css class to achieve the caption text style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p class="hxCaption">Caption</p>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCaption"</span>&gt;</span>Caption<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- or --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">figure</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>Caption<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- or --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">caption</span>&gt;</span>Caption<span class="hljs-tag">&lt;/<span class="hljs-name">caption</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+</code></pre></section>
+
+<section><!-- Sub-Body -->
+  <h2 class="hxSectionTitle" id="sub-body">Sub-Body</h2>
+  <p>Use the <code>.hxSubBody</code> css class to achieve the sub-body text style</p>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p class="hxSubBody">Sub-Body</p>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSubBody"</span>&gt;</span>Sub-Body<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- or --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">small</span>&gt;</span>Sub-Body<span class="hljs-tag">&lt;/<span class="hljs-name">small</span>&gt;</span>
+</code></pre></section>
+
+<section><!-- Links -->
+  <h2 class="hxSectionTitle" id="links">Links</h2>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p>
+      <strong>Reference Links</strong><br />
+      Reference links are super common and typically used to, well, refer, you
+      to something and somewhere else, whether that's in our interface or not.
+      For Rackspace, this likely means to help and support articles. If you
+      want to ask someone to do something, use a <a href="#">button.</a>
+    </p>
+    <p>
+      <strong>Pressed State</strong><br />
+      <a href="#" class="pseudo-active">Pressed Link</a>
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2 class="hxSectionTitle" id="classes">Classes</h2>
+  <dl>
+    <dt><code>.hxPageTitle</code></dt>
+    <dt><code>.hxSectionTitle</code></dt>
+    <dt><code>.hxSubSectionTitle</code></dt>
+    <dt><code>.hxContainerTitle</code></dt>
+    <dt><code>.hxLabel</code></dt>
+    <dt><code>.hxSubdued</code></dt>
+    <dt><code>.hxCaption</code></dt>
+    <dt><code>.hxSubbody</code></dt>
+  </dl>
+</section>
+
+  </main>
+  <aside class="hxSiderail hxBox-md">
+<h1 class="hxContainerTitle">On this page:</h1>
+<nav class="article-toc">
+  
+            <a href="#font-weight">Font Weight</a>
+        
+
+            <a href="#addresses">Addresses</a>
+        
+
+            <a href="#page-title">Page Title</a>
+        
+
+            <a href="#section-title">Section Title</a>
+        
+
+            <a href="#subsection-title">Sub-Section Title</a>
+        
+
+            <a href="#container-title">Container Title</a>
+        
+
+            <a href="#label">Label</a>
+        
+
+            <a href="#subdued">Subdued</a>
+        
+
+            <a href="#caption">Caption</a>
+        
+
+            <a href="#sub-body">Sub-Body</a>
+        
+
+            <a href="#links">Links</a>
+        
+
+            <a href="#classes">Classes</a>
+        
+  <hr />
+  <a class="top-link" href="#top">Back to Top</a>
+</nav>
+  </aside>
+  </div>
+
+  <footer id="foot" class="hxRow hxGutterless">
+<div class="hxCol">
+&copy; 2018 Rackspace US, Inc.
+<nav>
+  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+</nav>
+</div>
+<div class="hxCol text-right">
+    <small>
+      Last Updated:
+      2017-12-15
+    </small>
+</div>
+  </footer>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+<!-- intelligently load ES5 Adapter (if needed) -->
+<span id="ce-es5-adapter">
+  <script>
+    if (!window.customElements) {
+      var elAdapter = document.querySelector('#ce-es5-adapter');
+      elAdapter.parentElement.removeChild(elAdapter);
+    }
+  </script>
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
+</span>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="dist/scripts/helix-ui.browser.js"></script>
+<script src="docs.js"></script>
+</body>
+</html>

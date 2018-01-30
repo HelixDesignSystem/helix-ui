@@ -14,14 +14,14 @@
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
 
-  <link rel="stylesheet" href="helix-ui.css">
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
   <!-- Polyfill Loader -->
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
 </head>
-<body class="hxApp" id="top">
-  <header class="hxApp__header">
+<body class="hxVertical" id="top">
+  <header id="head">
 <nav class="global-nav">
   <a class="brand-logo" href="">
     <img src="images/helix-logo.svg" alt="Logo" />
@@ -29,82 +29,301 @@
 </nav>
   </header>
 
-  <div class="hxApp__container">
-    <main class="hxApp__content">
-  <article>
-    <h1 class="hxPageTitle">
-      Installing HelixUI
-    </h1>
+  <div id="stage">
+    <nav id="nav" class="hxNav">
 
-    <div class="hxRow">
-      <div class="hxCol-xs-12 hxCol-md-3 hxOrder-md-2">
-<aside>
-  <dl>
-    <dt>Last Updated:</dt>
-    <dd>2017-11-15</dd>
 
-  </dl>
-</aside>
 
-<aside class="article-toc" role="navigation">
-  <header class="article-toc-title">Content</header>
   
-        <ul class="toc">
-            <li class="toc__item">
-                <a
-                    class="toc__link"
-                    onclick="document.location.hash='assets';">
-
-                    <span class="toc__text">Assets</span>
-                </a>
-            </li>
-        
-            <li class="toc__item">
-                <a
-                    class="toc__link"
-                    onclick="document.location.hash='web-components';">
-
-                    <span class="toc__text">Web Components</span>
-                </a>
-            </li>
-        
-            <li class="toc__item">
-                <a
-                    class="toc__link"
-                    onclick="document.location.hash='web-components-loader';">
-
-                    <span class="toc__text">Web Components Loader</span>
-                </a>
-            </li>
-        
-            <li class="toc__item">
-                <a
-                    class="toc__link"
-                    onclick="document.location.hash='es5-adapter';">
-
-                    <span class="toc__text">ES5 Adapter</span>
-                </a>
-            </li>
-        
-            <li class="toc__item">
-                <a
-                    class="toc__link"
-                    onclick="document.location.hash='bootstrap-theme';">
-
-                    <span class="toc__text">Bootstrap Theme</span>
-                </a>
-            </li>
-        </ul>
-        <a
-            class="toc__top-link"
-            onclick="document.location.hash='top'">
-
-            Back to Top
-        </a>
     
-</aside>
-      </div>
-      <div class="hxCol-xs-12 hxCol-md-9 hxOrder-1">
+
+  <hx-disclosure
+    aria-controls="nav-Guides"
+class="current">
+    Guides
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Guides" open>
+      
+      <a href="guides/install" class="current">
+    Installing
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Styleguide"
+>
+    Styleguide
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Styleguide" >
+      
+      <a href="styleguide/box" >
+    Box
+  </a>
+
+
+      
+      <a href="styleguide/code" >
+    Code
+  </a>
+
+
+      
+      <a href="styleguide/grid" >
+    Grid
+  </a>
+
+
+      
+      <a href="styleguide/typography" >
+    Typography
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Components"
+>
+    Components
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Components" >
+      
+      <a href="components/alerts" >
+    Alerts
+  </a>
+
+
+      
+      <a href="components/breadcrumbs" >
+    Breadcrumbs
+  </a>
+
+
+      
+      <a href="components/buttons" >
+    Buttons
+  </a>
+
+
+      
+      <a href="components/forms" >
+    Forms
+  </a>
+
+
+      
+      <a href="components/layouts" >
+    Layouts
+  </a>
+
+
+      
+      <a href="components/lists" >
+    Lists
+  </a>
+
+
+      
+      <a href="components/menus" >
+    Menus
+  </a>
+
+
+      
+      <a href="components/navigation" >
+    Navigation
+  </a>
+
+
+      
+      <a href="components/panels" >
+    Panels
+  </a>
+
+
+      
+      <a href="components/tables" >
+    Tables
+  </a>
+
+
+      
+      <a href="components/tabs" >
+    Tabs
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Custom Elements"
+>
+    Custom Elements
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Custom Elements" >
+      
+      <a href="elements/hx-checkbox" >
+    &lt;hx-checkbox&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dd" >
+    &lt;hx-dd&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-def" >
+    &lt;hx-def&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-disclosure" >
+    &lt;hx-disclosure&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dl" >
+    &lt;hx-dl&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dt" >
+    &lt;hx-dt&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-icon" >
+    &lt;hx-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menu" >
+    &lt;hx-menu&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem" >
+    &lt;hx-menuitem&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem-group" >
+    &lt;hx-menuitem-group&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panel" >
+    &lt;hx-panel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelbody" >
+    &lt;hx-panelbody&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelfoot" >
+    &lt;hx-panelfoot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelhead" >
+    &lt;hx-panelhead&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover" >
+    &lt;hx-popover&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-reveal" >
+    &lt;hx-reveal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-status" >
+    &lt;hx-status&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tab" >
+    &lt;hx-tab&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabcontent" >
+    &lt;hx-tabcontent&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tablist" >
+    &lt;hx-tablist&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabpanel" >
+    &lt;hx-tabpanel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabset" >
+    &lt;hx-tabset&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tooltip" >
+    &lt;hx-tooltip&gt;
+  </a>
+
+
+  </hx-reveal>
+
+
+    </nav>
+  <main id="content" class="hxBox-md">
+    <h1 class="hxPageTitle">Installing HelixUI</h1>
+
 <section>
   <h2 class="hxSectionTitle" id="assets">Assets</h2>
   <table class="hxTable hxTable--condensed">
@@ -178,38 +397,6 @@
       both the ES5 Adapter and the Polyfill Loader into your markup.
     </p>
   </section>
-
-  <section><!-- TL;DR -->
-    <h3 class="hxSubSectionTitle">TL;DR</h3>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    ...
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"cdn/path/to/webcomponents-loader.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- polyfills automatically injected here (if needed) --&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    ...
-
-    <span class="hljs-comment">&lt;!-- intelligently load ES5 Adapter (if needed) --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"ce-es5-adapter"</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-        <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">window</span>.customElements) {
-          <span class="hljs-keyword">var</span> elAdapter = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#ce-es5-adapter'</span>);
-          elAdapter.parentElement.removeChild(elAdapter);
-        }
-      </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"cdn/path/to/custom-elements-es5-adapter.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-
-    <span class="hljs-comment">&lt;!-- HelixUI custom element definitions --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"cdn/path/to/helix-ui.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-
-    <span class="hljs-comment">&lt;!-- load your application logic here --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"domain/path/to/your/app.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
-</code></pre>  </section>
 
   <section><!-- web components loader -->
     <h3 class="hxSubSectionTitle" id="web-components-loader">Web Components Loader</h3>
@@ -305,7 +492,7 @@
     </div>
     <div class="hxAlert__text">
       <span class="hxAlert__status">Warning</span>
-      The Bootstrap theme <b>does not comply</b> to current Helix design specs.
+      The Bootstrap theme does not comply to current Helix design specs.
     </div>
   </div>
 
@@ -331,75 +518,63 @@
     </tbody>
   </table>
 </section>
-      </div>
-    </div>
-  </article>
-    </main>
-    <nav class="hxApp__nav">
 
+<section><!-- Supporting Legacy Browsers -->
+  <h2 class="hxSectionTitle" id="maximum-compatibility">Maximum Compatibility</h2>
+  <p>
+    To ensure maximum functionality for legacy browsers (i.e., bring IE
+    functionality up to an acceptable level), we highly recommend taking advantage of the
+    <a href="https://polyfill.io">polyfill.io</a> browser polyfill service.
+  </p>
+<pre><code class="html"><span class="hljs-comment">&lt;!-- Required for modern functionality --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.polyfill.io/v2/polyfill.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre></section>
+
+  </main>
+  <aside class="hxSiderail hxBox-md">
+<h1 class="hxContainerTitle">On this page:</h1>
+<nav class="article-toc">
   
-  <hx-reveal open>
-    <header slot="summary">
-      Guides
-      <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-    </header>
+            <a href="#assets">Assets</a>
+        
 
-        <a href="guides/install"
-class="current"        >Installing</a>
-  </hx-reveal>
+            <a href="#web-components">Web Components</a>
+        
 
-  
-  <hx-reveal >
-    <header slot="summary">
-      Components
-      <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-    </header>
+            <a href="#web-components-loader">Web Components Loader</a>
+        
 
-        <a href="components/alert"
-        >Alert</a>
-        <a href="components/breadcrumb"
-        >Breadcrumb</a>
-        <a href="components/button"
-        >Button</a>
-        <a href="components/checkbox"
-        >Checkbox</a>
-        <a href="components/code"
-        >Code</a>
-        <a href="components/grid"
-        >Grid</a>
-        <a href="components/icon"
-        >Icon</a>
-        <a href="components/navigation"
-        >Navigation</a>
-        <a href="components/popover"
-        >Popover</a>
-        <a href="components/reveal"
-        >Reveal</a>
-        <a href="components/status-label"
-        >Status Label</a>
-        <a href="components/table"
-        >Table</a>
-        <a href="components/tabset"
-        >Tabset</a>
-        <a href="components/text-input"
-        >Text Input</a>
-        <a href="components/tooltip"
-        >Tooltip</a>
-        <a href="components/typography"
-        >Typography</a>
-  </hx-reveal>
+            <a href="#es5-adapter">ES5 Adapter</a>
+        
 
-    </nav>
+            <a href="#bootstrap-theme">Bootstrap Theme</a>
+        
+
+            <a href="#maximum-compatibility">Maximum Compatibility</a>
+        
+  <hr />
+  <a class="top-link" href="#top">Back to Top</a>
+</nav>
+  </aside>
   </div>
 
-  <footer class="hxApp__footer">
-&copy; 2017 Rackspace US, Inc.
+  <footer id="foot" class="hxRow hxGutterless">
+<div class="hxCol">
+&copy; 2018 Rackspace US, Inc.
 <nav>
   <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
   <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
 </nav>
-     
+</div>
+<div class="hxCol text-right">
+    <small>
+      Last Updated:
+      2018-01-19
+    </small>
+</div>
   </footer>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 
 <!-- intelligently load ES5 Adapter (if needed) -->
 <span id="ce-es5-adapter">
@@ -416,8 +591,9 @@ class="current"        >Installing</a>
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
+<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="helix-ui.js"></script>
+<script src="dist/scripts/helix-ui.browser.js"></script>
 <script src="docs.js"></script>
 </body>
 </html>

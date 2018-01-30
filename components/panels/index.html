@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Navigation - HelixUI</title>
+  <title>Panels - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -143,13 +143,13 @@ class="current">
 
 
       
-      <a href="components/navigation" class="current">
+      <a href="components/navigation" >
     Navigation
   </a>
 
 
       
-      <a href="components/panels" >
+      <a href="components/panels" class="current">
     Panels
   </a>
 
@@ -322,69 +322,92 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Navigation</h1>
+    <h1 class="hxPageTitle">Panels</h1>
 
-<section>
-  <h2 class="hxSectionTitle" id="app-nav">Application Navigation</h2>
-
-  <div class="demo nav-demo">
-    <nav class="hxNav">
-      <a href="#">Link 1-1</a>
-      <a href="#">Link 1-2</a>
-      <a href="#">Link 1-3</a>
-
-      <hx-disclosure aria-controls="section-1">
-        L1 Section
-        <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-      </hx-disclosure>
-      <hx-reveal id="section-1" open>
-        <a href="#">Link 2-1</a>
-        <a href="#">Link 2-2</a>
-        <a href="#">Link 2-3</a>
-
-        <hx-disclosure aria-controls="section-1-2">
-          L2 Section
-          <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-        </hx-disclosure>
-        <hx-reveal id="section-1-2" open>
-          <a href="#">Link 3-1</a>
-          <a href="#">Link 3-2</a>
-          <a href="#">Link 3-3</a>
-        </hx-reveal>
-      </hx-reveal>
-    </nav>
-  </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxNav"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1"</span>&gt;</span>
-    L1 Section
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1"</span> <span class="hljs-attr">open</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1-2"</span>&gt;</span>
-      L2 Section
-      <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1-2"</span> <span class="hljs-attr">open</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
-</code></pre></section>
+  <section>
+    <p>
+      A panel is a utility for sectioning content vertically into a head,
+      body, and foot.
+    </p>
+    <ul>
+      <li>
+        The head is fixed to the top of the panel.
+        <ul>
+          <li><em>The head is optional.</em></li>
+        </ul>
+      </li>
+      <li>The body fills the space between the head and foot.</li>
+      <li>
+        The foot is fixed to the bottom of the panel.
+        <ul>
+          <li><em>The foot is optional.</em></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+  <section id="vue-panelDemo">
+    <h2 class="hxSectionTitle" id="basic-panel">Basic Panel</h2>
+    <div class="hxRow">
+      <div class="hxCol hxSpan-12-xs hxSpan-8-md">
+        <div class="demo panel-demo">
+          <hx-panel>
+            <hx-panelhead v-if="hasHead">Panel Head</hx-panelhead>
+            <hx-panelbody>
+              <p>Panel Body</p>
+              <p>
+                Try to decide the branch off team, maybe it will help spike the MVP
+                interfaces. If we practice between the tasks, we can get the technical
+                application like the VOC branching. The best way to document acceptance
+                impediment is to periodically build their meeting. It was discovered
+                that by efficiently releasing the MVP products, we can practice the
+                lean XP development team in the minor board.
+              </p>
+            </hx-panelbody>
+            <hx-panelfoot v-if="hasFoot">Panel Foot</hx-panelfoot>
+          </hx-panel>
+        </div>
+        <span class="hxCaption">
+          *Visual styling added for demonstration purposes.
+        </span>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-4-md">
+        <hx-panel>
+          <hx-panelhead>
+            <p>
+              Resize the demo to see how the panel reacts.
+            </p>
+          </hx-panelhead>
+          <hx-panelbody class="hxBox-md">
+            <p>
+              <label>
+                <input type="checkbox" v-model="hasHead" />
+                Show Head
+              </label>
+              <br />
+              <label>
+                <input type="checkbox" v-model="hasFoot" />
+                Show Foot
+              </label>
+            </p>
+          </hx-panelbody>
+        </hx-panel>
+      </div>
+    </div>
+    <br />
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-panel</span>&gt;</span>
+  [<span class="hljs-tag">&lt;<span class="hljs-name">hx-panelhead</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-panelhead</span>&gt;</span>]
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-panelbody</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-panelbody</span>&gt;</span>
+  [<span class="hljs-tag">&lt;<span class="hljs-name">hx-panelfoot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-panelfoot</span>&gt;</span>]
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-panel</span>&gt;</span>
+</code></pre>  </section>
 
 <section>
   <h2 class="hxSectionTitle" id="see-also">See Also</h2>
   <ul>
-      <li><a href="components/layouts">Layouts</a></li>
+      <li><a href="elements/hx-panel">&lt;hx-panel&gt;</a></li>
+      <li><a href="elements/hx-panelbody">&lt;hx-panelbody&gt;</a></li>
+      <li><a href="elements/hx-panelfoot">&lt;hx-panelfoot&gt;</a></li>
+      <li><a href="elements/hx-panelhead">&lt;hx-panelhead&gt;</a></li>
   </ul>
 </section>
   </main>
@@ -392,7 +415,7 @@ class="current">
     <h1 class="hxContainerTitle">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#app-nav">Application Navigation</a>
+            <a href="#basic-panel">Basic Panel</a>
         
         <a href="#see-also">See Also</a>
       <hr />

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Code - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
+
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  <!-- Bootstrap 3 -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  <link rel="stylesheet" href="docs.css">
+
+  <!-- Polyfill Loader -->
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
+</head>
+<body class="hxVertical" id="top">
+  <header id="head">
+<nav class="global-nav">
+  <a class="brand-logo" href="">
+    <img src="images/helix-logo.svg" alt="Logo" />
+  </a>
+</nav>
+  </header>
+
+  <div id="stage">
+    <nav id="nav" class="hxNav">
+
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Guides"
+>
+    Guides
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Guides" >
+      
+      <a href="guides/install" >
+    Installing
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Styleguide"
+class="current">
+    Styleguide
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Styleguide" open>
+      
+      <a href="styleguide/box" >
+    Box
+  </a>
+
+
+      
+      <a href="styleguide/code" class="current">
+    Code
+  </a>
+
+
+      
+      <a href="styleguide/grid" >
+    Grid
+  </a>
+
+
+      
+      <a href="styleguide/typography" >
+    Typography
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Components"
+>
+    Components
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Components" >
+      
+      <a href="components/alerts" >
+    Alerts
+  </a>
+
+
+      
+      <a href="components/breadcrumbs" >
+    Breadcrumbs
+  </a>
+
+
+      
+      <a href="components/buttons" >
+    Buttons
+  </a>
+
+
+      
+      <a href="components/forms" >
+    Forms
+  </a>
+
+
+      
+      <a href="components/layouts" >
+    Layouts
+  </a>
+
+
+      
+      <a href="components/lists" >
+    Lists
+  </a>
+
+
+      
+      <a href="components/menus" >
+    Menus
+  </a>
+
+
+      
+      <a href="components/navigation" >
+    Navigation
+  </a>
+
+
+      
+      <a href="components/panels" >
+    Panels
+  </a>
+
+
+      
+      <a href="components/tables" >
+    Tables
+  </a>
+
+
+      
+      <a href="components/tabs" >
+    Tabs
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Custom Elements"
+>
+    Custom Elements
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Custom Elements" >
+      
+      <a href="elements/hx-checkbox" >
+    &lt;hx-checkbox&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dd" >
+    &lt;hx-dd&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-def" >
+    &lt;hx-def&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-disclosure" >
+    &lt;hx-disclosure&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dl" >
+    &lt;hx-dl&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dt" >
+    &lt;hx-dt&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-icon" >
+    &lt;hx-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menu" >
+    &lt;hx-menu&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem" >
+    &lt;hx-menuitem&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem-group" >
+    &lt;hx-menuitem-group&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panel" >
+    &lt;hx-panel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelbody" >
+    &lt;hx-panelbody&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelfoot" >
+    &lt;hx-panelfoot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelhead" >
+    &lt;hx-panelhead&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover" >
+    &lt;hx-popover&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-reveal" >
+    &lt;hx-reveal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-status" >
+    &lt;hx-status&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tab" >
+    &lt;hx-tab&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabcontent" >
+    &lt;hx-tabcontent&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tablist" >
+    &lt;hx-tablist&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabpanel" >
+    &lt;hx-tabpanel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabset" >
+    &lt;hx-tabset&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tooltip" >
+    &lt;hx-tooltip&gt;
+  </a>
+
+
+  </hx-reveal>
+
+
+    </nav>
+  <main id="content" class="hxBox-md">
+    <h1 class="hxPageTitle">Code</h1>
+
+<!-- explanation goes here -->
+
+<section><!-- Inline Code -->
+  <h2 class="hxSectionTitle" id="inline">Inline</h2>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <p>
+      Add an event listener with the <code>EventTarget.addEventListener()</code> function.
+    </p>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+  Add an event listener with the <span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>EventTarget.addEventListener()<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span> function.
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre></section>
+
+<section><!-- Keyboard -->
+  <h2 class="hxSectionTitle" id="keyboard">Keyboard</h2>
+  <div class="demo">
+    <p>
+      Press <kbd>Ctrl+Z</kbd> (<kbd>Command+Z</kbd> on Mac)
+      to undo the most recent action.
+    </p>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+  Press <span class="hljs-tag">&lt;<span class="hljs-name">kbd</span>&gt;</span>Ctrl+Z<span class="hljs-tag">&lt;/<span class="hljs-name">kbd</span>&gt;</span> (<span class="hljs-tag">&lt;<span class="hljs-name">kbd</span>&gt;</span>Command+Z<span class="hljs-tag">&lt;/<span class="hljs-name">kbd</span>&gt;</span> on Mac)
+  to undo the most recent action.
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre></section>
+
+<section>
+  <h2 class="hxSectionTitle" id="code-block">Code Block</h2>
+
+  <!-- explanation goes here -->
+
+  <div class="demo">
+    <pre><code>[Insert Code Here]</code></pre>
+  </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>[Insert Code Here]<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+</code></pre></section>
+
+<section><!-- Syntax Highlighting -->
+  <h2 class="hxSectionTitle" id="syntax-highlighting">Syntax Highlighting</h2>
+  <p>
+    HelixUI provides a built-in theme for use with the
+    <a href="https://highlightjs.org/">highlight.js</a> library.
+  </p>
+
+  <p>
+    Below are some examples of the syntax highlighting in action.
+  </p>
+
+  <figure>
+    <figcaption>HTML Syntax Highlighting Example</figcaption>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"path/to/script.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"path/to/style.css"</span> /&gt;</span>
+<span class="hljs-comment">&lt;!-- HTML Comment --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"POST"</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"submit.html"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">legend</span>&gt;</span>Login<span class="hljs-tag">&lt;/<span class="hljs-name">legend</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"username"</span>&gt;</span>Username<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"password"</span>&gt;</span>Password<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">fieldset</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Log In<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"path/to/file.png"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"pretty picture"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</code></pre>  </figure>
+
+  <figure>
+    <figcaption>JavaScript Syntax Highlighting Example</figcaption>
+<pre><code class="javascript"><span class="hljs-comment">/**
+ * @description Multi-line comment
+ * @returns {String}
+ */</span>
+<span class="hljs-comment">// Inline Comment</span>
+<span class="hljs-keyword">var</span> legacyVariable;
+<span class="hljs-keyword">const</span> REGEXP = <span class="hljs-regexp">/h(iy|ell)o*/ig</span>;
+<span class="hljs-keyword">const</span> array = [ <span class="hljs-literal">null</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> ];
+<span class="hljs-keyword">const</span> obj = {
+  <span class="hljs-attr">number</span>: <span class="hljs-number">42</span>,
+  <span class="hljs-attr">integer</span>: <span class="hljs-number">42.0</span>,
+  <span class="hljs-attr">s_string</span>: <span class="hljs-string">'single quotes'</span>,
+  <span class="hljs-attr">d_string</span>: <span class="hljs-string">"double quotes"</span>
+};
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params">name: <span class="hljs-string">'World'</span></span>) </span>{
+  <span class="hljs-keyword">if</span> (foo !== <span class="hljs-string">'bar'</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'nope'</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (foo || bar) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'maybe'</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (foo &amp;&amp; bar) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'wut'</span>;
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`Hello <span class="hljs-subst">${name}</span>!`</span>;
+}
+</code></pre>  </figure>
+
+  <figure>
+    <figcaption>CSS Syntax Highlighting Example</figcaption>
+<pre><code class="css"><span class="hljs-comment">/* CSS Comment */</span>
+@<span class="hljs-keyword">import</span> url(<span class="hljs-string">'https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,700,700i'</span>);
+<span class="hljs-selector-pseudo">:root</span> {
+  <span class="hljs-attribute">--border-color</span>: <span class="hljs-number">#bada55</span>;
+}
+<span class="hljs-selector-tag">html</span> {
+  <span class="hljs-attribute">box-sizing</span>: border-box;
+}
+*,
+*<span class="hljs-selector-pseudo">::before</span>,
+*<span class="hljs-selector-pseudo">::after</span> {
+  <span class="hljs-attribute">box-sizing</span>: inherit;
+}
+<span class="hljs-selector-id">#navigation</span> {
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--border-color);
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">1em</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(90deg, rgba(0, 0, 0, 0,5), white);
+}
+<span class="hljs-selector-tag">input</span><span class="hljs-selector-attr">[type="checkbox"]</span><span class="hljs-selector-pseudo">:checked</span> {
+  <span class="hljs-comment">/* ... */</span>
+}
+<span class="hljs-selector-class">.text-center</span> {
+  <span class="hljs-attribute">text-align</span>: center <span class="hljs-meta">!important</span>;
+}
+</code></pre>  </figure>
+
+  <figure>
+    <figcaption>diff Syntax Highlighting Example</figcaption>
+<pre><code class="diff"><span class="hljs-comment">Index: languages/ini.js</span>
+<span class="hljs-comment">===================================================================</span>
+<span class="hljs-comment">--- languages/ini.js    (revision 199)</span>
+<span class="hljs-comment">+++ languages/ini.js    (revision 200)</span>
+<span class="hljs-meta">@@ -1,8 +1,7 @@</span>
+ hljs.LANGUAGES.ini =
+ {
+   case_insensitive: true,
+<span class="hljs-deletion">-  defaultMode:</span>
+<span class="hljs-deletion">-  {</span>
+<span class="hljs-addition">+  defaultMode: {</span>
+     contains: ['comment', 'title', 'setting'],
+     illegal: '[^\\s]'
+   },
+
+<span class="hljs-comment">*** /path/to/original timestamp</span>
+<span class="hljs-comment">--- /path/to/new      timestamp</span>
+<span class="hljs-comment">***************</span>
+<span class="hljs-meta">*** 1,3 ****</span>
+<span class="hljs-meta">--- 1,9 ----</span>
+<span class="hljs-addition">+ This is an important</span>
+<span class="hljs-addition">+ notice! It should</span>
+<span class="hljs-addition">+ therefore be located at</span>
+<span class="hljs-addition">+ the beginning of this</span>
+<span class="hljs-addition">+ document!</span>
+
+<span class="hljs-addition">! compress the size of the</span>
+<span class="hljs-addition">! changes.</span>
+
+  It is important to spell
+</code></pre>  </figure>
+
+  <figure>
+    <figcaption>bash Syntax Highlighting Example</figcaption>
+<pre><code class="bash"><span class="hljs-meta">#!/bin/bash
+</span>
+<span class="hljs-comment">###### CONFIG</span>
+ACCEPTED_HOSTS=<span class="hljs-string">"/root/.hag_accepted.conf"</span>
+BE_VERBOSE=<span class="hljs-literal">false</span>
+
+<span class="hljs-keyword">if</span> [ <span class="hljs-string">"<span class="hljs-variable">$UID</span>"</span> -ne 0 ]
+<span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Superuser rights required"</span>
+  <span class="hljs-built_in">exit</span> 2
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-function"><span class="hljs-title">genApacheConf</span></span>(){
+  <span class="hljs-built_in">echo</span> -e <span class="hljs-string">"# Host <span class="hljs-variable">${HOME_DIR}</span><span class="hljs-variable">$1</span>/<span class="hljs-variable">$2</span> :"</span>
+}
+</code></pre>  </figure>
+
+  <figure>
+    <figcaption>.ini Syntax Highlighting Example</figcaption>
+<pre><code class="ini"><span class="hljs-comment">; boilerplate</span>
+<span class="hljs-section">[package]</span>
+<span class="hljs-attr">name</span> = <span class="hljs-string">"some_name"</span>
+<span class="hljs-attr">authors</span> = [<span class="hljs-string">"Author"</span>]
+<span class="hljs-attr">description</span> = <span class="hljs-string">"This is \
+a description"</span>
+<span class="hljs-section">
+[[lib]]</span>
+<span class="hljs-attr">name</span> = <span class="hljs-variable">${NAME}</span>
+<span class="hljs-attr">default</span> = <span class="hljs-literal">True</span>
+<span class="hljs-attr">auto</span> = <span class="hljs-literal">no</span>
+<span class="hljs-attr">counter</span> = <span class="hljs-number">1_000</span>
+</code></pre>  </figure>
+
+  <figure>
+    <figcaption>Markdown Syntax Highlighting Example</figcaption>
+<pre><code class="markdown"><span class="hljs-section"># hello world</span>
+
+you can write text [<span class="hljs-string">with links</span>](<span class="hljs-link">http://example.com</span>) inline or [<span class="hljs-string">link references</span>][<span class="hljs-symbol">1</span>].
+
+<span class="hljs-bullet">* </span>one <span class="hljs-emphasis">_thing_</span> has <span class="hljs-emphasis">*em*</span>phasis
+<span class="hljs-bullet">* </span>two <span class="hljs-strong">__things__</span> are <span class="hljs-strong">**bold**</span>
+
+[<span class="hljs-symbol">1</span>]: <span class="hljs-link">http://example.com</span>
+
+---
+
+<span class="hljs-section">hello world
+===========</span>
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">this_is</span> <span class="hljs-attr">inline</span>=<span class="hljs-string">"xml"</span>&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">this_is</span>&gt;</span></span>
+
+<span class="hljs-quote">&gt; markdown is so cool</span>
+
+<span class="hljs-code">    so are code segments</span>
+
+<span class="hljs-bullet">1. </span>one thing (yeah!)
+<span class="hljs-bullet">2. </span>two thing <span class="hljs-code">`i can write code`</span>, and <span class="hljs-code">`more`</span> wipee!
+</code></pre>  </figure>
+</section>
+
+  </main>
+  <aside class="hxSiderail hxBox-md">
+<h1 class="hxContainerTitle">On this page:</h1>
+<nav class="article-toc">
+  
+            <a href="#inline">Inline</a>
+        
+
+            <a href="#keyboard">Keyboard</a>
+        
+
+            <a href="#code-block">Code Block</a>
+        
+
+            <a href="#syntax-highlighting">Syntax Highlighting</a>
+        
+  <hr />
+  <a class="top-link" href="#top">Back to Top</a>
+</nav>
+  </aside>
+  </div>
+
+  <footer id="foot" class="hxRow hxGutterless">
+<div class="hxCol">
+&copy; 2018 Rackspace US, Inc.
+<nav>
+  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+</nav>
+</div>
+<div class="hxCol text-right">
+    <small>
+      Last Updated:
+      2017-12-15
+    </small>
+</div>
+  </footer>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+<!-- intelligently load ES5 Adapter (if needed) -->
+<span id="ce-es5-adapter">
+  <script>
+    if (!window.customElements) {
+      var elAdapter = document.querySelector('#ce-es5-adapter');
+      elAdapter.parentElement.removeChild(elAdapter);
+    }
+  </script>
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
+</span>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="dist/scripts/helix-ui.browser.js"></script>
+<script src="docs.js"></script>
+</body>
+</html>

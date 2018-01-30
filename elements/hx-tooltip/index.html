@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>&lt;hx-tooltip&gt; - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
+
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  <!-- Bootstrap 3 -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  <link rel="stylesheet" href="docs.css">
+
+  <!-- Polyfill Loader -->
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
+</head>
+<body class="hxVertical" id="top">
+  <header id="head">
+<nav class="global-nav">
+  <a class="brand-logo" href="">
+    <img src="images/helix-logo.svg" alt="Logo" />
+  </a>
+</nav>
+  </header>
+
+  <div id="stage">
+    <nav id="nav" class="hxNav">
+
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Guides"
+>
+    Guides
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Guides" >
+      
+      <a href="guides/install" >
+    Installing
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Styleguide"
+>
+    Styleguide
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Styleguide" >
+      
+      <a href="styleguide/box" >
+    Box
+  </a>
+
+
+      
+      <a href="styleguide/code" >
+    Code
+  </a>
+
+
+      
+      <a href="styleguide/grid" >
+    Grid
+  </a>
+
+
+      
+      <a href="styleguide/typography" >
+    Typography
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Components"
+>
+    Components
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Components" >
+      
+      <a href="components/alerts" >
+    Alerts
+  </a>
+
+
+      
+      <a href="components/breadcrumbs" >
+    Breadcrumbs
+  </a>
+
+
+      
+      <a href="components/buttons" >
+    Buttons
+  </a>
+
+
+      
+      <a href="components/forms" >
+    Forms
+  </a>
+
+
+      
+      <a href="components/layouts" >
+    Layouts
+  </a>
+
+
+      
+      <a href="components/lists" >
+    Lists
+  </a>
+
+
+      
+      <a href="components/menus" >
+    Menus
+  </a>
+
+
+      
+      <a href="components/navigation" >
+    Navigation
+  </a>
+
+
+      
+      <a href="components/panels" >
+    Panels
+  </a>
+
+
+      
+      <a href="components/tables" >
+    Tables
+  </a>
+
+
+      
+      <a href="components/tabs" >
+    Tabs
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Custom Elements"
+class="current">
+    Custom Elements
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Custom Elements" open>
+      
+      <a href="elements/hx-checkbox" >
+    &lt;hx-checkbox&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dd" >
+    &lt;hx-dd&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-def" >
+    &lt;hx-def&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-disclosure" >
+    &lt;hx-disclosure&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dl" >
+    &lt;hx-dl&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dt" >
+    &lt;hx-dt&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-icon" >
+    &lt;hx-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menu" >
+    &lt;hx-menu&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem" >
+    &lt;hx-menuitem&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem-group" >
+    &lt;hx-menuitem-group&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panel" >
+    &lt;hx-panel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelbody" >
+    &lt;hx-panelbody&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelfoot" >
+    &lt;hx-panelfoot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelhead" >
+    &lt;hx-panelhead&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover" >
+    &lt;hx-popover&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-reveal" >
+    &lt;hx-reveal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-status" >
+    &lt;hx-status&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tab" >
+    &lt;hx-tab&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabcontent" >
+    &lt;hx-tabcontent&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tablist" >
+    &lt;hx-tablist&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabpanel" >
+    &lt;hx-tabpanel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabset" >
+    &lt;hx-tabset&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tooltip" class="current">
+    &lt;hx-tooltip&gt;
+  </a>
+
+
+  </hx-reveal>
+
+
+    </nav>
+  <main id="content" class="hxBox-md">
+    <h1 class="hxPageTitle">&lt;hx-tooltip&gt;</h1>
+
+  <section>
+    <p>
+      The custom <code>&lt;hx-tooltip</code> element displays supplemental
+      information related to an element on the page.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+
+  <section id="vue-tooltipDemo">
+    <h2 class="hxSectionTitle" id="tooltip">Tooltip </h2>
+    <div class="hxRow">
+      <div class="hxCol">
+        <div class="demo tooltip-demo">
+          <p>
+            Hover over icon to trigger tooltips
+            <hx-icon data-tooltip="tooltip1" type="help-circle"></hx-icon>
+          </p>
+          <hx-tooltip id="tooltip1" v-for="_position in positions" :key="_position.id" :position="_position.value"  v-if="_position.value === position.value" >
+{{ position.label }}
+          </hx-tooltip>
+        </div>
+        <div class="demo tooltip-demo">
+          <div class="demo-target" data-tooltip="tooltip2">
+            Manually trigger tooltip via click
+          </div>
+          <hx-tooltip id="tooltip2" trigger-event="click" v-for="_position in positions" :key="_position.id" :position="_position.value" v-if="_position.value === position.value">
+{{ position.label }}
+          </hx-tooltip>
+        </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">data-tooltip</span>=<span class="hljs-string">"tooltip1"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"help-circle"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"demo-target"</span> <span class="hljs-attr">data-tooltip</span>=<span class="hljs-string">"tooltip2"</span>&gt;</span>
+  Manually set trigger-event to click
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-tooltip</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"tooltip1"</span> <span class="hljs-attr">position</span>=<span class="hljs-string">"{position}"</span>&gt;</span>
+  {position}
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tooltip</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-tooltip</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"tooltip2"</span> <span class="hljs-attr">position</span>=<span class="hljs-string">"{position}"</span> <span class="hljs-attr">trigger-event</span>=<span class="hljs-string">"click"</span>&gt;</span>
+  {position}
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tooltip</span>&gt;</span>
+</code></pre>      </div>
+      <div class="hxCol">
+        Position:
+        <select v-model="position">
+          <option v-for="_position in positions" :value="_position">
+{{ _position.label }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <section class="tooltip-examples">
+    <h2 class="hxSectionTitle" id="appearance">Appearance</h2>
+    <table class="hxTable">
+      <thead>
+        <tr>
+          <th>position</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Top</td>
+          <td>
+            <hx-tooltip position="top" open>
+              position: top
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="top-right" open>
+              position: top-right
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="top-left" open>
+              position: top-left
+            </hx-tooltip>
+          </td>
+        </tr>
+        <tr>
+          <td>Bottom</td>
+          <td>
+            <hx-tooltip position="bottom" open>
+              position: bottom
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="bottom-right" open>
+              position: bottom-right
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="bottom-left" open>
+              position: bottom-left
+            </hx-tooltip>
+          </td>
+        </tr>
+        <tr>
+          <td>Right</td>
+          <td>
+            <hx-tooltip position="right" open>
+              position: right
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="right-top" open>
+              position: right-top
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="right-bottom" open>
+              position: right-bottom
+            </hx-tooltip>
+          </td>
+        </tr>
+        <tr>
+          <td>Left</td>
+          <td>
+            <hx-tooltip position="left" open>
+              position: left
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="left-top" open>
+              position: left-top
+            </hx-tooltip>
+          </td>
+          <td>
+            <hx-tooltip position="left-bottom" open>
+              position: left-bottom
+            </hx-tooltip>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+    
+    <section>
+      <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+      <p>
+        Attributes allow you to configure an element in a
+        declarative manner via markup.
+      </p>
+  <dl>
+    <dt>id <small>(String) Required</small></dt>
+    <dd>
+      <p>Links element to target data-element attr placed on the target element.</p>
+      <p>
+        <strong>NOTE:</strong> Currently this will only find the first element with data-tooltip attr on the page.
+      </p>
+    </dd>
+  </dl>
+    </section>
+
+    
+    <section>
+      <h2 class="hxSectionTitle" id="properties">Properties</h2>
+      <p>
+        Properties allow you to configure an element in an
+        imperative manner via JavaScript.
+      </p>
+  <dl>
+    <dt>open <small>(Boolean [false])</small></dt>
+    <dd>Determines whether or not tooltip is shown</dd>
+
+    <dt>position <small>(String [top])</small></dt>
+    <dd>Determines where tooltip is positioned</dd>
+
+    <dt>trigger-event <small>(String [hover])</small></dt>
+    <dd>
+      Determines what fires the tooltip
+      possible values:
+      <ul>
+        <li>click</li>
+        <li>hover</li>
+      </ul>
+    </dd>
+  </dl>
+    </section>
+
+  </main>
+  <aside class="hxSiderail hxBox-md">
+    <h1 class="hxContainerTitle">On this page:</h1>
+    <nav class="article-toc">
+      
+            <a href="#tooltip">Tooltip </a>
+        
+
+            <a href="#appearance">Appearance</a>
+        
+      <a href="#attributes">Attributes</a>
+      <a href="#properties">Properties</a>
+      <hr />
+      <a class="top-link" href="#top">Back to Top</a>
+    </nav>
+  </aside>
+  </div>
+
+  <footer id="foot" class="hxRow hxGutterless">
+<div class="hxCol">
+&copy; 2018 Rackspace US, Inc.
+<nav>
+  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+</nav>
+</div>
+<div class="hxCol text-right">
+    <small>
+      Last Updated:
+      2018-01-29
+    </small>
+</div>
+  </footer>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+<!-- intelligently load ES5 Adapter (if needed) -->
+<span id="ce-es5-adapter">
+  <script>
+    if (!window.customElements) {
+      var elAdapter = document.querySelector('#ce-es5-adapter');
+      elAdapter.parentElement.removeChild(elAdapter);
+    }
+  </script>
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
+</span>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="dist/scripts/helix-ui.browser.js"></script>
+<script src="docs.js"></script>
+</body>
+</html>
