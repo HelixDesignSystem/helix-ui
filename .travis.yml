@@ -12,6 +12,7 @@ branch:
 install:
 - npm i -g yarn
 - travis_retry yarn install
+- cd test; travis_retry yarn install; yarn run webdriver:update; cd -;
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
