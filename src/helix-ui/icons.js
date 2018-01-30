@@ -120,4 +120,4 @@ export default {
     'times-circle': _timesCircle,
     'trash': _trash,
     'user': _user,
-}
+};

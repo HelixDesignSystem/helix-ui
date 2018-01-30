@@ -8,12 +8,14 @@
     "ui toolkit",
     "v1"
   ],
-  "main": "dist/helix-ui.js",
-  "module": "dist/helix-ui.es.js",
+  "main": "dist/scripts/helix-ui.js",
+  "module": "dist/scripts/helix-ui.es.js",
   "files": [
     "dist/"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "^1.1.0"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -21,6 +23,7 @@
     "babel-preset-env": "^1.6.1",
     "browser-sync": "2.x",
     "cheerio": "^1.0.0-rc.2",
+    "clean-css": "^4.1.9",
     "eslint": "4.x",
     "eslint-loader": "^1.9.0",
     "front-matter": "^2.2.0",
@@ -50,17 +53,22 @@
     "webpack": "^3.5.5"
   },
   "scripts": {
-    "build": "bin/build.js",
-    "clean": "rm -fr node_modules",
-    "lint": "eslint -c .eslintrc.json source",
+    "clean": "rm -fr node_modules test/node_modules",
+    "clean:public": "bin/cleanPublic.js",
+    "compile": "bin/compile.js",
+    "pregenerate": "yarn compile",
+    "generate": "bin/generate.js",
+    "preghpages": "yarn generate",
+    "ghpages": "bin/ghpages.js",
+    "lint": "eslint -c .eslintrc.json src",
     "postinstall": "cd test; yarn install; yarn run webdriver:update; cd -;",
-    "publish": "bin/publish.js",
+    "postpublish": "yarn ghpages",
+    "postversion": "yarn compile",
+    "prepublishOnly": "yarn generate",
     "rollup": "rollup -c rollup.config.js",
-    "rollup:watch": "rollup -c rollup.config.js --watch",
+    "prestart": "yarn clean:public && yarn generate",
     "start": "bin/start.js",
-    "test": "cd test; yarn test",
-    "version": "yarn rollup && git add dist/",
-    "postversion": "git push && git push --tags"
+    "test": "cd test; yarn test"
   },
   "repository": "https://github.com/rackerlabs/helix-ui.git",
   "author": "Ryan Johnson <rhino.citguy@gmail.com>",

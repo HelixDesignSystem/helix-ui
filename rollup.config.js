@@ -44,7 +44,7 @@ export default [
         outro,
         output: [
             {
-                file: 'dist/helix-ui.browser.js',
+                file: 'dist/scripts/helix-ui.browser.js',
                 format: 'umd',
             }
         ],
@@ -66,12 +66,12 @@ export default [
     {
         input: 'src/browser-entry.js',
         name: 'HelixUI',
-        sourcemap: true,
+        sourcemap: false,
         intro,
         outro,
         output: [
             {
-                file: 'dist/helix-ui.browser.min.js',
+                file: 'dist/scripts/helix-ui.browser.min.js',
                 format: 'umd',
             }
         ],

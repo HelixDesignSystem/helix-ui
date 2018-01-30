@@ -1,4 +1,3 @@
-import { HXElement } from './HXElement';
 import { HXRevealElement } from './HXRevealElement';
 
 export class HXTabpanelElement extends HXRevealElement {

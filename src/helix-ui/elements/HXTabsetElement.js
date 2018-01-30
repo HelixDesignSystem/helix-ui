@@ -23,7 +23,7 @@ export class HXTabsetElement extends HXElement {
         this.currentTab = Number(this.getAttribute('current-tab')) || 0;
         this.$tablist.addEventListener('keyup', this._onKeyUp);
         this.$tablist.addEventListener('keydown', this.$preventScroll);
-        this.tabs.forEach( (tab) => {
+        this.tabs.forEach(tab => {
             tab.addEventListener('click', this._onTabClick);
         });
     }
@@ -31,7 +31,7 @@ export class HXTabsetElement extends HXElement {
     disconnectedCallback () {
         this.$tablist.removeEventListener('keyup', this._onKeyUp);
         this.$tablist.removeEventListener('keydown', this.$preventScroll);
-        this.tabs.forEach( (tab) => {
+        this.tabs.forEach(tab => {
             tab.removeEventListener('click', this._onTabClick);
         });
     }
@@ -52,12 +52,12 @@ export class HXTabsetElement extends HXElement {
         }
 
         if (idx < 0 || idx >= this.tabs.length) {
-            throw new RangeError(`'currentTab' index is out of bounds`);
+            throw new RangeError('currentTab index is out of bounds');
         }
 
         this._currentTab = idx;
 
-        this.tabs.forEach( (tab, tabIdx) => {
+        this.tabs.forEach((tab, tabIdx) => {
             if (idx === tabIdx) {
                 tab.current = true;
                 tab.setAttribute('tabindex', 0);
@@ -68,7 +68,7 @@ export class HXTabsetElement extends HXElement {
             }
         });
 
-        this.tabpanels.forEach( (tabpanel, panelIdx) => {
+        this.tabpanels.forEach((tabpanel, panelIdx) => {
             tabpanel.open = (idx === panelIdx);
         });
     }//SET:currentTab
@@ -121,7 +121,7 @@ export class HXTabsetElement extends HXElement {
     }
 
     _setupIds () {
-        this.tabs.forEach( (tab, idx) => {
+        this.tabs.forEach((tab, idx) => {
             let tabpanel = this.tabpanels[idx];
             // Default tab and panel ID
             let tabId = `hxTab-${this.$generateId()}`;

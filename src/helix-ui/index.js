@@ -30,4 +30,4 @@ const DOM = Object.assign({}, elements, { HXElement });
 export default {
     DOM,
     initialize,
-}
+};

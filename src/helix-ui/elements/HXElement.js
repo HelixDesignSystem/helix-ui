@@ -61,7 +61,7 @@ export class HXElement extends HTMLElement {
     $emit (evtName, details) {
         let evt = new CustomEvent(evtName, {
             bubbles: true,
-            details: details
+            details: details,
         });
         this.dispatchEvent(evt);
     }//$emit

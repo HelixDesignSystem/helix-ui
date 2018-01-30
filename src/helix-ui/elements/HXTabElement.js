@@ -12,7 +12,7 @@ export class HXTabElement extends HXElement {
     }
 
     static get observedAttributes () {
-        return ['current'];
+        return [ 'current' ];
     }
 
     attributeChangedCallback (attr, oldVal, newVal) {
