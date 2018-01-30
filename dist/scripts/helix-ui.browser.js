@@ -2577,7 +2577,7 @@ var HelixUI = {
     initialize: initialize
 };
 
-var version = "0.1.0-2";
+var version = "0.0.1";
 
 HelixUI.VERSION = version;
 
