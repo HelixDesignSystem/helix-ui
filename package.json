@@ -53,7 +53,7 @@
     "webpack": "^3.5.5"
   },
   "scripts": {
-    "clean": "rm -fr node_modules test/node_modules",
+    "clean": "rm -fr node_modules",
     "clean:public": "bin/cleanPublic.js",
     "compile": "bin/compile.js",
     "pregenerate": "yarn compile",
@@ -61,10 +61,8 @@
     "preghpages": "yarn generate",
     "ghpages": "bin/ghpages.js",
     "lint": "eslint -c .eslintrc.json src",
-    "postinstall": "cd test; yarn install; yarn run webdriver:update; cd -;",
-    "postpublish": "yarn ghpages",
-    "postversion": "yarn compile",
-    "prepublishOnly": "yarn generate",
+    "postversion": "git push origin --tags",
+    "prepublishOnly": "yarn compile",
     "rollup": "rollup -c rollup.config.js",
     "prestart": "yarn clean:public && yarn generate",
     "start": "bin/start.js",
