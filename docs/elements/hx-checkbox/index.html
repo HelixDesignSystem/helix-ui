@@ -1,118 +1,28 @@
 ---
 title: <hx-checkbox>
+also:
+  components/checkboxes: Checkboxes
+---
 ---
 {% extends 'element.njk' %}
 {% block content %}
-<section>
-  <p>
-    The custom <code>&lt;hx-checkbox&gt;</code> element renders an interactive
-    checkbox control for use within forms.
-  </p>
+  <section>
+    <p>
+      The custom <code>&lt;hx-checkbox&gt;</code> element renders an interactive
+      checkbox control for use within forms.
+    </p>
 
-  <hx-dl class="hxBox-md metadata">
-    <hx-def>
-      <hx-dt>Permitted Parents</hx-dt>
-      <hx-dd>any</hx-dd>
-    </hx-def>
-    <hx-def>
-      <hx-dt>Permitted Children</hx-dt>
-      <hx-dd>none (content will be removed upon element upgrade)</hx-dd>
-    </hx-def>
-  </hx-dl>
-</section>
-
-<section>
-  <h2 class="hxSectionTitle" id="checkbox">Checkbox</h2>
-
-  <div class="demo">
-    <fieldset>
-      <legend class="hxLabel">Selector Title</legend>
-      <div>
-        <hx-checkbox></hx-checkbox>
-        <label>Option 1</label>
-      </div>
-      <div>
-        <hx-checkbox indeterminate></hx-checkbox>
-        <label>Option 2 (Indeterminate)</label>
-      </div>
-      <div>
-        <hx-checkbox disabled></hx-checkbox>
-        <label>Option 3 (Disabled)</label>
-      </div>
-      <div>
-        <hx-checkbox checked disabled></hx-checkbox>
-        <label>Option 4 (Disabled and Checked)</label>
-      </div>
-      <div>
-        <hx-checkbox invalid></hx-checkbox>
-        <label>Option 5 (Invalid)</label>
-      </div>
-    </fieldset>
-  </div>
-  {% code 'html' %}
-    <fieldset>
-      <legend class="hxLabel">Selector Title</legend>
-      <div>
-        <hx-checkbox></hx-checkbox>
-        <label>Option 1</label>
-      </div>
-      <div>
-        <hx-checkbox indeterminate></hx-checkbox>
-        <label>Option 2 (Indeterminate)</label>
-      </div>
-      <div>
-        <hx-checkbox disabled></hx-checkbox>
-        <label>Option 3 (Disabled)</label>
-      </div>
-      <div>
-        <hx-checkbox checked disabled></hx-checkbox>
-        <label>Option 4 (Disabled and Checked)</label>
-      </div>
-      <div>
-        <hx-checkbox invalid></hx-checkbox>
-        <label>Option 5 (Invalid)</label>
-      </div>
-    </fieldset>
-  {% endcode %}
-</section>
-
-<section data-visreg="checkbox-states">
-  <h2 class="hxSectionTitle" id="checkbox-states">Checkbox States</h2>
-  <table class="hxTable">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Unchecked</th>
-        <th>Checked</th>
-        <th>Indeterminate Unchecked</th>
-        <th>Indeterminate Checked</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Default</td>
-        <td><hx-checkbox></hx-checkbox></td>
-        <td><hx-checkbox checked></hx-checkbox></td>
-        <td><hx-checkbox indeterminate></hx-checkbox></td>
-        <td><hx-checkbox checked indeterminate></hx-checkbox></td>
-      </tr>
-      <tr>
-        <td>Invalid</td>
-        <td><hx-checkbox invalid></hx-checkbox></td>
-        <td><hx-checkbox invalid checked></hx-checkbox></td>
-        <td><hx-checkbox invalid indeterminate></hx-checkbox></td>
-        <td><hx-checkbox invalid checked indeterminate></hx-checkbox></td>
-      </tr>
-      <tr>
-        <td>Disabled</td>
-        <td><hx-checkbox disabled></hx-checkbox></td>
-        <td><hx-checkbox disabled checked></hx-checkbox></td>
-        <td><hx-checkbox disabled indeterminate></hx-checkbox></td>
-        <td><hx-checkbox disabled checked indeterminate></hx-checkbox></td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>none (content will be removed upon element upgrade)</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
 {% endblock %}
 
 {% block attributes %}

@@ -1,0 +1,58 @@
+---
+title: Iconography
+also:
+  elements/hx-icon: <hx-icon>
+---
+{% extends 'styleguide.njk' %}
+{% block content %}
+  <section>
+    <h2 class="hxSectionTitle" id="demo">Demo</h2>
+    <div class="demo">
+      <p>
+        <hx-icon type="kbd-arrow-up"></hx-icon>
+        <hx-icon type="kbd-arrow-up"></hx-icon>
+        <hx-icon type="kbd-arrow-down"></hx-icon>
+        <hx-icon type="kbd-arrow-down"></hx-icon>
+        <hx-icon type="kbd-arrow-left"></hx-icon>
+        <hx-icon type="kbd-arrow-right"></hx-icon>
+        <hx-icon type="kbd-arrow-left"></hx-icon>
+        <hx-icon type="kbd-arrow-right"></hx-icon>
+        <kbd>B</kbd>
+        <kbd>A</kbd>
+        <kbd>start</kbd>
+      </p>
+    </div>
+    {% code 'html' %}
+      <hx-icon type="kbd-arrow-up"></hx-icon>
+      <hx-icon type="kbd-arrow-up"></hx-icon>
+      <hx-icon type="kbd-arrow-down"></hx-icon>
+      <hx-icon type="kbd-arrow-down"></hx-icon>
+      <hx-icon type="kbd-arrow-left"></hx-icon>
+      <hx-icon type="kbd-arrow-right"></hx-icon>
+      <hx-icon type="kbd-arrow-left"></hx-icon>
+      <hx-icon type="kbd-arrow-right"></hx-icon>
+      <kbd>B</kbd>
+      <kbd>A</kbd>
+      <kbd>start</kbd>
+    {% endcode %}
+  </section>
+
+  <section>
+    <h2 class="hxSectionTitle" id="available-icons">Available Icons</h2>
+    <p>There are {{ data.icons.length }} icons available!</p>
+    <div class="hxRow">
+      {% for icon in data.icons %}
+        <div class="hxCol hxSpan-12-xs hxSpan-6-sm hxSpan-4-md hxSpan-3-xl">
+          <div class="demo icon-demo">
+            <hx-icon type="{{icon}}"></hx-icon>
+            <p>
+              <code>{{icon}}</code>
+            </p>
+          </div>
+        </div>
+      {% else %}
+        <p>No Icons defined</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

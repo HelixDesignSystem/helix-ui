@@ -11,7 +11,7 @@ title: Asset Stability
     <hx-dl>
       <hx-def>
         <hx-dt>
-          <hx-status class="-hxFill -hxDeprecated">Deprecated</hx-status>
+          <hx-status class="hxFill hxDeprecated">Deprecated</hx-status>
         </hx-dt>
         <hx-dd>
           High Risk, Stop using, Will be removed
@@ -19,7 +19,7 @@ title: Asset Stability
       </hx-def>
       <hx-def>
         <hx-dt>
-          <hx-status class="-hxFill -hxInProgress">In Progress</hx-status><br/>
+          <hx-status class="hxFill hxInProgress">In Progress</hx-status><br/>
         </hx-dt>
         <hx-dd>
           Medium Risk, In Flux, Use with caution
@@ -27,7 +27,7 @@ title: Asset Stability
       </hx-def>
       <hx-def>
         <hx-dt>
-          <hx-status class="-hxFill -hxStable">Stable</hx-status>
+          <hx-status class="hxFill hxStable">Stable</hx-status>
         </hx-dt>
         <hx-dd>
           Low Risk, Good to Go, Production Ready
@@ -44,11 +44,11 @@ title: Asset Stability
         <hx-dt>{{key}}</hx-dt>
         <hx-dd>
           {% if val === 2 %}
-            <hx-status class="-hxFill -hxStable">Stable</hx-status>
+            <hx-status class="hxFill hxStable">Stable</hx-status>
           {% elseif val === 1 %}
-            <hx-status class="-hxFill -hxInProgress">In Progress</hx-status>
+            <hx-status class="hxFill hxInProgress">In Progress</hx-status>
           {% else %}
-            <hx-status class="-hxFill -hxDeprecated">Deprecated</hx-status>
+            <hx-status class="hxFill hxDeprecated">Deprecated</hx-status>
           {% endif %}
         </hx-dd>
       </hx-def>

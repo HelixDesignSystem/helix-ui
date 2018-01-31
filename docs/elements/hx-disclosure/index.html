@@ -1,5 +1,8 @@
 ---
 title: <hx-disclosure>
+also:
+  components/reveals: Reveals
+  elements/hx-reveal: <hx-reveal>
 ---
 {% extends 'element.njk' %}
 {% block content %}
@@ -22,35 +25,16 @@ title: <hx-disclosure>
     </hx-dl>
   </section>
 
-<section>
-  <div class="demo">
-    <hx-disclosure class="hxBtn" aria-controls="demo-disclosure">
-      Click me to show content
-    </hx-disclosure>
-    <hx-reveal id="demo-disclosure">
-      <p>You can't see me</p>
-    </hx-reveal>
-  </div>
-  {% code 'html' %}
-    <hx-disclosure class="hxBtn" aria-controls="demo-disclosure">
-      Click me to show content
-    </hx-disclosure>
-    <hx-reveal id="demo-disclosure">
-      <p>You can't see me</p>
-    </hx-reveal>
-  {% endcode %}
-</section>
-
-<section>
-  <h2 class="hxSectionTitle" id="target-element">Target Element</h2>
-  <p>A target element should adhere to the following contract:</p>
-  <ol>
-    <li>It should have an <code>id</code> attribute.</li>
-    <li>
-      It should respond to an <code>open</code> property that reflects to an <code>open</code> attribute.
-    </li>
-  </ol>
-</section>
+  <section>
+    <h2 class="hxSectionTitle" id="target-element">Target Element</h2>
+    <p>A target element should adhere to the following contract:</p>
+    <ol>
+      <li>It should have an <code>id</code> attribute.</li>
+      <li>
+        It should respond to an <code>open</code> property that reflects to an <code>open</code> attribute.
+      </li>
+    </ol>
+  </section>
 {% endblock %}
 
 {% block attributes %}
