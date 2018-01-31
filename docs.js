@@ -69,14 +69,17 @@
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styleguide_box_box_demo__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styleguide_box_box_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styleguide_box_box_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_box_box_demo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_box_box_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_box_box_demo__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_panels_panel_demo__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_panels_panel_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_panels_panel_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_tooltip_tooltip_demo__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_tooltip_tooltip_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_tooltip_tooltip_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__elements_hx_popover_popover_demo__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__elements_hx_popover_popover_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__elements_hx_popover_popover_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_popovers_popover_demo__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_popovers_popover_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_popovers_popover_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_status_pills_status_demo__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_status_pills_status_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_status_pills_status_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_tooltips_tooltip_demo__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_tooltips_tooltip_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_tooltips_tooltip_demo__);
+
 
 
 
@@ -130,13 +133,13 @@ if (document.getElementById('vue-panelDemo')) {
 /* 3 */
 /***/ (function(module, exports) {
 
-if (document.getElementById('vue-tooltipDemo')) {
+if (document.getElementById('vue-popoverDemo')) {
     new Vue({
-        el: '#vue-tooltipDemo',
+        el: '#vue-popoverDemo',
         data: {
             position: {
-                label: 'Top',
-                value: 'top'
+                label: 'Bottom Right',
+                value: 'bottom-right'
             },
             positions: [{ label: 'Top Left', value: 'top-left' }, { label: 'Top', value: 'top' }, { label: 'Top Right', value: 'top-right' }, { label: 'Right Top', value: 'right-top' }, { label: 'Right', value: 'right' }, { label: 'Right Bottom', value: 'right-bottom' }, { label: 'Bottom Right', value: 'bottom-right' }, { label: 'Bottom', value: 'bottom' }, { label: 'Bottom Left', value: 'bottom-left' }, { label: 'Left Bottom', value: 'left-bottom' }, { label: 'Left', value: 'left' }, { label: 'Left Top', value: 'left-top' }]
         }
@@ -147,13 +150,43 @@ if (document.getElementById('vue-tooltipDemo')) {
 /* 4 */
 /***/ (function(module, exports) {
 
-if (document.getElementById('vue-popoverDemo')) {
+if (document.getElementById('vue-statusDemo')) {
     new Vue({
-        el: '#vue-popoverDemo',
+        el: '#vue-statusDemo',
+        data: {
+            isFilled: false,
+            variant: {
+                label: 'Default',
+                value: ''
+            },
+            variants: [{ value: '', label: 'Default' }, { value: 'hxEmphasisGray', label: 'Emphasis Gray' }, { value: 'hxEmphasisPurple', label: 'Emphasis Purple' }, { value: 'hxSubdued', label: 'Subdued' }]
+        },
+        computed: {
+            cssClasses: function cssClasses() {
+                var out = [];
+                if (this.variant.value !== '') {
+                    out.push(this.variant.value);
+                }
+                if (this.isFilled) {
+                    out.push('hxFill');
+                }
+                return out.join(' ');
+            }
+        }
+    });
+}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+if (document.getElementById('vue-tooltipDemo')) {
+    new Vue({
+        el: '#vue-tooltipDemo',
         data: {
             position: {
-                label: 'Bottom Right',
-                value: 'bottom-right'
+                label: 'Top',
+                value: 'top'
             },
             positions: [{ label: 'Top Left', value: 'top-left' }, { label: 'Top', value: 'top' }, { label: 'Top Right', value: 'top-right' }, { label: 'Right Top', value: 'right-top' }, { label: 'Right', value: 'right' }, { label: 'Right Bottom', value: 'right-bottom' }, { label: 'Bottom Right', value: 'bottom-right' }, { label: 'Bottom', value: 'bottom' }, { label: 'Bottom Left', value: 'bottom-left' }, { label: 'Left Bottom', value: 'left-bottom' }, { label: 'Left', value: 'left' }, { label: 'Left Top', value: 'left-top' }]
         }

@@ -64,20 +64,8 @@
   </hx-disclosure>
   <hx-reveal id="nav-Styleguide" >
       
-      <a href="styleguide/box" >
-    Box
-  </a>
-
-
-      
-      <a href="styleguide/code" >
-    Code
-  </a>
-
-
-      
-      <a href="styleguide/grid" >
-    Grid
+      <a href="styleguide/iconography" >
+    Iconography
   </a>
 
 
@@ -107,6 +95,12 @@ class="current">
 
 
       
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
       <a href="components/breadcrumbs" >
     Breadcrumbs
   </a>
@@ -119,8 +113,14 @@ class="current">
 
 
       
-      <a href="components/forms" >
-    Forms
+      <a href="components/checkboxes" >
+    Checkboxes
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
   </a>
 
 
@@ -143,14 +143,26 @@ class="current">
 
 
       
-      <a href="components/navigation" >
-    Navigation
+      <a href="components/panels" >
+    Panels
   </a>
 
 
       
-      <a href="components/panels" >
-    Panels
+      <a href="components/popovers" >
+    Popovers
+  </a>
+
+
+      
+      <a href="components/reveals" >
+    Reveals
+  </a>
+
+
+      
+      <a href="components/status-pills" >
+    Status Pills
   </a>
 
 
@@ -163,6 +175,18 @@ class="current">
       
       <a href="components/tabs" >
     Tabs
+  </a>
+
+
+      
+      <a href="components/text-inputs" >
+    Text Inputs
+  </a>
+
+
+      
+      <a href="components/tooltips" >
+    Tooltips
   </a>
 
 
@@ -324,21 +348,20 @@ class="current">
   <main id="content" class="hxBox-md">
     <h1 class="hxPageTitle">Menus</h1>
 
-
-<section>
-  <h2 class="hxSectionTitle" id="menu">Basic Menu</h2>
-  <div class="demo">
-    <hx-disclosure class="hxBtn" aria-controls="menuId">
-      <hx-icon type="cog"></hx-icon>
-      Actions
-      <hx-icon class="menu-icon" type="angle-down"></hx-icon>
-    </hx-disclosure>
-    <hx-menu class="hxBox-sm" id="menuId">
-      <hx-menuitem class="hxBtn hxBtn--link">Action 1</hx-menuitem>
-      <hx-menuitem class="hxBtn hxBtn--link">Action 2</hx-menuitem>
-      <hx-menuitem class="hxBtn hxBtn--link">Action 3</hx-menuitem>
-    </hx-menu>
-  </div>
+  <section>
+    <h2 class="hxSectionTitle" id="menu">Basic Menu</h2>
+    <div class="demo">
+      <hx-disclosure class="hxBtn" aria-controls="menuId">
+        <hx-icon type="cog"></hx-icon>
+        Actions
+        <hx-icon class="menu-icon" type="angle-down"></hx-icon>
+      </hx-disclosure>
+      <hx-menu class="hxBox-sm" id="menuId">
+        <hx-menuitem class="hxBtn hxBtn--link">Action 1</hx-menuitem>
+        <hx-menuitem class="hxBtn hxBtn--link">Action 2</hx-menuitem>
+        <hx-menuitem class="hxBtn hxBtn--link">Action 3</hx-menuitem>
+      </hx-menu>
+    </div>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"menuId"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"cog"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
   Actions
@@ -349,20 +372,20 @@ class="current">
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--link"</span>&gt;</span>Action 2<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--link"</span>&gt;</span>Action 3<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-menu</span>&gt;</span>
-</code></pre></section>
-<!--
-<section>
-<h2 class="hxSectionTitle" id="cog-menu">Cog Menu</h2>
-  <div class="demo">
-    <hx-disclosure class="hxBtn btn-cog" aria-controls="cogmenuId">
-      <hx-icon class="icon" type="cog"></hx-icon>
-    </hx-disclosure>
-    <hx-menu class="hxBox-sm" id="cogmenuId" >
-      <hx-menuitem class="hxBtn hxBtn--link">Action 1</hx-menuitem>
-      <hx-menuitem class="hxBtn hxBtn--link">Action 2</hx-menuitem>
-      <hx-menuitem class="hxBtn hxBtn--link">Action 3</hx-menuitem>
-    </hx-menu>
-  </div>
+</code></pre>  </section>
+  <!--
+  <section>
+  <h2 class="hxSectionTitle" id="cog-menu">Cog Menu</h2>
+    <div class="demo">
+      <hx-disclosure class="hxBtn btn-cog" aria-controls="cogmenuId">
+        <hx-icon class="icon" type="cog"></hx-icon>
+      </hx-disclosure>
+      <hx-menu class="hxBox-sm" id="cogmenuId" >
+        <hx-menuitem class="hxBtn hxBtn--link">Action 1</hx-menuitem>
+        <hx-menuitem class="hxBtn hxBtn--link">Action 2</hx-menuitem>
+        <hx-menuitem class="hxBtn hxBtn--link">Action 3</hx-menuitem>
+      </hx-menu>
+    </div>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn btn-cog"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"cogmenuId"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"cog"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
@@ -371,32 +394,32 @@ class="current">
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--link"</span>&gt;</span>Action 2<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--link"</span>&gt;</span>Action 3<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-menu</span>&gt;</span>
-</code></pre></section>
--->
+</code></pre>  </section>
+  -->
 
-<section>
-  <h2 class="hxSectionTitle" id="advanced-menu">Advanced Menu</h2>
-  <div class="demo">
-    <hx-disclosure class="hxBtn" aria-controls="advancedmenuId">
-      <hx-icon type="cog"></hx-icon>
-      Actions
-      <hx-icon class="menu-icon" type="angle-down"></hx-icon>
-    </hx-disclosure>
-    <hx-menu class="hxBox-sm" id="advancedmenuId">
-      <hx-menuitem-group>
-        <header>TITLE</header>
-        <hx-menuitem class="hxBtn hxBtn--link">Action 1</hx-menuitem>
-        <hx-menuitem class="hxBtn hxBtn--link">Action 2</hx-menuitem>
-        <hx-menuitem class="hxBtn hxBtn--link">Action 3</hx-menuitem>
-      </hx-menuitem-group>
-      <hx-menuitem-group>
-        <header>TITLE</header>
-        <hx-menuitem class="hxBtn hxBtn--link">Action 1</hx-menuitem>
-        <hx-menuitem class="hxBtn hxBtn--link">Action 2</hx-menuitem>
-        <hx-menuitem class="hxBtn hxBtn--link">Action 3</hx-menuitem>
-      </hx-menuitem-group>
-    </hx-menu>
-  </div>
+  <section>
+    <h2 class="hxSectionTitle" id="advanced-menu">Advanced Menu</h2>
+    <div class="demo">
+      <hx-disclosure class="hxBtn" aria-controls="advancedmenuId">
+        <hx-icon type="cog"></hx-icon>
+        Actions
+        <hx-icon class="menu-icon" type="angle-down"></hx-icon>
+      </hx-disclosure>
+      <hx-menu class="hxBox-sm" id="advancedmenuId">
+        <hx-menuitem-group>
+          <header>TITLE</header>
+          <hx-menuitem class="hxBtn hxBtn--link">Action 1</hx-menuitem>
+          <hx-menuitem class="hxBtn hxBtn--link">Action 2</hx-menuitem>
+          <hx-menuitem class="hxBtn hxBtn--link">Action 3</hx-menuitem>
+        </hx-menuitem-group>
+        <hx-menuitem-group>
+          <header>TITLE</header>
+          <hx-menuitem class="hxBtn hxBtn--link">Action 1</hx-menuitem>
+          <hx-menuitem class="hxBtn hxBtn--link">Action 2</hx-menuitem>
+          <hx-menuitem class="hxBtn hxBtn--link">Action 3</hx-menuitem>
+        </hx-menuitem-group>
+      </hx-menu>
+    </div>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"advancedmenuId"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"cog"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
   Actions
@@ -416,23 +439,23 @@ class="current">
     <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--link"</span>&gt;</span>Action 3<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem-group</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-menu</span>&gt;</span>
-</code></pre></section>
+</code></pre>  </section>
 
-<section>
-<h2 class="hxSectionTitle" id="split-menu">Split Menu</h2>
-  <div class="demo">
-    <div class="hxBtnGroup" id="split-group">
-      <button class="hxBtn hxBtn--primary">Split Menu</button>
-      <hx-disclosure class="hxBtn hxBtn--primary" aria-controls="splitmenuId">
-        <hx-icon class="menu-icon" type="angle-down"></hx-icon>
-      </hx-disclosure>
+  <section>
+  <h2 class="hxSectionTitle" id="split-menu">Split Menu</h2>
+    <div class="demo">
+      <div class="hxBtnGroup" id="split-group">
+        <button class="hxBtn hxBtn--primary">Split Menu</button>
+        <hx-disclosure class="hxBtn hxBtn--primary" aria-controls="splitmenuId">
+          <hx-icon class="menu-icon" type="angle-down"></hx-icon>
+        </hx-disclosure>
+      </div>
+      <hx-menu class="hxBox-sm" id="splitmenuId" relative-to="split-group">
+        <hx-menuitem class="hxBtn hxBtn--link">Action 1</hx-menuitem>
+        <hx-menuitem class="hxBtn hxBtn--link">Action 2</hx-menuitem>
+        <hx-menuitem class="hxBtn hxBtn--link">Action 3</hx-menuitem>
+      </hx-menu>
     </div>
-    <hx-menu class="hxBox-sm" id="splitmenuId" relative-to="split-group">
-      <hx-menuitem class="hxBtn hxBtn--link">Action 1</hx-menuitem>
-      <hx-menuitem class="hxBtn hxBtn--link">Action 2</hx-menuitem>
-      <hx-menuitem class="hxBtn hxBtn--link">Action 3</hx-menuitem>
-    </hx-menu>
-  </div>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtnGroup"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"split-group"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--primary"</span>&gt;</span>Split Menu<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--primary"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"splitmenuId"</span>&gt;</span>
@@ -444,7 +467,7 @@ class="current">
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--link"</span>&gt;</span>Action 2<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--link"</span>&gt;</span>Action 3<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-menu</span>&gt;</span>
-</code></pre></section>
+</code></pre>  </section>
 
 <section>
   <h2 class="hxSectionTitle" id="see-also">See Also</h2>
@@ -485,7 +508,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-01-29
+      2018-01-31
     </small>
 </div>
   </footer>

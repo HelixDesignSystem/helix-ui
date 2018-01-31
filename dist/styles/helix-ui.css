@@ -375,34 +375,34 @@ hx-status {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-hx-status.-hxEmphasisGray {
+hx-status.hxEmphasisGray {
   border-color: #424242;
   color: #424242;
 }
-hx-status.-hxEmphasisPurple {
+hx-status.hxEmphasisPurple {
   border-color: #3b44a9;
   color: #3b44a9;
 }
-hx-status.-hxSubdued {
+hx-status.hxSubdued {
   border-color: #9e9e9e;
   color: #9e9e9e;
 }
-hx-status.-hxFill {
+hx-status.hxFill {
   background-color: #6b6b6b;
   border-color: #6b6b6b;
   color: #ffffff;
 }
-hx-status.-hxFill.-hxEmphasisGray {
+hx-status.hxFill.hxEmphasisGray {
   background-color: #424242;
   border-color: #424242;
   color: #ffffff;
 }
-hx-status.-hxFill.-hxEmphasisPurple {
+hx-status.hxFill.hxEmphasisPurple {
   background-color: #3b44a9;
   border-color: #3b44a9;
   color: #ffffff;
 }
-hx-status.-hxFill.-hxSubdued {
+hx-status.hxFill.hxSubdued {
   background-color: #9e9e9e;
   border-color: #9e9e9e;
   color: #ffffff;
@@ -494,6 +494,36 @@ hx-tabset {
     display: flex;
     flex-direction: column;
   }
+}
+hx-tooltip {
+  background-color: #ffffff;
+  border-color: #e0e0e0;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);
+  color: initial;
+  display: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: normal;
+  left: 0;
+  letter-spacing: normal;
+  max-width: 25rem;
+  position: absolute;
+  text-align: left;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  top: 0;
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+  z-index: 1000;
+}
+hx-tooltip[open] {
+  display: block;
 }
 /* ====== end:BASE ========== */
 /* ========== COMPONENTS ========== *\
@@ -1608,7 +1638,7 @@ textarea.hxTextCtrl {
   border-color: #0e94a6;
   box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
 }
-.hxTextCtrl:focus.-hxInvalid {
+.hxTextCtrl:focus[invalid] {
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }
 .hxTextCtrl[invalid] {

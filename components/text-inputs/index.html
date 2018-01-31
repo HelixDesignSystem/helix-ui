@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Buttons - HelixUI</title>
+  <title>Text Inputs - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -107,7 +107,7 @@ class="current">
 
 
       
-      <a href="components/buttons" class="current">
+      <a href="components/buttons" >
     Buttons
   </a>
 
@@ -179,7 +179,7 @@ class="current">
 
 
       
-      <a href="components/text-inputs" >
+      <a href="components/text-inputs" class="current">
     Text Inputs
   </a>
 
@@ -346,95 +346,97 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Buttons</h1>
+    <h1 class="hxPageTitle">Text Inputs</h1>
 
   <section>
-    <h2 class="hxSectionTitle" id="default-button">Default Button</h2>
-
-    <!-- explanation goes here -->
-
-    <div class="demo">
-      <button class="hxBtn">Default Button</button>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Default Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>  </section>
-
-  <section>
-    <h2 class="hxSectionTitle" id="primary-button">Primary Button</h2>
-    <div class="demo">
-      <button class="hxBtn hxBtn--primary">Primary Button</button>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--primary"</span>&gt;</span>Primary Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>  </section>
-
-  <section>
-    <h2 class="hxSectionTitle" id="link-button">Link Button</h2>
-    <div class="demo">
-      <button class="hxBtn hxBtn--link">Link Button</button>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--link"</span>&gt;</span>Link Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>  </section>
-
-  <section>
-    <h2 class="hxSectionTitle" id="button-sizing">Button Sizing</h2>
-    <div class="demo">
-      <button type="button" class="hxBtn hxBtn--lg">Large Button</button>
-      <button type="button" class="hxBtn">Default Button</button>
-      <button type="button" class="hxBtn hxBtn--sm">Compact Button</button>
-    </div>
-
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--lg"</span>&gt;</span>Large Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Default Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--sm"</span>&gt;</span>Compact Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>  </section>
-
-  <section data-visreg="button-states">
-    <h2 class="hxSectionTitle" id="button-states">Button States</h2>
-    <table class="table">
-      <tbody>
-        <tr>
-          <td>Default</td>
-          <td><button class="hxBtn">Normal</button></td>
-          <td><button class="hxBtn pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn" disabled>Disabled</button></td>
-        </tr>
-        <tr>
-          <td>Primary</td>
-          <td><button class="hxBtn hxBtn--primary">Normal</button></td>
-          <td><button class="hxBtn hxBtn--primary pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn hxBtn--primary pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn hxBtn--primary" disabled>Disabled</button></td>
-        </tr>
-        <tr>
-          <td>Link</td>
-          <td><button class="hxBtn hxBtn--link">Normal</button></td>
-          <td><button class="hxBtn hxBtn--link pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn hxBtn--link pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn hxBtn--link" disabled>Disabled</button></td>
-        </tr>
-      </tbody>
-    </table>
+    <p>
+      Use the <code>.hxTextCtrl</code> CSS class to apply styles to text-like form controls.
+    </p>
   </section>
+
+  <section>
+    <h2 class="hxSectionTitle" id="single-line-text">Single-Line Text</h2>
+    <div class="demo">
+      <input
+        class="hxTextCtrl"
+        placeholder="Default Text Input"
+        type="text" />
+      <br />
+
+      <input
+        class="hxTextCtrl"
+        invalid
+        placeholder="Invalid Text Input"
+        type="text" />
+      <br />
+
+      <input
+        class="hxTextCtrl"
+        disabled
+        placeholder="Disabled Text Input"
+        type="text" />
+    </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTextCtrl"</span>
+  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Default Text Input"</span>
+  <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> /&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTextCtrl"</span>
+  <span class="hljs-attr">invalid</span>
+  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Invalid Text Input"</span>
+  <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> /&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTextCtrl"</span>
+  <span class="hljs-attr">disabled</span>
+  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Disabled Text Input"</span>
+  <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> /&gt;</span>
+</code></pre>  </section>
+
+  <section>
+    <h2 class="hxSectionTitle" id="multi-line-text">Multi-line Text</h2>
+    <div class="demo">
+      <textarea
+        class="hxTextCtrl"
+        placeholder="Default Text Area"></textarea>
+      <br />
+
+      <textarea
+        class="hxTextCtrl"
+        invalid
+        placeholder="Invalid Text Area"></textarea>
+      <br />
+
+      <textarea
+        class="hxTextCtrl"
+        disabled
+        placeholder="Disabled Text Area"></textarea>
+    </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>
+  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTextCtrl"</span>
+  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Default Text Area"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>
+  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTextCtrl"</span>
+  <span class="hljs-attr">invalid</span>
+  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Invalid Text Area"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>
+  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTextCtrl"</span>
+  <span class="hljs-attr">disabled</span>
+  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Disabled Text Area"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+</code></pre>  </section>
 
   </main>
   <aside class="hxSiderail hxBox-md">
     <h1 class="hxContainerTitle">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#default-button">Default Button</a>
+            <a href="#single-line-text">Single-Line Text</a>
         
 
-            <a href="#primary-button">Primary Button</a>
-        
-
-            <a href="#link-button">Link Button</a>
-        
-
-            <a href="#button-sizing">Button Sizing</a>
-        
-
-            <a href="#button-states">Button States</a>
+            <a href="#multi-line-text">Multi-line Text</a>
         
       <hr />
       <a class="top-link" href="#top">Back to Top</a>

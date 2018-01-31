@@ -64,20 +64,8 @@
   </hx-disclosure>
   <hx-reveal id="nav-Styleguide" >
       
-      <a href="styleguide/box" >
-    Box
-  </a>
-
-
-      
-      <a href="styleguide/code" >
-    Code
-  </a>
-
-
-      
-      <a href="styleguide/grid" >
-    Grid
+      <a href="styleguide/iconography" >
+    Iconography
   </a>
 
 
@@ -107,6 +95,12 @@
 
 
       
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
       <a href="components/breadcrumbs" >
     Breadcrumbs
   </a>
@@ -119,8 +113,14 @@
 
 
       
-      <a href="components/forms" >
-    Forms
+      <a href="components/checkboxes" >
+    Checkboxes
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
   </a>
 
 
@@ -143,14 +143,26 @@
 
 
       
-      <a href="components/navigation" >
-    Navigation
+      <a href="components/panels" >
+    Panels
   </a>
 
 
       
-      <a href="components/panels" >
-    Panels
+      <a href="components/popovers" >
+    Popovers
+  </a>
+
+
+      
+      <a href="components/reveals" >
+    Reveals
+  </a>
+
+
+      
+      <a href="components/status-pills" >
+    Status Pills
   </a>
 
 
@@ -163,6 +175,18 @@
       
       <a href="components/tabs" >
     Tabs
+  </a>
+
+
+      
+      <a href="components/text-inputs" >
+    Text Inputs
+  </a>
+
+
+      
+      <a href="components/tooltips" >
+    Tooltips
   </a>
 
 
@@ -343,33 +367,16 @@ class="current">
     </hx-dl>
   </section>
 
-<section>
-  <div class="demo">
-    <hx-disclosure class="hxBtn" aria-controls="demo-disclosure">
-      Click me to show content
-    </hx-disclosure>
-    <hx-reveal id="demo-disclosure">
-      <p>You can't see me</p>
-    </hx-reveal>
-  </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"demo-disclosure"</span>&gt;</span>
-  Click me to show content
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"demo-disclosure"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You can't see me<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-</code></pre></section>
-
-<section>
-  <h2 class="hxSectionTitle" id="target-element">Target Element</h2>
-  <p>A target element should adhere to the following contract:</p>
-  <ol>
-    <li>It should have an <code>id</code> attribute.</li>
-    <li>
-      It should respond to an <code>open</code> property that reflects to an <code>open</code> attribute.
-    </li>
-  </ol>
-</section>
+  <section>
+    <h2 class="hxSectionTitle" id="target-element">Target Element</h2>
+    <p>A target element should adhere to the following contract:</p>
+    <ol>
+      <li>It should have an <code>id</code> attribute.</li>
+      <li>
+        It should respond to an <code>open</code> property that reflects to an <code>open</code> attribute.
+      </li>
+    </ol>
+  </section>
 
     
     <section>
@@ -418,6 +425,13 @@ class="current">
   </dl>
     </section>
 
+<section>
+  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
+  <ul>
+      <li><a href="components/reveals">Reveals</a></li>
+      <li><a href="elements/hx-reveal">&lt;hx-reveal&gt;</a></li>
+  </ul>
+</section>
   </main>
   <aside class="hxSiderail hxBox-md">
     <h1 class="hxContainerTitle">On this page:</h1>
@@ -427,6 +441,7 @@ class="current">
         
       <a href="#attributes">Attributes</a>
       <a href="#properties">Properties</a>
+        <a href="#see-also">See Also</a>
       <hr />
       <a class="top-link" href="#top">Back to Top</a>
     </nav>
@@ -444,7 +459,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-01-29
+      2018-01-31
     </small>
 </div>
   </footer>

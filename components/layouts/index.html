@@ -64,20 +64,8 @@
   </hx-disclosure>
   <hx-reveal id="nav-Styleguide" >
       
-      <a href="styleguide/box" >
-    Box
-  </a>
-
-
-      
-      <a href="styleguide/code" >
-    Code
-  </a>
-
-
-      
-      <a href="styleguide/grid" >
-    Grid
+      <a href="styleguide/iconography" >
+    Iconography
   </a>
 
 
@@ -107,6 +95,12 @@ class="current">
 
 
       
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
       <a href="components/breadcrumbs" >
     Breadcrumbs
   </a>
@@ -119,8 +113,14 @@ class="current">
 
 
       
-      <a href="components/forms" >
-    Forms
+      <a href="components/checkboxes" >
+    Checkboxes
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
   </a>
 
 
@@ -143,14 +143,26 @@ class="current">
 
 
       
-      <a href="components/navigation" >
-    Navigation
+      <a href="components/panels" >
+    Panels
   </a>
 
 
       
-      <a href="components/panels" >
-    Panels
+      <a href="components/popovers" >
+    Popovers
+  </a>
+
+
+      
+      <a href="components/reveals" >
+    Reveals
+  </a>
+
+
+      
+      <a href="components/status-pills" >
+    Status Pills
   </a>
 
 
@@ -163,6 +175,18 @@ class="current">
       
       <a href="components/tabs" >
     Tabs
+  </a>
+
+
+      
+      <a href="components/text-inputs" >
+    Text Inputs
+  </a>
+
+
+      
+      <a href="components/tooltips" >
+    Tooltips
   </a>
 
 
@@ -324,58 +348,58 @@ class="current">
   <main id="content" class="hxBox-md">
     <h1 class="hxPageTitle">Layouts</h1>
 
-<section>
-  <div class="hxAlert hxAlert--warning">
-    <div class="hxAlert__icon">
-      <hx-icon type="exclamation-triangle"></hx-icon>
+  <section>
+    <div class="hxAlert hxAlert--warning">
+      <div class="hxAlert__icon">
+        <hx-icon type="exclamation-triangle"></hx-icon>
+      </div>
+      <div class="hxAlert__text">
+        <span class="hxAlert__status">WARNING</span>
+
+        Layouts are not automatic. Apply appropriate CSS class to document body.
+      </div>
     </div>
-    <div class="hxAlert__text">
-      <span class="hxAlert__status">WARNING</span>
+    <br />
 
-      Layouts are not automatic. Apply appropriate CSS class to document body.
+    <div class="hxAlert hxAlert--warning">
+      <div class="hxAlert__icon">
+        <hx-icon type="exclamation-triangle"></hx-icon>
+      </div>
+      <div class="hxAlert__text">
+        <span class="hxAlert__status">WARNING</span>
+
+        Padding is not automatic. Add Box styling to apply padding.
+      </div>
     </div>
-  </div>
-  <br />
+    <br />
 
-  <div class="hxAlert hxAlert--warning">
-    <div class="hxAlert__icon">
-      <hx-icon type="exclamation-triangle"></hx-icon>
-    </div>
-    <div class="hxAlert__text">
-      <span class="hxAlert__status">WARNING</span>
+    <p>
+      Two layouts are officially supported, and both have the same basic HTML structure.
+    </p>
 
-      Padding is not automatic. Add Box styling to apply padding.
-    </div>
-  </div>
-  <br />
+    <ul>
+      <li>The Head is reserved for Pilot navigation.</li>
+      <li>The Foot is reserved for legal information.</li>
+      <li>The Stage is the area between the Head and Foot where you'll do most of your work.</li>
+    </ul>
+  </section>
 
-  <p>
-    Two layouts are officially supported, and both have the same basic HTML structure.
-  </p>
-
-  <ul>
-    <li>The Head is reserved for Pilot navigation.</li>
-    <li>The Foot is reserved for legal information.</li>
-    <li>The Stage is the area between the Head and Foot where you'll do most of your work.</li>
-  </ul>
-</section>
-
-<section><!-- VERTICAL LAYOUT -->
-  <h2 class="hxSectionTitle" id="vertical-layout">Vertical Layout</h2>
-  <p>
-    Use a Vertical layout if your application content needs to grow along the y-axis
-    (pushing the footer down past the bottom of the viewport).
-  </p>
-  <ul>
-    <li>
-      Apply the <code>.hxVertical</code> class to the document body
-      (<code>&lt;body class="hxVertical"&gt;</code>).
-    </li>
-    <li>
-      <a href="components/layouts/vertical-layout-template.html">Vertical Template</a>
-    </li>
-  </ul>
-  <figure>
+  <section><!-- VERTICAL LAYOUT -->
+    <h2 class="hxSectionTitle" id="vertical-layout">Vertical Layout</h2>
+    <p>
+      Use a Vertical layout if your application content needs to grow along the y-axis
+      (pushing the footer down past the bottom of the viewport).
+    </p>
+    <ul>
+      <li>
+        Apply the <code>.hxVertical</code> class to the document body
+        (<code>&lt;body class="hxVertical"&gt;</code>).
+      </li>
+      <li>
+        <a href="components/layouts/vertical-layout-template.html">Vertical Template</a>
+      </li>
+    </ul>
+    <figure>
 <pre><code class="html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
@@ -385,26 +409,26 @@ class="current">
     <span class="hljs-tag">&lt;<span class="hljs-name">footer</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"foot"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
-</code></pre>    <figcaption>Abbreviated HTML markup for a vertical application layout</figcaption>
-  </figure>
-</section>
+</code></pre>      <figcaption>Abbreviated HTML markup for a vertical application layout</figcaption>
+    </figure>
+  </section>
 
-<section><!-- HORIZONTAL LAYOUT -->
-  <h2 class="hxSectionTitle" id="horizontal-layout">Horizontal Layout</h2>
-  <p>
-    Use a Horizontal layout if your application content needs to grow across the x-axis
-    (keeping the footer visible at all times).
-  </p>
-  <ul>
-    <li>
-      Apply the <code>.hxHorizontal</code> class to the document body
-      (<code>&lt;body class="hxHorizontal"&gt;</code>).
-    </li>
-    <li>
-      <a href="components/layouts/horizontal-layout-template.html">Horizontal Template</a>
-    </li>
-  </ul>
-  <figure>
+  <section><!-- HORIZONTAL LAYOUT -->
+    <h2 class="hxSectionTitle" id="horizontal-layout">Horizontal Layout</h2>
+    <p>
+      Use a Horizontal layout if your application content needs to grow across the x-axis
+      (keeping the footer visible at all times).
+    </p>
+    <ul>
+      <li>
+        Apply the <code>.hxHorizontal</code> class to the document body
+        (<code>&lt;body class="hxHorizontal"&gt;</code>).
+      </li>
+      <li>
+        <a href="components/layouts/horizontal-layout-template.html">Horizontal Template</a>
+      </li>
+    </ul>
+    <figure>
 <pre><code class="html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
@@ -414,33 +438,33 @@ class="current">
     <span class="hljs-tag">&lt;<span class="hljs-name">footer</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"foot"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
-</code></pre>    <figcaption>Abbreviated HTML markup for a horizontal application layout</figcaption>
-  </figure>
-</section>
+</code></pre>      <figcaption>Abbreviated HTML markup for a horizontal application layout</figcaption>
+    </figure>
+  </section>
 
-<section><!-- STAGE -->
-  <h2 class="hxSectionTitle" id="stage-area">Stage</h2>
-  <div class="hxAlert hxAlert--warning">
-    <div class="hxAlert__icon">
-      <hx-icon type="exclamation-triangle"></hx-icon>
+  <section><!-- STAGE -->
+    <h2 class="hxSectionTitle" id="stage-area">Stage</h2>
+    <div class="hxAlert hxAlert--warning">
+      <div class="hxAlert__icon">
+        <hx-icon type="exclamation-triangle"></hx-icon>
+      </div>
+      <div class="hxAlert__text">
+        <span class="hxAlert__status">WARNING</span>
+        Do not add more than one side rail in your layout.
+      </div>
     </div>
-    <div class="hxAlert__text">
-      <span class="hxAlert__status">WARNING</span>
-      Do not add more than one side rail in your layout.
-    </div>
-  </div>
-  <br />
+    <br />
 
-  <p>
-    The stage is the area between the head and footer.
-    It houses the applicaton content, left-hand navigation, and side rail containers.
-  </p>
-  <ul>
-    <li>
-      Give the stage an id of <code>stage</code> to apply layout CSS.
-    </li>
-  </ul>
-  <figure>
+    <p>
+      The stage is the area between the head and footer.
+      It houses the applicaton content, left-hand navigation, and side rail containers.
+    </p>
+    <ul>
+      <li>
+        Give the stage an id of <code>stage</code> to apply layout CSS.
+      </li>
+    </ul>
+    <figure>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"stage"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"nav"</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- See Navigation Component --&gt;</span>
@@ -455,90 +479,146 @@ class="current">
     <span class="hljs-comment">&lt;!-- (optional) Do not use in Horizontal layout --&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code></pre>    <figcaption>Skeleton HTML markup for the stage container</figcaption>
-  </figure>
+</code></pre>      <figcaption>Skeleton HTML markup for the stage container</figcaption>
+    </figure>
 
-  <section><!-- left nav -->
-    <h3 class="hxSubSectionTitle">Left-Hand Navigation</h3>
-    <ul>
-      <li>
-        For accessibility reasons, use a <code>&lt;nav&gt;</code> element.
-      </li>
-      <li>
-        Give the element an id of <code>nav</code> to apply layout CSS.
-      </li>
-    </ul>
+    <section><!-- left nav -->
+      <h3 class="hxSubSectionTitle">Left-Hand Navigation</h3>
+      <ul>
+        <li>
+          For accessibility reasons, use a <code>&lt;nav&gt;</code> element.
+        </li>
+        <li>
+          Give the element an id of <code>nav</code> to apply layout CSS.
+        </li>
+      </ul>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"nav"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
-</code></pre>  </section>
+</code></pre>    </section>
 
-  <section><!-- app content -->
-    <h3 class="hxSubSectionTitle">Application Content</h3>
-    <div class="hxAlert">
-      <div class="hxAlert__icon">
-        <hx-icon type="info-circle"></hx-icon>
+    <section><!-- app content -->
+      <h3 class="hxSubSectionTitle">Application Content</h3>
+      <div class="hxAlert">
+        <div class="hxAlert__icon">
+          <hx-icon type="info-circle"></hx-icon>
+        </div>
+        <div class="hxAlert__text">
+          <span class="hxAlert__status">INFO</span>
+          Content area behaves like a non-wrapping Grid row when using a Horizontal layout.
+        </div>
       </div>
-      <div class="hxAlert__text">
-        <span class="hxAlert__status">INFO</span>
-        Content area behaves like a non-wrapping Grid row when using a Horizontal layout.
-      </div>
-    </div>
-    <br />
+      <br />
 
-    <ul>
-      <li>
-        For accessibility reasons, use a <code>&lt;main&gt;</code> element.
-      </li>
-      <li>
-        Give the element an id of <code>content</code> to apply layout CSS.
-      </li>
-    </ul>
+      <ul>
+        <li>
+          For accessibility reasons, use a <code>&lt;main&gt;</code> element.
+        </li>
+        <li>
+          Give the element an id of <code>content</code> to apply layout CSS.
+        </li>
+      </ul>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"content"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
-</code></pre>  </section>
+</code></pre>    </section>
 
-  <section><!-- side rail -->
-    <h3 class="hxSubSectionTitle">Side Rail</h3>
-    <div class="hxAlert">
-      <div class="hxAlert__icon">
-        <hx-icon type="info-circle"></hx-icon>
+    <section><!-- side rail -->
+      <h3 class="hxSubSectionTitle">Side Rail</h3>
+      <div class="hxAlert">
+        <div class="hxAlert__icon">
+          <hx-icon type="info-circle"></hx-icon>
+        </div>
+        <div class="hxAlert__text">
+          <span class="hxAlert__status">OPTIONAL</span>
+
+          Main content will automatically fill the space of a missing side rail.
+        </div>
       </div>
-      <div class="hxAlert__text">
-        <span class="hxAlert__status">OPTIONAL</span>
+      <br />
 
-        Main content will automatically fill the space of a missing side rail.
+      <div class="hxAlert hxAlert--warning">
+        <div class="hxAlert__icon">
+          <hx-icon type="exclamation-triangle"></hx-icon>
+        </div>
+        <div class="hxAlert__text">
+          <span class="hxAlert__status">WARNING</span>
+
+          A side rail is not recommended for a Horizontal layout.
+        </div>
       </div>
-    </div>
-    <br />
+      <br />
 
-    <div class="hxAlert hxAlert--warning">
-      <div class="hxAlert__icon">
-        <hx-icon type="exclamation-triangle"></hx-icon>
-      </div>
-      <div class="hxAlert__text">
-        <span class="hxAlert__status">WARNING</span>
-
-        A side rail is not recommended for a Horizontal layout.
-      </div>
-    </div>
-    <br />
-
-    <ul>
-      <li>
-        For accessibility reasons, use an <code>&lt;aside&gt;</code> element.
-      </li>
-      <li>
-        Give the element a class of <code>hxSiderail</code> to apply layout CSS.
-      </li>
-    </ul>
+      <ul>
+        <li>
+          For accessibility reasons, use an <code>&lt;aside&gt;</code> element.
+        </li>
+        <li>
+          Give the element a class of <code>hxSiderail</code> to apply layout CSS.
+        </li>
+      </ul>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">aside</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSiderail"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
+</code></pre>    </section>
+  </section>
+
+  <section>
+    <h2 class="hxSectionTitle" id="left-navigation">Left Navigation</h2>
+
+    <div class="demo nav-demo">
+      <nav class="hxNav">
+        <a href="#">Link 1-1</a>
+        <a href="#">Link 1-2</a>
+        <a href="#">Link 1-3</a>
+
+        <hx-disclosure aria-controls="section-1">
+          L1 Section
+          <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+        </hx-disclosure>
+        <hx-reveal id="section-1" open>
+          <a href="#">Link 2-1</a>
+          <a href="#">Link 2-2</a>
+          <a href="#">Link 2-3</a>
+
+          <hx-disclosure aria-controls="section-1-2">
+            L2 Section
+            <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+          </hx-disclosure>
+          <hx-reveal id="section-1-2" open>
+            <a href="#">Link 3-1</a>
+            <a href="#">Link 3-2</a>
+            <a href="#">Link 3-3</a>
+          </hx-reveal>
+        </hx-reveal>
+      </nav>
+    </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxNav"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1"</span>&gt;</span>
+    L1 Section
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1"</span> <span class="hljs-attr">open</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1-2"</span>&gt;</span>
+      L2 Section
+      <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1-2"</span> <span class="hljs-attr">open</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
 </code></pre>  </section>
-</section>
 
 <section>
   <h2 class="hxSectionTitle" id="see-also">See Also</h2>
   <ul>
-      <li><a href="components/navigation">Navigation</a></li>
-      <li><a href="styleguide/box">Box</a></li>
-      <li><a href="styleguide/grid">Grid</a></li>
+      <li><a href="components/box">Box</a></li>
+      <li><a href="components/grid">Grid</a></li>
   </ul>
 </section>
   </main>
@@ -553,6 +633,9 @@ class="current">
         
 
             <a href="#stage-area">Stage</a>
+        
+
+            <a href="#left-navigation">Left Navigation</a>
         
         <a href="#see-also">See Also</a>
       <hr />
@@ -572,7 +655,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-01-29
+      2018-01-31
     </small>
 </div>
   </footer>

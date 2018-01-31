@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Buttons - HelixUI</title>
+  <title>Popovers - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -107,7 +107,7 @@ class="current">
 
 
       
-      <a href="components/buttons" class="current">
+      <a href="components/buttons" >
     Buttons
   </a>
 
@@ -149,7 +149,7 @@ class="current">
 
 
       
-      <a href="components/popovers" >
+      <a href="components/popovers" class="current">
     Popovers
   </a>
 
@@ -346,96 +346,112 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Buttons</h1>
+    <h1 class="hxPageTitle">Popovers</h1>
 
-  <section>
-    <h2 class="hxSectionTitle" id="default-button">Default Button</h2>
+  <section id="vue-popoverDemo">
+    <h2 class="hxSectionTitle" id="tooltip">Basic Popover</h2>
+    <div class="hxRow">
+      <div class="hxCol hxSpan-9-xs">
+        <div class="demo popover-demo">
+          <button data-popover="myPopover" class="hxBtn">Toggle</button>
 
-    <!-- explanation goes here -->
+          <hx-popover id="myPopover"
+            :position="position.value"
+            v-for="_position in positions"
+            v-if="_position.value === position.value">
 
-    <div class="demo">
-      <button class="hxBtn">Default Button</button>
+            <header slot="header">
+              <h4 class="hxContainerTitle">Popover Header</h4>
+            </header>
+            <p>This is my popover body</p>
+            <footer slot="footer">
+              <button class="hxBtn hxBtn--primary">Submit</button>
+              <button class="hxBtn">Cancel</button>
+            </footer>
+          </hx-popover>
+        </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">data-popover</span>=<span class="hljs-string">"myPopover"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Toggle<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-popover</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myPopover"</span> <span class="hljs-attr">position</span>=<span class="hljs-string">"bottom-right"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxContainerTitle"</span>&gt;</span>Popover Header<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is my popover body<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">footer</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--primary"</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-popover</span>&gt;</span>
+</code></pre>      </div>
+      <div class="hxCol hxSpan-3-xs">
+        Position:
+        <select v-model="position">
+          <option v-for="_position in positions" :value="_position">
+{{ _position.label }}
+          </option>
+        </select>
+      </div>
     </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Default Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>  </section>
-
-  <section>
-    <h2 class="hxSectionTitle" id="primary-button">Primary Button</h2>
-    <div class="demo">
-      <button class="hxBtn hxBtn--primary">Primary Button</button>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--primary"</span>&gt;</span>Primary Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>  </section>
-
-  <section>
-    <h2 class="hxSectionTitle" id="link-button">Link Button</h2>
-    <div class="demo">
-      <button class="hxBtn hxBtn--link">Link Button</button>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--link"</span>&gt;</span>Link Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>  </section>
-
-  <section>
-    <h2 class="hxSectionTitle" id="button-sizing">Button Sizing</h2>
-    <div class="demo">
-      <button type="button" class="hxBtn hxBtn--lg">Large Button</button>
-      <button type="button" class="hxBtn">Default Button</button>
-      <button type="button" class="hxBtn hxBtn--sm">Compact Button</button>
-    </div>
-
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--lg"</span>&gt;</span>Large Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Default Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--sm"</span>&gt;</span>Compact Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>  </section>
-
-  <section data-visreg="button-states">
-    <h2 class="hxSectionTitle" id="button-states">Button States</h2>
-    <table class="table">
-      <tbody>
-        <tr>
-          <td>Default</td>
-          <td><button class="hxBtn">Normal</button></td>
-          <td><button class="hxBtn pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn" disabled>Disabled</button></td>
-        </tr>
-        <tr>
-          <td>Primary</td>
-          <td><button class="hxBtn hxBtn--primary">Normal</button></td>
-          <td><button class="hxBtn hxBtn--primary pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn hxBtn--primary pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn hxBtn--primary" disabled>Disabled</button></td>
-        </tr>
-        <tr>
-          <td>Link</td>
-          <td><button class="hxBtn hxBtn--link">Normal</button></td>
-          <td><button class="hxBtn hxBtn--link pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn hxBtn--link pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn hxBtn--link" disabled>Disabled</button></td>
-        </tr>
-      </tbody>
-    </table>
   </section>
 
+  <section>
+    <h2 class="hxSectionTitle" id="appearance">Appearance</h2>
+    <div class="popover-appearance">
+        <hx-popover position="top">
+          <code>position="top"</code>
+        </hx-popover>
+        <hx-popover position="top-left">
+          <code>position="top-left"</code>
+        </hx-popover>
+        <hx-popover position="top-right">
+          <code>position="top-right"</code>
+        </hx-popover>
+        <hx-popover position="bottom">
+          <code>position="bottom"</code>
+        </hx-popover>
+        <hx-popover position="bottom-left">
+          <code>position="bottom-left"</code>
+        </hx-popover>
+        <hx-popover position="bottom-right">
+          <code>position="bottom-right"</code>
+        </hx-popover>
+        <hx-popover position="right">
+          <code>position="right"</code>
+        </hx-popover>
+        <hx-popover position="right-top">
+          <code>position="right-top"</code>
+        </hx-popover>
+        <hx-popover position="right-bottom">
+          <code>position="right-bottom"</code>
+        </hx-popover>
+        <hx-popover position="left">
+          <code>position="left"</code>
+        </hx-popover>
+        <hx-popover position="left-top">
+          <code>position="left-top"</code>
+        </hx-popover>
+        <hx-popover position="left-bottom">
+          <code>position="left-bottom"</code>
+        </hx-popover>
+    </div>
+  </section>
+
+<section>
+  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
+  <ul>
+      <li><a href="elements/hx-popover">&lt;hx-popover&gt;</a></li>
+  </ul>
+</section>
   </main>
   <aside class="hxSiderail hxBox-md">
     <h1 class="hxContainerTitle">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#default-button">Default Button</a>
+            <a href="#tooltip">Basic Popover</a>
         
 
-            <a href="#primary-button">Primary Button</a>
+            <a href="#appearance">Appearance</a>
         
-
-            <a href="#link-button">Link Button</a>
-        
-
-            <a href="#button-sizing">Button Sizing</a>
-        
-
-            <a href="#button-states">Button States</a>
-        
+        <a href="#see-also">See Also</a>
       <hr />
       <a class="top-link" href="#top">Back to Top</a>
     </nav>

@@ -64,20 +64,8 @@
   </hx-disclosure>
   <hx-reveal id="nav-Styleguide" >
       
-      <a href="styleguide/box" >
-    Box
-  </a>
-
-
-      
-      <a href="styleguide/code" >
-    Code
-  </a>
-
-
-      
-      <a href="styleguide/grid" >
-    Grid
+      <a href="styleguide/iconography" >
+    Iconography
   </a>
 
 
@@ -107,6 +95,12 @@
 
 
       
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
       <a href="components/breadcrumbs" >
     Breadcrumbs
   </a>
@@ -119,8 +113,14 @@
 
 
       
-      <a href="components/forms" >
-    Forms
+      <a href="components/checkboxes" >
+    Checkboxes
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
   </a>
 
 
@@ -143,14 +143,26 @@
 
 
       
-      <a href="components/navigation" >
-    Navigation
+      <a href="components/panels" >
+    Panels
   </a>
 
 
       
-      <a href="components/panels" >
-    Panels
+      <a href="components/popovers" >
+    Popovers
+  </a>
+
+
+      
+      <a href="components/reveals" >
+    Reveals
+  </a>
+
+
+      
+      <a href="components/status-pills" >
+    Status Pills
   </a>
 
 
@@ -163,6 +175,18 @@
       
       <a href="components/tabs" >
     Tabs
+  </a>
+
+
+      
+      <a href="components/text-inputs" >
+    Text Inputs
+  </a>
+
+
+      
+      <a href="components/tooltips" >
+    Tooltips
   </a>
 
 
@@ -342,91 +366,6 @@ class="current">
     </hx-dl>
   </section>
 
-<section id="vue-popoverDemo">
-  <p>
-    Position:
-    <select v-model="position">
-      <option
-        :value="_position"
-        v-for="_position in positions"
-        v-text="_position.label">
-      </option>
-    <select>
-  </p>
-  <div class="demo popover-demo">
-    <button data-popover="myPopover" class="hxBtn">Toggle</button>
-
-    <hx-popover id="myPopover"
-      :position="position.value"
-      v-for="_position in positions"
-      v-if="_position.value === position.value">
-
-      <header slot="header">
-        <h4 class="hxContainerTitle">Popover Header</h4>
-      </header>
-      <p>This is my popover body</p>
-      <footer slot="footer">
-        <button class="hxBtn hxBtn--primary">Submit</button>
-        <button class="hxBtn">Cancel</button>
-      </footer>
-    </hx-popover>
-  </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">data-popover</span>=<span class="hljs-string">"myPopover"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Toggle<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-popover</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myPopover"</span> <span class="hljs-attr">position</span>=<span class="hljs-string">"bottom-right"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"header"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxContainerTitle"</span>&gt;</span>Popover Header<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is my popover body<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">footer</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--primary"</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-popover</span>&gt;</span>
-</code></pre></section>
-
-<section>
-  <h2 class="hxSectionTitle" id="appearance">Appearance</h2>
-  <div class="popover-appearance">
-      <hx-popover position="top">
-        <code>position="top"</code>
-      </hx-popover>
-      <hx-popover position="top-left">
-        <code>position="top-left"</code>
-      </hx-popover>
-      <hx-popover position="top-right">
-        <code>position="top-right"</code>
-      </hx-popover>
-      <hx-popover position="bottom">
-        <code>position="bottom"</code>
-      </hx-popover>
-      <hx-popover position="bottom-left">
-        <code>position="bottom-left"</code>
-      </hx-popover>
-      <hx-popover position="bottom-right">
-        <code>position="bottom-right"</code>
-      </hx-popover>
-      <hx-popover position="right">
-        <code>position="right"</code>
-      </hx-popover>
-      <hx-popover position="right-top">
-        <code>position="right-top"</code>
-      </hx-popover>
-      <hx-popover position="right-bottom">
-        <code>position="right-bottom"</code>
-      </hx-popover>
-      <hx-popover position="left">
-        <code>position="left"</code>
-      </hx-popover>
-      <hx-popover position="left-top">
-        <code>position="left-top"</code>
-      </hx-popover>
-      <hx-popover position="left-bottom">
-        <code>position="left-bottom"</code>
-      </hx-popover>
-  </div>
-</section>
-
     
     <section>
       <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
@@ -456,15 +395,20 @@ class="current">
   </dl>
     </section>
 
+<section>
+  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
+  <ul>
+      <li><a href="components/popovers">Popovers</a></li>
+  </ul>
+</section>
   </main>
   <aside class="hxSiderail hxBox-md">
     <h1 class="hxContainerTitle">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#appearance">Appearance</a>
-        
       <a href="#attributes">Attributes</a>
       <a href="#properties">Properties</a>
+        <a href="#see-also">See Also</a>
       <hr />
       <a class="top-link" href="#top">Back to Top</a>
     </nav>
@@ -482,7 +426,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-01-29
+      2018-01-31
     </small>
 </div>
   </footer>

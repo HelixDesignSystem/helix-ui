@@ -64,20 +64,8 @@
   </hx-disclosure>
   <hx-reveal id="nav-Styleguide" >
       
-      <a href="styleguide/box" >
-    Box
-  </a>
-
-
-      
-      <a href="styleguide/code" >
-    Code
-  </a>
-
-
-      
-      <a href="styleguide/grid" >
-    Grid
+      <a href="styleguide/iconography" >
+    Iconography
   </a>
 
 
@@ -107,6 +95,12 @@
 
 
       
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
       <a href="components/breadcrumbs" >
     Breadcrumbs
   </a>
@@ -119,8 +113,14 @@
 
 
       
-      <a href="components/forms" >
-    Forms
+      <a href="components/checkboxes" >
+    Checkboxes
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
   </a>
 
 
@@ -143,14 +143,26 @@
 
 
       
-      <a href="components/navigation" >
-    Navigation
+      <a href="components/panels" >
+    Panels
   </a>
 
 
       
-      <a href="components/panels" >
-    Panels
+      <a href="components/popovers" >
+    Popovers
+  </a>
+
+
+      
+      <a href="components/reveals" >
+    Reveals
+  </a>
+
+
+      
+      <a href="components/status-pills" >
+    Status Pills
   </a>
 
 
@@ -163,6 +175,18 @@
       
       <a href="components/tabs" >
     Tabs
+  </a>
+
+
+      
+      <a href="components/text-inputs" >
+    Text Inputs
+  </a>
+
+
+      
+      <a href="components/tooltips" >
+    Tooltips
   </a>
 
 
@@ -324,114 +348,23 @@ class="current">
   <main id="content" class="hxBox-md">
     <h1 class="hxPageTitle">&lt;hx-checkbox&gt;</h1>
 
-<section>
-  <p>
-    The custom <code>&lt;hx-checkbox&gt;</code> element renders an interactive
-    checkbox control for use within forms.
-  </p>
+  <section>
+    <p>
+      The custom <code>&lt;hx-checkbox&gt;</code> element renders an interactive
+      checkbox control for use within forms.
+    </p>
 
-  <hx-dl class="hxBox-md metadata">
-    <hx-def>
-      <hx-dt>Permitted Parents</hx-dt>
-      <hx-dd>any</hx-dd>
-    </hx-def>
-    <hx-def>
-      <hx-dt>Permitted Children</hx-dt>
-      <hx-dd>none (content will be removed upon element upgrade)</hx-dd>
-    </hx-def>
-  </hx-dl>
-</section>
-
-<section>
-  <h2 class="hxSectionTitle" id="checkbox">Checkbox</h2>
-
-  <div class="demo">
-    <fieldset>
-      <legend class="hxLabel">Selector Title</legend>
-      <div>
-        <hx-checkbox></hx-checkbox>
-        <label>Option 1</label>
-      </div>
-      <div>
-        <hx-checkbox indeterminate></hx-checkbox>
-        <label>Option 2 (Indeterminate)</label>
-      </div>
-      <div>
-        <hx-checkbox disabled></hx-checkbox>
-        <label>Option 3 (Disabled)</label>
-      </div>
-      <div>
-        <hx-checkbox checked disabled></hx-checkbox>
-        <label>Option 4 (Disabled and Checked)</label>
-      </div>
-      <div>
-        <hx-checkbox invalid></hx-checkbox>
-        <label>Option 5 (Invalid)</label>
-      </div>
-    </fieldset>
-  </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">legend</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxLabel"</span>&gt;</span>Selector Title<span class="hljs-tag">&lt;/<span class="hljs-name">legend</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-checkbox</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-checkbox</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Option 1<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-checkbox</span> <span class="hljs-attr">indeterminate</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-checkbox</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Option 2 (Indeterminate)<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-checkbox</span> <span class="hljs-attr">disabled</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-checkbox</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Option 3 (Disabled)<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-checkbox</span> <span class="hljs-attr">checked</span> <span class="hljs-attr">disabled</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-checkbox</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Option 4 (Disabled and Checked)<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-checkbox</span> <span class="hljs-attr">invalid</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-checkbox</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Option 5 (Invalid)<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">fieldset</span>&gt;</span>
-</code></pre></section>
-
-<section data-visreg="checkbox-states">
-  <h2 class="hxSectionTitle" id="checkbox-states">Checkbox States</h2>
-  <table class="hxTable">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Unchecked</th>
-        <th>Checked</th>
-        <th>Indeterminate Unchecked</th>
-        <th>Indeterminate Checked</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Default</td>
-        <td><hx-checkbox></hx-checkbox></td>
-        <td><hx-checkbox checked></hx-checkbox></td>
-        <td><hx-checkbox indeterminate></hx-checkbox></td>
-        <td><hx-checkbox checked indeterminate></hx-checkbox></td>
-      </tr>
-      <tr>
-        <td>Invalid</td>
-        <td><hx-checkbox invalid></hx-checkbox></td>
-        <td><hx-checkbox invalid checked></hx-checkbox></td>
-        <td><hx-checkbox invalid indeterminate></hx-checkbox></td>
-        <td><hx-checkbox invalid checked indeterminate></hx-checkbox></td>
-      </tr>
-      <tr>
-        <td>Disabled</td>
-        <td><hx-checkbox disabled></hx-checkbox></td>
-        <td><hx-checkbox disabled checked></hx-checkbox></td>
-        <td><hx-checkbox disabled indeterminate></hx-checkbox></td>
-        <td><hx-checkbox disabled checked indeterminate></hx-checkbox></td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>none (content will be removed upon element upgrade)</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
 
     
     <section>
@@ -471,18 +404,20 @@ class="current">
   </dl>
     </section>
 
+<section>
+  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
+  <ul>
+      <li><a href="components/checkboxes">Checkboxes</a></li>
+  </ul>
+</section>
   </main>
   <aside class="hxSiderail hxBox-md">
     <h1 class="hxContainerTitle">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#checkbox">Checkbox</a>
-        
-
-            <a href="#checkbox-states">Checkbox States</a>
-        
       <a href="#attributes">Attributes</a>
       <a href="#properties">Properties</a>
+        <a href="#see-also">See Also</a>
       <hr />
       <a class="top-link" href="#top">Back to Top</a>
     </nav>
@@ -500,7 +435,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-01-29
+      2018-01-31
     </small>
 </div>
   </footer>

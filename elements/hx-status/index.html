@@ -64,20 +64,8 @@
   </hx-disclosure>
   <hx-reveal id="nav-Styleguide" >
       
-      <a href="styleguide/box" >
-    Box
-  </a>
-
-
-      
-      <a href="styleguide/code" >
-    Code
-  </a>
-
-
-      
-      <a href="styleguide/grid" >
-    Grid
+      <a href="styleguide/iconography" >
+    Iconography
   </a>
 
 
@@ -107,6 +95,12 @@
 
 
       
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
       <a href="components/breadcrumbs" >
     Breadcrumbs
   </a>
@@ -119,8 +113,14 @@
 
 
       
-      <a href="components/forms" >
-    Forms
+      <a href="components/checkboxes" >
+    Checkboxes
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
   </a>
 
 
@@ -143,14 +143,26 @@
 
 
       
-      <a href="components/navigation" >
-    Navigation
+      <a href="components/panels" >
+    Panels
   </a>
 
 
       
-      <a href="components/panels" >
-    Panels
+      <a href="components/popovers" >
+    Popovers
+  </a>
+
+
+      
+      <a href="components/reveals" >
+    Reveals
+  </a>
+
+
+      
+      <a href="components/status-pills" >
+    Status Pills
   </a>
 
 
@@ -163,6 +175,18 @@
       
       <a href="components/tabs" >
     Tabs
+  </a>
+
+
+      
+      <a href="components/text-inputs" >
+    Text Inputs
+  </a>
+
+
+      
+      <a href="components/tooltips" >
+    Tooltips
   </a>
 
 
@@ -337,102 +361,6 @@ class="current">
     </hx-dl>
   </section>
 
-<section>
-  <h2 class="hxSectionTitle" id="default-label">Default Label</h2>
-  <div class="demo">
-    <hx-status>
-      Default Label
-    </hx-status>
-  </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-status</span>&gt;</span>
-  Default Label
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-status</span>&gt;</span>
-</code></pre></section>
-
-<section>
-  <h2 class="hxSectionTitle" id="emphasis-gray">Emphasis Gray</h2>
-  <p>
-    The <code>.-hxEmphasisGray</code> CSS class can be added to status labels that require more
-    attention than the default style.
-  </p>
-  <div class="demo">
-    <hx-status class="-hxEmphasisGray">
-      Emphasis Gray
-    </hx-status>
-  </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-status</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"-hxEmphasisGray"</span>&gt;</span>
-  Emphasis Gray
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-status</span>&gt;</span>
-</code></pre></section>
-
-<section>
-  <h2 class="hxSectionTitle" id="emphasis-purple">Emphasis Purple</h2>
-  <p>
-    The <code>.-hxEmphasisPurple</code> CSS class can be added to status labels that require
-    more attention than the gray emphasis.
-  </p>
-  <div class="demo">
-    <hx-status class="-hxEmphasisPurple">
-      Emphasis Purple
-    </hx-status>
-  </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-status</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"-hxEmphasisPurple"</span>&gt;</span>
-  Emphasis Purple
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-status</span>&gt;</span>
-</code></pre></section>
-
-<section>
-  <h2 class="hxSectionTitle" id="subdued">Subdued</h2>
-  <p>
-    The <code>.-hxSubdued</code> class can be used on status labels that require less or
-    no attention from the user.
-  </p>
-  <div class="demo">
-    <hx-status class="-hxSubdued">
-      Subdued
-    </hx-status>
-  </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-status</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"-hxSubdued"</span>&gt;</span>
-  Subdued
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-status</span>&gt;</span>
-</code></pre></section>
-
-<section>
-  <h2 class="hxSectionTitle" id="filled-labels">Filled Labels</h2>
-  <p>
-    The <code>.-hxFill</code> class can be used on status labels to apply filled
-    backgrounds. This class can be used in conjunction with any of the previous
-    status label modifier classes above.
-  </p>
-  <div class="demo">
-    <hx-status class="-hxFill">
-      Default Label
-    </hx-status><br/>
-    <hx-status class="-hxFill -hxEmphasisGray">
-      Emphasis Gray
-    </hx-status><br/>
-    <hx-status class="-hxFill -hxEmphasisPurple">
-      Emphasis Purple
-    </hx-status><br/>
-    <hx-status class="-hxFill -hxSubdued">
-      Subdued
-    </hx-status>
-  </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-status</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"-hxFill"</span>&gt;</span>
-  Default Label
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-status</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-status</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"-hxFill -hxEmphasisGray"</span>&gt;</span>
-  Emphasis Gray
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-status</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-status</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"-hxFill -hxEmphasisPurple"</span>&gt;</span>
-  Emphasis Purple
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-status</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-status</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"-hxFill -hxSubdued"</span>&gt;</span>
-  Subdued
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-status</span>&gt;</span>
-</code></pre></section>
-
-
     
     <section>
       <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
@@ -463,27 +391,20 @@ class="current">
         </p>
     </section>
 
+<section>
+  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
+  <ul>
+      <li><a href="components/status-pills">Status Pills</a></li>
+  </ul>
+</section>
   </main>
   <aside class="hxSiderail hxBox-md">
     <h1 class="hxContainerTitle">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#default-label">Default Label</a>
-        
-
-            <a href="#emphasis-gray">Emphasis Gray</a>
-        
-
-            <a href="#emphasis-purple">Emphasis Purple</a>
-        
-
-            <a href="#subdued">Subdued</a>
-        
-
-            <a href="#filled-labels">Filled Labels</a>
-        
       <a href="#attributes">Attributes</a>
       <a href="#properties">Properties</a>
+        <a href="#see-also">See Also</a>
       <hr />
       <a class="top-link" href="#top">Back to Top</a>
     </nav>
@@ -501,7 +422,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-01-29
+      2018-01-31
     </small>
 </div>
   </footer>

@@ -41,17 +41,17 @@
 main section + section {
   margin-top: 3rem;
 }
-hx-status.-hxFill.-hxDeprecated {
+hx-status.hxFill.hxDeprecated {
   background-color: #000000;
   border-color: #424242;
   color: #ffffff;
 }
-hx-status.-hxFill.-hxInProgress {
+hx-status.hxFill.hxInProgress {
   background-color: #fbc02d;
   border-color: #ffeb3b;
   color: #000000;
 }
-hx-status.-hxFill.-hxStable {
+hx-status.hxFill.hxStable {
   background-color: #2e7d32;
   border-color: #2e7d32;
   color: #ffffff;
@@ -359,7 +359,6 @@ hx-status.-hxFill.-hxStable {
   padding: 1em 0.5em;
 }
 .icon-demo {
-  height: 100%;
   text-align: center;
 }
 .icon-demo > p {

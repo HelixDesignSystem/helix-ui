@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Forms - HelixUI</title>
+  <title>Reveals - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -64,20 +64,8 @@
   </hx-disclosure>
   <hx-reveal id="nav-Styleguide" >
       
-      <a href="styleguide/box" >
-    Box
-  </a>
-
-
-      
-      <a href="styleguide/code" >
-    Code
-  </a>
-
-
-      
-      <a href="styleguide/grid" >
-    Grid
+      <a href="styleguide/iconography" >
+    Iconography
   </a>
 
 
@@ -107,6 +95,12 @@ class="current">
 
 
       
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
       <a href="components/breadcrumbs" >
     Breadcrumbs
   </a>
@@ -119,8 +113,14 @@ class="current">
 
 
       
-      <a href="components/forms" class="current">
-    Forms
+      <a href="components/checkboxes" >
+    Checkboxes
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
   </a>
 
 
@@ -143,14 +143,26 @@ class="current">
 
 
       
-      <a href="components/navigation" >
-    Navigation
+      <a href="components/panels" >
+    Panels
   </a>
 
 
       
-      <a href="components/panels" >
-    Panels
+      <a href="components/popovers" >
+    Popovers
+  </a>
+
+
+      
+      <a href="components/reveals" class="current">
+    Reveals
+  </a>
+
+
+      
+      <a href="components/status-pills" >
+    Status Pills
   </a>
 
 
@@ -163,6 +175,18 @@ class="current">
       
       <a href="components/tabs" >
     Tabs
+  </a>
+
+
+      
+      <a href="components/text-inputs" >
+    Text Inputs
+  </a>
+
+
+      
+      <a href="components/tooltips" >
+    Tooltips
   </a>
 
 
@@ -322,98 +346,41 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Forms</h1>
+    <h1 class="hxPageTitle">Reveals</h1>
+
+  <section>
+    <h2 class="hxSectionTitle" id="demo">Demo</h2>
+    <div class="demo">
+      <hx-disclosure class="hxBtn" aria-controls="demo-default-reveal">
+        Click me to show content!
+      </hx-disclosure>
+      <hx-reveal id="demo-default-reveal">
+        <p>You can't see me</p>
+      </hx-reveal>
+    </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"demo-default-reveal"</span>&gt;</span>
+  Click me to show content!
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"demo-default-reveal"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You can't see me<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
+</code></pre>  </section>
 
 <section>
-  <p>
-    Use the <code>.hxTextCtrl</code> CSS class to apply styles to text-like form controls.
-  </p>
+  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
+  <ul>
+      <li><a href="elements/hx-disclosure">&lt;hx-disclosure&gt;</a></li>
+      <li><a href="elements/hx-reveal">&lt;hx-reveal&gt;</a></li>
+  </ul>
 </section>
-
-<section>
-  <h2 class="hxSectionTitle" id="single-line-text">Single-Line Text</h2>
-  <div class="demo">
-    <input
-      class="hxTextCtrl"
-      placeholder="Default Text Input"
-      type="text" />
-    <br />
-
-    <input
-      class="hxTextCtrl"
-      invalid
-      placeholder="Invalid Text Input"
-      type="text" />
-    <br />
-
-    <input
-      class="hxTextCtrl"
-      disabled
-      placeholder="Disabled Text Input"
-      type="text" />
-  </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>
-  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTextCtrl"</span>
-  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Default Text Input"</span>
-  <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> /&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">input</span>
-  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTextCtrl"</span>
-  <span class="hljs-attr">invalid</span>
-  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Invalid Text Input"</span>
-  <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> /&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">input</span>
-  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTextCtrl"</span>
-  <span class="hljs-attr">disabled</span>
-  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Disabled Text Input"</span>
-  <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> /&gt;</span>
-</code></pre></section>
-
-<section>
-  <h2 class="hxSectionTitle" id="multi-line-text">Multi-line Text</h2>
-  <div class="demo">
-    <textarea
-      class="hxTextCtrl"
-      placeholder="Default Text Area"></textarea>
-    <br />
-
-    <textarea
-      class="hxTextCtrl"
-      invalid
-      placeholder="Invalid Text Area"></textarea>
-    <br />
-
-    <textarea
-      class="hxTextCtrl"
-      disabled
-      placeholder="Disabled Text Area"></textarea>
-  </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>
-  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTextCtrl"</span>
-  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Default Text Area"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>
-  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTextCtrl"</span>
-  <span class="hljs-attr">invalid</span>
-  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Invalid Text Area"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>
-  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTextCtrl"</span>
-  <span class="hljs-attr">disabled</span>
-  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Disabled Text Area"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
-</code></pre></section>
-
   </main>
   <aside class="hxSiderail hxBox-md">
     <h1 class="hxContainerTitle">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#single-line-text">Single-Line Text</a>
+            <a href="#demo">Demo</a>
         
-
-            <a href="#multi-line-text">Multi-line Text</a>
-        
+        <a href="#see-also">See Also</a>
       <hr />
       <a class="top-link" href="#top">Back to Top</a>
     </nav>
@@ -431,7 +398,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-01-19
+      2018-01-31
     </small>
 </div>
   </footer>

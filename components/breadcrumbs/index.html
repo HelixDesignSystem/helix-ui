@@ -64,20 +64,8 @@
   </hx-disclosure>
   <hx-reveal id="nav-Styleguide" >
       
-      <a href="styleguide/box" >
-    Box
-  </a>
-
-
-      
-      <a href="styleguide/code" >
-    Code
-  </a>
-
-
-      
-      <a href="styleguide/grid" >
-    Grid
+      <a href="styleguide/iconography" >
+    Iconography
   </a>
 
 
@@ -107,6 +95,12 @@ class="current">
 
 
       
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
       <a href="components/breadcrumbs" class="current">
     Breadcrumbs
   </a>
@@ -119,8 +113,14 @@ class="current">
 
 
       
-      <a href="components/forms" >
-    Forms
+      <a href="components/checkboxes" >
+    Checkboxes
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
   </a>
 
 
@@ -143,14 +143,26 @@ class="current">
 
 
       
-      <a href="components/navigation" >
-    Navigation
+      <a href="components/panels" >
+    Panels
   </a>
 
 
       
-      <a href="components/panels" >
-    Panels
+      <a href="components/popovers" >
+    Popovers
+  </a>
+
+
+      
+      <a href="components/reveals" >
+    Reveals
+  </a>
+
+
+      
+      <a href="components/status-pills" >
+    Status Pills
   </a>
 
 
@@ -163,6 +175,18 @@ class="current">
       
       <a href="components/tabs" >
     Tabs
+  </a>
+
+
+      
+      <a href="components/text-inputs" >
+    Text Inputs
+  </a>
+
+
+      
+      <a href="components/tooltips" >
+    Tooltips
   </a>
 
 
@@ -324,29 +348,27 @@ class="current">
   <main id="content" class="hxBox-md">
     <h1 class="hxPageTitle">Breadcrumbs</h1>
 
-<!-- explanation goes here -->
+  <section>
+    <h2 class="hxSectionTitle" id="basic-breadcrumbs">Basic Breadcrumbs</h2>
+    <div class="demo">
+      <nav class="hxBreadcrumb">
+        <a href="#">Home</a>
+      </nav>
 
-<section>
-  <h2 class="hxSectionTitle" id="basic-breadcrumbs">Basic Breadcrumbs</h2>
-  <div class="demo">
-    <nav class="hxBreadcrumb">
-      <a href="#">Home</a>
-    </nav>
+      <nav class="hxBreadcrumb">
+        <a href="#">Home</a>
+        <hx-icon class="delimiter" type="angle-right"></hx-icon>
+        <a href="#">Library</a>
+      </nav>
 
-    <nav class="hxBreadcrumb">
-      <a href="#">Home</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">Library</a>
-    </nav>
-
-    <nav class="hxBreadcrumb">
-      <a href="#">Home</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">Library</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">Current</a>
-    </nav>
-  </div>
+      <nav class="hxBreadcrumb">
+        <a href="#">Home</a>
+        <hx-icon class="delimiter" type="angle-right"></hx-icon>
+        <a href="#">Library</a>
+        <hx-icon class="delimiter" type="angle-right"></hx-icon>
+        <a href="#">Current</a>
+      </nav>
+    </div>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
@@ -364,8 +386,7 @@ class="current">
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delimiter"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Current<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
-</code></pre></section>
-
+</code></pre>  </section>
 
   </main>
   <aside class="hxSiderail hxBox-md">
@@ -391,7 +412,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-01-29
+      2018-01-31
     </small>
 </div>
   </footer>
