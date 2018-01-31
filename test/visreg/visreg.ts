@@ -35,11 +35,6 @@ export function suite(browserName: string) {
         await snap("{browserName}/nav/guides", $(util.selectors.nav));
     });
 
-    test("nav/styleguide", async () => {
-        await util.$x(driver, "//nav//hx-disclosure", "Styleguide").click()
-        await snap("{browserName}/nav/styleguide", $(util.selectors.nav));
-    });
-
     test("nav/components", async () => {
         await util.$x(driver, "//nav//hx-disclosure", "Components").click();
         await snap("{browserName}/nav/components", $(util.selectors.nav));

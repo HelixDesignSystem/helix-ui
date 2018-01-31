@@ -7,16 +7,6 @@
         ]
     },
 
-    {
-        label: 'Styleguide',
-        path: 'styleguide',
-        children: [
-            //{ label: 'Colors', path: 'colors' },
-            { label: 'Iconography', path: 'iconography' },
-            { label: 'Typography', path: 'typography' },
-        ]
-    },
-
     /*
     {
         label: 'Asset Stability',
@@ -33,7 +23,9 @@
             { label: 'Breadcrumbs', path: 'breadcrumbs' },
             { label: 'Buttons', path: 'buttons' },
             { label: 'Checkboxes', path: 'checkboxes' },
+            //{ label: 'Colors', path: 'colors' },
             { label: 'Grid', path: 'grid' },
+            { label: 'Icons', path: 'icons' },
             {
                 label: 'Layouts',
                 path: 'layouts',
@@ -54,6 +46,7 @@
             { label: 'Tabs', path: 'tabs' },
             { label: 'Text Inputs', path: 'text-inputs' },
             { label: 'Tooltips', path: 'tooltips' },
+            { label: 'Typography', path: 'typography' },
         ],
     },
 
