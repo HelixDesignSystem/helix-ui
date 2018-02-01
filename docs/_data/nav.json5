@@ -3,7 +3,7 @@
         label: 'Guides',
         path: 'guides',
         children: [
-            { label: 'Installing', path: 'install' },
+            { label: 'Getting Started', path: 'getting-started' },
         ]
     },
 
