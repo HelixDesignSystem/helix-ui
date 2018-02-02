@@ -13,6 +13,7 @@ import _copy from './icons/copy.svg';
 import _download from './icons/download.svg';
 import _envelope from './icons/envelope.svg';
 import _exclamationCircle from './icons/exclamation-circle.svg';
+import _exclamationDiamond from './icons/exclamation-diamond.svg';
 import _exclamationTriangle from './icons/exclamation-triangle.svg';
 import _export from './icons/export.svg';
 import _externalLink from './icons/external-link.svg';
@@ -75,6 +76,7 @@ export default {
     'download': _download,
     'envelope': _envelope,
     'exclamation-circle': _exclamationCircle,
+    'exclamation-diamond': _exclamationDiamond,
     'exclamation-triangle': _exclamationTriangle,
     'export': _export,
     'external-link': _externalLink,
