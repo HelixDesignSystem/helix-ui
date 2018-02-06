@@ -1,0 +1,11 @@
+{% extends 'application.njk' %}
+
+{% block layout %}
+  <main id="content" class="hxBox-md">
+    <h1>{{ page.title }}</h1>
+
+    {% block content %}
+      {# freeform page content goes here #}
+    {% endblock %}
+  </main>
+{% endblock %}

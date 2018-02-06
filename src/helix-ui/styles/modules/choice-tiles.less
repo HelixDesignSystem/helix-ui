@@ -1,0 +1,110 @@
+@import (reference) 'modules/grid';
+
+.hxRow > label.hxChoice {
+  #grid.column();
+}
+
+// Layout & Geometry
+/* ========== COMMON ========== */
+label.hxChoice > input {
+  position: absolute;
+  top: -200px;
+
+  &:checked + hx-tile {
+    hx-icon[type="checkmark"] {
+      display: block;
+      position: absolute;
+    }
+  }
+}
+
+/* ========== SUBDUED ========== */
+label.hxChoice > input:focus + hx-tile.hxSubdued,
+label.hxChoice > input + hx-tile:hover.hxSubdued,
+label.hxChoice > input[disabled] + hx-tile.hxSubdued,
+label.hxChoice > input:checked + hx-tile.hxSubdued,
+label.hxChoice > input[invalid] + hx-tile.hxSubdued {
+  opacity: 1;
+}
+
+/* ========== DEFAULT ========== */
+// NOTE: These styles may be able to go into default hx-tile defs
+label.hxChoice > input + hx-tile {
+  background-color: @gray-0;
+  border: solid 1px @gray-400;
+  color: @gray-900;
+
+  .hx-tile-icon {
+    color: @gray-700;
+  }
+}
+label.hxChoice > input + hx-tile:hover {
+  background-color: @cyan-50;
+  border-color: @cyan-500;
+}
+// same as hover, with focus glow
+label.hxChoice > input:focus + hx-tile {
+  box-shadow: @focus-glow;
+}
+
+
+/* ========== CHECKED ========== */
+label.hxChoice > input:checked + hx-tile {
+  border-color: @cyan-900;
+  color: @cyan-900;
+
+  hx-tile-description {
+    color: @gray-900;
+  }
+}
+label.hxChoice > input:checked + hx-tile:hover {
+  border-color: @cyan-500;
+}
+// same as hover, with focus glow
+label.hxChoice > input:checked:focus + hx-tile {
+  box-shadow: @focus-glow;
+}
+
+
+/* ========== INVALID ========== */
+label.hxChoice > input[invalid] + hx-tile {
+  border-color: @red-900;
+  border-width: 2px;
+  color: @red-900;
+
+  hx-tile-description {
+    color: @gray-900;
+  }
+
+  .hx-tile-icon {
+    color: inherit;
+  }
+}
+
+label.hxChoice > input[invalid] + hx-tile:hover {
+  background-color: @red-100;
+  border-color: @red-900;
+  color: @gray-900;
+}
+label.hxChoice > input[invalid]:focus + hx-tile {
+  box-shadow: @focus-glow-invalid;
+}
+
+
+/* ========== DISABLED ========== */
+label.hxChoice > input[disabled] + hx-tile,
+label.hxChoice > input[disabled] + hx-tile:hover {
+  background-color: @gray-25;
+  border-color: @gray-300;
+  border-width: 1px;
+  color: @gray-700;
+  cursor: not-allowed;
+
+  hx-tile-description {
+    color: inherit;
+  }
+
+  hx-icon {
+    color: @gray-500;
+  }
+}

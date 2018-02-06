@@ -1,0 +1,35 @@
+---
+title: <hx-tile>
+also:
+  components/choice-tiles: Choice Tiles
+  elements/hx-tile-title: <hx-tile-title>
+  elements/hx-tile-description: <hx-tile-description>
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>&lt;hx-tile&gt;</code> element is compromised of an icon,
+      label, and optional description.
+    </p>
+
+     <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>
+          in this order:
+          <ol>
+            <li>a required checkmark <a href="elements/hx-icon">&lt;hx-icon&gt;</a> element</li>
+            <li>a required <code>div.hx-tile-icon</code> wrapping icon of choice</li>
+            <li>a required <a href="elements/hx-tile-title">&lt;hx-tile-title&gt;</a> element</li>
+            <li>an optional <a href="elements/hx-tile-description">&lt;hx-tile-description&gt;</a> element</li>
+          </ol>
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
