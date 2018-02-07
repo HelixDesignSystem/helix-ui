@@ -1,3 +1,10 @@
 hx-disclosure {
   display: inline-block;
+
+  &[aria-expanded="true"] {
+    .menu-icon, // DEPRECATED: Remove in v1.0.0
+    > hx-icon.hxPrimary {
+      transform: scaleY(-1);
+    }
+  }
 }

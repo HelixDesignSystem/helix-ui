@@ -54,12 +54,13 @@
         padding: 1.25rem 1rem; // 20px 16px (As per Design)
       }
 
-      &.selected {
+      &.selected, // DEPRECATED: remove in v1.0.0
+      &.hxSelected {
         td,
         th {
           background-color: @state-selected-bg;
         }
-      }//.success
+      }
     }
   }//tbody
 
@@ -78,30 +79,22 @@
     }
   }//tfoot
 
-  .hxTable__control-col {
-    color: @gray-700;
-    width: 1rem;
+  td,
+  th {
+    &.hxControl {
+      color: @gray-700;
+      width: 1rem;
+    }
   }
 
-  // variants
-  &--bordered {
+  // VARIANTS
+  &.hxBound {
     tbody {
       border-color: @table-border-color;
     }
-  }//&--bordered
+  }//.hxBound
 
-  &--condensed {
-    tbody {
-      tr {
-        th,
-        td {
-          padding: 0.75rem 1rem; // 12px 16px
-        }
-      }
-    }
-  }//&--condensed
-
-  &--hover {
+  &.hxHoverable {
     tbody {
       tr {
         &:hover {
@@ -112,5 +105,37 @@
         }
       }
     }
-  }//&--hover
+  }//.hxHoverable
+
+  // DEPRECATED: remove in v1.0.0
+  // TODO: update with upcoming t-shirt size specs
+  &--condensed {
+    tbody {
+      tr {
+        th,
+        td {
+          padding: 0.75rem 1rem; // 12px 16px
+        }
+      }
+    }
+  }//&--condensed
+}//.hxTable
+
+
+/* ===== DEPRECATED: remove in v1.0.0 ===== */
+
+// Use .hxTable.hxBound instead
+.hxTable--bordered {
+  &:extend(.hxTable.hxBound all);
+}
+
+// Use .hxTable.hxHoverable instead
+.hxTable--hover {
+  &:extend(.hxTable.hxHoverable all);
+}
+
+// Use (th,td).hxControl instead
+.hxTable__control-col {
+  color: @gray-700;
+  width: 1rem;
 }

@@ -1,5 +1,3 @@
-/* HelixUI */
-
 /* ========== CONFIGURATION ========== *\
   - @import
   - LESS/CSS Variables
@@ -11,7 +9,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic");
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,100,100italic,300,300italic,400italic,700,700italic");
 @import (reference) 'vars';
-/* ====== end:CONFIGURATION ========== */
 
 
 /* ========== RESETS ========== *\
@@ -22,7 +19,6 @@
 @import 'reset';
 @import 'reset/table';
 @import 'reset/typography';
-/* ====== end:RESETS ========== */
 
 
 /* ========== BASE ========== *\
@@ -30,61 +26,14 @@
   - No Class Selectors
   - NO !important
 \* ========================== */
-html {
-  // TODO: move to base/typography.less
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-}
-
-body {
-  // TODO: move to base/typography.less
-  color: @gray-900;
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-}
-
-small {
-  // TODO: move to base/typography.less
-  font-size: 0.75rem;
-}
-
-caption,
-figcaption {
-  // TODO: move to base/typography.less
-  font-size: 0.875rem;
-  font-weight: 300;
-  line-height: 1.5; // TODO: check if this is inherited?
-}
+@import 'base/links';
+@import 'base/lists';
+@import 'base/typography';
 
 // TODO: update this once spacing system is defined
 figure {
   margin-bottom: 1rem;
 }
-
-// TODO move to base/lists.less
-ul {
-  list-style-type: square;
-}
-ul ol,
-ul ul,
-ol ol
-ol ul {
-  margin-bottom: 0;
-}
-dd,
-dt {
-  line-height: 1.5;
-}
-
-@import 'base/links';
-
-fieldset label {
-  // TODO: move to base/typography.less
-  font-size: 0.875rem;
-}
-@import 'code'; // TODO: move to base/typography.less
 
 // Core CSS
 @import 'core/hx-checkbox';
@@ -93,6 +42,9 @@ fieldset label {
 @import 'core/hx-disclosure';
 @import 'core/hx-dl';
 @import 'core/hx-icon';
+@import 'core/hx-menu';
+@import 'core/hx-menuitem';
+@import 'core/hx-menuitem-group';
 @import 'core/hx-modal';
 @import 'core/hx-modalbody';
 @import 'core/hx-modalfoot';
@@ -107,7 +59,6 @@ fieldset label {
 @import 'core/hx-tabpanel';
 @import 'core/hx-tabset';
 @import 'core/hx-tooltip';
-/* ====== end:BASE ========== */
 
 
 /* ========== COMPONENTS ========== *\
@@ -125,7 +76,6 @@ fieldset label {
 @import 'modules/table';
 @import 'modules/text-input';
 @import 'modules/typography';
-/* ====== end:COMPONENTS ========== */
 
 
 /* ========== HELPERS ========== *\
@@ -133,29 +83,8 @@ fieldset label {
     - NO Elements Selectors
     - NO !important
 \* ============================= */
-// TODO: rename with hx prefix
-// Ripped from Boostrap (may not need all of these)
-.text-left {
-  text-align: left;
-}
-.text-center {
-  text-align: center;
-}
-.text-right {
-  text-align: right;
-}
-.text-justify {
-  text-align: justify;
-}
-.text-nowrap {
-  white-space: nowrap;
-}
-
-// Helix Helpers
-.hxForceWordBreak {
-    word-break: break-all;
-}
-/* ====== end:HELPERS ========== */
+@import 'helpers/alignment';
+@import 'helpers/wrapping';
 
 
 /* ========== OVERRIDES ========== *\
@@ -167,5 +96,8 @@ fieldset label {
 // Shame
 @import 'alert'; // needs turned into core element + theme
 @import 'navigation'; // component and theme need separated
-@import 'menu'; // likely needs refactored
-/* ====== end:OVERRIDES ========== */
+
+// Fixes styling issue discovered after Bootstrap CSS was removed
+figure {
+  margin: 0 0 1rem;
+}

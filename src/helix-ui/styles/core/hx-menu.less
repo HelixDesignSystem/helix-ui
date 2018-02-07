@@ -1,0 +1,18 @@
+@import (reference) 'modules/box';
+
+hx-menu {
+  background-color: @gray-0;
+  border: 1px solid @gray-300;
+  box-shadow: 0px 3px 3px 0 @shadow-color;
+  display: none;
+  max-width: 20rem;
+  min-width: 10rem;
+  position: absolute;
+  z-index: @menu-z-index;
+
+  &[open] {
+    &:extend(.hxBox-sm);
+
+    display: block;
+  }
+}

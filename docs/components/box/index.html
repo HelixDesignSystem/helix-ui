@@ -13,25 +13,23 @@ also:
     </p>
   </section>
 
-  <section id="vue-boxDemo">
-    <h2 class="hxSectionTitle" id="demo">Demo</h2>
-    <div class="hxRow">
-      <div class="hxCol hxSpan-12-xs hxSpan-4-md hxOrder-2-md">
+  <section>
+    <h2 class="hxSectionTitle" id="demos">Demos</h2>
+    <div id="vue-boxDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3 class="hxSubSectionTitle">Options</h3>
         <p>
-          Size:<br />
+          <b>Size:</b><br />
           <select v-model="size">
             <option v-for="_size in sizes" :value="_size">
               {% raw %}{{ _size.label }}{% endraw %}
             </option>
           </select>
         </p>
-        <p>
-          <code>
-            {% raw %}&lt;div class="{{size.value}}"&gt;{% endraw %}
-          </code>
-        </p>
       </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-8-md hxOrder-1-md">
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <h3 class="hxSubSectionTitle">Basic Box</h3>
+
         <div class="demo box-demo">
           <div :class="size.value">
             <p>
@@ -43,9 +41,12 @@ also:
             </p>
           </div>
         </div>
-        <span class="hxCaption">
+        <small>
           *Visual styling added for demonstration purpopses.
-        </span>
+        </small>
+        {% code 'html' %}{% raw %}
+          <div class="{{size.value}}">...</div>{% endraw %}
+        {% endcode %}
       </div>
     </div>
   </section>

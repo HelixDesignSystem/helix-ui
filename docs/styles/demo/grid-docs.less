@@ -1,12 +1,22 @@
 .grid-demo {
   & > .demo-container {
-    border: 1px dotted @gray-400;
+    border: @demo-container-border;
   }
 
   .hxCol {
     background-clip: content-box;
-    background-color: fade(@green-500, 25%);
+    background-color: @demo-fill-color;
     font-size: 0.75rem;
+  }
+
+  &.showGutter { // For future use
+    @gutter-padding: (@grid-gutter-size / 2);
+
+    .hxCol {
+      box-shadow:
+        inset @gutter-padding 0 0 0 @demo-padding-color,
+        inset -@gutter-padding 0 0 0 @demo-padding-color;
+    }
   }
 }
 
