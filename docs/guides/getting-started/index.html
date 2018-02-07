@@ -1,0 +1,69 @@
+---
+title: Getting Started with HelixUI
+---
+{% extends 'guide.njk' %}
+{% block content %}
+  <section>
+    <p>
+      This guide is intented to help developers initialize a Helix application.
+    </p>
+  </section>
+
+  <section><!-- Install from NPM -->
+    <h2 class="hxSectionTitle" id="install">Step 1: Install HelixUI via npm or Yarn</h2>
+    <p>
+      HelixUI is registered as a package on <a href="https://www.npmjs.com/">npm</a>.
+      You can install the latest version with the npm CLI command:
+    </p>
+    {% code "bash" %}
+      npm install --save-dev helix-ui
+    {% endcode %}
+
+    <p>
+      Alternatively, you can use the <a href="https://yarnpkg.com">Yarn</a>
+      CLI command:
+    </p>
+    {% code "bash" %}
+      yarn add helix-ui
+    {% endcode %}
+
+    <p>
+      Both approaches install HelixUI in the <code>node_modules/</code> directory.
+    </p>
+  </section>
+
+  <section><!-- Choose a Layout -->
+    <h2 class="hxSectionTitle" id="choose-layout">Step 2: Choose a Layout</h2>
+    <p>
+      Building a Helix application begins with choosing a layout.
+      HelixUI provides two supported layouts from which you can choose.
+    </p>
+    <ol>
+      <li>
+        <a href="components/layouts/#vertical-layout">Vertical Layout</a>
+        <ul>
+          <li>Lengthy content pushes the footer below the fold.</li>
+        </ul>
+      </li>
+      <li>
+        <a href="components/layouts/#horizontal-layout">Horizontal Layout</a>
+        <ul>
+          <li>The footer is always visible.</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
+  <section><!-- Create Content -->
+    <h2 class="hxSectionTitle" id="add-content">Step 3: Add Content</h2>
+    <p>
+      Add content and interactivity to your application using components.
+      Components contain interactive demos and information for various
+      interaction patterns.
+    </p>
+    <ol>
+      <li>Choose a component from the navigation on the left.</li>
+      <li>Check the "See Also" section on the component page for more information.</li>
+    </ol>
+  </section>
+{% endblock %}
