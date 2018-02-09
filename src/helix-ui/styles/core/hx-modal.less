@@ -1,0 +1,56 @@
+hx-modal {
+  color: initial;
+  display: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  text-align: initial;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+
+  &::before {
+    background-color: fade(@gray-1000, 60%);
+    content: " ";
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: @modal-backdrop-z-index;
+  }
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  > hx-modalhead {
+    flex-shrink: 0;
+    order: 1;
+
+    & + * {
+      margin-top: 1.25rem;
+    }
+  }
+
+  > hx-modalbody {
+    flex-grow: 1;
+    order: 2;
+
+    & + * {
+      margin-top: 1.25rem;
+    }
+  }
+
+  > hx-modalfoot {
+    flex-shrink: 0;
+    order: 3;
+  }
+}

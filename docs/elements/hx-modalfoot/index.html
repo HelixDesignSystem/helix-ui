@@ -1,0 +1,30 @@
+---
+title: <hx-modalfoot>
+also:
+  components/modals: Modals
+  elements/hx-modal: <hx-modal>
+  elements/hx-modalhead: <hx-modalhead>
+  elements/hx-modalbody: <hx-modalbody>
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>&lt;hx-modalfoot&gt;</code> element centers buttons at the
+      bottom of the modal.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>
+          an <a href="elements/hx-modal">&lt;hx-modal&gt;</a> element
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
