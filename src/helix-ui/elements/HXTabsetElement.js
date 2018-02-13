@@ -19,6 +19,7 @@ export class HXTabsetElement extends HXElement {
 
     connectedCallback () {
         this.$upgradeProperty('current-tab');
+        this.$defaultAttribute('id', this.$generateId());
         this._setupIds();
         this.currentTab = Number(this.getAttribute('current-tab')) || 0;
         this.$tablist.addEventListener('keyup', this._onKeyUp);
@@ -121,11 +122,12 @@ export class HXTabsetElement extends HXElement {
     }
 
     _setupIds () {
+        let tabsetId = this.getAttribute('id');
         this.tabs.forEach((tab, idx) => {
             let tabpanel = this.tabpanels[idx];
             // Default tab and panel ID
-            let tabId = `hxTab-${this.$generateId()}`;
-            let tabpanelId = `hxTabPanel-${this.$generateId()}`;
+            let tabId = `hxTab-${tabsetId}-${idx}`;
+            let tabpanelId = `hxTabPanel-${tabsetId}-${idx}`;
 
             // Set or keep tab ID
             if (tab.hasAttribute('id')) {
