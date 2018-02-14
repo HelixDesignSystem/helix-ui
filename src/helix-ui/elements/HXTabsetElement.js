@@ -126,8 +126,8 @@ export class HXTabsetElement extends HXElement {
         this.tabs.forEach((tab, idx) => {
             let tabpanel = this.tabpanels[idx];
             // Default tab and panel ID
-            let tabId = `hxTab-${tabsetId}-${idx}`;
-            let tabpanelId = `hxTabPanel-${tabsetId}-${idx}`;
+            let tabId = `${tabsetId}-tab-${idx}`;
+            let tabpanelId = `${tabsetId}-panel-${idx}`;
 
             // Set or keep tab ID
             if (tab.hasAttribute('id')) {
