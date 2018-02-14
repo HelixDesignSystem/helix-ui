@@ -1,7 +1,11 @@
 import _account from './icons/account.svg';
+import _angleBottom from './icons/angle-bottom.svg';
 import _angleDown from './icons/angle-down.svg';
+import _angleEnd from './icons/angle-end.svg';
 import _angleLeft from './icons/angle-left.svg';
 import _angleRight from './icons/angle-right.svg';
+import _angleStart from './icons/angle-start.svg';
+import _angleTop from './icons/angle-top.svg';
 import _angleUp from './icons/angle-up.svg';
 import _bell from './icons/bell.svg';
 import _billing from './icons/billing.svg';
@@ -62,9 +66,13 @@ import _user from './icons/user.svg';
 
 export default {
     'account': _account,
+    'angle-bottom': _angleBottom,
     'angle-down': _angleDown,
+    'angle-end': _angleEnd,
     'angle-left': _angleLeft,
     'angle-right': _angleRight,
+    'angle-start': _angleStart,
+    'angle-top': _angleTop,
     'angle-up': _angleUp,
     'bell': _bell,
     'billing': _billing,

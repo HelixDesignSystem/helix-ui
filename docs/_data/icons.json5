@@ -1,8 +1,12 @@
 [
   'account',
+  'angle-bottom',
   'angle-down',
+  'angle-end',
   'angle-left',
   'angle-right',
+  'angle-start',
+  'angle-top',
   'angle-up',
   'bell',
   'billing',
