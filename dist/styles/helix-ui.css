@@ -290,6 +290,78 @@ hx-icon svg {
   fill: currentColor;
   stroke: none;
 }
+hx-modal {
+  color: initial;
+  display: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  text-align: initial;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+}
+hx-modal::before {
+  background-color: rgba(0, 0, 0, 0.6);
+  content: " ";
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1200;
+}
+hx-modal[open] {
+  display: flex;
+  flex-direction: column;
+}
+hx-modal > hx-modalhead {
+  flex-shrink: 0;
+  order: 1;
+}
+hx-modal > hx-modalhead + * {
+  margin-top: 1.25rem;
+}
+hx-modal > hx-modalbody {
+  flex-grow: 1;
+  order: 2;
+}
+hx-modal > hx-modalbody + * {
+  margin-top: 1.25rem;
+}
+hx-modal > hx-modalfoot {
+  flex-shrink: 0;
+  order: 3;
+}
+hx-modalbody {
+  display: block;
+}
+hx-modalfoot {
+  display: flex;
+  justify-content: center;
+}
+hx-modalfoot .hxBtn + .hxBtn {
+  margin-left: 1.25rem;
+}
+hx-modalhead {
+  display: block;
+  line-height: 1;
+}
+hx-modalhead h1:only-child,
+hx-modalhead h2:only-child,
+hx-modalhead h3:only-child,
+hx-modalhead h4:only-child,
+hx-modalhead h5:only-child,
+hx-modalhead h6:only-child {
+  line-height: 1;
+  margin-bottom: 0;
+}
 hx-panel {
   display: flex;
   flex-direction: column;

@@ -729,120 +729,21 @@ class HXDisclosureElement extends HXElement {
     }
 }//HXDisclosureElement
 
-class HXMenuElement extends HXElement {
-    static get is () {
-        return 'hx-menu';
-    }
-
-    static get observedAttributes () {
-        return [ 'open' ];
-    }
-
-    constructor () {
-        super();
-        this._onDocumentClick = this._onDocumentClick.bind(this);
-    }
-
-    connectedCallback () {
-        this.$upgradeProperty('open');
-        this.$upgradeProperty('position');
-        this.$upgradeProperty('relativeTo');
-        this.$defaultAttribute('position', 'bottom-start');
-        this._initialPosition = this.position;
-        document.addEventListener('click', this._onDocumentClick);
-    }
-
-    disconnectedCallback () {
-        document.removeEventListener('click', this._onDocumentClick);
-    }
-
-    attributeChangedCallback (attr, oldValue, newValue) {
-        this.setAttribute('aria-expanded', newValue !== '');
-    }
-
-    set position (value) {
-        if (value) {
-            this.setAttribute('position', value);
-        } else {
-            this.removeAttribute('position');
-        }
-    }
-
-    get position () {
-        if (this.hasAttribute('position')) {
-            return this.getAttribute('position');
-        }
-        return undefined;
-    }
-
-    set relativeTo (value) {
-        this.setAttribute('relative-to', value);
-    }
-
-    get relativeTo () {
-        return this.getAttribute('relative-to');
-    }
-
-    get relativeElement () {
-        if (this.relativeTo) {
-            return document.getElementById(this.relativeTo);
-        } else {
-            return document.querySelector(`[aria-controls="${this.id}"]`);
-        }
-    }
-
-    set open (value) {
-        if (value) {
-            this.setAttribute('open', '');
-            this._setPosition();
-            this.$emit('open');
-        } else {
-            this.removeAttribute('open');
-            this.$emit('close');
-        }
-    }
-
-    get open () {
-        return this.hasAttribute('open');
-    }
-
-    _setPosition () {
-        var offset = getPosition(this, this.relativeElement, {
-            position: this.position,
-            margin: 2,
-        });
-        this.style.top = offset.y + 'px';
-        this.style.left = offset.x + 'px';
-    }
-
-    _isDescendant (el) {
-        if (el.closest(`hx-menu[id="${this.id}"]`)) {
-            return true;
-        }
-        return false;
-    }
-
-    _isDisclosure (el) {
-        if (el.closest(`hx-disclosure[aria-controls="${this.id}"]`)) {
-            return true;
-        }
-        return false;
-    }
-
-    _onDocumentClick (event) {
-        if (!this._isDescendant(event.target) && !this._isDisclosure(event.target)) {
-            this.open = false;
-        }
-    }
-}//HXMenuElement
-
 var _account = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M15.2 2c.44 0 .8.36.8.8v10.4c0 .44-.36.8-.8.8h-2.4a1.2 1.2 0 1 0-2.4 0H5.6a1.2 1.2 0 0 0-2.4 0H.8c-.44 0-.8-.36-.8-.8V2.8c0-.44.36-.8.8-.8h14.4zM9 10.562v-.437a.44.44 0 0 0-.242-.392c-.075-.037-1.859-.92-3.258-.92s-3.183.883-3.258.92a.44.44 0 0 0-.242.392v.437c0 .242.196.438.438.438h6.125A.438.438 0 0 0 9 10.562zm-5.287-4.74v.875c0 .965.785 1.75 1.75 1.75s1.75-.785 1.75-1.75v-.875c0-.965-.785-1.75-1.75-1.75s-1.75.785-1.75 1.75zM10 11h4v-1h-4v1zm0-3h4V7h-4v1zm0-3h4V4h-4v1z'/></svg>";
 
+var _angleBottom = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M14 3.01a.997.997 0 0 1-.232.64l-5.765 6.912-5.77-6.921A1 1 0 1 1 3.767 2.36l4.235 5.079 4.23-5.071A1.001 1.001 0 0 1 14 3.01zM2 12.562a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1z'/></svg>";
+
 var _angleDown = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8.004 12.561l-5.771-6.92a1 1 0 1 1 1.535-1.282l4.236 5.08 4.229-5.072a1 1 0 0 1 1.535 1.281l-5.764 6.913z'/></svg>";
+
+var _angleEnd = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3.229 1.78c.226 0 .452.077.64.233l6.912 5.765-6.921 5.77a1 1 0 1 1-1.281-1.535l5.079-4.235-5.071-4.23a1.001 1.001 0 0 1 .642-1.767zm9.552 12a1 1 0 0 1-1-1v-10a1 1 0 0 1 2 0v10a1 1 0 0 1-1 1z'/></svg>";
 
 var _angleLeft = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M11.409 13.985a.997.997 0 0 1-.64-.232L3.857 7.988l6.92-5.77a1 1 0 1 1 1.282 1.535l-5.08 4.235 5.072 4.23a1.001 1.001 0 0 1-.642 1.767z'/></svg>";
 
 var _angleRight = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M5.65 2.232a1 1 0 1 0-1.282 1.536l5.07 4.229-5.079 4.235a1 1 0 0 0 1.281 1.536l6.921-5.771L5.65 2.232z'/></svg>";
+
+var _angleStart = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M12.771 13.78a.997.997 0 0 1-.64-.231L5.22 7.784l6.921-5.771a1 1 0 1 1 1.281 1.536L8.342 7.784l5.071 4.229a1.001 1.001 0 0 1-.642 1.768zm-9.552-12a1 1 0 0 1 1 1v10a1 1 0 0 1-2 0v-10a1 1 0 0 1 1-1z'/></svg>";
+
+var _angleTop = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2 12.552c0-.226.076-.452.232-.64L7.997 5l5.771 6.921a1 1 0 1 1-1.536 1.281L7.997 8.123l-4.229 5.071A1.001 1.001 0 0 1 2 12.552zM14 3a1 1 0 0 1-1 1H3a1 1 0 0 1 0-2h10a1 1 0 0 1 1 1z'/></svg>";
 
 var _angleUp = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M13.001 11.562c-.287 0-.571-.123-.769-.36L7.996 6.125l-4.228 5.07a1 1 0 1 1-1.536-1.281L7.996 3l5.772 6.92a1.001 1.001 0 0 1-.767 1.642'/></svg>";
 
@@ -960,9 +861,13 @@ var _user = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d
 
 var Icons = {
     'account': _account,
+    'angle-bottom': _angleBottom,
     'angle-down': _angleDown,
+    'angle-end': _angleEnd,
     'angle-left': _angleLeft,
     'angle-right': _angleRight,
+    'angle-start': _angleStart,
+    'angle-top': _angleTop,
     'angle-up': _angleUp,
     'bell': _bell,
     'billing': _billing,
@@ -1077,6 +982,185 @@ class HXIconElement extends HXElement {
         }
     }//_render()
 }//HXIconElement
+
+class HXMenuElement extends HXElement {
+    static get is () {
+        return 'hx-menu';
+    }
+
+    static get observedAttributes () {
+        return [ 'open' ];
+    }
+
+    constructor () {
+        super();
+        this._onDocumentClick = this._onDocumentClick.bind(this);
+    }
+
+    connectedCallback () {
+        this.$upgradeProperty('open');
+        this.$upgradeProperty('position');
+        this.$upgradeProperty('relativeTo');
+        this.$defaultAttribute('position', 'bottom-start');
+        this._initialPosition = this.position;
+        document.addEventListener('click', this._onDocumentClick);
+    }
+
+    disconnectedCallback () {
+        document.removeEventListener('click', this._onDocumentClick);
+    }
+
+    attributeChangedCallback (attr, oldValue, newValue) {
+        this.setAttribute('aria-expanded', newValue !== '');
+    }
+
+    set position (value) {
+        if (value) {
+            this.setAttribute('position', value);
+        } else {
+            this.removeAttribute('position');
+        }
+    }
+
+    get position () {
+        if (this.hasAttribute('position')) {
+            return this.getAttribute('position');
+        }
+        return undefined;
+    }
+
+    set relativeTo (value) {
+        this.setAttribute('relative-to', value);
+    }
+
+    get relativeTo () {
+        return this.getAttribute('relative-to');
+    }
+
+    get relativeElement () {
+        if (this.relativeTo) {
+            return document.getElementById(this.relativeTo);
+        } else {
+            return document.querySelector(`[aria-controls="${this.id}"]`);
+        }
+    }
+
+    set open (value) {
+        if (value) {
+            this.setAttribute('open', '');
+            this._setPosition();
+            this.$emit('open');
+        } else {
+            this.removeAttribute('open');
+            this.$emit('close');
+        }
+    }
+
+    get open () {
+        return this.hasAttribute('open');
+    }
+
+    _setPosition () {
+        var offset = getPosition(this, this.relativeElement, {
+            position: this.position,
+            margin: 2,
+        });
+        this.style.top = offset.y + 'px';
+        this.style.left = offset.x + 'px';
+    }
+
+    _isDescendant (el) {
+        if (el.closest(`hx-menu[id="${this.id}"]`)) {
+            return true;
+        }
+        return false;
+    }
+
+    _isDisclosure (el) {
+        if (el.closest(`hx-disclosure[aria-controls="${this.id}"]`)) {
+            return true;
+        }
+        return false;
+    }
+
+    _onDocumentClick (event) {
+        if (!this._isDescendant(event.target) && !this._isDisclosure(event.target)) {
+            this.open = false;
+        }
+    }
+}//HXMenuElement
+
+var shadowStyles$1 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font-family: inherit;\n  font-size: inherit;\n  letter-spacing: inherit;\n  line-height: inherit;\n}\nhx-icon {\n  background-color: inherit;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  width: 1em;\n  vertical-align: -2px;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n#container {\n  background-color: #ffffff;\n  box-shadow: 0px 7px 9px 0 rgba(0, 0, 0, 0.3);\n  display: flex;\n  flex-direction: column;\n  left: 50%;\n  max-width: 40rem;\n  min-height: 12.5rem;\n  min-width: 25rem;\n  padding: 1.25rem;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1201;\n}\n#close {\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  height: 1rem;\n  line-height: 1;\n  padding: 0;\n  position: absolute;\n  right: 1.25rem;\n  top: 1.25rem;\n}\n";
+
+const tagName$1 = 'hx-modal';
+const template$1 = document.createElement('template');
+
+template$1.innerHTML = `
+  <style>${shadowStyles$1}</style>
+  <div id="container">
+    <button id="close">
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <slot></slot>
+  </div>
+`;
+
+class HXModalElement extends HXElement {
+    static get is () {
+        return tagName$1;
+    }
+
+    static get observedAttributes () {
+        return [ 'open' ];
+    }
+
+    constructor () {
+        super(tagName$1, template$1);
+        this._close = this._close.bind(this);
+        this._keyUp = this._keyUp.bind(this);
+    }
+
+    connectedCallback () {
+        this.$upgradeProperty('open');
+        this._btnClose = this.shadowRoot.querySelector("#close");
+
+        this._btnClose.addEventListener('click', this._close);
+        document.addEventListener('keyup', this._keyUp);
+    }
+
+    disconnectedCallback () {
+        this._btnClose.removeEventListener('click', this._close);
+        document.removeEventListener('keyup', this._keyUp);
+    }
+
+    attributeChangedCallback (attr, oldValue, newValue) {
+        this.setAttribute('aria-hidden', newValue !== '');
+    }
+
+    _close () {
+        this.open = false;
+    }
+
+    _keyUp (event) {
+        if (event.keyCode === KEYS.Escape) {
+            this._close();
+        }
+    }
+
+    set open (value) {
+        if (value) {
+            this.setAttribute('open', '');
+            this.$emit('open');
+        } else {
+            this.removeAttribute('open');
+            this.$emit('close');
+        }
+    }
+
+    get open () {
+        return this.hasAttribute('open');
+    }
+}
 
 /**
  * Checks if `value` is the
@@ -1551,13 +1635,13 @@ function debounce(func, wait, options) {
 
 var debounce_1 = debounce;
 
-var shadowStyles$1 = ".position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 0px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#container {\n  padding: 1.25rem;\n}\n";
+var shadowStyles$2 = ".position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 0px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#container {\n  padding: 1.25rem;\n}\n";
 
-const tagName$1 = 'hx-popover';
-const template$1 = document.createElement('template');
+const tagName$2 = 'hx-popover';
+const template$2 = document.createElement('template');
 
-template$1.innerHTML = `
-  <style>${shadowStyles$1}</style>
+template$2.innerHTML = `
+  <style>${shadowStyles$2}</style>
   <div id="container" class="position-arrow">
     <slot name="header"></slot>
     <slot></slot>
@@ -1567,7 +1651,7 @@ template$1.innerHTML = `
 
 class HXPopoverElement extends HXElement {
     static get is () {
-        return tagName$1;
+        return tagName$2;
     }
 
     static get observedAttributes () {
@@ -1575,7 +1659,7 @@ class HXPopoverElement extends HXElement {
     }
 
     constructor () {
-        super(tagName$1, template$1);
+        super(tagName$2, template$2);
         this._toggle = this._toggle.bind(this);
         this._setPosition = this._setPosition.bind(this);
         this._closeOnBackdropClick = this._closeOnBackdropClick.bind(this);
@@ -1912,20 +1996,20 @@ class HXTabsetElement extends HXElement {
     }//_setupIds
 }//HXTabsetElement
 
-var shadowStyles$2 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font-family: inherit;\n  font-size: inherit;\n  letter-spacing: inherit;\n  line-height: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 0px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#container {\n  padding: 1.25rem;\n}\n";
+var shadowStyles$3 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font-family: inherit;\n  font-size: inherit;\n  letter-spacing: inherit;\n  line-height: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 0px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#container {\n  padding: 1.25rem;\n}\n";
 
-const tagName$2 = 'hx-tooltip';
-const template$2 = document.createElement('template');
+const tagName$3 = 'hx-tooltip';
+const template$3 = document.createElement('template');
 
-template$2.innerHTML = `
-  <style>${shadowStyles$2}</style>
+template$3.innerHTML = `
+  <style>${shadowStyles$3}</style>
   <div id="container" class="position-arrow">
     <slot></slot>
   </div>`;
 
 class HXTooltipElement extends HXElement {
     static get is () {
-        return tagName$2;
+        return tagName$3;
     }
 
     static get observedAttributes () {
@@ -1933,7 +2017,7 @@ class HXTooltipElement extends HXElement {
     }
 
     constructor () {
-        super(tagName$2, template$2);
+        super(tagName$3, template$3);
         this._show = this._show.bind(this);
         this._hide = this._hide.bind(this);
         this._toggle = this._toggle.bind(this);
@@ -2074,8 +2158,9 @@ class HXTooltipElement extends HXElement {
 var elements = Object.freeze({
 	HXCheckboxElement: HXCheckboxElement,
 	HXDisclosureElement: HXDisclosureElement,
-	HXMenuElement: HXMenuElement,
 	HXIconElement: HXIconElement,
+	HXMenuElement: HXMenuElement,
+	HXModalElement: HXModalElement,
 	HXPopoverElement: HXPopoverElement,
 	HXRevealElement: HXRevealElement,
 	HXTabcontentElement: HXTabcontentElement,
@@ -2117,7 +2202,7 @@ var HelixUI$1 = {
     initialize,
 };
 
-var version = "0.2.0";
+var version = "0.2.1";
 
 HelixUI$1.VERSION = version;
 
