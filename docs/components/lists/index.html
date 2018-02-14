@@ -9,17 +9,17 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 class="hxSectionTitle" id="demos">Demos</h2>
+    <h2 id="demos">Demos</h2>
     <div id="vue-listDemo" class="hxRow" v-cloak>
       <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3 class="hxSubSectionTitle">Options</h3>
+        <h3>Options</h3>
         <label>
           <input type="checkbox" v-model="isVertical" />
           Vertical
         </label>
       </div>
       <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h3 class="hxSubSectionTitle">Description List</h3>
+        <h3>Description List</h3>
         <div class="demo">
           <hx-dl :class="hxDlClasses">
             <hx-def>
