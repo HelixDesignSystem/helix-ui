@@ -2,6 +2,7 @@ export { HXCheckboxElement } from './elements/HXCheckboxElement.js';
 export { HXDisclosureElement } from './elements/HXDisclosureElement.js';
 export { HXIconElement } from './elements/HXIconElement.js';
 export { HXMenuElement } from './elements/HXMenuElement.js';
+export { HXMenuitemElement } from './elements/HXMenuitemElement.js';
 export { HXModalElement } from './elements/HXModalElement.js';
 export { HXPopoverElement } from './elements/HXPopoverElement.js';
 export { HXRevealElement } from './elements/HXRevealElement.js';

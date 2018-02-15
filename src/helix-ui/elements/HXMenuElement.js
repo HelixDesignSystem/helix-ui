@@ -20,6 +20,7 @@ export class HXMenuElement extends HXElement {
         this.$upgradeProperty('position');
         this.$upgradeProperty('relativeTo');
         this.$defaultAttribute('position', 'bottom-start');
+        this.$defaultAttribute('role', 'menu');
         this._initialPosition = this.position;
         document.addEventListener('click', this._onDocumentClick);
     }
@@ -29,7 +30,7 @@ export class HXMenuElement extends HXElement {
     }
 
     attributeChangedCallback (attr, oldValue, newValue) {
-        this.setAttribute('aria-expanded', newValue !== '');
+        this.setAttribute('aria-expanded', newValue === '');
     }
 
     set position (value) {
