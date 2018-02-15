@@ -1,6 +1,8 @@
---- 
-  title: Search 
---- 
+---
+title: Search 
+also:
+  elements/hx-search: <hx-search>
+---
 {% extends 'component.njk' %} 
 {% block content %}
   <section id="vue-searchDemo">
@@ -8,25 +10,16 @@
     <div class="hxRow">
       <div class="hxCol hxSpan-9-xs">
         <div class="demo">
-          <hx-search :invalid="state === 'invalid' ? true : false"
-                     :value="state === 'value' ? 'foo' : false ">
+          <hx-search :invalid="isInvalid"
+                     :value="isValue">
           </hx-search>
         </div>
-        <div v-if="state === 'invalid'">
-          {% code 'html' %}
-            <hx-search invalid="true"></hx-search>
-          {% endcode %}
-        </div>
-        <div v-else-if="state === 'value'">
-          {% code 'html' %}
-            <hx-search value="foo"></hx-search>
-          {% endcode %}
-        </div>
-        <div v-else>
-          {% code 'html' %}
-          <hx-search></hx-search>
-          {% endcode %}
-        </div>
+        {% code 'html' %}
+          {% raw %}
+            <hx-search invalid="{{isInvalid}}" value="{{isValue}}">
+            </hx-search>
+          {% endraw %}
+        {% endcode %}
       </div>
       <div class="hxCol hxSpan-3-xs">
         State:

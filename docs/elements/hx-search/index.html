@@ -1,5 +1,7 @@
 ---
-  title: <hx-search>
+title: <hx-search>
+also:
+  components/search: Search
 ---
 {% extends 'element.njk' %} 
 {% block content %}
@@ -21,15 +23,27 @@
   </section>
 {% endblock %}
 
+{% block attributes %}
+<dl>
+  <dt>invalid</dt>
+  <dd>
+    Invalidates search
+  </dd>
+  <dt>value</dt>
+  <dd>
+    Sets search value.
+  </dd>
+</dl>
+{% endblock %}
+
 {% block properties %}
   <dl>
-    <dt>Invalid</dt>
+    <dt>
+      value
+      <small>(String [''])</small>
+    </dt>
     <dd>
-      Will apply invalid styling. 
-    </dd>
-    <dt>Value</dt>
-    <dd>
-      Sets input's value.
+      Determines search value
     </dd>
   </dl>
 {% endblock %}

@@ -6,7 +6,7 @@ const template = document.createElement('template');
 
 template.innerHTML = `
     <style>${shadowStyles}</style>
-    <input type="text" placeholder="Search&hellip;" id="search-input" aria-label="Search Terms">
+    <input type="text" placeholder="Search..." id="search-input"/>
     <hx-icon type="search"></hx-icon>
     <button id="clear-btn">
         <hx-icon type="times"></hx-icon>
@@ -31,6 +31,7 @@ export class HXSearchElement extends HXElement {
 
     connectedCallback () {
         this.$upgradeProperty('value');
+        this.$defaultAttribute('value', '');
         if (this.value) {
             this._input.value = this.value;
         }

@@ -9,5 +9,17 @@ if (document.getElementById('vue-searchDemo')) {
                 'invalid',
             ],
         },
+        computed: {
+            isInvalid: function () {
+                return this.state === 'invalid';
+            },
+            isValue: function () {
+                if (this.state && this.state === 'value') {
+                    return 'foo';
+                } else {
+                    return '';
+                }
+            },
+        },
     });
 }
