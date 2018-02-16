@@ -47,5 +47,6 @@ export function $x(
  */
 export var selectors = {
     nav: "#stage > #nav",
+    tab: "//hx-tablist/hx-tab",
     visreg: "*[data-visreg]",
 }

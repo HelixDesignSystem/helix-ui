@@ -1,6 +1,7 @@
-import {$, snap, Snappit, IConfig, WebDriver} from "snappit-visual-regression";
+import {$, Snappit, IConfig, WebDriver} from "snappit-visual-regression";
 
 import * as util from "../common/util";
+import tabTest from "./tests/tabs";
 import {test} from "ava";
 
 export function suite(browserName: string) {
@@ -27,23 +28,43 @@ export function suite(browserName: string) {
     });
 
     test("nav", async () => {
-        await snap("{browserName}/nav", $(util.selectors.nav));
+        await snappit.snap("{browserName}/nav", $(util.selectors.nav));
     });
 
     test("nav/guides", async () => {
         await util.$x(driver, "//nav//hx-disclosure", "Guides").click();
-        await snap("{browserName}/nav/guides", $(util.selectors.nav));
+        await snappit.snap("{browserName}/nav/guides", $(util.selectors.nav));
     });
 
     test("nav/components", async () => {
         await util.$x(driver, "//nav//hx-disclosure", "Components").click();
-        await snap("{browserName}/nav/components", $(util.selectors.nav));
+        await snappit.snap("{browserName}/nav/components", $(util.selectors.nav));
     });
 
     test("nav/custom-elements", async () => {
         await util.$x(driver, "//nav//hx-disclosure", "Custom Elements").click();
-        await snap("{browserName}/nav/custom-elements", $(util.selectors.nav));
+        await snappit.snap("{browserName}/nav/custom-elements", $(util.selectors.nav));
     });
+
+    /**
+      * This is here because of https://github.com/SeleniumHQ/selenium/issues/3882
+      * For the mean time, don't attempt to use keyboard navigation (in tabs) when
+      * testing with Firefox. Chrome works just fine, however.
+      */
+    if (browserName === "chrome") {
+        test("tabs/first", async t => {
+            await util.go(driver, "components/tabs");
+            await tabTest(t, snappit, driver, "Cupcake Ipsum");
+        });
+
+        test("tabs/second", async t => {
+            await tabTest(t, snappit, driver, "Biscuit Marshmallow");
+        });
+
+        test("tabs/third", async t => {
+            await tabTest(t, snappit, driver, "Caramels Marzipan");
+        });
+    }
 
     test.after.always(async () => {
         await snappit.stop();
