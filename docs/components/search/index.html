@@ -1,0 +1,32 @@
+---
+title: Search 
+also:
+  elements/hx-search: <hx-search>
+---
+{% extends 'component.njk' %} 
+{% block content %}
+  <section id="vue-searchDemo">
+    <h2 class="hxSectionTitle" id="search">Basic Search Bar</h2>
+    <div class="hxRow">
+      <div class="hxCol hxSpan-9-xs">
+        <div class="demo">
+          <hx-search :invalid="isInvalid"
+                     :value="isValue">
+          </hx-search>
+        </div>
+        {% code 'html' %}
+          {% raw %}
+            <hx-search invalid="{{isInvalid}}" value="{{isValue}}">
+            </hx-search>
+          {% endraw %}
+        {% endcode %}
+      </div>
+      <div class="hxCol hxSpan-3-xs">
+        State:
+        <select v-model="state">
+          <option :value="_state" v-for="_state in states" v-text="_state"></option>
+        </select>
+      </div>
+    </div>
+  </section>
+{% endblock %}
