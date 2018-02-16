@@ -46,8 +46,21 @@ hx-menuitem {
 
 .btn-cog {
   border: none;
+  padding: 0.25rem;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:focus {
+    box-shadow: 0 0 4px 0 fade(@cyan-500, 50%);
+  }
 
   hx-icon {
-    color: @gray-1000;
+    color: @gray-900;
+
+    &:hover {
+      color: @gray-700;
+    }
   }
 }
