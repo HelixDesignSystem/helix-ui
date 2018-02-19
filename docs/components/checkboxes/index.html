@@ -6,13 +6,42 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 class="hxSectionTitle" id="checkbox"> Basic Checkbox</h2>
-    <div class="demo">
-      <hx-checkbox></hx-checkbox>
+    <h2 class="hxSectionTitle" id="demos">Demos</h2>
+    <div id="vue-checkboxDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3 class="hxSubSectionTitle">Options</h2>
+        <label>
+          <input type="checkbox" v-model="isChecked" />
+          Checked
+        </label><br />
+        <label>
+          <input type="checkbox" v-model="isDisabled" />
+          Disabled
+        </label><br />
+        <label>
+          <input type="checkbox" v-model="isIndeterminate" />
+          Indeterminate
+        </label><br />
+        <label>
+          <input type="checkbox" v-model="isInvalid" />
+          Invalid
+        </label>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <h3 class="hxSubSectionTitle">Basic Checkbox</h2>
+        <div class="demo">
+          <hx-checkbox
+             :checked="isChecked"
+             :disabled="isDisabled"
+             :indeterminate="isIndeterminate"
+             :invalid="isInvalid"
+          ></hx-checkbox>
+        </div>
+        {% code 'html' %}
+          {% raw %}{{ snippet }}{% endraw %}
+        {% endcode %}
+      </div>
     </div>
-    {% code 'html' %}
-      <hx-checkbox></hx-checkbox>
-    {% endcode %}
   </section>
 
   <section data-visreg="checkbox-states">

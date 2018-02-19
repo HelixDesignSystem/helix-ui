@@ -14,10 +14,26 @@ also:
       body, and foot.
     </p>
   </section>
-  <section id="vue-panelDemo">
-    <h2 class="hxSectionTitle" id="basic-panel">Basic Panel</h2>
-    <div class="hxRow">
-      <div class="hxCol hxSpan-12-xs hxSpan-8-md">
+  <section>
+    <h2 class="hxSectionTitle" id="demos">Demos</h2>
+    <div id="vue-panelDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3 class="hxSubSectionTitle">Options</h3>
+        <label>
+          <input type="checkbox" v-model="hasHead" />
+          Include Head
+        </label>
+        <br />
+        <label>
+          <input type="checkbox" v-model="hasFoot" />
+          Include Foot
+        </label>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <h3 class="hxSubSectionTitle">Basic Panel</h3>
+        <p>
+          Resize the demo to see how the panel reacts.
+        </p>
         <div class="demo panel-demo">
           <hx-panel>
             <hx-panelhead v-if="hasHead">Panel Head</hx-panelhead>
@@ -35,40 +51,42 @@ also:
             <hx-panelfoot v-if="hasFoot">Panel Foot</hx-panelfoot>
           </hx-panel>
         </div>
-        <span class="hxCaption">
-          *Visual styling added for demonstration purposes.
-        </span>
-      </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-4-md">
-        <hx-panel>
-          <hx-panelhead>
-            <p>
-              Resize the demo to see how the panel reacts.
-            </p>
-          </hx-panelhead>
-          <hx-panelbody class="hxBox-md">
-            <p>
-              <label>
-                <input type="checkbox" v-model="hasHead" />
-                Show Head
-              </label>
-              <br />
-              <label>
-                <input type="checkbox" v-model="hasFoot" />
-                Show Foot
-              </label>
-            </p>
-          </hx-panelbody>
-        </hx-panel>
+        <small>
+          *Visual styling added for demonstration purpopses.
+        </small>
+        <template v-if="hasHead && hasFoot">
+          {% code 'html' %}
+            <hx-panel>
+              <hx-panelhead></hx-panelhead>
+              <hx-panelbody></hx-panelbody>
+              <hx-panelfoot></hx-panelfoot>
+            </hx-panel>
+          {% endcode %}
+        </template>
+        <template v-else-if="hasHead">
+          {% code 'html' %}
+            <hx-panel>
+              <hx-panelhead></hx-panelhead>
+              <hx-panelbody></hx-panelbody>
+            </hx-panel>
+          {% endcode %}
+        </template>
+        <template v-else-if="hasFoot">
+          {% code 'html' %}
+            <hx-panel>
+              <hx-panelbody></hx-panelbody>
+              <hx-panelfoot></hx-panelfoot>
+            </hx-panel>
+          {% endcode %}
+        </template>
+        <template v-else>
+          {% code 'html' %}
+            <hx-panel>
+              <hx-panelbody></hx-panelbody>
+            </hx-panel>
+          {% endcode %}
+        </template>
       </div>
     </div>
-    <br />
-    {% code 'html' %}
-      <hx-panel>
-        [<hx-panelhead></hx-panelhead>]
-        <hx-panelbody></hx-panelbody>
-        [<hx-panelfoot></hx-panelfoot>]
-      </hx-panel>
-    {% endcode %}
   </section>
 {% endblock %}

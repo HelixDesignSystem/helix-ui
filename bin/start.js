@@ -46,6 +46,7 @@ browserSync.init({
             match: [
                 `${CONFIG.sourceDir}/*.js`,
                 `${CONFIG.sourceDir}/**/*.js`,
+                `${CONFIG.sourceDir}/**/_*.less`,
             ],
             fn: _.debounce(compileScripts, 1500),
         },
@@ -55,6 +56,7 @@ browserSync.init({
             match: [
                 `${CONFIG.sourceDir}/*.less`,
                 `${CONFIG.sourceDir}/**/*.less`,
+                `!${CONFIG.sourceDir}/**/_*.less`,
             ],
             fn: _.debounce(compileStyles, 1500),
         },

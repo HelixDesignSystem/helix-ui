@@ -5,77 +5,96 @@ also:
 ---
 {% extends 'component.njk' %}
 {% block content %}
-  <section id="vue-tooltipDemo">
+  <section>
     <h2 class="hxSectionTitle" id="tooltip">Basic Tooltip</h2>
-    <div class="hxRow">
-      <div class="hxCol hxSpan-9-xs">
-        <div class="demo tooltip-demo">
-          <p>
-            Hover over icon to trigger tooltips
-            <hx-icon data-tooltip="tooltip1" type="help-circle"></hx-icon>
-          </p>
-          <hx-tooltip id="tooltip1" v-for="_position in positions" :key="_position.id" :position="_position.value"  v-if="_position.value === position.value" >
-            {% raw %}{{ position.label }}{% endraw %}
-          </hx-tooltip>
-        </div>
-        <div class="demo tooltip-demo">
-          <div class="demo-target" data-tooltip="tooltip2">
-            Manually trigger tooltip via click
-          </div>
-          <hx-tooltip id="tooltip2" trigger-event="click" v-for="_position in positions" :key="_position.id" :position="_position.value" v-if="_position.value === position.value">
-            {% raw %}{{ position.label }}{% endraw %}
-          </hx-tooltip>
-        </div>
-        {% code 'html' %}
-          <hx-icon data-tooltip="tooltip1" type="help-circle"></hx-icon>
-          <div class="demo-target" data-tooltip="tooltip2">
-            Manually set trigger-event to click
-          </div>
-          <hx-tooltip id="tooltip1" position="{position}">
-            {position}
-          </hx-tooltip>
-          <hx-tooltip id="tooltip2" position="{position}" trigger-event="click">
-            {position}
-          </hx-tooltip>
-        {% endcode %}
+    <div id="vue-tooltipDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3 class="hxSubSectionTitle">Options</h2>
+        <p>
+          <b>Position:</b><br />
+          <select v-model="position">
+            <option v-for="_position in positions" :value="_position">
+              {% raw %}{{ _position.label }}{% endraw %}
+            </option>
+          </select>
+        </p>
       </div>
-      <div class="hxCol hxSpan-3-xs">
-        Position:
-        <select v-model="position">
-          <option v-for="_position in positions" :value="_position">
-            {% raw %}{{ _position.label }}{% endraw %}
-          </option>
-        </select>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <section>
+          <h3 class="hxSubSectionTitle">Trigger on Hover</h3>
+          <div class="demo tooltip-demo">
+            <p>
+              Hover over icon to trigger tooltip
+              <hx-icon data-tooltip="tooltip1" type="help-circle"></hx-icon>
+            </p>
+            <hx-tooltip
+              :key="_position.id"
+              :position="_position.value"
+              id="tooltip1"
+              v-for="_position in positions"
+              v-if="_position.value === position.value">
+              {% raw %}{{ position.label }}{% endraw %}
+            </hx-tooltip>
+          </div>
+          {% code 'html' %}{% raw %}
+            <p>
+              Hover over icon to trigger tooltip
+              <hx-icon data-tooltip="tooltip1" type="help-circle"></hx-icon>
+            </p>
+            <hx-tooltip id="tooltip1" position="{{position.value}}">
+              {{position.label}}
+            </hx-tooltip>{% endraw %}
+          {% endcode %}
+        </section>
+
+        <section>
+          <h3 class="hxSubSectionTitle">Trigger on Click</h3>
+          <div class="demo tooltip-demo">
+            <button class="hxBtn" data-tooltip="tooltip2">
+              Click to toggle tooltip
+            </button>
+            <hx-tooltip
+              :key="_position.id"
+              :position="_position.value"
+              id="tooltip2"
+              trigger-event="click"
+              v-for="_position in positions"
+              v-if="_position.value === position.value">
+              {% raw %}{{ position.label }}{% endraw %}
+            </hx-tooltip>
+          </div>
+          {% code 'html' %}{% raw %}
+            <button class="hxBtn" data-tooltip="tooltip2">
+              Click to toggle tooltip
+            </button>
+            <hx-tooltip id="tooltip2" position="{{position.value}}" trigger-event="click">
+              {{position.label}}
+            </hx-tooltip>{% endraw %}
+          {% endcode %}
+        </section>
       </div>
     </div>
   </section>
+
   <section class="tooltip-examples">
     <h2 class="hxSectionTitle" id="appearance">Appearance</h2>
     <table class="hxTable">
-      <thead>
-        <tr>
-          <th>position</th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
       <tbody>
         <tr>
           <td>Top</td>
           <td>
             <hx-tooltip position="top" open>
-              position: top
+              top
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="top-right" open>
-              position: top-right
+              top-right
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="top-left" open>
-              position: top-left
+              top-left
             </hx-tooltip>
           </td>
         </tr>
@@ -83,17 +102,17 @@ also:
           <td>Bottom</td>
           <td>
             <hx-tooltip position="bottom" open>
-              position: bottom
+              bottom
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="bottom-right" open>
-              position: bottom-right
+              bottom-right
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="bottom-left" open>
-              position: bottom-left
+              bottom-left
             </hx-tooltip>
           </td>
         </tr>
@@ -101,17 +120,17 @@ also:
           <td>Right</td>
           <td>
             <hx-tooltip position="right" open>
-              position: right
+              right
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="right-top" open>
-              position: right-top
+              right-top
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="right-bottom" open>
-              position: right-bottom
+              right-bottom
             </hx-tooltip>
           </td>
         </tr>
@@ -119,17 +138,17 @@ also:
           <td>Left</td>
           <td>
             <hx-tooltip position="left" open>
-              position: left
+              left
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="left-top" open>
-              position: left-top
+              left-top
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="left-bottom" open>
-              position: left-bottom
+              left-bottom
             </hx-tooltip>
           </td>
         </tr>

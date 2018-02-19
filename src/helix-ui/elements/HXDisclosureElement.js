@@ -7,7 +7,9 @@ export class HXDisclosureElement extends HXElement {
     }
 
     static get observedAttributes () {
-        return [ 'aria-expanded' ];
+        return super.observedAttributes.concat([
+            'aria-expanded',
+        ]);
     }
 
     constructor () {
@@ -17,9 +19,13 @@ export class HXDisclosureElement extends HXElement {
     }
 
     connectedCallback () {
+        super.connectedCallback();
+
         this.$upgradeProperty('expanded');
         this.setAttribute('role', 'button');
-        this.setAttribute('tabindex', 0);
+        if (!this.hasAttribute('tabindex') && !this.disabled) {
+            this.setAttribute('tabindex', 0);
+        }
 
         if (this.target) {
             this.expanded = this.target.hasAttribute('open');
@@ -46,11 +52,18 @@ export class HXDisclosureElement extends HXElement {
     }
 
     attributeChangedCallback (attr, oldVal, newVal) {
-        if (this.target) {
-            let setTo = (newVal === 'true');
-            if (this.target.open !== setTo) {
-                this.target.open = setTo;
-            }
+        super.attributeChangedCallback(attr, oldVal, newVal);
+
+        const hasValue = (newVal !== null);
+        switch(attr) {
+            case 'aria-expanded':
+                if (this.target) {
+                    let setTo = (newVal === 'true');
+                    if (this.target.open !== setTo) {
+                        this.target.open = setTo;
+                    }
+                }
+                break;
         }
     }
 
@@ -82,7 +95,9 @@ export class HXDisclosureElement extends HXElement {
     }
 
     _toggle () {
-        this.expanded = !this.expanded;
+        if (!this.disabled) {
+            this.expanded = !this.expanded;
+        }
     }
 
     _onTargetOpen () {

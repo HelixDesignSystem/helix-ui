@@ -5,6 +5,10 @@ export class HXElement extends HTMLElement {
         customElements.define(this.is, this);
     }
 
+    static get observedAttributes () {
+        return [ 'disabled' ];
+    }
+
     constructor (tagName, template) {
         super();
 
@@ -20,6 +24,28 @@ export class HXElement extends HTMLElement {
             this.shadowRoot.appendChild(template.content.cloneNode(true));
         }
     }//constructor
+
+    connectedCallback () {
+        this._$tabIndex = this.getAttribute('tabindex') || 0;
+        this.$upgradeProperty('disabled');
+    }
+
+    attributeChangedCallback (attr, oldVal, newVal) {
+        const hasValue = (newVal !== null);
+
+        switch (attr) {
+            case 'disabled':
+                if (hasValue) {
+                    this.removeAttribute('tabindex');
+                    this.setAttribute('aria-disabled', true);
+                    this.blur();
+                } else {
+                    this.setAttribute('tabindex', this._$tabIndex);
+                    this.removeAttribute('aria-disabled');
+                }
+                break;
+        }
+    }//attributeChangedCallback
 
     // See: https://goo.gl/MDp6j5
     $upgradeProperty (prop) {
@@ -65,4 +91,17 @@ export class HXElement extends HTMLElement {
         });
         this.dispatchEvent(evt);
     }//$emit
+
+    // Properties
+    set disabled (value) {
+        if (value) {
+            this.setAttribute('disabled', '');
+        } else {
+            this.removeAttribute('disabled');
+        }
+    }
+
+    get disabled () {
+        return this.hasAttribute('disabled');
+    }
 }//HXElement

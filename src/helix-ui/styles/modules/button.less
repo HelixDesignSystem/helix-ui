@@ -1,17 +1,19 @@
 .hxBtn {
   background-color: transparent;
-  border: 1px solid @cyan-900;
   border-radius: 2px;
+  border: 1px solid @cyan-900;
   color: @cyan-900;
+  cursor: pointer;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 1;
   margin: 0;
+  padding: 8px 12px;
 
   &:hover {
     background-color: @cyan-500;
     border-color: transparent;
     color: @gray-0;
-    cursor: pointer;
   }
 
   &:active {
@@ -32,24 +34,42 @@
     cursor: not-allowed;
   }
 
-  &--lg {
-    font-size: 1rem;
-    padding: 15px 16px;
-  }
+  hx-icon {
+    &:first-of-type {
+      margin-right: 8px;
+    }
 
-  & {
-    font-size: 0.875rem;
-    padding: 8px 12px;
-  }
-  
-  &--sm {
-    padding: 2px 8px;
-  }
-}
+    &:last-of-type {
+      margin-left: 8px;
+    }
 
-.hxBtn--primary {
+    &:only-child {
+      margin: 0;
+    }
+  }
+}//.hxBtn
+
+// STYLE VARIANTS (
+.hxBtn.hxPrimary {
   background-color: @cyan-900;
   color: @gray-0;
+
+  &:hover {
+    background-color: @cyan-500;
+    border-color: transparent;
+    color: @gray-0;
+  }
+
+  &:active {
+    background-color: @cyan-700;
+    border-color: transparent;
+    color: @gray-0;
+  }
+
+  &:focus {
+    box-shadow: 0 0 4px 0 fade(@cyan-700, 50%);
+    outline: none;
+  }
 
   &[disabled] {
     background-color: @gray-400;
@@ -58,7 +78,7 @@
   }
 }
 
-.hxBtn--link {
+.hxBtn.hxLink {
   background-color: transparent;
   border: none;
   padding-left: 0;
@@ -87,39 +107,75 @@
   }
 }
 
-.hxBtnGroup {
-  display: inline-flex;
-
-  .hxBtn {
-    border-radius: 0;
-    margin-left: 1px;
-
-    &:first-child {
-      border-bottom-left-radius: 2px;
-      border-top-left-radius: 2px;
-    }
-
-    &:last-child {
-      border-bottom-right-radius: 2px;
-      border-top-right-radius: 2px;
-    }
-  }
+// SIZE VARIANTS
+.hxBtn.hxLg {
+  font-size: 1rem;
+  padding: 1rem;
+}
+.hxBtn.hxSm {
+  padding: 2px 8px;
 }
 
-.hxBtn {
-  hx-icon {
-    box-sizing: content-box;
+// BUTTON GROUPS
+.hxBtnGroup {
+  border-radius: 2px;
+  display: inline-flex;
+  overflow: hidden;
 
-    &:first-of-type {
-      padding-right: 8px;
-    }
+  > .hxBtn {
+    border-radius: 0;
 
-    &:last-of-type {
-      padding-left: 8px;
-    }
-
-    &:only-child {
-      padding: 0;
+    + .hxBtn {
+      border-left: 0;
     }
   }
+
+  &.hxPrimary {
+    > .hxBtn {
+      &:extend(.hxBtn.hxPrimary all);
+
+      + .hxBtn {
+        border-left: 1px solid @gray-0;
+      }
+    }
+  }
+
+  &.hxLink {
+    > .hxBtn {
+      &:extend(.hxBtn.hxLink all);
+
+      + .hxBtn {
+        margin-left: 1.25rem;
+      }
+    }
+  }
+
+  &.hxLg {
+    > .hxBtn {
+      &:extend(.hxBtn.hxLg);
+    }
+  }
+
+  &.hxSm {
+    > .hxBtn {
+      &:extend(.hxBtn.hxSm);
+    }
+  }
+}//.hxBtnGroup
+
+// DEPRECATED: Remove in v1.0.0
+.hxBtn--primary {
+  &:extend(.hxBtn.hxPrimary all);
+}
+
+.hxBtn--link {
+  &:extend(.hxBtn.hxLink all);
+}
+
+.hxBtn--sm {
+  &:extend(.hxBtn.hxSm);
+}
+
+.hxBtn--lg {
+  &:extend(.hxBtn.hxLg);
 }

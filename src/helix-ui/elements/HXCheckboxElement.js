@@ -19,11 +19,10 @@ export class HXCheckboxElement extends HXElement {
     }
 
     static get observedAttributes () {
-        return [
+        return super.observedAttributes.concat([
             'checked',
-            'disabled',
             'indeterminate',
-        ];
+        ]);
     }
 
     constructor () {
@@ -31,13 +30,14 @@ export class HXCheckboxElement extends HXElement {
     }
 
     connectedCallback () {
+        super.connectedCallback();
+
         this.$defaultAttribute('role', 'checkbox');
         if (!this.hasAttribute('tabindex') && !this.disabled) {
             this.setAttribute('tabindex', 0);
         }
 
         this.$upgradeProperty('checked');
-        this.$upgradeProperty('disabled');
         this.$upgradeProperty('indeterminate');
 
         this.addEventListener('keydown', this.$preventScroll);
@@ -51,9 +51,11 @@ export class HXCheckboxElement extends HXElement {
         this.removeEventListener('click', this._onClick);
     }
 
-    attributeChangedCallback (name, oldValue, newValue) {
-        const hasValue = newValue !== null;
-        switch (name) {
+    attributeChangedCallback (attr, oldVal, newVal) {
+        super.attributeChangedCallback(attr, oldVal, newVal);
+
+        const hasValue = (newVal !== null);
+        switch (attr) {
             case 'indeterminate':
                 if (hasValue) {
                     this.setAttribute('aria-checked', 'mixed');
@@ -63,16 +65,9 @@ export class HXCheckboxElement extends HXElement {
             case 'checked':
                 if (!this.indeterminate) {
                     this.setAttribute('aria-checked', hasValue);
-                }
-                break;
-
-            case 'disabled':
-                this.setAttribute('aria-disabled', hasValue);
-                if (hasValue) {
-                    this.removeAttribute('tabindex');
-                    this.blur();
-                } else {
-                    this.setAttribute('tabindex', '0');
+                    this.$emit('change', {
+                        checked: this.checked,
+                    });
                 }
                 break;
         }
@@ -88,18 +83,6 @@ export class HXCheckboxElement extends HXElement {
 
     get checked () {
         return this.hasAttribute('checked');
-    }
-
-    set disabled (value) {
-        if (value) {
-            this.setAttribute('disabled', '');
-        } else {
-            this.removeAttribute('disabled');
-        }
-    }
-
-    get disabled () {
-        return this.hasAttribute('disabled');
     }
 
     set indeterminate (value) {
@@ -135,14 +118,5 @@ export class HXCheckboxElement extends HXElement {
         }
         this.indeterminate = false;
         this.checked = !this.checked;
-
-        let changeEvent = new CustomEvent('change', {
-            detail: {
-                checked: this.checked,
-            },
-            bubbles: true,
-        });
-
-        this.dispatchEvent(changeEvent);
     }
 }//HXCheckboxElement

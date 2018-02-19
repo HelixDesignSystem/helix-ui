@@ -1,14 +1,27 @@
 ---
 title: Popovers
 also:
+  components/buttons: Buttons
   elements/hx-popover: <hx-popover>
 ---
 {% extends 'component.njk' %}
 {% block content %}
-  <section id="vue-popoverDemo">
-    <h2 class="hxSectionTitle" id="tooltip">Basic Popover</h2>
-    <div class="hxRow">
-      <div class="hxCol hxSpan-9-xs">
+  <section>
+    <h2 class="hxSectionTitle" id="demos">Demos</h2>
+    <div id="vue-popoverDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3 class="hxSubSectionTitle">Options</h3>
+        <p>
+          <b>Position:</b><br />
+          <select v-model="position">
+            <option v-for="_position in positions" :value="_position">
+              {% raw %}{{ _position.label }}{% endraw %}
+            </option>
+          </select>
+        </p>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <h3 class="hxSubSectionTitle">Basic Popover</h3>
         <div class="demo popover-demo">
           <button data-popover="myPopover" class="hxBtn">Toggle</button>
 
@@ -22,7 +35,7 @@ also:
             </header>
             <p>This is my popover body</p>
             <footer slot="footer">
-              <button class="hxBtn hxBtn--primary">Submit</button>
+              <button class="hxBtn hxPrimary">Submit</button>
               <button class="hxBtn">Cancel</button>
             </footer>
           </hx-popover>
@@ -35,19 +48,11 @@ also:
             </header>
             <p>This is my popover body</p>
             <footer slot="footer">
-              <button class="hxBtn hxBtn--primary">Submit</button>
+              <button class="hxBtn hxPrimary">Submit</button>
               <button class="hxBtn">Cancel</button>
             </footer>
           </hx-popover>
         {% endcode %}
-      </div>
-      <div class="hxCol hxSpan-3-xs">
-        Position:
-        <select v-model="position">
-          <option v-for="_position in positions" :value="_position">
-            {% raw %}{{ _position.label }}{% endraw %}
-          </option>
-        </select>
       </div>
     </div>
   </section>
