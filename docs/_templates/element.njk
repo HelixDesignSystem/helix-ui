@@ -2,7 +2,7 @@
 
 {% block layout %}
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">{{ page.title }}</h1>
+    <h1>{{ page.title }}</h1>
 
     {% block content %}
       {# freeform page content goes here #}
@@ -10,7 +10,7 @@
 
     {# ATTRIBUTES #}
     <section>
-      <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
+      <h2 id="attributes">Attributes</h2>
       <p>
         Attributes allow you to configure an element in a
         declarative manner via markup.
@@ -27,7 +27,7 @@
 
     {# PROPERTIES #}
     <section>
-      <h2 class="hxSectionTitle" id="properties">Properties</h2>
+      <h2 id="properties">Properties</h2>
       <p>
         Properties allow you to configure an element in an
         imperative manner via JavaScript.
@@ -47,7 +47,7 @@
     {% endif %}
   </main>
   <aside class="hxSiderail hxBox-md">
-    <h1 class="hxContainerTitle">On this page:</h1>
+    <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       {{ page.raw | toc | safe }}
       <a href="#attributes">Attributes</a>

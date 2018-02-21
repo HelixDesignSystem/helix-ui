@@ -6,7 +6,7 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 class="hxSectionTitle" id="demo">Demo</h2>
+    <h2 id="demo">Demo</h2>
     <div class="demo">
       <p>
         <hx-icon type="kbd-arrow-up"></hx-icon>
@@ -38,7 +38,7 @@ also:
   </section>
 
   <section>
-    <h2 class="hxSectionTitle" id="available-icons">Available Icons</h2>
+    <h2 id="available-icons">Available Icons</h2>
     <p>There are {{ data.icons.length }} icons available!</p>
     <div class="hxRow">
       {% for icon in data.icons %}

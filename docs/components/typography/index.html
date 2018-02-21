@@ -3,102 +3,85 @@ title: Typography
 ---
 {% extends 'component.njk' %}
 {% block content %}
-  <section><!-- Font -->
-    <h2 class="hxSectionTitle" id="font-weight">Font Weight</h2>
-
+  <section><!-- Typefaces -->
+    <h2 id="typefaces">Typefaces</h2>
     <div class="demo demo-typography">
       <div class="hxRow">
         <div class="hxCol font-roboto">
-          <p class="weight-thin">Roboto Thin (100)</p>
-          <p class="weight-light">Roboto Light (300)</p>
-          <p class="weight-regular">Roboto Regular (400)</p>
-          <p class="weight-medium">Roboto Medium (500)</p>
-          <p class="weight-bold">Roboto Bold (700)</p>
+          <p class="weight-thin">100: Roboto Thin</p>
+          <p class="weight-light">300: Roboto Light</p>
+          <p class="weight-regular">400: Roboto Regular</p>
+          <p class="weight-medium">500: Roboto Medium</p>
+          <p class="weight-bold">700: Roboto Bold</p>
         </div>
         <div class="hxCol font-roboto-mono">
-          <p class="weight-thin">Roboto Mono Thin (100)</p>
-          <p class="weight-light">Roboto Mono Light (300)</p>
-          <p class="weight-regular">Roboto Mono Regular (400)</p>
-          <p class="weight-medium">Roboto Mono Medium (500)</p>
-          <p class="weight-bold">Roboto Mono Bold (700)</p>
+          <p class="weight-thin">100: Roboto Mono Thin</p>
+          <p class="weight-light">300: Roboto Mono Light</p>
+          <p class="weight-regular">400: Roboto Mono Regular</p>
+          <p class="weight-medium">500: Roboto Mono Medium</p>
+          <p class="weight-bold">700: Roboto Mono Bold</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section><!-- Page Title -->
-    <h2 class="hxSectionTitle" id="page-title">Page Title</h2>
-    <p>Use the <code>.hxPageTitle</code> css class to achieve the page title style</p>
-
+  <section><!-- Headings -->
+    <h2 id="headers">Headings</h2>
     <div class="demo">
-      <h1 class="hxPageTitle">Page Title</h1>
+      <h1>Heading One</h1>
+      <h2>Heading Two</h2>
+      <h3>Heading Three</h3>
+      <h4>Heading Four</h4>
+      <h5>Heading Five</h5>
     </div>
-    {% code 'html' %}
-      <h1 class="hxPageTitle">Page Title</h1>
-      <!-- or -->
-      <header class="hxPageTitle">Page Title</header>
-    {% endcode %}
-  </section>
-
-  <section><!-- Section Title -->
-    <h2 class="hxSectionTitle" id="section-title">Section Title</h2>
-    <p>Use the <code>.hxSectionTitle</code> css class to achieve the section title style</p>
-
-    <div class="demo">
-      <h2 class="hxSectionTitle">Section Title</h2>
-    </div>
-    {% code 'html' %}
-      <h2 class="hxSectionTitle">Section Title</h2>
-      <!-- or -->
-      <header class="hxSectionTitle">Section Title</header>
-    {% endcode %}
-  </section>
-
-  <section><!-- Sub-Section Title -->
-    <h2 class="hxSectionTitle" id="subsection-title">Sub-Section Title</h2>
-    <p>Use the <code>.hxSubSectionTitle</code> css class to achieve the sub-section title style</p>
-
-    <div class="demo">
-      <h3 class="hxSubSectionTitle">Sub-Section Title</h3>
-    </div>
-    {% code 'html' %}
-      <h3 class="hxSubSectionTitle">Sub-Section Title</h3>
-      <!-- or -->
-      <header class="hxSubSectionTitle">Sub-Section Title</header>
-    {% endcode %}
-  </section>
-
-  <section><!-- Container Title -->
-    <h2 class="hxSectionTitle" id="container-title">Container Title</h2>
-    <p>Use the <code>.hxContainerTitle</code> css class to achieve the container title style</p>
-
-    <div class="demo">
-      <h4 class="hxContainerTitle">Container Title</h4>
-    </div>
-    {% code 'html' %}
-      <h4 class="hxContainerTitle">Container Title</h4>
-      <!-- or -->
-      <header class="hxContainerTitle">Container Title</header>
-    {% endcode %}
-  </section>
-
-  <section><!-- Label -->
-    <h2 class="hxSectionTitle" id="label">Label</h2>
-    <p>Use the <code>.hxLabel</code> css class to achieve the label text style</p>
-
-    <div class="demo">
-      <label class="hxLabel">Helix Label</label>
-    </div>
-    {% code 'html' %}
-      <label class="hxLabel">Label</label>
-      <!-- or -->
-      <span class="hxLabel">Label</span>
-    {% endcode %}
+    <p>
+      CSS class overrides are available if semantic elements
+      don't match up with expected visual style.
+    </p>
+    <table class="hxTable hxTable--condensed">
+      <thead>
+        <tr>
+          <th>Style</th>
+          <th>Element</th>
+          <th>Class</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Heading One</td>
+          <td><code>&lt;h1&gt;</code></td>
+          <td><code>.hxHeading-1</code></td>
+        </tr>
+        <tr>
+          <td>Heading Two</td>
+          <td><code>&lt;h2&gt;</code></td>
+          <td><code>.hxHeading-2</code></td>
+        </tr>
+        <tr>
+          <td>Heading Three</td>
+          <td><code>&lt;h3&gt;</code></td>
+          <td><code>.hxHeading-3</code></td>
+        </tr>
+        <tr>
+          <td>Heading Four</td>
+          <td><code>&lt;h4&gt;</code></td>
+          <td><code>.hxHeading-4</code></td>
+        </tr>
+        <tr>
+          <td>Heading Five</td>
+          <td><code>&lt;h5&gt;</code></td>
+          <td><code>.hxHeading-5</code></td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <section><!-- Subdued -->
-    <h2 class="hxSectionTitle" id="subdued">Subdued</h2>
-    <p>Use the <code>.hxSubdued</code> css class to achieve the subdued text style</p>
+    <h2 id="subdued">Subdued</h2>
+    <p>
+      Add the <code>.hxSubdued</code> CSS class to any element to apply a
+      muted appearance.
+    </p>
 
     <div class="demo">
       <span class="hxSubdued">Subdued</span>
@@ -113,15 +96,17 @@ title: Typography
   </section>
 
   <section><!-- Caption -->
-    <h2 class="hxSectionTitle" id="caption">Caption</h2>
-    <p>Use the <code>.hxCaption</code> css class to achieve the caption text style</p>
+    <h2 id="caption">Caption</h2>
+    <p>
+      Use the <code>&lt;caption&gt;</code> element, <code>&lt;figcaption&gt;</code>
+      element or add the <code>.hxCaption</code> CSS class to flow content to apply
+      the "caption" style.
+    </p>
 
     <div class="demo">
       <p class="hxCaption">Caption</p>
     </div>
     {% code 'html' %}
-      <p class="hxCaption">Caption</p>
-      <!-- or -->
       <figure>
         <figcaption>Caption</figcaption>
       </figure>
@@ -129,57 +114,58 @@ title: Typography
       <table>
         <caption>Caption</caption>
       </table>
+      <!-- or -->
+      <p class="hxCaption">Caption</p>
     {% endcode %}
   </section>
 
   <section><!-- Sub-Body -->
-    <h2 class="hxSectionTitle" id="sub-body">Sub-Body</h2>
-    <p>Use the <code>.hxSubBody</code> css class to achieve the sub-body text style</p>
+    <h2 id="sub-body">Sub-Body</h2>
+    <p>
+      Use the <code>&lt;small&gt;</code> element or add the
+      <code>.hxSubBody</code> CSS class to flow content to apply the
+      "sub-body" style.
+    </p>
 
     <div class="demo">
       <p class="hxSubBody">Sub-Body</p>
     </div>
     {% code 'html' %}
-      <p class="hxSubBody">Sub-Body</p>
-      <!-- or -->
       <small>Sub-Body</small>
+      <!-- or -->
+      <p class="hxSubBody">Sub-Body</p>
     {% endcode %}
   </section>
 
   <section><!-- Links -->
-    <h2 class="hxSectionTitle" id="links">Links</h2>
+    <h2 id="links">Links</h2>
+    <p>
+      Links should be used to refer a user to a resource or location.
+    </p>
+    <div class="hxAlert">
+      <div class="hxAlert__icon">
+        <hx-icon type="info-circle"></hx-icon>
+      </div>
+      <div class="hxAlert__text">
+        <span class="hxAlert__status">Note</span>
+        Buttons are better suited to initiate in-page actions.
+      </div>
+    </div>
 
     <div class="demo">
-      <p>
-        <strong>Reference Links</strong><br />
-        Reference links are super common and typically used to, well, refer, you
-        to something and somewhere else, whether that's in our interface or not.
-        For Rackspace, this likely means to help and support articles. If you
-        want to ask someone to do something, use a <a href="#">button.</a>
-      </p>
-      <p>
-        <strong>Pressed State</strong><br />
-        <a href="#" class="pseudo-active">Pressed Link</a>
-      </p>
+      <ul>
+        <li><a href="#">Normal Link</a></li>
+        <li><a href="#" class="pseudo-active">Pressed Link</a></li>
+      </ul>
     </div>
   </section>
 
-  <section>
-    <h2 class="hxSectionTitle" id="classes">Classes</h2>
-    <dl>
-      <dt><code>.hxPageTitle</code></dt>
-      <dt><code>.hxSectionTitle</code></dt>
-      <dt><code>.hxSubSectionTitle</code></dt>
-      <dt><code>.hxContainerTitle</code></dt>
-      <dt><code>.hxLabel</code></dt>
-      <dt><code>.hxSubdued</code></dt>
-      <dt><code>.hxCaption</code></dt>
-      <dt><code>.hxSubbody</code></dt>
-    </dl>
-  </section>
-
   <section><!-- Inline Code -->
-    <h2 class="hxSectionTitle" id="inline-code">Inline Code</h2>
+    <h2 id="inline-code">Inline Code</h2>
+    <p>
+      Use the <code>&lt;code&gt;</code> element to differentiate descriptive
+      text from code snippets.
+    </p>
 
     <div class="demo">
       <p>
@@ -194,7 +180,11 @@ title: Typography
   </section>
 
   <section><!-- Keyboard -->
-    <h2 class="hxSectionTitle" id="keyboard">Keyboard</h2>
+    <h2 id="keyboard">Keyboard</h2>
+    <p>
+      Use the <code>&lt;kbd&gt;</code> element to differentiate descriptive text
+      from instructional key presses.
+    </p>
     <div class="demo">
       <p>
         Press <kbd>Ctrl+Z</kbd> (<kbd>Command+Z</kbd> on Mac)
@@ -209,8 +199,8 @@ title: Typography
     {% endcode %}
   </section>
 
-  <section>
-    <h2 class="hxSectionTitle" id="code-block">Code Block</h2>
+  <section><!-- Code Block -->
+    <h2 id="code-block">Code Block</h2>
 
     <div class="demo">
       <pre><code>[Insert Code Here]</code></pre>
@@ -221,7 +211,7 @@ title: Typography
   </section>
 
   <section><!-- Syntax Highlighting -->
-    <h2 class="hxSectionTitle" id="syntax-highlighting">Syntax Highlighting</h2>
+    <h2 id="syntax-highlighting">Syntax Highlighting</h2>
     <p>
       HelixUI provides a built-in theme for use with the
       <a href="https://highlightjs.org/">highlight.js</a> library.

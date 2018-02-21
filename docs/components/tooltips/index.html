@@ -6,10 +6,10 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 class="hxSectionTitle" id="tooltip">Basic Tooltip</h2>
+    <h2 id="tooltip">Basic Tooltip</h2>
     <div id="vue-tooltipDemo" class="hxRow" v-cloak>
       <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3 class="hxSubSectionTitle">Options</h2>
+        <h3>Options</h3>
         <p>
           <b>Position:</b><br />
           <select v-model="position">
@@ -21,7 +21,7 @@ also:
       </div>
       <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
         <section>
-          <h3 class="hxSubSectionTitle">Trigger on Hover</h3>
+          <h3>Trigger on Hover</h3>
           <div class="demo tooltip-demo">
             <p>
               Hover over icon to trigger tooltip
@@ -48,7 +48,7 @@ also:
         </section>
 
         <section>
-          <h3 class="hxSubSectionTitle">Trigger on Click</h3>
+          <h3>Trigger on Click</h3>
           <div class="demo tooltip-demo">
             <button class="hxBtn" data-tooltip="tooltip2">
               Click to toggle tooltip
@@ -77,7 +77,7 @@ also:
   </section>
 
   <section class="tooltip-examples">
-    <h2 class="hxSectionTitle" id="appearance">Appearance</h2>
+    <h2 id="appearance">Appearance</h2>
     <table class="hxTable">
       <tbody>
         <tr>

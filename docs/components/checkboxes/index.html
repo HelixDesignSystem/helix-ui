@@ -6,10 +6,10 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 class="hxSectionTitle" id="demos">Demos</h2>
+    <h2 id="demos">Demos</h2>
     <div id="vue-checkboxDemo" class="hxRow" v-cloak>
       <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3 class="hxSubSectionTitle">Options</h2>
+        <h3>Options</h2>
         <label>
           <input type="checkbox" v-model="isChecked" />
           Checked
@@ -28,7 +28,7 @@ also:
         </label>
       </div>
       <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h3 class="hxSubSectionTitle">Basic Checkbox</h2>
+        <h3>Basic Checkbox</h2>
         <div class="demo">
           <hx-checkbox
              :checked="isChecked"
@@ -45,7 +45,7 @@ also:
   </section>
 
   <section data-visreg="checkbox-states">
-    <h2 class="hxSectionTitle" id="checkbox-states">Checkbox States</h2>
+    <h2 id="checkbox-states">Checkbox States</h2>
     <table class="hxTable">
       <thead>
         <tr>

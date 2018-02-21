@@ -1,30 +1,57 @@
-.hxPageTitle {
+// RESET
+h1, h2, h3, h4, h5, h6 {
+  font-family: @font-sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0 0 0.5rem;
+}
+
+// DEFINE
+h1,
+.hxHeading-1 {
+  color: @gray-900;
   font-size: 3rem;
   font-weight: 100;
-  margin-bottom: 2rem;
+  text-transform: none;
 }
 
-.hxSectionTitle {
-  font-size: 1.875rem;
+h2,
+.hxHeading-2 {
+  color: @gray-900;
+  font-size: 2rem;
   font-weight: 300;
-  margin-bottom: 1.75rem;
+  text-transform: none;
 }
 
-.hxSubSectionTitle {
+h3,
+.hxHeading-3 {
+  color: @gray-900;
   font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  font-weight: 400;
+  text-transform: none;
 }
 
-.hxContainerTitle {
+h4,
+.hxHeading-4 {
+  color: @gray-900;
   font-size: 1rem;
   font-weight: 500;
-  margin-bottom: 1.5rem;
+  text-transform: none;
 }
 
-.hxLabel {
-  color: @gray-750;
+h5,
+.hxHeading-5 {
+  color: @gray-800;
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+h6 {
+  color: inherit;
   font-size: 1rem;
   font-weight: 500;
+  text-transform: none;
 }
 
 .hxSubdued {
@@ -37,4 +64,23 @@
 
 .hxSubBody {
   font-size: 0.75rem;
+}
+
+/* ===== DEPRECATED Remove in v1.0.0 ===== */
+.hxPageTitle {
+  &:extend(.hxHeading-1);
+}
+.hxSectionTitle {
+  &:extend(.hxHeading-2);
+}
+.hxSubSectionTitle {
+  &:extend(.hxHeading-3);
+}
+.hxContainerTitle {
+  &:extend(.hxHeading-4);
+}
+.hxLabel {
+  color: @gray-750;
+  font-size: 1rem;
+  font-weight: 500;
 }

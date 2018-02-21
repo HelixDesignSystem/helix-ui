@@ -4,11 +4,10 @@ title: Tables
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 class="hxSectionTitle" id="demos">Demos</h2>
-
+    <h2 id="demos">Demos</h2>
     <div id="vue-tableDemo" class="hxRow" v-cloak>
       <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3 class="hxSubSectionTitle">Options</h3>
+        <h3>Options</h3>
         <div class="hxRow">
           <div class="hxCol hxSpan-12-lg hxSpan-4-xs">
             <b>Behavior:</b><br />
@@ -35,7 +34,7 @@ title: Tables
         </div>
       </div>
       <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h3 class="hxSubSectionTitle">Basic Table</h3>
+        <h3>Basic Table</h3>
         <div class="demo">
           <table :class="cssClasses">
             <caption>Most popular Twitter accounts</caption>
@@ -89,7 +88,7 @@ title: Tables
   </section>
 
   <section><!-- Selection Table -->
-    <h2 class="hxSectionTitle" id="selection-table">Selection Table</h2>
+    <h2 id="selection-table">Selection Table</h2>
     <p>
       Use the <code>.hxControl</code> CSS class on table cells that contain
       a checkbox.
@@ -187,7 +186,7 @@ title: Tables
   </section>
 
   <section><!-- Action Table -->
-    <h2 class="hxSectionTitle" id="action-table">Action Table</h2>
+    <h2 id="action-table">Action Table</h2>
     <p>
       Use the <code>.hxControl</code> CSS class on table cells that contain
       a cog menu.

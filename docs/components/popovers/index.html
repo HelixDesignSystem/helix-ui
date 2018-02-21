@@ -7,10 +7,10 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 class="hxSectionTitle" id="demos">Demos</h2>
+    <h2 id="demos">Demos</h2>
     <div id="vue-popoverDemo" class="hxRow" v-cloak>
       <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3 class="hxSubSectionTitle">Options</h3>
+        <h3>Options</h3>
         <p>
           <b>Position:</b><br />
           <select v-model="position">
@@ -21,7 +21,7 @@ also:
         </p>
       </div>
       <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h3 class="hxSubSectionTitle">Basic Popover</h3>
+        <h3>Basic Popover</h3>
         <div class="demo popover-demo">
           <button data-popover="myPopover" class="hxBtn">Toggle</button>
 
@@ -31,7 +31,7 @@ also:
             v-if="_position.value === position.value">
 
             <header slot="header">
-              <h4 class="hxContainerTitle">Popover Header</h4>
+              <h3 class="hxHeading-4">Popover Header</h3>
             </header>
             <p>This is my popover body</p>
             <footer slot="footer">
@@ -44,7 +44,7 @@ also:
           <button data-popover="myPopover" class="hxBtn">Toggle</button>
           <hx-popover id="myPopover" position="bottom-right">
             <header slot="header">
-              <h4 class="hxContainerTitle">Popover Header</h4>
+              <h3 class="hxHeading-4">Popover Header</h3>
             </header>
             <p>This is my popover body</p>
             <footer slot="footer">
@@ -58,7 +58,7 @@ also:
   </section>
 
   <section>
-    <h2 class="hxSectionTitle" id="appearance">Appearance</h2>
+    <h2 id="appearance">Appearance</h2>
     <div class="popover-appearance">
       {% for _position in [
         'top', 'top-left', 'top-right',
