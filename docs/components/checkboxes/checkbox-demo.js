@@ -7,6 +7,12 @@ if (document.getElementById('vue-checkboxDemo')) {
             isIndeterminate: false,
             isInvalid: false,
         },
+        methods: {
+            onChange: function (evt) {
+                // Use evt.currentTarget because evt.target is undefined in Firefox
+                this.isChecked = evt.currentTarget.checked;
+            },
+        },
         computed: {
             snippet: function () {
                 var raw = `<hx-checkbox

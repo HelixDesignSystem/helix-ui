@@ -1,82 +1,9 @@
 hx-checkbox {
-  background-color: @gray-0;
-  border-color: currentColor;
-  border-radius: 2px;
-  border-style: solid;
-  border-width: 1px;
-  color: @gray-500;
   display: inline-block;
   height: 1rem;
-  vertical-align: middle;
   width: 1rem;
-
+  
   & + * {
     margin-left: 0.5rem;
   }
-
-  /* default unchecked */
-  &:hover {
-    background-color: @cyan-50;
-    color: @cyan-500;
-  }
-
-  /* default checked */
-  &[checked] {
-    color: @cyan-900;
-
-    &:hover {
-      background-color: @cyan-50;
-      color: @cyan-500;
-    }
-  }
-
-  /* default indeterminate (checked or unchecked) */
-  &[indeterminate] {
-    color: @cyan-900;
-
-    &:hover {
-      color: @cyan-500;
-    }
-  }
-
-  /* invalid unchecked */
-  &[invalid] {
-    border-width: 2px;
-    color: @red-900;
-
-    &:hover {
-      background-color: @red-100;
-      color: @red-900;
-    }
-
-    /* invalid checked */
-    // ???
-
-    /* invalid indeterminate (checked or unchecked) */
-    // ???
-  }//[invalid]
-
-  /* disabled unchecked */
-  &[disabled] {
-    background-color: @gray-100;
-    color: @gray-500;
-    cursor: not-allowed;
-
-    & + label {
-      &:extend(.hxSubdued);
-    }
-
-    &:hover {
-      background-color: @gray-100;
-      color: @gray-500;
-    }
-
-    /* disabled checked */
-    // ???
-
-    /* disabled indeterminate (checked or unchecked) */
-    &[indeterminate] {
-      color: @gray-500;
-    }
-  }//[disabled]
 }
