@@ -1,0 +1,153 @@
+---
+title: Pagination
+also:
+  components/buttons: Buttons
+  components/icons: Icons
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The <code>aria-current</code> attribute needs to be added in order to apply style as well as denote semantic meaning.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="first-page">First Page</h2>
+    <div class="demo">
+      <div class="hxPagination hxBtnGroup">
+        <button class="hxBtn" disabled>
+          <hx-icon type="angle-start"></hx-icon>
+        </button>
+        <button class="hxBtn" disabled>
+          <hx-icon type="angle-left"></hx-icon>
+        </button>
+        <button class="hxBtn" aria-current="true">1</button>
+        <button class="hxBtn">2</button>
+        <button class="hxBtn">3</button>
+        <button class="hxBtn">4</button>
+        <button class="hxBtn">5</button>
+        <button class="hxBtn">
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn">
+          <hx-icon type="angle-end"></hx-icon>
+        </button>
+      </div>
+    </div>
+    {% code 'html' %}
+      <div class="hxPagination hxBtnGroup">
+        <button class="hxBtn" disabled>
+          <hx-icon type="angle-start"></hx-icon>
+        </button>
+        <button class="hxBtn" disabled>
+          <hx-icon type="angle-left"></hx-icon>
+        </button>
+        <button class="hxBtn" aria-current="true">1</button>
+        <button class="hxBtn">2</button>
+        <button class="hxBtn">3</button>
+        <button class="hxBtn">4</button>
+        <button class="hxBtn">5</button>
+        <button class="hxBtn">
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn">
+          <hx-icon type="angle-end"></hx-icon>
+        </button>
+      </div>
+    {% endcode %}
+  </section>
+
+  <section>
+    <h2 id="middle-page">Middle Page</h2>
+    <div class="demo">
+      <div class="hxPagination hxBtnGroup">
+        <button class="hxBtn">
+          <hx-icon type="angle-start"></hx-icon>
+        </button>
+        <button class="hxBtn">
+          <hx-icon type="angle-left"></hx-icon>
+        </button>
+        <button class="hxBtn">8</button>
+        <button class="hxBtn">9</button>
+        <button class="hxBtn" aria-current="true">10</button>
+        <button class="hxBtn">11</button>
+        <button class="hxBtn">12</button>
+        <button class="hxBtn">
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn">
+          <hx-icon type="angle-end"></hx-icon>
+        </button>
+      </div>
+    </div>
+    {% code 'html' %}
+      <div class="hxPagination hxBtnGroup">
+        <button class="hxBtn">
+          <hx-icon type="angle-start"></hx-icon>
+        </button>
+        <button class="hxBtn">
+          <hx-icon type="angle-left"></hx-icon>
+        </button>
+        <button class="hxBtn">8</button>
+        <button class="hxBtn">9</button>
+        <button class="hxBtn" aria-current="true">10</button>
+        <button class="hxBtn">11</button>
+        <button class="hxBtn">12</button>
+        <button class="hxBtn">
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn">
+          <hx-icon type="angle-end"></hx-icon>
+        </button>
+      </div>
+    {% endcode %}
+  </section>
+
+  <section>
+    <h2 id="last-page">Last Page</h2>
+    <div class="demo">
+      <div class="hxPagination hxBtnGroup">
+        <button class="hxBtn">
+          <hx-icon type="angle-start"></hx-icon>
+        </button>
+        <button class="hxBtn">
+          <hx-icon type="angle-left"></hx-icon>
+        </button>
+        <button class="hxBtn">16</button>
+        <button class="hxBtn">17</button>
+        <button class="hxBtn">18</button>
+        <button class="hxBtn">19</button>
+        <button class="hxBtn" aria-current="true">20</button>
+        <button class="hxBtn" disabled>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn" disabled>
+          <hx-icon type="angle-end"></hx-icon>
+        </button>
+      </div>
+    </div>
+    {% code 'html' %}
+      <div class="hxPagination hxBtnGroup">
+        <button class="hxBtn">
+          <hx-icon type="angle-start"></hx-icon>
+        </button>
+        <button class="hxBtn">
+          <hx-icon type="angle-left"></hx-icon>
+        </button>
+        <button class="hxBtn">16</button>
+        <button class="hxBtn">17</button>
+        <button class="hxBtn">18</button>
+        <button class="hxBtn">19</button>
+        <button class="hxBtn" aria-current="true">20</button>
+        <button class="hxBtn" disabled>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn" disabled>
+          <hx-icon type="angle-end"></hx-icon>
+        </button>
+      </div>
+    {% endcode %}
+  </section>
+{% endblock %} 
+ 

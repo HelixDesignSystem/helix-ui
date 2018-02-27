@@ -43,6 +43,7 @@
             { label: 'Menus', path: 'menus' },
             { label: 'Modals', path: 'modals' },
             { label: 'Panels', path: 'panels' },
+            { label: 'Pagination', path: 'pagination' },
             { label: 'Popovers', path: 'popovers' },
             { label: 'Reveals', path: 'reveals' },
             { label: 'Search', path: 'search' },
