@@ -58,9 +58,9 @@ export class HXMenuElement extends HXElement {
 
     get relativeElement () {
         if (this.relativeTo) {
-            return document.getElementById(this.relativeTo);
+            return this.getRootNode().getElementById(this.relativeTo);
         } else {
-            return document.querySelector(`[aria-controls="${this.id}"]`);
+            return this.getRootNode().querySelector(`[aria-controls="${this.id}"]`);
         }
     }
 

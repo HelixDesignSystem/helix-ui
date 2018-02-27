@@ -33,11 +33,11 @@ export class HXTooltipElement extends HXElement {
     connectedCallback () {
         this.$defaultAttribute('position', 'top');
         this.initialPosition = this.position;
-        this.$upgradeProperty('open');        
+        this.$upgradeProperty('open');
         this.$defaultAttribute('role', 'tooltip');
 
         if (this.id) {
-            this._target = document.querySelector('[data-tooltip=' + this.id + ']');
+            this._target = this.getRootNode().querySelector('[data-tooltip=' + this.id + ']');
         } else {
             return;
         }
