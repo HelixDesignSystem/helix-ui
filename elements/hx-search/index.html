@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>&lt;hx-panelfoot&gt; - HelixUI</title>
+  <title>&lt;hx-search&gt; - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -138,6 +138,12 @@
       
       <a href="components/reveals" >
     Reveals
+  </a>
+
+
+      
+      <a href="components/search" >
+    Search
   </a>
 
 
@@ -287,7 +293,7 @@ class="current">
 
 
       
-      <a href="elements/hx-panelfoot" class="current">
+      <a href="elements/hx-panelfoot" >
     &lt;hx-panelfoot&gt;
   </a>
 
@@ -307,6 +313,12 @@ class="current">
       
       <a href="elements/hx-reveal" >
     &lt;hx-reveal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search" class="current">
+    &lt;hx-search&gt;
   </a>
 
 
@@ -357,70 +369,71 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1>&lt;hx-panelfoot&gt;</h1>
+    <h1 class="hxPageTitle">&lt;hx-search&gt;</h1>
 
   <section>
     <p>
-      The custom <code>hx-panelfoot</code> element aligns content to the
-      bottom of a panel.
+      The custom
+      <code>&lt;hx-search&gt;</code> element renders search control that accepts user input.
     </p>
-
     <hx-dl class="hxBox-md metadata">
       <hx-def>
         <hx-dt>Permitted Parents</hx-dt>
-        <hx-dd>
-          an <a href="elements/hx-panel">&lt;hx-panel&gt;</a> element
-        </hx-dd>
+        <hx-dd>any</hx-dd>
       </hx-def>
       <hx-def>
         <hx-dt>Permitted Children</hx-dt>
-        <hx-dd>flow content</hx-dd>
+        <hx-dd>none (content will be removed upon element upgrade)</hx-dd>
       </hx-def>
     </hx-dl>
   </section>
 
     
     <section>
-      <h2 id="attributes">Attributes</h2>
+      <h2 class="hxSectionTitle" id="attributes">Attributes</h2>
       <p>
         Attributes allow you to configure an element in a
         declarative manner via markup.
       </p>
-        <p class="hxSubdued">
-          <small>
-            <hx-icon type="info-circle"></hx-icon>
-            This element does not have any configurable attributes.
-          </small>
-        </p>
+<dl>
+  <dt>invalid</dt>
+  <dd>
+    Invalidates search
+  </dd>
+  <dt>value</dt>
+  <dd>
+    Sets search value.
+  </dd>
+</dl>
     </section>
 
     
     <section>
-      <h2 id="properties">Properties</h2>
+      <h2 class="hxSectionTitle" id="properties">Properties</h2>
       <p>
         Properties allow you to configure an element in an
         imperative manner via JavaScript.
       </p>
-        <p class="hxSubdued">
-          <small>
-            <hx-icon type="info-circle"></hx-icon>
-            This element does not have any configurable properties.
-          </small>
-        </p>
+  <dl>
+    <dt>
+      value
+      <small>(String [''])</small>
+    </dt>
+    <dd>
+      Determines search value
+    </dd>
+  </dl>
     </section>
 
 <section>
-  <h2 id="see-also">See Also</h2>
+  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
   <ul>
-      <li><a href="components/panels">Panels</a></li>
-      <li><a href="elements/hx-panel">&lt;hx-panel&gt;</a></li>
-      <li><a href="elements/hx-panelbody">&lt;hx-panelbody&gt;</a></li>
-      <li><a href="elements/hx-panelhead">&lt;hx-panelhead&gt;</a></li>
+      <li><a href="components/search">Search</a></li>
   </ul>
 </section>
   </main>
   <aside class="hxSiderail hxBox-md">
-    <h1 class="hxHeading-4">On this page:</h1>
+    <h1 class="hxContainerTitle">On this page:</h1>
     <nav class="article-toc">
       
       <a href="#attributes">Attributes</a>
@@ -443,10 +456,10 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-02-02
+      2018-02-20
     </small>
 
-  <small>(v0.3.0)</small>
+  <small>(v0.2.1)</small>
 </div>
   </footer>
 

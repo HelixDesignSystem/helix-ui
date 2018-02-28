@@ -357,49 +357,58 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Status Pills</h1>
+    <h1>Status Pills</h1>
 
-  <section id="vue-statusDemo">
-    <h2 class="hxSectionTitle" id="demo">Demo</h2>
-    <div class="hxRow">
-      <div class="hxCol hxSpan-9-xs">
+  <section>
+    <h2 id="demos">Demos</h2>
+    <div id="vue-statusDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3>Options</h3>
+        <p>
+          <label>
+            <input type="checkbox" v-model="isFilled">
+            Filled
+          </label>
+        </p>
+        <p>
+          <b>Variant:</b><br />
+          <select v-model="variant">
+            <option v-for="_variant in variants" :value="_variant">
+{{ _variant.label }}
+            </option>
+          </select>
+        </p>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <h3>Basic Status Pill</h3>
         <div class="demo status-demo">
-          <hx-status 
+          <hx-status
             v-text="variant.label"
             v-bind:class="cssClasses">
           </hx-status>
         </div>
+        <template v-if="cssClasses === ''">
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-status</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-status</span>&gt;</span>
+</code></pre>        </template>
+        <template v-else>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-status</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{cssClasses}}"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-status</span>&gt;</span>
-</code></pre>      </div>
-      <div class="hxCol hxSpan-3-xs">
-        <p>
-        Variant:
-        <select v-model="variant">
-          <option v-for="_variant in variants" :value="_variant">
-{{ _variant.label }}
-          </option>
-        </select>
-        </p>
-        <p>
-        Filled: 
-        <input type="checkbox" v-model="isFilled">
-        </p>
+</code></pre>        </template>
       </div>
     </div>
   </section>
 
 <section>
-  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
+  <h2 id="see-also">See Also</h2>
   <ul>
       <li><a href="elements/hx-status">&lt;hx-status&gt;</a></li>
   </ul>
 </section>
   </main>
   <aside class="hxSiderail hxBox-md">
-    <h1 class="hxContainerTitle">On this page:</h1>
+    <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#demo">Demo</a>
+            <a href="#demos">Demos</a>
         
         <a href="#see-also">See Also</a>
       <hr />
@@ -419,10 +428,10 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-02-14
+      2018-02-28
     </small>
 
-  <small>(v0.2.1)</small>
+  <small>(v0.3.0)</small>
 </div>
   </footer>
 

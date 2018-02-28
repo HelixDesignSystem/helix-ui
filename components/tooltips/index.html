@@ -357,77 +357,94 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Tooltips</h1>
+    <h1>Tooltips</h1>
 
-  <section id="vue-tooltipDemo">
-    <h2 class="hxSectionTitle" id="tooltip">Basic Tooltip</h2>
-    <div class="hxRow">
-      <div class="hxCol hxSpan-9-xs">
-        <div class="demo tooltip-demo">
-          <p>
-            Hover over icon to trigger tooltips
-            <hx-icon data-tooltip="tooltip1" type="help-circle"></hx-icon>
-          </p>
-          <hx-tooltip id="tooltip1" v-for="_position in positions" :key="_position.id" :position="_position.value"  v-if="_position.value === position.value" >
-{{ position.label }}
-          </hx-tooltip>
-        </div>
-        <div class="demo tooltip-demo">
-          <div class="demo-target" data-tooltip="tooltip2">
-            Manually trigger tooltip via click
-          </div>
-          <hx-tooltip id="tooltip2" trigger-event="click" v-for="_position in positions" :key="_position.id" :position="_position.value" v-if="_position.value === position.value">
-{{ position.label }}
-          </hx-tooltip>
-        </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">data-tooltip</span>=<span class="hljs-string">"tooltip1"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"help-circle"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"demo-target"</span> <span class="hljs-attr">data-tooltip</span>=<span class="hljs-string">"tooltip2"</span>&gt;</span>
-  Manually set trigger-event to click
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-tooltip</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"tooltip1"</span> <span class="hljs-attr">position</span>=<span class="hljs-string">"{position}"</span>&gt;</span>
-  {position}
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tooltip</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-tooltip</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"tooltip2"</span> <span class="hljs-attr">position</span>=<span class="hljs-string">"{position}"</span> <span class="hljs-attr">trigger-event</span>=<span class="hljs-string">"click"</span>&gt;</span>
-  {position}
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tooltip</span>&gt;</span>
-</code></pre>      </div>
-      <div class="hxCol hxSpan-3-xs">
-        Position:
-        <select v-model="position">
-          <option v-for="_position in positions" :value="_position">
+  <section>
+    <h2 id="tooltip">Basic Tooltip</h2>
+    <div id="vue-tooltipDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3>Options</h3>
+        <p>
+          <b>Position:</b><br />
+          <select v-model="position">
+            <option v-for="_position in positions" :value="_position">
 {{ _position.label }}
-          </option>
-        </select>
+            </option>
+          </select>
+        </p>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <section>
+          <h3>Trigger on Hover</h3>
+          <div class="demo tooltip-demo">
+            <p>
+              Hover over icon to trigger tooltip
+              <hx-icon data-tooltip="tooltip1" type="help-circle"></hx-icon>
+            </p>
+            <hx-tooltip
+              :key="_position.id"
+              :position="_position.value"
+              id="tooltip1"
+              v-for="_position in positions"
+              v-if="_position.value === position.value">
+{{ position.label }}
+            </hx-tooltip>
+          </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+  Hover over icon to trigger tooltip
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">data-tooltip</span>=<span class="hljs-string">"tooltip1"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"help-circle"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-tooltip</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"tooltip1"</span> <span class="hljs-attr">position</span>=<span class="hljs-string">"{{position.value}}"</span>&gt;</span>
+  {{position.label}}
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tooltip</span>&gt;</span>
+</code></pre>        </section>
+
+        <section>
+          <h3>Trigger on Click</h3>
+          <div class="demo tooltip-demo">
+            <button class="hxBtn" data-tooltip="tooltip2">
+              Click to toggle tooltip
+            </button>
+            <hx-tooltip
+              :key="_position.id"
+              :position="_position.value"
+              id="tooltip2"
+              trigger-event="click"
+              v-for="_position in positions"
+              v-if="_position.value === position.value">
+{{ position.label }}
+            </hx-tooltip>
+          </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span> <span class="hljs-attr">data-tooltip</span>=<span class="hljs-string">"tooltip2"</span>&gt;</span>
+  Click to toggle tooltip
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-tooltip</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"tooltip2"</span> <span class="hljs-attr">position</span>=<span class="hljs-string">"{{position.value}}"</span> <span class="hljs-attr">trigger-event</span>=<span class="hljs-string">"click"</span>&gt;</span>
+  {{position.label}}
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tooltip</span>&gt;</span>
+</code></pre>        </section>
       </div>
     </div>
   </section>
+
   <section class="tooltip-examples">
-    <h2 class="hxSectionTitle" id="appearance">Appearance</h2>
+    <h2 id="appearance">Appearance</h2>
     <table class="hxTable">
-      <thead>
-        <tr>
-          <th>position</th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
       <tbody>
         <tr>
           <td>Top</td>
           <td>
             <hx-tooltip position="top" open>
-              position: top
+              top
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="top-right" open>
-              position: top-right
+              top-right
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="top-left" open>
-              position: top-left
+              top-left
             </hx-tooltip>
           </td>
         </tr>
@@ -435,17 +452,17 @@ class="current">
           <td>Bottom</td>
           <td>
             <hx-tooltip position="bottom" open>
-              position: bottom
+              bottom
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="bottom-right" open>
-              position: bottom-right
+              bottom-right
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="bottom-left" open>
-              position: bottom-left
+              bottom-left
             </hx-tooltip>
           </td>
         </tr>
@@ -453,17 +470,17 @@ class="current">
           <td>Right</td>
           <td>
             <hx-tooltip position="right" open>
-              position: right
+              right
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="right-top" open>
-              position: right-top
+              right-top
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="right-bottom" open>
-              position: right-bottom
+              right-bottom
             </hx-tooltip>
           </td>
         </tr>
@@ -471,17 +488,17 @@ class="current">
           <td>Left</td>
           <td>
             <hx-tooltip position="left" open>
-              position: left
+              left
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="left-top" open>
-              position: left-top
+              left-top
             </hx-tooltip>
           </td>
           <td>
             <hx-tooltip position="left-bottom" open>
-              position: left-bottom
+              left-bottom
             </hx-tooltip>
           </td>
         </tr>
@@ -490,14 +507,14 @@ class="current">
   </section>
 
 <section>
-  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
+  <h2 id="see-also">See Also</h2>
   <ul>
       <li><a href="elements/hx-tooltip">&lt;hx-tooltip&gt;</a></li>
   </ul>
 </section>
   </main>
   <aside class="hxSiderail hxBox-md">
-    <h1 class="hxContainerTitle">On this page:</h1>
+    <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
             <a href="#tooltip">Basic Tooltip</a>
@@ -523,10 +540,10 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-02-14
+      2018-02-28
     </small>
 
-  <small>(v0.2.1)</small>
+  <small>(v0.3.0)</small>
 </div>
   </footer>
 

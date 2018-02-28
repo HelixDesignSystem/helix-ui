@@ -357,50 +357,81 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Buttons</h1>
+    <h1>Buttons</h1>
 
   <section>
-    <h2 class="hxSectionTitle" id="default-button">Default Button</h2>
+    <h2 id="demos">Demos</h2>
+    <div id="vue-buttonDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3>Options</h3>
+        <div class="hxRow">
+          <div class="hxCol hxSpan-12-lg hxSpan-6-xs">
+            <b>Variant:</b><br />
+            <template v-for="_variant in variants">
+              <label>
+                <input
+                  type="radio"
+                  name="variant"
+                  v-model="variant"
+                  :value="_variant" />
+{{ _variant.label }}
+              </label>
+              <br />
+            </template>
+          </div>
 
-    <!-- explanation goes here -->
+          <div class="hxCol hxSpan-12-lg hxSpan-6-xs">
+            <b>Size:</b><br />
+            <template v-for="_size in sizes">
+              <label>
+                <input
+                  type="radio"
+                  name="size"
+                  v-model="size"
+                  :value="_size" />
+{{ _size.label }}
+              </label>
+              <br />
+            </template>
+          </div>
+        </div>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <section>
+          <h3>Single Button</h3>
+          <div class="demo button-demo">
+            <button :class="loneClasses">
+{{size.label}} {{variant.label}}
+            </button>
+          </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{loneClasses}}"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre>        </section>
 
-    <div class="demo">
-      <button class="hxBtn">Default Button</button>
+        <section>
+          <h3>Button Group</h3>
+          <div class="demo button-demo">
+            <div :class="groupClasses">
+              <button class="hxBtn">First</button>
+              <button class="hxBtn">Second</button>
+              <button class="hxBtn">
+                <hx-icon type="angle-down"></hx-icon>
+              </button>
+            </div>
+          </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{ groupClasses }}"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>First<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Second<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>        </section>
+      </div>
     </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Default Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>  </section>
-
-  <section>
-    <h2 class="hxSectionTitle" id="primary-button">Primary Button</h2>
-    <div class="demo">
-      <button class="hxBtn hxBtn--primary">Primary Button</button>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--primary"</span>&gt;</span>Primary Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>  </section>
-
-  <section>
-    <h2 class="hxSectionTitle" id="link-button">Link Button</h2>
-    <div class="demo">
-      <button class="hxBtn hxBtn--link">Link Button</button>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--link"</span>&gt;</span>Link Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>  </section>
-
-  <section>
-    <h2 class="hxSectionTitle" id="button-sizing">Button Sizing</h2>
-    <div class="demo">
-      <button type="button" class="hxBtn hxBtn--lg">Large Button</button>
-      <button type="button" class="hxBtn">Default Button</button>
-      <button type="button" class="hxBtn hxBtn--sm">Compact Button</button>
-    </div>
-
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--lg"</span>&gt;</span>Large Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Default Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxBtn--sm"</span>&gt;</span>Compact Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>  </section>
+  </section>
 
   <section data-visreg="button-states">
-    <h2 class="hxSectionTitle" id="button-states">Button States</h2>
+    <h2 id="button-states">Button States</h2>
     <table class="hxTable">
       <tbody>
         <tr>
@@ -412,41 +443,41 @@ class="current">
         </tr>
         <tr>
           <td>Primary</td>
-          <td><button class="hxBtn hxBtn--primary">Normal</button></td>
-          <td><button class="hxBtn hxBtn--primary pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn hxBtn--primary pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn hxBtn--primary" disabled>Disabled</button></td>
+          <td><button class="hxBtn hxPrimary">Normal</button></td>
+          <td><button class="hxBtn hxPrimary pseudo-hover">Hover</button></td>
+          <td><button class="hxBtn hxPrimary pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn hxPrimary" disabled>Disabled</button></td>
         </tr>
         <tr>
           <td>Link</td>
-          <td><button class="hxBtn hxBtn--link">Normal</button></td>
-          <td><button class="hxBtn hxBtn--link pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn hxBtn--link pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn hxBtn--link" disabled>Disabled</button></td>
+          <td><button class="hxBtn hxLink">Normal</button></td>
+          <td><button class="hxBtn hxLink pseudo-hover">Hover</button></td>
+          <td><button class="hxBtn hxLink pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn hxLink" disabled>Disabled</button></td>
         </tr>
       </tbody>
     </table>
   </section>
 
+<section>
+  <h2 id="see-also">See Also</h2>
+  <ul>
+      <li><a href="components/menus">Menus</a></li>
+      <li><a href="components/popovers">Popovers</a></li>
+      <li><a href="components/reveals">Reveals</a></li>
+  </ul>
+</section>
   </main>
   <aside class="hxSiderail hxBox-md">
-    <h1 class="hxContainerTitle">On this page:</h1>
+    <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#default-button">Default Button</a>
-        
-
-            <a href="#primary-button">Primary Button</a>
-        
-
-            <a href="#link-button">Link Button</a>
-        
-
-            <a href="#button-sizing">Button Sizing</a>
+            <a href="#demos">Demos</a>
         
 
             <a href="#button-states">Button States</a>
         
+        <a href="#see-also">See Also</a>
       <hr />
       <a class="top-link" href="#top">Back to Top</a>
     </nav>
@@ -464,10 +495,10 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-02-14
+      2018-02-28
     </small>
 
-  <small>(v0.2.1)</small>
+  <small>(v0.3.0)</small>
 </div>
   </footer>
 

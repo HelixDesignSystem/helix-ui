@@ -71,14 +71,29 @@
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_box_box_demo__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_box_box_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_box_box_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_panels_panel_demo__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_panels_panel_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_panels_panel_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_popovers_popover_demo__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_popovers_popover_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_popovers_popover_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_status_pills_status_demo__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_status_pills_status_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_status_pills_status_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_tooltips_tooltip_demo__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_tooltips_tooltip_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_tooltips_tooltip_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_buttons_button_demo__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_buttons_button_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_buttons_button_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_checkboxes_checkbox_demo__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_checkboxes_checkbox_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_checkboxes_checkbox_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_lists_list_demo__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_lists_list_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_lists_list_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_panels_panel_demo__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_panels_panel_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_panels_panel_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_popovers_popover_demo__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_popovers_popover_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_popovers_popover_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_reveals_reveal_demo__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_reveals_reveal_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_reveals_reveal_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_status_pills_status_demo__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_status_pills_status_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_status_pills_status_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_tables_table_demo__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_tables_table_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_tables_table_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_tooltips_tooltip_demo__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_tooltips_tooltip_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_tooltips_tooltip_demo__);
+
+
+
+
+
 
 
 
@@ -119,6 +134,91 @@ if (document.getElementById('vue-boxDemo')) {
 /* 2 */
 /***/ (function(module, exports) {
 
+if (document.getElementById('vue-buttonDemo')) {
+    var SIZES = [{ label: 'Small', val: 'hxSm' }, { label: 'Medium', val: '' }, { label: 'Large', val: 'hxLg' }];
+
+    var VARIANTS = [{ label: 'Default', val: '' }, { label: 'Primary', val: 'hxPrimary' }, { label: 'Link', val: 'hxLink' }];
+
+    new Vue({
+        el: '#vue-buttonDemo',
+        data: {
+            size: SIZES[1],
+            sizes: SIZES,
+            variant: VARIANTS[0],
+            variants: VARIANTS
+        },
+        computed: {
+            loneClasses: function loneClasses() {
+                var out = ['hxBtn'];
+                if (this.size.val !== '') {
+                    out.push(this.size.val);
+                }
+                if (this.variant.val !== '') {
+                    out.push(this.variant.val);
+                }
+                return out.join(' ');
+            }, //loneClasses()
+
+            groupClasses: function groupClasses() {
+                var out = ['hxBtnGroup'];
+                if (this.size.val !== '') {
+                    out.push(this.size.val);
+                }
+                if (this.variant.val !== '') {
+                    out.push(this.variant.val);
+                }
+                return out.join(' ');
+            } //groupClasses()
+        }
+    });
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+if (document.getElementById('vue-checkboxDemo')) {
+    new Vue({
+        el: '#vue-checkboxDemo',
+        data: {
+            isChecked: true,
+            isDisabled: false,
+            isIndeterminate: false,
+            isInvalid: false
+        },
+        computed: {
+            snippet: function snippet() {
+                var raw = '<hx-checkbox\n                    ' + (this.isChecked ? 'checked' : '') + '\n                    ' + (this.isDisabled ? 'disabled' : '') + '\n                    ' + (this.isIndeterminate ? 'indeterminate' : '') + '\n                    ' + (this.isInvalid ? 'invalid' : '') + '\n                ></hx-checkbox>';
+                var rawCollapsed = raw.replace(/[\r\n\s]+/gm, ' ');
+                var rawNormalized = rawCollapsed.replace(/(\s>)/gm, '>');
+                return rawNormalized;
+            }
+        }
+    });
+}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+if (document.getElementById('vue-listDemo')) {
+    new Vue({
+        el: '#vue-listDemo',
+        data: {
+            isVertical: false
+        },
+        computed: {
+            hxDlClasses: function hxDlClasses() {
+                return this.isVertical ? 'hxVertical' : '';
+            }
+        }
+    });
+}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
 if (document.getElementById('vue-panelDemo')) {
     new Vue({
         el: '#vue-panelDemo',
@@ -130,7 +230,7 @@ if (document.getElementById('vue-panelDemo')) {
 }
 
 /***/ }),
-/* 3 */
+/* 6 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-popoverDemo')) {
@@ -147,7 +247,20 @@ if (document.getElementById('vue-popoverDemo')) {
 }
 
 /***/ }),
-/* 4 */
+/* 7 */
+/***/ (function(module, exports) {
+
+if (document.getElementById('vue-revealDemo')) {
+    new Vue({
+        el: '#vue-revealDemo',
+        data: {
+            isDisabled: false
+        }
+    });
+}
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-statusDemo')) {
@@ -177,18 +290,47 @@ if (document.getElementById('vue-statusDemo')) {
 }
 
 /***/ }),
-/* 5 */
+/* 9 */
+/***/ (function(module, exports) {
+
+if (document.getElementById('vue-tableDemo')) {
+    new Vue({
+        el: '#vue-tableDemo',
+        data: {
+            isBound: false,
+            isHoverable: false,
+            isCondensed: false
+        },
+        computed: {
+            cssClasses: function cssClasses() {
+                var out = ['hxTable'];
+                if (this.isCondensed) {
+                    out.push('hxTable--condensed');
+                }
+                if (this.isBound) {
+                    out.push('hxBound');
+                }
+                if (this.isHoverable) {
+                    out.push('hxHoverable');
+                }
+                return out.join(' ');
+            }
+        }
+    });
+}
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-tooltipDemo')) {
+    var POSITIONS = [{ label: 'Top Left', value: 'top-left' }, { label: 'Top', value: 'top' }, { label: 'Top Right', value: 'top-right' }, { label: 'Right Top', value: 'right-top' }, { label: 'Right', value: 'right' }, { label: 'Right Bottom', value: 'right-bottom' }, { label: 'Bottom Right', value: 'bottom-right' }, { label: 'Bottom', value: 'bottom' }, { label: 'Bottom Left', value: 'bottom-left' }, { label: 'Left Bottom', value: 'left-bottom' }, { label: 'Left', value: 'left' }, { label: 'Left Top', value: 'left-top' }];
+
     new Vue({
         el: '#vue-tooltipDemo',
         data: {
-            position: {
-                label: 'Top',
-                value: 'top'
-            },
-            positions: [{ label: 'Top Left', value: 'top-left' }, { label: 'Top', value: 'top' }, { label: 'Top Right', value: 'top-right' }, { label: 'Right Top', value: 'right-top' }, { label: 'Right', value: 'right' }, { label: 'Right Bottom', value: 'right-bottom' }, { label: 'Bottom Right', value: 'bottom-right' }, { label: 'Bottom', value: 'bottom' }, { label: 'Bottom Left', value: 'bottom-left' }, { label: 'Left Bottom', value: 'left-bottom' }, { label: 'Left', value: 'left' }, { label: 'Left Top', value: 'left-top' }]
+            position: POSITIONS[1], // Top
+            positions: POSITIONS
         }
     });
 }

@@ -1,4 +1,3 @@
-/* HelixUI */
 /* ========== CONFIGURATION ========== *\
   - @import
   - LESS/CSS Variables
@@ -9,7 +8,6 @@
 \* ========== CONFIGURATION ========== */
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic");
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,100,100italic,300,300italic,400italic,700,700italic");
-/* ====== end:CONFIGURATION ========== */
 /* ========== RESETS ========== *\
   - Element & Pseudo Selectors
   - No Class Selectors
@@ -74,16 +72,6 @@ table tfoot tr td {
   padding: 0;
   text-align: left;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 400;
-  line-height: 1;
-  margin: 0;
-}
 label {
   color: inherit;
   font-size: inherit;
@@ -106,12 +94,37 @@ legend {
   padding: 0;
   width: 100%;
 }
-/* ====== end:RESETS ========== */
 /* ========== BASE ========== *\
   - Elements Selectors ONLY
   - No Class Selectors
   - NO !important
 \* ========================== */
+a[href] {
+  color: #0d74d1;
+  text-decoration: none;
+}
+a[href]:hover,
+a[href]:active {
+  color: #3391ff;
+  cursor: pointer;
+  text-decoration: none;
+}
+a[href].disabled {
+  color: #616161;
+  pointer-events: none;
+}
+ul {
+  list-style-type: square;
+}
+ul ol,
+ul ul,
+ol ol ol ul {
+  margin-bottom: 0;
+}
+dd,
+dt {
+  line-height: 1.5;
+}
 html {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
@@ -131,35 +144,6 @@ figcaption {
   font-size: 0.875rem;
   font-weight: 300;
   line-height: 1.5;
-}
-figure {
-  margin-bottom: 1rem;
-}
-ul {
-  list-style-type: square;
-}
-ul ol,
-ul ul,
-ol ol ol ul {
-  margin-bottom: 0;
-}
-dd,
-dt {
-  line-height: 1.5;
-}
-a[href] {
-  color: #0d74d1;
-  text-decoration: none;
-}
-a[href]:hover,
-a[href]:active {
-  color: #3391ff;
-  cursor: pointer;
-  text-decoration: none;
-}
-a[href].disabled {
-  color: #616161;
-  pointer-events: none;
 }
 fieldset label {
   font-size: 0.875rem;
@@ -203,6 +187,9 @@ pre code {
   font-weight: inherit;
   text-shadow: 0;
   white-space: pre;
+}
+figure {
+  margin-bottom: 1rem;
 }
 hx-checkbox {
   background-color: #ffffff;
@@ -274,6 +261,10 @@ hx-def {
 hx-disclosure {
   display: inline-block;
 }
+hx-disclosure[aria-expanded="true"] .menu-icon,
+hx-disclosure[aria-expanded="true"] > hx-icon.hxPrimary {
+  transform: scaleY(-1);
+}
 hx-dl {
   display: block;
 }
@@ -289,6 +280,72 @@ hx-icon {
 hx-icon svg {
   fill: currentColor;
   stroke: none;
+}
+hx-menu {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);
+  display: none;
+  max-width: 20rem;
+  min-width: 10rem;
+  position: absolute;
+  z-index: 100;
+}
+hx-menu[open] {
+  display: block;
+}
+/*
+  Most of the styles mimic those of .hxBtn.hxLink.
+
+  However, because the generated CSS would end up being
+  equally specific, extended definitions seem to take
+  priority, so we can't use &:extend() here.
+*/
+hx-menuitem {
+  background-color: transparent;
+  border-radius: 2px;
+  border: none;
+  color: #0c7c84;
+  cursor: pointer;
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  margin: 0;
+  padding: 0.25rem 0;
+}
+hx-menuitem:hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: #16b9d4;
+}
+hx-menuitem:active {
+  background-color: transparent;
+  border-color: transparent;
+  color: #0e94a6;
+}
+hx-menuitem:focus {
+  box-shadow: none;
+}
+hx-menuitem[disabled] {
+  background-color: transparent;
+  border-color: transparent;
+  color: #d8d8d8;
+}
+hx-menuitem.hxBtn--link {
+  padding: 0.25rem 0;
+}
+hx-menuitem-group {
+  display: block;
+}
+hx-menuitem-group header {
+  color: #9e9e9e;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+hx-menuitem-group + hx-menuitem-group {
+  margin-top: 0.5rem;
 }
 hx-modal {
   color: initial;
@@ -597,7 +654,6 @@ hx-tooltip {
 hx-tooltip[open] {
   display: block;
 }
-/* ====== end:BASE ========== */
 /* ========== COMPONENTS ========== *\
     - Class Selectors ONLY
     - No Element Selectors
@@ -637,6 +693,7 @@ body > #stage > #nav {
 }
 body > #stage > #content {
   flex-grow: 1;
+  min-width: 0px;
 }
 body > #stage > .hxSiderail {
   background-color: #eeeeee;
@@ -706,7 +763,8 @@ body.hxHorizontal > #foot {
 .hxBox-xs {
   padding: 0.5rem;
 }
-.hxBox-sm {
+.hxBox-sm,
+hx-menu[open] {
   padding: 0.75rem;
 }
 .hxBox-md {
@@ -748,20 +806,20 @@ body.hxHorizontal > #foot {
 }
 .hxBtn {
   background-color: transparent;
-  border: 1px solid #0c7c84;
   border-radius: 2px;
+  border: 1px solid #0c7c84;
   color: #0c7c84;
+  cursor: pointer;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 1;
   margin: 0;
-  font-size: 0.875rem;
   padding: 8px 12px;
 }
 .hxBtn:hover {
   background-color: #16b9d4;
   border-color: transparent;
   color: #ffffff;
-  cursor: pointer;
 }
 .hxBtn:active {
   background-color: #0e94a6;
@@ -778,72 +836,133 @@ body.hxHorizontal > #foot {
   color: #d8d8d8;
   cursor: not-allowed;
 }
-.hxBtn--lg {
-  font-size: 1rem;
-  padding: 15px 16px;
+.hxBtn hx-icon:first-of-type {
+  margin-right: 8px;
 }
-.hxBtn--sm {
-  padding: 2px 8px;
+.hxBtn hx-icon:last-of-type {
+  margin-left: 8px;
 }
+.hxBtn hx-icon:only-child {
+  margin: 0;
+}
+.hxBtn.hxPrimary,
+.hxBtnGroup.hxPrimary > .hxBtn,
 .hxBtn--primary {
   background-color: #0c7c84;
   color: #ffffff;
 }
+.hxBtn.hxPrimary:hover,
+.hxBtnGroup.hxPrimary > .hxBtn:hover,
+.hxBtn--primary:hover {
+  background-color: #16b9d4;
+  border-color: transparent;
+  color: #ffffff;
+}
+.hxBtn.hxPrimary:active,
+.hxBtnGroup.hxPrimary > .hxBtn:active,
+.hxBtn--primary:active {
+  background-color: #0e94a6;
+  border-color: transparent;
+  color: #ffffff;
+}
+.hxBtn.hxPrimary:focus,
+.hxBtnGroup.hxPrimary > .hxBtn:focus,
+.hxBtn--primary:focus {
+  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);
+  outline: none;
+}
+.hxBtn.hxPrimary[disabled],
+.hxBtnGroup.hxPrimary > .hxBtn[disabled],
 .hxBtn--primary[disabled] {
   background-color: #d8d8d8;
   border-color: transparent;
   color: #757575;
 }
+.hxBtn.hxLink,
+.hxBtnGroup.hxLink > .hxBtn,
 .hxBtn--link {
   background-color: transparent;
   border: none;
   padding-left: 0;
   padding-right: 0;
 }
+.hxBtn.hxLink:hover,
+.hxBtnGroup.hxLink > .hxBtn:hover,
 .hxBtn--link:hover {
   background-color: transparent;
   border-color: transparent;
   color: #16b9d4;
 }
+.hxBtn.hxLink:active,
+.hxBtnGroup.hxLink > .hxBtn:active,
 .hxBtn--link:active {
   background-color: transparent;
   border-color: transparent;
   color: #0e94a6;
 }
+.hxBtn.hxLink:focus,
+.hxBtnGroup.hxLink > .hxBtn:focus,
 .hxBtn--link:focus {
   box-shadow: none;
 }
+.hxBtn.hxLink[disabled],
+.hxBtnGroup.hxLink > .hxBtn[disabled],
 .hxBtn--link[disabled] {
   background-color: transparent;
   border-color: transparent;
   color: #d8d8d8;
 }
+.hxBtn.hxLg,
+.hxBtnGroup.hxLg > .hxBtn,
+.hxBtn--lg {
+  font-size: 1rem;
+  padding: 1rem;
+}
+.hxBtn.hxSm,
+.hxBtnGroup.hxSm > .hxBtn,
+.hxBtn--sm {
+  padding: 2px 8px;
+}
 .hxBtnGroup {
+  border-radius: 2px;
   display: inline-flex;
+  overflow: hidden;
 }
-.hxBtnGroup .hxBtn {
+.hxBtnGroup > .hxBtn {
   border-radius: 0;
-  margin-left: 1px;
 }
-.hxBtnGroup .hxBtn:first-child {
-  border-bottom-left-radius: 2px;
-  border-top-left-radius: 2px;
+.hxBtnGroup > .hxBtn + .hxBtn {
+  border-left: 0;
 }
-.hxBtnGroup .hxBtn:last-child {
-  border-bottom-right-radius: 2px;
-  border-top-right-radius: 2px;
+.hxBtnGroup.hxPrimary > .hxBtn + .hxBtn {
+  border-left: 1px solid #ffffff;
 }
-.hxBtn hx-icon {
-  box-sizing: content-box;
+.hxBtnGroup.hxLink > .hxBtn + .hxBtn {
+  margin-left: 1.25rem;
 }
-.hxBtn hx-icon:first-of-type {
-  padding-right: 8px;
+.hxBtn.hxCog {
+  border: none;
+  padding: 0.25rem;
 }
-.hxBtn hx-icon:last-of-type {
-  padding-left: 8px;
+.hxBtn.hxCog hx-icon {
+  color: #424242;
+  height: 1rem;
+  width: 1rem;
 }
-.hxBtn hx-icon:only-child {
-  padding: 0;
+.hxBtn.hxCog:hover,
+.hxBtn.hxCog:active {
+  background-color: transparent;
+}
+.hxBtn.hxCog:hover hx-icon,
+.hxBtn.hxCog:active hx-icon {
+  color: #757575;
+}
+.hxBtn.hxCog:focus {
+  box-shadow: 0 0 4px 0 rgba(22, 185, 212, 0.5);
+  outline: none;
+}
+.hxBtn.hxCog[disabled] hx-icon {
+  color: #bdbdbd;
 }
 /* ===== GRID ===== */
 .hxRow {
@@ -1647,7 +1766,9 @@ body.hxHorizontal > #foot {
   padding: 1.25rem 1rem;
 }
 .hxTable tbody tr.selected td,
-.hxTable tbody tr.selected th {
+.hxTable tbody tr.hxSelected td,
+.hxTable tbody tr.selected th,
+.hxTable tbody tr.hxSelected th {
   background-color: #e4f9f9;
 }
 .hxTable tfoot {
@@ -1660,20 +1781,29 @@ body.hxHorizontal > #foot {
 .hxTable tfoot tr td {
   padding: 1.25rem 1rem;
 }
-.hxTable .hxTable__control-col {
+.hxTable td.hxControl,
+.hxTable th.hxControl {
   color: #757575;
   width: 1rem;
 }
+.hxTable.hxBound tbody,
 .hxTable--bordered tbody {
   border-color: #e0e0e0;
+}
+.hxTable.hxHoverable tbody tr:hover td,
+.hxTable.hxHoverable tbody tr:hover th,
+.hxTable--hover tbody tr:hover td,
+.hxTable--hover tbody tr:hover th {
+  background-color: #f5f5f5;
 }
 .hxTable--condensed tbody tr th,
 .hxTable--condensed tbody tr td {
   padding: 0.75rem 1rem;
 }
-.hxTable--hover tbody tr:hover td,
-.hxTable--hover tbody tr:hover th {
-  background-color: #f5f5f5;
+/* ===== DEPRECATED: remove in v1.0.0 ===== */
+.hxTable__control-col {
+  color: #757575;
+  width: 1rem;
 }
 .hxTextCtrl {
   background-color: #ffffff;
@@ -1723,29 +1853,61 @@ textarea.hxTextCtrl {
   cursor: not-allowed;
   resize: none;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0 0 0.5rem;
+}
+h1,
+.hxHeading-1,
 .hxPageTitle {
+  color: #424242;
   font-size: 3rem;
   font-weight: 100;
-  margin-bottom: 2rem;
+  text-transform: none;
 }
+h2,
+.hxHeading-2,
 .hxSectionTitle {
-  font-size: 1.875rem;
+  color: #424242;
+  font-size: 2rem;
   font-weight: 300;
-  margin-bottom: 1.75rem;
+  text-transform: none;
 }
+h3,
+.hxHeading-3,
 .hxSubSectionTitle {
+  color: #424242;
   font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  font-weight: 400;
+  text-transform: none;
 }
+h4,
+.hxHeading-4,
 .hxContainerTitle {
+  color: #424242;
   font-size: 1rem;
   font-weight: 500;
-  margin-bottom: 1.5rem;
+  text-transform: none;
 }
-.hxLabel {
-  color: #6b6b6b;
+h5,
+.hxHeading-5 {
+  color: #616161;
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+h6 {
+  color: inherit;
   font-size: 1rem;
   font-weight: 500;
+  text-transform: none;
 }
 .hxSubdued,
 hx-checkbox[disabled] + label {
@@ -1757,31 +1919,39 @@ hx-checkbox[disabled] + label {
 .hxSubBody {
   font-size: 0.75rem;
 }
-/* ====== end:COMPONENTS ========== */
+/* ===== DEPRECATED Remove in v1.0.0 ===== */
+.hxLabel {
+  color: #6b6b6b;
+  font-size: 1rem;
+  font-weight: 500;
+}
 /* ========== HELPERS ========== *\
     - Class Selectors ONLY
     - NO Elements Selectors
     - NO !important
 \* ============================= */
+.hxLeft,
 .text-left {
   text-align: left;
 }
+.hxCenter,
 .text-center {
   text-align: center;
 }
+.hxRight,
 .text-right {
   text-align: right;
 }
 .text-justify {
   text-align: justify;
 }
-.text-nowrap {
-  white-space: nowrap;
-}
 .hxForceWordBreak {
   word-break: break-all;
 }
-/* ====== end:HELPERS ========== */
+.hxNoWrap,
+.text-nowrap {
+  white-space: nowrap;
+}
 /* ========== OVERRIDES ========== *\
     - Allow !important
 \* =============================== */
@@ -1954,44 +2124,6 @@ hx-dl.hxVertical hx-dd {
 .hxNav hx-tabpanel hx-tabpanel hx-tabpanel hx-disclosure {
   padding-left: 5rem;
 }
-hx-disclosure[aria-expanded="true"] .menu-icon {
-  transform: scaleY(-1);
+figure {
+  margin: 0 0 1rem;
 }
-hx-menu {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);
-  display: none;
-  max-width: 20rem;
-  min-width: 10rem;
-  position: absolute;
-  z-index: 100;
-}
-hx-menu[open] {
-  display: block;
-}
-hx-menu > hx-menuitem-group + hx-menuitem-group {
-  margin-top: 0.5rem;
-}
-hx-menu hx-menuitem-group header {
-  color: #9e9e9e;
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-hx-menu .hxBtn--link {
-  padding: 0.25rem 0;
-}
-hx-menuitem-group {
-  display: block;
-}
-hx-menuitem {
-  display: block;
-}
-.btn-cog {
-  border: none;
-}
-.btn-cog hx-icon {
-  color: #000000;
-}
-/* ====== end:OVERRIDES ========== */

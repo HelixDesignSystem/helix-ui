@@ -357,20 +357,20 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Tabs</h1>
+    <h1>Tabs</h1>
 
   <section>
-    <h2 class="hxSectionTitle" id="basic-tabs">Basic Tabs</h2>
-    <div class="demo tabs-demo">
-      <hx-tabset>
+    <h2 id="basic-tabs">Basic Tabs</h2>
+    <div class="demo tabs-demo" data-visreg="tabs">
+      <hx-tabset id="android-desserts">
         <hx-tablist>
           <hx-tab>Cupcake Ipsum</hx-tab>
-          <hx-tab>Biscuit Marshmallow</hx-tab>
+          <hx-tab id="marshmallow">Biscuit Marshmallow</hx-tab>
           <hx-tab>Caramels Marzipan</hx-tab>
         </hx-tablist>
         <hx-tabcontent>
           <hx-tabpanel>
-            <h3 class="hxSubSectionTitle">First Panel</h3>
+            <h3>First Panel</h3>
             <div class="hxRow">
               <div class="hxCol hxSpan-6">
                 <p>
@@ -390,7 +390,7 @@ class="current">
             </div>
           </hx-tabpanel>
           <hx-tabpanel>
-            <h3 class="hxSubSectionTitle">Second Panel</h3>
+            <h3>Second Panel</h3>
             <p>
               Cupcake ipsum dolor sit. Amet danish jelly gummi bears. Danish
               caramels danish candy canes macaroon donut icing. Cupcake tiramisu
@@ -422,8 +422,8 @@ class="current">
               topping chocolate. Cake sugar plum fruitcake brownie.
             </p>
           </hx-tabpanel>
-          <hx-tabpanel>
-            <h3 class="hxSubSectionTitle">Third Panel</h3>
+          <hx-tabpanel id="id-should-not-be-overwritten">
+            <h3>Third Panel</h3>
               <img src="http://via.placeholder.com/200x150" />
               <img src="http://via.placeholder.com/200x150" />
               <img src="http://via.placeholder.com/200x150" />
@@ -455,7 +455,7 @@ class="current">
 </code></pre>  </section>
 
 <section>
-  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
+  <h2 id="see-also">See Also</h2>
   <ul>
       <li><a href="elements/hx-tab">&lt;hx-tab&gt;</a></li>
       <li><a href="elements/hx-tabcontent">&lt;hx-tabcontent&gt;</a></li>
@@ -466,7 +466,7 @@ class="current">
 </section>
   </main>
   <aside class="hxSiderail hxBox-md">
-    <h1 class="hxContainerTitle">On this page:</h1>
+    <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
             <a href="#basic-tabs">Basic Tabs</a>
@@ -489,10 +489,10 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-02-02
+      2018-02-28
     </small>
 
-  <small>(v0.2.1)</small>
+  <small>(v0.3.0)</small>
 </div>
   </footer>
 

@@ -70,15 +70,30 @@ hx-status.hxFill.hxStable {
   max-width: 75%;
 }
 .box-demo [class*="hxBox"] {
-  background-clip: content-box;
-  background-color: rgba(76, 175, 81, 0.25);
-  border: 1px dotted black;
+  border: 1px dashed #9e9e9e;
+}
+.box-demo p {
+  margin: 0;
+}
+.box-demo .hxBox-xs {
+  box-shadow: inset 0 0 0 0.5rem #f8bbd0;
+}
+.box-demo .hxBox-sm {
+  box-shadow: inset 0 0 0 0.75rem #f8bbd0;
+}
+.box-demo .hxBox-md {
+  box-shadow: inset 0 0 0 1rem #f8bbd0;
+}
+.box-demo .hxBox-lg {
+  box-shadow: inset 0 0 0 1.25rem #f8bbd0;
+}
+.box-demo .hxBox-xl {
+  box-shadow: inset 0 0 0 1.5rem #f8bbd0;
 }
 .hxBtn.pseudo-hover {
   background-color: #16b9d4;
   border-color: transparent;
   color: #ffffff;
-  cursor: pointer;
 }
 .hxBtn.pseudo-active {
   background-color: #0e94a6;
@@ -89,15 +104,42 @@ hx-status.hxFill.hxStable {
   box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);
   outline: none;
 }
+.hxBtn.hxPrimary.pseudo-hover,
+.hxBtnGroup.hxPrimary > .hxBtn.pseudo-hover,
+.hxBtn--primary.pseudo-hover {
+  background-color: #16b9d4;
+  border-color: transparent;
+  color: #ffffff;
+}
+.hxBtn.hxPrimary.pseudo-active,
+.hxBtnGroup.hxPrimary > .hxBtn.pseudo-active,
+.hxBtn--primary.pseudo-active {
+  background-color: #0e94a6;
+  border-color: transparent;
+  color: #ffffff;
+}
+.hxBtn.hxPrimary.pseudo-focus,
+.hxBtnGroup.hxPrimary > .hxBtn.pseudo-focus,
+.hxBtn--primary.pseudo-focus {
+  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);
+  outline: none;
+}
+.hxBtn.hxLink.pseudo-hover,
+.hxBtnGroup.hxLink > .hxBtn.pseudo-hover,
 .hxBtn--link.pseudo-hover {
   background-color: transparent;
   border-color: transparent;
   color: #16b9d4;
 }
+.hxBtn.hxLink.pseudo-active,
+.hxBtnGroup.hxLink > .hxBtn.pseudo-active,
 .hxBtn--link.pseudo-active {
   background-color: transparent;
   border-color: transparent;
   color: #0e94a6;
+}
+.button-demo {
+  height: 6rem;
 }
 .hxBtn.pseudo-hover {
   pointer-events: none;
@@ -108,28 +150,31 @@ hx-status.hxFill.hxStable {
 .hxBtn.pseudo-focus {
   pointer-events: none;
 }
-.hxBtn--primary.pseudo-hover {
+.hxBtn.hxPrimary.pseudo-hover {
   pointer-events: none;
 }
-.hxBtn--primary.pseudo-active {
+.hxBtn.hxPrimary.pseudo-active {
   pointer-events: none;
 }
-.hxBtn--primary.pseudo-focus {
+.hxBtn.hxPrimary.pseudo-focus {
   pointer-events: none;
 }
-.hxBtn--link.pseudo-hover {
+.hxBtn.hxLink.pseudo-hover {
   pointer-events: none;
 }
-.hxBtn--link.pseudo-active {
+.hxBtn.hxLink.pseudo-active {
   pointer-events: none;
 }
 .grid-demo > .demo-container {
-  border: 1px dotted #d8d8d8;
+  border: 1px dashed #9e9e9e;
 }
 .grid-demo .hxCol {
   background-clip: content-box;
-  background-color: rgba(76, 175, 81, 0.25);
+  background-color: rgba(245, 124, 0, 0.25);
   font-size: 0.75rem;
+}
+.grid-demo.showGutter .hxCol {
+  box-shadow: inset 10px 0 0 0 #f8bbd0, inset -10px 0 0 0 #f8bbd0;
 }
 @media (min-width: 0em) {
   #querySize::before {
@@ -390,18 +435,13 @@ hx-icon.danger {
   resize: vertical;
 }
 .panel-demo hx-panel {
-  border: 1px dotted black;
+  border: 1px dashed #9e9e9e;
 }
 .panel-demo hx-panelhead {
-  background-color: #232968;
-  color: white;
-}
-.panel-demo hx-panelbody {
-  background-color: #c8e6c9;
+  border-bottom: 1px dashed #9e9e9e;
 }
 .panel-demo hx-panelfoot {
-  background-color: #3391ff;
-  color: white;
+  border-top: 1px dashed #9e9e9e;
 }
 .popover-demo {
   align-items: center;
@@ -435,15 +475,6 @@ hx-icon.danger {
   display: inline-block;
   margin: 1em;
   position: relative;
-}
-.demo-target {
-  border: 3px dotted #000000;
-  padding: 10px;
-  text-align: center;
-}
-.demo-target hx-icon {
-  color: #757575;
-  vertical-align: text-top;
 }
 .tooltip-demo {
   align-items: center;
@@ -484,4 +515,7 @@ a.pseudo-active {
 dd {
   margin-bottom: 0.5em;
   margin-left: 1em;
+}
+[v-cloak] {
+  opacity: 0;
 }

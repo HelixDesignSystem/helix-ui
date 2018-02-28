@@ -357,39 +357,70 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Reveals</h1>
+    <h1>Reveals</h1>
 
   <section>
-    <h2 class="hxSectionTitle" id="demo">Demo</h2>
-    <div class="demo">
-      <hx-disclosure class="hxBtn" aria-controls="demo-default-reveal">
-        Click me to show content!
-      </hx-disclosure>
-      <hx-reveal id="demo-default-reveal">
-        <p>You can't see me</p>
-      </hx-reveal>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"demo-default-reveal"</span>&gt;</span>
+    <h2 id="demos">Demos</h2>
+    <div id="vue-revealDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3>Options</h3>
+        <label>
+          <input type="checkbox" v-model="isDisabled" />
+          Disabled
+        </label>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <h3>Basic Reveal</h3>
+        <div class="demo">
+          <hx-disclosure
+             class="hxBtn"
+             :disabled="isDisabled"
+             aria-controls="demo-default-reveal">
+            Click me to show content!
+          </hx-disclosure>
+          <hx-reveal id="demo-default-reveal">
+            <p>You can't see me</p>
+          </hx-reveal>
+        </div>
+        <template v-if="isDisabled">
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span>
+  <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"demo-default-reveal"</span>
+  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>
+  <span class="hljs-attr">disabled</span>&gt;</span>
   Click me to show content!
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"demo-default-reveal"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You can't see me<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-</code></pre>  </section>
+</code></pre>        </template>
+        <template v-else>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span>
+  <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"demo-default-reveal"</span>
+  <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>
+  Click me to show content!
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"demo-default-reveal"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>You can't see me<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
+</code></pre>        </template>
+      </div>
+    </div>
+  </section>
 
 <section>
-  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
+  <h2 id="see-also">See Also</h2>
   <ul>
+      <li><a href="components/buttons">Buttons</a></li>
       <li><a href="elements/hx-disclosure">&lt;hx-disclosure&gt;</a></li>
       <li><a href="elements/hx-reveal">&lt;hx-reveal&gt;</a></li>
   </ul>
 </section>
   </main>
   <aside class="hxSiderail hxBox-md">
-    <h1 class="hxContainerTitle">On this page:</h1>
+    <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#demo">Demo</a>
+            <a href="#demos">Demos</a>
         
         <a href="#see-also">See Also</a>
       <hr />
@@ -409,10 +440,10 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-02-14
+      2018-02-28
     </small>
 
-  <small>(v0.2.1)</small>
+  <small>(v0.3.0)</small>
 </div>
   </footer>
 

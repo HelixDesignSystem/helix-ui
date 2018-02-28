@@ -357,99 +357,150 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Tables</h1>
+    <h1>Tables</h1>
 
   <section>
-    <h2 class="hxSectionTitle" id="default-table">Default Table</h2>
+    <h2 id="demos">Demos</h2>
+    <div id="vue-tableDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3>Options</h3>
+        <div class="hxRow">
+          <div class="hxCol hxSpan-12-lg hxSpan-4-xs">
+            <b>Behavior:</b><br />
+            <label>
+              <input type="checkbox" v-model="isBound" />
+              Bound
+            </label><br />
+            <label>
+              <input type="checkbox" v-model="isHoverable" />
+              Hoverable
+            </label>
+          </div>
+          <div class="hxCol hxSpan-12-lg hxSpan-4-xs">
+            <b>Data Density:</b><br />
+            <label>
+              <input type="radio" name="density" v-model="isCondensed" :value="false" />
+              Normal
+            </label><br />
+            <label>
+              <input type="radio" name="density" v-model="isCondensed" :value="true" />
+              Condensed
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <h3>Basic Table</h3>
+        <div class="demo">
+          <table :class="cssClasses">
+            <caption>Most popular Twitter accounts</caption>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Handle</th>
+                <th class="hxRight">Followers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Katy Perry</td>
+                <td>
+                  <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
+                </td>
+                <td class="hxRight">100,381,853</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Justin Beiber</td>
+                <td>
+                  <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
+                </td>
+                <td class="hxRight">97,350,145</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Barack Obama</td>
+                <td>
+                  <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
+                </td>
+                <td class="hxRight">91,387,642</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3" class="hxRight">Total</td>
+                <td class="hxRight">289,119,640</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{cssClasses}}"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+</code></pre>      </div>
+    </div>
+  </section>
 
+  <section><!-- Selection Table -->
+    <h2 id="selection-table">Selection Table</h2>
     <p>
-      <em>a.k.a. "Unbound Table"</em>
+      Use the <code>.hxControl</code> CSS class on table cells that contain
+      a checkbox.
     </p>
-
-    <dl>
-      <dt><code>.hxTable</code></dt>
-      <dd>
-        Use on a table element to apply Helix styles.
-        <em>This class is required to apply any modified table styling.</em>
-      </dd>
-
-      <dt><code>.hxTable__control-col</code></dt>
-      <dd>Use on a table cell to propery set its width for use with a checkbox, radio, or action icon.</dd>
-    </dl>
 
     <div class="demo">
       <table class="hxTable">
         <caption>Most popular Twitter accounts</caption>
         <thead>
           <tr>
-            <th class="hxTable__control-col">
+            <th class="hxControl">
               <hx-checkbox></hx-checkbox>
             </th>
-            <th class="hxTable__control-col"></th>
             <th>Rank</th>
             <th>Name</th>
             <th>Handle</th>
-            <th class="text-right">Followers</th>
-            <th class="hxTable__control-col"></th>
+            <th class="hxRight">Followers</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th class="hxTable__control-col">
+            <th class="hxControl">
               <hx-checkbox></hx-checkbox>
             </th>
-            <td class="hxTable__control-col">
-              <hx-icon type="cog"></hx-icon>
-            </td>
             <td>1</td>
             <td>Katy Perry</td>
             <td>
               <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
             </td>
-            <td class="text-right">100,381,853</td>
-            <td class="hxTable__control-col">
-              <hx-icon type="angle-down"></hx-icon>
-            </td>
+            <td class="hxRight">100,381,853</td>
           </tr>
           <tr>
-            <th class="hxTable__control-col">
+            <th class="hxControl">
               <hx-checkbox></hx-checkbox>
             </th>
-            <td class="hxTable__control-col">
-              <hx-icon type="cog"></hx-icon>
-            </td>
             <td>2</td>
             <td>Justin Beiber</td>
             <td>
               <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
             </td>
-            <td class="text-right">97,350,145</td>
-            <td class="hxTable__control-col">
-              <hx-icon type="angle-down"></hx-icon>
-            </td>
+            <td class="hxRight">97,350,145</td>
           </tr>
           <tr>
-            <th class="hxTable__control-col">
+            <th class="hxControl">
               <hx-checkbox></hx-checkbox>
             </th>
-            <td class="hxTable__control-col">
-              <hx-icon type="cog"></hx-icon>
-            </td>
             <td>3</td>
             <td>Barack Obama</td>
             <td>
               <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
             </td>
-            <td class="text-right">91,387,642</td>
-            <td class="hxTable__control-col">
-              <hx-icon type="angle-down"></hx-icon>
-            </td>
+            <td class="hxRight">91,387,642</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="5" class="text-right">Total</td>
-            <td class="text-right">289,119,640</td>
+            <td colspan="4" class="hxRight">Total</td>
+            <td class="hxRight">289,119,640</td>
           </tr>
         </tfoot>
       </table>
@@ -458,340 +509,171 @@ class="current">
   <span class="hljs-tag">&lt;<span class="hljs-name">caption</span>&gt;</span>Most popular Twitter accounts<span class="hljs-tag">&lt;/<span class="hljs-name">caption</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTable__control-col"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxControl"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">hx-checkbox</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-checkbox</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTable__control-col"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Rank<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Handle<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-right"</span>&gt;</span>Followers<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTable__control-col"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRight"</span>&gt;</span>Followers<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTable__control-col"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxControl"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">hx-checkbox</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-checkbox</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTable__control-col"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"cog"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Katy Perry<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://twitter.com/katyperry"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span>&gt;</span>@katyperry<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRight"</span>&gt;</span>100,381,853<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tfoot</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">tfoot</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+</code></pre>  </section>
+
+  <section><!-- Action Table -->
+    <h2 id="action-table">Action Table</h2>
+    <p>
+      Use the <code>.hxControl</code> CSS class on table cells that contain
+      a cog menu.
+    </p>
+
+    <div class="demo">
+      <table class="hxTable">
+        <caption>Most popular Twitter accounts</caption>
+        <thead>
+          <tr>
+            <th class="hxControl"></th>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Handle</th>
+            <th class="hxRight">Followers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="hxControl">
+              <hx-disclosure aria-controls="menu-1">
+                <hx-icon type="cog"></hx-icon>
+              </hx-disclosure>
+              <hx-menu id="menu-1">
+                <hx-menuitem>Action 1</hx-menuitem>
+                <hx-menuitem>Action 2</hx-menuitem>
+                <hx-menuitem>Action 3</hx-menuitem>
+              </hx-menu>
+            </td>
+            <td>1</td>
+            <td>Katy Perry</td>
+            <td>
+              <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
+            </td>
+            <td class="hxRight">100,381,853</td>
+          </tr>
+          <tr>
+            <td class="hxControl">
+              <hx-disclosure aria-controls="menu-2">
+                <hx-icon type="cog"></hx-icon>
+              </hx-disclosure>
+              <hx-menu id="menu-2">
+                <hx-menuitem>Action 1</hx-menuitem>
+                <hx-menuitem>Action 2</hx-menuitem>
+                <hx-menuitem>Action 3</hx-menuitem>
+              </hx-menu>
+            </td>
+            <td>2</td>
+            <td>Justin Beiber</td>
+            <td>
+              <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
+            </td>
+            <td class="hxRight">97,350,145</td>
+          </tr>
+          <tr>
+            <td class="hxControl">
+              <hx-disclosure aria-controls="menu-3">
+                <hx-icon type="cog"></hx-icon>
+              </hx-disclosure>
+              <hx-menu id="menu-3">
+                <hx-menuitem>Action 1</hx-menuitem>
+                <hx-menuitem>Action 2</hx-menuitem>
+                <hx-menuitem>Action 3</hx-menuitem>
+              </hx-menu>
+            </td>
+            <td>3</td>
+            <td>Barack Obama</td>
+            <td>
+              <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
+            </td>
+            <td class="hxRight">91,387,642</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4" class="hxRight">Total</td>
+            <td class="hxRight">289,119,640</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTable"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">caption</span>&gt;</span>Most popular Twitter accounts<span class="hljs-tag">&lt;/<span class="hljs-name">caption</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxControl"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Rank<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Handle<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRight"</span>&gt;</span>Followers<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxControl"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"menu-1"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"cog"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">hx-menu</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"menu-1"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 1<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 2<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 3<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">hx-menu</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Katy Perry<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://twitter.com/katyperry"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span>&gt;</span>@katyperry<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-right"</span>&gt;</span>100,381,853<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTable__control-col"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRight"</span>&gt;</span>100,381,853<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- More Rows Here --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">tfoot</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"5"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-right"</span>&gt;</span>Total<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-right"</span>&gt;</span>289,119,640<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"4"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRight"</span>&gt;</span>Total<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRight"</span>&gt;</span>289,119,640<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">tfoot</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
 </code></pre>  </section>
 
-  <section>
-    <h2 class="hxSectionTitle" id="condensed-table">Condensed Table</h2>
-
-    <dl>
-      <dt><code>.hxTable--condensed</code></dt>
-      <dd>Use along with the <code>.hxTable</code> class to apply Helix styles for condensed data.</dd>
-    </dl>
-
-    <div class="demo">
-      <table class="hxTable hxTable--condensed">
-        <caption>Most popular Twitter accounts</caption>
-        <thead>
-          <tr>
-            <th class="hxTable__control-col">
-              <hx-checkbox></hx-checkbox>
-            </th>
-            <th class="hxTable__control-col"></th>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Handle</th>
-            <th class="text-right">Followers</th>
-            <th class="hxTable__control-col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th class="hxTable__control-col">
-              <hx-checkbox></hx-checkbox>
-            </th>
-            <td class="hxTable__control-col">
-              <hx-icon type="cog"></hx-icon>
-            </td>
-            <td>1</td>
-            <td>Katy Perry</td>
-            <td>
-              <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
-            </td>
-            <td class="text-right">100,381,853</td>
-            <td class="hxTable__control-col">
-              <hx-icon type="angle-down"></hx-icon>
-            </td>
-          </tr>
-          <tr>
-            <th class="hxTable__control-col">
-              <hx-checkbox></hx-checkbox>
-            </th>
-            <td class="hxTable__control-col">
-              <hx-icon type="cog"></hx-icon>
-            </td>
-            <td>2</td>
-            <td>Justin Beiber</td>
-            <td>
-              <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
-            </td>
-            <td class="text-right">97,350,145</td>
-            <td class="hxTable__control-col">
-              <hx-icon type="angle-down"></hx-icon>
-            </td>
-          </tr>
-          <tr>
-            <th class="hxTable__control-col">
-              <hx-checkbox></hx-checkbox>
-            </th>
-            <td class="hxTable__control-col">
-              <hx-icon type="cog"></hx-icon>
-            </td>
-            <td>3</td>
-            <td>Barack Obama</td>
-            <td>
-              <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
-            </td>
-            <td class="text-right">91,387,642</td>
-            <td class="hxTable__control-col">
-              <hx-icon type="angle-down"></hx-icon>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="5" class="text-right">Total</td>
-            <td class="text-right">289,119,640</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTable hxTable--condensed"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">caption</span>&gt;</span>Most popular Twitter accounts<span class="hljs-tag">&lt;/<span class="hljs-name">caption</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span><span class="hljs-comment">&lt;!-- Heading Here --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span><span class="hljs-comment">&lt;!-- Body Here --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">tfoot</span>&gt;</span><span class="hljs-comment">&lt;!-- Footer Here --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
-</code></pre>  </section>
-
-  <section>
-    <h2 class="hxSectionTitle" id="bound-table">Bound Table</h2>
-
-    <dl>
-      <dt><code>.hxTable--bordered</code></dt>
-      <dd>Use along with the <code>.hxTable</code> class to apply Helix styles for bound table data.</dd>
-    </dl>
-
-    <div class="demo">
-      <table class="hxTable hxTable--bordered">
-        <caption>Most popular Twitter accounts</caption>
-        <thead>
-          <tr>
-            <th class="hxTable__control-col">
-              <hx-checkbox></hx-checkbox>
-            </th>
-            <th class="hxTable__control-col"></th>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Handle</th>
-            <th class="text-right">Followers</th>
-            <th class="hxTable__control-col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th class="hxTable__control-col">
-              <hx-checkbox></hx-checkbox>
-            </th>
-            <td class="hxTable__control-col">
-              <hx-icon type="cog"></hx-icon>
-            </td>
-            <td>1</td>
-            <td>Katy Perry</td>
-            <td>
-              <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
-            </td>
-            <td class="text-right">100,381,853</td>
-            <td class="hxTable__control-col">
-              <hx-icon type="angle-down"></hx-icon>
-            </td>
-          </tr>
-          <tr>
-            <th class="hxTable__control-col">
-              <hx-checkbox></hx-checkbox>
-            </th>
-            <td class="hxTable__control-col">
-              <hx-icon type="cog"></hx-icon>
-            </td>
-            <td>2</td>
-            <td>Justin Beiber</td>
-            <td>
-              <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
-            </td>
-            <td class="text-right">97,350,145</td>
-            <td class="hxTable__control-col">
-              <hx-icon type="angle-down"></hx-icon>
-            </td>
-          </tr>
-          <tr>
-            <th class="hxTable__control-col">
-              <hx-checkbox></hx-checkbox>
-            </th>
-            <td class="hxTable__control-col">
-              <hx-icon type="cog"></hx-icon>
-            </td>
-            <td>3</td>
-            <td>Barack Obama</td>
-            <td>
-              <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
-            </td>
-            <td class="text-right">91,387,642</td>
-            <td class="hxTable__control-col">
-              <hx-icon type="angle-down"></hx-icon>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="5" class="text-right">Total</td>
-            <td class="text-right">289,119,640</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTable hxTable--bordered"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">caption</span>&gt;</span>Most popular Twitter accounts<span class="hljs-tag">&lt;/<span class="hljs-name">caption</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span><span class="hljs-comment">&lt;!-- Heading Here --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span><span class="hljs-comment">&lt;!-- Body Here --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">tfoot</span>&gt;</span><span class="hljs-comment">&lt;!-- Footer Here --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
-</code></pre>  </section>
-
-  <section>
-    <h2 class="hxSectionTitle" id="hoverable-table">Hoverable Table</h2>
-
-    <dl>
-      <dt><code>.hxTable--hover</code></dt>
-      <dd>Use along with the <code>.hxTable</code> class to apply Helix styles when hovering over a table row.</dd>
-    </dl>
-
-    <div class="demo">
-      <table class="hxTable hxTable--hover">
-        <caption>Most popular Twitter accounts</caption>
-        <thead>
-          <tr>
-            <th class="hxTable__control-col">
-              <hx-checkbox></hx-checkbox>
-            </th>
-            <th class="hxTable__control-col"></th>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Handle</th>
-            <th class="text-right">Followers</th>
-            <th class="hxTable__control-col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th class="hxTable__control-col">
-              <hx-checkbox></hx-checkbox>
-            </th>
-            <td class="hxTable__control-col">
-              <hx-icon type="cog"></hx-icon>
-            </td>
-            <td>1</td>
-            <td>Katy Perry</td>
-            <td>
-              <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
-            </td>
-            <td class="text-right">100,381,853</td>
-            <td class="hxTable__control-col">
-              <hx-icon type="angle-down"></hx-icon>
-            </td>
-          </tr>
-          <tr>
-            <th class="hxTable__control-col">
-              <hx-checkbox></hx-checkbox>
-            </th>
-            <td class="hxTable__control-col">
-              <hx-icon type="cog"></hx-icon>
-            </td>
-            <td>2</td>
-            <td>Justin Beiber</td>
-            <td>
-              <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
-            </td>
-            <td class="text-right">97,350,145</td>
-            <td class="hxTable__control-col">
-              <hx-icon type="angle-down"></hx-icon>
-            </td>
-          </tr>
-          <tr>
-            <th class="hxTable__control-col">
-              <hx-checkbox></hx-checkbox>
-            </th>
-            <td class="hxTable__control-col">
-              <hx-icon type="cog"></hx-icon>
-            </td>
-            <td>3</td>
-            <td>Barack Obama</td>
-            <td>
-              <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
-            </td>
-            <td class="text-right">91,387,642</td>
-            <td class="hxTable__control-col">
-              <hx-icon type="angle-down"></hx-icon>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="5" class="text-right">Total</td>
-            <td class="text-right">289,119,640</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTable hxTable--hover"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">caption</span>&gt;</span>Most popular Twitter accounts<span class="hljs-tag">&lt;/<span class="hljs-name">caption</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span><span class="hljs-comment">&lt;!-- Heading Here --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span><span class="hljs-comment">&lt;!-- Body Here --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">tfoot</span>&gt;</span><span class="hljs-comment">&lt;!-- Footer Here --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
-</code></pre>  </section>
-
   </main>
   <aside class="hxSiderail hxBox-md">
-    <h1 class="hxContainerTitle">On this page:</h1>
+    <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#default-table">Default Table</a>
+            <a href="#demos">Demos</a>
         
 
-            <a href="#condensed-table">Condensed Table</a>
+            <a href="#selection-table">Selection Table</a>
         
 
-            <a href="#bound-table">Bound Table</a>
-        
-
-            <a href="#hoverable-table">Hoverable Table</a>
+            <a href="#action-table">Action Table</a>
         
       <hr />
       <a class="top-link" href="#top">Back to Top</a>
@@ -810,10 +692,10 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-02-14
+      2018-02-28
     </small>
 
-  <small>(v0.2.1)</small>
+  <small>(v0.3.0)</small>
 </div>
   </footer>
 
