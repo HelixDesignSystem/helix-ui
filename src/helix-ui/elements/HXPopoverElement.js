@@ -41,7 +41,7 @@ export class HXPopoverElement extends HXElement {
             return;
         }
 
-        this._target = document.querySelector('[data-popover=' + this.id + ']');
+        this._target = this.getRootNode().querySelector('[data-popover=' + this.id + ']');
         if (!this._target) {
             return;
         }
