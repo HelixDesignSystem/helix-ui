@@ -1,7 +1,35 @@
-.hxAlerts {
-  //reserved for future styling
+hx-alert {
+  background-color: @gray-400;
+  color: @gray-1000;
+  font-weight: 300;
+  line-height: 1.25rem;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &[type="info"] {
+    background-color: @blue-100;
+    color: @gray-1000;
+  }
+
+  &[type="error"] {
+    background-color: @red-900;
+    color: @gray-0;
+  }
+
+  &[type="success"] {
+    background-color: @green-500;
+    color: @gray-0;
+  }
+
+  &[type="warning"] {
+    background-color: @yellow-500;
+    color: @gray-1000;
+  }
 }
 
+/* DEPRECATED: Remove in v1.0.0 */
 .hxAlert {
   background-color: @blue-100;
   color: @gray-1000;

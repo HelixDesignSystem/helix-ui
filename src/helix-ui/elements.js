@@ -1,5 +1,6 @@
 export { HXAccordionElement } from './elements/HXAccordionElement.js';
 export { HXAccordionPanelElement } from './elements/HXAccordionPanelElement.js';
+export { HXAlertElement } from './elements/HXAlertElement.js';
 export { HXBusyElement } from './elements/HXBusyElement.js';
 export { HXCheckboxElement } from './elements/HXCheckboxElement.js';
 export { HXDisclosureElement } from './elements/HXDisclosureElement.js';
