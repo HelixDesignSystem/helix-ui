@@ -41,6 +41,8 @@ figure {
 }
 
 // Core CSS
+@import 'core/hx-accordion';
+@import 'core/hx-accordion-panel';
 @import 'core/hx-busy';
 @import 'core/hx-checkbox';
 @import 'core/hx-dd';
@@ -79,6 +81,7 @@ figure {
 @import 'modules/button';
 @import 'modules/grid';
 @import 'modules/hljs';
+@import 'modules/stepper'; // BETA
 @import 'modules/table';
 @import 'modules/text-input';
 @import 'modules/typography';
@@ -107,3 +110,13 @@ figure {
 figure {
   margin: 0 0 1rem;
 }
+
+// FIXME: correct paragraph margins
+p {
+  margin: 0;
+
+  & + * {
+    margin-top: 0.5rem;
+  }
+}
+

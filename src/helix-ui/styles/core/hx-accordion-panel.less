@@ -1,0 +1,15 @@
+hx-accordion-panel {
+  display: block;
+
+  > :not([slot="header"]) {
+    display: none;
+  }
+
+  &[open] > * {
+    display: block;
+  }
+
+  > [slot="header"] {
+    padding: 0.5rem 0;
+  }
+}
