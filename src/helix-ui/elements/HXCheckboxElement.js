@@ -7,10 +7,13 @@ const template = document.createElement('template');
 
 template.innerHTML = `
   <style>${shadowStyles}</style>
-  <div id="container">
-    <hx-icon type="checkmark" id="tick"></hx-icon>
-    <hx-icon type="minus" id="minus"></hx-icon>
-  </div>
+  <label id="container">
+    <input type="checkbox" id="nativeControl"/>
+    <div id="customControl">
+      <hx-icon type="checkmark" id="tick"></hx-icon>
+      <hx-icon type="minus" id="minus"></hx-icon>
+    </div>
+  </label>
 `;
 
 export class HXCheckboxElement extends HXElement {
@@ -19,56 +22,43 @@ export class HXCheckboxElement extends HXElement {
     }
 
     static get observedAttributes () {
-        return super.observedAttributes.concat([
+        return [
             'checked',
+            'disabled',
             'indeterminate',
-        ]);
+        ];
     }
 
     constructor () {
         super(tagName, template);
+        this._input = this.shadowRoot.getElementById('nativeControl');
+        this._onChange = this._onChange.bind(this);
     }
 
     connectedCallback () {
-        super.connectedCallback();
-
-        this.$defaultAttribute('role', 'checkbox');
-        if (!this.hasAttribute('tabindex') && !this.disabled) {
-            this.setAttribute('tabindex', 0);
-        }
-
         this.$upgradeProperty('checked');
+        this.$upgradeProperty('disabled');
         this.$upgradeProperty('indeterminate');
-
-        this.addEventListener('keydown', this.$preventScroll);
-        this.addEventListener('keyup', this._onKeyUp);
-        this.addEventListener('click', this._onClick);
+        this._input.addEventListener('change', this._onChange);
     }
 
     disconnectedCallback () {
-        this.removeEventListener('keydown', this.$preventScroll);
-        this.removeEventListener('keyup', this._onKeyUp);
-        this.removeEventListener('click', this._onClick);
+        this._input.removeEventListener('change', this._onChange);
     }
 
     attributeChangedCallback (attr, oldVal, newVal) {
-        super.attributeChangedCallback(attr, oldVal, newVal);
-
         const hasValue = (newVal !== null);
         switch (attr) {
             case 'indeterminate':
-                if (hasValue) {
-                    this.setAttribute('aria-checked', 'mixed');
+                this._input.indeterminate = hasValue;
+                break;
+            case 'checked':
+                if (this._input.checked !== hasValue) {
+                    this._input.checked = hasValue;
                 }
                 break;
-
-            case 'checked':
-                if (!this.indeterminate) {
-                    this.setAttribute('aria-checked', hasValue);
-                    this.$emit('change', {
-                        checked: this.checked,
-                    });
-                }
+            case 'disabled':
+                this._input.disabled = hasValue;
                 break;
         }
     }//attributeChangedCallback()
@@ -97,26 +87,24 @@ export class HXCheckboxElement extends HXElement {
         return this.hasAttribute('indeterminate');
     }
 
-    _onKeyUp (event) {
-        if (event.altKey) {
-            return;
-        }
-
-        if (event.keyCode === KEYS.Space) {
-            event.preventDefault();
-            this._toggleChecked();
+    set disabled (value) {
+        if (value) {
+            this.setAttribute('disabled', '');
+        } else {
+            this.removeAttribute('disabled');
         }
     }
 
-    _onClick () {
-        this._toggleChecked();
+    get disabled () {
+        return this.hasAttribute('disabled');
     }
 
-    _toggleChecked () {
-        if (this.disabled) {
-            return;
-        }
-        this.indeterminate = false;
-        this.checked = !this.checked;
+    _onChange (evt) {
+        this.checked = evt.target.checked;
+
+        // Chrome doesn't emit 'input' events for checkboxes and native 'change'
+        // events do not bubble out of the ShadowDOM. Emit a custom event to
+        // ensure a 'change' event makes it out of the ShadowDOM.
+        this.$emit('change');
     }
 }//HXCheckboxElement

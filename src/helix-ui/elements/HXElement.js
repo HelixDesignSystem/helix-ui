@@ -85,6 +85,11 @@ export class HXElement extends HTMLElement {
     }//$preventScroll()
 
     $emit (evtName, details) {
+        if (window.ShadyCSS && evtName === 'change') {
+            // Let native 'change' events bubble naturally.
+            return;
+        }
+
         let evt = new CustomEvent(evtName, {
             bubbles: true,
             details: details,
