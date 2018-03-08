@@ -47,6 +47,15 @@
       margin: 0;
     }
   }
+
+  // NOTE: this will only work for prescribed markup shown in the code snippets
+  // provided in the Busy component documentation. Deviation from the snippet
+  // will result in undesirable appearance.
+  //
+  // This is fragile, but a better implementation is in the works.
+  hx-busy:last-child {
+    margin-left: 0.5rem;
+  }
 }//.hxBtn
 
 // STYLE VARIANTS (

@@ -1,0 +1,62 @@
+---
+title: Busy
+also:
+  elements/hx-busy: <hx-busy>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <h2 id="demos">Demos</h2>
+    <div id="vue-busyDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3>Options</h3>
+        <p>
+          <label>
+            <input type="checkbox" v-model="isPaused" />
+            Pause
+          </label>
+        </p>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <section>
+          <h3>Basic Loader</h3>
+          <div class="demo">
+            <hx-busy :paused="isPaused"></hx-busy>
+          </div>
+          <template v-if="isPaused">
+            {% code 'html' %}<hx-busy paused></hx-busy>{% endcode %}
+          </template>
+          <template v-else>
+            {% code 'html' %}<hx-busy></hx-busy>{% endcode %}
+          </template>
+        </section>
+
+        <section>
+          <h3>Loader in Button</h3>
+          <div class="demo">
+            <button class="hxBtn hxPrimary">
+              Loading
+              <hx-busy :paused="isPaused"></hx-busy>
+            </button>
+          </div>
+          <template v-if="isPaused">
+            {% code 'html' %}
+              <button class="hxBtn hxPrimary">
+                Loading
+                <hx-busy paused></hx-busy>
+              </button>
+            {% endcode %}
+          </template>
+          <template v-else>
+            {% code 'html' %}
+              <button class="hxBtn hxPrimary">
+                Loading
+                <hx-busy></hx-busy>
+              </button>
+            {% endcode %}
+          </template>
+        </section>
+      </div>
+    </div>
+  </section>
+{% endblock %}

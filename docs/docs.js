@@ -1,6 +1,7 @@
 'use strict';
 
 import './components/box/box-demo';
+import './components/busy/busy-demo';
 import './components/buttons/button-demo';
 import './components/checkboxes/checkbox-demo';
 import './components/lists/list-demo';

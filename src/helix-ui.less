@@ -10,6 +10,11 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,100,100italic,300,300italic,400italic,700,700italic");
 @import (reference) 'vars';
 
+@keyframes hx-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 
 /* ========== RESETS ========== *\
   - Element & Pseudo Selectors
@@ -36,6 +41,7 @@ figure {
 }
 
 // Core CSS
+@import 'core/hx-busy';
 @import 'core/hx-checkbox';
 @import 'core/hx-dd';
 @import 'core/hx-def';

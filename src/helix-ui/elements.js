@@ -1,3 +1,4 @@
+export { HXBusyElement } from './elements/HXBusyElement.js';
 export { HXCheckboxElement } from './elements/HXCheckboxElement.js';
 export { HXDisclosureElement } from './elements/HXDisclosureElement.js';
 export { HXIconElement } from './elements/HXIconElement.js';
