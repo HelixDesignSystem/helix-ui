@@ -22,7 +22,7 @@ platform_chrome='linux64'
 [ `uname` == 'Darwin' ] && platform_gecko='macos' && platform_chrome='mac64'
 
 TARFILE_GECKO=v0.18.0/geckodriver-v0.18.0-${platform_gecko}.tar.gz
-TARFILE_CHROME=2.34/chromedriver_${platform_chrome}.zip
+TARFILE_CHROME=2.35/chromedriver_${platform_chrome}.zip
 TARFILE_STANDALONE='3.4/selenium-server-standalone-3.4.0.jar'
 
 if [ $reinstall == "1" ] || [ $has_gecko == "0" ]; then
@@ -33,8 +33,8 @@ fi
 
 if [ $reinstall == "1" ] || [ $has_chrome == "0" ]; then
     echo Downloading ${TARFILE_CHROME}
-    wget -nc -q https://chromedriver.storage.googleapis.com/${TARFILE_CHROME} -O bin/selenium/chromedriver_2.34.zip
-    unzip -o bin/selenium/chromedriver_2.34.zip -d bin/selenium/
+    wget -nc -q https://chromedriver.storage.googleapis.com/${TARFILE_CHROME} -O bin/selenium/chromedriver_2.35.zip
+    unzip -o bin/selenium/chromedriver_2.35.zip -d bin/selenium/
 fi
 
 if [ $reinstall == "1" ] || [ $has_chrome == "0" ]; then
