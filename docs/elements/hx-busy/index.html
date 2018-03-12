@@ -1,0 +1,39 @@
+---
+title: <hx-busy>
+also:
+  components/busy: Busy
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>{{page.title}}</code> element renders a spinning
+      loading indicator.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>none (content will be removed upon element upgrade)</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl>
+    <dt>paused</dt>
+    <dd>Pauses animation, when present</dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl>
+    <dt>paused <small>(Boolean [false])</small></dt>
+    <dd>Pauses animation, when set to true</dd>
+  </dl>
+{% endblock %}
