@@ -1,6 +1,7 @@
 export { HXBusyElement } from './elements/HXBusyElement.js';
 export { HXCheckboxElement } from './elements/HXCheckboxElement.js';
 export { HXDisclosureElement } from './elements/HXDisclosureElement.js';
+export { HXErrorElement } from './elements/HXErrorElement.js';
 export { HXIconElement } from './elements/HXIconElement.js';
 export { HXMenuElement } from './elements/HXMenuElement.js';
 export { HXMenuitemElement } from './elements/HXMenuitemElement.js';

@@ -4,6 +4,12 @@
 
 // ----- GRID MIXINS ----- //
 #grid {
+  .column() {
+    flex-grow: 1;
+    margin: 0 0 @grid-gutter-size;
+    padding: 0 @col-padding;
+  }
+
   .span(@n) {
     @basis: (@n * @grid-column-unit);
     flex: 0 0 @basis;
@@ -90,9 +96,7 @@
   }
 
   & > .hxCol {
-    flex-grow: 1;
-    margin: 0 0 @grid-gutter-size;
-    padding: 0 @col-padding;
+    #grid.column();
   }
 
   &.hxGutterless {

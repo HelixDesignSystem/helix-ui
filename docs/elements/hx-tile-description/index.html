@@ -1,0 +1,29 @@
+---
+title: <hx-tile-description>
+also:
+  components/choice-tiles: Choice Tiles
+  elements/hx-tile: <hx-tile>
+  elements/hx-tile-title: <hx-tile-title>
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The optional custom <code>{{page.title}}</code> element provides a 
+      semantic container for the tile's description.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>
+          an <a href="elements/hx-tile">&lt;hx-tile&gt;</a> element
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}

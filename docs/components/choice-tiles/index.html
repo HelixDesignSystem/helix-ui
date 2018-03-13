@@ -1,0 +1,70 @@
+---
+title: Choice Tiles
+also:
+  elements/hx-tile: <hx-tile>
+  elements/hx-tile-title: <hx-tile-title>
+  elements/hx-tile-description: <hx-tile-description>
+---
+{% extends 'component.njk' %}
+{% block content %}
+
+<section>
+  <h2 id="demos">Demos</h2>
+  <div id="vue-choiceDemo" class="hxRow" v-cloak>
+    <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+      <h3>Options</h3>
+      <p>
+        <b>Size:</b><br />
+        <select v-model="size">
+          <option v-for="_size in sizes" :value="_size">
+            {% raw %}{{ _size.label }}{% endraw %}
+          </option>
+        </select>
+      </p>
+      <p>
+        <b>Description:</b><br />
+        <textarea class="hxTextCtrl" v-model="description"></textarea>
+      </p>
+      <p>
+        <label>
+          <input type="checkbox" v-model="isChecked" />
+          Checked
+        </label><br />
+        <label>
+          <input type="checkbox" v-model="isDisabled" />
+          Disabled
+        </label><br />
+        <label>
+          <input type="checkbox" v-model="isInvalid" />
+          Invalid
+        </label><br />
+        <label>
+          <input type="checkbox" v-model="isSubdued" />
+          Subdued
+        </label>
+      </p>
+    </div>
+    <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+      <h3>Basic Choice Tile</h3>
+      <div class="demo choice-tile-demo">
+        <label class="hxChoice">
+          <input type="radio" name="foo"
+            @click="onClick"
+            :checked="isChecked"
+            :disabled="isDisabled"
+            :invalid="isInvalid" />
+          <hx-tile :class="tileClasses">
+            <hx-icon type="checkmark"></hx-icon>
+            <div class="hx-tile-icon">
+              <hx-icon type="account"></hx-icon>
+            </div>
+            <hx-tile-title>Title Here</hx-tile-title>
+            <hx-tile-description v-text="description"></hx-tile-description>
+          </hx-tile>
+        </label>
+      </div>
+      <pre><code>{% raw %}{{snippet}}{% endraw %}</code></pre>
+    </div>
+  </div>
+</section>
+{% endblock %}
