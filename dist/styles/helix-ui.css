@@ -8,6 +8,14 @@
 \* ========== CONFIGURATION ========== */
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic");
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,100,100italic,300,300italic,400italic,700,700italic");
+@keyframes hx-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 /* ========== RESETS ========== *\
   - Element & Pseudo Selectors
   - No Class Selectors
@@ -31,6 +39,9 @@ html {
 }
 a {
   background-color: transparent;
+}
+fieldset {
+  border: none;
 }
 table {
   background-color: transparent;
@@ -191,66 +202,61 @@ pre code {
 figure {
   margin-bottom: 1rem;
 }
-hx-checkbox {
-  background-color: #ffffff;
-  border-color: currentColor;
-  border-radius: 2px;
+hx-accordion {
+  display: block;
+}
+hx-accordion-panel {
+  display: block;
+}
+hx-accordion-panel > :not([slot="header"]) {
+  display: none;
+}
+hx-accordion-panel[open] > * {
+  display: block;
+}
+hx-accordion-panel > [slot="header"] {
+  padding: 0.5rem 0;
+}
+/*
+  NOTE: This implementation is known to be slightly buggy with IE11.
+  In various scenarious, IE11 will render the element with a
+  "squigglevision"-like appearance. We were unable to pinpoint what
+  causes the bug, but factors contributing to it are sub-pixel calculations,
+  display + animation property issues, and even border-radius of the parent.
+
+  There's very little we can do about it, because the bug resides in the
+  IE rendering engine (which is no longer receiving updates). Design is aware
+  of the issue, and has noted that the issue is acceptable for IE compatibility.
+
+  1: explicitly set transform-box for IE/Edge compatibility
+  2: explicitly set transform-origin with full X/Y/Z values for IE/Edge compatibility
+*/
+hx-busy {
+  animation-play-state: running;
+  animation: hx-spin 0.8s linear infinite;
+  border-color: transparent currentColor currentColor;
+  border-radius: 1em;
   border-style: solid;
-  border-width: 1px;
-  color: #bdbdbd;
+  border-width: 2px;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 1em;
+  transform-box: border-box;
+  transform-origin: 0.5em 0.5em 0.5em;
+  vertical-align: middle;
+  width: 1em;
+}
+hx-busy[paused] {
+  animation-play-state: paused;
+}
+hx-checkbox {
   display: inline-block;
   height: 1rem;
-  vertical-align: middle;
+  vertical-align: text-top;
   width: 1rem;
-  /* default unchecked */
-  /* default checked */
-  /* default indeterminate (checked or unchecked) */
-  /* invalid unchecked */
-  /* disabled unchecked */
 }
 hx-checkbox + * {
   margin-left: 0.5rem;
-}
-hx-checkbox:hover {
-  background-color: #e4f9f9;
-  color: #16b9d4;
-}
-hx-checkbox[checked] {
-  color: #0c7c84;
-}
-hx-checkbox[checked]:hover {
-  background-color: #e4f9f9;
-  color: #16b9d4;
-}
-hx-checkbox[indeterminate] {
-  color: #0c7c84;
-}
-hx-checkbox[indeterminate]:hover {
-  color: #16b9d4;
-}
-hx-checkbox[invalid] {
-  border-width: 2px;
-  color: #d32f2f;
-  /* invalid checked */
-  /* invalid indeterminate (checked or unchecked) */
-}
-hx-checkbox[invalid]:hover {
-  background-color: #ffcdd2;
-  color: #d32f2f;
-}
-hx-checkbox[disabled] {
-  background-color: #eeeeee;
-  color: #bdbdbd;
-  cursor: not-allowed;
-  /* disabled checked */
-  /* disabled indeterminate (checked or unchecked) */
-}
-hx-checkbox[disabled]:hover {
-  background-color: #eeeeee;
-  color: #bdbdbd;
-}
-hx-checkbox[disabled][indeterminate] {
-  color: #bdbdbd;
 }
 hx-dd {
   display: block;
@@ -268,14 +274,18 @@ hx-disclosure[aria-expanded="true"] > hx-icon.hxPrimary {
 hx-dl {
   display: block;
 }
+hx-error {
+  color: #d32f2f;
+}
 hx-icon {
-  background-color: inherit;
+  background-color: transparent;
   color: inherit;
   display: inline-block;
   flex-shrink: 0;
   height: 1em;
+  line-height: 1;
+  vertical-align: initial;
   width: 1em;
-  vertical-align: -2px;
 }
 hx-icon svg {
   fill: currentColor;
@@ -487,6 +497,10 @@ hx-reveal[open],
 hx-tabpanel[open] {
   display: block;
 }
+hx-search {
+  display: block;
+  height: 2rem;
+}
 hx-status {
   background-color: transparent;
   border: 1px solid #6b6b6b;
@@ -623,6 +637,64 @@ hx-tabset {
     display: flex;
     flex-direction: column;
   }
+}
+hx-tile {
+  border-radius: 2px;
+  display: inline-block;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+hx-tile hx-tile-title {
+  margin-bottom: 0;
+}
+hx-tile.hxSm {
+  padding: 0.75rem;
+}
+hx-tile.hxSm hx-tile-description {
+  display: none;
+}
+hx-tile.hxSm hx-icon[type="checkmark"] {
+  right: 0.75rem;
+  top: 0.75rem;
+}
+hx-tile.hxLg {
+  padding: 1.75rem;
+}
+hx-tile.hxLg hx-icon[type="checkmark"] {
+  right: 1.75rem;
+  top: 1.75rem;
+}
+hx-tile hx-tile-title + *,
+hx-tile .hx-tile-icon + * {
+  margin-top: 0.5rem;
+}
+hx-tile .hx-tile-icon hx-icon {
+  height: 1.75rem;
+  width: 1.75rem;
+}
+hx-tile hx-icon[type="checkmark"] {
+  display: none;
+  height: 1rem;
+  right: 1.25rem;
+  top: 1.25rem;
+  width: 1rem;
+}
+hx-tile.hxSubdued {
+  opacity: 0.7;
+}
+hx-tile.hxSubdued:hover {
+  opacity: 1;
+}
+hx-tile-description {
+  display: block;
+  font-size: 0.75rem;
+}
+hx-tile-title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
 }
 hx-tooltip {
   background-color: #ffffff;
@@ -770,7 +842,8 @@ hx-menu[open] {
 .hxBox-md {
   padding: 1rem;
 }
-.hxBox-lg {
+.hxBox-lg,
+hx-tile {
   padding: 1.25rem;
 }
 .hxBox-xl {
@@ -844,6 +917,9 @@ hx-menu[open] {
 }
 .hxBtn hx-icon:only-child {
   margin: 0;
+}
+.hxBtn hx-busy:last-child {
+  margin-left: 0.5rem;
 }
 .hxBtn.hxPrimary,
 .hxBtnGroup.hxPrimary > .hxBtn,
@@ -962,6 +1038,95 @@ hx-menu[open] {
   outline: none;
 }
 .hxBtn.hxCog[disabled] hx-icon {
+  color: #bdbdbd;
+}
+.hxRow > label.hxChoice {
+  flex-grow: 1;
+  margin: 0 0 20px;
+  padding: 0 10px;
+}
+/* ========== COMMON ========== */
+label.hxChoice > input {
+  position: absolute;
+  top: -200px;
+}
+label.hxChoice > input:checked + hx-tile hx-icon[type="checkmark"] {
+  display: block;
+  position: absolute;
+}
+/* ========== SUBDUED ========== */
+label.hxChoice > input:focus + hx-tile.hxSubdued,
+label.hxChoice > input + hx-tile:hover.hxSubdued,
+label.hxChoice > input[disabled] + hx-tile.hxSubdued,
+label.hxChoice > input:checked + hx-tile.hxSubdued,
+label.hxChoice > input[invalid] + hx-tile.hxSubdued {
+  opacity: 1;
+}
+/* ========== DEFAULT ========== */
+label.hxChoice > input + hx-tile {
+  background-color: #ffffff;
+  border: solid 1px #d8d8d8;
+  color: #424242;
+}
+label.hxChoice > input + hx-tile .hx-tile-icon {
+  color: #757575;
+}
+label.hxChoice > input + hx-tile:hover {
+  background-color: #e4f9f9;
+  border-color: #16b9d4;
+}
+label.hxChoice > input:focus + hx-tile {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+/* ========== CHECKED ========== */
+label.hxChoice > input:checked + hx-tile {
+  border-color: #0c7c84;
+  color: #0c7c84;
+}
+label.hxChoice > input:checked + hx-tile hx-tile-description {
+  color: #424242;
+}
+label.hxChoice > input:checked + hx-tile:hover {
+  border-color: #16b9d4;
+}
+label.hxChoice > input:checked:focus + hx-tile {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+/* ========== INVALID ========== */
+label.hxChoice > input[invalid] + hx-tile {
+  border-color: #d32f2f;
+  border-width: 2px;
+  color: #d32f2f;
+}
+label.hxChoice > input[invalid] + hx-tile hx-tile-description {
+  color: #424242;
+}
+label.hxChoice > input[invalid] + hx-tile .hx-tile-icon {
+  color: inherit;
+}
+label.hxChoice > input[invalid] + hx-tile:hover {
+  background-color: #ffcdd2;
+  border-color: #d32f2f;
+  color: #424242;
+}
+label.hxChoice > input[invalid]:focus + hx-tile {
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+/* ========== DISABLED ========== */
+label.hxChoice > input[disabled] + hx-tile,
+label.hxChoice > input[disabled] + hx-tile:hover {
+  background-color: #fafafa;
+  border-color: #e0e0e0;
+  border-width: 1px;
+  color: #757575;
+  cursor: not-allowed;
+}
+label.hxChoice > input[disabled] + hx-tile hx-tile-description,
+label.hxChoice > input[disabled] + hx-tile:hover hx-tile-description {
+  color: inherit;
+}
+label.hxChoice > input[disabled] + hx-tile hx-icon,
+label.hxChoice > input[disabled] + hx-tile:hover hx-icon {
   color: #bdbdbd;
 }
 /* ===== GRID ===== */
@@ -1725,6 +1890,79 @@ hx-menu[open] {
 .hljs-deletion {
   background-color: #f8bbd0;
 }
+/* ======================================= *\
+ * BETA BETA BETA BETA BETA BETA BETA BETA *
+\* ======================================= */
+hx-accordion.beta-hxStepper {
+  counter-reset: step;
+}
+hx-accordion.beta-hxStepper hx-accordion-panel {
+  border-top: 1px solid #e0e0e0;
+}
+hx-accordion.beta-hxStepper hx-accordion-panel:last-child {
+  border-bottom: 1px solid #e0e0e0;
+}
+hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"] {
+  display: flex;
+  padding: 1rem;
+}
+hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"] > * {
+  display: flex;
+  align-items: center;
+}
+hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"]:hover .beta-hxStepCounter {
+  background-color: #16b9d4;
+  color: #ffffff;
+}
+hx-accordion.beta-hxStepper hx-accordion-panel[open] .beta-hxStepCounter {
+  background-color: #16b9d4;
+  color: #ffffff;
+}
+hx-accordion.beta-hxStepper hx-accordion-panel[disabled] .beta-hxStepCounter {
+  background-color: #d8d8d8;
+  color: #757575;
+}
+hx-accordion.beta-hxStepper hx-accordion-panel[disabled] .beta-hxStepLabel {
+  color: #757575;
+}
+hx-accordion.beta-hxStepper hx-accordion-panel[disabled] header[slot="header"]:hover .beta-hxStepCounter {
+  background-color: #d8d8d8;
+  color: #757575;
+}
+hx-accordion.beta-hxStepper .beta-hxStepCounter {
+  background-color: #0c7c84;
+  border-radius: 3rem;
+  color: #ffffff;
+  counter-increment: step;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  height: 2.25rem;
+  position: relative;
+  width: 2.25rem;
+}
+hx-accordion.beta-hxStepper .beta-hxStepCounter::before {
+  content: counter(step);
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+hx-accordion.beta-hxStepper .beta-hxStepLabel {
+  color: #424242;
+  flex-basis: 50%;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-left: 1rem;
+}
+hx-accordion.beta-hxStepper .beta-hxStepValue {
+  flex-basis: 50%;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+hx-accordion.beta-hxStepper .beta-hxSubmitButtons .hxBtn + .hxBtn {
+  margin-left: 0.5rem;
+}
 /* ========== Tables ========== */
 /*
   ---------
@@ -1807,38 +2045,47 @@ hx-menu[open] {
 }
 .hxTextCtrl {
   background-color: #ffffff;
-  border: 1px solid #bdbdbd;
   border-radius: 2px;
-  color: #616161;
+  border: 1px solid #bdbdbd;
+  color: #424242;
   display: block;
   font-size: 1rem;
-  padding: 8px;
+  height: 2rem;
+  padding: 0 8px;
   width: 100%;
-  /*
-    https://css-tricks.com/snippets/css/style-placeholder-text/
-  */
+}
+.hxTextCtrl::-moz-placeholder {
+  color: #757575;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+.hxTextCtrl::-ms-input-placeholder {
+  color: #757575;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+.hxTextCtrl::-webkit-input-placeholder {
+  color: #757575;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+.hxTextCtrl::placeholder {
+  color: #757575;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
 }
 textarea.hxTextCtrl {
   min-height: 5.75rem;
   resize: vertical;
 }
-.hxTextCtrl::-webkit-input-placeholder {
-  color: #9e9e9e;
-}
-.hxTextCtrl::-moz-placeholder {
-  color: #9e9e9e;
-  opacity: 1;
-}
-.hxTextCtrl:-ms-input-placeholder {
-  color: #9e9e9e;
-}
-.hxTextCtrl::placeholder {
-  color: #9e9e9e;
-}
 .hxTextCtrl:focus {
-  outline: 0;
   border-color: #0e94a6;
   box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  outline: 0;
 }
 .hxTextCtrl:focus[invalid] {
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
@@ -1849,6 +2096,7 @@ textarea.hxTextCtrl {
 .hxTextCtrl[disabled] {
   background-color: #f5f5f5;
   border-color: #e0e0e0;
+  border-width: 1px;
   color: #d8d8d8;
   cursor: not-allowed;
   resize: none;
@@ -1909,8 +2157,7 @@ h6 {
   font-weight: 500;
   text-transform: none;
 }
-.hxSubdued,
-hx-checkbox[disabled] + label {
+.hxSubdued {
   color: #6b6b6b;
 }
 .hxCaption {
@@ -2126,4 +2373,10 @@ hx-dl.hxVertical hx-dd {
 }
 figure {
   margin: 0 0 1rem;
+}
+p {
+  margin: 0;
+}
+p + * {
+  margin-top: 0.5rem;
 }

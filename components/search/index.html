@@ -58,6 +58,12 @@ class="current">
   </hx-disclosure>
   <hx-reveal id="nav-Components" open>
       
+      <a href="components/accordions" >
+    Accordions
+  </a>
+
+
+      
       <a href="components/alerts" >
     Alerts
   </a>
@@ -76,6 +82,12 @@ class="current">
 
 
       
+      <a href="components/busy" >
+    Busy
+  </a>
+
+
+      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -84,6 +96,12 @@ class="current">
       
       <a href="components/checkboxes" >
     Checkboxes
+  </a>
+
+
+      
+      <a href="components/choice-tiles" >
+    Choice Tiles
   </a>
 
 
@@ -196,6 +214,24 @@ class="current">
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
   <hx-reveal id="nav-Custom Elements" >
+      
+      <a href="elements/hx-accordion" >
+    &lt;hx-accordion&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-accordion-panel" >
+    &lt;hx-accordion-panel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-busy" >
+    &lt;hx-busy&gt;
+  </a>
+
+
       
       <a href="elements/hx-checkbox" >
     &lt;hx-checkbox&gt;
@@ -359,6 +395,24 @@ class="current">
 
 
       
+      <a href="elements/hx-tile" >
+    &lt;hx-tile&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tile-description" >
+    &lt;hx-tile-description&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tile-title" >
+    &lt;hx-tile-title&gt;
+  </a>
+
+
+      
       <a href="elements/hx-tooltip" >
     &lt;hx-tooltip&gt;
   </a>
@@ -369,56 +423,67 @@ class="current">
 
     </nav>
   <main id="content" class="hxBox-md">
-    <h1 class="hxPageTitle">Search</h1>
+    <h1>Search</h1>
 
   <section>
-    <h2 id="search">Basic Search Bar</h2>
+    <h2 id="demos">Demos</h2>
     <div id="vue-searchDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h2>
-        <label>
-          <input type="checkbox" v-model="isDisabled" />
-          Disabled
-        </label><br />
-        <label>
-          <input type="checkbox" v-model="isInvalid" />
-          Invalid
-        </label>
-        <p>
-          <label>Search Value:</label><br />
-          <input type="text" v-model="searchValue" />
-        </p>
-        <p>
-          <label>Placeholder</label>
-          <input type="text" v-model="placeholder" />
-        </p>
-      </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h3>Basic Search Box</h2>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg">
+        <h3>Basic Search Box</h3>
         <div class="demo">
           <hx-search
              :disabled="isDisabled"
              :invalid="isInvalid"
              :placeholder="placeholder"
              :value="searchValue"
-             @input="onEvent"
-             @change="onEvent"
+             @input="onSearchUpdate"
+             @change="onSearchUpdate"
           ></hx-search>
         </div>
-<pre><code class="html"></code></pre>      </div>
+
+        <pre><code>{{snippet}}</code></pre>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg">
+        <h3>Options</h3>
+        <p>
+          <b>Placeholder:</b><br />
+          <input
+            type="text"
+            class="hxTextCtrl"
+            placeholder="e.g. Search..."
+            v-model="placeholder"
+          />
+        </p>
+        <p>
+          <b>Value:</b><br />
+          <input
+            type="text"
+            class="hxTextCtrl"
+            placeholder="e.g. kittens"
+            v-model="searchValue"
+          />
+        </p>
+        <p>
+          <hx-checkbox
+            :checked="isDisabled"
+            @change="onChkChange($event, 'isDisabled')">
+          </hx-checkbox>
+          <label>Disabled</label>
+        </p>
+        <p>
+          <hx-checkbox
+            :checked="isInvalid"
+            @change="onChkChange($event, 'isInvalid')">
+          </hx-checkbox>
+          <label>Invalid</label>
+        </p>
+      </div>
     </div>
   </section>
 
   <section data-visreg="search-states">
-    <table class="hxTable hxCondensed">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Default</th>
-          <th>Invalid</th>
-          <th>Disabled</th>
-        </tr>
-      </thead>
+    <h2>States</h2>
+    <table class="hxTable hxTable--condensed">
       <tbody>
         <tr>
           <th>Default</th>
@@ -426,10 +491,10 @@ class="current">
             <hx-search></hx-search>
           </td>
           <td>
-            <hx-search invalid></hx-search>
+            <hx-search placeholder="Search..."></hx-search>
           </td>
           <td>
-            <hx-search disabled></hx-search>
+            <hx-search value="kittens"></hx-search>
           </td>
         </tr>
         <tr>
@@ -437,9 +502,11 @@ class="current">
           <td>
             <hx-search invalid></hx-search>
           </td>
-          <td>n/a</td>
           <td>
-            <hx-search invalid disabled></hx-search>
+            <hx-search invalid placeholder="Search..."></hx-search>
+          </td>
+          <td>
+            <hx-search invalid value="kittens"></hx-search>
           </td>
         </tr>
         <tr>
@@ -448,26 +515,40 @@ class="current">
             <hx-search disabled></hx-search>
           </td>
           <td>
-            <hx-search disabled invalid></hx-search>
+            <hx-search disabled placeholder="Search..."></hx-search>
           </td>
-          <td>n/a</td>
+          <td>
+            <hx-search disabled value="kittens"></hx-search>
+          </td>
+        </tr>
+        <tr>
+          <th>Disabled and Invalid</th>
+          <td>
+            <hx-search invalid disabled></hx-search>
+          </td>
+          <td>
+            <hx-search invalid disabled placeholder="Search..."></hx-search>
+          </td>
+          <td>
+            <hx-search invalid disabled value="kittens"></hx-search>
+          </td>
         </tr>
       </tbody>
     </table>
   </section>
 
 <section>
-  <h2 class="hxSectionTitle" id="see-also">See Also</h2>
+  <h2 id="see-also">See Also</h2>
   <ul>
       <li><a href="elements/hx-search">&lt;hx-search&gt;</a></li>
   </ul>
 </section>
   </main>
   <aside class="hxSiderail hxBox-md">
-    <h1 class="hxContainerTitle">On this page:</h1>
+    <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#search">Basic Search Bar</a>
+            <a href="#demos">Demos</a>
         
         <a href="#see-also">See Also</a>
       <hr />
@@ -487,10 +568,10 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-02-27
+      2018-03-14
     </small>
 
-  <small>(v0.2.1)</small>
+  <small>(v0.4.0)</small>
 </div>
   </footer>
 
