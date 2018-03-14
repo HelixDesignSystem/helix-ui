@@ -119,6 +119,26 @@ dd {
   margin-left: 1em;
 }
 
+[loading] {
+  display: none;
+  text-align: center;
+
+  hx-busy {
+    font-size: 2rem;
+
+    & + * {
+      margin-top: 0.5rem;
+    }
+  }
+}
+
 [v-cloak] {
   opacity: 0;
+
+  & + [loading] {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }

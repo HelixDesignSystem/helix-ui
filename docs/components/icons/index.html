@@ -37,22 +37,47 @@ also:
     {% endcode %}
   </section>
 
-  <section>
-    <h2 id="available-icons">Available Icons</h2>
-    <p>There are {{ data.icons.length }} icons available!</p>
-    <div class="hxRow">
-      {% for icon in data.icons %}
-        <div class="hxCol hxSpan-12-xs hxSpan-6-sm hxSpan-4-md hxSpan-3-xl">
-          <div class="demo icon-demo">
-            <hx-icon type="{{icon}}"></hx-icon>
+  <section id="vue-iconDemo">
+    <h2 id="available-icons">Icons</h2>
+    <div v-cloak>
+      {% raw %}
+        <div class="hxRow">
+          <div class="hxCol hxSpan-12-xs hxSpan-8-md hxSpan-6-xl">
             <p>
-              <code>{{icon}}</code>
+              <hx-search
+                :placeholder="`Search ${icons.length} icons for...`"
+                :value="filter"
+                @input="onFilterUpdate"
+                @change="onFilterUpdate"
+              ></hx-search>
+            </p>
+            <p v-if="hasFilter">
+              <small v-if="filteredIcons.length > 0">
+                {{filteredIcons.length}} icons match <em>"{{filter}}"</em>
+              </small>
             </p>
           </div>
         </div>
-      {% else %}
-        <p>No Icons defined</p>
-      {% endfor %}
+        <div v-if="filteredIcons.length" class="hxRow">
+          <template v-for="icon in filteredIcons">
+            <div class="hxCol hxSpan-12-xs hxSpan-6-sm hxSpan-4-md hxSpan-3-xl" key="icon.name">
+              <div class="demo icon-demo">
+                <hx-icon :type="icon.name"></hx-icon>
+                <p><code>{{icon.name}}</code></p>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div v-else>
+          <p>
+            <small>No icons match your search criteria. Try another.</small>
+          </p>
+        </div>
+      {% endraw %}
+    </div>
+    <div loading class="hxBox-lg">
+      <hx-busy></hx-busy>
+      <p>Loading...</p>
     </div>
   </section>
 {% endblock %}
