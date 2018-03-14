@@ -1,67 +1,262 @@
 [
-  'account',
-  'angle-bottom',
-  'angle-down',
-  'angle-end',
-  'angle-left',
-  'angle-right',
-  'angle-start',
-  'angle-top',
-  'angle-up',
-  'bell',
-  'billing',
-  'calendar',
-  'checkmark',
-  'checkmark-circle',
-  'cog',
-  'copy',
-  'download',
-  'envelope',
-  'exclamation-circle',
-  'exclamation-diamond',
-  'exclamation-triangle',
-  'export',
-  'external-link',
-  'filter',
-  'help-circle',
-  'info-circle',
-  'input-file',
-  'input-time',
-  'input-url',
-  'kbd-arrow-down',
-  'kbd-arrow-left',
-  'kbd-arrow-right',
-  'kbd-arrow-up',
-  'kbd-capslock',
-  'kbd-command',
-  'kbd-delete',
-  'kbd-eject',
-  'kbd-option',
-  'kbd-return',
-  'kbd-shift',
-  'kbd-space',
-  'kbd-tab',
-  'lock',
-  'minus',
-  'minus-circle',
-  'monitoring',
-  'payment',
-  'pencil',
-  'phone',
-  'plus',
-  'plus-or-minus',
-  'search',
-  'server',
-  'sort',
-  'sort-down',
-  'sort-up',
-  'support',
-  'tag',
-  'technical-change',
-  'technical-incident',
-  'ticketing',
-  'times',
-  'times-circle',
-  'trash',
-  'user',
+    {
+        name: 'account',
+        minver: '0.1.10',
+    },
+    {
+        name: 'angle-bottom',
+        minver: '0.2.1',
+    },
+    {
+        name: 'angle-down',
+        minver: '0.1.0',
+    },
+    {
+        name: 'angle-end',
+        minver: '0.2.1',
+    },
+    {
+        name: 'angle-left',
+        minver: '0.1.0',
+    },
+    {
+        name: 'angle-right',
+        minver: '0.1.0',
+    },
+    {
+        name: 'angle-start',
+        minver: '0.2.1',
+    },
+    {
+        name: 'angle-top',
+        minver: '0.2.1',
+    },
+    {
+        name: 'angle-up',
+        minver: '0.1.0',
+    },
+    {
+        name: 'bell',
+        minver: '0.1.10',
+    },
+    {
+        name: 'billing',
+        minver: '0.1.10',
+    },
+    {
+        name: 'calendar',
+        minver: '0.1.0',
+    },
+    {
+        name: 'checkmark',
+        minver: '0.1.0',
+    },
+    {
+        name: 'checkmark-circle',
+        minver: '0.1.10',
+    },
+    {
+        name: 'cog',
+        minver: '0.1.0',
+    },
+    {
+        name: 'copy',
+        minver: '0.1.10',
+    },
+    {
+        name: 'download',
+        minver: '0.1.4',
+    },
+    {
+        name: 'envelope',
+        minver: '0.1.0',
+    },
+    {
+        name: 'exclamation-circle',
+        minver: '0.1.0',
+    },
+    {
+        name: 'exclamation-diamond',
+        minver: '0.2.1',
+    },
+    {
+        name: 'exclamation-triangle',
+        minver: '0.1.0',
+    },
+    {
+        name: 'export',
+        minver: '0.1.4',
+    },
+    {
+        name: 'external-link',
+        minver: '0.1.10',
+    },
+    {
+        name: 'filter',
+        minver: '0.1.4',
+    },
+    {
+        name: 'help-circle',
+        minver: '0.1.10',
+    },
+    {
+        name: 'info-circle',
+        minver: '0.1.0',
+    },
+    {
+        name: 'input-file',
+        minver: '0.1.0',
+    },
+    {
+        name: 'input-time',
+        minver: '0.1.0',
+    },
+    {
+        name: 'input-url',
+        minver: '0.1.0',
+    },
+    {
+        name: 'kbd-arrow-down',
+        minver: '0.1.0',
+    },
+    {
+        name: 'kbd-arrow-left',
+        minver: '0.1.0',
+    },
+    {
+        name: 'kbd-arrow-right',
+        minver: '0.1.0',
+    },
+    {
+        name: 'kbd-arrow-up',
+        minver: '0.1.0',
+    },
+    {
+        name: 'kbd-capslock',
+        minver: '0.1.0',
+    },
+    {
+        name: 'kbd-command',
+        minver: '0.1.0',
+    },
+    {
+        name: 'kbd-delete',
+        minver: '0.1.0',
+    },
+    {
+        name: 'kbd-eject',
+        minver: '0.1.0',
+    },
+    {
+        name: 'kbd-option',
+        minver: '0.1.0',
+    },
+    {
+        name: 'kbd-return',
+        minver: '0.1.0',
+    },
+    {
+        name: 'kbd-shift',
+        minver: '0.1.0',
+    },
+    {
+        name: 'kbd-space',
+        minver: '0.1.0',
+    },
+    {
+        name: 'kbd-tab',
+        minver: '0.1.0',
+    },
+    {
+        name: 'lock',
+        minver: '0.1.0',
+    },
+    {
+        name: 'minus',
+        minver: '0.2.0',
+    },
+    {
+        name: 'minus-circle',
+        minver: '0.1.10',
+    },
+    {
+        name: 'monitoring',
+        minver: '0.1.10',
+    },
+    {
+        name: 'payment',
+        minver: '0.2.0',
+    },
+    {
+        name: 'pencil',
+        minver: '0.1.10',
+    },
+    {
+        name: 'phone',
+        minver: '0.1.0',
+    },
+    {
+        name: 'plus',
+        minver: '0.2.0',
+    },
+    {
+        name: 'plus-or-minus',
+        minver: '0.1.0',
+    },
+    {
+        name: 'search',
+        minver: '0.1.0',
+    },
+    {
+        name: 'server',
+        minver: '0.1.10',
+    },
+    {
+        name: 'sort',
+        minver: '0.1.4',
+    },
+    {
+        name: 'sort-down',
+        minver: '0.1.4',
+    },
+    {
+        name: 'sort-up',
+        minver: '0.1.4',
+    },
+    {
+        name: 'support',
+        minver: '0.1.0',
+    },
+    {
+        name: 'tag',
+        minver: '0.1.10',
+    },
+    {
+        name: 'technical-change',
+        minver: '0.2.0',
+    },
+    {
+        name: 'technical-incident',
+        minver: '0.2.0',
+    },
+    {
+        name: 'ticketing',
+        minver: '0.1.10',
+    },
+    {
+        name: 'times',
+        minver: '0.1.0',
+    },
+    {
+        name: 'times-circle',
+        minver: '0.1.0',
+    },
+    {
+        name: 'trash',
+        minver: '0.1.10',
+    },
+    {
+        name: 'user',
+        minver: '0.1.10',
+    },
 ]
