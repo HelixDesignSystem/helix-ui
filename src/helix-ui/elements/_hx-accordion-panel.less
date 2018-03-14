@@ -1,0 +1,40 @@
+@import "./_hx-element";
+@import "core/hx-icon";
+
+#toggle {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+
+  &[aria-expanded="true"] {
+    .header__icon {
+      transform: scaleY(-1);
+    }
+  }
+}
+
+.header {
+  align-items: center;
+  display: flex;
+
+  &__content {
+    flex-shrink: 0;
+    flex-grow: 1;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+  }
+}
+
+#body {
+  display: none;
+
+  &[aria-expanded="true"] {
+    display: block;
+  }
+}

@@ -1,0 +1,109 @@
+---
+title: Stepper
+also:
+  components/accordions: Accordions
+  elements/hx-accordion-panel: <hx-accordion-panel>
+  elements/hx-accordion: <hx-accordion>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <div class="hxAlert hxAlert--warning">
+    <div class="hxAlert__icon">
+      <hx-icon type="exclamation-diamond"></hx-icon>
+    </div>
+    <div class="hxAlert__text">
+      <span class="hxAlert__status">BETA</span>
+      This component is not recommended for production use.
+    </div>
+  </div>
+  <br />
+  <section id="vue-stepperDemo">
+    <h2 id="demo">Basic Stepper</h2>
+    <div class="demo demo-stepper">
+      <hx-accordion
+        class="beta-hxStepper"
+        current-panel="0"
+        ref="accordion">
+
+        <hx-accordion-panel>
+          <header slot="header">
+            <span class="beta-hxStepCounter"></span>
+            <span class="beta-hxStepLabel">Account</span>
+            <span class="beta-hxStepValue">Acme Corp Inc.</span>
+          </header>
+          <div class="hxBox-md">
+            <p>
+              <em>Content Goes Here</em>
+            </p>
+            <p class="beta-hxSubmitButtons">
+              <button class="hxBtn hxPrimary" @click="nextStep">Next Step</button>
+              <button class="hxBtn hxLink">Cancel</button>
+            </p>
+          </div>
+        </hx-accordion-panel>
+
+        <hx-accordion-panel>
+          <header slot="header">
+            <span class="beta-hxStepCounter"></span>
+            <span class="beta-hxStepLabel">Topic</span>
+            <span class="beta-hxStepValue">Technical Incident</span>
+          </header>
+          <div class="hxBox-md">
+            <p>
+              <em>Content Goes Here</em>
+            </p>
+            <p class="beta-hxSubmitButtons">
+              <button class="hxBtn hxPrimary" @click="nextStep">Next Step</button>
+              <button class="hxBtn" @click="prevStep">Prev Step</button>
+              <button class="hxBtn hxLink">Cancel</button>
+            </p>
+          </div>
+        </hx-accordion-panel>
+
+        <hx-accordion-panel>
+          <header slot="header">
+            <span class="beta-hxStepCounter"></span>
+            <span class="beta-hxStepLabel">Issue Details</span>
+            <span class="beta-hxStepValue"></span>
+          </header>
+          <div class="hxBox-md">
+            <p>
+              <em>Content Goes Here</em>
+            </p>
+            <p class="beta-hxSubmitButtons">
+              <button class="hxBtn hxPrimary">Submit</button>
+              <button class="hxBtn" @click="prevStep">Prev Step</button>
+              <button class="hxBtn hxLink">Cancel</button>
+            </p>
+          </div>
+        </hx-accordion-panel>
+      </hx-accordion>
+    </div>
+    {% code 'html' %}
+      <hx-accordion class="beta-hxStepper" current-panel="0">
+        <hx-accordion-panel>
+          <header slot="header">
+            <span class="beta-hxStepCounter">
+              <!-- CSS will handle filling in the step number -->
+            </span>
+            <span class="beta-hxStepLabel">Account</span>
+            <span class="beta-hxStepValue">Acme Corp Inc.</span>
+          </header>
+          <div class="hxBox-md">
+            <p>
+              <em>Content Goes Here</em>
+            </p>
+            <p class="beta-hxSubmitButtons">
+              <button class="hxBtn hxPrimary">Next Step</button>
+              <button class="hxBtn">Prev Step</button>
+              <button class="hxBtn hxLink">Cancel</button>
+            </p>
+          </div>
+        </hx-accordion-panel>
+        <hx-accordion-panel>...</hx-accordion-panel>
+        <hx-accordion-panel>...</hx-accordion-panel>
+        ...
+      </hx-accordion>
+    {% endcode %}
+  </section>
+{% endblock %}

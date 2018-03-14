@@ -92,7 +92,7 @@ export class HXElement extends HTMLElement {
 
         let evt = new CustomEvent(evtName, {
             bubbles: true,
-            details: details,
+            detail: details,
         });
         this.dispatchEvent(evt);
     }//$emit

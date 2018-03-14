@@ -1,0 +1,119 @@
+---
+title: Accordions
+also:
+  elements/hx-accordion: <hx-accordion>
+  elements/hx-accordion-panel: <hx-accordion-panel>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section id="vue-accordionDemo">
+    <h2 class="hxSectionTitle" id="demo">Demos</h2>
+    <div class="hxRow">
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3>Options</h3>
+        <p>
+          <label>
+            <input type="checkbox" v-model="isSinglePanel" />
+            Single-panel mode
+          </label>
+          <div class="hxBtnGroup">
+            <button :disabled="!isSinglePanel" class="hxBtn" @click="prevPanel">
+              Prev Panel
+            </button>
+            <button :disabled="!isSinglePanel" class="hxBtn" @click="nextPanel">
+              Next Panel
+            </button>
+          </div>
+        </p>
+      </div>
+      <div class="hxCol hxSpan-9-xs">
+        <h3>Basic Accordion</h3>
+        <template v-if="isSinglePanel">
+          <div class="demo">
+            <hx-accordion :current-panel="currentPanel" ref="accordion" @open="onOpen">
+              <hx-accordion-panel>
+                <header slot="header">Cupcake Ipsum</header>
+                <div class="hxBox-md">
+                  <p>
+                    Sweet toffee pie icing croissant halvah chupa chups. Cotton candy pie
+                    sesame snaps. Muffin sesame snaps cake toffee liquorice apple pie
+                    apple pie chupa chups. Lemon drops caramels sugar plum.
+                  </p>
+                </div>
+              </hx-accordion-panel>
+              <hx-accordion-panel>
+                <header slot="header">Biscuit Marshmallow</header>
+                <div class="hxBox-md">
+                  <p>
+                    Sweet toffee pie icing croissant halvah chupa chups. Cotton candy pie
+                    sesame snaps. Muffin sesame snaps cake toffee liquorice apple pie
+                    apple pie chupa chups. Lemon drops caramels sugar plum.
+                  </p>
+                </div>
+              </hx-accordion-panel>
+              <hx-accordion-panel>
+                <header slot="header">Caramels Marzipan</header>
+                <div class="hxBox-md">
+                  <p>
+                    Sweet toffee pie icing croissant halvah chupa chups. Cotton candy pie
+                    sesame snaps. Muffin sesame snaps cake toffee liquorice apple pie
+                    apple pie chupa chups. Lemon drops caramels sugar plum.
+                  </p>
+                </div>
+              </hx-accordion-panel>
+            </hx-accordion>
+          </div>
+          <pre><code>{% raw %}{{snippet}}{% endraw %}</code></pre>
+        </template>
+        <template v-else>
+          <div class="demo">
+            <hx-accordion>
+              <hx-accordion-panel open>
+                <header slot="header">Cupcake Ipsum</header>
+                <div class="hxBox-md">
+                  <p>
+                    Sweet toffee pie icing croissant halvah chupa chups. Cotton candy pie
+                    sesame snaps. Muffin sesame snaps cake toffee liquorice apple pie
+                    apple pie chupa chups. Lemon drops caramels sugar plum.
+                  </p>
+                </div>
+              </hx-accordion-panel>
+              <hx-accordion-panel>
+                <header slot="header">Biscuit Marshmallow</header>
+                <div class="hxBox-md">
+                  <p>
+                    Sweet toffee pie icing croissant halvah chupa chups. Cotton candy pie
+                    sesame snaps. Muffin sesame snaps cake toffee liquorice apple pie
+                    apple pie chupa chups. Lemon drops caramels sugar plum.
+                  </p>
+                </div>
+              </hx-accordion-panel>
+              <hx-accordion-panel open>
+                <header slot="header">Caramels Marzipan</header>
+                <div class="hxBox-md">
+                  <p>
+                    Sweet toffee pie icing croissant halvah chupa chups. Cotton candy pie
+                    sesame snaps. Muffin sesame snaps cake toffee liquorice apple pie
+                    apple pie chupa chups. Lemon drops caramels sugar plum.
+                  </p>
+                </div>
+              </hx-accordion-panel>
+            </hx-accordion>
+          </div>
+          {% code 'text' %}
+            <hx-accordion>
+              <hx-accordion-panel open>
+                <header slot="header">Cupcake Ipsum</header>
+                <div class="hxBox-md">
+                  <!-- body content goes here -->
+                </div>
+              </hx-accordion-panel>
+              <hx-accordion-panel>...</hx-accordion-panel>
+              <hx-accordion-panel open>...</hx-accordion-panel>
+            </hx-accordion>
+          {% endcode %}
+        </template>
+      </div>
+    </div>
+  </section>
+{% endblock %}

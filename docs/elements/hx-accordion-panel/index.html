@@ -1,0 +1,35 @@
+---
+title: <hx-accordion-panel>
+also:
+  components/accordions: Accordions
+  elements/hx-accordion: <hx-accordion>
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>
+          an <a href="elements/hx-accordion">&lt;hx-accordion&gt;</a> element
+        </hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
+{% block attributes %}
+  <dl>
+    <dt>open</dt>
+    <dd>Opens the panel</dd>
+  </dl>
+{% endblock %}
+{% block properties %}
+  <dl>
+    <dt>open <small>(Boolean)</small></dt>
+    <dd>Determines if panel is open.</dd>
+  </dl>
+{% endblock %}
