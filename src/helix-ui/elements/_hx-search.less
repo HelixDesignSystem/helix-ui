@@ -1,0 +1,161 @@
+@import (reference) "_utils";
+@import "./_hx-element.less";
+@import "core/hx-icon";
+
+:host {
+  display: block;
+  font-size: 1rem;
+  height: 2rem;
+  min-width: 8rem;
+
+  #wrapper {
+    display: flex;
+    height: 100%;
+    position: relative;
+  }
+
+  #icon {
+    color: @gray-700;
+    flex-shrink: 0;
+    order: 1;
+    padding: 0.5rem;
+    z-index: 1;
+  }
+
+  #search {
+    #Util.placeholder();
+    #Util.resetFocus();
+
+    background-color: transparent;
+    border: none;
+    color: @gray-900;
+    cursor: inherit;
+    flex-grow: 1;
+    font-weight: 400;
+    min-width: 0;
+    order: 2;
+    width: 0; // disables user agent width
+    z-index: 1;
+
+    &:focus {
+      ~ #clear {
+        color: @cyan-700;
+      }
+
+      ~ #customControl {
+        border-color: @cyan-700;
+        box-shadow: @focus-glow;
+      }
+    }
+  }
+
+  #customControl {
+    background-color: @gray-0;
+    border-radius: 2px;
+    border: 1px solid @gray-500;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0; // sits behind everything
+  }
+
+  #clear {
+    #Util.resetFocus();
+
+    background-color: transparent;
+    border: none;
+    color: @gray-700;
+    cursor: pointer;
+    flex-shrink: 0;
+    order: 3;
+    padding: 0.5rem;
+    z-index: 1;
+
+    &:focus {
+      hx-icon {
+        outline-offset: 2px;
+        outline: 1px dotted currentColor;
+      }
+
+      ~ * {
+        color: @cyan-700;
+      }
+
+      ~ #customControl {
+        border-color: @cyan-700;
+        box-shadow: @focus-glow;
+      }
+    }//:focus
+  }//#clear
+}//default
+
+:host([invalid]) {
+  color: @red-900;
+
+  // ----- IDLE -----
+
+  #icon,
+  #clear {
+    color: inherit;
+  }
+
+  #customControl {
+    border-color: @red-900;
+    border-width: 2px;
+  }
+
+  // ----- FOCUS -----
+
+  #clear:focus {
+    hx-icon {
+      outline-color: currentColor;
+    }
+  }
+
+  #search:focus {
+    ~ #clear {
+      color: @red-900;
+    }
+  }
+
+  // make sure that our custom control doesn't lose focus style
+  // when we tab between #search and #clear
+  #clear:focus,
+  #search:focus {
+    ~ #customControl {
+      box-shadow: @focus-glow-invalid;
+      border-color: @red-900;
+    }
+  }
+}//[invalid]
+
+:host([disabled]) {
+  color: @gray-400;
+
+  #wrapper {
+    color: inherit;
+    cursor: not-allowed;
+  }
+
+  #icon {
+    color: inherit;
+  }
+
+  #clear {
+    display: none;
+  }
+
+  #search {
+    #Util.disabledPlaceholder();
+
+    color: inherit;
+  }
+
+  #customControl {
+    background-color: @gray-50;
+    border-color: @gray-300;
+    border-width: 1px;
+  }
+}//[disabled]
