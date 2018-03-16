@@ -13,7 +13,10 @@ const componentExtractor = new RegExp("(\\w+/[\\w-]+)/index\\.html", "gm");
 let matches: string[] = [];
 let matched: RegExpExecArray;
 while (matched = componentExtractor.exec(taggedForRegression)) {
-    matches.push(matched[1]);
+    const match = matched[1];
+    if (matches.indexOf(match) < 0) {
+        matches.push(match);
+    }
 }
 
 const regressionTest = async (t: TestContext, config: IConfig, component: string) => {
