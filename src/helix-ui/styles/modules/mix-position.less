@@ -84,7 +84,7 @@
   //'left-top', 'left-bottom', 'left'
   &([position^='left']) .position-arrow {
     &::before {
-      box-shadow: 0px 3px 3px 0 @shadow-color;
+      box-shadow: -3px 3px 3px 0 @shadow-color;
       right: @shadow-offset;
     }
 
@@ -97,7 +97,7 @@
   //'right-top', 'right-bottom', 'right'
   &([position^='right']) .position-arrow {
     &::before {
-      box-shadow: -3px 0px 3px 0 @shadow-color;
+      box-shadow: -3px 3px 3px 0 @shadow-color;
       left: @shadow-offset;
     }
 

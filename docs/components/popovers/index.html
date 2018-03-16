@@ -60,16 +60,27 @@ also:
   <section>
     <h2 id="appearance">Appearance</h2>
     <div class="popover-appearance">
-      {% for _position in [
-        'top', 'top-left', 'top-right',
-        'bottom', 'bottom-left', 'bottom-right',
-        'right', 'right-top', 'right-bottom',
-        'left', 'left-top', 'left-bottom'
-      ] %}
-        <hx-popover position="{{_position}}">
-          <code>position="{{_position}}"</code>
-        </hx-popover>
-      {% endfor %}
+      <table>
+        <tbody>
+          <tr>
+          {% for _position in [
+            'top', 'top-left', 'top-right',
+            'bottom', 'bottom-left', 'bottom-right',
+            'right', 'right-top', 'right-bottom',
+            'left', 'left-top', 'left-bottom'
+          ] %}
+            <td>
+              <hx-popover position="{{_position}}">
+                <code>position="{{_position}}"</code>
+              </hx-popover>
+            </td>
+            {% if loop.index % 2 === 0 %}
+              </tr><tr>
+            {% endif %}
+          {% endfor %}
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 {% endblock %}
