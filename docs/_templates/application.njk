@@ -2,26 +2,33 @@
 <html lang="{{site.language}}">
 {% include 'partials/head.njk' %}
 <body class="hxVertical" id="top">
+  <!-- This link should be the first item a user can tab to. -->
+  <a href="#content">Skip to main content</a>
+
   <header id="head">
     {% include 'partials/global_nav.njk' %}
   </header>
 
-  <div id="stage">
-    <nav id="nav" class="hxNav">
-      {% include 'partials/app_nav.njk' %}
-    </nav>
-    {% block layout %}
-      <main id="content" class="hxBox-md">
-        {% block content %}
-          {# page content goes here #}
-        {% endblock %}
-      </main>
-      <aside class="hxSiderail hxBox-md">
-        {% block sidebar %}
-          {% include 'partials/sidebar.njk' %}
-        {% endblock %}
-      </aside>
-    {% endblock %}
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
+        {% include 'partials/app_nav.njk' %}
+      </nav>
+
+      {% block layout %}
+        <main role="main" id="content" class="hxBox-md">
+          {% block content %}
+            {# page content goes here #}
+          {% endblock %}
+        </main>
+
+        <aside class="hxSiderail hxBox-md">
+          {% block sidebar %}
+            {% include 'partials/sidebar.njk' %}
+          {% endblock %}
+        </aside>
+      {% endblock %}
+    </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">

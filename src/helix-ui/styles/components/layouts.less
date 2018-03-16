@@ -2,13 +2,36 @@
 @footer-height: 2.5rem; // 40px
 
 /* ======================================= *\
-  +-------+
-  | head  | (eyebrow)
-  +-------+
-  | stage | (stage = nav + content + side rail)
-  +-------+
-  | foot  | (footer)
-  +-------+
+  +-----------------------+
+  | "header" area         |
+  |                       |
+  | +-(#head)-----------+ |
+  | | global nav        | |
+  | +-------------------+ |
+  +-----------------------+
+  | "app" area            |
+  |                       |
+  | +-(#stage)----------+ |
+  | | +-(#nav)--------+ | |
+  | | | product nav   | | |
+  | | +---------------+ | |
+  | |                   | |
+  | | +-(#content)----+ | |
+  | | | ...           | | |
+  | | +---------------+ | |
+  | |                   | |
+  | | +-(.hxSiderail)-+ | |
+  | | | ...           | | |
+  | | +---------------+ | |
+  | +-------------------+ |
+  |                       |
+  +-----------------------+
+  | "footer" area         |
+  |                       |
+  | +-(#foot)-----------+ |
+  | | #foot             | |
+  | +-------------------+ |
+  +-----------------------+
 \* ======================================= */
 
 /* ---------- Base/Common Styling ---------- */
@@ -20,54 +43,79 @@ body {
   background-color: @gray-25;
   height: 100%;
   margin: 0;
+}
 
-  > #head {
-    background-color: @gray-1000;
-    flex-shrink: 0;
-    height: @header-height;
-  }//#head
+// Skip link
+// visually hidden off screen until focused by keyboard
+a[href="#content"] {
+  left: 0;
+  position: absolute;
+  top: -100px;
 
-  > #stage {
-    display: flex;
-    flex-grow: 1;
-    flex-shrink: 0;
+  &:focus {
+    background-color: @orange-100;
+    border: 1px solid @orange-700;
+    color: @gray-1000;
+    left: 50%;
+    padding: 0.5rem;
+    top: 0.5rem;
+    transform: tranlateX(-50%);
+  }
+}
 
-    > #nav { // Left Nav
-      flex-shrink: 0;
-      width: @app-nav-width;
-    }
+#head {
+  background-color: @gray-1000;
+  flex-shrink: 0;
+  height: @header-height;
+}
 
-    > #content {
-      flex-grow: 1;
-      min-width: 0px;
-    }
+#app {
+  display: flex;
+  flex-direction: column; // avoids layout bug in Chrome
+  flex-grow: 1;
+  flex-shrink: 0;
+}
 
-    > .hxSiderail {
-      background-color: @gray-100;
-      flex-shrink: 0;
-      width: 25%; // 3 of 12 columns
-    }
-  }//#stage
+#stage {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
 
-  > #foot {
-    align-items: center;
-    background-color: @gray-950;
-    color: @gray-300;
-    display: flex;
-    flex-shrink: 0;
-    height: @footer-height;
-    padding: 0 20px;
+#nav { // Left Nav
+  flex-shrink: 0;
+  width: @app-nav-width;
+}
 
-    nav {
-      display: inline-block;
-    }
+#content {
+  flex-grow: 1;
+  min-width: 0px;
+}
 
-    a {
-      color: @cyan-500;
-      margin-left: 32px;
-    }
-  }//#foot
-}//body
+.hxSiderail {
+  background-color: @gray-100;
+  flex-shrink: 0;
+  width: 25%; // 3 of 12 columns
+}
+
+#foot {
+  align-items: center;
+  background-color: @gray-950;
+  color: @gray-300;
+  display: flex;
+  flex-shrink: 0;
+  height: @footer-height;
+  padding: 0 20px;
+
+  nav {
+    display: inline-block;
+  }
+
+  a {
+    color: @cyan-500;
+    margin-left: 32px;
+  }
+}//#foot
 
 /* ========== VERTICAL LAYOUT ========== */
 body.hxVertical {
@@ -86,21 +134,21 @@ body.hxHorizontal {
   display: grid;
   grid-template-areas:
     'header'
-    'stage'
+    'app'
     'footer';
   grid-template-columns: 1fr;
   grid-template-rows: @header-height 1fr @footer-height;
 
-  > #head {
+  #head {
     // Legacy Grid
     -ms-grid-column: 1;
     -ms-grid-row: 1;
 
     // Modern Grid
     grid-area: header;
-  }//#head
+  }
 
-  > #stage {
+  #app {
     overflow: hidden;
 
     // Legacy Grid
@@ -108,29 +156,35 @@ body.hxHorizontal {
     -ms-grid-row: 2;
 
     // Modern Grid
-    grid-area: stage;
+    grid-area: app;
+  }
 
-    > #nav {
-      overflow-y: auto;
+  #stage {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  #nav {
+    overflow-y: auto;
+  }
+
+  #content {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    > hx-panel + hx-panel {
+      border-left: 1px solid @gray-300;
     }
+  }
 
-    > #content {
-      display: flex;
-      overflow-x: auto;
-      overflow-y: hidden;
-
-      > hx-panel + hx-panel {
-        border-left: 1px solid @gray-300;
-      }
-    }
-  }//#stage
-
-  > #foot {
+  #foot {
     // Legacy Grid
     -ms-grid-column: 1;
     -ms-grid-row: 3;
 
     // Modern Grid
     grid-area: footer;
-  }//#foot
+  }
 }//body.hxHorizontal
