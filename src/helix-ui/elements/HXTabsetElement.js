@@ -12,7 +12,6 @@ export class HXTabsetElement extends HXElement {
 
     constructor () {
         super();
-        this.$tablist = this.querySelector('hx-tablist');
         this._onKeyUp = this._onKeyUp.bind(this);
         this._onTabClick = this._onTabClick.bind(this);
     }
@@ -22,6 +21,7 @@ export class HXTabsetElement extends HXElement {
         this.$defaultAttribute('id', this.$generateId());
         this._setupIds();
         this.currentTab = Number(this.getAttribute('current-tab')) || 0;
+        this.$tablist = this.querySelector('hx-tablist');
         this.$tablist.addEventListener('keyup', this._onKeyUp);
         this.$tablist.addEventListener('keydown', this.$preventScroll);
         this.tabs.forEach(tab => {
