@@ -1,18 +1,17 @@
+// TODO: see if there's a better way to reset all the things
 hx-popover {
   background-color: @gray-0;
   border: solid 1px @gray-300;
   box-shadow: 0px 3px 3px 0 @shadow-color;
-  color: initial;
+  color: @gray-900;
   display: none;
-  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   font-style: normal;
   font-weight: normal;
   left: 0;
   letter-spacing: normal;
-  max-height: 31.25rem; //500px
-  max-width: 31.25rem; //500px
-  min-width: 20rem;
+  max-width: 32rem; //~512px
+  min-width: 20rem; //~320px
   position: absolute;
   text-align: left;
   text-decoration: none;
@@ -26,19 +25,19 @@ hx-popover {
   z-index: @popover-z-index;
 
   &[open] {
-    display: block;
-  }
-
-  header {
-    margin-bottom: 1.25rem;
-  }
-
-  footer {
     display: flex;
-    margin-top: 1.25rem;
+    flex-direction: column;
+  }
 
-    button:not(:first-child) {
-      margin-left: 1.25rem;
-    }
+  & > &-head {
+    order: 1;
+  }
+
+  & > &-body {
+    order: 2;
+  }
+
+  & > &-foot {
+    order: 3;
   }
 }

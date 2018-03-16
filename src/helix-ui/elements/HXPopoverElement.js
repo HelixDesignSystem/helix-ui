@@ -8,10 +8,10 @@ const template = document.createElement('template');
 
 template.innerHTML = `
   <style>${shadowStyles}</style>
-  <div id="container" class="position-arrow">
-    <slot name="header"></slot>
-    <slot></slot>
-    <slot name="footer"><slot>
+  <div class="position-arrow">
+    <div id="container">
+      <slot></slot>
+    </div>
   </div>
 `;
 

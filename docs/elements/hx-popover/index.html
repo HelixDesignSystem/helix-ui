@@ -2,6 +2,9 @@
 title: <hx-popover>
 also:
   components/popovers: Popovers
+  elements/hx-popover-body: <hx-popover-body>
+  elements/hx-popover-foot: <hx-popover-foot>
+  elements/hx-popover-head: <hx-popover-head>
 ---
 {% extends 'element.njk' %}
 {% block content %}
@@ -18,7 +21,14 @@ also:
       </hx-def>
       <hx-def>
         <hx-dt>Permitted Children</hx-dt>
-        <hx-dd>flow content</hx-dd>
+        <hx-dd>
+          in this order:
+          <ol>
+            <li>an optional <a href="elements/hx-popover-head">&lt;hx-popover-head&gt;</a> element</li>
+            <li>an <a href="elements/hx-popover-body">&lt;hx-popover-body&gt;</a> element</li>
+            <li>an optional <a href="elements/hx-popover-foot">&lt;hx-popover-foot&gt;</a> element</li>
+          </ol>
+        </hx-dd>
       </hx-def>
     </hx-dl>
   </section>
