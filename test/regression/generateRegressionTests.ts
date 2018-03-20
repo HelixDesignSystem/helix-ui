@@ -22,13 +22,14 @@ while (matched = componentExtractor.exec(taggedForRegression)) {
 const regressionTest = async (t: TestContext, config: IConfig, component: string) => {
     const snappit = new Snappit(config);
     const driver = await snappit.start();
-
     await util.go(driver, component);
+
     for (const e of await driver.findElements(By.css(util.selectors.visreg))) {
         const sectionName = await e.getAttribute("data-visreg");
         t.log(`  ${sectionName}:`);
         await util.snapshot(t, e);
         t.log("    ✔ DOM Snapshot");
+        await driver.executeScript("window.scroll(0, 0);");
         await snappit.snap(`{browserName}/${sectionName}`, e as WebElement);
         t.log("    ✔ Image Snapshot");
     }
