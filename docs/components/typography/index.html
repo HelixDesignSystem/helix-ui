@@ -5,7 +5,7 @@ title: Typography
 {% block content %}
   <section><!-- Typefaces -->
     <h2 id="typefaces">Typefaces</h2>
-    <div class="demo demo-typography">
+    <div class="demo demo-typography" data-visreg="typography-typefaces">
       <div class="hxRow">
         <div class="hxCol font-roboto">
           <p class="weight-thin">100: Roboto Thin</p>
@@ -27,7 +27,7 @@ title: Typography
 
   <section><!-- Headings -->
     <h2 id="headers">Headings</h2>
-    <div class="demo">
+    <div class="demo" data-visreg="typography-headings">
       <h1>Heading One</h1>
       <h2>Heading Two</h2>
       <h3>Heading Three</h3>
@@ -83,7 +83,7 @@ title: Typography
       muted appearance.
     </p>
 
-    <div class="demo">
+    <div class="demo" data-visreg="typography-subdued">
       <span class="hxSubdued">Subdued</span>
     </div>
     {% code 'html' %}
@@ -103,7 +103,7 @@ title: Typography
       the "caption" style.
     </p>
 
-    <div class="demo">
+    <div class="demo" data-visreg="typography-caption">
       <p class="hxCaption">Caption</p>
     </div>
     {% code 'html' %}
@@ -127,7 +127,7 @@ title: Typography
       "sub-body" style.
     </p>
 
-    <div class="demo">
+    <div class="demo" data-visreg="typography-sub-body">
       <p class="hxSubBody">Sub-Body</p>
     </div>
     {% code 'html' %}
@@ -152,7 +152,7 @@ title: Typography
       </div>
     </div>
 
-    <div class="demo">
+    <div class="demo" data-visreg="typography-link">
       <ul>
         <li><a href="#">Normal Link</a></li>
         <li><a href="#" class="pseudo-active">Pressed Link</a></li>
@@ -167,7 +167,7 @@ title: Typography
       text from code snippets.
     </p>
 
-    <div class="demo">
+    <div class="demo" data-visreg="typography-inline-code">
       <p>
         Add an event listener with the <code>EventTarget.addEventListener()</code> function.
       </p>
@@ -185,7 +185,7 @@ title: Typography
       Use the <code>&lt;kbd&gt;</code> element to differentiate descriptive text
       from instructional key presses.
     </p>
-    <div class="demo">
+    <div class="demo" data-visreg="typography-keyboard">
       <p>
         Press <kbd>Ctrl+Z</kbd> (<kbd>Command+Z</kbd> on Mac)
         to undo the most recent action.
@@ -213,7 +213,7 @@ title: Typography
   <section><!-- Error Message -->
     <h2 id="error-message">Error Message</h2>
 
-    <div class="demo">
+    <div class="demo" data-visreg="typography-error-message">
       <hx-error>Error message goes here</hx-error>
     </div>
     {% code 'html' %}
@@ -234,7 +234,7 @@ title: Typography
       Below are some examples of the syntax highlighting in action.
     </p>
 
-    <figure>
+    <figure data-visreg="typography-syntax-html">
       <figcaption>HTML Syntax Highlighting Example</figcaption>
       {% code 'html' %}
         <script type="text/javascript" src="path/to/script.js"></script>
@@ -262,7 +262,7 @@ title: Typography
       {% endcode %}
     </figure>
 
-    <figure>
+    <figure data-visreg="typography-syntax-js">
       <figcaption>JavaScript Syntax Highlighting Example</figcaption>
       {% code 'javascript' %}
         /**
@@ -292,7 +292,7 @@ title: Typography
       {% endcode %}
     </figure>
 
-    <figure>
+    <figure data-visreg="typography-syntax-css">
       <figcaption>CSS Syntax Highlighting Example</figcaption>
       {% code 'css' %}
         /* CSS Comment */
@@ -323,7 +323,7 @@ title: Typography
       {% endcode %}
     </figure>
 
-    <figure>
+    <figure data-visreg="typography-syntax-diff">
       <figcaption>diff Syntax Highlighting Example</figcaption>
       {% code 'diff' %}
         Index: languages/ini.js
@@ -359,7 +359,7 @@ title: Typography
       {% endcode %}
     </figure>
 
-    <figure>
+    <figure data-visreg="typography-syntax-bash">
       <figcaption>bash Syntax Highlighting Example</figcaption>
       {% code 'bash' %}
         #!/bin/bash
@@ -380,7 +380,7 @@ title: Typography
       {% endcode %}
     </figure>
 
-    <figure>
+    <figure data-visreg="typography-syntax-ini">
       <figcaption>.ini Syntax Highlighting Example</figcaption>
       {% code 'ini' %}
         ; boilerplate
@@ -398,7 +398,7 @@ title: Typography
       {% endcode %}
     </figure>
 
-    <figure>
+    <figure data-visreg="typography-syntax-markdown">
       <figcaption>Markdown Syntax Highlighting Example</figcaption>
       {% code 'markdown' %}
         # hello world

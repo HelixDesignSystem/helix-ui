@@ -16,12 +16,16 @@ export async function sleep(ms = 1500) {
     });
 }
 
+export async function webComponentsReady(driver: WebDriver) {
+    const ready = async () => (await driver.executeScript("return window.WebComponents.ready")) as boolean;
+    while (!await ready()) {
+        await sleep(100);
+    }
+}
+
 export async function snapshot(t: TestContext, element: WebElement) {
     if (process.env.TRAVIS) {
-        const ready = async () => (await element.getDriver().executeScript("return window.WebComponents.ready")) as boolean;
-        while (!(await ready())) {
-            await sleep(100);
-        }
+        await webComponentsReady(element.getDriver());
     }
 
     t.snapshot(await element.getAttribute("outerHTML"));
