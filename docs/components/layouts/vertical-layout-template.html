@@ -4,7 +4,7 @@
   <title>Vertical - App Title</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- CHANGE ME: update or remove -->
+  <!-- FIXME: update or remove -->
   <base href="{{site.baseHref}}" />
 
   <link rel="shortcut icon" href="images/favicon.png" />
@@ -19,65 +19,78 @@
   <script src="{{data.url.cdn}}/{{data.cdn.js.polyfillLoader}}"></script>
 </head>
 <body class="hxVertical" id="top">
+  <!--
+    a11y: This link should be the first item a user can tab to.
+  -->
+  <a href="#content">Skip to main content</a>
+
   <header id="head">
     <!-- Eyebrow Goes Here -->
   </header>
 
-  <div id="stage">
-    <nav id="nav" class="hxNav">
-      <!-- Left Navigation -->
-      {% include 'partials/app_nav.njk' %}
-      <!-- end:Left Navigation -->
-    </nav>
-    <main id="content" class="hxBox-md">
-      <nav class="hxBreadcrumb">
-        <a href="#">Home</a>
-        <hx-icon class="delimiter" type="angle-right"></hx-icon>
-        <a href="components/layouts">Layouts</a>
-        <hx-icon class="delimiter" type="angle-right"></hx-icon>
-        <a href="#">Vertical Layout</a>
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
+        <!-- Left Navigation -->
+        {% include 'partials/app_nav.njk' %}
+        <!-- end:Left Navigation -->
       </nav>
 
-      <h1>Page Content</h1>
+      <!--
+        a11y: For accessibility support in legacy browsers, the
+        role="main" attribute must be present.
+      -->
+      <main role="main" id="content" class="hxBox-md">
+        <nav class="hxBreadcrumb">
+          <a href="#">Home</a>
+          <hx-icon class="delimiter" type="angle-right"></hx-icon>
+          <a href="components/layouts">Layouts</a>
+          <hx-icon class="delimiter" type="angle-right"></hx-icon>
+          <a href="#">Vertical Layout</a>
+        </nav>
 
-      <div class="hxAlert">
-        <div class="hxAlert__icon">
-          <hx-icon type="info-circle"></hx-icon>
-        </div>
-        <div class="hxAlert__text">
-          Copy the source of this page to use as a template for your application.
-        </div>
-      </div>
+        <h1>Page Content</h1>
 
-      <ul>
-        <li>
-          Footer will be pushed off viewport by lengthy content.
-        </li>
-        <li>
-          All content scrolls vertically as a <i>single document</i>.
-        </li>
-        <li>
-          <b>No padding, by default.</b>
-          Add Box styling to apply padding.
-        </li>
-      </ul>
-    </main>
-    <aside class="hxSiderail hxBox-md">
-      <p>Side Rail</p>
-      <ul>
-        <li>
-          A side rail may appear before (left rail) or
-          after (right rail) the main content.
-        </li>
-        <li>
-          <b>A side rail is optional</b>. If you do not include a
-          side rail, the main content will grow to fill space.
-        <li>
-          <b>No padding, by default.</b>
-          Add Box styles to apply padding.
-        </li>
-      </ul>
-    </aside>
+        <div class="hxAlert">
+          <div class="hxAlert__icon">
+            <hx-icon type="info-circle"></hx-icon>
+          </div>
+          <div class="hxAlert__text">
+            Copy the source of this page to use as a template for your application.
+          </div>
+        </div>
+
+        <ul>
+          <li>
+            Footer will be pushed off viewport by lengthy content.
+          </li>
+          <li>
+            All content scrolls vertically as a <i>single document</i>.
+          </li>
+          <li>
+            <b>No padding, by default.</b>
+            Add Box styling to apply padding.
+          </li>
+        </ul>
+      </main>
+
+      <aside class="hxSiderail hxBox-md">
+        <p>Side Rail</p>
+        <ul>
+          <li>
+            A side rail may appear before (left rail) or
+            after (right rail) the main content.
+          </li>
+          <li>
+            <b>A side rail is optional</b>. If you do not include a
+            side rail, the main content will grow to fill space.
+          <li>
+            <b>No padding, by default.</b>
+            Add Box styles to apply padding.
+          </li>
+        </ul>
+      </aside>
+    </div>
   </div>
 
   <footer id="foot">
@@ -98,6 +111,7 @@
     <!-- FIXME: point to adapter in node_modules/@webcomponents/webcomponentsjs -->
     <script src="{{data.url.cdn}}/{{data.cdn.js.es5adapter}}"></script>
   </span>
+
   <!-- FIXME: point to HelixUI behavior in node_modules/helix-ui -->
   <script src="dist/scripts/helix-ui.browser.min.js"></script>
 

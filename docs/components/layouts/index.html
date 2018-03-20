@@ -33,18 +33,47 @@ also:
     <br />
 
     <p>
-      Two layouts are officially supported, and both have the same basic HTML structure.
+      Two application layouts are available.
+    </p>
+    <ul>
+      <li>Vertical application layout</li>
+      <li>Horizontal application layout</li>
+    </ul>
+    <p>
+      Both layouts are optimized for use with single-page applications (SPAs)
+      and they have the same basic HTML structure.
     </p>
 
-    <ul>
-      <li>The Head is reserved for Pilot navigation.</li>
-      <li>The Foot is reserved for legal information.</li>
-      <li>The Stage is the area between the Head and Foot where you'll do most of your work.</li>
-    </ul>
+    <br />
+    <hx-dl>
+      <hx-def>
+        <hx-dt>Head</hx-dt>
+        <hx-dd>Reserved for cross-product, global navigation</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>App</hx-dt>
+        <hx-dd>Reserved for Application content</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Foot</hx-dt>
+        <hx-dd>Reserved for legal information</hx-dd>
+      </hx-def>
+    </hx-dl>
   </section>
 
   <section><!-- VERTICAL LAYOUT -->
     <h2 id="vertical-layout">Vertical Layout</h2>
+    <div class="hxAlert">
+      <div class="hxAlert__icon">
+        <hx-icon type="info-circle"></hx-icon>
+      </div>
+      <div class="hxAlert__text">
+        You can copy/paste the source code from the
+        <a href="components/layouts/vertical-layout-template.html">vertical layout template</a>
+        to get a head start.
+      </div>
+    </div>
+    <br />
     <p>
       Use a Vertical layout if your application content needs to grow along the y-axis
       (pushing the footer down past the bottom of the viewport).
@@ -54,9 +83,6 @@ also:
         Apply the <code>.hxVertical</code> class to the document body
         (<code>&lt;body class="hxVertical"&gt;</code>).
       </li>
-      <li>
-        <a href="components/layouts/vertical-layout-template.html">Vertical Template</a>
-      </li>
     </ul>
     <figure>
       {% code 'html' %}
@@ -65,7 +91,9 @@ also:
           <head>...</head>
           <body class="hxVertical">
             <header id="head">...</header>
-            <div id="stage">...</div>
+            <div id="app"><!-- mount SPA here -->
+              <div id="stage">...</div>
+            </div>
             <footer id="foot">...</footer>
           </body>
         </html>
@@ -76,6 +104,17 @@ also:
 
   <section><!-- HORIZONTAL LAYOUT -->
     <h2 id="horizontal-layout">Horizontal Layout</h2>
+    <div class="hxAlert">
+      <div class="hxAlert__icon">
+        <hx-icon type="info-circle"></hx-icon>
+      </div>
+      <div class="hxAlert__text">
+        You can copy/paste the source code from the
+        <a href="components/layouts/horizontal-layout-template.html">horizontal layout template</a>
+        to get a head start.
+      </div>
+    </div>
+    <br />
     <p>
       Use a Horizontal layout if your application content needs to grow across the x-axis
       (keeping the footer visible at all times).
@@ -85,9 +124,6 @@ also:
         Apply the <code>.hxHorizontal</code> class to the document body
         (<code>&lt;body class="hxHorizontal"&gt;</code>).
       </li>
-      <li>
-        <a href="components/layouts/horizontal-layout-template.html">Horizontal Template</a>
-      </li>
     </ul>
     <figure>
       {% code 'html' %}
@@ -96,7 +132,9 @@ also:
           <head>...</head>
           <body class="hxHorizontal">
             <header id="head">...</header>
-            <div id="stage">...</div>
+            <div id="app"><!-- mount SPA here -->
+              <div id="stage">...</div>
+            </div>
             <footer id="foot">...</footer>
           </body>
         </html>
@@ -105,65 +143,134 @@ also:
     </figure>
   </section>
 
-  <section><!-- STAGE -->
-    <h2 id="stage-area">Stage</h2>
-    <div class="hxAlert hxAlert--warning">
-      <div class="hxAlert__icon">
-        <hx-icon type="exclamation-triangle"></hx-icon>
-      </div>
-      <div class="hxAlert__text">
-        <span class="hxAlert__status">WARNING</span>
-        Do not add more than one side rail in your layout.
-      </div>
-    </div>
-    <br />
-
+  <section><!-- APP -->
+    <h2 id="app-area">App Area</h2>
     <p>
-      The stage is the area between the head and footer.
-      It houses the applicaton content, left-hand navigation, and side rail containers.
+      The App area serves as the mounting point for your SPA.
     </p>
-    <ul>
-      <li>
-        Give the stage an id of <code>stage</code> to apply layout CSS.
-      </li>
-    </ul>
-    <figure>
-      {% code 'html' %}
-        <div id="stage">
-          <nav id="nav">
-            <!-- See Navigation Component -->
-          </nav>
-          <aside class="hxSiderail"><!-- Left Rail -->
-            <!-- (optional) Do not use in Horizontal layout -->
-          </aside>
-          <main id="content">
-            <!-- Application content lives here -->
-          </main>
-          <aside class="hxSiderail"><!-- Right Rail -->
-            <!-- (optional) Do not use in Horizontal layout -->
-          </aside>
-        </div>
-      {% endcode %}
-      <figcaption>Skeleton HTML markup for the stage container</figcaption>
-    </figure>
+    <p>It should contain the Stage as its only child.</p>
+  </section>
 
-    <section><!-- left nav -->
-      <h3>Left-Hand Navigation</h3>
+  <section>
+    <h2 id="stage-area">Stage</h2>
+    <section>
+      <div class="hxAlert hxAlert--warning">
+        <div class="hxAlert__icon">
+          <hx-icon type="exclamation-triangle"></hx-icon>
+        </div>
+        <div class="hxAlert__text">
+          <span class="hxAlert__status">WARNING</span>
+          Do not use more than one side rail in your application.
+        </div>
+      </div>
+      <br />
+
+      <p>
+        The Stage contains three potential children.
+      </p>
+      <ol>
+        <li>An optional product navigation</li>
+        <li>Main content</li>
+        <li>An optional siderail</li>
+      </ol>
+      <figure>
+        {% code 'html' %}
+          <div id="stage">
+            <!-- (optional) Product Navigation -->
+            <nav id="nav">...</nav>
+
+            <!-- (optional) Left Rail -->
+            <aside class="hxSiderail">...</aside>
+
+            <main id="content">
+              <!-- Application Content goes here -->
+            </main>
+
+            <!-- (optional) Right Rail -->
+            <aside class="hxSiderail">...</aside>
+          </div>
+        {% endcode %}
+        <figcaption>Skeleton HTML markup for the stage container</figcaption>
+      </figure>
+    </section>
+
+    <section><!-- product nav -->
+      <h3 id="product-nav">Product Navigation</h3>
+      <p>
+        The left-hand production navigation should contain navigation links
+        to pages within your application.
+      </p>
       <ul>
         <li>
-          For accessibility reasons, use a <code>&lt;nav&gt;</code> element.
+          Use a <code>&lt;nav&gt;</code> element to provide the best support
+          for accessible user agents.
         </li>
         <li>
-          Give the element an id of <code>nav</code> to apply layout CSS.
+          Give the element an id of <code>nav</code> to position it
+          correctly in the application layout.
+        </li>
+        <li>
+          Give the element a class of <code>hxNav</code> to apply visual styles.
         </li>
       </ul>
+      <div class="demo nav-demo">
+        <nav class="hxNav">
+          <a href="#">Link 1-1</a>
+          <a href="#">Link 1-2</a>
+          <a href="#">Link 1-3</a>
+
+          <hx-disclosure aria-controls="section-1">
+            L1 Section
+            <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+          </hx-disclosure>
+          <hx-reveal id="section-1" open>
+            <a href="#">Link 2-1</a>
+            <a href="#">Link 2-2</a>
+            <a href="#">Link 2-3</a>
+
+            <hx-disclosure aria-controls="section-1-2">
+              L2 Section
+              <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+            </hx-disclosure>
+            <hx-reveal id="section-1-2" open>
+              <a href="#">Link 3-1</a>
+              <a href="#">Link 3-2</a>
+              <a href="#">Link 3-3</a>
+            </hx-reveal>
+          </hx-reveal>
+        </nav>
+      </div>
       {% code 'html' %}
-        <nav id="nav">...</nav>
+        <nav id="nav" class="hxNav">
+          <a href="#">Link 1-1</a>
+          <a href="#">Link 1-2</a>
+          <a href="#">Link 1-3</a>
+
+          <hx-disclosure aria-controls="section-1">
+            L1 Section
+            <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+          </hx-disclosure>
+          <hx-reveal id="section-1" open>
+            <a href="#">Link 2-1</a>
+            <a href="#">Link 2-2</a>
+            <a href="#">Link 2-3</a>
+
+            <hx-disclosure aria-controls="section-1-2">
+              L2 Section
+              <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+            </hx-disclosure>
+            <hx-reveal id="section-1-2" open>
+              <a href="#">Link 3-1</a>
+              <a href="#">Link 3-2</a>
+              <a href="#">Link 3-3</a>
+            </hx-reveal>
+          </hx-reveal>
+        </nav>
       {% endcode %}
     </section>
 
-    <section><!-- app content -->
-      <h3>Application Content</h3>
+    <section><!-- main content -->
+      <h3 id="main-content">Main Content</h3>
       <div class="hxAlert">
         <div class="hxAlert__icon">
           <hx-icon type="info-circle"></hx-icon>
@@ -173,23 +280,23 @@ also:
           Content area behaves like a non-wrapping Grid row when using a Horizontal layout.
         </div>
       </div>
-      <br />
-
       <ul>
         <li>
           For accessibility reasons, use a <code>&lt;main&gt;</code> element.
         </li>
         <li>
-          Give the element an id of <code>content</code> to apply layout CSS.
+          Add the <code>role="main"</code> attribute to provide the best
+          support for accessible user agents.
         </li>
+        <li>Give the element an id of <code>content</code>.</li>
       </ul>
       {% code 'html' %}
-        <main id="content">...</main>
+        <main role="main" id="content">...</main>
       {% endcode %}
     </section>
 
     <section><!-- side rail -->
-      <h3>Side Rail</h3>
+      <h3 id="side-rail">Side Rail</h3>
       <div class="hxAlert">
         <div class="hxAlert__icon">
           <hx-icon type="info-circle"></hx-icon>
@@ -216,74 +323,16 @@ also:
 
       <ul>
         <li>
-          For accessibility reasons, use an <code>&lt;aside&gt;</code> element.
+          Use an <code>&lt;aside&gt;</code> element to provide the best support
+          for accessible user agents.
         </li>
         <li>
-          Give the element a class of <code>hxSiderail</code> to apply layout CSS.
+          Give the element a class of <code>hxSiderail</code>.
         </li>
       </ul>
       {% code 'html' %}
         <aside class="hxSiderail">...</aside>
       {% endcode %}
     </section>
-  </section>
-
-  <section>
-    <h2 id="left-navigation">Left Navigation</h2>
-
-    <div class="demo nav-demo">
-      <nav class="hxNav">
-        <a href="#">Link 1-1</a>
-        <a href="#">Link 1-2</a>
-        <a href="#">Link 1-3</a>
-
-        <hx-disclosure aria-controls="section-1">
-          L1 Section
-          <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-        </hx-disclosure>
-        <hx-reveal id="section-1" open>
-          <a href="#">Link 2-1</a>
-          <a href="#">Link 2-2</a>
-          <a href="#">Link 2-3</a>
-
-          <hx-disclosure aria-controls="section-1-2">
-            L2 Section
-            <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-          </hx-disclosure>
-          <hx-reveal id="section-1-2" open>
-            <a href="#">Link 3-1</a>
-            <a href="#">Link 3-2</a>
-            <a href="#">Link 3-3</a>
-          </hx-reveal>
-        </hx-reveal>
-      </nav>
-    </div>
-    {% code 'html' %}
-      <nav class="hxNav">
-        <a href="#">Link 1-1</a>
-        <a href="#">Link 1-2</a>
-        <a href="#">Link 1-3</a>
-
-        <hx-disclosure aria-controls="section-1">
-          L1 Section
-          <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-        </hx-disclosure>
-        <hx-reveal id="section-1" open>
-          <a href="#">Link 2-1</a>
-          <a href="#">Link 2-2</a>
-          <a href="#">Link 2-3</a>
-
-          <hx-disclosure aria-controls="section-1-2">
-            L2 Section
-            <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-          </hx-disclosure>
-          <hx-reveal id="section-1-2" open>
-            <a href="#">Link 3-1</a>
-            <a href="#">Link 3-2</a>
-            <a href="#">Link 3-3</a>
-          </hx-reveal>
-        </hx-reveal>
-      </nav>
-    {% endcode %}
   </section>
 {% endblock %}
