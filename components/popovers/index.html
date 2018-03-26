@@ -15,6 +15,9 @@
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
+  <!-- This link should be the first item a user can tab to. -->
+  <a href="#content">Skip to main content</a>
+
   <header id="head">
 <nav class="global-nav">
   <a class="brand-logo" href="">
@@ -23,8 +26,9 @@
 </nav>
   </header>
 
-  <div id="stage">
-    <nav id="nav" class="hxNav">
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
 
 
 
@@ -347,6 +351,24 @@ class="current">
 
 
       
+      <a href="elements/hx-popover-body" >
+    &lt;hx-popover-body&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-foot" >
+    &lt;hx-popover-foot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-head" >
+    &lt;hx-popover-head&gt;
+  </a>
+
+
+      
       <a href="elements/hx-reveal" >
     &lt;hx-reveal&gt;
   </a>
@@ -421,7 +443,8 @@ class="current">
   </hx-reveal>
 
 
-    </nav>
+      </nav>
+
   <main id="content" class="hxBox-md">
     <h1>Popovers</h1>
 
@@ -449,26 +472,34 @@ class="current">
             v-for="_position in positions"
             v-if="_position.value === position.value">
 
-            <header slot="header">
-              <h3 class="hxHeading-4">Popover Header</h3>
-            </header>
-            <p>This is my popover body</p>
-            <footer slot="footer">
+            <hx-popover-head>
+              Popover Header
+            </hx-popover-head>
+
+            <hx-popover-body>
+              <p>This is my popover body</p>
+            </hx-popover-body>
+
+            <hx-popover-foot>
               <button class="hxBtn hxPrimary">Submit</button>
               <button class="hxBtn">Cancel</button>
-            </footer>
+            </hx-popover-foot>
           </hx-popover>
         </div>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">data-popover</span>=<span class="hljs-string">"myPopover"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Toggle<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">hx-popover</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myPopover"</span> <span class="hljs-attr">position</span>=<span class="hljs-string">"bottom-right"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"header"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxHeading-4"</span>&gt;</span>Popover Header<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is my popover body<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">footer</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-popover-head</span>&gt;</span>
+    Popover Header
+  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-popover-head</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-popover-body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is my popover body<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-popover-body</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-popover-foot</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxPrimary"</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-popover-foot</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-popover</span>&gt;</span>
 </code></pre>      </div>
     </div>
@@ -477,42 +508,114 @@ class="current">
   <section>
     <h2 id="appearance">Appearance</h2>
     <div class="popover-appearance">
-        <hx-popover position="top">
-          <code>position="top"</code>
-        </hx-popover>
-        <hx-popover position="top-left">
-          <code>position="top-left"</code>
-        </hx-popover>
-        <hx-popover position="top-right">
-          <code>position="top-right"</code>
-        </hx-popover>
-        <hx-popover position="bottom">
-          <code>position="bottom"</code>
-        </hx-popover>
-        <hx-popover position="bottom-left">
-          <code>position="bottom-left"</code>
-        </hx-popover>
-        <hx-popover position="bottom-right">
-          <code>position="bottom-right"</code>
-        </hx-popover>
-        <hx-popover position="right">
-          <code>position="right"</code>
-        </hx-popover>
-        <hx-popover position="right-top">
-          <code>position="right-top"</code>
-        </hx-popover>
-        <hx-popover position="right-bottom">
-          <code>position="right-bottom"</code>
-        </hx-popover>
-        <hx-popover position="left">
-          <code>position="left"</code>
-        </hx-popover>
-        <hx-popover position="left-top">
-          <code>position="left-top"</code>
-        </hx-popover>
-        <hx-popover position="left-bottom">
-          <code>position="left-bottom"</code>
-        </hx-popover>
+      <table>
+        <tbody>
+          <tr>
+              <td>
+                <hx-popover position="top">
+                  <hx-popover-body>
+                    <code>position="top"</code>
+                  </hx-popover-body>
+                </hx-popover>
+              </td>
+
+              <td>
+                <hx-popover position="top-left">
+                  <hx-popover-body>
+                    <code>position="top-left"</code>
+                  </hx-popover-body>
+                </hx-popover>
+              </td>
+
+                </tr><tr>
+              <td>
+                <hx-popover position="top-right">
+                  <hx-popover-body>
+                    <code>position="top-right"</code>
+                  </hx-popover-body>
+                </hx-popover>
+              </td>
+
+              <td>
+                <hx-popover position="bottom">
+                  <hx-popover-body>
+                    <code>position="bottom"</code>
+                  </hx-popover-body>
+                </hx-popover>
+              </td>
+
+                </tr><tr>
+              <td>
+                <hx-popover position="bottom-left">
+                  <hx-popover-body>
+                    <code>position="bottom-left"</code>
+                  </hx-popover-body>
+                </hx-popover>
+              </td>
+
+              <td>
+                <hx-popover position="bottom-right">
+                  <hx-popover-body>
+                    <code>position="bottom-right"</code>
+                  </hx-popover-body>
+                </hx-popover>
+              </td>
+
+                </tr><tr>
+              <td>
+                <hx-popover position="right">
+                  <hx-popover-body>
+                    <code>position="right"</code>
+                  </hx-popover-body>
+                </hx-popover>
+              </td>
+
+              <td>
+                <hx-popover position="right-top">
+                  <hx-popover-body>
+                    <code>position="right-top"</code>
+                  </hx-popover-body>
+                </hx-popover>
+              </td>
+
+                </tr><tr>
+              <td>
+                <hx-popover position="right-bottom">
+                  <hx-popover-body>
+                    <code>position="right-bottom"</code>
+                  </hx-popover-body>
+                </hx-popover>
+              </td>
+
+              <td>
+                <hx-popover position="left">
+                  <hx-popover-body>
+                    <code>position="left"</code>
+                  </hx-popover-body>
+                </hx-popover>
+              </td>
+
+                </tr><tr>
+              <td>
+                <hx-popover position="left-top">
+                  <hx-popover-body>
+                    <code>position="left-top"</code>
+                  </hx-popover-body>
+                </hx-popover>
+              </td>
+
+              <td>
+                <hx-popover position="left-bottom">
+                  <hx-popover-body>
+                    <code>position="left-bottom"</code>
+                  </hx-popover-body>
+                </hx-popover>
+              </td>
+
+                </tr><tr>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
@@ -520,6 +623,9 @@ class="current">
   <h2 id="see-also">See Also</h2>
   <ul>
       <li><a href="components/buttons">Buttons</a></li>
+      <li><a href="elements/hx-popover-body">&lt;hx-popover-body&gt;</a></li>
+      <li><a href="elements/hx-popover-foot">&lt;hx-popover-foot&gt;</a></li>
+      <li><a href="elements/hx-popover-head">&lt;hx-popover-head&gt;</a></li>
       <li><a href="elements/hx-popover">&lt;hx-popover&gt;</a></li>
   </ul>
 </section>
@@ -538,6 +644,7 @@ class="current">
       <a class="top-link" href="#top">Back to Top</a>
     </nav>
   </aside>
+    </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
@@ -551,10 +658,10 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-03-19
+      2018-03-20
     </small>
 
-  <small>(v0.4.1)</small>
+  <small>(v0.4.2)</small>
 </div>
   </footer>
 

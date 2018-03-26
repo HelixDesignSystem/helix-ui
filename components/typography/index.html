@@ -15,6 +15,9 @@
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
+  <!-- This link should be the first item a user can tab to. -->
+  <a href="#content">Skip to main content</a>
+
   <header id="head">
 <nav class="global-nav">
   <a class="brand-logo" href="">
@@ -23,8 +26,9 @@
 </nav>
   </header>
 
-  <div id="stage">
-    <nav id="nav" class="hxNav">
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
 
 
 
@@ -347,6 +351,24 @@ class="current">
 
 
       
+      <a href="elements/hx-popover-body" >
+    &lt;hx-popover-body&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-foot" >
+    &lt;hx-popover-foot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-head" >
+    &lt;hx-popover-head&gt;
+  </a>
+
+
+      
       <a href="elements/hx-reveal" >
     &lt;hx-reveal&gt;
   </a>
@@ -421,13 +443,14 @@ class="current">
   </hx-reveal>
 
 
-    </nav>
+      </nav>
+
   <main id="content" class="hxBox-md">
     <h1>Typography</h1>
 
   <section><!-- Typefaces -->
     <h2 id="typefaces">Typefaces</h2>
-    <div class="demo demo-typography">
+    <div class="demo demo-typography" data-visreg="typography-typefaces">
       <div class="hxRow">
         <div class="hxCol font-roboto">
           <p class="weight-thin">100: Roboto Thin</p>
@@ -449,7 +472,7 @@ class="current">
 
   <section><!-- Headings -->
     <h2 id="headers">Headings</h2>
-    <div class="demo">
+    <div class="demo" data-visreg="typography-headings">
       <h1>Heading One</h1>
       <h2>Heading Two</h2>
       <h3>Heading Three</h3>
@@ -505,7 +528,7 @@ class="current">
       muted appearance.
     </p>
 
-    <div class="demo">
+    <div class="demo" data-visreg="typography-subdued">
       <span class="hxSubdued">Subdued</span>
     </div>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSubdued"</span>&gt;</span>Subdued<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -523,7 +546,7 @@ class="current">
       the "caption" style.
     </p>
 
-    <div class="demo">
+    <div class="demo" data-visreg="typography-caption">
       <p class="hxCaption">Caption</p>
     </div>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span>&gt;</span>
@@ -545,7 +568,7 @@ class="current">
       "sub-body" style.
     </p>
 
-    <div class="demo">
+    <div class="demo" data-visreg="typography-sub-body">
       <p class="hxSubBody">Sub-Body</p>
     </div>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">small</span>&gt;</span>Sub-Body<span class="hljs-tag">&lt;/<span class="hljs-name">small</span>&gt;</span>
@@ -568,7 +591,7 @@ class="current">
       </div>
     </div>
 
-    <div class="demo">
+    <div class="demo" data-visreg="typography-link">
       <ul>
         <li><a href="#">Normal Link</a></li>
         <li><a href="#" class="pseudo-active">Pressed Link</a></li>
@@ -583,7 +606,7 @@ class="current">
       text from code snippets.
     </p>
 
-    <div class="demo">
+    <div class="demo" data-visreg="typography-inline-code">
       <p>
         Add an event listener with the <code>EventTarget.addEventListener()</code> function.
       </p>
@@ -599,7 +622,7 @@ class="current">
       Use the <code>&lt;kbd&gt;</code> element to differentiate descriptive text
       from instructional key presses.
     </p>
-    <div class="demo">
+    <div class="demo" data-visreg="typography-keyboard">
       <p>
         Press <kbd>Ctrl+Z</kbd> (<kbd>Command+Z</kbd> on Mac)
         to undo the most recent action.
@@ -623,7 +646,7 @@ class="current">
   <section><!-- Error Message -->
     <h2 id="error-message">Error Message</h2>
 
-    <div class="demo">
+    <div class="demo" data-visreg="typography-error-message">
       <hx-error>Error message goes here</hx-error>
     </div>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-error</span>&gt;</span>
@@ -642,7 +665,7 @@ class="current">
       Below are some examples of the syntax highlighting in action.
     </p>
 
-    <figure>
+    <figure data-visreg="typography-syntax-html">
       <figcaption>HTML Syntax Highlighting Example</figcaption>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"path/to/script.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"path/to/style.css"</span> /&gt;</span>
@@ -668,7 +691,7 @@ class="current">
 <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 </code></pre>    </figure>
 
-    <figure>
+    <figure data-visreg="typography-syntax-js">
       <figcaption>JavaScript Syntax Highlighting Example</figcaption>
 <pre><code class="javascript"><span class="hljs-comment">/**
  * @description Multi-line comment
@@ -696,7 +719,7 @@ class="current">
 }
 </code></pre>    </figure>
 
-    <figure>
+    <figure data-visreg="typography-syntax-css">
       <figcaption>CSS Syntax Highlighting Example</figcaption>
 <pre><code class="css"><span class="hljs-comment">/* CSS Comment */</span>
 @<span class="hljs-keyword">import</span> url(<span class="hljs-string">'https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,700,700i'</span>);
@@ -725,7 +748,7 @@ class="current">
 }
 </code></pre>    </figure>
 
-    <figure>
+    <figure data-visreg="typography-syntax-diff">
       <figcaption>diff Syntax Highlighting Example</figcaption>
 <pre><code class="diff"><span class="hljs-comment">Index: languages/ini.js</span>
 <span class="hljs-comment">===================================================================</span>
@@ -759,7 +782,7 @@ class="current">
   It is important to spell
 </code></pre>    </figure>
 
-    <figure>
+    <figure data-visreg="typography-syntax-bash">
       <figcaption>bash Syntax Highlighting Example</figcaption>
 <pre><code class="bash"><span class="hljs-meta">#!/bin/bash
 </span>
@@ -778,7 +801,7 @@ BE_VERBOSE=<span class="hljs-literal">false</span>
 }
 </code></pre>    </figure>
 
-    <figure>
+    <figure data-visreg="typography-syntax-ini">
       <figcaption>.ini Syntax Highlighting Example</figcaption>
 <pre><code class="ini"><span class="hljs-comment">; boilerplate</span>
 <span class="hljs-section">[package]</span>
@@ -794,7 +817,7 @@ a description"</span>
 <span class="hljs-attr">counter</span> = <span class="hljs-number">1_000</span>
 </code></pre>    </figure>
 
-    <figure>
+    <figure data-visreg="typography-syntax-markdown">
       <figcaption>Markdown Syntax Highlighting Example</figcaption>
 <pre><code class="markdown"><span class="hljs-section"># hello world</span>
 
@@ -862,6 +885,7 @@ you can write text [<span class="hljs-string">with links</span>](<span class="hl
       <a class="top-link" href="#top">Back to Top</a>
     </nav>
   </aside>
+    </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
@@ -875,10 +899,10 @@ you can write text [<span class="hljs-string">with links</span>](<span class="hl
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-03-19
+      2018-03-20
     </small>
 
-  <small>(v0.4.1)</small>
+  <small>(v0.4.2)</small>
 </div>
   </footer>
 

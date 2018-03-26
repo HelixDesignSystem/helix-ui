@@ -15,6 +15,9 @@
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
+  <!-- This link should be the first item a user can tab to. -->
+  <a href="#content">Skip to main content</a>
+
   <header id="head">
 <nav class="global-nav">
   <a class="brand-logo" href="">
@@ -23,8 +26,9 @@
 </nav>
   </header>
 
-  <div id="stage">
-    <nav id="nav" class="hxNav">
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
 
 
 
@@ -347,6 +351,24 @@ class="current">
 
 
       
+      <a href="elements/hx-popover-body" >
+    &lt;hx-popover-body&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-foot" >
+    &lt;hx-popover-foot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-head" >
+    &lt;hx-popover-head&gt;
+  </a>
+
+
+      
       <a href="elements/hx-reveal" >
     &lt;hx-reveal&gt;
   </a>
@@ -421,7 +443,8 @@ class="current">
   </hx-reveal>
 
 
-    </nav>
+      </nav>
+
   <main id="content" class="hxBox-md">
     <h1>Getting Started with HelixUI</h1>
 
@@ -502,6 +525,7 @@ class="current">
   <a class="top-link" href="#top">Back to Top</a>
 </nav>
   </aside>
+    </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
@@ -518,7 +542,7 @@ class="current">
       2018-02-28
     </small>
 
-  <small>(v0.4.1)</small>
+  <small>(v0.4.2)</small>
 </div>
   </footer>
 

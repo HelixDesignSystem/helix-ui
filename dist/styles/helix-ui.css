@@ -43,6 +43,21 @@ a {
 fieldset {
   border: none;
 }
+/* HTML5 display reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section {
+  display: block;
+}
 table {
   background-color: transparent;
   border-collapse: collapse;
@@ -137,7 +152,7 @@ dt {
   line-height: 1.5;
 }
 html {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
 }
 body {
@@ -449,20 +464,30 @@ hx-panel > hx-panelfoot {
   flex-shrink: 0;
   order: 3;
 }
+hx-panelbody,
+hx-panel-body {
+  display: block;
+}
+hx-panelfoot,
+hx-panel-foot {
+  display: block;
+}
+hx-panelhead,
+hx-panel-head {
+  display: block;
+}
 hx-popover {
   background-color: #ffffff;
   border: solid 1px #e0e0e0;
   box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);
-  color: initial;
+  color: #424242;
   display: none;
-  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   font-style: normal;
   font-weight: normal;
   left: 0;
   letter-spacing: normal;
-  max-height: 31.25rem;
-  max-width: 31.25rem;
+  max-width: 32rem;
   min-width: 20rem;
   position: absolute;
   text-align: left;
@@ -477,17 +502,41 @@ hx-popover {
   z-index: 1100;
 }
 hx-popover[open] {
-  display: block;
-}
-hx-popover header {
-  margin-bottom: 1.25rem;
-}
-hx-popover footer {
   display: flex;
-  margin-top: 1.25rem;
+  flex-direction: column;
 }
-hx-popover footer button:not(:first-child) {
+hx-popover > hx-popover-head {
+  order: 1;
+}
+hx-popover > hx-popover-body {
+  order: 2;
+}
+hx-popover > hx-popover-foot {
+  order: 3;
+}
+hx-popover-body {
+  display: block;
+  flex-grow: 1;
+  max-height: 20rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0 1.25rem;
+}
+hx-popover-body:only-child {
+  padding: 1.25rem;
+}
+hx-popover-foot {
+  display: block;
+  flex-shrink: 0;
+  padding: 1.25rem;
+}
+hx-popover-foot .hxBtn + .hxBtn {
   margin-left: 1.25rem;
+}
+hx-popover-head {
+  display: block;
+  flex-shrink: 0;
+  padding: 1.25rem;
 }
 hx-reveal,
 hx-tabpanel {
@@ -732,13 +781,36 @@ hx-tooltip[open] {
     - NO !important
 \* ========== COMPONENTS ========== */
 /* ======================================= *\
-  +-------+
-  | head  | (eyebrow)
-  +-------+
-  | stage | (stage = nav + content + side rail)
-  +-------+
-  | foot  | (footer)
-  +-------+
+  +-----------------------+
+  | "header" area         |
+  |                       |
+  | +-(#head)-----------+ |
+  | | global nav        | |
+  | +-------------------+ |
+  +-----------------------+
+  | "app" area            |
+  |                       |
+  | +-(#stage)----------+ |
+  | | +-(#nav)--------+ | |
+  | | | product nav   | | |
+  | | +---------------+ | |
+  | |                   | |
+  | | +-(#content)----+ | |
+  | | | ...           | | |
+  | | +---------------+ | |
+  | |                   | |
+  | | +-(.hxSiderail)-+ | |
+  | | | ...           | | |
+  | | +---------------+ | |
+  | +-------------------+ |
+  |                       |
+  +-----------------------+
+  | "footer" area         |
+  |                       |
+  | +-(#foot)-----------+ |
+  | | #foot             | |
+  | +-------------------+ |
+  +-----------------------+
 \* ======================================= */
 /* ---------- Base/Common Styling ---------- */
 html {
@@ -749,30 +821,50 @@ body {
   height: 100%;
   margin: 0;
 }
-body > #head {
+a[href="#content"] {
+  left: 0;
+  position: absolute;
+  top: -100px;
+}
+a[href="#content"]:focus {
+  background-color: #fdd179;
+  border: 1px solid #dd6105;
+  color: #000000;
+  left: 50%;
+  padding: 0.5rem;
+  top: 0.5rem;
+  transform: tranlateX(-50%);
+}
+#head {
   background-color: #000000;
   flex-shrink: 0;
   height: 3.5rem;
 }
-body > #stage {
+#app {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+#stage {
   display: flex;
   flex-grow: 1;
   flex-shrink: 0;
 }
-body > #stage > #nav {
+#nav {
   flex-shrink: 0;
   width: 15rem;
 }
-body > #stage > #content {
+#content {
   flex-grow: 1;
   min-width: 0px;
 }
-body > #stage > .hxSiderail {
+.hxSiderail {
   background-color: #eeeeee;
   flex-shrink: 0;
   width: 25%;
 }
-body > #foot {
+#foot {
   align-items: center;
   background-color: #333333;
   color: #e0e0e0;
@@ -781,10 +873,10 @@ body > #foot {
   height: 2.5rem;
   padding: 0 20px;
 }
-body > #foot nav {
+#foot nav {
   display: inline-block;
 }
-body > #foot a {
+#foot a {
   color: #16b9d4;
   margin-left: 32px;
 }
@@ -801,33 +893,38 @@ body.hxHorizontal {
   -ms-grid-rows: 3.5rem 1fr 2.5rem;
   /* Modern Grid Implementation */
   display: grid;
-  grid-template-areas: 'header' 'stage' 'footer';
+  grid-template-areas: 'header' 'app' 'footer';
   grid-template-columns: 1fr;
   grid-template-rows: 3.5rem 1fr 2.5rem;
 }
-body.hxHorizontal > #head {
+body.hxHorizontal #head {
   -ms-grid-column: 1;
   -ms-grid-row: 1;
   grid-area: header;
 }
-body.hxHorizontal > #stage {
+body.hxHorizontal #app {
   overflow: hidden;
   -ms-grid-column: 1;
   -ms-grid-row: 2;
-  grid-area: stage;
+  grid-area: app;
 }
-body.hxHorizontal > #stage > #nav {
+body.hxHorizontal #stage {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+body.hxHorizontal #nav {
   overflow-y: auto;
 }
-body.hxHorizontal > #stage > #content {
+body.hxHorizontal #content {
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
 }
-body.hxHorizontal > #stage > #content > hx-panel + hx-panel {
+body.hxHorizontal #content > hx-panel + hx-panel {
   border-left: 1px solid #e0e0e0;
 }
-body.hxHorizontal > #foot {
+body.hxHorizontal #foot {
   -ms-grid-column: 1;
   -ms-grid-row: 3;
   grid-area: footer;
@@ -883,6 +980,7 @@ hx-tile {
   border: 1px solid #0c7c84;
   color: #0c7c84;
   cursor: pointer;
+  font: inherit;
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1;
@@ -1902,15 +2000,15 @@ hx-accordion.beta-hxStepper hx-accordion-panel {
 hx-accordion.beta-hxStepper hx-accordion-panel:last-child {
   border-bottom: 1px solid #e0e0e0;
 }
-hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"] {
+hx-accordion.beta-hxStepper hx-accordion-panel > header[slot="header"] {
   display: flex;
   padding: 1rem;
 }
-hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"] > * {
+hx-accordion.beta-hxStepper hx-accordion-panel > header[slot="header"] > * {
   display: flex;
   align-items: center;
 }
-hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"]:hover .beta-hxStepCounter {
+hx-accordion.beta-hxStepper hx-accordion-panel > header[slot="header"]:hover .beta-hxStepCounter {
   background-color: #16b9d4;
   color: #ffffff;
 }
@@ -2051,7 +2149,7 @@ hx-accordion.beta-hxStepper .beta-hxSubmitButtons .hxBtn + .hxBtn {
   display: block;
   font-size: 1rem;
   height: 2rem;
-  padding: 0 8px;
+  padding: 0 0.5rem;
   width: 100%;
 }
 .hxTextCtrl::-moz-placeholder {
@@ -2081,6 +2179,7 @@ hx-accordion.beta-hxStepper .beta-hxSubmitButtons .hxBtn + .hxBtn {
 textarea.hxTextCtrl {
   min-height: 5.75rem;
   resize: vertical;
+  padding: 0.5rem;
 }
 .hxTextCtrl:focus {
   border-color: #0e94a6;
@@ -2110,7 +2209,15 @@ h6 {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   line-height: 1.5;
-  margin: 0 0 0.5rem;
+  margin: 0;
+}
+h1 + *,
+h2 + *,
+h3 + *,
+h4 + *,
+h5 + *,
+h6 + * {
+  margin-top: 0.5rem;
 }
 h1,
 .hxHeading-1,
@@ -2138,6 +2245,7 @@ h3,
 }
 h4,
 .hxHeading-4,
+hx-popover-head,
 .hxContainerTitle {
   color: #424242;
   font-size: 1rem;

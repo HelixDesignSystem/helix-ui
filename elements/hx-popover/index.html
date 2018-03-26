@@ -15,6 +15,9 @@
   <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
+  <!-- This link should be the first item a user can tab to. -->
+  <a href="#content">Skip to main content</a>
+
   <header id="head">
 <nav class="global-nav">
   <a class="brand-logo" href="">
@@ -23,8 +26,9 @@
 </nav>
   </header>
 
-  <div id="stage">
-    <nav id="nav" class="hxNav">
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
 
 
 
@@ -347,6 +351,24 @@ class="current">
 
 
       
+      <a href="elements/hx-popover-body" >
+    &lt;hx-popover-body&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-foot" >
+    &lt;hx-popover-foot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-head" >
+    &lt;hx-popover-head&gt;
+  </a>
+
+
+      
       <a href="elements/hx-reveal" >
     &lt;hx-reveal&gt;
   </a>
@@ -421,7 +443,8 @@ class="current">
   </hx-reveal>
 
 
-    </nav>
+      </nav>
+
   <main id="content" class="hxBox-md">
     <h1>&lt;hx-popover&gt;</h1>
 
@@ -438,7 +461,14 @@ class="current">
       </hx-def>
       <hx-def>
         <hx-dt>Permitted Children</hx-dt>
-        <hx-dd>flow content</hx-dd>
+        <hx-dd>
+          in this order:
+          <ol>
+            <li>an optional <a href="elements/hx-popover-head">&lt;hx-popover-head&gt;</a> element</li>
+            <li>an <a href="elements/hx-popover-body">&lt;hx-popover-body&gt;</a> element</li>
+            <li>an optional <a href="elements/hx-popover-foot">&lt;hx-popover-foot&gt;</a> element</li>
+          </ol>
+        </hx-dd>
       </hx-def>
     </hx-dl>
   </section>
@@ -476,6 +506,9 @@ class="current">
   <h2 id="see-also">See Also</h2>
   <ul>
       <li><a href="components/popovers">Popovers</a></li>
+      <li><a href="elements/hx-popover-body">&lt;hx-popover-body&gt;</a></li>
+      <li><a href="elements/hx-popover-foot">&lt;hx-popover-foot&gt;</a></li>
+      <li><a href="elements/hx-popover-head">&lt;hx-popover-head&gt;</a></li>
   </ul>
 </section>
   </main>
@@ -490,6 +523,7 @@ class="current">
       <a class="top-link" href="#top">Back to Top</a>
     </nav>
   </aside>
+    </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
@@ -503,10 +537,10 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-03-19
+      2018-03-20
     </small>
 
-  <small>(v0.4.1)</small>
+  <small>(v0.4.2)</small>
 </div>
   </footer>
 
