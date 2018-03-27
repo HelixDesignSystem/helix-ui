@@ -100,11 +100,13 @@ export class HXCheckboxElement extends HXElement {
     }
 
     _onChange (evt) {
+        // Update internal state
         this.checked = evt.target.checked;
 
-        // Chrome doesn't emit 'input' events for checkboxes and native 'change'
-        // events do not bubble out of the ShadowDOM. Emit a custom event to
-        // ensure a 'change' event makes it out of the ShadowDOM.
+        // Prevent 'change' listeners from firing twice in polyfilled browsers.
+        evt.stopImmediatePropagation();
+
+        // Emit a new 'change' event from the custom element
         this.$emit('change');
     }
 }//HXCheckboxElement

@@ -10,7 +10,7 @@ if (document.getElementById('vue-searchDemo')) {
             placeholder: '',
         },
         methods: {
-            // Used on "input" and "change" events
+            // fires on 'input' and 'clear' events
             onSearchUpdate: function (evt) {
                 this.searchValue = evt.target.value;
             },

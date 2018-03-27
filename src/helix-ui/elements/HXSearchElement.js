@@ -7,7 +7,7 @@ const template = document.createElement('template');
 template.innerHTML = `
     <style>${shadowStyles}</style>
     <label id="wrapper">
-        <input type="text" role="search" id="search" />
+        <input type="text" role="search" id="search" autocomplete="off" />
         <button id="clear" hidden aria-label="Clear search">
             <hx-icon type="times"></hx-icon>
         </button>
@@ -144,10 +144,8 @@ export class HXSearchElement extends HXElement {
     _clearValue () {
         this.value = '';
 
-        // Modifying the value property of the native input doesn't trigger
-        // an event. So, we have to emit our own 'change' event to communicate
-        // the change of internal state.
-        this.$emit('change');
+        // Emit a 'clear' event to communicate state change.
+        this.$emit('clear');
 
         this._elSearch.focus();
     }
