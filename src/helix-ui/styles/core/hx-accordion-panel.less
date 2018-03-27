@@ -1,14 +1,17 @@
 hx-accordion-panel {
   display: block;
 
-  > :not([slot="header"]) {
+  // Hide content if closed (ignore header)
+  //
+  // Both :not() selectors have to be combined, because
+  // they cannot be selected in isolation.
+  // - :not([slot="header"]) is for modern browsers
+  // - :not(#toggle) is for polyfilled browsers
+  &:not([open]) > *:not([slot="header"]):not(#toggle) {
     display: none;
   }
 
-  &[open] > * {
-    display: block;
-  }
-
+  > #toggle.hx-accordion-panel, // polyfill rewrite
   > [slot="header"] {
     padding: 0.5rem 0;
   }
