@@ -43,6 +43,11 @@ a {
 fieldset {
   border: none;
 }
+button {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
 /* HTML5 display reset for older browsers */
 article,
 aside,
@@ -223,12 +228,10 @@ hx-accordion {
 hx-accordion-panel {
   display: block;
 }
-hx-accordion-panel > :not([slot="header"]) {
+hx-accordion-panel:not([open]) > *:not([slot="header"]):not(#toggle) {
   display: none;
 }
-hx-accordion-panel[open] > * {
-  display: block;
-}
+hx-accordion-panel > #toggle.hx-accordion-panel,
 hx-accordion-panel > [slot="header"] {
   padding: 0.5rem 0;
 }
@@ -1988,6 +1991,18 @@ label.hxChoice > input[disabled] + hx-tile:hover hx-icon {
 .hljs-deletion {
   background-color: #f8bbd0;
 }
+.hxPagination {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+.hxPagination .hxBtn {
+  border: none;
+  min-width: 2.5rem;
+}
+.hxPagination .hxBtn[aria-current="true"] {
+  background-color: #0c7c84;
+  color: #ffffff;
+}
 /* ======================================= *\
  * BETA BETA BETA BETA BETA BETA BETA BETA *
 \* ======================================= */
@@ -2398,13 +2413,8 @@ hx-dl.hxVertical hx-dd {
 .hxAlert__dismiss {
   background-color: transparent;
   border: none;
-  display: flex;
-  flex-direction: column;
-  padding: 0.875em 1em;
-}
-.hxAlert__dismiss hx-icon {
-  height: 0.75em;
-  width: 0.75em;
+  line-height: 1;
+  padding: 1rem;
 }
 .hxNav {
   background-color: #212121;

@@ -427,7 +427,7 @@ if (document.getElementById('vue-searchDemo')) {
             placeholder: ''
         },
         methods: {
-            // Used on "input" and "change" events
+            // fires on 'input' and 'clear' events
             onSearchUpdate: function onSearchUpdate(evt) {
                 this.searchValue = evt.target.value;
             },

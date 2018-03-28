@@ -507,11 +507,6 @@ class HXElement extends HTMLElement {
     }//$preventScroll()
 
     $emit (evtName, details) {
-        if (window.ShadyCSS && evtName === 'change') {
-            // Let native 'change' events bubble naturally.
-            return;
-        }
-
         let evt = new CustomEvent(evtName, {
             bubbles: true,
             detail: details,
@@ -846,11 +841,13 @@ class HXCheckboxElement extends HXElement {
     }
 
     _onChange (evt) {
+        // Update internal state
         this.checked = evt.target.checked;
 
-        // Chrome doesn't emit 'input' events for checkboxes and native 'change'
-        // events do not bubble out of the ShadowDOM. Emit a custom event to
-        // ensure a 'change' event makes it out of the ShadowDOM.
+        // Prevent 'change' listeners from firing twice in polyfilled browsers.
+        evt.stopImmediatePropagation();
+
+        // Emit a new 'change' event from the custom element
         this.$emit('change');
     }
 }//HXCheckboxElement
@@ -2053,7 +2050,7 @@ const template$6 = document.createElement('template');
 template$6.innerHTML = `
     <style>${shadowStyles$5}</style>
     <label id="wrapper">
-        <input type="text" role="search" id="search" />
+        <input type="text" role="search" id="search" autocomplete="off" />
         <button id="clear" hidden aria-label="Clear search">
             <hx-icon type="times"></hx-icon>
         </button>
@@ -2190,10 +2187,8 @@ class HXSearchElement extends HXElement {
     _clearValue () {
         this.value = '';
 
-        // Modifying the value property of the native input doesn't trigger
-        // an event. So, we have to emit our own 'change' event to communicate
-        // the change of internal state.
-        this.$emit('change');
+        // Emit a 'clear' event to communicate state change.
+        this.$emit('clear');
 
         this._elSearch.focus();
     }
@@ -2629,7 +2624,7 @@ var HelixUI$1 = {
     initialize,
 };
 
-var version = "0.4.2";
+var version = "0.5.0";
 
 HelixUI$1.VERSION = version;
 

@@ -772,11 +772,6 @@ var HXElement = function (_HTMLElement) {
     }, {
         key: '$emit',
         value: function $emit(evtName, details) {
-            if (window.ShadyCSS && evtName === 'change') {
-                // Let native 'change' events bubble naturally.
-                return;
-            }
-
             var evt = new CustomEvent(evtName, {
                 bubbles: true,
                 detail: details
@@ -1127,11 +1122,13 @@ var HXCheckboxElement = function (_HXElement) {
     }, {
         key: '_onChange',
         value: function _onChange(evt) {
+            // Update internal state
             this.checked = evt.target.checked;
 
-            // Chrome doesn't emit 'input' events for checkboxes and native 'change'
-            // events do not bubble out of the ShadowDOM. Emit a custom event to
-            // ensure a 'change' event makes it out of the ShadowDOM.
+            // Prevent 'change' listeners from firing twice in polyfilled browsers.
+            evt.stopImmediatePropagation();
+
+            // Emit a new 'change' event from the custom element
             this.$emit('change');
         }
     }, {
@@ -2473,7 +2470,7 @@ var shadowStyles$5 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font:
 var tagName$6 = 'hx-search';
 var template$6 = document.createElement('template');
 
-template$6.innerHTML = '\n    <style>' + shadowStyles$5 + '</style>\n    <label id="wrapper">\n        <input type="text" role="search" id="search" />\n        <button id="clear" hidden aria-label="Clear search">\n            <hx-icon type="times"></hx-icon>\n        </button>\n        <div id="icon">\n            <hx-icon type="search"></hx-icon>\n        </div>\n        <div id="customControl"></div>\n    </label>\n';
+template$6.innerHTML = '\n    <style>' + shadowStyles$5 + '</style>\n    <label id="wrapper">\n        <input type="text" role="search" id="search" autocomplete="off" />\n        <button id="clear" hidden aria-label="Clear search">\n            <hx-icon type="times"></hx-icon>\n        </button>\n        <div id="icon">\n            <hx-icon type="search"></hx-icon>\n        </div>\n        <div id="customControl"></div>\n    </label>\n';
 
 var HXSearchElement = function (_HXElement) {
     inherits(HXSearchElement, _HXElement);
@@ -2567,10 +2564,8 @@ var HXSearchElement = function (_HXElement) {
         value: function _clearValue() {
             this.value = '';
 
-            // Modifying the value property of the native input doesn't trigger
-            // an event. So, we have to emit our own 'change' event to communicate
-            // the change of internal state.
-            this.$emit('change');
+            // Emit a 'clear' event to communicate state change.
+            this.$emit('clear');
 
             this._elSearch.focus();
         }
@@ -3169,7 +3164,7 @@ var HelixUI = {
     initialize: initialize
 };
 
-var version = "0.4.2";
+var version = "0.5.0";
 
 HelixUI.VERSION = version;
 
