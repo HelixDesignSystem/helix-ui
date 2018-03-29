@@ -17,7 +17,11 @@ export async function sleep(ms = 1500) {
 }
 
 export async function webComponentsReady(driver: WebDriver) {
-    const ready = async () => (await driver.executeScript("return window.WebComponents.ready")) as boolean;
+    const ready = async () => {
+        const script = "return window && window.WebComponents && window.WebComponents.ready;";
+        return (await driver.executeScript(script)) as boolean;
+    }
+
     while (!await ready()) {
         await sleep(100);
     }
