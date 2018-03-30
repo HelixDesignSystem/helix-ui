@@ -16,47 +16,56 @@ export async function sleep(ms = 1500) {
     });
 }
 
-export async function webComponentsReady(driver: WebDriver) {
+export async function documentReady(driver: WebDriver) {
     const ready = async () => {
-        console.log('Check if WebComponents are ready...');
         const script = `
-            // fail if document isn't ready
-            if (!(document && document.readyState === 'complete')) {
-                return false;
-            }
-            // fail if web components aren't ready
-            if (!(window && window.WebComponents && window.WebComponents.ready)) {
-                return false;
-            }
-            // otherwise pass
-            return true;
+            return document && document.readyState === 'complete';
         `;
 
         const ready = (await driver.executeScript(script)) as boolean;
 
-        if (ready) {
-            console.log('...ready');
-        } else {
-            console.log('...not ready');
-        }
+        console.log(`Document ${ready ? 'READY' : 'NOT ready'}`);
         return ready;
     }
 
     while (!await ready()) {
-        console.log('SLEEPING');
+        console.log('...sleeping');
+        await sleep(100);
+    }
+}
+
+export async function webComponentsReady(driver: WebDriver) {
+    const ready = async () => {
+        const script = `
+            return window && window.WebComponents && window.WebComponents.ready;
+        `;
+
+        const ready = (await driver.executeScript(script)) as boolean;
+
+        console.log(`WebComponents ${ready ? 'READY' : 'NOT ready'}`);
+        return ready;
+    }
+
+    while (!await ready()) {
+        console.log('...sleeping');
         await sleep(100);
     }
 }
 
 export async function snapshot(t: TestContext, element: WebElement) {
     console.log('snapshot()');
+    let _driver = element.getDriver();
+
+    console.log('Waiting for Document...');
+    await documentReady(_driver);
+
     console.log('Waiting for web components...');
-    await webComponentsReady(element.getDriver());
-    console.log('...DONE');
+    await webComponentsReady(_driver);
 
     console.log('Taking snapshot...');
     t.snapshot(await element.getAttribute("outerHTML"));
-    console.log('...DONE');
+
+    console.log('END:snapshot()');
 }
 
 export function $x(
