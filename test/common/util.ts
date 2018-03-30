@@ -19,7 +19,12 @@ export async function sleep(ms = 1500) {
 export async function webComponentsReady(driver: WebDriver) {
     const ready = async () => {
         const script = "return window && window.WebComponents && window.WebComponents.ready;";
-        return (await driver.executeScript(script)) as boolean;
+        const ready = (await driver.executeScript(script)) as boolean;
+        if (!ready && process.env.TRAVIS) {
+            console.log("TRAVIS-DEBUG: Waiting for webcomponents to ready...");
+        }
+
+        return ready;
     }
 
     while (!await ready()) {
