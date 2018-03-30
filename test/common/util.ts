@@ -16,56 +16,32 @@ export async function sleep(ms = 1500) {
     });
 }
 
-export async function documentReady(driver: WebDriver) {
-    const ready = async () => {
-        const script = `
-            return document && document.readyState === 'complete';
-        `;
-
-        const ready = (await driver.executeScript(script)) as boolean;
-
-        console.log(`Document ${ready ? 'READY' : 'NOT ready'}`);
-        return ready;
-    }
-
-    while (!await ready()) {
-        console.log('...sleeping');
-        await sleep(100);
-    }
-}
-
 export async function webComponentsReady(driver: WebDriver) {
-    const ready = async () => {
+    const MAX_ATTEMPTS = 10;
+    let attempt = 1;
+
+    const isReady = async () => {
         const script = `
             return window && window.WebComponents && window.WebComponents.ready;
         `;
-
-        const ready = (await driver.executeScript(script)) as boolean;
-
-        console.log(`WebComponents ${ready ? 'READY' : 'NOT ready'}`);
-        return ready;
+        return (await driver.executeScript(script)) as boolean;
     }
 
-    while (!await ready()) {
-        console.log('...sleeping');
-        await sleep(100);
+    while (!await isReady()) {
+        attempt += 1;
+
+        if (attempt <= MAX_ATTEMPTS) {
+            console.log(`Attempt #${attempt}/${MAX_ATTEMPTS}`);
+            await sleep(1000);
+        } else {
+            throw 'Exceeded MAX_ATTEMPTS';
+        }
     }
 }
 
 export async function snapshot(t: TestContext, element: WebElement) {
-    console.log('snapshot()');
-    let _driver = element.getDriver();
-
-    console.log('Waiting for Document...');
-    await documentReady(_driver);
-
-    console.log('Waiting for web components...');
-    await webComponentsReady(_driver);
-
-    console.log('Taking snapshot...');
+    await webComponentsReady(element.getDriver());
     t.snapshot(await element.getAttribute("outerHTML"));
-
-    console.log('END:snapshot()');
 }
 
 export function $x(
