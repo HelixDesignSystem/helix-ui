@@ -1148,8 +1148,24 @@ hx-tile {
 }
 /* ========== COMMON ========== */
 label.hxChoice > input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
   position: absolute;
-  top: -200px;
+  width: 1px;
+  z-index: -10;
+}
+label.hxChoice > input:focus::-moz-focus-inner {
+  outline: none;
+  border: none;
+}
+label.hxChoice > input:focus:focus {
+  outline: none;
 }
 label.hxChoice > input:checked + hx-tile hx-icon[type="checkmark"] {
   display: block;
