@@ -17,17 +17,30 @@ export async function sleep(ms = 1500) {
 }
 
 export async function webComponentsReady(driver: WebDriver) {
-    const ready = async () => (await driver.executeScript("return window.WebComponents.ready")) as boolean;
-    while (!await ready()) {
-        await sleep(100);
+    const MAX_ATTEMPTS = 10;
+    let attempt = 1;
+
+    const isReady = async () => {
+        const script = `
+            return window && window.WebComponents && window.WebComponents.ready;
+        `;
+        return (await driver.executeScript(script)) as boolean;
+    }
+
+    while (!await isReady()) {
+        attempt += 1;
+
+        if (attempt <= MAX_ATTEMPTS) {
+            console.log(`Attempt #${attempt}/${MAX_ATTEMPTS}`);
+            await sleep(1000);
+        } else {
+            throw 'Exceeded MAX_ATTEMPTS';
+        }
     }
 }
 
 export async function snapshot(t: TestContext, element: WebElement) {
-    if (process.env.TRAVIS) {
-        await webComponentsReady(element.getDriver());
-    }
-
+    await webComponentsReady(element.getDriver());
     t.snapshot(await element.getAttribute("outerHTML"));
 }
 
