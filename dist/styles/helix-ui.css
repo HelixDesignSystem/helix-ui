@@ -406,21 +406,21 @@ hx-modal[open] {
   display: flex;
   flex-direction: column;
 }
-hx-modal > hx-modalhead {
+hx-modal hx-modalhead {
   flex-shrink: 0;
   order: 1;
 }
-hx-modal > hx-modalhead + * {
+hx-modal hx-modalhead + * {
   margin-top: 1.25rem;
 }
-hx-modal > hx-modalbody {
+hx-modal hx-modalbody {
   flex-grow: 1;
   order: 2;
 }
-hx-modal > hx-modalbody + * {
+hx-modal hx-modalbody + * {
   margin-top: 1.25rem;
 }
-hx-modal > hx-modalfoot {
+hx-modal hx-modalfoot {
   flex-shrink: 0;
   order: 3;
 }
@@ -2031,15 +2031,15 @@ hx-accordion.beta-hxStepper hx-accordion-panel {
 hx-accordion.beta-hxStepper hx-accordion-panel:last-child {
   border-bottom: 1px solid #e0e0e0;
 }
-hx-accordion.beta-hxStepper hx-accordion-panel > header[slot="header"] {
+hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"] {
   display: flex;
   padding: 1rem;
 }
-hx-accordion.beta-hxStepper hx-accordion-panel > header[slot="header"] > * {
+hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"] > * {
   display: flex;
   align-items: center;
 }
-hx-accordion.beta-hxStepper hx-accordion-panel > header[slot="header"]:hover .beta-hxStepCounter {
+hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"]:hover .beta-hxStepCounter {
   background-color: #16b9d4;
   color: #ffffff;
 }

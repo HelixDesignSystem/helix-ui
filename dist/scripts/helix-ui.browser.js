@@ -1740,7 +1740,7 @@ var HXMenuitemElement = function (_HXElement) {
     return HXMenuitemElement;
 }(HXElement); //HXMenuitemElement
 
-var shadowStyles$3 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n#container {\n  background-color: #ffffff;\n  box-shadow: 0px 7px 9px 0 rgba(0, 0, 0, 0.3);\n  display: flex;\n  flex-direction: column;\n  left: 50%;\n  max-width: 40rem;\n  min-height: 12.5rem;\n  min-width: 25rem;\n  padding: 1.25rem;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1201;\n}\n#close {\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  height: 1rem;\n  line-height: 1;\n  padding: 0;\n  position: absolute;\n  right: 1.25rem;\n  top: 1.25rem;\n}\n";
+var shadowStyles$3 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n#container {\n  background-color: #ffffff;\n  box-shadow: 0px 7px 9px 0 rgba(0, 0, 0, 0.3);\n  display: flex;\n  flex-direction: column;\n  left: 50%;\n  max-width: 40rem;\n  min-height: 12.5rem;\n  min-width: 25rem;\n  padding: 1.25rem;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1201;\n}\n#close {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  height: 1rem;\n  line-height: 1;\n  padding: 0;\n  position: absolute;\n  right: 1.25rem;\n  top: 1.25rem;\n}\n";
 
 var tagName$4 = 'hx-modal';
 var template$4 = document.createElement('template');
@@ -3164,7 +3164,7 @@ var HelixUI = {
     initialize: initialize
 };
 
-var version = "0.5.1";
+var version = "0.5.2";
 
 HelixUI.VERSION = version;
 
