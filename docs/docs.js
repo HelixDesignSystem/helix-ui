@@ -6,6 +6,7 @@ import './components/busy/busy-demo';
 import './components/buttons/button-demo';
 import './components/checkboxes/checkbox-demo';
 import './components/choice-tiles/choice-tile-demo';
+import './components/icons/icon-demo';
 import './components/lists/list-demo';
 import './components/panels/panel-demo';
 import './components/popovers/popover-demo';
