@@ -37,6 +37,8 @@ export class HXPopoverElement extends HXElement {
         this.$defaultAttribute('position', 'bottom-right');
         this._initialPosition = this.position;
 
+        this.setAttribute('aria-hidden', !this.open);
+
         if (!this.id) {
             return;
         }
@@ -61,8 +63,13 @@ export class HXPopoverElement extends HXElement {
         document.removeEventListener('click', this._closeOnBackdropClick);
     }
 
-    attributeChangedCallback (attr, oldValue, newValue) {
-        this.setAttribute('aria-hidden', newValue !== '');
+    attributeChangedCallback (attr, oldVal, newVal) {
+        let isOpen = (newVal !== null);
+        this.setAttribute('aria-hidden', !isOpen);
+
+        if (newVal !== oldVal) {
+            this.$emit(isOpen ? 'open' : 'close');
+        }
     }
 
     _toggle () {
