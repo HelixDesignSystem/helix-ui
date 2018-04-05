@@ -33,6 +33,7 @@ export class HXModalElement extends HXElement {
     connectedCallback () {
         this.$upgradeProperty('open');
         this._btnClose = this.shadowRoot.querySelector("#close");
+        this.setAttribute('aria-hidden', !this.open);
 
         this._btnClose.addEventListener('click', this._close);
         document.addEventListener('keyup', this._keyUp);
@@ -43,9 +44,14 @@ export class HXModalElement extends HXElement {
         document.removeEventListener('keyup', this._keyUp);
     }
 
-    attributeChangedCallback (attr, oldValue, newValue) {
-        this.setAttribute('aria-hidden', newValue !== '');
-    }
+    attributeChangedCallback (attr, oldVal, newVal) {
+        let isOpen = (newVal !== null);
+        this.setAttribute('aria-hidden', !isOpen);
+
+        if (newVal !== oldVal) {
+            this.$emit(isOpen ? 'open' : 'close');
+        }
+    }//attributeChangedCallback
 
     _close () {
         this.open = false;
@@ -60,10 +66,8 @@ export class HXModalElement extends HXElement {
     set open (value) {
         if (value) {
             this.setAttribute('open', '');
-            this.$emit('open');
         } else {
             this.removeAttribute('open');
-            this.$emit('close');
         }
     }
 
