@@ -50,9 +50,8 @@ export class HXAccordionPanelElement extends HXElement {
         if (newVal !== oldVal) {
             this._btnToggle.setAttribute('aria-expanded', isOpen);
             this._elBody.setAttribute('aria-expanded', isOpen);
-            if (isOpen) {
-                this.$emit('open');
-            }
+
+            this.$emit(isOpen ? 'open' : 'close');
         }
     }
 

@@ -36,6 +36,8 @@ export class HXTooltipElement extends HXElement {
         this.$upgradeProperty('open');
         this.$defaultAttribute('role', 'tooltip');
 
+        this.setAttribute('aria-hidden', !this.open);
+
         if (this.id) {
             this._target = this.getRootNode().querySelector('[data-tooltip=' + this.id + ']');
         } else {
@@ -51,8 +53,13 @@ export class HXTooltipElement extends HXElement {
         this._destoryAllHandlers();
     }
 
-    attributeChangedCallback (attr, oldValue, newValue) {
-        this.setAttribute('aria-hidden', newValue !== '');
+    attributeChangedCallback (attr, oldVal, newVal) {
+        let isOpen = (newVal !== null);
+        this.setAttribute('aria-hidden', !isOpen);
+
+        if (newVal !== oldVal) {
+            this.$emit(isOpen ? 'open' : 'close');
+        }
     }
 
     _hide () {

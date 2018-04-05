@@ -37,14 +37,18 @@ export class HXTabsetElement extends HXElement {
         });
     }
 
-    attributeChangedCallback (attr, oldValue, newVal) {
+    attributeChangedCallback (attr, oldVal, newVal) {
         if (!isNaN(newVal)) {
-            this.currentTab = Number(newVal);
+            this._openTab(Number(newVal));
+
+            if (newVal !== oldVal) {
+                this.$emit('tabchange');
+            }
         }
     }
 
     get currentTab () {
-        return this._currentTab || 0;
+        return Number(this.getAttribute('current-tab') || 0);
     }
 
     set currentTab (idx) {
@@ -56,23 +60,8 @@ export class HXTabsetElement extends HXElement {
             throw new RangeError('currentTab index is out of bounds');
         }
 
-        this._currentTab = idx;
-
-        this.tabs.forEach((tab, tabIdx) => {
-            if (idx === tabIdx) {
-                tab.current = true;
-                tab.setAttribute('tabindex', 0);
-            } else {
-                tab.current = false;
-                tab.setAttribute('tabindex', -1);
-                tab.blur();
-            }
-        });
-
-        this.tabpanels.forEach((tabpanel, panelIdx) => {
-            tabpanel.open = (idx === panelIdx);
-        });
-    }//SET:currentTab
+        this.setAttribute('current-tab', idx);
+    }
 
     get tabs () {
         return Array.from(this.querySelectorAll('hx-tablist > hx-tab'));
@@ -119,6 +108,23 @@ export class HXTabsetElement extends HXElement {
 
     _onTabClick (evt) {
         this.currentTab = this.tabs.indexOf(evt.target);
+    }
+
+    _openTab (idx) {
+        this.tabs.forEach((tab, tabIdx) => {
+            if (idx === tabIdx) {
+                tab.current = true;
+                tab.setAttribute('tabindex', 0);
+            } else {
+                tab.current = false;
+                tab.setAttribute('tabindex', -1);
+                tab.blur();
+            }
+        });
+
+        this.tabpanels.forEach((tabpanel, panelIdx) => {
+            tabpanel.open = (idx === panelIdx);
+        });
     }
 
     _setupIds () {

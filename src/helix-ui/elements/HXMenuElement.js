@@ -29,8 +29,13 @@ export class HXMenuElement extends HXElement {
         document.removeEventListener('click', this._onDocumentClick);
     }
 
-    attributeChangedCallback (attr, oldValue, newValue) {
-        this.setAttribute('aria-expanded', newValue === '');
+    attributeChangedCallback (attr, oldVal, newVal) {
+        let isOpen = (newVal !== null);
+        this.setAttribute('aria-expanded', isOpen);
+
+        if (newVal !== oldVal) {
+            this.$emit(isOpen ? 'open' : 'close');
+        }
     }
 
     set position (value) {
@@ -68,10 +73,8 @@ export class HXMenuElement extends HXElement {
         if (value) {
             this.setAttribute('open', '');
             this._setPosition();
-            this.$emit('open');
         } else {
             this.removeAttribute('open');
-            this.$emit('close');
         }
     }
 

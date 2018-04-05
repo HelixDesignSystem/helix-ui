@@ -50,6 +50,8 @@ export class HXIconElement extends HXElement {
             tmpDiv.innerHTML = Icons[this.type];
             // grab SVG from surrogate DIV
             const svg = tmpDiv.firstElementChild;
+            // Prevent IE/Edge from adding SVG to focus order
+            svg.setAttribute('focusable', 'false');
 
             // inject SVG into Light DOM
             this.appendChild(svg);

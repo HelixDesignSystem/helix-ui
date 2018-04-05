@@ -15,7 +15,12 @@ export class HXRevealElement extends HXElement {
     }
 
     attributeChangedCallback (attr, oldVal, newVal) {
-        this.setAttribute('aria-expanded', newVal === '');
+        let isOpen = (newVal !== null);
+        this.setAttribute('aria-expanded', isOpen);
+
+        if (newVal !== oldVal) {
+            this.$emit(isOpen ? 'open' : 'close');
+        }
     }
 
     set open (value) {
