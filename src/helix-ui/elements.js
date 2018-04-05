@@ -18,4 +18,5 @@ export { HXTabElement } from './elements/HXTabElement.js';
 export { HXTablistElement } from './elements/HXTablistElement.js';
 export { HXTabpanelElement } from './elements/HXTabpanelElement.js';
 export { HXTabsetElement } from './elements/HXTabsetElement.js';
+export { HXToastElement } from './elements/HXToastElement.js';
 export { HXTooltipElement } from './elements/HXTooltipElement.js';

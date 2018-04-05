@@ -16,6 +16,7 @@ import './components/search/search-demo';
 import './components/status-pills/status-demo';
 import './components/stepper/stepper-demo';
 import './components/tables/table-demo';
+import './components/toasts/toast-demo';
 import './components/tooltips/tooltip-demo';
 
 (function () {
