@@ -23,6 +23,8 @@ export class HXElement extends HTMLElement {
 
             this.shadowRoot.appendChild(template.content.cloneNode(true));
         }
+
+        this.$relayEvent = this.$relayEvent.bind(this);
     }//constructor
 
     connectedCallback () {
@@ -91,6 +93,32 @@ export class HXElement extends HTMLElement {
         });
         this.dispatchEvent(evt);
     }//$emit
+
+    $relayEvent (oldEvent) {
+        // Original event stops here
+        oldEvent.preventDefault();
+        oldEvent.stopPropagation();
+        oldEvent.stopImmediatePropagation();
+
+        // Emit new event of same name
+        let newEvent = new CustomEvent(oldEvent.type, {
+            bubbles: oldEvent.bubbles,
+            cancelable: oldEvent.cancelable,
+        });
+        this.dispatchEvent(newEvent);
+    }//$relayEvent()
+
+    // TODO: may need a later update to add events based on element name/type
+    $relayNonBubblingEvents (el) {
+        el.addEventListener('focus', this.$relayEvent);
+        el.addEventListener('blur', this.$relayEvent);
+    }
+
+    // Undo $relayNonBubblingEvents()
+    $removeNonBubblingRelays (el) {
+        el.removeEventListener('focus', this.$relayEvent);
+        el.removeEventListener('blur', this.$relayEvent);
+    }
 
     // Properties
     set disabled (value) {

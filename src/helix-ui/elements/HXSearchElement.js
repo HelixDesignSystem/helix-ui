@@ -48,11 +48,15 @@ export class HXSearchElement extends HXElement {
 
         this._btnClear.addEventListener('click', this._clearValue);
         this._elSearch.addEventListener('input', this._onInput);
+
+        this.$relayNonBubblingEvents(this._elSearch);
     }
 
     disconnectedCallback () {
         this._btnClear.removeEventListener('click', this._clearValue);
         this._elSearch.removeEventListener('input', this._onInput);
+
+        this.$removeNonBubblingRelays(this._elSearch);
     }
 
     attributeChangedCallback (attr, oldVal, newVal) {
