@@ -1,5 +1,6 @@
 ---
 title: Icons
+minver: 0.1.0
 also:
   elements/hx-icon: <hx-icon>
 ---
@@ -37,22 +38,54 @@ also:
     {% endcode %}
   </section>
 
-  <section>
-    <h2 id="available-icons">Available Icons</h2>
-    <p>There are {{ data.icons.length }} icons available!</p>
-    <div class="hxRow">
-      {% for icon in data.icons %}
-        <div class="hxCol hxSpan-12-xs hxSpan-6-sm hxSpan-4-md hxSpan-3-xl">
-          <div class="demo icon-demo">
-            <hx-icon type="{{icon}}"></hx-icon>
-            <p>
-              <code>{{icon}}</code>
-            </p>
-          </div>
+  <section id="vue-iconDemo">
+    <h2 id="available-icons">Icons</h2>
+    <div v-cloak>
+      <div class="hxRow">
+        <div class="hxCol hxSpan-12-xs hxSpan-6-md hxSpan-4-xl">
+          <p>
+            <hx-search
+              :placeholder="`Search ${icons.length} icons for...`"
+              :value="filter"
+              @input="onFilterUpdate"
+              @clear="onFilterUpdate"
+            ></hx-search>
+          </p>
+          <p v-if="hasFilter">
+            <small v-if="filteredIcons.length > 0">
+              {% raw %}
+                {{filteredIcons.length}} icons match <em>"{{filter}}"</em>
+              {% endraw %}
+            </small>
+          </p>
         </div>
-      {% else %}
-        <p>No Icons defined</p>
-      {% endfor %}
+      </div>
+      <div v-if="filteredIcons.length" class="hxRow">
+        <template v-for="icon in filteredIcons">
+          <div class="hxCol hxSpan-12-xs hxSpan-12-sm hxSpan-6-md hxSpan-4-xl" key="icon.name">
+            <div class="media icon-media">
+              {% raw %}
+              <div class="media__icon">
+                <hx-icon :type="icon.name"></hx-icon>
+              </div>
+              <div class="media__body">
+                <h3 class="hxHeading-4">{{icon.name}}</h3>
+                <small class="hxSubdued">Added: v{{icon.minver}}</small>
+              </div>
+              {% endraw %}
+            </div>
+          </div>
+        </template>
+      </div>
+      <div v-else>
+        <p>
+          <small>No icons match your search criteria. Try another.</small>
+        </p>
+      </div>
+    </div>
+    <div loading class="hxBox-lg">
+      <hx-busy></hx-busy>
+      <p>Loading...</p>
     </div>
   </section>
 {% endblock %}
