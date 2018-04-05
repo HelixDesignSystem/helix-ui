@@ -18,7 +18,33 @@ also:
           zero or more <a href="elements/hx-accordion-panel">&lt;hx-accordion-panel&gt;</a> elements
         </hx-dd>
       </hx-def>
+      <hx-def>
+        <hx-dt>Events</hx-dt>
+        <hx-dd>
+          Any of the following:
+          <ul>
+            <li><code>panelchange</code> (only in single-panel mode)</li>
+          </ul>
+        </hx-dd>
+      </hx-def>
     </hx-dl>
+  </section>
+
+  <section>
+    <h2 id="modes">Modes</h2>
+    <dl>
+      <dt>multi-panel</dt>
+      <dd>
+        When the <code>current-panel</code> attribute is absent,
+        any number of panels may be opened at the same time.
+      </dd>
+
+      <dt>single-panel</dt>
+      <dd>
+        When the <code>current-panel</code> attribute is set, only one
+        panel may be open at a time.
+      </dd>
+    </dl>
   </section>
 
   <section>
