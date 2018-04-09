@@ -88,10 +88,11 @@ export class HXElement extends HTMLElement {
 
     $emit (evtName, details) {
         let evt = new CustomEvent(evtName, {
+            cancelable: true,
             bubbles: true,
             detail: details,
         });
-        this.dispatchEvent(evt);
+        return this.dispatchEvent(evt);
     }//$emit
 
     $relayEvent (oldEvent) {
