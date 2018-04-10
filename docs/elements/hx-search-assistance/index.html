@@ -1,0 +1,62 @@
+---
+title: <hx-search-assistance>
+also:
+  components/search: Search
+  elements/hx-search: <hx-search>
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>{{page.title}}</code> element contains a list of choices
+      for the user, such as recent or suggested searches depending on their context.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Events</hx-dt>
+        <hx-dd>
+          Any of the following:
+          <ul>
+            <li><code>close</code></li>
+            <li><code>open</code></li>
+          </ul>
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl>
+    <dt>open</dt>
+    <dd>Opens the search assistance</dd>
+
+    <dt>position <small>{String="bottom-start"}</small></dt>
+    <dd>Positions the search assistance</dd>
+
+    <dt>relative-to <small>(optional)</small></dt>
+    <dd>ID of an element that the search assistance is positioned relative to.</dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl>
+    <dt>open</dt>
+    <dd>Opens the search assistance</dd>
+
+    <dt>position <small>{String="bottom-start"}</small></dt>
+    <dd>Positions the search assistance</dd>
+
+    <dt>relativeTo <small>(optional)</small></dt>
+    <dd>ID of an element that the search assistance is positioned relative to.</dd>
+  </dl>
+{% endblock %}

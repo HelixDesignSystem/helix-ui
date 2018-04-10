@@ -38,4 +38,30 @@ if (document.getElementById('vue-searchDemo')) {
             },
         },
     });
+}//vue-searchDemo
+
+if (document.getElementById('vue-searchAssistanceDemo')) {
+    new Vue({
+        el: '#vue-searchAssistanceDemo',
+        data: {
+            searchValue: '',
+        },
+        methods: {
+            // fires on 'input' and 'clear' events
+            onUpdate: function (evt) {
+                this.searchValue = evt.target.value;
+            },
+            onFocus: function () {
+                this.$refs.search.open = true;
+            },
+            onBlur: function () {
+                this.$refs.search.open = false;
+            },
+        },
+        computed: {
+            hasValue: function () {
+                return (this.searchValue && this.searchValue !== '');
+            },
+        },
+    });
 }

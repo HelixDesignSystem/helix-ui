@@ -3,28 +3,14 @@ title: Search
 minver: 0.4.0
 also:
   elements/hx-search: <hx-search>
+  elements/hx-search-assistance: <hx-search-assistance>
 ---
 {% extends 'component.njk' %}
 {% block content %}
   <section>
     <h2 id="demos">Demos</h2>
     <div id="vue-searchDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg">
-        <h3>Basic Search Box</h3>
-        <div class="demo">
-          <hx-search
-             :disabled="isDisabled"
-             :invalid="isInvalid"
-             :placeholder="placeholder"
-             :value="searchValue"
-             @input="onSearchUpdate"
-             @clear="onSearchUpdate"
-          ></hx-search>
-        </div>
-
-        <pre><code>{% raw %}{{snippet}}{% endraw %}</code></pre>
-      </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg">
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
         <h3>Options</h3>
         <p>
           <b>Placeholder:</b><br />
@@ -59,6 +45,65 @@ also:
           <label>Invalid</label>
         </p>
       </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <h3>Basic Search Box</h3>
+        <div class="demo">
+          <hx-search
+             :disabled="isDisabled"
+             :invalid="isInvalid"
+             :placeholder="placeholder"
+             :value="searchValue"
+             @clear="onSearchUpdate"
+             @input="onSearchUpdate"
+          ></hx-search>
+        </div>
+        <pre><code>{% raw %}{{snippet}}{% endraw %}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div id="vue-searchAssistanceDemo">
+      <h3>Search Assistance</h3>
+      <div class="demo">
+        <hx-search
+          id="assisted-hx-search"
+          :value="searchValue"
+          @blur="onBlur"
+          @clear="onUpdate"
+          @focus="onFocus"
+          @input="onUpdate"
+        ></hx-search>
+        <hx-search-assistance relative-to="assisted-hx-search" ref="search">
+          <header>Search for "<span v-text="searchValue"></span>"</header>
+          <section v-if="hasValue">
+            <header>Category Header</header>
+            <button class="hxSearchSuggestion">Here is a possible <b v-text="searchValue"></b></button>
+            <button class="hxSearchSuggestion">Here is a possible <b v-text="searchValue"></b></button>
+            <button class="hxSearchSuggestion">Here is a possible <b v-text="searchValue"></b></button>
+          </section>
+        </hx-search-assistance>
+      </div>
+      <small>
+        *Behavior to show/hide search assistance may differ in your app.
+      </small>
+      {% code 'html' %}
+        <hx-search
+          id="assisted-search"
+          onblur="hideAssistance()"
+          onfocus="showAssistance()"
+          value="item"
+        ></hx-search>
+        <hx-search-assistance relative-to="assisted-search">
+          <header>Search for "item"</header>
+          <section>
+            <header>Category Header</header>
+            <button class="hxSearchSuggestion">Here is a possible <b>item</b></button>
+            <button class="hxSearchSuggestion">Here is a possible <b>item</b></button>
+            <button class="hxSearchSuggestion">Here is a possible <b>item</b></button>
+          </section>
+        </hx-search-assistance>
+      {% endcode %}
     </div>
   </section>
 
