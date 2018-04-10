@@ -96,11 +96,6 @@ export class HXElement extends HTMLElement {
     }//$emit
 
     $relayEvent (oldEvent) {
-        // Original event stops here
-        oldEvent.preventDefault();
-        oldEvent.stopPropagation();
-        oldEvent.stopImmediatePropagation();
-
         // Emit new event of same name
         let newEvent = new CustomEvent(oldEvent.type, {
             bubbles: oldEvent.bubbles,
