@@ -62,6 +62,7 @@
         children: [
             { label: '<hx-accordion>', path: 'hx-accordion' },
             { label: '<hx-accordion-panel>', path: 'hx-accordion-panel' },
+            { label: '<hx-alert>', path: 'hx-alert' },
             { label: '<hx-busy>', path: 'hx-busy' },
             { label: '<hx-checkbox>', path: 'hx-checkbox' },
             { label: '<hx-dd>', path: 'hx-dd' },
