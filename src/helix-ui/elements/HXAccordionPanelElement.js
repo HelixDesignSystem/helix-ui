@@ -5,7 +5,7 @@ const tagName = 'hx-accordion-panel';
 const template = document.createElement('template');
 template.innerHTML = `
   <style>${shadowStyles}</style>
-  <button id="toggle" aria-controls="body" aria-expanded="false">
+  <button type="button" id="toggle" aria-controls="body" aria-expanded="false">
     <div class="header">
       <span class="header__content">
         <slot name="header"></slot>
@@ -71,7 +71,9 @@ export class HXAccordionPanelElement extends HXElement {
 
     // PRIVATE METHODS
 
-    _onClick () {
+    _onClick (evt) {
+        evt.preventDefault();
+
         if (!this.disabled) {
             this.open = !this.open;
         }

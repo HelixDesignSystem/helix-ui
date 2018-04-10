@@ -8,7 +8,7 @@ const template = document.createElement('template');
 template.innerHTML = `
   <style>${shadowStyles}</style>
   <div id="container">
-    <button id="close">
+    <button type="button" id="close">
       <hx-icon type="times"></hx-icon>
     </button>
     <slot></slot>
@@ -53,7 +53,9 @@ export class HXModalElement extends HXElement {
         }
     }//attributeChangedCallback
 
-    _close () {
+    _close (evt) {
+        evt.preventDefault();
+
         this.open = false;
     }
 
