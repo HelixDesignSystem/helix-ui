@@ -4,7 +4,7 @@ if (document.getElementById('vue-iconDemo')) {
             return $.ajax({
                 async: false,
                 dataType: 'json',
-                url: '/data/icons.json',
+                url: 'data/icons.json',
             });
         },
     };//Icons
