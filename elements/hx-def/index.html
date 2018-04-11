@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="docs.css">
 
   <!-- Polyfill Loader -->
-  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
+  <script src="vendor/scripts/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
   <!-- This link should be the first item a user can tab to. -->
@@ -237,6 +237,12 @@ class="current">
 
 
       
+      <a href="elements/hx-alert" >
+    &lt;hx-alert&gt;
+  </a>
+
+
+      
       <a href="elements/hx-busy" >
     &lt;hx-busy&gt;
   </a>
@@ -387,6 +393,12 @@ class="current">
 
 
       
+      <a href="elements/hx-search-assistance" >
+    &lt;hx-search-assistance&gt;
+  </a>
+
+
+      
       <a href="elements/hx-status" >
     &lt;hx-status&gt;
   </a>
@@ -452,7 +464,15 @@ class="current">
       </nav>
 
   <main id="content" class="hxBox-md">
-    <h1>&lt;hx-def&gt;</h1>
+    <h1>&lt;hx-def&gt;
+<min-version data-tooltip="page-min-version">
+    v0.2.0+
+</min-version>
+
+<hx-tooltip id="page-min-version" position="right">
+    HelixUI v0.2.0 or later required
+</hx-tooltip>
+    </h1>
 
   <section>
     <p>
@@ -545,10 +565,10 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-03-29
+      2018-04-09
     </small>
 
-  <small>(v0.5.2)</small>
+  <small>(v0.6.0)</small>
 </div>
   </footer>
 
@@ -562,14 +582,14 @@ class="current">
       elAdapter.parentElement.removeChild(elAdapter);
     }
   </script>
-  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
+  <script src="vendor/scripts/custom-elements-es5-adapter.js"></script>
 </span>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
-<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
 <script src="dist/scripts/helix-ui.browser.js"></script>
 <script src="docs.js"></script>
 </body>

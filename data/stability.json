@@ -1,0 +1,21 @@
+{
+  "Alert": 1,
+  "Box": 1,
+  "Breadcrumb": 2,
+  "Button": 1,
+  "Checkbox": 1,
+  "Description List": 1,
+  "Disclosure": 1,
+  "Grid": 2,
+  "Icon": 1,
+  "Navigation": 1,
+  "Panel": 2,
+  "Popover": 1,
+  "Reveal": 1,
+  "Status Label": 1,
+  "Table": 1,
+  "Tabset": 1,
+  "Text Input": 1,
+  "Toolitp": 1,
+  "Typography": 1
+}

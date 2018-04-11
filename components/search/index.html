@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="docs.css">
 
   <!-- Polyfill Loader -->
-  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
+  <script src="vendor/scripts/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
   <!-- This link should be the first item a user can tab to. -->
@@ -237,6 +237,12 @@ class="current">
 
 
       
+      <a href="elements/hx-alert" >
+    &lt;hx-alert&gt;
+  </a>
+
+
+      
       <a href="elements/hx-busy" >
     &lt;hx-busy&gt;
   </a>
@@ -387,6 +393,12 @@ class="current">
 
 
       
+      <a href="elements/hx-search-assistance" >
+    &lt;hx-search-assistance&gt;
+  </a>
+
+
+      
       <a href="elements/hx-status" >
     &lt;hx-status&gt;
   </a>
@@ -452,27 +464,20 @@ class="current">
       </nav>
 
   <main id="content" class="hxBox-md">
-    <h1>Search</h1>
+    <h1>Search
+<min-version data-tooltip="page-min-version">
+    v0.4.0+
+</min-version>
+
+<hx-tooltip id="page-min-version" position="right">
+    HelixUI v0.4.0 or later required
+</hx-tooltip>
+    </h1>
 
   <section>
     <h2 id="demos">Demos</h2>
     <div id="vue-searchDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg">
-        <h3>Basic Search Box</h3>
-        <div class="demo">
-          <hx-search
-             :disabled="isDisabled"
-             :invalid="isInvalid"
-             :placeholder="placeholder"
-             :value="searchValue"
-             @input="onSearchUpdate"
-             @clear="onSearchUpdate"
-          ></hx-search>
-        </div>
-
-        <pre><code>{{snippet}}</code></pre>
-      </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg">
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
         <h3>Options</h3>
         <p>
           <b>Placeholder:</b><br />
@@ -507,7 +512,64 @@ class="current">
           <label>Invalid</label>
         </p>
       </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <h3>Basic Search Box</h3>
+        <div class="demo">
+          <hx-search
+             :disabled="isDisabled"
+             :invalid="isInvalid"
+             :placeholder="placeholder"
+             :value="searchValue"
+             @clear="onSearchUpdate"
+             @input="onSearchUpdate"
+          ></hx-search>
+        </div>
+        <pre><code>{{snippet}}</code></pre>
+      </div>
     </div>
+  </section>
+
+  <section>
+    <div id="vue-searchAssistanceDemo">
+      <h3>Search Assistance</h3>
+      <div class="demo">
+        <hx-search
+          id="assisted-hx-search"
+          :value="searchValue"
+          @blur="onBlur"
+          @clear="onUpdate"
+          @focus="onFocus"
+          @input="onUpdate"
+        ></hx-search>
+        <hx-search-assistance relative-to="assisted-hx-search" ref="search">
+          <header>Search for "<span v-text="searchValue"></span>"</header>
+          <section v-if="hasValue">
+            <header>Category Header</header>
+            <button class="hxSearchSuggestion">Here is a possible <b v-text="searchValue"></b></button>
+            <button class="hxSearchSuggestion">Here is a possible <b v-text="searchValue"></b></button>
+            <button class="hxSearchSuggestion">Here is a possible <b v-text="searchValue"></b></button>
+          </section>
+        </hx-search-assistance>
+      </div>
+      <small>
+        *Behavior to show/hide search assistance may differ in your app.
+      </small>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-search</span>
+  <span class="hljs-attr">id</span>=<span class="hljs-string">"assisted-search"</span>
+  <span class="hljs-attr">onblur</span>=<span class="hljs-string">"hideAssistance()"</span>
+  <span class="hljs-attr">onfocus</span>=<span class="hljs-string">"showAssistance()"</span>
+  <span class="hljs-attr">value</span>=<span class="hljs-string">"item"</span>
+&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-search</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-search-assistance</span> <span class="hljs-attr">relative-to</span>=<span class="hljs-string">"assisted-search"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>Search for "item"<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>Category Header<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSearchSuggestion"</span>&gt;</span>Here is a possible <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>item<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSearchSuggestion"</span>&gt;</span>Here is a possible <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>item<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSearchSuggestion"</span>&gt;</span>Here is a possible <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>item<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-search-assistance</span>&gt;</span>
+</code></pre>    </div>
   </section>
 
   <section data-visreg="search-states">
@@ -570,6 +632,7 @@ class="current">
   <h2 id="see-also">See Also</h2>
   <ul>
       <li><a href="elements/hx-search">&lt;hx-search&gt;</a></li>
+      <li><a href="elements/hx-search-assistance">&lt;hx-search-assistance&gt;</a></li>
   </ul>
 </section>
   </main>
@@ -598,10 +661,10 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-03-29
+      2018-04-10
     </small>
 
-  <small>(v0.5.2)</small>
+  <small>(v0.6.0)</small>
 </div>
   </footer>
 
@@ -615,14 +678,14 @@ class="current">
       elAdapter.parentElement.removeChild(elAdapter);
     }
   </script>
-  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
+  <script src="vendor/scripts/custom-elements-es5-adapter.js"></script>
 </span>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
-<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
 <script src="dist/scripts/helix-ui.browser.js"></script>
 <script src="docs.js"></script>
 </body>

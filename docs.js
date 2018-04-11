@@ -106,32 +106,37 @@ function snippet(raw) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_accordions_accordion_demo__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_box_box_demo__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_box_box_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_box_box_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_busy_busy_demo__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_busy_busy_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_busy_busy_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_buttons_button_demo__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_buttons_button_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_buttons_button_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_checkboxes_checkbox_demo__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_checkboxes_checkbox_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_checkboxes_checkbox_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_choice_tiles_choice_tile_demo__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_lists_list_demo__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_lists_list_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_lists_list_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_panels_panel_demo__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_panels_panel_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_panels_panel_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_popovers_popover_demo__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_popovers_popover_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_popovers_popover_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_reveals_reveal_demo__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_reveals_reveal_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_reveals_reveal_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_search_search_demo__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_status_pills_status_demo__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_status_pills_status_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_status_pills_status_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_stepper_stepper_demo__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_stepper_stepper_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_stepper_stepper_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_tables_table_demo__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_tables_table_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_tables_table_demo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_tooltips_tooltip_demo__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_tooltips_tooltip_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__components_tooltips_tooltip_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_alerts_alert_demo__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_box_box_demo__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_box_box_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_box_box_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_busy_busy_demo__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_busy_busy_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_busy_busy_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_buttons_button_demo__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_buttons_button_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_buttons_button_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_checkboxes_checkbox_demo__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_checkboxes_checkbox_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_checkboxes_checkbox_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_choice_tiles_choice_tile_demo__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_icons_icon_demo__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_icons_icon_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_icons_icon_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_lists_list_demo__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_lists_list_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_lists_list_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_panels_panel_demo__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_panels_panel_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_panels_panel_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_popovers_popover_demo__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_popovers_popover_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_popovers_popover_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_reveals_reveal_demo__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_reveals_reveal_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_reveals_reveal_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_search_search_demo__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_status_pills_status_demo__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_status_pills_status_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_status_pills_status_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_stepper_stepper_demo__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_stepper_stepper_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__components_stepper_stepper_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_tables_table_demo__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_tables_table_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__components_tables_table_demo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_tooltips_tooltip_demo__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_tooltips_tooltip_demo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__components_tooltips_tooltip_demo__);
+
+
 
 
 
@@ -200,6 +205,61 @@ if (document.getElementById('vue-accordionDemo')) {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util__ = __webpack_require__(0);
+
+
+if (document.getElementById('vue-alertDemo')) {
+    var TYPES = [{ label: 'Default', value: '' }, { label: 'Info', value: 'info' }, { label: 'Error', value: 'error' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }];
+
+    new Vue({
+        el: '#vue-alertDemo',
+        data: {
+            content: 'Nope! Nope! Nope! Nope! Nope!',
+            cta: 'burn it',
+            isStatic: false,
+            status: 'spider',
+            type: TYPES[0],
+            types: TYPES
+        },
+        methods: {
+            onSubmit: function onSubmit() {
+                alert('The spider didn\'t see that coming!');
+            }
+        },
+        computed: {
+            attrType: function attrType() {
+                if (this.type.value !== '') {
+                    return 'type="' + this.type.value + '"';
+                } else {
+                    return '';
+                }
+            },
+            attrStatus: function attrStatus() {
+                if (this.status !== '') {
+                    return 'status="' + this.status + '"';
+                } else {
+                    return '';
+                }
+            },
+            attrCta: function attrCta() {
+                if (this.cta !== '') {
+                    return 'cta="' + this.cta + '"';
+                } else {
+                    return '';
+                }
+            },
+            snippet: function snippet() {
+                return __WEBPACK_IMPORTED_MODULE_0__util__["a" /* default */].snippet('\n                    <hx-alert\n                        ' + this.attrCta + '\n                        ' + this.attrStatus + '\n                        ' + (this.isStatic ? 'static' : '') + '\n                        ' + this.attrType + '\n                    >\n                        ' + this.content + '\n                    </hx-alert>\n                ');
+            }
+        }
+    });
+}
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-boxDemo')) {
@@ -216,7 +276,7 @@ if (document.getElementById('vue-boxDemo')) {
 }
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-busyDemo')) {
@@ -229,7 +289,7 @@ if (document.getElementById('vue-busyDemo')) {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-buttonDemo')) {
@@ -272,7 +332,7 @@ if (document.getElementById('vue-buttonDemo')) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-checkboxDemo')) {
@@ -302,7 +362,7 @@ if (document.getElementById('vue-checkboxDemo')) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -349,7 +409,59 @@ if (document.getElementById('vue-choiceDemo')) {
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
+/***/ (function(module, exports) {
+
+if (document.getElementById('vue-iconDemo')) {
+    var Icons = {
+        fetchAll: function fetchAll() {
+            return $.ajax({
+                async: false,
+                dataType: 'json',
+                url: '/data/icons.json'
+            });
+        }
+    }; //Icons
+
+    new Vue({
+        el: '#vue-iconDemo',
+        data: {
+            icons: [],
+            filter: ''
+        },
+        beforeMount: function beforeMount() {
+            var _this = this;
+
+            Icons.fetchAll().then(function (data) {
+                _this.icons = data;
+            });
+        },
+        methods: {
+            onFilterUpdate: function onFilterUpdate(evt) {
+                this.filter = evt.currentTarget.value || '';
+            }
+        },
+        computed: {
+            hasFilter: function hasFilter() {
+                return this.filter !== '';
+            },
+            filteredIcons: function filteredIcons() {
+                var _this2 = this;
+
+                var filtered = this.icons;
+                if (this.hasFilter) {
+                    filtered = this.icons.filter(function (icon) {
+                        return icon.name.indexOf(_this2.filter) >= 0;
+                    });
+                }
+                return filtered;
+            }
+        }
+    });
+}
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-listDemo')) {
@@ -367,7 +479,7 @@ if (document.getElementById('vue-listDemo')) {
 }
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-panelDemo')) {
@@ -381,7 +493,7 @@ if (document.getElementById('vue-panelDemo')) {
 }
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-popoverDemo')) {
@@ -397,7 +509,7 @@ if (document.getElementById('vue-popoverDemo')) {
 }
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-revealDemo')) {
@@ -410,7 +522,7 @@ if (document.getElementById('vue-revealDemo')) {
 }
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -447,10 +559,36 @@ if (document.getElementById('vue-searchDemo')) {
             }
         }
     });
+} //vue-searchDemo
+
+if (document.getElementById('vue-searchAssistanceDemo')) {
+    new Vue({
+        el: '#vue-searchAssistanceDemo',
+        data: {
+            searchValue: ''
+        },
+        methods: {
+            // fires on 'input' and 'clear' events
+            onUpdate: function onUpdate(evt) {
+                this.searchValue = evt.target.value;
+            },
+            onFocus: function onFocus() {
+                this.$refs.search.open = true;
+            },
+            onBlur: function onBlur() {
+                this.$refs.search.open = false;
+            }
+        },
+        computed: {
+            hasValue: function hasValue() {
+                return this.searchValue && this.searchValue !== '';
+            }
+        }
+    });
 }
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-statusDemo')) {
@@ -480,7 +618,7 @@ if (document.getElementById('vue-statusDemo')) {
 }
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-stepperDemo')) {
@@ -499,7 +637,7 @@ if (document.getElementById('vue-stepperDemo')) {
 }
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-tableDemo')) {
@@ -529,7 +667,7 @@ if (document.getElementById('vue-tableDemo')) {
 }
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports) {
 
 if (document.getElementById('vue-tooltipDemo')) {

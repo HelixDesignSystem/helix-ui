@@ -693,6 +693,8 @@ var HXElement = function (_HTMLElement) {
 
             _this.shadowRoot.appendChild(template.content.cloneNode(true));
         }
+
+        _this.$relayEvent = _this.$relayEvent.bind(_this);
         return _this;
     } //constructor
 
@@ -773,11 +775,46 @@ var HXElement = function (_HTMLElement) {
         key: '$emit',
         value: function $emit(evtName, details) {
             var evt = new CustomEvent(evtName, {
+                cancelable: true,
                 bubbles: true,
                 detail: details
             });
-            this.dispatchEvent(evt);
+            return this.dispatchEvent(evt);
         } //$emit
+
+    }, {
+        key: '$relayEvent',
+        value: function $relayEvent(oldEvent) {
+            // Original event stops here
+            oldEvent.preventDefault();
+            oldEvent.stopPropagation();
+            oldEvent.stopImmediatePropagation();
+
+            // Emit new event of same name
+            var newEvent = new CustomEvent(oldEvent.type, {
+                bubbles: oldEvent.bubbles,
+                cancelable: oldEvent.cancelable
+            });
+            this.dispatchEvent(newEvent);
+        } //$relayEvent()
+
+        // TODO: may need a later update to add events based on element name/type
+
+    }, {
+        key: '$relayNonBubblingEvents',
+        value: function $relayNonBubblingEvents(el) {
+            el.addEventListener('focus', this.$relayEvent);
+            el.addEventListener('blur', this.$relayEvent);
+        }
+
+        // Undo $relayNonBubblingEvents()
+
+    }, {
+        key: '$removeNonBubblingRelays',
+        value: function $removeNonBubblingRelays(el) {
+            el.removeEventListener('focus', this.$relayEvent);
+            el.removeEventListener('blur', this.$relayEvent);
+        }
 
         // Properties
 
@@ -839,6 +876,10 @@ var HXAccordionElement = function (_HXElement) {
         value: function attributeChangedCallback(attr, oldVal, newVal) {
             if (newVal !== null) {
                 this._openPanel(Number(newVal));
+
+                if (newVal !== oldVal) {
+                    this.$emit('panelchange');
+                }
             }
         }
 
@@ -976,9 +1017,8 @@ var HXAccordionPanelElement = function (_HXElement) {
             if (newVal !== oldVal) {
                 this._btnToggle.setAttribute('aria-expanded', isOpen);
                 this._elBody.setAttribute('aria-expanded', isOpen);
-                if (isOpen) {
-                    this.$emit('open');
-                }
+
+                this.$emit(isOpen ? 'open' : 'close');
             }
         }
 
@@ -1016,22 +1056,210 @@ var HXAccordionPanelElement = function (_HXElement) {
     return HXAccordionPanelElement;
 }(HXElement);
 
-var tagName$1 = 'hx-busy';
-// leave ShadowDOM template empty to remove LightDOM children
-var template$1 = document.createElement('template');
+var shadowHtml = "<div id='wrapper'><hx-icon id='icon' type='info-circle'></hx-icon><span id='content'><span id='status'></span><slot></slot></span><button id='cta' type='button'></button> <button id='dismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-var HXBusyElement = function (_HXElement) {
-    inherits(HXBusyElement, _HXElement);
-    createClass(HXBusyElement, null, [{
+var shadowStyles$1 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\nbutton {\n  align-self: flex-start;\n  background-color: transparent;\n  border: 0;\n  cursor: pointer;\n}\n#wrapper {\n  display: flex;\n}\n#icon {\n  flex-shrink: 0;\n  margin: 1rem;\n}\n#content {\n  flex-grow: 1;\n  margin-right: 1rem;\n  padding: 1rem 0;\n}\n#status {\n  font-weight: 500;\n  text-transform: uppercase;\n}\n#status:after {\n  content: \":\";\n}\n#status:empty {\n  display: none;\n}\n#cta {\n  flex-shrink: 0;\n  font-weight: 500;\n  padding: 1rem 0;\n  text-transform: uppercase;\n  white-space: nowrap;\n}\n#cta:empty {\n  display: none;\n}\n#dismiss {\n  flex-shrink: 0;\n  height: 3rem;\n  padding: 1rem;\n  width: 3rem;\n}\n:host([static]) #dismiss {\n  display: none;\n}\n:host([static]) #cta {\n  margin-right: 1rem;\n}\n";
+
+var tagName$1 = 'hx-alert';
+var template$1 = document.createElement('template');
+var ICONS = {
+    'error': 'exclamation-circle',
+    'info': 'info-circle',
+    'success': 'checkmark-circle',
+    'warning': 'exclamation-triangle'
+};
+
+template$1.innerHTML = '\n  <style>' + shadowStyles$1 + '</style>\n  ' + shadowHtml + '\n';
+
+var HXAlertElement = function (_HXElement) {
+    inherits(HXAlertElement, _HXElement);
+    createClass(HXAlertElement, null, [{
         key: 'is',
         get: function get$$1() {
             return tagName$1;
         }
     }]);
 
+    function HXAlertElement() {
+        classCallCheck(this, HXAlertElement);
+
+        var _this = possibleConstructorReturn(this, (HXAlertElement.__proto__ || Object.getPrototypeOf(HXAlertElement)).call(this, tagName$1, template$1));
+
+        _this._onDismiss = _this._onDismiss.bind(_this);
+        _this._onSubmit = _this._onSubmit.bind(_this);
+        return _this;
+    }
+
+    createClass(HXAlertElement, [{
+        key: 'connectedCallback',
+        value: function connectedCallback() {
+            this.$upgradeProperty('cta');
+            this.$upgradeProperty('static');
+            this.$upgradeProperty('status');
+            this.$upgradeProperty('type');
+
+            this._btnCta.addEventListener('click', this._onSubmit);
+            this._btnDismiss.addEventListener('click', this._onDismiss);
+        }
+    }, {
+        key: 'disconnectedCallback',
+        value: function disconnectedCallback() {
+            this._btnCta.removeEventListener('click', this._onSubmit);
+            this._btnDismiss.removeEventListener('click', this._onDismiss);
+        }
+    }, {
+        key: 'attributeChangedCallback',
+        //observedAttributes
+
+        value: function attributeChangedCallback(attr, oldVal, newVal) {
+            var hasValue = newVal !== null;
+            switch (attr) {
+                case 'cta':
+                    this._btnCta.textContent = hasValue ? newVal : '';
+                    break;
+
+                case 'status':
+                    this._elStatus.textContent = hasValue ? newVal : '';
+                    break;
+
+                case 'type':
+                    if (hasValue) {
+                        this._elIcon.type = ICONS[newVal] || ICONS['info'];
+                    } else {
+                        this._elIcon.type = ICONS['info'];
+                    }
+                    break;
+            }
+        } //attributeChangedCallback()
+
+        // GETTERS
+
+    }, {
+        key: 'dismiss',
+
+
+        // PUBLIC METHODS
+        value: function dismiss() {
+            this.remove();
+        }
+
+        // PRIVATE METHODS
+
+    }, {
+        key: '_onDismiss',
+        value: function _onDismiss(evt) {
+            evt.preventDefault();
+
+            if (this.$emit('dismiss')) {
+                // only if event was not canceled by consumer
+                this.dismiss();
+            }
+        }
+    }, {
+        key: '_onSubmit',
+        value: function _onSubmit(evt) {
+            evt.preventDefault();
+            this.$emit('submit');
+        }
+
+        // PRIVATE GETTERS
+
+    }, {
+        key: 'cta',
+        get: function get$$1() {
+            return this.getAttribute('cta');
+        },
+
+
+        // SETTERS
+        set: function set$$1(value) {
+            if (value) {
+                this.setAttribute('cta', value);
+            } else {
+                this.removeAttribute('cta');
+            }
+        }
+    }, {
+        key: 'static',
+        get: function get$$1() {
+            return this.hasAttribute('static');
+        },
+        set: function set$$1(value) {
+            if (value) {
+                this.setAttribute('static', ''); // boolean
+            } else {
+                this.removeAttribute('static');
+            }
+        }
+    }, {
+        key: 'status',
+        get: function get$$1() {
+            return this.getAttribute('status');
+        },
+        set: function set$$1(value) {
+            if (value) {
+                this.setAttribute('status', value);
+            } else {
+                this.removeAttribute('status');
+            }
+        }
+    }, {
+        key: 'type',
+        get: function get$$1() {
+            return this.getAttribute('type');
+        },
+        set: function set$$1(value) {
+            if (value) {
+                this.setAttribute('type', value);
+            } else {
+                this.removeAttribute('type');
+            }
+        }
+    }, {
+        key: '_elIcon',
+        get: function get$$1() {
+            return this.shadowRoot.getElementById('icon');
+        }
+    }, {
+        key: '_elStatus',
+        get: function get$$1() {
+            return this.shadowRoot.getElementById('status');
+        }
+    }, {
+        key: '_btnCta',
+        get: function get$$1() {
+            return this.shadowRoot.getElementById('cta');
+        }
+    }, {
+        key: '_btnDismiss',
+        get: function get$$1() {
+            return this.shadowRoot.getElementById('dismiss');
+        }
+    }], [{
+        key: 'observedAttributes',
+        get: function get$$1() {
+            return ['cta', 'static', 'status', 'type'];
+        }
+    }]);
+    return HXAlertElement;
+}(HXElement);
+
+var tagName$2 = 'hx-busy';
+// leave ShadowDOM template empty to remove LightDOM children
+var template$2 = document.createElement('template');
+
+var HXBusyElement = function (_HXElement) {
+    inherits(HXBusyElement, _HXElement);
+    createClass(HXBusyElement, null, [{
+        key: 'is',
+        get: function get$$1() {
+            return tagName$2;
+        }
+    }]);
+
     function HXBusyElement() {
         classCallCheck(this, HXBusyElement);
-        return possibleConstructorReturn(this, (HXBusyElement.__proto__ || Object.getPrototypeOf(HXBusyElement)).call(this, tagName$1, template$1));
+        return possibleConstructorReturn(this, (HXBusyElement.__proto__ || Object.getPrototypeOf(HXBusyElement)).call(this, tagName$2, template$2));
     }
 
     createClass(HXBusyElement, [{
@@ -1056,19 +1284,19 @@ var HXBusyElement = function (_HXElement) {
     return HXBusyElement;
 }(HXElement); //HXBusyElement
 
-var shadowStyles$1 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n#container {\n  display: flex;\n  height: 100%;\n  position: relative;\n  width: 100%;\n}\n#customControl {\n  align-content: center;\n  align-items: center;\n  background-color: #ffffff;\n  border: 1px solid currentColor;\n  border-radius: 2px;\n  color: #bdbdbd;\n  display: flex;\n  font-size: 0.625rem;\n  /* ~10px */\n  height: 100%;\n  justify-content: center;\n  left: 0;\n  position: absolute;\n  top: 0;\n  vertical-align: middle;\n  width: 100%;\n  z-index: 10;\n}\n#customControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n/* icons */\n#minus,\n#tick {\n  display: none;\n  height: 1em;\n  line-height: 1;\n  width: 1em;\n}\n#nativeControl:checked:not(:indeterminate) ~ #customControl #tick {\n  display: block;\n}\n#nativeControl:indeterminate ~ #customControl #minus {\n  display: block;\n}\n#nativeControl {\n  /* opacity 0 because Firefox and OS focus styles */\n  opacity: 0;\n  z-index: 0;\n  /* default checked and indeterminate (checked or unchecked) */\n  /* disabled unchecked */\n}\n#nativeControl:focus {\n  border: none;\n  outline: none;\n}\n#nativeControl:focus ~ #customControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n#nativeControl:checked ~ #customControl,\n#nativeControl:indeterminate ~ #customControl {\n  color: #0c7c84;\n}\n#nativeControl:checked ~ #customControl:hover,\n#nativeControl:indeterminate ~ #customControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n#nativeControl:disabled ~ #customControl {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n  cursor: not-allowed;\n}\n#nativeControl:disabled ~ #customControl:hover {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n}\n/* invalid */\n:host([invalid]) {\n  /* below styles needed to override above, custom control styles */\n  /* invalid and checked or indeterminate */\n  /* invalid and disabled */\n}\n:host([invalid]) #customControl {\n  border-width: 2px;\n  color: #d32f2f;\n}\n:host([invalid]) #customControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #nativeControl:focus ~ #customControl {\n  border-color: #d32f2f;\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n}\n:host([invalid]) #nativeControl:checked ~ #customControl,\n:host([invalid]) #nativeControl:indeterminate ~ #customControl {\n  color: #d32f2f;\n}\n:host([invalid]) #nativeControl:checked ~ #customControl:hover,\n:host([invalid]) #nativeControl:indeterminate ~ #customControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #nativeControl:disabled ~ #customControl {\n  border-width: 1px;\n  color: #bdbdbd;\n}\n:host([invalid]) #nativeControl:disabled ~ #customControl:hover {\n  background-color: #eeeeee;\n}\n";
+var shadowStyles$2 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n#container {\n  display: flex;\n  height: 100%;\n  position: relative;\n  width: 100%;\n}\n#customControl {\n  align-content: center;\n  align-items: center;\n  background-color: #ffffff;\n  border: 1px solid currentColor;\n  border-radius: 2px;\n  color: #bdbdbd;\n  display: flex;\n  font-size: 0.625rem;\n  /* ~10px */\n  height: 100%;\n  justify-content: center;\n  left: 0;\n  position: absolute;\n  top: 0;\n  vertical-align: middle;\n  width: 100%;\n  z-index: 10;\n}\n#customControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n/* icons */\n#minus,\n#tick {\n  display: none;\n  height: 1em;\n  line-height: 1;\n  width: 1em;\n}\n#nativeControl:checked:not(:indeterminate) ~ #customControl #tick {\n  display: block;\n}\n#nativeControl:indeterminate ~ #customControl #minus {\n  display: block;\n}\n#nativeControl {\n  /* opacity 0 because Firefox and OS focus styles */\n  opacity: 0;\n  z-index: 0;\n  /* default checked and indeterminate (checked or unchecked) */\n  /* disabled unchecked */\n}\n#nativeControl:focus {\n  border: none;\n  outline: none;\n}\n#nativeControl:focus ~ #customControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n#nativeControl:checked ~ #customControl,\n#nativeControl:indeterminate ~ #customControl {\n  color: #0c7c84;\n}\n#nativeControl:checked ~ #customControl:hover,\n#nativeControl:indeterminate ~ #customControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n#nativeControl:disabled ~ #customControl {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n  cursor: not-allowed;\n}\n#nativeControl:disabled ~ #customControl:hover {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n}\n/* invalid */\n:host([invalid]) {\n  /* below styles needed to override above, custom control styles */\n  /* invalid and checked or indeterminate */\n  /* invalid and disabled */\n}\n:host([invalid]) #customControl {\n  border-width: 2px;\n  color: #d32f2f;\n}\n:host([invalid]) #customControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #nativeControl:focus ~ #customControl {\n  border-color: #d32f2f;\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n}\n:host([invalid]) #nativeControl:checked ~ #customControl,\n:host([invalid]) #nativeControl:indeterminate ~ #customControl {\n  color: #d32f2f;\n}\n:host([invalid]) #nativeControl:checked ~ #customControl:hover,\n:host([invalid]) #nativeControl:indeterminate ~ #customControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #nativeControl:disabled ~ #customControl {\n  border-width: 1px;\n  color: #bdbdbd;\n}\n:host([invalid]) #nativeControl:disabled ~ #customControl:hover {\n  background-color: #eeeeee;\n}\n";
 
-var tagName$2 = 'hx-checkbox';
-var template$2 = document.createElement('template');
+var tagName$3 = 'hx-checkbox';
+var template$3 = document.createElement('template');
 
-template$2.innerHTML = '\n  <style>' + shadowStyles$1 + '</style>\n  <label id="container">\n    <input type="checkbox" id="nativeControl"/>\n    <div id="customControl">\n      <hx-icon type="checkmark" id="tick"></hx-icon>\n      <hx-icon type="minus" id="minus"></hx-icon>\n    </div>\n  </label>\n';
+template$3.innerHTML = '\n  <style>' + shadowStyles$2 + '</style>\n  <label id="container">\n    <input type="checkbox" id="nativeControl"/>\n    <div id="customControl">\n      <hx-icon type="checkmark" id="tick"></hx-icon>\n      <hx-icon type="minus" id="minus"></hx-icon>\n    </div>\n  </label>\n';
 
 var HXCheckboxElement = function (_HXElement) {
     inherits(HXCheckboxElement, _HXElement);
     createClass(HXCheckboxElement, null, [{
         key: 'is',
         get: function get$$1() {
-            return tagName$2;
+            return tagName$3;
         }
     }, {
         key: 'observedAttributes',
@@ -1080,7 +1308,7 @@ var HXCheckboxElement = function (_HXElement) {
     function HXCheckboxElement() {
         classCallCheck(this, HXCheckboxElement);
 
-        var _this = possibleConstructorReturn(this, (HXCheckboxElement.__proto__ || Object.getPrototypeOf(HXCheckboxElement)).call(this, tagName$2, template$2));
+        var _this = possibleConstructorReturn(this, (HXCheckboxElement.__proto__ || Object.getPrototypeOf(HXCheckboxElement)).call(this, tagName$3, template$3));
 
         _this._input = _this.shadowRoot.getElementById('nativeControl');
         _this._onChange = _this._onChange.bind(_this);
@@ -1296,25 +1524,25 @@ var HXDisclosureElement = function (_HXElement) {
     return HXDisclosureElement;
 }(HXElement); //HXDisclosureElement
 
-var shadowStyles$2 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n";
+var shadowStyles$3 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n";
 
-var tagName$3 = 'hx-error';
-var template$3 = document.createElement('template');
+var tagName$4 = 'hx-error';
+var template$4 = document.createElement('template');
 
-template$3.innerHTML = '\n  <style>' + shadowStyles$2 + '</style>\n  <hx-icon type="exclamation-circle"></hx-icon>\n  <slot></slot>\n';
+template$4.innerHTML = '\n  <style>' + shadowStyles$3 + '</style>\n  <hx-icon type="exclamation-circle"></hx-icon>\n  <slot></slot>\n';
 
 var HXErrorElement = function (_HXElement) {
     inherits(HXErrorElement, _HXElement);
     createClass(HXErrorElement, null, [{
         key: 'is',
         get: function get$$1() {
-            return tagName$3;
+            return tagName$4;
         }
     }]);
 
     function HXErrorElement() {
         classCallCheck(this, HXErrorElement);
-        return possibleConstructorReturn(this, (HXErrorElement.__proto__ || Object.getPrototypeOf(HXErrorElement)).call(this, tagName$3, template$3));
+        return possibleConstructorReturn(this, (HXErrorElement.__proto__ || Object.getPrototypeOf(HXErrorElement)).call(this, tagName$4, template$4));
     }
 
     return HXErrorElement;
@@ -1572,6 +1800,8 @@ var HXIconElement = function (_HXElement) {
                 tmpDiv.innerHTML = Icons[this.type];
                 // grab SVG from surrogate DIV
                 var svg = tmpDiv.firstElementChild;
+                // Prevent IE/Edge from adding SVG to focus order
+                svg.setAttribute('focusable', 'false');
 
                 // inject SVG into Light DOM
                 this.appendChild(svg);
@@ -1631,8 +1861,13 @@ var HXMenuElement = function (_HXElement) {
         }
     }, {
         key: 'attributeChangedCallback',
-        value: function attributeChangedCallback(attr, oldValue, newValue) {
-            this.setAttribute('aria-expanded', newValue === '');
+        value: function attributeChangedCallback(attr, oldVal, newVal) {
+            var isOpen = newVal !== null;
+            this.setAttribute('aria-expanded', isOpen);
+
+            if (newVal !== oldVal) {
+                this.$emit(isOpen ? 'open' : 'close');
+            }
         }
     }, {
         key: '_setPosition',
@@ -1705,10 +1940,8 @@ var HXMenuElement = function (_HXElement) {
             if (value) {
                 this.setAttribute('open', '');
                 this._setPosition();
-                this.$emit('open');
             } else {
                 this.removeAttribute('open');
-                this.$emit('close');
             }
         },
         get: function get$$1() {
@@ -1740,19 +1973,19 @@ var HXMenuitemElement = function (_HXElement) {
     return HXMenuitemElement;
 }(HXElement); //HXMenuitemElement
 
-var shadowStyles$3 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n#container {\n  background-color: #ffffff;\n  box-shadow: 0px 7px 9px 0 rgba(0, 0, 0, 0.3);\n  display: flex;\n  flex-direction: column;\n  left: 50%;\n  max-width: 40rem;\n  min-height: 12.5rem;\n  min-width: 25rem;\n  padding: 1.25rem;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1201;\n}\n#close {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  height: 1rem;\n  line-height: 1;\n  padding: 0;\n  position: absolute;\n  right: 1.25rem;\n  top: 1.25rem;\n}\n";
+var shadowStyles$4 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n#container {\n  background-color: #ffffff;\n  box-shadow: 0px 7px 9px 0 rgba(0, 0, 0, 0.3);\n  display: flex;\n  flex-direction: column;\n  left: 50%;\n  max-width: 40rem;\n  min-height: 12.5rem;\n  min-width: 25rem;\n  padding: 1.25rem;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1201;\n}\n#close {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  height: 1rem;\n  line-height: 1;\n  padding: 0;\n  position: absolute;\n  right: 1.25rem;\n  top: 1.25rem;\n}\n";
 
-var tagName$4 = 'hx-modal';
-var template$4 = document.createElement('template');
+var tagName$5 = 'hx-modal';
+var template$5 = document.createElement('template');
 
-template$4.innerHTML = '\n  <style>' + shadowStyles$3 + '</style>\n  <div id="container">\n    <button id="close">\n      <hx-icon type="times"></hx-icon>\n    </button>\n    <slot></slot>\n  </div>\n';
+template$5.innerHTML = '\n  <style>' + shadowStyles$4 + '</style>\n  <div id="container">\n    <button id="close">\n      <hx-icon type="times"></hx-icon>\n    </button>\n    <slot></slot>\n  </div>\n';
 
 var HXModalElement = function (_HXElement) {
     inherits(HXModalElement, _HXElement);
     createClass(HXModalElement, null, [{
         key: 'is',
         get: function get$$1() {
-            return tagName$4;
+            return tagName$5;
         }
     }, {
         key: 'observedAttributes',
@@ -1764,7 +1997,7 @@ var HXModalElement = function (_HXElement) {
     function HXModalElement() {
         classCallCheck(this, HXModalElement);
 
-        var _this = possibleConstructorReturn(this, (HXModalElement.__proto__ || Object.getPrototypeOf(HXModalElement)).call(this, tagName$4, template$4));
+        var _this = possibleConstructorReturn(this, (HXModalElement.__proto__ || Object.getPrototypeOf(HXModalElement)).call(this, tagName$5, template$5));
 
         _this._close = _this._close.bind(_this);
         _this._keyUp = _this._keyUp.bind(_this);
@@ -1776,6 +2009,7 @@ var HXModalElement = function (_HXElement) {
         value: function connectedCallback() {
             this.$upgradeProperty('open');
             this._btnClose = this.shadowRoot.querySelector("#close");
+            this.setAttribute('aria-hidden', !this.open);
 
             this._btnClose.addEventListener('click', this._close);
             document.addEventListener('keyup', this._keyUp);
@@ -1788,9 +2022,15 @@ var HXModalElement = function (_HXElement) {
         }
     }, {
         key: 'attributeChangedCallback',
-        value: function attributeChangedCallback(attr, oldValue, newValue) {
-            this.setAttribute('aria-hidden', newValue !== '');
-        }
+        value: function attributeChangedCallback(attr, oldVal, newVal) {
+            var isOpen = newVal !== null;
+            this.setAttribute('aria-hidden', !isOpen);
+
+            if (newVal !== oldVal) {
+                this.$emit(isOpen ? 'open' : 'close');
+            }
+        } //attributeChangedCallback
+
     }, {
         key: '_close',
         value: function _close() {
@@ -1808,10 +2048,8 @@ var HXModalElement = function (_HXElement) {
         set: function set$$1(value) {
             if (value) {
                 this.setAttribute('open', '');
-                this.$emit('open');
             } else {
                 this.removeAttribute('open');
-                this.$emit('close');
             }
         },
         get: function get$$1() {
@@ -2294,19 +2532,19 @@ function debounce(func, wait, options) {
 
 var debounce_1 = debounce;
 
-var shadowStyles$4 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#container {\n  overflow: hidden;\n}\n";
+var shadowStyles$5 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#container {\n  overflow: hidden;\n}\n";
 
-var tagName$5 = 'hx-popover';
-var template$5 = document.createElement('template');
+var tagName$6 = 'hx-popover';
+var template$6 = document.createElement('template');
 
-template$5.innerHTML = '\n  <style>' + shadowStyles$4 + '</style>\n  <div class="position-arrow">\n    <div id="container">\n      <slot></slot>\n    </div>\n  </div>\n';
+template$6.innerHTML = '\n  <style>' + shadowStyles$5 + '</style>\n  <div class="position-arrow">\n    <div id="container">\n      <slot></slot>\n    </div>\n  </div>\n';
 
 var HXPopoverElement = function (_HXElement) {
     inherits(HXPopoverElement, _HXElement);
     createClass(HXPopoverElement, null, [{
         key: 'is',
         get: function get$$1() {
-            return tagName$5;
+            return tagName$6;
         }
     }, {
         key: 'observedAttributes',
@@ -2318,7 +2556,7 @@ var HXPopoverElement = function (_HXElement) {
     function HXPopoverElement() {
         classCallCheck(this, HXPopoverElement);
 
-        var _this = possibleConstructorReturn(this, (HXPopoverElement.__proto__ || Object.getPrototypeOf(HXPopoverElement)).call(this, tagName$5, template$5));
+        var _this = possibleConstructorReturn(this, (HXPopoverElement.__proto__ || Object.getPrototypeOf(HXPopoverElement)).call(this, tagName$6, template$6));
 
         _this._toggle = _this._toggle.bind(_this);
         _this._setPosition = _this._setPosition.bind(_this);
@@ -2333,6 +2571,8 @@ var HXPopoverElement = function (_HXElement) {
             this.$upgradeProperty('position');
             this.$defaultAttribute('position', 'bottom-right');
             this._initialPosition = this.position;
+
+            this.setAttribute('aria-hidden', !this.open);
 
             if (!this.id) {
                 return;
@@ -2360,8 +2600,13 @@ var HXPopoverElement = function (_HXElement) {
         }
     }, {
         key: 'attributeChangedCallback',
-        value: function attributeChangedCallback(attr, oldValue, newValue) {
-            this.setAttribute('aria-hidden', newValue !== '');
+        value: function attributeChangedCallback(attr, oldVal, newVal) {
+            var isOpen = newVal !== null;
+            this.setAttribute('aria-hidden', !isOpen);
+
+            if (newVal !== oldVal) {
+                this.$emit(isOpen ? 'open' : 'close');
+            }
         }
     }, {
         key: '_toggle',
@@ -2437,7 +2682,12 @@ var HXRevealElement = function (_HXElement) {
     }, {
         key: 'attributeChangedCallback',
         value: function attributeChangedCallback(attr, oldVal, newVal) {
-            this.setAttribute('aria-expanded', newVal === '');
+            var isOpen = newVal !== null;
+            this.setAttribute('aria-expanded', isOpen);
+
+            if (newVal !== oldVal) {
+                this.$emit(isOpen ? 'open' : 'close');
+            }
         }
     }, {
         key: 'open',
@@ -2465,19 +2715,19 @@ var HXRevealElement = function (_HXElement) {
     return HXRevealElement;
 }(HXElement); //HXRevealElement
 
-var shadowStyles$5 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n:host {\n  display: block;\n  font-size: 1rem;\n  height: 2rem;\n  min-width: 8rem;\n}\n:host #wrapper {\n  display: flex;\n  height: 100%;\n  position: relative;\n}\n:host #icon {\n  color: #757575;\n  flex-shrink: 0;\n  order: 1;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #search {\n  background-color: transparent;\n  border: none;\n  color: #424242;\n  cursor: inherit;\n  flex-grow: 1;\n  font-weight: 400;\n  min-width: 0;\n  order: 2;\n  width: 0;\n  z-index: 1;\n}\n:host #search::-moz-placeholder {\n  color: #757575;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::-ms-input-placeholder {\n  color: #757575;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::-webkit-input-placeholder {\n  color: #757575;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::placeholder {\n  color: #757575;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #search:focus {\n  outline: none;\n}\n:host #search:focus ~ #clear {\n  color: #0e94a6;\n}\n:host #search:focus ~ #customControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #customControl {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #bdbdbd;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 0;\n}\n:host #clear {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 3;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #clear::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #clear:focus {\n  outline: none;\n}\n:host #clear:focus hx-icon {\n  outline-offset: 2px;\n  outline: 1px dotted currentColor;\n}\n:host #clear:focus ~ * {\n  color: #0e94a6;\n}\n:host #clear:focus ~ #customControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host([invalid]) {\n  color: #d32f2f;\n}\n:host([invalid]) #icon,\n:host([invalid]) #clear {\n  color: inherit;\n}\n:host([invalid]) #customControl {\n  border-color: #d32f2f;\n  border-width: 2px;\n}\n:host([invalid]) #clear:focus hx-icon {\n  outline-color: currentColor;\n}\n:host([invalid]) #search:focus ~ #clear {\n  color: #d32f2f;\n}\n:host([invalid]) #clear:focus ~ #customControl,\n:host([invalid]) #search:focus ~ #customControl {\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n  border-color: #d32f2f;\n}\n:host([disabled]) {\n  color: #d8d8d8;\n}\n:host([disabled]) #wrapper {\n  color: inherit;\n  cursor: not-allowed;\n}\n:host([disabled]) #icon {\n  color: inherit;\n}\n:host([disabled]) #clear {\n  display: none;\n}\n:host([disabled]) #search {\n  color: inherit;\n}\n:host([disabled]) #search::-moz-placeholder {\n  color: inherit;\n}\n:host([disabled]) #search::-ms-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #search::-webkit-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #search::placeholder {\n  color: inherit;\n}\n:host([disabled]) #customControl {\n  background-color: #f5f5f5;\n  border-color: #e0e0e0;\n  border-width: 1px;\n}\n";
+var shadowStyles$6 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n:host {\n  display: block;\n  font-size: 1rem;\n  height: 2rem;\n  min-width: 8rem;\n}\n:host #wrapper {\n  display: flex;\n  height: 100%;\n  position: relative;\n}\n:host #icon {\n  color: #757575;\n  flex-shrink: 0;\n  order: 1;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #search {\n  background-color: transparent;\n  border: none;\n  color: #424242;\n  cursor: inherit;\n  flex-grow: 1;\n  font-weight: 400;\n  min-width: 0;\n  order: 2;\n  width: 0;\n  z-index: 1;\n}\n:host #search::-moz-placeholder {\n  color: #757575;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::-ms-input-placeholder {\n  color: #757575;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::-webkit-input-placeholder {\n  color: #757575;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::placeholder {\n  color: #757575;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #search:focus {\n  outline: none;\n}\n:host #search:focus ~ #clear {\n  color: #0e94a6;\n}\n:host #search:focus ~ #customControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #customControl {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #bdbdbd;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 0;\n}\n:host #clear {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 3;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #clear::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #clear:focus {\n  outline: none;\n}\n:host #clear:focus hx-icon {\n  outline-offset: 2px;\n  outline: 1px dotted currentColor;\n}\n:host #clear:focus ~ * {\n  color: #0e94a6;\n}\n:host #clear:focus ~ #customControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host([invalid]) {\n  color: #d32f2f;\n}\n:host([invalid]) #icon,\n:host([invalid]) #clear {\n  color: inherit;\n}\n:host([invalid]) #customControl {\n  border-color: #d32f2f;\n  border-width: 2px;\n}\n:host([invalid]) #clear:focus hx-icon {\n  outline-color: currentColor;\n}\n:host([invalid]) #search:focus ~ #clear {\n  color: #d32f2f;\n}\n:host([invalid]) #clear:focus ~ #customControl,\n:host([invalid]) #search:focus ~ #customControl {\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n  border-color: #d32f2f;\n}\n:host([disabled]) {\n  color: #d8d8d8;\n}\n:host([disabled]) #wrapper {\n  color: inherit;\n  cursor: not-allowed;\n}\n:host([disabled]) #icon {\n  color: inherit;\n}\n:host([disabled]) #clear {\n  display: none;\n}\n:host([disabled]) #search {\n  color: inherit;\n}\n:host([disabled]) #search::-moz-placeholder {\n  color: inherit;\n}\n:host([disabled]) #search::-ms-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #search::-webkit-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #search::placeholder {\n  color: inherit;\n}\n:host([disabled]) #customControl {\n  background-color: #f5f5f5;\n  border-color: #e0e0e0;\n  border-width: 1px;\n}\n";
 
-var tagName$6 = 'hx-search';
-var template$6 = document.createElement('template');
+var tagName$7 = 'hx-search';
+var template$7 = document.createElement('template');
 
-template$6.innerHTML = '\n    <style>' + shadowStyles$5 + '</style>\n    <label id="wrapper">\n        <input type="text" role="search" id="search" autocomplete="off" />\n        <button id="clear" hidden aria-label="Clear search">\n            <hx-icon type="times"></hx-icon>\n        </button>\n        <div id="icon">\n            <hx-icon type="search"></hx-icon>\n        </div>\n        <div id="customControl"></div>\n    </label>\n';
+template$7.innerHTML = '\n    <style>' + shadowStyles$6 + '</style>\n    <label id="wrapper">\n        <input type="text" role="search" id="search" autocomplete="off" />\n        <button id="clear" hidden aria-label="Clear search">\n            <hx-icon type="times"></hx-icon>\n        </button>\n        <div id="icon">\n            <hx-icon type="search"></hx-icon>\n        </div>\n        <div id="customControl"></div>\n    </label>\n';
 
 var HXSearchElement = function (_HXElement) {
     inherits(HXSearchElement, _HXElement);
     createClass(HXSearchElement, null, [{
         key: 'is',
         get: function get$$1() {
-            return tagName$6;
+            return tagName$7;
         }
     }, {
         key: 'observedAttributes',
@@ -2489,7 +2739,7 @@ var HXSearchElement = function (_HXElement) {
     function HXSearchElement() {
         classCallCheck(this, HXSearchElement);
 
-        var _this = possibleConstructorReturn(this, (HXSearchElement.__proto__ || Object.getPrototypeOf(HXSearchElement)).call(this, tagName$6, template$6));
+        var _this = possibleConstructorReturn(this, (HXSearchElement.__proto__ || Object.getPrototypeOf(HXSearchElement)).call(this, tagName$7, template$7));
 
         _this._elSearch = _this.shadowRoot.getElementById('search');
         _this._btnClear = _this.shadowRoot.getElementById('clear');
@@ -2509,12 +2759,16 @@ var HXSearchElement = function (_HXElement) {
 
             this._btnClear.addEventListener('click', this._clearValue);
             this._elSearch.addEventListener('input', this._onInput);
+
+            this.$relayNonBubblingEvents(this._elSearch);
         }
     }, {
         key: 'disconnectedCallback',
         value: function disconnectedCallback() {
             this._btnClear.removeEventListener('click', this._clearValue);
             this._elSearch.removeEventListener('input', this._onInput);
+
+            this.$removeNonBubblingRelays(this._elSearch);
         }
     }, {
         key: 'attributeChangedCallback',
@@ -2624,6 +2878,92 @@ var HXSearchElement = function (_HXElement) {
     return HXSearchElement;
 }(HXElement);
 
+var HXSearchAssistanceElement = function (_HXElement) {
+    inherits(HXSearchAssistanceElement, _HXElement);
+
+    function HXSearchAssistanceElement() {
+        classCallCheck(this, HXSearchAssistanceElement);
+        return possibleConstructorReturn(this, (HXSearchAssistanceElement.__proto__ || Object.getPrototypeOf(HXSearchAssistanceElement)).apply(this, arguments));
+    }
+
+    createClass(HXSearchAssistanceElement, [{
+        key: 'attributeChangedCallback',
+        value: function attributeChangedCallback(attr, oldVal, newVal) {
+            var isOpen = newVal !== null;
+            if (newVal !== oldVal) {
+                this.$emit(isOpen ? 'open' : 'close');
+            }
+        }
+    }, {
+        key: 'connectedCallback',
+        value: function connectedCallback() {
+            this.$upgradeProperty('open');
+            this.$upgradeProperty('position');
+            this.$upgradeProperty('relativeTo');
+            this.$defaultAttribute('position', 'bottom-start');
+        }
+    }, {
+        key: '_setPosition',
+        value: function _setPosition() {
+            var offset = getPosition(this, this.relativeElement, {
+                position: this.position,
+                margin: 4
+            });
+            this.style.top = offset.y + 'px';
+            this.style.left = offset.x + 'px';
+        }
+    }, {
+        key: 'position',
+        set: function set$$1(value) {
+            if (value) {
+                this.setAttribute('position', value);
+            } else {
+                this.removeAttribute('position');
+            }
+        },
+        get: function get$$1() {
+            return this.getAttribute('position');
+        }
+    }, {
+        key: 'relativeTo',
+        set: function set$$1(value) {
+            this.setAttribute('relative-to', value);
+        },
+        get: function get$$1() {
+            return this.getAttribute('relative-to');
+        }
+    }, {
+        key: 'relativeElement',
+        get: function get$$1() {
+            return this.getRootNode().getElementById(this.relativeTo);
+        }
+    }, {
+        key: 'open',
+        set: function set$$1(value) {
+            if (value) {
+                this.setAttribute('open', '');
+                this._setPosition();
+            } else {
+                this.removeAttribute('open');
+            }
+        },
+        get: function get$$1() {
+            return this.hasAttribute('open');
+        }
+    }], [{
+        key: 'is',
+        get: function get$$1() {
+            return 'hx-search-assistance';
+        }
+    }, {
+        key: 'observedAttributes',
+        get: function get$$1() {
+            return ['open'];
+        }
+    }]);
+    return HXSearchAssistanceElement;
+}(HXElement); //HXSearchAssistanceElement
+
 var HXTabcontentElement = function (_HXElement) {
     inherits(HXTabcontentElement, _HXElement);
 
@@ -2714,8 +3054,8 @@ var HXTablistElement = function (_HXElement) {
     return HXTablistElement;
 }(HXElement); //HXTablistElement
 
-var HXTabpanelElement = function (_HXRevealElement) {
-    inherits(HXTabpanelElement, _HXRevealElement);
+var HXTabpanelElement = function (_HXElement) {
+    inherits(HXTabpanelElement, _HXElement);
 
     function HXTabpanelElement() {
         classCallCheck(this, HXTabpanelElement);
@@ -2725,27 +3065,47 @@ var HXTabpanelElement = function (_HXRevealElement) {
     createClass(HXTabpanelElement, [{
         key: 'connectedCallback',
         value: function connectedCallback() {
-            get(HXTabpanelElement.prototype.__proto__ || Object.getPrototypeOf(HXTabpanelElement.prototype), 'connectedCallback', this).call(this);
             this.$defaultAttribute('role', 'tabpanel');
+            this.$upgradeProperty('open');
+            this.setAttribute('aria-expanded', this.open);
         }
-
-        // because we are inheriting HXReveal, the only attribute we are watching
-        // is "open"
-
     }, {
         key: 'attributeChangedCallback',
         value: function attributeChangedCallback(attr, oldVal, newVal) {
-            get(HXTabpanelElement.prototype.__proto__ || Object.getPrototypeOf(HXTabpanelElement.prototype), 'attributeChangedCallback', this).call(this, arguments);
-            this.setAttribute('tabindex', newVal !== null ? 0 : -1);
+            var isOpen = newVal !== null;
+
+            this.setAttribute('aria-expanded', isOpen);
+            this.setAttribute('tabindex', isOpen ? 0 : -1);
+
+            if (newVal !== oldVal) {
+                this.$emit(isOpen ? 'open' : 'close');
+            }
+        }
+    }, {
+        key: 'open',
+        get: function get$$1() {
+            return this.hasAttribute('open');
+        },
+        set: function set$$1(value) {
+            if (value) {
+                this.setAttribute('open', '');
+            } else {
+                this.removeAttribute('open');
+            }
         }
     }], [{
         key: 'is',
         get: function get$$1() {
             return 'hx-tabpanel';
         }
+    }, {
+        key: 'observedAttributes',
+        get: function get$$1() {
+            return ['open'];
+        }
     }]);
     return HXTabpanelElement;
-}(HXRevealElement); //HXTabpanelElement
+}(HXElement); //HXTabpanelElement
 
 var HXTabsetElement = function (_HXElement) {
     inherits(HXTabsetElement, _HXElement);
@@ -2800,9 +3160,13 @@ var HXTabsetElement = function (_HXElement) {
         }
     }, {
         key: 'attributeChangedCallback',
-        value: function attributeChangedCallback(attr, oldValue, newVal) {
+        value: function attributeChangedCallback(attr, oldVal, newVal) {
             if (!isNaN(newVal)) {
-                this.currentTab = Number(newVal);
+                this._openTab(Number(newVal));
+
+                if (newVal !== oldVal) {
+                    this.$emit('tabchange');
+                }
             }
         }
     }, {
@@ -2853,6 +3217,24 @@ var HXTabsetElement = function (_HXElement) {
             this.currentTab = this.tabs.indexOf(evt.target);
         }
     }, {
+        key: '_openTab',
+        value: function _openTab(idx) {
+            this.tabs.forEach(function (tab, tabIdx) {
+                if (idx === tabIdx) {
+                    tab.current = true;
+                    tab.setAttribute('tabindex', 0);
+                } else {
+                    tab.current = false;
+                    tab.setAttribute('tabindex', -1);
+                    tab.blur();
+                }
+            });
+
+            this.tabpanels.forEach(function (tabpanel, panelIdx) {
+                tabpanel.open = idx === panelIdx;
+            });
+        }
+    }, {
         key: '_setupIds',
         value: function _setupIds() {
             var _this4 = this;
@@ -2886,7 +3268,7 @@ var HXTabsetElement = function (_HXElement) {
     }, {
         key: 'currentTab',
         get: function get$$1() {
-            return this._currentTab || 0;
+            return Number(this.getAttribute('current-tab') || 0);
         },
         set: function set$$1(idx) {
             if (isNaN(idx)) {
@@ -2897,24 +3279,8 @@ var HXTabsetElement = function (_HXElement) {
                 throw new RangeError('currentTab index is out of bounds');
             }
 
-            this._currentTab = idx;
-
-            this.tabs.forEach(function (tab, tabIdx) {
-                if (idx === tabIdx) {
-                    tab.current = true;
-                    tab.setAttribute('tabindex', 0);
-                } else {
-                    tab.current = false;
-                    tab.setAttribute('tabindex', -1);
-                    tab.blur();
-                }
-            });
-
-            this.tabpanels.forEach(function (tabpanel, panelIdx) {
-                tabpanel.open = idx === panelIdx;
-            });
-        } //SET:currentTab
-
+            this.setAttribute('current-tab', idx);
+        }
     }, {
         key: 'tabs',
         get: function get$$1() {
@@ -2929,19 +3295,19 @@ var HXTabsetElement = function (_HXElement) {
     return HXTabsetElement;
 }(HXElement); //HXTabsetElement
 
-var shadowStyles$6 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#container {\n  padding: 1.25rem;\n}\n";
+var shadowStyles$7 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput[type=\"text\"]::-ms-clear {\n  display: none;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#container {\n  padding: 1.25rem;\n}\n";
 
-var tagName$7 = 'hx-tooltip';
-var template$7 = document.createElement('template');
+var tagName$8 = 'hx-tooltip';
+var template$8 = document.createElement('template');
 
-template$7.innerHTML = '\n  <style>' + shadowStyles$6 + '</style>\n  <div id="container" class="position-arrow">\n    <slot></slot>\n  </div>';
+template$8.innerHTML = '\n  <style>' + shadowStyles$7 + '</style>\n  <div id="container" class="position-arrow">\n    <slot></slot>\n  </div>';
 
 var HXTooltipElement = function (_HXElement) {
     inherits(HXTooltipElement, _HXElement);
     createClass(HXTooltipElement, null, [{
         key: 'is',
         get: function get$$1() {
-            return tagName$7;
+            return tagName$8;
         }
     }, {
         key: 'observedAttributes',
@@ -2953,7 +3319,7 @@ var HXTooltipElement = function (_HXElement) {
     function HXTooltipElement() {
         classCallCheck(this, HXTooltipElement);
 
-        var _this = possibleConstructorReturn(this, (HXTooltipElement.__proto__ || Object.getPrototypeOf(HXTooltipElement)).call(this, tagName$7, template$7));
+        var _this = possibleConstructorReturn(this, (HXTooltipElement.__proto__ || Object.getPrototypeOf(HXTooltipElement)).call(this, tagName$8, template$8));
 
         _this._show = _this._show.bind(_this);
         _this._hide = _this._hide.bind(_this);
@@ -2970,6 +3336,8 @@ var HXTooltipElement = function (_HXElement) {
             this.initialPosition = this.position;
             this.$upgradeProperty('open');
             this.$defaultAttribute('role', 'tooltip');
+
+            this.setAttribute('aria-hidden', !this.open);
 
             if (this.id) {
                 this._target = this.getRootNode().querySelector('[data-tooltip=' + this.id + ']');
@@ -2988,8 +3356,13 @@ var HXTooltipElement = function (_HXElement) {
         }
     }, {
         key: 'attributeChangedCallback',
-        value: function attributeChangedCallback(attr, oldValue, newValue) {
-            this.setAttribute('aria-hidden', newValue !== '');
+        value: function attributeChangedCallback(attr, oldVal, newVal) {
+            var isOpen = newVal !== null;
+            this.setAttribute('aria-hidden', !isOpen);
+
+            if (newVal !== oldVal) {
+                this.$emit(isOpen ? 'open' : 'close');
+            }
         }
     }, {
         key: '_hide',
@@ -3114,6 +3487,7 @@ var HXTooltipElement = function (_HXElement) {
 var elements = Object.freeze({
 	HXAccordionElement: HXAccordionElement,
 	HXAccordionPanelElement: HXAccordionPanelElement,
+	HXAlertElement: HXAlertElement,
 	HXBusyElement: HXBusyElement,
 	HXCheckboxElement: HXCheckboxElement,
 	HXDisclosureElement: HXDisclosureElement,
@@ -3125,6 +3499,7 @@ var elements = Object.freeze({
 	HXPopoverElement: HXPopoverElement,
 	HXRevealElement: HXRevealElement,
 	HXSearchElement: HXSearchElement,
+	HXSearchAssistanceElement: HXSearchAssistanceElement,
 	HXTabcontentElement: HXTabcontentElement,
 	HXTabElement: HXTabElement,
 	HXTablistElement: HXTablistElement,
@@ -3164,7 +3539,7 @@ var HelixUI = {
     initialize: initialize
 };
 
-var version = "0.5.2";
+var version = "0.6.0";
 
 HelixUI.VERSION = version;
 
