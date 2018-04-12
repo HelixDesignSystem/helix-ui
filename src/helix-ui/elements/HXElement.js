@@ -86,12 +86,14 @@ export class HXElement extends HTMLElement {
         }
     }//$preventScroll()
 
-    $emit (evtName, details) {
-        let evt = new CustomEvent(evtName, {
+    $emit (evtName, opts) {
+        let options = Object.assign({}, {
             cancelable: true,
-            bubbles: true,
-            detail: details,
-        });
+            bubbles: false,
+        }, opts);
+
+        let evt = new CustomEvent(evtName, options);
+
         return this.dispatchEvent(evt);
     }//$emit
 
@@ -106,7 +108,7 @@ export class HXElement extends HTMLElement {
             bubbles: oldEvent.bubbles,
             cancelable: oldEvent.cancelable,
         });
-        this.dispatchEvent(newEvent);
+        return this.dispatchEvent(newEvent);
     }//$relayEvent()
 
     // TODO: may need a later update to add events based on element name/type
