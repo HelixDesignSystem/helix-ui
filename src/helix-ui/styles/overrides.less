@@ -1,0 +1,18 @@
+/* ========== OVERRIDES ========== *\
+    - A.K.A. "Shame" File
+    - Allow !important
+\* =============================== */
+
+figure {
+  // TODO: update this once spacing system is defined
+  margin: 0 0 1rem;
+}
+
+// FIXME: correct paragraph margins
+p {
+  margin: 0;
+
+  & + * {
+    margin-top: 0.5rem;
+  }
+}

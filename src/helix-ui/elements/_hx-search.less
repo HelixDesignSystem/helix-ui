@@ -1,6 +1,6 @@
-@import (reference) "_utils";
+@import (reference) "mixins";
 @import "./_hx-element.less";
-@import "core/hx-icon";
+@import "elements/hx-icon";
 
 :host {
   display: block;
@@ -23,8 +23,8 @@
   }
 
   #search {
-    #Util.placeholder();
-    #Util.resetFocus();
+    #Mix.placeholder();
+    #Mix.resetFocus();
 
     background-color: transparent;
     border: none;
@@ -62,7 +62,7 @@
   }
 
   #clear {
-    #Util.resetFocus();
+    #Mix.resetFocus();
 
     background-color: transparent;
     border: none;
@@ -149,7 +149,7 @@
   }
 
   #search {
-    #Util.disabledPlaceholder();
+    #Mix.disabledPlaceholder();
 
     color: inherit;
   }
