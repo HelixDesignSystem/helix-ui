@@ -8,7 +8,7 @@ template.innerHTML = `
     <style>${shadowStyles}</style>
     <label id="wrapper">
         <input type="text" role="search" id="search" autocomplete="off" />
-        <button id="clear" hidden aria-label="Clear search">
+        <button type="button" id="clear" hidden aria-label="Clear search">
             <hx-icon type="times"></hx-icon>
         </button>
         <div id="icon">
@@ -145,7 +145,9 @@ export class HXSearchElement extends HXElement {
         }
     }
 
-    _clearValue () {
+    _clearValue (evt) {
+        evt.preventDefault();
+
         this.value = '';
 
         // Emit a 'clear' event to communicate state change.
