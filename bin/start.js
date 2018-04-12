@@ -19,6 +19,7 @@ browserSync.emitter.on('init', () => {
 
 browserSync.init({
     logLevel: 'debug',
+    notify: false,
     open: false,
     reloadOnRestart: true,
     reloadDebounce: 250,
