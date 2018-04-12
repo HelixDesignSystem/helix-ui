@@ -8,6 +8,7 @@ notifications:
 addons:
   firefox: '56.0'
   chrome: stable
+  sauce_connect: true
 branch:
   only:
   - master
