@@ -54,6 +54,12 @@ hr {
   border-width: 1px 0 0;
   margin: 0.75rem 0;
 }
+input::-ms-clear {
+  display: none;
+}
+textarea {
+  font: inherit;
+}
 /* HTML5 display reset for older browsers */
 article,
 aside,
