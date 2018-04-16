@@ -12,8 +12,14 @@ also:
 {% block content %}
   <section>
     <p>
-      The custom <code>&lt;hx-tab&gt;</code> element labels a companion
+      The custom <code>{{page.title}}</code> element labels a companion
       <a href="elements/hx-tabpanel">&lt;hx-tabpanel&gt;</a> element.
+    </p>
+    <p>
+      <small class="hxSubdued">
+        <hx-icon type="info-circle"></hx-icon>
+        The element is named after the accessible <code>tab</code> role.
+      </small>
     </p>
 
     <hx-dl class="hxBox-md metadata">
@@ -33,34 +39,46 @@ also:
 
 {% block attributes %}
   <dl>
-    <dt>aria-controls</dt>
+    <dt>aria-controls {String}</dt>
     <dd>
-      Automatically set by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a>
-      when attached to the DOM.
+      <p>
+        Automatically set by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a>
+        when attached to the DOM.
+      </p>
     </dd>
 
-    <dt>aria-selected</dt>
+    <dt>aria-selected {String="false"} (true|false)</dt>
     <dd>
-      Automatically set as the <code>current</code> attribute/property changes.
+      <p>
+        Automatically set as the <code>current</code> attribute changes.
+      </p>
     </dd>
 
-    <dt>current</dt>
+    <dt>current {Boolean}</dt>
     <dd>
-      Automatically applied by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a>
-      to identify the current tab in a tablist.
+      <p>
+        Automatically applied by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a>
+        to identify the current tab in a tablist.
+      </p>
     </dd>
 
-    <dt>id</dt>
+    <dt>id {String}</dt>
     <dd>
-      Used by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a> to
-      wire up a tab to its tabpanel using the <code>aria-controls</code> and
-      <code>aria-labelledby</code> attributes. If you do not define an
-      <code>id</code> attribute, one will be automatically generated.
+      <p>
+        Used by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a> to
+        wire up a tab to its tabpanel using the <code>aria-controls</code> and
+        <code>aria-labelledby</code> attributes.
+      </p>
+      <p>
+        Automatically generated, if not explicitly defined in markup.
+      </p>
     </dd>
 
-    <dt>role</dt>
+    <dt>role {String="tab"}</dt>
     <dd>
-      Automatically set, if not explicitly defined in markup.
+      <p>
+        Automatically set to <code>tab</code>, if not explicitly defined in markup.
+      </p>
     </dd>
   </dl>
 {% endblock %}
