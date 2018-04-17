@@ -1,0 +1,17 @@
+{
+  "opts": {
+    "recurse": true,
+    "destination": "./public/api"
+  },
+  "source": {
+    "include": [
+      "src/helix-ui"
+    ]
+  },
+  "markdown": {
+    "idInHeadings": true
+  },
+  "plugins": [
+    "plugins/markdown"
+  ]
+}

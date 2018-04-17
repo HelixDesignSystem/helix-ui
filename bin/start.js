@@ -7,7 +7,7 @@ const browserSync = require('browser-sync').create();
 const exec = require('child_process').exec;
 const { compileScripts, compileStyles } = require('../lib/compile');
 const { copyDist } = require('../lib/copy');
-const { generateAll } = require('../lib/generate');
+const { generateAll, generateApis } = require('../lib/generate');
 
 const serverRoutes = {}
 serverRoutes[CONFIG.site.baseHref] = CONFIG.publicDir;
@@ -56,6 +56,17 @@ browserSync.init({
                 `${CONFIG.sourceDir}/**/_*.less`, // (+) ShadowDOM CSS
             ],
             fn: _.debounce(compileScripts, 1500),
+        },
+
+        // Generate API docs when src files change
+        {
+            match: [
+                `${CONFIG.sourceDir}/*.js`,
+                `${CONFIG.sourceDir}/**/*.js`,
+                `${CONFIG.sourceDir}/*.md`,
+                `${CONFIG.sourceDir}/**/*.md`,
+            ],
+            fn: _.debounce(generateApis, 1500),
         },
 
         // Only copy when files change in dist/
