@@ -12,7 +12,7 @@ also:
 {% block content %}
   <section>
     <p>
-      The custom <code>&lt;hx-tabset&gt;</code> element provides functionality to
+      The custom <code>{{page.title}}</code> element provides functionality to
       navigate between one or more tab panels.
     </p>
 
@@ -46,7 +46,11 @@ also:
 
 {% block attributes %}
   <dl>
-    <dt>current-tab <small>{Number=0}</small></dt>
-    <dd>Zero-based index of the currently active tab + tabpanel.</dd>
+    <dt>current-tab {Integer=0}</dt>
+    <dd>
+      <p>
+        Zero-based index of the currently active tab + tabpanel.
+      </p>
+    </dd>
   </dl>
 {% endblock %}

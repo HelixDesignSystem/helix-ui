@@ -1,4 +1,8 @@
-/* ===== RESETS ===== */
+/* ========== RESETS ========== *\
+  - Element & Pseudo Selectors
+  - No Class Selectors
+  - NO !important
+\* ========== RESETS ========== */
 
 // Additional resets to remove pre-existing styles from other stylesheets
 // (e.g. Canon, Bootstrap, EncoreUI, etc.)
@@ -21,22 +25,21 @@ html {
   box-sizing: inherit;
 }
 
+@import 'reset/forms';
+@import 'reset/html5';
+@import 'reset/tables';
+
 [hidden] {
   display: none;
 }
 
-a {
-  background-color: transparent;
+small {
+  font-size: 0.75rem;
 }
 
-fieldset {
-  border: none;
-}
-
-button {
-  color: inherit;
-  font: inherit;
-  margin: 0;
+caption {
+  padding: 0;
+  text-align: left;
 }
 
 hr {

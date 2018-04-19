@@ -53,6 +53,7 @@
     "webpack": "^3.5.5"
   },
   "scripts": {
+    "apidocs": "jsdoc -c jsdoc.conf.json",
     "clean": "rm -fr node_modules",
     "clean:public": "bin/cleanPublic.js",
     "compile": "bin/compile.js",

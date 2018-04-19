@@ -1,5 +1,5 @@
-@import (reference) 'modules/grid';
-@import (reference) '_utils';
+@import (reference) 'components/grid';
+@import (reference) 'mixins';
 
 .hxRow > label.hxChoice {
   #grid.column();
@@ -21,7 +21,7 @@ label.hxChoice > input {
   z-index: -10;
 
   &:focus {
-    #Util.resetFocus();
+    #Mix.resetFocus();
   }
 
   &:checked + hx-tile {

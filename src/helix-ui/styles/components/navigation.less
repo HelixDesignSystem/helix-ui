@@ -1,4 +1,4 @@
-// THEME
+// LEFT-HAND NAVIGATION
 .hxNav {
   @vpad: 0.5rem;
   @rpad: 0.75rem;
@@ -53,7 +53,7 @@
     text-transform: uppercase;
   }
 
-  a {
+  a[href] {
     color: inherit;
     display: block;
     font-weight: 300;
@@ -72,14 +72,14 @@
   }
 
   hx-reveal {
-    a,
+    a[href],
     hx-disclosure {
       padding-left: @l2-indent;
     }
 
     // Level 2
     hx-reveal {
-      a,
+      a[href],
       hx-disclosure {
         padding-left: @l3-indent;
       }
@@ -90,7 +90,7 @@
 
       // Level 3
       hx-reveal {
-        a,
+        a[href],
         hx-disclosure {
           padding-left: @l4-indent;
         }
@@ -98,4 +98,3 @@
     }
   }//hx-reveal
 }
-
