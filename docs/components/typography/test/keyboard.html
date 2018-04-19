@@ -1,0 +1,26 @@
+---
+title: Typography
+minver: 0.1.6
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section><!-- Keyboard -->
+    <h2 id="keyboard">Keyboard</h2>
+    <p>
+      Use the <code>&lt;kbd&gt;</code> element to differentiate descriptive text
+      from instructional key presses.
+    </p>
+    <div class="demo" data-visreg="typography-keyboard">
+      <p>
+        Press <kbd>Ctrl+Z</kbd> (<kbd>Command+Z</kbd> on Mac)
+        to undo the most recent action.
+      </p>
+    </div>
+    {% code 'html' %}
+      <p>
+        Press <kbd>Ctrl+Z</kbd> (<kbd>Command+Z</kbd> on Mac)
+        to undo the most recent action.
+      </p>
+    {% endcode %}
+  </section>
+{% endblock %}

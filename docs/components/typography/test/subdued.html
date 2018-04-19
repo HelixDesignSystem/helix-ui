@@ -1,0 +1,25 @@
+---
+title: Typography
+minver: 0.1.6
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section><!-- Subdued -->
+    <h2 id="subdued">Subdued</h2>
+    <p>
+      Add the <code>.hxSubdued</code> CSS class to any element to apply a
+      muted appearance.
+    </p>
+
+    <div class="demo" data-visreg="typography-subdued">
+      <span class="hxSubdued">Subdued</span>
+    </div>
+    {% code 'html' %}
+      <div class="hxSubdued">Subdued</div>
+      <!-- or -->
+      <p class="hxSubdued">Subdued</p>
+      <!-- or -->
+      <span class="hxSubdued">Subdued</span>
+    {% endcode %}
+  </section>
+{% endblock %}

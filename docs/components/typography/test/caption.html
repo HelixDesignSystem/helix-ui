@@ -1,0 +1,30 @@
+---
+title: Typography
+minver: 0.1.6
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section><!-- Caption -->
+    <h2 id="caption">Caption</h2>
+    <p>
+      Use the <code>&lt;caption&gt;</code> element, <code>&lt;figcaption&gt;</code>
+      element or add the <code>.hxCaption</code> CSS class to flow content to apply
+      the "caption" style.
+    </p>
+
+    <div class="demo" data-visreg="typography-caption">
+      <p class="hxCaption">Caption</p>
+    </div>
+    {% code 'html' %}
+      <figure>
+        <figcaption>Caption</figcaption>
+      </figure>
+      <!-- or -->
+      <table>
+        <caption>Caption</caption>
+      </table>
+      <!-- or -->
+      <p class="hxCaption">Caption</p>
+    {% endcode %}
+  </section>
+{% endblock %}

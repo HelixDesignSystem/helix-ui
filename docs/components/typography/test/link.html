@@ -1,0 +1,29 @@
+---
+title: Typography
+minver: 0.1.6
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section><!-- Links -->
+    <h2 id="links">Links</h2>
+    <p>
+      Links should be used to refer a user to a resource or location.
+    </p>
+    <div class="hxAlert">
+      <div class="hxAlert__icon">
+        <hx-icon type="info-circle"></hx-icon>
+      </div>
+      <div class="hxAlert__text">
+        <span class="hxAlert__status">Note</span>
+        Buttons are better suited to initiate in-page actions.
+      </div>
+    </div>
+
+    <div class="demo" data-visreg="typography-link">
+      <ul>
+        <li><a href="#">Normal Link</a></li>
+        <li><a href="#" class="pseudo-active">Pressed Link</a></li>
+      </ul>
+    </div>
+  </section>
+{% endblock %}

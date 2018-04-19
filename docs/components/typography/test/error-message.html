@@ -1,0 +1,22 @@
+---
+title: Typography
+minver: 0.1.6
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section><!-- Error Message -->
+    <h2 id="error-message">Error Message</h2>
+    <p>
+      <small>Added: v0.4.0</small>
+    </p>
+
+    <div class="demo" data-visreg="typography-error-message">
+      <hx-error>Error message goes here</hx-error>
+    </div>
+    {% code 'html' %}
+      <hx-error>
+        Error message goes here
+      </hx-error>
+    {% endcode %}
+  </section>
+{% endblock %}
