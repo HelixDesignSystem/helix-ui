@@ -1,0 +1,25 @@
+---
+title: Typography
+minver: 0.1.6
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section><!-- Inline Code -->
+    <h2 id="inline-code">Inline Code</h2>
+    <p>
+      Use the <code>&lt;code&gt;</code> element to differentiate descriptive
+      text from code snippets.
+    </p>
+
+    <div class="demo" data-visreg="typography-inline-code">
+      <p>
+        Add an event listener with the <code>EventTarget.addEventListener()</code> function.
+      </p>
+    </div>
+    {% code 'html' %}
+      <p>
+        Add an event listener with the <code>EventTarget.addEventListener()</code> function.
+      </p>
+    {% endcode %}
+  </section>
+{% endblock %}

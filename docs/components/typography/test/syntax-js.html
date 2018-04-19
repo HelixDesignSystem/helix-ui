@@ -1,0 +1,48 @@
+---
+title: Typography
+minver: 0.1.6
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section><!-- Syntax Highlighting -->
+    <h2 id="syntax-highlighting">Syntax Highlighting</h2>
+    <p>
+      HelixUI provides a built-in theme for use with the
+      <a href="https://highlightjs.org/">highlight.js</a> library.
+    </p>
+
+    <p>
+      Below are some examples of the syntax highlighting in action.
+    </p>
+
+    <figure data-visreg="typography-syntax-js">
+      <figcaption>JavaScript Syntax Highlighting Example</figcaption>
+      {% code 'javascript' %}
+        /**
+         * @description Multi-line comment
+         * @returns {String}
+         */
+        // Inline Comment
+        var legacyVariable;
+        const REGEXP = /h(iy|ell)o*/ig;
+        const array = [ null, true, false ];
+        const obj = {
+          number: 42,
+          integer: 42.0,
+          s_string: 'single quotes',
+          d_string: "double quotes"
+        };
+        function greet (name: 'World') {
+          if (foo !== 'bar') {
+            return 'nope';
+          } else if (foo || bar) {
+            return 'maybe';
+          } else if (foo && bar) {
+            return 'wut';
+          }
+          return `Hello ${name}!`;
+        }
+      {% endcode %}
+    </figure>
+  </section>
+{% endblock %}
