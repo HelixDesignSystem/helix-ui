@@ -11,55 +11,55 @@ title: Testing - Searches
     </nav>
   </section>
 
-  <section data-visreg="search-states">
+  <section>
     <h2>Appearance</h2>
     <table class="hxTable hxTable--condensed">
       <tbody>
         <tr>
           <th>Default</th>
-          <td>
+          <td data-dom-diff="hxSearch-default">
             <hx-search></hx-search>
           </td>
-          <td>
+          <td data-dom-diff="hxSearch-default-with-placeholder">
             <hx-search placeholder="Search..."></hx-search>
           </td>
-          <td>
+          <td data-dom-diff="hxSearch-default-with-value">
             <hx-search value="kittens"></hx-search>
           </td>
         </tr>
         <tr>
           <th>Invalid</th>
-          <td>
+          <td data-dom-diff="hxSearch-invalid">
             <hx-search invalid></hx-search>
           </td>
-          <td>
+          <td data-dom-diff="hxSearch-invalid-with-placeholder">
             <hx-search invalid placeholder="Search..."></hx-search>
           </td>
-          <td>
+          <td data-dom-diff="hxSearch-invalid-with-value">
             <hx-search invalid value="kittens"></hx-search>
           </td>
         </tr>
         <tr>
           <th>Disabled</th>
-          <td>
+          <td data-dom-diff="hxSearch-disabled">
             <hx-search disabled></hx-search>
           </td>
-          <td>
+          <td data-dom-diff="hxSearch-disabled-with-placeholder">
             <hx-search disabled placeholder="Search..."></hx-search>
           </td>
-          <td>
+          <td data-dom-diff="hxSearch-disabled-with-value">
             <hx-search disabled value="kittens"></hx-search>
           </td>
         </tr>
         <tr>
           <th>Disabled and Invalid</th>
-          <td>
+          <td data-dom-diff="hxSearch-disabled-invalid">
             <hx-search invalid disabled></hx-search>
           </td>
-          <td>
+          <td data-dom-diff="hxSearch-disabled-invalid-with-placeholder">
             <hx-search invalid disabled placeholder="Search..."></hx-search>
           </td>
-          <td>
+          <td data-dom-diff="hxSearch-disabled-invalid-with-value">
             <hx-search invalid disabled value="kittens"></hx-search>
           </td>
         </tr>

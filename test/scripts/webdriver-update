@@ -23,7 +23,7 @@ platform_chrome='linux64'
 
 TARFILE_GECKO=v0.18.0/geckodriver-v0.18.0-${platform_gecko}.tar.gz
 TARFILE_CHROME=2.36/chromedriver_${platform_chrome}.zip
-TARFILE_STANDALONE='3.4/selenium-server-standalone-3.4.0.jar'
+TARFILE_STANDALONE='3.13/selenium-server-standalone-3.13.0.jar'
 
 if [ $reinstall == "1" ] || [ $has_gecko == "0" ]; then
     echo Downloading ${TARFILE_GECKO}

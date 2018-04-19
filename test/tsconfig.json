@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "strict":true,
+        "strict": true,
         "strictNullChecks": false,
         "declaration": true,
         "target": "es6",
@@ -26,7 +26,8 @@
         "common/*.ts",
         "functional/*.ts",
         "regression/*.ts",
-        "visreg/*.ts",
-        "bin/*.ts"
+        "behavioral/*.ts",
+        "bin/*.ts",
+        "dom-snapshots/*.ts",
     ]
 }

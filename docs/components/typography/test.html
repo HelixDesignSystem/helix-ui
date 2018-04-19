@@ -1,0 +1,32 @@
+---
+title: Testing - Typography
+---
+{% extends 'test.njk' %}
+{% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/typography">Typography</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  <section>
+    <h2>Error Message</h2>
+    <div data-dom-diff="hxError-with-dom-line-breaks">
+      <hx-error>
+        Line Breaks
+      </hx-error>
+    </div>
+    <p class="hxSubBody">
+      Uncompressed Markup - Line breaks present in composed DOM.
+    </p>
+
+    <div data-dom-diff="hxError-no-dom-line-breaks">
+      <hx-error>No Line Breaks</hx-error>
+    </div>
+    <p class="hxSubBody">
+      Compressed Markup - No line breaks in composed DOM.
+    </p>
+  </section>
+{% endblock %}
