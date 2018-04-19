@@ -57,7 +57,6 @@ if (process.env.CI) {
         screenshotsDir: "artifacts/regressionScreenshots",
         logException: [
             "MISMATCH",
-            "NO_BASELINE",
             "SIZE_DIFFERENCE",
         ],
         sauceLabs: {
