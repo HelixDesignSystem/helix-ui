@@ -33,6 +33,7 @@
     "gulp": "3.x",
     "gulp-bump": "2.x",
     "highlight.js": "^9.12.0",
+    "jsdoc": "^3.5.5",
     "json5": "^0.5.1",
     "less": "2.x",
     "less-loader": "^4.0.5",
