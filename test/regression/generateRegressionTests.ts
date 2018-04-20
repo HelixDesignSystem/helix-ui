@@ -38,8 +38,12 @@ const regressionTest = async (t: TestContext, config: IConfig, component: string
             t.log(`  ${sectionName}:`);
             await util.snapshot(t, e);
             t.log("    ✔ DOM Snapshot");
-            await snappit.snap(`{browserName}/${sectionName}`, e as WebElement);
-            t.log("    ✔ Image Snapshot");
+
+            if (!process.env.CI) {
+                // this is really not worth it for saucelabs, you can just look at the run results anyway
+                await snappit.snap(`{browserName}/${sectionName}`, e as WebElement);
+                t.log("    ✔ Image Snapshot");
+            }
         }
 
         process.env.CI && await snappit.setSauceLabsJobResult(true);
@@ -68,7 +72,6 @@ if (process.env.CI) {
             maxDuration: 120,
         },
         threshold: 0.1,
-        initialViewportSize: [1920, 1440],
     };
 
     for (const component of matches) {
