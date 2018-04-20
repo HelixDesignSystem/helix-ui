@@ -19,11 +19,12 @@ while (matched = componentExtractor.exec(taggedForRegression)) {
     }
 }
 
+const LOCAL_DEV_ID = `local-dev-test-${new Date().toISOString()}`;
 const regressionTest = async (t: TestContext, config: IConfig, component: string) => {
     if (process.env.CI) {
         config.serverUrl = `http://${process.env.SAUCE_USERNAME}:${process.env.SAUCE_ACCESS_KEY}@ondemand.saucelabs.com:80/wd/hub`;
         config.sauceLabs.name = component;
-        config.sauceLabs.build = process.env.TRAVIS_JOB_NUMBER || `local-dev-test-${new Date().toISOString()}`;
+        config.sauceLabs.build = process.env.TRAVIS_JOB_NUMBER || LOCAL_DEV_ID;
         config.sauceLabs.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
     }
 
