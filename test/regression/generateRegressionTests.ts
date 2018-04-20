@@ -41,15 +41,14 @@ const regressionTest = async (t: TestContext, config: IConfig, component: string
             await snappit.snap(`{browserName}/${sectionName}`, e as WebElement);
             t.log("    ✔ Image Snapshot");
         }
+
+        process.env.CI && await snappit.setSauceLabsJobResult(true);
     } catch (e) {
         process.env.CI && await snappit.setSauceLabsJobResult(false);
-
-        await snappit.stop();
         t.fail(e);
+    } finally {
+        await snappit.stop();
     }
-
-    process.env.CI && await snappit.setSauceLabsJobResult(true);
-    await snappit.stop();
 }
 
 if (process.env.CI) {
