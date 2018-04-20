@@ -64,6 +64,8 @@ if (process.env.CI) {
             platform: "",
             version: "latest",
             screenResolution: "",
+            extendedDebugging: true,
+            maxDuration: 120,
         },
         threshold: 0.1,
         initialViewportSize: [1920, 1440],
