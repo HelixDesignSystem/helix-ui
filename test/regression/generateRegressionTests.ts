@@ -19,9 +19,10 @@ while (matched = componentExtractor.exec(taggedForRegression)) {
     }
 }
 
+const runningSauce = process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY;
 const LOCAL_DEV_ID = `local-dev-test-${new Date().toISOString()}`;
 const regressionTest = async (t: TestContext, config: IConfig, component: string) => {
-    if (process.env.CI) {
+    if (runningSauce) {
         config.serverUrl = `http://${process.env.SAUCE_USERNAME}:${process.env.SAUCE_ACCESS_KEY}@ondemand.saucelabs.com:80/wd/hub`;
         config.sauceLabs.name = component;
         config.sauceLabs.build = process.env.TRAVIS_JOB_NUMBER || LOCAL_DEV_ID;
@@ -46,16 +47,16 @@ const regressionTest = async (t: TestContext, config: IConfig, component: string
             }
         }
 
-        process.env.CI && await snappit.setSauceLabsJobResult(true);
+        runningSauce && await snappit.setSauceLabsJobResult(true);
     } catch (e) {
-        process.env.CI && await snappit.setSauceLabsJobResult(false);
+        runningSauce && await snappit.setSauceLabsJobResult(false);
         t.fail(e);
     } finally {
         await snappit.stop();
     }
 }
 
-if (process.env.CI) {
+if (runningSauce) {
     const config: IConfig = {
         browser: "",
         screenshotsDir: "artifacts/regressionScreenshots",
