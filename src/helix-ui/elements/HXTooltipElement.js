@@ -1,7 +1,7 @@
 import { HXElement } from './HXElement';
 import { getPositionWithArrow } from '../util';
 import debounce from 'lodash/debounce';
-import shadowStyles from './_hx-tooltip.less';
+import shadowStyles from './HXTooltipElement.less';
 
 const tagName = 'hx-tooltip';
 const template = document.createElement('template');

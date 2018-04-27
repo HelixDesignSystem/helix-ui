@@ -39,8 +39,7 @@ browserSync.init({
                 `${CONFIG.docsDir}/*`,
                 `${CONFIG.docsDir}/**/*`,
                 `${CONFIG.sourceDir}/*.less`,
-                `${CONFIG.sourceDir}/**/*.less`,
-                `!${CONFIG.sourceDir}/**/_*.less`, // (-) ShadowDOM CSS
+                `${CONFIG.sourceDir}/helix-ui/styles/**/*.less`,
             ],
             fn: _.debounce(function () {
                 compileStyles();
@@ -53,7 +52,8 @@ browserSync.init({
             match: [
                 `${CONFIG.sourceDir}/*.js`,
                 `${CONFIG.sourceDir}/**/*.js`,
-                `${CONFIG.sourceDir}/**/_*.less`, // (+) ShadowDOM CSS
+                `${CONFIG.sourceDir}/helix-ui/elements/*.less`, // (+) ShadowDOM CSS
+                `${CONFIG.sourceDir}/helix-ui/elements/*.html`, // (+) ShadowDOM Markup
             ],
             fn: _.debounce(compileScripts, 1500),
         },

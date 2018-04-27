@@ -1,5 +1,5 @@
 import { HXElement } from './HXElement';
-import shadowStyles from './_hx-search.less';
+import shadowStyles from './HXSearchElement.less';
 
 const tagName = 'hx-search';
 const template = document.createElement('template');
