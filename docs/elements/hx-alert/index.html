@@ -26,7 +26,7 @@ also:
           Any of the following:
           <ul>
             <li>
-              <code>dismiss</code> <small>(cancelable)</small> - User clicks "X" to dismiss the alert.
+              <code>dismiss</code> (cancelable) - User clicks "X" to dismiss the alert.
             </li>
             <li><code>submit</code> - User clicks CTA</li>
           </ul>
@@ -38,7 +38,7 @@ also:
   <section>
     <h2 id="methods">Methods</h2>
     <dl>
-      <dt><code>dismiss()</code></dt>
+      <dt>dismiss()</dt>
       <dd>Dismisses the alert.</dd>
     </dl>
   </section>
@@ -46,36 +46,24 @@ also:
 
 {% block attributes %}
   <dl>
-    <dt>
-      <code>cta</code>
-      <small>{String} <i>(optional)</i></small>
-    </dt>
+    <dt>cta {String} <i>(optional)</i></dt>
     <dd>
       Set the text of the CTA button.
       If absent or blank, the CTA button will not be displayed.
     </dd>
 
-    <dt>
-      <code>static</code>
-      <small>{Boolean} <i>(optional)</i></small>
-    </dt>
+    <dt>static {Boolean} <i>(optional)</i></dt>
     <dd>
       When present, alert will not be dismissable.
     </dd>
 
-    <dt>
-      <code>status</code>
-      <small>{String} <i>(optional)</i></small>
-    </dt>
+    <dt>status {String} <i>(optional)</i></dt>
     <dd>
       Sets the status text at the beginning of the alert description.
       If absent or blank, the status element will not be displayed.
     </dd>
 
-    <dt>
-      <code>type</code>
-      <small>{Enum&lt;String&gt;} <i>(optional)</i></small>
-    </dt>
+    <dt>type {Enum&lt;String&gt;} <i>(optional)</i></dt>
     <dd>
       Identifies the type of alert. Valid values are as follows:
       <ul>
@@ -90,34 +78,22 @@ also:
 
 {% block properties %}
   <dl>
-    <dt>
-      <code>cta</code>
-      <small>{String}</small>
-    </dt>
+    <dt>cta {String}</dt>
     <dd>
       Manipulates the <code>cta</code> attribute.
     </dd>
 
-    <dt>
-      <code>static</code>
-      <small>{Boolean}</small>
-    </dt>
+    <dt>static {Boolean}</dt>
     <dd>
       When <code>true</code>, alert will not be dismissable.
     </dd>
 
-    <dt>
-      <code>status</code>
-      <small>{String}</small>
-    </dt>
+    <dt>status {String}</dt>
     <dd>
       Manipulates the <code>status</code> attribute.
     </dd>
 
-    <dt>
-      <code>type</code>
-      <small>{String}</small>
-    </dt>
+    <dt>type {String}</dt>
     <dd>
       Manipulates the <code>type</code> attribute.
     </dd>
