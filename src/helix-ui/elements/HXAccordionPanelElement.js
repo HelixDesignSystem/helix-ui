@@ -1,5 +1,5 @@
 import { HXElement } from './HXElement';
-import shadowStyles from './_hx-accordion-panel.less';
+import shadowStyles from './HXAccordionPanelElement.less';
 
 const tagName = 'hx-accordion-panel';
 const template = document.createElement('template');

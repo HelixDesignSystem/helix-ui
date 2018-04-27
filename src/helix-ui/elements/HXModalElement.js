@@ -1,6 +1,6 @@
 import { HXElement } from './HXElement';
 import { KEYS } from '../util';
-import shadowStyles from './_hx-modal.less';
+import shadowStyles from './HXModalElement.less';
 
 const tagName = 'hx-modal';
 const template = document.createElement('template');

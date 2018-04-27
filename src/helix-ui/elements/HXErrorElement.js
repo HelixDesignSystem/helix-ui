@@ -1,5 +1,5 @@
 import { HXElement } from './HXElement';
-import shadowStyles from './_hx-error.less';
+import shadowStyles from './HXErrorElement.less';
 
 const tagName = 'hx-error';
 const template = document.createElement('template');

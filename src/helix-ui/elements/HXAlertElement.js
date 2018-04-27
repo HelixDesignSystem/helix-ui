@@ -1,6 +1,6 @@
 import { HXElement } from './HXElement';
-import shadowHtml from './_hx-alert.html';
-import shadowStyles from './_hx-alert.less';
+import shadowHtml from './HXAlertElement.html';
+import shadowStyles from './HXAlertElement.less';
 
 const tagName = 'hx-alert';
 const template = document.createElement('template');

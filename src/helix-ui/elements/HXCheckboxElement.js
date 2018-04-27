@@ -1,6 +1,6 @@
 import { HXElement } from './HXElement';
 import { KEYS } from '../util';
-import shadowStyles from './_hx-checkbox.less';
+import shadowStyles from './HXCheckboxElement.less';
 
 const tagName = 'hx-checkbox';
 const template = document.createElement('template');

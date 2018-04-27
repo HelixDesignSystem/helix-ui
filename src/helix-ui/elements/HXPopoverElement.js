@@ -1,7 +1,7 @@
 import { HXElement } from './HXElement';
 import { getPositionWithArrow } from '../util';
 import debounce from 'lodash/debounce';
-import shadowStyles from './_hx-popover.less';
+import shadowStyles from './HXPopoverElement.less';
 
 const tagName = 'hx-popover';
 const template = document.createElement('template');
