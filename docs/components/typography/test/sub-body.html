@@ -1,0 +1,24 @@
+---
+title: Typography
+minver: 0.1.6
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section><!-- Sub-Body -->
+    <h2 id="sub-body">Sub-Body</h2>
+    <p>
+      Use the <code>&lt;small&gt;</code> element or add the
+      <code>.hxSubBody</code> CSS class to flow content to apply the
+      "sub-body" style.
+    </p>
+
+    <div class="demo" data-visreg="typography-sub-body">
+      <p class="hxSubBody">Sub-Body</p>
+    </div>
+    {% code 'html' %}
+      <small>Sub-Body</small>
+      <!-- or -->
+      <p class="hxSubBody">Sub-Body</p>
+    {% endcode %}
+  </section>
+{% endblock %}

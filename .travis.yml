@@ -8,6 +8,7 @@ notifications:
 addons:
   firefox: '56.0'
   chrome: stable
+  sauce_connect: true
 branch:
   only:
   - master
@@ -20,6 +21,6 @@ before_script:
 - sh -e /etc/init.d/xvfb start
 - jdk_switcher use oraclejdk8
 - yarn start > /dev/null 2>&1 &
-- while ! curl --silent http://localhost:4444/wd/hub > /dev/null 2>&1; do sleep 1; done
+- while ! curl --silent http://localhost:3000/ > /dev/null 2>&1; do sleep 1; done
 script:
 - yarn test
