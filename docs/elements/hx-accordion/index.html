@@ -51,24 +51,20 @@ also:
   <section>
     <h2 id="methods">Methods</h2>
     <dl>
-      <dt><code>nextPanel()</code></dt>
+      <dt>nextPanel()</dt>
       <dd>
         Opens the next sibling panel.
         <br />
-        <small>
-          <hx-icon type="exclamation-triangle"></hx-icon>
-          Requires the <code>current-panel</code> attribute to be present.</em>
-        </small>
+        <hx-icon type="exclamation-triangle"></hx-icon>
+        Requires the <code>current-panel</code> attribute to be present.
       </dd>
 
-      <dt><code>previousPanel()</code></dt>
+      <dt>previousPanel()</dt>
       <dd>
         Opens the previous sibling panel.
         <br />
-        <small>
-          <hx-icon type="exclamation-triangle"></hx-icon>
-          Requires the <code>current-panel</code> attribute to be present.</em>
-        </small>
+        <hx-icon type="exclamation-triangle"></hx-icon>
+        Requires the <code>current-panel</code> attribute to be present.
       </dd>
     </dl>
   </section>
@@ -76,12 +72,9 @@ also:
 
 {% block attributes %}
   <dl>
-    <dt>
-      <code>current-panel</code>
-      <small>{Number} <i>(optional)</i></small>
-    </dt>
+    <dt>current-panel {Number} <i>(optional)</i></dt>
     <dd>
-      <small><i>(optional)</i></small>
+      <i>(optional)</i>
       Zero-based index of the panel you wish to open. For example, a value
       of "0" will open the first panel, "1" will open the second, etc.).
       If omitted, any number of panels can be opened at once.
@@ -91,20 +84,14 @@ also:
 
 {% block properties %}
   <dl>
-    <dt>
-      <code>currentPanel</code>
-      <small>{Number}</small>
-    </dt>
+    <dt>currentPanel {Number}</dt>
     <dd>
       Manipulates the <code>current-panel</code> attribute
     </dd>
 
-    <dt>
-      <code>panels</code>
-      <small>{Array&lt;Element&gt;}</small>
-    </dt>
+    <dt>panels {Array&lt;Element&gt;}</dt>
     <dd>
-      <small><i>(read-only)</i></small>
+      <i>(read-only)</i>
       Returns an array of live <code>&lt;hx-accordion-panel&gt;</code> elements.
     </dd>
   </dl>
