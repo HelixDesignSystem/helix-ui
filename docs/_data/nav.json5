@@ -48,6 +48,7 @@
             { label: 'Progress', path: 'progress' },
             { label: 'Reveals', path: 'reveals' },
             { label: 'Search', path: 'search' },
+            { label: 'Selector Strips', path: 'selector-strips' },
             { label: 'Status Pills', path: 'status-pills' },
             { label: 'Tables', path: 'tables' },
             { label: 'Tabs', path: 'tabs' },

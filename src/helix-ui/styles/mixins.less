@@ -51,5 +51,28 @@
       outline: none;
     }
   }//.resetFocus
+
+  /*
+    Useful to hide checkbox/radio inputs in-place
+    in order to style sibling elements
+
+    <label>
+      <input /><!-- hide me -->
+      <span><!-- style me --></span>
+    </label>
+  */
+  .hideInput {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    z-index: -10;
+  }
 }//#Mix
 
