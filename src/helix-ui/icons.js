@@ -21,12 +21,14 @@ import _exclamationDiamond from './icons/exclamation-diamond.svg';
 import _exclamationTriangle from './icons/exclamation-triangle.svg';
 import _export from './icons/export.svg';
 import _externalLink from './icons/external-link.svg';
+import _file from './icons/file.svg';
 import _filter from './icons/filter.svg';
+import _flag from './icons/flag.svg';
+import _globe from './icons/globe.svg';
 import _helpCircle from './icons/help-circle.svg';
 import _infoCircle from './icons/info-circle.svg';
 import _inputFile from './icons/input-file.svg';
 import _inputTime from './icons/input-time.svg';
-import _inputUrl from './icons/input-url.svg';
 import _kbdArrowDown from './icons/kbd-arrow-down.svg';
 import _kbdArrowLeft from './icons/kbd-arrow-left.svg';
 import _kbdArrowRight from './icons/kbd-arrow-right.svg';
@@ -40,10 +42,20 @@ import _kbdReturn from './icons/kbd-return.svg';
 import _kbdShift from './icons/kbd-shift.svg';
 import _kbdSpace from './icons/kbd-space.svg';
 import _kbdTab from './icons/kbd-tab.svg';
+import _key from './icons/key.svg';
 import _lock from './icons/lock.svg';
+import _mimeArchive from './icons/mime-archive.svg';
+import _mimeAudio from './icons/mime-audio.svg';
+import _mimeCode from './icons/mime-code.svg';
+import _mimeData from './icons/mime-data.svg';
+import _mimeImage from './icons/mime-image.svg';
+import _mimeSystem from './icons/mime-system.svg';
+import _mimeText from './icons/mime-text.svg';
+import _mimeVideo from './icons/mime-video.svg';
 import _minus from './icons/minus.svg';
 import _minusCircle from './icons/minus-circle.svg';
 import _monitoring from './icons/monitoring.svg';
+import _paperclip from './icons/paperclip.svg';
 import _payment from './icons/payment.svg';
 import _pencil from './icons/pencil.svg';
 import _phone from './icons/phone.svg';
@@ -51,20 +63,20 @@ import _plus from './icons/plus.svg';
 import _plusOrMinus from './icons/plus-or-minus.svg';
 import _search from './icons/search.svg';
 import _server from './icons/server.svg';
+import _serverConfig from './icons/server-config.svg';
+import _serverIncident from './icons/server-incident.svg';
 import _sort from './icons/sort.svg';
 import _sortDown from './icons/sort-down.svg';
 import _sortUp from './icons/sort-up.svg';
 import _support from './icons/support.svg';
 import _tag from './icons/tag.svg';
-import _technicalChange from './icons/technical-change.svg';
-import _technicalIncident from './icons/technical-incident.svg';
 import _ticketing from './icons/ticketing.svg';
 import _times from './icons/times.svg';
 import _timesCircle from './icons/times-circle.svg';
 import _trash from './icons/trash.svg';
 import _user from './icons/user.svg';
 
-export default {
+const MAP = {
     'account': _account,
     'angle-bottom': _angleBottom,
     'angle-down': _angleDown,
@@ -88,12 +100,14 @@ export default {
     'exclamation-triangle': _exclamationTriangle,
     'export': _export,
     'external-link': _externalLink,
+    'file': _file,
     'filter': _filter,
+    'flag': _flag,
+    'globe': _globe,
     'help-circle': _helpCircle,
     'info-circle': _infoCircle,
     'input-file': _inputFile,
     'input-time': _inputTime,
-    'input-url': _inputUrl,
     'kbd-arrow-down': _kbdArrowDown,
     'kbd-arrow-left': _kbdArrowLeft,
     'kbd-arrow-right': _kbdArrowRight,
@@ -107,10 +121,20 @@ export default {
     'kbd-shift': _kbdShift,
     'kbd-space': _kbdSpace,
     'kbd-tab': _kbdTab,
+    'key': _key,
     'lock': _lock,
+    'mime-archive': _mimeArchive,
+    'mime-audio': _mimeAudio,
+    'mime-code': _mimeCode,
+    'mime-data': _mimeData,
+    'mime-image': _mimeImage,
+    'mime-system': _mimeSystem,
+    'mime-text': _mimeText,
+    'mime-video': _mimeVideo,
     'minus': _minus,
     'minus-circle': _minusCircle,
     'monitoring': _monitoring,
+    'paperclip': _paperclip,
     'payment': _payment,
     'pencil': _pencil,
     'phone': _phone,
@@ -118,16 +142,23 @@ export default {
     'plus-or-minus': _plusOrMinus,
     'search': _search,
     'server': _server,
+    'server-config': _serverConfig,
+    'server-incident': _serverIncident,
     'sort': _sort,
     'sort-down': _sortDown,
     'sort-up': _sortUp,
     'support': _support,
     'tag': _tag,
-    'technical-change': _technicalChange,
-    'technical-incident': _technicalIncident,
     'ticketing': _ticketing,
     'times': _times,
     'times-circle': _timesCircle,
     'trash': _trash,
     'user': _user,
 };
+
+// DEPRECATED: remove in v1.0.0
+MAP['input-url'] = MAP['globe'];
+MAP['technical-change'] = MAP['server-config'];
+MAP['technical-incident'] = MAP['server-incident'];
+
+export default MAP;

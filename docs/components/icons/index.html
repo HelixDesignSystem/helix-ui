@@ -62,7 +62,7 @@ also:
       </div>
       <div v-if="filteredIcons.length" class="hxRow">
         <template v-for="icon in filteredIcons">
-          <div class="hxCol hxSpan-12-xs hxSpan-12-sm hxSpan-6-md hxSpan-4-xl" key="icon.name">
+          <div class="hxCol hxSpan-12-xs hxSpan-12-sm hxSpan-6-md hxSpan-4-xl" :key="icon.name">
             <div class="media icon-media">
               {% raw %}
               <div class="media__icon">
@@ -70,7 +70,30 @@ also:
               </div>
               <div class="media__body">
                 <h3 class="hxHeading-4">{{icon.name}}</h3>
-                <small class="hxSubdued">Added: v{{icon.minver}}</small>
+                <p>
+                  <!-- alias -->
+                  <span v-if="icon.alias" class="hxSubdued">
+                    <small>(alias: {{icon.alias}})</small><br />
+                  </span>
+
+                  <!-- version/deprecation -->
+                  <hx-error v-if="icon.deprecated" class="hxSubBody">
+                    Deprecated
+                  </hx-error>
+                  <span v-else>
+                    <small v-if="icon.minver" class="hxSubdued">Added: v{{icon.minver}}</small>
+                    <i v-else class="hxSubdued hxSubBody">New!</i>
+                  </span>
+                </p>
+
+                <!-- keywords/tags -->
+                <p v-if="icon.keywords" class="hxSubBody hxSubdued">
+                  <hx-icon type="tag"></hx-icon>
+                  <span v-for="(word, idx) in icon.keywords" :key="word">
+                    <span v-if="(idx + 1) < icon.keywords.length">{{word}}, </span>
+                    <span v-else>{{word}}</span>
+                  </span>
+                </p>
               </div>
               {% endraw %}
             </div>
