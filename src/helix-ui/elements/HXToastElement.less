@@ -1,0 +1,120 @@
+@import "./HXElement";
+@import "elements/hx-icon";
+@import (reference) 'components/box';
+@import (reference) 'components/buttons';
+
+#wrapper {
+  &:extend(.hxBox-sm);
+  background-color: @gray-0;
+  box-shadow: 0px 3px 3px 0 @shadow-color;
+  color: @gray-900;
+  display: flex;
+  min-height: 3.5rem; //56px
+  position: relative;
+  width: 22rem; //352px
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  
+  &::before {
+    border: 1px solid @gray-300;
+  }
+
+  &::after {
+    border-left: 8px solid currentColor;
+  }
+}
+
+#icon-wrapper {
+  align-items: center;
+  display: flex;
+  margin: 0 0.75rem 0 0.5rem;
+
+  hx-icon {
+    font-size: 2rem;
+  }
+}
+
+#content {
+  flex-grow: 1;
+  margin-right: 1.5rem;
+  text-align: right;
+  word-wrap: break-word;
+
+  div {
+    font-size: 0.875rem;
+    text-align: left;
+  }
+}
+
+#cta {
+  &:extend(.hxBtn);
+  &:extend(.hxBtn.hxLink);
+  text-transform: uppercase;
+
+  &:empty {
+    display: none;
+  }
+}
+
+#dismiss {
+  background-color: transparent;
+  border: 0;
+  color: @gray-700;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  height: 2.25rem;
+  line-height: 0;
+  margin: 0;
+  padding: 0.75rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2.25rem;
+}
+
+:host([type="info"]) {
+  #wrapper {
+    &::after {
+      border-left-color: @purple-500;
+    }
+  }
+
+  #icon {
+    color: @purple-500;
+  }
+}
+
+:host([type="error"]) {
+  #wrapper {
+    &::after {
+      border-left-color: @red-900;
+    }
+  }
+
+  #icon {
+    color: @red-900;
+  }
+}
+
+:host([type="success"]) {
+  #wrapper {
+    &::after {
+      border-left-color: @green-500;
+    }
+  }
+
+  #icon {
+    color: @green-500;
+  }
+}

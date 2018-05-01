@@ -1,0 +1,80 @@
+---
+title: <hx-toast>
+also:
+  components/toasts: Toasts
+---
+{% extends 'element.njk' %}
+{% block content %}
+
+  <section>
+    <p>
+      The custom <code>{{page.title}}</code> element provides a user
+      with information for action outside of the user's current context.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>phrasing content</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Events</hx-dt>
+        <hx-dd>
+          Any of the following:
+          <ul>
+            <li>
+              <code>dismiss</code> <small>(cancelable)</small> - User clicks "X" to dismiss the toast.
+            </li>
+            <li><code>submit</code> - User clicks CTA</li>
+          </ul>
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+
+  <section>
+    <h2 id="methods">Methods</h2>
+    <dl>
+      <dt>dismiss()</dt>
+      <dd>Dismisses the toast.</dd>
+    </dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl>
+    <dt>cta {String} (optional)</dt>
+    <dd>
+      Set the text of the CTA button.
+      If absent or blank, the CTA button will not be displayed.
+    </dd>
+
+    <dt>type {Enum&lt;String&gt;} (optional)</dt>
+    <dd>
+      Identifies the type of toast. Valid values are as follows:
+      <ul>
+        <li><code>info</code></li>
+        <li><code>error</code></li>
+        <li><code>success</code></li>
+      </ul>
+    </dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl>
+    <dt>cta{String}</dt>
+    <dd>
+      Manipulates the <code>cta</code> attribute.
+    </dd>
+
+    <dt>type{String}</dt>
+    <dd>
+      Manipulates the <code>type</code> attribute.
+    </dd>
+  </dl>
+{% endblock %}

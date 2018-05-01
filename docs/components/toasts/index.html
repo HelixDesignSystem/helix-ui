@@ -1,0 +1,57 @@
+---
+title: Toasts
+also:
+  elements/hx-toast: <hx-toast>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <hx-alert
+      status="Note"
+      type="info"
+      static>
+      Currently, only CTA and dismiss functionality of the toast itself has been 
+      implemented. Positioning, stacking, animation, etc. functionality will be coming soon.
+    </hx-alert>
+  </section>
+
+  <section>
+    <h2 id="demo">Demo</h2>
+    <div id="vue-toastDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+      <h3>Options</h3>
+        <p>
+          <b>Type:</b><br />
+          <select v-model="type">
+            <option v-for="_type in types" :value="_type">
+              {% raw %}{{ _type.label }}{% endraw %}
+            </option>
+          </select>
+        </p>
+        <p>
+          <b>CTA:</b><br />
+          <input
+            class="hxTextCtrl"
+            type="text"
+            v-model="cta" />
+        </p>
+        <p>
+          <b>Content:</b><br />
+          <textarea class="hxTextCtrl" v-model="content"></textarea>
+        </p>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <div class="demo alert-demo">
+          <hx-toast
+            :type="type.value"
+            :cta="cta"
+            @submit="onSubmit">
+            {% raw %}{{content}}{% endraw %}
+          </hx-toast>
+        </div>
+        <pre>{% raw %}{{snippet}}{% endraw %}</pre>
+      </div>
+    </div>
+  </section>
+{% endblock %} 
+ 
