@@ -1,0 +1,49 @@
+---
+title: <hx-progress>
+also:
+  components/progress: Progress
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>{{page.title}}</code> element renders a progress bar
+      indicator to communicate the completion progress of a task.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>Any element that accepts flow content</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>none (content will be removed upon element upgrade)</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Events</hx-dt>
+        <hx-dd><em>none</em></hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl>
+    <dt>value {Integer=0}</dt>
+    <dd>
+      <p>Value representing completion percentage.</p>
+    </dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl>
+    <dt>value {Integer=0}</dt>
+    <dd>
+      <p>
+        Manipulates the <code>value</code> attribute.
+      </p>
+    </dd>
+  </dl>
+{% endblock %}
