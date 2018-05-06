@@ -1,33 +1,48 @@
 import { HXElement } from './HXElement';
 
+/**
+ * Fires in single-panel mode, when the current panel changes.
+ *
+ * @event Accordion:panelchange
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for an `<hx-accordion>` element.
+ *
+ * @emits Accordion:panelchange
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.4.0
+ */
 export class HXAccordionElement extends HXElement {
     static get is () {
         return 'hx-accordion';
     }
 
-    constructor () {
-        super();
+    $onCreate () {
         this._onPanelOpen = this._onPanelOpen.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('currentPanel');
         this.panels.forEach(panel => {
             panel.addEventListener('open', this._onPanelOpen);
         });
     }
 
-    disconnectedCallback () {
+    $onDisconnect () {
         this.panels.forEach(panel => {
             panel.removeEventListener('open', this._onPanelOpen);
         });
     }
 
-    static get observedAttributes () {
+    static get $observedAttributes () {
         return [ 'current-panel' ];
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
+    $onAttributeChange (attr, oldVal, newVal) {
         if (newVal !== null) {
             this._openPanel(Number(newVal));
 
@@ -37,19 +52,35 @@ export class HXAccordionElement extends HXElement {
         }
     }
 
-    // PUBLIC PROPERTIES
-
-    // TODO: needs tweaked for nested accordions (e.g. multi-level navigation)
-    // As it currently is, this will return ALL panels within the accordion,
-    // not just the immediate children.
+    /**
+     * Array of `<hx-accordion-panel>` descendants.
+     *
+     * @readonly
+     * @type {HXAccordionPanelElement[]}
+     * @todo
+     * Needs tweaked for nested accordions (e.g. multi-level navigation).
+     * As it currently is, it returns ALL panels within the accordion,
+     * not just the immediate children.
+     */
     get panels () {
         return Array.from(this.querySelectorAll('hx-accordion-panel'));
     }
 
+    /**
+     * Zero-based index of the currently open panel.
+     *
+     * - **multi-panel** mode _(default)_
+     *   - If unset, the user can open multiple panels at once.
+     * - **single-panel** mode
+     *   - If set, the user can only open one panel at a time.
+     *
+     * @type {Number}
+     * @todo Needs updated to return Integer or null/undefined.
+     * @todo Needs renamed. Too similar to nextPanel() and previousPanel() methods.
+     */
     get currentPanel () {
         return Number(this.getAttribute('current-panel'));
     }
-
     set currentPanel (idx) {
         if (idx !== null) {
             let maxIndex = this.panels.length - 1;
@@ -62,28 +93,32 @@ export class HXAccordionElement extends HXElement {
         }
     }
 
-    // PUBLIC METHODS
-
+    /**
+     * Navigate to the next panel, when in single-panel mode.
+     * @todo Needs renamed to follow verbNoun() format.
+     */
     nextPanel () {
         if (this._isNavigable) {
             this.currentPanel += 1;
         }
     }
 
+    /**
+     * Navigate to the previous panel, when in single-panel mode.
+     * @todo Needs renamed to follow verbNoun() format.
+     */
     previousPanel () {
         if (this._isNavigable) {
             this.currentPanel -= 1;
         }
     }
 
-    // PRIVATE PROPERTIES
-
+    /** @private */
     get _isNavigable () {
         return this.hasAttribute('current-panel');
     }
 
-    // PRIVATE METHODS
-
+    /** @private */
     _onPanelOpen (evt) {
         let idx = this.panels.indexOf(evt.target);
         if (this._isNavigable) {
@@ -91,6 +126,7 @@ export class HXAccordionElement extends HXElement {
         }
     }
 
+    /** @private */
     _openPanel (index) {
         if (this._isNavigable) {
             this.panels.forEach((panel, idx) => {

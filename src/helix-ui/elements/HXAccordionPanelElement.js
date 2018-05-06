@@ -1,33 +1,44 @@
 import { HXElement } from './HXElement';
+import shadowMarkup from './HXAccordionPanelElement.html';
 import shadowStyles from './HXAccordionPanelElement.less';
 
-const tagName = 'hx-accordion-panel';
-const template = document.createElement('template');
-template.innerHTML = `
-  <style>${shadowStyles}</style>
-  <button type="button" id="toggle" aria-controls="body" aria-expanded="false">
-    <div class="header">
-      <span class="header__content">
-        <slot name="header"></slot>
-      </span>
-      <hx-icon class="header__icon" type="angle-down"></hx-icon>
-    </div>
-  </button>
-  <div id="body" aria-expanded="false">
-    <slot></slot>
-  </div>
-`;
+/**
+ * Fires when contents of the accordion panel are revealed.
+ *
+ * @event AccordionPanel:open
+ * @since 0.4.0
+ * @type {CustomEvent}
+ */
 
+/**
+ * Fires when contents of the accordion panel are disclosed.
+ *
+ * @event AccordionPanel:close
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for an `<hx-accordion-panel>` element.
+ *
+ * @emits AccordionPanel:close
+ * @emits AccordionPanel:open
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.4.0
+ */
 export class HXAccordionPanelElement extends HXElement {
     static get is () {
-        return tagName;
+        return `hx-accordion-panel`;
+    }
+
+    static get template () {
+        return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
     constructor () {
-        super(tagName, template);
+        super();
 
-        this._btnToggle = this.shadowRoot.getElementById('toggle');
-        this._elBody = this.shadowRoot.getElementById('body');
         this._onClick = this._onClick.bind(this);
     }
 
@@ -55,12 +66,16 @@ export class HXAccordionPanelElement extends HXElement {
         }
     }
 
-    // PUBLIC PROPERTIES
-
+    /**
+     * @default false
+     * @type {Boolean}
+     * @description
+     * Property reflecting the "open" HTML attribute, indicating whether or not
+     * the element's contents (excluding the header) should be shown.
+     */
     get open () {
         return this.hasAttribute('open');
     }
-
     set open (newVal) {
         if (newVal) {
             this.setAttribute('open', '');
@@ -69,8 +84,17 @@ export class HXAccordionPanelElement extends HXElement {
         }
     }
 
-    // PRIVATE METHODS
+    /** @private */
+    get _btnToggle () {
+        return this.shadowRoot.getElementById('toggle');
+    }
 
+    /** @private */
+    get _elBody () {
+        return this.shadowRoot.getElementById('body');
+    }
+
+    /** @private */
     _onClick (evt) {
         evt.preventDefault();
 

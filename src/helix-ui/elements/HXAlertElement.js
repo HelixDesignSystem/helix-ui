@@ -1,9 +1,7 @@
 import { HXElement } from './HXElement';
-import shadowHtml from './HXAlertElement.html';
+import shadowMarkup from './HXAlertElement.html';
 import shadowStyles from './HXAlertElement.less';
 
-const tagName = 'hx-alert';
-const template = document.createElement('template');
 const ICONS = {
     'error': 'exclamation-circle',
     'info': 'info-circle',
@@ -11,23 +9,46 @@ const ICONS = {
     'warning': 'exclamation-triangle',
 };
 
-template.innerHTML = `
-  <style>${shadowStyles}</style>
-  ${shadowHtml}
-`;
+/**
+ * Fires when the user triggers the dismiss button.
+ *
+ * @event Alert:dismiss
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
 
+/**
+ * Fires when the user triggers the CTA button.
+ *
+ * @event Alert:submit
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for an `<hx-alert>` element.
+ *
+ * @emits Alert:dismiss
+ * @emits Alert:submit
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.6.0
+ */
 export class HXAlertElement extends HXElement {
     static get is () {
-        return tagName;
+        return `hx-alert`;
     }
 
-    constructor () {
-        super(tagName, template);
+    static get template () {
+        return `<style>${shadowStyles}</style>${shadowMarkup}`;
+    }
+
+    $onCreate () {
         this._onDismiss = this._onDismiss.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('cta');
         this.$upgradeProperty('static');
         this.$upgradeProperty('status');
@@ -37,21 +58,21 @@ export class HXAlertElement extends HXElement {
         this._btnDismiss.addEventListener('click', this._onDismiss);
     }
 
-    disconnectedCallback () {
+    $onDisconnect () {
         this._btnCta.removeEventListener('click', this._onSubmit);
         this._btnDismiss.removeEventListener('click', this._onDismiss);
     }
 
-    static get observedAttributes () {
+    static get $observedAttributes () {
         return [
             'cta',
             'static',
             'status',
             'type',
         ];
-    }//observedAttributes
+    }//$observedAttributes
 
-    attributeChangedCallback (attr, oldVal, newVal) {
+    $onAttributeChange (attr, oldVal, newVal) {
         let hasValue = (newVal !== null);
         switch (attr) {
             case 'cta':
@@ -70,26 +91,18 @@ export class HXAlertElement extends HXElement {
                 }
                 break;
         }
-    }//attributeChangedCallback()
+    }//$onAttributeChange()
 
-    // GETTERS
+    /**
+     * Text for the Call To Action button.
+     * If blank, the button will not be shown.
+     *
+     * @default ""
+     * @type {String}
+     */
     get cta () {
         return this.getAttribute('cta');
     }
-
-    get static () {
-        return this.hasAttribute('static');
-    }
-
-    get status () {
-        return this.getAttribute('status');
-    }
-
-    get type () {
-        return this.getAttribute('type');
-    }
-
-    // SETTERS
     set cta (value) {
         if (value) {
             this.setAttribute('cta', value);
@@ -98,6 +111,16 @@ export class HXAlertElement extends HXElement {
         }
     }
 
+    /**
+     * Property reflectin the `static` HTML attribute, indicating whether the
+     * alert may be dismissed. If true, the dismiss button will not be shown.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get static () {
+        return this.hasAttribute('static');
+    }
     set static (value) {
         if (value) {
             this.setAttribute('static', ''); // boolean
@@ -106,6 +129,16 @@ export class HXAlertElement extends HXElement {
         }
     }
 
+    /**
+     * Status text to display before the alert message.
+     * If blank, it will not be shown.
+     *
+     * @default ""
+     * @type {String}
+     */
+    get status () {
+        return this.getAttribute('status');
+    }
     set status (value) {
         if (value) {
             this.setAttribute('status', value);
@@ -114,6 +147,16 @@ export class HXAlertElement extends HXElement {
         }
     }
 
+    /**
+     * Indicates the type of alert to display.
+     * Valid values are "info", "success", "warning", and "error".
+     *
+     * @default "info"
+     * @type {String}
+     */
+    get type () {
+        return this.getAttribute('type');
+    }
     set type (value) {
         if (value) {
             this.setAttribute('type', value);
@@ -122,12 +165,14 @@ export class HXAlertElement extends HXElement {
         }
     }
 
-    // PUBLIC METHODS
+    /**
+     * Programmatically dismiss the alert (removes element from the DOM).
+     */
     dismiss () {
         this.remove();
     }
 
-    // PRIVATE METHODS
+    /** @private */
     _onDismiss (evt) {
         evt.preventDefault();
 
@@ -137,24 +182,28 @@ export class HXAlertElement extends HXElement {
         }
     }
 
+    /** @private */
     _onSubmit (evt) {
         evt.preventDefault();
         this.$emit('submit');
     }
 
-    // PRIVATE GETTERS
+    /** @private */
     get _elIcon () {
         return this.shadowRoot.getElementById('icon');
     }
 
+    /** @private */
     get _elStatus () {
         return this.shadowRoot.getElementById('status');
     }
 
+    /** @private */
     get _btnCta () {
         return this.shadowRoot.getElementById('cta');
     }
 
+    /** @private */
     get _btnDismiss () {
         return this.shadowRoot.getElementById('dismiss');
     }

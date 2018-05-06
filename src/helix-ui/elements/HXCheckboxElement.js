@@ -1,24 +1,32 @@
 import { HXElement } from './HXElement';
 import { KEYS } from '../util';
+import shadowMarkup from './HXCheckboxElement.html';
 import shadowStyles from './HXCheckboxElement.less';
 
-const tagName = 'hx-checkbox';
-const template = document.createElement('template');
+/**
+ * Fires when the checked state changes
+ *
+ * @event Checkbox:change
+ * @since 0.1.8
+ * @type {CustomEvent}
+ */
 
-template.innerHTML = `
-  <style>${shadowStyles}</style>
-  <label id="container">
-    <input type="checkbox" id="nativeControl"/>
-    <div id="customControl">
-      <hx-icon type="checkmark" id="tick"></hx-icon>
-      <hx-icon type="minus" id="minus"></hx-icon>
-    </div>
-  </label>
-`;
-
+/**
+ * Defines behavior for an `<hx-checkbox>` element.
+ *
+ * @class
+ * @emits Checkbox:change
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.1.8
+ */
 export class HXCheckboxElement extends HXElement {
     static get is () {
-        return tagName;
+        return 'hx-checkbox';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
     static get observedAttributes () {
@@ -30,8 +38,7 @@ export class HXCheckboxElement extends HXElement {
     }
 
     constructor () {
-        super(tagName, template);
-        this._input = this.shadowRoot.getElementById('nativeControl');
+        super();
         this._onChange = this._onChange.bind(this);
     }
 
@@ -63,6 +70,13 @@ export class HXCheckboxElement extends HXElement {
         }
     }//attributeChangedCallback()
 
+    /**
+     * @default false
+     * @type {Boolean}
+     */
+    get checked () {
+        return this.hasAttribute('checked');
+    }
     set checked (value) {
         if (value) {
             this.setAttribute('checked', '');
@@ -71,10 +85,15 @@ export class HXCheckboxElement extends HXElement {
         }
     }
 
-    get checked () {
-        return this.hasAttribute('checked');
+    /**
+     * Indicates if the state of the element cannot be determined.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get indeterminate () {
+        return this.hasAttribute('indeterminate');
     }
-
     set indeterminate (value) {
         if (value) {
             this.setAttribute('indeterminate', '');
@@ -83,22 +102,7 @@ export class HXCheckboxElement extends HXElement {
         }
     }
 
-    get indeterminate () {
-        return this.hasAttribute('indeterminate');
-    }
-
-    set disabled (value) {
-        if (value) {
-            this.setAttribute('disabled', '');
-        } else {
-            this.removeAttribute('disabled');
-        }
-    }
-
-    get disabled () {
-        return this.hasAttribute('disabled');
-    }
-
+    /** @private */
     _onChange (evt) {
         // Update internal state
         this.checked = evt.target.checked;
@@ -108,5 +112,10 @@ export class HXCheckboxElement extends HXElement {
 
         // Emit a new 'change' event from the custom element
         this.$emit('change');
+    }
+
+    /** @private */
+    get _input () {
+        return this.shadowRoot.getElementById('nativeControl');
     }
 }//HXCheckboxElement
