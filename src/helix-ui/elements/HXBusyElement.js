@@ -1,16 +1,18 @@
 import { HXElement } from './HXElement';
 
-const tagName = 'hx-busy';
-// leave ShadowDOM template empty to remove LightDOM children
-const template = document.createElement('template');
-
+/**
+ * Defines behavior for an `<hx-busy>` element.
+ *
+ * @extends HXElement
+ * @hideconstructor
+ */
 export class HXBusyElement extends HXElement {
     static get is () {
-        return tagName;
+        return 'hx-busy';
     }
 
-    constructor () {
-        super(tagName, template);
+    static get template () {
+        return ``;
     }
 
     connectedCallback () {
@@ -18,10 +20,15 @@ export class HXBusyElement extends HXElement {
         this.$defaultAttribute('aria-hidden', true);
     }
 
+    /**
+     * Pause or resume animation.
+     *
+     * @default false
+     * @type {Boolean}
+     */
     get paused () {
         return this.hasAttribute('paused');
     }
-
     set paused (isPaused) {
         if (isPaused) {
             this.setAttribute('paused', '');

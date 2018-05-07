@@ -1,6 +1,12 @@
 import { HXElement } from './HXElement';
 import { KEYS } from '../util';
 
+/**
+ * Defines behavior for an `<hx-disclosure>` element.
+ *
+ * @extends HXElement
+ * @hideconstructor
+ */
 export class HXDisclosureElement extends HXElement {
     static get is () {
         return 'hx-disclosure';
@@ -67,14 +73,21 @@ export class HXDisclosureElement extends HXElement {
         }
     }
 
+    /**
+     * @default false
+     * @type {Boolean}
+     */
     get expanded () {
         return this.getAttribute('aria-expanded') === 'true';
     }
-
     set expanded (newVal) {
         this.setAttribute('aria-expanded', !!newVal);
     }
 
+    /**
+     * @readonly
+     * @type {HTMLElement}
+     */
     get target () {
         if (!this._target) {
             let targetId = this.getAttribute('aria-controls');
@@ -83,6 +96,7 @@ export class HXDisclosureElement extends HXElement {
         return this._target;
     }
 
+    /** @private */
     _keyUp (event) {
         switch (event.keyCode) {
             case KEYS.Space:
@@ -94,16 +108,19 @@ export class HXDisclosureElement extends HXElement {
         }
     }
 
+    /** @private */
     _toggle () {
         if (!this.disabled) {
             this.expanded = !this.expanded;
         }
     }
 
+    /** @private */
     _onTargetOpen () {
         this.expanded = true;
     }
 
+    /** @private */
     _onTargetClose () {
         this.expanded = false;
     }

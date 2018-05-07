@@ -40,6 +40,8 @@ browserSync.init({
                 `${CONFIG.docsDir}/**/*`,
                 `${CONFIG.sourceDir}/*.less`,
                 `${CONFIG.sourceDir}/helix-ui/styles/**/*.less`,
+                `!${CONFIG.docsDir}/api/*`,
+                `!${CONFIG.docsDir}/api/**/*`,
             ],
             fn: _.debounce(function () {
                 compileStyles();

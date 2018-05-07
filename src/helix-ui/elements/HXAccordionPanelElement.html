@@ -1,0 +1,11 @@
+<button type="button" id="toggle" aria-controls="body" aria-expanded="false">
+  <div class="header">
+    <span class="header__content">
+      <slot name="header"></slot>
+    </span>
+    <hx-icon class="header__icon" type="angle-down"></hx-icon>
+  </div>
+</button>
+<div id="body" aria-expanded="false">
+  <slot></slot>
+</div>
