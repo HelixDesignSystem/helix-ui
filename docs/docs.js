@@ -11,6 +11,7 @@ import './components/icons/icon-demo';
 import './components/lists/list-demo';
 import './components/panels/panel-demo';
 import './components/popovers/popover-demo';
+import './components/progress/progress-demo';
 import './components/reveals/reveal-demo';
 import './components/search/search-demo';
 import './components/status-pills/status-demo';

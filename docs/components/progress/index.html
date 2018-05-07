@@ -1,0 +1,29 @@
+---
+title: Progress
+also:
+  elements/hx-progress: <hx-progress>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <h2 id="basic-progress">Basic Progress</h2>
+    <div id="vue-progressDemo" class="hxRow" v-cloak>
+      {% raw %}
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <p>
+          <b>Value ({{pct}}%)</b><br>
+          <input type="range" min="0" max="100" step="1" v-model="pct" />
+        </p>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <section>
+          <div class="demo">
+            <hx-progress :value="pct"></hx-progress>
+          </div>
+          <pre><code>{{snippet}}</code></pre>
+        </section>
+      </div>
+      {% endraw %}
+    </div>
+  </section>
+{% endblock %}
