@@ -1,27 +1,24 @@
 import { HXElement } from './HXElement';
-import shadowHtml from './HXToastElement.html';
+import shadowMarkup from './HXToastElement.html';
 import shadowStyles from './HXToastElement.less';
 
-const tagName = 'hx-toast';
-const template = document.createElement('template');
 const ICONS = {
     'error': 'exclamation-circle',
     'info': 'info-circle',
     'success': 'checkmark',
 };
 
-template.innerHTML = `
-  <style>${shadowStyles}</style>
-  ${shadowHtml}
-`;
-
 export class HXToastElement extends HXElement {
     static get is () {
-        return tagName;
+        return 'hx-toast';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
     constructor () {
-        super(tagName, template);
+        super();
         this._onDismiss = this._onDismiss.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
     }

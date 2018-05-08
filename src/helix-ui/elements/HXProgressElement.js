@@ -1,21 +1,9 @@
 import { HXElement } from './HXElement';
+import shadowMarkup from './HXProgressElement.html';
+import shadowStyles from './HXProgressElement.less';
 
 const MIN = 0;
 const MAX = 100;
-
-const tagName = 'hx-progress';
-const template = document.createElement('template');
-template.innerHTML = `
-    <style>
-        #fill {
-            background-color: currentColor;
-            box-sizing: border-box;
-            height: 100%;
-            width: 0%;
-        }
-    </style>
-    <div id="fill"></div>
-`;
 
 /**
  * @private
@@ -40,11 +28,11 @@ function _parseValue (val) {
  */
 export class HXProgressElement extends HXElement {
     static get is () {
-        return tagName;
+        return 'hx-progress';
     }
 
-    constructor () {
-        super(tagName, template);
+    static get template () {
+        return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
     connectedCallback () {
