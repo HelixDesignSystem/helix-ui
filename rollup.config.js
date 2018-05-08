@@ -1,4 +1,5 @@
 import babel from 'rollup-plugin-babel';
+import cleanup from 'rollup-plugin-cleanup';
 import html from 'rollup-plugin-html';
 import json from 'rollup-plugin-json';
 import pkg from './package.json';
@@ -31,6 +32,10 @@ let lessPlugin = less({
     }
 });
 
+let cleanOpts = {
+    comments: 'none',
+};
+
 // Intro/Outro placed INSIDE the applied dependency function
 let intro = `window.addEventListener('WebComponentsReady', function () {`;
 let outro = `});`;
@@ -56,6 +61,7 @@ export default [
             htmlPlugin,
             lessPlugin,
             babelPlugin,
+            cleanup(cleanOpts),
         ],
         watch: {
             include: 'src/**/*',
@@ -128,6 +134,7 @@ export default [
         ],
         plugins: [
             babelPlugin,
+            cleanup(cleanOpts),
         ],
     },
 
