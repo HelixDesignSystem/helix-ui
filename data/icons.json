@@ -37,15 +37,26 @@
   },
   {
     "name": "bell",
-    "minver": "0.1.10"
+    "minver": "0.1.10",
+    "keywords": [
+      "alert",
+      "notification"
+    ]
   },
   {
     "name": "billing",
-    "minver": "0.1.10"
+    "minver": "0.1.10",
+    "keywords": [
+      "invoice",
+      "money"
+    ]
   },
   {
     "name": "calendar",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "date"
+    ]
   },
   {
     "name": "checkmark",
@@ -57,11 +68,20 @@
   },
   {
     "name": "cog",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "change",
+      "configure",
+      "gear",
+      "manage"
+    ]
   },
   {
     "name": "copy",
-    "minver": "0.1.10"
+    "minver": "0.1.10",
+    "keywords": [
+      "duplicate"
+    ]
   },
   {
     "name": "download",
@@ -69,7 +89,11 @@
   },
   {
     "name": "envelope",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "email",
+      "mail"
+    ]
   },
   {
     "name": "exclamation-circle",
@@ -92,12 +116,31 @@
     "minver": "0.1.10"
   },
   {
+    "name": "file",
+    "keywords": [
+      "blank",
+      "paper"
+    ]
+  },
+  {
     "name": "filter",
-    "minver": "0.1.4"
+    "minver": "0.1.4",
+    "keywords": [
+      "funnel"
+    ]
+  },
+  {
+    "name": "flag"
+  },
+  {
+    "name": "globe"
   },
   {
     "name": "help-circle",
-    "minver": "0.1.10"
+    "minver": "0.1.10",
+    "keywords": [
+      "question"
+    ]
   },
   {
     "name": "info-circle",
@@ -109,11 +152,16 @@
   },
   {
     "name": "input-time",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "clock"
+    ]
   },
   {
     "name": "input-url",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "alias": "globe",
+    "deprecated": true
   },
   {
     "name": "kbd-arrow-down",
@@ -137,11 +185,17 @@
   },
   {
     "name": "kbd-command",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "cmd"
+    ]
   },
   {
     "name": "kbd-delete",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "backspace"
+    ]
   },
   {
     "name": "kbd-eject",
@@ -153,7 +207,10 @@
   },
   {
     "name": "kbd-return",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "enter"
+    ]
   },
   {
     "name": "kbd-shift",
@@ -168,48 +225,240 @@
     "minver": "0.1.0"
   },
   {
+    "name": "key",
+    "keywords": [
+      "ca-bundle",
+      "cer",
+      "crl",
+      "crt",
+      "csr",
+      "der",
+      "key",
+      "p12",
+      "p7b",
+      "p7s",
+      "pem",
+      "pfx",
+      "pub",
+      "spc",
+      "ssh",
+      "sst",
+      "stl"
+    ]
+  },
+  {
     "name": "lock",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "locked",
+      "padlock"
+    ]
+  },
+  {
+    "name": "mime-archive",
+    "keywords": [
+      "7z",
+      "apk",
+      "deb",
+      "gzip",
+      "pkg",
+      "rar",
+      "rpm",
+      "tar",
+      "zip"
+    ]
+  },
+  {
+    "name": "mime-audio",
+    "keywords": [
+      "aif",
+      "mid",
+      "mp3",
+      "ogg",
+      "wav",
+      "wma"
+    ]
+  },
+  {
+    "name": "mime-code",
+    "keywords": [
+      "bat",
+      "css",
+      "html",
+      "js",
+      "pl",
+      "py",
+      "rb",
+      "sh",
+      "wsf"
+    ]
+  },
+  {
+    "name": "mime-data",
+    "keywords": [
+      "csv",
+      "dat",
+      "db",
+      "dbf",
+      "json",
+      "log",
+      "ods",
+      "sav",
+      "sql",
+      "xls",
+      "xlsx",
+      "xml"
+    ]
+  },
+  {
+    "name": "mime-image",
+    "keywords": [
+      "ai",
+      "bmp",
+      "gif",
+      "ico",
+      "jpeg",
+      "jpg",
+      "png",
+      "ps",
+      "psd",
+      "svg",
+      "tif",
+      "tiff"
+    ]
+  },
+  {
+    "name": "mime-system",
+    "keywords": [
+      "bak",
+      "bin",
+      "cab",
+      "com",
+      "dll",
+      "dmg",
+      "drv",
+      "exe",
+      "gears",
+      "ini",
+      "iso",
+      "jar",
+      "msi",
+      "sys",
+      "tmp"
+    ]
+  },
+  {
+    "name": "mime-text",
+    "keywords": [
+      "doc",
+      "docx",
+      "pdf",
+      "rtf",
+      "tex",
+      "txt"
+    ]
+  },
+  {
+    "name": "mime-video",
+    "keywords": [
+      "3gp",
+      "avi",
+      "m4v",
+      "mov",
+      "mp4",
+      "mpeg",
+      "mpg",
+      "wmv"
+    ]
   },
   {
     "name": "minus",
-    "minver": "0.2.0"
+    "minver": "0.2.0",
+    "keywords": [
+      "math",
+      "negative",
+      "remove",
+      "subtract"
+    ]
   },
   {
     "name": "minus-circle",
-    "minver": "0.1.10"
+    "minver": "0.1.10",
+    "keywords": [
+      "remove"
+    ]
   },
   {
     "name": "monitoring",
-    "minver": "0.1.10"
+    "minver": "0.1.10",
+    "keywords": [
+      "graph"
+    ]
+  },
+  {
+    "name": "paperclip",
+    "keywords": [
+      "attachment"
+    ]
   },
   {
     "name": "payment",
-    "minver": "0.2.0"
+    "minver": "0.2.0",
+    "keywords": [
+      "invoice",
+      "money"
+    ]
   },
   {
     "name": "pencil",
-    "minver": "0.1.10"
+    "minver": "0.1.10",
+    "keywords": [
+      "edit"
+    ]
   },
   {
     "name": "phone",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "call"
+    ]
   },
   {
     "name": "plus",
-    "minver": "0.2.0"
+    "minver": "0.2.0",
+    "keywords": [
+      "add",
+      "math"
+    ]
   },
   {
     "name": "plus-or-minus",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "math",
+      "variance"
+    ]
   },
   {
     "name": "search",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "magnifying glass"
+    ]
   },
   {
     "name": "server",
     "minver": "0.1.10"
+  },
+  {
+    "name": "server-config",
+    "keywords": [
+      "change",
+      "manage"
+    ]
+  },
+  {
+    "name": "server-incident"
   },
   {
     "name": "sort",
@@ -225,7 +474,12 @@
   },
   {
     "name": "support",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "assistance",
+      "customer service",
+      "help"
+    ]
   },
   {
     "name": "tag",
@@ -233,11 +487,15 @@
   },
   {
     "name": "technical-change",
-    "minver": "0.2.0"
+    "minver": "0.2.0",
+    "alias": "server-config",
+    "deprecated": true
   },
   {
     "name": "technical-incident",
-    "minver": "0.2.0"
+    "minver": "0.2.0",
+    "alias": "server-incident",
+    "deprecated": true
   },
   {
     "name": "ticketing",
@@ -245,18 +503,36 @@
   },
   {
     "name": "times",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "close",
+      "math",
+      "multiply",
+      "remove"
+    ]
   },
   {
     "name": "times-circle",
-    "minver": "0.1.0"
+    "minver": "0.1.0",
+    "keywords": [
+      "close",
+      "remove"
+    ]
   },
   {
     "name": "trash",
-    "minver": "0.1.10"
+    "minver": "0.1.10",
+    "keywords": [
+      "delete",
+      "remove"
+    ]
   },
   {
     "name": "user",
-    "minver": "0.1.10"
+    "minver": "0.1.10",
+    "keywords": [
+      "customer",
+      "person"
+    ]
   }
 ]

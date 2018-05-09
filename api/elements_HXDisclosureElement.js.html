@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: elements/HXDisclosureElement.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: elements/HXDisclosureElement.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { HXElement } from './HXElement';
+import { KEYS } from '../util';
+
+/**
+ * Defines behavior for an `&lt;hx-disclosure>` element.
+ *
+ * @extends HXElement
+ * @hideconstructor
+ */
+export class HXDisclosureElement extends HXElement {
+    static get is () {
+        return 'hx-disclosure';
+    }
+
+    static get observedAttributes () {
+        return super.observedAttributes.concat([
+            'aria-expanded',
+        ]);
+    }
+
+    constructor () {
+        super();
+        this._onTargetOpen = this._onTargetOpen.bind(this);
+        this._onTargetClose = this._onTargetClose.bind(this);
+    }
+
+    connectedCallback () {
+        super.connectedCallback();
+
+        this.$upgradeProperty('expanded');
+        this.setAttribute('role', 'button');
+        if (!this.hasAttribute('tabindex') &amp;&amp; !this.disabled) {
+            this.setAttribute('tabindex', 0);
+        }
+
+        if (this.target) {
+            this.expanded = this.target.hasAttribute('open');
+            this.target.addEventListener('open', this._onTargetOpen);
+            this.target.addEventListener('close', this._onTargetClose);
+        } else {
+            this.expanded = false;
+        }
+
+        this.addEventListener('click', this._toggle);
+        this.addEventListener('keydown', this.$preventScroll);
+        this.addEventListener('keyup', this._keyUp);
+    }
+
+    disconnectedCallback () {
+        this.removeEventListener('click', this._toggle);
+        this.removeEventListener('keydown', this.$preventScroll);
+        this.removeEventListener('keyup', this._keyUp);
+
+        if (this.target) {
+            this.target.removeEventListener('open', this._onTargetOpen);
+            this.target.removeEventListener('close', this._onTargetClose);
+        }
+    }
+
+    attributeChangedCallback (attr, oldVal, newVal) {
+        super.attributeChangedCallback(attr, oldVal, newVal);
+
+        const hasValue = (newVal !== null);
+        switch(attr) {
+            case 'aria-expanded':
+                if (this.target) {
+                    let setTo = (newVal === 'true');
+                    if (this.target.open !== setTo) {
+                        this.target.open = setTo;
+                    }
+                }
+                break;
+        }
+    }
+
+    /**
+     * @default false
+     * @type {Boolean}
+     */
+    get expanded () {
+        return this.getAttribute('aria-expanded') === 'true';
+    }
+    set expanded (newVal) {
+        this.setAttribute('aria-expanded', !!newVal);
+    }
+
+    /**
+     * @readonly
+     * @type {HTMLElement}
+     */
+    get target () {
+        if (!this._target) {
+            let targetId = this.getAttribute('aria-controls');
+            this._target = this.getRootNode().getElementById(targetId);
+        }
+        return this._target;
+    }
+
+    /** @private */
+    _keyUp (event) {
+        switch (event.keyCode) {
+            case KEYS.Space:
+            case KEYS.Enter:
+                this._toggle();
+                break;
+            default:
+                break;
+        }
+    }
+
+    /** @private */
+    _toggle () {
+        if (!this.disabled) {
+            this.expanded = !this.expanded;
+        }
+    }
+
+    /** @private */
+    _onTargetOpen () {
+        this.expanded = true;
+    }
+
+    /** @private */
+    _onTargetClose () {
+        this.expanded = false;
+    }
+}//HXDisclosureElement
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-elements.html">elements</a></li><li><a href="module-helix-ui.html">helix-ui</a></li><li><a href="module-util.html">util</a></li><li><a href="module-util_keys.html">util/keys</a></li><li><a href="module-util_position.html">util/position</a></li><li><a href="module-util_position_offsetFunctions.html">util/position/offsetFunctions</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed May 09 2018 14:37:36 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

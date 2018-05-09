@@ -164,6 +164,12 @@
 
 
       
+      <a href="components/progress" >
+    Progress
+  </a>
+
+
+      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -196,6 +202,12 @@
       
       <a href="components/text-inputs" >
     Text Inputs
+  </a>
+
+
+      
+      <a href="components/toasts" >
+    Toasts
   </a>
 
 
@@ -381,6 +393,12 @@ class="current">
 
 
       
+      <a href="elements/hx-progress" >
+    &lt;hx-progress&gt;
+  </a>
+
+
+      
       <a href="elements/hx-reveal" >
     &lt;hx-reveal&gt;
   </a>
@@ -453,6 +471,12 @@ class="current">
 
 
       
+      <a href="elements/hx-toast" >
+    &lt;hx-toast&gt;
+  </a>
+
+
+      
       <a href="elements/hx-tooltip" >
     &lt;hx-tooltip&gt;
   </a>
@@ -495,7 +519,7 @@ class="current">
           Any of the following:
           <ul>
             <li>
-              <code>dismiss</code> <small>(cancelable)</small> - User clicks "X" to dismiss the alert.
+              <code>dismiss</code> (cancelable) - User clicks "X" to dismiss the alert.
             </li>
             <li><code>submit</code> - User clicks CTA</li>
           </ul>
@@ -507,7 +531,7 @@ class="current">
   <section>
     <h2 id="methods">Methods</h2>
     <dl>
-      <dt><code>dismiss()</code></dt>
+      <dt>dismiss()</dt>
       <dd>Dismisses the alert.</dd>
     </dl>
   </section>
@@ -520,36 +544,24 @@ class="current">
         declarative manner via markup.
       </p>
   <dl>
-    <dt>
-      <code>cta</code>
-      <small>{String} <i>(optional)</i></small>
-    </dt>
+    <dt>cta {String} <i>(optional)</i></dt>
     <dd>
       Set the text of the CTA button.
       If absent or blank, the CTA button will not be displayed.
     </dd>
 
-    <dt>
-      <code>static</code>
-      <small>{Boolean} <i>(optional)</i></small>
-    </dt>
+    <dt>static {Boolean} <i>(optional)</i></dt>
     <dd>
       When present, alert will not be dismissable.
     </dd>
 
-    <dt>
-      <code>status</code>
-      <small>{String} <i>(optional)</i></small>
-    </dt>
+    <dt>status {String} <i>(optional)</i></dt>
     <dd>
       Sets the status text at the beginning of the alert description.
       If absent or blank, the status element will not be displayed.
     </dd>
 
-    <dt>
-      <code>type</code>
-      <small>{Enum&lt;String&gt;} <i>(optional)</i></small>
-    </dt>
+    <dt>type {Enum&lt;String&gt;} <i>(optional)</i></dt>
     <dd>
       Identifies the type of alert. Valid values are as follows:
       <ul>
@@ -570,34 +582,22 @@ class="current">
         imperative manner via JavaScript.
       </p>
   <dl>
-    <dt>
-      <code>cta</code>
-      <small>{String}</small>
-    </dt>
+    <dt>cta {String}</dt>
     <dd>
       Manipulates the <code>cta</code> attribute.
     </dd>
 
-    <dt>
-      <code>static</code>
-      <small>{Boolean}</small>
-    </dt>
+    <dt>static {Boolean}</dt>
     <dd>
       When <code>true</code>, alert will not be dismissable.
     </dd>
 
-    <dt>
-      <code>status</code>
-      <small>{String}</small>
-    </dt>
+    <dt>status {String}</dt>
     <dd>
       Manipulates the <code>status</code> attribute.
     </dd>
 
-    <dt>
-      <code>type</code>
-      <small>{String}</small>
-    </dt>
+    <dt>type {String}</dt>
     <dd>
       Manipulates the <code>type</code> attribute.
     </dd>
@@ -638,10 +638,14 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-04-12
+      2018-05-08
     </small>
 
-  <small>(v0.6.1)</small>
+  <small>
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.7.0" target="_blank">
+      v0.7.0
+    </a>)
+  </small>
 </div>
   </footer>
 

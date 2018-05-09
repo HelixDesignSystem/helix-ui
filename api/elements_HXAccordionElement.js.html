@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: elements/HXAccordionElement.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: elements/HXAccordionElement.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { HXElement } from './HXElement';
+
+/**
+ * Fires in single-panel mode, when the current panel changes.
+ *
+ * @event Accordion:panelchange
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for an `&lt;hx-accordion>` element.
+ *
+ * @emits Accordion:panelchange
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.4.0
+ */
+export class HXAccordionElement extends HXElement {
+    static get is () {
+        return 'hx-accordion';
+    }
+
+    $onCreate () {
+        this._onPanelOpen = this._onPanelOpen.bind(this);
+    }
+
+    $onConnect () {
+        this.$upgradeProperty('currentPanel');
+        this.panels.forEach(panel => {
+            panel.addEventListener('open', this._onPanelOpen);
+        });
+    }
+
+    $onDisconnect () {
+        this.panels.forEach(panel => {
+            panel.removeEventListener('open', this._onPanelOpen);
+        });
+    }
+
+    static get $observedAttributes () {
+        return [ 'current-panel' ];
+    }
+
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (newVal !== null) {
+            this._openPanel(Number(newVal));
+
+            if (newVal !== oldVal) {
+                this.$emit('panelchange');
+            }
+        }
+    }
+
+    /**
+     * Array of `&lt;hx-accordion-panel>` descendants.
+     *
+     * @readonly
+     * @type {HXAccordionPanelElement[]}
+     * @todo
+     * Needs tweaked for nested accordions (e.g. multi-level navigation).
+     * As it currently is, it returns ALL panels within the accordion,
+     * not just the immediate children.
+     */
+    get panels () {
+        return Array.from(this.querySelectorAll('hx-accordion-panel'));
+    }
+
+    /**
+     * Zero-based index of the currently open panel.
+     *
+     * - **multi-panel** mode _(default)_
+     *   - If unset, the user can open multiple panels at once.
+     * - **single-panel** mode
+     *   - If set, the user can only open one panel at a time.
+     *
+     * @type {Number}
+     * @todo Needs updated to return Integer or null/undefined.
+     * @todo Needs renamed. Too similar to nextPanel() and previousPanel() methods.
+     */
+    get currentPanel () {
+        return Number(this.getAttribute('current-panel'));
+    }
+    set currentPanel (idx) {
+        if (idx !== null) {
+            let maxIndex = this.panels.length - 1;
+
+            if (idx >= 0 &amp;&amp; idx &lt;= maxIndex) {
+                this.setAttribute('current-panel', idx);
+            }
+        } else {
+            this.removeAttribute('current-panel');
+        }
+    }
+
+    /**
+     * Navigate to the next panel, when in single-panel mode.
+     * @todo Needs renamed to follow verbNoun() format.
+     */
+    nextPanel () {
+        if (this._isNavigable) {
+            this.currentPanel += 1;
+        }
+    }
+
+    /**
+     * Navigate to the previous panel, when in single-panel mode.
+     * @todo Needs renamed to follow verbNoun() format.
+     */
+    previousPanel () {
+        if (this._isNavigable) {
+            this.currentPanel -= 1;
+        }
+    }
+
+    /** @private */
+    get _isNavigable () {
+        return this.hasAttribute('current-panel');
+    }
+
+    /** @private */
+    _onPanelOpen (evt) {
+        let idx = this.panels.indexOf(evt.target);
+        if (this._isNavigable) {
+            this.currentPanel = idx;
+        }
+    }
+
+    /** @private */
+    _openPanel (index) {
+        if (this._isNavigable) {
+            this.panels.forEach((panel, idx) => {
+                if (Number(index) === idx) {
+                    panel.open = true;
+                    panel.focus();
+                } else  {
+                    panel.open = false;
+                    panel.blur();
+                }
+            });
+        }
+    }
+}//HXAccordionElement
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-elements.html">elements</a></li><li><a href="module-helix-ui.html">helix-ui</a></li><li><a href="module-util.html">util</a></li><li><a href="module-util_keys.html">util/keys</a></li><li><a href="module-util_position.html">util/position</a></li><li><a href="module-util_position_offsetFunctions.html">util/position/offsetFunctions</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed May 09 2018 14:37:36 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -84,6 +84,7 @@ min-version {
   background-color: #ec407a;
   border-radius: 1em;
   color: #ffffff;
+  display: inline-block;
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 1;
@@ -476,12 +477,16 @@ min-version {
   background-color: #ffffff;
   border: 1px solid #d8d8d8;
   height: 100%;
+  padding: 1.25rem;
 }
 .icon-media .media__icon {
-  align-items: center;
+  color: #000000;
   display: flex;
   font-size: 2em;
   line-height: 1;
+}
+.icon-media .media__body {
+  margin-left: 1.25rem;
 }
 hx-icon.size-2x {
   height: 2em;

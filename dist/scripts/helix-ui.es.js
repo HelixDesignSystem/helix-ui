@@ -1,17 +1,39 @@
+/** @module */
+
+/**
+ * Key/value map of key names and their keycode.
+ * @enum {Integer}
+ */
 const KEYS = {
     Alt: 18,
+    /** _alias:_ `Alt` */
+    Option: 18,
     Backspace: 8,
     Control: 17,
+    /** _alias:_ `Control` */
+    Ctrl: 17,
+    Del: 46,
+    /** _alias:_ `Del` */
     Delete: 46,
     Down: 40,
     End: 35,
     Enter: 13,
+    /** _alias:_ `Enter` */
+    Return: 13,
+    Esc: 27,
+    /** _alias:_ `Esc` */
     Escape: 27,
     Home: 36,
+    Ins: 45,
+    /** _alias:_ `Ins` */
     Insert: 45,
     Left: 37,
     PageDown: 34,
+    /** _alias:_ `PageDown` */
+    PgDown: 34,
     PageUp: 33,
+    /** _alias:_ `PageUp` */
+    PgUp: 33,
     Right: 39,
     Shift: 16,
     Space: 32,
@@ -19,22 +41,49 @@ const KEYS = {
     Up: 38,
 };
 
-// ALIASES
-KEYS['Ctrl'] = KEYS['Control'];
-KEYS['Del'] = KEYS['Delete'];
-KEYS['Esc'] = KEYS['Escape'];
-KEYS['Ins'] = KEYS['Insert'];
-KEYS['Option'] = KEYS['Alt'];
-KEYS['PgDown'] = KEYS['PageDown'];
-KEYS['PgUp'] = KEYS['PageUp'];
-KEYS['Return'] = KEYS['Enter'];
+/**
+ * [x,y] coordinate array
+ * @typedef {Array} XYCoordinate
+ */
 
+/**
+ * @module
+ * @description
+ * Each function calculates the (x,y) coordinates of a target element,
+ * so that it is positioned in relation to a reference element.
+ *
+ * If you wanted to position a menu below a button, the button
+ * is the reference element, and the menu is the target element.
+ *
+ * ![position reference](/images/api/positioning_ref.png)
+ */
+
+/**
+ * Calculate (x,y) coordinates needed to center align two elements.
+ *
+ * ![center reference](/images/api/pos-center.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @return {XYCoordinate}
+ */
 function getCenter (off, ref) {
     let x = ref.left + (ref.width / 2) - (off.width / 2);
     let y = ref.top + (ref.height / 2) - (off.height / 2);
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element above a
+ * reference element, with their y-axes aligned.
+ *
+ * ![top reference](/images/api/pos-top.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getTop (off, ref, config) {
     let [ x, y ] = getCenter(off, ref);
     y = ref.top - off.height;
@@ -42,6 +91,17 @@ function getTop (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element below a
+ * reference element, with their y-axes aligned.
+ *
+ * ![bottom reference](/images/api/pos-bottom.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getBottom (off, ref, config) {
     let [ x, y ] = getCenter(off, ref);
     y = ref.top + ref.height;
@@ -49,18 +109,52 @@ function getBottom (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element left of a
+ * reference element, with their x-axes aligned.
+ *
+ * ![left reference](/images/api/pos-left.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getLeft (off, ref, config) {
     let [ x, y ] = getCenter(off, ref);
     x = ref.left - off.width - config.margin;
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element right of a
+ * reference element, with their x-axes aligned.
+ *
+ * ![right reference](/images/api/pos-right.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getRight (off, ref, config) {
     let [ x, y ] = getCenter(off, ref);
     x = ref.left + ref.width + config.margin;
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element above and to the
+ * left of a reference element, so that the right edge of the target element aligns
+ * with the y-axis of the reference element.
+ *
+ * ![top-left reference](/images/api/pos-top-left.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getTopLeft (off, ref, config) {
     let [ x, y ] = getTop(off, ref, config);
     x -= (off.width / 2);
@@ -68,6 +162,18 @@ function getTopLeft (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element above and to the
+ * left of a reference element, so that the left edge of the target element aligns
+ * with the left edge of the reference element.
+ *
+ * ![top-start reference](/images/api/pos-top-start.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getTopStart (off, ref, config) {
     let [ x, y ] = getTop(off, ref, config);
     x = ref.left;
@@ -75,6 +181,18 @@ function getTopStart (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element above and to the
+ * right of a reference element, so that the right edge of the target element aligns
+ * with the right edge of the reference element.
+ *
+ * ![top-end reference](/images/api/pos-top-end.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getTopEnd (off, ref, config) {
     let [ x, y ] = getTop(off, ref, config);
     x = ref.right - off.width;
@@ -82,6 +200,18 @@ function getTopEnd (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element above and to the
+ * right of a reference element, so that the left edge of the target element aligns
+ * with the y-axis of the reference element.
+ *
+ * ![top-right reference](/images/api/pos-top-right.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getTopRight (off, ref, config) {
     let [ x, y ] = getTop(off, ref, config);
     x += (off.width / 2);
@@ -89,6 +219,18 @@ function getTopRight (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element right and slightly higher
+ * than the target element, so that the bottom edge of the target element aligns with the
+ * x-axis of the reference element.
+ *
+ * ![right-top reference](/images/api/pos-right-top.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getRightTop (off, ref, config) {
     let [ x, y ] = getRight(off, ref, config);
     y -= (off.height / 2);
@@ -96,6 +238,18 @@ function getRightTop (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element right and slightly higher
+ * than the target element, so that the top edge of the target element aligns with the
+ * top edge of the reference element.
+ *
+ * ![right-start reference](/images/api/pos-right-start.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getRightStart (off, ref, config) {
     let [ x, y ] = getRight(off, ref, config);
     y = ref.top;
@@ -103,6 +257,18 @@ function getRightStart (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element right and slightly lower
+ * than the target element, so that the bottom edge of the target element aligns with the
+ * bottom edge of the reference element.
+ *
+ * ![right-end reference](/images/api/pos-right-end.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getRightEnd (off, ref, config) {
     let [ x, y ] = getRight(off, ref, config);
     y = ref.bottom - off.height;
@@ -110,6 +276,18 @@ function getRightEnd (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element right and slightly lower
+ * than the target element, so that the top edge of the target element aligns with the
+ * x-axis of the reference element.
+ *
+ * ![right-bottom reference](/images/api/pos-right-bottom.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getRightBottom (off, ref, config) {
     let [ x, y ] = getRight(off, ref, config);
     y += off.height / 2;
@@ -117,6 +295,18 @@ function getRightBottom (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element below and to the
+ * right of a reference element, so that the left edge of the target element aligns
+ * with the y-axis of the reference element.
+ *
+ * ![bottom-right reference](/images/api/pos-bottom-right.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getBottomRight (off, ref, config) {
     let [ x, y ] = getBottom(off, ref, config);
     x += (off.width / 2);
@@ -124,6 +314,18 @@ function getBottomRight (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element below and to the
+ * right of a reference element, so that the right edge of the target element aligns
+ * with the right edge of the reference element.
+ *
+ * ![bottom-end reference](/images/api/pos-bottom-end.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getBottomEnd (off, ref, config) {
     let [ x, y ] = getBottom(off, ref, config);
     x = ref.right - off.width;
@@ -131,6 +333,18 @@ function getBottomEnd (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element below and to the
+ * left of a reference element, so that the left edge of the target element aligns
+ * with the left edge of the reference element.
+ *
+ * ![bottom-start reference](/images/api/pos-bottom-start.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getBottomStart (off, ref, config) {
     let [ x, y ] = getBottom(off, ref, config);
     x = ref.left;
@@ -138,6 +352,18 @@ function getBottomStart (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element below and to the
+ * left of a reference element, so that the right edge of the target element aligns
+ * with the y-axis of the reference element.
+ *
+ * ![bottom-left reference](/images/api/pos-bottom-left.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getBottomLeft (off, ref, config) {
     let [ x, y ] = getBottom(off, ref, config);
     x -= (off.width / 2);
@@ -145,6 +371,18 @@ function getBottomLeft (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element left and slightly lower
+ * than the target element, so that the top edge of the target element aligns with the
+ * x-axis of the reference element.
+ *
+ * ![left-bottom reference](/images/api/pos-left-bottom.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getLeftBottom (off, ref, config) {
     let [ x, y ] = getLeft(off, ref, config);
     y += off.height / 2;
@@ -152,6 +390,18 @@ function getLeftBottom (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element left and slightly lower
+ * than the target element, so that the bottom edge of the target element aligns with the
+ * bottom edge of the reference element.
+ *
+ * ![left-end reference](/images/api/pos-left-end.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getLeftEnd (off, ref, config) {
     let [ x, y ] = getLeft(off, ref, config);
     y = ref.bottom - off.height;
@@ -159,6 +409,18 @@ function getLeftEnd (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element left and slightly higher
+ * than the target element, so that the top edge of the target element aligns with the
+ * top edge of the reference element.
+ *
+ * ![left-start reference](/images/api/pos-left-start.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getLeftStart (off, ref, config) {
     let [ x, y ] = getLeft(off, ref, config);
     y = ref.top;
@@ -166,6 +428,18 @@ function getLeftStart (off, ref, config) {
     return [ x, y ];
 }
 
+/**
+ * Calculate (x,y) coordinates needed to position a target element left and slightly higher
+ * than the target element, so that the bottom edge of the target element aligns with the
+ * x-axis of the reference element.
+ *
+ * ![left-top reference](/images/api/pos-left-top.png)
+ *
+ * @param {HTMLElement} off - target element
+ * @param {HTMLElement} ref - reference element
+ * @param {PositionConfig} config - position configuration
+ * @return {XYCoordinate}
+ */
 function getLeftTop (off, ref, config) {
     let [ x, y ] = getLeft(off, ref, config);
     y -= (off.height / 2);
@@ -198,20 +472,58 @@ const offsetFunctions = {
 };
 
 /**
- * @typedef {Object} Config
- * @param {String} [config.position='top']
- * position of offsetElement in relation to referenceElement
- * @param {Integer} [config.margin=0]
- * distance in pixels between offset element and reference element
- * @param {Integer} [config.offset=0]
- * offset in pixels towards the center axis
-*/
+ * @typedef {Object} PositionConfig
+ * @prop {PositionString} [position=top] - position of offsetElement in relation to referenceElement
+ * @prop {Integer} [margin=0] - distance in pixels between offset element and reference element
+ * @prop {Integer} [offset=0] - offset in pixels towards the center axis
+ */
+
+/**
+ * @typedef {Object} XYPosition
+ * @description
+ * Absolute (x,y) coordinates and metadata for positioning a target element
+ * in relation to a reference element.
+ * @prop {PositionString} position
+ * @prop {Integer} x
+ * @prop {Integer} y
+ */
+
+/**
+ * @typedef {String} PositionString
+ * @description
+ * Valid values:
+ *
+ *   - `center`
+ *   - `top-left`
+ *   - `top-start`
+ *   - `top`
+ *   - `top-end`
+ *   - `top-right`
+ *   - `right-top`
+ *   - `right-start`
+ *   - `right`
+ *   - `right-end`
+ *   - `right-bottom`
+ *   - `bottom-right`
+ *   - `bottom-end`
+ *   - `bottom`
+ *   - `bottom-start`
+ *   - `bottom-left`
+ *   - `left-bottom`
+ *   - `left-end`
+ *   - `left`
+ *   - `left-start`
+ *   - `left-top`
+ */
+
+/** @module */
 
 /**
  * Calculate the top, right, bottom, and left x/y values of
  * an element at given coordinates.
  *
- * @function
+ * @function _getElementBox
+ *
  * @param {HTMLElement} element
  * @param {Object} coord - (x,y) coordinates
  */
@@ -229,14 +541,14 @@ function _getElementBox (element, coord) {
 /**
  * Calculate coordinates of an element in relation to a reference element.
  *
- * @function
+ * @function _getCoords
+ *
  * @param {String} position - the position of the offset element
  * @param {HTMLElement} offsetElement - the element to calculate (x,y) coordinates
  * @param {HTMLElement} referenceElement - the element that is being offset from
- * @param {Config} config - configuration object
+ * @param {PositionConfig} config - configuration object
  *
- * @returns {Object} absolute (x,y) coordinates and metadata to position offsetElement
- * in relation to referenceElement
+ * @returns {XYPosition}
  */
 function _getCoords (position, offsetElement, referenceElement, config) {
     // The 'position' property is added to provide information about final
@@ -260,9 +572,10 @@ function _getCoords (position, offsetElement, referenceElement, config) {
 /**
  * Determine if any side of an element is obscured by the viewport.
  *
- * @function
- * @argument {HTMLElement} element - the element to check against the viewport
- * @argument {Object} coords - (x,y) coordinates
+ * @function _getOffscreenMetadata
+ *
+ * @param {HTMLElement} element - the element to check against the viewport
+ * @param {Object} coords - (x,y) coordinates
  *
  * @returns {Object} metadata object with boolean values to quickly
  * identify which sides of an element are outside the viewport
@@ -294,9 +607,11 @@ function _getOffscreenMetadata (element, coords) {
  * Modify the position of an element so that it appears toward
  * the center of the viewport.
  *
- * @function
+ * @function _repositionTowardCenter
+ *
  * @param {String} position - the current position
  * @param {Object} offscreen - offscreen metadata
+ *
  * @returns {String} corrected position
  */
 function _repositionTowardCenter (position, offscreen) {
@@ -361,13 +676,13 @@ function _repositionTowardCenter (position, offscreen) {
  * Calculate coordinates of an element in relation to a reference element
  * while attempting to keep the element visible in the viewport.
  *
- * @function
- * @param {Element} offsetElement element to position
- * @param {Element} referenceElement
- * reference element used to calculate position of offsetElement
- * @param {Config} config - configuration object
+ * @function getPosition
  *
- * @returns {Object} (x,y) coordinates
+ * @param {Element} offsetElement - element to position
+ * @param {Element} referenceElement - reference element used to calculate position of offsetElement
+ * @param {PositionConfig} config - configuration object
+ *
+ * @returns {XYPosition}
  */
 function getPosition (offsetElement, referenceElement, config) {
     let defaults = {
@@ -376,7 +691,7 @@ function getPosition (offsetElement, referenceElement, config) {
         offset: 0,
     };
     let cfg = Object.assign({}, defaults, config);
-    
+
     let coords = _getCoords(cfg.position, offsetElement, referenceElement, cfg);
     let isOffscreen = _getOffscreenMetadata(offsetElement, coords);
 
@@ -399,17 +714,16 @@ function getPosition (offsetElement, referenceElement, config) {
  * Calculate coordinates of an element in relation to a reference element
  * while attempting to keep the element visible in the viewport.
  *
- * @function
- * @param {Element} offsetElement element to position
- * @param {Element} referenceElement
- * reference element used to calculate position of offsetElement
- * @param {Config} config - configuration object
- * @param {Integer} [config.margin=12]
- * distance in pixels between the base and the tip of the arrow
- * @param {Integer} [config.offset=20]
- * distance in pixels from the edge of the offset element to the center of the arrow
+ * @function getPositionWithArrow
  *
- * @returns {Object} (x,y) coordinates
+ * @param {Element} offsetElement - element to position
+ * @param {Element} referenceElement - reference element used to calculate position of offsetElement
+ *
+ * @param {PositionConfig} config - configuration object
+ * @param {Integer} [config.margin=12] - distance in pixels between the base and the tip of the arrow
+ * @param {Integer} [config.offset=20] - distance in pixels from the edge of the offset element to the center of the arrow
+ *
+ * @returns {XYPosition}
  */
 function getPositionWithArrow (offsetElement, referenceElement, config) {
     let defaults = {
@@ -422,44 +736,166 @@ function getPositionWithArrow (offsetElement, referenceElement, config) {
     return getPosition(offsetElement, referenceElement, cfg);
 }
 
+/** @module */
+
+/**
+ * @external HTMLElement
+ * @see <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement" target="_blank">MDN - HTMLElement</a>
+ */
+
+/**
+ * @external CustomEvent
+ * @see <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent">MDN - CustomEvent()</a>
+ * @see <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Event/Event">MDN - Event()</a>
+ */
+
+/**
+ * Define functionality common to all HelixUI elements.
+ *
+ * @extends external:HTMLElement
+ * @hideconstructor
+ * @requires util
+ */
 class HXElement extends HTMLElement {
+    /**
+     * Defines the name of the element to register in the Custom Element registry
+     *
+     * @abstract
+     * @default undefined
+     * @type {String}
+     */
+    static get is () {}
+
+    /**
+     * Defines the innerHTML of the ShadowDOM.
+     *
+     * If undefined, no Shadow Root will be created.
+     *
+     * @abstract
+     * @default undefined
+     * @type {String}
+     */
+    static get template () {}
+
+    /**
+     * Defines a list of attributes to watch for changes
+     * (in addition to those defined by {@link HXElement.observedAttributes}).
+     *
+     * @abstract
+     * @default []
+     * @ignore
+     * @type {Array<String>}
+     */
+    static get $observedAttributes () {
+        return [];
+    }
+
+    /**
+     * HelixUI lifecycle callback called at the end of construction.
+     *
+     * Use this callback to apply pre-connect setup logic.
+     *
+     * @abstract
+     * @ignore
+     */
+    $onCreate () {}
+
+    /**
+     * HelixUI lifecycle method called at the end of the connectedCallback()
+     * Custom Element lifecycle method.
+     *
+     * Use this callback to initialize an element's behavior.
+     *
+     * **Client-side Framework Compatibility**
+     *
+     * It is worth noting that client-side frameworks like React may not reconstruct
+     * instances of an element, but may connect and disconnect the initial instance
+     * from the DOM.
+     *
+     * @abstract
+     * @ignore
+     */
+    $onConnect () {}
+
+    /**
+     * HelixUI lifecycle method. Called at the end of {@link HXElement.disconnectedCallback}.
+     *
+     * @abstract
+     * @ignore
+     */
+    $onDisconnect () {}
+
+    /**
+     * HelixUI lifecycle method called when an observed attribute's value changes.
+     *
+     * @abstract
+     * @ignore
+     * @param {String} attr - name of the attribute that changed
+     * @param {String} newVal - value of the attribute after the change
+     * @param {String} oldVal - value of the attribute before the change
+     */
+    $onAttributeChange (attr, oldVal, newVal) {} // eslint-disable-line no-unused-vars
+
+    // Define an element using the customElements registry.
     static $define () {
-        customElements.define(this.is, this);
+        if (this.is) {
+            customElements.define(this.is, this);
+        }
     }
 
-    static get observedAttributes () {
-        return [ 'disabled' ];
-    }
-
-    constructor (tagName, template) {
+    // Called when an instance is created
+    constructor () {
         super();
 
-        // Don't attach shadow DOM unless specified
-        if (tagName && template) {
+        // Don't attach shadow DOM unless "template" class property is defined.
+        if (this.constructor.template) {
+            let _template = document.createElement('template');
+            _template.innerHTML = this.constructor.template;
+
             this.attachShadow({ mode: 'open' });
 
             if (window.ShadyCSS) {
-                ShadyCSS.prepareTemplate(template, tagName);
+                ShadyCSS.prepareTemplate(_template, this.constructor.is);
                 ShadyCSS.styleElement(this);
             }
 
-            this.shadowRoot.appendChild(template.content.cloneNode(true));
+            this.shadowRoot.appendChild(_template.content.cloneNode(true));
         }
 
+        this.$onAttributeChange = this.$onAttributeChange.bind(this);
+        this.$onConnect = this.$onConnect.bind(this);
+        this.$onCreate = this.$onCreate.bind(this);
+        this.$onDisconnect = this.$onDisconnect.bind(this);
         this.$relayEvent = this.$relayEvent.bind(this);
+
+        this.$onCreate();
     }//constructor
 
+    // Called when an instance of the element is attached to the DOM.
     connectedCallback () {
         this._$tabIndex = this.getAttribute('tabindex') || 0;
         this.$upgradeProperty('disabled');
+        this.$onConnect();
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        const hasValue = (newVal !== null);
+    /**
+     * Custom Elements API property used to determine when to call the
+     * attributeChangedCallback() lifecycle method.
+     *
+     * @default ['disabled']
+     * @ignore
+     * @see HXElement.$observedAttributess
+     * @type {Array<String>}
+     */
+    static get observedAttributes () {
+        return [ 'disabled' ].concat(this.$observedAttributes);
+    }
 
+    // Called when an attribute UPDATES (not just when it changes).
+    attributeChangedCallback (attr, oldVal, newVal) {
         switch (attr) {
             case 'disabled':
-                if (hasValue) {
+                if (newVal !== null) {
                     this.removeAttribute('tabindex');
                     this.setAttribute('aria-disabled', true);
                     this.blur();
@@ -468,10 +904,24 @@ class HXElement extends HTMLElement {
                     this.removeAttribute('aria-disabled');
                 }
                 break;
-        }
+
+            default:
+                if (newVal !== oldVal) {
+                    this.$onAttributeChange(attr, oldVal, newVal);
+                }
+                break;
+        }//switch
     }//attributeChangedCallback
 
-    // See: https://goo.gl/MDp6j5
+    /**
+     * Captures the value from the unupgraded instance and deletes the property
+     * so it does not shadow the custom element's own property setter. This way,
+     * when the element's definition does finally load, it can immediately
+     * reflect the correct state.
+     *
+     * @param {String} prop - property name to upgrade
+     * @see https://goo.gl/MDp6j5
+     */
     $upgradeProperty (prop) {
         if (this.hasOwnProperty(prop)) {
             let value = this[prop];
@@ -480,14 +930,31 @@ class HXElement extends HTMLElement {
         }
     }
 
-    // See: https://goo.gl/MUFHD8
+    /**
+     * Assign a value to an HTML attribute, if the attribute isn't present.
+     *
+     * @param {String} name - name of the attribute to set
+     * @param {String} val - value to assign
+     * @see https://goo.gl/MUFHD8
+     */
     $defaultAttribute (name, val) {
         if (!this.hasAttribute(name)) {
             this.setAttribute(name, val);
         }
     }
 
-    // Utility method to generate a unique ID
+    /**
+     * Generate a unique ID
+     *
+     * **Pseudo-random Algorithm**
+     * This functionality is pseudo-random, and you should not depend on 100%
+     * random values. Given a large enough dataset, this method has the
+     * potential to generate duplicate values.
+     *
+     * For the purposes of most applications, the dataset is small enough that
+     * the potential for duplicate values is almost 0, meaning that it's good
+     * enough for use.
+     */
     $generateId () {
         return Math
             .random()     // 0.7093288430261266
@@ -495,7 +962,11 @@ class HXElement extends HTMLElement {
             .substr(2,8); // "pjag2nwx"
     }//$generateId()
 
-    // 'keydown' event listener to prevent page scrolling
+    /**
+     * Event listener callback function to prevent page scrolling on `keydown`.
+     *
+     * @param {Event} evt - Event to act on.
+     */
     $preventScroll (evt) {
         switch (evt.keyCode) {
             case KEYS.Down:
@@ -508,6 +979,20 @@ class HXElement extends HTMLElement {
         }
     }//$preventScroll()
 
+    /**
+     * Emit a custom event
+     *
+     * @param {String} evtName - name of event
+     * @param {Object} opts - options to configure the event
+     * @param {Boolean} [opts.cancelable=true] - whether the event can be canceled
+     * @param {Boolean} [opts.bubbles=false] - whether the event bubbles up the DOM tree
+     * @param {*} [opts.detail] - additional information to communicated along with the event
+     *
+     * @returns {Boolean}
+     * Returns true if the event was not canceled by an event listener.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent
+     */
     $emit (evtName, opts) {
         let options = Object.assign({}, {
             cancelable: true,
@@ -519,6 +1004,12 @@ class HXElement extends HTMLElement {
         return this.dispatchEvent(evt);
     }//$emit
 
+    /**
+     * Relay an event within the ShadowDOM, retargeting the event to the custom element
+     *
+     * @param {Event} oldEvent - event to relay
+     * @returns {Boolean} Returns true if the event was not canceled by an event listener.
+     */
     $relayEvent (oldEvent) {
         // Emit new event of same name
         let newEvent = new CustomEvent(oldEvent.type, {
@@ -528,19 +1019,37 @@ class HXElement extends HTMLElement {
         return this.dispatchEvent(newEvent);
     }//$relayEvent()
 
-    // TODO: may need a later update to add events based on element name/type
+    /**
+     * Relay events that do not bubble. For instance, `focus` and `blur` events
+     * on an `<input>` within the ShadowDOM.
+     *
+     * @param {HTMLElement} el - element to attach non-bubbling event listeners
+     */
     $relayNonBubblingEvents (el) {
         el.addEventListener('focus', this.$relayEvent);
         el.addEventListener('blur', this.$relayEvent);
     }
 
-    // Undo $relayNonBubblingEvents()
+    /**
+     * Remove events relayed by `$relayNonBubblingEvents`
+     *
+     * @param {HTMLElement} el - element to remove non-bubbline event listeners
+     */
     $removeNonBubblingRelays (el) {
         el.removeEventListener('focus', this.$relayEvent);
         el.removeEventListener('blur', this.$relayEvent);
     }
 
-    // Properties
+    /**
+     * Indicates whether the element is disabled.
+     * A disabled element is nonfunctional and noninteractive.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get disabled () {
+        return this.hasAttribute('disabled');
+    }
     set disabled (value) {
         if (value) {
             this.setAttribute('disabled', '');
@@ -548,40 +1057,51 @@ class HXElement extends HTMLElement {
             this.removeAttribute('disabled');
         }
     }
-
-    get disabled () {
-        return this.hasAttribute('disabled');
-    }
 }//HXElement
 
+/**
+ * Fires in single-panel mode, when the current panel changes.
+ *
+ * @event Accordion:panelchange
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for an `<hx-accordion>` element.
+ *
+ * @emits Accordion:panelchange
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.4.0
+ */
 class HXAccordionElement extends HXElement {
     static get is () {
         return 'hx-accordion';
     }
 
-    constructor () {
-        super();
+    $onCreate () {
         this._onPanelOpen = this._onPanelOpen.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('currentPanel');
         this.panels.forEach(panel => {
             panel.addEventListener('open', this._onPanelOpen);
         });
     }
 
-    disconnectedCallback () {
+    $onDisconnect () {
         this.panels.forEach(panel => {
             panel.removeEventListener('open', this._onPanelOpen);
         });
     }
 
-    static get observedAttributes () {
+    static get $observedAttributes () {
         return [ 'current-panel' ];
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
+    $onAttributeChange (attr, oldVal, newVal) {
         if (newVal !== null) {
             this._openPanel(Number(newVal));
 
@@ -591,19 +1111,35 @@ class HXAccordionElement extends HXElement {
         }
     }
 
-    // PUBLIC PROPERTIES
-
-    // TODO: needs tweaked for nested accordions (e.g. multi-level navigation)
-    // As it currently is, this will return ALL panels within the accordion,
-    // not just the immediate children.
+    /**
+     * Array of `<hx-accordion-panel>` descendants.
+     *
+     * @readonly
+     * @type {HXAccordionPanelElement[]}
+     * @todo
+     * Needs tweaked for nested accordions (e.g. multi-level navigation).
+     * As it currently is, it returns ALL panels within the accordion,
+     * not just the immediate children.
+     */
     get panels () {
         return Array.from(this.querySelectorAll('hx-accordion-panel'));
     }
 
+    /**
+     * Zero-based index of the currently open panel.
+     *
+     * - **multi-panel** mode _(default)_
+     *   - If unset, the user can open multiple panels at once.
+     * - **single-panel** mode
+     *   - If set, the user can only open one panel at a time.
+     *
+     * @type {Number}
+     * @todo Needs updated to return Integer or null/undefined.
+     * @todo Needs renamed. Too similar to nextPanel() and previousPanel() methods.
+     */
     get currentPanel () {
         return Number(this.getAttribute('current-panel'));
     }
-
     set currentPanel (idx) {
         if (idx !== null) {
             let maxIndex = this.panels.length - 1;
@@ -616,28 +1152,32 @@ class HXAccordionElement extends HXElement {
         }
     }
 
-    // PUBLIC METHODS
-
+    /**
+     * Navigate to the next panel, when in single-panel mode.
+     * @todo Needs renamed to follow verbNoun() format.
+     */
     nextPanel () {
         if (this._isNavigable) {
             this.currentPanel += 1;
         }
     }
 
+    /**
+     * Navigate to the previous panel, when in single-panel mode.
+     * @todo Needs renamed to follow verbNoun() format.
+     */
     previousPanel () {
         if (this._isNavigable) {
             this.currentPanel -= 1;
         }
     }
 
-    // PRIVATE PROPERTIES
-
+    /** @private */
     get _isNavigable () {
         return this.hasAttribute('current-panel');
     }
 
-    // PRIVATE METHODS
-
+    /** @private */
     _onPanelOpen (evt) {
         let idx = this.panels.indexOf(evt.target);
         if (this._isNavigable) {
@@ -645,6 +1185,7 @@ class HXAccordionElement extends HXElement {
         }
     }
 
+    /** @private */
     _openPanel (index) {
         if (this._isNavigable) {
             this.panels.forEach((panel, idx) => {
@@ -660,35 +1201,47 @@ class HXAccordionElement extends HXElement {
     }
 }//HXAccordionElement
 
-var shadowStyles = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n#toggle {\n  background-color: transparent;\n  border: 0;\n  cursor: pointer;\n  padding: 0;\n  text-align: left;\n  width: 100%;\n}\n#toggle[aria-expanded=\"true\"] .header__icon {\n  transform: scaleY(-1);\n}\n.header {\n  align-items: center;\n  display: flex;\n}\n.header__content {\n  flex-shrink: 0;\n  flex-grow: 1;\n}\n.header__icon {\n  flex-shrink: 0;\n  margin-left: 0.5rem;\n}\n#body {\n  display: none;\n}\n#body[aria-expanded=\"true\"] {\n  display: block;\n}\n";
+var shadowMarkup = "<button type='button' id='toggle' aria-controls='body' aria-expanded='false'><div class='header'><span class='header__content'><slot name='header'></slot></span><hx-icon class='header__icon' type='angle-down'></hx-icon></div></button><div id='body' aria-expanded='false'><slot></slot></div>";
 
-const tagName = 'hx-accordion-panel';
-const template = document.createElement('template');
-template.innerHTML = `
-  <style>${shadowStyles}</style>
-  <button type="button" id="toggle" aria-controls="body" aria-expanded="false">
-    <div class="header">
-      <span class="header__content">
-        <slot name="header"></slot>
-      </span>
-      <hx-icon class="header__icon" type="angle-down"></hx-icon>
-    </div>
-  </button>
-  <div id="body" aria-expanded="false">
-    <slot></slot>
-  </div>
-`;
+var shadowStyles = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#toggle {\n  background-color: transparent;\n  border: 0;\n  cursor: pointer;\n  padding: 0;\n  text-align: left;\n  width: 100%;\n}\n#toggle[aria-expanded=\"true\"] .header__icon {\n  transform: scaleY(-1);\n}\n.header {\n  align-items: center;\n  display: flex;\n}\n.header__content {\n  flex-shrink: 0;\n  flex-grow: 1;\n}\n.header__icon {\n  flex-shrink: 0;\n  margin-left: 0.5rem;\n}\n#body {\n  display: none;\n}\n#body[aria-expanded=\"true\"] {\n  display: block;\n}\n";
 
+/**
+ * Fires when contents of the accordion panel are revealed.
+ *
+ * @event AccordionPanel:open
+ * @since 0.4.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when contents of the accordion panel are disclosed.
+ *
+ * @event AccordionPanel:close
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for an `<hx-accordion-panel>` element.
+ *
+ * @emits AccordionPanel:close
+ * @emits AccordionPanel:open
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.4.0
+ */
 class HXAccordionPanelElement extends HXElement {
     static get is () {
-        return tagName;
+        return `hx-accordion-panel`;
+    }
+
+    static get template () {
+        return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
     constructor () {
-        super(tagName, template);
+        super();
 
-        this._btnToggle = this.shadowRoot.getElementById('toggle');
-        this._elBody = this.shadowRoot.getElementById('body');
         this._onClick = this._onClick.bind(this);
     }
 
@@ -716,12 +1269,16 @@ class HXAccordionPanelElement extends HXElement {
         }
     }
 
-    // PUBLIC PROPERTIES
-
+    /**
+     * @default false
+     * @type {Boolean}
+     * @description
+     * Property reflecting the "open" HTML attribute, indicating whether or not
+     * the element's contents (excluding the header) should be shown.
+     */
     get open () {
         return this.hasAttribute('open');
     }
-
     set open (newVal) {
         if (newVal) {
             this.setAttribute('open', '');
@@ -730,8 +1287,17 @@ class HXAccordionPanelElement extends HXElement {
         }
     }
 
-    // PRIVATE METHODS
+    /** @private */
+    get _btnToggle () {
+        return this.shadowRoot.getElementById('toggle');
+    }
 
+    /** @private */
+    get _elBody () {
+        return this.shadowRoot.getElementById('body');
+    }
+
+    /** @private */
     _onClick (evt) {
         evt.preventDefault();
 
@@ -741,12 +1307,10 @@ class HXAccordionPanelElement extends HXElement {
     }
 }
 
-var shadowHtml = "<div id='wrapper'><hx-icon id='icon' type='info-circle'></hx-icon><span id='content'><span id='status'></span><slot></slot></span><button id='cta' type='button'></button> <button id='dismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
+var shadowMarkup$1 = "<div id='wrapper'><hx-icon id='icon' type='info-circle'></hx-icon><span id='content'><span id='status'></span><slot></slot></span><button id='cta' type='button'></button> <button id='dismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-var shadowStyles$1 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\nbutton {\n  align-self: flex-start;\n  background-color: transparent;\n  border: 0;\n  cursor: pointer;\n}\n#wrapper {\n  display: flex;\n}\n#icon {\n  flex-shrink: 0;\n  margin: 1rem;\n}\n#content {\n  flex-grow: 1;\n  margin-right: 1rem;\n  padding: 1rem 0;\n}\n#status {\n  font-weight: 500;\n  text-transform: uppercase;\n}\n#status:after {\n  content: \":\";\n}\n#status:empty {\n  display: none;\n}\n#cta {\n  flex-shrink: 0;\n  font-weight: 500;\n  padding: 1rem 0;\n  text-transform: uppercase;\n  white-space: nowrap;\n}\n#cta:empty {\n  display: none;\n}\n#dismiss {\n  flex-shrink: 0;\n  height: 3rem;\n  padding: 1rem;\n  width: 3rem;\n}\n:host([static]) #dismiss {\n  display: none;\n}\n:host([static]) #cta {\n  margin-right: 1rem;\n}\n";
+var shadowStyles$1 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\nbutton {\n  align-self: flex-start;\n  background-color: transparent;\n  border: 0;\n  cursor: pointer;\n}\n#wrapper {\n  display: flex;\n}\n#icon {\n  flex-shrink: 0;\n  margin: 1rem;\n}\n#content {\n  flex-grow: 1;\n  margin-right: 1rem;\n  padding: 1rem 0;\n}\n#status {\n  font-weight: 500;\n  text-transform: uppercase;\n}\n#status:after {\n  content: \":\";\n}\n#status:empty {\n  display: none;\n}\n#cta {\n  flex-shrink: 0;\n  font-weight: 500;\n  padding: 1rem 0;\n  text-transform: uppercase;\n  white-space: nowrap;\n}\n#cta:empty {\n  display: none;\n}\n#dismiss {\n  flex-shrink: 0;\n  height: 3rem;\n  padding: 1rem;\n  width: 3rem;\n}\n:host([static]) #dismiss {\n  display: none;\n}\n:host([static]) #cta {\n  margin-right: 1rem;\n}\n";
 
-const tagName$1 = 'hx-alert';
-const template$1 = document.createElement('template');
 const ICONS = {
     'error': 'exclamation-circle',
     'info': 'info-circle',
@@ -754,23 +1318,46 @@ const ICONS = {
     'warning': 'exclamation-triangle',
 };
 
-template$1.innerHTML = `
-  <style>${shadowStyles$1}</style>
-  ${shadowHtml}
-`;
+/**
+ * Fires when the user triggers the dismiss button.
+ *
+ * @event Alert:dismiss
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
 
+/**
+ * Fires when the user triggers the CTA button.
+ *
+ * @event Alert:submit
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for an `<hx-alert>` element.
+ *
+ * @emits Alert:dismiss
+ * @emits Alert:submit
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.6.0
+ */
 class HXAlertElement extends HXElement {
     static get is () {
-        return tagName$1;
+        return `hx-alert`;
     }
 
-    constructor () {
-        super(tagName$1, template$1);
+    static get template () {
+        return `<style>${shadowStyles$1}</style>${shadowMarkup$1}`;
+    }
+
+    $onCreate () {
         this._onDismiss = this._onDismiss.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('cta');
         this.$upgradeProperty('static');
         this.$upgradeProperty('status');
@@ -780,21 +1367,21 @@ class HXAlertElement extends HXElement {
         this._btnDismiss.addEventListener('click', this._onDismiss);
     }
 
-    disconnectedCallback () {
+    $onDisconnect () {
         this._btnCta.removeEventListener('click', this._onSubmit);
         this._btnDismiss.removeEventListener('click', this._onDismiss);
     }
 
-    static get observedAttributes () {
+    static get $observedAttributes () {
         return [
             'cta',
             'static',
             'status',
             'type',
         ];
-    }//observedAttributes
+    }//$observedAttributes
 
-    attributeChangedCallback (attr, oldVal, newVal) {
+    $onAttributeChange (attr, oldVal, newVal) {
         let hasValue = (newVal !== null);
         switch (attr) {
             case 'cta':
@@ -813,26 +1400,18 @@ class HXAlertElement extends HXElement {
                 }
                 break;
         }
-    }//attributeChangedCallback()
+    }//$onAttributeChange()
 
-    // GETTERS
+    /**
+     * Text for the Call To Action button.
+     * If blank, the button will not be shown.
+     *
+     * @default ""
+     * @type {String}
+     */
     get cta () {
         return this.getAttribute('cta');
     }
-
-    get static () {
-        return this.hasAttribute('static');
-    }
-
-    get status () {
-        return this.getAttribute('status');
-    }
-
-    get type () {
-        return this.getAttribute('type');
-    }
-
-    // SETTERS
     set cta (value) {
         if (value) {
             this.setAttribute('cta', value);
@@ -841,6 +1420,16 @@ class HXAlertElement extends HXElement {
         }
     }
 
+    /**
+     * Property reflectin the `static` HTML attribute, indicating whether the
+     * alert may be dismissed. If true, the dismiss button will not be shown.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get static () {
+        return this.hasAttribute('static');
+    }
     set static (value) {
         if (value) {
             this.setAttribute('static', ''); // boolean
@@ -849,6 +1438,16 @@ class HXAlertElement extends HXElement {
         }
     }
 
+    /**
+     * Status text to display before the alert message.
+     * If blank, it will not be shown.
+     *
+     * @default ""
+     * @type {String}
+     */
+    get status () {
+        return this.getAttribute('status');
+    }
     set status (value) {
         if (value) {
             this.setAttribute('status', value);
@@ -857,6 +1456,16 @@ class HXAlertElement extends HXElement {
         }
     }
 
+    /**
+     * Indicates the type of alert to display.
+     * Valid values are "info", "success", "warning", and "error".
+     *
+     * @default "info"
+     * @type {String}
+     */
+    get type () {
+        return this.getAttribute('type');
+    }
     set type (value) {
         if (value) {
             this.setAttribute('type', value);
@@ -865,12 +1474,14 @@ class HXAlertElement extends HXElement {
         }
     }
 
-    // PUBLIC METHODS
+    /**
+     * Programmatically dismiss the alert (removes element from the DOM).
+     */
     dismiss () {
         this.remove();
     }
 
-    // PRIVATE METHODS
+    /** @private */
     _onDismiss (evt) {
         evt.preventDefault();
 
@@ -880,40 +1491,46 @@ class HXAlertElement extends HXElement {
         }
     }
 
+    /** @private */
     _onSubmit (evt) {
         evt.preventDefault();
         this.$emit('submit');
     }
 
-    // PRIVATE GETTERS
+    /** @private */
     get _elIcon () {
         return this.shadowRoot.getElementById('icon');
     }
 
+    /** @private */
     get _elStatus () {
         return this.shadowRoot.getElementById('status');
     }
 
+    /** @private */
     get _btnCta () {
         return this.shadowRoot.getElementById('cta');
     }
 
+    /** @private */
     get _btnDismiss () {
         return this.shadowRoot.getElementById('dismiss');
     }
 }
 
-const tagName$2 = 'hx-busy';
-// leave ShadowDOM template empty to remove LightDOM children
-const template$2 = document.createElement('template');
-
+/**
+ * Defines behavior for an `<hx-busy>` element.
+ *
+ * @extends HXElement
+ * @hideconstructor
+ */
 class HXBusyElement extends HXElement {
     static get is () {
-        return tagName$2;
+        return 'hx-busy';
     }
 
-    constructor () {
-        super(tagName$2, template$2);
+    static get template () {
+        return ``;
     }
 
     connectedCallback () {
@@ -921,10 +1538,15 @@ class HXBusyElement extends HXElement {
         this.$defaultAttribute('aria-hidden', true);
     }
 
+    /**
+     * Pause or resume animation.
+     *
+     * @default false
+     * @type {Boolean}
+     */
     get paused () {
         return this.hasAttribute('paused');
     }
-
     set paused (isPaused) {
         if (isPaused) {
             this.setAttribute('paused', '');
@@ -934,25 +1556,34 @@ class HXBusyElement extends HXElement {
     }
 }//HXBusyElement
 
-var shadowStyles$2 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n#container {\n  display: flex;\n  height: 100%;\n  position: relative;\n  width: 100%;\n}\n#customControl {\n  align-content: center;\n  align-items: center;\n  background-color: #ffffff;\n  border: 1px solid currentColor;\n  border-radius: 2px;\n  color: #bdbdbd;\n  display: flex;\n  font-size: 0.625rem;\n  /* ~10px */\n  height: 100%;\n  justify-content: center;\n  left: 0;\n  position: absolute;\n  top: 0;\n  vertical-align: middle;\n  width: 100%;\n  z-index: 10;\n}\n#customControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n/* icons */\n#minus,\n#tick {\n  display: none;\n  height: 1em;\n  line-height: 1;\n  width: 1em;\n}\n#nativeControl:checked:not(:indeterminate) ~ #customControl #tick {\n  display: block;\n}\n#nativeControl:indeterminate ~ #customControl #minus {\n  display: block;\n}\n#nativeControl {\n  /* opacity 0 because Firefox and OS focus styles */\n  opacity: 0;\n  z-index: 0;\n  /* default checked and indeterminate (checked or unchecked) */\n  /* disabled unchecked */\n}\n#nativeControl:focus {\n  border: none;\n  outline: none;\n}\n#nativeControl:focus ~ #customControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n#nativeControl:checked ~ #customControl,\n#nativeControl:indeterminate ~ #customControl {\n  color: #0c7c84;\n}\n#nativeControl:checked ~ #customControl:hover,\n#nativeControl:indeterminate ~ #customControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n#nativeControl:disabled ~ #customControl {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n  cursor: not-allowed;\n}\n#nativeControl:disabled ~ #customControl:hover {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n}\n/* invalid */\n:host([invalid]) {\n  /* below styles needed to override above, custom control styles */\n  /* invalid and checked or indeterminate */\n  /* invalid and disabled */\n}\n:host([invalid]) #customControl {\n  border-width: 2px;\n  color: #d32f2f;\n}\n:host([invalid]) #customControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #nativeControl:focus ~ #customControl {\n  border-color: #d32f2f;\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n}\n:host([invalid]) #nativeControl:checked ~ #customControl,\n:host([invalid]) #nativeControl:indeterminate ~ #customControl {\n  color: #d32f2f;\n}\n:host([invalid]) #nativeControl:checked ~ #customControl:hover,\n:host([invalid]) #nativeControl:indeterminate ~ #customControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #nativeControl:disabled ~ #customControl {\n  border-width: 1px;\n  color: #bdbdbd;\n}\n:host([invalid]) #nativeControl:disabled ~ #customControl:hover {\n  background-color: #eeeeee;\n}\n";
+var shadowMarkup$2 = "<label id='container'><input type='checkbox' id='nativeControl'><div id='customControl'><hx-icon type='checkmark' id='tick'></hx-icon><hx-icon type='minus' id='minus'></hx-icon></div></label>";
 
-const tagName$3 = 'hx-checkbox';
-const template$3 = document.createElement('template');
+var shadowStyles$2 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#container {\n  display: flex;\n  height: 100%;\n  position: relative;\n  width: 100%;\n}\n#customControl {\n  align-content: center;\n  align-items: center;\n  background-color: #ffffff;\n  border: 1px solid currentColor;\n  border-radius: 2px;\n  color: #bdbdbd;\n  display: flex;\n  font-size: 0.625rem;\n  /* ~10px */\n  height: 100%;\n  justify-content: center;\n  left: 0;\n  position: absolute;\n  top: 0;\n  vertical-align: middle;\n  width: 100%;\n  z-index: 10;\n}\n#customControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n/* icons */\n#minus,\n#tick {\n  display: none;\n  height: 1em;\n  line-height: 1;\n  width: 1em;\n}\n#nativeControl:checked:not(:indeterminate) ~ #customControl #tick {\n  display: block;\n}\n#nativeControl:indeterminate ~ #customControl #minus {\n  display: block;\n}\n#nativeControl {\n  /* opacity 0 because Firefox and OS focus styles */\n  opacity: 0;\n  z-index: 0;\n  /* default checked and indeterminate (checked or unchecked) */\n  /* disabled unchecked */\n}\n#nativeControl:focus {\n  border: none;\n  outline: none;\n}\n#nativeControl:focus ~ #customControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n#nativeControl:checked ~ #customControl,\n#nativeControl:indeterminate ~ #customControl {\n  color: #0c7c84;\n}\n#nativeControl:checked ~ #customControl:hover,\n#nativeControl:indeterminate ~ #customControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n#nativeControl:disabled ~ #customControl {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n  cursor: not-allowed;\n}\n#nativeControl:disabled ~ #customControl:hover {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n}\n/* invalid */\n:host([invalid]) {\n  /* below styles needed to override above, custom control styles */\n  /* invalid and checked or indeterminate */\n  /* invalid and disabled */\n}\n:host([invalid]) #customControl {\n  border-width: 2px;\n  color: #d32f2f;\n}\n:host([invalid]) #customControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #nativeControl:focus ~ #customControl {\n  border-color: #d32f2f;\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n}\n:host([invalid]) #nativeControl:checked ~ #customControl,\n:host([invalid]) #nativeControl:indeterminate ~ #customControl {\n  color: #d32f2f;\n}\n:host([invalid]) #nativeControl:checked ~ #customControl:hover,\n:host([invalid]) #nativeControl:indeterminate ~ #customControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #nativeControl:disabled ~ #customControl {\n  border-width: 1px;\n  color: #bdbdbd;\n}\n:host([invalid]) #nativeControl:disabled ~ #customControl:hover {\n  background-color: #eeeeee;\n}\n";
 
-template$3.innerHTML = `
-  <style>${shadowStyles$2}</style>
-  <label id="container">
-    <input type="checkbox" id="nativeControl"/>
-    <div id="customControl">
-      <hx-icon type="checkmark" id="tick"></hx-icon>
-      <hx-icon type="minus" id="minus"></hx-icon>
-    </div>
-  </label>
-`;
+/**
+ * Fires when the checked state changes
+ *
+ * @event Checkbox:change
+ * @since 0.1.8
+ * @type {CustomEvent}
+ */
 
+/**
+ * Defines behavior for an `<hx-checkbox>` element.
+ *
+ * @class
+ * @emits Checkbox:change
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.1.8
+ */
 class HXCheckboxElement extends HXElement {
     static get is () {
-        return tagName$3;
+        return 'hx-checkbox';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles$2}</style>${shadowMarkup$2}`;
     }
 
     static get observedAttributes () {
@@ -964,8 +1595,7 @@ class HXCheckboxElement extends HXElement {
     }
 
     constructor () {
-        super(tagName$3, template$3);
-        this._input = this.shadowRoot.getElementById('nativeControl');
+        super();
         this._onChange = this._onChange.bind(this);
     }
 
@@ -997,6 +1627,13 @@ class HXCheckboxElement extends HXElement {
         }
     }//attributeChangedCallback()
 
+    /**
+     * @default false
+     * @type {Boolean}
+     */
+    get checked () {
+        return this.hasAttribute('checked');
+    }
     set checked (value) {
         if (value) {
             this.setAttribute('checked', '');
@@ -1005,10 +1642,15 @@ class HXCheckboxElement extends HXElement {
         }
     }
 
-    get checked () {
-        return this.hasAttribute('checked');
+    /**
+     * Indicates if the state of the element cannot be determined.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get indeterminate () {
+        return this.hasAttribute('indeterminate');
     }
-
     set indeterminate (value) {
         if (value) {
             this.setAttribute('indeterminate', '');
@@ -1017,22 +1659,7 @@ class HXCheckboxElement extends HXElement {
         }
     }
 
-    get indeterminate () {
-        return this.hasAttribute('indeterminate');
-    }
-
-    set disabled (value) {
-        if (value) {
-            this.setAttribute('disabled', '');
-        } else {
-            this.removeAttribute('disabled');
-        }
-    }
-
-    get disabled () {
-        return this.hasAttribute('disabled');
-    }
-
+    /** @private */
     _onChange (evt) {
         // Update internal state
         this.checked = evt.target.checked;
@@ -1043,8 +1670,19 @@ class HXCheckboxElement extends HXElement {
         // Emit a new 'change' event from the custom element
         this.$emit('change');
     }
+
+    /** @private */
+    get _input () {
+        return this.shadowRoot.getElementById('nativeControl');
+    }
 }//HXCheckboxElement
 
+/**
+ * Defines behavior for an `<hx-disclosure>` element.
+ *
+ * @extends HXElement
+ * @hideconstructor
+ */
 class HXDisclosureElement extends HXElement {
     static get is () {
         return 'hx-disclosure';
@@ -1110,14 +1748,21 @@ class HXDisclosureElement extends HXElement {
         }
     }
 
+    /**
+     * @default false
+     * @type {Boolean}
+     */
     get expanded () {
         return this.getAttribute('aria-expanded') === 'true';
     }
-
     set expanded (newVal) {
         this.setAttribute('aria-expanded', !!newVal);
     }
 
+    /**
+     * @readonly
+     * @type {HTMLElement}
+     */
     get target () {
         if (!this._target) {
             let targetId = this.getAttribute('aria-controls');
@@ -1126,6 +1771,7 @@ class HXDisclosureElement extends HXElement {
         return this._target;
     }
 
+    /** @private */
     _keyUp (event) {
         switch (event.keyCode) {
             case KEYS.Space:
@@ -1137,65 +1783,61 @@ class HXDisclosureElement extends HXElement {
         }
     }
 
+    /** @private */
     _toggle () {
         if (!this.disabled) {
             this.expanded = !this.expanded;
         }
     }
 
+    /** @private */
     _onTargetOpen () {
         this.expanded = true;
     }
 
+    /** @private */
     _onTargetClose () {
         this.expanded = false;
     }
 }//HXDisclosureElement
 
-var shadowStyles$3 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n";
+var shadowStyles$3 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#icon {\n  margin-right: 0.25rem;\n}\n";
 
-const tagName$4 = 'hx-error';
-const template$4 = document.createElement('template');
-
-template$4.innerHTML = `
-  <style>${shadowStyles$3}</style>
-  <hx-icon type="exclamation-circle"></hx-icon>
-  <slot></slot>
-`;
+var shadowMarkup$3 = "<hx-icon type='exclamation-circle' id='icon'></hx-icon><slot></slot>";
 
 class HXErrorElement extends HXElement {
     static get is () {
-        return tagName$4;
+        return 'hx-error';
     }
 
-    constructor () {
-        super(tagName$4, template$4);
+    static get template () {
+        return `<style>${shadowStyles$3}</style>${shadowMarkup$3}`;
     }
 }//HXErrorElement
 
 var _account = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M15.2 2c.44 0 .8.36.8.8v10.4c0 .44-.36.8-.8.8h-2.4a1.2 1.2 0 1 0-2.4 0H5.6a1.2 1.2 0 0 0-2.4 0H.8c-.44 0-.8-.36-.8-.8V2.8c0-.44.36-.8.8-.8h14.4zM9 10.562v-.437a.44.44 0 0 0-.242-.392c-.075-.037-1.859-.92-3.258-.92s-3.183.883-3.258.92a.44.44 0 0 0-.242.392v.437c0 .242.196.438.438.438h6.125A.438.438 0 0 0 9 10.562zm-5.287-4.74v.875c0 .965.785 1.75 1.75 1.75s1.75-.785 1.75-1.75v-.875c0-.965-.785-1.75-1.75-1.75s-1.75.785-1.75 1.75zM10 11h4v-1h-4v1zm0-3h4V7h-4v1zm0-3h4V4h-4v1z'/></svg>";
 
-var _angleBottom = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M14 3.01a.997.997 0 0 1-.232.64l-5.765 6.912-5.77-6.921A1 1 0 1 1 3.767 2.36l4.235 5.079 4.23-5.071A1.001 1.001 0 0 1 14 3.01zM2 12.562a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1z'/></svg>";
+var _angleBottom = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2 3.002c0-.284.123-.566.359-.763a1.006 1.006 0 0 1 1.409.126L7.997 7.4l4.235-5.043c.354-.42.984-.478 1.409-.126a.988.988 0 0 1 .127 1.398L7.997 10.5 2.232 3.638A.986.986 0 0 1 2 3.002zM14 13a1 1 0 0 1-1 1H3a1 1 0 1 1 0-2h10a1 1 0 0 1 1 1z'/></svg>";
 
-var _angleDown = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8.004 12.561l-5.771-6.92a1 1 0 1 1 1.535-1.282l4.236 5.08 4.229-5.072a1 1 0 0 1 1.535 1.281l-5.764 6.913z'/></svg>";
+var _angleDown = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8.004 12.25L2.233 5.378a.988.988 0 0 1 .126-1.398 1.007 1.007 0 0 1 1.409.127l4.236 5.042 4.229-5.034c.352-.42.98-.478 1.408-.127.424.35.48.977.127 1.398L8.004 12.25z'/></svg>";
 
-var _angleEnd = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3.229 1.78c.226 0 .452.077.64.233l6.912 5.765-6.921 5.77a1 1 0 1 1-1.281-1.535l5.079-4.235-5.071-4.23a1.001 1.001 0 0 1 .642-1.767zm9.552 12a1 1 0 0 1-1-1v-10a1 1 0 0 1 2 0v10a1 1 0 0 1-1 1z'/></svg>";
+var _angleEnd = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3.002 14a.991.991 0 0 1-.763-.359 1.006 1.006 0 0 1 .126-1.409L7.4 8.003 2.357 3.768a1.005 1.005 0 0 1-.126-1.409.988.988 0 0 1 1.398-.127L10.5 8.003l-6.862 5.765a.986.986 0 0 1-.636.232zM13 2a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1z'/></svg>";
 
-var _angleLeft = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M11.409 13.985a.997.997 0 0 1-.64-.232L3.857 7.988l6.92-5.77a1 1 0 1 1 1.282 1.535l-5.08 4.235 5.072 4.23a1.001 1.001 0 0 1-.642 1.767z'/></svg>";
+var _angleLeft = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M11.248 14a.986.986 0 0 1-.636-.232L3.75 8.003l6.871-5.77a.988.988 0 0 1 1.398.126 1.005 1.005 0 0 1-.126 1.41L6.85 8.002l5.035 4.23c.42.353.477.983.126 1.408a.991.991 0 0 1-.763.36z'/></svg>";
 
-var _angleRight = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M5.65 2.232a1 1 0 1 0-1.282 1.536l5.07 4.229-5.079 4.235a1 1 0 0 0 1.281 1.536l6.921-5.771L5.65 2.232z'/></svg>";
+var _angleRight = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M5.388 2.232a.988.988 0 0 0-1.398.127 1.004 1.004 0 0 0 .126 1.409l5.033 4.229-5.042 4.235a1.005 1.005 0 0 0-.126 1.409.985.985 0 0 0 1.398.127l6.871-5.771-6.862-5.765z'/></svg>";
 
-var _angleStart = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M12.771 13.78a.997.997 0 0 1-.64-.231L5.22 7.784l6.921-5.771a1 1 0 1 1 1.281 1.536L8.342 7.784l5.071 4.229a1.001 1.001 0 0 1-.642 1.768zm-9.552-12a1 1 0 0 1 1 1v10a1 1 0 0 1-2 0v-10a1 1 0 0 1 1-1z'/></svg>";
+var _angleStart = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M12.998 14a.986.986 0 0 1-.636-.232L5.5 8.003l6.871-5.77a.988.988 0 0 1 1.398.126 1.005 1.005 0 0 1-.126 1.41L8.6 8.002l5.035 4.23c.42.353.477.983.126 1.408a.991.991 0 0 1-.763.36zM3 2a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1z'/></svg>";
 
-var _angleTop = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2 12.552c0-.226.076-.452.232-.64L7.997 5l5.771 6.921a1 1 0 1 1-1.536 1.281L7.997 8.123l-4.229 5.071A1.001 1.001 0 0 1 2 12.552zM14 3a1 1 0 0 1-1 1H3a1 1 0 0 1 0-2h10a1 1 0 0 1 1 1z'/></svg>";
+var _angleTop = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2 12.998c0-.225.076-.45.232-.636L7.997 5.5l5.771 6.871a.988.988 0 0 1-.127 1.398 1.005 1.005 0 0 1-1.409-.126L7.997 8.6l-4.229 5.035c-.354.42-.984.477-1.409.126A.991.991 0 0 1 2 12.998zM14 3a1 1 0 0 1-1 1H3a1 1 0 0 1 0-2h10a1 1 0 0 1 1 1z'/></svg>";
 
-var _angleUp = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M13.001 11.562c-.287 0-.571-.123-.769-.36L7.996 6.125l-4.228 5.07a1 1 0 1 1-1.536-1.281L7.996 3l5.772 6.92a1.001 1.001 0 0 1-.767 1.642'/></svg>";
+var _angleUp = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M13.001 12.25c-.287 0-.571-.122-.769-.356L7.996 6.85l-4.228 5.034a1.005 1.005 0 0 1-1.409.127.99.99 0 0 1-.127-1.4L7.996 3.75l5.772 6.87a.99.99 0 0 1-.127 1.4c-.188.155-.414.23-.64.23'/></svg>";
 
 var _bell = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 13.752c-2.651 0-4.8-.373-4.8-.832 0-.46 2.149-.832 4.8-.832s4.8.372 4.8.832c0 .46-2.149.832-4.8.832m6.371-1.69c-1.196-1.06-2.186-2.333-2.186-6.422 0-1.597-1.243-3.329-3.31-3.724C8.875 1.408 8.483 1 8 1s-.875.41-.875.915v.001c-2.067.395-3.31 2.127-3.31 3.724 0 4.09-.99 5.361-2.186 6.422-.4.262-.629.552-.629.858C1 14.068 4.134 15 8 15s7-.932 7-2.08c0-.306-.229-.596-.629-.858'/></svg>";
 
 var _billing = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M10.969 0L14 3.031V15c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h7.969zM9 6h3V5H9v1zm0 3h3V8H9v1zm-5 3h8v-1H4v1zm1.448-8.978c-.804.101-1.45.723-1.45 1.456 0 .809.782 1.52 1.673 1.52h.754c.352 0 .582.203.584.517a.46.46 0 0 1-.127.338.514.514 0 0 1-.457.148L4 7.002v.996l1.448-.001V9h1.104V7.99a1.53 1.53 0 0 0 1.03-.43c.275-.273.425-.647.423-1.052-.008-.859-.687-1.506-1.58-1.506h-.754c-.329 0-.677-.27-.677-.524 0-.243.335-.48.677-.48H8v-.996H6.552V2H5.448v1.022z'/></svg>";
 
-var _calendar = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M7 12.981h2v-2.02H7v2.02zm-3.999 0h2v-2.02H3v2.02zm8-4.029H13v-2.02h-2v2.02zm-4 0h2v-2.02H7v2.02zm-4 0h2v-2.02H3v2.02zm8.769-6.66c0-.112-.127-.21-.27-.21h-.537c-.144 0-.27.098-.27.21v2.556c0 .11.126.209.27.209h.536c.144 0 .27-.099.27-.21V2.292zm-6.462 0c0-.112-.126-.21-.27-.21h-.537c-.144 0-.27.098-.27.21v2.556c0 .11.126.209.27.209h.537c.144 0 .27-.099.27-.21V2.292zM15 13.918c0 .59-.487 1.081-1.076 1.081H2.077C1.488 15 1 14.51 1 13.919V4.246c0-.592.488-1.082 1.077-1.082h1.077v-.811C3.154 1.609 3.761 1 4.501 1h.537c.74 0 1.348.609 1.348 1.353v.81h3.23v-.81c0-.744.606-1.353 1.347-1.353h.536c.741 0 1.347.609 1.347 1.353v.81h1.078c.589 0 1.076.49 1.076 1.083v9.673z'/></svg>";
+var _calendar = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6 3h4V2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h1V2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1zM3 7v2h2V7H3zm4 0v2h2V7H7zm4 0v2h2V7h-2zm-4 4v2h2v-2H7zm-4 0v2h2v-2H3zm1-9v3h1V2H4zm7 0v3h1V2h-1z'/></svg>";
 
 var _checkmark = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M7.038 14.997c-.438 0-.858-.192-1.145-.53L1.355 9.111a1.5 1.5 0 0 1 2.289-1.939l3.171 3.742 5.392-9.175a1.5 1.5 0 0 1 2.586 1.52L8.331 14.257a1.5 1.5 0 0 1-1.293.74'/></svg>";
 
@@ -1205,21 +1847,27 @@ var _cog = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d=
 
 var _copy = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M9 6c.55 0 1 .45 1 1v7c0 .55-.45 1-1 1H2c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h7zm5-5a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-2a1 1 0 1 1 0-2h1V3H8v1a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1h7z'/></svg>";
 
-var _download = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8.081 12.581L4.22 8.701a.999.999 0 0 1 .004-1.414.999.999 0 0 1 1.414.003l1.377 1.384.04-6.68c.003-.552.483-.976 1.006-.994a1 1 0 0 1 .994 1.006l-.04 6.804 1.512-1.52a1.001 1.001 0 0 1 1.418 1.411l-3.863 3.88zM14 8a1 1 0 0 1 1 1v4.5c0 .827-.673 1.5-1.5 1.5h-11c-.827 0-1.5-.673-1.5-1.5V9a1 1 0 1 1 2 0v4h10V9a1 1 0 0 1 1-1z'/></svg>";
+var _download = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M14 8a1 1 0 0 1 1 1v4.5c0 .827-.673 1.5-1.5 1.5h-11c-.827 0-1.5-.673-1.5-1.5V9a1 1 0 1 1 2 0v4h10V9a1 1 0 0 1 1-1zm-7 .674l.003-6.671a1 1 0 1 1 2 0L9 8.679l1.513-1.483a1.027 1.027 0 0 1 1.438 0 .988.988 0 0 1 0 1.415l-3.948 3.887-3.954-3.89a.988.988 0 0 1 0-1.416 1.027 1.027 0 0 1 1.438 0L7 8.674z'/></svg>";
 
 var _envelope = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M14.995 2C15.55 2 16 2.458 16 3.019v1.055L8.017 8.861 0 4.062V3.019C0 2.458.453 2 1.005 2h13.99zm-6.978 8.885c.189 0 .379-.05.545-.15L16 6.276V12.982c0 .56-.45 1.019-1 1.019H1c-.549 0-1-.458-1-1.02V6.263l7.473 4.474c.165.099.355.149.544.149z'/></svg>";
 
-var _exclamationCircle = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8.654 10H7.466a.52.52 0 0 1-.515-.5l-.15-5a.485.485 0 0 1 .485-.5H8.87c.275 0 .515.201.482.5l-.179 5c.013.251-.244.5-.518.5M8.5 13h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1c.275 0 .5.225.5.5v1c0 .275-.225.5-.5.5M8 1C4.15 1 1 4.15 1 8s3.15 7 7 7 7-3.15 7-7-3.15-7-7-7'/></svg>";
+var _exclamationCircle = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1c3.85 0 7 3.15 7 7s-3.15 7-7 7-7-3.15-7-7 3.15-7 7-7zm.5 11.5c.275 0 .5-.225.5-.5v-1c0-.275-.225-.5-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zm.065-3c.268 0 .52-.249.507-.5l.175-5c.032-.299-.203-.5-.472-.5h-1.55a.48.48 0 0 0-.475.5l.148 5c.008.275.235.5.504.5h1.163z'/></svg>";
 
-var _exclamationDiamond = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M15.692 7.253c.41.412.41 1.082 0 1.492l-6.946 6.948c-.41.41-1.082.41-1.492 0L.308 8.745a1.057 1.057 0 0 1 0-1.493L7.254.308c.41-.41 1.082-.41 1.492 0l6.946 6.946zM8.654 10c.274 0 .531-.249.518-.5l.18-5c.032-.299-.208-.5-.483-.5H7.286a.485.485 0 0 0-.486.5l.151 5c.008.275.24.5.515.5h1.188zM8.5 13c.275 0 .5-.225.5-.5v-1c0-.275-.225-.5-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1z'/></svg>";
+var _exclamationDiamond = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M15.692 7.253c.41.412.41 1.082 0 1.492l-6.946 6.948c-.41.41-1.082.41-1.492 0L.308 8.745a1.057 1.057 0 0 1 0-1.493L7.254.308c.41-.41 1.082-.41 1.492 0l6.946 6.946zM8.5 12.5c.275 0 .5-.225.5-.5v-1c0-.275-.225-.5-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zm.065-3c.268 0 .52-.249.507-.5l.175-5c.032-.299-.203-.5-.472-.5h-1.55a.48.48 0 0 0-.475.5l.148 5c.008.275.235.5.504.5h1.163z'/></svg>";
 
-var _exclamationTriangle = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M9.19 9.008c-.01.275-.072.612-.14.75-.067.137-.622.25-.896.25h-.189c-.274 0-.614-.05-.752-.113-.14-.062-.269-.612-.277-.887l-.12-4c-.008-.276.032-.613.09-.75.058-.138.605-.25.88-.25h.584c.275 0 .616.045.758.1.14.055.216.624.207.9l-.146 4zm-.19 3c0 .274-.05.612-.113.75-.062.137-.612.25-.886.25-.276 0-.613-.05-.75-.113-.139-.062-.25-.613-.25-.887 0-.275.05-.613.111-.75.063-.138.612-.25.889-.25.274 0 .612.05.75.112.136.062.25.613.25.888zm5.832 1.292c-.28-.562-.567-1.12-.85-1.679-1.683-3.315-3.366-6.63-5.046-9.947-.204-.402-.49-.667-.925-.674-.423-.007-.724.234-.924.627-1.982 3.906-3.965 7.812-5.94 11.724a1.395 1.395 0 0 0-.145.663c.03.595.476.984 1.084.984 1.97.003 3.942.001 5.913.001 1.962 0 3.926.002 5.89 0 .928-.002 1.38-.819.944-1.699z'/></svg>";
+var _exclamationTriangle = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M14.832 13.3c.438.88-.016 1.697-.944 1.698C11.925 15.001 9.962 15 8 15c-1.973 0-3.944.002-5.914 0-.608 0-1.054-.39-1.084-.985a1.395 1.395 0 0 1 .145-.663C3.123 9.44 5.104 5.533 7.088 1.627c.2-.393.5-.634.925-.627.433.007.72.272.923.674 1.68 3.317 3.364 6.632 5.046 9.947.284.56.57 1.117.851 1.68zm-6.332.2c.275 0 .5-.225.5-.5v-1c0-.275-.225-.5-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zm.065-3c.268 0 .52-.249.507-.5l.175-5c.032-.299-.203-.5-.472-.5h-1.55a.48.48 0 0 0-.475.5l.148 5c.008.275.235.5.504.5h1.163z'/></svg>";
 
-var _export = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M5.452 6.138c-.2.19-.463.285-.724.285-.261 0-.522-.093-.721-.282a.937.937 0 0 1-.004-1.373L8 1l3.896 3.768a.938.938 0 0 1-.003 1.373c-.4.378-1.048.375-1.445-.003L9.043 4.796 9 11.28c-.004.534-.46.964-1.027.964-.566-.003-1.02-.44-1.016-.976L7 4.658 5.452 6.138zM14 7.835a1 1 0 0 1 1 1V13.5c0 .827-.673 1.5-1.5 1.5h-11c-.827 0-1.5-.673-1.5-1.5V8.836a1 1 0 1 1 2 0V13h10V8.836a1 1 0 0 1 1-1z'/></svg>";
+var _export = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M14 8a1 1 0 0 1 1 1v4.5c0 .827-.673 1.5-1.5 1.5h-11c-.827 0-1.5-.673-1.5-1.5V9a1 1 0 1 1 2 0v4h10V9a1 1 0 0 1 1-1zM7 4.827L5.487 6.31a1.027 1.027 0 0 1-1.438 0 .988.988 0 0 1 0-1.415l3.954-3.891L11.95 4.89a.988.988 0 0 1 0 1.415 1.027 1.027 0 0 1-1.438 0L9 4.822l.003 6.676a1 1 0 1 1-2 0L7 4.828z'/></svg>";
 
-var _externalLink = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M10 1h5v5a1 1 0 1 1-2 0V4.509L8.099 9.411a1 1 0 0 1-1.414-1.414L11.682 3H10a1 1 0 1 1 0-2zm2 7a1 1 0 0 1 1 1v4.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 1 13.5v-9A1.5 1.5 0 0 1 2.5 3H7a1 1 0 1 1 0 2H3v8h8V9a1 1 0 0 1 1-1z'/></svg>";
+var _externalLink = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M11 9a1 1 0 1 1 2 0v4.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 1 13.5v-9A1.5 1.5 0 0 1 2.5 3H7a1 1 0 1 1 0 2H3v8h8V9zm2-4.586L7.707 9.707a1 1 0 1 1-1.414-1.414L11.586 3H10a1 1 0 1 1 0-2h5v5a1 1 0 1 1-2 0V4.414z'/></svg>";
+
+var _file = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 0h8.5L14 2.5V15a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1zm10 3h-1.5c-.323 0-.5-.183-.5-.5V1H3v14h10V3z'/></svg>";
 
 var _filter = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M14.811 2.084L9.909 6.986v7.378a.644.644 0 0 1-.387.587.743.743 0 0 1-.25.049.592.592 0 0 1-.447-.189L6.28 12.266a.63.63 0 0 1-.189-.447V6.986L1.19 2.084a.626.626 0 0 1-.14-.696c.1-.229.329-.388.587-.388h12.727c.258 0 .487.16.586.389a.626.626 0 0 1-.139.695'/></svg>";
+
+var _flag = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 2.5c1.566.783 3.13.95 5.315.303.472-.14.685.1.685.471v7.419c0 .2-.027.322-.281.441-1.899.887-3.813.82-5.719-.134-1.333-.667-2.667-.722-4-.5V14a1 1 0 0 1-2 0V2a1 1 0 0 1 1-1c.496 0 .908.526.987 1C5.32 1.774 6.662 1.831 8 2.5z'/></svg>";
+
+var _globe = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M12.54 13.34a7.007 7.007 0 0 1-2.594 1.39c.434-.64.793-1.495 1.057-2.497a6.535 6.535 0 0 1 1.537 1.108zm-6.602-1.438A6.525 6.525 0 0 1 8 11.57c.72 0 1.414.117 2.062.332C9.59 13.778 8.801 15.003 8 15.003c-.8 0-1.59-1.225-2.062-3.1zM3.46 13.341c.453-.44.97-.814 1.537-1.108.264 1.002.623 1.856 1.057 2.498a7.007 7.007 0 0 1-2.594-1.39zm9.797-.703a7.536 7.536 0 0 0-2.028-1.413c.155-.843.25-1.762.274-2.725H15a6.962 6.962 0 0 1-1.743 4.138zm-7.53-1.79A16.764 16.764 0 0 1 5.501 8.5h4.998a16.764 16.764 0 0 1-.226 2.349A7.532 7.532 0 0 0 8 10.5c-.792 0-1.556.122-2.273.349zm-2.984 1.79A6.962 6.962 0 0 1 1 8.5h3.497c.025.963.119 1.882.274 2.725a7.536 7.536 0 0 0-2.028 1.413zM13.257 3.36A6.962 6.962 0 0 1 15 7.498h-3.497a17.615 17.615 0 0 0-.274-2.725 7.536 7.536 0 0 0 2.028-1.413zm-7.53 1.79c.717.226 1.48.349 2.273.349.792 0 1.556-.123 2.273-.349.123.725.203 1.516.226 2.349H5.501c.023-.833.103-1.624.226-2.349zM2.743 3.36a7.536 7.536 0 0 0 2.028 1.413c-.155.843-.25 1.762-.274 2.725H1A6.962 6.962 0 0 1 2.743 3.36zm9.797-.698c-.453.44-.97.814-1.537 1.108-.264-1.001-.623-1.856-1.057-2.497a7.007 7.007 0 0 1 2.594 1.39zm-6.602 1.44C6.41 2.225 7.199 1 8 1c.8 0 1.59 1.226 2.062 3.101A6.525 6.525 0 0 1 8 4.433c-.72 0-1.414-.116-2.062-.332zM3.46 2.661a7.007 7.007 0 0 1 2.594-1.39c-.434.642-.793 1.497-1.057 2.498A6.535 6.535 0 0 1 3.46 2.662z'/></svg>";
 
 var _helpCircle = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M10.789 6.858c-.14.278-.366.562-.677.853l-.733.657c-.209.192-.354.39-.435.591a2.55 2.55 0 0 0-.134.541H6.985c0-.367.07-.838.21-1.183.142-.347.368-.647.684-.9.314-.254.554-.486.717-.697.165-.211.247-.444.247-.697 0-.618-.278-.927-.831-.927-.254 0-.46.09-.618.27-.14.159-.217.377-.24.748H5c.034-.893.293-1.498.792-1.93.527-.456 1.267-.684 2.22-.684.95 0 1.684.21 2.206.632.52.422.782 1.02.782 1.8 0 .339-.07.648-.211.926m-2.075 5.861A.98.98 0 0 1 8 13a.98.98 0 0 1-.714-.28A.965.965 0 0 1 7 12c0-.291.095-.532.286-.72A.98.98 0 0 1 8 11a.968.968 0 0 1 1 1 .969.969 0 0 1-.286.72M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7'/></svg>";
 
@@ -1228,8 +1876,6 @@ var _infoCircle = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><
 var _inputFile = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M15 4c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V5c0-.005.003-.009.003-.013 0-.005-.003-.008-.003-.013V3c0-.55.45-1 1-1h4c.55 0 1 .45 1 1v1h9zm-7.3 8.022l.053-.001a1 1 0 0 0 .74-.39l3.237-4.214a1.001 1.001 0 0 0-1.586-1.219L7.62 9.485 6.426 8.23a1 1 0 1 0-1.45 1.378l2 2.103c.19.199.451.311.724.311z'/></svg>";
 
 var _inputTime = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M15.827 10.24a.5.5 0 0 1 .066.686l-2.197 2.878c-.099.13-.233.163-.399.196a.707.707 0 0 1-.366-.13l-1.399-1.438a.467.467 0 0 1 0-.686c.2-.196.532-.163.732 0l1.033 1.013 1.83-2.454a.523.523 0 0 1 .7-.065zM6.022 2c3.326 0 6.022 2.675 6.022 5.973 0 3.299-2.696 5.974-6.022 5.974S0 11.272 0 7.973C0 4.675 2.696 2 6.022 2zm1.122 7.449V4.412a.904.904 0 0 0-.915-.894c-.505 0-.913.4-.913.894v3.233l-1.82-.016h-.01a.904.904 0 0 0-.914.886.904.904 0 0 0 .906.902l3.666.032z'/></svg>";
-
-var _inputUrl = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.652 3.478a8.466 8.466 0 0 0 2.005 1.324c-.187.87-.3 1.827-.324 2.832H3.36v.025H1.176A.348.348 0 0 0 1 7.707a6.948 6.948 0 0 1 1.652-4.229zm10.766.082A6.946 6.946 0 0 1 15 7.66h-2.267v-.025H11.7a15.256 15.256 0 0 0-.313-2.777 8.435 8.435 0 0 0 2.031-1.297zM5.235 5.047c-.16.792-.26 1.665-.28 2.587h5.938a14.851 14.851 0 0 0-.26-2.481 8.005 8.005 0 0 1-5.398-.106zm.204-.849C5.981 2.268 6.914 1 7.924 1c1.028 0 1.977 1.314 2.514 3.304a7.248 7.248 0 0 1-4.999-.106zm-2.2-1.332a6.999 6.999 0 0 1 3.006-1.64c-.568.641-1.04 1.584-1.372 2.723a7.665 7.665 0 0 1-1.634-1.083zm7.331 8.288a14.63 14.63 0 0 0 .324-2.822h-5.94c.022 1.056.146 2.048.347 2.927a7.026 7.026 0 0 1 5.27-.105zm-.216.837C9.804 13.815 8.9 15 7.924 15c-.958 0-1.847-1.14-2.398-2.906a6.378 6.378 0 0 1 4.828-.103zm2.763.777a8.224 8.224 0 0 0-.571-.492 7.588 7.588 0 0 0-1.217-.814c.217-.933.347-1.972.371-3.067h3.296a6.953 6.953 0 0 1-1.88 4.373zm-10.17.065a6.955 6.955 0 0 1-1.944-4.484c.051.029.11.046.173.046h3.157a15.01 15.01 0 0 0 .386 3.132 7.413 7.413 0 0 0-.348.208 8.02 8.02 0 0 0-1.424 1.098zm9.451.394c.04.036.08.073.118.11a6.995 6.995 0 0 1-2.641 1.391c.492-.593.908-1.417 1.218-2.4.46.246.897.546 1.305.9zm-7.904-.575c.151-.1.305-.192.46-.278.311.968.724 1.78 1.213 2.365a6.993 6.993 0 0 1-2.592-1.329c.29-.282.598-.535.92-.758zm6.644-8.778c-.33-1.1-.79-2.011-1.341-2.638a6.998 6.998 0 0 1 2.898 1.568 7.511 7.511 0 0 1-1.557 1.07z'/></svg>";
 
 var _kbdArrowDown = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 16L13 11.087 8.856 11.087 8.856 0 7.144 0 7.144 11.087 3 11.087z'/></svg>";
 
@@ -1257,15 +1903,35 @@ var _kbdSpace = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><pa
 
 var _kbdTab = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M16 12h-1.39V4H16v8zm-2.781-4L9.16 12V8.685H0v-1.37h9.16V4l4.059 4z'/></svg>";
 
-var _lock = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6 4.827C6 3.837 6.916 3 8 3s2 .837 2 1.827v2.646H6V4.827zm7.766 2.646H12V4.827C12 2.723 10.2 1 8 1S4 2.723 4 4.827v2.646H2.234C1.556 7.473 1 8.028 1 8.707v5.531c0 .679.556 1.235 1.234 1.235h11.532c.678 0 1.234-.556 1.234-1.235V8.707c0-.679-.556-1.234-1.234-1.234z'/></svg>";
+var _key = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M10 11.414l-1.793 1.793a1 1 0 1 1-1.414-1.414L8.586 10 7.032 8.446a4 4 0 1 1 1.414-1.414l6.261 6.26a1 1 0 0 1-1.414 1.415l-1.043-1.043-1.043 1.043a1 1 0 1 1-1.414-1.414l1.043-1.043-.836-.836zM5 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'/></svg>";
 
-var _minus = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M13.152 9H2.847c-.466 0-.845-.448-.845-1s.379-1 .845-1h10.306c.47 0 .849.448.849 1s-.38 1-.848 1'/></svg>";
+var _lock = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M12 7h2a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h2V5a4 4 0 1 1 8 0v2zm-2 0V5a2 2 0 1 0-4 0v2h4z'/></svg>";
+
+var _mimeArchive = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M13 0a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1h4v2h2V0h4zM8 14.5c1.16 0 1.75-.314 1.75-1.833 0-.651-.268-1.398-.75-2.223V9H7v1.444c-.482.825-.75 1.572-.75 2.223 0 1.519.59 1.833 1.75 1.833zm0-2.25a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zM7 8h2V6H7v2zm0-3h2V3H7v2z'/></svg>";
+
+var _mimeAudio = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4.142 4.22A1.01 1.01 0 0 1 5 3.75c.553 0 1 .434 1 .97v6.562c0 .34-.185.654-.485.83a1.019 1.019 0 0 1-1.373-.333L3 9.936h-.02C1.885 9.931 1 9.07 1 8.01V8c0-1.057.877-1.92 1.971-1.935H3L4.142 4.22zm4.298 8.678a1 1 0 1 1-.88-1.796C8.515 10.635 9 9.662 9 8s-.486-2.635-1.44-3.102a1 1 0 1 1 .88-1.796C10.153 3.94 11 5.634 11 8c0 2.366-.847 4.06-2.56 4.898zm3.12 1.93a1 1 0 1 1-1.12-1.656C12.156 12.009 13 10.322 13 8c0-2.323-.843-4.01-2.56-5.172a1 1 0 0 1 1.12-1.656C13.844 2.717 15 5.03 15 8c0 2.97-1.157 5.283-3.44 6.828z'/></svg>";
+
+var _mimeCode = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4.78 10.577a1.124 1.124 0 0 1-.138 1.536 1.016 1.016 0 0 1-1.472-.145L0 7.975l3.174-3.948a1.016 1.016 0 0 1 1.473-.135c.443.387.5 1.075.13 1.536L2.721 7.984l2.059 2.593zm6.44 0l2.058-2.593-2.054-2.556a1.124 1.124 0 0 1 .129-1.536 1.016 1.016 0 0 1 1.473.135L16 7.975l-3.17 3.993a1.016 1.016 0 0 1-1.472.145 1.124 1.124 0 0 1-.139-1.536zM7.58 13.254c-.182.571-.775.88-1.322.69-.548-.19-.844-.809-.662-1.38l3.137-9.818c.183-.571.775-.88 1.323-.69.548.19.844.809.661 1.38l-3.137 9.818z'/></svg>";
+
+var _mimeData = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M1 1h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm10 4h4V3h-4v2zM6 5h4.001V3H6v2zM1 5h4V3H1v2zm10 3.001h4V6h-4v2.001zm-5 0h4.001V6H6v2.001zm-5 0h4V6H1v2.001zM11 11h4V9h-4v2zm-5 0h4.001V9H6v2zm-5 0h4V9H1v2zm10 3h4v-2h-4v2zm-5 0h4.001v-2H6v2zm-5 0h4v-2H1v2z'/></svg>";
+
+var _mimeImage = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M11.484 6.985a3.017 3.017 0 0 1-3.498-2.974A3.017 3.017 0 0 1 11.01 1a3.017 3.017 0 0 1 3.022 3.011 3.015 3.015 0 0 1-2.306 2.926L15 10.235v3.761c0 .555-.451 1.004-1.008 1.004H2.008C1.45 15 1 14.55 1 13.996v-3.761L4.933 5.47 8 8.346l3.484-1.36zM5.12 8.403l-2.106 2.551v2.039h9.97V11.06l-1.793-1.805-3.644 1.424L5.12 8.403zm5.888-3.388c.556 0 1.007-.45 1.007-1.004s-.45-1.004-1.007-1.004c-.557 0-1.008.45-1.008 1.004s.451 1.004 1.008 1.004z'/></svg>";
+
+var _mimeSystem = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6.284 6.594a2.73 2.73 0 0 1-.305.225l.183.963-.566.229-.539-.819a2.736 2.736 0 0 1-1.145-.01l-.552.811-.562-.237.198-.961c-.33-.217-.6-.496-.804-.816l-.963.183L1 5.596l.818-.54a2.735 2.735 0 0 1 .01-1.145l-.81-.552.236-.561.961.198c.217-.33.496-.6.816-.804l-.183-.963L3.414 1l.54.818a2.736 2.736 0 0 1 1.145.01l.552-.81.562.236-.198.961c.329.217.6.496.804.816l.963-.183.229.566-.819.538c.077.372.076.762-.01 1.147l.811.552-.237.562-.806-.166 1.023.715a3.74 3.74 0 0 1 1.134-.471l.238-1.285h1.247l.243 1.284c.406.096.789.256 1.133.472l1.088-.766.881.883-.757 1.094c.217.347.378.732.473 1.142L15 9.344v1.247l-1.347.235c-.094.41-.256.794-.472 1.141l.757 1.088-.88.882-1.089-.758a3.773 3.773 0 0 1-1.142.474l-.235 1.346H9.345l-.229-1.346a3.776 3.776 0 0 1-1.142-.473l-1.093.758-.884-.882.766-1.088a3.74 3.74 0 0 1-.471-1.133l-1.286-.244V9.344l1.285-.237c.095-.406.256-.789.47-1.134L5.998 6.88l.287-.286zm.307-.307l.26-.26-.056-.012a2.747 2.747 0 0 1-.204.272zm3.415 5.598a1.881 1.881 0 1 0 0-3.763 1.881 1.881 0 0 0 0 3.763zM5.888 5.091a1.501 1.501 0 1 0-2.764-1.172A1.501 1.501 0 0 0 5.888 5.09z'/></svg>";
+
+var _mimeText = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2 1h12.023a1 1 0 0 1 0 2H2a1 1 0 1 1 0-2zm0 4h12.023a1 1 0 0 1 0 2H2a1 1 0 0 1 0-2zm0 4h12.023a1 1 0 0 1 0 2H2a1 1 0 1 1 0-2zm0 4h5a1 1 0 1 1 0 2H2a1 1 0 0 1 0-2z'/></svg>";
+
+var _mimeVideo = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 3.746c0-.393.118-.778.338-1.106a2.035 2.035 0 0 1 2.802-.556l6.459 4.247a1.981 1.981 0 0 1 .003 3.321l-6.46 4.262c-.332.219-.722.336-1.122.336-1.115 0-2.02-.894-2.02-1.996V3.746zm2.02 0v8.508l6.46-4.262-6.46-4.246z'/></svg>";
+
+var _minus = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 9a1 1 0 1 1 0-2h10a1 1 0 0 1 0 2H3z'/></svg>";
 
 var _minusCircle = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1c3.859 0 7 3.141 7 7 0 3.86-3.141 7-7 7s-7-3.14-7-7c0-3.859 3.141-7 7-7zm4 8a1 1 0 1 0 0-2H4a1 1 0 1 0 0 2h8z'/></svg>";
 
 var _monitoring = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M15 12a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1V3a1 1 0 1 1 2 0v9h13zM11.267 2H15v3.78l-1.174-1.19-4.05 4.049a1 1 0 0 1-1.413 0l-1.42-1.42-2.68 2.679a.997.997 0 0 1-1.414 0 .999.999 0 0 1 0-1.414l3.387-3.386a.996.996 0 0 1 1.414 0l1.42 1.42 3.35-3.351L11.267 2z'/></svg>";
 
-var _payment = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M9.714 11.083C9.714 13.8 7.54 16 4.858 16 2.174 16 0 13.799 0 11.083c0-2.715 2.174-4.918 4.858-4.918 2.682 0 4.856 2.203 4.856 4.918zM10.801 1C13.672 1 16 3.357 16 6.263c0 2.695-2.01 4.891-4.588 5.2.012-.164.025-.327.025-.495 0-.32-.031-.63-.076-.939a3.805 3.805 0 0 0 3.218-3.766c0-2.109-1.696-3.824-3.778-3.824-1.595 0-2.955 1.01-3.507 2.428a6.277 6.277 0 0 0-1.371-.365C6.64 2.466 8.543 1 10.8 1zM5.174 12.706a.48.48 0 0 1-.368.14c-.214 0-.379-.068-.495-.206-.116-.14-.175-.34-.175-.606H2.974c0 .482.134.87.402 1.164.268.294.653.47 1.154.522v.705h.548v-.7c.43-.043.77-.19 1.02-.44.249-.253.373-.577.373-.975 0-.235-.038-.437-.116-.604a1.39 1.39 0 0 0-.324-.44 2.275 2.275 0 0 0-.493-.337 8.98 8.98 0 0 0-.605-.287c-.213-.091-.369-.187-.466-.29a.563.563 0 0 1-.145-.41c0-.17.043-.303.127-.4a.443.443 0 0 1 .353-.144c.17 0 .302.065.393.195.093.13.139.317.139.559H6.5c0-.442-.122-.808-.362-1.095-.24-.287-.57-.462-.99-.524v-.751h-.55v.736c-.437.042-.786.19-1.048.444-.262.257-.394.58-.394.974 0 .235.038.435.112.6.072.165.178.31.316.436s.304.237.495.332c.19.096.398.19.623.283.225.093.383.193.472.297.09.105.135.248.135.433a.537.537 0 0 1-.135.389zM11.482 7.9a.5.5 0 0 1-.286-.09L9.714 6.797V3.807c0-.294.232-.534.518-.534.285 0 .517.24.517.534v2.414l1.02.698a.546.546 0 0 1 .144.742.512.512 0 0 1-.43.24z'/></svg>";
+var _paperclip = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M1.977 13.037A3.244 3.244 0 0 1 1 10.71c0-.878.347-1.705.977-2.326l5.12-5.05A4.61 4.61 0 0 1 10.356 2c1.231 0 2.39.473 3.26 1.333C14.52 4.223 15 5.366 15 6.581c0 1.215-.48 2.358-1.351 3.218L9.816 13.58a.754.754 0 0 1-1.03 0 .714.714 0 0 1 0-1.016l3.833-3.782c.597-.588.925-1.37.925-2.202a3.07 3.07 0 0 0-.925-2.2 3.18 3.18 0 0 0-2.262-.944c-.843 0-1.635.324-2.23.912L3.006 9.4c-.356.35-.55.815-.55 1.31 0 .496.194.961.55 1.312.709.7 1.947.7 2.656 0l5.054-4.986a.562.562 0 0 0 0-.807.577.577 0 0 0-.4-.162.56.56 0 0 0-.399.167l-4.817 4.892a.736.736 0 0 1-1.03.014.704.704 0 0 1-.22-.505.707.707 0 0 1 .205-.51l4.819-4.892a2.02 2.02 0 0 1 1.416-.603c.545.01 1.048.192 1.435.563.396.39.615.904.615 1.445 0 .535-.212 1.036-.595 1.414l-5.053 4.985A3.347 3.347 0 0 1 4.335 14c-.854 0-1.708-.32-2.358-.963z'/></svg>";
+
+var _payment = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M5 15A5 5 0 1 1 5 5a5 5 0 0 1 0 10zm.496-3.433c-.101.093-.24.139-.418.139-.242 0-.43-.068-.561-.203-.132-.136-.2-.333-.2-.593H3c0 .472.152.851.456 1.14.304.287.741.459 1.309.51v.69h.622v-.686c.488-.04.873-.185 1.157-.43.282-.247.423-.564.423-.954 0-.23-.043-.427-.132-.59a1.393 1.393 0 0 0-.367-.43 2.631 2.631 0 0 0-.559-.33c-.215-.098-.443-.19-.687-.281-.242-.09-.418-.184-.528-.285a.508.508 0 0 1-.165-.4c0-.166.048-.297.145-.392.095-.094.228-.141.4-.141.193 0 .342.064.446.191.105.127.157.31.157.547H7c0-.433-.138-.79-.41-1.071-.273-.281-.647-.453-1.124-.513V6.75h-.624v.72c-.495.041-.892.186-1.188.435a1.192 1.192 0 0 0-.447.952c0 .23.043.426.126.588.083.161.203.304.359.427.157.122.344.23.561.324.215.094.452.186.707.277.256.091.435.189.536.29.103.103.153.244.153.424 0 .161-.05.289-.153.38zm6.772-3.939a.5.5 0 0 1-.286-.089L10.5 6.524v-2.99c0-.294.232-.534.518-.534.285 0 .517.24.517.535v2.413l1.02.698a.546.546 0 0 1 .144.742.512.512 0 0 1-.43.24zM7.308 4.46a5.954 5.954 0 0 0-.956-.307A5.002 5.002 0 0 1 16 6a5 5 0 0 1-5.083 5A6.04 6.04 0 0 0 11 10a4 4 0 1 0-3.693-5.54z'/></svg>";
 
 var _pencil = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.423 10.716L9.567 3.56l2.802 2.807-7.145 7.158-2.801-2.808zm-1.415 3.895l.708-3.186 2.8 2.807-3.122.759a.32.32 0 0 1-.386-.38zm13.85-11.355a.489.489 0 0 1-.004.693l-.776.765.007.007-.953.924-2.802-2.807.34-.33c.004-.003.005-.01.01-.015l1.373-1.351a.498.498 0 0 1 .7.003l2.104 2.11z'/></svg>";
 
@@ -1273,25 +1939,25 @@ var _phone = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path 
 
 var _plus = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M14 7H9V2a1 1 0 1 0-2 0v5H2a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0V9h5a1 1 0 1 0 0-2'/></svg>";
 
-var _plusOrMinus = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M12.508 15H3.49c-.408 0-.74-.392-.74-.875s.332-.875.74-.875h9.018c.41 0 .742.392.742.875s-.331.875-.742.875zM8.875 5.375h3.5a.875.875 0 1 1 0 1.75h-3.5v3.5a.875.875 0 1 1-1.75 0v-3.5h-3.5a.875.875 0 1 1 0-1.75h3.5v-3.5a.875.875 0 1 1 1.75 0v3.5z'/></svg>";
+var _plusOrMinus = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4 15a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2H4zM7 5V2a1 1 0 1 1 2 0v3h3a1 1 0 0 1 0 2H9v3a1 1 0 0 1-2 0V7H4a1 1 0 1 1 0-2h3z'/></svg>";
 
 var _search = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6.494 10a3.502 3.502 0 0 1-3.496-3.5c0-1.93 1.568-3.5 3.496-3.5A3.502 3.502 0 0 1 9.99 6.5c0 1.93-1.568 3.5-3.496 3.5m8.213 3.292l-3.683-3.683a5.475 5.475 0 0 0 .963-3.109c0-3.038-2.459-5.5-5.493-5.5A5.497 5.497 0 0 0 1 6.5C1 9.538 3.46 12 6.494 12a5.456 5.456 0 0 0 3.118-.975l3.683 3.683a.998.998 0 0 0 1.412-.001 1 1 0 0 0 0-1.415'/></svg>";
 
-var _server = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M1 10.783h14v2.811C15 14.37 14.372 15 13.6 15H2.4c-.773 0-1.4-.63-1.4-1.406v-2.811zm0-.646V5.92h14v4.217H1zm14-4.92H1V2.406C1 1.63 1.628 1 2.4 1h11.2c.773 0 1.4.63 1.4 1.406v2.811zM3.107 13.398h3.36v-1.125h-3.36v1.125zm7.242-1.125a.56.56 0 0 0-.56.562.56.56 0 1 0 1.12 0 .56.56 0 0 0-.56-.562zm1.983 0a.56.56 0 0 0-.56.562.56.56 0 1 0 1.121 0 .561.561 0 0 0-.561-.562zM3.1 8.591h3.36V7.466H3.1v1.125zm7.249-1.125a.56.56 0 0 0-.56.562.561.561 0 1 0 1.12 0 .56.56 0 0 0-.56-.562zm1.983 0a.56.56 0 0 0-.56.562.561.561 0 1 0 1.121 0 .561.561 0 0 0-.561-.562zM3.1 3.728h3.36V2.603H3.1v1.125zm7.249-1.125a.56.56 0 0 0-.56.562.56.56 0 1 0 1.12 0 .56.56 0 0 0-.56-.562zm1.983 0a.56.56 0 0 0-.56.562.56.56 0 1 0 1.121 0 .561.561 0 0 0-.561-.562z'/></svg>";
+var _server = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M1.5 11h13c.276 0 .5.246.5.546v2.909c0 .3-.224.545-.5.545h-13c-.275 0-.5-.245-.5-.545v-2.91c0-.3.225-.545.5-.545zm0-5h13c.276 0 .5.246.5.546v2.909c0 .3-.224.545-.5.545h-13c-.275 0-.5-.245-.5-.545v-2.91c0-.3.225-.545.5-.545zm0-5h13c.276 0 .5.246.5.546v2.909c0 .3-.224.545-.5.545h-13c-.275 0-.5-.245-.5-.545v-2.91c0-.3.225-.545.5-.545zM11 13.032c.022.534.493.98 1.02.968.533-.012.983-.474.98-1.007a1.016 1.016 0 0 0-1.046-.992A1.02 1.02 0 0 0 11 13.032zm0-5c.022.534.493.98 1.02.968.533-.012.983-.474.98-1.007a1.016 1.016 0 0 0-1.046-.992A1.02 1.02 0 0 0 11 8.032zm0-5c.022.534.492.979 1.02.967A1.02 1.02 0 0 0 13 2.993a1.015 1.015 0 0 0-1.046-.992A1.02 1.02 0 0 0 11 3.032zM3 14h6v-2H3v2zm0-5h6V7H3v2zm0-5h6V2H3v2z'/></svg>";
 
-var _sort = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M7.12 3.898v8.204l-1.41-1.41a1 1 0 0 0-1.416 0 1 1 0 0 0 0 1.416L8.187 16l3.888-3.888a1 1 0 1 0-1.416-1.416l-1.535 1.535V3.769l1.535 1.535a1 1 0 0 0 1.416 0 1 1 0 0 0 0-1.416L8.187 0 4.294 3.892a1 1 0 0 0 0 1.416 1 1 0 0 0 1.416 0l1.41-1.41z'/></svg>";
+var _serverConfig = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M8.646 9c-.269.3-.497.636-.678 1H1.5c-.275 0-.5-.245-.5-.545v-2.91c0-.3.225-.545.5-.545h13c.276 0 .5.246.5.546v2.1A4.483 4.483 0 0 0 12 7.5a4.483 4.483 0 0 0-3 1.146V7H3v2h5.646zm-.678 5c.18.364.41.7.678 1H1.5c-.275 0-.5-.245-.5-.545v-2.91c0-.3.225-.545.5-.545h6.112a4.515 4.515 0 0 0-.112 1H3v2h4.968zM1.5 1h13c.276 0 .5.246.5.546v2.909c0 .3-.224.545-.5.545h-13c-.275 0-.5-.245-.5-.545v-2.91c0-.3.225-.545.5-.545zm12.854 10.354l.553.09a.114.114 0 0 1 .093.108v.734a.103.103 0 0 1-.093.101l-.508.04a2.427 2.427 0 0 1-.296.794l.288.387a.113.113 0 0 1-.01.142l-.572.571a.112.112 0 0 1-.141.01l-.37-.28c-.23.145-.486.253-.76.314l-.07.542a.11.11 0 0 1-.105.093h-.755a.103.103 0 0 1-.1-.093l-.04-.542a2.427 2.427 0 0 1-.776-.324l-.393.29a.113.113 0 0 1-.141-.01l-.572-.571a.108.108 0 0 1-.007-.14l.318-.398a2.408 2.408 0 0 1-.278-.716l-.526-.063A.11.11 0 0 1 9 12.328v-.808c0-.051.042-.097.093-.1l.553-.044c.063-.245.163-.475.295-.684l-.362-.454a.109.109 0 0 1 .007-.14l.572-.57a.11.11 0 0 1 .14-.01l.477.367c.203-.118.424-.208.66-.265l.043-.527A.104.104 0 0 1 11.58 9h.807c.052 0 .097.042.1.094l.037.514c.247.054.48.146.692.268l.453-.357a.109.109 0 0 1 .14.008l.572.571a.106.106 0 0 1 .006.139l-.346.416c.14.213.245.45.313.701zm-3.289.634a.939.939 0 0 0 1.875 0 .939.939 0 0 0-.937-.937.939.939 0 0 0-.938.937zm-.064-8.956c.02.534.491.979 1.02.967A1.02 1.02 0 0 0 13 2.993a1.015 1.015 0 0 0-1.046-.992A1.02 1.02 0 0 0 11 3.032zM3 4h6V2H3v2z'/></svg>";
 
-var _sortDown = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M12.075 10.696a1 1 0 0 0-1.416 0l-1.535 1.535V1.002a1.001 1.001 0 1 0-2.003 0v11.1l-1.411-1.41a1 1 0 0 0-1.416 0 1 1 0 0 0 0 1.416L8.187 16l3.888-3.888a1 1 0 0 0 0-1.416'/></svg>";
+var _serverIncident = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M7.5 14l-.415.829a1.5 1.5 0 0 0-.073.171H1.5c-.275 0-.5-.245-.5-.545v-2.91c0-.3.225-.545.5-.545H9l-.5 1H3v2h4.5zm7-4L13.34 7.683a1.5 1.5 0 0 0-2.683 0L9.499 10h-8c-.274 0-.5-.245-.5-.545v-2.91c0-.3.226-.545.5-.545h13c.277 0 .5.246.5.546v2.909c0 .3-.223.545-.5.545zm-13-9h13c.276 0 .5.246.5.546v2.909c0 .3-.224.545-.5.545h-13c-.275 0-.5-.245-.5-.545v-2.91c0-.3.225-.545.5-.545zm13.428 13.272c.187.377-.007.727-.404.727-.842.002-1.683 0-2.524 0-.845 0-1.69.002-2.535 0-.26 0-.452-.166-.464-.421a.598.598 0 0 1 .062-.285c.846-1.676 1.696-3.35 2.545-5.024.086-.169.215-.272.397-.269.186.003.308.117.396.289.72 1.422 1.441 2.842 2.162 4.263.122.24.245.479.365.72zm-2.714.085a.215.215 0 0 0 .215-.214v-.429a.215.215 0 0 0-.215-.214h-.428a.215.215 0 0 0-.215.214v.429c0 .118.096.214.215.214h.428zm.028-1.285c.115 0 .223-.107.217-.215l.075-2.143c.014-.128-.086-.214-.202-.214h-.664a.206.206 0 0 0-.204.214l.064 2.143a.22.22 0 0 0 .216.215h.498zm-1.241-10.04c.02.534.491.979 1.02.967A1.02 1.02 0 0 0 13 2.993a1.015 1.015 0 0 0-1.046-.992A1.02 1.02 0 0 0 11 3.032zM3 9h6V7H3v2zm0-5h6V2H3v2z'/></svg>";
 
-var _sortUp = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4.293 5.305a.997.997 0 0 0 1.414 0L7.239 3.77v11.229a1 1 0 1 0 2 0v-11.1l1.409 1.41a.998.998 0 0 0 1.415 0c.39-.391.39-1.025 0-1.416L8.175 0 4.293 3.889a1.001 1.001 0 0 0 0 1.416'/></svg>";
+var _sort = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M7 12.174v-8.35L5.487 5.306a1.027 1.027 0 0 1-1.438 0 .988.988 0 0 1 0-1.415L8.003 0l3.948 3.887a.988.988 0 0 1 0 1.415 1.027 1.027 0 0 1-1.438 0L9 3.82v8.36l1.513-1.483a1.027 1.027 0 0 1 1.438 0 .988.988 0 0 1 0 1.415l-3.948 3.887-3.954-3.89a.988.988 0 0 1 0-1.416 1.027 1.027 0 0 1 1.438 0L7 12.174z'/></svg>";
+
+var _sortDown = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M7 12.174V1a1 1 0 1 1 2 0v11.179l1.513-1.483a1.027 1.027 0 0 1 1.438 0 .988.988 0 0 1 0 1.415l-3.948 3.887-3.954-3.89a.988.988 0 0 1 0-1.416 1.027 1.027 0 0 1 1.438 0L7 12.174z'/></svg>";
+
+var _sortUp = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M7 3.824L5.487 5.306a1.027 1.027 0 0 1-1.438 0 .988.988 0 0 1 0-1.415L8.003 0l3.948 3.887a.988.988 0 0 1 0 1.415 1.027 1.027 0 0 1-1.438 0L9 3.82v11.179a1 1 0 1 1-2 0V3.824z'/></svg>";
 
 var _support = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M12.334 8.048c.189 3.135-.773 4.94-2.448 6.172-.606.446-1.593 1.033-2.633.663-.26-.093-1.155-.52-1.74-1.045-.652-.588-.985-1.276-.985-1.276.179.073.68.25 1.158.362.482.114.996.17 1.071.179.177.356.613.609 1.124.609.667 0 1.208-.43 1.208-.96s-.54-.96-1.208-.96c-.493 0-.915.235-1.104.57a4.37 4.37 0 0 1-1.847-.426c-.656-.32-1.08-.802-1.095-.853A7.437 7.437 0 0 1 3.6 9.8c-.056-.677-.019-1.32-.019-1.32s.608.075 1.554-.986c.854-.956.831-2.565.831-2.565.389.848 3.809 2.695 6.035 2.426.238-.03.293.664.333.692zm2.243.024c.258.242.423.596.423.99v1.577c0 .724-.554 1.317-1.232 1.317h-.544-.031v-.003a.336.336 0 0 1-.292-.342c0-.044.008-.087.023-.126l.001-.01c.209-.75.33-1.622.33-2.634 0-.26-.008-.491-.024-.74v-.005-.006c0-.19.143-.344.32-.345h.216c.037 0 .072.002.108.006-.148-1.594-.627-2.95-1.408-3.964-1.04-1.353-2.594-2.068-4.493-2.068-1.802 0-3.313.713-4.37 2.064C2.79 4.82 2.29 6.178 2.134 7.75c.033-.003.065-.005.098-.005h.069c.176 0 .319.15.322.338l.001.003v.004c-.018.245-.027.495-.027.75a8.117 8.117 0 0 0 .449 2.702l.005.015a.094.094 0 0 1 0 .051l.001.003a.335.335 0 0 1-.306.343l-.002.002h-.512C1.554 11.956 1 11.363 1 10.64V9.062c0-.398.168-.755.43-.997.122-1.879.687-3.507 1.654-4.742C4.274 1.803 5.965 1 7.974 1c2.108 0 3.843.806 5.016 2.332.93 1.209 1.473 2.837 1.587 4.74zM9.75 9.91c.434 0 .785-.375.785-.838 0-.463-.351-.838-.785-.838-.433 0-.784.375-.784.838 0 .463.351.838.784.838zm-3.584 0c.433 0 .784-.375.784-.838 0-.463-.351-.838-.784-.838-.433 0-.784.375-.784.838 0 .463.35.838.784.838z'/></svg>";
 
 var _tag = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2.856 1h4.082c.196 0 .386.078.524.218l7.32 7.32a.74.74 0 0 1 0 1.05l-5.194 5.195c-.29.29-.76.29-1.05 0l-7.32-7.321A.737.737 0 0 1 1 6.938V2.856C1 1.83 1.83 1 2.856 1zm.99 4.01a1.311 1.311 0 1 0 0-2.623 1.311 1.311 0 0 0 0 2.623z'/></svg>";
-
-var _technicalChange = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M14.914 11.676a.106.106 0 0 1 .086.101v.686c0 .048-.04.091-.087.095l-.476.037a2.239 2.239 0 0 1-.276.742l.27.362a.106.106 0 0 1-.01.133l-.535.533a.105.105 0 0 1-.132.009l-.346-.262a2.272 2.272 0 0 1-.712.295l-.064.506a.104.104 0 0 1-.1.087h-.706a.097.097 0 0 1-.094-.087l-.037-.507a2.231 2.231 0 0 1-.726-.303l-.368.272a.105.105 0 0 1-.132-.01l-.535-.533a.1.1 0 0 1-.007-.131l.297-.372a2.279 2.279 0 0 1-.26-.669l-.493-.059a.102.102 0 0 1-.086-.099v-.754c0-.049.04-.091.087-.095l.517-.04c.06-.229.153-.444.277-.639l-.339-.425a.1.1 0 0 1 .007-.131l.535-.533a.103.103 0 0 1 .131-.009l.446.343a2.25 2.25 0 0 1 .617-.247l.042-.493a.096.096 0 0 1 .095-.087h.756c.048 0 .09.039.093.087l.034.481c.231.051.448.137.648.251l.424-.334a.102.102 0 0 1 .131.008l.534.533a.099.099 0 0 1 .006.13l-.323.389c.13.199.23.42.292.655l.519.084zm-6.726.388c0 .212.03.416.062.62H2.17c-.645 0-1.17-.525-1.17-1.169V9.178h8.43a3.98 3.98 0 0 0-1.242 2.886zm4.005-4c-.716 0-1.377.202-1.958.53H1V5.089h11.7v3.026c-.168-.022-.334-.051-.507-.051zm.507-3.559H1V2.168A1.17 1.17 0 0 1 2.17 1h9.36c.645 0 1.17.524 1.17 1.168v2.337zm-2.23 1.869a.467.467 0 1 0-.001.934.467.467 0 0 0 0-.934zm-1.657.935a.468.468 0 1 0 .002-.935.468.468 0 0 0-.002.935zm-6.058 0h2.808v-.935H2.755v.935zm9.44 5.752a.878.878 0 0 0 .877-.876.878.878 0 0 0-1.754 0c0 .483.394.876.877.876zM2.76 11.398h2.808v-.935H2.76v.935zm0-8.131h2.808v-.935H2.76v.935zm6.053-.935a.467.467 0 1 0 0 .935.468.468 0 1 0 0-.935zm1.657 0a.467.467 0 1 0-.001.934.467.467 0 0 0 0-.934z'/></svg>";
-
-var _technicalIncident = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M14.93 14.286c.183.37-.007.713-.395.714h-2.467l-2.478-.001c-.253 0-.441-.164-.454-.413a.598.598 0 0 1 .062-.279c.827-1.642 1.657-3.281 2.487-4.922.084-.165.211-.265.388-.263.181.003.302.114.386.283l2.115 4.176c.119.235.239.469.356.705zm-5.87-3.028l-.706 1.396h-6.19A1.165 1.165 0 0 1 1 11.488v-2.33h9.122l-.269.53-.63 1.244c.002-.009.007-.017.007-.027a.466.466 0 1 0-.465.467.455.455 0 0 0 .294-.114zm3.038-3.636a1.977 1.977 0 0 0-1.657.953H1V5.079h11.627v2.63a1.86 1.86 0 0 0-.53-.087zm.529-3.125H1V2.166C1 1.523 1.521 1 2.163 1h9.302c.642 0 1.162.523 1.162 1.166v2.33zm-.065 8.26l.072-2.007c.014-.12-.083-.2-.193-.2h-.635c-.11 0-.197.09-.194.2l.06 2.008c.003.11.096.201.206.201h.477c.11 0 .213-.1.207-.201zm-.068 1.206v-.403c0-.11-.09-.2-.202-.2h-.4a.2.2 0 0 0-.2.2v.403c0 .11.09.2.2.2h.4c.111 0 .202-.09.202-.2zM9.947 6.826a.465.465 0 1 0 .93.003.465.465 0 0 0-.93-.003zm-1.182.467a.466.466 0 1 0-.001-.932.466.466 0 0 0 0 .932zm-6.02 0h2.79v-.932h-2.79v.933zm-.005 4.079h2.79v-.932H2.74v.932zm0-8.11h2.79v-.933H2.74v.933zm6.025-.933a.465.465 0 1 0-.001.93.465.465 0 0 0 0-.93zm1.647 0a.465.465 0 1 0 0 .93.465.465 0 0 0 0-.93z'/></svg>";
 
 var _ticketing = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M13 2.997c.55 0 1 .45 1 1V15c0 .55-.45 1-1 1H5.997c-.55 0-1-.45-1-1V3.997c0-.55.45-1 1-1H13zm-1.997-1.028h-7V13H3c-.55 0-1-.444-1-.984V.985C2 .443 2.45 0 3 0h7.003c.55 0 1 .443 1 .985v.984zM6.988 11.997h5.022v-.985H6.988v.985zm-.001 1.97h3.049v-.986h-3.05v.985zm.164-6.121l2.076 2.032 2.697-4.088a.488.488 0 0 0-.147-.68.506.506 0 0 0-.691.144L9.059 8.326 7.856 7.148a.504.504 0 0 0-.707.002.487.487 0 0 0 .002.696z'/></svg>";
 
@@ -1299,11 +1965,11 @@ var _times = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path 
 
 var _timesCircle = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M11.682 10.268a.999.999 0 1 1-1.414 1.414L8 9.414l-2.267 2.268a.999.999 0 1 1-1.414-1.414L6.586 8 4.319 5.732a.999.999 0 1 1 1.414-1.414L8 6.586l2.268-2.268a.999.999 0 1 1 1.414 1.414L9.414 8l2.268 2.268zM8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1z'/></svg>";
 
-var _trash = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2 13.27V5h12v8.27c0 .95-.778 1.729-1.729 1.729H3.729A1.734 1.734 0 0 1 2 13.268zM14 2c.55 0 1 .45 1 1v1H1V3c0-.55.45-1 1-1h4V1h4v1h4zM5 8.555v2.998a1 1 0 1 0 2 0V8.555a1 1 0 1 0-2 0zm4 0v2.998a1 1 0 1 0 2 0V8.555a1 1 0 1 0-2 0z'/></svg>";
+var _trash = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2 13.27V5h12v8.27c0 .95-.778 1.729-1.729 1.729H3.729A1.734 1.734 0 0 1 2 13.268zM14 2c.55 0 1 .45 1 1v1H1V3c0-.55.45-1 1-1h4V1h4v1h4zM6 7a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1zm4 0a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z'/></svg>";
 
 var _user = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M14.517 12.467c-.15-.075-3.717-1.842-6.517-1.842-2.798 0-6.366 1.767-6.516 1.842A.876.876 0 0 0 1 13.25v.875c0 .483.392.875.875.875h12.25a.875.875 0 0 0 .875-.875v-.875a.875.875 0 0 0-.483-.783M4.5 6.25V4.5C4.5 2.57 6.07 1 8 1s3.5 1.57 3.5 3.5v1.75c0 1.93-1.57 3.5-3.5 3.5a3.505 3.505 0 0 1-3.5-3.5'/></svg>";
 
-var Icons = {
+const MAP = {
     'account': _account,
     'angle-bottom': _angleBottom,
     'angle-down': _angleDown,
@@ -1327,12 +1993,14 @@ var Icons = {
     'exclamation-triangle': _exclamationTriangle,
     'export': _export,
     'external-link': _externalLink,
+    'file': _file,
     'filter': _filter,
+    'flag': _flag,
+    'globe': _globe,
     'help-circle': _helpCircle,
     'info-circle': _infoCircle,
     'input-file': _inputFile,
     'input-time': _inputTime,
-    'input-url': _inputUrl,
     'kbd-arrow-down': _kbdArrowDown,
     'kbd-arrow-left': _kbdArrowLeft,
     'kbd-arrow-right': _kbdArrowRight,
@@ -1346,10 +2014,20 @@ var Icons = {
     'kbd-shift': _kbdShift,
     'kbd-space': _kbdSpace,
     'kbd-tab': _kbdTab,
+    'key': _key,
     'lock': _lock,
+    'mime-archive': _mimeArchive,
+    'mime-audio': _mimeAudio,
+    'mime-code': _mimeCode,
+    'mime-data': _mimeData,
+    'mime-image': _mimeImage,
+    'mime-system': _mimeSystem,
+    'mime-text': _mimeText,
+    'mime-video': _mimeVideo,
     'minus': _minus,
     'minus-circle': _minusCircle,
     'monitoring': _monitoring,
+    'paperclip': _paperclip,
     'payment': _payment,
     'pencil': _pencil,
     'phone': _phone,
@@ -1357,13 +2035,13 @@ var Icons = {
     'plus-or-minus': _plusOrMinus,
     'search': _search,
     'server': _server,
+    'server-config': _serverConfig,
+    'server-incident': _serverIncident,
     'sort': _sort,
     'sort-down': _sortDown,
     'sort-up': _sortUp,
     'support': _support,
     'tag': _tag,
-    'technical-change': _technicalChange,
-    'technical-incident': _technicalIncident,
     'ticketing': _ticketing,
     'times': _times,
     'times-circle': _timesCircle,
@@ -1371,13 +2049,18 @@ var Icons = {
     'user': _user,
 };
 
+// DEPRECATED: remove in v1.0.0
+MAP['input-url'] = MAP['globe'];
+MAP['technical-change'] = MAP['server-config'];
+MAP['technical-incident'] = MAP['server-incident'];
+
 class HXIconElement extends HXElement {
     static get is () {
         return 'hx-icon';
     }
 
     static get icons () {
-        return Icons;
+        return MAP;
     }
 
     static get observedAttributes () {
@@ -1414,10 +2097,10 @@ class HXIconElement extends HXElement {
         // erase previously injected markup
         this.innerHTML = '';
 
-        if (this.type in Icons) {
+        if (this.type in MAP) {
             // create surrogate DIV to add raw SVG markup
             const tmpDiv = document.createElement('div');
-            tmpDiv.innerHTML = Icons[this.type];
+            tmpDiv.innerHTML = MAP[this.type];
             // grab SVG from surrogate DIV
             const svg = tmpDiv.firstElementChild;
             // Prevent IE/Edge from adding SVG to focus order
@@ -1550,24 +2233,17 @@ class HXMenuitemElement extends HXElement {
     }
 }//HXMenuitemElement
 
-var shadowStyles$4 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n#container {\n  background-color: #ffffff;\n  box-shadow: 0px 7px 9px 0 rgba(0, 0, 0, 0.3);\n  display: flex;\n  flex-direction: column;\n  left: 50%;\n  max-width: 40rem;\n  min-height: 12.5rem;\n  min-width: 25rem;\n  padding: 1.25rem;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1201;\n}\n#close {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  height: 1rem;\n  line-height: 1;\n  padding: 0;\n  position: absolute;\n  right: 1.25rem;\n  top: 1.25rem;\n}\n";
+var shadowMarkup$4 = "<div id='container'><button type='button' id='close'><hx-icon type='times'></hx-icon></button><slot></slot></div>";
 
-const tagName$5 = 'hx-modal';
-const template$5 = document.createElement('template');
-
-template$5.innerHTML = `
-  <style>${shadowStyles$4}</style>
-  <div id="container">
-    <button type="button" id="close">
-      <hx-icon type="times"></hx-icon>
-    </button>
-    <slot></slot>
-  </div>
-`;
+var shadowStyles$4 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#container {\n  background-color: #ffffff;\n  box-shadow: 0px 7px 9px 0 rgba(0, 0, 0, 0.3);\n  display: flex;\n  flex-direction: column;\n  left: 50%;\n  max-width: 40rem;\n  min-height: 12.5rem;\n  min-width: 25rem;\n  padding: 1.25rem;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1201;\n}\n#close {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  height: 1rem;\n  line-height: 1;\n  padding: 0;\n  position: absolute;\n  right: 1.25rem;\n  top: 1.25rem;\n}\n";
 
 class HXModalElement extends HXElement {
     static get is () {
-        return tagName$5;
+        return 'hx-modal';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles$4}</style>${shadowMarkup$4}`;
     }
 
     static get observedAttributes () {
@@ -1575,7 +2251,7 @@ class HXModalElement extends HXElement {
     }
 
     constructor () {
-        super(tagName$5, template$5);
+        super();
         this._close = this._close.bind(this);
         this._keyUp = this._keyUp.bind(this);
     }
@@ -2101,23 +2777,17 @@ function debounce(func, wait, options) {
 
 var debounce_1 = debounce;
 
-var shadowStyles$5 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#container {\n  overflow: hidden;\n}\n";
+var shadowMarkup$5 = "<div class='position-arrow'><div id='container'><slot></slot></div></div>";
 
-const tagName$6 = 'hx-popover';
-const template$6 = document.createElement('template');
-
-template$6.innerHTML = `
-  <style>${shadowStyles$5}</style>
-  <div class="position-arrow">
-    <div id="container">
-      <slot></slot>
-    </div>
-  </div>
-`;
+var shadowStyles$5 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#container {\n  overflow: hidden;\n}\n";
 
 class HXPopoverElement extends HXElement {
     static get is () {
-        return tagName$6;
+        return 'hx-popover';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles$5}</style>${shadowMarkup$5}`;
     }
 
     static get observedAttributes () {
@@ -2125,7 +2795,7 @@ class HXPopoverElement extends HXElement {
     }
 
     constructor () {
-        super(tagName$6, template$6);
+        super();
         this._toggle = this._toggle.bind(this);
         this._setPosition = this._setPosition.bind(this);
         this._closeOnBackdropClick = this._closeOnBackdropClick.bind(this);
@@ -2222,6 +2892,108 @@ class HXPopoverElement extends HXElement {
     }
 }
 
+var shadowMarkup$6 = "<div id='fill'></div>";
+
+var shadowStyles$6 = "#fill {\n  background-color: currentColor;\n  box-sizing: border-box;\n  height: 100%;\n  width: 0%;\n}\n";
+
+const MIN = 0;
+const MAX = 100;
+
+/**
+ * @private
+ * @param {*} val - Value to coerce into an Integer
+ * @returns {Integer} Integer value between hard-coded MIN and MAX
+ */
+function _parseValue (val) {
+    // coerce into an Integer
+    let safeVal = Math.round(Number(val) || MIN);
+    // guard upper bound
+    safeVal = safeVal > MAX ? MAX : safeVal;
+    // guard lower bound
+    safeVal = safeVal < MIN ? MIN : safeVal;
+
+    return safeVal;
+}
+
+/**
+ * Defines behavior for the `<hx-progress>` custom element.
+ * @class
+ * @extends HXElement
+ */
+class HXProgressElement extends HXElement {
+    static get is () {
+        return 'hx-progress';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles$6}</style>${shadowMarkup$6}`;
+    }
+
+    connectedCallback () {
+        this.$upgradeProperty('value');
+        this.$defaultAttribute('role', 'progressbar');
+        this.$defaultAttribute('aria-valuemin', MIN);
+        this.$defaultAttribute('aria-valuemax', MAX);
+        this.value = this.value;
+    }
+
+    static get observedAttributes () {
+        return [ 'value' ];
+    }
+
+    attributeChangedCallback (attr, oldVal, newVal) {
+        if (newVal !== oldVal) {
+            if (attr === 'value') {
+                let safeVal = _parseValue(newVal);
+                this._elFill.style.width = `${safeVal}%`;
+                this.setAttribute('aria-valuenow', safeVal);
+            }
+        }
+    }
+
+    /**
+     * Completion percentage
+     * @type {Integer}
+     */
+    get value () {
+        return _parseValue(this.getAttribute('value'));
+    }
+    set value (newVal) {
+        let safeVal = _parseValue(newVal);
+        this.setAttribute('value', safeVal);
+    }
+
+    /**
+     * @private
+     * @type {HTMLElement}
+     */
+    get _elFill () {
+        return this.shadowRoot.getElementById('fill');
+    }
+}//HXBusyElement
+
+/**
+ * Fires when the element's contents are revealed.
+ *
+ * @event Reveal:open
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when the element's contents are disclosed.
+ *
+ * @event Reveal:close
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for an `<hx-reveal>` element.
+ *
+ * @emits Reveal:close
+ * @emits Reveal:open
+ * @extends HXElement
+ * @hideconstructor
+ */
 class HXRevealElement extends HXElement {
     static get is () {
         return 'hx-reveal';
@@ -2245,9 +3017,76 @@ class HXRevealElement extends HXElement {
         }
     }
 
+    /**
+     * Property reflecting the `open` HTML attribute, indicating whether or not
+     * the element's contents should be shown.
+     *
+     * @default false
+     * @type {Boolean}
+     */
     set open (value) {
         if (value) {
             this.setAttribute('open', '');
+        } else {
+            this.removeAttribute('open');
+        }
+    }
+    get open () {
+        return this.hasAttribute('open');
+    }
+}//HXRevealElement
+
+class HXSearchAssistanceElement extends HXElement {
+    static get is () {
+        return 'hx-search-assistance';
+    }
+
+    static get observedAttributes () {
+        return [ 'open' ];
+    }
+
+    attributeChangedCallback (attr, oldVal, newVal) {
+        let isOpen = (newVal !== null);
+        if (newVal !== oldVal) {
+            this.$emit(isOpen ? 'open' : 'close');
+        }
+    }
+
+    connectedCallback () {
+        this.$upgradeProperty('open');
+        this.$upgradeProperty('position');
+        this.$upgradeProperty('relativeTo');
+        this.$defaultAttribute('position', 'bottom-start');
+    }
+
+    set position (value) {
+        if (value) {
+            this.setAttribute('position', value);
+        } else {
+            this.removeAttribute('position');
+        }
+    }
+
+    get position () {
+        return this.getAttribute('position');
+    }
+
+    set relativeTo (value) {
+        this.setAttribute('relative-to', value);
+    }
+
+    get relativeTo () {
+        return this.getAttribute('relative-to');
+    }
+
+    get relativeElement () {
+        return this.getRootNode().getElementById(this.relativeTo);
+    }
+
+    set open (value) {
+        if (value) {
+            this.setAttribute('open', '');
+            this._setPosition();
         } else {
             this.removeAttribute('open');
         }
@@ -2256,30 +3095,28 @@ class HXRevealElement extends HXElement {
     get open () {
         return this.hasAttribute('open');
     }
-}//HXRevealElement
 
-var shadowStyles$6 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  line-height: 1;\n  vertical-align: initial;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  stroke: none;\n}\n:host {\n  display: block;\n  font-size: 1rem;\n  height: 2rem;\n  min-width: 8rem;\n}\n:host #wrapper {\n  display: flex;\n  height: 100%;\n  position: relative;\n}\n:host #icon {\n  color: #757575;\n  flex-shrink: 0;\n  order: 1;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #search {\n  background-color: transparent;\n  border: none;\n  color: #424242;\n  cursor: inherit;\n  flex-grow: 1;\n  font-weight: 400;\n  min-width: 0;\n  order: 2;\n  width: 0;\n  z-index: 1;\n}\n:host #search::-moz-placeholder {\n  color: #757575;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::-ms-input-placeholder {\n  color: #757575;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::-webkit-input-placeholder {\n  color: #757575;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::placeholder {\n  color: #757575;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #search:focus {\n  outline: none;\n}\n:host #search:focus ~ #clear {\n  color: #0e94a6;\n}\n:host #search:focus ~ #customControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #customControl {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #bdbdbd;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 0;\n}\n:host #clear {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 3;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #clear::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #clear:focus {\n  outline: none;\n}\n:host #clear:focus hx-icon {\n  outline-offset: 2px;\n  outline: 1px dotted currentColor;\n}\n:host #clear:focus ~ * {\n  color: #0e94a6;\n}\n:host #clear:focus ~ #customControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host([invalid]) {\n  color: #d32f2f;\n}\n:host([invalid]) #icon,\n:host([invalid]) #clear {\n  color: inherit;\n}\n:host([invalid]) #customControl {\n  border-color: #d32f2f;\n  border-width: 2px;\n}\n:host([invalid]) #clear:focus hx-icon {\n  outline-color: currentColor;\n}\n:host([invalid]) #search:focus ~ #clear {\n  color: #d32f2f;\n}\n:host([invalid]) #clear:focus ~ #customControl,\n:host([invalid]) #search:focus ~ #customControl {\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n  border-color: #d32f2f;\n}\n:host([disabled]) {\n  color: #d8d8d8;\n}\n:host([disabled]) #wrapper {\n  color: inherit;\n  cursor: not-allowed;\n}\n:host([disabled]) #icon {\n  color: inherit;\n}\n:host([disabled]) #clear {\n  display: none;\n}\n:host([disabled]) #search {\n  color: inherit;\n}\n:host([disabled]) #search::-moz-placeholder {\n  color: inherit;\n}\n:host([disabled]) #search::-ms-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #search::-webkit-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #search::placeholder {\n  color: inherit;\n}\n:host([disabled]) #customControl {\n  background-color: #f5f5f5;\n  border-color: #e0e0e0;\n  border-width: 1px;\n}\n";
+    _setPosition () {
+        var offset = getPosition(this, this.relativeElement, {
+            position: this.position,
+            margin: 4,
+        });
+        this.style.top = offset.y + 'px';
+        this.style.left = offset.x + 'px';
+    }
+}//HXSearchAssistanceElement
 
-const tagName$7 = 'hx-search';
-const template$7 = document.createElement('template');
+var shadowStyles$7 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n:host {\n  display: block;\n  font-size: 1rem;\n  height: 2rem;\n  min-width: 8rem;\n}\n:host #wrapper {\n  display: flex;\n  height: 100%;\n  position: relative;\n}\n:host #icon {\n  color: #757575;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 1;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #search {\n  background-color: transparent;\n  border: none;\n  color: #424242;\n  cursor: inherit;\n  flex-grow: 1;\n  font-weight: 400;\n  min-width: 0;\n  order: 2;\n  width: 0;\n  z-index: 1;\n}\n:host #search::-moz-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::-ms-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::-webkit-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #search::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #search:focus {\n  outline: none;\n}\n:host #search:focus ~ #clear {\n  color: #0e94a6;\n}\n:host #search:focus ~ #customControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #customControl {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #bdbdbd;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 0;\n}\n:host #clear {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 3;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #clear::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #clear:focus {\n  outline: none;\n}\n:host #clear:focus hx-icon {\n  outline-offset: 2px;\n  outline: 1px dotted currentColor;\n}\n:host #clear:focus ~ * {\n  color: #0e94a6;\n}\n:host #clear:focus ~ #customControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host([invalid]) {\n  color: #d32f2f;\n}\n:host([invalid]) #icon,\n:host([invalid]) #clear {\n  color: inherit;\n}\n:host([invalid]) #customControl {\n  border-color: #d32f2f;\n  border-width: 2px;\n}\n:host([invalid]) #clear:focus hx-icon {\n  outline-color: currentColor;\n}\n:host([invalid]) #search:focus ~ #clear {\n  color: #d32f2f;\n}\n:host([invalid]) #clear:focus ~ #customControl,\n:host([invalid]) #search:focus ~ #customControl {\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n  border-color: #d32f2f;\n}\n:host([disabled]) {\n  color: #d8d8d8;\n}\n:host([disabled]) #wrapper {\n  color: inherit;\n  cursor: not-allowed;\n}\n:host([disabled]) #icon {\n  color: inherit;\n}\n:host([disabled]) #clear {\n  display: none;\n}\n:host([disabled]) #search {\n  color: inherit;\n}\n:host([disabled]) #search::-moz-placeholder {\n  color: inherit;\n}\n:host([disabled]) #search::-ms-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #search::-webkit-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #search::placeholder {\n  color: inherit;\n}\n:host([disabled]) #customControl {\n  background-color: #f5f5f5;\n  border-color: #e0e0e0;\n  border-width: 1px;\n}\n";
 
-template$7.innerHTML = `
-    <style>${shadowStyles$6}</style>
-    <label id="wrapper">
-        <input type="text" role="search" id="search" autocomplete="off" />
-        <button type="button" id="clear" hidden aria-label="Clear search">
-            <hx-icon type="times"></hx-icon>
-        </button>
-        <div id="icon">
-            <hx-icon type="search"></hx-icon>
-        </div>
-        <div id="customControl"></div>
-    </label>
-`;
+var shadowMarkup$7 = "<label id='wrapper'><input type='text' role='search' id='search' autocomplete='off'> <button type='button' id='clear' hidden aria-label='Clear search'><hx-icon type='times'></hx-icon></button><div id='icon'><hx-icon type='search'></hx-icon></div><div id='customControl'></div></label>";
 
 class HXSearchElement extends HXElement {
     static get is () {
-        return tagName$7;
+        return 'hx-search';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles$7}</style>${shadowMarkup$7}`;
     }
 
     static get observedAttributes () {
@@ -2291,7 +3128,7 @@ class HXSearchElement extends HXElement {
     }
 
     constructor () {
-        super(tagName$7, template$7);
+        super();
         this._elSearch = this.shadowRoot.getElementById('search');
         this._btnClear = this.shadowRoot.getElementById('clear');
 
@@ -2416,86 +3253,6 @@ class HXSearchElement extends HXElement {
     }
 }
 
-class HXSearchAssistanceElement extends HXElement {
-    static get is () {
-        return 'hx-search-assistance';
-    }
-
-    static get observedAttributes () {
-        return [ 'open' ];
-    }
-
-    attributeChangedCallback (attr, oldVal, newVal) {
-        let isOpen = (newVal !== null);
-        if (newVal !== oldVal) {
-            this.$emit(isOpen ? 'open' : 'close');
-        }
-    }
-
-    connectedCallback () {
-        this.$upgradeProperty('open');
-        this.$upgradeProperty('position');
-        this.$upgradeProperty('relativeTo');
-        this.$defaultAttribute('position', 'bottom-start');
-    }
-
-    set position (value) {
-        if (value) {
-            this.setAttribute('position', value);
-        } else {
-            this.removeAttribute('position');
-        }
-    }
-
-    get position () {
-        return this.getAttribute('position');
-    }
-
-    set relativeTo (value) {
-        this.setAttribute('relative-to', value);
-    }
-
-    get relativeTo () {
-        return this.getAttribute('relative-to');
-    }
-
-    get relativeElement () {
-        return this.getRootNode().getElementById(this.relativeTo);
-    }
-
-    set open (value) {
-        if (value) {
-            this.setAttribute('open', '');
-            this._setPosition();
-        } else {
-            this.removeAttribute('open');
-        }
-    }
-
-    get open () {
-        return this.hasAttribute('open');
-    }
-
-    _setPosition () {
-        var offset = getPosition(this, this.relativeElement, {
-            position: this.position,
-            margin: 4,
-        });
-        this.style.top = offset.y + 'px';
-        this.style.left = offset.x + 'px';
-    }
-}//HXSearchAssistanceElement
-
-class HXTabcontentElement extends HXElement {
-    static get is () {
-        return 'hx-tabcontent';
-    }
-
-    connectedCallback () {
-        this.$defaultAttribute('role', 'presentation');
-    }
-}//HXTabcontentElement
-
 class HXTabElement extends HXElement {
     static get is () {
         return 'hx-tab';
@@ -2527,6 +3284,16 @@ class HXTabElement extends HXElement {
         }
     }
 }//HXTabElement
+
+class HXTabcontentElement extends HXElement {
+    static get is () {
+        return 'hx-tabcontent';
+    }
+
+    connectedCallback () {
+        this.$defaultAttribute('role', 'presentation');
+    }
+}//HXTabcontentElement
 
 class HXTablistElement extends HXElement {
     static get is () {
@@ -2731,20 +3498,139 @@ class HXTabsetElement extends HXElement {
     }//_setupIds
 }//HXTabsetElement
 
-var shadowStyles$7 = "* {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#container {\n  padding: 1.25rem;\n}\n";
+var shadowMarkup$8 = "<div id='wrapper'><div id='icon-wrapper'><hx-icon id='icon' type='info-circle'></hx-icon></div><div id='content'><div><slot></slot></div><button id='cta' type='button'></button></div><button id='dismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-const tagName$8 = 'hx-tooltip';
-const template$8 = document.createElement('template');
+var shadowStyles$8 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#wrapper {\n  padding: 0.75rem;\n}\n#cta {\n  background-color: transparent;\n  border-radius: 2px;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  cursor: pointer;\n  font: inherit;\n  font-size: 0.875rem;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 8px 12px;\n}\n#cta {\n  background-color: transparent;\n  border: none;\n  padding-left: 0;\n  padding-right: 0;\n}\n#wrapper {\n  background-color: #ffffff;\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  color: #424242;\n  display: flex;\n  min-height: 3.5rem;\n  position: relative;\n  width: 22rem;\n}\n#wrapper::before,\n#wrapper::after {\n  content: '';\n  display: block;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#wrapper::before {\n  border: 1px solid #e0e0e0;\n}\n#wrapper::after {\n  border-left: 8px solid currentColor;\n}\n#icon-wrapper {\n  align-items: center;\n  display: flex;\n  margin: 0 0.75rem 0 0.5rem;\n}\n#icon-wrapper hx-icon {\n  font-size: 2rem;\n}\n#content {\n  flex-grow: 1;\n  margin-right: 1.5rem;\n  text-align: right;\n  word-wrap: break-word;\n}\n#content div {\n  font-size: 0.875rem;\n  text-align: left;\n}\n#cta {\n  text-transform: uppercase;\n}\n#cta:empty {\n  display: none;\n}\n#dismiss {\n  background-color: transparent;\n  border: 0;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 0.75rem;\n  height: 2.25rem;\n  line-height: 0;\n  margin: 0;\n  padding: 0.75rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 2.25rem;\n}\n:host([type=\"info\"]) #wrapper::after {\n  border-left-color: #3b44a9;\n}\n:host([type=\"info\"]) #icon {\n  color: #3b44a9;\n}\n:host([type=\"error\"]) #wrapper::after {\n  border-left-color: #d32f2f;\n}\n:host([type=\"error\"]) #icon {\n  color: #d32f2f;\n}\n:host([type=\"success\"]) #wrapper::after {\n  border-left-color: #4caf51;\n}\n:host([type=\"success\"]) #icon {\n  color: #4caf51;\n}\n";
 
-template$8.innerHTML = `
-  <style>${shadowStyles$7}</style>
-  <div id="container" class="position-arrow">
-    <slot></slot>
-  </div>`;
+const ICONS$1 = {
+    'error': 'exclamation-circle',
+    'info': 'info-circle',
+    'success': 'checkmark',
+};
+
+class HXToastElement extends HXElement {
+    static get is () {
+        return 'hx-toast';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles$8}</style>${shadowMarkup$8}`;
+    }
+
+    constructor () {
+        super();
+        this._onDismiss = this._onDismiss.bind(this);
+        this._onSubmit = this._onSubmit.bind(this);
+    }
+
+    connectedCallback () {
+        this.$upgradeProperty('cta');
+        this.$upgradeProperty('type');
+
+        this._btnCta.addEventListener('click', this._onSubmit);
+        this._btnDismiss.addEventListener('click', this._onDismiss);
+    }
+
+    disconnectedCallback () {
+        this._btnCta.removeEventListener('click', this._onSubmit);
+        this._btnDismiss.removeEventListener('click', this._onDismiss);
+    }
+
+    static get observedAttributes () {
+        return [
+            'cta',
+            'type',
+        ];
+    }//observedAttributes
+
+    attributeChangedCallback (attr, oldVal, newVal) {
+        let hasValue = (newVal !== null);
+        switch (attr) {
+            case 'cta':
+                this._btnCta.textContent = (hasValue ? newVal : '');
+                break;
+
+            case 'type':
+                if (hasValue) {
+                    this._elIcon.type = (ICONS$1[newVal] || ICONS$1['info']);
+                } else {
+                    this._elIcon.type = ICONS$1['info'];
+                }
+                break;
+        }
+    }//attributeChangedCallback()
+
+    // GETTERS
+    get cta () {
+        return this.getAttribute('cta');
+    }
+
+    get type () {
+        return this.getAttribute('type');
+    }
+
+    // SETTERS
+    set cta (value) {
+        if (value) {
+            this.setAttribute('cta', value);
+        } else {
+            this.removeAttribute('cta');
+        }
+    }
+
+    set type (value) {
+        if (value) {
+            this.setAttribute('type', value);
+        } else {
+            this.removeAttribute('type');
+        }
+    }
+
+    // PUBLIC METHODS
+    dismiss () {
+        this.remove();
+    }
+
+    // PRIVATE METHODS
+    _onDismiss (evt) {
+        evt.preventDefault();
+
+        if (this.$emit('dismiss')) {
+            // only if event was not canceled by consumer
+            this.dismiss();
+        }
+    }
+
+    _onSubmit (evt) {
+        evt.preventDefault();
+        this.$emit('submit');
+    }
+
+    // PRIVATE GETTERS
+    get _elIcon () {
+        return this.shadowRoot.getElementById('icon');
+    }
+
+    get _btnCta () {
+        return this.shadowRoot.getElementById('cta');
+    }
+
+    get _btnDismiss () {
+        return this.shadowRoot.getElementById('dismiss');
+    }
+}
+
+var shadowMarkup$9 = "<div id='container' class='position-arrow'><slot></slot></div>";
+
+var shadowStyles$9 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#container {\n  padding: 1.25rem;\n}\n";
 
 class HXTooltipElement extends HXElement {
     static get is () {
-        return tagName$8;
+        return 'hx-tooltip';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles$9}</style>${shadowMarkup$9}`;
     }
 
     static get observedAttributes () {
@@ -2752,7 +3638,7 @@ class HXTooltipElement extends HXElement {
     }
 
     constructor () {
-        super(tagName$8, template$8);
+        super();
         this._show = this._show.bind(this);
         this._hide = this._hide.bind(this);
         this._toggle = this._toggle.bind(this);
@@ -2895,6 +3781,11 @@ class HXTooltipElement extends HXElement {
     }
 }//HXTooltipElement
 
+/**
+ * Element Class Definitions
+ * @module
+ */
+
 
 
 var elements = Object.freeze({
@@ -2904,29 +3795,41 @@ var elements = Object.freeze({
 	HXBusyElement: HXBusyElement,
 	HXCheckboxElement: HXCheckboxElement,
 	HXDisclosureElement: HXDisclosureElement,
+	HXElement: HXElement,
 	HXErrorElement: HXErrorElement,
 	HXIconElement: HXIconElement,
 	HXMenuElement: HXMenuElement,
 	HXMenuitemElement: HXMenuitemElement,
 	HXModalElement: HXModalElement,
 	HXPopoverElement: HXPopoverElement,
+	HXProgressElement: HXProgressElement,
 	HXRevealElement: HXRevealElement,
-	HXSearchElement: HXSearchElement,
 	HXSearchAssistanceElement: HXSearchAssistanceElement,
-	HXTabcontentElement: HXTabcontentElement,
+	HXSearchElement: HXSearchElement,
 	HXTabElement: HXTabElement,
+	HXTabcontentElement: HXTabcontentElement,
 	HXTablistElement: HXTablistElement,
 	HXTabpanelElement: HXTabpanelElement,
 	HXTabsetElement: HXTabsetElement,
+	HXToastElement: HXToastElement,
 	HXTooltipElement: HXTooltipElement
 });
 
+var version = "0.7.0";
+
+/** @module helix-ui */
+/*
+ * Register element definitions with the Custom Element registry.
+ */
 function _defineElements () {
     for (let attr in elements) {
         elements[attr].$define();
     }
 }
 
+/**
+ * Initialize HelixUI when Web Components are ready.
+ */
 function initialize () {
     if (window.WebComponents) {
         // Polyfill detected
@@ -2945,14 +3848,35 @@ function initialize () {
     }
 }
 
-const DOM = Object.assign({}, elements, { HXElement });
+let [major, minor, patch] = version.split('.').map(Number);
+
+/**
+ * Current version metadata
+ *
+ * ```javascript
+ * console.log(HelixUI.VERSION)            // { major: 0, minor: 1, patch: 2 }
+ * console.log(HelixUI.VERSION.toString()) // "0.1.2"
+ * console.log(`${HelixUI.VERSION}`)       // "0.1.2"
+ * ```
+ *
+ * @type {Object}
+ * @prop {String} version.semver - Semantic version string
+ * @prop {Integer} version.major - Major version number
+ * @prop {Integer} version.minor - Minor version number
+ * @prop {Integer} version.patch - Patch version number
+ */
+const VERSION = {
+    major,
+    minor,
+    patch,
+};
+VERSION.toString = () => { return version };
 
 var HelixUI$1 = {
-    DOM,
+    elements,
     initialize,
+    VERSION,
 };
-
-var version = "0.6.1";
 
 HelixUI$1.VERSION = version;
 

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: elements/HXAlertElement.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: elements/HXAlertElement.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { HXElement } from './HXElement';
+import shadowMarkup from './HXAlertElement.html';
+import shadowStyles from './HXAlertElement.less';
+
+const ICONS = {
+    'error': 'exclamation-circle',
+    'info': 'info-circle',
+    'success': 'checkmark-circle',
+    'warning': 'exclamation-triangle',
+};
+
+/**
+ * Fires when the user triggers the dismiss button.
+ *
+ * @event Alert:dismiss
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when the user triggers the CTA button.
+ *
+ * @event Alert:submit
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for an `&lt;hx-alert>` element.
+ *
+ * @emits Alert:dismiss
+ * @emits Alert:submit
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.6.0
+ */
+export class HXAlertElement extends HXElement {
+    static get is () {
+        return `hx-alert`;
+    }
+
+    static get template () {
+        return `&lt;style>${shadowStyles}&lt;/style>${shadowMarkup}`;
+    }
+
+    $onCreate () {
+        this._onDismiss = this._onDismiss.bind(this);
+        this._onSubmit = this._onSubmit.bind(this);
+    }
+
+    $onConnect () {
+        this.$upgradeProperty('cta');
+        this.$upgradeProperty('static');
+        this.$upgradeProperty('status');
+        this.$upgradeProperty('type');
+
+        this._btnCta.addEventListener('click', this._onSubmit);
+        this._btnDismiss.addEventListener('click', this._onDismiss);
+    }
+
+    $onDisconnect () {
+        this._btnCta.removeEventListener('click', this._onSubmit);
+        this._btnDismiss.removeEventListener('click', this._onDismiss);
+    }
+
+    static get $observedAttributes () {
+        return [
+            'cta',
+            'static',
+            'status',
+            'type',
+        ];
+    }//$observedAttributes
+
+    $onAttributeChange (attr, oldVal, newVal) {
+        let hasValue = (newVal !== null);
+        switch (attr) {
+            case 'cta':
+                this._btnCta.textContent = (hasValue ? newVal : '');
+                break;
+
+            case 'status':
+                this._elStatus.textContent = (hasValue ? newVal : '');
+                break;
+
+            case 'type':
+                if (hasValue) {
+                    this._elIcon.type = (ICONS[newVal] || ICONS['info']);
+                } else {
+                    this._elIcon.type = ICONS['info'];
+                }
+                break;
+        }
+    }//$onAttributeChange()
+
+    /**
+     * Text for the Call To Action button.
+     * If blank, the button will not be shown.
+     *
+     * @default ""
+     * @type {String}
+     */
+    get cta () {
+        return this.getAttribute('cta');
+    }
+    set cta (value) {
+        if (value) {
+            this.setAttribute('cta', value);
+        } else {
+            this.removeAttribute('cta');
+        }
+    }
+
+    /**
+     * Property reflectin the `static` HTML attribute, indicating whether the
+     * alert may be dismissed. If true, the dismiss button will not be shown.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get static () {
+        return this.hasAttribute('static');
+    }
+    set static (value) {
+        if (value) {
+            this.setAttribute('static', ''); // boolean
+        } else {
+            this.removeAttribute('static');
+        }
+    }
+
+    /**
+     * Status text to display before the alert message.
+     * If blank, it will not be shown.
+     *
+     * @default ""
+     * @type {String}
+     */
+    get status () {
+        return this.getAttribute('status');
+    }
+    set status (value) {
+        if (value) {
+            this.setAttribute('status', value);
+        } else {
+            this.removeAttribute('status');
+        }
+    }
+
+    /**
+     * Indicates the type of alert to display.
+     * Valid values are "info", "success", "warning", and "error".
+     *
+     * @default "info"
+     * @type {String}
+     */
+    get type () {
+        return this.getAttribute('type');
+    }
+    set type (value) {
+        if (value) {
+            this.setAttribute('type', value);
+        } else {
+            this.removeAttribute('type');
+        }
+    }
+
+    /**
+     * Programmatically dismiss the alert (removes element from the DOM).
+     */
+    dismiss () {
+        this.remove();
+    }
+
+    /** @private */
+    _onDismiss (evt) {
+        evt.preventDefault();
+
+        if (this.$emit('dismiss')) {
+            // only if event was not canceled by consumer
+            this.dismiss();
+        }
+    }
+
+    /** @private */
+    _onSubmit (evt) {
+        evt.preventDefault();
+        this.$emit('submit');
+    }
+
+    /** @private */
+    get _elIcon () {
+        return this.shadowRoot.getElementById('icon');
+    }
+
+    /** @private */
+    get _elStatus () {
+        return this.shadowRoot.getElementById('status');
+    }
+
+    /** @private */
+    get _btnCta () {
+        return this.shadowRoot.getElementById('cta');
+    }
+
+    /** @private */
+    get _btnDismiss () {
+        return this.shadowRoot.getElementById('dismiss');
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-elements.html">elements</a></li><li><a href="module-helix-ui.html">helix-ui</a></li><li><a href="module-util.html">util</a></li><li><a href="module-util_keys.html">util/keys</a></li><li><a href="module-util_position.html">util/position</a></li><li><a href="module-util_position_offsetFunctions.html">util/position/offsetFunctions</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed May 09 2018 14:37:36 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

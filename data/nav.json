@@ -82,6 +82,10 @@
         "path": "popovers"
       },
       {
+        "label": "Progress",
+        "path": "progress"
+      },
+      {
         "label": "Reveals",
         "path": "reveals"
       },
@@ -104,6 +108,10 @@
       {
         "label": "Text Inputs",
         "path": "text-inputs"
+      },
+      {
+        "label": "Toasts",
+        "path": "toasts"
       },
       {
         "label": "Tooltips",
@@ -224,6 +232,10 @@
         "path": "hx-popover-head"
       },
       {
+        "label": "<hx-progress>",
+        "path": "hx-progress"
+      },
+      {
         "label": "<hx-reveal>",
         "path": "hx-reveal"
       },
@@ -270,6 +282,10 @@
       {
         "label": "<hx-tile-title>",
         "path": "hx-tile-title"
+      },
+      {
+        "label": "<hx-toast>",
+        "path": "hx-toast"
       },
       {
         "label": "<hx-tooltip>",

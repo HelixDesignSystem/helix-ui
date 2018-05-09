@@ -164,6 +164,12 @@
 
 
       
+      <a href="components/progress" >
+    Progress
+  </a>
+
+
+      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -196,6 +202,12 @@
       
       <a href="components/text-inputs" >
     Text Inputs
+  </a>
+
+
+      
+      <a href="components/toasts" >
+    Toasts
   </a>
 
 
@@ -381,6 +393,12 @@ class="current">
 
 
       
+      <a href="elements/hx-progress" >
+    &lt;hx-progress&gt;
+  </a>
+
+
+      
       <a href="elements/hx-reveal" >
     &lt;hx-reveal&gt;
   </a>
@@ -453,6 +471,12 @@ class="current">
 
 
       
+      <a href="elements/hx-toast" >
+    &lt;hx-toast&gt;
+  </a>
+
+
+      
       <a href="elements/hx-tooltip" >
     &lt;hx-tooltip&gt;
   </a>
@@ -518,24 +542,20 @@ class="current">
   <section>
     <h2 id="methods">Methods</h2>
     <dl>
-      <dt><code>nextPanel()</code></dt>
+      <dt>nextPanel()</dt>
       <dd>
         Opens the next sibling panel.
         <br />
-        <small>
-          <hx-icon type="exclamation-triangle"></hx-icon>
-          Requires the <code>current-panel</code> attribute to be present.</em>
-        </small>
+        <hx-icon type="exclamation-triangle"></hx-icon>
+        Requires the <code>current-panel</code> attribute to be present.
       </dd>
 
-      <dt><code>previousPanel()</code></dt>
+      <dt>previousPanel()</dt>
       <dd>
         Opens the previous sibling panel.
         <br />
-        <small>
-          <hx-icon type="exclamation-triangle"></hx-icon>
-          Requires the <code>current-panel</code> attribute to be present.</em>
-        </small>
+        <hx-icon type="exclamation-triangle"></hx-icon>
+        Requires the <code>current-panel</code> attribute to be present.
       </dd>
     </dl>
   </section>
@@ -548,12 +568,9 @@ class="current">
         declarative manner via markup.
       </p>
   <dl>
-    <dt>
-      <code>current-panel</code>
-      <small>{Number} <i>(optional)</i></small>
-    </dt>
+    <dt>current-panel {Number} <i>(optional)</i></dt>
     <dd>
-      <small><i>(optional)</i></small>
+      <i>(optional)</i>
       Zero-based index of the panel you wish to open. For example, a value
       of "0" will open the first panel, "1" will open the second, etc.).
       If omitted, any number of panels can be opened at once.
@@ -569,20 +586,14 @@ class="current">
         imperative manner via JavaScript.
       </p>
   <dl>
-    <dt>
-      <code>currentPanel</code>
-      <small>{Number}</small>
-    </dt>
+    <dt>currentPanel {Number}</dt>
     <dd>
       Manipulates the <code>current-panel</code> attribute
     </dd>
 
-    <dt>
-      <code>panels</code>
-      <small>{Array&lt;Element&gt;}</small>
-    </dt>
+    <dt>panels {Array&lt;Element&gt;}</dt>
     <dd>
-      <small><i>(read-only)</i></small>
+      <i>(read-only)</i>
       Returns an array of live <code>&lt;hx-accordion-panel&gt;</code> elements.
     </dd>
   </dl>
@@ -626,10 +637,14 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-04-12
+      2018-05-08
     </small>
 
-  <small>(v0.6.1)</small>
+  <small>
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.7.0" target="_blank">
+      v0.7.0
+    </a>)
+  </small>
 </div>
   </footer>
 

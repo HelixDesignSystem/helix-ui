@@ -164,6 +164,12 @@
 
 
       
+      <a href="components/progress" >
+    Progress
+  </a>
+
+
+      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -196,6 +202,12 @@
       
       <a href="components/text-inputs" >
     Text Inputs
+  </a>
+
+
+      
+      <a href="components/toasts" >
+    Toasts
   </a>
 
 
@@ -381,6 +393,12 @@ class="current">
 
 
       
+      <a href="elements/hx-progress" >
+    &lt;hx-progress&gt;
+  </a>
+
+
+      
       <a href="elements/hx-reveal" >
     &lt;hx-reveal&gt;
   </a>
@@ -453,6 +471,12 @@ class="current">
 
 
       
+      <a href="elements/hx-toast" >
+    &lt;hx-toast&gt;
+  </a>
+
+
+      
       <a href="elements/hx-tooltip" >
     &lt;hx-tooltip&gt;
   </a>
@@ -478,8 +502,14 @@ class="current">
     <p>
       The custom <code>&lt;hx-tabpanel&gt;</code> element provides automatic
       scrolling when content is too long to fit within a height-constrained
-      tabset. It is usually accompanied by a companion
+      tabset. It should be accompanied by a companion
       <a href="elements/hx-tab">&lt;hx-tab&gt;</a> element.
+    </p>
+    <p>
+      <small class="hxSubdued">
+        <hx-icon type="info-circle"></hx-icon>
+        The element is named after the accessible <code>tabpanel</code> role.
+      </small>
     </p>
 
     <hx-dl class="hxBox-md metadata">
@@ -514,27 +544,37 @@ class="current">
         declarative manner via markup.
       </p>
   <dl>
-    <dt>aria-expanded <small>{String="top"}</small></dt>
+    <dt>aria-expanded {String="false"}</dt>
     <dd>
-      Automatically set as the <code>open</code> attribute/property changes.
+      <p>
+        Automatically set as the <code>open</code> attribute/property changes.
+      </p>
     </dd>
 
-    <dt>id</dt>
+    <dt>id {String}</dt>
     <dd>
-      Used by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a> to
-      wire up a tab to its tabpanel using the <code>aria-controls</code> and
-      <code>aria-labelledby</code> attributes. If you do not define an
-      <code>id</code> attribute, one will be automatically generated.
+      <p>
+        Used by <a href="elements/hx-tabset">&lt;hx-tabset&gt;</a> to
+        wire up a tab to its tabpanel using the <code>aria-controls</code> and
+        <code>aria-labelledby</code> attributes.
+      </p>
+      <p>
+        Automatically generated, if not explicitly defined in markup.
+      </p>
     </dd>
 
-    <dt>open</dt>
+    <dt>open {Boolean}</dt>
     <dd>
-      When present, contents are visible.
+      <p>
+        When present, contents are visible.
+      </p>
     </dd>
 
-    <dt>role</dt>
+    <dt>role {String="tabpanel"}</dt>
     <dd>
-      Automatically set to <code>tabpanel</code>, if not explicitly defined in markup.
+      <p>
+        Automatically set to <code>tabpanel</code>, if not explicitly defined in markup.
+      </p>
     </dd>
   </dl>
     </section>
@@ -590,10 +630,14 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-04-12
+      2018-04-25
     </small>
 
-  <small>(v0.6.1)</small>
+  <small>
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.7.0" target="_blank">
+      v0.7.0
+    </a>)
+  </small>
 </div>
   </footer>
 
