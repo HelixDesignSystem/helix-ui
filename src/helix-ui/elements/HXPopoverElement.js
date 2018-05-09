@@ -1,23 +1,16 @@
 import { HXElement } from './HXElement';
 import { getPositionWithArrow } from '../util';
 import debounce from 'lodash/debounce';
+import shadowMarkup from './HXPopoverElement.html';
 import shadowStyles from './HXPopoverElement.less';
-
-const tagName = 'hx-popover';
-const template = document.createElement('template');
-
-template.innerHTML = `
-  <style>${shadowStyles}</style>
-  <div class="position-arrow">
-    <div id="container">
-      <slot></slot>
-    </div>
-  </div>
-`;
 
 export class HXPopoverElement extends HXElement {
     static get is () {
-        return tagName;
+        return 'hx-popover';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
     static get observedAttributes () {
@@ -25,7 +18,7 @@ export class HXPopoverElement extends HXElement {
     }
 
     constructor () {
-        super(tagName, template);
+        super();
         this._toggle = this._toggle.bind(this);
         this._setPosition = this._setPosition.bind(this);
         this._closeOnBackdropClick = this._closeOnBackdropClick.bind(this);

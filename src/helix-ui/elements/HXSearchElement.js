@@ -1,26 +1,14 @@
 import { HXElement } from './HXElement';
 import shadowStyles from './HXSearchElement.less';
-
-const tagName = 'hx-search';
-const template = document.createElement('template');
-
-template.innerHTML = `
-    <style>${shadowStyles}</style>
-    <label id="wrapper">
-        <input type="text" role="search" id="search" autocomplete="off" />
-        <button type="button" id="clear" hidden aria-label="Clear search">
-            <hx-icon type="times"></hx-icon>
-        </button>
-        <div id="icon">
-            <hx-icon type="search"></hx-icon>
-        </div>
-        <div id="customControl"></div>
-    </label>
-`;
+import shadowMarkup from './HXSearchElement.html';
 
 export class HXSearchElement extends HXElement {
     static get is () {
-        return tagName;
+        return 'hx-search';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
     static get observedAttributes () {
@@ -32,7 +20,7 @@ export class HXSearchElement extends HXElement {
     }
 
     constructor () {
-        super(tagName, template);
+        super();
         this._elSearch = this.shadowRoot.getElementById('search');
         this._btnClear = this.shadowRoot.getElementById('clear');
 

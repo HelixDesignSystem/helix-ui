@@ -1,23 +1,15 @@
 import { HXElement } from './HXElement';
 import { KEYS } from '../util';
+import shadowMarkup from './HXModalElement.html';
 import shadowStyles from './HXModalElement.less';
-
-const tagName = 'hx-modal';
-const template = document.createElement('template');
-
-template.innerHTML = `
-  <style>${shadowStyles}</style>
-  <div id="container">
-    <button type="button" id="close">
-      <hx-icon type="times"></hx-icon>
-    </button>
-    <slot></slot>
-  </div>
-`;
 
 export class HXModalElement extends HXElement {
     static get is () {
-        return tagName;
+        return 'hx-modal';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
     static get observedAttributes () {
@@ -25,7 +17,7 @@ export class HXModalElement extends HXElement {
     }
 
     constructor () {
-        super(tagName, template);
+        super();
         this._close = this._close.bind(this);
         this._keyUp = this._keyUp.bind(this);
     }

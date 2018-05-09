@@ -1,20 +1,16 @@
 import { HXElement } from './HXElement';
 import { getPositionWithArrow } from '../util';
 import debounce from 'lodash/debounce';
+import shadowMarkup from './HXTooltipElement.html';
 import shadowStyles from './HXTooltipElement.less';
-
-const tagName = 'hx-tooltip';
-const template = document.createElement('template');
-
-template.innerHTML = `
-  <style>${shadowStyles}</style>
-  <div id="container" class="position-arrow">
-    <slot></slot>
-  </div>`;
 
 export class HXTooltipElement extends HXElement {
     static get is () {
-        return tagName;
+        return 'hx-tooltip';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
     static get observedAttributes () {
@@ -22,7 +18,7 @@ export class HXTooltipElement extends HXElement {
     }
 
     constructor () {
-        super(tagName, template);
+        super();
         this._show = this._show.bind(this);
         this._hide = this._hide.bind(this);
         this._toggle = this._toggle.bind(this);
