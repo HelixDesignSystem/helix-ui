@@ -78,7 +78,7 @@ also:
 
                   <!-- version/deprecation -->
                   <hx-error v-if="icon.deprecated" class="hxSubBody">
-                    Deprecated
+                    Deprecated (use "{{icon.replacement}}")
                   </hx-error>
                   <span v-else>
                     <small v-if="icon.minver" class="hxSubdued">Added: v{{icon.minver}}</small>

@@ -19,7 +19,6 @@ import _envelope from './icons/envelope.svg';
 import _exclamationCircle from './icons/exclamation-circle.svg';
 import _exclamationDiamond from './icons/exclamation-diamond.svg';
 import _exclamationTriangle from './icons/exclamation-triangle.svg';
-import _export from './icons/export.svg';
 import _externalLink from './icons/external-link.svg';
 import _file from './icons/file.svg';
 import _filter from './icons/filter.svg';
@@ -74,6 +73,7 @@ import _ticketing from './icons/ticketing.svg';
 import _times from './icons/times.svg';
 import _timesCircle from './icons/times-circle.svg';
 import _trash from './icons/trash.svg';
+import _upload from './icons/upload.svg';
 import _user from './icons/user.svg';
 
 const MAP = {
@@ -98,7 +98,6 @@ const MAP = {
     'exclamation-circle': _exclamationCircle,
     'exclamation-diamond': _exclamationDiamond,
     'exclamation-triangle': _exclamationTriangle,
-    'export': _export,
     'external-link': _externalLink,
     'file': _file,
     'filter': _filter,
@@ -153,10 +152,12 @@ const MAP = {
     'times': _times,
     'times-circle': _timesCircle,
     'trash': _trash,
+    'upload': _upload,
     'user': _user,
 };
 
 // DEPRECATED: remove in v1.0.0
+MAP['export'] = MAP['upload'];
 MAP['input-url'] = MAP['globe'];
 MAP['technical-change'] = MAP['server-config'];
 MAP['technical-incident'] = MAP['server-incident'];
