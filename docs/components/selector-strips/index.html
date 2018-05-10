@@ -1,0 +1,112 @@
+---
+title: Selector Strips
+---
+{% extends 'component.njk' %}
+{% block content %}
+
+<section>
+  <h2 id="multi-select">Multi-Select</h2>
+  <p>a.k.a. "checkbox strip"<p>
+  <div class="demo">
+    <div class="hxSelector">
+      <label>
+        <input type="checkbox" name="a" />
+        <span>a</span>
+      </label>
+      <label>
+        <input type="checkbox" name="b" checked />
+        <span>b</span>
+      </label>
+      <label>
+        <input type="checkbox" name="c" disabled />
+        <span>c</span>
+      </label>
+      <label>
+        <input type="checkbox" name="d" invalid />
+        <span>d</span>
+      </label>
+      <label>
+        <input type="checkbox" name="e" invalid checked />
+        <span>e</span>
+      </label>
+    </div>
+  </div>
+  {% code 'text' %}
+    <div class="hxSelector">
+      <label>
+        <input type="checkbox" name="a" />
+        <span>a</span>
+      </label>
+      <label>
+        <input type="checkbox" name="b" checked />
+        <span>b</span>
+      </label>
+      <label>
+        <input type="checkbox" name="c" disabled />
+        <span>c</span>
+      </label>
+      <label>
+        <input type="checkbox" name="d" invalid />
+        <span>d</span>
+      </label>
+      <label>
+        <input type="checkbox" name="e" invalid checked />
+        <span>e</span>
+      </label>
+    </div>
+  {% endcode %}
+</section>
+
+<section>
+  <h2 id="single-select">Single-Select</h2>
+  <p>a.k.a. "radio strip"<p>
+  <div class="demo">
+    <div class="hxSelector hxRadio">
+      <label>
+        <input type="radio" name="foo" checked />
+        <span>1</span>
+      </label>
+      <label>
+        <input type="radio" name="foo" />
+        <span>2</span>
+      </label>
+      <label>
+        <input type="radio" name="foo" disabled />
+        <span>3</span>
+      </label>
+      <label>
+        <input type="radio" name="foo" />
+        <span>4</span>
+      </label>
+      <label>
+        <input type="radio" name="foo" />
+        <span>5</span>
+      </label>
+    </div>
+  </div>
+  {% code 'text' %}
+  <div class="hxSelector hxRadio">
+    <label>
+      <input type="radio" name="foo" checked />
+      <span>1</span>
+    </label>
+    <label>
+      <input type="radio" name="foo" />
+      <span>2</span>
+    </label>
+    <label>
+      <input type="radio" name="foo" disabled />
+      <span>3</span>
+    </label>
+    <label>
+      <input type="radio" name="foo" />
+      <span>4</span>
+    </label>
+    <label>
+      <input type="radio" name="foo" />
+      <span>5</span>
+    </label>
+  </div>
+  {% endcode %}
+</section>
+{% endblock %}
