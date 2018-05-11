@@ -1,0 +1,39 @@
+@import "./HXElement";
+@import "elements/hx-icon";
+
+button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+#wrapper {
+  background-color: @gray-400;
+  border-radius: 1em; 
+  color: @gray-900;
+  padding: 0 1rem;
+  white-space: nowrap;
+}
+
+#dismiss {
+  color: @gray-600;
+  display: none;
+  height: 1.5em;
+  margin: 0 -0.5rem 0 0;
+  width: 1.5em;
+  
+  hx-icon {
+    font-size: 0.75em;
+  }
+
+  &:hover {
+    color: @gray-1000;
+  }
+}
+
+:host([dismissable]) {
+  #dismiss {
+    display: inline-block;
+  }
+}
