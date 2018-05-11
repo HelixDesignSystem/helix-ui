@@ -1,10 +1,11 @@
 import { HXElement } from './HXElement';
 
 /**
- * Defines behavior for an `<hx-busy>` element.
+ * Defines behavior for the `<hx-busy>` element.
  *
  * @extends HXElement
  * @hideconstructor
+ * @since 0.4.0
  */
 export class HXBusyElement extends HXElement {
     static get is () {
@@ -36,4 +37,4 @@ export class HXBusyElement extends HXElement {
             this.removeAttribute('paused');
         }
     }
-}//HXBusyElement
+}

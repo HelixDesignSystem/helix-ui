@@ -1,26 +1,29 @@
 import { HXElement } from './HXElement';
 
 /**
+ * Fires when the element's contents are concealed.
+ *
+ * @event Reveal:close
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
  * Fires when the element's contents are revealed.
  *
  * @event Reveal:open
+ * @since 0.6.0
  * @type {CustomEvent}
  */
 
 /**
- * Fires when the element's contents are disclosed.
- *
- * @event Reveal:close
- * @type {CustomEvent}
- */
-
-/**
- * Defines behavior for an `<hx-reveal>` element.
+ * Defines behavior for the `<hx-reveal>` element.
  *
  * @emits Reveal:close
  * @emits Reveal:open
  * @extends HXElement
  * @hideconstructor
+ * @since 0.2.0
  */
 export class HXRevealElement extends HXElement {
     static get is () {
@@ -62,4 +65,4 @@ export class HXRevealElement extends HXElement {
     get open () {
         return this.hasAttribute('open');
     }
-}//HXRevealElement
+}

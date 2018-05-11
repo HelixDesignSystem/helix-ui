@@ -4,6 +4,29 @@ import debounce from 'lodash/debounce';
 import shadowMarkup from './HXPopoverElement.html';
 import shadowStyles from './HXPopoverElement.less';
 
+/**
+ * Fires when the element is concealed.
+ *
+ * @event Popover:close
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when the element is revealed.
+ *
+ * @event Popover:open
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for the `<hx-popover>` element.
+ *
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.2.0
+ */
 export class HXPopoverElement extends HXElement {
     static get is () {
         return 'hx-popover';

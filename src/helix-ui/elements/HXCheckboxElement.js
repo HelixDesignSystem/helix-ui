@@ -4,7 +4,7 @@ import shadowMarkup from './HXCheckboxElement.html';
 import shadowStyles from './HXCheckboxElement.less';
 
 /**
- * Fires when the checked state changes
+ * Fires when the element's `checked` state changes
  *
  * @event Checkbox:change
  * @since 0.1.8
@@ -12,9 +12,8 @@ import shadowStyles from './HXCheckboxElement.less';
  */
 
 /**
- * Defines behavior for an `<hx-checkbox>` element.
+ * Defines behavior for the `<hx-checkbox>` element.
  *
- * @class
  * @emits Checkbox:change
  * @extends HXElement
  * @hideconstructor
@@ -118,4 +117,4 @@ export class HXCheckboxElement extends HXElement {
     get _input () {
         return this.shadowRoot.getElementById('nativeControl');
     }
-}//HXCheckboxElement
+}

@@ -4,6 +4,31 @@ import debounce from 'lodash/debounce';
 import shadowMarkup from './HXTooltipElement.html';
 import shadowStyles from './HXTooltipElement.less';
 
+/**
+ * Fires when the element's contents are concealed.
+ *
+ * @event Tooltip:close
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when the element's contents are revealed.
+ *
+ * @event Tooltip:open
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for the `<hx-tooltip>` element.
+ *
+ * @emits Tooltip:close
+ * @emits Tooltip:open
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.2.0
+ */
 export class HXTooltipElement extends HXElement {
     static get is () {
         return 'hx-tooltip';
@@ -159,4 +184,4 @@ export class HXTooltipElement extends HXElement {
     get open () {
         return this.hasAttribute('open');
     }
-}//HXTooltipElement
+}
