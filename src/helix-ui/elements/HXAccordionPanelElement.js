@@ -3,15 +3,7 @@ import shadowMarkup from './HXAccordionPanelElement.html';
 import shadowStyles from './HXAccordionPanelElement.less';
 
 /**
- * Fires when contents of the accordion panel are revealed.
- *
- * @event AccordionPanel:open
- * @since 0.4.0
- * @type {CustomEvent}
- */
-
-/**
- * Fires when contents of the accordion panel are disclosed.
+ * Fires when the element's contents are concealed.
  *
  * @event AccordionPanel:close
  * @since 0.6.0
@@ -19,7 +11,15 @@ import shadowStyles from './HXAccordionPanelElement.less';
  */
 
 /**
- * Defines behavior for an `<hx-accordion-panel>` element.
+ * Fires when the element's contents are revealed.
+ *
+ * @event AccordionPanel:open
+ * @since 0.4.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for the `<hx-accordion-panel>` element.
  *
  * @emits AccordionPanel:close
  * @emits AccordionPanel:open

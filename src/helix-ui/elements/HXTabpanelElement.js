@@ -1,5 +1,30 @@
 import { HXElement } from './HXElement';
 
+/**
+ * Fires when the element's contents are concealed.
+ *
+ * @event Tabpanel:close
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when the element's contents are revealed.
+ *
+ * @event Tabpanel:open
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for the `<hx-tabpanel>` element.
+ *
+ * @emits Tabpanel:close
+ * @emits Tabpanel:open
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.2.0
+ */
 export class HXTabpanelElement extends HXElement {
     static get is () {
         return 'hx-tabpanel';
@@ -37,4 +62,4 @@ export class HXTabpanelElement extends HXElement {
             this.removeAttribute('open');
         }
     }
-}//HXTabpanelElement
+}

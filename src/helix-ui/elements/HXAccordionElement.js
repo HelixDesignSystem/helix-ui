@@ -9,7 +9,7 @@ import { HXElement } from './HXElement';
  */
 
 /**
- * Defines behavior for an `<hx-accordion>` element.
+ * Defines behavior for the `<hx-accordion>` element.
  *
  * @emits Accordion:panelchange
  * @extends HXElement
@@ -140,4 +140,4 @@ export class HXAccordionElement extends HXElement {
             });
         }
     }
-}//HXAccordionElement
+}
