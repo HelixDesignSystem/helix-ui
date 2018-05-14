@@ -17,6 +17,7 @@ import { KEYS } from '../util';
  * @extends external:HTMLElement
  * @hideconstructor
  * @requires util
+ * @since 0.2.0
  */
 export class HXElement extends HTMLElement {
     /**
@@ -319,4 +320,4 @@ export class HXElement extends HTMLElement {
             this.removeAttribute('disabled');
         }
     }
-}//HXElement
+}

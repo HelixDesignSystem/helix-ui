@@ -10,7 +10,7 @@ const ICONS = {
 };
 
 /**
- * Fires when the user triggers the dismiss button.
+ * Fires when the dismiss button ("X") is pressed.
  *
  * @event Alert:dismiss
  * @since 0.6.0
@@ -18,7 +18,7 @@ const ICONS = {
  */
 
 /**
- * Fires when the user triggers the CTA button.
+ * Fires when the CTA button is pressed.
  *
  * @event Alert:submit
  * @since 0.6.0
@@ -26,7 +26,7 @@ const ICONS = {
  */
 
 /**
- * Defines behavior for an `<hx-alert>` element.
+ * Defines behavior for the `<hx-alert>` element.
  *
  * @emits Alert:dismiss
  * @emits Alert:submit

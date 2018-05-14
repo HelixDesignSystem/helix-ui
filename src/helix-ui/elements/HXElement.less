@@ -1,12 +1,14 @@
 @import (reference) "vars";
 
-*, *::before, *::after {
-  box-sizing: border-box;
+//* ========== MIXINS ========== */
+// TODO: update shadow css to explicitly call this mixin when needed
+.inheritTypography() {
   color: inherit;
   font: inherit;
   letter-spacing: inherit;
 }
 
-input::-ms-clear {
-  display: none;
+//* ========== COMMON ========== */
+*, *::before, *::after {
+  box-sizing: border-box;
 }

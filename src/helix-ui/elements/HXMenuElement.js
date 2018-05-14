@@ -1,6 +1,31 @@
 import { HXElement } from './HXElement';
 import { getPosition } from '../util';
 
+/**
+ * Fires when the element is concealed.
+ *
+ * @event Menu:close
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when the element is revealed.
+ *
+ * @event Menu:open
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for the `<hx-menu>` element.
+ *
+ * @emits Menu:close
+ * @emits Menu:open
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.2.0
+ */
 export class HXMenuElement extends HXElement {
     static get is () {
         return 'hx-menu';
@@ -110,4 +135,4 @@ export class HXMenuElement extends HXElement {
             this.open = false;
         }
     }
-}//HXMenuElement
+}

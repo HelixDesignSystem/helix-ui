@@ -3,6 +3,31 @@ import { KEYS } from '../util';
 import shadowMarkup from './HXModalElement.html';
 import shadowStyles from './HXModalElement.less';
 
+/**
+ * Fires when the element is concealed.
+ *
+ * @event Modal:close
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when the element is revealed.
+ *
+ * @event Modal:open
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for the `<hx-modal>` element.
+ *
+ * @emits Modal:close
+ * @emits Modal:open
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.2.1
+ */
 export class HXModalElement extends HXElement {
     static get is () {
         return 'hx-modal';
