@@ -9,7 +9,7 @@ hx-option-tile {
   background-color: @gray-0;
   border-radius: 2px;
   border: solid 1px @gray-400;
-  color: @gray-900;
+  color: @gray-700;
   height: 100%;
   padding: 1.25rem;
   text-align: center;
@@ -17,12 +17,13 @@ hx-option-tile {
 
   // ICON
   hx-icon {
-    color: @gray-700;
+    //color: @gray-700;
     font-size: 1.75rem;
   }
 
   // TITLE
   header {
+    color: @gray-900;
     font-size: 1rem;
     font-weight: 700;
     margin: 0.5rem 0 0;
@@ -30,6 +31,7 @@ hx-option-tile {
 
   // DESCRIPTION
   p {
+    color: @gray-900;
     font-size: 0.75rem;
     margin-top: 0.5rem;
   }
@@ -52,27 +54,17 @@ hx-option-tile {
   }
 }//hx-option-tile
 
-input:focus + hx-option-tile {
-  box-shadow: @focus-glow;
-}
 
-/* ========== SUBDUED ========== */
-hx-option-tile.hxSubdued {
-  opacity: 0.7;
-}
-hx-option-tile:hover.hxSubdued,
-input:focus + hx-option-tile.hxSubdued,
-input[disabled] + hx-option-tile.hxSubdued,
-input:checked + hx-option-tile.hxSubdued,
-input[invalid] + hx-option-tile.hxSubdued {
-  opacity: 1 ;
-}
+//* ========== In option group ========== */
 
-/* ========== In option group ========== */
 .hxOption {
   input {
     #Mix.hideInput();
     #Mix.resetFocus();
+
+    &:focus + hx-option-tile {
+      box-shadow: @focus-glow;
+    }
 
     &:checked {
       + hx-option-tile {
@@ -125,17 +117,46 @@ input[invalid] + hx-option-tile.hxSubdued {
         background-color: @gray-25;
         border-color: @gray-300;
         border-width: 1px;
-        color: @gray-700;
+        color: @gray-500;
         cursor: not-allowed;
 
+        header,
         p {
-          color: inherit;
-        }
-
-        hx-icon {
-          color: @gray-500;
+          color: @gray-700;
         }
       }
     }//[disabled]
   }//input
+
+  /* ========== SUBDUED ========== */
+  hx-option-tile.hxSubdued {
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  input:focus,
+  input[disabled],
+  input:checked,
+  input[invalid] {
+    & + hx-option-tile.hxSubdued {
+      opacity: 1 ;
+    }
+  }
 }//.hxOption
+
+
+// Use ShadyDOM hierarchy for IE
+.hxOption input:checked + hx-option-tile #tick.hx-option-tile {
+  display: block;
+}
+
+// Use a custom property to set the display of the
+// checkmark in the Shadow DOM.
+@supports (--ans: 42) {
+  .hxOption input:checked + hx-option-tile {
+    --tick-display: block;
+  }
+}

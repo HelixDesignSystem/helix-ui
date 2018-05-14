@@ -1,6 +1,6 @@
 import Util from '../../_util';
 
-if (document.getElementById('vue-choiceDemo')) {
+if (document.getElementById('vue-optionTileDemo')) {
     const SIZES = [
         { value: 'hxSm', label: 'Small' },
         { value: '', label: 'Default' },
@@ -8,7 +8,7 @@ if (document.getElementById('vue-choiceDemo')) {
     ];
 
     new Vue({
-        el: '#vue-choiceDemo',
+        el: '#vue-optionTileDemo',
         data: {
             description: 'A couple of descriptive lines or a small bit of help text.',
             isChecked: false,

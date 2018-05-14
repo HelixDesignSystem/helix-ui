@@ -1,0 +1,85 @@
+@import (reference) 'components/option-tiles';
+
+.option-tile-demo {
+  //* ----- HOVERS ----- */
+  hx-option-tile.pseudo-hover {
+    &:extend(hx-option-tile:hover);
+
+    &.hxSubdued {
+      &:extend(.hxOption hx-option-tile.hxSubdued:hover all);
+    }
+  }
+
+  input {
+    // :focus
+    &.pseudo-focus + hx-option-tile {
+      &:extend(.hxOption input:focus + hx-option-tile all);
+
+      // :focus + subdued
+      &.hxSubdued {
+        &:extend(.hxOption input:focus + hx-option-tile.hxSubdued all);
+      }
+    }
+
+    &:checked {
+      // :hover
+      + hx-option-tile.pseudo-hover {
+        &:extend(.hxOption input:checked + hx-option-tile:hover all);
+      }
+
+      // :focus
+      &.pseudo-focus + hx-option-tile {
+        &:extend(.hxOption input:checked:focus + hx-option-tile all);
+      }
+    }
+
+    &[invalid] {
+      // :hover
+      + hx-option-tile.pseudo-hover {
+        &:extend(.hxOption input[invalid] + hx-option-tile:hover all);
+      }
+
+      // :focus
+      &.pseudo-focus + hx-option-tile {
+        &:extend(.hxOption input[invalid]:focus + hx-option-tile all);
+      }
+
+      &:checked {
+        + hx-opton-tile.pseudo-hover {
+          &:extend(.hxOption input[invalid]:checked + hx-option-tile:hover all);
+        }
+
+        &.pseudo-focus + hx-option-tile {
+          &:extend(.hxOption input[invalid]:checked:focus + hx-option-tile all);
+        }
+      }
+    }
+
+    &[disabled] {
+      // :hover
+      + hx-option-tile.pseudo-hover {
+        &:extend(.hxOption input[disabled] + hx-option-tile:hover all);
+      }
+
+      &:checked {
+        // :hover
+        + hx-option-tile.pseudo-hover {
+          &:extend(.hxOption input[disabled]:checked + hx-option-tile:hover all);
+        }
+      }
+
+      &[invalid] {
+        // :hover
+        + hx-option-tile.pseudo-hover {
+          &:extend(.hxOption input[disabled] + hx-option-tile:hover all);
+        }
+
+        &:checked {
+          + hx-option-tile.pseudo-hover {
+            &:extend(.hxOption input[disabled] + hx-option-tile:hover all);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,16 +1,3 @@
 hx-option-tile {
   display: inline-block;
 }
-
-// Use ShadyDOM hierarchy for IE
-input:checked + hx-option-tile #tick.hx-option-tile {
-  display: block;
-}
-
-// Use a custom property to set the display of the
-// checkmark in the Shadow DOM.
-@supports (--ans: 42) {
-  input:checked + hx-option-tile {
-    --tick-display: block;
-  }
-}
