@@ -14,6 +14,7 @@ export { HXIconElement } from './elements/HXIconElement.js';
 export { HXMenuElement } from './elements/HXMenuElement.js';
 export { HXMenuitemElement } from './elements/HXMenuitemElement.js';
 export { HXModalElement } from './elements/HXModalElement.js';
+export { HXPillElement } from './elements/HXPillElement.js';
 export { HXPopoverElement } from './elements/HXPopoverElement.js';
 export { HXProgressElement } from './elements/HXProgressElement.js';
 export { HXRevealElement } from './elements/HXRevealElement.js';

@@ -1,0 +1,35 @@
+---
+title: Pills
+also:
+  elements/hx-pill: <hx-pill>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <h2 id="basic-pill">Basic Pill</h2>
+    <div id="vue-pillDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3>Options</h3>
+        <p>
+          <label>
+            <input type="checkbox" v-model="isDismissable">
+            Dismissable
+          </label>
+        </p>
+        <p>
+          <b>Content:</b><br />
+          <textarea class="hxTextCtrl" v-model="content"></textarea>
+        </p>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <div class="demo pill-demo">
+          <hx-pill
+            :dismissable="isDismissable"
+            v-text="content">
+          </hx-pill>
+        </div>
+        <pre><code>{% raw %}{{snippet}}{% endraw %}</code></pre>
+      </div>
+    </div>
+  </section>
+{% endblock %}

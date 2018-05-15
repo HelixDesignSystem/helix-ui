@@ -1,0 +1,62 @@
+---
+title: <hx-pill>
+also:
+  components/pills: Pills
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>{{page.title}}</code> element provides a pill-like 
+      element that can be optionally dismissed.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>phrasing content</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Events</hx-dt>
+        <hx-dd>
+          Any of the following:
+          <ul>
+            <li>
+              <code>dismiss</code> - User presses "X" to dismiss the pill.
+            </li>
+          </ul>
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+
+  <section>
+    <h2 id="methods">Methods</h2>
+    <dl>
+      <dt>dismiss()</dt>
+      <dd>Dismisses the pill.</dd>
+    </dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl>
+    <dt>dismissable {Boolean=false} <i>(optional)</i></dt>
+    <dd>
+      When present, pill will be dismissable.
+    </dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl>
+    <dt>dismissable {Boolean=false}</dt>
+    <dd>
+      When <code>true</code>, pill will be dismissable.
+    </dd>
+  </dl>
+{% endblock %}
