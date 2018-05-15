@@ -1,26 +1,25 @@
 ---
-title: <hx-icon>
-minver: 0.1.0
+title: <hx-file-icon>
 also:
   components/icons: Icons
-  elements/hx-file-icon: <hx-file-icon>
+  elements/hx-icon: <hx-icon>
 ---
 {% extends 'element.njk' %}
 {% block content %}
   <section>
     <p>
-      The custom <code>{{page.title}}</code> element renders one of many
-      built-in SVG icons.
+      The custom <code>{{page.title}}</code> element renders a "file" icon with 
+      a customizable image and extension.
     </p>
 
     <hx-dl class="hxBox-md metadata">
       <hx-def>
         <hx-dt>Permitted Parents</hx-dt>
-        <hx-dd>any element that accepts embedded content</hx-dd>
+        <hx-dd>any element that accepts flow content</hx-dd>
       </hx-def>
       <hx-def>
         <hx-dt>Permitted Children</hx-dt>
-        <hx-dd>none</hx-dd>
+        <hx-dd>phrasing content (specifically, an optional file extension)</hx-dd>
       </hx-def>
       <hx-def>
         <hx-dt>Events</hx-dt>

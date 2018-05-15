@@ -3,11 +3,12 @@ title: Icons
 minver: 0.1.0
 also:
   elements/hx-icon: <hx-icon>
+  elements/hx-file-icon: <hx-file-icon>
 ---
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="demo">Demo</h2>
+    <h2 id="konami-code">Konami Code</h2>
     <div class="demo">
       <p>
         <hx-icon type="kbd-arrow-up"></hx-icon>
@@ -35,6 +36,40 @@ also:
       <kbd>B</kbd>
       <kbd>A</kbd>
       <kbd>start</kbd>
+    {% endcode %}
+  </section>
+
+  <section>
+    <h2 id="file-icons">File Icons</h2>
+    <div class="demo">
+      <hx-file-icon></hx-file-icon>
+      <hx-file-icon type="paperclip"></hx-file-icon>
+      <hx-file-icon>pem</hx-file-icon>
+      <hx-file-icon type="key">pem</hx-file-icon>
+      <hx-file-icon type="mime-archive">gzip</hx-file-icon>
+      <hx-file-icon type="mime-audio">mp3</hx-file-icon>
+      <hx-file-icon type="mime-code">html</hx-file-icon>
+      <hx-file-icon type="mime-data">json</hx-file-icon>
+      <hx-file-icon type="mime-image">tiff</hx-file-icon>
+      <hx-file-icon type="mime-system">exe</hx-file-icon>
+      <hx-file-icon type="mime-text">docx</hx-file-icon>
+      <hx-file-icon type="mime-video">mpeg</hx-file-icon>
+      <hx-file-icon type="paperclip">bzip2</hx-file-icon>
+    </div>
+    {% code 'html' %}
+      <hx-file-icon></hx-file-icon>
+      <hx-file-icon type="paperclip"></hx-file-icon>
+      <hx-file-icon>pem</hx-file-icon>
+      <hx-file-icon type="key">pem</hx-file-icon>
+      <hx-file-icon type="mime-archive">gzip</hx-file-icon>
+      <hx-file-icon type="mime-audio">mp3</hx-file-icon>
+      <hx-file-icon type="mime-code">html</hx-file-icon>
+      <hx-file-icon type="mime-data">json</hx-file-icon>
+      <hx-file-icon type="mime-image">tiff</hx-file-icon>
+      <hx-file-icon type="mime-system">exe</hx-file-icon>
+      <hx-file-icon type="mime-text">docx</hx-file-icon>
+      <hx-file-icon type="mime-video">mpeg</hx-file-icon>
+      <hx-file-icon type="paperclip">bzip2</hx-file-icon>
     {% endcode %}
   </section>
 
