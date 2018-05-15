@@ -110,6 +110,8 @@
     {
         name: 'export',
         minver: '0.1.4',
+        deprecated: true,
+        replacement: 'upload',
     },
     {
         name: 'external-link',
@@ -117,6 +119,7 @@
     },
     {
         name: 'file',
+        minver: '0.7.0',
         keywords: [
             'blank',
             'paper',
@@ -131,9 +134,11 @@
     },
     {
         name: 'flag',
+        minver: '0.7.0',
     },
     {
         name: 'globe',
+        minver: '0.7.0',
     },
     {
         name: 'help-circle',
@@ -160,8 +165,8 @@
     {
         name: 'input-url',
         minver: '0.1.0',
-        alias: 'globe',
         deprecated: true,
+        replacement: 'globe',
     },
     {
         name: 'kbd-arrow-down',
@@ -226,6 +231,7 @@
     },
     {
         name: 'key',
+        minver: '0.7.0',
         keywords: [
             'ca-bundle',
             'cer',
@@ -256,6 +262,7 @@
     },
     {
         name: 'mime-archive',
+        minver: '0.7.0',
         keywords: [
             '7z',
             'apk',
@@ -270,6 +277,7 @@
     },
     {
         name: 'mime-audio',
+        minver: '0.7.0',
         keywords: [
             'aif',
             'mid',
@@ -281,6 +289,7 @@
     },
     {
         name: 'mime-code',
+        minver: '0.7.0',
         keywords: [
             'bat',
             'css',
@@ -295,6 +304,7 @@
     },
     {
         name: 'mime-data',
+        minver: '0.7.0',
         keywords: [
             'csv',
             'dat',
@@ -312,6 +322,7 @@
     },
     {
         name: 'mime-image',
+        minver: '0.7.0',
         keywords: [
             'ai',
             'bmp',
@@ -329,6 +340,7 @@
     },
     {
         name: 'mime-system',
+        minver: '0.7.0',
         keywords: [
             'bak',
             'bin',
@@ -349,6 +361,7 @@
     },
     {
         name: 'mime-text',
+        minver: '0.7.0',
         keywords: [
             'doc',
             'docx',
@@ -360,6 +373,7 @@
     },
     {
         name: 'mime-video',
+        minver: '0.7.0',
         keywords: [
             '3gp',
             'avi',
@@ -397,6 +411,7 @@
     },
     {
         name: 'paperclip',
+        minver: '0.7.0',
         keywords: [
             'attachment',
         ],
@@ -452,6 +467,7 @@
     },
     {
         name: 'server-config',
+        minver: '0.7.0',
         keywords: [
             'change',
             'manage',
@@ -459,6 +475,7 @@
     },
     {
         name: 'server-incident',
+        minver: '0.7.0',
     },
     {
         name: 'sort',
@@ -488,14 +505,14 @@
     {
         name: 'technical-change',
         minver: '0.2.0',
-        alias: 'server-config',
         deprecated: true,
+        replacement: 'server-config',
     },
     {
         name: 'technical-incident',
         minver: '0.2.0',
-        alias: 'server-incident',
         deprecated: true,
+        replacement: 'server-incident',
     },
     {
         name: 'ticketing',
@@ -525,6 +542,12 @@
         keywords: [
             'delete',
             'remove',
+        ],
+    },
+    {
+        name: 'upload',
+        keywords: [
+            'export',
         ],
     },
     {
