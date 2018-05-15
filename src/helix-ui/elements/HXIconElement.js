@@ -1,6 +1,12 @@
 import { HXElement } from './HXElement';
 import Icons from '../icons';
 
+/**
+ * Defines behavior for the `<hx-icon>` element.
+ *
+ * @extends HXElement
+ * @since 0.1.0
+ */
 export class HXIconElement extends HXElement {
     static get is () {
         return 'hx-icon';
@@ -57,4 +63,4 @@ export class HXIconElement extends HXElement {
             this.appendChild(svg);
         }
     }//_render()
-}//HXIconElement
+}

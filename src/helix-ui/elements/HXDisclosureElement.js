@@ -2,10 +2,11 @@ import { HXElement } from './HXElement';
 import { KEYS } from '../util';
 
 /**
- * Defines behavior for an `<hx-disclosure>` element.
+ * Defines behavior for the `<hx-disclosure>` element.
  *
  * @extends HXElement
  * @hideconstructor
+ * @since 0.2.0
  */
 export class HXDisclosureElement extends HXElement {
     static get is () {
@@ -124,4 +125,4 @@ export class HXDisclosureElement extends HXElement {
     _onTargetClose () {
         this.expanded = false;
     }
-}//HXDisclosureElement
+}

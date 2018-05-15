@@ -8,6 +8,31 @@ const ICONS = {
     'success': 'checkmark',
 };
 
+/**
+ * Fires when the dismiss button ("X") is pressed.
+ *
+ * @event Toast:dismiss
+ * @since 0.7.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when the CTA button is pressed.
+ *
+ * @event Toast:submit
+ * @since 0.7.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for the `<hx-toast>` element.
+ *
+ * @emits Toast:dismiss
+ * @emits Toast:submit
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.7.0
+ */
 export class HXToastElement extends HXElement {
     static get is () {
         return 'hx-toast';

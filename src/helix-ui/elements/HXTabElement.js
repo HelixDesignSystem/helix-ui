@@ -1,5 +1,12 @@
 import { HXElement } from './HXElement';
 
+/**
+ * Defines behavior for the `<hx-tab>` element.
+ *
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.2.0
+ */
 export class HXTabElement extends HXElement {
     static get is () {
         return 'hx-tab';
@@ -30,4 +37,4 @@ export class HXTabElement extends HXElement {
             this.removeAttribute('current');
         }
     }
-}//HXTabElement
+}

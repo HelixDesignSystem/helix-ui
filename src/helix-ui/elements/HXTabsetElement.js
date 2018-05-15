@@ -1,6 +1,24 @@
 import { HXElement } from './HXElement';
 import { KEYS } from '../util';
 
+/**
+ * Fires when the currently active tab changes.
+ *
+ * - Only fires in single-panel mode.
+ *
+ * @event Tabset:tabchange
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for the `<hx-tabset>` element
+ *
+ * @emits Tabset:tabchange
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.2.0
+ */
 export class HXTabsetElement extends HXElement {
     static get is () {
         return 'hx-tabset';
@@ -153,4 +171,4 @@ export class HXTabsetElement extends HXElement {
             tabpanel.setAttribute('aria-labelledby', tabId);
         });
     }//_setupIds
-}//HXTabsetElement
+}

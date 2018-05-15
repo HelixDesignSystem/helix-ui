@@ -3,12 +3,20 @@ import shadowMarkup from './HXPillElement.html';
 import shadowStyles from './HXPillElement.less';
 
 /**
- * Fires when the user triggers the dismiss button.
+ * Fires when the dismiss button ("X") is pressed.
  *
  * @event Pills:dismiss
  * @type {CustomEvent}
  */
 
+/**
+ * Defines behavior for the `<hx-pill>` element.
+ *
+ * @extends HXElement
+ * @emits Pills:dismiss
+ * @hideconstructor
+ * @since 0.8.0
+ */
 export class HXPillElement extends HXElement {
     static get is () {
         return `hx-pill`;

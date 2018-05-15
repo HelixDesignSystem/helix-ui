@@ -2,6 +2,45 @@ import { HXElement } from './HXElement';
 import shadowStyles from './HXSearchElement.less';
 import shadowMarkup from './HXSearchElement.html';
 
+/**
+ * Fires when the element loses focus.
+ *
+ * - **does not bubble**
+ *
+ * @event Search:blur
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when the clear button ("X") is pressed.
+ *
+ * @event Search:clear
+ * @since 0.5.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when the element receives focus.
+ *
+ * - **does not bubble**
+ *
+ * @event Search:focus
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for the `<hx-search>` element.
+ *
+ * @emits Search:blur
+ * @emits Search:clear
+ * @emits Search:focus
+ * @extends HXElement
+ * @hideconstructor
+ * @see HXSearchAssistanceElement
+ * @since 0.4.0
+ */
 export class HXSearchElement extends HXElement {
     static get is () {
         return 'hx-search';

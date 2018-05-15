@@ -22,9 +22,11 @@ function _parseValue (val) {
 }
 
 /**
- * Defines behavior for the `<hx-progress>` custom element.
- * @class
+ * Defines behavior for the `<hx-progress>` element.
+ *
  * @extends HXElement
+ * @hideconstructor
+ * @since 0.7.0
  */
 export class HXProgressElement extends HXElement {
     static get is () {
@@ -76,4 +78,4 @@ export class HXProgressElement extends HXElement {
     get _elFill () {
         return this.shadowRoot.getElementById('fill');
     }
-}//HXBusyElement
+}
