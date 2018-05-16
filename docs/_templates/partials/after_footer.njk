@@ -1,14 +1,23 @@
-<!-- intelligently load ES5 Adapter (if needed) -->
-<span id="ce-es5-adapter">
-  <script>
-    if (!window.customElements) {
-      var elAdapter = document.querySelector('#ce-es5-adapter');
-      elAdapter.parentElement.removeChild(elAdapter);
-    }
-  </script>
-  <script src="https://unpkg.com/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
-</span>
+<!-- MODERN BROWSERS
+  (Edge 16+, Firefox 60+, Chrome 61+, Safari 10.1+, Opera 47+)
 
+  Browsers that support ES6 modules obviously support ES6 syntax,
+  so we don't need to transpile the module to ES5 and we don't need
+  to load the ES5 adapter, either.
+-->
+<script type="module" src="/dist/scripts/helix-ui.mjs"></script>
+
+<!-- LEGACY BROWSERS
+  (IE11, Edge 15-, Firefox 59-, Chrome 60-, Safari 10.0-, Opera 46-)
+
+  Modern-ish browsers that don't support ES6 modules will load ES5
+  assets along with the ES5 adapter.
+-->
+<script nomodule src="https://unpkg.com/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+<script nomodule src="dist/scripts/helix-ui.browser.js"></script>
+
+<!-- 3RD-PARTY LIBRARIES -->
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-<script src="dist/scripts/helix-ui.browser.js"></script>
+
+<!-- DOCUMENTATION BEHAVIOR -->
 <script src="docs.js"></script>
