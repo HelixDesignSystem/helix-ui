@@ -42,6 +42,8 @@ button {
 }
 fieldset {
   border: none;
+  margin: 0;
+  padding: 0;
 }
 label {
   color: inherit;
@@ -519,6 +521,9 @@ hx-panel-foot {
 hx-panelhead,
 hx-panel-head {
   display: block;
+}
+hx-pill {
+  display: inline-block;
 }
 hx-popover {
   background-color: #ffffff;
@@ -2227,6 +2232,109 @@ hx-search-assistance > section > header + * {
 }
 .hxSearchSuggestion:hover {
   background-color: #e4f9f9;
+}
+.hxSelector {
+  border-radius: 2px;
+  color: #0c7c84;
+  display: inline-flex;
+  height: 2.5rem;
+  padding: 1px;
+  position: relative;
+  white-space: nowrap;
+  z-index: 0;
+}
+.hxSelector::before,
+.hxSelector::after {
+  bottom: 0;
+  content: '';
+  display: block;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.hxSelector::before {
+  background-color: #ffffff;
+}
+.hxSelector::after {
+  border: 1px solid #bdbdbd;
+}
+.hxSelector label {
+  flex-grow: 1;
+  flex-shrink: 0;
+  height: 100%;
+  z-index: 0;
+}
+.hxSelector label span {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  line-height: 1;
+  padding: 0 1rem;
+  text-transform: uppercase;
+}
+.hxSelector label input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  z-index: -10;
+}
+.hxSelector label input::-moz-focus-inner {
+  outline: none;
+  border: none;
+}
+.hxSelector label input:focus {
+  outline: none;
+}
+.hxSelector label input:focus + span {
+  background-color: #b6e3eb;
+  color: #0c7c84;
+}
+.hxSelector label input:checked + span {
+  background-color: #0c7c84;
+  color: #ffffff;
+}
+.hxSelector label input:checked:focus + span {
+  box-shadow: 0 0 4px 0 #0c7c84;
+}
+.hxSelector label input:active + span {
+  background-color: #0e94a6;
+  color: #ffffff;
+}
+.hxSelector label input[invalid] + span {
+  background-color: #ffffff;
+  border: 2px solid #d32f2f;
+  color: #d32f2f;
+}
+.hxSelector label input[invalid]:checked + span {
+  background-color: #ffcdd2;
+}
+.hxSelector label input[invalid]:focus + span {
+  box-shadow: 0 0 4px 0 #d32f2f;
+}
+.hxSelector label input[disabled] + span {
+  background-color: transparent;
+  color: #d8d8d8;
+  cursor: not-allowed;
+}
+.hxSelector.hxRadio {
+  border-radius: 3rem;
+  overflow-y: hidden;
+  padding: 0;
+}
+.hxSelector.hxRadio::after {
+  border-radius: 3rem;
+}
+.hxSelector.hxRadio input + span {
+  border-radius: 3rem;
 }
 /* ======================================= *\
  * BETA BETA BETA BETA BETA BETA BETA BETA *

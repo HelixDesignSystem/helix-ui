@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: elements/HXTabsetElement.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: elements/HXTabsetElement.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { HXElement } from './HXElement';
+import { KEYS } from '../util';
+
+/**
+ * Fires when the currently active tab changes.
+ *
+ * - Only fires in single-panel mode.
+ *
+ * @event Tabset:tabchange
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for the `&lt;hx-tabset>` element
+ *
+ * @emits Tabset:tabchange
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.2.0
+ */
+export class HXTabsetElement extends HXElement {
+    static get is () {
+        return 'hx-tabset';
+    }
+
+    static get observedAttributes () {
+        return [ 'current-tab' ];
+    }
+
+    constructor () {
+        super();
+        this._onKeyUp = this._onKeyUp.bind(this);
+        this._onTabClick = this._onTabClick.bind(this);
+    }
+
+    connectedCallback () {
+        this.$upgradeProperty('current-tab');
+        this.$defaultAttribute('id', this.$generateId());
+        this._setupIds();
+        this.currentTab = Number(this.getAttribute('current-tab')) || 0;
+        this.$tablist = this.querySelector('hx-tablist');
+        this.$tablist.addEventListener('keyup', this._onKeyUp);
+        this.$tablist.addEventListener('keydown', this.$preventScroll);
+        this.tabs.forEach(tab => {
+            tab.addEventListener('click', this._onTabClick);
+        });
+    }
+
+    disconnectedCallback () {
+        this.$tablist.removeEventListener('keyup', this._onKeyUp);
+        this.$tablist.removeEventListener('keydown', this.$preventScroll);
+        this.tabs.forEach(tab => {
+            tab.removeEventListener('click', this._onTabClick);
+        });
+    }
+
+    attributeChangedCallback (attr, oldVal, newVal) {
+        if (!isNaN(newVal)) {
+            this._openTab(Number(newVal));
+
+            if (newVal !== oldVal) {
+                this.$emit('tabchange');
+            }
+        }
+    }
+
+    get currentTab () {
+        return Number(this.getAttribute('current-tab') || 0);
+    }
+
+    set currentTab (idx) {
+        if (isNaN(idx)) {
+            throw new TypeError(`'currentTab' expects an numeric index. Got ${typeof idx} instead.`);
+        }
+
+        if (idx &lt; 0 || idx >= this.tabs.length) {
+            throw new RangeError('currentTab index is out of bounds');
+        }
+
+        this.setAttribute('current-tab', idx);
+    }
+
+    get tabs () {
+        return Array.from(this.querySelectorAll('hx-tablist > hx-tab'));
+    }
+
+    get tabpanels () {
+        return Array.from(this.querySelectorAll('hx-tabpanel'));
+    }
+
+    _selectNext () {
+        // if current tab is the last tab
+        if (this.currentTab === (this.tabs.length - 1)) {
+            // select first
+            this.currentTab = 0;
+        } else {
+            // select next
+            this.currentTab += 1;
+        }
+        this.tabs[this.currentTab].focus();
+    }//_selectNext()
+
+    _selectPrevious () {
+        // if current tab is the first tab
+        if (this.currentTab === 0) {
+            // select last
+            this.currentTab = (this.tabs.length - 1);
+        } else {
+            // select previous
+            this.currentTab -= 1;
+        }
+        this.tabs[this.currentTab].focus();
+    }//_selectPrevious()
+
+    // Handle navigating the tabs via arrow keys
+    _onKeyUp (evt) {
+        if (evt.keyCode === KEYS.Right) {
+            this._selectNext();
+        }
+
+        if (evt.keyCode === KEYS.Left) {
+            this._selectPrevious();
+        }
+    }//_onKeyUp()
+
+    _onTabClick (evt) {
+        this.currentTab = this.tabs.indexOf(evt.target);
+    }
+
+    _openTab (idx) {
+        this.tabs.forEach((tab, tabIdx) => {
+            if (idx === tabIdx) {
+                tab.current = true;
+                tab.setAttribute('tabindex', 0);
+            } else {
+                tab.current = false;
+                tab.setAttribute('tabindex', -1);
+                tab.blur();
+            }
+        });
+
+        this.tabpanels.forEach((tabpanel, panelIdx) => {
+            tabpanel.open = (idx === panelIdx);
+        });
+    }
+
+    _setupIds () {
+        let tabsetId = this.getAttribute('id');
+        this.tabs.forEach((tab, idx) => {
+            let tabpanel = this.tabpanels[idx];
+            // Default tab and panel ID
+            let tabId = `${tabsetId}-tab-${idx}`;
+            let tabpanelId = `${tabsetId}-panel-${idx}`;
+
+            // Set or keep tab ID
+            if (tab.hasAttribute('id')) {
+                tabId = tab.getAttribute('id');
+            } else {
+                tab.setAttribute('id', tabId);
+            }
+
+            // Set or keep panel ID
+            if (tabpanel.hasAttribute('id')) {
+                tabpanelId = tabpanel.getAttribute('id');
+            } else {
+                tabpanel.setAttribute('id', tabpanelId);
+            }
+
+            tab.setAttribute('aria-controls', tabpanelId);
+            tabpanel.setAttribute('aria-labelledby', tabId);
+        });
+    }//_setupIds
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-elements.html">elements</a></li><li><a href="module-helix-ui.html">helix-ui</a></li><li><a href="module-util.html">util</a></li><li><a href="module-util_keys.html">util/keys</a></li><li><a href="module-util_position.html">util/position</a></li><li><a href="module-util_position_offsetFunctions.html">util/position/offsetFunctions</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:Menu:close">Menu:close</a></li><li><a href="global.html#event:Menu:open">Menu:open</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Popover:close">Popover:close</a></li><li><a href="global.html#event:Popover:open">Popover:open</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:SearchAssistance:close">SearchAssistance:close</a></li><li><a href="global.html#event:SearchAssistance:open">SearchAssistance:open</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li><li><a href="global.html#event:Tooltip:close">Tooltip:close</a></li><li><a href="global.html#event:Tooltip:open">Tooltip:open</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed May 16 2018 14:06:21 GMT-0500 (CDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: elements/HXTooltipElement.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: elements/HXTooltipElement.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { HXElement } from './HXElement';
+import { getPositionWithArrow } from '../util';
+import debounce from 'lodash/debounce';
+import shadowMarkup from './HXTooltipElement.html';
+import shadowStyles from './HXTooltipElement.less';
+
+/**
+ * Fires when the element's contents are concealed.
+ *
+ * @event Tooltip:close
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when the element's contents are revealed.
+ *
+ * @event Tooltip:open
+ * @since 0.6.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for the `&lt;hx-tooltip>` element.
+ *
+ * @emits Tooltip:close
+ * @emits Tooltip:open
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.2.0
+ */
+export class HXTooltipElement extends HXElement {
+    static get is () {
+        return 'hx-tooltip';
+    }
+
+    static get template () {
+        return `&lt;style>${shadowStyles}&lt;/style>${shadowMarkup}`;
+    }
+
+    static get observedAttributes () {
+        return [ 'open' ];
+    }
+
+    constructor () {
+        super();
+        this._show = this._show.bind(this);
+        this._hide = this._hide.bind(this);
+        this._toggle = this._toggle.bind(this);
+        this._setPosition = this._setPosition.bind(this);
+        this._closeOnBackgroundClick = this._closeOnBackgroundClick.bind(this);
+    }
+
+    connectedCallback () {
+        this.$defaultAttribute('position', 'top');
+        this.initialPosition = this.position;
+        this.$upgradeProperty('open');
+        this.$defaultAttribute('role', 'tooltip');
+
+        this.setAttribute('aria-hidden', !this.open);
+
+        if (this.id) {
+            this._target = this.getRootNode().querySelector('[data-tooltip=' + this.id + ']');
+        } else {
+            return;
+        }
+        this._connectHandlers();
+    }
+
+    disconnectedCallback () {
+        if (!this._target) {
+            return;
+        }
+        this._destoryAllHandlers();
+    }
+
+    attributeChangedCallback (attr, oldVal, newVal) {
+        let isOpen = (newVal !== null);
+        this.setAttribute('aria-hidden', !isOpen);
+
+        if (newVal !== oldVal) {
+            this.$emit(isOpen ? 'open' : 'close');
+        }
+    }
+
+    _hide () {
+        if (this._showTimer) {
+            clearTimeout(this._showTimer);
+        }
+        this._hideTimer = setTimeout(() => {
+            this.open = false;
+        }, 1600);
+    }
+
+    _show () {
+        if (this._hideTimer) {
+            clearTimeout(this._hideTimer);
+        }
+        this._showTimer = setTimeout(() => {
+            this.open = true;
+        }, 500);
+    }
+
+    _toggle () {
+        this.open = !this.open;
+    }
+
+    _closeOnBackgroundClick (event) {
+        if (this._isBackground(event)) {
+            this.open = false;
+        }
+    }
+
+    _connectHandlers () {
+        window.addEventListener('resize', debounce(this._setPosition,100));
+        if (this.triggerEvent === 'click') {
+            document.addEventListener('click', this._closeOnBackgroundClick);
+            this._target.addEventListener('click', this._toggle);
+        } else {
+            this._target.addEventListener('focus', this._show);
+            this._target.addEventListener('blur', this._hide);
+            this._target.addEventListener('mouseenter', this._show);
+            this._target.addEventListener('mouseleave', this._hide);
+        }
+    }
+
+    _destoryAllHandlers () {
+        window.removeEventListener('resize', debounce(this._setPosition,100));
+        document.removeEventListener('click', this._closeOnBackgroundClick);
+        this._target.removeEventListener('focus', this._show);
+        this._target.removeEventListener('blur', this._hide);
+        this._target.removeEventListener('mouseenter', this._show);
+        this._target.removeEventListener('mouseleave', this._hide);
+        this._target.removeEventListener('click', this._toggle);
+    }
+
+    _setPosition () {
+        var offset = getPositionWithArrow(this, this._target, { 'position':this.position });
+        this.style.top = `${offset.y}px`;
+        this.style.left = `${offset.x}px`;
+        this.position = offset.position;
+    }
+
+    _isBackground (event) {
+        let inComponent = this.contains(event.target);
+        let inTarget = this._target.contains(event.target);
+        return !inComponent &amp;&amp; !inTarget ;
+    }
+
+    set position (value) {
+        if (value) {
+            this.setAttribute('position', value);
+        } else {
+            this.removeAttribute('position');
+        }
+    }
+
+    get position () {
+        return this.getAttribute('position');
+    }
+
+    set triggerEvent (value) {
+        if (value) {
+            this.setAttribute('trigger-event', value);
+        } else {
+            this.removeAttribute('trigger-event');
+        }
+    }
+
+    get triggerEvent () {
+        return this.getAttribute('trigger-event');
+    }
+
+    set open (value) {
+        if (value) {
+            this.setAttribute('open', '');
+            this._setPosition();
+        } else {
+            this.removeAttribute('open');
+            this.position = this.initialPosition;
+        }
+    }
+
+    get open () {
+        return this.hasAttribute('open');
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-elements.html">elements</a></li><li><a href="module-helix-ui.html">helix-ui</a></li><li><a href="module-util.html">util</a></li><li><a href="module-util_keys.html">util/keys</a></li><li><a href="module-util_position.html">util/position</a></li><li><a href="module-util_position_offsetFunctions.html">util/position/offsetFunctions</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:Menu:close">Menu:close</a></li><li><a href="global.html#event:Menu:open">Menu:open</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Popover:close">Popover:close</a></li><li><a href="global.html#event:Popover:open">Popover:open</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:SearchAssistance:close">SearchAssistance:close</a></li><li><a href="global.html#event:SearchAssistance:open">SearchAssistance:open</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li><li><a href="global.html#event:Tooltip:close">Tooltip:close</a></li><li><a href="global.html#event:Tooltip:open">Tooltip:open</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed May 16 2018 14:06:21 GMT-0500 (CDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

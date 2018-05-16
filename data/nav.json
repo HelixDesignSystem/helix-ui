@@ -78,6 +78,10 @@
         "path": "pagination"
       },
       {
+        "label": "Pills",
+        "path": "pills"
+      },
+      {
         "label": "Popovers",
         "path": "popovers"
       },
@@ -92,6 +96,10 @@
       {
         "label": "Search",
         "path": "search"
+      },
+      {
+        "label": "Selector Strips",
+        "path": "selector-strips"
       },
       {
         "label": "Status Pills",
@@ -214,6 +222,10 @@
       {
         "label": "<hx-panelhead>",
         "path": "hx-panelhead"
+      },
+      {
+        "label": "<hx-pill>",
+        "path": "hx-pill"
       },
       {
         "label": "<hx-popover>",
