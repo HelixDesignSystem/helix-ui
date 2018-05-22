@@ -1,5 +1,8 @@
 import { KEYS } from '../util';
 
+// Keep track of prepared ShadyDOM templates
+const SHADY_TEMPLATES = {};
+
 /**
  * @external HTMLElement
  * @see <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement" target="_blank">MDN - HTMLElement</a>
@@ -99,7 +102,10 @@ export class HXElement extends HTMLElement {
      */
     $onAttributeChange (attr, oldVal, newVal) {} // eslint-disable-line no-unused-vars
 
-    // Define an element using the customElements registry.
+    /**
+     * Register class with the customElements registry.
+     * Note: the custom element is only registered if the "is" class property is defined.
+     */
     static $define () {
         if (this.is) {
             customElements.define(this.is, this);
@@ -109,21 +115,7 @@ export class HXElement extends HTMLElement {
     // Called when an instance is created
     constructor () {
         super();
-
-        // Don't attach shadow DOM unless "template" class property is defined.
-        if (this.constructor.template) {
-            let _template = document.createElement('template');
-            _template.innerHTML = this.constructor.template;
-
-            this.attachShadow({ mode: 'open' });
-
-            if (window.ShadyCSS) {
-                ShadyCSS.prepareTemplate(_template, this.constructor.is);
-                ShadyCSS.styleElement(this);
-            }
-
-            this.shadowRoot.appendChild(_template.content.cloneNode(true));
-        }
+        this._$setupShadowDOM();
 
         this.$onAttributeChange = this.$onAttributeChange.bind(this);
         this.$onConnect = this.$onConnect.bind(this);
@@ -151,29 +143,29 @@ export class HXElement extends HTMLElement {
      * @type {Array<String>}
      */
     static get observedAttributes () {
-        return [ 'disabled' ].concat(this.$observedAttributes);
+        let common = [ 'disabled' ];
+        let extra = this.$observedAttributes;
+        return [ ...common, ...extra ];
     }
 
     // Called when an attribute UPDATES (not just when it changes).
     attributeChangedCallback (attr, oldVal, newVal) {
-        switch (attr) {
-            case 'disabled':
-                if (newVal !== null) {
-                    this.removeAttribute('tabindex');
-                    this.setAttribute('aria-disabled', true);
-                    this.blur();
-                } else {
-                    this.setAttribute('tabindex', this._$tabIndex);
-                    this.removeAttribute('aria-disabled');
-                }
-                break;
+        if (attr === 'disabled') {
+            if (newVal !== null) {
+                this.removeAttribute('tabindex');
+                this.setAttribute('aria-disabled', true);
+                this.blur();
+            } else {
+                this.setAttribute('tabindex', this._$tabIndex);
+                this.removeAttribute('aria-disabled');
+            }
+        }
 
-            default:
-                if (newVal !== oldVal) {
-                    this.$onAttributeChange(attr, oldVal, newVal);
-                }
-                break;
-        }//switch
+        // Always call $onAttributeChange, so that we can run additional
+        // logic against common attributes in subclasses, too.
+        if (newVal !== oldVal) {
+            this.$onAttributeChange(attr, oldVal, newVal);
+        }
     }//attributeChangedCallback
 
     /**
@@ -320,4 +312,50 @@ export class HXElement extends HTMLElement {
             this.removeAttribute('disabled');
         }
     }
+
+    /**
+     * @private
+     * @description
+     * If the browser doesn't have native ShadowDOM, this method
+     * will ensure that the ShadyDOM template is prepared no more
+     * than once, and applies ShadyDOM styling to the element.
+     *
+     * @param {HTMLTemplate} template
+     */
+    _$setupShadyDOM (template) {
+        let _elementName = this.constructor.is;
+
+        if (window.ShadyCSS) {
+            // check to see if the ShadyDOM template has already been prepared
+            if (!SHADY_TEMPLATES[_elementName]) {
+                // modifies 'template' variable in-place
+                ShadyCSS.prepareTemplate(template, _elementName);
+                // memoize prepared template, so it isn't prepared more than once
+                SHADY_TEMPLATES[_elementName] = template;
+            }
+            // Apply ShadyDOM styling (rewrites Light DOM)
+            ShadyCSS.styleElement(this);
+        }
+    }//_$setupShadyDOM
+
+    /**
+     * @private
+     * @description
+     * If a ShadowDOM needs to be setup, this method handles:
+     *
+     * 1. creating the <template> element
+     * 2. attaching a shadow root
+     * 3. applying ShadyDOM styling (if needed)
+     * 4. stamping the template
+     */
+    _$setupShadowDOM () {
+        // Don't do anything unless the "template" class property is defined.
+        if (this.constructor.template) {
+            let _template = document.createElement('template');
+            _template.innerHTML = this.constructor.template;
+            this.attachShadow({ mode: 'open' });
+            this._$setupShadyDOM(_template);
+            this.shadowRoot.appendChild(_template.content.cloneNode(true));
+        }
+    }//_$setupShadowDOM()
 }
