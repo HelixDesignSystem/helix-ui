@@ -10,6 +10,7 @@ export { HXCheckboxElement } from './elements/HXCheckboxElement.js';
 export { HXDisclosureElement } from './elements/HXDisclosureElement.js';
 export { HXElement } from './elements/HXElement.js';
 export { HXErrorElement } from './elements/HXErrorElement.js';
+export { HXFileIconElement } from './elements/HXFileIconElement.js';
 export { HXIconElement } from './elements/HXIconElement.js';
 export { HXMenuElement } from './elements/HXMenuElement.js';
 export { HXMenuitemElement } from './elements/HXMenuitemElement.js';
