@@ -24,17 +24,18 @@ hx-dl.hxVertical {
     flex-direction: column;
   }
 
+  hx-dt,
+  hx-dd {
+    flex: 0 0 auto;
+    max-width: none;
+  }
+
   hx-dt {
-    #grid.span(12);
-    flex: 0 1 auto;
     font-weight: 700;
     text-align: left;
   }
 
   hx-dd {
-    #grid.span(12);
-    flex: 0 1 auto;
-    display: block;
     margin: 0;
   }
 }
