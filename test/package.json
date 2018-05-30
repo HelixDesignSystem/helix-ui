@@ -19,7 +19,7 @@
     "build": "tsc",
     "clean": "npm run clean:visreg && npm run clean:regression && rm -rf built",
     "clean:visreg": "rm -rf artifacts/visregScreenshots",
-    "clean:regression": "rm -rf artifacts/regressionScreenshots",
+    "clean:regression": "rm -rf artifacts/regressionScreenshots && rm -r dom-snapshots/*/",
     "lint": "tslint -c tslint.json visreg/ regression/ common/",
     "pretest": "npm run build",
     "test": "scripts/run-travis-push-or-pr",
