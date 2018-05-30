@@ -4,7 +4,7 @@ import {By, snap, Snappit, IConfig, WebDriver, WebElement} from "snappit-visual-
 import * as util from "../common/util";
 
 
-export default function (browser: string, component: string) {
+export async function regressionTest(browser: string, component: string) {
     interface IResolutions {
         [key:string]: string
         firefox: string;

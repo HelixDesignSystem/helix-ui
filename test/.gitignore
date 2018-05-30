@@ -3,4 +3,4 @@ bin/visreg.config.ts
 built/*
 artifacts/visregScreenshots
 artifacts/regressionScreenshots
-dom-snapshots/**/*.js
+dom-snapshots/**/*.ts
