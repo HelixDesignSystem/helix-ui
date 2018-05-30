@@ -21,8 +21,8 @@ if (args.browsers.length === 0) {
         'firefox',
         'chrome',
         'safari',
-        'internet explorer',
-        'MicrosoftEdge'
+        'internet explorer', // todo: transform to/from "ie"
+        'MicrosoftEdge' // todo: transform to/from "edge"
     ];
 }
 
@@ -50,7 +50,7 @@ matches.forEach(component => {
     const depth = directory.split(path.sep).length;
     args.browsers.forEach(browser => {
         fs.writeFileSync(
-            path.join(directory, `${browser}.js`),
+            path.join(directory, `${browser}.ts`),
             generateSingleTest(browser, component, depth)
         );
     });

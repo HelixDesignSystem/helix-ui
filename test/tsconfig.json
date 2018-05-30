@@ -27,6 +27,7 @@
         "functional/*.ts",
         "regression/*.ts",
         "visreg/*.ts",
-        "bin/*.ts"
+        "bin/*.ts",
+        "dom-snapshots/**/*.ts",
     ]
 }

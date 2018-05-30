@@ -1,24 +1,50 @@
-module.exports = (browserName, component, util) => {
+import {test, TestContext} from "ava";
+import {By, snap, Snappit, IConfig, WebDriver, WebElement} from "snappit-visual-regression";
 
-    screenResolution = {
+import * as util from "../common/util";
+
+
+export default function (browser: string, component: string) {
+    interface IResolutions {
+        [key:string]: string
+        firefox: string;
+        chrome: string;
+        safari: string;
+        "internet explorer": string;
+        MicrosoftEdge: string;
+    }
+
+    const screenResolutions: IResolutions = {
         firefox: "1920x1440",
         chrome: "1920x1440",
         safari: "1920x1440",
         "internet explorer": "1920x1080",
         MicrosoftEdge: "1920x1080"
-    }[browserName];
+    }
+    const screenResolution = screenResolutions[browser];
+
+
+    interface IPlatforms {
+        [key: string]: string
+        firefox: string;
+        chrome: string;
+        safari: string;
+        "internet explorer": string;
+        MicrosoftEdge: string;
+    }
 
     const MAC = "macOS 10.13";
-    platform = {
+    const platforms: IPlatforms = {
         firefox: MAC,
         chrome: MAC,
         safari: MAC,
         "internet explorer": "Windows 8.1",
         MicrosoftEdge: "Windows 10"
-    }[browserName];
+    };
+    const platform = platforms[browser];
 
-    const config = {
-        browser: browserName,
+    const config: IConfig = {
+        browser: browser,
         screenshotsDir: "artifacts/regressionScreenshots",
         logException: [
             "MISMATCH",
@@ -53,12 +79,12 @@ module.exports = (browserName, component, util) => {
             for (const e of await driver.findElements(By.css(util.selectors.visreg))) {
                 const sectionName = await e.getAttribute("data-visreg");
                 t.log(`  ${sectionName}:`);
-                await util.snapshot(t, e);
+                await util.snapshot(t, e as WebElement);
                 t.log("    ✔ DOM Snapshot");
 
                 if (!process.env.CI) {
                     // this is really not worth it for saucelabs, you can just look at the run results anyway
-                    await snappit.snap(`{browserName}/${sectionName}`, e);
+                    await snappit.snap(`{browser}/${sectionName}`, e);
                     t.log("    ✔ Image Snapshot");
                 }
             }

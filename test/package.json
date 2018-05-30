@@ -23,7 +23,7 @@
     "lint": "tslint -c tslint.json visreg/ regression/ common/",
     "pretest": "npm run build",
     "test": "scripts/run-travis-push-or-pr",
-    "test:regression": "ava node built/regression/generateRegressionTests.js --verbose",
+    "test:regression": "ava node dom-snapshots/**/*.js --verbose",
     "test:visreg": "ava built/visreg/{chrome,firefox}.js --verbose --serial",
     "postinstall": "[ -f bin/visreg.config.ts ] || cp bin/visreg.example.config.ts bin/visreg.config.ts",
     "previsreg": "npm run clean:visreg",
