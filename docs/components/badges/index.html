@@ -1,0 +1,116 @@
+---
+title: Badges
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <hx-alert static status="note" type="warning">
+      Each badge should have whitespace before the opening tag in your markup.
+      Otherwise, CSS styles may not apply correctly.
+    </hx-alert>
+    <p>
+      Badges are implemented by defining a <code>&lt;span&gt;</code>
+      with the <code>.hxBadge</code> CSS class applied.
+    </p>
+  </section>
+  <section>
+    <h2 id="link-badges">Link Badges</h2>
+    <div class="demo">
+      <a href="">
+        Link
+        <span class="hxBadge">1</span>
+      </a>
+    </div>
+    {% code 'html' %}
+      <a href="">
+        Link
+        <span class="hxBadge">1</span>
+      </a>
+    {% endcode %}
+  </section>
+
+  <section>
+    <h2 id="icon-badges">Icon Badges</h2>
+    <div class="demo">
+      <hx-icon type="bell"></hx-icon>
+      <span class="hxBadge"></span>
+
+      <hx-icon type="bell"></hx-icon>
+      <span class="hxBadge">1</span>
+
+      <hx-icon type="bell"></hx-icon>
+      <span class="hxBadge">2</span>
+
+      <hx-icon type="bell"></hx-icon>
+      <span class="hxBadge">32</span>
+
+      <hx-icon type="bell"></hx-icon>
+      <span class="hxBadge">99+</span>
+    </div>
+    {% code 'html' %}
+      <hx-icon type="bell"></hx-icon>
+      <span class="hxBadge"></span>
+
+      <hx-icon type="bell"></hx-icon>
+      <span class="hxBadge">1</span>
+
+      <hx-icon type="bell"></hx-icon>
+      <span class="hxBadge">2</span>
+
+      <hx-icon type="bell"></hx-icon>
+      <span class="hxBadge">32</span>
+
+      <hx-icon type="bell"></hx-icon>
+      <span class="hxBadge">99+</span>
+    {% endcode %}
+  </section>
+
+  <section>
+    <h2 id="tab-badges">Tab Badges</h2>
+    <div class="demo">
+      <hx-tabset>
+        <hx-tablist>
+          <hx-tab>
+            First
+            <span class="hxBadge">1</span>
+          </hx-tab>
+          <hx-tab>
+            Second
+            <span class="hxBadge">32</span>
+          </hx-tab>
+          <hx-tab>Third
+            <span class="hxBadge">99+</span>
+          </hx-tab>
+        </hx-tablist>
+        <hx-tabcontent>
+          <hx-tabpanel>...</hx-tabpanel>
+          <hx-tabpanel>...</hx-tabpanel>
+          <hx-tabpanel>...</hx-tabpanel>
+        </hx-tabcontent>
+      </hx-tabset>
+    </div>
+    {% code 'html' %}
+      <hx-tabset>
+        <hx-tablist>
+          <hx-tab>
+            First
+            <span class="hxBadge">1</span>
+          </hx-tab>
+          <hx-tab>
+            Second
+            <span class="hxBadge">32</span>
+          </hx-tab>
+          <hx-tab>
+            Third
+            <span class="hxBadge">99+</span>
+          </hx-tab>
+        </hx-tablist>
+        <hx-tabcontent>
+          <hx-tabpanel>...</hx-tabpanel>
+          <hx-tabpanel>...</hx-tabpanel>
+          <hx-tabpanel>...</hx-tabpanel>
+        </hx-tabcontent>
+      </hx-tabset>
+    {% endcode %}
+  </section>
+{% endblock %}
