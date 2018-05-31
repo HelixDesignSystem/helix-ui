@@ -68,7 +68,7 @@
     "rollup": "rollup -c rollup.config.js",
     "prestart": "yarn clean:public && yarn generate",
     "start": "bin/start.js",
-    "test": "cd test; yarn test"
+    "test": "cd test; yarn test:regression"
   },
   "repository": "https://github.com/rackerlabs/helix-ui.git",
   "author": "Ryan Johnson <rhino.citguy@gmail.com>",

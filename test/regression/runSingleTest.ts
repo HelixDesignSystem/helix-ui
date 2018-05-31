@@ -3,8 +3,7 @@ import {By, snap, Snappit, IConfig, WebDriver, WebElement} from "snappit-visual-
 
 import * as util from "../common/util";
 
-
-export async function regressionTest(browser: string, component: string) {
+export async function regressionTest(browser: string, component: string, buildIdentifier: string) {
     interface IResolutions {
         [key:string]: string
         firefox: string;
@@ -61,13 +60,12 @@ export async function regressionTest(browser: string, component: string) {
         threshold: 0.1,
     };
 
-    test(`${browser} on ${platform} -- auto-generated regression case: ${component}`, async t => {
+    test(`${browser} on ${platform} -- ${component}`, async t => {
         const runningSauce = process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY;
-        const LOCAL_DEV_ID = `local-dev-test-${new Date().toISOString()}`;
         if (runningSauce) {
             config.serverUrl = `http://${process.env.SAUCE_USERNAME}:${process.env.SAUCE_ACCESS_KEY}@ondemand.saucelabs.com:80/wd/hub`;
             config.sauceLabs.name = component;
-            config.sauceLabs.build = process.env.TRAVIS_JOB_NUMBER || LOCAL_DEV_ID;
+            config.sauceLabs.build = process.env.TRAVIS_JOB_NUMBER || buildIdentifier;
             config.sauceLabs.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
         }
 

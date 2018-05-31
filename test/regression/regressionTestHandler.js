@@ -6,7 +6,7 @@ const child_process = require('child_process');
 
 const generateSingleTest = require('./generateSingleTest');
 
-const rawArgs = process.argv.slice(2);
+const rawArgs = Array.prototype.slice.call(process.argv, 2);
 
 const args = { browsers: [], components: [] };
 rawArgs.forEach(argWithFlag => {
@@ -44,6 +44,7 @@ args.components.forEach(component => {
     }
 });
 
+const sauceLabsBuildIdentifier = `local-dev-test-${new Date().toISOString()}`;
 matches.forEach(component => {
     const directory = path.join('dom-snapshots', component.replace(/\.html$/, ''));
     fs.mkdirpSync(directory);
@@ -51,7 +52,7 @@ matches.forEach(component => {
     args.browsers.forEach(browser => {
         fs.writeFileSync(
             path.join(directory, `${browser}.ts`),
-            generateSingleTest(browser, component, depth)
+            generateSingleTest(browser, component, depth, sauceLabsBuildIdentifier)
         );
     });
 });
