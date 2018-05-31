@@ -21,8 +21,8 @@ if (args.browsers.length === 0) {
         'firefox',
         'chrome',
         'safari',
-        'internet explorer', // todo: transform to/from "ie"
-        'MicrosoftEdge' // todo: transform to/from "edge"
+        'internet explorer',
+        'MicrosoftEdge'
     ];
 }
 
@@ -50,6 +50,13 @@ matches.forEach(component => {
     fs.mkdirpSync(directory);
     const depth = directory.split(path.sep).length;
     args.browsers.forEach(browser => {
+        const browserAlias = {
+            ff: 'firefox',
+            ie: 'internet explorer',
+            edge: 'MicrosoftEdge'
+        }[browser];
+        browser = browserAlias ? browserAlias : browser;
+
         fs.writeFileSync(
             path.join(directory, `${browser}.ts`),
             generateSingleTest(browser, component, depth, sauceLabsBuildIdentifier)
