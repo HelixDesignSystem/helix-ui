@@ -5,11 +5,11 @@ for i in "$@"
 do
 case $i in
     -b=*|--browsers=*)
-    BROWSERS="${i#*=}"
+    BROWSERS=" --browsers=${i#*=}"
     shift # past argument=value
     ;;
     -c=*|--components=*)
-    COMPONENTS="${i#*=}"
+    COMPONENTS=" --components=${i#*=}"
     shift # past argument=value
     ;;
     -u)
@@ -23,7 +23,7 @@ done
 yarn clean:regression
 
 # generate new stuff
-./regression/regressionTestHandler.js --browsers=${BROWSERS} --components=${COMPONENTS}
+./regression/regressionTestHandler.js${BROWSERS}${COMPONENTS}
 
 npm run build
 

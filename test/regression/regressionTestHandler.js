@@ -58,7 +58,7 @@ matches.forEach(component => {
         browser = browserAlias ? browserAlias : browser;
 
         fs.writeFileSync(
-            path.join(directory, `${browser}.ts`),
+            path.join(directory, `${browser.replace(/\s/g, '-')}.ts`),
             generateSingleTest(browser, component, depth, sauceLabsBuildIdentifier)
         );
     });
