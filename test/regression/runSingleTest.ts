@@ -13,15 +13,7 @@ export async function regressionTest(browser: string, component: string, buildId
         MicrosoftEdge: string;
     }
 
-    const screenResolutions: IResolutions = {
-        firefox: "1920x1440",
-        chrome: "1920x1440",
-        safari: "1920x1440",
-        "internet explorer": "1920x1080",
-        MicrosoftEdge: "1920x1080"
-    }
-    const screenResolution = screenResolutions[browser];
-
+    const screenResolution = "1600x1200";
 
     interface IPlatforms {
         [key: string]: string
@@ -37,7 +29,7 @@ export async function regressionTest(browser: string, component: string, buildId
         firefox: MAC,
         chrome: MAC,
         safari: MAC,
-        "internet explorer": "Windows 8.1",
+        "internet explorer": "Windows 10",
         MicrosoftEdge: "Windows 10"
     };
     const platform = platforms[browser];
