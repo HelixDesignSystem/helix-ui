@@ -1,4 +1,3 @@
-module.exports = (browser, component, depth, buildIdentifier) => {
-    const parentDirectories = Array(depth).fill('../').join('');
-    return `import { regressionTest } from "${parentDirectories}regression/runSingleTest"; regressionTest("${browser}", "${component}", "${buildIdentifier}");`
+module.exports = (browser, component, buildIdentifier) => {
+    return `import { regressionTest } from "../regression/runSingleTest"; regressionTest("${browser}", "${component}", "${buildIdentifier}");`
 }

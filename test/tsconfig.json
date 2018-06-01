@@ -28,6 +28,6 @@
         "regression/*.ts",
         "visreg/*.ts",
         "bin/*.ts",
-        "dom-snapshots/**/*.ts",
+        "dom-snapshots/*.ts",
     ]
 }

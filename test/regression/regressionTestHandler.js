@@ -47,9 +47,6 @@ args.components.forEach(component => {
 
 const sauceLabsBuildIdentifier = `local-dev-test-${new Date().toISOString()}`;
 matches.forEach(component => {
-    const directory = path.join('dom-snapshots', component.replace(/\.html$/, ''));
-    fs.mkdirpSync(directory);
-    const depth = directory.split(path.sep).length;
     args.browsers.forEach(browser => {
         const browserAlias = {
             ff: 'firefox',
@@ -57,10 +54,11 @@ matches.forEach(component => {
             edge: 'MicrosoftEdge'
         }[browser];
         browser = browserAlias ? browserAlias : browser;
-
+        const browserFilename = browser.replace(/\s/g, '-');
+        const fileName = [component.replace(/\//g, '-').replace(/\.html/, '').replace(/(-test|-index)/, ''), browserFilename].join('-');
         fs.writeFileSync(
-            path.join(directory, `${browser.replace(/\s/g, '-')}.ts`),
-            generateSingleTest(browser, component, depth, sauceLabsBuildIdentifier)
+            path.join('dom-snapshots', `${fileName}.ts`),
+            generateSingleTest(browser, component, sauceLabsBuildIdentifier)
         );
     });
 });
