@@ -6,9 +6,9 @@
   version "6.0.88"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.88.tgz#f618f11a944f6a18d92b5c472028728a3e3d4b66"
 
-"@webcomponents/webcomponentsjs@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-1.1.0.tgz#1392799c266fca142622a720176f688beb74d181"
+"@webcomponents/webcomponentsjs@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-2.0.0.tgz#166e7489b9ce66f5c082a3360120cb27505f762f"
 
 a-sync-waterfall@^1.0.0:
   version "1.0.0"
