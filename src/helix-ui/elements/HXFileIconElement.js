@@ -43,6 +43,6 @@ export class HXFileIconElement extends HXElement {
 
     /** @private */
     get _elIcon () {
-        return this.shadowRoot.getElementById('icon');
+        return this.shadowRoot.getElementById('hxIcon');
     }
 }
