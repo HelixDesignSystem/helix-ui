@@ -33,7 +33,7 @@ if (args.components.length === 0) {
 let matches = [];
 args.components.forEach(component => {
     // todo -- move this to a node-based solution!
-    const grepCommand = `grep "\\bdata-visreg=" -r ../docs | grep "${component}.*\.html"`;
+    const grepCommand = `grep "\\bdata-visreg=" -r ../docs | grep "${component}.*html"`;
     const taggedForRegression = child_process.execSync(grepCommand).toString().trim();
 
     const componentExtractor = new RegExp("docs/(.*\\.html)", "gm");
