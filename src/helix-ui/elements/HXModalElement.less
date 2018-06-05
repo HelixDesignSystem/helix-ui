@@ -1,7 +1,7 @@
 @import "./HXElement";
 @import "elements/hx-icon";
 
-#container {
+#hxModal {
   background-color: @gray-0;
   box-shadow: 0px 7px 9px 0 fade(@gray-1000, 30%);
   display: flex;
@@ -15,17 +15,17 @@
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: @modal-content-z-index;
-}
 
-#close {
-  background-color: transparent;
-  border: none;
-  color: @gray-700;
-  cursor: pointer;
-  height: 1rem;
-  line-height: 1;
-  padding: 0;
-  position: absolute;
-  right: 1.25rem;
-  top: 1.25rem;
+  #hxClose {
+    background-color: transparent;
+    border: none;
+    color: @gray-700;
+    cursor: pointer;
+    height: 1rem;
+    line-height: 1;
+    padding: 0;
+    position: absolute;
+    right: 1.25rem;
+    top: 1.25rem;
+  }
 }

@@ -49,7 +49,6 @@ export class HXModalElement extends HXElement {
 
     connectedCallback () {
         this.$upgradeProperty('open');
-        this._btnClose = this.shadowRoot.querySelector("#close");
         this.setAttribute('aria-hidden', !this.open);
 
         this._btnClose.addEventListener('click', this._close);
@@ -92,5 +91,10 @@ export class HXModalElement extends HXElement {
 
     get open () {
         return this.hasAttribute('open');
+    }
+
+    /** @private */
+    get _btnClose () {
+        return this.shadowRoot.getElementById('hxClose');
     }
 }
