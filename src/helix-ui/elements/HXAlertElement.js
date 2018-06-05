@@ -190,21 +190,21 @@ export class HXAlertElement extends HXElement {
 
     /** @private */
     get _elIcon () {
-        return this.shadowRoot.getElementById('icon');
+        return this.shadowRoot.getElementById('hxIcon');
     }
 
     /** @private */
     get _elStatus () {
-        return this.shadowRoot.getElementById('status');
+        return this.shadowRoot.getElementById('hxStatus');
     }
 
     /** @private */
     get _btnCta () {
-        return this.shadowRoot.getElementById('cta');
+        return this.shadowRoot.getElementById('hxCta');
     }
 
     /** @private */
     get _btnDismiss () {
-        return this.shadowRoot.getElementById('dismiss');
+        return this.shadowRoot.getElementById('hxDismiss');
     }
 }
