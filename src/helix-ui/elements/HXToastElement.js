@@ -133,14 +133,14 @@ export class HXToastElement extends HXElement {
 
     // PRIVATE GETTERS
     get _elIcon () {
-        return this.shadowRoot.getElementById('icon');
+        return this.shadowRoot.getElementById('hxIcon');
     }
 
     get _btnCta () {
-        return this.shadowRoot.getElementById('cta');
+        return this.shadowRoot.getElementById('hxCta');
     }
 
     get _btnDismiss () {
-        return this.shadowRoot.getElementById('dismiss');
+        return this.shadowRoot.getElementById('hxDismiss');
     }
 }
