@@ -86,12 +86,12 @@ export class HXAccordionPanelElement extends HXElement {
 
     /** @private */
     get _btnToggle () {
-        return this.shadowRoot.getElementById('toggle');
+        return this.shadowRoot.getElementById('hxToggle');
     }
 
     /** @private */
     get _elBody () {
-        return this.shadowRoot.getElementById('body');
+        return this.shadowRoot.getElementById('hxBody');
     }
 
     /** @private */
