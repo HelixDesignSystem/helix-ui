@@ -115,6 +115,6 @@ export class HXCheckboxElement extends HXElement {
 
     /** @private */
     get _input () {
-        return this.shadowRoot.getElementById('nativeControl');
+        return this.shadowRoot.getElementById('hxNativeControl');
     }
 }

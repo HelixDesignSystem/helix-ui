@@ -76,6 +76,6 @@ export class HXProgressElement extends HXElement {
      * @type {HTMLElement}
      */
     get _elFill () {
-        return this.shadowRoot.getElementById('fill');
+        return this.shadowRoot.getElementById('hxFill');
     }
 }

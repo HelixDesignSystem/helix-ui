@@ -60,9 +60,6 @@ export class HXSearchElement extends HXElement {
 
     constructor () {
         super();
-        this._elSearch = this.shadowRoot.getElementById('search');
-        this._btnClear = this.shadowRoot.getElementById('clear');
-
         this._clearValue = this._clearValue.bind(this);
         this._onInput = this._onInput.bind(this);
     }
@@ -160,6 +157,16 @@ export class HXSearchElement extends HXElement {
         } else {
             this.removeAttribute('value');
         }
+    }
+
+    /** @private */
+    get _elSearch () {
+        return this.shadowRoot.getElementById('hxNativeControl');
+    }
+
+    /** @private */
+    get _btnClear () {
+        return this.shadowRoot.getElementById('hxClear');
     }
 
     // PRIVATE FUNCTIONS

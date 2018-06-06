@@ -57,6 +57,6 @@ export class HXPillElement extends HXElement {
 
     /** @private */
     get _btnDismiss () {
-        return this.shadowRoot.getElementById('dismiss');
+        return this.shadowRoot.getElementById('hxDismiss');
     }
 }
