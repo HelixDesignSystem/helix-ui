@@ -3,7 +3,20 @@ set -e
 
 if [ "$TRAVIS_BRANCH" == "master" ]; then
     # this is a "pr" job for travis-ci, run the full saucelabs suite
-    npm run test:regression -- "$@"
+    if [ "$#" -eq "0" ]; then
+        echo "Testing Edge"
+        npm run test:regression --browsers=edge
+        echo "Testing IE"
+        npm run test:regression --browsers=ie
+        echo "Testing Firefox"
+        npm run test:regression --browsers=ff
+        echo "Testing Chrome"
+        npm run test:regression --browsers=chrome
+        echo "Testing Safari"
+        npm run test:regression --browsers=safari
+    else
+        npm run test:regression -- "$@"
+    fi
 else
     # this is a "push" job for travis-ci, keep it short and sweet
     cd ..
