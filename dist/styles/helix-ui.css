@@ -264,10 +264,10 @@ hx-accordion {
 hx-accordion-panel {
   display: block;
 }
-hx-accordion-panel:not([open]) > *:not([slot="header"]):not(#toggle) {
+hx-accordion-panel:not([open]) > *:not([slot="header"]):not(#hxToggle) {
   display: none;
 }
-hx-accordion-panel > #toggle.hx-accordion-panel,
+hx-accordion-panel > #hxToggle.hx-accordion-panel,
 hx-accordion-panel > [slot="header"] {
   padding: 0.5rem 0;
 }
@@ -336,6 +336,9 @@ hx-dl {
 }
 hx-error {
   color: #d32f2f;
+}
+hx-file-icon {
+  display: inline-block;
 }
 hx-icon {
   background-color: transparent;
@@ -970,6 +973,7 @@ hx-tile {
   border: 1px solid #0c7c84;
   color: #0c7c84;
   cursor: pointer;
+  display: inline-block;
   font: inherit;
   font-size: 0.875rem;
   font-weight: 500;
@@ -2080,16 +2084,16 @@ hx-dd {
 hx-dl.hxVertical hx-def {
   flex-direction: column;
 }
+hx-dl.hxVertical hx-dt,
+hx-dl.hxVertical hx-dd {
+  flex: 0 0 auto;
+  max-width: none;
+}
 hx-dl.hxVertical hx-dt {
-  flex: 0 0 100%;
-  max-width: 100%;
   font-weight: 700;
   text-align: left;
 }
 hx-dl.hxVertical hx-dd {
-  flex: 0 0 100%;
-  max-width: 100%;
-  display: block;
   margin: 0;
 }
 .hxNav {

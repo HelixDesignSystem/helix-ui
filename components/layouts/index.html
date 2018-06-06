@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="docs.css">
 
   <!-- Polyfill Loader -->
-  <script src="vendor/scripts/webcomponents-loader.js"></script>
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
   <!-- This link should be the first item a user can tab to. -->
@@ -142,6 +142,12 @@ class="current">
       
       <a href="components/modals" >
     Modals
+  </a>
+
+
+      
+      <a href="components/navigation" >
+    Navigation
   </a>
 
 
@@ -305,6 +311,12 @@ class="current">
       
       <a href="elements/hx-dt" >
     &lt;hx-dt&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-icon" >
+    &lt;hx-file-icon&gt;
   </a>
 
 
@@ -517,29 +529,13 @@ class="current">
     </h1>
 
   <section>
-    <div class="hxAlert hxAlert--warning">
-      <div class="hxAlert__icon">
-        <hx-icon type="exclamation-triangle"></hx-icon>
-      </div>
-      <div class="hxAlert__text">
-        <span class="hxAlert__status">WARNING</span>
+    <hx-alert type="warning" status="warning" static>
+      Layouts are not automatic. Apply appropriate CSS class to document body.
+    </hx-alert>
 
-        Layouts are not automatic. Apply appropriate CSS class to document body.
-      </div>
-    </div>
-    <br />
-
-    <div class="hxAlert hxAlert--warning">
-      <div class="hxAlert__icon">
-        <hx-icon type="exclamation-triangle"></hx-icon>
-      </div>
-      <div class="hxAlert__text">
-        <span class="hxAlert__status">WARNING</span>
-
-        Padding is not automatic. Add Box styling to apply padding.
-      </div>
-    </div>
-    <br />
+    <hx-alert type="warning" status="warning" static>
+      Padding is not automatic. Add Box styling to apply padding.
+    </hx-alert>
 
     <p>
       Two application layouts are available.
@@ -572,17 +568,11 @@ class="current">
 
   <section><!-- VERTICAL LAYOUT -->
     <h2 id="vertical-layout">Vertical Layout</h2>
-    <div class="hxAlert">
-      <div class="hxAlert__icon">
-        <hx-icon type="info-circle"></hx-icon>
-      </div>
-      <div class="hxAlert__text">
-        You can copy/paste the source code from the
-        <a href="components/layouts/vertical-layout-template.html">vertical layout template</a>
-        to get a head start.
-      </div>
-    </div>
-    <br />
+    <hx-alert type="info" static>
+      You can copy/paste the source code from the
+      <a href="components/layouts/vertical-layout-template.html">vertical layout template</a>
+      to get a head start.
+    </hx-alert>
     <p>
       Use a Vertical layout if your application content needs to grow along the y-axis
       (pushing the footer down past the bottom of the viewport).
@@ -611,17 +601,11 @@ class="current">
 
   <section><!-- HORIZONTAL LAYOUT -->
     <h2 id="horizontal-layout">Horizontal Layout</h2>
-    <div class="hxAlert">
-      <div class="hxAlert__icon">
-        <hx-icon type="info-circle"></hx-icon>
-      </div>
-      <div class="hxAlert__text">
-        You can copy/paste the source code from the
-        <a href="components/layouts/horizontal-layout-template.html">horizontal layout template</a>
-        to get a head start.
-      </div>
-    </div>
-    <br />
+    <hx-alert type="info" static>
+      You can copy/paste the source code from the
+      <a href="components/layouts/horizontal-layout-template.html">horizontal layout template</a>
+      to get a head start.
+    </hx-alert>
     <p>
       Use a Horizontal layout if your application content needs to grow across the x-axis
       (keeping the footer visible at all times).
@@ -659,16 +643,9 @@ class="current">
   <section>
     <h2 id="stage-area">Stage</h2>
     <section>
-      <div class="hxAlert hxAlert--warning">
-        <div class="hxAlert__icon">
-          <hx-icon type="exclamation-triangle"></hx-icon>
-        </div>
-        <div class="hxAlert__text">
-          <span class="hxAlert__status">WARNING</span>
-          Do not use more than one side rail in your application.
-        </div>
-      </div>
-      <br />
+      <hx-alert type="warning" status="warning" static>
+        Do not use more than one side rail in your application.
+      </hx-alert>
 
       <p>
         The Stage contains three potential children.
@@ -715,72 +692,19 @@ class="current">
         <li>
           Give the element a class of <code>hxNav</code> to apply visual styles.
         </li>
+        <li>
+          The product navigation is most commonly implemented using a
+          <a href="components/navigation/#vertical-nav">vertical navigation</a>
+          component.
+        </li>
       </ul>
-      <div class="demo nav-demo">
-        <nav class="hxNav">
-          <a href="#">Link 1-1</a>
-          <a href="#">Link 1-2</a>
-          <a href="#">Link 1-3</a>
-
-          <hx-disclosure aria-controls="section-1">
-            L1 Section
-            <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-          </hx-disclosure>
-          <hx-reveal id="section-1" open>
-            <a href="#">Link 2-1</a>
-            <a href="#">Link 2-2</a>
-            <a href="#">Link 2-3</a>
-
-            <hx-disclosure aria-controls="section-1-2">
-              L2 Section
-              <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-            </hx-disclosure>
-            <hx-reveal id="section-1-2" open>
-              <a href="#">Link 3-1</a>
-              <a href="#">Link 3-2</a>
-              <a href="#">Link 3-3</a>
-            </hx-reveal>
-          </hx-reveal>
-        </nav>
-      </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"nav"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxNav"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 1-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1"</span>&gt;</span>
-    L1 Section
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1"</span> <span class="hljs-attr">open</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 2-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"section-1-2"</span>&gt;</span>
-      L2 Section
-      <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"toggle-icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-reveal</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"section-1-2"</span> <span class="hljs-attr">open</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Link 3-3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-reveal</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
-</code></pre>    </section>
+    </section>
 
     <section><!-- main content -->
       <h3 id="main-content">Main Content</h3>
-      <div class="hxAlert">
-        <div class="hxAlert__icon">
-          <hx-icon type="info-circle"></hx-icon>
-        </div>
-        <div class="hxAlert__text">
-          <span class="hxAlert__status">INFO</span>
-          Content area behaves like a non-wrapping Grid row when using a Horizontal layout.
-        </div>
-      </div>
+      <hx-alert type="info" status="info" static>
+        Content area behaves like a non-wrapping Grid row when using a Horizontal layout.
+      </hx-alert>
       <ul>
         <li>
           For accessibility reasons, use a <code>&lt;main&gt;</code> element.
@@ -796,29 +720,13 @@ class="current">
 
     <section><!-- side rail -->
       <h3 id="side-rail">Side Rail</h3>
-      <div class="hxAlert">
-        <div class="hxAlert__icon">
-          <hx-icon type="info-circle"></hx-icon>
-        </div>
-        <div class="hxAlert__text">
-          <span class="hxAlert__status">OPTIONAL</span>
+      <hx-alert type="info" status="optional" static>
+        Main content will automatically fill the space of a missing side rail.
+      </hx-alert>
 
-          Main content will automatically fill the space of a missing side rail.
-        </div>
-      </div>
-      <br />
-
-      <div class="hxAlert hxAlert--warning">
-        <div class="hxAlert__icon">
-          <hx-icon type="exclamation-triangle"></hx-icon>
-        </div>
-        <div class="hxAlert__text">
-          <span class="hxAlert__status">WARNING</span>
-
-          A side rail is not recommended for a Horizontal layout.
-        </div>
-      </div>
-      <br />
+      <hx-alert type="warning" status="warning" static>
+        A side rail is not recommended for a Horizontal layout.
+      </hx-alert>
 
       <ul>
         <li>
@@ -839,6 +747,7 @@ class="current">
       <li><a href="guides/getting-started">Getting Started</a></li>
       <li><a href="components/box">Box</a></li>
       <li><a href="components/grid">Grid</a></li>
+      <li><a href="components/navigation">Navigation</a></li>
   </ul>
 </section>
   </main>
@@ -885,12 +794,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-04-12
+      2018-06-06
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.8.0" target="_blank">
-      v0.8.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.9.0" target="_blank">
+      v0.9.0
     </a>)
   </small>
 </div>
@@ -907,7 +816,7 @@ class="current">
       elAdapter.parentElement.removeChild(elAdapter);
     }
   </script>
-  <script src="vendor/scripts/custom-elements-es5-adapter.js"></script>
+  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
 </span>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"

@@ -70,6 +70,10 @@
         "path": "modals"
       },
       {
+        "label": "Navigation",
+        "path": "navigation"
+      },
+      {
         "label": "Panels",
         "path": "panels"
       },
@@ -174,6 +178,10 @@
       {
         "label": "<hx-dt>",
         "path": "hx-dt"
+      },
+      {
+        "label": "<hx-file-icon>",
+        "path": "hx-file-icon"
       },
       {
         "label": "<hx-icon>",
