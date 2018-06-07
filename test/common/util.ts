@@ -26,6 +26,7 @@ export async function webComponentsReady(driver: WebDriver) {
 export async function snapshot(t: TestContext, element: WebElement) {
     if (process.env.TRAVIS) {
         await webComponentsReady(element.getDriver());
+        await sleep(500); // pause *even longer* for travis rendering to finish
     }
 
     t.snapshot(await element.getAttribute("outerHTML"));
