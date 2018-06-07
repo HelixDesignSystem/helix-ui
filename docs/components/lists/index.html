@@ -10,7 +10,7 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="demos">Demos</h2>
+    <h2 id="description-lists">Description Lists</h2>
     <div id="vue-listDemo" class="hxRow" v-cloak>
       <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
         <h3>Options</h3>
@@ -20,7 +20,6 @@ also:
         </label>
       </div>
       <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h3>Description List</h3>
         <div class="demo">
           <hx-dl :class="hxDlClasses">
             <hx-def>
@@ -86,5 +85,105 @@ also:
         </template>
       </div>
     </div>
+  </section>
+
+  <section>
+    <h2 id="unordered-lists">Unordered Lists</h2>
+    <div class="demo">
+      <ul>
+        <li>List Item 1</li>
+        <li>
+          List Item 2 with a bunch of extra text that 
+          should hopefully wrap to the next line if 
+          your screen is small enough.
+        </li>
+        <li>List Item 3
+          <ul>
+            <li>List Item 3.1</li>
+            <li>List Item 3.2</li>
+            <li>List Item 3.3
+          </ul>
+        </li>
+      </ul>
+    </div>
+    {% code 'html' %}
+      <ul>
+        <li>List Item 1</li>
+        <li>List Item 2 ...</li>
+        <li>List Item 3
+          <ul>
+            <li>List Item 3.1</li>
+            <li>List Item 3.2</li>
+            <li>List Item 3.3
+          </ul>
+        </li>
+      </ul>
+    {% endcode %}
+  </section>
+
+  <section>
+    <h2 id="ordered-lists">Ordered Lists</h2>
+    <div class="demo">
+      <ol>
+        <li>Child Item</li>
+        <li>Child Item</li>
+        <li>Child Item
+          <ol>
+            <li>Child Item</li>
+            <li>Child Item</li>
+            <li>Child Item
+              <ol>
+                <li>Child Item</li>
+                <li>Child Item</li>
+                <li>Child Item
+                  <ol>
+                    <li>Child Item</li>
+                    <li>Child Item</li>
+                    <li>Child Item
+                      <ol>
+                        <li>Child Item</li>
+                        <li>Child Item</li>
+                        <li>Child Item</li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+    {% code 'html' %}
+      <ol>
+        <li>Child Item</li>
+        <li>Child Item</li>
+        <li>Child Item
+          <ol>
+            <li>Child Item</li>
+            <li>Child Item</li>
+            <li>Child Item
+              <ol>
+                <li>Child Item</li>
+                <li>Child Item</li>
+                <li>Child Item
+                  <ol>
+                    <li>Child Item</li>
+                    <li>Child Item</li>
+                    <li>Child Item
+                      <ol>
+                        <li>Child Item</li>
+                        <li>Child Item</li>
+                        <li>Child Item</li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    {% endcode %}
   </section>
 {% endblock %}
