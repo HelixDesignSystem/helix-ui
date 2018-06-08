@@ -30,8 +30,6 @@
     "fs-extra": "^4.0.2",
     "gh-pages": "^1.0.0",
     "globby": "^6.1.0",
-    "gulp": "3.x",
-    "gulp-bump": "2.x",
     "highlight.js": "^9.12.0",
     "jsdoc": "^3.5.5",
     "json5": "^0.5.1",
