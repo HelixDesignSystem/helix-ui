@@ -1,5 +1,5 @@
 /*
- * Helper functions for the tests in `../visreg/`.
+ * Helper functions for the tests in `../behavioral/`.
  */
 import {By, ISize, WebDriver, WebElement, WebElementPromise} from "snappit-visual-regression";
 import {TestContext} from "ava";
@@ -24,10 +24,7 @@ export async function webComponentsReady(driver: WebDriver) {
 }
 
 export async function snapshot(t: TestContext, element: WebElement) {
-    if (process.env.TRAVIS) {
-        await webComponentsReady(element.getDriver());
-    }
-
+    await webComponentsReady(element.getDriver());
     t.snapshot(await element.getAttribute("outerHTML"));
 }
 
@@ -55,7 +52,7 @@ export async function getElementsText(
 
 /* A "starter page object" until there's a greater need for something more robust.
  * For now this only contains common CSS selectors used throughout tests in the
- * visreg directory, but may also contain functions in the future.
+ * behavioral directory, but may also contain functions in the future.
  *
  * Once that happens, pull this out of `util.ts` and move it someplace more page-object-y.
  */
