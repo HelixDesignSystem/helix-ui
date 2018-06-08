@@ -25,7 +25,7 @@
     "cheerio": "^1.0.0-rc.2",
     "clean-css": "^4.1.9",
     "eslint": "4.x",
-    "eslint-loader": "^1.9.0",
+    "eslint-loader": "2.x",
     "front-matter": "^2.2.0",
     "fs-extra": "^4.0.2",
     "gh-pages": "^1.0.0",
