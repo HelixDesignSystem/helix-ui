@@ -1,5 +1,4 @@
-import {$, Snappit, IConfig, WebDriver} from "snappit-visual-regression";
-
+import {$, Snappit, IConfig, WebDriver, By} from "snappit-visual-regression";
 import * as util from "../common/util";
 import tabTest from "./tests/tabs";
 import {test} from "ava";
@@ -46,6 +45,18 @@ export function suite(browserName: string) {
         await snappit.snap("{browserName}/nav/custom-elements", $(util.selectors.nav));
     });
 
+    // Test Suite for Modal for Firefox browser
+    test("components/modals", async t => {
+        await util.go(driver, "components/modals");
+        await snappit.snap("{browserName}/modals/modals", $(util.selectors.modal));
+    });
+
+    test("components/open-modals", async t => {
+        await util.go(driver, "components/modals");
+        await driver.findElement(By.id('open-modal')).click();
+        await snappit.snap(`{browserName}/modals/open-modal`, $(util.selectors.modal));
+    });
+    
     /**
       * This is here because of https://github.com/SeleniumHQ/selenium/issues/3882
       * For the mean time, don't attempt to use keyboard navigation (in tabs) when
