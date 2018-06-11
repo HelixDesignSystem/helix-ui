@@ -1,43 +1,167 @@
 @import "./HXElement";
-@import "elements/hx-icon";
 @import "base/links";
+@import "elements/hx-icon";
+@import "elements/hx-progress";
+@import "components/progress";
+@import (reference) "components/buttons";
 
-#hxFileTile {
-  display: flex;
-  height: 100%;
-  width: 100%;
-
-  > * {
-    padding: 0.5rem;
+:host {
+  // reset buttons
+  button {
+    #Button.reset();
   }
 
-  #hxContent {
-    flex-grow: 1;
-    flex-shrink: 0;
-    padding: 0.5rem 0;
+  #hxFileTile {
+    border: 2px solid transparent;
+    color: @gray-900;
+    display: flex;
+    font-size: 0.875rem; //14px
+    height: 100%;
+    width: 100%;
   }
 
-  #hxLink {
-    display: block;
+
+  #hxRetry {
+    #Button.basic();
+    #Button.small();
+    #Button.tertiary();
+
+    hx-icon {
+      // FIXME: fix in SURF-1219
+      margin-left: 0.25rem !important;
+    }
   }
-  
+
   #hxDismiss {
-    background-color: transparent;
-    border: 0;
-    color: currentColor;
-    cursor: pointer;
     flex-shrink: 0;
     font-size: 1rem;
     line-height: 0;
-  }
-}
+    padding: 0.5rem;
 
-:host([loading]) {
-  #hxIcon {
-    opacity: 0.6;
+    &:hover {
+      color: @cyan-500;
+    }
+  }
+
+  #hxIconWrapper {
+    align-items: center;
+    display: flex;
+    flex: 0 0 48px;
+    height: 100%;
+    justify-content: center;
+    line-height: 0;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+
+    > hx-icon {
+      display: none;
+      font-size: 2rem;
+    }
+  }
+
+  #hxContentWrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0.5rem;
+  }
+
+  #hxName {
+    color: @cyan-900;
+    display: flex;
+    font-weight: 500;
+
+    > span {
+      white-space: pre;
+
+      &:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      &:last-child {
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  #hxDetails {
+    font-weight: 300;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
   }
 
   #hxLink {
+    color: @gray-900;
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+
+    &[href]:hover {
+      color: @cyan-500;
+
+      #hxIconWrapper {
+        > hx-file-icon {
+          display: none;
+        }
+
+        > hx-icon {
+          display: inline-block;
+        }
+      }
+
+      #hxName {
+        color: inherit;
+      }
+    }//hovered with href
+  }//#hxLink
+
+  #hxState--loading {
+    margin-top: 0.5rem;
+  }
+
+  // hide loading and invalid content by default
+  #hxState--loading,
+  #hxState--invalid {
+    display: none;
+  }
+}
+
+:host([invalid]) {
+  #hxFileTile {
+    border-color: @red-900;
+  }
+
+  #hxIconWrapper,
+  #hxName {
+    color: @gray-750;
+  }
+
+  #hxState--downloadable {
+    display: none;
+  }
+
+  #hxState--invalid {
+    display: block;
+  }
+}
+
+:host([progress]) {
+  #hxLink {
     color: @gray-600;
+  }
+
+  #hxIconWrapper,
+  #hxName {
+    color: @gray-750;
+  }
+
+  #hxState--downloadable {
+    display: none;
+  }
+
+  #hxState--loading {
+    display: block;
   }
 }

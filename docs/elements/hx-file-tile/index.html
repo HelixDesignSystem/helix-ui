@@ -1,7 +1,8 @@
 ---
 title: <hx-file-tile>
+minver: 0.12.0
 also:
-  components/file-tiles: File Tiles
+  components/files: Files
   components/icons: Icons
 ---
 {% extends 'element.njk' %}
@@ -9,8 +10,8 @@ also:
 
   <section>
     <p>
-      The custom <code>{{page.title}}</code> element describes the states of
-      a downloadable asset.
+      The custom <code>{{page.title}}</code> element is a tileable
+      representation of a remote file.
     </p>
 
     <dl class="hxBox-md metadata hxList">
@@ -20,7 +21,7 @@ also:
       </div>
       <div>
         <dt>Permitted Children</dt>
-        <dd>flow content</dd>
+        <dd>none</dd>
       </div>
       <div>
         <dt>Events</dt>
@@ -31,7 +32,10 @@ also:
               <code>cancel</code> - User clicks "X" when loading or invalid.
             </li>
             <li>
-              <code>delete</code> - User clicks "X" to delete the file.
+              <code>delete</code> - User clicks "X" when downloadable.
+            </li>
+            <li>
+              <code>retry</code> - User clicks "retry" when invalid.
             </li>
           </ul>
         </dd>
@@ -45,68 +49,122 @@ also:
       <dt>dismiss()</dt>
       <dd>Simulates a mouse click on the dismiss button (i.e., clicking the "X")</dd>
     </dl>
+
+    <dl>
+      <dt>retry()</dt>
+      <dd>Simulates a mouse click on the retry button (i.e., clicking "retry")</dd>
+    </dl>
   </section>
 {% endblock %}
 
 {% block attributes %}
   <dl>
-    <dt>name {String} <i>(optional)</i></dt>
+    <dt>details {String} <i>(optional)</i></dt>
     <dd>
-      Sets the text of the name.
-      If absent or blank, the name will not be displayed.
+      <p>
+        Sets the details of the file, such as size.
+      </p>
     </dd>
 
     <dt>href {String} <i>(optional)</i></dt>
     <dd>
-      Sets the path of the href.
-      If absent, file name will not be a clickable link.
-      Avoid setting this attribute until the file exists on the server.
+      <p>
+        Sets the path pointing to the remote file.
+        If absent, file cannot be downloaded.
+      </p>
     </dd>
 
     <dt>icon {Enum&lt;String&gt;} <i>(optional)</i></dt>
     <dd>
-      Changes the displayed icon to one of the
-      <a href="components/icons/#available-icons">available icons.</a>
-      If absent, blank, or unrecognized, the icon will not be displayed.
-    </dd>
-
-    <dt>loading {Boolean [false]} <i>(optional)</i></dt>
-    <dd>
-      When present, indicates file upload is in progress.
+      <p>
+        Changes the displayed icon to one of the
+        <a href="components/icons/#available-icons">available icons.</a>
+      </p>
     </dd>
 
     <dt>invalid {Boolean [false]} <i>(optional)</i></dt>
     <dd>
-      When present, marks element invalid.
+      <p>
+        When present, marks element invalid.
+      </p>
+    </dd>
+
+    <dt>name {String} <i>(optional)</i></dt>
+    <dd>
+      <p>
+        Sets the display name of the file.
+      </p>
+    </dd>
+
+    <dt>progress {Integer (0-100)} <i>(optional)</i></dt>
+    <dd>
+      <p>
+        When present, marks element as loading and denotes completion percentage.
+      </p>
     </dd>
   </dl>
 {% endblock %}
 
 {% block properties %}
   <dl>
-    <dt>name {String}</dt>
+    <dt>extension {String}</dt>
     <dd>
-      Manipulates the <code>name</code> attribute.
+      <p>
+        <i>(read-only)</i> Inferred file extension from the
+        </code>name</code> attribute.
+      </p>
     </dd>
 
     <dt>href {String}</dt>
     <dd>
-      Manipulates the <code>href</code> attribute.
+      <p>
+        Manipulates the <code>href</code> attribute.
+      </p>
     </dd>
 
     <dt>icon {String}</dt>
     <dd>
-      Manipulates the <code>icon</code> attribute.
+      <p>
+        Manipulates the <code>icon</code> attribute.
+      </p>
+    </dd>
+
+    <dt>invalid {Boolean}</dt>
+    <dd>
+      <p>
+        Toggles the presence of the <code>invalid</code> attribute.
+      </p>
     </dd>
 
     <dt>loading {Boolean}</dt>
     <dd>
-      Manipulates the <code>loading</code> attribute.
+      <p>
+        <i>(read-only)</i> Returns <code>true</code> when the
+        <code>progress</code> attribute is present.
+      </p>
     </dd>
 
-    <dt>valid {Boolean}</dt>
+    <dt>name {String}</dt>
     <dd>
-      Manipulates the <code>invalid</code> attribute.
+      <p>
+        Manipulates the <code>name</code> attribute.
+      </p>
+    </dd>
+
+    <dt>progress {Interger}</dt>
+    <dd>
+      <p>
+        Manipulates the <code>progress</code> attribute.
+      </p>
+    </dd>
+
+    <dt>truncated {Boolean}</dt>
+    <dd>
+      <p>
+        <i>(read-only)</i>
+        Returns <code>true</code> if the length of the <code>name</code> attribute
+        is long enough to truncate.
+      </p>
     </dd>
   </dl>
 {% endblock %}

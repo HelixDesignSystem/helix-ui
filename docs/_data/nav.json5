@@ -27,7 +27,7 @@
             { label: 'Checkboxes', path: 'checkboxes' },
             { label: 'Choice Tiles', path: 'choice-tiles' },
             //{ label: 'Colors', path: 'colors' },
-            //{ label: 'File Tiles', path: 'file-tiles' },
+            { label: 'Files', path: 'files' },
             { label: 'Grid', path: 'grid' },
             { label: 'Icons', path: 'icons' },
             {
@@ -73,7 +73,7 @@
             { label: '<hx-disclosure>', path: 'hx-disclosure' },
             { label: '<hx-error>', path: 'hx-error' },
             { label: '<hx-file-icon>', path: 'hx-file-icon' },
-            //{ label: '<hx-file-tile>', path: 'hx-file-tile' },
+            { label: '<hx-file-tile>', path: 'hx-file-tile' },
             { label: '<hx-icon>', path: 'hx-icon' },
             { label: '<hx-menu>', path: 'hx-menu' },
             { label: '<hx-menuitem>', path: 'hx-menuitem' },
