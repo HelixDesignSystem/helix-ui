@@ -1,0 +1,43 @@
+@import "./HXElement";
+@import "elements/hx-icon";
+@import "base/links";
+
+#hxFileTile {
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  > * {
+    padding: 0.5rem;
+  }
+
+  #hxContent {
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: 0.5rem 0;
+  }
+
+  #hxLink {
+    display: block;
+  }
+  
+  #hxDismiss {
+    background-color: transparent;
+    border: 0;
+    color: currentColor;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-size: 1rem;
+    line-height: 0;
+  }
+}
+
+:host([loading]) {
+  #hxIcon {
+    opacity: 0.6;
+  }
+
+  #hxLink {
+    color: @gray-600;
+  }
+}
