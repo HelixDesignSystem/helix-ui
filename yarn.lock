@@ -170,10 +170,6 @@
     "@webassemblyjs/wast-parser" "1.5.10"
     long "^3.2.0"
 
-"@webcomponents/webcomponentsjs@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-2.0.0.tgz#166e7489b9ce66f5c082a3360120cb27505f762f"
-
 a-sync-waterfall@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/a-sync-waterfall/-/a-sync-waterfall-1.0.0.tgz#38e8319d79379e24628845b53b96722b29e0e47c"
