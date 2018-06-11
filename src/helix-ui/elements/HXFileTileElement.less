@@ -1,0 +1,35 @@
+@import "./HXElement";
+@import "elements/hx-icon";
+@import (reference) 'components/box';
+@import (reference) "mixins";
+
+#hxFileTile {
+  background-color: @gray-50;
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  > * {
+    padding: 0.5rem;
+  }
+
+  #hxContent {
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: 0.5rem 0;
+  }
+
+  #hxLink {
+    display: block;
+  }
+  
+  #hxDelete {
+    background-color: transparent;
+    border: 0;
+    color: currentColor;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-size: 1rem;
+    line-height: 0;
+  }
+}
