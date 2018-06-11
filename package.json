@@ -13,8 +13,8 @@
   "files": [
     "dist/"
   ],
-  "dependencies": {
-    "@webcomponents/webcomponentsjs": "^2.0.0"
+  "peerDependencies": {
+    "@webcomponents/webcomponentsjs": "*"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
