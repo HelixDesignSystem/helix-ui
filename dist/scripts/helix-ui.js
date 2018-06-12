@@ -740,8 +740,8 @@ function getPositionWithArrow (offsetElement, referenceElement, config) {
 
 /** @module */
 
-// Keep track of prepared ShadyDOM templates
-const SHADY_TEMPLATES = {};
+// Keep track of prepared templates
+const TEMPLATE_CACHE = {};
 
 /**
  * @external HTMLElement
@@ -1056,34 +1056,37 @@ class HXElement extends HTMLElement {
     /**
      * @private
      * @description
-     * If the browser doesn't have native ShadowDOM, this method
-     * will ensure that the ShadyDOM template is prepared no more
-     * than once, and applies ShadyDOM styling to the element.
-     *
-     * @param {HTMLTemplate} template
+     * Prepares a template for injection into the shadow root
+     * @param {String} strTemplate - HTML template content
+     * @returns {HTMLTemplate}
      */
-    _$setupShadyDOM (template) {
+    _$prepareTemplate (strTemplate) {
         let _elementName = this.constructor.is;
 
-        if (window.ShadyCSS) {
-            // check to see if the ShadyDOM template has already been prepared
-            if (!SHADY_TEMPLATES[_elementName]) {
-                // modifies 'template' variable in-place
-                ShadyCSS.prepareTemplate(template, _elementName);
-                // memoize prepared template, so it isn't prepared more than once
-                SHADY_TEMPLATES[_elementName] = template;
-            }
-            // Apply ShadyDOM styling (rewrites Light DOM)
-            ShadyCSS.styleElement(this);
+        if (TEMPLATE_CACHE[_elementName]) {
+            return TEMPLATE_CACHE[_elementName];
         }
-    }//_$setupShadyDOM
+
+        let _template = document.createElement('template');
+        _template.innerHTML = strTemplate;
+
+        if (window.ShadyCSS) {
+            // modifies 'template' variable in-place
+            ShadyCSS.prepareTemplate(_template, _elementName);
+        }
+
+        // cache prepared template, so it isn't prepared more than once
+        TEMPLATE_CACHE[_elementName] = _template;
+
+        return _template;
+    }//_$prepareTemplate()
 
     /**
      * @private
      * @description
      * If a ShadowDOM needs to be setup, this method handles:
      *
-     * 1. creating the <template> element
+     * 1. preparing the <template> element
      * 2. attaching a shadow root
      * 3. applying ShadyDOM styling (if needed)
      * 4. stamping the template
@@ -1091,10 +1094,11 @@ class HXElement extends HTMLElement {
     _$setupShadowDOM () {
         // Don't do anything unless the "template" class property is defined.
         if (this.constructor.template) {
-            let _template = document.createElement('template');
-            _template.innerHTML = this.constructor.template;
+            let _template = this._$prepareTemplate(this.constructor.template);
             this.attachShadow({ mode: 'open' });
-            this._$setupShadyDOM(_template);
+            if (window.ShadyCSS) {
+                ShadyCSS.styleElement(this);
+            }
             this.shadowRoot.appendChild(_template.content.cloneNode(true));
         }
     }//_$setupShadowDOM()

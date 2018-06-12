@@ -113,52 +113,38 @@ min-version {
   box-shadow: inset 0 0 0 1.5rem #f8bbd0;
 }
 .hxBtn.pseudo-hover {
-  background-color: #16b9d4;
-  border-color: transparent;
-  color: #ffffff;
+  background-color: #16b9d4;border-color: transparent;color: #ffffff;
 }
 .hxBtn.pseudo-active {
-  background-color: #0e94a6;
-  border-color: transparent;
-  color: #ffffff;
+  background-color: #0e94a6;border-color: transparent;color: #ffffff;
 }
 .hxBtn.pseudo-focus {
-  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);
-  outline: none;
+  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);outline: none;
 }
 .hxBtn.hxPrimary.pseudo-hover,
 .hxBtnGroup.hxPrimary > .hxBtn.pseudo-hover,
 .hxBtn--primary.pseudo-hover {
-  background-color: #16b9d4;
-  border-color: transparent;
-  color: #ffffff;
+  background-color: #16b9d4;border-color: transparent;color: #ffffff;
 }
 .hxBtn.hxPrimary.pseudo-active,
 .hxBtnGroup.hxPrimary > .hxBtn.pseudo-active,
 .hxBtn--primary.pseudo-active {
-  background-color: #0e94a6;
-  border-color: transparent;
-  color: #ffffff;
+  background-color: #0e94a6;border-color: transparent;color: #ffffff;
 }
 .hxBtn.hxPrimary.pseudo-focus,
 .hxBtnGroup.hxPrimary > .hxBtn.pseudo-focus,
 .hxBtn--primary.pseudo-focus {
-  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);
-  outline: none;
+  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);outline: none;
 }
 .hxBtn.hxLink.pseudo-hover,
 .hxBtnGroup.hxLink > .hxBtn.pseudo-hover,
 .hxBtn--link.pseudo-hover {
-  background-color: transparent;
-  border-color: transparent;
-  color: #16b9d4;
+  background-color: transparent;border-color: transparent;color: #16b9d4;
 }
 .hxBtn.hxLink.pseudo-active,
 .hxBtnGroup.hxLink > .hxBtn.pseudo-active,
 .hxBtn--link.pseudo-active {
-  background-color: transparent;
-  border-color: transparent;
-  color: #0e94a6;
+  background-color: transparent;border-color: transparent;color: #0e94a6;
 }
 .button-demo {
   height: 6rem;
@@ -194,8 +180,7 @@ min-version {
   opacity: 1;
 }
 .choice-tile-demo label.hxChoice > input + hx-tile.pseudo-hover {
-  background-color: #e4f9f9;
-  border-color: #16b9d4;
+  background-color: #e4f9f9;border-color: #16b9d4;
 }
 .choice-tile-demo label.hxChoice > input.pseudo-focus + hx-tile {
   box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
@@ -207,19 +192,13 @@ min-version {
   box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
 }
 .choice-tile-demo label.hxChoice > input[invalid] + hx-tile.pseudo-hover {
-  background-color: #ffcdd2;
-  border-color: #d32f2f;
-  color: #424242;
+  background-color: #ffcdd2;border-color: #d32f2f;color: #424242;
 }
 .choice-tile-demo label.hxChoice > input[invalid].pseudo-focus + hx-tile {
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }
 .choice-tile-demo label.hxChoice > input[disabled] + hx-tile.pseudo-hover {
-  background-color: #fafafa;
-  border-color: #e0e0e0;
-  border-width: 1px;
-  color: #757575;
-  cursor: not-allowed;
+  background-color: #fafafa;border-color: #e0e0e0;border-width: 1px;color: #757575;cursor: not-allowed;
 }
 .choice-tile-demo label.hxChoice > input[disabled] + hx-tile.pseudo-hover hx-tile-description {
   color: inherit;
@@ -562,9 +541,7 @@ hx-icon.danger {
   text-align: center;
 }
 a.pseudo-active {
-  color: #3391ff;
-  cursor: pointer;
-  text-decoration: none;
+  color: #3391ff;cursor: pointer;text-decoration: none;
 }
 .demo-typography .font-roboto {
   font-family: "Roboto", sans-serif;
