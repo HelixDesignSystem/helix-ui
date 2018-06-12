@@ -20,6 +20,7 @@
         children: [
             { label: 'Accordions', path: 'accordions' },
             { label: 'Alerts', path: 'alerts' },
+            { label: 'Badges', path: 'badges' },
             { label: 'Box', path: 'box' },
             { label: 'Breadcrumbs', path: 'breadcrumbs' },
             { label: 'Busy', path: 'busy' },
