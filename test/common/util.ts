@@ -19,13 +19,17 @@ export async function sleep(ms = 1500) {
 export async function webComponentsReady(driver: WebDriver) {
     const ready = async () => (await driver.executeScript("return window.WebComponents.ready")) as boolean;
     while (!await ready()) {
-        await sleep(100);
+
+        await sleep(1000);
+        console.log('Need to remove it, find alternative solution');
+        //await sleep(100);
     }
 }
 
 export async function snapshot(t: TestContext, element: WebElement) {
     if (process.env.TRAVIS) {
         await webComponentsReady(element.getDriver());
+        await sleep(750); // pause *even longer* for travis rendering to finish
     }
 
     t.snapshot(await element.getAttribute("outerHTML"));

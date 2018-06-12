@@ -1,0 +1,49 @@
+---
+title: Typography
+minver: 0.1.6
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section><!-- Syntax Highlighting -->
+    <h2 id="syntax-highlighting">Syntax Highlighting</h2>
+    <p>
+      HelixUI provides a built-in theme for use with the
+      <a href="https://highlightjs.org/">highlight.js</a> library.
+    </p>
+
+    <p>
+      Below are some examples of the syntax highlighting in action.
+    </p>
+
+    <figure data-visreg="typography-syntax-css">
+      <figcaption>CSS Syntax Highlighting Example</figcaption>
+      {% code 'css' %}
+        /* CSS Comment */
+        @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,700,700i');
+        :root {
+          --border-color: #bada55;
+        }
+        html {
+          box-sizing: border-box;
+        }
+        *,
+        *::before,
+        *::after {
+          box-sizing: inherit;
+        }
+        #navigation {
+          border: 1px solid var(--border-color);
+          padding: 1em;
+          margin: 0;
+          background-image: linear-gradient(90deg, rgba(0, 0, 0, 0,5), white);
+        }
+        input[type="checkbox"]:checked {
+          /* ... */
+        }
+        .text-center {
+          text-align: center !important;
+        }
+      {% endcode %}
+    </figure>
+  </section>
+{% endblock %}

@@ -1,0 +1,45 @@
+---
+title: Typography
+minver: 0.1.6
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section><!-- Syntax Highlighting -->
+    <h2 id="syntax-highlighting">Syntax Highlighting</h2>
+    <p>
+      HelixUI provides a built-in theme for use with the
+      <a href="https://highlightjs.org/">highlight.js</a> library.
+    </p>
+
+    <p>
+      Below are some examples of the syntax highlighting in action.
+    </p>
+
+    <figure data-visreg="typography-syntax-html">
+      <figcaption>HTML Syntax Highlighting Example</figcaption>
+      {% code 'html' %}
+        <script type="text/javascript" src="path/to/script.js"></script>
+        <link rel="stylesheet" href="path/to/style.css" />
+        <!-- HTML Comment -->
+        <form method="POST" action="submit.html">
+          <fieldset>
+            <legend>Login</legend>
+            <p>
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" />
+            </p>
+            <p>
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" />
+            </p>
+          </fieldset>
+          <p>
+            <button type="submit">Log In</button>
+          </p>
+          <p>
+            <img src="path/to/file.png" alt="pretty picture" />
+          </p>
+        </form>
+      {% endcode %}
+    </figure>
+{% endblock %}

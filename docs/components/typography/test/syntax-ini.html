@@ -1,0 +1,36 @@
+---
+title: Typography
+minver: 0.1.6
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section><!-- Syntax Highlighting -->
+    <h2 id="syntax-highlighting">Syntax Highlighting</h2>
+    <p>
+      HelixUI provides a built-in theme for use with the
+      <a href="https://highlightjs.org/">highlight.js</a> library.
+    </p>
+
+    <p>
+      Below are some examples of the syntax highlighting in action.
+    </p>
+
+    <figure data-visreg="typography-syntax-ini">
+      <figcaption>.ini Syntax Highlighting Example</figcaption>
+      {% code 'ini' %}
+        ; boilerplate
+        [package]
+        name = "some_name"
+        authors = ["Author"]
+        description = "This is \
+        a description"
+
+        [[lib]]
+        name = ${NAME}
+        default = True
+        auto = no
+        counter = 1_000
+      {% endcode %}
+    </figure>
+  </section>
+{% endblock %}

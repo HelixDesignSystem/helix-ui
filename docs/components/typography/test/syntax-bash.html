@@ -1,0 +1,39 @@
+---
+title: Typography
+minver: 0.1.6
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section><!-- Syntax Highlighting -->
+    <h2 id="syntax-highlighting">Syntax Highlighting</h2>
+    <p>
+      HelixUI provides a built-in theme for use with the
+      <a href="https://highlightjs.org/">highlight.js</a> library.
+    </p>
+
+    <p>
+      Below are some examples of the syntax highlighting in action.
+    </p>
+
+    <figure data-visreg="typography-syntax-bash">
+      <figcaption>bash Syntax Highlighting Example</figcaption>
+      {% code 'bash' %}
+        #!/bin/bash
+
+        ###### CONFIG
+        ACCEPTED_HOSTS="/root/.hag_accepted.conf"
+        BE_VERBOSE=false
+
+        if [ "$UID" -ne 0 ]
+        then
+          echo "Superuser rights required"
+          exit 2
+        fi
+
+        genApacheConf(){
+          echo -e "# Host ${HOME_DIR}$1/$2 :"
+        }
+      {% endcode %}
+    </figure>
+  </section>
+{% endblock %}
