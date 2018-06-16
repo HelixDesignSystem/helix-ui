@@ -46,6 +46,9 @@ if (document.getElementById('vue-iconDemo')) {
             },
         },
         computed: {
+            searchPlaceholder: function () {
+                return `Search ${this.icons.length} icons for...`;
+            },
             downcaseFilter: function () {
                 return this.filter.toLowerCase();
             },

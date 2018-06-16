@@ -86,7 +86,7 @@ also:
         <div class="hxCol hxSpan-12-xs hxSpan-6-md hxSpan-4-xl">
           <p>
             <hx-search
-              :placeholder="`Search ${icons.length} icons for...`"
+              :placeholder="searchPlaceholder"
               :value="filter"
               @input="onFilterUpdate"
               @clear="onFilterUpdate"
