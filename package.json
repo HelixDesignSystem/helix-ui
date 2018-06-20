@@ -48,6 +48,7 @@
     "rollup-plugin-uglify": "4.x",
     "rollup-pluginutils": "^2.0.1",
     "svg-inline-loader": "^0.8.0",
+    "tar": "^4.4.4",
     "uglify-es": "^3.2.2",
     "webpack": "4.x"
   },

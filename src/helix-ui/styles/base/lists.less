@@ -1,5 +1,10 @@
 ol, ul {
+  margin-left: 1.25em;
   padding-left: 1.25rem;
+
+  & & {
+    margin-left: 0; // remove margin for nested lists
+  }
 }
 
 ol {

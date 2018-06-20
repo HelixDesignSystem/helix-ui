@@ -75,12 +75,18 @@ also:
 
   <section id="vue-iconDemo">
     <h2 id="available-icons">Icons</h2>
+    <p>
+      <a href="downloads/helix-ui-{{VERSION}}-icons.tgz">
+        <hx-icon type="download"></hx-icon>
+        Download All Icons (SVG)
+      </a>
+    </p>
     <div v-cloak>
       <div class="hxRow">
         <div class="hxCol hxSpan-12-xs hxSpan-6-md hxSpan-4-xl">
           <p>
             <hx-search
-              :placeholder="`Search ${icons.length} icons for...`"
+              :placeholder="searchPlaceholder"
               :value="filter"
               @input="onFilterUpdate"
               @clear="onFilterUpdate"
