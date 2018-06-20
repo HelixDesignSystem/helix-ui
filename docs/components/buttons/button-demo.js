@@ -1,14 +1,14 @@
 if (document.getElementById('vue-buttonDemo')) {
     const SIZES = [
         { label: 'Small', val: 'hxSm' },
-        { label: 'Medium', val: '' },
+        { label: 'Medium', val: '', default: true },
         { label: 'Large', val: 'hxLg' },
     ];
 
     const VARIANTS = [
-        { label: 'Default', val: '' },
         { label: 'Primary', val: 'hxPrimary' },
-        { label: 'Link', val: 'hxLink' },
+        { label: 'Secondary', val: '', default: true },
+        { label: 'Tertiary', val: 'hxTertiary' },
     ];
 
     new Vue({
@@ -16,7 +16,7 @@ if (document.getElementById('vue-buttonDemo')) {
         data: {
             size: SIZES[1],
             sizes: SIZES,
-            variant: VARIANTS[0],
+            variant: VARIANTS[1],
             variants: VARIANTS,
         },
         computed: {

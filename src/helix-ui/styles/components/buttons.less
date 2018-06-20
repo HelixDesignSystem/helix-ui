@@ -1,4 +1,5 @@
-.hxBtn {
+.hxBtn,
+a[href].hxBtn {
   background-color: transparent;
   border-radius: 2px;
   border: 1px solid @cyan-900;
@@ -34,8 +35,135 @@
     border-color: @gray-400;
     color: @gray-400;
     cursor: not-allowed;
+
+    &:focus {
+      box-shadow: none;
+    }
   }
 
+  // ----- SIZE VARIANTS -----
+  &.hxSm {
+    padding: 0.125rem 0.5rem; // 2px 8px
+  }
+
+  &.hxLg {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  // ----- STYLE VARIANTS -----
+  &.hxPrimary {
+    background-color: @cyan-900;
+    color: @gray-0;
+
+    &:hover {
+      background-color: @cyan-500;
+      border-color: transparent;
+      color: @gray-0;
+    }
+
+    &:active {
+      background-color: @cyan-700;
+      border-color: transparent;
+      color: @gray-0;
+    }
+
+    &:focus {
+      box-shadow: 0 0 4px 0 fade(@cyan-700, 50%);
+      outline: none;
+    }
+
+    &[disabled] {
+      background-color: @gray-400;
+      border-color: transparent;
+      color: @gray-700;
+    }
+  }
+
+  &.hxTertiary {
+    background-color: transparent;
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+
+    &:hover {
+      background-color: transparent;
+      border-color: transparent;
+      color: @cyan-500;
+    }
+
+    &:active {
+      background-color: transparent;
+      border-color: transparent;
+      color: @cyan-700;
+    }
+
+    &:focus {
+      box-shadow: @focus-glow;
+    }
+
+    &[disabled] {
+      background-color: transparent;
+      border-color: transparent;
+      color: @gray-400;
+    }
+  }
+}//.hxBtn
+
+// ========== BUTTON GROUPS ==========
+.hxBtnGroup {
+  border-radius: 2px;
+  display: inline-flex;
+
+  // Allow focus glow to appear
+  &:not(.hxTertiary) {
+    overflow: hidden;
+  }
+
+  > .hxBtn {
+    border-radius: 0;
+
+    + .hxBtn {
+      border-left: 0;
+    }
+  }
+
+  &.hxPrimary {
+    > .hxBtn {
+      &:extend(.hxBtn.hxPrimary all);
+
+      + .hxBtn {
+        border-left: 1px solid @gray-0;
+      }
+    }
+  }
+
+  &.hxTertiary {
+    > .hxBtn {
+      &:extend(.hxBtn.hxTertiary all);
+
+      + .hxBtn {
+        margin-left: 1.25rem;
+      }
+    }
+  }
+
+  &.hxLg {
+    > .hxBtn {
+      &:extend(.hxBtn.hxLg);
+    }
+  }
+
+  &.hxSm {
+    > .hxBtn {
+      &:extend(.hxBtn.hxSm);
+    }
+  }
+}//.hxBtnGroup
+
+// ========== TODO ==========
+// encapsulate these styles in an <hx-button> element
+.hxBtn {
   hx-icon {
     &:first-child {
       margin-right: 8px;
@@ -58,160 +186,48 @@
   hx-busy:last-child {
     margin-left: 0.5rem;
   }
-}//.hxBtn
 
-// STYLE VARIANTS (
-.hxBtn.hxPrimary {
-  background-color: @cyan-900;
-  color: @gray-0;
+  // Cog button
+  &.hxCog {
+    border: none;
+    padding: 0.25rem;
 
-  &:hover {
-    background-color: @cyan-500;
-    border-color: transparent;
-    color: @gray-0;
-  }
-
-  &:active {
-    background-color: @cyan-700;
-    border-color: transparent;
-    color: @gray-0;
-  }
-
-  &:focus {
-    box-shadow: 0 0 4px 0 fade(@cyan-700, 50%);
-    outline: none;
-  }
-
-  &[disabled] {
-    background-color: @gray-400;
-    border-color: transparent;
-    color: @gray-700;
-  }
-}
-
-.hxBtn.hxLink {
-  background-color: transparent;
-  border: none;
-  padding-left: 0;
-  padding-right: 0;
-
-  &:hover {
-    background-color: transparent;
-    border-color: transparent;
-    color: @cyan-500;
-  }
-
-  &:active {
-    background-color: transparent;
-    border-color: transparent;
-    color: @cyan-700;
-  }
-
-  &:focus {
-    box-shadow: none;
-  }
-
-  &[disabled] {
-    background-color: transparent;
-    border-color: transparent;
-    color: @gray-400;
-  }
-}
-
-// SIZE VARIANTS
-.hxBtn.hxLg {
-  font-size: 1rem;
-  padding: 1rem;
-}
-.hxBtn.hxSm {
-  padding: 2px 8px;
-}
-
-// BUTTON GROUPS
-.hxBtnGroup {
-  border-radius: 2px;
-  display: inline-flex;
-  overflow: hidden;
-
-  > .hxBtn {
-    border-radius: 0;
-
-    + .hxBtn {
-      border-left: 0;
+    hx-icon {
+      color: @gray-900;
+      height: 1rem;
+      width: 1rem;
     }
-  }
 
-  &.hxPrimary {
-    > .hxBtn {
-      &:extend(.hxBtn.hxPrimary all);
+    &:hover, &:active  {
+      background-color: transparent;
 
-      + .hxBtn {
-        border-left: 1px solid @gray-0;
+      hx-icon {
+        color: @gray-700;
+      }
+    }
+
+    &:focus {
+      box-shadow: 0 0 4px 0 fade(@cyan-500, 50%);
+      outline: none;
+    }
+
+    &[disabled] {
+      hx-icon {
+        color: @gray-500;
       }
     }
   }
+}//.hxBtn (TODO)
 
-  &.hxLink {
-    > .hxBtn {
-      &:extend(.hxBtn.hxLink all);
-
-      + .hxBtn {
-        margin-left: 1.25rem;
-      }
-    }
-  }
-
-  &.hxLg {
-    > .hxBtn {
-      &:extend(.hxBtn.hxLg);
-    }
-  }
-
-  &.hxSm {
-    > .hxBtn {
-      &:extend(.hxBtn.hxSm);
-    }
-  }
-}//.hxBtnGroup
-
-// COG BUTTON STYLES
-.hxBtn.hxCog {
-  border: none;
-  padding: 0.25rem;
-
-  hx-icon {
-    color: @gray-900;
-    height: 1rem;
-    width: 1rem;
-  }
-
-  &:hover, &:active  {
-    background-color: transparent;
-
-    hx-icon {
-      color: @gray-700;
-    }
-  }
-
-  &:focus {
-    box-shadow: 0 0 4px 0 fade(@cyan-500, 50%);
-    outline: none;
-  }
-
-  &[disabled] {
-    hx-icon {
-      color: @gray-500;
-    }
-  }
-}
-
-// DEPRECATED: Remove in v1.0.0
+// ========== DEPRECATED ==========
+// ----- Remove in v1.0.0 -----
 .hxBtn--primary {
   &:extend(.hxBtn.hxPrimary all);
 }
 
+.hxBtn.hxLink,
 .hxBtn--link {
-  &:extend(.hxBtn.hxLink all);
+  &:extend(.hxBtn.hxTertiary all);
 }
 
 .hxBtn--sm {
@@ -220,4 +236,8 @@
 
 .hxBtn--lg {
   &:extend(.hxBtn.hxLg);
+}
+
+.hxBtnGroup.hxLink {
+  &:extend(.hxBtnGroup.hxTertiary all);
 }

@@ -1,51 +1,41 @@
 @import (reference) 'components/buttons';
 
-.button-demo {
-  height: 6rem;
-}
-
 .hxBtn {
-  &.pseudo-hover {
-    &:extend(.hxBtn:hover);
+  &[class*="pseudo"] {
     pointer-events: none;
   }
 
-  &.pseudo-active {
-    &:extend(.hxBtn:active);
-    pointer-events: none;
-  }
-
-  &.pseudo-focus {
-    &:extend(.hxBtn:focus);
-    pointer-events: none;
-  }
+  &.pseudo-hover:extend(.hxBtn:hover) {}
+  &.pseudo-active:extend(.hxBtn:active) {}
+  &.pseudo-focus:extend(.hxBtn:focus) {}
 
   &.hxPrimary {
-    &.pseudo-hover {
-      &:extend(.hxBtn.hxPrimary:hover);
-      pointer-events: none;
-    }
-
-    &.pseudo-active {
-      &:extend(.hxBtn.hxPrimary:active);
-      pointer-events: none;
-    }
-
-    &.pseudo-focus {
-      &:extend(.hxBtn.hxPrimary:focus);
-      pointer-events: none;
-    }
+    &.pseudo-hover:extend(.hxBtn.hxPrimary:hover) {}
+    &.pseudo-active:extend(.hxBtn.hxPrimary:active) {}
+    &.pseudo-focus:extend(.hxBtn.hxPrimary:focus) {}
   }
 
-  &.hxLink {
-    &.pseudo-hover {
-      &:extend(.hxBtn.hxLink:hover);
-      pointer-events: none;
+  &.hxTertiary {
+    &.pseudo-hover:extend(.hxBtn.hxTertiary:hover) {}
+    &.pseudo-active:extend(.hxBtn.hxTertiary:active) {}
+    &.pseudo-focus:extend(.hxBtn.hxTertiary:focus) {}
+  }
+
+  a[href]& {
+    &.pseudo-hover:extend(a[href].hxBtn:hover) {}
+    &.pseudo-active:extend(a[href].hxBtn:active) {}
+    &.pseudo-focus::extend(a[href].hxBtn:focus) {}
+
+    &.hxPrimary {
+      &.pseudo-hover:extend(a[href].hxBtn.hxPrimary:hover) {}
+      &.pseudo-active:extend(a[href].hxBtn.hxPrimary:active) {}
+      &.pseudo-focus:extend(a[href].hxBtn.hxPrimary:focus) {}
     }
 
-    &.pseudo-active {
-      &:extend(.hxBtn.hxLink:active);
-      pointer-events: none;
+    &.hxTertiary {
+      &.pseudo-hover:extend(a[href].hxBtn.hxTertiary:hover) {}
+      &.pseudo-active:extend(a[href].hxBtn.hxTertiary:active) {}
+      &.pseudo-focus:extend(a[href].hxBtn.hxTertiary:focus) {}
     }
   }
 }
