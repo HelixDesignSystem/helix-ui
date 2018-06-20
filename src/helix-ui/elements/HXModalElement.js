@@ -37,47 +37,28 @@ export class HXModalElement extends HXElement {
         return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
-    static get observedAttributes () {
+    static get $observedAttributes () {
         return [ 'open' ];
     }
 
-    constructor () {
-        super();
-        this._close = this._close.bind(this);
-        this._keyUp = this._keyUp.bind(this);
+    $onCreate () {
+        this._onBtnClose = this._onBtnClose.bind(this);
+        this._onKeyUp = this._onKeyUp.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('open');
         this.setAttribute('aria-hidden', !this.open);
-
-        this._btnClose.addEventListener('click', this._close);
-        document.addEventListener('keyup', this._keyUp);
+        this._btnClose.addEventListener('click', this._onBtnClose);
     }
 
-    disconnectedCallback () {
-        this._btnClose.removeEventListener('click', this._close);
-        document.removeEventListener('keyup', this._keyUp);
+    $onDisconnect () {
+        this._btnClose.removeEventListener('click', this._onBtnClose);
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        let isOpen = (newVal !== null);
-        this.setAttribute('aria-hidden', !isOpen);
-
-        if (newVal !== oldVal) {
-            this.$emit(isOpen ? 'open' : 'close');
-        }
-    }//attributeChangedCallback
-
-    _close (evt) {
-        evt.preventDefault();
-
-        this.open = false;
-    }
-
-    _keyUp (event) {
-        if (event.keyCode === KEYS.Escape) {
-            this._close();
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'open') {
+            this._changeAttrOpen(oldVal, newVal);
         }
     }
 
@@ -96,5 +77,32 @@ export class HXModalElement extends HXElement {
     /** @private */
     get _btnClose () {
         return this.shadowRoot.getElementById('hxClose');
+    }
+
+    /** @private */
+    _onBtnClose (evt) {
+        evt.preventDefault();
+
+        this.open = false;
+    }
+
+    /** @private */
+    _onKeyUp (event) {
+        if (event.keyCode === KEYS.Escape) {
+            this.open = false;
+        }
+    }
+
+    /** @private */
+    _changeAttrOpen (oldVal, newVal) {
+        if (newVal !== null) {
+            this.$emit('open');
+            this.setAttribute('aria-hidden', false);
+            document.addEventListener('keyup', this._onKeyUp);
+        } else {
+            this.$emit('close');
+            this.setAttribute('aria-hidden', true);
+            document.removeEventListener('keyup', this._onKeyUp);
+        }
     }
 }

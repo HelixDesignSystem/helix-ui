@@ -1,0 +1,115 @@
+---
+title: Button Tests
+---
+{% extends 'test.njk' %}
+{% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/buttons">Buttons</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  {% set variants = [
+    { label: 'Primary', style: 'hxPrimary' },
+    { label: 'Secondary', style: '' },
+    { label: 'Tertiary', style: 'hxTertiary' }
+  ] %}
+  {% set sizes = [
+    { label: 'SM', style: 'hxSm' },
+    { label: 'MD', style: '' },
+    { label: 'LG', style: 'hxLg' }
+  ] %}
+  {% set inputTypes = [ 'button', 'submit', 'reset' ] %}
+
+  <!-- Button Element -->
+  <section>
+    <h3>Button Element</h3>
+    <p>Using: <code>&lt;button&gt;</code></p>
+    <table class="hxTable hxTable--condensed">
+      {% for _variant in variants %}
+      <tbody>
+        {% for _size in sizes %}
+        <tr>
+          <td>{{_variant.label}} Button ({{_size.label}})</td>
+          <td><button class="hxBtn {{_variant.style}} {{_size.style}}">Normal</button></td>
+          <td><button class="hxBtn {{_variant.style}} {{_size.style}} pseudo-focus">Focused</button></td>
+          <td><button class="hxBtn {{_variant.style}} {{_size.style}} pseudo-hover">Hover</button></td>
+          <td><button class="hxBtn {{_variant.style}} {{_size.style}} pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn {{_variant.style}} {{_size.style}}" disabled>Disabled</button></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      {% endfor %}
+    </table>
+  </section>
+
+  <!-- Anchor Element -->
+  <section>
+    <h3>Anchor Element</h3>
+    <p>Using: <code>&lt;a&gt;</code></p>
+    <table class="hxTable hxTable--condensed">
+      {% for _variant in variants %}
+      <tbody>
+        {% for _size in sizes %}
+        <tr>
+          <td>{{_variant.label}} Anchor ({{_size.label}})</td>
+          <td><a class="hxBtn {{_variant.style}} {{_size.style}}">Normal</a></td>
+          <td><a class="hxBtn {{_variant.style}} {{_size.style}} pseudo-focus">Focused</a></td>
+          <td><a class="hxBtn {{_variant.style}} {{_size.style}} pseudo-hover">Hover</a></td>
+          <td><a class="hxBtn {{_variant.style}} {{_size.style}} pseudo-active">Pressed</a></td>
+          <td><a class="hxBtn {{_variant.style}} {{_size.style}}" disabled>Disabled</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      {% endfor %}
+    </table>
+  </section>
+
+  <!-- Link Element -->
+  <section>
+    <h3>Link Element</h3>
+    <p>Using: <code>&lt;a href="#"&gt;</code></p>
+    <table class="hxTable hxTable--condensed">
+      {% for _variant in variants %}
+      <tbody>
+        {% for _size in sizes %}
+        <tr>
+          <td>{{_variant.label}} Anchor ({{_size.label}})</td>
+          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}}">Normal</a></td>
+          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-focus">Focused</a></td>
+          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-hover">Hover</a></td>
+          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-active">Pressed</a></td>
+          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}}" disabled>Disabled</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      {% endfor %}
+    </table>
+  </section>
+
+  <!-- Input Element -->
+  {% for _type in inputTypes %}
+    <section>
+      <h2>{{_type | title}} Input Element</h2>
+      <p>Using: <code>&lt;input type="{{_type}}" /&gt;</code></p>
+      <table class="hxTable hxTable--condensed">
+        {% for _variant in variants %}
+        <tbody>
+          {% for _size in sizes %}
+          <tr>
+            <td>{{_variant.label}} Anchor ({{_size.label}})</td>
+            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}}" value="Normal"/></td>
+            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-focus" value="Focused"/></td>
+            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-hover" value="Hover"/></td>
+            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-active" value="Pressed"/></td>
+            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}}" disabled value="Disabled"/></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        {% endfor %}
+      </table>
+    </section>
+  {% endfor %}
+{% endblock %}

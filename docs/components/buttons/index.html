@@ -2,6 +2,7 @@
 title: Buttons
 minver: 0.1.6
 also:
+  components/buttons/test.html: Button Tests
   components/menus: Menus
   components/popovers: Popovers
   components/reveals: Reveals
@@ -9,10 +10,9 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="demos">Demos</h2>
     <div id="vue-buttonDemo" class="hxRow" v-cloak>
       <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h3>
+        <h2>Options</h2>
         <div class="hxRow">
           <div class="hxCol hxSpan-12-lg hxSpan-6-xs">
             <b>Variant:</b><br />
@@ -23,7 +23,10 @@ also:
                   name="variant"
                   v-model="variant"
                   :value="_variant" />
-                {% raw %}{{ _variant.label }}{% endraw %}
+                {% raw %}
+                  {{ _variant.label }}
+                  <em class="hxSubBody" v-if="_variant.default">(default)</em>
+                {% endraw %}
               </label>
               <br />
             </template>
@@ -38,7 +41,10 @@ also:
                   name="size"
                   v-model="size"
                   :value="_size" />
-                {% raw %}{{ _size.label }}{% endraw %}
+                {% raw %}
+                  {{ _size.label }}
+                  <em class="hxSubBody" v-if="_size.default">(default)</em>
+                {% endraw %}
               </label>
               <br />
             </template>
@@ -47,19 +53,37 @@ also:
       </div>
       <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
         <section>
-          <h3>Single Button</h3>
+          <h2 id="single-button">Single Button</h2>
+          <p>
+            The <code>.hxBtn</code> classes are designed to be used with the
+            <code>&lt;button&gt;</code> element. However, you can use them on
+            <code>&lt;a&gt;</code> and <code>&lt;input&gt;</code> elements.
+          </p>
+          <hx-alert static type="info" status="info">
+            Only "button", "submit", and "reset" inputs are supported.
+          </hx-alert>
           <div class="demo button-demo">
-            <button :class="loneClasses">
-              {% raw %}{{size.label}} {{variant.label}}{% endraw %}
-            </button>
+            {% raw %}
+            <button :class="loneClasses" type="button">Button</button>
+            <a :class="loneClasses">Anchor</a>
+            <a href="#" :class="loneClasses">Link</a>
+            <input type="button" :class="loneClasses" value="Input" @click.prevent />
+            <input type="submit" :class="loneClasses" value="Submit" @click.prevent />
+            <input type="reset" :class="loneClasses" value="Reset" @click.prevent />
+            {% endraw %}
           </div>
-          {% code 'html' %}
-            {% raw %}<button class="{{loneClasses}}">...</button>{% endraw %}
+          {% code 'html' %}{% raw %}
+            <button class="{{loneClasses}}">Button</button>
+            <a class="{{loneClasses}}">Anchor</a>
+            <a href="#" class="{{loneClasses}}">Link</a>
+            <input type="button" class="{{loneClasses}}" value="Input" />
+            <input type="submit" class="{{loneClasses}}" value="Submit" />
+            <input type="reset" class="{{loneClasses}}" value="Reset" />{% endraw %}
           {% endcode %}
         </section>
 
         <section>
-          <h3>Button Group</h3>
+          <h2 id="button-group">Button Group</h2>
           <div class="demo button-demo">
             <div :class="groupClasses">
               <button class="hxBtn">First</button>
@@ -81,34 +105,5 @@ also:
         </section>
       </div>
     </div>
-  </section>
-
-  <section data-visreg="button-states">
-    <h2 id="button-states">Button States</h2>
-    <table class="hxTable">
-      <tbody>
-        <tr>
-          <td>Default</td>
-          <td><button class="hxBtn">Normal</button></td>
-          <td><button class="hxBtn pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn" disabled>Disabled</button></td>
-        </tr>
-        <tr>
-          <td>Primary</td>
-          <td><button class="hxBtn hxPrimary">Normal</button></td>
-          <td><button class="hxBtn hxPrimary pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn hxPrimary pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn hxPrimary" disabled>Disabled</button></td>
-        </tr>
-        <tr>
-          <td>Link</td>
-          <td><button class="hxBtn hxLink">Normal</button></td>
-          <td><button class="hxBtn hxLink pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn hxLink pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn hxLink" disabled>Disabled</button></td>
-        </tr>
-      </tbody>
-    </table>
   </section>
 {% endblock %}
