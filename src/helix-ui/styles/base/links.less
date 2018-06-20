@@ -10,9 +10,13 @@ a[href] {
     text-decoration: none;
   }
 
-  // TODO: Is this needed?
-  &.disabled {
+  &[disabled] {
     color: @gray-800;
     pointer-events: none;
   }
+}
+
+// DEPRECATED: remove in v1.0.0
+a[href].disabled {
+  &:extend(a[href][disabled]);
 }
