@@ -1,43 +1,43 @@
 (function () {
-'use strict';
+    'use strict';
 
-/* ========== Object ========== */
+    /* ========== Object ========== */
 
-/* ---------- assign() ---------- */
-// Affected Browsers: IE
-// Source: (MDN) https://goo.gl/UADxBn
-if (typeof Object.assign != 'function') {
-    // Must be writable: true, enumerable: false, configurable: true
-    Object.defineProperty(Object, "assign", {
-        value: function assign(target, varArgs) {
-            // .length of function is 2
-            if (target == null) {
-                // TypeError if undefined or null
-                throw new TypeError('Cannot convert undefined or null to object');
-            }
+    /* ---------- assign() ---------- */
+    // Affected Browsers: IE
+    // Source: (MDN) https://goo.gl/UADxBn
+    if (typeof Object.assign != 'function') {
+        // Must be writable: true, enumerable: false, configurable: true
+        Object.defineProperty(Object, "assign", {
+            value: function assign(target, varArgs) {
 
-            var to = Object(target);
+                if (target == null) {
+                    // TypeError if undefined or null
+                    throw new TypeError('Cannot convert undefined or null to object');
+                }
 
-            for (var index = 1; index < arguments.length; index++) {
-                var nextSource = arguments[index];
+                var to = Object(target);
 
-                if (nextSource != null) {
-                    // Skip over if undefined or null
-                    for (var nextKey in nextSource) {
-                        // Avoid bugs when hasOwnProperty is shadowed
-                        if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-                            to[nextKey] = nextSource[nextKey];
+                for (var index = 1; index < arguments.length; index++) {
+                    var nextSource = arguments[index];
+
+                    if (nextSource != null) {
+                        // Skip over if undefined or null
+                        for (var nextKey in nextSource) {
+                            // Avoid bugs when hasOwnProperty is shadowed
+                            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                                to[nextKey] = nextSource[nextKey];
+                            }
                         }
                     }
                 }
-            }
-            return to;
-        },
-        writable: true,
-        configurable: true
-    });
-} //Object.assign()
+                return to;
+            },
+            writable: true,
+            configurable: true
+        });
+    } //Object.assign()
 
-// Entrypoint for browser polyfills
+    // Entrypoint for browser polyfills
 
 }());

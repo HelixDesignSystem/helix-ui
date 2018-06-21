@@ -22,6 +22,10 @@
         "path": "alerts"
       },
       {
+        "label": "Badges",
+        "path": "badges"
+      },
+      {
         "label": "Box",
         "path": "box"
       },

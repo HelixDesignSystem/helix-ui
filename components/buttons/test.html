@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Button Tests - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
+
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  <link rel="stylesheet" href="docs.css">
+
+  <!-- Polyfill Loader -->
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+</head>
+<body class="hxVertical" id="top">
+  <!-- This link should be the first item a user can tab to. -->
+  <a href="#content">Skip to main content</a>
+
+  <header id="head">
+<nav class="global-nav">
+  <a class="brand-logo" href="">
+    <img src="images/helix-logo.svg" alt="Logo" />
+  </a>
+</nav>
+  </header>
+
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
+
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Guides"
+>
+    Guides
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Guides" >
+      
+      <a href="guides/getting-started" >
+    Getting Started
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Components"
+class="current">
+    Components
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Components" open>
+      
+      <a href="components/accordions" >
+    Accordions
+  </a>
+
+
+      
+      <a href="components/alerts" >
+    Alerts
+  </a>
+
+
+      
+      <a href="components/badges" >
+    Badges
+  </a>
+
+
+      
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
+      <a href="components/breadcrumbs" >
+    Breadcrumbs
+  </a>
+
+
+      
+      <a href="components/busy" >
+    Busy
+  </a>
+
+
+      
+      <a href="components/buttons" class="current">
+    Buttons
+  </a>
+
+
+      
+      <a href="components/checkboxes" >
+    Checkboxes
+  </a>
+
+
+      
+      <a href="components/choice-tiles" >
+    Choice Tiles
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
+  </a>
+
+
+      
+      <a href="components/icons" >
+    Icons
+  </a>
+
+
+      
+      <a href="components/layouts" >
+    Layouts
+  </a>
+
+
+      
+      <a href="components/lists" >
+    Lists
+  </a>
+
+
+      
+      <a href="components/menus" >
+    Menus
+  </a>
+
+
+      
+      <a href="components/modals" >
+    Modals
+  </a>
+
+
+      
+      <a href="components/navigation" >
+    Navigation
+  </a>
+
+
+      
+      <a href="components/panels" >
+    Panels
+  </a>
+
+
+      
+      <a href="components/pagination" >
+    Pagination
+  </a>
+
+
+      
+      <a href="components/pills" >
+    Pills
+  </a>
+
+
+      
+      <a href="components/popovers" >
+    Popovers
+  </a>
+
+
+      
+      <a href="components/progress" >
+    Progress
+  </a>
+
+
+      
+      <a href="components/reveals" >
+    Reveals
+  </a>
+
+
+      
+      <a href="components/search" >
+    Search
+  </a>
+
+
+      
+      <a href="components/selector-strips" >
+    Selector Strips
+  </a>
+
+
+      
+      <a href="components/status-pills" >
+    Status Pills
+  </a>
+
+
+      
+      <a href="components/tables" >
+    Tables
+  </a>
+
+
+      
+      <a href="components/tabs" >
+    Tabs
+  </a>
+
+
+      
+      <a href="components/text-inputs" >
+    Text Inputs
+  </a>
+
+
+      
+      <a href="components/toasts" >
+    Toasts
+  </a>
+
+
+      
+      <a href="components/tooltips" >
+    Tooltips
+  </a>
+
+
+      
+      <a href="components/typography" >
+    Typography
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Custom Elements"
+>
+    Custom Elements
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Custom Elements" >
+      
+      <a href="elements/hx-accordion" >
+    &lt;hx-accordion&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-accordion-panel" >
+    &lt;hx-accordion-panel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-alert" >
+    &lt;hx-alert&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-busy" >
+    &lt;hx-busy&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-checkbox" >
+    &lt;hx-checkbox&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dd" >
+    &lt;hx-dd&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-def" >
+    &lt;hx-def&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-disclosure" >
+    &lt;hx-disclosure&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dl" >
+    &lt;hx-dl&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dt" >
+    &lt;hx-dt&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-icon" >
+    &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-icon" >
+    &lt;hx-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menu" >
+    &lt;hx-menu&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem" >
+    &lt;hx-menuitem&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem-group" >
+    &lt;hx-menuitem-group&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-modal" >
+    &lt;hx-modal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-modalbody" >
+    &lt;hx-modalbody&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-modalfoot" >
+    &lt;hx-modalfoot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-modalhead" >
+    &lt;hx-modalhead&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panel" >
+    &lt;hx-panel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelbody" >
+    &lt;hx-panelbody&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelfoot" >
+    &lt;hx-panelfoot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelhead" >
+    &lt;hx-panelhead&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-pill" >
+    &lt;hx-pill&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover" >
+    &lt;hx-popover&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-body" >
+    &lt;hx-popover-body&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-foot" >
+    &lt;hx-popover-foot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-head" >
+    &lt;hx-popover-head&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-progress" >
+    &lt;hx-progress&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-reveal" >
+    &lt;hx-reveal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search" >
+    &lt;hx-search&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search-assistance" >
+    &lt;hx-search-assistance&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-status" >
+    &lt;hx-status&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tab" >
+    &lt;hx-tab&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabcontent" >
+    &lt;hx-tabcontent&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tablist" >
+    &lt;hx-tablist&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabpanel" >
+    &lt;hx-tabpanel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabset" >
+    &lt;hx-tabset&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tile" >
+    &lt;hx-tile&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tile-description" >
+    &lt;hx-tile-description&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tile-title" >
+    &lt;hx-tile-title&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-toast" >
+    &lt;hx-toast&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tooltip" >
+    &lt;hx-tooltip&gt;
+  </a>
+
+
+  </hx-reveal>
+
+
+      </nav>
+
+  <main id="content" class="hxBox-md">
+    <h1>Button Tests</h1>
+
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/buttons">Buttons</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">Button Tests</a>
+    </nav>
+  </section>
+
+
+  <!-- Button Element -->
+  <section>
+    <h3>Button Element</h3>
+    <p>Using: <code>&lt;button&gt;</code></p>
+    <table class="hxTable hxTable--condensed">
+      <tbody>
+        <tr>
+          <td>Primary Button (SM)</td>
+          <td><button class="hxBtn hxPrimary hxSm">Normal</button></td>
+          <td><button class="hxBtn hxPrimary hxSm pseudo-focus">Focused</button></td>
+          <td><button class="hxBtn hxPrimary hxSm pseudo-hover">Hover</button></td>
+          <td><button class="hxBtn hxPrimary hxSm pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn hxPrimary hxSm" disabled>Disabled</button></td>
+        </tr>
+        <tr>
+          <td>Primary Button (MD)</td>
+          <td><button class="hxBtn hxPrimary ">Normal</button></td>
+          <td><button class="hxBtn hxPrimary  pseudo-focus">Focused</button></td>
+          <td><button class="hxBtn hxPrimary  pseudo-hover">Hover</button></td>
+          <td><button class="hxBtn hxPrimary  pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn hxPrimary " disabled>Disabled</button></td>
+        </tr>
+        <tr>
+          <td>Primary Button (LG)</td>
+          <td><button class="hxBtn hxPrimary hxLg">Normal</button></td>
+          <td><button class="hxBtn hxPrimary hxLg pseudo-focus">Focused</button></td>
+          <td><button class="hxBtn hxPrimary hxLg pseudo-hover">Hover</button></td>
+          <td><button class="hxBtn hxPrimary hxLg pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn hxPrimary hxLg" disabled>Disabled</button></td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td>Secondary Button (SM)</td>
+          <td><button class="hxBtn  hxSm">Normal</button></td>
+          <td><button class="hxBtn  hxSm pseudo-focus">Focused</button></td>
+          <td><button class="hxBtn  hxSm pseudo-hover">Hover</button></td>
+          <td><button class="hxBtn  hxSm pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn  hxSm" disabled>Disabled</button></td>
+        </tr>
+        <tr>
+          <td>Secondary Button (MD)</td>
+          <td><button class="hxBtn  ">Normal</button></td>
+          <td><button class="hxBtn   pseudo-focus">Focused</button></td>
+          <td><button class="hxBtn   pseudo-hover">Hover</button></td>
+          <td><button class="hxBtn   pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn  " disabled>Disabled</button></td>
+        </tr>
+        <tr>
+          <td>Secondary Button (LG)</td>
+          <td><button class="hxBtn  hxLg">Normal</button></td>
+          <td><button class="hxBtn  hxLg pseudo-focus">Focused</button></td>
+          <td><button class="hxBtn  hxLg pseudo-hover">Hover</button></td>
+          <td><button class="hxBtn  hxLg pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn  hxLg" disabled>Disabled</button></td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td>Tertiary Button (SM)</td>
+          <td><button class="hxBtn hxTertiary hxSm">Normal</button></td>
+          <td><button class="hxBtn hxTertiary hxSm pseudo-focus">Focused</button></td>
+          <td><button class="hxBtn hxTertiary hxSm pseudo-hover">Hover</button></td>
+          <td><button class="hxBtn hxTertiary hxSm pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn hxTertiary hxSm" disabled>Disabled</button></td>
+        </tr>
+        <tr>
+          <td>Tertiary Button (MD)</td>
+          <td><button class="hxBtn hxTertiary ">Normal</button></td>
+          <td><button class="hxBtn hxTertiary  pseudo-focus">Focused</button></td>
+          <td><button class="hxBtn hxTertiary  pseudo-hover">Hover</button></td>
+          <td><button class="hxBtn hxTertiary  pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn hxTertiary " disabled>Disabled</button></td>
+        </tr>
+        <tr>
+          <td>Tertiary Button (LG)</td>
+          <td><button class="hxBtn hxTertiary hxLg">Normal</button></td>
+          <td><button class="hxBtn hxTertiary hxLg pseudo-focus">Focused</button></td>
+          <td><button class="hxBtn hxTertiary hxLg pseudo-hover">Hover</button></td>
+          <td><button class="hxBtn hxTertiary hxLg pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn hxTertiary hxLg" disabled>Disabled</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Anchor Element -->
+  <section>
+    <h3>Anchor Element</h3>
+    <p>Using: <code>&lt;a&gt;</code></p>
+    <table class="hxTable hxTable--condensed">
+      <tbody>
+        <tr>
+          <td>Primary Anchor (SM)</td>
+          <td><a class="hxBtn hxPrimary hxSm">Normal</a></td>
+          <td><a class="hxBtn hxPrimary hxSm pseudo-focus">Focused</a></td>
+          <td><a class="hxBtn hxPrimary hxSm pseudo-hover">Hover</a></td>
+          <td><a class="hxBtn hxPrimary hxSm pseudo-active">Pressed</a></td>
+          <td><a class="hxBtn hxPrimary hxSm" disabled>Disabled</a></td>
+        </tr>
+        <tr>
+          <td>Primary Anchor (MD)</td>
+          <td><a class="hxBtn hxPrimary ">Normal</a></td>
+          <td><a class="hxBtn hxPrimary  pseudo-focus">Focused</a></td>
+          <td><a class="hxBtn hxPrimary  pseudo-hover">Hover</a></td>
+          <td><a class="hxBtn hxPrimary  pseudo-active">Pressed</a></td>
+          <td><a class="hxBtn hxPrimary " disabled>Disabled</a></td>
+        </tr>
+        <tr>
+          <td>Primary Anchor (LG)</td>
+          <td><a class="hxBtn hxPrimary hxLg">Normal</a></td>
+          <td><a class="hxBtn hxPrimary hxLg pseudo-focus">Focused</a></td>
+          <td><a class="hxBtn hxPrimary hxLg pseudo-hover">Hover</a></td>
+          <td><a class="hxBtn hxPrimary hxLg pseudo-active">Pressed</a></td>
+          <td><a class="hxBtn hxPrimary hxLg" disabled>Disabled</a></td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td>Secondary Anchor (SM)</td>
+          <td><a class="hxBtn  hxSm">Normal</a></td>
+          <td><a class="hxBtn  hxSm pseudo-focus">Focused</a></td>
+          <td><a class="hxBtn  hxSm pseudo-hover">Hover</a></td>
+          <td><a class="hxBtn  hxSm pseudo-active">Pressed</a></td>
+          <td><a class="hxBtn  hxSm" disabled>Disabled</a></td>
+        </tr>
+        <tr>
+          <td>Secondary Anchor (MD)</td>
+          <td><a class="hxBtn  ">Normal</a></td>
+          <td><a class="hxBtn   pseudo-focus">Focused</a></td>
+          <td><a class="hxBtn   pseudo-hover">Hover</a></td>
+          <td><a class="hxBtn   pseudo-active">Pressed</a></td>
+          <td><a class="hxBtn  " disabled>Disabled</a></td>
+        </tr>
+        <tr>
+          <td>Secondary Anchor (LG)</td>
+          <td><a class="hxBtn  hxLg">Normal</a></td>
+          <td><a class="hxBtn  hxLg pseudo-focus">Focused</a></td>
+          <td><a class="hxBtn  hxLg pseudo-hover">Hover</a></td>
+          <td><a class="hxBtn  hxLg pseudo-active">Pressed</a></td>
+          <td><a class="hxBtn  hxLg" disabled>Disabled</a></td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td>Tertiary Anchor (SM)</td>
+          <td><a class="hxBtn hxTertiary hxSm">Normal</a></td>
+          <td><a class="hxBtn hxTertiary hxSm pseudo-focus">Focused</a></td>
+          <td><a class="hxBtn hxTertiary hxSm pseudo-hover">Hover</a></td>
+          <td><a class="hxBtn hxTertiary hxSm pseudo-active">Pressed</a></td>
+          <td><a class="hxBtn hxTertiary hxSm" disabled>Disabled</a></td>
+        </tr>
+        <tr>
+          <td>Tertiary Anchor (MD)</td>
+          <td><a class="hxBtn hxTertiary ">Normal</a></td>
+          <td><a class="hxBtn hxTertiary  pseudo-focus">Focused</a></td>
+          <td><a class="hxBtn hxTertiary  pseudo-hover">Hover</a></td>
+          <td><a class="hxBtn hxTertiary  pseudo-active">Pressed</a></td>
+          <td><a class="hxBtn hxTertiary " disabled>Disabled</a></td>
+        </tr>
+        <tr>
+          <td>Tertiary Anchor (LG)</td>
+          <td><a class="hxBtn hxTertiary hxLg">Normal</a></td>
+          <td><a class="hxBtn hxTertiary hxLg pseudo-focus">Focused</a></td>
+          <td><a class="hxBtn hxTertiary hxLg pseudo-hover">Hover</a></td>
+          <td><a class="hxBtn hxTertiary hxLg pseudo-active">Pressed</a></td>
+          <td><a class="hxBtn hxTertiary hxLg" disabled>Disabled</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Link Element -->
+  <section>
+    <h3>Link Element</h3>
+    <p>Using: <code>&lt;a href="#"&gt;</code></p>
+    <table class="hxTable hxTable--condensed">
+      <tbody>
+        <tr>
+          <td>Primary Anchor (SM)</td>
+          <td><a href="#" class="hxBtn hxPrimary hxSm">Normal</a></td>
+          <td><a href="#" class="hxBtn hxPrimary hxSm pseudo-focus">Focused</a></td>
+          <td><a href="#" class="hxBtn hxPrimary hxSm pseudo-hover">Hover</a></td>
+          <td><a href="#" class="hxBtn hxPrimary hxSm pseudo-active">Pressed</a></td>
+          <td><a href="#" class="hxBtn hxPrimary hxSm" disabled>Disabled</a></td>
+        </tr>
+        <tr>
+          <td>Primary Anchor (MD)</td>
+          <td><a href="#" class="hxBtn hxPrimary ">Normal</a></td>
+          <td><a href="#" class="hxBtn hxPrimary  pseudo-focus">Focused</a></td>
+          <td><a href="#" class="hxBtn hxPrimary  pseudo-hover">Hover</a></td>
+          <td><a href="#" class="hxBtn hxPrimary  pseudo-active">Pressed</a></td>
+          <td><a href="#" class="hxBtn hxPrimary " disabled>Disabled</a></td>
+        </tr>
+        <tr>
+          <td>Primary Anchor (LG)</td>
+          <td><a href="#" class="hxBtn hxPrimary hxLg">Normal</a></td>
+          <td><a href="#" class="hxBtn hxPrimary hxLg pseudo-focus">Focused</a></td>
+          <td><a href="#" class="hxBtn hxPrimary hxLg pseudo-hover">Hover</a></td>
+          <td><a href="#" class="hxBtn hxPrimary hxLg pseudo-active">Pressed</a></td>
+          <td><a href="#" class="hxBtn hxPrimary hxLg" disabled>Disabled</a></td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td>Secondary Anchor (SM)</td>
+          <td><a href="#" class="hxBtn  hxSm">Normal</a></td>
+          <td><a href="#" class="hxBtn  hxSm pseudo-focus">Focused</a></td>
+          <td><a href="#" class="hxBtn  hxSm pseudo-hover">Hover</a></td>
+          <td><a href="#" class="hxBtn  hxSm pseudo-active">Pressed</a></td>
+          <td><a href="#" class="hxBtn  hxSm" disabled>Disabled</a></td>
+        </tr>
+        <tr>
+          <td>Secondary Anchor (MD)</td>
+          <td><a href="#" class="hxBtn  ">Normal</a></td>
+          <td><a href="#" class="hxBtn   pseudo-focus">Focused</a></td>
+          <td><a href="#" class="hxBtn   pseudo-hover">Hover</a></td>
+          <td><a href="#" class="hxBtn   pseudo-active">Pressed</a></td>
+          <td><a href="#" class="hxBtn  " disabled>Disabled</a></td>
+        </tr>
+        <tr>
+          <td>Secondary Anchor (LG)</td>
+          <td><a href="#" class="hxBtn  hxLg">Normal</a></td>
+          <td><a href="#" class="hxBtn  hxLg pseudo-focus">Focused</a></td>
+          <td><a href="#" class="hxBtn  hxLg pseudo-hover">Hover</a></td>
+          <td><a href="#" class="hxBtn  hxLg pseudo-active">Pressed</a></td>
+          <td><a href="#" class="hxBtn  hxLg" disabled>Disabled</a></td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td>Tertiary Anchor (SM)</td>
+          <td><a href="#" class="hxBtn hxTertiary hxSm">Normal</a></td>
+          <td><a href="#" class="hxBtn hxTertiary hxSm pseudo-focus">Focused</a></td>
+          <td><a href="#" class="hxBtn hxTertiary hxSm pseudo-hover">Hover</a></td>
+          <td><a href="#" class="hxBtn hxTertiary hxSm pseudo-active">Pressed</a></td>
+          <td><a href="#" class="hxBtn hxTertiary hxSm" disabled>Disabled</a></td>
+        </tr>
+        <tr>
+          <td>Tertiary Anchor (MD)</td>
+          <td><a href="#" class="hxBtn hxTertiary ">Normal</a></td>
+          <td><a href="#" class="hxBtn hxTertiary  pseudo-focus">Focused</a></td>
+          <td><a href="#" class="hxBtn hxTertiary  pseudo-hover">Hover</a></td>
+          <td><a href="#" class="hxBtn hxTertiary  pseudo-active">Pressed</a></td>
+          <td><a href="#" class="hxBtn hxTertiary " disabled>Disabled</a></td>
+        </tr>
+        <tr>
+          <td>Tertiary Anchor (LG)</td>
+          <td><a href="#" class="hxBtn hxTertiary hxLg">Normal</a></td>
+          <td><a href="#" class="hxBtn hxTertiary hxLg pseudo-focus">Focused</a></td>
+          <td><a href="#" class="hxBtn hxTertiary hxLg pseudo-hover">Hover</a></td>
+          <td><a href="#" class="hxBtn hxTertiary hxLg pseudo-active">Pressed</a></td>
+          <td><a href="#" class="hxBtn hxTertiary hxLg" disabled>Disabled</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Input Element -->
+    <section>
+      <h2>Button Input Element</h2>
+      <p>Using: <code>&lt;input type="button" /&gt;</code></p>
+      <table class="hxTable hxTable--condensed">
+        <tbody>
+          <tr>
+            <td>Primary Anchor (SM)</td>
+            <td><input type="button" class="hxBtn hxPrimary hxSm" value="Normal"/></td>
+            <td><input type="button" class="hxBtn hxPrimary hxSm pseudo-focus" value="Focused"/></td>
+            <td><input type="button" class="hxBtn hxPrimary hxSm pseudo-hover" value="Hover"/></td>
+            <td><input type="button" class="hxBtn hxPrimary hxSm pseudo-active" value="Pressed"/></td>
+            <td><input type="button" class="hxBtn hxPrimary hxSm" disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Primary Anchor (MD)</td>
+            <td><input type="button" class="hxBtn hxPrimary " value="Normal"/></td>
+            <td><input type="button" class="hxBtn hxPrimary  pseudo-focus" value="Focused"/></td>
+            <td><input type="button" class="hxBtn hxPrimary  pseudo-hover" value="Hover"/></td>
+            <td><input type="button" class="hxBtn hxPrimary  pseudo-active" value="Pressed"/></td>
+            <td><input type="button" class="hxBtn hxPrimary " disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Primary Anchor (LG)</td>
+            <td><input type="button" class="hxBtn hxPrimary hxLg" value="Normal"/></td>
+            <td><input type="button" class="hxBtn hxPrimary hxLg pseudo-focus" value="Focused"/></td>
+            <td><input type="button" class="hxBtn hxPrimary hxLg pseudo-hover" value="Hover"/></td>
+            <td><input type="button" class="hxBtn hxPrimary hxLg pseudo-active" value="Pressed"/></td>
+            <td><input type="button" class="hxBtn hxPrimary hxLg" disabled value="Disabled"/></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>Secondary Anchor (SM)</td>
+            <td><input type="button" class="hxBtn  hxSm" value="Normal"/></td>
+            <td><input type="button" class="hxBtn  hxSm pseudo-focus" value="Focused"/></td>
+            <td><input type="button" class="hxBtn  hxSm pseudo-hover" value="Hover"/></td>
+            <td><input type="button" class="hxBtn  hxSm pseudo-active" value="Pressed"/></td>
+            <td><input type="button" class="hxBtn  hxSm" disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Secondary Anchor (MD)</td>
+            <td><input type="button" class="hxBtn  " value="Normal"/></td>
+            <td><input type="button" class="hxBtn   pseudo-focus" value="Focused"/></td>
+            <td><input type="button" class="hxBtn   pseudo-hover" value="Hover"/></td>
+            <td><input type="button" class="hxBtn   pseudo-active" value="Pressed"/></td>
+            <td><input type="button" class="hxBtn  " disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Secondary Anchor (LG)</td>
+            <td><input type="button" class="hxBtn  hxLg" value="Normal"/></td>
+            <td><input type="button" class="hxBtn  hxLg pseudo-focus" value="Focused"/></td>
+            <td><input type="button" class="hxBtn  hxLg pseudo-hover" value="Hover"/></td>
+            <td><input type="button" class="hxBtn  hxLg pseudo-active" value="Pressed"/></td>
+            <td><input type="button" class="hxBtn  hxLg" disabled value="Disabled"/></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>Tertiary Anchor (SM)</td>
+            <td><input type="button" class="hxBtn hxTertiary hxSm" value="Normal"/></td>
+            <td><input type="button" class="hxBtn hxTertiary hxSm pseudo-focus" value="Focused"/></td>
+            <td><input type="button" class="hxBtn hxTertiary hxSm pseudo-hover" value="Hover"/></td>
+            <td><input type="button" class="hxBtn hxTertiary hxSm pseudo-active" value="Pressed"/></td>
+            <td><input type="button" class="hxBtn hxTertiary hxSm" disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Tertiary Anchor (MD)</td>
+            <td><input type="button" class="hxBtn hxTertiary " value="Normal"/></td>
+            <td><input type="button" class="hxBtn hxTertiary  pseudo-focus" value="Focused"/></td>
+            <td><input type="button" class="hxBtn hxTertiary  pseudo-hover" value="Hover"/></td>
+            <td><input type="button" class="hxBtn hxTertiary  pseudo-active" value="Pressed"/></td>
+            <td><input type="button" class="hxBtn hxTertiary " disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Tertiary Anchor (LG)</td>
+            <td><input type="button" class="hxBtn hxTertiary hxLg" value="Normal"/></td>
+            <td><input type="button" class="hxBtn hxTertiary hxLg pseudo-focus" value="Focused"/></td>
+            <td><input type="button" class="hxBtn hxTertiary hxLg pseudo-hover" value="Hover"/></td>
+            <td><input type="button" class="hxBtn hxTertiary hxLg pseudo-active" value="Pressed"/></td>
+            <td><input type="button" class="hxBtn hxTertiary hxLg" disabled value="Disabled"/></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Submit Input Element</h2>
+      <p>Using: <code>&lt;input type="submit" /&gt;</code></p>
+      <table class="hxTable hxTable--condensed">
+        <tbody>
+          <tr>
+            <td>Primary Anchor (SM)</td>
+            <td><input type="submit" class="hxBtn hxPrimary hxSm" value="Normal"/></td>
+            <td><input type="submit" class="hxBtn hxPrimary hxSm pseudo-focus" value="Focused"/></td>
+            <td><input type="submit" class="hxBtn hxPrimary hxSm pseudo-hover" value="Hover"/></td>
+            <td><input type="submit" class="hxBtn hxPrimary hxSm pseudo-active" value="Pressed"/></td>
+            <td><input type="submit" class="hxBtn hxPrimary hxSm" disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Primary Anchor (MD)</td>
+            <td><input type="submit" class="hxBtn hxPrimary " value="Normal"/></td>
+            <td><input type="submit" class="hxBtn hxPrimary  pseudo-focus" value="Focused"/></td>
+            <td><input type="submit" class="hxBtn hxPrimary  pseudo-hover" value="Hover"/></td>
+            <td><input type="submit" class="hxBtn hxPrimary  pseudo-active" value="Pressed"/></td>
+            <td><input type="submit" class="hxBtn hxPrimary " disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Primary Anchor (LG)</td>
+            <td><input type="submit" class="hxBtn hxPrimary hxLg" value="Normal"/></td>
+            <td><input type="submit" class="hxBtn hxPrimary hxLg pseudo-focus" value="Focused"/></td>
+            <td><input type="submit" class="hxBtn hxPrimary hxLg pseudo-hover" value="Hover"/></td>
+            <td><input type="submit" class="hxBtn hxPrimary hxLg pseudo-active" value="Pressed"/></td>
+            <td><input type="submit" class="hxBtn hxPrimary hxLg" disabled value="Disabled"/></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>Secondary Anchor (SM)</td>
+            <td><input type="submit" class="hxBtn  hxSm" value="Normal"/></td>
+            <td><input type="submit" class="hxBtn  hxSm pseudo-focus" value="Focused"/></td>
+            <td><input type="submit" class="hxBtn  hxSm pseudo-hover" value="Hover"/></td>
+            <td><input type="submit" class="hxBtn  hxSm pseudo-active" value="Pressed"/></td>
+            <td><input type="submit" class="hxBtn  hxSm" disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Secondary Anchor (MD)</td>
+            <td><input type="submit" class="hxBtn  " value="Normal"/></td>
+            <td><input type="submit" class="hxBtn   pseudo-focus" value="Focused"/></td>
+            <td><input type="submit" class="hxBtn   pseudo-hover" value="Hover"/></td>
+            <td><input type="submit" class="hxBtn   pseudo-active" value="Pressed"/></td>
+            <td><input type="submit" class="hxBtn  " disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Secondary Anchor (LG)</td>
+            <td><input type="submit" class="hxBtn  hxLg" value="Normal"/></td>
+            <td><input type="submit" class="hxBtn  hxLg pseudo-focus" value="Focused"/></td>
+            <td><input type="submit" class="hxBtn  hxLg pseudo-hover" value="Hover"/></td>
+            <td><input type="submit" class="hxBtn  hxLg pseudo-active" value="Pressed"/></td>
+            <td><input type="submit" class="hxBtn  hxLg" disabled value="Disabled"/></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>Tertiary Anchor (SM)</td>
+            <td><input type="submit" class="hxBtn hxTertiary hxSm" value="Normal"/></td>
+            <td><input type="submit" class="hxBtn hxTertiary hxSm pseudo-focus" value="Focused"/></td>
+            <td><input type="submit" class="hxBtn hxTertiary hxSm pseudo-hover" value="Hover"/></td>
+            <td><input type="submit" class="hxBtn hxTertiary hxSm pseudo-active" value="Pressed"/></td>
+            <td><input type="submit" class="hxBtn hxTertiary hxSm" disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Tertiary Anchor (MD)</td>
+            <td><input type="submit" class="hxBtn hxTertiary " value="Normal"/></td>
+            <td><input type="submit" class="hxBtn hxTertiary  pseudo-focus" value="Focused"/></td>
+            <td><input type="submit" class="hxBtn hxTertiary  pseudo-hover" value="Hover"/></td>
+            <td><input type="submit" class="hxBtn hxTertiary  pseudo-active" value="Pressed"/></td>
+            <td><input type="submit" class="hxBtn hxTertiary " disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Tertiary Anchor (LG)</td>
+            <td><input type="submit" class="hxBtn hxTertiary hxLg" value="Normal"/></td>
+            <td><input type="submit" class="hxBtn hxTertiary hxLg pseudo-focus" value="Focused"/></td>
+            <td><input type="submit" class="hxBtn hxTertiary hxLg pseudo-hover" value="Hover"/></td>
+            <td><input type="submit" class="hxBtn hxTertiary hxLg pseudo-active" value="Pressed"/></td>
+            <td><input type="submit" class="hxBtn hxTertiary hxLg" disabled value="Disabled"/></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h2>Reset Input Element</h2>
+      <p>Using: <code>&lt;input type="reset" /&gt;</code></p>
+      <table class="hxTable hxTable--condensed">
+        <tbody>
+          <tr>
+            <td>Primary Anchor (SM)</td>
+            <td><input type="reset" class="hxBtn hxPrimary hxSm" value="Normal"/></td>
+            <td><input type="reset" class="hxBtn hxPrimary hxSm pseudo-focus" value="Focused"/></td>
+            <td><input type="reset" class="hxBtn hxPrimary hxSm pseudo-hover" value="Hover"/></td>
+            <td><input type="reset" class="hxBtn hxPrimary hxSm pseudo-active" value="Pressed"/></td>
+            <td><input type="reset" class="hxBtn hxPrimary hxSm" disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Primary Anchor (MD)</td>
+            <td><input type="reset" class="hxBtn hxPrimary " value="Normal"/></td>
+            <td><input type="reset" class="hxBtn hxPrimary  pseudo-focus" value="Focused"/></td>
+            <td><input type="reset" class="hxBtn hxPrimary  pseudo-hover" value="Hover"/></td>
+            <td><input type="reset" class="hxBtn hxPrimary  pseudo-active" value="Pressed"/></td>
+            <td><input type="reset" class="hxBtn hxPrimary " disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Primary Anchor (LG)</td>
+            <td><input type="reset" class="hxBtn hxPrimary hxLg" value="Normal"/></td>
+            <td><input type="reset" class="hxBtn hxPrimary hxLg pseudo-focus" value="Focused"/></td>
+            <td><input type="reset" class="hxBtn hxPrimary hxLg pseudo-hover" value="Hover"/></td>
+            <td><input type="reset" class="hxBtn hxPrimary hxLg pseudo-active" value="Pressed"/></td>
+            <td><input type="reset" class="hxBtn hxPrimary hxLg" disabled value="Disabled"/></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>Secondary Anchor (SM)</td>
+            <td><input type="reset" class="hxBtn  hxSm" value="Normal"/></td>
+            <td><input type="reset" class="hxBtn  hxSm pseudo-focus" value="Focused"/></td>
+            <td><input type="reset" class="hxBtn  hxSm pseudo-hover" value="Hover"/></td>
+            <td><input type="reset" class="hxBtn  hxSm pseudo-active" value="Pressed"/></td>
+            <td><input type="reset" class="hxBtn  hxSm" disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Secondary Anchor (MD)</td>
+            <td><input type="reset" class="hxBtn  " value="Normal"/></td>
+            <td><input type="reset" class="hxBtn   pseudo-focus" value="Focused"/></td>
+            <td><input type="reset" class="hxBtn   pseudo-hover" value="Hover"/></td>
+            <td><input type="reset" class="hxBtn   pseudo-active" value="Pressed"/></td>
+            <td><input type="reset" class="hxBtn  " disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Secondary Anchor (LG)</td>
+            <td><input type="reset" class="hxBtn  hxLg" value="Normal"/></td>
+            <td><input type="reset" class="hxBtn  hxLg pseudo-focus" value="Focused"/></td>
+            <td><input type="reset" class="hxBtn  hxLg pseudo-hover" value="Hover"/></td>
+            <td><input type="reset" class="hxBtn  hxLg pseudo-active" value="Pressed"/></td>
+            <td><input type="reset" class="hxBtn  hxLg" disabled value="Disabled"/></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>Tertiary Anchor (SM)</td>
+            <td><input type="reset" class="hxBtn hxTertiary hxSm" value="Normal"/></td>
+            <td><input type="reset" class="hxBtn hxTertiary hxSm pseudo-focus" value="Focused"/></td>
+            <td><input type="reset" class="hxBtn hxTertiary hxSm pseudo-hover" value="Hover"/></td>
+            <td><input type="reset" class="hxBtn hxTertiary hxSm pseudo-active" value="Pressed"/></td>
+            <td><input type="reset" class="hxBtn hxTertiary hxSm" disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Tertiary Anchor (MD)</td>
+            <td><input type="reset" class="hxBtn hxTertiary " value="Normal"/></td>
+            <td><input type="reset" class="hxBtn hxTertiary  pseudo-focus" value="Focused"/></td>
+            <td><input type="reset" class="hxBtn hxTertiary  pseudo-hover" value="Hover"/></td>
+            <td><input type="reset" class="hxBtn hxTertiary  pseudo-active" value="Pressed"/></td>
+            <td><input type="reset" class="hxBtn hxTertiary " disabled value="Disabled"/></td>
+          </tr>
+          <tr>
+            <td>Tertiary Anchor (LG)</td>
+            <td><input type="reset" class="hxBtn hxTertiary hxLg" value="Normal"/></td>
+            <td><input type="reset" class="hxBtn hxTertiary hxLg pseudo-focus" value="Focused"/></td>
+            <td><input type="reset" class="hxBtn hxTertiary hxLg pseudo-hover" value="Hover"/></td>
+            <td><input type="reset" class="hxBtn hxTertiary hxLg pseudo-active" value="Pressed"/></td>
+            <td><input type="reset" class="hxBtn hxTertiary hxLg" disabled value="Disabled"/></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+    </div>
+  </div>
+
+  <footer id="foot" class="hxRow hxGutterless">
+<div class="hxCol">
+&copy; 2018 Rackspace US, Inc.
+<nav>
+  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+</nav>
+</div>
+<div class="hxCol text-right">
+    <small>
+      Last Updated:
+      2018-06-20
+    </small>
+
+  <small>
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.10.0" target="_blank">
+      v0.10.0
+    </a>)
+  </small>
+</div>
+  </footer>
+
+<script src="dist/scripts/helix-ui.polyfills.js"></script>
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+<!-- intelligently load ES5 Adapter (if needed) -->
+<span id="ce-es5-adapter">
+  <script>
+    if (!window.customElements) {
+      var elAdapter = document.querySelector('#ce-es5-adapter');
+      elAdapter.parentElement.removeChild(elAdapter);
+    }
+  </script>
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+</span>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+<script src="dist/scripts/helix-ui.browser.js"></script>
+<script src="docs.js"></script>
+</body>
+</html>

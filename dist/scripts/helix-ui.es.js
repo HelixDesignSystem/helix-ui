@@ -1779,7 +1779,6 @@ class HXDisclosureElement extends HXElement {
 
     attributeChangedCallback (attr, oldVal, newVal) {
         super.attributeChangedCallback(attr, oldVal, newVal);
-
         switch(attr) {
             case 'aria-expanded':
                 if (this.target) {
@@ -2410,47 +2409,28 @@ class HXModalElement extends HXElement {
         return `<style>${shadowStyles$5}</style>${shadowMarkup$5}`;
     }
 
-    static get observedAttributes () {
+    static get $observedAttributes () {
         return [ 'open' ];
     }
 
-    constructor () {
-        super();
-        this._close = this._close.bind(this);
-        this._keyUp = this._keyUp.bind(this);
+    $onCreate () {
+        this._onBtnClose = this._onBtnClose.bind(this);
+        this._onKeyUp = this._onKeyUp.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('open');
         this.setAttribute('aria-hidden', !this.open);
-
-        this._btnClose.addEventListener('click', this._close);
-        document.addEventListener('keyup', this._keyUp);
+        this._btnClose.addEventListener('click', this._onBtnClose);
     }
 
-    disconnectedCallback () {
-        this._btnClose.removeEventListener('click', this._close);
-        document.removeEventListener('keyup', this._keyUp);
+    $onDisconnect () {
+        this._btnClose.removeEventListener('click', this._onBtnClose);
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        let isOpen = (newVal !== null);
-        this.setAttribute('aria-hidden', !isOpen);
-
-        if (newVal !== oldVal) {
-            this.$emit(isOpen ? 'open' : 'close');
-        }
-    }//attributeChangedCallback
-
-    _close (evt) {
-        evt.preventDefault();
-
-        this.open = false;
-    }
-
-    _keyUp (event) {
-        if (event.keyCode === KEYS.Escape) {
-            this._close();
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'open') {
+            this._changeAttrOpen(oldVal, newVal);
         }
     }
 
@@ -2469,6 +2449,33 @@ class HXModalElement extends HXElement {
     /** @private */
     get _btnClose () {
         return this.shadowRoot.getElementById('hxClose');
+    }
+
+    /** @private */
+    _onBtnClose (evt) {
+        evt.preventDefault();
+
+        this.open = false;
+    }
+
+    /** @private */
+    _onKeyUp (event) {
+        if (event.keyCode === KEYS.Escape) {
+            this.open = false;
+        }
+    }
+
+    /** @private */
+    _changeAttrOpen (oldVal, newVal) {
+        if (newVal !== null) {
+            this.$emit('open');
+            this.setAttribute('aria-hidden', false);
+            document.addEventListener('keyup', this._onKeyUp);
+        } else {
+            this.$emit('close');
+            this.setAttribute('aria-hidden', true);
+            document.removeEventListener('keyup', this._onKeyUp);
+        }
     }
 }
 
@@ -2623,7 +2630,7 @@ var hasOwnProperty = objectProto.hasOwnProperty;
 var nativeObjectToString = objectProto.toString;
 
 /** Built-in value references. */
-var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
+var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
 
 /**
  * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
@@ -2633,20 +2640,19 @@ var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
  * @returns {string} Returns the raw `toStringTag`.
  */
 function getRawTag(value) {
-  var isOwn = hasOwnProperty.call(value, symToStringTag$1),
-      tag = value[symToStringTag$1];
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
 
   try {
-    value[symToStringTag$1] = undefined;
-    var unmasked = true;
+    value[symToStringTag] = undefined;
   } catch (e) {}
 
   var result = nativeObjectToString.call(value);
-  if (unmasked) {
+  {
     if (isOwn) {
-      value[symToStringTag$1] = tag;
+      value[symToStringTag] = tag;
     } else {
-      delete value[symToStringTag$1];
+      delete value[symToStringTag];
     }
   }
   return result;
@@ -2678,11 +2684,11 @@ function objectToString(value) {
 var _objectToString = objectToString;
 
 /** `Object#toString` result references. */
-var nullTag = '[object Null]';
-var undefinedTag = '[object Undefined]';
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
 
 /** Built-in value references. */
-var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
+var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
 
 /**
  * The base implementation of `getTag` without fallbacks for buggy environments.
@@ -2695,7 +2701,7 @@ function baseGetTag(value) {
   if (value == null) {
     return value === undefined ? undefinedTag : nullTag;
   }
-  return (symToStringTag && symToStringTag in Object(value))
+  return (symToStringTag$1 && symToStringTag$1 in Object(value))
     ? _getRawTag(value)
     : _objectToString(value);
 }
@@ -2827,8 +2833,8 @@ var toNumber_1 = toNumber;
 var FUNC_ERROR_TEXT = 'Expected a function';
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeMax = Math.max;
-var nativeMin = Math.min;
+var nativeMax = Math.max,
+    nativeMin = Math.min;
 
 /**
  * Creates a debounced function that delays invoking `func` until after `wait`
@@ -2929,9 +2935,11 @@ function debounce(func, wait, options) {
   function remainingWait(time) {
     var timeSinceLastCall = time - lastCallTime,
         timeSinceLastInvoke = time - lastInvokeTime,
-        result = wait - timeSinceLastCall;
+        timeWaiting = wait - timeSinceLastCall;
 
-    return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
+    return maxing
+      ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke)
+      : timeWaiting;
   }
 
   function shouldInvoke(time) {
@@ -3893,9 +3901,9 @@ class HXTabsetElement extends HXElement {
     }//_setupIds
 }
 
-var shadowMarkup$10 = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
+var shadowMarkup$a = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-var shadowStyles$10 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxToast {\n  padding: 0.75rem;\n}\n#hxToast #hxCta {\n  background-color: transparent;\n  border-radius: 2px;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-size: 0.875rem;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 8px 12px;\n}\n#hxToast #hxCta {\n  background-color: transparent;\n  border: none;\n  padding-left: 0;\n  padding-right: 0;\n}\n#hxToast {\n  background-color: #ffffff;\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  color: #424242;\n  display: flex;\n  min-height: 3.5rem;\n  position: relative;\n  width: 22rem;\n}\n#hxToast::before,\n#hxToast::after {\n  content: '';\n  display: block;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#hxToast::before {\n  border: 1px solid #e0e0e0;\n}\n#hxToast::after {\n  border-left: 8px solid currentColor;\n}\n#hxToast #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  margin: 0 0.75rem 0 0.5rem;\n}\n#hxToast #hxIconWrapper hx-icon {\n  font-size: 2rem;\n}\n#hxToast #hxContent {\n  flex-grow: 1;\n  margin-right: 1.5rem;\n  text-align: right;\n  word-wrap: break-word;\n}\n#hxToast #hxContent div {\n  font-size: 0.875rem;\n  text-align: left;\n}\n#hxToast #hxCta {\n  text-transform: uppercase;\n}\n#hxToast #hxCta:empty {\n  display: none;\n}\n#hxToast #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 0.75rem;\n  height: 2.25rem;\n  line-height: 0;\n  margin: 0;\n  padding: 0.75rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 2.25rem;\n}\n:host([type=\"info\"]) #hxToast::after {\n  border-left-color: #3b44a9;\n}\n:host([type=\"info\"]) #hxIcon {\n  color: #3b44a9;\n}\n:host([type=\"error\"]) #hxToast::after {\n  border-left-color: #d32f2f;\n}\n:host([type=\"error\"]) #hxIcon {\n  color: #d32f2f;\n}\n:host([type=\"success\"]) #hxToast::after {\n  border-left-color: #4caf51;\n}\n:host([type=\"success\"]) #hxIcon {\n  color: #4caf51;\n}\n";
+var shadowStyles$a = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxToast {\n  padding: 0.75rem;\n}\n#hxToast #hxCta {\n  background-color: transparent;\n  border-radius: 2px;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-size: 0.875rem;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 8px 12px;\n}\n#hxToast {\n  background-color: #ffffff;\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  color: #424242;\n  display: flex;\n  min-height: 3.5rem;\n  position: relative;\n  width: 22rem;\n}\n#hxToast::before,\n#hxToast::after {\n  content: '';\n  display: block;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#hxToast::before {\n  border: 1px solid #e0e0e0;\n}\n#hxToast::after {\n  border-left: 8px solid currentColor;\n}\n#hxToast #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  margin: 0 0.75rem 0 0.5rem;\n}\n#hxToast #hxIconWrapper hx-icon {\n  font-size: 2rem;\n}\n#hxToast #hxContent {\n  flex-grow: 1;\n  margin-right: 1.5rem;\n  text-align: right;\n  word-wrap: break-word;\n}\n#hxToast #hxContent div {\n  font-size: 0.875rem;\n  text-align: left;\n}\n#hxToast #hxCta {\n  text-transform: uppercase;\n}\n#hxToast #hxCta:empty {\n  display: none;\n}\n#hxToast #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 0.75rem;\n  height: 2.25rem;\n  line-height: 0;\n  margin: 0;\n  padding: 0.75rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 2.25rem;\n}\n:host([type=\"info\"]) #hxToast::after {\n  border-left-color: #3b44a9;\n}\n:host([type=\"info\"]) #hxIcon {\n  color: #3b44a9;\n}\n:host([type=\"error\"]) #hxToast::after {\n  border-left-color: #d32f2f;\n}\n:host([type=\"error\"]) #hxIcon {\n  color: #d32f2f;\n}\n:host([type=\"success\"]) #hxToast::after {\n  border-left-color: #4caf51;\n}\n:host([type=\"success\"]) #hxIcon {\n  color: #4caf51;\n}\n";
 
 const ICONS$1 = {
     'error': 'exclamation-circle',
@@ -3934,7 +3942,7 @@ class HXToastElement extends HXElement {
     }
 
     static get template () {
-        return `<style>${shadowStyles$10}</style>${shadowMarkup$10}`;
+        return `<style>${shadowStyles$a}</style>${shadowMarkup$a}`;
     }
 
     constructor () {
@@ -4040,9 +4048,9 @@ class HXToastElement extends HXElement {
     }
 }
 
-var shadowMarkup$11 = "<div id='hxTooltip' class='position-arrow'><slot></slot></div>";
+var shadowMarkup$b = "<div id='hxTooltip' class='position-arrow'><slot></slot></div>";
 
-var shadowStyles$11 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#hxTooltip {\n  padding: 1.25rem;\n}\n";
+var shadowStyles$b = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#hxTooltip {\n  padding: 1.25rem;\n}\n";
 
 /**
  * Fires when the element's contents are concealed.
@@ -4075,7 +4083,7 @@ class HXTooltipElement extends HXElement {
     }
 
     static get template () {
-        return `<style>${shadowStyles$11}</style>${shadowMarkup$11}`;
+        return `<style>${shadowStyles$b}</style>${shadowMarkup$b}`;
     }
 
     static get observedAttributes () {
@@ -4231,40 +4239,39 @@ class HXTooltipElement extends HXElement {
  * @module
  */
 
-
-
-var elements = Object.freeze({
-	HXAccordionElement: HXAccordionElement,
-	HXAccordionPanelElement: HXAccordionPanelElement,
-	HXAlertElement: HXAlertElement,
-	HXBusyElement: HXBusyElement,
-	HXCheckboxElement: HXCheckboxElement,
-	HXDisclosureElement: HXDisclosureElement,
-	HXElement: HXElement,
-	HXErrorElement: HXErrorElement,
-	HXFileIconElement: HXFileIconElement,
-	HXIconElement: HXIconElement,
-	HXMenuElement: HXMenuElement,
-	HXMenuitemElement: HXMenuitemElement,
-	HXModalElement: HXModalElement,
-	HXPillElement: HXPillElement,
-	HXPopoverElement: HXPopoverElement,
-	HXProgressElement: HXProgressElement,
-	HXRevealElement: HXRevealElement,
-	HXSearchAssistanceElement: HXSearchAssistanceElement,
-	HXSearchElement: HXSearchElement,
-	HXTabElement: HXTabElement,
-	HXTabcontentElement: HXTabcontentElement,
-	HXTablistElement: HXTablistElement,
-	HXTabpanelElement: HXTabpanelElement,
-	HXTabsetElement: HXTabsetElement,
-	HXToastElement: HXToastElement,
-	HXTooltipElement: HXTooltipElement
+var elements = /*#__PURE__*/Object.freeze({
+    HXAccordionElement: HXAccordionElement,
+    HXAccordionPanelElement: HXAccordionPanelElement,
+    HXAlertElement: HXAlertElement,
+    HXBusyElement: HXBusyElement,
+    HXCheckboxElement: HXCheckboxElement,
+    HXDisclosureElement: HXDisclosureElement,
+    HXElement: HXElement,
+    HXErrorElement: HXErrorElement,
+    HXFileIconElement: HXFileIconElement,
+    HXIconElement: HXIconElement,
+    HXMenuElement: HXMenuElement,
+    HXMenuitemElement: HXMenuitemElement,
+    HXModalElement: HXModalElement,
+    HXPillElement: HXPillElement,
+    HXPopoverElement: HXPopoverElement,
+    HXProgressElement: HXProgressElement,
+    HXRevealElement: HXRevealElement,
+    HXSearchAssistanceElement: HXSearchAssistanceElement,
+    HXSearchElement: HXSearchElement,
+    HXTabElement: HXTabElement,
+    HXTabcontentElement: HXTabcontentElement,
+    HXTablistElement: HXTablistElement,
+    HXTabpanelElement: HXTabpanelElement,
+    HXTabsetElement: HXTabsetElement,
+    HXToastElement: HXToastElement,
+    HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.9.0";
+var version = "0.10.0";
 
 /** @module helix-ui */
+
 /*
  * Register element definitions with the Custom Element registry.
  */
@@ -4319,12 +4326,12 @@ const VERSION = {
 };
 VERSION.toString = () => { return version };
 
-var HelixUI$1 = {
+var HelixUI = {
     elements,
     initialize,
     VERSION,
 };
 
-HelixUI$1.VERSION = version;
+HelixUI.VERSION = version;
 
-export default HelixUI$1;
+export default HelixUI;

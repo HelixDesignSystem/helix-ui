@@ -12,7 +12,8 @@
   <link rel="stylesheet" href="docs.css">
 
   <!-- Polyfill Loader -->
-  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/webcomponents-loader.js"></script>
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
 </head>
 <body class="hxVertical" id="top">
   <!-- This link should be the first item a user can tab to. -->
@@ -70,6 +71,12 @@ class="current">
       
       <a href="components/alerts" >
     Alerts
+  </a>
+
+
+      
+      <a href="components/badges" >
+    Badges
   </a>
 
 
@@ -529,10 +536,9 @@ class="current">
     </h1>
 
   <section>
-    <h2 id="demos">Demos</h2>
     <div id="vue-buttonDemo" class="hxRow" v-cloak>
       <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h3>
+        <h2>Options</h2>
         <div class="hxRow">
           <div class="hxCol hxSpan-12-lg hxSpan-6-xs">
             <b>Variant:</b><br />
@@ -543,7 +549,9 @@ class="current">
                   name="variant"
                   v-model="variant"
                   :value="_variant" />
-{{ _variant.label }}
+                  {{ _variant.label }}
+                  <em class="hxSubBody" v-if="_variant.default">(default)</em>
+                
               </label>
               <br />
             </template>
@@ -558,7 +566,9 @@ class="current">
                   name="size"
                   v-model="size"
                   :value="_size" />
-{{ _size.label }}
+                  {{ _size.label }}
+                  <em class="hxSubBody" v-if="_size.default">(default)</em>
+                
               </label>
               <br />
             </template>
@@ -567,17 +577,34 @@ class="current">
       </div>
       <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
         <section>
-          <h3>Single Button</h3>
+          <h2 id="single-button">Single Button</h2>
+          <p>
+            The <code>.hxBtn</code> classes are designed to be used with the
+            <code>&lt;button&gt;</code> element. However, you can use them on
+            <code>&lt;a&gt;</code> and <code>&lt;input&gt;</code> elements.
+          </p>
+          <hx-alert static type="info" status="info">
+            Only "button", "submit", and "reset" inputs are supported.
+          </hx-alert>
           <div class="demo button-demo">
-            <button :class="loneClasses">
-{{size.label}} {{variant.label}}
-            </button>
+            <button :class="loneClasses" type="button">Button</button>
+            <a :class="loneClasses">Anchor</a>
+            <a href="#" :class="loneClasses">Link</a>
+            <input type="button" :class="loneClasses" value="Input" @click.prevent />
+            <input type="submit" :class="loneClasses" value="Submit" @click.prevent />
+            <input type="reset" :class="loneClasses" value="Reset" @click.prevent />
+            
           </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{loneClasses}}"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{loneClasses}}"</span>&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{loneClasses}}"</span>&gt;</span>Anchor<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{loneClasses}}"</span>&gt;</span>Link<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{loneClasses}}"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Input"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{loneClasses}}"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Submit"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"reset"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{loneClasses}}"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Reset"</span> /&gt;</span>
 </code></pre>        </section>
 
         <section>
-          <h3>Button Group</h3>
+          <h2 id="button-group">Button Group</h2>
           <div class="demo button-demo">
             <div :class="groupClasses">
               <button class="hxBtn">First</button>
@@ -599,38 +626,10 @@ class="current">
     </div>
   </section>
 
-  <section data-visreg="button-states">
-    <h2 id="button-states">Button States</h2>
-    <table class="hxTable">
-      <tbody>
-        <tr>
-          <td>Default</td>
-          <td><button class="hxBtn">Normal</button></td>
-          <td><button class="hxBtn pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn" disabled>Disabled</button></td>
-        </tr>
-        <tr>
-          <td>Primary</td>
-          <td><button class="hxBtn hxPrimary">Normal</button></td>
-          <td><button class="hxBtn hxPrimary pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn hxPrimary pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn hxPrimary" disabled>Disabled</button></td>
-        </tr>
-        <tr>
-          <td>Link</td>
-          <td><button class="hxBtn hxLink">Normal</button></td>
-          <td><button class="hxBtn hxLink pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn hxLink pseudo-active">Pressed</button></td>
-          <td><button class="hxBtn hxLink" disabled>Disabled</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
 <section>
   <h2 id="see-also">See Also</h2>
   <ul>
+      <li><a href="components/buttons/test.html">Button Tests</a></li>
       <li><a href="components/menus">Menus</a></li>
       <li><a href="components/popovers">Popovers</a></li>
       <li><a href="components/reveals">Reveals</a></li>
@@ -641,10 +640,10 @@ class="current">
     <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#demos">Demos</a>
+            <a href="#single-button">Single Button</a>
         
 
-            <a href="#button-states">Button States</a>
+            <a href="#button-group">Button Group</a>
         
         <a href="#see-also">See Also</a>
       <hr />
@@ -665,12 +664,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-05-22
+      2018-06-20
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.9.1" target="_blank">
-      v0.9.1
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.10.0" target="_blank">
+      v0.10.0
     </a>)
   </small>
 </div>
@@ -687,7 +686,7 @@ class="current">
       elAdapter.parentElement.removeChild(elAdapter);
     }
   </script>
-  <script src="https://ab2b55b0a26bb32fdc01-2c8b94bcec8e01c366189541a4035ea4.ssl.cf5.rackcdn.com/custom-elements-es5-adapter.js"></script>
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
 </span>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
