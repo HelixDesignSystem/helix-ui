@@ -1,7 +1,6 @@
 import { HXElement } from './HXElement';
-//import shadowMarkup from './HXFileTileElement.html';
+import shadowMarkup from './HXFileTileElement.html';
 //import shadowStyles from './HXFileTileElement.less';
-const shadowMarkup = `<div><slot></slot></div>`;
 const shadowStyles = ``;
 
 export class HXFileTileElement extends HXElement {
