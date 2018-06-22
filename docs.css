@@ -4,12 +4,36 @@
 .homepage {
   background-image: linear-gradient(0deg, #b6e3eb, #ffffff 20%);
 }
+#app-header {
+  display: flex;
+  padding-right: 1rem;
+}
+#app-header > * {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-grow: 1;
+}
+#app-header > *:first-child {
+  flex: 0 0 15rem;
+}
+#app-header > *:last-child {
+  justify-content: flex-end;
+}
 .brand-logo {
   align-items: center;
   display: flex;
   height: 3.5rem;
   justify-content: center;
   width: 15rem;
+}
+.brand-logo:focus {
+  box-shadow: none;
+  outline: none;
+}
+.brand-logo:focus img {
+  outline: 1px dotted #b6e3eb;
+  outline-offset: 0.25rem;
 }
 .brand-logo img {
   height: 2rem;

@@ -1027,19 +1027,25 @@ a[href].hxBtn {
   padding: 8px 12px;
 }
 .hxBtn:hover,
-a[href].hxBtn:hover {
+a[href].hxBtn:hover,
+.hxBtn.beta-hxDark:hover,
+a[href].hxBtn.beta-hxDark:hover {
   background-color: #16b9d4;
   border-color: transparent;
   color: #ffffff;
 }
 .hxBtn:active,
-a[href].hxBtn:active {
+a[href].hxBtn:active,
+.hxBtn.beta-hxDark:active,
+a[href].hxBtn.beta-hxDark:active {
   background-color: #0e94a6;
   border-color: transparent;
   color: #ffffff;
 }
 .hxBtn:focus,
-a[href].hxBtn:focus {
+a[href].hxBtn:focus,
+.hxBtn.beta-hxDark:focus,
+a[href].hxBtn.beta-hxDark:focus {
   box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);
   outline: none;
 }
@@ -1203,6 +1209,19 @@ a[href].hxBtnGroup.hxLink > .hxBtn[disabled] {
 .hxBtnGroup.hxTertiary > .hxBtn + .hxBtn,
 .hxBtnGroup.hxLink > .hxBtn + .hxBtn {
   margin-left: 1.25rem;
+}
+.hxBtn.beta-hxDark,
+a[href].hxBtn.beta-hxDark {
+  border-color: #16b9d4;
+  color: #16b9d4;
+}
+.hxBtn.beta-hxDark:hover,
+a[href].hxBtn.beta-hxDark:hover {
+  color: #ffffff;
+}
+.hxBtn.beta-hxDark:focus,
+a[href].hxBtn.beta-hxDark:focus {
+  box-shadow: 0 0 4px 2px rgba(22, 185, 212, 0.6);
 }
 .hxBtn hx-icon:first-child {
   margin-right: 8px;
