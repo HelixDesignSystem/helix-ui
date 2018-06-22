@@ -7,6 +7,7 @@ import { minify } from 'uglify-es';
 import less from './lib/rollup-plugin-less';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import eslint from 'rollup-plugin-eslint';
 
 let htmlPlugin = html ({
     include: [
@@ -29,6 +30,12 @@ let lessPlugin = less({
             'src/helix-ui/styles',
         ]
     }
+});
+
+let eslintPlugin = eslint({
+    include: [
+        '**/*.js',
+    ],
 });
 
 // Intro/Outro placed INSIDE the applied dependency function
@@ -81,6 +88,7 @@ export default [
             commonjs(),
             htmlPlugin,
             lessPlugin,
+            eslintPlugin,
             babelPlugin,
             uglify({}, minify),
         ],

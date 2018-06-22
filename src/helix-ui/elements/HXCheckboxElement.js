@@ -1,5 +1,4 @@
 import { HXElement } from './HXElement';
-import { KEYS } from '../util';
 import shadowMarkup from './HXCheckboxElement.html';
 import shadowStyles from './HXCheckboxElement.less';
 

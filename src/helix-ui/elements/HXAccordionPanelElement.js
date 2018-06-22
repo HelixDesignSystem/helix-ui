@@ -29,7 +29,7 @@ import shadowStyles from './HXAccordionPanelElement.less';
  */
 export class HXAccordionPanelElement extends HXElement {
     static get is () {
-        return `hx-accordion-panel`;
+        return 'hx-accordion-panel';
     }
 
     static get template () {

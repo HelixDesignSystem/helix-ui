@@ -250,7 +250,8 @@ export function getPosition (offsetElement, referenceElement, config) {
  *
  * @param {PositionConfig} config - configuration object
  * @param {Integer} [config.margin=12] - distance in pixels between the base and the tip of the arrow
- * @param {Integer} [config.offset=20] - distance in pixels from the edge of the offset element to the center of the arrow
+ * @param {Integer} [config.offset=20] - distance in pixels from the edge of the 
+ * offset element to the center of the arrow
  *
  * @returns {XYPosition}
  */

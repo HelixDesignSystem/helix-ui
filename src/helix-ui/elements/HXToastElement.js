@@ -62,10 +62,7 @@ export class HXToastElement extends HXElement {
     }
 
     static get observedAttributes () {
-        return [
-            'cta',
-            'type',
-        ];
+        return [ 'cta', 'type' ];
     }//observedAttributes
 
     attributeChangedCallback (attr, oldVal, newVal) {
