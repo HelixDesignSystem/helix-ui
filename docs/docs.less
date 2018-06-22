@@ -13,12 +13,42 @@
   background-image: linear-gradient(0deg, @cyan-100, @gray-0 20%);
 }
 
+#app-header {
+  display: flex;
+  padding-right: 1rem;
+
+  > * {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-grow: 1;
+
+    &:first-child { // brand logo
+      flex: 0 0 @app-nav-width;
+    }
+
+    &:last-child {
+      justify-content: flex-end;
+    }
+  }
+}
+
 .brand-logo {
   align-items: center;
   display: flex;
   height: 3.5rem;
   justify-content: center;
   width: @app-nav-width;
+
+  &:focus {
+    box-shadow: none;
+    outline: none;
+
+    img {
+      outline: 1px dotted @cyan-100;
+      outline-offset: 0.25rem;
+    }
+  }
 
   img {
     height: 2rem;
