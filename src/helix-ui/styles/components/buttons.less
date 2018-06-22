@@ -161,6 +161,26 @@ a[href].hxBtn {
   }
 }//.hxBtnGroup
 
+
+// DARK BUTTONS (BETA)
+.hxBtn.beta-hxDark,
+a[href].hxBtn.beta-hxDark {
+  border-color: @cyan-500;
+  color: @cyan-500;
+
+  &:hover {
+    &:extend(.hxBtn:hover);
+    color: @gray-0;
+  }
+  &:active {
+    &:extend(.hxBtn:active);
+  }
+  &:focus {
+    &:extend(.hxBtn:focus);
+    box-shadow: 0 0 4px 2px fade(@cyan-500, 60%);
+  }
+}
+
 // ========== TODO ==========
 // encapsulate these styles in an <hx-button> element
 .hxBtn {
