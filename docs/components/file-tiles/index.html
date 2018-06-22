@@ -1,0 +1,224 @@
+---
+title: File Tiles
+also: 
+  components/Icons: Icons
+  elements/hx-file-tile: <hx-file-tile>
+  elements/hx-file-icon: <hx-file-icon>
+  elements/hx-icon: <hx-icon>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <div id="vue-fileTileDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+      <h3>Options</h3>
+        <b>States:</b><br />
+        <label>
+          <input type="radio" value="default" name="file-state" v-model="state" />
+          Default
+        </label><br />
+        <label>
+          <input type="radio" value="loading" name="file-state" v-model="state" />
+          Loading
+        </label><br />
+        <label>
+          <input type="radio" value="invalid" name="file-state" v-model="state" />
+          Invalid
+        </label><br />
+        <p>
+          <b>Icon:</b><br />
+          <input
+            class="hxTextCtrl"
+            type="text"
+            v-model="icon" />
+        </p>
+        <p>
+          <b>Name:</b><br />
+          <input
+            class="hxTextCtrl"
+            type="text"
+            v-model="name" />
+        </p>
+        <p>
+          <b>HREF:</b><br />
+          <input
+            class="hxTextCtrl"
+            type="text"
+            v-model="href" />
+        </p>
+        <p v-if="isLoading">
+          <b>Progress:</b><br />
+          <input type="range" v-model="progressValue"/>
+        </p>
+        <p v-else-if="isDefault">
+          <b>Content:</b><br />
+          <input
+            class="hxTextCtrl"
+            type="text"
+            v-model="content" />
+        </p>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <h2 id="basic-file-tile">Basic File Tile</h2>
+        <div class="demo">
+          <hx-file-tile
+            :loading="isLoading"
+            :invalid="isInvalid"
+            :icon="icon"
+            :name="name"
+            :href="href">
+            <button v-if="isInvalid" class="hxBtn hxSm hxLink">
+              Retry
+              <hx-icon type="cog"></hx-icon>
+            </button>
+            <hx-progress v-else-if="isLoading" :value="progressValue"></hx-progress>
+            <span v-else class="hxSubdued">{% raw %}{{content}}{% endraw %}</span>
+          </hx-file-tile>
+        </div>
+        <template v-if="isLoading">
+          {% code 'html' %}{% raw %}
+            <hx-file-tile loading
+              icon="{{icon}}"
+              name="{{name}}"
+              href="{{href}}">
+              <hx-progress value="{{progressValue}}"></hx-progress>
+            </hx-file-tile>{% endraw %}
+          {% endcode %}
+        </template>
+        <template v-else-if="isInvalid">
+          {% code 'html' %}{% raw %}
+            <hx-file-tile invalid
+              icon="{{icon}}"
+              name="{{name}}"
+              href="{{href}}">
+              <button class="hxBtn hxSm hxLink">
+                Retry
+                <hx-icon type="cog"></hx-icon>
+              </button>
+            </hx-file-tile>{% endraw %}
+          {% endcode %}
+        </template>
+        <template v-else>
+          {% code 'html' %}{% raw %}
+            <hx-file-tile
+              icon="{{icon}}"
+              name="{{name}}"
+              href="{{href}}">
+              <span class="hxSubdued">{{content}}</span>
+            </hx-file-tile>{% endraw %}
+          {% endcode %}
+        </template>
+
+      </div>
+    </div>
+  </section>
+
+  <!--
+  <section>
+    <h2 id="basic-file-tile">Basic File Tile</h2>
+    <div class="demo">
+      <hx-file-tile 
+        icon="mime-audio" 
+        name="unicorns.jpg"
+        href="path/to/unicorns.jpg">
+        <span class="hxSubdued">1.3mb</span>
+      </hx-file-tile>
+    </div>
+    {% code 'html' %}
+      <hx-file-tile 
+        icon="mime-audio" 
+        name="unicorns.jpg"
+        href="path/to/unicorns.jpg">
+        <span class="hxSubdued">1.3mb</span>
+      </hx-file-tile>
+    {% endcode %}
+  </section>
+
+  <section>
+    <h2 id="error-file-tile">Error File Tile</h2>
+    <div class="demo">
+      <hx-file-tile 
+        invalid 
+        icon="mime-audio" 
+        name="unicorns.jpg">
+        <button class="hxBtn hxSm hxLink">
+          Retry
+          <hx-icon type="cog"></hx-icon>
+        </button>
+      </hx-file-tile>
+    </div>
+    {% code 'html' %}
+      <hx-file-tile 
+        invalid 
+        icon="mime-audio" 
+        name="unicorns.jpg">
+        <button class="hxBtn hxSm hxLink">
+          Retry
+          <hx-icon type="cog"></hx-icon>
+        </button>
+      </hx-file-tile>
+    {% endcode %}
+  </section>
+
+  <section>
+    <h2 id="loading-file-tile">Loading File Tile</h2>
+    <div class="demo">
+      <hx-file-tile 
+        loading
+        icon="mime-audio" 
+        name="unicorns.jpg">
+        <hx-progress value="42"></hx-progress>
+      </hx-file-tile>
+    </div>
+    {% code 'html' %}
+      <hx-file-tile 
+        loading
+        icon="mime-audio" 
+        name="unicorns.jpg">
+        <hx-progress value="42"></hx-progress>
+      </hx-file-tile>
+    {% endcode %}
+  </section>
+
+  <section>
+    <div class="demo">
+      <div class="hxRow">
+        {% for i in range(5) %}
+        <div class="hxCol hxSpan-6-xs">
+          <hx-file-tile loading icon="mime-audio" ext="jpg">
+            <header>
+              unicorns.jpgunicorns.jpgunicorns.jpgunicorns.jpgunicorns.jpgunicorns.jpgunicorns.jpgunicorns.jpgunicorns.jpg
+            </header>
+            <hx-progress value="42"></hx-progress>
+          </hx-file-tile>
+          <hx-error>content here</hx-error>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% code 'html' %}
+    {% endcode %}
+  </section>
+
+  <section>
+    <div class="demo">
+      <div class="hxRow">
+        {% for i in range(5) %}
+        <div class="hxCol hxSpan-6-xs">
+          <hx-file-tile loading icon="mime-audio" ext="jpg">
+            <header>
+              unicorns.jpg
+            </header>
+            <hx-progress value="42"></hx-progress>
+          </hx-file-tile>
+          <hx-error>content here</hx-error>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% code 'html' %}
+    {% endcode %}
+  </section>
+  -->
+{% endblock %} 
+ 
