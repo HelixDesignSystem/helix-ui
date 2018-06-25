@@ -45,23 +45,28 @@ export function suite(browserName: string) {
         await snappit.snap("{browserName}/nav/custom-elements", $(util.selectors.nav));
     });
 
-    // Test Suite for Modal for Firefox browser
     test("components/modals", async t => {
         await util.go(driver, "components/modals");
-        await snappit.snap("{browserName}/modals/modals", $(util.selectors.modal));
+        await snappit.snap("{browserName}/modals/modals", $(util.selectors.components), { hide: [driver.findElement(By.css('.hxSiderail')) ] });
     });
 
     test("components/open-modals", async t => {
         await util.go(driver, "components/modals");
         await driver.findElement(By.id('open-modal')).click();
-        await snappit.snap(`{browserName}/modals/open-modal`, $(util.selectors.modal));
+        await snappit.snap(`{browserName}/modals/open-modal`, $(util.selectors.components), { hide: [driver.findElement(By.css('.hxSiderail')) ] });
+    });
+
+    test("components/text-inputs", async t => {
+        await util.go(driver, "components/text-inputs");
+        await snappit.snap("{browserName}/text-inputs/single-line-text", $("div.demo"));
+        await snappit.snap("{browserName}/text-inputs/multi-line-text", $("#multi-line-text-demo"));
     });
     
     /**
       * This is here because of https://github.com/SeleniumHQ/selenium/issues/3882
       * For the mean time, don't attempt to use keyboard navigation (in tabs) when
       * testing with Firefox. Chrome works just fine, however.
-      */
+      */    
     if (browserName === "chrome") {
         test("tabs/first", async t => {
             await util.go(driver, "components/tabs");
