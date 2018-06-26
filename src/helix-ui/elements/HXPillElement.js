@@ -19,7 +19,7 @@ import shadowStyles from './HXPillElement.less';
  */
 export class HXPillElement extends HXElement {
     static get is () {
-        return `hx-pill`;
+        return 'hx-pill';
     }
 
     static get template () {

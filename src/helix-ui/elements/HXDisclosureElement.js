@@ -14,9 +14,7 @@ export class HXDisclosureElement extends HXElement {
     }
 
     static get observedAttributes () {
-        return super.observedAttributes.concat([
-            'aria-expanded',
-        ]);
+        return super.observedAttributes.concat([ 'aria-expanded' ]);
     }
 
     constructor () {
@@ -61,8 +59,7 @@ export class HXDisclosureElement extends HXElement {
     attributeChangedCallback (attr, oldVal, newVal) {
         super.attributeChangedCallback(attr, oldVal, newVal);
 
-        const hasValue = (newVal !== null);
-        switch(attr) {
+        switch (attr) {
             case 'aria-expanded':
                 if (this.target) {
                     let setTo = (newVal === 'true');

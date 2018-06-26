@@ -36,7 +36,7 @@ const ICONS = {
  */
 export class HXAlertElement extends HXElement {
     static get is () {
-        return `hx-alert`;
+        return 'hx-alert';
     }
 
     static get template () {

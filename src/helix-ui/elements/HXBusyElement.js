@@ -13,7 +13,7 @@ export class HXBusyElement extends HXElement {
     }
 
     static get template () {
-        return ``;
+        return '';
     }
 
     connectedCallback () {

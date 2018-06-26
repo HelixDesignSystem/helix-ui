@@ -1,5 +1,4 @@
 /** @module helix-ui */
-import { HXElement } from './elements/HXElement';
 import * as elements from './elements';
 import { version as SEMVER } from '../../package.json';
 
@@ -33,7 +32,7 @@ function initialize () {
     }
 }
 
-let [major, minor, patch] = SEMVER.split('.').map(Number);
+let [major, minor, patch] = SEMVER.split('.').map(Number); // eslint-disable-line
 
 /**
  * Current version metadata
@@ -55,7 +54,7 @@ const VERSION = {
     minor,
     patch,
 };
-VERSION.toString = () => { return SEMVER };
+VERSION.toString = () => { return SEMVER }; // eslint-disable-line
 
 export default {
     elements,
