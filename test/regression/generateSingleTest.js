@@ -1,3 +1,3 @@
-module.exports = (browser, component, buildIdentifier) => {
-    return `import { regressionTest } from "../regression/runSingleTest"; regressionTest("${browser}", "${component}", "${buildIdentifier}");`
+module.exports = (browser, component) => {
+    return `import { regressionTest } from "../regression/runSingleTest"; regressionTest("${browser}", "${component}");`
 }
