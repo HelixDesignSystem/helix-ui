@@ -1,0 +1,146 @@
+---
+title: File Tiles
+also: 
+  components/Icons: Icons
+  elements/hx-file-tile: <hx-file-tile>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <div id="vue-fileTileDemo" class="hxRow" v-cloak>
+      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
+        <h3>Options</h3>
+        <p>
+          <b>States:</b><br />
+          <label>
+            <input type="radio" value="default" name="file-state" v-model="state" />
+            Default
+          </label><br />
+          <label>
+            <input type="radio" value="loading" name="file-state" v-model="state" />
+            Loading
+          </label><br />
+          <label>
+            <input type="radio" value="invalid" name="file-state" v-model="state" />
+            Invalid
+          </label>
+        </p>
+        <p>
+          <b>Icon:</b><br />
+          <input
+            class="hxTextCtrl"
+            type="text"
+            v-model="icon" 
+          />
+        </p>
+        <p>
+          <b>Name:</b><br />
+          <input
+            class="hxTextCtrl"
+            type="text"
+            v-model="name" 
+          />
+        </p>
+        <template v-if="isDefault">
+          <p>
+            <b>href:</b><br />
+            <input
+              class="hxTextCtrl"
+              type="text"
+              v-model="href"
+            />
+          </p>
+          <p> 
+            <b>Content:</b><br />
+            <input
+              class="hxTextCtrl"
+              type="text"
+              v-model="content" 
+            />
+          </p>
+        </template>
+        <p v-if="isLoading">
+          <b>Progress:</b><br />
+          <input type="range" v-model="progressValue"/>
+        </p>
+      </div>
+      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
+        <h2 id="basic-file-tile">Basic File Tile</h2>
+        <template v-if="isDefault">
+          <div class="demo">
+            <hx-file-tile
+              :icon="icon"
+              :name="name"
+              :href="href"
+              @cancel="onEvent"
+              @delete="onEvent"
+            >
+              <span class="hxSubdued">{% raw %}{{content}}{% endraw %}</span>
+            </hx-file-tile>
+          </div>
+          {% code 'html' %}{% raw %}
+            <hx-file-tile
+              icon="{{icon}}"
+              name="{{name}}"
+              href="{{href}}"
+            >
+              <span class="hxSubdued">{{content}}</span>
+            </hx-file-tile>{% endraw %}
+          {% endcode %}
+        </template>
+
+        <template v-if="isLoading">
+          <div class="demo">
+            <hx-file-tile
+              loading
+              :icon="icon"
+              :name="name"
+              @cancel="onEvent"
+              @delete="onEvent"
+            >
+              <hx-progress :value="progressValue"></hx-progress>
+            </hx-file-tile>
+          </div>
+          {% code 'html' %}{% raw %}
+            <hx-file-tile 
+              loading
+              icon="{{icon}}"
+              name="{{name}}"
+            >
+              <hx-progress value="{{progressValue}}"></hx-progress>
+            </hx-file-tile>{% endraw %}
+          {% endcode %}
+        </template>
+
+        <template v-if="isInvalid">
+          <div class="demo">
+            <hx-file-tile
+              invalid
+              :icon="icon"
+              :name="name"
+              @cancel="onEvent"
+              @delete="onEvent"
+            >
+              <button class="hxBtn hxSm hxLink">
+                Retry
+              </button>
+            </hx-file-tile>
+          </div>
+          {% code 'html' %}{% raw %}
+            <hx-file-tile 
+              invalid
+              icon="{{icon}}"
+              name="{{name}}"
+            >
+              <button class="hxBtn hxSm hxLink">
+                Retry
+              </button>
+            </hx-file-tile>{% endraw %}
+          {% endcode %}
+        </template>
+
+      </div>
+    </div>
+  </section>
+{% endblock %} 
+ 

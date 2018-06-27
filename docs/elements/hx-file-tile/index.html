@@ -1,0 +1,104 @@
+---
+title: <hx-file-tile>
+also:
+  components/file-tiles: File Tiles
+  components/icons: Icons
+---
+{% extends 'element.njk' %}
+{% block content %}
+
+  <section>
+    <p>
+      The custom <code>{{page.title}}</code> element describes the states of 
+      a downloadable asset.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Events</hx-dt>
+        <hx-dd>
+          Any of the following:
+          <ul>
+            <li>
+              <code>cancel</code> - User clicks "X" when loading or invalid.
+            </li>
+            <li>
+              <code>delete</code> - User clicks "X" to delete the file.
+            </li>
+          </ul>
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl>
+    <dt>name {String} <i>(optional)</i></dt>
+    <dd>
+      Sets the text of the name.
+      If absent or blank, the name will not be displayed.
+    </dd>
+
+    <dt>href {String} <i>(optional)</i></dt>
+    <dd>
+      Sets the path of the href.
+      If absent, file name will not be a clickable link.
+      Avoid setting this attribute until the file exists on the server.
+    </dd>
+
+    <dt>icon {Enum&lt;String&gt;} <i>(optional)</i></dt>
+    <dd>
+      Changes the displayed icon to one of the
+      <a href="components/icons/#available-icons">available icons.</a>
+      If absent, blank, or unrecognized, the icon will not be displayed.
+    </dd>
+
+    <dt>loading {Boolean [false]} <i>(optional)</i></dt>
+    <dd>
+      When present, indicates file upload is in progress.
+    </dd>
+
+    <dt>invalid {Boolean [false]} <i>(optional)</i></dt>
+    <dd>
+      When present, marks element invalid.
+    </dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl>
+    <dt>name {String}</dt>
+    <dd>
+      Manipulates the <code>name</code> attribute.
+    </dd>
+
+    <dt>href {String}</dt>
+    <dd>
+      Manipulates the <code>href</code> attribute.
+    </dd>
+
+    <dt>icon {String}</dt>
+    <dd>
+      Manipulates the <code>icon</code> attribute.
+    </dd>
+
+    <dt>loading {Boolean}</dt>
+    <dd>
+      Manipulates the <code>loading</code> attribute.
+    </dd>
+
+    <dt>valid {Boolean}</dt>
+    <dd>
+      Manipulates the <code>invalid</code> attribute.
+    </dd>
+  </dl>
+{% endblock %}
