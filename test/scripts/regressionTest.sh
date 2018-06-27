@@ -20,7 +20,7 @@ esac
 done
 
 # clean up old stuff
-yarn clean:regression
+npm run clean:regression
 
 # generate new stuff
 ./regression/regressionTestHandler.js${BROWSERS}${COMPONENTS}
