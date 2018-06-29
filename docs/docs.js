@@ -1,4 +1,5 @@
 'use strict';
+import 'whatwg-fetch';
 
 import './components/accordions/accordion-demo';
 import './components/alerts/alert-demo';

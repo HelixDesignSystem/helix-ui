@@ -51,7 +51,8 @@
     "svg-inline-loader": "^0.8.0",
     "tar": "^4.4.4",
     "uglify-es": "^3.2.2",
-    "webpack": "4.x"
+    "webpack": "4.x",
+    "whatwg-fetch": "^2.0.4"
   },
   "scripts": {
     "apidocs": "jsdoc -c jsdoc.conf.json",

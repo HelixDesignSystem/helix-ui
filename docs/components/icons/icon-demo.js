@@ -1,11 +1,10 @@
 if (document.getElementById('vue-iconDemo')) {
     const Icons = {
-        fetchAll: function () {
-            return $.ajax({
-                async: false,
-                dataType: 'json',
-                url: 'data/icons.json',
-            });
+        fetch: function () {
+            return fetch('data/icons.json');
+        },
+        fetchJSON: function () {
+            return this.fetch().then(res => res.json());
         },
     };//Icons
 
@@ -16,9 +15,8 @@ if (document.getElementById('vue-iconDemo')) {
             filter: '',
         },
         beforeMount: function () {
-            Icons.fetchAll().then((data) => {
-                this.icons = data;
-            });
+            Icons.fetchJSON()
+                .then(json => this.icons = json);
         },
         methods: {
             onFilterUpdate: function (evt) {

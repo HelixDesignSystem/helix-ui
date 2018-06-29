@@ -5117,6 +5117,10 @@ webpack@4.x:
     watchpack "^1.5.0"
     webpack-sources "^1.0.1"
 
+whatwg-fetch@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.4.tgz#dde6a5df315f9d39991aa17621853d720b85566f"
+
 which-module@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/which-module/-/which-module-1.0.0.tgz#bba63ca861948994ff307736089e3b96026c2a4f"
