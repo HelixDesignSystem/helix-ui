@@ -120,33 +120,4 @@ export default [
             lessPlugin,
         ],
     },
-
-    // src/polyfills.js --> dis/helix-ui.polyfills.js (IIFE)
-    {
-        input: 'src/polyfills.js',
-        output: [
-            {
-                file: 'dist/scripts/helix-ui.polyfills.js',
-                format: 'iife',
-            }
-        ],
-        plugins: [
-            babelPlugin,
-        ],
-    },
-
-    // src/polyfills.js --> dis/helix-ui.polyfills.min.js (IIFE)
-    {
-        input: 'src/polyfills.js',
-        output: [
-            {
-                file: 'dist/scripts/helix-ui.polyfills.min.js',
-                format: 'iife',
-            }
-        ],
-        plugins: [
-            babelPlugin,
-            uglify({}, minify),
-        ],
-    },
 ]
