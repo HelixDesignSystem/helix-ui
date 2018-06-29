@@ -62,7 +62,7 @@
     "generate": "bin/generate.js",
     "preghpages": "yarn generate",
     "ghpages": "bin/ghpages.js",
-    "lint": "eslint -c .eslintrc.json src",
+    "lint": "eslint -c .eslintrc.prod.json src",
     "postversion": "git push origin --tags",
     "prepublishOnly": "yarn compile",
     "rollup": "rollup -c rollup.config.js",

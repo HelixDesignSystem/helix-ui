@@ -22,4 +22,5 @@ before_script:
 - yarn start > /dev/null 2>&1 &
 - while ! curl --silent http://localhost:4444/wd/hub > /dev/null 2>&1; do sleep 1; done
 script:
+- yarn lint
 - yarn test
