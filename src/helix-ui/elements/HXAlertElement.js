@@ -70,7 +70,7 @@ export class HXAlertElement extends HXElement {
             'status',
             'type',
         ];
-    }//$observedAttributes
+    }
 
     $onAttributeChange (attr, oldVal, newVal) {
         let hasValue = (newVal !== null);
@@ -91,7 +91,7 @@ export class HXAlertElement extends HXElement {
                 }
                 break;
         }
-    }//$onAttributeChange()
+    }
 
     /**
      * Text for the Call To Action button.

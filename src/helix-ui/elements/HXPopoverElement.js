@@ -36,18 +36,13 @@ export class HXPopoverElement extends HXElement {
         return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
-    static get observedAttributes () {
-        return [ 'open' ];
-    }
-
-    constructor () {
-        super();
+    $onCreate () {
         this._toggle = this._toggle.bind(this);
         this._setPosition = this._setPosition.bind(this);
         this._closeOnBackdropClick = this._closeOnBackdropClick.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('open');
         this.$upgradeProperty('position');
         this.$defaultAttribute('position', 'bottom-right');
@@ -69,7 +64,7 @@ export class HXPopoverElement extends HXElement {
         document.addEventListener('click', this._closeOnBackdropClick);
     }
 
-    disconnectedCallback () {
+    $onDisconnect () {
         if (!this._target) {
             return;
         }
@@ -79,11 +74,14 @@ export class HXPopoverElement extends HXElement {
         document.removeEventListener('click', this._closeOnBackdropClick);
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        let isOpen = (newVal !== null);
-        this.setAttribute('aria-hidden', !isOpen);
+    static get $observedAttributes () {
+        return [ 'open' ];
+    }
 
-        if (newVal !== oldVal) {
+    $onAttributeChange (attr, oldVal, newVal) { 
+        if (attr === 'open') {
+            let isOpen = (newVal !== null);
+            this.setAttribute('aria-hidden', !isOpen);
             this.$emit(isOpen ? 'open' : 'close');
         }
     }

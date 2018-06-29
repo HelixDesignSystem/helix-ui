@@ -36,32 +36,28 @@ export class HXAccordionPanelElement extends HXElement {
         return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
-    constructor () {
-        super();
-
+    $onCreate () {
         this._onClick = this._onClick.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('open');
         this._btnToggle.addEventListener('click', this._onClick);
     }
 
-    disconnectedCallback () {
+    $onDisconnect () {
         this._btnToggle.removeEventListener('click', this._onClick);
     }
 
-    static get observedAttributes () {
+    static get $observedAttributes () {
         return [ 'open' ];
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        let isOpen = (newVal !== null);
-
-        if (newVal !== oldVal) {
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'open') {
+            let isOpen = (newVal !== null);
             this._btnToggle.setAttribute('aria-expanded', isOpen);
             this._elBody.setAttribute('aria-expanded', isOpen);
-
             this.$emit(isOpen ? 'open' : 'close');
         }
     }

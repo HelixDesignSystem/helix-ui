@@ -32,22 +32,22 @@ export class HXSearchAssistanceElement extends HXElement {
         return 'hx-search-assistance';
     }
 
-    static get observedAttributes () {
-        return [ 'open' ];
-    }
-
-    attributeChangedCallback (attr, oldVal, newVal) {
-        let isOpen = (newVal !== null);
-        if (newVal !== oldVal) {
-            this.$emit(isOpen ? 'open' : 'close');
-        }
-    }
-
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('open');
         this.$upgradeProperty('position');
         this.$upgradeProperty('relativeTo');
         this.$defaultAttribute('position', 'bottom-start');
+    }
+    
+    static get $observedAttributes () {
+        return [ 'open' ];
+    }
+
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'open') {
+            let isOpen = (newVal !== null); 
+            this.$emit(isOpen ? 'open' : 'close');
+        }
     }
 
     set position (value) {

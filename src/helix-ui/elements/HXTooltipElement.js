@@ -38,12 +38,7 @@ export class HXTooltipElement extends HXElement {
         return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
-    static get observedAttributes () {
-        return [ 'open' ];
-    }
-
-    constructor () {
-        super();
+    $onCreate () {
         this._show = this._show.bind(this);
         this._hide = this._hide.bind(this);
         this._toggle = this._toggle.bind(this);
@@ -51,7 +46,7 @@ export class HXTooltipElement extends HXElement {
         this._closeOnBackgroundClick = this._closeOnBackgroundClick.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$defaultAttribute('position', 'top');
         this.initialPosition = this.position;
         this.$upgradeProperty('open');
@@ -67,18 +62,21 @@ export class HXTooltipElement extends HXElement {
         this._connectHandlers();
     }
 
-    disconnectedCallback () {
+    $onDisconnect () {
         if (!this._target) {
             return;
         }
         this._destoryAllHandlers();
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        let isOpen = (newVal !== null);
-        this.setAttribute('aria-hidden', !isOpen);
+    static get $observedAttributes () {
+        return [ 'open' ];
+    }
 
-        if (newVal !== oldVal) {
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'open') {
+            let isOpen = (newVal !== null);
+            this.setAttribute('aria-hidden', !isOpen);
             this.$emit(isOpen ? 'open' : 'close');
         }
     }

@@ -23,13 +23,13 @@ export class HXFileIconElement extends HXElement {
 
     static get $observedAttributes () {
         return [ 'type' ];
-    }//$observedAttributes
-
+    }
+    
     $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'type') {
             this._elIcon.type = newVal;
         }
-    }//$onAttributeChange
+    }
 
     // GETTERS
     get type () {

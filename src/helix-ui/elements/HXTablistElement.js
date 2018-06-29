@@ -12,7 +12,7 @@ export class HXTablistElement extends HXElement {
         return 'hx-tablist';
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$defaultAttribute('role', 'tablist');
     }
 }

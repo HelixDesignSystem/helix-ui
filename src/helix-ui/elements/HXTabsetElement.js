@@ -24,17 +24,12 @@ export class HXTabsetElement extends HXElement {
         return 'hx-tabset';
     }
 
-    static get observedAttributes () {
-        return [ 'current-tab' ];
-    }
-
-    constructor () {
-        super();
+    $onCreate () {
         this._onKeyUp = this._onKeyUp.bind(this);
         this._onTabClick = this._onTabClick.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('current-tab');
         this.$defaultAttribute('id', this.$generateId());
         this._setupIds();
@@ -47,7 +42,7 @@ export class HXTabsetElement extends HXElement {
         });
     }
 
-    disconnectedCallback () {
+    $onDisconnect () {
         this.$tablist.removeEventListener('keyup', this._onKeyUp);
         this.$tablist.removeEventListener('keydown', this.$preventScroll);
         this.tabs.forEach(tab => {
@@ -55,11 +50,14 @@ export class HXTabsetElement extends HXElement {
         });
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        if (!isNaN(newVal)) {
-            this._openTab(Number(newVal));
+    static get $observedAttributes () {
+        return [ 'current-tab' ];
+    }
 
-            if (newVal !== oldVal) {
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'current-tab') {
+            if (!isNaN(newVal)) {
+                this._openTab(Number(newVal));
                 this.$emit('tabchange');
             }
         }

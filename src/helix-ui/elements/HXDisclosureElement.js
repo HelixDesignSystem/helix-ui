@@ -13,19 +13,12 @@ export class HXDisclosureElement extends HXElement {
         return 'hx-disclosure';
     }
 
-    static get observedAttributes () {
-        return super.observedAttributes.concat([ 'aria-expanded' ]);
-    }
-
-    constructor () {
-        super();
+    $onCreate () {
         this._onTargetOpen = this._onTargetOpen.bind(this);
         this._onTargetClose = this._onTargetClose.bind(this);
     }
 
-    connectedCallback () {
-        super.connectedCallback();
-
+    $onConnect () {
         this.$upgradeProperty('expanded');
         this.setAttribute('role', 'button');
         if (!this.hasAttribute('tabindex') && !this.disabled) {
@@ -45,7 +38,7 @@ export class HXDisclosureElement extends HXElement {
         this.addEventListener('keyup', this._keyUp);
     }
 
-    disconnectedCallback () {
+    $onDisconnect () {
         this.removeEventListener('click', this._toggle);
         this.removeEventListener('keydown', this.$preventScroll);
         this.removeEventListener('keyup', this._keyUp);
@@ -56,18 +49,18 @@ export class HXDisclosureElement extends HXElement {
         }
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        super.attributeChangedCallback(attr, oldVal, newVal);
+    static get $observedAttributes () {
+        return [ 'aria-expanded' ];
+    }
 
-        switch (attr) {
-            case 'aria-expanded':
-                if (this.target) {
-                    let setTo = (newVal === 'true');
-                    if (this.target.open !== setTo) {
-                        this.target.open = setTo;
-                    }
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'aria-expanded') {
+            if (this.target) {
+                let setTo = (newVal === 'true');
+                if (this.target.open !== setTo) {
+                    this.target.open = setTo;
                 }
-                break;
+            }
         }
     }
 

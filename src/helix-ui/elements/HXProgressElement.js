@@ -37,7 +37,7 @@ export class HXProgressElement extends HXElement {
         return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('value');
         this.$defaultAttribute('role', 'progressbar');
         this.$defaultAttribute('aria-valuemin', MIN);
@@ -45,17 +45,15 @@ export class HXProgressElement extends HXElement {
         this.value = this.value;
     }
 
-    static get observedAttributes () {
+    static get $observedAttributes () {
         return [ 'value' ];
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        if (newVal !== oldVal) {
-            if (attr === 'value') {
-                let safeVal = _parseValue(newVal);
-                this._elFill.style.width = `${safeVal}%`;
-                this.setAttribute('aria-valuenow', safeVal);
-            }
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'value') {
+            let safeVal = _parseValue(newVal);
+            this._elFill.style.width = `${safeVal}%`;
+            this.setAttribute('aria-valuenow', safeVal);
         }
     }
 

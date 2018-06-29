@@ -12,7 +12,7 @@ export class HXTabcontentElement extends HXElement {
         return 'hx-tabcontent';
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$defaultAttribute('role', 'presentation');
     }
 }

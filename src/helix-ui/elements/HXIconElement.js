@@ -16,26 +16,26 @@ export class HXIconElement extends HXElement {
         return Icons;
     }
 
-    static get observedAttributes () {
-        return [ 'type' ];
-    }
-
-    constructor (type) {
-        super();
-
+    $onCreate (type) {
         if (type) {
             this.type = type;
         }
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('type');
         this.$defaultAttribute('aria-hidden', true);
         this._render();
     }
 
-    attributeChangedCallback () {
-        this._render();
+    static get $observedAttributes () {
+        return [ 'type' ];
+    }
+    
+    $onAttributeChange (attr) {
+        if (attr === 'type') {
+            this._render();
+        }
     }
 
     get type () {

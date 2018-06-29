@@ -12,7 +12,7 @@ export class HXMenuitemElement extends HXElement {
         return 'hx-menuitem';
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$defaultAttribute('role', 'menuitem');
     }
 }

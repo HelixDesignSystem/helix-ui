@@ -12,18 +12,20 @@ export class HXTabElement extends HXElement {
         return 'hx-tab';
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('current');
         this.$defaultAttribute('role', 'tab');
         this.setAttribute('aria-selected', this.current);
     }
 
-    static get observedAttributes () {
+    static get $observedAttributes () {
         return [ 'current' ];
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        this.setAttribute('aria-selected', newVal !== null);
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'current') {
+            this.setAttribute('aria-selected', newVal !== null);
+        }
     }
 
     get current () {

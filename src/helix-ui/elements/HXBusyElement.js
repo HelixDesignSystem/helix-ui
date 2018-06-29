@@ -16,7 +16,7 @@ export class HXBusyElement extends HXElement {
         return '';
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('paused');
         this.$defaultAttribute('aria-hidden', true);
     }

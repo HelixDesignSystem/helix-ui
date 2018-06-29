@@ -139,7 +139,7 @@ export class HXElement extends HTMLElement {
      *
      * @default ['disabled']
      * @ignore
-     * @see HXElement.$observedAttributess
+     * @see HXElement.$observedAttributes
      * @type {Array<String>}
      */
     static get observedAttributes () {
