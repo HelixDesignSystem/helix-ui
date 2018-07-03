@@ -77,6 +77,7 @@
             { label: '<hx-disclosure>', path: 'hx-disclosure' },
             { label: '<hx-dl>', path: 'hx-dl' },
             { label: '<hx-dt>', path: 'hx-dt' },
+            { label: '<hx-error>', path: 'hx-error' },
             { label: '<hx-file-icon>', path: 'hx-file-icon' },
             //{ label: '<hx-file-tile>', path: 'hx-file-tile' },
             { label: '<hx-icon>', path: 'hx-icon' },

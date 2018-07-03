@@ -1,0 +1,31 @@
+---
+title: <hx-error>
+minver: 0.4.0
+also: 
+  components/Typography: Typography
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>{{page.title}}</code> element provides an informative 
+      icon and applies styling to communicate an error message to users.
+    </p>
+  
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>Any that accept Phrasing Content</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>Phrasing Content</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Events</hx-dt>
+        <hx-dd><em>none</em></hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+{% endblock %}
+
