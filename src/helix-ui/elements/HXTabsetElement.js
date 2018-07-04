@@ -57,16 +57,19 @@ export class HXTabsetElement extends HXElement {
     $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'current-tab') {
             if (!isNaN(newVal)) {
-                this._openTab(Number(newVal));
+                this._activateTab(Number(newVal));
                 this.$emit('tabchange');
             }
         }
     }
 
+    /**
+     * Zero-based index of the currently active tab.
+     * @type {Number}
+     */
     get currentTab () {
         return Number(this.getAttribute('current-tab') || 0);
     }
-
     set currentTab (idx) {
         if (isNaN(idx)) {
             throw new TypeError(`'currentTab' expects an numeric index. Got ${typeof idx} instead.`);
@@ -79,15 +82,28 @@ export class HXTabsetElement extends HXElement {
         this.setAttribute('current-tab', idx);
     }
 
+    /**
+     * All `<hx-tab>` elements within the tabset.
+     * @readonly
+     * @type {HXTabElement[]}
+     */
     get tabs () {
         return Array.from(this.querySelectorAll('hx-tablist > hx-tab'));
     }
 
+    /**
+     * All `<hx-tabpanel>` elements within the tabset.
+     * @readonly
+     * @type {HXTabpanelElement[]}
+     */
     get tabpanels () {
         return Array.from(this.querySelectorAll('hx-tabpanel'));
     }
 
-    _selectNext () {
+    /**
+     * Select next tab in tabset.
+     */
+    selectNext () {
         // if current tab is the last tab
         if (this.currentTab === (this.tabs.length - 1)) {
             // select first
@@ -97,9 +113,12 @@ export class HXTabsetElement extends HXElement {
             this.currentTab += 1;
         }
         this.tabs[this.currentTab].focus();
-    }//_selectNext()
+    }
 
-    _selectPrevious () {
+    /**
+     * Select previous tab in tabset.
+     */
+    selectPrevious () {
         // if current tab is the first tab
         if (this.currentTab === 0) {
             // select last
@@ -109,24 +128,29 @@ export class HXTabsetElement extends HXElement {
             this.currentTab -= 1;
         }
         this.tabs[this.currentTab].focus();
-    }//_selectPrevious()
+    }
 
-    // Handle navigating the tabs via arrow keys
+    /**
+     * Handle navigating the tabs via arrow keys
+     * @private
+     */
     _onKeyUp (evt) {
         if (evt.keyCode === KEYS.Right) {
-            this._selectNext();
+            this.selectNext();
         }
 
         if (evt.keyCode === KEYS.Left) {
-            this._selectPrevious();
+            this.selectPrevious();
         }
-    }//_onKeyUp()
+    }
 
+    /** @private */
     _onTabClick (evt) {
         this.currentTab = this.tabs.indexOf(evt.target);
     }
 
-    _openTab (idx) {
+    /** @private */
+    _activateTab (idx) {
         this.tabs.forEach((tab, tabIdx) => {
             if (idx === tabIdx) {
                 tab.current = true;
@@ -143,6 +167,7 @@ export class HXTabsetElement extends HXElement {
         });
     }
 
+    /** @private */
     _setupIds () {
         let tabsetId = this.getAttribute('id');
         this.tabs.forEach((tab, idx) => {
@@ -168,5 +193,5 @@ export class HXTabsetElement extends HXElement {
             tab.setAttribute('aria-controls', tabpanelId);
             tabpanel.setAttribute('aria-labelledby', tabId);
         });
-    }//_setupIds
+    }
 }
