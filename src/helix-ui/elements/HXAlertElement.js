@@ -166,26 +166,32 @@ export class HXAlertElement extends HXElement {
     }
 
     /**
-     * Programmatically dismiss the alert (removes element from the DOM).
+     * Dismiss the alert (removes element from the DOM).
      */
     dismiss () {
-        this.remove();
+        if (this.$emit('dismiss')) {
+            // only if event was not canceled by consumer
+            this.remove();
+        }
+    }
+
+    /**
+     * Simulate a mouse click on the CTA button.
+     */
+    submit () {
+        this.$emit('submit');
     }
 
     /** @private */
     _onDismiss (evt) {
         evt.preventDefault();
-
-        if (this.$emit('dismiss')) {
-            // only if event was not canceled by consumer
-            this.dismiss();
-        }
+        this.dismiss();
     }
 
     /** @private */
     _onSubmit (evt) {
         evt.preventDefault();
-        this.$emit('submit');
+        this.submit();
     }
 
     /** @private */
