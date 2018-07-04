@@ -32,7 +32,7 @@ export class HXFileTileElement extends HXElement {
             'icon',
             'name',
         ];
-    }//$observedAttributes
+    }
 
     $onAttributeChange (attr, oldVal, newVal) {
         switch (attr) {
@@ -53,42 +53,48 @@ export class HXFileTileElement extends HXElement {
                 this._elExt.innerText = this._extension || '';
                 break;
         }
-    }//$onAttributeChange
+    }
 
-    // GETTERS
+    /**
+     * Icon to appear within the empty file icon.
+     * @type {String}
+     */
     get icon () {
         return this.getAttribute('icon');
     }
-
-    get name () {
-        return this.getAttribute('name');
-    }
-
-    get href () {
-        return this.getAttribute('href');
-    }
-
-    get loading () {
-        return this.hasAttribute('loading');
-    }
-
-    get valid () {
-        return !this.hasAttribute('invalid');
-    }
-
-    // SETTERS
     set icon (newVal) {
         this.setAttribute('icon', newVal);
     }
 
+    /**
+     * File name
+     * @type {String}
+     */
+    get name () {
+        return this.getAttribute('name');
+    }
     set name (newVal) {
         this.setAttribute('name', newVal);
     }
 
+    /**
+     * URL to download the file
+     * @type {String}
+     */
+    get href () {
+        return this.getAttribute('href');
+    }
     set href (newVal) {
         this.setAttribute('href', newVal);
     }
 
+    /**
+     * @default false
+     * @type {Boolean}
+     */
+    get loading () {
+        return this.hasAttribute('loading');
+    }
     set loading (newVal) {
         if (newVal) {
             this.setAttribute('loading', '');
@@ -97,12 +103,44 @@ export class HXFileTileElement extends HXElement {
         }
     }
 
+    /**
+     * @default true
+     * @type {Boolean}
+     */
+    get valid () {
+        return !this.hasAttribute('invalid');
+    }
     set valid (newVal) {
         if (newVal) {
             this.removeAttribute('invalid');
         } else {
             this.setAttribute('invalid', '');
         }
+    }
+
+    /**
+     * Simulates clicking "X" (i.e., the dismiss button)
+     */
+    dismiss () {
+        if (this.loading || !this.valid) {
+            if (this.$emit('cancel')) {
+                this.remove();
+            }
+        } else {
+            if (this.$emit('delete')) {
+                // only if event was not canceled by consumer
+                this.remove();
+            }
+        }
+    }
+
+    /**
+     * https://regex101.com/r/K8XCbn/2
+     * @private
+     */
+    get _extension () {
+        let re = /(?:\.([^.]+))?$/;
+        return re.exec(this.name)[1];
     }
 
     /** @private */
@@ -126,25 +164,8 @@ export class HXFileTileElement extends HXElement {
     }
 
     /** @private */
-    // https://regex101.com/r/K8XCbn/2
-    get _extension () {
-        let re = /(?:\.([^.]+))?$/;
-        return re.exec(this.name)[1];
-    }
-
-    /** @private */
     _onDismiss (evt) {
         evt.preventDefault();
-
-        if (this.loading || !this.valid) {
-            if (this.$emit('cancel')) {
-                this.remove();
-            }
-        } else {
-            if (this.$emit('delete')) {
-                // only if event was not canceled by consumer
-                this.remove();
-            }
-        }
+        this.dismiss();
     }
 }
