@@ -107,36 +107,47 @@ export class HXToastElement extends HXElement {
         }
     }
 
-    // PUBLIC METHODS
+    /**
+     * Dismiss the toast (removes element from the DOM).
+     */
     dismiss () {
-        this.remove();
-    }
-
-    // PRIVATE METHODS
-    _onDismiss (evt) {
-        evt.preventDefault();
-
         if (this.$emit('dismiss')) {
             // only if event was not canceled by consumer
-            this.dismiss();
+            this.remove();
         }
     }
 
-    _onSubmit (evt) {
-        evt.preventDefault();
+    /**
+     * Simulate a mouse click on the CTA button.
+     */
+    submit () {
         this.$emit('submit');
     }
 
-    // PRIVATE GETTERS
+    /** @private */
     get _elIcon () {
         return this.shadowRoot.getElementById('hxIcon');
     }
 
+    /** @private */
     get _btnCta () {
         return this.shadowRoot.getElementById('hxCta');
     }
 
+    /** @private */
     get _btnDismiss () {
         return this.shadowRoot.getElementById('hxDismiss');
+    }
+
+    /** @private */
+    _onDismiss (evt) {
+        evt.preventDefault();
+        this.dismiss();
+    }
+
+    /** @private */
+    _onSubmit (evt) {
+        evt.preventDefault();
+        this.submit();
     }
 }
