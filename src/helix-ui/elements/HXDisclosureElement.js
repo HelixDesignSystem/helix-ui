@@ -33,15 +33,15 @@ export class HXDisclosureElement extends HXElement {
             this.expanded = false;
         }
 
-        this.addEventListener('click', this._toggle);
+        this.addEventListener('click', this._onClick);
         this.addEventListener('keydown', this.$preventScroll);
-        this.addEventListener('keyup', this._keyUp);
+        this.addEventListener('keyup', this._onKeyUp);
     }
 
     $onDisconnect () {
-        this.removeEventListener('click', this._toggle);
+        this.removeEventListener('click', this._onClick);
         this.removeEventListener('keydown', this.$preventScroll);
-        this.removeEventListener('keyup', this._keyUp);
+        this.removeEventListener('keyup', this._onKeyUp);
 
         if (this.target) {
             this.target.removeEventListener('open', this._onTargetOpen);
@@ -87,22 +87,24 @@ export class HXDisclosureElement extends HXElement {
         return this._target;
     }
 
-    /** @private */
-    _keyUp (event) {
-        switch (event.keyCode) {
-            case KEYS.Space:
-            case KEYS.Enter:
-                this._toggle();
-                break;
-            default:
-                break;
+    /**
+     * Simulates mouse click
+     */
+    click () {
+        if (!this.disabled) {
+            this.expanded = !this.expanded;
         }
     }
 
     /** @private */
-    _toggle () {
-        if (!this.disabled) {
-            this.expanded = !this.expanded;
+    _onKeyUp (event) {
+        switch (event.keyCode) {
+            case KEYS.Space:
+            case KEYS.Enter:
+                this.click();
+                break;
+            default:
+                break;
         }
     }
 
@@ -114,5 +116,10 @@ export class HXDisclosureElement extends HXElement {
     /** @private */
     _onTargetClose () {
         this.expanded = false;
+    }
+
+    /** @private */
+    _onClick () {
+        this.click();
     }
 }
