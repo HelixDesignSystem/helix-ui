@@ -31,16 +31,11 @@ export class HXMenuElement extends HXElement {
         return 'hx-menu';
     }
 
-    static get observedAttributes () {
-        return [ 'open' ];
-    }
-
-    constructor () {
-        super();
+    $onCreate () {
         this._onDocumentClick = this._onDocumentClick.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('open');
         this.$upgradeProperty('position');
         this.$upgradeProperty('relativeTo');
@@ -50,15 +45,18 @@ export class HXMenuElement extends HXElement {
         document.addEventListener('click', this._onDocumentClick);
     }
 
-    disconnectedCallback () {
+    $onDisconnect () {
         document.removeEventListener('click', this._onDocumentClick);
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        let isOpen = (newVal !== null);
-        this.setAttribute('aria-expanded', isOpen);
+    static get $observedAttributes () {
+        return [ 'open' ];
+    }
 
-        if (newVal !== oldVal) {
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'open') {
+            let isOpen = (newVal !== null);
+            this.setAttribute('aria-expanded', isOpen);
             this.$emit(isOpen ? 'open' : 'close');
         }
     }

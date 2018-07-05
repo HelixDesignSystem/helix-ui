@@ -30,23 +30,21 @@ export class HXTabpanelElement extends HXElement {
         return 'hx-tabpanel';
     }
 
-    static get observedAttributes () {
-        return [ 'open' ];
-    }
-
-    connectedCallback () {
+    $onConnect () {
         this.$defaultAttribute('role', 'tabpanel');
         this.$upgradeProperty('open');
         this.setAttribute('aria-expanded', this.open);
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        let isOpen = (newVal !== null);
+    static get $observedAttributes () {
+        return [ 'open' ];
+    }
 
-        this.setAttribute('aria-expanded', isOpen);
-        this.setAttribute('tabindex', (isOpen ? 0 : -1));
-
-        if (newVal !== oldVal) {
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'open') {
+            let isOpen = (newVal !== null);
+            this.setAttribute('aria-expanded', isOpen);
+            this.setAttribute('tabindex', (isOpen ? 0 : -1));
             this.$emit(isOpen ? 'open' : 'close');
         }
     }

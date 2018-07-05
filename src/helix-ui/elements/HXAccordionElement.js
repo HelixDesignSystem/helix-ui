@@ -43,10 +43,9 @@ export class HXAccordionElement extends HXElement {
     }
 
     $onAttributeChange (attr, oldVal, newVal) {
-        if (newVal !== null) {
-            this._openPanel(Number(newVal));
-
-            if (newVal !== oldVal) {
+        if (attr === 'current-panel') {
+            if (newVal !== null) {
+                this._openPanel(Number(newVal));
                 this.$emit('panelchange');
             }
         }

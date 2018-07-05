@@ -30,20 +30,19 @@ export class HXRevealElement extends HXElement {
         return 'hx-reveal';
     }
 
-    static get observedAttributes () {
-        return [ 'open' ];
-    }
-
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('open');
         this.setAttribute('aria-expanded', this.open);
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        let isOpen = (newVal !== null);
-        this.setAttribute('aria-expanded', isOpen);
+    static get $observedAttributes () {
+        return [ 'open' ];
+    }
 
-        if (newVal !== oldVal) {
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'open') {
+            let isOpen = (newVal !== null);
+            this.setAttribute('aria-expanded', isOpen);
             this.$emit(isOpen ? 'open' : 'close');
         }
     }

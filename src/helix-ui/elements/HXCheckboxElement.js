@@ -27,7 +27,22 @@ export class HXCheckboxElement extends HXElement {
         return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
-    static get observedAttributes () {
+    $onCreate () {
+        this._onChange = this._onChange.bind(this);
+    }
+
+    $onConnect () {
+        this.$upgradeProperty('checked');
+        this.$upgradeProperty('disabled');
+        this.$upgradeProperty('indeterminate');
+        this._input.addEventListener('change', this._onChange);
+    }
+
+    $onDisconnect () {
+        this._input.removeEventListener('change', this._onChange);
+    }
+
+    static get $observedAttributes () {
         return [
             'checked',
             'disabled',
@@ -35,23 +50,7 @@ export class HXCheckboxElement extends HXElement {
         ];
     }
 
-    constructor () {
-        super();
-        this._onChange = this._onChange.bind(this);
-    }
-
-    connectedCallback () {
-        this.$upgradeProperty('checked');
-        this.$upgradeProperty('disabled');
-        this.$upgradeProperty('indeterminate');
-        this._input.addEventListener('change', this._onChange);
-    }
-
-    disconnectedCallback () {
-        this._input.removeEventListener('change', this._onChange);
-    }
-
-    attributeChangedCallback (attr, oldVal, newVal) {
+    $onAttributeChange (attr, oldVal, newVal) {
         const hasValue = (newVal !== null);
         switch (attr) {
             case 'indeterminate':
@@ -66,7 +65,7 @@ export class HXCheckboxElement extends HXElement {
                 this._input.disabled = hasValue;
                 break;
         }
-    }//attributeChangedCallback()
+    }
 
     /**
      * @default false

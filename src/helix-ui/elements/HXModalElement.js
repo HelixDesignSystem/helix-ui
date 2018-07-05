@@ -37,10 +37,6 @@ export class HXModalElement extends HXElement {
         return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
-    static get $observedAttributes () {
-        return [ 'open' ];
-    }
-
     $onCreate () {
         this._onBtnClose = this._onBtnClose.bind(this);
         this._onKeyUp = this._onKeyUp.bind(this);
@@ -54,6 +50,10 @@ export class HXModalElement extends HXElement {
 
     $onDisconnect () {
         this._btnClose.removeEventListener('click', this._onBtnClose);
+    }
+
+    static get $observedAttributes () {
+        return [ 'open' ];
     }
 
     $onAttributeChange (attr, oldVal, newVal) {

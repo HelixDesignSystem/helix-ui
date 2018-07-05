@@ -42,13 +42,12 @@ export class HXToastElement extends HXElement {
         return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
-    constructor () {
-        super();
+    $onCreate () {
         this._onDismiss = this._onDismiss.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('cta');
         this.$upgradeProperty('type');
 
@@ -56,16 +55,16 @@ export class HXToastElement extends HXElement {
         this._btnDismiss.addEventListener('click', this._onDismiss);
     }
 
-    disconnectedCallback () {
+    $onDisconnect () {
         this._btnCta.removeEventListener('click', this._onSubmit);
         this._btnDismiss.removeEventListener('click', this._onDismiss);
     }
 
-    static get observedAttributes () {
+    static get $observedAttributes () {
         return [ 'cta', 'type' ];
-    }//observedAttributes
+    }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
+    $onAttributeChange (attr, oldVal, newVal) {
         let hasValue = (newVal !== null);
         switch (attr) {
             case 'cta':
@@ -80,7 +79,7 @@ export class HXToastElement extends HXElement {
                 }
                 break;
         }
-    }//attributeChangedCallback()
+    }
 
     // GETTERS
     get cta () {

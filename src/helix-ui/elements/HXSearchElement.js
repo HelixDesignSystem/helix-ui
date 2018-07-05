@@ -50,21 +50,12 @@ export class HXSearchElement extends HXElement {
         return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
-    static get observedAttributes () {
-        return [
-            'disabled',
-            'placeholder',
-            'value',
-        ];
-    }
-
-    constructor () {
-        super();
+    $onCreate () {
         this._clearValue = this._clearValue.bind(this);
         this._onInput = this._onInput.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$upgradeProperty('disabled');
         this.$upgradeProperty('invalid');
         this.$upgradeProperty('placeholder');
@@ -76,14 +67,22 @@ export class HXSearchElement extends HXElement {
         this.$relayNonBubblingEvents(this._elSearch);
     }
 
-    disconnectedCallback () {
+    $onDisconnect () {
         this._btnClear.removeEventListener('click', this._clearValue);
         this._elSearch.removeEventListener('input', this._onInput);
 
         this.$removeNonBubblingRelays(this._elSearch);
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
+    static get $observedAttributes () {
+        return [
+            'disabled',
+            'placeholder',
+            'value',
+        ];
+    }
+
+    $onAttributeChange (attr, oldVal, newVal) {
         const hasValue = (newVal !== null);
 
         switch (attr) {
@@ -107,7 +106,7 @@ export class HXSearchElement extends HXElement {
                 }
                 break;
         }
-    }//attributeChangedCallback()
+    }
 
     // GETTERS
     get disabled () {
