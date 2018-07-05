@@ -1,22 +1,59 @@
 @import (reference) 'components/grid';
 
+dl.hxList {
+  display: block;
+  margin: 0;
+
+  > div {
+    display: flex;
+
+    + div {
+      margin-top: @grid-gutter-size; // 20px
+    }
+  }
+
+  dd {
+    #grid.span(10);
+    display: block;
+    flex-shrink: 1;
+    margin-left: @grid-gutter-size; // 20px
+    order: 2;
+  }
+
+  dt {
+    #grid.span(2);
+    color: @gray-750;
+    display: block;
+    flex-shrink: 1;
+    order: 1;
+    text-align: right;
+  }
+}
+
+dl.hxList.hxVertical {
+  > div {
+    flex-direction: column;
+  }
+
+  dt,
+  dd {
+    flex: 0 0 auto;
+    max-width: none;
+  }
+
+  dt {
+    font-weight: 700;
+    text-align: left;
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+// DEPRECATED: remove in v1.0.0
 hx-def + hx-def {
   margin-top: @grid-gutter-size; // 20px
-}
-
-hx-dt {
-  #grid.span(2);
-  color: @gray-750;
-  flex-shrink: 1;
-  order: 1;
-  text-align: right;
-}
-
-hx-dd {
-  #grid.span(10);
-  flex-shrink: 1;
-  margin-left: @grid-gutter-size; // 20px
-  order: 2;
 }
 
 hx-dl.hxVertical {

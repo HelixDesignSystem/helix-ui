@@ -8,41 +8,41 @@ title: Asset Stability
   <h2 id="legend">Legend</h2>
 
   <div class="demo">
-    <hx-dl>
-      <hx-def>
-        <hx-dt>
+    <dl>
+      <div>
+        <dt>
           <hx-status class="hxFill hxDeprecated">Deprecated</hx-status>
-        </hx-dt>
-        <hx-dd>
+        </dt>
+        <dd>
           High Risk, Stop using, Will be removed
-        </hx-dd>
-      </hx-def>
-      <hx-def>
-        <hx-dt>
+        </dd>
+      </div>
+      <div>
+        <dt>
           <hx-status class="hxFill hxInProgress">In Progress</hx-status><br/>
-        </hx-dt>
-        <hx-dd>
+        </dt>
+        <dd>
           Medium Risk, In Flux, Use with caution
-        </hx-dd>
-      </hx-def>
-      <hx-def>
-        <hx-dt>
+        </dd>
+      </div>
+      <div>
+        <dt>
           <hx-status class="hxFill hxStable">Stable</hx-status>
-        </hx-dt>
-        <hx-dd>
+        </dt>
+        <dd>
           Low Risk, Good to Go, Production Ready
-        </hx-dd>
-      </hx-def>
-    </hx-dl>
+        </dd>
+      </div>
+    </dl>
   </div>
 </section>
 
 <section>
-  <hx-dl>
+  <dl>
     {% for key,val in data.stability %}
-      <hx-def>
-        <hx-dt>{{key}}</hx-dt>
-        <hx-dd>
+      <div>
+        <dt>{{key}}</dt>
+        <dd>
           {% if val === 2 %}
             <hx-status class="hxFill hxStable">Stable</hx-status>
           {% elseif val === 1 %}
@@ -50,9 +50,9 @@ title: Asset Stability
           {% else %}
             <hx-status class="hxFill hxDeprecated">Deprecated</hx-status>
           {% endif %}
-        </hx-dd>
-      </hx-def>
+        </dd>
+      </div>
     {% endfor %}
-  </hx-dl>
+  </dl>
 </section>
 {% endblock %}

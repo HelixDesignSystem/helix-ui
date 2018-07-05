@@ -1,11 +1,6 @@
 ---
 title: Lists
 minver: 0.2.0
-also:
-  elements/hx-dd: <hx-dd>
-  elements/hx-def: <hx-def>
-  elements/hx-dl: <hx-dl>
-  elements/hx-dt: <hx-dt>
 ---
 {% extends 'component.njk' %}
 {% block content %}
@@ -21,68 +16,48 @@ also:
       </div>
       <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
         <div class="demo">
-          <hx-dl :class="hxDlClasses">
-            <hx-def>
-              <hx-dt>First Key Term</hx-dt>
-              <hx-dd>This is the description and/or data value.</hx-dd>
-            </hx-def>
-            <hx-def>
-              <hx-dt>Second Key Term</hx-dt>
-              <hx-dd>
+          <dl :class="classes">
+            <div>
+              <dt>First Key Term</dt>
+              <dd>This is the description and/or data value.</dd>
+            </div>
+            <div>
+              <dt>Second Key Term</dt>
+              <dd>
                 This is the description and/or data value. This paragraph shows
                 the default wrapping that exists on this element. Description
                 detail tags will wrap across multiple lines by default.
-              </hx-dd>
-            </hx-def>
-            <hx-def>
-              <hx-dt>Third Key Term</hx-dt>
-              <hx-dd class="hxForceWordBreak">
+              </dd>
+            </div>
+            <div>
+              <dt>Third Key Term</dt>
+              <dd class="hxForceWordBreak">
                 This is the description and/or data value. This third
                 description is an example of when you may have long strings
                 in your content that usually don't wrap across lines. The
                 <code>.hxForceWordBreak</code> CSS modifier class can be used
-                on the <code>hx-dd</code> to achieve the wrapping when needed.
+                on the <code>dd</code> to achieve the wrapping when needed.
                 This will break up strings and break a word.
-              </hx-dd>
-            </hx-def>
-          </hx-dl>
+              </dd>
+            </div>
+          </dl>
         </div>
-        <template v-if="hxDlClasses === ''">
-          {% code 'html' %}{% raw %}
-            <hx-dl>
-              <hx-def>
-                <hx-dt>Key Term</hx-dt>
-                <hx-dd>..</hx-dd>
-              </hx-def>
-              <hx-def>
-                <hx-dt>Second Key Term</hx-dt>
-                <hx-dd>...</hx-dd>
-              </hx-def>
-              <hx-def>
-                <hx-dt>Third Key Term</hx-dt>
-                <hx-dd class="hxForceWordBreak">...</hx-dd>
-              </hx-def>
-            </hx-dl>{% endraw %}
-          {% endcode %}
-        </template>
-        <template v-else>
-          {% code 'html' %}{% raw %}
-            <hx-dl class="{{hxDlClasses}}">
-              <hx-def>
-                <hx-dt>Key Term</hx-dt>
-                <hx-dd>..</hx-dd>
-              </hx-def>
-              <hx-def>
-                <hx-dt>Second Key Term</hx-dt>
-                <hx-dd>...</hx-dd>
-              </hx-def>
-              <hx-def>
-                <hx-dt>Third Key Term</hx-dt>
-                <hx-dd class="hxForceWordBreak">...</hx-dd>
-              </hx-def>
-            </hx-dl>{% endraw %}
-          {% endcode %}
-        </template>
+        {% code 'html' %}{% raw %}
+          <dl class="{{classes}}">
+            <div>
+              <dt>Key Term</dt>
+              <dd>..</dd>
+            </div>
+            <div>
+              <dt>Second Key Term</dt>
+              <dd>...</dd>
+            </div>
+            <div>
+              <dt>Third Key Term</dt>
+              <dd class="hxForceWordBreak">...</dd>
+            </div>
+          </dl>{% endraw %}
+        {% endcode %}
       </div>
     </div>
   </section>
