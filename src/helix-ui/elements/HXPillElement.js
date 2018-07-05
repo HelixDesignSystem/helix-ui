@@ -39,20 +39,19 @@ export class HXPillElement extends HXElement {
     }
 
     /**
-     * Programmatically dismiss the pill (removes element from the DOM).
+     * Dismiss the pill (removes element from the DOM)
      */
     dismiss () {
-        this.remove();
+        if (this.$emit('dismiss')) {
+            // only if event was not canceled by consumer
+            this.remove();
+        }
     }
 
     /** @private */
     _onDismiss (evt) {
         evt.preventDefault();
-
-        if (this.$emit('dismiss')) {
-            // only if event was not canceled by consumer
-            this.dismiss();
-        }
+        this.dismiss();
     }
 
     /** @private */

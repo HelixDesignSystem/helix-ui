@@ -362,4 +362,14 @@ export class HXElement extends HTMLElement {
             this.shadowRoot.appendChild(_template.content.cloneNode(true));
         }
     }//_$setupShadowDOM()
+
+    /** @private */
+    _$replaceWith (txtReplacement) {
+        /* eslint-disable no-console */
+        console.warn(`
+            DEPRECATED: Use ${txtReplacement} instead.
+            Old functionality will be removed in an upcoming major release.
+        `);
+        /* eslint-enable no-console */
+    }
 }

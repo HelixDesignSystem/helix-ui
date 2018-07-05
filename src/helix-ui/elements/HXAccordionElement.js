@@ -93,20 +93,18 @@ export class HXAccordionElement extends HXElement {
     }
 
     /**
-     * Navigate to the next panel, when in single-panel mode.
-     * @todo Needs renamed to follow verbNoun() format.
+     * Select next panel, when in single-panel mode.
      */
-    nextPanel () {
+    selectNext () {
         if (this._isNavigable) {
             this.currentPanel += 1;
         }
     }
 
     /**
-     * Navigate to the previous panel, when in single-panel mode.
-     * @todo Needs renamed to follow verbNoun() format.
+     * Select previous panel, when in single-panel mode.
      */
-    previousPanel () {
+    selectPrevious () {
         if (this._isNavigable) {
             this.currentPanel -= 1;
         }
@@ -138,5 +136,21 @@ export class HXAccordionElement extends HXElement {
                 }
             });
         }
+    }
+
+    /**
+     * @deprecated Use {@link HXAccordionElement#selectNext|selectNext()}
+     */
+    nextPanel () {
+        this._$replaceWith('HXAccordionElement#selectNext()');
+        this.selectNext();
+    }
+
+    /**
+     * @deprecated Use {@link HXAccordionElement#selectPrevious|selectPrevious()}
+     */
+    previousPanel () {
+        this._$replaceWith('HXAccordionElement#selectPrevious()');
+        this.selectPrevious();
     }
 }

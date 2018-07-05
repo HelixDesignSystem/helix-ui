@@ -35,11 +35,11 @@ export class HXCheckboxElement extends HXElement {
         this.$upgradeProperty('checked');
         this.$upgradeProperty('disabled');
         this.$upgradeProperty('indeterminate');
-        this._input.addEventListener('change', this._onChange);
+        this._chkInput.addEventListener('change', this._onChange);
     }
 
     $onDisconnect () {
-        this._input.removeEventListener('change', this._onChange);
+        this._chkInput.removeEventListener('change', this._onChange);
     }
 
     static get $observedAttributes () {
@@ -54,15 +54,15 @@ export class HXCheckboxElement extends HXElement {
         const hasValue = (newVal !== null);
         switch (attr) {
             case 'indeterminate':
-                this._input.indeterminate = hasValue;
+                this._chkInput.indeterminate = hasValue;
                 break;
             case 'checked':
-                if (this._input.checked !== hasValue) {
-                    this._input.checked = hasValue;
+                if (this._chkInput.checked !== hasValue) {
+                    this._chkInput.checked = hasValue;
                 }
                 break;
             case 'disabled':
-                this._input.disabled = hasValue;
+                this._chkInput.disabled = hasValue;
                 break;
         }
     }
@@ -99,6 +99,13 @@ export class HXCheckboxElement extends HXElement {
         }
     }
 
+    /**
+     * Pass-through function to native input.
+     */
+    click () {
+        this._chkInput.click();
+    }
+
     /** @private */
     _onChange (evt) {
         // Update internal state
@@ -112,7 +119,7 @@ export class HXCheckboxElement extends HXElement {
     }
 
     /** @private */
-    get _input () {
+    get _chkInput () {
         return this.shadowRoot.getElementById('hxNativeControl');
     }
 }

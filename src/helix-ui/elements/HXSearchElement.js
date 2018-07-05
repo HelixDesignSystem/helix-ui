@@ -51,25 +51,24 @@ export class HXSearchElement extends HXElement {
     }
 
     $onCreate () {
-        this._clearValue = this._clearValue.bind(this);
-        this._onInput = this._onInput.bind(this);
+        this._onClearClick = this._onClearClick.bind(this);
+        this._onSearchInput = this._onSearchInput.bind(this);
     }
 
     $onConnect () {
-        this.$upgradeProperty('disabled');
         this.$upgradeProperty('invalid');
         this.$upgradeProperty('placeholder');
         this.$upgradeProperty('value');
 
-        this._btnClear.addEventListener('click', this._clearValue);
-        this._elSearch.addEventListener('input', this._onInput);
+        this._btnClear.addEventListener('click', this._onClearClick);
+        this._elSearch.addEventListener('input', this._onSearchInput);
 
         this.$relayNonBubblingEvents(this._elSearch);
     }
 
     $onDisconnect () {
-        this._btnClear.removeEventListener('click', this._clearValue);
-        this._elSearch.removeEventListener('input', this._onInput);
+        this._btnClear.removeEventListener('click', this._onClearClick);
+        this._elSearch.removeEventListener('input', this._onSearchInput);
 
         this.$removeNonBubblingRelays(this._elSearch);
     }
@@ -86,15 +85,17 @@ export class HXSearchElement extends HXElement {
         const hasValue = (newVal !== null);
 
         switch (attr) {
-            case 'disabled':
+            case 'disabled': {
                 this._elSearch.disabled = hasValue;
                 break;
+            }
 
-            case 'placeholder':
+            case 'placeholder': {
                 this._elSearch.placeholder = newVal;
                 break;
+            }
 
-            case 'value':
+            case 'value': {
                 if (this._elSearch.value !== newVal) {
                     this._elSearch.value = newVal;
                 }
@@ -105,35 +106,17 @@ export class HXSearchElement extends HXElement {
                     this._btnClear.hidden = true;
                 }
                 break;
+            }
         }
     }
 
-    // GETTERS
-    get disabled () {
-        return this.hasAttribute('disabled');
-    }
-
+    /**
+     * @default [false]
+     * @type {Boolean}
+     */
     get invalid () {
         return this.hasAttribute('invalid');
     }
-
-    get placeholder () {
-        return this.getAttribute('placeholder');
-    }
-
-    get value () {
-        return this.getAttribute('value');
-    }
-
-    // SETTERS
-    set disabled (isDisabled) {
-        if (isDisabled) {
-            this.setAttribute('disabled', '');
-        } else {
-            this.removeAttribute('disabled');
-        }
-    }
-
     set invalid (isInvalid) {
         if (isInvalid) {
             this.setAttribute('invalid', '');
@@ -142,6 +125,13 @@ export class HXSearchElement extends HXElement {
         }
     }
 
+    /**
+     * @default ['']
+     * @type {String}
+     */
+    get placeholder () {
+        return this.getAttribute('placeholder');
+    }
     set placeholder (newVal) {
         if (newVal) {
             this.setAttribute('placeholder', newVal);
@@ -150,6 +140,13 @@ export class HXSearchElement extends HXElement {
         }
     }
 
+    /**
+     * @default ['']
+     * @type {String}
+     */
+    get value () {
+        return this.getAttribute('value');
+    }
     set value (newVal) {
         if (newVal) {
             this.setAttribute('value', newVal);
@@ -158,9 +155,22 @@ export class HXSearchElement extends HXElement {
         }
     }
 
-    /** @private */
-    get _elSearch () {
-        return this.shadowRoot.getElementById('hxNativeControl');
+    /**
+     * Simulate pressing "X" to clear input value
+     */
+    clear () {
+        if (this.value !== '') {
+            this.value = '';
+            this.$emit('clear');
+        }
+    }
+
+    /**
+     * Override HTMLElement#focus(), because we need to focus the
+     * inner `<input>` instead of the outer `<hx-search>`.
+     */
+    focus () {
+        this._elSearch.focus();
     }
 
     /** @private */
@@ -168,24 +178,32 @@ export class HXSearchElement extends HXElement {
         return this.shadowRoot.getElementById('hxClear');
     }
 
-    // PRIVATE FUNCTIONS
-    _onInput (evt) {
-        this.value = evt.target.value;
-        if (evt.target.value === '') {
-            this._btnClear.hidden = true;
-        } else {
-            this._btnClear.hidden = false;
-        }
+    /** @private */
+    get _elSearch () {
+        return this.shadowRoot.getElementById('hxNativeControl');
     }
 
-    _clearValue (evt) {
+    /**
+     * Clear value and focus input when user presses "X" via the UI.
+     * @private
+     */
+    _onClearClick (evt) {
         evt.preventDefault();
+        this.clear();
+        this.focus();
+    }
 
-        this.value = '';
-
-        // Emit a 'clear' event to communicate state change.
-        this.$emit('clear');
-
-        this._elSearch.focus();
+    /**
+     * Keep state in sync with `<input>`
+     *
+     * 1. synchronize `value`
+     * 2. determine whether to reveal the clear button
+     *
+     * @private
+     */
+    _onSearchInput (evt) {
+        this.value = evt.target.value;
+        let hasValue = (evt.target.value !== '');
+        this._btnClear.hidden = !hasValue;
     }
 }
