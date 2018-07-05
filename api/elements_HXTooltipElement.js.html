@@ -66,20 +66,15 @@ export class HXTooltipElement extends HXElement {
         return `&lt;style>${shadowStyles}&lt;/style>${shadowMarkup}`;
     }
 
-    static get observedAttributes () {
-        return [ 'open' ];
-    }
-
-    constructor () {
-        super();
-        this._show = this._show.bind(this);
-        this._hide = this._hide.bind(this);
-        this._toggle = this._toggle.bind(this);
+    $onCreate () {
+        this._onShow = this._onShow.bind(this);
+        this._onHide = this._onHide.bind(this);
+        this._onClick = this._onClick.bind(this);
         this._setPosition = this._setPosition.bind(this);
-        this._closeOnBackgroundClick = this._closeOnBackgroundClick.bind(this);
+        this._onDocumentClick = this._onDocumentClick.bind(this);
     }
 
-    connectedCallback () {
+    $onConnect () {
         this.$defaultAttribute('position', 'top');
         this.initialPosition = this.position;
         this.$upgradeProperty('open');
@@ -95,86 +90,34 @@ export class HXTooltipElement extends HXElement {
         this._connectHandlers();
     }
 
-    disconnectedCallback () {
+    $onDisconnect () {
         if (!this._target) {
             return;
         }
-        this._destoryAllHandlers();
+        this._destroyHandlers();
     }
 
-    attributeChangedCallback (attr, oldVal, newVal) {
-        let isOpen = (newVal !== null);
-        this.setAttribute('aria-hidden', !isOpen);
+    static get $observedAttributes () {
+        return [ 'open' ];
+    }
 
-        if (newVal !== oldVal) {
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'open') {
+            let isOpen = (newVal !== null);
+            this.setAttribute('aria-hidden', !isOpen);
             this.$emit(isOpen ? 'open' : 'close');
         }
     }
 
-    _hide () {
-        if (this._showTimer) {
-            clearTimeout(this._showTimer);
-        }
-        this._hideTimer = setTimeout(() => {
-            this.open = false;
-        }, 1600);
+    /**
+     * Where to position the menu in relation to its reference element.
+     *
+     * @default "top"
+     * @type {PositionString}
+     */
+    get position () {
+        return this.getAttribute('position');
     }
-
-    _show () {
-        if (this._hideTimer) {
-            clearTimeout(this._hideTimer);
-        }
-        this._showTimer = setTimeout(() => {
-            this.open = true;
-        }, 500);
-    }
-
-    _toggle () {
-        this.open = !this.open;
-    }
-
-    _closeOnBackgroundClick (event) {
-        if (this._isBackground(event)) {
-            this.open = false;
-        }
-    }
-
-    _connectHandlers () {
-        window.addEventListener('resize', debounce(this._setPosition,100));
-        if (this.triggerEvent === 'click') {
-            document.addEventListener('click', this._closeOnBackgroundClick);
-            this._target.addEventListener('click', this._toggle);
-        } else {
-            this._target.addEventListener('focus', this._show);
-            this._target.addEventListener('blur', this._hide);
-            this._target.addEventListener('mouseenter', this._show);
-            this._target.addEventListener('mouseleave', this._hide);
-        }
-    }
-
-    _destoryAllHandlers () {
-        window.removeEventListener('resize', debounce(this._setPosition,100));
-        document.removeEventListener('click', this._closeOnBackgroundClick);
-        this._target.removeEventListener('focus', this._show);
-        this._target.removeEventListener('blur', this._hide);
-        this._target.removeEventListener('mouseenter', this._show);
-        this._target.removeEventListener('mouseleave', this._hide);
-        this._target.removeEventListener('click', this._toggle);
-    }
-
-    _setPosition () {
-        var offset = getPositionWithArrow(this, this._target, { 'position':this.position });
-        this.style.top = `${offset.y}px`;
-        this.style.left = `${offset.x}px`;
-        this.position = offset.position;
-    }
-
-    _isBackground (event) {
-        let inComponent = this.contains(event.target);
-        let inTarget = this._target.contains(event.target);
-        return !inComponent &amp;&amp; !inTarget ;
-    }
-
     set position (value) {
         if (value) {
             this.setAttribute('position', value);
@@ -183,10 +126,15 @@ export class HXTooltipElement extends HXElement {
         }
     }
 
-    get position () {
-        return this.getAttribute('position');
+    /**
+     * Event that will trigger the appearance of the tooltip.
+     *
+     * @default "mouseenter"
+     * @type {String}
+     */
+    get triggerEvent () {
+        return this.getAttribute('trigger-event');
     }
-
     set triggerEvent (value) {
         if (value) {
             this.setAttribute('trigger-event', value);
@@ -195,10 +143,15 @@ export class HXTooltipElement extends HXElement {
         }
     }
 
-    get triggerEvent () {
-        return this.getAttribute('trigger-event');
+    /**
+     * Determines if the tooltip is revealed.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get open () {
+        return this.hasAttribute('open');
     }
-
     set open (value) {
         if (value) {
             this.setAttribute('open', '');
@@ -209,8 +162,73 @@ export class HXTooltipElement extends HXElement {
         }
     }
 
-    get open () {
-        return this.hasAttribute('open');
+    /** @private */
+    _connectHandlers () {
+        window.addEventListener('resize', debounce(this._setPosition,100));
+        if (this.triggerEvent === 'click') {
+            document.addEventListener('click', this._onDocumentClick);
+            this._target.addEventListener('click', this._onClick);
+        } else {
+            this._target.addEventListener('focus', this._onShow);
+            this._target.addEventListener('blur', this._onHide);
+            this._target.addEventListener('mouseenter', this._onShow);
+            this._target.addEventListener('mouseleave', this._onHide);
+        }
+    }
+
+    /** @private */
+    _destroyHandlers () {
+        window.removeEventListener('resize', debounce(this._setPosition,100));
+        document.removeEventListener('click', this._onDocumentClick);
+        this._target.removeEventListener('focus', this._onShow);
+        this._target.removeEventListener('blur', this._onHide);
+        this._target.removeEventListener('mouseenter', this._onShow);
+        this._target.removeEventListener('mouseleave', this._onHide);
+        this._target.removeEventListener('click', this._onClick);
+    }
+
+    /** @private */
+    _setPosition () {
+        var offset = getPositionWithArrow(this, this._target, { 'position': this.position });
+        this.style.top = `${offset.y}px`;
+        this.style.left = `${offset.x}px`;
+        this.position = offset.position;
+    }
+
+    /** @private */
+    _onHide () {
+        if (this._showTimer) {
+            clearTimeout(this._showTimer);
+        }
+        this._onHideTimer = setTimeout(() => {
+            this.open = false;
+        }, 1600);
+    }
+
+    /** @private */
+    _onShow () {
+        if (this._onHideTimer) {
+            clearTimeout(this._onHideTimer);
+        }
+        this._showTimer = setTimeout(() => {
+            this.open = true;
+        }, 500);
+    }
+
+    /** @private */
+    _onClick () {
+        this.open = !this.open;
+    }
+
+    /** @private */
+    _onDocumentClick (event) {
+        let inComponent = this.contains(event.target);
+        let inTarget = this._target.contains(event.target);
+        let isBackground = !inComponent &amp;&amp; !inTarget;
+
+        if (isBackground) {
+            this.open = false;
+        }
     }
 }
 </code></pre>
@@ -229,7 +247,7 @@ export class HXTooltipElement extends HXElement {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jun 22 2018 17:16:33 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Jul 05 2018 17:03:13 GMT-0500 (CDT)
 </footer>
 
 <script> prettyPrint(); </script>

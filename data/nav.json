@@ -184,6 +184,10 @@
         "path": "hx-dt"
       },
       {
+        "label": "<hx-error>",
+        "path": "hx-error"
+      },
+      {
         "label": "<hx-file-icon>",
         "path": "hx-file-icon"
       },

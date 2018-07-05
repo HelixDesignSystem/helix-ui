@@ -6,6 +6,55 @@
 
     window.addEventListener('WebComponentsReady', function () {
 
+    // Modified from https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove#Polyfill
+    [Element.prototype, CharacterData.prototype, DocumentType.prototype].forEach(function (proto) {
+        if (!proto.hasOwnProperty('remove')) {
+            Object.defineProperty(proto, 'remove', {
+                configurable: true,
+                enumerable: true,
+                writable: true,
+                value: function value() {
+                    if (this.parentNode !== null) {
+                        this.parentNode.removeChild(this);
+                    }
+                }
+            });
+        }
+    });
+
+    // Modified from https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Polyfill
+
+    /*
+     * If browser supports a variation of matches(), (IE9+)
+     * normalize to 'matches' on the prototype.
+     */
+    if (!Element.prototype.matches) {
+        Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+    }
+
+    if (!Element.prototype.closest) {
+        Element.prototype.closest = function (selectors) {
+            var el = this;
+
+            // fail fast if element isn't attached to the document
+            if (!document.documentElement.contains(el)) {
+                return null;
+            }
+
+            // Check if any ancestors match selectors
+            while (el !== null && el.nodetype === 1) {
+                if (el.matches(selectors)) {
+                    return el;
+                } else {
+                    el = el.parentElement || el.parentNode;
+                }
+            }
+
+            // Return null if no ancestors match
+            return null;
+        };
+    }
+
     /** @module */
 
     /**
@@ -78,31 +127,6 @@
         return Constructor;
       };
     }();
-
-    var get = function get(object, property, receiver) {
-      if (object === null) object = Function.prototype;
-      var desc = Object.getOwnPropertyDescriptor(object, property);
-
-      if (desc === undefined) {
-        var parent = Object.getPrototypeOf(object);
-
-        if (parent === null) {
-          return undefined;
-        } else {
-          return get(parent, property, receiver);
-        }
-      } else if ("value" in desc) {
-        return desc.value;
-      } else {
-        var getter = desc.get;
-
-        if (getter === undefined) {
-          return undefined;
-        }
-
-        return getter.call(receiver);
-      }
-    };
 
     var inherits = function (subClass, superClass) {
       if (typeof superClass !== "function" && superClass !== null) {
@@ -942,7 +966,8 @@
      *
      * @param {PositionConfig} config - configuration object
      * @param {Integer} [config.margin=12] - distance in pixels between the base and the tip of the arrow
-     * @param {Integer} [config.offset=20] - distance in pixels from the edge of the offset element to the center of the arrow
+     * @param {Integer} [config.offset=20] - distance in pixels from the edge of the 
+     * offset element to the center of the arrow
      *
      * @returns {XYPosition}
      */
@@ -1134,7 +1159,7 @@
              *
              * @default ['disabled']
              * @ignore
-             * @see HXElement.$observedAttributess
+             * @see HXElement.$observedAttributes
              * @type {Array<String>}
              */
 
@@ -1377,6 +1402,15 @@
                 }
             } //_$setupShadowDOM()
 
+            /** @private */
+
+        }, {
+            key: '_$replaceWith',
+            value: function _$replaceWith(txtReplacement) {
+                /* eslint-disable no-console */
+                console.warn('\n            DEPRECATED: Use ' + txtReplacement + ' instead.\n            Old functionality will be removed in an upcoming major release.\n        ');
+                /* eslint-enable no-console */
+            }
         }, {
             key: 'disabled',
             get: function get$$1() {
@@ -1451,10 +1485,9 @@
         }, {
             key: '$onAttributeChange',
             value: function $onAttributeChange(attr, oldVal, newVal) {
-                if (newVal !== null) {
-                    this._openPanel(Number(newVal));
-
-                    if (newVal !== oldVal) {
+                if (attr === 'current-panel') {
+                    if (newVal !== null) {
+                        this._openPanel(Number(newVal));
                         this.$emit('panelchange');
                     }
                 }
@@ -1472,27 +1505,25 @@
              */
 
         }, {
-            key: 'nextPanel',
+            key: 'selectNext',
 
 
             /**
-             * Navigate to the next panel, when in single-panel mode.
-             * @todo Needs renamed to follow verbNoun() format.
+             * Select next panel, when in single-panel mode.
              */
-            value: function nextPanel() {
+            value: function selectNext() {
                 if (this._isNavigable) {
                     this.currentPanel += 1;
                 }
             }
 
             /**
-             * Navigate to the previous panel, when in single-panel mode.
-             * @todo Needs renamed to follow verbNoun() format.
+             * Select previous panel, when in single-panel mode.
              */
 
         }, {
-            key: 'previousPanel',
-            value: function previousPanel() {
+            key: 'selectPrevious',
+            value: function selectPrevious() {
                 if (this._isNavigable) {
                     this.currentPanel -= 1;
                 }
@@ -1528,6 +1559,28 @@
                         }
                     });
                 }
+            }
+
+            /**
+             * @deprecated Use {@link HXAccordionElement#selectNext|selectNext()}
+             */
+
+        }, {
+            key: 'nextPanel',
+            value: function nextPanel() {
+                this._$replaceWith('HXAccordionElement#selectNext()');
+                this.selectNext();
+            }
+
+            /**
+             * @deprecated Use {@link HXAccordionElement#selectPrevious|selectPrevious()}
+             */
+
+        }, {
+            key: 'previousPanel',
+            value: function previousPanel() {
+                this._$replaceWith('HXAccordionElement#selectPrevious()');
+                this.selectPrevious();
             }
         }, {
             key: 'panels',
@@ -1614,47 +1667,35 @@
      */
     var HXAccordionPanelElement = function (_HXElement) {
         inherits(HXAccordionPanelElement, _HXElement);
-        createClass(HXAccordionPanelElement, null, [{
-            key: 'is',
-            get: function get$$1() {
-                return 'hx-accordion-panel';
-            }
-        }, {
-            key: 'template',
-            get: function get$$1() {
-                return '<style>' + shadowStyles + '</style>' + shadowMarkup;
-            }
-        }]);
 
         function HXAccordionPanelElement() {
             classCallCheck(this, HXAccordionPanelElement);
-
-            var _this = possibleConstructorReturn(this, (HXAccordionPanelElement.__proto__ || Object.getPrototypeOf(HXAccordionPanelElement)).call(this));
-
-            _this._onClick = _this._onClick.bind(_this);
-            return _this;
+            return possibleConstructorReturn(this, (HXAccordionPanelElement.__proto__ || Object.getPrototypeOf(HXAccordionPanelElement)).apply(this, arguments));
         }
 
         createClass(HXAccordionPanelElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onCreate',
+            value: function $onCreate() {
+                this._onClick = this._onClick.bind(this);
+            }
+        }, {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$upgradeProperty('open');
                 this._btnToggle.addEventListener('click', this._onClick);
             }
         }, {
-            key: 'disconnectedCallback',
-            value: function disconnectedCallback() {
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
                 this._btnToggle.removeEventListener('click', this._onClick);
             }
         }, {
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
-                var isOpen = newVal !== null;
-
-                if (newVal !== oldVal) {
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
+                if (attr === 'open') {
+                    var isOpen = newVal !== null;
                     this._btnToggle.setAttribute('aria-expanded', isOpen);
                     this._elBody.setAttribute('aria-expanded', isOpen);
-
                     this.$emit(isOpen ? 'open' : 'close');
                 }
             }
@@ -1708,7 +1749,17 @@
                 return this.shadowRoot.getElementById('hxBody');
             }
         }], [{
-            key: 'observedAttributes',
+            key: 'is',
+            get: function get$$1() {
+                return 'hx-accordion-panel';
+            }
+        }, {
+            key: 'template',
+            get: function get$$1() {
+                return '<style>' + shadowStyles + '</style>' + shadowMarkup;
+            }
+        }, {
+            key: '$observedAttributes',
             get: function get$$1() {
                 return ['open'];
             }
@@ -1785,8 +1836,6 @@
             }
         }, {
             key: '$onAttributeChange',
-            //$observedAttributes
-
             value: function $onAttributeChange(attr, oldVal, newVal) {
                 var hasValue = newVal !== null;
                 switch (attr) {
@@ -1806,7 +1855,7 @@
                         }
                         break;
                 }
-            } //$onAttributeChange()
+            }
 
             /**
              * Text for the Call To Action button.
@@ -1821,10 +1870,23 @@
 
 
             /**
-             * Programmatically dismiss the alert (removes element from the DOM).
+             * Dismiss the alert (removes element from the DOM).
              */
             value: function dismiss() {
-                this.remove();
+                if (this.$emit('dismiss')) {
+                    // only if event was not canceled by consumer
+                    this.remove();
+                }
+            }
+
+            /**
+             * Simulate a mouse click on the CTA button.
+             */
+
+        }, {
+            key: 'submit',
+            value: function submit() {
+                this.$emit('submit');
             }
 
             /** @private */
@@ -1833,11 +1895,7 @@
             key: '_onDismiss',
             value: function _onDismiss(evt) {
                 evt.preventDefault();
-
-                if (this.$emit('dismiss')) {
-                    // only if event was not canceled by consumer
-                    this.dismiss();
-                }
+                this.dismiss();
             }
 
             /** @private */
@@ -1846,7 +1904,7 @@
             key: '_onSubmit',
             value: function _onSubmit(evt) {
                 evt.preventDefault();
-                this.$emit('submit');
+                this.submit();
             }
 
             /** @private */
@@ -1990,8 +2048,8 @@
         }
 
         createClass(HXBusyElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$upgradeProperty('paused');
                 this.$defaultAttribute('aria-hidden', true);
             }
@@ -2051,63 +2109,48 @@
      */
     var HXCheckboxElement = function (_HXElement) {
         inherits(HXCheckboxElement, _HXElement);
-        createClass(HXCheckboxElement, null, [{
-            key: 'is',
-            get: function get$$1() {
-                return 'hx-checkbox';
-            }
-        }, {
-            key: 'template',
-            get: function get$$1() {
-                return '<style>' + shadowStyles$2 + '</style>' + shadowMarkup$2;
-            }
-        }, {
-            key: 'observedAttributes',
-            get: function get$$1() {
-                return ['checked', 'disabled', 'indeterminate'];
-            }
-        }]);
 
         function HXCheckboxElement() {
             classCallCheck(this, HXCheckboxElement);
-
-            var _this = possibleConstructorReturn(this, (HXCheckboxElement.__proto__ || Object.getPrototypeOf(HXCheckboxElement)).call(this));
-
-            _this._onChange = _this._onChange.bind(_this);
-            return _this;
+            return possibleConstructorReturn(this, (HXCheckboxElement.__proto__ || Object.getPrototypeOf(HXCheckboxElement)).apply(this, arguments));
         }
 
         createClass(HXCheckboxElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onCreate',
+            value: function $onCreate() {
+                this._onChange = this._onChange.bind(this);
+            }
+        }, {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$upgradeProperty('checked');
                 this.$upgradeProperty('disabled');
                 this.$upgradeProperty('indeterminate');
-                this._input.addEventListener('change', this._onChange);
+                this._chkInput.addEventListener('change', this._onChange);
             }
         }, {
-            key: 'disconnectedCallback',
-            value: function disconnectedCallback() {
-                this._input.removeEventListener('change', this._onChange);
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
+                this._chkInput.removeEventListener('change', this._onChange);
             }
         }, {
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
                 var hasValue = newVal !== null;
                 switch (attr) {
                     case 'indeterminate':
-                        this._input.indeterminate = hasValue;
+                        this._chkInput.indeterminate = hasValue;
                         break;
                     case 'checked':
-                        if (this._input.checked !== hasValue) {
-                            this._input.checked = hasValue;
+                        if (this._chkInput.checked !== hasValue) {
+                            this._chkInput.checked = hasValue;
                         }
                         break;
                     case 'disabled':
-                        this._input.disabled = hasValue;
+                        this._chkInput.disabled = hasValue;
                         break;
                 }
-            } //attributeChangedCallback()
+            }
 
             /**
              * @default false
@@ -2115,10 +2158,20 @@
              */
 
         }, {
-            key: '_onChange',
+            key: 'click',
 
+
+            /**
+             * Pass-through function to native input.
+             */
+            value: function click() {
+                this._chkInput.click();
+            }
 
             /** @private */
+
+        }, {
+            key: '_onChange',
             value: function _onChange(evt) {
                 // Update internal state
                 this.checked = evt.target.checked;
@@ -2165,9 +2218,24 @@
                 }
             }
         }, {
-            key: '_input',
+            key: '_chkInput',
             get: function get$$1() {
                 return this.shadowRoot.getElementById('hxNativeControl');
+            }
+        }], [{
+            key: 'is',
+            get: function get$$1() {
+                return 'hx-checkbox';
+            }
+        }, {
+            key: 'template',
+            get: function get$$1() {
+                return '<style>' + shadowStyles$2 + '</style>' + shadowMarkup$2;
+            }
+        }, {
+            key: '$observedAttributes',
+            get: function get$$1() {
+                return ['checked', 'disabled', 'indeterminate'];
             }
         }]);
         return HXCheckboxElement;
@@ -2182,33 +2250,21 @@
      */
     var HXDisclosureElement = function (_HXElement) {
         inherits(HXDisclosureElement, _HXElement);
-        createClass(HXDisclosureElement, null, [{
-            key: 'is',
-            get: function get$$1() {
-                return 'hx-disclosure';
-            }
-        }, {
-            key: 'observedAttributes',
-            get: function get$$1() {
-                return get(HXDisclosureElement.__proto__ || Object.getPrototypeOf(HXDisclosureElement), 'observedAttributes', this).concat(['aria-expanded']);
-            }
-        }]);
 
         function HXDisclosureElement() {
             classCallCheck(this, HXDisclosureElement);
-
-            var _this = possibleConstructorReturn(this, (HXDisclosureElement.__proto__ || Object.getPrototypeOf(HXDisclosureElement)).call(this));
-
-            _this._onTargetOpen = _this._onTargetOpen.bind(_this);
-            _this._onTargetClose = _this._onTargetClose.bind(_this);
-            return _this;
+            return possibleConstructorReturn(this, (HXDisclosureElement.__proto__ || Object.getPrototypeOf(HXDisclosureElement)).apply(this, arguments));
         }
 
         createClass(HXDisclosureElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
-                get(HXDisclosureElement.prototype.__proto__ || Object.getPrototypeOf(HXDisclosureElement.prototype), 'connectedCallback', this).call(this);
-
+            key: '$onCreate',
+            value: function $onCreate() {
+                this._onTargetOpen = this._onTargetOpen.bind(this);
+                this._onTargetClose = this._onTargetClose.bind(this);
+            }
+        }, {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$upgradeProperty('expanded');
                 this.setAttribute('role', 'button');
                 if (!this.hasAttribute('tabindex') && !this.disabled) {
@@ -2223,16 +2279,16 @@
                     this.expanded = false;
                 }
 
-                this.addEventListener('click', this._toggle);
+                this.addEventListener('click', this._onClick);
                 this.addEventListener('keydown', this.$preventScroll);
-                this.addEventListener('keyup', this._keyUp);
+                this.addEventListener('keyup', this._onKeyUp);
             }
         }, {
-            key: 'disconnectedCallback',
-            value: function disconnectedCallback() {
-                this.removeEventListener('click', this._toggle);
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
+                this.removeEventListener('click', this._onClick);
                 this.removeEventListener('keydown', this.$preventScroll);
-                this.removeEventListener('keyup', this._keyUp);
+                this.removeEventListener('keyup', this._onKeyUp);
 
                 if (this.target) {
                     this.target.removeEventListener('open', this._onTargetOpen);
@@ -2240,18 +2296,15 @@
                 }
             }
         }, {
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
-                get(HXDisclosureElement.prototype.__proto__ || Object.getPrototypeOf(HXDisclosureElement.prototype), 'attributeChangedCallback', this).call(this, attr, oldVal, newVal);
-                switch (attr) {
-                    case 'aria-expanded':
-                        if (this.target) {
-                            var setTo = newVal === 'true';
-                            if (this.target.open !== setTo) {
-                                this.target.open = setTo;
-                            }
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
+                if (attr === 'aria-expanded') {
+                    if (this.target) {
+                        var setTo = newVal === 'true';
+                        if (this.target.open !== setTo) {
+                            this.target.open = setTo;
                         }
-                        break;
+                    }
                 }
             }
 
@@ -2261,28 +2314,30 @@
              */
 
         }, {
-            key: '_keyUp',
+            key: 'click',
 
 
-            /** @private */
-            value: function _keyUp(event) {
-                switch (event.keyCode) {
-                    case KEYS.Space:
-                    case KEYS.Enter:
-                        this._toggle();
-                        break;
-                    default:
-                        break;
+            /**
+             * Simulates mouse click
+             */
+            value: function click() {
+                if (!this.disabled) {
+                    this.expanded = !this.expanded;
                 }
             }
 
             /** @private */
 
         }, {
-            key: '_toggle',
-            value: function _toggle() {
-                if (!this.disabled) {
-                    this.expanded = !this.expanded;
+            key: '_onKeyUp',
+            value: function _onKeyUp(event) {
+                switch (event.keyCode) {
+                    case KEYS.Space:
+                    case KEYS.Enter:
+                        this.click();
+                        break;
+                    default:
+                        break;
                 }
             }
 
@@ -2300,6 +2355,14 @@
             key: '_onTargetClose',
             value: function _onTargetClose() {
                 this.expanded = false;
+            }
+
+            /** @private */
+
+        }, {
+            key: '_onClick',
+            value: function _onClick() {
+                this.click();
             }
         }, {
             key: 'expanded',
@@ -2323,6 +2386,16 @@
                     this._target = this.getRootNode().getElementById(targetId);
                 }
                 return this._target;
+            }
+        }], [{
+            key: 'is',
+            get: function get$$1() {
+                return 'hx-disclosure';
+            }
+        }, {
+            key: '$observedAttributes',
+            get: function get$$1() {
+                return ['aria-expanded'];
             }
         }]);
         return HXDisclosureElement;
@@ -2361,7 +2434,7 @@
         return HXErrorElement;
     }(HXElement);
 
-    var shadowStyles$4 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxFileIcon {\n  position: relative;\n}\n#hxFileIcon #hxBase {\n  font-size: 2.5rem;\n  height: 1em;\n}\n#hxFileIcon #hxOverlay {\n  line-height: 1;\n  position: absolute;\n  text-align: center;\n  top: 0.5rem;\n  width: 100%;\n}\n#hxFileIcon #hxIcon {\n  font-size: 1rem;\n  height: 1em;\n}\n#hxFileIcon #hxExt {\n  font-size: 0.5rem;\n  line-height: 1.5;\n  margin-top: 1px;\n  text-transform: uppercase;\n}\n";
+    var shadowStyles$4 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxFileIcon {\n  opacity: inherit;\n  position: relative;\n}\n#hxFileIcon #hxBase {\n  font-size: 2.5rem;\n  height: 1em;\n}\n#hxFileIcon #hxOverlay {\n  line-height: 1;\n  position: absolute;\n  text-align: center;\n  top: 0.5rem;\n  width: 100%;\n}\n#hxFileIcon #hxIcon {\n  font-size: 1rem;\n  height: 1em;\n}\n#hxFileIcon #hxExt {\n  font-size: 0.5rem;\n  line-height: 1.5;\n  margin-top: 1px;\n  text-transform: uppercase;\n}\n";
 
     var shadowMarkup$4 = "<div id='hxFileIcon'><hx-icon type='file' id='hxBase'></hx-icon><div id='hxOverlay'><hx-icon id='hxIcon'></hx-icon><div id='hxExt'><slot></slot></div></div></div>";
 
@@ -2386,13 +2459,11 @@
             }
         }, {
             key: '$onAttributeChange',
-            //$observedAttributes
-
             value: function $onAttributeChange(attr, oldVal, newVal) {
                 if (attr === 'type') {
                     this._elIcon.type = newVal;
                 }
-            } //$onAttributeChange
+            }
 
             // GETTERS
 
@@ -2432,6 +2503,227 @@
             }
         }]);
         return HXFileIconElement;
+    }(HXElement);
+
+    var shadowMarkup$5 = "<div id='hxFileTile'><div><hx-file-icon id='hxIcon'><span id='hxExt'></span></hx-file-icon></div><div id='hxContent'><a id='hxLink'></a><slot></slot></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
+
+    var shadowStyles$5 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\na[href] {\n  background-color: transparent;\n  color: #0d74d1;\n  text-decoration: none;\n}\na[href]:hover,\na[href]:active {\n  color: #3391ff;\n  cursor: pointer;\n  text-decoration: none;\n}\na[href][disabled],\na[href].disabled {\n  color: #616161;\n  pointer-events: none;\n}\n#hxFileTile {\n  display: flex;\n  height: 100%;\n  width: 100%;\n}\n#hxFileTile > * {\n  padding: 0.5rem;\n}\n#hxFileTile #hxContent {\n  flex-grow: 1;\n  flex-shrink: 0;\n  padding: 0.5rem 0;\n}\n#hxFileTile #hxLink {\n  display: block;\n}\n#hxFileTile #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: currentColor;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 1rem;\n  line-height: 0;\n}\n:host([loading]) #hxIcon {\n  opacity: 0.6;\n}\n:host([loading]) #hxLink {\n  color: #9e9e9e;\n}\n";
+
+    var HXFileTileElement = function (_HXElement) {
+        inherits(HXFileTileElement, _HXElement);
+
+        function HXFileTileElement() {
+            classCallCheck(this, HXFileTileElement);
+            return possibleConstructorReturn(this, (HXFileTileElement.__proto__ || Object.getPrototypeOf(HXFileTileElement)).apply(this, arguments));
+        }
+
+        createClass(HXFileTileElement, [{
+            key: '$onCreate',
+            value: function $onCreate() {
+                this._onDismiss = this._onDismiss.bind(this);
+            }
+        }, {
+            key: '$onConnect',
+            value: function $onConnect() {
+                this.$upgradeProperty('icon');
+                this.$upgradeProperty('name');
+                this.$upgradeProperty('href');
+                this._btnDismiss.addEventListener('click', this._onDismiss);
+            }
+        }, {
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
+                this._btnDismiss.removeEventListener('click', this._onDismiss);
+            }
+        }, {
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
+                switch (attr) {
+                    case 'icon':
+                        this._elIcon.type = newVal;
+                        break;
+
+                    case 'href':
+                        if (newVal !== null) {
+                            this._elLink.href = newVal;
+                        } else {
+                            this._elLink.removeAttribute('href');
+                        }
+                        break;
+
+                    case 'name':
+                        this._elLink.innerText = newVal;
+                        this._elExt.innerText = this._extension || '';
+                        break;
+                }
+            }
+
+            /**
+             * Icon to appear within the empty file icon.
+             * @type {String}
+             */
+
+        }, {
+            key: 'dismiss',
+
+
+            /**
+             * Simulates clicking "X" (i.e., the dismiss button)
+             */
+            value: function dismiss() {
+                if (this.loading || !this.valid) {
+                    if (this.$emit('cancel')) {
+                        this.remove();
+                    }
+                } else {
+                    if (this.$emit('delete')) {
+                        // only if event was not canceled by consumer
+                        this.remove();
+                    }
+                }
+            }
+
+            /**
+             * https://regex101.com/r/K8XCbn/2
+             * @private
+             */
+
+        }, {
+            key: '_onDismiss',
+
+
+            /** @private */
+            value: function _onDismiss(evt) {
+                evt.preventDefault();
+                this.dismiss();
+            }
+        }, {
+            key: 'icon',
+            get: function get$$1() {
+                return this.getAttribute('icon');
+            },
+            set: function set$$1(newVal) {
+                this.setAttribute('icon', newVal);
+            }
+
+            /**
+             * File name
+             * @type {String}
+             */
+
+        }, {
+            key: 'name',
+            get: function get$$1() {
+                return this.getAttribute('name');
+            },
+            set: function set$$1(newVal) {
+                this.setAttribute('name', newVal);
+            }
+
+            /**
+             * URL to download the file
+             * @type {String}
+             */
+
+        }, {
+            key: 'href',
+            get: function get$$1() {
+                return this.getAttribute('href');
+            },
+            set: function set$$1(newVal) {
+                this.setAttribute('href', newVal);
+            }
+
+            /**
+             * @default false
+             * @type {Boolean}
+             */
+
+        }, {
+            key: 'loading',
+            get: function get$$1() {
+                return this.hasAttribute('loading');
+            },
+            set: function set$$1(newVal) {
+                if (newVal) {
+                    this.setAttribute('loading', '');
+                } else {
+                    this.removeAttribute('loading');
+                }
+            }
+
+            /**
+             * @default true
+             * @type {Boolean}
+             */
+
+        }, {
+            key: 'valid',
+            get: function get$$1() {
+                return !this.hasAttribute('invalid');
+            },
+            set: function set$$1(newVal) {
+                if (newVal) {
+                    this.removeAttribute('invalid');
+                } else {
+                    this.setAttribute('invalid', '');
+                }
+            }
+        }, {
+            key: '_extension',
+            get: function get$$1() {
+                var re = /(?:\.([^.]+))?$/;
+                return re.exec(this.name)[1];
+            }
+
+            /** @private */
+
+        }, {
+            key: '_btnDismiss',
+            get: function get$$1() {
+                return this.shadowRoot.getElementById('hxDismiss');
+            }
+
+            /** @private */
+
+        }, {
+            key: '_elIcon',
+            get: function get$$1() {
+                return this.shadowRoot.getElementById('hxIcon');
+            }
+
+            /** @private */
+
+        }, {
+            key: '_elExt',
+            get: function get$$1() {
+                return this.shadowRoot.getElementById('hxExt');
+            }
+
+            /** @private */
+
+        }, {
+            key: '_elLink',
+            get: function get$$1() {
+                return this.shadowRoot.getElementById('hxLink');
+            }
+        }], [{
+            key: 'is',
+            get: function get$$1() {
+                return 'hx-file-tile';
+            }
+        }, {
+            key: 'template',
+            get: function get$$1() {
+                return '<style>' + shadowStyles$5 + '</style>' + shadowMarkup$5;
+            }
+        }, {
+            key: '$observedAttributes',
+            get: function get$$1() {
+                return ['href', 'icon', 'name'];
+            }
+        }]);
+        return HXFileTileElement;
     }(HXElement);
 
     var _account = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M15.2 2c.44 0 .8.36.8.8v10.4c0 .44-.36.8-.8.8h-2.4a1.2 1.2 0 1 0-2.4 0H5.6a1.2 1.2 0 0 0-2.4 0H.8c-.44 0-.8-.36-.8-.8V2.8c0-.44.36-.8.8-.8h14.4zM9 10.562v-.437a.44.44 0 0 0-.242-.392c-.075-.037-1.859-.92-3.258-.92s-3.183.883-3.258.92a.44.44 0 0 0-.242.392v.437c0 .242.196.438.438.438h6.125A.438.438 0 0 0 9 10.562zm-5.287-4.74v.875c0 .965.785 1.75 1.75 1.75s1.75-.785 1.75-1.75v-.875c0-.965-.785-1.75-1.75-1.75s-1.75.785-1.75 1.75zM10 11h4v-1h-4v1zm0-3h4V7h-4v1zm0-3h4V4h-4v1z'/></svg>";
@@ -2682,45 +2974,32 @@
      */
     var HXIconElement = function (_HXElement) {
         inherits(HXIconElement, _HXElement);
-        createClass(HXIconElement, null, [{
-            key: 'is',
-            get: function get$$1() {
-                return 'hx-icon';
-            }
-        }, {
-            key: 'icons',
-            get: function get$$1() {
-                return MAP;
-            }
-        }, {
-            key: 'observedAttributes',
-            get: function get$$1() {
-                return ['type'];
-            }
-        }]);
 
-        function HXIconElement(type) {
+        function HXIconElement() {
             classCallCheck(this, HXIconElement);
-
-            var _this = possibleConstructorReturn(this, (HXIconElement.__proto__ || Object.getPrototypeOf(HXIconElement)).call(this));
-
-            if (type) {
-                _this.type = type;
-            }
-            return _this;
+            return possibleConstructorReturn(this, (HXIconElement.__proto__ || Object.getPrototypeOf(HXIconElement)).apply(this, arguments));
         }
 
         createClass(HXIconElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onCreate',
+            value: function $onCreate(type) {
+                if (type) {
+                    this.type = type;
+                }
+            }
+        }, {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$upgradeProperty('type');
                 this.$defaultAttribute('aria-hidden', true);
                 this._render();
             }
         }, {
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback() {
-                this._render();
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr) {
+                if (attr === 'type') {
+                    this._render();
+                }
             }
         }, {
             key: '_render',
@@ -2749,6 +3028,21 @@
             },
             set: function set$$1(newVal) {
                 this.setAttribute('type', newVal);
+            }
+        }], [{
+            key: 'is',
+            get: function get$$1() {
+                return 'hx-icon';
+            }
+        }, {
+            key: 'icons',
+            get: function get$$1() {
+                return MAP;
+            }
+        }, {
+            key: '$observedAttributes',
+            get: function get$$1() {
+                return ['type'];
             }
         }]);
         return HXIconElement;
@@ -2781,30 +3075,20 @@
      */
     var HXMenuElement = function (_HXElement) {
         inherits(HXMenuElement, _HXElement);
-        createClass(HXMenuElement, null, [{
-            key: 'is',
-            get: function get$$1() {
-                return 'hx-menu';
-            }
-        }, {
-            key: 'observedAttributes',
-            get: function get$$1() {
-                return ['open'];
-            }
-        }]);
 
         function HXMenuElement() {
             classCallCheck(this, HXMenuElement);
-
-            var _this = possibleConstructorReturn(this, (HXMenuElement.__proto__ || Object.getPrototypeOf(HXMenuElement)).call(this));
-
-            _this._onDocumentClick = _this._onDocumentClick.bind(_this);
-            return _this;
+            return possibleConstructorReturn(this, (HXMenuElement.__proto__ || Object.getPrototypeOf(HXMenuElement)).apply(this, arguments));
         }
 
         createClass(HXMenuElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onCreate',
+            value: function $onCreate() {
+                this._onDocumentClick = this._onDocumentClick.bind(this);
+            }
+        }, {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$upgradeProperty('open');
                 this.$upgradeProperty('position');
                 this.$upgradeProperty('relativeTo');
@@ -2814,17 +3098,16 @@
                 document.addEventListener('click', this._onDocumentClick);
             }
         }, {
-            key: 'disconnectedCallback',
-            value: function disconnectedCallback() {
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
                 document.removeEventListener('click', this._onDocumentClick);
             }
         }, {
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
-                var isOpen = newVal !== null;
-                this.setAttribute('aria-expanded', isOpen);
-
-                if (newVal !== oldVal) {
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
+                if (attr === 'open') {
+                    var isOpen = newVal !== null;
+                    this.setAttribute('aria-expanded', isOpen);
                     this.$emit(isOpen ? 'open' : 'close');
                 }
             }
@@ -2906,6 +3189,16 @@
             get: function get$$1() {
                 return this.hasAttribute('open');
             }
+        }], [{
+            key: 'is',
+            get: function get$$1() {
+                return 'hx-menu';
+            }
+        }, {
+            key: '$observedAttributes',
+            get: function get$$1() {
+                return ['open'];
+            }
         }]);
         return HXMenuElement;
     }(HXElement);
@@ -2926,8 +3219,8 @@
         }
 
         createClass(HXMenuitemElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$defaultAttribute('role', 'menuitem');
             }
         }], [{
@@ -2939,9 +3232,9 @@
         return HXMenuitemElement;
     }(HXElement);
 
-    var shadowMarkup$5 = "<div id='hxModal'><button type='button' id='hxClose'><hx-icon type='times'></hx-icon></button><slot></slot></div>";
+    var shadowMarkup$6 = "<div id='hxModal'><button type='button' id='hxClose'><hx-icon type='times'></hx-icon></button><slot></slot></div>";
 
-    var shadowStyles$5 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxModal {\n  background-color: #ffffff;\n  box-shadow: 0px 7px 9px 0 rgba(0, 0, 0, 0.3);\n  display: flex;\n  flex-direction: column;\n  left: 50%;\n  max-width: 40rem;\n  min-height: 12.5rem;\n  min-width: 25rem;\n  padding: 1.25rem;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1201;\n}\n#hxModal #hxClose {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  height: 1rem;\n  line-height: 1;\n  padding: 0;\n  position: absolute;\n  right: 1.25rem;\n  top: 1.25rem;\n}\n";
+    var shadowStyles$6 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxModal {\n  background-color: #ffffff;\n  box-shadow: 0px 7px 9px 0 rgba(0, 0, 0, 0.3);\n  display: flex;\n  flex-direction: column;\n  left: 50%;\n  max-width: 40rem;\n  min-height: 12.5rem;\n  min-width: 25rem;\n  padding: 1.25rem;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1201;\n}\n#hxModal #hxClose {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  height: 1rem;\n  line-height: 1;\n  padding: 0;\n  position: absolute;\n  right: 1.25rem;\n  top: 1.25rem;\n}\n";
 
     /**
      * Fires when the element is concealed.
@@ -3065,7 +3358,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$5 + '</style>' + shadowMarkup$5;
+                return '<style>' + shadowStyles$6 + '</style>' + shadowMarkup$6;
             }
         }, {
             key: '$observedAttributes',
@@ -3076,9 +3369,9 @@
         return HXModalElement;
     }(HXElement);
 
-    var shadowMarkup$6 = "<div id='hxPill'><slot></slot><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
+    var shadowMarkup$7 = "<div id='hxPill'><slot></slot><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-    var shadowStyles$6 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\nbutton {\n  background-color: transparent;\n  border: 0;\n  cursor: pointer;\n  padding: 0;\n}\n#hxPill {\n  background-color: #d8d8d8;\n  border-radius: 1em;\n  color: #424242;\n  padding: 0 1rem;\n  white-space: nowrap;\n}\n#hxDismiss {\n  color: #9e9e9e;\n  display: none;\n  height: 1.5em;\n  margin: 0 -0.5rem 0 0;\n  width: 1.5em;\n}\n#hxDismiss hx-icon {\n  font-size: 0.75em;\n}\n#hxDismiss:hover {\n  color: #000000;\n}\n:host([dismissable]) #hxDismiss {\n  display: inline-block;\n}\n";
+    var shadowStyles$7 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\nbutton {\n  background-color: transparent;\n  border: 0;\n  cursor: pointer;\n  padding: 0;\n}\n#hxPill {\n  background-color: #d8d8d8;\n  border-radius: 1em;\n  color: #424242;\n  padding: 0 1rem;\n  white-space: nowrap;\n}\n#hxDismiss {\n  color: #9e9e9e;\n  display: none;\n  height: 1.5em;\n  margin: 0 -0.5rem 0 0;\n  width: 1.5em;\n}\n#hxDismiss hx-icon {\n  font-size: 0.75em;\n}\n#hxDismiss:hover {\n  color: #000000;\n}\n:host([dismissable]) #hxDismiss {\n  display: inline-block;\n}\n";
 
     /**
      * Fires when the dismiss button ("X") is pressed.
@@ -3120,13 +3413,16 @@
             }
 
             /**
-             * Programmatically dismiss the pill (removes element from the DOM).
+             * Dismiss the pill (removes element from the DOM)
              */
 
         }, {
             key: 'dismiss',
             value: function dismiss() {
-                this.remove();
+                if (this.$emit('dismiss')) {
+                    // only if event was not canceled by consumer
+                    this.remove();
+                }
             }
 
             /** @private */
@@ -3135,11 +3431,7 @@
             key: '_onDismiss',
             value: function _onDismiss(evt) {
                 evt.preventDefault();
-
-                if (this.$emit('dismiss')) {
-                    // only if event was not canceled by consumer
-                    this.dismiss();
-                }
+                this.dismiss();
             }
 
             /** @private */
@@ -3157,7 +3449,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$6 + '</style>' + shadowMarkup$6;
+                return '<style>' + shadowStyles$7 + '</style>' + shadowMarkup$7;
             }
         }]);
         return HXPillElement;
@@ -3637,9 +3929,9 @@
 
     var debounce_1 = debounce;
 
-    var shadowMarkup$7 = "<div class='position-arrow'><div id='hxPopover'><slot></slot></div></div>";
+    var shadowMarkup$8 = "<div class='position-arrow'><div id='hxPopover'><slot></slot></div></div>";
 
-    var shadowStyles$7 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#hxPopover {\n  overflow: hidden;\n}\n";
+    var shadowStyles$8 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#hxPopover {\n  overflow: hidden;\n}\n";
 
     /**
      * Fires when the element is concealed.
@@ -3666,37 +3958,22 @@
      */
     var HXPopoverElement = function (_HXElement) {
         inherits(HXPopoverElement, _HXElement);
-        createClass(HXPopoverElement, null, [{
-            key: 'is',
-            get: function get$$1() {
-                return 'hx-popover';
-            }
-        }, {
-            key: 'template',
-            get: function get$$1() {
-                return '<style>' + shadowStyles$7 + '</style>' + shadowMarkup$7;
-            }
-        }, {
-            key: 'observedAttributes',
-            get: function get$$1() {
-                return ['open'];
-            }
-        }]);
 
         function HXPopoverElement() {
             classCallCheck(this, HXPopoverElement);
-
-            var _this = possibleConstructorReturn(this, (HXPopoverElement.__proto__ || Object.getPrototypeOf(HXPopoverElement)).call(this));
-
-            _this._toggle = _this._toggle.bind(_this);
-            _this._setPosition = _this._setPosition.bind(_this);
-            _this._closeOnBackdropClick = _this._closeOnBackdropClick.bind(_this);
-            return _this;
+            return possibleConstructorReturn(this, (HXPopoverElement.__proto__ || Object.getPrototypeOf(HXPopoverElement)).apply(this, arguments));
         }
 
         createClass(HXPopoverElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onCreate',
+            value: function $onCreate() {
+                this._toggle = this._toggle.bind(this);
+                this._setPosition = this._setPosition.bind(this);
+                this._closeOnBackdropClick = this._closeOnBackdropClick.bind(this);
+            }
+        }, {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$upgradeProperty('open');
                 this.$upgradeProperty('position');
                 this.$defaultAttribute('position', 'bottom-right');
@@ -3718,8 +3995,8 @@
                 document.addEventListener('click', this._closeOnBackdropClick);
             }
         }, {
-            key: 'disconnectedCallback',
-            value: function disconnectedCallback() {
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
                 if (!this._target) {
                     return;
                 }
@@ -3729,12 +4006,11 @@
                 document.removeEventListener('click', this._closeOnBackdropClick);
             }
         }, {
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
-                var isOpen = newVal !== null;
-                this.setAttribute('aria-hidden', !isOpen);
-
-                if (newVal !== oldVal) {
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
+                if (attr === 'open') {
+                    var isOpen = newVal !== null;
+                    this.setAttribute('aria-hidden', !isOpen);
                     this.$emit(isOpen ? 'open' : 'close');
                 }
             }
@@ -3791,13 +4067,28 @@
             get: function get$$1() {
                 return this.getAttribute('position');
             }
+        }], [{
+            key: 'is',
+            get: function get$$1() {
+                return 'hx-popover';
+            }
+        }, {
+            key: 'template',
+            get: function get$$1() {
+                return '<style>' + shadowStyles$8 + '</style>' + shadowMarkup$8;
+            }
+        }, {
+            key: '$observedAttributes',
+            get: function get$$1() {
+                return ['open'];
+            }
         }]);
         return HXPopoverElement;
     }(HXElement);
 
-    var shadowMarkup$8 = "<div id='hxProgress'><div id='hxFill'></div></div>";
+    var shadowMarkup$9 = "<div id='hxProgress'><div id='hxFill'></div></div>";
 
-    var shadowStyles$8 = "#hxProgress {\n  height: 100%;\n}\n#hxProgress #hxFill {\n  background-color: currentColor;\n  box-sizing: border-box;\n  height: 100%;\n  width: 0%;\n}\n";
+    var shadowStyles$9 = "#hxProgress {\n  height: 100%;\n}\n#hxProgress #hxFill {\n  background-color: currentColor;\n  box-sizing: border-box;\n  height: 100%;\n  width: 0%;\n}\n";
 
     var MIN = 0;
     var MAX = 100;
@@ -3834,8 +4125,8 @@
         }
 
         createClass(HXProgressElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$upgradeProperty('value');
                 this.$defaultAttribute('role', 'progressbar');
                 this.$defaultAttribute('aria-valuemin', MIN);
@@ -3843,14 +4134,12 @@
                 this.value = this.value;
             }
         }, {
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
-                if (newVal !== oldVal) {
-                    if (attr === 'value') {
-                        var safeVal = _parseValue(newVal);
-                        this._elFill.style.width = safeVal + '%';
-                        this.setAttribute('aria-valuenow', safeVal);
-                    }
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
+                if (attr === 'value') {
+                    var safeVal = _parseValue(newVal);
+                    this._elFill.style.width = safeVal + '%';
+                    this.setAttribute('aria-valuenow', safeVal);
                 }
             }
 
@@ -3887,10 +4176,10 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$8 + '</style>' + shadowMarkup$8;
+                return '<style>' + shadowStyles$9 + '</style>' + shadowMarkup$9;
             }
         }, {
-            key: 'observedAttributes',
+            key: '$observedAttributes',
             get: function get$$1() {
                 return ['value'];
             }
@@ -3932,18 +4221,17 @@
         }
 
         createClass(HXRevealElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$upgradeProperty('open');
                 this.setAttribute('aria-expanded', this.open);
             }
         }, {
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
-                var isOpen = newVal !== null;
-                this.setAttribute('aria-expanded', isOpen);
-
-                if (newVal !== oldVal) {
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
+                if (attr === 'open') {
+                    var isOpen = newVal !== null;
+                    this.setAttribute('aria-expanded', isOpen);
                     this.$emit(isOpen ? 'open' : 'close');
                 }
             }
@@ -3974,7 +4262,7 @@
                 return 'hx-reveal';
             }
         }, {
-            key: 'observedAttributes',
+            key: '$observedAttributes',
             get: function get$$1() {
                 return ['open'];
             }
@@ -4017,20 +4305,20 @@
         }
 
         createClass(HXSearchAssistanceElement, [{
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
-                var isOpen = newVal !== null;
-                if (newVal !== oldVal) {
-                    this.$emit(isOpen ? 'open' : 'close');
-                }
-            }
-        }, {
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$upgradeProperty('open');
                 this.$upgradeProperty('position');
                 this.$upgradeProperty('relativeTo');
                 this.$defaultAttribute('position', 'bottom-start');
+            }
+        }, {
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
+                if (attr === 'open') {
+                    var isOpen = newVal !== null;
+                    this.$emit(isOpen ? 'open' : 'close');
+                }
             }
         }, {
             key: '_setPosition',
@@ -4086,7 +4374,7 @@
                 return 'hx-search-assistance';
             }
         }, {
-            key: 'observedAttributes',
+            key: '$observedAttributes',
             get: function get$$1() {
                 return ['open'];
             }
@@ -4094,9 +4382,9 @@
         return HXSearchAssistanceElement;
     }(HXElement);
 
-    var shadowStyles$9 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\ninput::-ms-clear {\n  display: none;\n}\n:host {\n  display: block;\n  font-size: 1rem;\n  height: 2rem;\n  min-width: 8rem;\n}\n:host #hxSearch {\n  display: flex;\n  height: 100%;\n  position: relative;\n}\n:host #hxIcon {\n  color: #757575;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 1;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxNativeControl {\n  background-color: transparent;\n  border: none;\n  color: #424242;\n  cursor: inherit;\n  flex-grow: 1;\n  font-weight: 400;\n  min-width: 0;\n  order: 2;\n  width: 0;\n  z-index: 1;\n}\n:host #hxNativeControl::-moz-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-ms-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-webkit-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxNativeControl:focus {\n  outline: none;\n}\n:host #hxNativeControl:focus ~ #hxClear {\n  color: #0e94a6;\n}\n:host #hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxCustomControl {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #bdbdbd;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 0;\n}\n:host #hxClear {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 3;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxClear::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxClear:focus {\n  outline: none;\n}\n:host #hxClear:focus hx-icon {\n  outline-offset: 2px;\n  outline: 1px dotted currentColor;\n}\n:host #hxClear:focus ~ * {\n  color: #0e94a6;\n}\n:host #hxClear:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host([invalid]) {\n  color: #d32f2f;\n}\n:host([invalid]) #hxIcon,\n:host([invalid]) #hxClear {\n  color: inherit;\n}\n:host([invalid]) #hxCustomControl {\n  border-color: #d32f2f;\n  border-width: 2px;\n}\n:host([invalid]) #hxClear:focus hx-icon {\n  outline-color: currentColor;\n}\n:host([invalid]) #hxNativeControl:focus ~ #hxClear {\n  color: #d32f2f;\n}\n:host([invalid]) #hxClear:focus ~ #hxCustomControl,\n:host([invalid]) #hxNativeControl:focus ~ #hxCustomControl {\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n  border-color: #d32f2f;\n}\n:host([disabled]) {\n  color: #d8d8d8;\n}\n:host([disabled]) #hxSearch {\n  color: inherit;\n  cursor: not-allowed;\n}\n:host([disabled]) #hxIcon {\n  color: inherit;\n}\n:host([disabled]) #hxClear {\n  display: none;\n}\n:host([disabled]) #hxNativeControl {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-moz-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-ms-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-webkit-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxCustomControl {\n  background-color: #f5f5f5;\n  border-color: #e0e0e0;\n  border-width: 1px;\n}\n";
+    var shadowStyles$a = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\ninput::-ms-clear {\n  display: none;\n}\n:host {\n  display: block;\n  font-size: 1rem;\n  height: 2rem;\n  min-width: 8rem;\n}\n:host #hxSearch {\n  display: flex;\n  height: 100%;\n  position: relative;\n}\n:host #hxIcon {\n  color: #757575;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 1;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxNativeControl {\n  background-color: transparent;\n  border: none;\n  color: #424242;\n  cursor: inherit;\n  flex-grow: 1;\n  font-weight: 400;\n  min-width: 0;\n  order: 2;\n  width: 0;\n  z-index: 1;\n}\n:host #hxNativeControl::-moz-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-ms-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-webkit-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxNativeControl:focus {\n  outline: none;\n}\n:host #hxNativeControl:focus ~ #hxClear {\n  color: #0e94a6;\n}\n:host #hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxCustomControl {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #bdbdbd;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 0;\n}\n:host #hxClear {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 3;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxClear::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxClear:focus {\n  outline: none;\n}\n:host #hxClear:focus hx-icon {\n  outline-offset: 2px;\n  outline: 1px dotted currentColor;\n}\n:host #hxClear:focus ~ * {\n  color: #0e94a6;\n}\n:host #hxClear:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host([invalid]) {\n  color: #d32f2f;\n}\n:host([invalid]) #hxIcon,\n:host([invalid]) #hxClear {\n  color: inherit;\n}\n:host([invalid]) #hxCustomControl {\n  border-color: #d32f2f;\n  border-width: 2px;\n}\n:host([invalid]) #hxClear:focus hx-icon {\n  outline-color: currentColor;\n}\n:host([invalid]) #hxNativeControl:focus ~ #hxClear {\n  color: #d32f2f;\n}\n:host([invalid]) #hxClear:focus ~ #hxCustomControl,\n:host([invalid]) #hxNativeControl:focus ~ #hxCustomControl {\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n  border-color: #d32f2f;\n}\n:host([disabled]) {\n  color: #d8d8d8;\n}\n:host([disabled]) #hxSearch {\n  color: inherit;\n  cursor: not-allowed;\n}\n:host([disabled]) #hxIcon {\n  color: inherit;\n}\n:host([disabled]) #hxClear {\n  display: none;\n}\n:host([disabled]) #hxNativeControl {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-moz-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-ms-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-webkit-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxCustomControl {\n  background-color: #f5f5f5;\n  border-color: #e0e0e0;\n  border-width: 1px;\n}\n";
 
-    var shadowMarkup$9 = "<label id='hxSearch'><input type='text' role='search' id='hxNativeControl' autocomplete='off'> <button type='button' id='hxClear' hidden aria-label='Clear search'><hx-icon type='times'></hx-icon></button><div id='hxIcon'><hx-icon type='search'></hx-icon></div><div id='hxCustomControl'></div></label>";
+    var shadowMarkup$a = "<label id='hxSearch'><input type='text' role='search' id='hxNativeControl' autocomplete='off'> <button type='button' id='hxClear' hidden aria-label='Clear search'><hx-icon type='times'></hx-icon></button><div id='hxIcon'><hx-icon type='search'></hx-icon></div><div id='hxCustomControl'></div></label>";
 
     /**
      * Fires when the element loses focus.
@@ -4139,123 +4427,133 @@
      */
     var HXSearchElement = function (_HXElement) {
         inherits(HXSearchElement, _HXElement);
-        createClass(HXSearchElement, null, [{
-            key: 'is',
-            get: function get$$1() {
-                return 'hx-search';
-            }
-        }, {
-            key: 'template',
-            get: function get$$1() {
-                return '<style>' + shadowStyles$9 + '</style>' + shadowMarkup$9;
-            }
-        }, {
-            key: 'observedAttributes',
-            get: function get$$1() {
-                return ['disabled', 'placeholder', 'value'];
-            }
-        }]);
 
         function HXSearchElement() {
             classCallCheck(this, HXSearchElement);
-
-            var _this = possibleConstructorReturn(this, (HXSearchElement.__proto__ || Object.getPrototypeOf(HXSearchElement)).call(this));
-
-            _this._clearValue = _this._clearValue.bind(_this);
-            _this._onInput = _this._onInput.bind(_this);
-            return _this;
+            return possibleConstructorReturn(this, (HXSearchElement.__proto__ || Object.getPrototypeOf(HXSearchElement)).apply(this, arguments));
         }
 
         createClass(HXSearchElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
-                this.$upgradeProperty('disabled');
+            key: '$onCreate',
+            value: function $onCreate() {
+                this._onClearClick = this._onClearClick.bind(this);
+                this._onSearchInput = this._onSearchInput.bind(this);
+            }
+        }, {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$upgradeProperty('invalid');
                 this.$upgradeProperty('placeholder');
                 this.$upgradeProperty('value');
 
-                this._btnClear.addEventListener('click', this._clearValue);
-                this._elSearch.addEventListener('input', this._onInput);
+                this._btnClear.addEventListener('click', this._onClearClick);
+                this._elSearch.addEventListener('input', this._onSearchInput);
 
                 this.$relayNonBubblingEvents(this._elSearch);
             }
         }, {
-            key: 'disconnectedCallback',
-            value: function disconnectedCallback() {
-                this._btnClear.removeEventListener('click', this._clearValue);
-                this._elSearch.removeEventListener('input', this._onInput);
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
+                this._btnClear.removeEventListener('click', this._onClearClick);
+                this._elSearch.removeEventListener('input', this._onSearchInput);
 
                 this.$removeNonBubblingRelays(this._elSearch);
             }
         }, {
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
                 var hasValue = newVal !== null;
 
                 switch (attr) {
                     case 'disabled':
-                        this._elSearch.disabled = hasValue;
-                        break;
+                        {
+                            this._elSearch.disabled = hasValue;
+                            break;
+                        }
 
                     case 'placeholder':
-                        this._elSearch.placeholder = newVal;
-                        break;
+                        {
+                            this._elSearch.placeholder = newVal;
+                            break;
+                        }
 
                     case 'value':
-                        if (this._elSearch.value !== newVal) {
-                            this._elSearch.value = newVal;
+                        {
+                            if (this._elSearch.value !== newVal) {
+                                this._elSearch.value = newVal;
+                            }
+
+                            if (hasValue) {
+                                this._btnClear.hidden = newVal === '';
+                            } else {
+                                this._btnClear.hidden = true;
+                            }
+                            break;
                         }
-
-                        if (hasValue) {
-                            this._btnClear.hidden = newVal === '';
-                        } else {
-                            this._btnClear.hidden = true;
-                        }
-                        break;
-                }
-            } //attributeChangedCallback()
-
-            // GETTERS
-
-        }, {
-            key: '_onInput',
-
-
-            // PRIVATE FUNCTIONS
-            value: function _onInput(evt) {
-                this.value = evt.target.value;
-                if (evt.target.value === '') {
-                    this._btnClear.hidden = true;
-                } else {
-                    this._btnClear.hidden = false;
                 }
             }
+
+            /**
+             * @default [false]
+             * @type {Boolean}
+             */
+
         }, {
-            key: '_clearValue',
-            value: function _clearValue(evt) {
-                evt.preventDefault();
+            key: 'clear',
 
-                this.value = '';
 
-                // Emit a 'clear' event to communicate state change.
-                this.$emit('clear');
+            /**
+             * Simulate pressing "X" to clear input value
+             */
+            value: function clear() {
+                if (this.value !== '') {
+                    this.value = '';
+                    this.$emit('clear');
+                }
+            }
 
+            /**
+             * Override HTMLElement#focus(), because we need to focus the
+             * inner `<input>` instead of the outer `<hx-search>`.
+             */
+
+        }, {
+            key: 'focus',
+            value: function focus() {
                 this._elSearch.focus();
             }
+
+            /** @private */
+
         }, {
-            key: 'disabled',
-            get: function get$$1() {
-                return this.hasAttribute('disabled');
-            },
+            key: '_onClearClick',
 
 
-            // SETTERS
-            set: function set$$1(isDisabled) {
-                if (isDisabled) {
-                    this.setAttribute('disabled', '');
-                } else {
-                    this.removeAttribute('disabled');
-                }
+            /**
+             * Clear value and focus input when user presses "X" via the UI.
+             * @private
+             */
+            value: function _onClearClick(evt) {
+                evt.preventDefault();
+                this.clear();
+                this.focus();
+            }
+
+            /**
+             * Keep state in sync with `<input>`
+             *
+             * 1. synchronize `value`
+             * 2. determine whether to reveal the clear button
+             *
+             * @private
+             */
+
+        }, {
+            key: '_onSearchInput',
+            value: function _onSearchInput(evt) {
+                this.value = evt.target.value;
+                var hasValue = evt.target.value !== '';
+                this._btnClear.hidden = !hasValue;
             }
         }, {
             key: 'invalid',
@@ -4269,6 +4567,12 @@
                     this.removeAttribute('invalid');
                 }
             }
+
+            /**
+             * @default ['']
+             * @type {String}
+             */
+
         }, {
             key: 'placeholder',
             get: function get$$1() {
@@ -4281,6 +4585,12 @@
                     this.removeAttribute('placeholder');
                 }
             }
+
+            /**
+             * @default ['']
+             * @type {String}
+             */
+
         }, {
             key: 'value',
             get: function get$$1() {
@@ -4293,6 +4603,11 @@
                     this.removeAttribute('value');
                 }
             }
+        }, {
+            key: '_btnClear',
+            get: function get$$1() {
+                return this.shadowRoot.getElementById('hxClear');
+            }
 
             /** @private */
 
@@ -4301,13 +4616,20 @@
             get: function get$$1() {
                 return this.shadowRoot.getElementById('hxNativeControl');
             }
-
-            /** @private */
-
-        }, {
-            key: '_btnClear',
+        }], [{
+            key: 'is',
             get: function get$$1() {
-                return this.shadowRoot.getElementById('hxClear');
+                return 'hx-search';
+            }
+        }, {
+            key: 'template',
+            get: function get$$1() {
+                return '<style>' + shadowStyles$a + '</style>' + shadowMarkup$a;
+            }
+        }, {
+            key: '$observedAttributes',
+            get: function get$$1() {
+                return ['disabled', 'placeholder', 'value'];
             }
         }]);
         return HXSearchElement;
@@ -4329,16 +4651,18 @@
         }
 
         createClass(HXTabElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$upgradeProperty('current');
                 this.$defaultAttribute('role', 'tab');
                 this.setAttribute('aria-selected', this.current);
             }
         }, {
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
-                this.setAttribute('aria-selected', newVal !== null);
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
+                if (attr === 'current') {
+                    this.setAttribute('aria-selected', newVal !== null);
+                }
             }
         }, {
             key: 'current',
@@ -4358,7 +4682,7 @@
                 return 'hx-tab';
             }
         }, {
-            key: 'observedAttributes',
+            key: '$observedAttributes',
             get: function get$$1() {
                 return ['current'];
             }
@@ -4382,8 +4706,8 @@
         }
 
         createClass(HXTabcontentElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$defaultAttribute('role', 'presentation');
             }
         }], [{
@@ -4411,8 +4735,8 @@
         }
 
         createClass(HXTablistElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$defaultAttribute('role', 'tablist');
             }
         }], [{
@@ -4458,21 +4782,19 @@
         }
 
         createClass(HXTabpanelElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$defaultAttribute('role', 'tabpanel');
                 this.$upgradeProperty('open');
                 this.setAttribute('aria-expanded', this.open);
             }
         }, {
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
-                var isOpen = newVal !== null;
-
-                this.setAttribute('aria-expanded', isOpen);
-                this.setAttribute('tabindex', isOpen ? 0 : -1);
-
-                if (newVal !== oldVal) {
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
+                if (attr === 'open') {
+                    var isOpen = newVal !== null;
+                    this.setAttribute('aria-expanded', isOpen);
+                    this.setAttribute('tabindex', isOpen ? 0 : -1);
                     this.$emit(isOpen ? 'open' : 'close');
                 }
             }
@@ -4494,7 +4816,7 @@
                 return 'hx-tabpanel';
             }
         }, {
-            key: 'observedAttributes',
+            key: '$observedAttributes',
             get: function get$$1() {
                 return ['open'];
             }
@@ -4522,31 +4844,21 @@
      */
     var HXTabsetElement = function (_HXElement) {
         inherits(HXTabsetElement, _HXElement);
-        createClass(HXTabsetElement, null, [{
-            key: 'is',
-            get: function get$$1() {
-                return 'hx-tabset';
-            }
-        }, {
-            key: 'observedAttributes',
-            get: function get$$1() {
-                return ['current-tab'];
-            }
-        }]);
 
         function HXTabsetElement() {
             classCallCheck(this, HXTabsetElement);
-
-            var _this = possibleConstructorReturn(this, (HXTabsetElement.__proto__ || Object.getPrototypeOf(HXTabsetElement)).call(this));
-
-            _this._onKeyUp = _this._onKeyUp.bind(_this);
-            _this._onTabClick = _this._onTabClick.bind(_this);
-            return _this;
+            return possibleConstructorReturn(this, (HXTabsetElement.__proto__ || Object.getPrototypeOf(HXTabsetElement)).apply(this, arguments));
         }
 
         createClass(HXTabsetElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onCreate',
+            value: function $onCreate() {
+                this._onKeyUp = this._onKeyUp.bind(this);
+                this._onTabClick = this._onTabClick.bind(this);
+            }
+        }, {
+            key: '$onConnect',
+            value: function $onConnect() {
                 var _this2 = this;
 
                 this.$upgradeProperty('current-tab');
@@ -4561,8 +4873,8 @@
                 });
             }
         }, {
-            key: 'disconnectedCallback',
-            value: function disconnectedCallback() {
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
                 var _this3 = this;
 
                 this.$tablist.removeEventListener('keyup', this._onKeyUp);
@@ -4572,19 +4884,29 @@
                 });
             }
         }, {
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
-                if (!isNaN(newVal)) {
-                    this._openTab(Number(newVal));
-
-                    if (newVal !== oldVal) {
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
+                if (attr === 'current-tab') {
+                    if (!isNaN(newVal)) {
+                        this._activateTab(Number(newVal));
                         this.$emit('tabchange');
                     }
                 }
             }
+
+            /**
+             * Zero-based index of the currently active tab.
+             * @type {Number}
+             */
+
         }, {
-            key: '_selectNext',
-            value: function _selectNext() {
+            key: 'selectNext',
+
+
+            /**
+             * Select next tab in tabset.
+             */
+            value: function selectNext() {
                 // if current tab is the last tab
                 if (this.currentTab === this.tabs.length - 1) {
                     // select first
@@ -4594,11 +4916,15 @@
                     this.currentTab += 1;
                 }
                 this.tabs[this.currentTab].focus();
-            } //_selectNext()
+            }
+
+            /**
+             * Select previous tab in tabset.
+             */
 
         }, {
-            key: '_selectPrevious',
-            value: function _selectPrevious() {
+            key: 'selectPrevious',
+            value: function selectPrevious() {
                 // if current tab is the first tab
                 if (this.currentTab === 0) {
                     // select last
@@ -4608,30 +4934,38 @@
                     this.currentTab -= 1;
                 }
                 this.tabs[this.currentTab].focus();
-            } //_selectPrevious()
+            }
 
-            // Handle navigating the tabs via arrow keys
+            /**
+             * Handle navigating the tabs via arrow keys
+             * @private
+             */
 
         }, {
             key: '_onKeyUp',
             value: function _onKeyUp(evt) {
                 if (evt.keyCode === KEYS.Right) {
-                    this._selectNext();
+                    this.selectNext();
                 }
 
                 if (evt.keyCode === KEYS.Left) {
-                    this._selectPrevious();
+                    this.selectPrevious();
                 }
-            } //_onKeyUp()
+            }
+
+            /** @private */
 
         }, {
             key: '_onTabClick',
             value: function _onTabClick(evt) {
                 this.currentTab = this.tabs.indexOf(evt.target);
             }
+
+            /** @private */
+
         }, {
-            key: '_openTab',
-            value: function _openTab(idx) {
+            key: '_activateTab',
+            value: function _activateTab(idx) {
                 this.tabs.forEach(function (tab, tabIdx) {
                     if (idx === tabIdx) {
                         tab.current = true;
@@ -4647,6 +4981,9 @@
                     tabpanel.open = idx === panelIdx;
                 });
             }
+
+            /** @private */
+
         }, {
             key: '_setupIds',
             value: function _setupIds() {
@@ -4676,8 +5013,7 @@
                     tab.setAttribute('aria-controls', tabpanelId);
                     tabpanel.setAttribute('aria-labelledby', tabId);
                 });
-            } //_setupIds
-
+            }
         }, {
             key: 'currentTab',
             get: function get$$1() {
@@ -4694,23 +5030,47 @@
 
                 this.setAttribute('current-tab', idx);
             }
+
+            /**
+             * All `<hx-tab>` elements within the tabset.
+             * @readonly
+             * @type {HXTabElement[]}
+             */
+
         }, {
             key: 'tabs',
             get: function get$$1() {
                 return Array.from(this.querySelectorAll('hx-tablist > hx-tab'));
             }
+
+            /**
+             * All `<hx-tabpanel>` elements within the tabset.
+             * @readonly
+             * @type {HXTabpanelElement[]}
+             */
+
         }, {
             key: 'tabpanels',
             get: function get$$1() {
                 return Array.from(this.querySelectorAll('hx-tabpanel'));
             }
+        }], [{
+            key: 'is',
+            get: function get$$1() {
+                return 'hx-tabset';
+            }
+        }, {
+            key: '$observedAttributes',
+            get: function get$$1() {
+                return ['current-tab'];
+            }
         }]);
         return HXTabsetElement;
     }(HXElement);
 
-    var shadowMarkup$a = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
+    var shadowMarkup$b = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-    var shadowStyles$a = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxToast {\n  padding: 0.75rem;\n}\n#hxToast #hxCta {\n  background-color: transparent;\n  border-radius: 2px;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-size: 0.875rem;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 8px 12px;\n}\n#hxToast {\n  background-color: #ffffff;\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  color: #424242;\n  display: flex;\n  min-height: 3.5rem;\n  position: relative;\n  width: 22rem;\n}\n#hxToast::before,\n#hxToast::after {\n  content: '';\n  display: block;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#hxToast::before {\n  border: 1px solid #e0e0e0;\n}\n#hxToast::after {\n  border-left: 8px solid currentColor;\n}\n#hxToast #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  margin: 0 0.75rem 0 0.5rem;\n}\n#hxToast #hxIconWrapper hx-icon {\n  font-size: 2rem;\n}\n#hxToast #hxContent {\n  flex-grow: 1;\n  margin-right: 1.5rem;\n  text-align: right;\n  word-wrap: break-word;\n}\n#hxToast #hxContent div {\n  font-size: 0.875rem;\n  text-align: left;\n}\n#hxToast #hxCta {\n  text-transform: uppercase;\n}\n#hxToast #hxCta:empty {\n  display: none;\n}\n#hxToast #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 0.75rem;\n  height: 2.25rem;\n  line-height: 0;\n  margin: 0;\n  padding: 0.75rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 2.25rem;\n}\n:host([type=\"info\"]) #hxToast::after {\n  border-left-color: #3b44a9;\n}\n:host([type=\"info\"]) #hxIcon {\n  color: #3b44a9;\n}\n:host([type=\"error\"]) #hxToast::after {\n  border-left-color: #d32f2f;\n}\n:host([type=\"error\"]) #hxIcon {\n  color: #d32f2f;\n}\n:host([type=\"success\"]) #hxToast::after {\n  border-left-color: #4caf51;\n}\n:host([type=\"success\"]) #hxIcon {\n  color: #4caf51;\n}\n";
+    var shadowStyles$b = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxToast {\n  padding: 0.75rem;\n}\n#hxToast #hxCta {\n  background-color: transparent;\n  border-radius: 2px;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-size: 0.875rem;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 8px 12px;\n}\n#hxToast {\n  background-color: #ffffff;\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  color: #424242;\n  display: flex;\n  min-height: 3.5rem;\n  position: relative;\n  width: 22rem;\n}\n#hxToast::before,\n#hxToast::after {\n  content: '';\n  display: block;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#hxToast::before {\n  border: 1px solid #e0e0e0;\n}\n#hxToast::after {\n  border-left: 8px solid currentColor;\n}\n#hxToast #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  margin: 0 0.75rem 0 0.5rem;\n}\n#hxToast #hxIconWrapper hx-icon {\n  font-size: 2rem;\n}\n#hxToast #hxContent {\n  flex-grow: 1;\n  margin-right: 1.5rem;\n  text-align: right;\n  word-wrap: break-word;\n}\n#hxToast #hxContent div {\n  font-size: 0.875rem;\n  text-align: left;\n}\n#hxToast #hxCta {\n  text-transform: uppercase;\n}\n#hxToast #hxCta:empty {\n  display: none;\n}\n#hxToast #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 0.75rem;\n  height: 2.25rem;\n  line-height: 0;\n  margin: 0;\n  padding: 0.75rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 2.25rem;\n}\n:host([type=\"info\"]) #hxToast::after {\n  border-left-color: #3b44a9;\n}\n:host([type=\"info\"]) #hxIcon {\n  color: #3b44a9;\n}\n:host([type=\"error\"]) #hxToast::after {\n  border-left-color: #d32f2f;\n}\n:host([type=\"error\"]) #hxIcon {\n  color: #d32f2f;\n}\n:host([type=\"success\"]) #hxToast::after {\n  border-left-color: #4caf51;\n}\n:host([type=\"success\"]) #hxIcon {\n  color: #4caf51;\n}\n";
 
     var ICONS$1 = {
         'error': 'exclamation-circle',
@@ -4745,31 +5105,21 @@
      */
     var HXToastElement = function (_HXElement) {
         inherits(HXToastElement, _HXElement);
-        createClass(HXToastElement, null, [{
-            key: 'is',
-            get: function get$$1() {
-                return 'hx-toast';
-            }
-        }, {
-            key: 'template',
-            get: function get$$1() {
-                return '<style>' + shadowStyles$a + '</style>' + shadowMarkup$a;
-            }
-        }]);
 
         function HXToastElement() {
             classCallCheck(this, HXToastElement);
-
-            var _this = possibleConstructorReturn(this, (HXToastElement.__proto__ || Object.getPrototypeOf(HXToastElement)).call(this));
-
-            _this._onDismiss = _this._onDismiss.bind(_this);
-            _this._onSubmit = _this._onSubmit.bind(_this);
-            return _this;
+            return possibleConstructorReturn(this, (HXToastElement.__proto__ || Object.getPrototypeOf(HXToastElement)).apply(this, arguments));
         }
 
         createClass(HXToastElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onCreate',
+            value: function $onCreate() {
+                this._onDismiss = this._onDismiss.bind(this);
+                this._onSubmit = this._onSubmit.bind(this);
+            }
+        }, {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$upgradeProperty('cta');
                 this.$upgradeProperty('type');
 
@@ -4777,16 +5127,14 @@
                 this._btnDismiss.addEventListener('click', this._onDismiss);
             }
         }, {
-            key: 'disconnectedCallback',
-            value: function disconnectedCallback() {
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
                 this._btnCta.removeEventListener('click', this._onSubmit);
                 this._btnDismiss.removeEventListener('click', this._onDismiss);
             }
         }, {
-            key: 'attributeChangedCallback',
-            //observedAttributes
-
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
                 var hasValue = newVal !== null;
                 switch (attr) {
                     case 'cta':
@@ -4801,7 +5149,7 @@
                         }
                         break;
                 }
-            } //attributeChangedCallback()
+            }
 
             // GETTERS
 
@@ -4809,32 +5157,46 @@
             key: 'dismiss',
 
 
-            // PUBLIC METHODS
+            /**
+             * Dismiss the toast (removes element from the DOM).
+             */
             value: function dismiss() {
-                this.remove();
+                if (this.$emit('dismiss')) {
+                    // only if event was not canceled by consumer
+                    this.remove();
+                }
             }
 
-            // PRIVATE METHODS
+            /**
+             * Simulate a mouse click on the CTA button.
+             */
+
+        }, {
+            key: 'submit',
+            value: function submit() {
+                this.$emit('submit');
+            }
+
+            /** @private */
 
         }, {
             key: '_onDismiss',
+
+
+            /** @private */
             value: function _onDismiss(evt) {
                 evt.preventDefault();
-
-                if (this.$emit('dismiss')) {
-                    // only if event was not canceled by consumer
-                    this.dismiss();
-                }
+                this.dismiss();
             }
+
+            /** @private */
+
         }, {
             key: '_onSubmit',
             value: function _onSubmit(evt) {
                 evt.preventDefault();
-                this.$emit('submit');
+                this.submit();
             }
-
-            // PRIVATE GETTERS
-
         }, {
             key: 'cta',
             get: function get$$1() {
@@ -4867,18 +5229,34 @@
             get: function get$$1() {
                 return this.shadowRoot.getElementById('hxIcon');
             }
+
+            /** @private */
+
         }, {
             key: '_btnCta',
             get: function get$$1() {
                 return this.shadowRoot.getElementById('hxCta');
             }
+
+            /** @private */
+
         }, {
             key: '_btnDismiss',
             get: function get$$1() {
                 return this.shadowRoot.getElementById('hxDismiss');
             }
         }], [{
-            key: 'observedAttributes',
+            key: 'is',
+            get: function get$$1() {
+                return 'hx-toast';
+            }
+        }, {
+            key: 'template',
+            get: function get$$1() {
+                return '<style>' + shadowStyles$b + '</style>' + shadowMarkup$b;
+            }
+        }, {
+            key: '$observedAttributes',
             get: function get$$1() {
                 return ['cta', 'type'];
             }
@@ -4886,9 +5264,9 @@
         return HXToastElement;
     }(HXElement);
 
-    var shadowMarkup$b = "<div id='hxTooltip' class='position-arrow'><slot></slot></div>";
+    var shadowMarkup$c = "<div id='hxTooltip' class='position-arrow'><slot></slot></div>";
 
-    var shadowStyles$b = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#hxTooltip {\n  padding: 1.25rem;\n}\n";
+    var shadowStyles$c = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#hxTooltip {\n  padding: 1.25rem;\n}\n";
 
     /**
      * Fires when the element's contents are concealed.
@@ -4917,39 +5295,24 @@
      */
     var HXTooltipElement = function (_HXElement) {
         inherits(HXTooltipElement, _HXElement);
-        createClass(HXTooltipElement, null, [{
-            key: 'is',
-            get: function get$$1() {
-                return 'hx-tooltip';
-            }
-        }, {
-            key: 'template',
-            get: function get$$1() {
-                return '<style>' + shadowStyles$b + '</style>' + shadowMarkup$b;
-            }
-        }, {
-            key: 'observedAttributes',
-            get: function get$$1() {
-                return ['open'];
-            }
-        }]);
 
         function HXTooltipElement() {
             classCallCheck(this, HXTooltipElement);
-
-            var _this = possibleConstructorReturn(this, (HXTooltipElement.__proto__ || Object.getPrototypeOf(HXTooltipElement)).call(this));
-
-            _this._show = _this._show.bind(_this);
-            _this._hide = _this._hide.bind(_this);
-            _this._toggle = _this._toggle.bind(_this);
-            _this._setPosition = _this._setPosition.bind(_this);
-            _this._closeOnBackgroundClick = _this._closeOnBackgroundClick.bind(_this);
-            return _this;
+            return possibleConstructorReturn(this, (HXTooltipElement.__proto__ || Object.getPrototypeOf(HXTooltipElement)).apply(this, arguments));
         }
 
         createClass(HXTooltipElement, [{
-            key: 'connectedCallback',
-            value: function connectedCallback() {
+            key: '$onCreate',
+            value: function $onCreate() {
+                this._onShow = this._onShow.bind(this);
+                this._onHide = this._onHide.bind(this);
+                this._onClick = this._onClick.bind(this);
+                this._setPosition = this._setPosition.bind(this);
+                this._onDocumentClick = this._onDocumentClick.bind(this);
+            }
+        }, {
+            key: '$onConnect',
+            value: function $onConnect() {
                 this.$defaultAttribute('position', 'top');
                 this.initialPosition = this.position;
                 this.$upgradeProperty('open');
@@ -4965,84 +5328,64 @@
                 this._connectHandlers();
             }
         }, {
-            key: 'disconnectedCallback',
-            value: function disconnectedCallback() {
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
                 if (!this._target) {
                     return;
                 }
-                this._destoryAllHandlers();
+                this._destroyHandlers();
             }
         }, {
-            key: 'attributeChangedCallback',
-            value: function attributeChangedCallback(attr, oldVal, newVal) {
-                var isOpen = newVal !== null;
-                this.setAttribute('aria-hidden', !isOpen);
-
-                if (newVal !== oldVal) {
+            key: '$onAttributeChange',
+            value: function $onAttributeChange(attr, oldVal, newVal) {
+                if (attr === 'open') {
+                    var isOpen = newVal !== null;
+                    this.setAttribute('aria-hidden', !isOpen);
                     this.$emit(isOpen ? 'open' : 'close');
                 }
             }
-        }, {
-            key: '_hide',
-            value: function _hide() {
-                var _this2 = this;
 
-                if (this._showTimer) {
-                    clearTimeout(this._showTimer);
-                }
-                this._hideTimer = setTimeout(function () {
-                    _this2.open = false;
-                }, 1600);
-            }
-        }, {
-            key: '_show',
-            value: function _show() {
-                var _this3 = this;
+            /**
+             * Where to position the menu in relation to its reference element.
+             *
+             * @default "top"
+             * @type {PositionString}
+             */
 
-                if (this._hideTimer) {
-                    clearTimeout(this._hideTimer);
-                }
-                this._showTimer = setTimeout(function () {
-                    _this3.open = true;
-                }, 500);
-            }
-        }, {
-            key: '_toggle',
-            value: function _toggle() {
-                this.open = !this.open;
-            }
-        }, {
-            key: '_closeOnBackgroundClick',
-            value: function _closeOnBackgroundClick(event) {
-                if (this._isBackground(event)) {
-                    this.open = false;
-                }
-            }
         }, {
             key: '_connectHandlers',
+
+
+            /** @private */
             value: function _connectHandlers() {
                 window.addEventListener('resize', debounce_1(this._setPosition, 100));
                 if (this.triggerEvent === 'click') {
-                    document.addEventListener('click', this._closeOnBackgroundClick);
-                    this._target.addEventListener('click', this._toggle);
+                    document.addEventListener('click', this._onDocumentClick);
+                    this._target.addEventListener('click', this._onClick);
                 } else {
-                    this._target.addEventListener('focus', this._show);
-                    this._target.addEventListener('blur', this._hide);
-                    this._target.addEventListener('mouseenter', this._show);
-                    this._target.addEventListener('mouseleave', this._hide);
+                    this._target.addEventListener('focus', this._onShow);
+                    this._target.addEventListener('blur', this._onHide);
+                    this._target.addEventListener('mouseenter', this._onShow);
+                    this._target.addEventListener('mouseleave', this._onHide);
                 }
             }
+
+            /** @private */
+
         }, {
-            key: '_destoryAllHandlers',
-            value: function _destoryAllHandlers() {
+            key: '_destroyHandlers',
+            value: function _destroyHandlers() {
                 window.removeEventListener('resize', debounce_1(this._setPosition, 100));
-                document.removeEventListener('click', this._closeOnBackgroundClick);
-                this._target.removeEventListener('focus', this._show);
-                this._target.removeEventListener('blur', this._hide);
-                this._target.removeEventListener('mouseenter', this._show);
-                this._target.removeEventListener('mouseleave', this._hide);
-                this._target.removeEventListener('click', this._toggle);
+                document.removeEventListener('click', this._onDocumentClick);
+                this._target.removeEventListener('focus', this._onShow);
+                this._target.removeEventListener('blur', this._onHide);
+                this._target.removeEventListener('mouseenter', this._onShow);
+                this._target.removeEventListener('mouseleave', this._onHide);
+                this._target.removeEventListener('click', this._onClick);
             }
+
+            /** @private */
+
         }, {
             key: '_setPosition',
             value: function _setPosition() {
@@ -5051,39 +5394,103 @@
                 this.style.left = offset.x + 'px';
                 this.position = offset.position;
             }
+
+            /** @private */
+
         }, {
-            key: '_isBackground',
-            value: function _isBackground(event) {
+            key: '_onHide',
+            value: function _onHide() {
+                var _this2 = this;
+
+                if (this._showTimer) {
+                    clearTimeout(this._showTimer);
+                }
+                this._onHideTimer = setTimeout(function () {
+                    _this2.open = false;
+                }, 1600);
+            }
+
+            /** @private */
+
+        }, {
+            key: '_onShow',
+            value: function _onShow() {
+                var _this3 = this;
+
+                if (this._onHideTimer) {
+                    clearTimeout(this._onHideTimer);
+                }
+                this._showTimer = setTimeout(function () {
+                    _this3.open = true;
+                }, 500);
+            }
+
+            /** @private */
+
+        }, {
+            key: '_onClick',
+            value: function _onClick() {
+                this.open = !this.open;
+            }
+
+            /** @private */
+
+        }, {
+            key: '_onDocumentClick',
+            value: function _onDocumentClick(event) {
                 var inComponent = this.contains(event.target);
                 var inTarget = this._target.contains(event.target);
-                return !inComponent && !inTarget;
+                var isBackground = !inComponent && !inTarget;
+
+                if (isBackground) {
+                    this.open = false;
+                }
             }
         }, {
             key: 'position',
+            get: function get$$1() {
+                return this.getAttribute('position');
+            },
             set: function set$$1(value) {
                 if (value) {
                     this.setAttribute('position', value);
                 } else {
                     this.removeAttribute('position');
                 }
-            },
-            get: function get$$1() {
-                return this.getAttribute('position');
             }
+
+            /**
+             * Event that will trigger the appearance of the tooltip.
+             *
+             * @default "mouseenter"
+             * @type {String}
+             */
+
         }, {
             key: 'triggerEvent',
+            get: function get$$1() {
+                return this.getAttribute('trigger-event');
+            },
             set: function set$$1(value) {
                 if (value) {
                     this.setAttribute('trigger-event', value);
                 } else {
                     this.removeAttribute('trigger-event');
                 }
-            },
-            get: function get$$1() {
-                return this.getAttribute('trigger-event');
             }
+
+            /**
+             * Determines if the tooltip is revealed.
+             *
+             * @default false
+             * @type {Boolean}
+             */
+
         }, {
             key: 'open',
+            get: function get$$1() {
+                return this.hasAttribute('open');
+            },
             set: function set$$1(value) {
                 if (value) {
                     this.setAttribute('open', '');
@@ -5092,9 +5499,21 @@
                     this.removeAttribute('open');
                     this.position = this.initialPosition;
                 }
-            },
+            }
+        }], [{
+            key: 'is',
             get: function get$$1() {
-                return this.hasAttribute('open');
+                return 'hx-tooltip';
+            }
+        }, {
+            key: 'template',
+            get: function get$$1() {
+                return '<style>' + shadowStyles$c + '</style>' + shadowMarkup$c;
+            }
+        }, {
+            key: '$observedAttributes',
+            get: function get$$1() {
+                return ['open'];
             }
         }]);
         return HXTooltipElement;
@@ -5115,6 +5534,7 @@
         HXElement: HXElement,
         HXErrorElement: HXErrorElement,
         HXFileIconElement: HXFileIconElement,
+        HXFileTileElement: HXFileTileElement,
         HXIconElement: HXIconElement,
         HXMenuElement: HXMenuElement,
         HXMenuitemElement: HXMenuitemElement,
@@ -5134,7 +5554,7 @@
         HXTooltipElement: HXTooltipElement
     });
 
-    var version = "0.10.0";
+    var version = "0.11.0";
 
     /** @module helix-ui */
 
@@ -5172,7 +5592,7 @@
         _SEMVER$split$map2 = slicedToArray(_SEMVER$split$map, 3),
         major = _SEMVER$split$map2[0],
         minor = _SEMVER$split$map2[1],
-        patch = _SEMVER$split$map2[2];
+        patch = _SEMVER$split$map2[2]; // eslint-disable-line
 
     /**
      * Current version metadata
@@ -5198,7 +5618,7 @@
     };
     VERSION.toString = function () {
         return version;
-    };
+    }; // eslint-disable-line
 
     var HelixUI = {
         elements: elements,
@@ -5211,6 +5631,7 @@
         window.HelixUI = HelixUI;
     }
 
+    // Initialize on load
     HelixUI.initialize();
 
     });

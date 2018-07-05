@@ -333,6 +333,12 @@ class="current">
 
 
       
+      <a href="elements/hx-error" >
+    &lt;hx-error&gt;
+  </a>
+
+
+      
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
   </a>
@@ -580,7 +586,11 @@ class="current">
     <h2 id="methods">Methods</h2>
     <dl>
       <dt>dismiss()</dt>
-      <dd>Dismisses the alert.</dd>
+      <dd>Dismiss the alert (removes element from the DOM).</dd>
+    </dl>
+    <dl>
+      <dt>submit()</dt>
+      <dd>Simulates a mouse click on the CTA.</dd>
     </dl>
   </section>
 
@@ -686,19 +696,16 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-05-22
+      2018-07-05
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.10.0" target="_blank">
-      v0.10.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
+      v0.11.0
     </a>)
   </small>
 </div>
   </footer>
-
-<script src="dist/scripts/helix-ui.polyfills.js"></script>
-<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 
 <!-- intelligently load ES5 Adapter (if needed) -->
 <span id="ce-es5-adapter">
@@ -710,10 +717,6 @@ class="current">
   </script>
   <script src="https://unpkg.com/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
 </span>
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
 
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
 <script src="dist/scripts/helix-ui.browser.js"></script>

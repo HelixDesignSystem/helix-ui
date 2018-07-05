@@ -367,6 +367,22 @@ hx-error {
 hx-file-icon {
   display: inline-block;
 }
+hx-file-tile {
+  background-color: #f5f5f5;
+  color: #424242;
+  display: block;
+  font-size: 0.875rem;
+  min-width: 11rem;
+}
+hx-file-tile[invalid] {
+  border: 2px solid #d32f2f;
+}
+hx-file-tile > hx-progress {
+  margin-top: 0.5rem;
+}
+.hxCol > hx-file-tile {
+  min-width: none;
+}
 hx-icon {
   background-color: transparent;
   color: inherit;

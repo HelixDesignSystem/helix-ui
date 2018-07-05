@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>&lt;hx-file-tile&gt; - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
+
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  <link rel="stylesheet" href="docs.css">
+
+  <!-- Polyfill Loader -->
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+</head>
+<body class="hxVertical" id="top">
+  <!-- This link should be the first item a user can tab to. -->
+  <a href="#content">Skip to main content</a>
+
+  <header id="head">
+<div id="app-header">
+  <nav>
+    <a class="brand-logo" href="">
+      <img src="images/helix-logo.svg" alt="Logo" />
+    </a>
+  </nav>
+  <div>
+    <a
+      class="hxBtn beta-hxDark"
+      target="_blank"
+      href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
+    >
+      Report Bug
+    </a>
+  </div>
+</div>
+  </header>
+
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
+
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Guides"
+>
+    Guides
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Guides" >
+      
+      <a href="guides/getting-started" >
+    Getting Started
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Components"
+>
+    Components
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Components" >
+      
+      <a href="components/accordions" >
+    Accordions
+  </a>
+
+
+      
+      <a href="components/alerts" >
+    Alerts
+  </a>
+
+
+      
+      <a href="components/badges" >
+    Badges
+  </a>
+
+
+      
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
+      <a href="components/breadcrumbs" >
+    Breadcrumbs
+  </a>
+
+
+      
+      <a href="components/busy" >
+    Busy
+  </a>
+
+
+      
+      <a href="components/buttons" >
+    Buttons
+  </a>
+
+
+      
+      <a href="components/checkboxes" >
+    Checkboxes
+  </a>
+
+
+      
+      <a href="components/choice-tiles" >
+    Choice Tiles
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
+  </a>
+
+
+      
+      <a href="components/icons" >
+    Icons
+  </a>
+
+
+      
+      <a href="components/layouts" >
+    Layouts
+  </a>
+
+
+      
+      <a href="components/lists" >
+    Lists
+  </a>
+
+
+      
+      <a href="components/menus" >
+    Menus
+  </a>
+
+
+      
+      <a href="components/modals" >
+    Modals
+  </a>
+
+
+      
+      <a href="components/navigation" >
+    Navigation
+  </a>
+
+
+      
+      <a href="components/panels" >
+    Panels
+  </a>
+
+
+      
+      <a href="components/pagination" >
+    Pagination
+  </a>
+
+
+      
+      <a href="components/pills" >
+    Pills
+  </a>
+
+
+      
+      <a href="components/popovers" >
+    Popovers
+  </a>
+
+
+      
+      <a href="components/progress" >
+    Progress
+  </a>
+
+
+      
+      <a href="components/reveals" >
+    Reveals
+  </a>
+
+
+      
+      <a href="components/search" >
+    Search
+  </a>
+
+
+      
+      <a href="components/selector-strips" >
+    Selector Strips
+  </a>
+
+
+      
+      <a href="components/status-pills" >
+    Status Pills
+  </a>
+
+
+      
+      <a href="components/tables" >
+    Tables
+  </a>
+
+
+      
+      <a href="components/tabs" >
+    Tabs
+  </a>
+
+
+      
+      <a href="components/text-inputs" >
+    Text Inputs
+  </a>
+
+
+      
+      <a href="components/toasts" >
+    Toasts
+  </a>
+
+
+      
+      <a href="components/tooltips" >
+    Tooltips
+  </a>
+
+
+      
+      <a href="components/typography" >
+    Typography
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+
+  <hx-disclosure
+    aria-controls="nav-Custom Elements"
+class="current">
+    Custom Elements
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-Custom Elements" open>
+      
+      <a href="elements/hx-accordion" >
+    &lt;hx-accordion&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-accordion-panel" >
+    &lt;hx-accordion-panel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-alert" >
+    &lt;hx-alert&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-busy" >
+    &lt;hx-busy&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-checkbox" >
+    &lt;hx-checkbox&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dd" >
+    &lt;hx-dd&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-def" >
+    &lt;hx-def&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-disclosure" >
+    &lt;hx-disclosure&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dl" >
+    &lt;hx-dl&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-dt" >
+    &lt;hx-dt&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-error" >
+    &lt;hx-error&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-icon" >
+    &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-icon" >
+    &lt;hx-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menu" >
+    &lt;hx-menu&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem" >
+    &lt;hx-menuitem&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem-group" >
+    &lt;hx-menuitem-group&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-modal" >
+    &lt;hx-modal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-modalbody" >
+    &lt;hx-modalbody&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-modalfoot" >
+    &lt;hx-modalfoot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-modalhead" >
+    &lt;hx-modalhead&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panel" >
+    &lt;hx-panel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelbody" >
+    &lt;hx-panelbody&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelfoot" >
+    &lt;hx-panelfoot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-panelhead" >
+    &lt;hx-panelhead&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-pill" >
+    &lt;hx-pill&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover" >
+    &lt;hx-popover&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-body" >
+    &lt;hx-popover-body&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-foot" >
+    &lt;hx-popover-foot&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover-head" >
+    &lt;hx-popover-head&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-progress" >
+    &lt;hx-progress&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-reveal" >
+    &lt;hx-reveal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search" >
+    &lt;hx-search&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search-assistance" >
+    &lt;hx-search-assistance&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-status" >
+    &lt;hx-status&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tab" >
+    &lt;hx-tab&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabcontent" >
+    &lt;hx-tabcontent&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tablist" >
+    &lt;hx-tablist&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabpanel" >
+    &lt;hx-tabpanel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabset" >
+    &lt;hx-tabset&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tile" >
+    &lt;hx-tile&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tile-description" >
+    &lt;hx-tile-description&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tile-title" >
+    &lt;hx-tile-title&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-toast" >
+    &lt;hx-toast&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tooltip" >
+    &lt;hx-tooltip&gt;
+  </a>
+
+
+  </hx-reveal>
+
+
+      </nav>
+
+  <main id="content" class="hxBox-md">
+    <h1>&lt;hx-file-tile&gt;
+<min-version data-tooltip="page-min-version">
+    NEW
+</min-version>
+
+<hx-tooltip id="page-min-version" position="right">
+    Requires the latest version of HelixUI
+</hx-tooltip>
+    </h1>
+
+
+  <section>
+    <p>
+      The custom <code>&lt;hx-file-tile&gt;</code> element describes the states of
+      a downloadable asset.
+    </p>
+
+    <hx-dl class="hxBox-md metadata">
+      <hx-def>
+        <hx-dt>Permitted Parents</hx-dt>
+        <hx-dd>any</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Permitted Children</hx-dt>
+        <hx-dd>flow content</hx-dd>
+      </hx-def>
+      <hx-def>
+        <hx-dt>Events</hx-dt>
+        <hx-dd>
+          Any of the following:
+          <ul>
+            <li>
+              <code>cancel</code> - User clicks "X" when loading or invalid.
+            </li>
+            <li>
+              <code>delete</code> - User clicks "X" to delete the file.
+            </li>
+          </ul>
+        </hx-dd>
+      </hx-def>
+    </hx-dl>
+  </section>
+
+  <section>
+    <h2 id="methods">Methods</h2>
+    <dl>
+      <dt>dismiss()</dt>
+      <dd>Simulates a mouse click on the dismiss button (i.e., clicking the "X")</dd>
+    </dl>
+  </section>
+
+    
+    <section>
+      <h2 id="attributes">Attributes</h2>
+      <p>
+        Attributes allow you to configure an element in a
+        declarative manner via markup.
+      </p>
+  <dl>
+    <dt>name {String} <i>(optional)</i></dt>
+    <dd>
+      Sets the text of the name.
+      If absent or blank, the name will not be displayed.
+    </dd>
+
+    <dt>href {String} <i>(optional)</i></dt>
+    <dd>
+      Sets the path of the href.
+      If absent, file name will not be a clickable link.
+      Avoid setting this attribute until the file exists on the server.
+    </dd>
+
+    <dt>icon {Enum&lt;String&gt;} <i>(optional)</i></dt>
+    <dd>
+      Changes the displayed icon to one of the
+      <a href="components/icons/#available-icons">available icons.</a>
+      If absent, blank, or unrecognized, the icon will not be displayed.
+    </dd>
+
+    <dt>loading {Boolean [false]} <i>(optional)</i></dt>
+    <dd>
+      When present, indicates file upload is in progress.
+    </dd>
+
+    <dt>invalid {Boolean [false]} <i>(optional)</i></dt>
+    <dd>
+      When present, marks element invalid.
+    </dd>
+  </dl>
+    </section>
+
+    
+    <section>
+      <h2 id="properties">Properties</h2>
+      <p>
+        Properties allow you to configure an element in an
+        imperative manner via JavaScript.
+      </p>
+  <dl>
+    <dt>name {String}</dt>
+    <dd>
+      Manipulates the <code>name</code> attribute.
+    </dd>
+
+    <dt>href {String}</dt>
+    <dd>
+      Manipulates the <code>href</code> attribute.
+    </dd>
+
+    <dt>icon {String}</dt>
+    <dd>
+      Manipulates the <code>icon</code> attribute.
+    </dd>
+
+    <dt>loading {Boolean}</dt>
+    <dd>
+      Manipulates the <code>loading</code> attribute.
+    </dd>
+
+    <dt>valid {Boolean}</dt>
+    <dd>
+      Manipulates the <code>invalid</code> attribute.
+    </dd>
+  </dl>
+    </section>
+
+<section>
+  <h2 id="see-also">See Also</h2>
+  <ul>
+      <li><a href="components/file-tiles">File Tiles</a></li>
+      <li><a href="components/icons">Icons</a></li>
+  </ul>
+</section>
+  </main>
+  <aside class="hxSiderail hxBox-md">
+    <h1 class="hxHeading-4">On this page:</h1>
+    <nav class="article-toc">
+      
+            <a href="#methods">Methods</a>
+        
+      <a href="#attributes">Attributes</a>
+      <a href="#properties">Properties</a>
+        <a href="#see-also">See Also</a>
+      <hr />
+      <a class="top-link" href="#top">Back to Top</a>
+    </nav>
+  </aside>
+    </div>
+  </div>
+
+  <footer id="foot" class="hxRow hxGutterless">
+<div class="hxCol">
+&copy; 2018 Rackspace US, Inc.
+<nav>
+  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+</nav>
+</div>
+<div class="hxCol text-right">
+    <small>
+      Last Updated:
+      2018-07-05
+    </small>
+
+  <small>
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
+      v0.11.0
+    </a>)
+  </small>
+</div>
+  </footer>
+
+<!-- intelligently load ES5 Adapter (if needed) -->
+<span id="ce-es5-adapter">
+  <script>
+    if (!window.customElements) {
+      var elAdapter = document.querySelector('#ce-es5-adapter');
+      elAdapter.parentElement.removeChild(elAdapter);
+    }
+  </script>
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+</span>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+<script src="dist/scripts/helix-ui.browser.js"></script>
+<script src="docs.js"></script>
+</body>
+</html>
