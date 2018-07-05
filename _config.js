@@ -17,7 +17,7 @@ CONFIG.distDir = 'dist';
 CONFIG.site = {
     title: 'HelixUI',
     language: 'en',
-    baseHref: '/helix-ui/',
+    baseHref: '/',
     // Moment.js format string
     dateFormat: 'YYYY-MM-DD',
     // Moment.js format string

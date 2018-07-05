@@ -4,7 +4,7 @@
 import {By, ISize, WebDriver, WebElement, WebElementPromise} from "snappit-visual-regression";
 import {TestContext} from "ava";
 
-export const baseUrl = "http://localhost:3000/helix-ui";
+export const baseUrl = "http://localhost:3000";
 
 export async function go(driver: WebDriver, component: string) {
     await driver.get(`${baseUrl}/${component}`);
