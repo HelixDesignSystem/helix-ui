@@ -2,85 +2,51 @@
 title: Checkboxes
 minver: 0.1.8
 also:
+  components/checkboxes/test.html: Testing - Checkboxes
   elements/hx-checkbox: <hx-checkbox>
 ---
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="demos">Demos</h2>
-    <div id="vue-checkboxDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h2>
-        <label>
-          <input type="checkbox" v-model="isChecked" />
-          Checked
-        </label><br />
-        <label>
-          <input type="checkbox" v-model="isDisabled" />
-          Disabled
-        </label><br />
-        <label>
-          <input type="checkbox" v-model="isIndeterminate" />
-          Indeterminate
-        </label><br />
-        <label>
-          <input type="checkbox" v-model="isInvalid" />
-          Invalid
-        </label>
-      </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h3>Basic Checkbox</h2>
-        <div class="demo">
-          <hx-checkbox
-             :checked="isChecked"
-             :disabled="isDisabled"
-             :indeterminate="isIndeterminate"
-             :invalid="isInvalid"
-             @change="onChange"
-          ></hx-checkbox>
-        </div>
-        {% code 'html' %}
-          {% raw %}{{ snippet }}{% endraw %}
-        {% endcode %}
-      </div>
-    </div>
-  </section>
+    <h2 id="basic-checkbox">Basic Checkbox</h2>
+    <div class="example" id="vue-checkboxDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend>Options</legend>
+            <label>
+              <input type="checkbox" v-model="isChecked" />
+              Checked
+            </label>
+            <label>
+              <input type="checkbox" v-model="isDisabled" />
+              Disabled
+            </label>
+            <label>
+              <input type="checkbox" v-model="isIndeterminate" />
+              Indeterminate
+            </label>
+            <label>
+              <input type="checkbox" v-model="isInvalid" />
+              Invalid
+            </label>
+          </fieldset>
+        </form>
+      </header>
 
-  <section data-visreg="checkbox-states">
-    <h2 id="checkbox-states">Checkbox States</h2>
-    <table class="hxTable">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Unchecked</th>
-          <th>Checked</th>
-          <th>Indeterminate Unchecked</th>
-          <th>Indeterminate Checked</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Default</td>
-          <td><hx-checkbox></hx-checkbox></td>
-          <td><hx-checkbox checked></hx-checkbox></td>
-          <td><hx-checkbox indeterminate></hx-checkbox></td>
-          <td><hx-checkbox checked indeterminate></hx-checkbox></td>
-        </tr>
-        <tr>
-          <td>Invalid</td>
-          <td><hx-checkbox invalid></hx-checkbox></td>
-          <td><hx-checkbox invalid checked></hx-checkbox></td>
-          <td><hx-checkbox invalid indeterminate></hx-checkbox></td>
-          <td><hx-checkbox invalid checked indeterminate></hx-checkbox></td>
-        </tr>
-        <tr>
-          <td>Disabled</td>
-          <td><hx-checkbox disabled></hx-checkbox></td>
-          <td><hx-checkbox disabled checked></hx-checkbox></td>
-          <td><hx-checkbox disabled indeterminate></hx-checkbox></td>
-          <td><hx-checkbox disabled checked indeterminate></hx-checkbox></td>
-        </tr>
-      </tbody>
-    </table>
+      <div>
+        <hx-checkbox
+          :checked="isChecked"
+          :disabled="isDisabled"
+          :indeterminate="isIndeterminate"
+          :invalid="isInvalid"
+          @change="onChange"
+        ></hx-checkbox>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
   </section>
 {% endblock %}

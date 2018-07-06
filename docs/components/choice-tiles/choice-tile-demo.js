@@ -18,6 +18,7 @@ if (document.getElementById('vue-choiceDemo')) {
             isDisabled: false,
             isInvalid: false,
             isSubdued: false,
+            title: 'Title Here',
         },
         methods: {
             onClick: function (evt) {
@@ -33,22 +34,35 @@ if (document.getElementById('vue-choiceDemo')) {
                 }
                 return out.join(' ').trim();
             },
-            hasClasses: function () {
-                return (this.tileClasses !== '');
+            radAttrs: function () {
+                let out = [];
+                if (this.isChecked) {
+                    out.push('checked');
+                }
+                if (this.isDisabled) {
+                    out.push('disabled');
+                }
+                if (this.isInvalid) {
+                    out.push('invalid');
+                }
+                return out.join(' ');
+            },
+            classAttr: function () {
+                if (this.tileClasses !== '') {
+                    return `class="${this.tileClasses}"`;
+                }
+                return '';
             },
             snippet: function () {
                 return Util.snippet(`
                   <label class="hxChoice">
-                    <input type="radio"
-                        ${this.isChecked ? 'checked' : ''}
-                        ${this.isDisabled ? 'disabled' : ''}
-                        ${this.isInvalid ? 'invalid' : ''}>
-                    <hx-tile ${this.hasClasses ? `class="${this.tileClasses}"` : ''}>
+                    <input type="radio" ${this.radAttrs}>
+                    <hx-tile ${this.classAttr}>
                       <hx-icon type="checkmark"></hx-icon>
                       <div class="hx-tile-icon">
                         <hx-icon type="account"></hx-icon>
-                      </div>    
-                      <header>Title here</header>
+                      </div>
+                      <header>${this.title}</header>
                       <p>${this.description}</p>
                     </hx-tile>
                   </label>

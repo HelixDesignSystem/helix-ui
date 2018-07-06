@@ -4,45 +4,69 @@ minver: 0.1.0
 ---
 {% extends 'component.njk' %}
 {% block content %}
+  <hx-alert type="warning" status="WARNING" static>
+    The last breadcrumb hyperlink is styled to prevent mouse clicks, but it will not prevent keyboard activation.
+  </hx-alert>
+
   <section>
-    <h2 id="basic-breadcrumbs">Basic Breadcrumbs</h2>
-    <div class="demo">
-      <nav class="hxBreadcrumb">
-        <a href="#">Home</a>
-      </nav>
+    <p>
+      Breadcrumbs are simply hyperlinks separated by icon delimiters
+      within a navigation.
+    </p>
+  </section>
 
-      <nav class="hxBreadcrumb">
-        <a href="#">Home</a>
-        <hx-icon class="delimiter" type="angle-right"></hx-icon>
-        <a href="#">Library</a>
-      </nav>
+  <section>
+    <h2 id="single-breadcrumb">Single Breadcrumb</h2>
+    <p>
+      Build breadcrumb navigation by adding the <code>.hxBreadcrumb</code>
+      CSS class to a <code>&lt;nav&gt;</code> element that contains at least one
+      hyperlink.
+    </p>
+    <div class="example">
+      <div>
+        <nav class="hxBreadcrumb">
+          <a href="#">Home</a>
+        </nav>
+      </div>
 
-      <nav class="hxBreadcrumb">
-        <a href="#">Home</a>
-        <hx-icon class="delimiter" type="angle-right"></hx-icon>
-        <a href="#">Library</a>
-        <hx-icon class="delimiter" type="angle-right"></hx-icon>
-        <a href="#">Current</a>
-      </nav>
+      <footer>
+        {% code 'html' %}
+          <nav class="hxBreadcrumb">
+            <a href="#">Home</a>
+          </nav>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <nav class="hxBreadcrumb">
-        <a href="#">Home</a>
-      </nav>
+  </section>
 
-      <nav class="hxBreadcrumb">
-        <a href="#">Home</a>
-        <hx-icon class="delimiter" type="angle-right"></hx-icon>
-        <a href="#">Library</a>
-      </nav>
+  <section>
+    <h2 id="multiple-breadcrumbs">Multiple Breadcrumbs</h2>
+    <p>
+      Icon delimiters are added between each hyperlink using the <code>angle-right</code>
+      icon with the <code>.delimiter</code> CSS class applied.
+    </p>
+    <div class="example">
+      <div>
+        <nav class="hxBreadcrumb">
+          <a href="#">Home</a>
+          <hx-icon class="delimiter" type="angle-right"></hx-icon>
+          <a href="#">Library</a>
+          <hx-icon class="delimiter" type="angle-right"></hx-icon>
+          <a href="#">Current</a>
+        </nav>
+      </div>
 
-      <nav class="hxBreadcrumb">
-        <a href="#">Home</a>
-        <hx-icon class="delimiter" type="angle-right"></hx-icon>
-        <a href="#">Library</a>
-        <hx-icon class="delimiter" type="angle-right"></hx-icon>
-        <a href="#">Current</a>
-      </nav>
-    {% endcode %}
+      <footer>
+        {% code 'html' %}
+          <nav class="hxBreadcrumb">
+            <a href="#">Home</a>
+            <hx-icon class="delimiter" type="angle-right"></hx-icon>
+            <a href="#">Library</a>
+            <hx-icon class="delimiter" type="angle-right"></hx-icon>
+            <a href="#">Current</a>
+          </nav>
+        {% endcode %}
+      </footer>
+    </div>
   </section>
 {% endblock %}

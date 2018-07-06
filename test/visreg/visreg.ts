@@ -58,15 +58,15 @@ export function suite(browserName: string) {
 
     test("components/text-inputs", async t => {
         await util.go(driver, "components/text-inputs");
-        await snappit.snap("{browserName}/text-inputs/single-line-text", $("div.demo"));
-        await snappit.snap("{browserName}/text-inputs/multi-line-text", $("#multi-line-text-demo"));
+        await snappit.snap("{browserName}/text-inputs/single-line-text", $("#vue-textInputDemo"));
+        await snappit.snap("{browserName}/text-inputs/multi-line-text", $("#vue-textAreaDemo"));
     });
-    
+
     /**
       * This is here because of https://github.com/SeleniumHQ/selenium/issues/3882
       * For the mean time, don't attempt to use keyboard navigation (in tabs) when
       * testing with Firefox. Chrome works just fine, however.
-      */    
+      */
     if (browserName === "chrome") {
         test("tabs/first", async t => {
             await util.go(driver, "components/tabs");

@@ -16,45 +16,49 @@ also:
     </p>
   </section>
   <section>
-    <h2 id="demos">Demos</h2>
-    <div id="vue-panelDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h3>
-        <label>
-          <input type="checkbox" v-model="hasHead" />
-          Include Head
-        </label>
-        <br />
-        <label>
-          <input type="checkbox" v-model="hasFoot" />
-          Include Foot
-        </label>
+    <h2 id="basic-panel">Basic Panel</h2>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="info-circle"></hx-icon>
+      Watch how the panel reacts when you resize the demo, vertically.
+    </p>
+    <div class="example" id="vue-panelDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend>Options</legend>
+            <label>
+              <input type="checkbox" v-model="hasHead" />
+              Include Head
+            </label>
+            <label>
+              <input type="checkbox" v-model="hasFoot" />
+              Include Foot
+            </label>
+          </fieldset>
+        </form>
+      </header>
+
+      <div class="demo panel-demo">
+        <hx-panel>
+          <hx-panelhead v-if="hasHead">Panel Head</hx-panelhead>
+          <hx-panelbody>
+            <p>Panel Body</p>
+            <p>
+              If it takes you too long to document the backlog PR bottleneck, then
+              you are not detailing enough. If it takes you too long to plan the
+              burndown VOC production release, then you are not satifying enough.
+              If it takes you too long to launch the burndown PR sequence, then you
+              are not coding enough. We must exactly pick up the many MVP software
+              development! If we code off the processes, we can get the numerous
+              emergence down the WIP colocation. If it takes you too long to release
+              the lean MVP pattern, then you are not coding enough.
+            </p>
+          </hx-panelbody>
+          <hx-panelfoot v-if="hasFoot">Panel Foot</hx-panelfoot>
+        </hx-panel>
       </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h3>Basic Panel</h3>
-        <p>
-          Resize the demo to see how the panel reacts.
-        </p>
-        <div class="demo panel-demo">
-          <hx-panel>
-            <hx-panelhead v-if="hasHead">Panel Head</hx-panelhead>
-            <hx-panelbody>
-              <p>Panel Body</p>
-              <p>
-                Try to decide the branch off team, maybe it will help spike the MVP
-                interfaces. If we practice between the tasks, we can get the technical
-                application like the VOC branching. The best way to document acceptance
-                impediment is to periodically build their meeting. It was discovered
-                that by efficiently releasing the MVP products, we can practice the
-                lean XP development team in the minor board.
-              </p>
-            </hx-panelbody>
-            <hx-panelfoot v-if="hasFoot">Panel Foot</hx-panelfoot>
-          </hx-panel>
-        </div>
-        <small>
-          *Visual styling added for demonstration purpopses.
-        </small>
+
+      <footer>
         <template v-if="hasHead && hasFoot">
           {% code 'html' %}
             <hx-panel>
@@ -87,7 +91,12 @@ also:
             </hx-panel>
           {% endcode %}
         </template>
-      </div>
+      </footer>
     </div>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      Visual styling added for demonstration purpopses.
+    </p>
+
   </section>
 {% endblock %}

@@ -1,28 +1,30 @@
 ---
 title: Typography
 minver: 0.1.6
-also: 
+also:
   elements/hx-error: <hx-error>
 ---
 {% extends 'component.njk' %}
 {% block content %}
   <section><!-- Typefaces -->
     <h2 id="typefaces">Typefaces</h2>
-    <div class="demo demo-typography" data-visreg="typography-typefaces">
-      <div class="hxRow">
-        <div class="hxCol font-roboto">
-          <p class="weight-thin">100: Roboto Thin</p>
-          <p class="weight-light">300: Roboto Light</p>
-          <p class="weight-regular">400: Roboto Regular</p>
-          <p class="weight-medium">500: Roboto Medium</p>
-          <p class="weight-bold">700: Roboto Bold</p>
-        </div>
-        <div class="hxCol font-roboto-mono">
-          <p class="weight-thin">100: Roboto Mono Thin</p>
-          <p class="weight-light">300: Roboto Mono Light</p>
-          <p class="weight-regular">400: Roboto Mono Regular</p>
-          <p class="weight-medium">500: Roboto Mono Medium</p>
-          <p class="weight-bold">700: Roboto Mono Bold</p>
+    <div class="example">
+      <div class="demo-typography">
+        <div class="hxRow">
+          <div class="hxCol font-roboto">
+            <p class="weight-thin">100: Roboto Thin</p>
+            <p class="weight-light">300: Roboto Light</p>
+            <p class="weight-regular">400: Roboto Regular</p>
+            <p class="weight-medium">500: Roboto Medium</p>
+            <p class="weight-bold">700: Roboto Bold</p>
+          </div>
+          <div class="hxCol font-roboto-mono">
+            <p class="weight-thin">100: Roboto Mono Thin</p>
+            <p class="weight-light">300: Roboto Mono Light</p>
+            <p class="weight-regular">400: Roboto Mono Regular</p>
+            <p class="weight-medium">500: Roboto Mono Medium</p>
+            <p class="weight-bold">700: Roboto Mono Bold</p>
+          </div>
         </div>
       </div>
     </div>
@@ -30,12 +32,14 @@ also:
 
   <section><!-- Headings -->
     <h2 id="headers">Headings</h2>
-    <div class="demo" data-visreg="typography-headings">
-      <h1>Heading One</h1>
-      <h2>Heading Two</h2>
-      <h3>Heading Three</h3>
-      <h4>Heading Four</h4>
-      <h5>Heading Five</h5>
+    <div class="example">
+      <div>
+        <h1>Heading One</h1>
+        <h2>Heading Two</h2>
+        <h3>Heading Three</h3>
+        <h4>Heading Four</h4>
+        <h5>Heading Five</h5>
+      </div>
     </div>
     <p>
       CSS class overrides are available if semantic elements
@@ -85,17 +89,20 @@ also:
       Add the <code>.hxSubdued</code> CSS class to any element to apply a
       muted appearance.
     </p>
-
-    <div class="demo" data-visreg="typography-subdued">
-      <span class="hxSubdued">Subdued</span>
+    <div class="example">
+      <div>
+        <div class="hxSubdued">Subdued DIV</div>
+        <p class="hxSubdued">Subdued P</p>
+        <span class="hxSubdued">Subdued SPAN</span>
+      </div>
+      <footer>
+        {% code 'html' %}
+          <div class="hxSubdued">Subdued DIV</div>
+          <p class="hxSubdued">Subdued P</div>
+          <span class="hxSubdued">Subdued SPAN</span>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <div class="hxSubdued">Subdued</div>
-      <!-- or -->
-      <p class="hxSubdued">Subdued</p>
-      <!-- or -->
-      <span class="hxSubdued">Subdued</span>
-    {% endcode %}
   </section>
 
   <section><!-- Caption -->
@@ -105,21 +112,25 @@ also:
       element or add the <code>.hxCaption</code> CSS class to flow content to apply
       the "caption" style.
     </p>
+    <div class="example">
+      <div>
+        <p class="hxCaption">Caption</p>
+      </div>
 
-    <div class="demo" data-visreg="typography-caption">
-      <p class="hxCaption">Caption</p>
+      <footer>
+        {% code 'html' %}
+          <figure>
+            <figcaption>Caption</figcaption>
+          </figure>
+          <!-- or -->
+          <table>
+            <caption>Caption</caption>
+          </table>
+          <!-- or -->
+          <p class="hxCaption">Caption</p>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <figure>
-        <figcaption>Caption</figcaption>
-      </figure>
-      <!-- or -->
-      <table>
-        <caption>Caption</caption>
-      </table>
-      <!-- or -->
-      <p class="hxCaption">Caption</p>
-    {% endcode %}
   </section>
 
   <section><!-- Sub-Body -->
@@ -129,15 +140,19 @@ also:
       <code>.hxSubBody</code> CSS class to flow content to apply the
       "sub-body" style.
     </p>
+    <div class="example">
+      <div>
+        <p class="hxSubBody">Sub-Body</p>
+      </div>
 
-    <div class="demo" data-visreg="typography-sub-body">
-      <p class="hxSubBody">Sub-Body</p>
+      <footer>
+        {% code 'html' %}
+          <small>Sub-Body</small>
+          <!-- or -->
+          <p class="hxSubBody">Sub-Body</p>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <small>Sub-Body</small>
-      <!-- or -->
-      <p class="hxSubBody">Sub-Body</p>
-    {% endcode %}
   </section>
 
   <section><!-- Links -->
@@ -153,18 +168,22 @@ also:
       prevent user interaction. Consider using a <code>&lt;button&gt;</code>
       instead.
     </hx-alert>
+    <div class="example">
+      <div>
+        <a href="#">Normal Link</a>
+        <br />
+        <a href="#" class="pseudo-active">Pressed Link</a>
+        <br />
+        <a href="#" disabled>"Disabled" Link</a>
+      </div>
 
-    <div class="demo" data-visreg="typography-link">
-      <ul>
-        <li><a href="#">Normal Link</a></li>
-        <li><a href="#" class="pseudo-active">Pressed Link</a></li>
-        <li><a href="#" disabled>"Disabled" Link</a></li>
-      </ul>
+      <footer>
+        {% code 'html' %}
+          <a href="#">Normal Link</a>
+          <a href="#" disabled>"Disabled" Link</a>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <a href="#">Normal Link</a>
-      <a href="#" disabled>"Disabled" Link</a>
-    {% endcode %}
   </section>
 
   <section><!-- Inline Code -->
@@ -173,17 +192,21 @@ also:
       Use the <code>&lt;code&gt;</code> element to differentiate descriptive
       text from code snippets.
     </p>
+    <div class="example">
+      <div>
+        <p>
+          Add an event listener with the <code>EventTarget.addEventListener()</code> function.
+        </p>
+      </div>
 
-    <div class="demo" data-visreg="typography-inline-code">
-      <p>
-        Add an event listener with the <code>EventTarget.addEventListener()</code> function.
-      </p>
+      <footer>
+        {% code 'html' %}
+          <p>
+            Add an event listener with the <code>EventTarget.addEventListener()</code> function.
+          </p>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <p>
-        Add an event listener with the <code>EventTarget.addEventListener()</code> function.
-      </p>
-    {% endcode %}
   </section>
 
   <section><!-- Keyboard -->
@@ -192,29 +215,38 @@ also:
       Use the <code>&lt;kbd&gt;</code> element to differentiate descriptive text
       from instructional key presses.
     </p>
-    <div class="demo" data-visreg="typography-keyboard">
-      <p>
-        Press <kbd>Ctrl+Z</kbd> (<kbd>Command+Z</kbd> on Mac)
-        to undo the most recent action.
-      </p>
+    <div class="example">
+      <div>
+        <p>
+          Press <kbd>Ctrl+Z</kbd> (<kbd>Command+Z</kbd> on Mac)
+          to undo the most recent action.
+        </p>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <p>
+            Press <kbd>Ctrl+Z</kbd> (<kbd>Command+Z</kbd> on Mac)
+            to undo the most recent action.
+          </p>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <p>
-        Press <kbd>Ctrl+Z</kbd> (<kbd>Command+Z</kbd> on Mac)
-        to undo the most recent action.
-      </p>
-    {% endcode %}
   </section>
 
   <section><!-- Code Block -->
     <h2 id="code-block">Code Block</h2>
+    <div class="example">
+      <div class="demo">
+        <pre><code>[Insert Code Here]</code></pre>
+      </div>
 
-    <div class="demo">
-      <pre><code>[Insert Code Here]</code></pre>
+      <footer>
+        {% code 'html' %}
+          <pre><code>[Insert Code Here]</code></pre>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <pre><code>[Insert Code Here]</code></pre>
-    {% endcode %}
   </section>
 
   <section><!-- Error Message -->
@@ -222,15 +254,19 @@ also:
     <p>
       <small>Added: v0.4.0</small>
     </p>
+    <div class="example">
+      <div>
+        <hx-error>Error message goes here</hx-error>
+      </div>
 
-    <div class="demo" data-visreg="typography-error-message">
-      <hx-error>Error message goes here</hx-error>
+      <footer>
+        {% code 'html' %}
+          <hx-error>
+            Error message goes here
+          </hx-error>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <hx-error>
-        Error message goes here
-      </hx-error>
-    {% endcode %}
   </section>
 
   <section><!-- Syntax Highlighting -->
@@ -244,196 +280,224 @@ also:
       Below are some examples of the syntax highlighting in action.
     </p>
 
-    <figure data-visreg="typography-syntax-html">
-      <figcaption>HTML Syntax Highlighting Example</figcaption>
-      {% code 'html' %}
-        <script type="text/javascript" src="path/to/script.js"></script>
-        <link rel="stylesheet" href="path/to/style.css" />
-        <!-- HTML Comment -->
-        <form method="POST" action="submit.html">
-          <fieldset>
-            <legend>Login</legend>
-            <p>
-              <label for="username">Username</label>
-              <input type="text" id="username" name="username" />
-            </p>
-            <p>
-              <label for="password">Password</label>
-              <input type="password" id="password" name="password" />
-            </p>
-          </fieldset>
-          <p>
-            <button type="submit">Log In</button>
-          </p>
-          <p>
-            <img src="path/to/file.png" alt="pretty picture" />
-          </p>
-        </form>
-      {% endcode %}
-    </figure>
+    <hx-tabset class="beta-hxBound">
+      <hx-tablist>
+        <hx-tab>HTML</hx-tab>
+        <hx-tab>JavaScript</hx-tab>
+        <hx-tab>CSS</hx-tab>
+        <hx-tab>diff</hx-tab>
+        <hx-tab>bash</hx-tab>
+        <hx-tab>ini</hx-tab>
+        <hx-tab>markdown</hx-tab>
+      </hx-tablist>
 
-    <figure data-visreg="typography-syntax-js">
-      <figcaption>JavaScript Syntax Highlighting Example</figcaption>
-      {% code 'javascript' %}
-        /**
-         * @description Multi-line comment
-         * @returns {String}
-         */
-        // Inline Comment
-        var legacyVariable;
-        const REGEXP = /h(iy|ell)o*/ig;
-        const array = [ null, true, false ];
-        const obj = {
-          number: 42,
-          integer: 42.0,
-          s_string: 'single quotes',
-          d_string: "double quotes"
-        };
-        function greet (name: 'World') {
-          if (foo !== 'bar') {
-            return 'nope';
-          } else if (foo || bar) {
-            return 'maybe';
-          } else if (foo && bar) {
-            return 'wut';
-          }
-          return `Hello ${name}!`;
-        }
-      {% endcode %}
-    </figure>
+      <hx-tabcontent>
+        <hx-tabpanel>
+          <figure>
+            {% code 'html' %}
+              <script type="text/javascript" src="path/to/script.js"></script>
+              <link rel="stylesheet" href="path/to/style.css" />
+              <!-- HTML Comment -->
+              <form method="POST" action="submit.html">
+                <fieldset>
+                  <legend>Login</legend>
+                  <p>
+                    <label for="txtUsername">Username</label>
+                    <input type="text" id="txtUsername" name="username" />
+                  </p>
+                  <p>
+                    <label for="txtPassword">Password</label>
+                    <input type="password" id="txtPassword" name="password" />
+                  </p>
+                </fieldset>
+                <p>
+                  <button type="submit">Log In</button>
+                </p>
+                <p>
+                  <img src="path/to/file.png" alt="pretty picture" />
+                </p>
+              </form>
+            {% endcode %}
+            <figcaption>HTML Syntax Highlighting Example</figcaption>
+          </figure>
+        </hx-tabpanel>
 
-    <figure data-visreg="typography-syntax-css">
-      <figcaption>CSS Syntax Highlighting Example</figcaption>
-      {% code 'css' %}
-        /* CSS Comment */
-        @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,700,700i');
-        :root {
-          --border-color: #bada55;
-        }
-        html {
-          box-sizing: border-box;
-        }
-        *,
-        *::before,
-        *::after {
-          box-sizing: inherit;
-        }
-        #navigation {
-          border: 1px solid var(--border-color);
-          padding: 1em;
-          margin: 0;
-          background-image: linear-gradient(90deg, rgba(0, 0, 0, 0,5), white);
-        }
-        input[type="checkbox"]:checked {
-          /* ... */
-        }
-        .text-center {
-          text-align: center !important;
-        }
-      {% endcode %}
-    </figure>
+        <hx-tabpanel>
+          <figure>
+            {% code 'javascript' %}
+              /**
+               * @description Multi-line comment
+               * @returns {String}
+               */
+              // Inline Comment
+              var legacyVariable;
+              const REGEXP = /h(iy|ell)o*/ig;
+              const array = [ null, true, false ];
+              const obj = {
+                number: 42,
+                integer: 42.0,
+                s_string: 'single quotes',
+                d_string: "double quotes"
+              };
+              function greet (name: 'World') {
+                if (foo !== 'bar') {
+                  return 'nope';
+                } else if (foo || bar) {
+                  return 'maybe';
+                } else if (foo && bar) {
+                  return 'wut';
+                }
+                return `Hello ${name}!`;
+              }
+            {% endcode %}
+            <figcaption>JavaScript Syntax Highlighting Example</figcaption>
+          </figure>
+        </hx-tabpanel>
 
-    <figure data-visreg="typography-syntax-diff">
-      <figcaption>diff Syntax Highlighting Example</figcaption>
-      {% code 'diff' %}
-        Index: languages/ini.js
-        ===================================================================
-        --- languages/ini.js    (revision 199)
-        +++ languages/ini.js    (revision 200)
-        @@ -1,8 +1,7 @@
-         hljs.LANGUAGES.ini =
-         {
-           case_insensitive: true,
-        -  defaultMode:
-        -  {
-        +  defaultMode: {
-             contains: ['comment', 'title', 'setting'],
-             illegal: '[^\\s]'
-           },
+        <hx-tabpanel>
+          <figure>
+            {% code 'css' %}
+              /* CSS Comment */
+              @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,700,700i');
+              :root {
+                --border-color: #bada55;
+              }
+              html {
+                box-sizing: border-box;
+              }
+              *,
+              *::before,
+              *::after {
+                box-sizing: inherit;
+              }
+              #navigation {
+                border: 1px solid var(--border-color);
+                padding: 1em;
+                margin: 0;
+                background-image: linear-gradient(90deg, rgba(0, 0, 0, 0,5), white);
+              }
+              input[type="checkbox"]:checked {
+                /* ... */
+              }
+              .text-center {
+                text-align: center !important;
+              }
+            {% endcode %}
+            <figcaption>CSS Syntax Highlighting Example</figcaption>
+          </figure>
+        </hx-tabpanel>
 
-        *** /path/to/original timestamp
-        --- /path/to/new      timestamp
-        ***************
-        *** 1,3 ****
-        --- 1,9 ----
-        + This is an important
-        + notice! It should
-        + therefore be located at
-        + the beginning of this
-        + document!
+        <hx-tabpanel>
+          <figure>
+            {% code 'diff' %}
+              Index: languages/ini.js
+              ===================================================================
+              --- languages/ini.js    (revision 199)
+              +++ languages/ini.js    (revision 200)
+              @@ -1,8 +1,7 @@
+               hljs.LANGUAGES.ini =
+               {
+                 case_insensitive: true,
+              -  defaultMode:
+              -  {
+              +  defaultMode: {
+                   contains: ['comment', 'title', 'setting'],
+                   illegal: '[^\\s]'
+                 },
 
-        ! compress the size of the
-        ! changes.
+              *** /path/to/original timestamp
+              --- /path/to/new      timestamp
+              ***************
+              *** 1,3 ****
+              --- 1,9 ----
+              + This is an important
+              + notice! It should
+              + therefore be located at
+              + the beginning of this
+              + document!
 
-          It is important to spell
-      {% endcode %}
-    </figure>
+              ! compress the size of the
+              ! changes.
 
-    <figure data-visreg="typography-syntax-bash">
-      <figcaption>bash Syntax Highlighting Example</figcaption>
-      {% code 'bash' %}
-        #!/bin/bash
+                It is important to spell
+            {% endcode %}
+            <figcaption>diff Syntax Highlighting Example</figcaption>
+          </figure>
+        </hx-tabpanel>
 
-        ###### CONFIG
-        ACCEPTED_HOSTS="/root/.hag_accepted.conf"
-        BE_VERBOSE=false
+        <hx-tabpanel>
+          <figure>
+            {% code 'bash' %}
+              #!/bin/bash
 
-        if [ "$UID" -ne 0 ]
-        then
-          echo "Superuser rights required"
-          exit 2
-        fi
+              ###### CONFIG
+              ACCEPTED_HOSTS="/root/.hag_accepted.conf"
+              BE_VERBOSE=false
 
-        genApacheConf(){
-          echo -e "# Host ${HOME_DIR}$1/$2 :"
-        }
-      {% endcode %}
-    </figure>
+              if [ "$UID" -ne 0 ]
+              then
+                echo "Superuser rights required"
+                exit 2
+              fi
 
-    <figure data-visreg="typography-syntax-ini">
-      <figcaption>.ini Syntax Highlighting Example</figcaption>
-      {% code 'ini' %}
-        ; boilerplate
-        [package]
-        name = "some_name"
-        authors = ["Author"]
-        description = "This is \
-        a description"
+              genApacheConf(){
+                echo -e "# Host ${HOME_DIR}$1/$2 :"
+              }
+            {% endcode %}
+            <figcaption>bash Syntax Highlighting Example</figcaption>
+          </figure>
+        </hx-tabpanel>
 
-        [[lib]]
-        name = ${NAME}
-        default = True
-        auto = no
-        counter = 1_000
-      {% endcode %}
-    </figure>
+        <hx-tabpanel>
+          <figure>
+            {% code 'ini' %}
+              ; boilerplate
+              [package]
+              name = "some_name"
+              authors = ["Author"]
+              description = "This is \
+              a description"
 
-    <figure data-visreg="typography-syntax-markdown">
-      <figcaption>Markdown Syntax Highlighting Example</figcaption>
-      {% code 'markdown' %}
-        # hello world
+              [[lib]]
+              name = ${NAME}
+              default = True
+              auto = no
+              counter = 1_000
+            {% endcode %}
+            <figcaption>.ini Syntax Highlighting Example</figcaption>
+          </figure>
+        </hx-tabpanel>
 
-        you can write text [with links](http://example.com) inline or [link references][1].
+        <hx-tabpanel>
+          <figure>
+            {% code 'markdown' %}
+              # hello world
 
-        * one _thing_ has *em*phasis
-        * two __things__ are **bold**
+              you can write text [with links](http://example.com) inline or [link references][1].
 
-        [1]: http://example.com
+              * one _thing_ has *em*phasis
+              * two __things__ are **bold**
 
-        ---
+              [1]: http://example.com
 
-        hello world
-        ===========
+              ---
 
-        <this_is inline="xml"></this_is>
+              hello world
+              ===========
 
-        > markdown is so cool
+              <this_is inline="xml"></this_is>
 
-            so are code segments
+              > markdown is so cool
 
-        1. one thing (yeah!)
-        2. two thing `i can write code`, and `more` wipee!
-      {% endcode %}
-    </figure>
+                  so are code segments
+
+              1. one thing (yeah!)
+              2. two thing `i can write code`, and `more` wipee!
+            {% endcode %}
+            <figcaption>Markdown Syntax Highlighting Example</figcaption>
+          </figure>
+        </hx-tabpanel>
+      </hx-tabcontent>
+    </hx-tabset>
   </section>
 {% endblock %}

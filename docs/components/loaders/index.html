@@ -1,0 +1,88 @@
+---
+title: Loaders
+minver: 0.4.0
+also:
+  elements/hx-busy: <hx-busy>
+  elements/hx-progress: <hx-progress>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <h2 id="busy">Busy</h2>
+    <p class="hxSubBody">Added: v0.4.0</p>
+    <div class="example" id="vue-busyDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend>Options</legend>
+            <label>
+              <input type="checkbox" v-model="isPaused" />
+              Paused
+            </label>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <p>
+          <hx-busy :paused="isPaused"></hx-busy>
+        </p>
+        <p>
+          <button class="hxBtn hxPrimary">
+            Loading
+            <hx-busy :paused="isPaused"></hx-busy>
+          </button>
+        </p>
+      </div>
+
+      <footer>
+        <template v-if="isPaused">
+          {% code 'html' %}
+            <hx-busy paused></hx-busy>
+
+            <button class="hxBtn hxPrimary">
+              Loading
+              <hx-busy paused></hx-busy>
+            </button>
+          {% endcode %}
+        </template>
+        <template v-else>
+          {% code 'html' %}
+            <hx-busy></hx-busy>
+
+            <button class="hxBtn hxPrimary">
+              Loading
+              <hx-busy></hx-busy>
+            </button>
+          {% endcode %}
+        </template>
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="progress-bar">Progress Bar</h2>
+    <p class="hxSubBody">Added: v0.7.0</p>
+    <div class="example" id="vue-progressDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <div>
+            <p>
+              <label for="rngPct">Value</label>
+              <input id="rngPct" type="range" min="0" max="100" step="1" v-model="pct" />
+            </p>
+          </div>
+        </form>
+      </header>
+
+      <div>
+        <hx-progress :value="pct"></hx-progress>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+  </section>
+{% endblock %}
+

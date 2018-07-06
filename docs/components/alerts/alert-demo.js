@@ -49,12 +49,12 @@ if (document.getElementById('vue-alertDemo')) {
             snippet: function () {
                 return Util.snippet(`
                     <hx-alert
-                        ${this.attrCta}
-                        ${this.attrStatus}
-                        ${this.isStatic ? 'static' : ''}
-                        ${this.attrType}
+                      ${this.attrCta}
+                      ${this.attrStatus}
+                      ${this.isStatic ? 'static' : ''}
+                      ${this.attrType}
                     >
-                        ${this.content}
+                      ${this.content}
                     </hx-alert>
                 `);
             },

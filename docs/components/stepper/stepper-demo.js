@@ -4,10 +4,10 @@ if (document.getElementById('vue-stepperDemo')) {
         data: {},
         methods: {
             nextStep: function () {
-                this.$refs.accordion.nextPanel();
+                this.$refs.accordion.selectNext();
             },
             prevStep: function () {
-                this.$refs.accordion.previousPanel();
+                this.$refs.accordion.selectPrevious();
             },
         },
     });

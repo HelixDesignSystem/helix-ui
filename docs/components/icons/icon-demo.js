@@ -1,4 +1,31 @@
-if (document.getElementById('vue-iconDemo')) {
+import Util from '../../_util';
+
+if (document.getElementById('vue-fileIconDemo')) {
+    new Vue({
+        el: '#vue-fileIconDemo',
+        data: {
+            ext: 'gzip',
+            type: 'mime-archive',
+        },
+        computed: {
+            attrType: function () {
+                if (this.type.trim() !== '') {
+                    return `type="${this.type}"`;
+                }
+                return '';
+            },
+            snippet: function () {
+                return Util.snippet(`
+                    <hx-file-icon ${this.attrType}>
+                      ${this.ext}
+                    </hx-file-icon>
+                `);
+            },
+        },
+    });
+}
+
+if (document.getElementById('vue-availableIcons')) {
     const Icons = {
         fetch: function () {
             return fetch('data/icons.json');
@@ -9,7 +36,7 @@ if (document.getElementById('vue-iconDemo')) {
     };//Icons
 
     new Vue({
-        el: '#vue-iconDemo',
+        el: '#vue-availableIcons',
         data: {
             icons: [],
             filter: '',

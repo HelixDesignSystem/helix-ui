@@ -1,0 +1,125 @@
+---
+title: Testing - Text Inputs
+---
+{% extends 'test.njk' %}
+{% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/text-inputs">Text Inputs</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  <section>
+    <h2>Text Field Appearance</h2>
+    <table class="hxTable hxTable--condensed">
+      <tbody>
+        <tr>
+          <th>Default</th>
+          <td>
+            <input class="hxTextCtrl" />
+          </td>
+          <td>
+            <input class="hxTextCtrl" placeholder="enter text..." />
+          </td>
+          <td>
+            <input class="hxTextCtrl" value="puppies" />
+          </td>
+        </tr>
+        <tr>
+          <th>Invalid</th>
+          <td>
+            <input invalid class="hxTextCtrl" />
+          </td>
+          <td>
+            <input invalid class="hxTextCtrl" placeholder="enter text..." />
+          </td>
+          <td>
+            <input invalid class="hxTextCtrl" value="puppies" />
+          </td>
+        </tr>
+        <tr>
+          <th>Disabled</th>
+          <td>
+            <input disabled class="hxTextCtrl" />
+          </td>
+          <td>
+            <input disabled class="hxTextCtrl" placeholder="enter text..." />
+          </td>
+          <td>
+            <input disabled class="hxTextCtrl" value="puppies" />
+          </td>
+        </tr>
+        <tr>
+          <th>Disabled and Invalid</th>
+          <td>
+            <input disabled invalid class="hxTextCtrl" />
+          </td>
+          <td>
+            <input disabled invalid class="hxTextCtrl" placeholder="enter text..." />
+          </td>
+          <td>
+            <input disabled invalid class="hxTextCtrl" value="puppies" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Textarea Appearance</h2>
+    <table class="hxTable hxTable--condensed">
+      <tbody>
+        <tr>
+          <th>Default</th>
+          <td>
+            <textarea class="hxTextCtrl"></textarea>
+          </td>
+          <td>
+            <textarea class="hxTextCtrl" placeholder="enter text..."></textarea>
+          </td>
+          <td>
+            <textarea class="hxTextCtrl">puppies</textarea>
+          </td>
+        </tr>
+        <tr>
+          <th>Invalid</th>
+          <td>
+            <textarea invalid class="hxTextCtrl"></textarea>
+          </td>
+          <td>
+            <textarea invalid class="hxTextCtrl" placeholder="enter text..."></textarea>
+          </td>
+          <td>
+            <textarea invalid class="hxTextCtrl">puppies</textarea>
+          </td>
+        </tr>
+        <tr>
+          <th>Disabled</th>
+          <td>
+            <textarea disabled class="hxTextCtrl"></textarea>
+          </td>
+          <td>
+            <textarea disabled class="hxTextCtrl" placeholder="enter text..."></textarea>
+          </td>
+          <td>
+            <textarea disabled class="hxTextCtrl">puppies</textarea>
+          </td>
+        </tr>
+        <tr>
+          <th>Disabled and Invalid</th>
+          <td>
+            <textarea disabled invalid class="hxTextCtrl"></textarea>
+          </td>
+          <td>
+            <textarea disabled invalid class="hxTextCtrl" placeholder="enter text..."></textarea>
+          </td>
+          <td>
+            <textarea disabled invalid class="hxTextCtrl">puppies</textarea>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

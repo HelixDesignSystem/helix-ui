@@ -15,48 +15,51 @@ also:
   </section>
 
   <section>
-    <h2 id="demos">Demos</h2>
-    <div id="vue-boxDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h3>
-        <p>
-          <b>Size:</b><br />
-          <select v-model="size">
-            <option v-for="_size in sizes" :value="_size">
-              {% raw %}{{ _size.label }}{% endraw %}
-            </option>
-          </select>
-        </p>
-      </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h3>Basic Box</h3>
-        <div class="demo box-demo">
-          <div :class="size.value">
-            <p>
-              There was a young lady of Wight,<br />
-              Who traveled much faster than light,<br />
-              She departed one day,<br />
-              In a relative way,<br />
-              And arrived on the previous night.
-            </p>
-          </div>
-        </div>
-        <small>
-          *Visual styling added for demonstration purpopses.
-        </small>
-        {% code 'html' %}{% raw %}
-          <div class="{{size.value}}">...</div>{% endraw %}
-        {% endcode %}
-      </div>
-    </div>
-  </section>
+    <h2 id="variations">Variations</h2>
+    <p>
+      Several varitions of box padding can be applied by adding one of the
+      <code>.hxBox-*</code> CSS classes to any element.
+    </p>
+    <div class="example" id="vue-boxDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend>Size</legend>
+            <label v-for="_size in sizes">
+              <input type="radio" name="size" v-model="size" :value="_size" />
+              <span v-text="_size.label"></span>
+              <em v-if="_size.default">(default)</em>
+            </label>
+          </fieldset>
+        </form>
+      </header>
 
-  <section>
-    <h2 id="sizes">Sizes</h2>
-    <table class="hxTable hxSpan-12-xs hxSpan-8-md">
+      <div class="box-demo">
+        <div :class="size.value">
+          <p>
+            There was a young lady of Wight,<br />
+            Who traveled much faster than light,<br />
+            She departed one day,<br />
+            In a relative way,<br />
+            And arrived on the previous night.
+          </p>
+        </div>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          {% raw %}<div class="{{size.value}}">...</div>{% endraw %}
+        {% endcode %}
+      </footer>
+    </div>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      Visual styling added for demonstration purpopses.
+    </p>
+    <table class="hxTable hxTable--condensed">
       <thead>
         <tr>
-          <th>Size</th>
+          <th>Variant</th>
           <th>CSS Class</th>
           <th>REM</th>
           <th>PX</th>
@@ -64,31 +67,31 @@ also:
       </thead>
       <tbody>
         <tr>
-          <th scope="row">XS</th>
+          <th scope="row">Extra Small</th>
           <td><code>.hxBox-xs</code></td>
           <td><code>0.5rem</code></td>
           <td><code>8px<code></td>
         </tr>
         <tr>
-          <th scope="row">SM</th>
+          <th scope="row">Small</th>
           <td><code>.hxBox-sm</code></td>
           <td><code>0.75rem<code></td>
           <td><code>12px<code></td>
         </tr>
         <tr>
-          <th scope="row">MD</th>
+          <th scope="row">Medium</th>
           <td><code>.hxBox-md</code></td>
           <td><code>1.0rem<code></td>
           <td><code>16px<code></td>
         </tr>
         <tr>
-          <th scope="row">LG</th>
+          <th scope="row">Large</th>
           <td><code>.hxBox-lg</code></td>
           <td><code>1.25rem<code></td>
           <td><code>20px<code></td>
         </tr>
         <tr>
-          <th scope="row">XL</th>
+          <th scope="row">Extra Large</th>
           <td><code>.hxBox-xl</code></td>
           <td><code>1.50rem<code></td>
           <td><code>24px<code></td>
