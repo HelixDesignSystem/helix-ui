@@ -7,14 +7,14 @@
 -->
 <script type="module" src="/dist/scripts/helix-ui.mjs"></script>
 
-<!-- LEGACY BROWSERS
+<!-- OTHER BROWSERS
   (IE11, Edge 15-, Firefox 59-, Chrome 60-, Safari 10.0-, Opera 46-)
 
-  Modern-ish browsers that don't support ES6 modules will load ES5
-  assets along with the ES5 adapter.
+  Browsers that don't support ES6 modules will load the ES5
+  adapter along with the ES5-compiled version of HelixUI.
 -->
 <script nomodule src="https://unpkg.com/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
-<script nomodule src="dist/scripts/helix-ui.browser.js"></script>
+<script defer nomodule src="dist/scripts/helix-ui.browser.js"></script>
 
 <!-- 3RD-PARTY LIBRARIES -->
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
