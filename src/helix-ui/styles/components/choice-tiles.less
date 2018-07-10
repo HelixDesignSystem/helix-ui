@@ -67,6 +67,11 @@ label.hxChoice > input:checked + hx-tile {
   border-color: @cyan-900;
   color: @cyan-900;
 
+  > p {
+    color: @gray-900;
+  }
+
+  // DEPRECATED: remove in v1.0.0
   hx-tile-description {
     color: @gray-900;
   }
@@ -86,6 +91,11 @@ label.hxChoice > input[invalid] + hx-tile {
   border-width: 2px;
   color: @red-900;
 
+  > p {
+    color: @gray-900;
+  }
+
+  // DEPRECATED: remove in v1.0.0
   hx-tile-description {
     color: @gray-900;
   }
@@ -114,6 +124,11 @@ label.hxChoice > input[disabled] + hx-tile:hover {
   color: @gray-700;
   cursor: not-allowed;
 
+  > p {
+    color: inherit;
+  }
+
+  // DEPRECATED: remove in v1.0.0
   hx-tile-description {
     color: inherit;
   }

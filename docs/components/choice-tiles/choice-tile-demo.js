@@ -48,12 +48,8 @@ if (document.getElementById('vue-choiceDemo')) {
                       <div class="hx-tile-icon">
                         <hx-icon type="account"></hx-icon>
                       </div>    
-                      <hx-tile-title>
-                      Title here
-                      </hx-tile-title>
-                      <hx-tile-description>
-                        ${this.description}
-                      </hx-tile-description>
+                      <header>Title here</header>
+                      <p>${this.description}</p>
                     </hx-tile>
                   </label>
                 `);
