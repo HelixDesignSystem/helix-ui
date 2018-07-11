@@ -15,4 +15,19 @@ hx-menu {
 
     display: block;
   }
+
+  > section {
+    display: block;
+  
+    header {
+      color: @gray-600;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  
+    + section {
+      margin-top: 0.5rem;
+    }
+  }
 }

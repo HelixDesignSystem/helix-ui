@@ -4,7 +4,6 @@ minver: 0.2.0
 also:
   components/buttons: Buttons
   elements/hx-menu: <hx-menu>
-  elements/hx-menuitem-group: <hx-menuitem-group>
   elements/hx-menuitem: <hx-menuitem>
 ---
 {% extends 'component.njk' %}
@@ -81,18 +80,18 @@ also:
           <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
         </hx-disclosure>
         <hx-menu id="groupedMenuId">
-          <hx-menuitem-group>
+          <section>
             <header>TITLE</header>
             <hx-menuitem>Action 1</hx-menuitem>
             <hx-menuitem>Action 2</hx-menuitem>
             <hx-menuitem>Action 3</hx-menuitem>
-          </hx-menuitem-group>
-          <hx-menuitem-group>
+          </section>
+          <section>
             <header>TITLE</header>
             <hx-menuitem>Action 1</hx-menuitem>
             <hx-menuitem>Action 2</hx-menuitem>
             <hx-menuitem>Action 3</hx-menuitem>
-          </hx-menuitem-group>
+          </section>
         </hx-menu>
       </div>
 
@@ -104,18 +103,18 @@ also:
             <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
           </hx-disclosure>
           <hx-menu id="groupedMenuId">
-            <hx-menuitem-group>
+            <section>
               <header>TITLE</header>
               <hx-menuitem>Action 1</hx-menuitem>
               <hx-menuitem>Action 2</hx-menuitem>
               <hx-menuitem>Action 3</hx-menuitem>
-            </hx-menuitem-group>
-            <hx-menuitem-group>
+            </section>
+            <section>
               <header>TITLE</header>
               <hx-menuitem>Action 1</hx-menuitem>
               <hx-menuitem>Action 2</hx-menuitem>
               <hx-menuitem>Action 3</hx-menuitem>
-            </hx-menuitem-group>
+            </section>
           </hx-menu>
         {% endcode %}
       </footer>

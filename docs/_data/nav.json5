@@ -77,7 +77,6 @@
             { label: '<hx-icon>', path: 'hx-icon' },
             { label: '<hx-menu>', path: 'hx-menu' },
             { label: '<hx-menuitem>', path: 'hx-menuitem' },
-            { label: '<hx-menuitem-group>', path: 'hx-menuitem-group' },
             { label: '<hx-modal>', path: 'hx-modal' },
             { label: '<hx-modalbody>', path: 'hx-modalbody' },
             { label: '<hx-modalfoot>', path: 'hx-modalfoot' },
