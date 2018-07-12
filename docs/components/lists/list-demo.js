@@ -5,8 +5,12 @@ if (document.getElementById('vue-listDemo')) {
             isVertical: false,
         },
         computed: {
-            hxDlClasses: function () {
-                return (this.isVertical ? 'hxVertical' : '');
+            classes: function () {
+                let out = [ 'hxList' ];
+                if (this.isVertical) {
+                    out.push('hxVertical');
+                }
+                return out.join(' ');
             },
         },
     });

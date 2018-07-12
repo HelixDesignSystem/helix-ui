@@ -127,11 +127,11 @@ p.comfortable {
   border: 1px solid @cyan-100;
   box-shadow: inset 0.5rem 0 0 0 @cyan-100;
 
-  hx-dt {
+  dt {
     #grid.span(3);
   }
 
-  hx-dd {
+  dd {
     #grid.span(9);
   }
 }
@@ -175,9 +175,11 @@ min-version {
 @import 'demo/typography-docs';
 
 // SHAME
-dd {
-  margin-bottom: 0.5em;
-  margin-left: 1em;
+dl:not(.hxList) {
+  dd {
+    margin-bottom: 0.5em;
+    margin-left: 1em;
+  }
 }
 
 [app-loading] {
