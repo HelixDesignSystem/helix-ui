@@ -455,6 +455,13 @@
         ],
     },
     {
+        name: 'redo',
+        minver: '0.12.0',
+        keywords: [
+            'retry',
+        ],
+    },
+    {
         name: 'search',
         minver: '0.1.0',
         keywords: [
@@ -543,6 +550,10 @@
             'delete',
             'remove',
         ],
+    },
+    {
+        name: 'undo',
+        minver: '0.12.0',
     },
     {
         name: 'upload',
