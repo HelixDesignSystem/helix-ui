@@ -60,6 +60,7 @@ import _pencil from './icons/pencil.svg';
 import _phone from './icons/phone.svg';
 import _plus from './icons/plus.svg';
 import _plusOrMinus from './icons/plus-or-minus.svg';
+import _redo from './icons/redo.svg';
 import _search from './icons/search.svg';
 import _server from './icons/server.svg';
 import _serverConfig from './icons/server-config.svg';
@@ -73,6 +74,7 @@ import _ticketing from './icons/ticketing.svg';
 import _times from './icons/times.svg';
 import _timesCircle from './icons/times-circle.svg';
 import _trash from './icons/trash.svg';
+import _undo from './icons/undo.svg';
 import _upload from './icons/upload.svg';
 import _user from './icons/user.svg';
 
@@ -139,6 +141,7 @@ const MAP = {
     'phone': _phone,
     'plus': _plus,
     'plus-or-minus': _plusOrMinus,
+    'redo': _redo,
     'search': _search,
     'server': _server,
     'server-config': _serverConfig,
@@ -152,6 +155,7 @@ const MAP = {
     'times': _times,
     'times-circle': _timesCircle,
     'trash': _trash,
+    'undo': _undo,
     'upload': _upload,
     'user': _user,
 };
