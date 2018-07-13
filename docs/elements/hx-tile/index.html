@@ -3,8 +3,6 @@ title: <hx-tile>
 minver: 0.4.0
 also:
   components/choice-tiles: Choice Tiles
-  elements/hx-tile-title: <hx-tile-title>
-  elements/hx-tile-description: <hx-tile-description>
 ---
 {% extends 'element.njk' %}
 {% block content %}
@@ -26,8 +24,8 @@ also:
           <ol>
             <li>a required checkmark <a href="elements/hx-icon">&lt;hx-icon&gt;</a> element</li>
             <li>a required <code>div.hx-tile-icon</code> wrapping icon of choice</li>
-            <li>a required <a href="elements/hx-tile-title">&lt;hx-tile-title&gt;</a> element</li>
-            <li>an optional <a href="elements/hx-tile-description">&lt;hx-tile-description&gt;</a> element</li>
+            <li>a required <code>&lt;header&gt;</code> element with the tile label</li>
+            <li>an optional <code>&lt;p&gt;</code> element with the tile description</li>
           </ol>
         </dd>
       </div>

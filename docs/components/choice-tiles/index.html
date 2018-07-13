@@ -3,8 +3,6 @@ title: Choice Tiles
 minver: 0.4.0
 also:
   elements/hx-tile: <hx-tile>
-  elements/hx-tile-title: <hx-tile-title>
-  elements/hx-tile-description: <hx-tile-description>
 ---
 {% extends 'component.njk' %}
 {% block content %}
@@ -59,8 +57,8 @@ also:
             <div class="hx-tile-icon">
               <hx-icon type="account"></hx-icon>
             </div>
-            <hx-tile-title>Title Here</hx-tile-title>
-            <hx-tile-description v-text="description"></hx-tile-description>
+            <header>Title Here</header>
+            <p v-text="description"></p>
           </hx-tile>
         </label>
       </div>
