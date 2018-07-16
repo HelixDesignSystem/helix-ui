@@ -1,0 +1,29 @@
+---
+title: Testing - Tooltips
+---
+{% extends 'test.njk' %}
+{% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/tooltips">Tooltips</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  <section>
+    <h2>Appearance</h2>
+    <div class="tooltip-appearance">
+      {% for _position in [
+        'top', 'top-left', 'top-right',
+        'bottom', 'bottom-left', 'bottom-right',
+        'right', 'right-top', 'right-bottom',
+        'left', 'left-top', 'left-bottom'
+      ] %}
+        <hx-tooltip open position="{{_position}}">
+          {{_position}}
+        </hx-tooltip>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

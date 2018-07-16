@@ -3,6 +3,7 @@ title: Popovers
 minver: 0.2.0
 also:
   components/buttons: Buttons
+  components/popovers/test.html: Testing - Popovers
   elements/hx-popover-body: <hx-popover-body>
   elements/hx-popover-foot: <hx-popover-foot>
   elements/hx-popover-head: <hx-popover-head>
@@ -11,29 +12,48 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="demos">Demos</h2>
-    <div id="vue-popoverDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h3>
-        <p>
-          <b>Position:</b><br />
-          <select v-model="position">
-            <option v-for="_position in positions" :value="_position">
-              {% raw %}{{ _position.label }}{% endraw %}
-            </option>
-          </select>
-        </p>
+    <h2 id="basic-popover">Basic Popover</h2>
+    <div class="example" id="vue-popoverDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <p>
+            <label for="selPosition">Position</label>
+            <select id="selPosition" v-model="position">
+              <option v-for="_position in positions" :value="_position">
+                {% raw %}{{ _position.label }}{% endraw %}
+              </option>
+            </select>
+          </p>
+        </form>
+      </header>
+
+      <div>
+        <button data-popover="myPopover" class="hxBtn">Toggle</button>
+
+        <hx-popover id="myPopover"
+          :position="position.value"
+          v-for="_position in positions"
+          v-if="_position.value === position.value">
+
+          <hx-popover-head>
+            Popover Header
+          </hx-popover-head>
+
+          <hx-popover-body>
+            <p>This is my popover body</p>
+          </hx-popover-body>
+
+          <hx-popover-foot>
+            <button class="hxBtn hxPrimary">Submit</button>
+            <button class="hxBtn">Cancel</button>
+          </hx-popover-foot>
+        </hx-popover>
       </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h3>Basic Popover</h3>
-        <div class="demo popover-demo">
+
+      <footer>
+        {% code 'html' %}{% raw %}
           <button data-popover="myPopover" class="hxBtn">Toggle</button>
-
-          <hx-popover id="myPopover"
-            :position="position.value"
-            v-for="_position in positions"
-            v-if="_position.value === position.value">
-
+          <hx-popover id="myPopover" position="{{ position.value }}">
             <hx-popover-head>
               Popover Header
             </hx-popover-head>
@@ -46,56 +66,9 @@ also:
               <button class="hxBtn hxPrimary">Submit</button>
               <button class="hxBtn">Cancel</button>
             </hx-popover-foot>
-          </hx-popover>
-        </div>
-        {% code 'html' %}
-          <button data-popover="myPopover" class="hxBtn">Toggle</button>
-          <hx-popover id="myPopover" position="bottom-right">
-            <hx-popover-head>
-              Popover Header
-            </hx-popover-head>
-
-            <hx-popover-body>
-              <p>This is my popover body</p>
-            </hx-popover-body>
-
-            <hx-popover-foot>
-              <button class="hxBtn hxPrimary">Submit</button>
-              <button class="hxBtn">Cancel</button>
-            </hx-popover-foot>
-          </hx-popover>
+          </hx-popover>{% endraw %}
         {% endcode %}
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2 id="appearance">Appearance</h2>
-    <div class="popover-appearance">
-      <table>
-        <tbody>
-          <tr>
-            {% for _position in [
-              'top', 'top-left', 'top-right',
-              'bottom', 'bottom-left', 'bottom-right',
-              'right', 'right-top', 'right-bottom',
-              'left', 'left-top', 'left-bottom'
-            ] %}
-              <td>
-                <hx-popover position="{{_position}}">
-                  <hx-popover-body>
-                    <code>position="{{_position}}"</code>
-                  </hx-popover-body>
-                </hx-popover>
-              </td>
-
-              {% if loop.index % 2 === 0 %}
-                </tr><tr>
-              {% endif %}
-            {% endfor %}
-          </tr>
-        </tbody>
-      </table>
+      </footer>
     </div>
   </section>
 {% endblock %}

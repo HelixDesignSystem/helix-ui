@@ -1,6 +1,8 @@
 ---
 title: Text Inputs
 minver: 0.1.12
+also:
+  components/text-inputs/test.html: Testing - Text Inputs
 ---
 {% extends 'component.njk' %}
 {% block content %}
@@ -11,80 +13,88 @@ minver: 0.1.12
   </section>
 
   <section>
-    <h2 id="single-line-text">Single-Line Text</h2>
-    <div class="demo">
-      <input
-        class="hxTextCtrl"
-        placeholder="Default Text Input"
-        type="text" />
-      <br />
+    <h2 id="text-input">Text Input</h2>
+    <div class="example" id="vue-textInputDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <p>
+            <label for="txtPlaceholder1">Placeholder</label>
+            <input id="txtPlaceholder1" class="hxTextCtrl" v-model="placeholder" />
+          </p>
+          <p>
+            <label for="txtValue1">Value</label>
+            <input id="txtValue1" class="hxTextCtrl" v-model="value" />
+          </p>
+          <fieldset>
+            <legend>Options</legend>
+            <label>
+              <input type="checkbox" v-model="isDisabled" />
+              Disabled
+            </label>
+            <label>
+              <input type="checkbox" v-model="isInvalid" />
+              Invalid
+            </label>
+          </fieldset>
+        </form>
+      </header>
 
-      <input
-        class="hxTextCtrl"
-        invalid
-        placeholder="Invalid Text Input"
-        type="text" />
-      <br />
+      <div>
+        <input
+          :disabled="isDisabled"
+          :invalid="isInvalid"
+          :placeholder="placeholder"
+          :value="value"
+          class="hxTextCtrl"
+        />
+      </div>
 
-      <input
-        class="hxTextCtrl"
-        disabled
-        placeholder="Disabled Text Input"
-        type="text" />
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
     </div>
-    {% code 'html' %}
-      <input
-        class="hxTextCtrl"
-        placeholder="Default Text Input"
-        type="text" />
-
-      <input
-        class="hxTextCtrl"
-        invalid
-        placeholder="Invalid Text Input"
-        type="text" />
-
-      <input
-        class="hxTextCtrl"
-        disabled
-        placeholder="Disabled Text Input"
-        type="text" />
-    {% endcode %}
   </section>
 
   <section>
-    <h2 id="multi-line-text">Multi-line Text</h2>
-    <div id="multi-line-text-demo" class="demo">
-      <textarea
-        class="hxTextCtrl"
-        placeholder="Default Text Area"></textarea>
-      <br />
+    <h2 id="textarea">Textarea</h2>
+    <div class="example" id="vue-textAreaDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <p>
+            <label for="txtPlaceholder2">Placeholder</label>
+            <input id="txtPlaceholder2" class="hxTextCtrl" v-model="placeholder" />
+          </p>
+          <p>
+            <label for="txtValue2">Value</label>
+            <input id="txtValue2" class="hxTextCtrl" v-model="value" />
+          </p>
+          <fieldset>
+            <legend>Options</legend>
+            <label>
+              <input type="checkbox" v-model="isDisabled" />
+              Disabled
+            </label>
+            <label>
+              <input type="checkbox" v-model="isInvalid" />
+              Invalid
+            </label>
+          </fieldset>
+        </form>
+      </header>
 
-      <textarea
-        class="hxTextCtrl"
-        invalid
-        placeholder="Invalid Text Area"></textarea>
-      <br />
+      <div>
+        <textarea
+          :disabled="isDisabled"
+          :invalid="isInvalid"
+          :placeholder="placeholder"
+          class="hxTextCtrl"
+          v-model="value"
+        ></textarea>
+      </div>
 
-      <textarea
-        class="hxTextCtrl"
-        disabled
-        placeholder="Disabled Text Area"></textarea>
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
     </div>
-    {% code 'html' %}
-      <textarea
-        class="hxTextCtrl"
-        placeholder="Default Text Area"></textarea>
-
-      <textarea
-        class="hxTextCtrl"
-        invalid
-        placeholder="Invalid Text Area"></textarea>
-
-      <textarea
-        class="hxTextCtrl"
-        disabled
-        placeholder="Disabled Text Area"></textarea>
-    {% endcode %}
   </section>
 {% endblock %}

@@ -7,56 +7,60 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="demo">Demo</h2>
-    <div id="vue-alertDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h3>
-        <p>
-          <b>Type:</b><br />
-          <select v-model="type">
-            <option v-for="_type in types" :value="_type">
-              {% raw %}{{ _type.label }}{% endraw %}
-            </option>
-          </select>
-        </p>
-        <p>
-          <label>
-            <input type="checkbox" v-model="isStatic">
-            Static
-          </label>
-        </p>
-        <p>
-          <b>Status:</b><br />
-          <input
-            class="hxTextCtrl"
-            type="text"
-            v-model="status" />
-        </p>
-        <p>
-          <b>CTA:</b><br />
-          <input
-            class="hxTextCtrl"
-            type="text"
-            v-model="cta" />
-        </p>
-        <p>
-          <b>Content:</b><br />
-          <textarea class="hxTextCtrl" v-model="content"></textarea>
-        </p>
+    <h2 id="basic-alert">Basic Alert</h2>
+    <p class="comfortable">
+      An alert provides users with a contextual message relating to a user action and
+      may provide an optional call to action (CTA) button that can be used to trigger
+      additional behavior, if desired.
+    </p>
+    <div class="example" id="vue-alertDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <p>
+            <label for="selType">Type</label>
+            <select id="selType" v-model="type">
+              <option v-for="_type in types" :value="_type">
+                {% raw %}{{ _type.label }}{% endraw %}
+              </option>
+            </select>
+          </p>
+          <p>
+            <label for="txtStatus">Status</label>
+            <input id="txtStatus" class="hxTextCtrl" v-model="status" />
+          </p>
+          <p>
+            <label for="txtCta">CTA</label>
+            <input id="txtCta" class="hxTextCtrl" v-model="cta" />
+          </p>
+          <p>
+            <label for="txtContent">Content</label>
+            <textarea id="txtContent" class="hxTextCtrl" v-model="content"></textarea>
+          </p>
+          <fieldset>
+            <legend>Options</legend>
+            <label>
+              <input type="checkbox" v-model="isStatic">
+              Static
+            </label>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-alert
+          :cta="cta"
+          :static="isStatic"
+          :status="status"
+          :type="type.value"
+          @submit="onSubmit"
+        >
+          {% raw %}{{content}}{% endraw %}
+        </hx-alert>
       </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <div class="demo alert-demo">
-          <hx-alert
-            :type="type.value"
-            :status="status"
-            :static="isStatic"
-            :cta="cta"
-            @submit="onSubmit">
-            {% raw %}{{content}}{% endraw %}
-          </hx-alert>
-        </div>
-        <pre>{% raw %}{{snippet}}{% endraw %}</pre>
-      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
     </div>
   </section>
 {% endblock %}

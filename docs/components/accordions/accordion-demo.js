@@ -1,39 +1,36 @@
 import Util from '../../_util';
 
-if (document.getElementById('vue-accordionDemo')) {
+if (document.getElementById('vue-singlePanelAccordionDemo')) {
     new Vue({
-        el: '#vue-accordionDemo',
+        el: '#vue-singlePanelAccordionDemo',
         data: {
-            isSinglePanel: false,
             currentPanel: 0,
         },
         methods: {
-            onOpen: function (evt) {
-                if (this.isSinglePanel) {
-                    let newIdx = evt.currentTarget.getAttribute('current-panel');
-                    this.currentPanel = Number(newIdx);
-                }
+            onPanelChange: function (evt) {
+                let newIdx = evt.currentTarget.getAttribute('current-panel');
+                this.currentPanel = Number(newIdx);
             },
             nextPanel: function () {
-                this.$refs.accordion.nextPanel();
+                this.$refs.accordion.selectNext();
             },
             prevPanel: function () {
-                this.$refs.accordion.previousPanel();
+                this.$refs.accordion.selectPrevious();
             },
         },
         computed: {
             snippet: function () {
                 return Util.snippet(`
-                    <hx-accordion ${this.isSinglePanel ? `current-panel="${this.currentPanel}"` : ''}>
-                      <hx-accordion-panel ${!this.isSinglePanel ? 'open' : ''}>
-                        <header slot="header">Cupcake Ipsum</header>
-                        <div class="hxBox-md">
-                          <!-- body content goes here -->
-                        </div>
-                      </hx-accordion-panel>
-                      <hx-accordion-panel>...</hx-accordion-panel>
-                      <hx-accordion-panel ${!this.isSinglePanel ? 'open' : ''}>...</hx-accordion-panel>
-                    </hx-accordion>
+                  <hx-accordion current-panel="${this.currentPanel}">
+                    <hx-accordion-panel ${this.currentPanel === 0 ? 'open' : ''}>
+                      <header slot="header">Cupcake Ipsum</header>
+                      <div class="hxBox-md">
+                        <!-- body content goes here -->
+                      </div>
+                    </hx-accordion-panel>
+                    <hx-accordion-panel ${this.currentPanel === 1 ? 'open' : ''}>...</hx-accordion-panel>
+                    <hx-accordion-panel ${this.currentPanel === 2 ? 'open' : ''}>...</hx-accordion-panel>
+                  </hx-accordion>
                 `);
             },
         },

@@ -1,5 +1,14 @@
 import Util from '../../_util';
 
+if (document.getElementById('vue-busyDemo')) {
+    new Vue({
+        el: '#vue-busyDemo',
+        data: {
+            isPaused: false,
+        },
+    });
+}
+
 if (document.getElementById('vue-progressDemo')) {
     new Vue({
         el: '#vue-progressDemo',
@@ -9,9 +18,7 @@ if (document.getElementById('vue-progressDemo')) {
         computed: {
             snippet: function () {
                 return Util.snippet(`
-                    <hx-progress
-                        value="${this.pct}">
-                    </hx-progress>
+                    <hx-progress value="${this.pct}"></hx-progress>
                 `);
             },
         },

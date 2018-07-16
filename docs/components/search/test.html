@@ -1,8 +1,72 @@
 ---
-title: Testing - Search
+title: Testing - Searches
 ---
 {% extends 'test.njk' %}
 {% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/search">Search</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  <section data-visreg="search-states">
+    <h2>Appearance</h2>
+    <table class="hxTable hxTable--condensed">
+      <tbody>
+        <tr>
+          <th>Default</th>
+          <td>
+            <hx-search></hx-search>
+          </td>
+          <td>
+            <hx-search placeholder="Search..."></hx-search>
+          </td>
+          <td>
+            <hx-search value="kittens"></hx-search>
+          </td>
+        </tr>
+        <tr>
+          <th>Invalid</th>
+          <td>
+            <hx-search invalid></hx-search>
+          </td>
+          <td>
+            <hx-search invalid placeholder="Search..."></hx-search>
+          </td>
+          <td>
+            <hx-search invalid value="kittens"></hx-search>
+          </td>
+        </tr>
+        <tr>
+          <th>Disabled</th>
+          <td>
+            <hx-search disabled></hx-search>
+          </td>
+          <td>
+            <hx-search disabled placeholder="Search..."></hx-search>
+          </td>
+          <td>
+            <hx-search disabled value="kittens"></hx-search>
+          </td>
+        </tr>
+        <tr>
+          <th>Disabled and Invalid</th>
+          <td>
+            <hx-search invalid disabled></hx-search>
+          </td>
+          <td>
+            <hx-search invalid disabled placeholder="Search..."></hx-search>
+          </td>
+          <td>
+            <hx-search invalid disabled value="kittens"></hx-search>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
   <section>
     <h2>Declarative APIs</h2>
     <div class="hxRow">

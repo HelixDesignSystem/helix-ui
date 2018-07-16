@@ -5,48 +5,55 @@ minver: 0.2.0
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="description-lists">Description Lists</h2>
-    <div id="vue-listDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h3>
-        <label>
-          <input type="checkbox" v-model="isVertical" />
-          Vertical
-        </label>
+    <h2 id="description-list">Description List</h2>
+    <p class="hxSubBody">Added: v0.2.0</p>
+    <div class="example" id="vue-listDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend>Options</legend>
+            <label>
+              <input type="checkbox" v-model="isVertical" />
+              Vertical Layout
+            </label>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <dl :class="classes">
+          <div>
+            <dt>First Key Term</dt>
+            <dd>This is the description and/or data value.</dd>
+          </div>
+          <div>
+            <dt>Second Key Term</dt>
+            <dd>
+              This is the description and/or data value. This paragraph shows
+              the default wrapping that exists on this element. Description
+              detail tags will wrap across multiple lines by default.
+            </dd>
+          </div>
+          <div>
+            <dt>Third Key Term</dt>
+            <dd class="hxForceWordBreak">
+              This is the description and/or data value. This third
+              description is an example of when you may have long strings
+              in your content that usually don't wrap across lines. The
+              <code>.hxForceWordBreak</code> CSS modifier class can be used
+              on the <code>dd</code> to achieve the wrapping when needed.
+              This will break up strings and break a word.
+            </dd>
+          </div>
+        </dl>
       </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <div class="demo">
-          <dl :class="classes">
-            <div>
-              <dt>First Key Term</dt>
-              <dd>This is the description and/or data value.</dd>
-            </div>
-            <div>
-              <dt>Second Key Term</dt>
-              <dd>
-                This is the description and/or data value. This paragraph shows
-                the default wrapping that exists on this element. Description
-                detail tags will wrap across multiple lines by default.
-              </dd>
-            </div>
-            <div>
-              <dt>Third Key Term</dt>
-              <dd class="hxForceWordBreak">
-                This is the description and/or data value. This third
-                description is an example of when you may have long strings
-                in your content that usually don't wrap across lines. The
-                <code>.hxForceWordBreak</code> CSS modifier class can be used
-                on the <code>dd</code> to achieve the wrapping when needed.
-                This will break up strings and break a word.
-              </dd>
-            </div>
-          </dl>
-        </div>
+
+      <footer>
         {% code 'html' %}{% raw %}
           <dl class="{{classes}}">
             <div>
-              <dt>Key Term</dt>
-              <dd>..</dd>
+              <dt>First Key Term</dt>
+              <dd>...</dd>
             </div>
             <div>
               <dt>Second Key Term</dt>
@@ -58,73 +65,105 @@ minver: 0.2.0
             </div>
           </dl>{% endraw %}
         {% endcode %}
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="unordered-list">Unordered List</h2>
+    <p class="hxSubBody">Added: v0.10.0</p>
+    <div class="example">
+      <div>
+        <ul>
+          <li>List Item 1</li>
+          <li>
+            List Item 2 with a bunch of extra text that
+            should hopefully wrap to the next line if
+            your screen is small enough.
+          </li>
+          <li>List Item 3
+            <ul>
+              <li>List Item 3.1</li>
+              <li>List Item 3.2</li>
+              <li>List Item 3.3</li>
+            </ul>
+          </li>
+        </ul>
       </div>
+
+      <footer>
+        {% code 'html' %}
+          <ul>
+            <li>List Item 1</li>
+            <li>List Item 2...</li>
+            <li>List Item 3
+              <ul>
+                <li>List Item 3.1</li>
+                <li>List Item 3.2</li>
+                <li>List Item 3.3</li>
+              </ul>
+            </li>
+          </ul>
+        {% endcode %}
+      </footer>
     </div>
   </section>
 
   <section>
-    <h2 id="unordered-lists">Unordered Lists</h2>
-    <p>
-      <small>Added: v0.10.0</small>
-    </p>
-    <div class="demo">
-      <ul>
-        <li>List Item 1</li>
-        <li>
-          List Item 2 with a bunch of extra text that
-          should hopefully wrap to the next line if
-          your screen is small enough.
-        </li>
-        <li>List Item 3
-          <ul>
-            <li>List Item 3.1</li>
-            <li>List Item 3.2</li>
-            <li>List Item 3.3
-          </ul>
-        </li>
-      </ul>
-    </div>
-    {% code 'html' %}
-      <ul>
-        <li>List Item 1</li>
-        <li>List Item 2 ...</li>
-        <li>List Item 3
-          <ul>
-            <li>List Item 3.1</li>
-            <li>List Item 3.2</li>
-            <li>List Item 3.3
-          </ul>
-        </li>
-      </ul>
-    {% endcode %}
-  </section>
+    <h2 id="ordered-list">Ordered List</h2>
+    <p class="hxSubBody">Added: v0.10.0</p>
+    <div class="example">
+      <div>
+        <ol>
+          <li>Child Item</li>
+          <li>Child Item</li>
+          <li>Child Item
+            <ol>
+              <li>Child Item</li>
+              <li>Child Item</li>
+              <li>Child Item
+                <ol>
+                  <li>Child Item</li>
+                  <li>Child Item</li>
+                  <li>Child Item
+                    <ol>
+                      <li>Child Item</li>
+                      <li>Child Item</li>
+                      <li>Child Item
+                        <ol>
+                          <li>Child Item</li>
+                          <li>Child Item</li>
+                          <li>Child Item</li>
+                        </ol>
+                      </li>
+                    </ol>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </div>
 
-  <section>
-    <h2 id="ordered-lists">Ordered Lists</h2>
-    <p>
-      <small>Added: v0.10.0</small>
-    </p>
-    <div class="demo">
-      <ol>
-        <li>Child Item</li>
-        <li>Child Item</li>
-        <li>Child Item
+      <footer>
+        {% code 'html' %}
           <ol>
-            <li>Child Item</li>
-            <li>Child Item</li>
+            ...
             <li>Child Item
               <ol>
-                <li>Child Item</li>
-                <li>Child Item</li>
+                ...
                 <li>Child Item
                   <ol>
-                    <li>Child Item</li>
-                    <li>Child Item</li>
+                    ...
                     <li>Child Item
                       <ol>
-                        <li>Child Item</li>
-                        <li>Child Item</li>
-                        <li>Child Item</li>
+                        ...
+                        <li>Child Item
+                          <ol>
+                            <li>Child Item</li>
+                            ...
+                          </ol>
+                        </li>
                       </ol>
                     </li>
                   </ol>
@@ -132,39 +171,8 @@ minver: 0.2.0
               </ol>
             </li>
           </ol>
-        </li>
-      </ol>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <ol>
-        <li>Child Item</li>
-        <li>Child Item</li>
-        <li>Child Item
-          <ol>
-            <li>Child Item</li>
-            <li>Child Item</li>
-            <li>Child Item
-              <ol>
-                <li>Child Item</li>
-                <li>Child Item</li>
-                <li>Child Item
-                  <ol>
-                    <li>Child Item</li>
-                    <li>Child Item</li>
-                    <li>Child Item
-                      <ol>
-                        <li>Child Item</li>
-                        <li>Child Item</li>
-                        <li>Child Item</li>
-                      </ol>
-                    </li>
-                  </ol>
-                </li>
-              </ol>
-            </li>
-          </ol>
-        </li>
-      </ol>
-    {% endcode %}
   </section>
 {% endblock %}

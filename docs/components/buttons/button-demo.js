@@ -1,4 +1,4 @@
-if (document.getElementById('vue-buttonDemo')) {
+(function () {
     const SIZES = [
         { label: 'Small', val: 'hxSm' },
         { label: 'Medium', val: '', default: true },
@@ -11,36 +11,51 @@ if (document.getElementById('vue-buttonDemo')) {
         { label: 'Tertiary', val: 'hxTertiary' },
     ];
 
-    new Vue({
-        el: '#vue-buttonDemo',
-        data: {
-            size: SIZES[1],
-            sizes: SIZES,
-            variant: VARIANTS[1],
-            variants: VARIANTS,
-        },
-        computed: {
-            loneClasses: function () {
-                let out = [ 'hxBtn' ];
-                if (this.size.val !== '') {
-                    out.push(this.size.val);
-                }
-                if (this.variant.val !== '') {
-                    out.push(this.variant.val);
-                }
-                return out.join(' ');
-            },//loneClasses()
+    if (document.getElementById('vue-basicButtonDemo')) {
+        new Vue({
+            el: '#vue-basicButtonDemo',
+            data: {
+                size: SIZES[1],
+                sizes: SIZES,
+                variant: VARIANTS[1],
+                variants: VARIANTS,
+            },
+            computed: {
+                classes: function () {
+                    let out = [ 'hxBtn' ];
+                    if (this.size.val !== '') {
+                        out.push(this.size.val);
+                    }
+                    if (this.variant.val !== '') {
+                        out.push(this.variant.val);
+                    }
+                    return out.join(' ');
+                },
+            },
+        });
+    }//#vue-basicButtonDemo
 
-            groupClasses: function () {
-                let out = [ 'hxBtnGroup' ];
-                if (this.size.val !== '') {
-                    out.push(this.size.val);
-                }
-                if (this.variant.val !== '') {
-                    out.push(this.variant.val);
-                }
-                return out.join(' ');
-            },//groupClasses()
-        },
-    });
-}
+    if (document.getElementById('vue-buttonGroupDemo')) {
+        new Vue({
+            el: '#vue-buttonGroupDemo',
+            data: {
+                size: SIZES[1],
+                sizes: SIZES,
+                variant: VARIANTS[1],
+                variants: VARIANTS,
+            },
+            computed: {
+                classes: function () {
+                    let out = [ 'hxBtnGroup' ];
+                    if (this.size.val !== '') {
+                        out.push(this.size.val);
+                    }
+                    if (this.variant.val !== '') {
+                        out.push(this.variant.val);
+                    }
+                    return out.join(' ');
+                },
+            },
+        });
+    }//#vue-buttonGroupDemo
+})();

@@ -39,10 +39,10 @@ if (document.getElementById('vue-toastDemo')) {
             snippet: function () {
                 return Util.snippet(`
                     <hx-toast
-                        ${this.attrCta}
-                        ${this.attrType}
+                      ${this.attrCta}
+                      ${this.attrType}
                     >
-                        ${this.content}
+                      ${this.content}
                     </hx-toast>
                 `);
             },

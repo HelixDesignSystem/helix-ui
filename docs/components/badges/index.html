@@ -14,104 +14,129 @@ minver: 0.10.0
       with the <code>.hxBadge</code> CSS class applied.
     </p>
   </section>
+
   <section>
-    <h2 id="link-badges">Link Badges</h2>
-    <div class="demo">
-      <a href="">
-        Link
-        <span class="hxBadge">1</span>
-      </a>
+    <h2 id="link-badge">Link Badge</h2>
+    <p>
+      Badges may be used with a hyperlink to bring attention to new items at the destination.
+    </p>
+    <div class="example">
+      <div>
+        <a href="">
+          Link
+          <span class="hxBadge">1</span>
+        </a>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <a href="">
+            Link
+            <span class="hxBadge">1</span>
+          </a>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <a href="">
-        Link
-        <span class="hxBadge">1</span>
-      </a>
-    {% endcode %}
   </section>
 
   <section>
-    <h2 id="icon-badges">Icon Badges</h2>
-    <div class="demo">
-      <hx-icon type="bell"></hx-icon>
-      <span class="hxBadge"></span>
+    <h2 id="icon-badge">Icon Badge</h2>
+    <p>
+      Badges can be combined with icons to create a compact notification.
+    </p>
+    <div class="example">
+      <div>
+        <hx-icon type="bell"></hx-icon>
+        <span class="hxBadge"></span>
 
-      <hx-icon type="bell"></hx-icon>
-      <span class="hxBadge">1</span>
+        <hx-icon type="bell"></hx-icon>
+        <span class="hxBadge">1</span>
 
-      <hx-icon type="bell"></hx-icon>
-      <span class="hxBadge">2</span>
+        <hx-icon type="bell"></hx-icon>
+        <span class="hxBadge">2</span>
 
-      <hx-icon type="bell"></hx-icon>
-      <span class="hxBadge">32</span>
+        <hx-icon type="bell"></hx-icon>
+        <span class="hxBadge">32</span>
 
-      <hx-icon type="bell"></hx-icon>
-      <span class="hxBadge">99+</span>
+        <hx-icon type="bell"></hx-icon>
+        <span class="hxBadge">99+</span>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <hx-icon type="bell"></hx-icon>
+          <span class="hxBadge"></span>
+
+          <hx-icon type="bell"></hx-icon>
+          <span class="hxBadge">1</span>
+
+          <hx-icon type="bell"></hx-icon>
+          <span class="hxBadge">2</span>
+
+          <hx-icon type="bell"></hx-icon>
+          <span class="hxBadge">32</span>
+
+          <hx-icon type="bell"></hx-icon>
+          <span class="hxBadge">99+</span>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <hx-icon type="bell"></hx-icon>
-      <span class="hxBadge"></span>
-
-      <hx-icon type="bell"></hx-icon>
-      <span class="hxBadge">1</span>
-
-      <hx-icon type="bell"></hx-icon>
-      <span class="hxBadge">2</span>
-
-      <hx-icon type="bell"></hx-icon>
-      <span class="hxBadge">32</span>
-
-      <hx-icon type="bell"></hx-icon>
-      <span class="hxBadge">99+</span>
-    {% endcode %}
   </section>
 
   <section>
-    <h2 id="tab-badges">Tab Badges</h2>
-    <div class="demo">
-      <hx-tabset>
-        <hx-tablist>
-          <hx-tab>
-            First
-            <span class="hxBadge">1</span>
-          </hx-tab>
-          <hx-tab>
-            Second
-            <span class="hxBadge">32</span>
-          </hx-tab>
-          <hx-tab>Third
-            <span class="hxBadge">99+</span>
-          </hx-tab>
-        </hx-tablist>
-        <hx-tabcontent>
-          <hx-tabpanel>...</hx-tabpanel>
-          <hx-tabpanel>...</hx-tabpanel>
-          <hx-tabpanel>...</hx-tabpanel>
-        </hx-tabcontent>
-      </hx-tabset>
+    <h2 id="tab-badge">Tab Badge</h2>
+    <p>
+      Badges may be used in tabs to bring attention to new items in unselected tabs.
+    </p>
+    <div class="example">
+      <div>
+        <hx-tabset>
+          <hx-tablist>
+            <hx-tab>
+              First
+              <span class="hxBadge">1</span>
+            </hx-tab>
+            <hx-tab>
+              Second
+              <span class="hxBadge">32</span>
+            </hx-tab>
+            <hx-tab>Third
+              <span class="hxBadge">99+</span>
+            </hx-tab>
+          </hx-tablist>
+          <hx-tabcontent>
+            <hx-tabpanel>...</hx-tabpanel>
+            <hx-tabpanel>...</hx-tabpanel>
+            <hx-tabpanel>...</hx-tabpanel>
+          </hx-tabcontent>
+        </hx-tabset>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <hx-tabset>
+            <hx-tablist>
+              <hx-tab>
+                First
+                <span class="hxBadge">1</span>
+              </hx-tab>
+              <hx-tab>
+                Second
+                <span class="hxBadge">32</span>
+              </hx-tab>
+              <hx-tab>
+                Third
+                <span class="hxBadge">99+</span>
+              </hx-tab>
+            </hx-tablist>
+            <hx-tabcontent>
+              <hx-tabpanel>...</hx-tabpanel>
+              <hx-tabpanel>...</hx-tabpanel>
+              <hx-tabpanel>...</hx-tabpanel>
+            </hx-tabcontent>
+          </hx-tabset>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <hx-tabset>
-        <hx-tablist>
-          <hx-tab>
-            First
-            <span class="hxBadge">1</span>
-          </hx-tab>
-          <hx-tab>
-            Second
-            <span class="hxBadge">32</span>
-          </hx-tab>
-          <hx-tab>
-            Third
-            <span class="hxBadge">99+</span>
-          </hx-tab>
-        </hx-tablist>
-        <hx-tabcontent>
-          <hx-tabpanel>...</hx-tabpanel>
-          <hx-tabpanel>...</hx-tabpanel>
-          <hx-tabpanel>...</hx-tabpanel>
-        </hx-tabcontent>
-      </hx-tabset>
-    {% endcode %}
   </section>
 {% endblock %}

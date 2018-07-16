@@ -1,4 +1,4 @@
-if (document.getElementById('vue-tooltipDemo')) {
+(function () {
     const POSITIONS = [
         { label: 'Top Left', value: 'top-left' },
         { label: 'Top', value: 'top' },
@@ -14,11 +14,23 @@ if (document.getElementById('vue-tooltipDemo')) {
         { label: 'Left Top', value: 'left-top' },
     ];
 
-    new Vue({
-        el: '#vue-tooltipDemo',
-        data: {
-            position: POSITIONS[1], // Top
-            positions: POSITIONS,
-        },
-    });
-}
+    if (document.getElementById('vue-tooltipHoverDemo')) {
+        new Vue({
+            el: '#vue-tooltipHoverDemo',
+            data: {
+                position: POSITIONS[1], // Top
+                positions: POSITIONS,
+            },
+        });
+    }
+
+    if (document.getElementById('vue-tooltipClickDemo')) {
+        new Vue({
+            el: '#vue-tooltipClickDemo',
+            data: {
+                position: POSITIONS[1], // Top
+                positions: POSITIONS,
+            },
+        });
+    }
+})();

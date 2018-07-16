@@ -1,0 +1,64 @@
+.FieldName() {
+  color: @gray-800;
+  display: block;
+  font-size: 0.875rem; // ~14px
+}
+
+.beta-hxForm {
+  // a.k.a. "field name"
+  label {
+    .FieldName();
+  }
+
+  input + label { // a.k.a. "option label"
+    color: @gray-900;
+    display: inline-block;
+    font-size: 1rem;
+  }
+
+  > * + * {
+    margin-top: 1rem;
+  }
+
+  fieldset {
+    > legend {
+      .FieldName();
+      margin-bottom: 0.25rem; // ~4px
+    }
+
+    > label {
+      font-size: 1rem;
+      margin: 0;
+
+      + label {
+        margin-top: 0.25rem; // ~4px
+      }
+    }
+  }
+
+  select,
+  input[type="range"] {
+    display: block;
+    width: 100%;
+  }
+
+
+  .beta-hxField {
+    .beta-hxFieldName {
+      color: @gray-800;
+      font-size: 0.875rem; // ~14px
+    }
+    // checkbox, radio, select, text input, switch/toggle, choice tile, selector strip, date/time picker, button
+    .beta-hxFieldControl {}
+
+    // radio or checkbox option label
+    .beta-hxOptionLabel {
+      color: @gray-900;
+      font-size: 1rem;
+    }
+
+    .beta-hxFieldPrefix {} // $[100]
+    .beta-hxFieldInfix {} // [12]:[45]
+    .beta-hxFieldSuffix {} // [65]lbs
+  }
+}

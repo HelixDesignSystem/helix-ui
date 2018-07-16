@@ -17,7 +17,13 @@ also:
       </div>
       <div>
         <dt>Permitted Children</dt>
-        <dd>flow content</dd>
+        <dd>
+          in this order:
+          <ol>
+            <li>a <code>&lt;header&gt;</code> element containing the panel heading</li>
+            <li>a <code>&lt;div&gt;</code> element containing the panel content</li>
+          </ol>
+        </dd>
       </div>
       <div>
         <dt>Events</dt>
@@ -32,12 +38,14 @@ also:
     </dl>
   </section>
 {% endblock %}
+
 {% block attributes %}
   <dl>
     <dt>open</dt>
     <dd>Opens the panel</dd>
   </dl>
 {% endblock %}
+
 {% block properties %}
   <dl>
     <dt>open (Boolean)</dt>

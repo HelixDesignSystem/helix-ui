@@ -9,54 +9,56 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="demos">Demos</h2>
-    <div id="vue-revealDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h3>
-        <label>
-          <input type="checkbox" v-model="isDisabled" />
-          Disabled
-        </label>
+    <h2 id="basic-reveal">Basic Reveal</h2>
+    <div class="example" id="vue-revealDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend>Options</legend>
+            <label>
+              <input type="checkbox" v-model="isDisabled" />
+              Disabled
+            </label>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-disclosure
+          :disabled="isDisabled"
+          aria-controls="elReveal"
+          class="hxBtn"
+        >
+          Click me to show content!
+        </hx-disclosure>
+        <hx-reveal id="elReveal">
+          <p>Peekaboo!</p>
+        </hx-reveal>
       </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h3>Basic Reveal</h3>
-        <div class="demo">
-          <hx-disclosure
-             class="hxBtn"
-             :disabled="isDisabled"
-             aria-controls="demo-default-reveal">
-            Click me to show content!
-          </hx-disclosure>
-          <hx-reveal id="demo-default-reveal">
-            <p>You can't see me</p>
-          </hx-reveal>
-        </div>
+
+      <footer>
         <template v-if="isDisabled">
           {% code 'html' %}
-            <hx-disclosure
-              aria-controls="demo-default-reveal"
-              class="hxBtn"
-              disabled>
+            <hx-disclosure aria-controls="elReveal" class="hxBtn" disabled>
               Click me to show content!
             </hx-disclosure>
-            <hx-reveal id="demo-default-reveal">
-              <p>You can't see me</p>
+            <hx-reveal id="elReveal">
+              <p>Peekaboo!</p>
             </hx-reveal>
           {% endcode %}
         </template>
+
         <template v-else>
           {% code 'html' %}
-            <hx-disclosure
-              aria-controls="demo-default-reveal"
-              class="hxBtn">
+            <hx-disclosure aria-controls="elReveal" class="hxBtn">
               Click me to show content!
             </hx-disclosure>
-            <hx-reveal id="demo-default-reveal">
-              <p>You can't see me</p>
+            <hx-reveal id="elReveal">
+              <p>Peekaboo!</p>
             </hx-reveal>
           {% endcode %}
         </template>
-      </div>
+      </footer>
     </div>
   </section>
 {% endblock %}

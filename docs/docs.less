@@ -55,12 +55,6 @@
   }
 }
 
-.demo {
-  background-color: #fff;
-  border: 1px solid @gray-400;
-  padding: 1rem;
-}
-
 // Table Of Contents
 .article-toc {
   display: block;
@@ -203,5 +197,70 @@ dl:not(.hxList) {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+}
+
+.example {
+  border: 1px solid @gray-300;
+
+  // CONFIGURATON
+  > header {
+    background-color: @gray-100;
+    border-color: @gray-300;
+    border-style: solid;
+    border-width: 0 0 1px;
+    margin: 0;
+    padding: 1.25rem;
+  }
+
+  // LIVE DEMO
+  > div {
+    background-color: @gray-0;
+    padding: 1.25rem;
+  }
+
+  // CODE SNIPPET
+  > footer {
+    overflow: hidden;
+
+    pre {
+      border-radius: 0;
+      border-width: 1px 0 0;
+    }
+  }
+}
+@media (min-width: @grid-break-desk) {
+  .example {
+    -ms-grid-columns: auto 1fr;
+    -ms-grid-rows: 1fr auto;
+    display: -ms-grid;
+    display: grid;
+    grid-template-areas:
+      'config demo'
+      'config code';
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr auto;
+
+    > header {
+      -ms-grid-column: 1;
+      -ms-grid-row-span: 2;
+      -ms-grid-row: 1;
+      border-width: 0 1px 0 0;
+      grid-area: config;
+      width: 15rem;
+    }
+
+    > div {
+      -ms-grid-column: 2;
+      -ms-grid-row: 1;
+      border-width: 0 0 1px 0;
+      grid-area: demo;
+    }
+
+    > footer {
+      -ms-grid-column: 2;
+      -ms-grid-row: 2;
+      grid-area: code;
+    }
   }
 }

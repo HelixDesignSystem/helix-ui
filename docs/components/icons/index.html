@@ -8,83 +8,65 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="konami-code">Konami Code</h2>
-    <div class="demo">
-      <p>
-        <hx-icon type="kbd-arrow-up"></hx-icon>
-        <hx-icon type="kbd-arrow-up"></hx-icon>
-        <hx-icon type="kbd-arrow-down"></hx-icon>
-        <hx-icon type="kbd-arrow-down"></hx-icon>
-        <hx-icon type="kbd-arrow-left"></hx-icon>
-        <hx-icon type="kbd-arrow-right"></hx-icon>
-        <hx-icon type="kbd-arrow-left"></hx-icon>
-        <hx-icon type="kbd-arrow-right"></hx-icon>
-        <kbd>B</kbd>
-        <kbd>A</kbd>
-        <kbd>start</kbd>
-      </p>
+    <h2 id="basic-icon">Basic Icon</h2>
+    <p>
+      Add a styleable SVG icon with the <code>&lt;hx-icon&gt;</code> element.
+    </p>
+    <div class="example">
+      <div>
+        <hx-icon type="bell"></hx-icon>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <hx-icon type="bell"></hx-icon>
+        {% endcode %}
+      </footer>
     </div>
-    {% code 'html' %}
-      <hx-icon type="kbd-arrow-up"></hx-icon>
-      <hx-icon type="kbd-arrow-up"></hx-icon>
-      <hx-icon type="kbd-arrow-down"></hx-icon>
-      <hx-icon type="kbd-arrow-down"></hx-icon>
-      <hx-icon type="kbd-arrow-left"></hx-icon>
-      <hx-icon type="kbd-arrow-right"></hx-icon>
-      <hx-icon type="kbd-arrow-left"></hx-icon>
-      <hx-icon type="kbd-arrow-right"></hx-icon>
-      <kbd>B</kbd>
-      <kbd>A</kbd>
-      <kbd>start</kbd>
-    {% endcode %}
   </section>
 
   <section>
-    <h2 id="file-icons">File Icons</h2>
+    <h2 id="file-icons">File Icon</h2>
+    <p class="hxSubBody">Added: v0.9.0</p>
     <p>
-      <small>Added: v0.9.0</small>
+      Create a styled "file" with optional icon and extension.
     </p>
-    <div class="demo">
-      <hx-file-icon></hx-file-icon>
-      <hx-file-icon type="paperclip"></hx-file-icon>
-      <hx-file-icon>pem</hx-file-icon>
-      <hx-file-icon type="key">pem</hx-file-icon>
-      <hx-file-icon type="mime-archive">gzip</hx-file-icon>
-      <hx-file-icon type="mime-audio">mp3</hx-file-icon>
-      <hx-file-icon type="mime-code">html</hx-file-icon>
-      <hx-file-icon type="mime-data">json</hx-file-icon>
-      <hx-file-icon type="mime-image">tiff</hx-file-icon>
-      <hx-file-icon type="mime-system">exe</hx-file-icon>
-      <hx-file-icon type="mime-text">docx</hx-file-icon>
-      <hx-file-icon type="mime-video">mpeg</hx-file-icon>
-      <hx-file-icon type="paperclip">bzip2</hx-file-icon>
+    <div class="example" id="vue-fileIconDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <p>
+            <label for="txtType">Type</label>
+            <input id="txtType" class="hxTextCtrl" v-model="type" />
+          </p>
+          <p>
+            <label for="txtExt">File Extension</label>
+            <input id="txtExt" class="hxTextCtrl" v-model="ext" />
+          </p>
+        </form>
+      </header>
+
+      <div class="demo">
+        <hx-file-icon
+          :type="type"
+          v-text="ext"
+        ></hx-file-icon>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
     </div>
-    {% code 'html' %}
-      <hx-file-icon></hx-file-icon>
-      <hx-file-icon type="paperclip"></hx-file-icon>
-      <hx-file-icon>pem</hx-file-icon>
-      <hx-file-icon type="key">pem</hx-file-icon>
-      <hx-file-icon type="mime-archive">gzip</hx-file-icon>
-      <hx-file-icon type="mime-audio">mp3</hx-file-icon>
-      <hx-file-icon type="mime-code">html</hx-file-icon>
-      <hx-file-icon type="mime-data">json</hx-file-icon>
-      <hx-file-icon type="mime-image">tiff</hx-file-icon>
-      <hx-file-icon type="mime-system">exe</hx-file-icon>
-      <hx-file-icon type="mime-text">docx</hx-file-icon>
-      <hx-file-icon type="mime-video">mpeg</hx-file-icon>
-      <hx-file-icon type="paperclip">bzip2</hx-file-icon>
-    {% endcode %}
   </section>
 
-  <section id="vue-iconDemo">
-    <h2 id="available-icons">Icons</h2>
+  <section>
+    <h2 id="available-icons">Available Icons</h2>
     <p>
       <a href="downloads/helix-ui-{{VERSION}}-icons.tgz">
         <hx-icon type="download"></hx-icon>
         Download All Icons (SVG)
       </a>
     </p>
-    <div v-cloak>
+    <div id="vue-availableIcons" v-cloak>
       <div class="hxRow">
         <div class="hxCol hxSpan-12-xs hxSpan-6-md hxSpan-4-xl">
           <p>
