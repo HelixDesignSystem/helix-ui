@@ -43,6 +43,16 @@ export function $x(
     return driver.findElement(By.xpath(xpath));
 }
 
+export async function getElementsText(
+    elements: WebElement[]
+) {
+    const getTextPromises = await new Promise(resolve => {
+        resolve(elements.map(e => e.getText()));
+    }) as Promise<string>[];
+
+    return Promise.all(getTextPromises);
+}
+
 /* A "starter page object" until there's a greater need for something more robust.
  * For now this only contains common CSS selectors used throughout tests in the
  * visreg directory, but may also contain functions in the future.
@@ -53,5 +63,6 @@ export var selectors = {
     nav: "#stage > #nav",
     components: "#stage",
     tab: "//hx-tablist/hx-tab",
-    visreg: "*[data-visreg]"
+    domDiff: "*[data-dom-diff]",
 }
+

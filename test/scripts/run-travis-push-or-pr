@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -e
+
+if [ "$TRAVIS_BRANCH" == "master" ]; then
+    # this is a "pr" job for travis-ci, run the full test suite, one browser at a time
+    if [ "$#" -eq "0" ]; then
+        echo "Testing Chrome"
+        npm run test:regression -- --browsers=chrome
+
+        echo "Testing Firefox"
+        npm run test:regression -- --browsers=ff
+    else
+        npm run test:regression -- "$@"
+    fi
+else
+    # this is a "push" job for travis-ci, keep it short and sweet
+    cd ..
+    # npm run lint
+    npm run apidocs
+    npm run generate
+    npm run rollup
+    cd -
+    npm run build
+    npm run lint
+fi

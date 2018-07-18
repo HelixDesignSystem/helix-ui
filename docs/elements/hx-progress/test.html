@@ -5,63 +5,63 @@ title: Testing <hx-progress>
 {% block content %}
   <section>
     <h2>No Attributes</h2>
-    <div data-visreg="hxProgress-no-attrs">
+    <div data-dom-diff="hxProgress-no-attrs">
       <hx-progress></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Written DOM with children</h2>
-    <div data-visreg="hxProgress-written-dom-children">
+    <div data-dom-diff="hxProgress-written-dom-children">
       <hx-progress>Hello!</hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = "foobar" (String type)</h2>
-    <div data-visreg="hxProgress-text-value">
+    <div data-dom-diff="hxProgress-text-value">
       <hx-progress value="foobar"></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = 12.5 (Float type)</h2>
-    <div data-visreg="hxProgress-float-value">
+    <div data-dom-diff="hxProgress-float-value">
       <hx-progress value="12.5"></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = 0 (min value)</h2>
-    <div data-visreg="hxProgress-min-value">
+    <div data-dom-diff="hxProgress-min-value">
       <hx-progress value="0"></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = 42 (middle value)</h2>
-    <div data-visreg="hxProgress-mid-value">
+    <div data-dom-diff="hxProgress-mid-value">
       <hx-progress value="42"></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = 100 (max value)</h2>
-    <div data-visreg="hxProgress-max-value">
+    <div data-dom-diff="hxProgress-max-value">
       <hx-progress value="100"></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = 9000 (over max)</h2>
-    <div data-visreg="hxProgress-over-max">
+    <div data-dom-diff="hxProgress-over-max">
       <hx-progress value="9000"></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = -25 (under min)</h2>
-    <div data-visreg="hxProgress-under-min">
+    <div data-dom-diff="hxProgress-under-min">
       <hx-progress value="-25"></hx-progress>
     </div>
   </section>

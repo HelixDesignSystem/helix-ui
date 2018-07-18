@@ -35,5 +35,4 @@ export default async (
     t.is(await tab.getText(), tabName);
     await cycleRight(driver);
     t.is(await tab.getText(), tabName);
-    await snappit.snap(`{browserName}/tabs/${tabName}`, snappit.$(util.selectors.visreg));
 }

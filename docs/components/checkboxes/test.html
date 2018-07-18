@@ -11,7 +11,7 @@ title: Testing - Checkboxes
     </nav>
   </section>
 
-  <section data-visreg="checkbox-states">
+  <section>
     <h2>Checkbox States</h2>
     <table class="hxTable">
       <thead>
@@ -26,24 +26,48 @@ title: Testing - Checkboxes
       <tbody>
         <tr>
           <td>Default</td>
-          <td><hx-checkbox></hx-checkbox></td>
-          <td><hx-checkbox checked></hx-checkbox></td>
-          <td><hx-checkbox indeterminate></hx-checkbox></td>
-          <td><hx-checkbox checked indeterminate></hx-checkbox></td>
+          <td data-dom-diff="hxCheckbox-default">
+            <hx-checkbox></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-default-checked">
+            <hx-checkbox checked></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-default-indeterminate">
+            <hx-checkbox indeterminate></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-default-checked-indeterminate">
+            <hx-checkbox checked indeterminate></hx-checkbox>
+          </td>
         </tr>
         <tr>
           <td>Invalid</td>
-          <td><hx-checkbox invalid></hx-checkbox></td>
-          <td><hx-checkbox invalid checked></hx-checkbox></td>
-          <td><hx-checkbox invalid indeterminate></hx-checkbox></td>
-          <td><hx-checkbox invalid checked indeterminate></hx-checkbox></td>
+          <td data-dom-diff="hxCheckbox-invalid">
+            <hx-checkbox invalid></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-invalid-checked">
+            <hx-checkbox invalid checked></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-invalid-indeterminate">
+            <hx-checkbox invalid indeterminate></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-invalid-checked-indeterminate">
+            <hx-checkbox invalid checked indeterminate></hx-checkbox>
+          </td>
         </tr>
         <tr>
           <td>Disabled</td>
-          <td><hx-checkbox disabled></hx-checkbox></td>
-          <td><hx-checkbox disabled checked></hx-checkbox></td>
-          <td><hx-checkbox disabled indeterminate></hx-checkbox></td>
-          <td><hx-checkbox disabled checked indeterminate></hx-checkbox></td>
+          <td data-dom-diff="hxCheckbox-disabled">
+            <hx-checkbox disabled></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-disabled-checked">
+            <hx-checkbox disabled checked></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-disabled-indeterminate">
+            <hx-checkbox disabled indeterminate></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-disabled-checked-indeterminate">
+            <hx-checkbox disabled checked indeterminate></hx-checkbox>
+          </td>
         </tr>
       </tbody>
     </table>
