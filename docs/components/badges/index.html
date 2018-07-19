@@ -1,17 +1,17 @@
 ---
 title: Badges
 minver: 0.10.0
+also:
+  guides/react-compatibility/#significant-white-space: Significant White Space (React Compatibility)
+  components/badges/test.html: Testing - Badges
 ---
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <hx-alert static status="note" type="warning">
-      Each badge should have whitespace before the opening tag in your markup.
-      Otherwise, CSS styles may not apply correctly.
-    </hx-alert>
-    <p>
-      Badges are implemented by defining a <code>&lt;span&gt;</code>
-      with the <code>.hxBadge</code> CSS class applied.
+    <p class="comfortable">
+      Badges are inline elements that communicate change to an area of the site.
+      They are implemented by applying the <code>.hxBadge</code> CSS class
+      to a <code>&lt;span&gt;</code> element.
     </p>
   </section>
 

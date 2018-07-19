@@ -264,3 +264,19 @@ dl:not(.hxList) {
     }
   }
 }
+
+iframe[src*="codepen.io"] {
+  border: 2px solid @gray-900;
+  height: 25rem;
+  width: 100%;
+}
+
+hx-icon {
+  &.native-support {
+    color: @green-500;
+  }
+
+  &.polyfill-needed {
+    color: @red-900;
+  }
+}

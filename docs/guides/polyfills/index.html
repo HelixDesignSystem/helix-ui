@@ -1,0 +1,80 @@
+---
+title: Polyfills
+---
+{% extends 'guide.njk' %}
+{% macro nativeTo(api, browser) %}
+  {% if api.missing and not api.missing.includes(browser) %}
+    <hx-icon class="native-support" type="checkmark"></hx-icon>
+  {% else %}
+    <hx-icon class="polyfill-needed" type="times"></hx-icon>
+  {% endif %}
+{% endmacro %}
+{% block content %}
+  <section>
+    <h2 id="included-polyfills">Included Polyfills</h2>
+    <p class="comfortable">
+      The table below lists the polyfilled JavaScript APIs required for HelixUI to
+      function.  Native support for each API is shown in columns corresponding to
+      each of the <a href="guides/faq/#supported-browsers">supported browsers</a>.
+      For browsers that do not have native support, the final column identifies
+      the asset in which the polyfill is provided.
+    </p>
+
+    <table class="hxTable hxTable--condensed">
+      <thead>
+        <tr>
+          <th>JavaScript API</th>
+          <th><i class="fab fa-chrome"></i></th>
+          <th><i class="fab fa-safari"></i></th>
+          <th><i class="fab fa-firefox"></i></th>
+          <th><i class="fab fa-edge"></i></th>
+          <th><i class="fab fa-internet-explorer"></i></th>
+          <th>Polyfilled By</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for _api in data['polyfilled-apis'] %}
+        <tr>
+          <td><a href="https://developer.mozilla.org/en-US/docs/Web/{{ _api.mdn }}">{{ _api.name }}</a></td>
+          <td>{{ nativeTo(_api, 'chrome') }}</td>
+          <td>{{ nativeTo(_api, 'safari') }}</td>
+          <td>{{ nativeTo(_api, 'firefox') }}</td>
+          <td>{{ nativeTo(_api, 'edge') }}</td>
+          <td>{{ nativeTo(_api, 'ie') }}</td>
+          <td><code>{{ _api.polyfill }}</code></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      Native support is checked against the latest release of each browser.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="additional-polyfills">Additional Polyfills</h2>
+    <p>
+      If your application requires polyfills beyond those listed above, they will
+      need to be added separately.
+    </p>
+    <p>
+      Access the following resources to find polyfills.
+    </p>
+    <ul>
+      <li>
+        <a href="https://developer.mozilla.org">MDN documentation</a>
+        may include polyfills for JavaScript and Web APIs.
+      </li>
+      <li>
+        Several packages are available for installation from
+        <a href="https://www.npmjs.com/search?q=polyfills">NPM</a>
+        that provide varying subsets of polyfills.
+      </li>
+      <li>
+        <a href="https://polyfill.io/">Polyfill.io</a> is a free service that
+        provides polyfills based on the User-Agent of the requesting browser.
+      </li>
+    </ul>
+  </section>
+{% endblock %}
