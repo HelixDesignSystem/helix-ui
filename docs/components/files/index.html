@@ -2,14 +2,78 @@
 title: Files
 minver: 0.12.0
 also:
-  components/files/test.html: Testing - Files
+  components/files/test-file-selectors.html: Testing - File Selectors
+  components/files/test-file-tiles.html: Testing - File Tiles
   components/Icons: Icons
+  elements/hx-file-input: <hx-file-input>
   elements/hx-file-tile: <hx-file-tile>
 ---
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="basic-file-tile">Basic File Tile</h2>
+    <h2 id="file-selector">File Selector</h2>
+    <p class="hxSubBody">Added: v0.13.0</p>
+    <div class="example" id="vue-fileInputDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend>Variant</legend>
+            <label v-for="_variant in variants">
+              <input
+                :value="_variant"
+                name="variant"
+                type="radio"
+                v-model="variant"
+              />
+              <span v-text="_variant.label"></span>
+              <em class="hxSubBody" v-if="_variant.default">(default)</em>
+            </label>
+          </fieldset>
+          <p>
+            <label for="inputIcon">Icon</label>
+            <input id="inputIcon" class="hxTextCtrl" v-model="icon" />
+          </p>
+          <p>
+            <label for="inputLabel">Label</label>
+            <input id="inputLabel" class="hxTextCtrl" v-model="label" />
+          </p>
+        </form>
+      </header>
+      <div>
+        <hx-file-input
+          :class="classes"
+          :icon="icon"
+          :label="label">
+          <input type="file" />
+        </hx-file-input>
+      </div>
+      <footer>
+        <template v-if="classes === ''">
+          {% code 'html' %}{% raw %}
+            <hx-file-input
+              icon="{{icon}}"
+              label="{{label}}">
+              <input type="file" />
+            </hx-file-input>{% endraw %}
+          {% endcode %}
+        </template>
+        <template v-else>
+          {% code 'html' %}{% raw %}
+            <hx-file-input 
+              class="{{classes}}"
+              icon="{{icon}}"
+              label="{{label}}">
+              <input type="file" />
+            </hx-file-input>{% endraw %}
+          {% endcode %}
+        </template>
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="file-tile">File Tile</h2>
+    <p class="hxSubBody">Added: v0.12.0</p>
     <div class="example" id="vue-fileTileDemo" v-cloak>
       <header>
         <form class="beta-hxForm">

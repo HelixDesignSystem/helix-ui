@@ -1,0 +1,46 @@
+@import './HXElement';
+@import 'elements/hx-icon';
+@import (reference) "components/buttons";
+
+:host {
+  #hxContent {
+    /* 
+      Needed to prevent focusing of native file inputs. 
+      Especially true for Microsoft browsers, because 
+      Edge and IE have double tab stops.
+    */
+    display: none;
+  }
+
+  #hxButton {
+    #Button.reset();
+    #Button.basic();
+    #Button.secondary();
+    #Button.medium();
+    width: 100%;
+  }
+
+  #hxIcon {
+    margin: 0;
+  }
+
+  #hxLabel {
+    margin-left: 0.5rem;
+
+    &:empty {
+      display: none;
+    }
+  }
+}
+
+:host(.hxPrimary) {
+  #hxButton {
+    #Button.primary();
+  }
+}
+
+:host(.hxTertiary) {
+  #hxButton {
+    #Button.tertiary();
+  }
+}
