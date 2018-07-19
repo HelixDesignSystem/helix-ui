@@ -35,8 +35,11 @@ also:
       <header>
         <form class="beta-hxForm">
           <p>
-            <label for="txtType">Type</label>
-            <input id="txtType" class="hxTextCtrl" v-model="type" />
+            <label for="selType">Type</label>
+            <select id="selType" v-model="type">
+              <option v-for="_type in types" :value="_type" v-text="_type">
+              </option>
+            </select>
           </p>
           <p>
             <label for="txtExt">File Extension</label>

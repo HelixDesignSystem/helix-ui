@@ -29,44 +29,41 @@ also:
               <em class="hxSubBody" v-if="_variant.default">(default)</em>
             </label>
           </fieldset>
-          <p>
-            <label for="inputIcon">Icon</label>
-            <input id="inputIcon" class="hxTextCtrl" v-model="icon" />
-          </p>
+          <fieldset>
+            <legend>Icon</legend>
+            <label v-for="_icon in icons">
+              <input
+                :value="_icon"
+                name="icon"
+                type="radio"
+                v-model="icon"
+              />
+              <span v-text="_icon"></span>
+            </label>
+          </fieldset>
           <p>
             <label for="inputLabel">Label</label>
             <input id="inputLabel" class="hxTextCtrl" v-model="label" />
           </p>
+          <fieldset>
+            <legend>Options</legend>
+            <label>
+              <input type="checkbox" v-model="isMultiple">
+              Multiple
+            </label>
+          </fieldset>
         </form>
       </header>
       <div>
         <hx-file-input
-          :class="classes"
+          :class="variant.val"
           :icon="icon"
           :label="label">
-          <input type="file" />
+          <input type="file" :multiple="isMultiple" />
         </hx-file-input>
       </div>
       <footer>
-        <template v-if="classes === ''">
-          {% code 'html' %}{% raw %}
-            <hx-file-input
-              icon="{{icon}}"
-              label="{{label}}">
-              <input type="file" />
-            </hx-file-input>{% endraw %}
-          {% endcode %}
-        </template>
-        <template v-else>
-          {% code 'html' %}{% raw %}
-            <hx-file-input 
-              class="{{classes}}"
-              icon="{{icon}}"
-              label="{{label}}">
-              <input type="file" />
-            </hx-file-input>{% endraw %}
-          {% endcode %}
-        </template>
+        <pre><code v-text="snippet"></code></pre>
       </footer>
     </div>
   </section>
@@ -93,8 +90,11 @@ also:
             </label>
           </fieldset>
           <p>
-            <label for="txtIcon">Icon</label>
-            <input id="txtIcon" class="hxTextCtrl" v-model="icon" />
+            <label for="selIcon">Icon</label>
+            <select id="selIcon" v-model="icon">
+              <option v-for="_icon in icons" :value="_icon" v-text="_icon">
+              </option>
+            </select>
           </p>
           <p>
             <label for="txtName">Name</label>
