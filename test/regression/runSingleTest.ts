@@ -6,7 +6,8 @@ import * as util from "../common/util";
 export async function regressionTest(browser: string, component: string) {
     
     const config: IConfig = {
-        browser: browser
+        browser: browser,
+        headless: browser === 'firefox' && !process.env.CI
     };
 
     test(`${browser} -- ${component}`, async t => {
