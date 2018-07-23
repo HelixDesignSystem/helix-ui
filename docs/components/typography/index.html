@@ -33,7 +33,7 @@ also:
 
   <section><!-- Headings -->
     <h2 id="headers">Headings</h2>
-    <div class="example">
+    <div class="example side-by-side">
       <div>
         <h1>Heading One</h1>
         <h2>Heading Two</h2>
@@ -41,7 +41,19 @@ also:
         <h4>Heading Four</h4>
         <h5>Heading Five</h5>
       </div>
+      <footer>
+        {% code 'html' %}
+          <h1>Heading One</h1>
+          <h2>Heading Two</h2>
+          <h3>Heading Three</h3>
+          <h4>Heading Four</h4>
+          <h5>Heading Five</h5>
+        {% endcode %}
+      </footer>
     </div>
+
+    <br />
+
     <p>
       CSS class overrides are available if semantic elements
       don't match up with expected visual style.
@@ -90,17 +102,19 @@ also:
       Add the <code>.hxSubdued</code> CSS class to any element to apply a
       muted appearance.
     </p>
-    <div class="example">
+    <div class="example side-by-side">
       <div>
-        <div class="hxSubdued">Subdued DIV</div>
-        <p class="hxSubdued">Subdued P</p>
-        <span class="hxSubdued">Subdued SPAN</span>
+        <div class="hxSubdued">div.hxSubdued</div>
+        <p class="hxSubdued">p.hxSubdued</p>
+        <span class="hxSubdued">span.hxSubdued</span>
       </div>
       <footer>
         {% code 'html' %}
-          <div class="hxSubdued">Subdued DIV</div>
-          <p class="hxSubdued">Subdued P</div>
-          <span class="hxSubdued">Subdued SPAN</span>
+          <div class="hxSubdued">div.hxSubdued</div>
+
+          <p class="hxSubdued">p.hxSubdued</p>
+
+          <span class="hxSubdued">span.hxSubdued</span>
         {% endcode %}
       </footer>
     </div>
@@ -109,26 +123,43 @@ also:
   <section><!-- Caption -->
     <h2 id="caption">Caption</h2>
     <p>
-      Use the <code>&lt;caption&gt;</code> element, <code>&lt;figcaption&gt;</code>
-      element or add the <code>.hxCaption</code> CSS class to flow content to apply
-      the "caption" style.
+      Apply the Helix "caption" style with any of the following configurations:
     </p>
-    <div class="example">
+    <ul>
+      <li>
+        A <code>&lt;caption&gt;</code> element within a
+        <a href="components/tables">Table</a>
+      </li>
+      <li>
+        A <code>&lt;figcaption&gt;</code> element within a
+        <code>&lt;figure&gt;</code>
+      </li>
+      <li>
+        Add the <code>.hxCaption</code> CSS class to any element
+      </li>
+    </ul>
+    <div class="example side-by-side">
       <div>
-        <p class="hxCaption">Caption</p>
+        <figure>
+          <figcaption>figcaption</figcaption>
+        </figure>
+        <table class="hxTable">
+          <caption>table.hxTable caption</caption>
+        </table>
+        <p class="hxCaption">p.hxCaption</p>
       </div>
 
       <footer>
         {% code 'html' %}
           <figure>
-            <figcaption>Caption</figcaption>
+            <figcaption>figure figcaption</figcaption>
           </figure>
-          <!-- or -->
-          <table>
-            <caption>Caption</caption>
+
+          <table class="hxTable">
+            <caption>table.hxTable caption</caption>
           </table>
-          <!-- or -->
-          <p class="hxCaption">Caption</p>
+
+          <p class="hxCaption">p.hxCaption</p>
         {% endcode %}
       </footer>
     </div>
@@ -137,20 +168,23 @@ also:
   <section><!-- Sub-Body -->
     <h2 id="sub-body">Sub-Body</h2>
     <p>
-      Use the <code>&lt;small&gt;</code> element or add the
-      <code>.hxSubBody</code> CSS class to flow content to apply the
-      "sub-body" style.
+      Apply the "sub-body" style with any of the following:
     </p>
-    <div class="example">
+    <ul>
+      <li>A <code>&lt;small&gt;</code> element</li>
+      <li>Add the <code>.hxSubBody</code> CSS class to any element</li>
+    </ul>
+    <div class="example side-by-side">
       <div>
-        <p class="hxSubBody">Sub-Body</p>
+        <small>small</small>
+        <p class="hxSubBody">p.hxSubbody</p>
       </div>
 
       <footer>
         {% code 'html' %}
-          <small>Sub-Body</small>
-          <!-- or -->
-          <p class="hxSubBody">Sub-Body</p>
+          <small>small</small>
+
+          <p class="hxSubBody">p.hxSubbody</p>
         {% endcode %}
       </footer>
     </div>
@@ -193,7 +227,7 @@ also:
       Use the <code>&lt;code&gt;</code> element to differentiate descriptive
       text from code snippets.
     </p>
-    <div class="example">
+    <div class="example side-by-side">
       <div>
         <p>
           Add an event listener with the <code>EventTarget.addEventListener()</code> function.
@@ -203,7 +237,8 @@ also:
       <footer>
         {% code 'html' %}
           <p>
-            Add an event listener with the <code>EventTarget.addEventListener()</code> function.
+            Add an event listener with the
+            <code>EventTarget.addEventListener()</code> function.
           </p>
         {% endcode %}
       </footer>
@@ -216,7 +251,7 @@ also:
       Use the <code>&lt;kbd&gt;</code> element to differentiate descriptive text
       from instructional key presses.
     </p>
-    <div class="example">
+    <div class="example side-by-side">
       <div>
         <p>
           Press <kbd>Ctrl+Z</kbd> (<kbd>Command+Z</kbd> on Mac)
@@ -237,7 +272,7 @@ also:
 
   <section><!-- Code Block -->
     <h2 id="code-block">Code Block</h2>
-    <div class="example">
+    <div class="example side-by-side">
       <div class="demo">
         <pre><code>[Insert Code Here]</code></pre>
       </div>
@@ -255,16 +290,14 @@ also:
     <p>
       <small>Added: v0.4.0</small>
     </p>
-    <div class="example">
+    <div class="example side-by-side">
       <div>
         <hx-error>Error message goes here</hx-error>
       </div>
 
       <footer>
         {% code 'html' %}
-          <hx-error>
-            Error message goes here
-          </hx-error>
+          <hx-error>Error message goes here</hx-error>
         {% endcode %}
       </footer>
     </div>
