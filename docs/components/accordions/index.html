@@ -13,7 +13,7 @@ also:
       A basic accordion will allow a user to expand and collapse
       as many panels as desired.
     </p>
-    <div class="example">
+    <div class="example side-by-side">
       <div>
         <hx-accordion>
           <hx-accordion-panel open>
@@ -57,11 +57,23 @@ also:
             <hx-accordion-panel open>
               <header slot="header">Cupcake Ipsum</header>
               <div class="hxBox-md">
-                <!-- body content goes here -->
+                <p>...</p>
               </div>
             </hx-accordion-panel>
-            <hx-accordion-panel>...</hx-accordion-panel>
-            <hx-accordion-panel open>...</hx-accordion-panel>
+
+            <hx-accordion-panel>
+              <header slot="header">Biscuit Marshmallow</header>
+              <div class="hxBox-md">
+                <p>...</p>
+              </div>
+            </hx-accordion-panel>
+
+            <hx-accordion-panel open>
+              <header slot="header">Caramels Marzipan</header>
+              <div class="hxBox-md">
+                <p>...</p>
+              </div>
+            </hx-accordion-panel>
           </hx-accordion>
         {% endcode %}
       </footer>
