@@ -7,7 +7,7 @@ import './components/box/box-demo';
 import './components/buttons/button-demo';
 import './components/checkboxes/checkbox-demo';
 import './components/choice-tiles/choice-tile-demo';
-import './components/file-tiles/file-tile-demo';
+import './components/files/file-tile-demo';
 import './components/icons/icon-demo';
 import './components/lists/list-demo';
 import './components/loaders/loader-demo';

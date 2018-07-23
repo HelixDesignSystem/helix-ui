@@ -1,6 +1,8 @@
 ---
-title: File Tiles
+title: Files
+minver: 0.12.0
 also:
+  components/files/test.html: Testing - Files
   components/Icons: Icons
   elements/hx-file-tile: <hx-file-tile>
 ---
@@ -14,8 +16,8 @@ also:
           <fieldset>
             <legend>States</legend>
             <label>
-              <input type="radio" value="default" name="file-state" v-model="state" />
-              Default
+              <input type="radio" value="downloadable" name="file-state" v-model="state" />
+              Downloadable
             </label>
             <label>
               <input type="radio" value="loading" name="file-state" v-model="state" />
@@ -34,43 +36,42 @@ also:
             <label for="txtName">Name</label>
             <input id="txtName" class="hxTextCtrl" v-model="name" />
           </p>
-          <template v-if="isDefault">
+          <template v-if="isDownloadable">
             <p>
-              <label for="txtHref">href</label>
+              <label for="txtHref">HREF</label>
               <input id="txtHref" class="hxTextCtrl" v-model="href" />
             </p>
             <p>
-              <label for="txtContent">Content</label>
-              <input id="txtContent" class="hxTextCtrl" v-model="content" />
+              <label for="txtDetails">Details</label>
+              <input id="txtDetails" class="hxTextCtrl" v-model="details" />
             </p>
           </template>
           <p v-if="isLoading">
             <label for="rngProgress">Progress</label>
-            <input id="rngProgress" type="range" v-model="progressValue"/>
+            <input id="rngProgress" type="range" v-model="progress"/>
           </p>
         </form>
       </header>
 
-      <template v-if="isDefault">
+      <template v-if="isDownloadable">
         <div>
           <hx-file-tile
+            :details="details"
             :href="href"
             :icon="icon"
             :name="name"
             @cancel="onEvent"
             @delete="onEvent"
-          >
-            <span class="hxSubdued" v-text="content"></span>
-          </hx-file-tile>
+          ></hx-file-tile>
         </div>
 
         <footer>
           {% code 'html' %}{% raw %}
             <hx-file-tile
+              details="{{details}}"
               href="{{href}}"
               icon="{{icon}}"
               name="{{name}}">
-              <span class="hxSubdued">{{content}}</span>
             </hx-file-tile>{% endraw %}
           {% endcode %}
         </footer>
@@ -81,21 +82,17 @@ also:
           <hx-file-tile
             :icon="icon"
             :name="name"
+            :progress="progress"
             @cancel="onEvent"
-            @delete="onEvent"
-            loading
-          >
-            <hx-progress :value="progressValue"></hx-progress>
-          </hx-file-tile>
+          ></hx-file-tile>
         </div>
 
         <footer>
           {% code 'html' %}{% raw %}
             <hx-file-tile
               icon="{{icon}}"
-              loading
-              name="{{name}}">
-              <hx-progress value="{{progressValue}}"></hx-progress>
+              name="{{name}}"
+              progress="{{progress}}">
             </hx-file-tile>{% endraw %}
           {% endcode %}
         </footer>
@@ -107,14 +104,9 @@ also:
             :icon="icon"
             :name="name"
             @cancel="onEvent"
-            @delete="onEvent"
+            @retry="onEvent"
             invalid
-          >
-            <button class="hxBtn hxSm hxLink">
-              Retry
-              <hx-icon type="redo"></hx-icon>
-            </button>
-          </hx-file-tile>
+          ></hx-file-tile>
         </div>
 
         <footer>
@@ -123,10 +115,6 @@ also:
               icon="{{icon}}"
               invalid
               name="{{name}}">
-              <button class="hxBtn hxSm hxLink">
-                Retry
-                <hx-icon type="redo"></hx-icon>
-              </button>
             </hx-file-tile>{% endraw %}
           {% endcode %}
         </footer>
@@ -134,4 +122,3 @@ also:
     </div>
   </section>
 {% endblock %}
-

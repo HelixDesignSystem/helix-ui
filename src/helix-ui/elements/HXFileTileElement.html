@@ -1,13 +1,33 @@
 <div id="hxFileTile">
-  <div>
-    <hx-file-icon id="hxIcon">
-      <span id="hxExt"></span>
-    </hx-file-icon>
-  </div>
-  <div id="hxContent">
-    <a id="hxLink"></a>
-    <slot></slot>
-  </div>
+  <a id="hxLink">
+    <div id="hxIconWrapper">
+      <hx-file-icon id="hxIcon">
+        <span id="hxExt"></span>
+      </hx-file-icon>
+
+      <hx-icon type="download"></hx-icon>
+    </div>
+
+    <div id="hxContentWrapper">
+      <div id="hxName"></div>
+
+      <div id="hxState--downloadable">
+        <div id="hxDetails"></div>
+      </div>
+
+      <div id="hxState--loading">
+        <hx-progress id="hxProgress"></hx-progress>
+      </div>
+
+      <div id="hxState--invalid">
+        <button id="hxRetry" type="button">
+          Retry
+          <hx-icon type="redo"></hx-icon>
+        </button>
+      </div>
+    </div>
+  </a>
+
   <button id="hxDismiss" type="button">
     <hx-icon type="times"></hx-icon>
   </button>
