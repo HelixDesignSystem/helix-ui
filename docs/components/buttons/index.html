@@ -22,8 +22,8 @@ also:
       CSS class to any of the following elements:
     </p>
     <ul>
-      <li><code>&lt;a&gt;</code></li>
       <li><code>&lt;button&gt;</code></li>
+      <li><code>&lt;a href="..."&gt;</code></li>
       <li><code>&lt;input type="button"&gt;</code></li>
       <li><code>&lt;input type="reset"&gt;</code></li>
       <li><code>&lt;input type="submit"&gt;</code></li>
@@ -62,7 +62,6 @@ also:
 
       <div>
         <button :class="classes" type="button">Button</button>
-        <a :class="classes">Anchor</a>
         <a href="#" :class="classes">Link</a>
         <input type="button" :class="classes" value="Input" @click.prevent />
         <input type="submit" :class="classes" value="Submit" @click.prevent />
@@ -72,7 +71,6 @@ also:
       <footer>
         {% code 'html' %}{% raw %}
           <button class="{{classes}}">Button</button>
-          <a class="{{classes}}">Anchor</a>
           <a href="#" class="{{classes}}">Link</a>
           <input type="button" class="{{classes}}" value="Input" />
           <input type="submit" class="{{classes}}" value="Submit" />
