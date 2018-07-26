@@ -9,7 +9,7 @@
     "v1"
   ],
   "main": "dist/scripts/helix-ui.js",
-  "module": "dist/scripts/helix-ui.es.js",
+  "module": "dist/scripts/helix-ui.mjs",
   "files": [
     "dist/"
   ],
