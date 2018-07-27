@@ -26,6 +26,7 @@
     "clean-css": "^4.1.9",
     "eslint": "4.x",
     "eslint-loader": "2.x",
+    "express": "^4.16.3",
     "front-matter": "^2.2.0",
     "fs-extra": "6.x",
     "gh-pages": "^1.0.0",
@@ -67,6 +68,8 @@
     "postversion": "git push origin --tags",
     "prepublishOnly": "yarn compile",
     "rollup": "rollup -c rollup.config.js",
+    "preserve": "yarn clean:public && yarn generate",
+    "serve": "bin/serve.js",
     "prestart": "yarn clean:public && yarn generate",
     "start": "bin/start.js",
     "test": "cd test; yarn test"
