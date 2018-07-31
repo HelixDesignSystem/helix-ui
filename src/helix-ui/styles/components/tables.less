@@ -1,3 +1,5 @@
+@import (reference) "components/typography";
+
 // ===== States =====
 @state-selected-bg: @cyan-50;
 
@@ -20,6 +22,10 @@
 
 .hxTable {
   margin: 1.5rem 0;
+
+  caption {
+    &:extend(.hxCaption);
+  }
 
   thead {
     border-color: transparent;

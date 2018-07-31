@@ -41,7 +41,19 @@ also:
         <h4>Heading Four</h4>
         <h5>Heading Five</h5>
       </div>
+      <footer>
+        {% code 'html' %}
+          <h1>Heading One</h1>
+          <h2>Heading Two</h2>
+          <h3>Heading Three</h3>
+          <h4>Heading Four</h4>
+          <h5>Heading Five</h5>
+        {% endcode %}
+      </footer>
     </div>
+
+    <br />
+
     <p>
       CSS class overrides are available if semantic elements
       don't match up with expected visual style.
@@ -92,15 +104,18 @@ also:
     </p>
     <div class="example">
       <div>
-        <div class="hxSubdued">Subdued DIV</div>
-        <p class="hxSubdued">Subdued P</p>
-        <span class="hxSubdued">Subdued SPAN</span>
+        <div class="hxSubdued">div.hxSubdued</div>
+        <p class="hxSubdued">p.hxSubdued</p>
+        <span class="hxSubdued">span.hxSubdued</span>
       </div>
+
       <footer>
         {% code 'html' %}
-          <div class="hxSubdued">Subdued DIV</div>
-          <p class="hxSubdued">Subdued P</div>
-          <span class="hxSubdued">Subdued SPAN</span>
+          <div class="hxSubdued">div.hxSubdued</div>
+
+          <p class="hxSubdued">p.hxSubdued</p>
+
+          <span class="hxSubdued">span.hxSubdued</span>
         {% endcode %}
       </footer>
     </div>
@@ -109,26 +124,43 @@ also:
   <section><!-- Caption -->
     <h2 id="caption">Caption</h2>
     <p>
-      Use the <code>&lt;caption&gt;</code> element, <code>&lt;figcaption&gt;</code>
-      element or add the <code>.hxCaption</code> CSS class to flow content to apply
-      the "caption" style.
+      Apply the Helix "caption" style with any of the following configurations:
     </p>
+    <ul>
+      <li>
+        A <code>&lt;caption&gt;</code> element within a
+        <a href="components/tables">Table</a>
+      </li>
+      <li>
+        A <code>&lt;figcaption&gt;</code> element within a
+        <code>&lt;figure class="hxFigure"&gt;</code>
+      </li>
+      <li>
+        Add the <code>.hxCaption</code> CSS class to any element
+      </li>
+    </ul>
     <div class="example">
       <div>
-        <p class="hxCaption">Caption</p>
+        <figure class="hxFigure">
+          <figcaption>figure.hxFigure figcaption</figcaption>
+        </figure>
+        <table class="hxTable">
+          <caption>table.hxTable caption</caption>
+        </table>
+        <p class="hxCaption">p.hxCaption</p>
       </div>
 
       <footer>
         {% code 'html' %}
-          <figure>
-            <figcaption>Caption</figcaption>
+          <figure class="hxFigure">
+            <figcaption>figure.hxFigure figcaption</figcaption>
           </figure>
-          <!-- or -->
-          <table>
-            <caption>Caption</caption>
+
+          <table class="hxTable">
+            <caption>table.hxTable caption</caption>
           </table>
-          <!-- or -->
-          <p class="hxCaption">Caption</p>
+
+          <p class="hxCaption">p.hxCaption</p>
         {% endcode %}
       </footer>
     </div>
@@ -137,20 +169,23 @@ also:
   <section><!-- Sub-Body -->
     <h2 id="sub-body">Sub-Body</h2>
     <p>
-      Use the <code>&lt;small&gt;</code> element or add the
-      <code>.hxSubBody</code> CSS class to flow content to apply the
-      "sub-body" style.
+      Apply the "sub-body" style with any of the following:
     </p>
+    <ul>
+      <li>A <code>&lt;small&gt;</code> element</li>
+      <li>Add the <code>.hxSubBody</code> CSS class to any element</li>
+    </ul>
     <div class="example">
       <div>
-        <p class="hxSubBody">Sub-Body</p>
+        <small>small</small>
+        <p class="hxSubBody">p.hxSubBody</p>
       </div>
 
       <footer>
         {% code 'html' %}
-          <small>Sub-Body</small>
-          <!-- or -->
-          <p class="hxSubBody">Sub-Body</p>
+          <small>small</small>
+
+          <p class="hxSubBody">p.hxSubBody</p>
         {% endcode %}
       </footer>
     </div>
@@ -262,9 +297,7 @@ also:
 
       <footer>
         {% code 'html' %}
-          <hx-error>
-            Error message goes here
-          </hx-error>
+          <hx-error>Error message goes here</hx-error>
         {% endcode %}
       </footer>
     </div>
@@ -294,7 +327,7 @@ also:
 
       <hx-tabcontent>
         <hx-tabpanel>
-          <figure>
+          <figure class="hxFigure">
             {% code 'html' %}
               <script type="text/javascript" src="path/to/script.js"></script>
               <link rel="stylesheet" href="path/to/style.css" />
@@ -324,7 +357,7 @@ also:
         </hx-tabpanel>
 
         <hx-tabpanel>
-          <figure>
+          <figure class="hxFigure">
             {% code 'javascript' %}
               /**
                * @description Multi-line comment
@@ -356,7 +389,7 @@ also:
         </hx-tabpanel>
 
         <hx-tabpanel>
-          <figure>
+          <figure class="hxFigure">
             {% code 'css' %}
               /* CSS Comment */
               @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,700,700i');
@@ -389,7 +422,7 @@ also:
         </hx-tabpanel>
 
         <hx-tabpanel>
-          <figure>
+          <figure class="hxFigure">
             {% code 'diff' %}
               Index: languages/ini.js
               ===================================================================
@@ -427,7 +460,7 @@ also:
         </hx-tabpanel>
 
         <hx-tabpanel>
-          <figure>
+          <figure class="hxFigure">
             {% code 'bash' %}
               #!/bin/bash
 
@@ -450,7 +483,7 @@ also:
         </hx-tabpanel>
 
         <hx-tabpanel>
-          <figure>
+          <figure class="hxFigure">
             {% code 'ini' %}
               ; boilerplate
               [package]
@@ -470,7 +503,7 @@ also:
         </hx-tabpanel>
 
         <hx-tabpanel>
-          <figure>
+          <figure class="hxFigure">
             {% code 'markdown' %}
               # hello world
 
