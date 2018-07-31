@@ -1,5 +1,5 @@
 import { HXElement } from './HXElement';
-import Icons from '../icons';
+import ICONS from '../icons';
 
 /**
  * Defines behavior for the `<hx-icon>` element.
@@ -13,7 +13,7 @@ export class HXIconElement extends HXElement {
     }
 
     static get icons () {
-        return Icons;
+        return ICONS;
     }
 
     $onCreate (type) {
@@ -31,7 +31,7 @@ export class HXIconElement extends HXElement {
     static get $observedAttributes () {
         return [ 'type' ];
     }
-    
+
     $onAttributeChange (attr) {
         if (attr === 'type') {
             this._render();
@@ -50,10 +50,10 @@ export class HXIconElement extends HXElement {
         // erase previously injected markup
         this.innerHTML = '';
 
-        if (this.type in Icons) {
+        if (this.type in ICONS) {
             // create surrogate DIV to add raw SVG markup
             const tmpDiv = document.createElement('div');
-            tmpDiv.innerHTML = Icons[this.type];
+            tmpDiv.innerHTML = ICONS[this.type];
             // grab SVG from surrogate DIV
             const svg = tmpDiv.firstElementChild;
             // Prevent IE/Edge from adding SVG to focus order
