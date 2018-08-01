@@ -12,6 +12,8 @@
   }
 
   #hxFileTile {
+    background-color: @gray-50;
+    border-radius: 2px;
     border: 2px solid transparent;
     color: @gray-900;
     display: flex;
@@ -36,7 +38,7 @@
     flex-shrink: 0;
     font-size: 1rem;
     line-height: 0;
-    padding: 0.5rem;
+    padding: 0.5rem 0.75rem;
 
     &:hover {
       color: @cyan-500;
@@ -64,7 +66,7 @@
     flex-grow: 1;
     justify-content: center;
     overflow: hidden;
-    padding: 0.5rem;
+    padding: 0.5rem 0 0.5rem 0.5rem;
   }
 
   #hxName {
@@ -118,7 +120,10 @@
   }//#hxLink
 
   #hxState--loading {
-    margin-top: 0.5rem;
+    hx-progress {
+      display: inline-block;
+      width: 100%;
+    }
   }
 
   // hide loading and invalid content by default

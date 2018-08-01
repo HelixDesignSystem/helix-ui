@@ -1,6 +1,7 @@
 /** @module helix-ui */
 import * as elements from './elements';
 import { version as SEMVER } from '../../package.json';
+import ICONS from './icons';
 
 /*
  * Register element definitions with the Custom Element registry.
@@ -59,5 +60,6 @@ VERSION.toString = () => { return SEMVER }; // eslint-disable-line
 export default {
     elements,
     initialize,
+    ICONS,
     VERSION,
 };
