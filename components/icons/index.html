@@ -8,6 +8,20 @@
 
   <link rel="shortcut icon" href="images/favicon.png">
 
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
@@ -60,6 +74,24 @@
   </a>
 
 
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
   </hx-reveal>
 
 
@@ -104,12 +136,6 @@ class="current">
 
 
       
-      <a href="components/busy" >
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -124,6 +150,12 @@ class="current">
       
       <a href="components/choice-tiles" >
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@ class="current">
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@ class="current">
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@ class="current">
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" >
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" >
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -553,79 +543,63 @@ class="current">
     </h1>
 
   <section>
-    <h2 id="konami-code">Konami Code</h2>
-    <div class="demo">
-      <p>
-        <hx-icon type="kbd-arrow-up"></hx-icon>
-        <hx-icon type="kbd-arrow-up"></hx-icon>
-        <hx-icon type="kbd-arrow-down"></hx-icon>
-        <hx-icon type="kbd-arrow-down"></hx-icon>
-        <hx-icon type="kbd-arrow-left"></hx-icon>
-        <hx-icon type="kbd-arrow-right"></hx-icon>
-        <hx-icon type="kbd-arrow-left"></hx-icon>
-        <hx-icon type="kbd-arrow-right"></hx-icon>
-        <kbd>B</kbd>
-        <kbd>A</kbd>
-        <kbd>start</kbd>
-      </p>
+    <h2 id="basic-icon">Basic Icon</h2>
+    <p>
+      Add a styleable SVG icon with the <code>&lt;hx-icon&gt;</code> element.
+    </p>
+    <div class="example">
+      <div>
+        <hx-icon type="bell"></hx-icon>
+      </div>
+
+      <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"bell"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+</code></pre>      </footer>
     </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"kbd-arrow-up"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"kbd-arrow-up"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"kbd-arrow-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"kbd-arrow-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"kbd-arrow-left"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"kbd-arrow-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"kbd-arrow-left"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"kbd-arrow-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">kbd</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-name">kbd</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">kbd</span>&gt;</span>A<span class="hljs-tag">&lt;/<span class="hljs-name">kbd</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">kbd</span>&gt;</span>start<span class="hljs-tag">&lt;/<span class="hljs-name">kbd</span>&gt;</span>
-</code></pre>  </section>
+  </section>
 
   <section>
-    <h2 id="file-icons">File Icons</h2>
+    <h2 id="file-icons">File Icon</h2>
+    <p class="hxSubBody">Added: v0.9.0</p>
     <p>
-      <small>Added: v0.9.0</small>
+      Create a styled "file" with optional icon and extension.
     </p>
-    <div class="demo">
-      <hx-file-icon></hx-file-icon>
-      <hx-file-icon type="paperclip"></hx-file-icon>
-      <hx-file-icon>pem</hx-file-icon>
-      <hx-file-icon type="key">pem</hx-file-icon>
-      <hx-file-icon type="mime-archive">gzip</hx-file-icon>
-      <hx-file-icon type="mime-audio">mp3</hx-file-icon>
-      <hx-file-icon type="mime-code">html</hx-file-icon>
-      <hx-file-icon type="mime-data">json</hx-file-icon>
-      <hx-file-icon type="mime-image">tiff</hx-file-icon>
-      <hx-file-icon type="mime-system">exe</hx-file-icon>
-      <hx-file-icon type="mime-text">docx</hx-file-icon>
-      <hx-file-icon type="mime-video">mpeg</hx-file-icon>
-      <hx-file-icon type="paperclip">bzip2</hx-file-icon>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-file-icon</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-file-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"paperclip"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-file-icon</span>&gt;</span>pem<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-file-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"key"</span>&gt;</span>pem<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-file-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"mime-archive"</span>&gt;</span>gzip<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-file-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"mime-audio"</span>&gt;</span>mp3<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-file-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"mime-code"</span>&gt;</span>html<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-file-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"mime-data"</span>&gt;</span>json<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-file-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"mime-image"</span>&gt;</span>tiff<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-file-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"mime-system"</span>&gt;</span>exe<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-file-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"mime-text"</span>&gt;</span>docx<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-file-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"mime-video"</span>&gt;</span>mpeg<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-icon</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-file-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"paperclip"</span>&gt;</span>bzip2<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-icon</span>&gt;</span>
-</code></pre>  </section>
+    <div class="example" id="vue-fileIconDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <p>
+            <label for="txtType">Type</label>
+            <input id="txtType" class="hxTextCtrl" v-model="type" />
+          </p>
+          <p>
+            <label for="txtExt">File Extension</label>
+            <input id="txtExt" class="hxTextCtrl" v-model="ext" />
+          </p>
+        </form>
+      </header>
 
-  <section id="vue-iconDemo">
-    <h2 id="available-icons">Icons</h2>
+      <div class="demo">
+        <hx-file-icon
+          :type="type"
+          v-text="ext"
+        ></hx-file-icon>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="available-icons">Available Icons</h2>
     <p>
-      <a href="downloads/helix-ui-0.11.0-icons.tgz">
+      <a href="downloads/helix-ui-0.12.0-icons.tgz">
         <hx-icon type="download"></hx-icon>
         Download All Icons (SVG)
       </a>
     </p>
-    <div v-cloak>
+    <div id="vue-availableIcons" v-cloak>
       <div class="hxRow">
         <div class="hxCol hxSpan-12-xs hxSpan-6-md hxSpan-4-xl">
           <p>
@@ -707,13 +681,13 @@ class="current">
     <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#konami-code">Konami Code</a>
+            <a href="#basic-icon">Basic Icon</a>
         
 
-            <a href="#file-icons">File Icons</a>
+            <a href="#file-icons">File Icon</a>
         
 
-            <a href="#available-icons">Icons</a>
+            <a href="#available-icons">Available Icons</a>
         
         <a href="#see-also">See Also</a>
       <hr />
@@ -734,12 +708,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-06-29
+      2018-07-26
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>

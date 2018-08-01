@@ -8,6 +8,20 @@
 
   <link rel="shortcut icon" href="images/favicon.png">
 
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
@@ -60,6 +74,24 @@ class="current">
   </a>
 
 
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
   </hx-reveal>
 
 
@@ -104,12 +136,6 @@ class="current">
 
 
       
-      <a href="components/busy" >
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -124,6 +150,12 @@ class="current">
       
       <a href="components/choice-tiles" >
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@ class="current">
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@ class="current">
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@ class="current">
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" >
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" >
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -553,8 +543,87 @@ class="current">
     </p>
   </section>
 
-  <section><!-- Install from NPM -->
-    <h2 id="install">Step 1: Install HelixUI</h2>
+  <section>
+    <h2 id="step-1">Step 1: Install HelixUI</h2>
+    <hx-tabset class="beta-hxBound">
+      <hx-tablist>
+        <hx-tab>NPM</hx-tab>
+        <hx-tab>Download</hx-tab>
+        <hx-tab>unpkg</hx-tab>
+      </hx-tablist>
+      <hx-tabcontent>
+        <hx-tabpanel class="hxBox-xl">
+          <p>
+            Using <a href="https://npmjs.com">npm</a>:
+          </p>
+<pre><code class="bash">npm install helix-ui
+</code></pre>          <br />
+
+          <p>
+            If you prefer <a href="https://yarnpkg.com/">Yarn</a>, use the following command:
+          </p>
+<pre><code class="bash">yarn add helix-ui
+</code></pre>        </hx-tabpanel>
+        <hx-tabpanel class="hxBox-xl">
+          <p>
+            If HelixUI is not available in your chosen package manager,
+            pre-built assets are available for download.
+          </p>
+          <p>
+            <a href="downloads/helix-ui-0.12.0.tgz" class="hxBtn hxLg hxPrimary">
+              <hx-icon type="download"></hx-icon>
+              Download HelixUI (v0.12.0)
+            </a>
+          </p>
+          <p class="hxSubBody">
+            <em>
+              Assets do not include 3rd party dependencies (e.g.,
+              <a
+                href="https://www.webcomponents.org/polyfills"
+                rel="noopener noreferrer"
+                target="_blank"
+              >web component polyfills</a>
+              ).
+            </em>
+          </p>
+        </hx-tabpanel>
+        <hx-tabpanel class="hxBox-xl">
+          <p>
+            Alternatively, you can load HelixUI directly from
+            <a href="https://unpkg.com">unpkg.com</a> via the following URLs.
+          </p>
+
+          <h3>Development</h3>
+          <ul>
+            <li><code>https://unpkg.com/helix-ui@0.12.0/dist/styles/helix-ui.css</code></li>
+            <li><code>https://unpkg.com/helix-ui@0.12.0/dist/scripts/helix-ui.browser.js</code></li>
+          </ul>
+
+          <h3>Production (minified)</h3>
+          <ul>
+            <li><code>https://unpkg.com/helix-ui@0.12.0/dist/styles/helix-ui.min.css</code></li>
+            <li><code>https://unpkg.com/helix-ui@0.12.0/dist/scripts/helix-ui.browser.min.js</code></li>
+          </ul>
+        </hx-tabpanel>
+      </hx-tabcontent>
+    </hx-tabset>
+  </section>
+
+  <section>
+    <h2 id="step-2">Step 2: Install Polyfills</h2>
+    <p class="comfortable">
+      To ensure that HelixUI has the minimum set of behavior required to function
+      across all supported browsers, the Web Components polyfills must be installed.
+    </p>
+    <ol>
+      <li>
+        Install <code>@webcomponents/webcomponentsjs</code> via one of the methods shown below.
+      </li>
+      <li>
+        Copy or extract the polyfills into your application's target output directory.
+      </li>
+      <li>Proceed to "Step 3: Choose a Layout".</li>
+    </ol>
     <hx-tabset class="beta-hxBound">
       <hx-tablist>
         <hx-tab>NPM</hx-tab>
@@ -565,95 +634,120 @@ class="current">
           <p>
             Using <a href="https://npmjs.com">npm</a>:
           </p>
-          <figure>
-<pre><code class="bash">npm install helix-ui
-</code></pre>          </figure>
+<pre><code class="bash">npm install @webcomponents/webcomponentsjs
+</code></pre>          <br />
 
           <p>
             If you prefer <a href="https://yarnpkg.com/">Yarn</a>, use the following command:
           </p>
-          <figure>
-<pre><code class="bash">yarn add helix-ui
-</code></pre>          </figure>
-        </hx-tabpanel>
+<pre><code class="bash">yarn add @webcomponents/webcomponentsjs
+</code></pre>        </hx-tabpanel>
         <hx-tabpanel class="hxBox-xl">
           <p>
-            If HelixUI is not available in your chosen package manager,
-            pre-built assets are available for download.
-          </p>
-          <p>
-            <a href="downloads/helix-ui-0.11.0.tgz" class="hxBtn hxLg hxPrimary">
-              <hx-icon type="download"></hx-icon>
-              Download HelixUI (v0.11.0)
-            </a>
-          </p>
-          <p class="hxSubBody">
-            <em>
-              Assets do not include 3rd party dependencies (e.g.,
-              <a target="_blank" href="https://www.webcomponents.org/polyfills">web component polyfills</a>).
-            </em>
+            Download and extract one of the archives listed in the
+            <a
+              href="https://github.com/webcomponents/webcomponentsjs/releases"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              webcomponentsjs releases
+              <hx-icon type="external-link"></hx-icon>
+            </a>.
           </p>
         </hx-tabpanel>
       </hx-tabcontent>
     </hx-tabset>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      Visit the <a href="guides/polyfills">Polyfills</a> guide for more details.
+    </p>
   </section>
 
-  <section><!-- Choose a Layout -->
-    <h2 id="choose-layout">Step 2: Choose a Layout</h2>
-    <p>
-      HelixUI provides two layouts to use in your application.
-    </p>
+  <section>
+    <h2 id="step-3">Step 3: Choose a Layout</h2>
     <ol>
       <li>
-        Copy the source code for a layout template into your application.
+        Choose one of the layouts shown below.
       </li>
       <li>
-        Review the copied markup (especially URLs) to fit your application's needs.
+        Download the template into your project folder.
+      </li>
+      <li>
+        Modify the template markup to conform to your application's file structure.
       </li>
     </ol>
-    <div class="beta-hxCardRow">
-      <hx-panel class="beta-hxCard hxOpen">
-        <header>
-          <h3>Vertical Layout</h3>
-        </header>
-        <div>
+    <hx-tabset class="beta-hxBound">
+      <hx-tablist>
+        <hx-tab>Vertical Layout</hx-tab>
+        <hx-tab>Horizontal Layout</hx-tab>
+      </hx-tablist>
+      <hx-tabcontent>
+        <hx-tabpanel class="hxBox-lg">
           <p>
-            Lengthy content can push the footer
-            below the bottom of the viewport.
+            Lengthy content can push the footer below the bottom of the viewport.
           </p>
-        </div>
-        <footer>
-          <a href="components/layouts/vertical-layout-template.html">
-            View the Vertical Template
-          </a>
-        </footer>
-      </hx-panel>
-
-      <hx-panel class="beta-hxCard hxOpen">
-        <header>
-          <h3>Horizontal Layout</h3>
-        </header>
-        <div>
+          <p>
+            <img src="images/thumbs/vertical-layout.png" alt="vertical layout thumbnail" />
+          </p>
+          <p>
+            <a
+              class="hxBtn hxPrimary"
+              download="HelixUI-Vertical-index.html"
+              href="components/layouts/vertical-layout-template.html"
+            >
+              <hx-icon type="download"></hx-icon>
+              Download Template
+            </a>
+            &nbsp;
+            <a
+              href="components/layouts/vertical-layout-template.html"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Preview Layout
+              <hx-icon type="external-link"></hx-icon>
+            </a>
+          </p>
+        </hx-tabpanel>
+        <hx-tabpanel class="hxBox-lg">
           <p>
             Content is arranged horizontally in panels
             while the footer remains visible at all times.
           </p>
-        </div>
-        <footer>
-          <a href="components/layouts/horizontal-layout-template.html">
-            View the Horizontal Template
-          </a>
-        </footer>
-      </hx-panel>
-    </div>
-    <p>
+          <p>
+            <img src="images/thumbs/horizontal-layout.png" alt="vertical layout thumbnail" />
+          </p>
+          <p>
+            <a
+              class="hxBtn hxPrimary"
+              download="HelixUI-Horizontal-index.html"
+              href="components/layouts/horizontal-layout-template.html"
+            >
+              <hx-icon type="download"></hx-icon>
+              Download Template
+            </a>
+            &nbsp;
+            <a
+              href="components/layouts/horizontal-layout-template.html"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Preview Layout
+              <hx-icon type="external-link"></hx-icon>
+            </a>
+          </p>
+        </hx-tabpanel>
+      </hx-tabcontent>
+    </hx-tabset>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
       Visit the <a href="components/layouts">Layouts</a> component
       documentation for more details.
     </p>
   </section>
 
   <section><!-- Create Content -->
-    <h2 id="add-content">Step 3: Add Content</h2>
+    <h2 id="step-4">Step 4: Add Content</h2>
     <p>
       Add content and interactivity to your application using components.
       Documentation for a component contains interactive demos and details
@@ -670,13 +764,16 @@ class="current">
 <h1 class="hxHeading-4">On this page:</h1>
 <nav class="article-toc">
   
-            <a href="#install">Step 1: Install HelixUI</a>
+            <a href="#step-1">Step 1: Install HelixUI</a>
         
 
-            <a href="#choose-layout">Step 2: Choose a Layout</a>
+            <a href="#step-2">Step 2: Install Polyfills</a>
         
 
-            <a href="#add-content">Step 3: Add Content</a>
+            <a href="#step-3">Step 3: Choose a Layout</a>
+        
+
+            <a href="#step-4">Step 4: Add Content</a>
         
   <hr />
   <a class="top-link" href="#top">Back to Top</a>
@@ -696,12 +793,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-06-22
+      2018-08-01
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>

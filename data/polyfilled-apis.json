@@ -1,0 +1,105 @@
+[
+  {
+    "name": "Array.from()",
+    "mdn": "JavaScript/Reference/Global_Objects/Array/from",
+    "missing": [
+      "ie"
+    ],
+    "polyfill": "webcomponentsjs"
+  },
+  {
+    "name": "ChildNode.remove()",
+    "mdn": "API/ChildNode/remove",
+    "missing": [
+      "ie"
+    ],
+    "polyfill": "helix-ui"
+  },
+  {
+    "name": "new CustomEvent()",
+    "mdn": "API/CustomEvent/CustomEvent",
+    "missing": [
+      "ie"
+    ],
+    "polyfill": "webcomponentsjs"
+  },
+  {
+    "name": "Element.attachShadow()",
+    "mdn": "API/Element/attachShadow",
+    "missing": [
+      "firefox",
+      "edge",
+      "ie"
+    ],
+    "polyfill": "webcomponentsjs"
+  },
+  {
+    "name": "Element.closest()",
+    "mdn": "API/Element/closest",
+    "missing": [
+      "ie"
+    ],
+    "polyfill": "helix-ui"
+  },
+  {
+    "name": "Element.shadowRoot",
+    "mdn": "API/Element/shadowRoot",
+    "missing": [
+      "firefox",
+      "edge",
+      "ie"
+    ],
+    "polyfill": "webcomponentsjs"
+  },
+  {
+    "name": "new Event()",
+    "mdn": "API/Event",
+    "missing": [
+      "ie"
+    ],
+    "polyfill": "webcomponentsjs"
+  },
+  {
+    "name": "HTMLTemplateElement",
+    "mdn": "API/HTMLTemplateElement",
+    "missing": [
+      "ie"
+    ],
+    "polyfill": "webcomponentsjs"
+  },
+  {
+    "name": "Node.getRootNode()",
+    "mdn": "API/Node/getRootNode",
+    "missing": [
+      "edge",
+      "ie"
+    ],
+    "polyfill": "webcomponentsjs"
+  },
+  {
+    "name": "Object.assign()",
+    "mdn": "JavaScript/Reference/Global_Objects/Object/assign",
+    "missing": [
+      "ie"
+    ],
+    "polyfill": "webcomponentsjs"
+  },
+  {
+    "name": "Promise",
+    "mdn": "JavaScript/Reference/Global_Objects/Promise",
+    "missing": [
+      "ie"
+    ],
+    "polyfill": "webcomponentsjs"
+  },
+  {
+    "name": "Window.customElements",
+    "mdn": "API/Window/customElements",
+    "missing": [
+      "firefox",
+      "edge",
+      "ie"
+    ],
+    "polyfill": "webcomponentsjs"
+  }
+]

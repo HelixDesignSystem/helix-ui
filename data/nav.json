@@ -6,6 +6,18 @@
       {
         "label": "Getting Started",
         "path": "getting-started"
+      },
+      {
+        "label": "FAQ",
+        "path": "faq"
+      },
+      {
+        "label": "React Compatibility",
+        "path": "react-compatibility"
+      },
+      {
+        "label": "Polyfills",
+        "path": "polyfills"
       }
     ]
   },
@@ -34,10 +46,6 @@
         "path": "breadcrumbs"
       },
       {
-        "label": "Busy",
-        "path": "busy"
-      },
-      {
         "label": "Buttons",
         "path": "buttons"
       },
@@ -48,6 +56,10 @@
       {
         "label": "Choice Tiles",
         "path": "choice-tiles"
+      },
+      {
+        "label": "Files",
+        "path": "files"
       },
       {
         "label": "Grid",
@@ -64,6 +76,10 @@
       {
         "label": "Lists",
         "path": "lists"
+      },
+      {
+        "label": "Loaders",
+        "path": "loaders"
       },
       {
         "label": "Menus",
@@ -94,10 +110,6 @@
         "path": "popovers"
       },
       {
-        "label": "Progress",
-        "path": "progress"
-      },
-      {
         "label": "Reveals",
         "path": "reveals"
       },
@@ -108,10 +120,6 @@
       {
         "label": "Selector Strips",
         "path": "selector-strips"
-      },
-      {
-        "label": "Status Pills",
-        "path": "status-pills"
       },
       {
         "label": "Tables",
@@ -164,24 +172,8 @@
         "path": "hx-checkbox"
       },
       {
-        "label": "<hx-dd>",
-        "path": "hx-dd"
-      },
-      {
-        "label": "<hx-def>",
-        "path": "hx-def"
-      },
-      {
         "label": "<hx-disclosure>",
         "path": "hx-disclosure"
-      },
-      {
-        "label": "<hx-dl>",
-        "path": "hx-dl"
-      },
-      {
-        "label": "<hx-dt>",
-        "path": "hx-dt"
       },
       {
         "label": "<hx-error>",
@@ -190,6 +182,10 @@
       {
         "label": "<hx-file-icon>",
         "path": "hx-file-icon"
+      },
+      {
+        "label": "<hx-file-tile>",
+        "path": "hx-file-tile"
       },
       {
         "label": "<hx-icon>",
@@ -202,10 +198,6 @@
       {
         "label": "<hx-menuitem>",
         "path": "hx-menuitem"
-      },
-      {
-        "label": "<hx-menuitem-group>",
-        "path": "hx-menuitem-group"
       },
       {
         "label": "<hx-modal>",
@@ -302,14 +294,6 @@
       {
         "label": "<hx-tile>",
         "path": "hx-tile"
-      },
-      {
-        "label": "<hx-tile-description>",
-        "path": "hx-tile-description"
-      },
-      {
-        "label": "<hx-tile-title>",
-        "path": "hx-tile-title"
       },
       {
         "label": "<hx-toast>",

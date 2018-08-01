@@ -8,6 +8,20 @@
 
   <link rel="shortcut icon" href="images/favicon.png">
 
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
@@ -60,6 +74,24 @@
   </a>
 
 
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
   </hx-reveal>
 
 
@@ -104,12 +136,6 @@ class="current">
 
 
       
-      <a href="components/busy" >
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -124,6 +150,12 @@ class="current">
       
       <a href="components/choice-tiles" class="current">
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@ class="current">
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@ class="current">
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@ class="current">
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" >
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" >
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -552,73 +542,188 @@ class="current">
 </hx-tooltip>
     </h1>
 
-
-<section>
-  <h2 id="demos">Demos</h2>
-  <div id="vue-choiceDemo" class="hxRow" v-cloak>
-    <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-      <h3>Options</h3>
-      <p>
-        <b>Size:</b><br />
-        <select v-model="size">
-          <option v-for="_size in sizes" :value="_size">
+  <section>
+    <h2 id="basic-choice-tile">Basic Choice Tile</h2>
+    <div class="example" id="vue-choiceDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <p>
+            <label for="selSize">Size</label>
+            <select id="selSize" v-model="size">
+              <option v-for="_size in sizes" :value="_size">
 {{ _size.label }}
-          </option>
-        </select>
-      </p>
-      <p>
-        <b>Description:</b><br />
-        <textarea class="hxTextCtrl" v-model="description"></textarea>
-      </p>
-      <p>
-        <label>
-          <input type="checkbox" v-model="isChecked" />
-          Checked
-        </label><br />
-        <label>
-          <input type="checkbox" v-model="isDisabled" />
-          Disabled
-        </label><br />
-        <label>
-          <input type="checkbox" v-model="isInvalid" />
-          Invalid
-        </label><br />
-        <label>
-          <input type="checkbox" v-model="isSubdued" />
-          Subdued
-        </label>
-      </p>
-    </div>
-    <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-      <h3>Basic Choice Tile</h3>
-      <div class="demo choice-tile-demo">
+              </option>
+            </select>
+          </p>
+          <p>
+            <label for="txtTitle">Title</label>
+            <input id="txtTitle" class="hxTextCtrl" v-model="title" />
+          </p>
+          <p>
+            <label for="txtDescription">Description</label>
+            <textarea id="txtDescription" class="hxTextCtrl" v-model="description"></textarea>
+          </p>
+          <fieldset>
+            <legend>Options</legend>
+            <label>
+              <input type="checkbox" v-model="isChecked" />
+              Checked
+            </label>
+            <label>
+              <input type="checkbox" v-model="isDisabled" />
+              Disabled
+            </label>
+            <label>
+              <input type="checkbox" v-model="isInvalid" />
+              Invalid
+            </label>
+            <label>
+              <input type="checkbox" v-model="isSubdued" />
+              Subdued
+            </label>
+          </fieldset>
+        </form>
+      </header>
+
+      <div class="choice-tile-demo">
         <label class="hxChoice">
           <input type="radio" name="foo"
-            @click="onClick"
             :checked="isChecked"
             :disabled="isDisabled"
-            :invalid="isInvalid" />
+            :invalid="isInvalid"
+            @click="onClick"
+          />
           <hx-tile :class="tileClasses">
             <hx-icon type="checkmark"></hx-icon>
             <div class="hx-tile-icon">
               <hx-icon type="account"></hx-icon>
             </div>
-            <hx-tile-title>Title Here</hx-tile-title>
-            <hx-tile-description v-text="description"></hx-tile-description>
+            <header v-text="title"></header>
+            <p v-text="description"></p>
           </hx-tile>
         </label>
       </div>
-      <pre><code>{{snippet}}</code></pre>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section>
+    <h2 id="option-grid">Option Grid</h2>
+    <div class="example">
+      <div>
+        <form class="beta-hxForm">
+          <fieldset>
+            <div class="hxRow">
+              <label class="hxChoice hxCol hxSpan-4-xs">
+                <input type="radio" name="sample" value="1" checked />
+                <hx-tile>
+                  <hx-icon type="checkmark"></hx-icon>
+                  <div class="hx-tile-icon">
+                    <hx-icon type="server"></hx-icon>
+                  </div>
+                  <header>Servers</header>
+                  <p>Servers description</p>
+                </hx-tile>
+              </label>
+              <label class="hxChoice hxCol hxSpan-4-xs">
+                <input type="radio" name="sample" value="2" />
+                <hx-tile>
+                  <hx-icon type="checkmark"></hx-icon>
+                  <div class="hx-tile-icon">
+                    <hx-icon type="technical-change"></hx-icon>
+                  </div>
+                  <header>Configurations</header>
+                  <p>Configurations description</p>
+                </hx-tile>
+              </label>
+              <label class="hxChoice hxCol hxSpan-4-xs">
+                <input type="radio" name="sample" value="3" />
+                <hx-tile>
+                  <hx-icon type="checkmark"></hx-icon>
+                  <div class="hx-tile-icon">
+                    <hx-icon type="technical-incident"></hx-icon>
+                  </div>
+                  <header>Incidents</header>
+                  <p>Incidents description</p>
+                </hx-tile>
+              </label>
+              <label class="hxChoice hxCol hxSpan-4-xs">
+                <input type="radio" name="sample" value="4" />
+                <hx-tile>
+                  <hx-icon type="checkmark"></hx-icon>
+                  <div class="hx-tile-icon">
+                    <hx-icon type="billing"></hx-icon>
+                  </div>
+                  <header>Billing</header>
+                  <p>Billing description</p>
+                </hx-tile>
+              </label>
+              <label class="hxChoice hxCol hxSpan-4-xs">
+                <input type="radio" name="sample" value="5" />
+                <hx-tile>
+                  <hx-icon type="checkmark"></hx-icon>
+                  <div class="hx-tile-icon">
+                    <hx-icon type="account"></hx-icon>
+                  </div>
+                  <header>Account</header>
+                  <p>Account description</p>
+                </hx-tile>
+              </label>
+              <label class="hxChoice hxCol hxSpan-4-xs">
+                <input type="radio" name="sample" value="6" disabled />
+                <hx-tile>
+                  <hx-icon type="checkmark"></hx-icon>
+                  <div class="hx-tile-icon">
+                    <hx-icon type="minus-circle"></hx-icon>
+                  </div>
+                  <header>Disabled Tile</header>
+                  <p>Disabled Tile description</p>
+                </hx-tile>
+              </label>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+      <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxChoice hxCol hxSpan-4-xs"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">checked</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"sample"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"1"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tile</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tile</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxChoice hxCol hxSpan-4-xs"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"sample"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"2"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tile</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tile</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxChoice hxCol hxSpan-4-xs"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"sample"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"3"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tile</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tile</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxChoice hxCol hxSpan-4-xs"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"sample"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"4"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tile</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tile</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxChoice hxCol hxSpan-4-xs"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"sample"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"5"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tile</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tile</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxChoice hxCol hxSpan-4-xs"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">disabled</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"sample"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"6"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tile</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tile</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>      </footer>
+    </div>
+  </section>
 
 <section>
   <h2 id="see-also">See Also</h2>
   <ul>
+      <li><a href="components/choice-tiles/test.html">Testing - Choice Tiles</a></li>
       <li><a href="elements/hx-tile">&lt;hx-tile&gt;</a></li>
-      <li><a href="elements/hx-tile-title">&lt;hx-tile-title&gt;</a></li>
-      <li><a href="elements/hx-tile-description">&lt;hx-tile-description&gt;</a></li>
   </ul>
 </section>
   </main>
@@ -626,7 +731,10 @@ class="current">
     <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#demos">Demos</a>
+            <a href="#basic-choice-tile">Basic Choice Tile</a>
+        
+
+            <a href="#option-grid">Option Grid</a>
         
         <a href="#see-also">See Also</a>
       <hr />
@@ -647,12 +755,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-04-12
+      2018-07-23
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>

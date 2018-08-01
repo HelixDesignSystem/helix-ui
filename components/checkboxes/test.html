@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>&lt;hx-tile-description&gt; - HelixUI</title>
+  <title>Testing - Checkboxes - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
 
   <link rel="shortcut icon" href="images/favicon.png">
+
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
 
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
@@ -60,6 +74,24 @@
   </a>
 
 
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
   </hx-reveal>
 
 
@@ -68,11 +100,11 @@
 
   <hx-disclosure
     aria-controls="nav-Components"
->
+class="current">
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" >
+  <hx-reveal id="nav-Components" open>
       
       <a href="components/accordions" >
     Accordions
@@ -104,19 +136,13 @@
 
 
       
-      <a href="components/busy" >
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
 
 
       
-      <a href="components/checkboxes" >
+      <a href="components/checkboxes" class="current">
     Checkboxes
   </a>
 
@@ -124,6 +150,12 @@
       
       <a href="components/choice-tiles" >
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -267,11 +293,11 @@
 
   <hx-disclosure
     aria-controls="nav-Custom Elements"
-class="current">
+>
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Custom Elements" open>
+  <hx-reveal id="nav-Custom Elements" >
       
       <a href="elements/hx-accordion" >
     &lt;hx-accordion&gt;
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" >
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" class="current">
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -541,91 +531,79 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox-md">
-    <h1>&lt;hx-tile-description&gt;
-<min-version data-tooltip="page-min-version">
-    v0.4.0+
-</min-version>
-
-<hx-tooltip id="page-min-version" position="right">
-    HelixUI v0.4.0 or later required
-</hx-tooltip>
-    </h1>
+  <main id="content" class="hxBox-lg">
+    <h1>Testing - Checkboxes</h1>
 
   <section>
-    <p>
-      The optional custom <code>&lt;hx-tile-description&gt;</code> element provides a
-      semantic container for the tile's description.
-    </p>
-
-    <hx-dl class="hxBox-md metadata">
-      <hx-def>
-        <hx-dt>Permitted Parents</hx-dt>
-        <hx-dd>
-          an <a href="elements/hx-tile">&lt;hx-tile&gt;</a> element
-        </hx-dd>
-      </hx-def>
-      <hx-def>
-        <hx-dt>Permitted Children</hx-dt>
-        <hx-dd>flow content</hx-dd>
-      </hx-def>
-      <hx-def>
-        <hx-dt>Events</hx-dt>
-        <hx-dd><em>none</em></hx-dd>
-      </hx-def>
-    </hx-dl>
+    <nav class="hxBreadcrumb">
+      <a href="components/checkboxes">Checkboxes</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">Testing - Checkboxes</a>
+    </nav>
   </section>
 
-    
-    <section>
-      <h2 id="attributes">Attributes</h2>
-      <p>
-        Attributes allow you to configure an element in a
-        declarative manner via markup.
-      </p>
-        <p class="hxSubdued">
-          <small>
-            <hx-icon type="info-circle"></hx-icon>
-            This element does not have any configurable attributes.
-          </small>
-        </p>
-    </section>
-
-    
-    <section>
-      <h2 id="properties">Properties</h2>
-      <p>
-        Properties allow you to configure an element in an
-        imperative manner via JavaScript.
-      </p>
-        <p class="hxSubdued">
-          <small>
-            <hx-icon type="info-circle"></hx-icon>
-            This element does not have any configurable properties.
-          </small>
-        </p>
-    </section>
-
-<section>
-  <h2 id="see-also">See Also</h2>
-  <ul>
-      <li><a href="components/choice-tiles">Choice Tiles</a></li>
-      <li><a href="elements/hx-tile">&lt;hx-tile&gt;</a></li>
-      <li><a href="elements/hx-tile-title">&lt;hx-tile-title&gt;</a></li>
-  </ul>
-</section>
+  <section>
+    <h2>Checkbox States</h2>
+    <table class="hxTable">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Unchecked</th>
+          <th>Checked</th>
+          <th>Indeterminate Unchecked</th>
+          <th>Indeterminate Checked</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Default</td>
+          <td data-dom-diff="hxCheckbox-default">
+            <hx-checkbox></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-default-checked">
+            <hx-checkbox checked></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-default-indeterminate">
+            <hx-checkbox indeterminate></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-default-checked-indeterminate">
+            <hx-checkbox checked indeterminate></hx-checkbox>
+          </td>
+        </tr>
+        <tr>
+          <td>Invalid</td>
+          <td data-dom-diff="hxCheckbox-invalid">
+            <hx-checkbox invalid></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-invalid-checked">
+            <hx-checkbox invalid checked></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-invalid-indeterminate">
+            <hx-checkbox invalid indeterminate></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-invalid-checked-indeterminate">
+            <hx-checkbox invalid checked indeterminate></hx-checkbox>
+          </td>
+        </tr>
+        <tr>
+          <td>Disabled</td>
+          <td data-dom-diff="hxCheckbox-disabled">
+            <hx-checkbox disabled></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-disabled-checked">
+            <hx-checkbox disabled checked></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-disabled-indeterminate">
+            <hx-checkbox disabled indeterminate></hx-checkbox>
+          </td>
+          <td data-dom-diff="hxCheckbox-disabled-checked-indeterminate">
+            <hx-checkbox disabled checked indeterminate></hx-checkbox>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
   </main>
-  <aside class="hxSiderail hxBox-md">
-    <h1 class="hxHeading-4">On this page:</h1>
-    <nav class="article-toc">
-      
-      <a href="#attributes">Attributes</a>
-      <a href="#properties">Properties</a>
-        <a href="#see-also">See Also</a>
-      <hr />
-      <a class="top-link" href="#top">Back to Top</a>
-    </nav>
-  </aside>
     </div>
   </div>
 
@@ -640,12 +618,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-05-22
+      2018-07-23
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>

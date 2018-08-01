@@ -1374,7 +1374,7 @@ class HXAccordionPanelElement extends HXElement {
 
 var shadowMarkup$1 = "<div id='hxAlert'><hx-icon id='hxIcon' type='info-circle'></hx-icon><span id='hxContent'><span id='hxStatus'></span><slot></slot></span><button id='hxCta' type='button'></button> <button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-var shadowStyles$1 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxAlert {\n  display: flex;\n}\n#hxAlert button {\n  align-self: flex-start;\n  background-color: transparent;\n  border: 0;\n  cursor: pointer;\n}\n#hxAlert #hxIcon {\n  flex-shrink: 0;\n  margin: 1rem;\n}\n#hxAlert #hxContent {\n  flex-grow: 1;\n  margin-right: 1rem;\n  padding: 1rem 0;\n}\n#hxAlert #hxStatus {\n  font-weight: 500;\n  text-transform: uppercase;\n}\n#hxAlert #hxStatus:after {\n  content: \":\";\n}\n#hxAlert #hxStatus:empty {\n  display: none;\n}\n#hxAlert #hxCta {\n  flex-shrink: 0;\n  font-weight: 500;\n  padding: 1rem 0;\n  text-transform: uppercase;\n  white-space: nowrap;\n}\n#hxAlert #hxCta:empty {\n  display: none;\n}\n#hxAlert #hxDismiss {\n  flex-shrink: 0;\n  height: 3rem;\n  padding: 1rem;\n  width: 3rem;\n}\n:host([static]) #hxAlert #hxDismiss {\n  display: none;\n}\n:host([static]) #hxAlert #hxCta {\n  margin-right: 1rem;\n}\n";
+var shadowStyles$1 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxAlert {\n  display: flex;\n}\n#hxAlert button {\n  align-self: flex-start;\n  background-color: transparent;\n  border: 0;\n  cursor: pointer;\n}\n#hxAlert #hxIcon {\n  flex-shrink: 0;\n  margin: 1rem;\n}\n#hxAlert #hxContent {\n  flex-grow: 1;\n  margin-right: 1rem;\n  padding: 1rem 0;\n}\n#hxAlert #hxStatus {\n  float: left;\n  font-weight: 500;\n  margin-right: 0.25rem;\n  text-transform: uppercase;\n}\n#hxAlert #hxStatus:after {\n  content: \":\";\n}\n#hxAlert #hxStatus:empty {\n  display: none;\n}\n#hxAlert #hxCta {\n  flex-shrink: 0;\n  font-weight: 500;\n  padding: 1rem 0;\n  text-transform: uppercase;\n  white-space: nowrap;\n}\n#hxAlert #hxCta:empty {\n  display: none;\n}\n#hxAlert #hxDismiss {\n  flex-shrink: 0;\n  height: 3rem;\n  padding: 1rem;\n  width: 3rem;\n}\n:host([static]) #hxAlert #hxDismiss {\n  display: none;\n}\n:host([static]) #hxAlert #hxCta {\n  margin-right: 1rem;\n}\n";
 
 const ICONS = {
     'error': 'exclamation-circle',
@@ -1898,7 +1898,7 @@ class HXErrorElement extends HXElement {
     }
 }
 
-var shadowStyles$4 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxFileIcon {\n  opacity: inherit;\n  position: relative;\n}\n#hxFileIcon #hxBase {\n  font-size: 2.5rem;\n  height: 1em;\n}\n#hxFileIcon #hxOverlay {\n  line-height: 1;\n  position: absolute;\n  text-align: center;\n  top: 0.5rem;\n  width: 100%;\n}\n#hxFileIcon #hxIcon {\n  font-size: 1rem;\n  height: 1em;\n}\n#hxFileIcon #hxExt {\n  font-size: 0.5rem;\n  line-height: 1.5;\n  margin-top: 1px;\n  text-transform: uppercase;\n}\n";
+var shadowStyles$4 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxFileIcon {\n  position: relative;\n}\n#hxFileIcon #hxBase {\n  font-size: 2.5rem;\n  height: 1em;\n}\n#hxFileIcon #hxOverlay {\n  line-height: 1;\n  position: absolute;\n  text-align: center;\n  top: 0.5rem;\n  width: 100%;\n}\n#hxFileIcon #hxIcon {\n  font-size: 1rem;\n  height: 1em;\n}\n#hxFileIcon #hxExt {\n  font-size: 0.5rem;\n  line-height: 1.5;\n  margin-top: 1px;\n  text-transform: uppercase;\n}\n";
 
 var shadowMarkup$4 = "<div id='hxFileIcon'><hx-icon type='file' id='hxBase'></hx-icon><div id='hxOverlay'><hx-icon id='hxIcon'></hx-icon><div id='hxExt'><slot></slot></div></div></div>";
 
@@ -1947,10 +1947,47 @@ class HXFileIconElement extends HXElement {
     }
 }
 
-var shadowMarkup$5 = "<div id='hxFileTile'><div><hx-file-icon id='hxIcon'><span id='hxExt'></span></hx-file-icon></div><div id='hxContent'><a id='hxLink'></a><slot></slot></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
+var shadowMarkup$5 = "<div id='hxFileTile'><a id='hxLink'><div id='hxIconWrapper'><hx-file-icon id='hxIcon'><span id='hxExt'></span></hx-file-icon><hx-icon type='download'></hx-icon></div><div id='hxContentWrapper'><div id='hxName'></div><div id='hxState--downloadable'><div id='hxDetails'></div></div><div id='hxState--loading'><hx-progress id='hxProgress'></hx-progress></div><div id='hxState--invalid'><button id='hxRetry' type='button'>Retry<hx-icon type='redo'></hx-icon></button></div></div></a><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-var shadowStyles$5 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\na[href] {\n  background-color: transparent;\n  color: #0d74d1;\n  text-decoration: none;\n}\na[href]:hover,\na[href]:active {\n  color: #3391ff;\n  cursor: pointer;\n  text-decoration: none;\n}\na[href][disabled],\na[href].disabled {\n  color: #616161;\n  pointer-events: none;\n}\n#hxFileTile {\n  display: flex;\n  height: 100%;\n  width: 100%;\n}\n#hxFileTile > * {\n  padding: 0.5rem;\n}\n#hxFileTile #hxContent {\n  flex-grow: 1;\n  flex-shrink: 0;\n  padding: 0.5rem 0;\n}\n#hxFileTile #hxLink {\n  display: block;\n}\n#hxFileTile #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: currentColor;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 1rem;\n  line-height: 0;\n}\n:host([loading]) #hxIcon {\n  opacity: 0.6;\n}\n:host([loading]) #hxLink {\n  color: #9e9e9e;\n}\n";
+var shadowStyles$5 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\na[href] {\n  background-color: transparent;\n  color: #0d74d1;\n  text-decoration: none;\n}\na[href]:hover,\na[href]:active {\n  color: #3391ff;\n  cursor: pointer;\n  text-decoration: none;\n}\na[href][disabled],\na[href].disabled {\n  color: #616161;\n  pointer-events: none;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\nhx-progress {\n  display: block;\n  height: 0.5rem;\n}\nhx-progress {\n  background-color: #d8d8d8;\n  border-radius: 1em;\n  color: #16b9d4;\n  overflow: hidden;\n}\n:host button {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n}\n:host #hxFileTile {\n  background-color: #f5f5f5;\n  border-radius: 2px;\n  border: 2px solid transparent;\n  color: #424242;\n  display: flex;\n  font-size: 0.875rem;\n  height: 100%;\n  width: 100%;\n}\n:host #hxRetry {\n  border-radius: 2px;\n  padding: 0.125rem 0.5rem;\n  background-color: transparent;\n  border: none;\n  color: #0c7c84;\n  padding-left: 0;\n  padding-right: 0;\n}\n:host #hxRetry:focus {\n  outline: none;\n}\n:host #hxRetry[disabled] {\n  cursor: not-allowed;\n}\n:host #hxRetry[disabled]:focus {\n  box-shadow: none;\n}\n:host #hxRetry:hover {\n  background-color: transparent;\n  border-color: transparent;\n  color: #16b9d4;\n}\n:host #hxRetry:active {\n  background-color: transparent;\n  border-color: transparent;\n  color: #0e94a6;\n}\n:host #hxRetry:focus {\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxRetry[disabled] {\n  background-color: transparent;\n  border-color: transparent;\n  color: #d8d8d8;\n}\n:host #hxRetry hx-icon {\n  margin-left: 0.25rem !important;\n}\n:host #hxDismiss {\n  flex-shrink: 0;\n  font-size: 1rem;\n  line-height: 0;\n  padding: 0.5rem 0.75rem;\n}\n:host #hxDismiss:hover {\n  color: #16b9d4;\n}\n:host #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  flex: 0 0 48px;\n  height: 100%;\n  justify-content: center;\n  line-height: 0;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxIconWrapper > hx-icon {\n  display: none;\n  font-size: 2rem;\n}\n:host #hxContentWrapper {\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1;\n  justify-content: center;\n  overflow: hidden;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxName {\n  color: #0c7c84;\n  display: flex;\n  font-weight: 500;\n}\n:host #hxName > span {\n  white-space: pre;\n}\n:host #hxName > span:first-child {\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n:host #hxName > span:last-child {\n  flex-shrink: 0;\n}\n:host #hxDetails {\n  font-weight: 300;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n:host #hxLink {\n  color: #424242;\n  display: flex;\n  flex-grow: 1;\n  overflow: hidden;\n}\n:host #hxLink[href]:hover {\n  color: #16b9d4;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-file-icon {\n  display: none;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-icon {\n  display: inline-block;\n}\n:host #hxLink[href]:hover #hxName {\n  color: inherit;\n}\n:host #hxState--loading hx-progress {\n  display: inline-block;\n  width: 100%;\n}\n:host #hxState--loading,\n:host #hxState--invalid {\n  display: none;\n}\n:host([invalid]) #hxFileTile {\n  border-color: #d32f2f;\n}\n:host([invalid]) #hxIconWrapper,\n:host([invalid]) #hxName {\n  color: #6b6b6b;\n}\n:host([invalid]) #hxState--downloadable {\n  display: none;\n}\n:host([invalid]) #hxState--invalid {\n  display: block;\n}\n:host([progress]) #hxLink {\n  color: #9e9e9e;\n}\n:host([progress]) #hxIconWrapper,\n:host([progress]) #hxName {\n  color: #6b6b6b;\n}\n:host([progress]) #hxState--downloadable {\n  display: none;\n}\n:host([progress]) #hxState--loading {\n  display: block;\n}\n";
 
+// number of characters to avoid truncation at start/end of file name
+const PRE_TRUNC = 14;
+
+/**
+ * Fires when user dismisses element, when loading or invalid
+ *
+ * @event FileTile:cancel
+ * @since 0.12.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when user dismisses element, when downloadable
+ *
+ * @event FileTile:delete
+ * @since 0.12.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when user clicks retry button, when invalid
+ *
+ * @event FileTile:retry
+ * @since 0.12.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for the `<hx-file-tile>` element.
+ *
+ * @emits FileTile:cancel
+ * @emits FileTile:delete
+ * @emits FileTile:retry
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.12.0
+ */
 class HXFileTileElement extends HXElement {
     static get is () {
         return 'hx-file-tile';
@@ -1962,45 +1999,82 @@ class HXFileTileElement extends HXElement {
 
     $onCreate () {
         this._onDismiss = this._onDismiss.bind(this);
+        this._onRetry = this._onRetry.bind(this);
     }
 
     $onConnect () {
+        this.$upgradeProperty('details');
+        this.$upgradeProperty('href');
         this.$upgradeProperty('icon');
         this.$upgradeProperty('name');
-        this.$upgradeProperty('href');
+        this.$upgradeProperty('progress');
+
         this._btnDismiss.addEventListener('click', this._onDismiss);
+        this._btnRetry.addEventListener('click', this._onRetry);
     }
 
     $onDisconnect () {
         this._btnDismiss.removeEventListener('click', this._onDismiss);
+        this._btnRetry.removeEventListener('click', this._onRetry);
     }
 
     static get $observedAttributes () {
         return [
+            'details',
             'href',
             'icon',
             'name',
+            'progress',
         ];
     }
 
     $onAttributeChange (attr, oldVal, newVal) {
         switch (attr) {
+            case 'details':
+                this._elDetails.innerText = newVal;
+                break;
+
+            case 'href':
+                this._attrHrefUpdate(oldVal, newVal);
+                break;
+
             case 'icon':
                 this._elIcon.type = newVal;
                 break;
 
-            case 'href':
-                if (newVal !== null) {
-                    this._elLink.href = newVal;
-                } else {
-                    this._elLink.removeAttribute('href');
-                }
+            case 'name':
+                this._attrNameUpdate(oldVal, newVal);
                 break;
 
-            case 'name':
-                this._elLink.innerText = newVal;
-                this._elExt.innerText = this._extension || '';
+            case 'progress':
+                this._elProgress.value = newVal;
                 break;
+        }
+    }
+
+    /**
+     * https://regex101.com/r/K8XCbn/2
+     * @readonly
+     * @type {String}
+     */
+    get extension () {
+        let re = /(?:\.([^.]+))?$/;
+        return re.exec(this.name)[1] || '';
+    }
+
+    /**
+     * URL to download the file.
+     *
+     * @type {String}
+     */
+    get href () {
+        return this.getAttribute('href');
+    }
+    set href (newVal) {
+        if (newVal === null) {
+            this.removeAttribute('href');
+        } else {
+            this.setAttribute('href', newVal);
         }
     }
 
@@ -2016,39 +2090,63 @@ class HXFileTileElement extends HXElement {
     }
 
     /**
-     * File name
+     * @default false
+     * @readonly
+     * @type {Boolean}
+     */
+    get loading () {
+        return this.hasAttribute('progress');
+    }
+
+    /**
+     * File name to display
      * @type {String}
      */
     get name () {
         return this.getAttribute('name');
     }
     set name (newVal) {
-        this.setAttribute('name', newVal);
+        if (newVal === null) {
+            this.removeAttribute('name');
+        } else {
+            this.setAttribute('name', newVal);
+        }
     }
 
     /**
-     * URL to download the file
-     * @type {String}
+     * load progress of the file
+     *
+     * @type {Integer|Null}
      */
-    get href () {
-        return this.getAttribute('href');
+    get progress () {
+        if (!this.loading) {
+            return null;
+        }
+
+        let _strVal = this.getAttribute('progress');
+        let _intVal = parseInt(_strVal) || 0;
+        return _intVal;
     }
-    set href (newVal) {
-        this.setAttribute('href', newVal);
+    set progress (newVal) {
+        if (newVal === null) {
+            this.removeAttribute('progress');
+        } else {
+            this.setAttribute('progress', newVal);
+        }
     }
 
     /**
      * @default false
+     * @readonly
      * @type {Boolean}
      */
-    get loading () {
-        return this.hasAttribute('loading');
-    }
-    set loading (newVal) {
-        if (newVal) {
-            this.setAttribute('loading', '');
+    get truncated () {
+        // to preserve start and end, name must exceed
+        // twice the preserved character length
+        if (this.name) {
+            return this.name.length > (2 * PRE_TRUNC);
         } else {
-            this.removeAttribute('loading');
+            return false;
         }
     }
 
@@ -2056,14 +2154,14 @@ class HXFileTileElement extends HXElement {
      * @default true
      * @type {Boolean}
      */
-    get valid () {
-        return !this.hasAttribute('invalid');
+    get invalid () {
+        return this.hasAttribute('invalid');
     }
-    set valid (newVal) {
+    set invalid (newVal) {
         if (newVal) {
-            this.removeAttribute('invalid');
-        } else {
             this.setAttribute('invalid', '');
+        } else {
+            this.removeAttribute('invalid');
         }
     }
 
@@ -2071,7 +2169,7 @@ class HXFileTileElement extends HXElement {
      * Simulates clicking "X" (i.e., the dismiss button)
      */
     dismiss () {
-        if (this.loading || !this.valid) {
+        if (this.loading || this.invalid) {
             if (this.$emit('cancel')) {
                 this.remove();
             }
@@ -2084,12 +2182,10 @@ class HXFileTileElement extends HXElement {
     }
 
     /**
-     * https://regex101.com/r/K8XCbn/2
-     * @private
+     * Simulates clicking the retry button
      */
-    get _extension () {
-        let re = /(?:\.([^.]+))?$/;
-        return re.exec(this.name)[1];
+    retry () {
+        this.$emit('retry');
     }
 
     /** @private */
@@ -2098,8 +2194,13 @@ class HXFileTileElement extends HXElement {
     }
 
     /** @private */
-    get _elIcon () {
-        return this.shadowRoot.getElementById('hxIcon');
+    get _btnRetry () {
+        return this.shadowRoot.getElementById('hxRetry');
+    }
+
+    /** @private */
+    get _elDetails () {
+        return this.shadowRoot.getElementById('hxDetails');
     }
 
     /** @private */
@@ -2108,14 +2209,75 @@ class HXFileTileElement extends HXElement {
     }
 
     /** @private */
+    get _elIcon () {
+        return this.shadowRoot.getElementById('hxIcon');
+    }
+
+    /** @private */
     get _elLink () {
         return this.shadowRoot.getElementById('hxLink');
+    }
+
+    /** @private */
+    get _elName () {
+        return this.shadowRoot.getElementById('hxName');
+    }
+
+    /** @private */
+    get _elProgress () {
+        return this.shadowRoot.getElementById('hxProgress');
+    }
+
+    /** @private */
+    _attrHrefUpdate (oldVal, newVal) {
+        if (newVal !== null) {
+            this._elLink.href = newVal;
+        } else {
+            this._elLink.removeAttribute('href');
+        }
+    }
+
+    /** @private */
+    _attrNameUpdate (oldVal, newVal) {
+        this._elExt.innerText = this.extension;
+
+        if (this.truncated) {
+            this._renderName();
+        } else {
+            this._elName.innerText = this.name;
+        }
+
+        if (newVal === null) {
+            this._elLink.removeAttribute('download');
+        } else {
+            let _name = newVal.trim();
+            if (_name === '') {
+                this._elLink.removeAttribute('download');
+            } else {
+                this._elLink.download = _name;
+            }
+        }
     }
 
     /** @private */
     _onDismiss (evt) {
         evt.preventDefault();
         this.dismiss();
+    }
+
+    /** @private */
+    _onRetry (evt) {
+        evt.preventDefault();
+        this.retry();
+    }
+
+    /** @private */
+    _renderName () {
+        let _name = escape(this.name);
+        this._elName.innerHTML = `
+            <span>${_name.slice(0, -PRE_TRUNC)}</span>
+            <span>${_name.slice(-PRE_TRUNC)}</span>
+        `;
     }
 }
 
@@ -2243,6 +2405,8 @@ var _plus = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d
 
 var _plusOrMinus = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4 15a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2H4zM7 5V2a1 1 0 1 1 2 0v3h3a1 1 0 0 1 0 2H9v3a1 1 0 0 1-2 0V7H4a1 1 0 1 1 0-2h3z'/></svg>";
 
+var _redo = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M12.585 6a5 5 0 1 0-1.098 5.583 1 1 0 0 1 1.395 1.434A7 7 0 1 1 14 4.39V2a1 1 0 0 1 2 0v6h-6a1 1 0 1 1 0-2h2.585z'/></svg>";
+
 var _search = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6.494 10a3.502 3.502 0 0 1-3.496-3.5c0-1.93 1.568-3.5 3.496-3.5A3.502 3.502 0 0 1 9.99 6.5c0 1.93-1.568 3.5-3.496 3.5m8.213 3.292l-3.683-3.683a5.475 5.475 0 0 0 .963-3.109c0-3.038-2.459-5.5-5.493-5.5A5.497 5.497 0 0 0 1 6.5C1 9.538 3.46 12 6.494 12a5.456 5.456 0 0 0 3.118-.975l3.683 3.683a.998.998 0 0 0 1.412-.001 1 1 0 0 0 0-1.415'/></svg>";
 
 var _server = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M1.5 11h13c.276 0 .5.246.5.546v2.909c0 .3-.224.545-.5.545h-13c-.275 0-.5-.245-.5-.545v-2.91c0-.3.225-.545.5-.545zm0-5h13c.276 0 .5.246.5.546v2.909c0 .3-.224.545-.5.545h-13c-.275 0-.5-.245-.5-.545v-2.91c0-.3.225-.545.5-.545zm0-5h13c.276 0 .5.246.5.546v2.909c0 .3-.224.545-.5.545h-13c-.275 0-.5-.245-.5-.545v-2.91c0-.3.225-.545.5-.545zM11 13.032c.022.534.493.98 1.02.968.533-.012.983-.474.98-1.007a1.016 1.016 0 0 0-1.046-.992A1.02 1.02 0 0 0 11 13.032zm0-5c.022.534.493.98 1.02.968.533-.012.983-.474.98-1.007a1.016 1.016 0 0 0-1.046-.992A1.02 1.02 0 0 0 11 8.032zm0-5c.022.534.492.979 1.02.967A1.02 1.02 0 0 0 13 2.993a1.015 1.015 0 0 0-1.046-.992A1.02 1.02 0 0 0 11 3.032zM3 14h6v-2H3v2zm0-5h6V7H3v2zm0-5h6V2H3v2z'/></svg>";
@@ -2268,6 +2432,8 @@ var _times = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path 
 var _timesCircle = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M11.682 10.268a.999.999 0 1 1-1.414 1.414L8 9.414l-2.267 2.268a.999.999 0 1 1-1.414-1.414L6.586 8 4.319 5.732a.999.999 0 1 1 1.414-1.414L8 6.586l2.268-2.268a.999.999 0 1 1 1.414 1.414L9.414 8l2.268 2.268zM8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1z'/></svg>";
 
 var _trash = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M2 13.27V5h12v8.27c0 .95-.778 1.729-1.729 1.729H3.729A1.734 1.734 0 0 1 2 13.268zM14 2c.55 0 1 .45 1 1v1H1V3c0-.55.45-1 1-1h4V1h4v1h4zM6 7a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1zm4 0a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z'/></svg>";
+
+var _undo = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3.415 6H6a1 1 0 1 1 0 2H0V2a1 1 0 1 1 2 0v2.39a7 7 0 1 1 1.118 8.626 1 1 0 1 1 1.395-1.433A5 5 0 1 0 3.415 6z'/></svg>";
 
 var _upload = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M14 8a1 1 0 0 1 1 1v4.5c0 .827-.673 1.5-1.5 1.5h-11c-.827 0-1.5-.673-1.5-1.5V9a1 1 0 1 1 2 0v4h10V9a1 1 0 0 1 1-1zM7 4.827L5.487 6.31a1.027 1.027 0 0 1-1.438 0 .988.988 0 0 1 0-1.415l3.954-3.891L11.95 4.89a.988.988 0 0 1 0 1.415 1.027 1.027 0 0 1-1.438 0L9 4.822l.003 6.676a1 1 0 1 1-2 0L7 4.828z'/></svg>";
 
@@ -2336,6 +2502,7 @@ const MAP = {
     'phone': _phone,
     'plus': _plus,
     'plus-or-minus': _plusOrMinus,
+    'redo': _redo,
     'search': _search,
     'server': _server,
     'server-config': _serverConfig,
@@ -2349,6 +2516,7 @@ const MAP = {
     'times': _times,
     'times-circle': _timesCircle,
     'trash': _trash,
+    'undo': _undo,
     'upload': _upload,
     'user': _user,
 };
@@ -2389,7 +2557,7 @@ class HXIconElement extends HXElement {
     static get $observedAttributes () {
         return [ 'type' ];
     }
-    
+
     $onAttributeChange (attr) {
         if (attr === 'type') {
             this._render();
@@ -4140,7 +4308,7 @@ class HXTabsetElement extends HXElement {
 
 var shadowMarkup$b = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-var shadowStyles$b = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxToast {\n  padding: 0.75rem;\n}\n#hxToast #hxCta {\n  background-color: transparent;\n  border-radius: 2px;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-size: 0.875rem;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 8px 12px;\n}\n#hxToast {\n  background-color: #ffffff;\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  color: #424242;\n  display: flex;\n  min-height: 3.5rem;\n  position: relative;\n  width: 22rem;\n}\n#hxToast::before,\n#hxToast::after {\n  content: '';\n  display: block;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#hxToast::before {\n  border: 1px solid #e0e0e0;\n}\n#hxToast::after {\n  border-left: 8px solid currentColor;\n}\n#hxToast #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  margin: 0 0.75rem 0 0.5rem;\n}\n#hxToast #hxIconWrapper hx-icon {\n  font-size: 2rem;\n}\n#hxToast #hxContent {\n  flex-grow: 1;\n  margin-right: 1.5rem;\n  text-align: right;\n  word-wrap: break-word;\n}\n#hxToast #hxContent div {\n  font-size: 0.875rem;\n  text-align: left;\n}\n#hxToast #hxCta {\n  text-transform: uppercase;\n}\n#hxToast #hxCta:empty {\n  display: none;\n}\n#hxToast #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 0.75rem;\n  height: 2.25rem;\n  line-height: 0;\n  margin: 0;\n  padding: 0.75rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 2.25rem;\n}\n:host([type=\"info\"]) #hxToast::after {\n  border-left-color: #3b44a9;\n}\n:host([type=\"info\"]) #hxIcon {\n  color: #3b44a9;\n}\n:host([type=\"error\"]) #hxToast::after {\n  border-left-color: #d32f2f;\n}\n:host([type=\"error\"]) #hxIcon {\n  color: #d32f2f;\n}\n:host([type=\"success\"]) #hxToast::after {\n  border-left-color: #4caf51;\n}\n:host([type=\"success\"]) #hxIcon {\n  color: #4caf51;\n}\n";
+var shadowStyles$b = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\nhx-icon {\n  background-color: transparent;\n  color: inherit;\n  display: inline-block;\n  flex-shrink: 0;\n  height: auto;\n  line-height: 1;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-icon svg {\n  fill: currentColor;\n  height: 1em;\n  stroke: none;\n}\n#hxToast {\n  padding: 0.75rem;\n}\n#hxToast #hxCta {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n  border-radius: 2px;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  font-size: 0.875rem;\n  padding: 8px 12px;\n}\n#hxToast {\n  background-color: #ffffff;\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  color: #424242;\n  display: flex;\n  min-height: 3.5rem;\n  position: relative;\n  width: 22rem;\n}\n#hxToast::before,\n#hxToast::after {\n  content: '';\n  display: block;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#hxToast::before {\n  border: 1px solid #e0e0e0;\n}\n#hxToast::after {\n  border-left: 8px solid currentColor;\n}\n#hxToast #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  margin: 0 0.75rem 0 0.5rem;\n}\n#hxToast #hxIconWrapper hx-icon {\n  font-size: 2rem;\n}\n#hxToast #hxContent {\n  flex-grow: 1;\n  margin-right: 1.5rem;\n  text-align: right;\n  word-wrap: break-word;\n}\n#hxToast #hxContent div {\n  font-size: 0.875rem;\n  text-align: left;\n}\n#hxToast #hxCta {\n  text-transform: uppercase;\n}\n#hxToast #hxCta:empty {\n  display: none;\n}\n#hxToast #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 0.75rem;\n  height: 2.25rem;\n  line-height: 0;\n  margin: 0;\n  padding: 0.75rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 2.25rem;\n}\n:host([type=\"info\"]) #hxToast::after {\n  border-left-color: #3b44a9;\n}\n:host([type=\"info\"]) #hxIcon {\n  color: #3b44a9;\n}\n:host([type=\"error\"]) #hxToast::after {\n  border-left-color: #d32f2f;\n}\n:host([type=\"error\"]) #hxIcon {\n  color: #d32f2f;\n}\n:host([type=\"success\"]) #hxToast::after {\n  border-left-color: #4caf51;\n}\n:host([type=\"success\"]) #hxIcon {\n  color: #4caf51;\n}\n";
 
 const ICONS$1 = {
     'error': 'exclamation-circle',
@@ -4531,7 +4699,7 @@ var elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.11.0";
+var version = "0.12.0";
 
 /** @module helix-ui */
 
@@ -4592,6 +4760,7 @@ VERSION.toString = () => { return version }; // eslint-disable-line
 var HelixUI = {
     elements,
     initialize,
+    ICONS: MAP,
     VERSION,
 };
 

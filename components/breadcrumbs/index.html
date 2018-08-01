@@ -8,6 +8,20 @@
 
   <link rel="shortcut icon" href="images/favicon.png">
 
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
@@ -60,6 +74,24 @@
   </a>
 
 
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
   </hx-reveal>
 
 
@@ -104,12 +136,6 @@ class="current">
 
 
       
-      <a href="components/busy" >
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -124,6 +150,12 @@ class="current">
       
       <a href="components/choice-tiles" >
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@ class="current">
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@ class="current">
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@ class="current">
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" >
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" >
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -552,52 +542,77 @@ class="current">
 </hx-tooltip>
     </h1>
 
+  <hx-alert type="warning" status="WARNING" static>
+    The last breadcrumb hyperlink is styled to prevent mouse clicks, but it will not prevent keyboard activation.
+  </hx-alert>
+
   <section>
-    <h2 id="basic-breadcrumbs">Basic Breadcrumbs</h2>
-    <div class="demo">
-      <nav class="hxBreadcrumb">
-        <a href="#">Home</a>
-      </nav>
+    <p>
+      Breadcrumbs are simply hyperlinks separated by icon delimiters
+      within a navigation.
+    </p>
+  </section>
 
-      <nav class="hxBreadcrumb">
-        <a href="#">Home</a>
-        <hx-icon class="delimiter" type="angle-right"></hx-icon>
-        <a href="#">Library</a>
-      </nav>
+  <section>
+    <h2 id="single-breadcrumb">Single Breadcrumb</h2>
+    <p>
+      Build breadcrumb navigation by adding the <code>.hxBreadcrumb</code>
+      CSS class to a <code>&lt;nav&gt;</code> element that contains at least one
+      hyperlink.
+    </p>
+    <div class="example">
+      <div>
+        <nav class="hxBreadcrumb">
+          <a href="#">Home</a>
+        </nav>
+      </div>
 
-      <nav class="hxBreadcrumb">
-        <a href="#">Home</a>
-        <hx-icon class="delimiter" type="angle-right"></hx-icon>
-        <a href="#">Library</a>
-        <hx-icon class="delimiter" type="angle-right"></hx-icon>
-        <a href="#">Current</a>
-      </nav>
-    </div>
+      <footer>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+</code></pre>      </footer>
+    </div>
+  </section>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delimiter"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Library<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+  <section>
+    <h2 id="multiple-breadcrumbs">Multiple Breadcrumbs</h2>
+    <p>
+      Icon delimiters are added between each hyperlink using the <code>angle-right</code>
+      icon with the <code>.delimiter</code> CSS class applied.
+    </p>
+    <div class="example">
+      <div>
+        <nav class="hxBreadcrumb">
+          <a href="#">Home</a>
+          <hx-icon class="delimiter" type="angle-right"></hx-icon>
+          <a href="#">Library</a>
+          <hx-icon class="delimiter" type="angle-right"></hx-icon>
+          <a href="#">Current</a>
+        </nav>
+      </div>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
+      <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBreadcrumb"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delimiter"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Library<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delimiter"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-right"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Current<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
-</code></pre>  </section>
+</code></pre>      </footer>
+    </div>
+  </section>
 
   </main>
   <aside class="hxSiderail hxBox-md">
     <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#basic-breadcrumbs">Basic Breadcrumbs</a>
+            <a href="#single-breadcrumb">Single Breadcrumb</a>
+        
+
+            <a href="#multiple-breadcrumbs">Multiple Breadcrumbs</a>
         
       <hr />
       <a class="top-link" href="#top">Back to Top</a>
@@ -617,12 +632,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-04-12
+      2018-07-23
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>

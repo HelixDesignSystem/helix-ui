@@ -8,6 +8,20 @@
 
   <link rel="shortcut icon" href="images/favicon.png">
 
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
@@ -60,6 +74,24 @@
   </a>
 
 
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
   </hx-reveal>
 
 
@@ -104,12 +136,6 @@ class="current">
 
 
       
-      <a href="components/busy" >
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -124,6 +150,12 @@ class="current">
       
       <a href="components/choice-tiles" >
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@ class="current">
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@ class="current">
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@ class="current">
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" >
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" >
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -559,45 +549,49 @@ class="current">
     </p>
   </section>
   <section>
-    <h2 id="demos">Demos</h2>
-    <div id="vue-panelDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h3>
-        <label>
-          <input type="checkbox" v-model="hasHead" />
-          Include Head
-        </label>
-        <br />
-        <label>
-          <input type="checkbox" v-model="hasFoot" />
-          Include Foot
-        </label>
+    <h2 id="basic-panel">Basic Panel</h2>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="info-circle"></hx-icon>
+      Watch how the panel reacts when you resize the demo, vertically.
+    </p>
+    <div class="example" id="vue-panelDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend>Options</legend>
+            <label>
+              <input type="checkbox" v-model="hasHead" />
+              Include Head
+            </label>
+            <label>
+              <input type="checkbox" v-model="hasFoot" />
+              Include Foot
+            </label>
+          </fieldset>
+        </form>
+      </header>
+
+      <div class="demo panel-demo">
+        <hx-panel>
+          <hx-panelhead v-if="hasHead">Panel Head</hx-panelhead>
+          <hx-panelbody>
+            <p>Panel Body</p>
+            <p>
+              If it takes you too long to document the backlog PR bottleneck, then
+              you are not detailing enough. If it takes you too long to plan the
+              burndown VOC production release, then you are not satifying enough.
+              If it takes you too long to launch the burndown PR sequence, then you
+              are not coding enough. We must exactly pick up the many MVP software
+              development! If we code off the processes, we can get the numerous
+              emergence down the WIP colocation. If it takes you too long to release
+              the lean MVP pattern, then you are not coding enough.
+            </p>
+          </hx-panelbody>
+          <hx-panelfoot v-if="hasFoot">Panel Foot</hx-panelfoot>
+        </hx-panel>
       </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h3>Basic Panel</h3>
-        <p>
-          Resize the demo to see how the panel reacts.
-        </p>
-        <div class="demo panel-demo">
-          <hx-panel>
-            <hx-panelhead v-if="hasHead">Panel Head</hx-panelhead>
-            <hx-panelbody>
-              <p>Panel Body</p>
-              <p>
-                Try to decide the branch off team, maybe it will help spike the MVP
-                interfaces. If we practice between the tasks, we can get the technical
-                application like the VOC branching. The best way to document acceptance
-                impediment is to periodically build their meeting. It was discovered
-                that by efficiently releasing the MVP products, we can practice the
-                lean XP development team in the minor board.
-              </p>
-            </hx-panelbody>
-            <hx-panelfoot v-if="hasFoot">Panel Foot</hx-panelfoot>
-          </hx-panel>
-        </div>
-        <small>
-          *Visual styling added for demonstration purpopses.
-        </small>
+
+      <footer>
         <template v-if="hasHead && hasFoot">
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-panel</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-panelhead</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-panelhead</span>&gt;</span>
@@ -622,8 +616,13 @@ class="current">
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-panelbody</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-panelbody</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-panel</span>&gt;</span>
 </code></pre>        </template>
-      </div>
+      </footer>
     </div>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      Visual styling added for demonstration purpopses.
+    </p>
+
   </section>
 
 <section>
@@ -640,7 +639,7 @@ class="current">
     <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#demos">Demos</a>
+            <a href="#basic-panel">Basic Panel</a>
         
         <a href="#see-also">See Also</a>
       <hr />
@@ -661,12 +660,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-04-12
+      2018-07-23
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>

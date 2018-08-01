@@ -8,6 +8,20 @@
 
   <link rel="shortcut icon" href="images/favicon.png">
 
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
@@ -60,6 +74,24 @@
   </a>
 
 
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
   </hx-reveal>
 
 
@@ -104,12 +136,6 @@ class="current">
 
 
       
-      <a href="components/busy" >
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -124,6 +150,12 @@ class="current">
       
       <a href="components/choice-tiles" class="current">
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@ class="current">
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@ class="current">
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@ class="current">
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" >
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" >
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -541,83 +531,15 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox-md">
+  <main id="content" class="hxBox-lg">
     <h1>Testing - Choice Tiles</h1>
 
   <section>
-    <h2>Example Choice Tile Grid</h2>
-    <form>
-      <fieldset>
-        <div class="hxRow">
-          <label class="hxChoice hxCol hxSpan-4-xs">
-            <input type="radio" name="sample" value="1" />
-            <hx-tile>
-              <hx-icon type="checkmark"></hx-icon>
-              <div class="hx-tile-icon">
-                <hx-icon type="server"></hx-icon>
-              </div>
-              <hx-tile-title>Servers</hx-tile-title>
-              <hx-tile-description>Servers description</hx-tile-description>
-            </hx-tile>
-          </label>
-          <label class="hxChoice hxCol hxSpan-4-xs">
-            <input type="radio" name="sample" value="2" />
-            <hx-tile>
-              <hx-icon type="checkmark"></hx-icon>
-              <div class="hx-tile-icon">
-                <hx-icon type="technical-change"></hx-icon>
-              </div>
-              <hx-tile-title>Configurations</hx-tile-title>
-              <hx-tile-description>Configurations description</hx-tile-description>
-            </hx-tile>
-          </label>
-          <label class="hxChoice hxCol hxSpan-4-xs">
-            <input type="radio" name="sample" value="3" />
-            <hx-tile>
-              <hx-icon type="checkmark"></hx-icon>
-              <div class="hx-tile-icon">
-                <hx-icon type="technical-incident"></hx-icon>
-              </div>
-              <hx-tile-title>Incidents</hx-tile-title>
-              <hx-tile-description>Incidents description</hx-tile-description>
-            </hx-tile>
-          </label>
-          <label class="hxChoice hxCol hxSpan-4-xs">
-            <input type="radio" name="sample" value="4" />
-            <hx-tile>
-              <hx-icon type="checkmark"></hx-icon>
-              <div class="hx-tile-icon">
-                <hx-icon type="billing"></hx-icon>
-              </div>
-              <hx-tile-title>Billing</hx-tile-title>
-              <hx-tile-description>Billing description</hx-tile-description>
-            </hx-tile>
-          </label>
-          <label class="hxChoice hxCol hxSpan-4-xs">
-            <input type="radio" name="sample" value="5" />
-            <hx-tile>
-              <hx-icon type="checkmark"></hx-icon>
-              <div class="hx-tile-icon">
-                <hx-icon type="account"></hx-icon>
-              </div>
-              <hx-tile-title>Account</hx-tile-title>
-              <hx-tile-description>Account description</hx-tile-description>
-            </hx-tile>
-          </label>
-          <label class="hxChoice hxCol hxSpan-4-xs">
-            <input type="radio" name="sample" value="6" disabled />
-            <hx-tile>
-              <hx-icon type="checkmark"></hx-icon>
-              <div class="hx-tile-icon">
-                <hx-icon type="minus-circle"></hx-icon>
-              </div>
-              <hx-tile-title>Disabled Tile</hx-tile-title>
-              <hx-tile-description>Disabled Tile description</hx-tile-description>
-            </hx-tile>
-          </label>
-        </div>
-      </fieldset>
-    </form>
+    <nav class="hxBreadcrumb">
+      <a href="components/choice-tiles">Choice Tiles</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">Testing - Choice Tiles</a>
+    </nav>
   </section>
 
   <section>
@@ -632,8 +554,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Default</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Default</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -645,8 +567,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Default (Hover)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Default (Hover)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -658,8 +580,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Default (Focus)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Default (Focus)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
     </div>
@@ -677,8 +599,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Subdued</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Subdued</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -690,8 +612,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Subdued (Hover)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Subdued (Hover)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -703,8 +625,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Subdued (Focus)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Subdued (Focus)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
     </div>
@@ -722,8 +644,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Checked</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Checked</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -735,8 +657,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Checked (Hover)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Checked (Hover)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -748,8 +670,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Checked (Focus)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Checked (Focus)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
     </div>
@@ -768,8 +690,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Checked + Subdued</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Checked + Subdued</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -781,8 +703,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Checked + Subdued (Hover)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Checked + Subdued (Hover)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -794,8 +716,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Checked + Subdued (Focus)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Checked + Subdued (Focus)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
     </div>
@@ -813,8 +735,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Invalid</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Invalid</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -826,8 +748,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Invalid (Hover)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Invalid (Hover)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -839,8 +761,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Invalid (Focus)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Invalid (Focus)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
     </div>
@@ -859,8 +781,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Invalid + Subdued</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Invalid + Subdued</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -872,8 +794,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Invalid + Subdued (Hover)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Invalid + Subdued (Hover)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -885,8 +807,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Invalid + Subdued (Focus)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Invalid + Subdued (Focus)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
     </div>
@@ -903,8 +825,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Disabled</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Disabled</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -916,8 +838,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Disabled (Hover)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Disabled (Hover)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
     </div>
@@ -936,8 +858,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Invalid + Checked</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Invalid + Checked</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -949,8 +871,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Invalid + Checked (Hover)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Invalid + Checked (Hover)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -962,8 +884,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Invalid + Checked (Focus)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Invalid + Checked (Focus)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
     </div>
@@ -982,8 +904,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Invalid + Checked + Subdued</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Invalid + Checked + Subdued</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -995,8 +917,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Invalid + Checked + Subdued (Hover)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Invalid + Checked + Subdued (Hover)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -1008,8 +930,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Invalid + Checked + Subdued (Focus)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Invalid + Checked + Subdued (Focus)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
     </div>
@@ -1028,8 +950,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Disabled + Checked</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Disabled + Checked</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -1041,8 +963,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Disabled + Checked (Hover)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Disabled + Checked (Hover)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
     </div>
@@ -1061,8 +983,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Disabled + Invalid</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Disabled + Invalid</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -1074,8 +996,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Disabled + Invalid (Hover)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Disabled + Invalid (Hover)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
     </div>
@@ -1094,8 +1016,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Disabled + Invalid + Checked</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Disabled + Invalid + Checked</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
 
@@ -1107,8 +1029,8 @@ class="current">
           <div class="hx-tile-icon">
             <hx-icon type="account"></hx-icon>
           </div>
-          <hx-tile-title>Disabled + Invalid + Checked (Hover)</hx-tile-title>
-          <hx-tile-description>With a short description or help text.</hx-tile-description>
+          <header>Disabled + Invalid + Checked (Hover)</header>
+          <p>With a short description or help text.</p>
         </hx-tile>
       </label>
     </div>
@@ -1128,12 +1050,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-04-12
+      2018-07-23
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>

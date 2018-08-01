@@ -8,6 +8,20 @@
 
   <link rel="shortcut icon" href="images/favicon.png">
 
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
@@ -60,6 +74,24 @@
   </a>
 
 
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
   </hx-reveal>
 
 
@@ -104,12 +136,6 @@
 
 
       
-      <a href="components/busy" >
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -124,6 +150,12 @@
       
       <a href="components/choice-tiles" >
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" >
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" >
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -541,68 +531,68 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox-md">
+  <main id="content" class="hxBox-lg">
     <h1>Testing &lt;hx-progress&gt;</h1>
 
   <section>
     <h2>No Attributes</h2>
-    <div data-visreg="hxProgress-no-attrs">
+    <div data-dom-diff="hxProgress-no-attrs">
       <hx-progress></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Written DOM with children</h2>
-    <div data-visreg="hxProgress-written-dom-children">
+    <div data-dom-diff="hxProgress-written-dom-children">
       <hx-progress>Hello!</hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = "foobar" (String type)</h2>
-    <div data-visreg="hxProgress-text-value">
+    <div data-dom-diff="hxProgress-text-value">
       <hx-progress value="foobar"></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = 12.5 (Float type)</h2>
-    <div data-visreg="hxProgress-float-value">
+    <div data-dom-diff="hxProgress-float-value">
       <hx-progress value="12.5"></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = 0 (min value)</h2>
-    <div data-visreg="hxProgress-min-value">
+    <div data-dom-diff="hxProgress-min-value">
       <hx-progress value="0"></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = 42 (middle value)</h2>
-    <div data-visreg="hxProgress-mid-value">
+    <div data-dom-diff="hxProgress-mid-value">
       <hx-progress value="42"></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = 100 (max value)</h2>
-    <div data-visreg="hxProgress-max-value">
+    <div data-dom-diff="hxProgress-max-value">
       <hx-progress value="100"></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = 9000 (over max)</h2>
-    <div data-visreg="hxProgress-over-max">
+    <div data-dom-diff="hxProgress-over-max">
       <hx-progress value="9000"></hx-progress>
     </div>
   </section>
 
   <section>
     <h2>Value = -25 (under min)</h2>
-    <div data-visreg="hxProgress-under-min">
+    <div data-dom-diff="hxProgress-under-min">
       <hx-progress value="-25"></hx-progress>
     </div>
   </section>
@@ -621,12 +611,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-05-08
+      2018-07-23
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>

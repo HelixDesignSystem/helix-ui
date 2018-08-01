@@ -30,6 +30,43 @@
 import shadowMarkup from './HXFileTileElement.html';
 import shadowStyles from './HXFileTileElement.less';
 
+// number of characters to avoid truncation at start/end of file name
+const PRE_TRUNC = 14;
+
+/**
+ * Fires when user dismisses element, when loading or invalid
+ *
+ * @event FileTile:cancel
+ * @since 0.12.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when user dismisses element, when downloadable
+ *
+ * @event FileTile:delete
+ * @since 0.12.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Fires when user clicks retry button, when invalid
+ *
+ * @event FileTile:retry
+ * @since 0.12.0
+ * @type {CustomEvent}
+ */
+
+/**
+ * Defines behavior for the `&lt;hx-file-tile>` element.
+ *
+ * @emits FileTile:cancel
+ * @emits FileTile:delete
+ * @emits FileTile:retry
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.12.0
+ */
 export class HXFileTileElement extends HXElement {
     static get is () {
         return 'hx-file-tile';
@@ -41,45 +78,82 @@ export class HXFileTileElement extends HXElement {
 
     $onCreate () {
         this._onDismiss = this._onDismiss.bind(this);
+        this._onRetry = this._onRetry.bind(this);
     }
 
     $onConnect () {
+        this.$upgradeProperty('details');
+        this.$upgradeProperty('href');
         this.$upgradeProperty('icon');
         this.$upgradeProperty('name');
-        this.$upgradeProperty('href');
+        this.$upgradeProperty('progress');
+
         this._btnDismiss.addEventListener('click', this._onDismiss);
+        this._btnRetry.addEventListener('click', this._onRetry);
     }
 
     $onDisconnect () {
         this._btnDismiss.removeEventListener('click', this._onDismiss);
+        this._btnRetry.removeEventListener('click', this._onRetry);
     }
 
     static get $observedAttributes () {
         return [
+            'details',
             'href',
             'icon',
             'name',
+            'progress',
         ];
     }
 
     $onAttributeChange (attr, oldVal, newVal) {
         switch (attr) {
+            case 'details':
+                this._elDetails.innerText = newVal;
+                break;
+
+            case 'href':
+                this._attrHrefUpdate(oldVal, newVal);
+                break;
+
             case 'icon':
                 this._elIcon.type = newVal;
                 break;
 
-            case 'href':
-                if (newVal !== null) {
-                    this._elLink.href = newVal;
-                } else {
-                    this._elLink.removeAttribute('href');
-                }
+            case 'name':
+                this._attrNameUpdate(oldVal, newVal);
                 break;
 
-            case 'name':
-                this._elLink.innerText = newVal;
-                this._elExt.innerText = this._extension || '';
+            case 'progress':
+                this._elProgress.value = newVal;
                 break;
+        }
+    }
+
+    /**
+     * https://regex101.com/r/K8XCbn/2
+     * @readonly
+     * @type {String}
+     */
+    get extension () {
+        let re = /(?:\.([^.]+))?$/;
+        return re.exec(this.name)[1] || '';
+    }
+
+    /**
+     * URL to download the file.
+     *
+     * @type {String}
+     */
+    get href () {
+        return this.getAttribute('href');
+    }
+    set href (newVal) {
+        if (newVal === null) {
+            this.removeAttribute('href');
+        } else {
+            this.setAttribute('href', newVal);
         }
     }
 
@@ -95,39 +169,63 @@ export class HXFileTileElement extends HXElement {
     }
 
     /**
-     * File name
-     * @type {String}
+     * @default false
+     * @readonly
+     * @type {Boolean}
      */
-    get name () {
-        return this.getAttribute('name');
-    }
-    set name (newVal) {
-        this.setAttribute('name', newVal);
+    get loading () {
+        return this.hasAttribute('progress');
     }
 
     /**
-     * URL to download the file
+     * File name to display
      * @type {String}
      */
-    get href () {
-        return this.getAttribute('href');
+    get name () {
+        return this.getAttribute('name' || '');
     }
-    set href (newVal) {
-        this.setAttribute('href', newVal);
+    set name (newVal) {
+        if (newVal === null) {
+            this.removeAttribute('name');
+        } else {
+            this.setAttribute('name', newVal);
+        }
+    }
+
+    /**
+     * load progress of the file
+     *
+     * @type {Integer|Null}
+     */
+    get progress () {
+        if (!this.loading) {
+            return null;
+        }
+
+        let _strVal = this.getAttribute('progress');
+        let _intVal = parseInt(_strVal) || 0;
+        return _intVal;
+    }
+    set progress (newVal) {
+        if (newVal === null) {
+            this.removeAttribute('progress');
+        } else {
+            this.setAttribute('progress', newVal);
+        }
     }
 
     /**
      * @default false
+     * @readonly
      * @type {Boolean}
      */
-    get loading () {
-        return this.hasAttribute('loading');
-    }
-    set loading (newVal) {
-        if (newVal) {
-            this.setAttribute('loading', '');
+    get truncated () {
+        // to preserve start and end, name must exceed
+        // twice the preserved character length
+        if (this.name) {
+            return this.name.length > (2 * PRE_TRUNC);
         } else {
-            this.removeAttribute('loading');
+            return false;
         }
     }
 
@@ -135,14 +233,14 @@ export class HXFileTileElement extends HXElement {
      * @default true
      * @type {Boolean}
      */
-    get valid () {
-        return !this.hasAttribute('invalid');
+    get invalid () {
+        return this.hasAttribute('invalid');
     }
-    set valid (newVal) {
+    set invalid (newVal) {
         if (newVal) {
-            this.removeAttribute('invalid');
-        } else {
             this.setAttribute('invalid', '');
+        } else {
+            this.removeAttribute('invalid');
         }
     }
 
@@ -150,7 +248,7 @@ export class HXFileTileElement extends HXElement {
      * Simulates clicking "X" (i.e., the dismiss button)
      */
     dismiss () {
-        if (this.loading || !this.valid) {
+        if (this.loading || this.invalid) {
             if (this.$emit('cancel')) {
                 this.remove();
             }
@@ -163,12 +261,10 @@ export class HXFileTileElement extends HXElement {
     }
 
     /**
-     * https://regex101.com/r/K8XCbn/2
-     * @private
+     * Simulates clicking the retry button
      */
-    get _extension () {
-        let re = /(?:\.([^.]+))?$/;
-        return re.exec(this.name)[1];
+    retry () {
+        this.$emit('retry');
     }
 
     /** @private */
@@ -177,8 +273,13 @@ export class HXFileTileElement extends HXElement {
     }
 
     /** @private */
-    get _elIcon () {
-        return this.shadowRoot.getElementById('hxIcon');
+    get _btnRetry () {
+        return this.shadowRoot.getElementById('hxRetry');
+    }
+
+    /** @private */
+    get _elDetails () {
+        return this.shadowRoot.getElementById('hxDetails');
     }
 
     /** @private */
@@ -187,14 +288,75 @@ export class HXFileTileElement extends HXElement {
     }
 
     /** @private */
+    get _elIcon () {
+        return this.shadowRoot.getElementById('hxIcon');
+    }
+
+    /** @private */
     get _elLink () {
         return this.shadowRoot.getElementById('hxLink');
+    }
+
+    /** @private */
+    get _elName () {
+        return this.shadowRoot.getElementById('hxName');
+    }
+
+    /** @private */
+    get _elProgress () {
+        return this.shadowRoot.getElementById('hxProgress');
+    }
+
+    /** @private */
+    _attrHrefUpdate (oldVal, newVal) {
+        if (newVal !== null) {
+            this._elLink.href = newVal;
+        } else {
+            this._elLink.removeAttribute('href');
+        }
+    }
+
+    /** @private */
+    _attrNameUpdate (oldVal, newVal) {
+        this._elExt.innerText = this.extension;
+
+        if (this.truncated) {
+            this._renderName();
+        } else {
+            this._elName.innerText = this.name;
+        }
+
+        if (newVal === null) {
+            this._elLink.removeAttribute('download');
+        } else {
+            let _name = newVal.trim();
+            if (_name === '') {
+                this._elLink.removeAttribute('download');
+            } else {
+                this._elLink.download = _name;
+            }
+        }
     }
 
     /** @private */
     _onDismiss (evt) {
         evt.preventDefault();
         this.dismiss();
+    }
+
+    /** @private */
+    _onRetry (evt) {
+        evt.preventDefault();
+        this.retry();
+    }
+
+    /** @private */
+    _renderName () {
+        let _name = escape(this.name);
+        this._elName.innerHTML = `
+            &lt;span>${_name.slice(0, -PRE_TRUNC)}&lt;/span>
+            &lt;span>${_name.slice(-PRE_TRUNC)}&lt;/span>
+        `;
     }
 }
 </code></pre>
@@ -207,13 +369,13 @@ export class HXFileTileElement extends HXElement {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-elements.html">elements</a></li><li><a href="module-helix-ui.html">helix-ui</a></li><li><a href="module-util.html">util</a></li><li><a href="module-util_keys.html">util/keys</a></li><li><a href="module-util_position.html">util/position</a></li><li><a href="module-util_position_offsetFunctions.html">util/position/offsetFunctions</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:Menu:close">Menu:close</a></li><li><a href="global.html#event:Menu:open">Menu:open</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Popover:close">Popover:close</a></li><li><a href="global.html#event:Popover:open">Popover:open</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:SearchAssistance:close">SearchAssistance:close</a></li><li><a href="global.html#event:SearchAssistance:open">SearchAssistance:open</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li><li><a href="global.html#event:Tooltip:close">Tooltip:close</a></li><li><a href="global.html#event:Tooltip:open">Tooltip:open</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-elements.html">elements</a></li><li><a href="module-helix-ui.html">helix-ui</a></li><li><a href="module-util.html">util</a></li><li><a href="module-util_keys.html">util/keys</a></li><li><a href="module-util_position.html">util/position</a></li><li><a href="module-util_position_offsetFunctions.html">util/position/offsetFunctions</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Menu:close">Menu:close</a></li><li><a href="global.html#event:Menu:open">Menu:open</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Popover:close">Popover:close</a></li><li><a href="global.html#event:Popover:open">Popover:open</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:SearchAssistance:close">SearchAssistance:close</a></li><li><a href="global.html#event:SearchAssistance:open">SearchAssistance:open</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li><li><a href="global.html#event:Tooltip:close">Tooltip:close</a></li><li><a href="global.html#event:Tooltip:open">Tooltip:open</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Jul 05 2018 17:03:13 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Aug 01 2018 15:46:57 GMT-0500 (CDT)
 </footer>
 
 <script> prettyPrint(); </script>

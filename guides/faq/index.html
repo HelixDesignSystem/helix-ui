@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>File Tiles - HelixUI</title>
+  <title>Frequently Asked Questions - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
 
   <link rel="shortcut icon" href="images/favicon.png">
+
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
 
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
@@ -49,14 +63,32 @@
 
   <hx-disclosure
     aria-controls="nav-Guides"
->
+class="current">
     Guides
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Guides" >
+  <hx-reveal id="nav-Guides" open>
       
       <a href="guides/getting-started" >
     Getting Started
+  </a>
+
+
+      
+      <a href="guides/faq" class="current">
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
   </a>
 
 
@@ -68,11 +100,11 @@
 
   <hx-disclosure
     aria-controls="nav-Components"
-class="current">
+>
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" open>
+  <hx-reveal id="nav-Components" >
       
       <a href="components/accordions" >
     Accordions
@@ -104,12 +136,6 @@ class="current">
 
 
       
-      <a href="components/busy" >
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -124,6 +150,12 @@ class="current">
       
       <a href="components/choice-tiles" >
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@ class="current">
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@ class="current">
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@ class="current">
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" >
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" >
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -541,166 +531,162 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox-md">
-    <h1>File Tiles
-<min-version data-tooltip="page-min-version">
-    NEW
-</min-version>
-
-<hx-tooltip id="page-min-version" position="right">
-    Requires the latest version of HelixUI
-</hx-tooltip>
-    </h1>
+  <main id="content" class="hxBox-xl">
+    <h1>Frequently Asked Questions</h1>
 
   <section>
-    <div id="vue-fileTileDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h3>
-        <p>
-          <b>States:</b><br />
-          <label>
-            <input type="radio" value="default" name="file-state" v-model="state" />
-            Default
-          </label><br />
-          <label>
-            <input type="radio" value="loading" name="file-state" v-model="state" />
-            Loading
-          </label><br />
-          <label>
-            <input type="radio" value="invalid" name="file-state" v-model="state" />
-            Invalid
-          </label>
-        </p>
-        <p>
-          <b>Icon:</b><br />
-          <input
-            class="hxTextCtrl"
-            type="text"
-            v-model="icon" 
-          />
-        </p>
-        <p>
-          <b>Name:</b><br />
-          <input
-            class="hxTextCtrl"
-            type="text"
-            v-model="name" 
-          />
-        </p>
-        <template v-if="isDefault">
+    <h2 id="what-are-web-components">What are Web Components?</h2>
+    <p class="comfortable">
+      Web Components are a set of W3C-standard APIs that enable developers to
+      create custom HTML tags that encapsulate markup, style, and behavior in
+      a framework-agnostic fashion.
+    </p>
+
+    <br />
+
+    <dl class="hxList metadata hxBox-sm">
+      <div>
+        <dt>HTML Imports</dt>
+        <dd>
           <p>
-            <b>href:</b><br />
-            <input
-              class="hxTextCtrl"
-              type="text"
-              v-model="href"
-            />
+            Defines the mechanisms needed to reuse HTML documents in other HTML documents.
           </p>
-          <p> 
-            <b>Content:</b><br />
-            <input
-              class="hxTextCtrl"
-              type="text"
-              v-model="content" 
-            />
+          <p class="comfortable hxSubBody hxSubdued">
+            <hx-icon type="info-circle"></hx-icon>
+            This technology was abandoned in favor of ES6 Modules in mid-2018.
           </p>
-        </template>
-        <p v-if="isLoading">
-          <b>Progress:</b><br />
-          <input type="range" v-model="progressValue"/>
-        </p>
+        </dd>
       </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h2 id="basic-file-tile">Basic File Tile</h2>
-        <template v-if="isDefault">
-          <div class="demo">
-            <hx-file-tile
-              :icon="icon"
-              :name="name"
-              :href="href"
-              @cancel="onEvent"
-              @delete="onEvent"
-            >
-              <span class="hxSubdued">{{content}}</span>
-            </hx-file-tile>
-          </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-file-tile</span>
-  <span class="hljs-attr">icon</span>=<span class="hljs-string">"{{icon}}"</span>
-  <span class="hljs-attr">name</span>=<span class="hljs-string">"{{name}}"</span>
-  <span class="hljs-attr">href</span>=<span class="hljs-string">"{{href}}"</span>
-&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSubdued"</span>&gt;</span>{{content}}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-tile</span>&gt;</span>
-</code></pre>        </template>
 
-        <template v-if="isLoading">
-          <div class="demo">
-            <hx-file-tile
-              loading
-              :icon="icon"
-              :name="name"
-              @cancel="onEvent"
-              @delete="onEvent"
-            >
-              <hx-progress :value="progressValue"></hx-progress>
-            </hx-file-tile>
-          </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-file-tile</span> 
-  <span class="hljs-attr">loading</span>
-  <span class="hljs-attr">icon</span>=<span class="hljs-string">"{{icon}}"</span>
-  <span class="hljs-attr">name</span>=<span class="hljs-string">"{{name}}"</span>
-&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-progress</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"{{progressValue}}"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-progress</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-tile</span>&gt;</span>
-</code></pre>        </template>
-
-        <template v-if="isInvalid">
-          <div class="demo">
-            <hx-file-tile
-              invalid
-              :icon="icon"
-              :name="name"
-              @cancel="onEvent"
-              @delete="onEvent"
-            >
-              <button class="hxBtn hxSm hxLink">
-                Retry
-              </button>
-            </hx-file-tile>
-          </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-file-tile</span> 
-  <span class="hljs-attr">invalid</span>
-  <span class="hljs-attr">icon</span>=<span class="hljs-string">"{{icon}}"</span>
-  <span class="hljs-attr">name</span>=<span class="hljs-string">"{{name}}"</span>
-&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxSm hxLink"</span>&gt;</span>
-    Retry
-  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-tile</span>&gt;</span>
-</code></pre>        </template>
-
+      <div>
+        <dt>HTML Templates</dt>
+        <dd>
+          <p>
+            Allows the creation of document fragments that go unrendered on page load, but
+            can be instantiated later.
+          </p>
+        </dd>
       </div>
-    </div>
+
+      <div>
+        <dt>Shadow DOM</dt>
+        <dd>
+          <p>
+            Provides the ability to define encapsulated HTML and CSS.
+          </p>
+        </dd>
+      </div>
+
+      <div>
+        <dt>Custom Elements</dt>
+        <dd>
+          <p>
+            Provides the foundation for creating "custom" HTML elements.
+          </p>
+        </dd>
+      </div>
+    </dl>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="info-circle"></hx-icon>
+      Learn more about Web Components at
+      <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">MDN</a>
+      and
+      <a href="https://www.webcomponents.org/">webcomponents.org</a>.
+    </p>
   </section>
 
-<section>
-  <h2 id="see-also">See Also</h2>
-  <ul>
-      <li><a href="components/Icons">Icons</a></li>
-      <li><a href="elements/hx-file-tile">&lt;hx-file-tile&gt;</a></li>
-  </ul>
-</section>
+  <section>
+    <h2 id="supported-browsers">Which Browsers are Supported?</h2>
+    <p>
+      HelixUI is built to be compatible with the following browsers:
+    </p>
+
+    <br />
+
+    <dl class="hxList metadata hxBox-sm">
+      <div>
+        <dt>Google Chrome</dt>
+        <dd>latest</dd>
+      </div>
+      <div>
+        <dt>Mozilla Firefox</dt>
+        <dd>latest</dd>
+      </div>
+      <div>
+        <dt>Internet Explorer</dt>
+        <dd>11</dd>
+      </div>
+      <div>
+        <dt>Microsoft Edge</dt>
+        <dd>latest</dd>
+      </div>
+      <div>
+        <dt>Apple Safari</dt>
+        <dd>latest</dd>
+      </div>
+    </dl>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="info-circle"></hx-icon>
+      Visit the <a href="guides/polyfills">Polyfills</a> guide for more details about browser compatibility.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="supported-frameworks">Which Frameworks are Supported?</h2>
+    <p class="comfortable">
+      HelixUI is built on W3C-standard APIs, so compatibility with client-side
+      frameworks should be pretty good.  However, HelixUI is built to ensure
+      maximum compatibility with the following client-side frameworks:
+    </p>
+
+    <br />
+
+    <dl class="hxList metadata hxBox-sm">
+      <div>
+        <dt>Vanilla HTML</dt>
+        <dd>5+</dd>
+      </div>
+      <div>
+        <dt>Angular</dt>
+        <dd>2+</dd>
+      </div>
+      <div>
+        <dt>AngularJS</dt>
+        <dd>1.7</dd>
+      </div>
+      <div>
+        <dt>React</dt>
+        <dd>15+</dd>
+      </div>
+      <div>
+        <dt>VueJS</dt>
+        <dd>2.5+</dd>
+      </div>
+    </dl>
+
+    <p class="comfortable hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon> Visit
+      <a href="https://custom-elements-everywhere.com/">custom-elements-everywhere.com</a>
+      to check the compabitility of your chosen framework.
+    </p>
+  </section>
+
   </main>
   <aside class="hxSiderail hxBox-md">
-    <h1 class="hxHeading-4">On this page:</h1>
-    <nav class="article-toc">
-      
-            <a href="#basic-file-tile">Basic File Tile</a>
+<h1 class="hxHeading-4">On this page:</h1>
+<nav class="article-toc">
+  
+            <a href="#what-are-web-components">What are Web Components?</a>
         
-        <a href="#see-also">See Also</a>
-      <hr />
-      <a class="top-link" href="#top">Back to Top</a>
-    </nav>
+
+            <a href="#supported-browsers">Which Browsers are Supported?</a>
+        
+
+            <a href="#supported-frameworks">Which Frameworks are Supported?</a>
+        
+  <hr />
+  <a class="top-link" href="#top">Back to Top</a>
+</nav>
   </aside>
     </div>
   </div>
@@ -716,12 +702,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-06-29
+      2018-08-01
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>

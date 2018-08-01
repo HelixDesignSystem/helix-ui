@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Busy - HelixUI</title>
+  <title>Files - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
 
   <link rel="shortcut icon" href="images/favicon.png">
+
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
 
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
@@ -60,6 +74,24 @@
   </a>
 
 
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
   </hx-reveal>
 
 
@@ -104,12 +136,6 @@ class="current">
 
 
       
-      <a href="components/busy" class="current">
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -124,6 +150,12 @@ class="current">
       
       <a href="components/choice-tiles" >
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" class="current">
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@ class="current">
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@ class="current">
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@ class="current">
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" >
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" >
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -542,69 +532,130 @@ class="current">
       </nav>
 
   <main id="content" class="hxBox-md">
-    <h1>Busy
+    <h1>Files
 <min-version data-tooltip="page-min-version">
-    v0.4.0+
+    v0.12.0+
 </min-version>
 
 <hx-tooltip id="page-min-version" position="right">
-    HelixUI v0.4.0 or later required
+    HelixUI v0.12.0 or later required
 </hx-tooltip>
     </h1>
 
   <section>
-    <h2 id="demos">Demos</h2>
-    <div id="vue-busyDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h3>
-        <p>
-          <label>
-            <input type="checkbox" v-model="isPaused" />
-            Pause
-          </label>
-        </p>
-      </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <section>
-          <h3>Basic Loader</h3>
-          <div class="demo">
-            <hx-busy :paused="isPaused"></hx-busy>
-          </div>
-          <template v-if="isPaused">
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-busy</span> <span class="hljs-attr">paused</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-busy</span>&gt;</span></code></pre>          </template>
-          <template v-else>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-busy</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-busy</span>&gt;</span></code></pre>          </template>
-        </section>
-
-        <section>
-          <h3>Loader in Button</h3>
-          <div class="demo">
-            <button class="hxBtn hxPrimary">
+    <h2 id="basic-file-tile">Basic File Tile</h2>
+    <div class="example" id="vue-fileTileDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend>States</legend>
+            <label>
+              <input type="radio" value="downloadable" name="file-state" v-model="state" />
+              Downloadable
+            </label>
+            <label>
+              <input type="radio" value="loading" name="file-state" v-model="state" />
               Loading
-              <hx-busy :paused="isPaused"></hx-busy>
-            </button>
-          </div>
-          <template v-if="isPaused">
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxPrimary"</span>&gt;</span>
-  Loading
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-busy</span> <span class="hljs-attr">paused</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-busy</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>          </template>
-          <template v-else>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxPrimary"</span>&gt;</span>
-  Loading
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-busy</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-busy</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-</code></pre>          </template>
-        </section>
-      </div>
+            </label>
+            <label>
+              <input type="radio" value="invalid" name="file-state" v-model="state" />
+              Invalid
+            </label>
+          </fieldset>
+          <p>
+            <label for="txtIcon">Icon</label>
+            <input id="txtIcon" class="hxTextCtrl" v-model="icon" />
+          </p>
+          <p>
+            <label for="txtName">Name</label>
+            <input id="txtName" class="hxTextCtrl" v-model="name" />
+          </p>
+          <template v-if="isDownloadable">
+            <p>
+              <label for="txtHref">HREF</label>
+              <input id="txtHref" class="hxTextCtrl" v-model="href" />
+            </p>
+            <p>
+              <label for="txtDetails">Details</label>
+              <input id="txtDetails" class="hxTextCtrl" v-model="details" />
+            </p>
+          </template>
+          <p v-if="isLoading">
+            <label for="rngProgress">Progress</label>
+            <input id="rngProgress" type="range" v-model="progress"/>
+          </p>
+        </form>
+      </header>
+
+      <template v-if="isDownloadable">
+        <div>
+          <hx-file-tile
+            :details="details"
+            :href="href"
+            :icon="icon"
+            :name="name"
+            @cancel="onEvent"
+            @delete="onEvent"
+          ></hx-file-tile>
+        </div>
+
+        <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-file-tile</span>
+  <span class="hljs-attr">details</span>=<span class="hljs-string">"{{details}}"</span>
+  <span class="hljs-attr">href</span>=<span class="hljs-string">"{{href}}"</span>
+  <span class="hljs-attr">icon</span>=<span class="hljs-string">"{{icon}}"</span>
+  <span class="hljs-attr">name</span>=<span class="hljs-string">"{{name}}"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-tile</span>&gt;</span>
+</code></pre>        </footer>
+      </template>
+
+      <template v-if="isLoading">
+        <div>
+          <hx-file-tile
+            :icon="icon"
+            :name="name"
+            :progress="progress"
+            @cancel="onEvent"
+          ></hx-file-tile>
+        </div>
+
+        <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-file-tile</span>
+  <span class="hljs-attr">icon</span>=<span class="hljs-string">"{{icon}}"</span>
+  <span class="hljs-attr">name</span>=<span class="hljs-string">"{{name}}"</span>
+  <span class="hljs-attr">progress</span>=<span class="hljs-string">"{{progress}}"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-tile</span>&gt;</span>
+</code></pre>        </footer>
+      </template>
+
+      <template v-if="isInvalid">
+        <div>
+          <hx-file-tile
+            :icon="icon"
+            :name="name"
+            @cancel="onEvent"
+            @retry="onEvent"
+            invalid
+          ></hx-file-tile>
+        </div>
+
+        <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-file-tile</span>
+  <span class="hljs-attr">icon</span>=<span class="hljs-string">"{{icon}}"</span>
+  <span class="hljs-attr">invalid</span>
+  <span class="hljs-attr">name</span>=<span class="hljs-string">"{{name}}"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-tile</span>&gt;</span>
+</code></pre>        </footer>
+      </template>
     </div>
   </section>
 
 <section>
   <h2 id="see-also">See Also</h2>
   <ul>
-      <li><a href="elements/hx-busy">&lt;hx-busy&gt;</a></li>
+      <li><a href="components/files/test.html">Testing - Files</a></li>
+      <li><a href="components/Icons">Icons</a></li>
+      <li><a href="elements/hx-file-tile">&lt;hx-file-tile&gt;</a></li>
   </ul>
 </section>
   </main>
@@ -612,7 +663,7 @@ class="current">
     <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#demos">Demos</a>
+            <a href="#basic-file-tile">Basic File Tile</a>
         
         <a href="#see-also">See Also</a>
       <hr />
@@ -633,12 +684,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-04-12
+      2018-07-23
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>

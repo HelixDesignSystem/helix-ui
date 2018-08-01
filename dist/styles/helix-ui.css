@@ -229,12 +229,6 @@ h5 + *,
 h6 + * {
   margin-top: 0.5rem;
 }
-caption,
-figcaption {
-  font-size: 0.875rem;
-  font-weight: 300;
-  line-height: 1.5;
-}
 fieldset label {
   font-size: 0.875rem;
 }
@@ -275,7 +269,7 @@ pre {
 pre code {
   display: block;
   font-weight: inherit;
-  text-shadow: 0;
+  text-shadow: none;
   white-space: pre;
 }
 /* =============== ELEMENTS =============== *\
@@ -368,20 +362,9 @@ hx-file-icon {
   display: inline-block;
 }
 hx-file-tile {
-  background-color: #f5f5f5;
-  color: #424242;
   display: block;
-  font-size: 0.875rem;
-  min-width: 11rem;
-}
-hx-file-tile[invalid] {
-  border: 2px solid #d32f2f;
-}
-hx-file-tile > hx-progress {
-  margin-top: 0.5rem;
-}
-.hxCol > hx-file-tile {
-  min-width: none;
+  height: 3.75rem;
+  width: 25rem;
 }
 hx-icon {
   background-color: transparent;
@@ -410,6 +393,18 @@ hx-menu {
 }
 hx-menu[open] {
   display: block;
+}
+hx-menu > section {
+  display: block;
+}
+hx-menu > section header {
+  color: #9e9e9e;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+hx-menu > section + section {
+  margin-top: 0.5rem;
 }
 /*
   Most of the styles mimic those of .hxBtn.hxLink.
@@ -799,13 +794,18 @@ hx-tile {
   text-align: center;
   width: 100%;
 }
-hx-tile hx-tile-title {
+hx-tile > header {
+  font-size: 1rem;
+  font-weight: 700;
   margin-bottom: 0;
+}
+hx-tile > p {
+  font-size: 0.75rem;
 }
 hx-tile.hxSm {
   padding: 0.75rem;
 }
-hx-tile.hxSm hx-tile-description {
+hx-tile.hxSm > p {
   display: none;
 }
 hx-tile.hxSm hx-icon[type="checkmark"] {
@@ -819,7 +819,7 @@ hx-tile.hxLg hx-icon[type="checkmark"] {
   right: 1.75rem;
   top: 1.75rem;
 }
-hx-tile hx-tile-title + *,
+hx-tile > header + *,
 hx-tile .hx-tile-icon + * {
   margin-top: 0.5rem;
 }
@@ -837,6 +837,15 @@ hx-tile.hxSubdued {
 }
 hx-tile.hxSubdued:hover {
   opacity: 1;
+}
+hx-tile hx-tile-title {
+  margin-bottom: 0;
+}
+hx-tile.hxSm hx-tile-description {
+  display: none;
+}
+hx-tile hx-tile-title + * {
+  margin-top: 0.5rem;
 }
 hx-tile-description {
   display: block;
@@ -1030,17 +1039,34 @@ hx-tile {
 .hxBtn,
 a[href].hxBtn {
   background-color: transparent;
-  border-radius: 2px;
-  border: 1px solid #0c7c84;
-  color: #0c7c84;
+  border: 0;
+  color: inherit;
   cursor: pointer;
   display: inline-block;
   font: inherit;
-  font-size: 0.875rem;
   font-weight: 500;
   line-height: 1;
   margin: 0;
+  padding: 0;
+  border-radius: 2px;
+  border: 1px solid #0c7c84;
+  color: #0c7c84;
+  font-size: 0.875rem;
   padding: 8px 12px;
+}
+.hxBtn:focus,
+a[href].hxBtn:focus,
+.hxBtn.beta-hxDark:focus,
+a[href].hxBtn.beta-hxDark:focus {
+  outline: none;
+}
+.hxBtn[disabled],
+a[href].hxBtn[disabled] {
+  cursor: not-allowed;
+}
+.hxBtn[disabled]:focus,
+a[href].hxBtn[disabled]:focus {
+  box-shadow: none;
 }
 .hxBtn:hover,
 a[href].hxBtn:hover,
@@ -1063,18 +1089,12 @@ a[href].hxBtn:focus,
 .hxBtn.beta-hxDark:focus,
 a[href].hxBtn.beta-hxDark:focus {
   box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);
-  outline: none;
 }
 .hxBtn[disabled],
 a[href].hxBtn[disabled] {
   background-color: transparent;
   border-color: #d8d8d8;
   color: #d8d8d8;
-  cursor: not-allowed;
-}
-.hxBtn[disabled]:focus,
-a[href].hxBtn[disabled]:focus {
-  box-shadow: none;
 }
 .hxBtn.hxSm,
 a[href].hxBtn.hxSm,
@@ -1149,6 +1169,7 @@ a[href].hxBtn--link,
 a[href].hxBtnGroup.hxLink > .hxBtn {
   background-color: transparent;
   border: none;
+  color: #0c7c84;
   padding-left: 0;
   padding-right: 0;
 }
@@ -1335,6 +1356,9 @@ label.hxChoice > input:checked + hx-tile {
   border-color: #0c7c84;
   color: #0c7c84;
 }
+label.hxChoice > input:checked + hx-tile > p {
+  color: #424242;
+}
 label.hxChoice > input:checked + hx-tile hx-tile-description {
   color: #424242;
 }
@@ -1349,6 +1373,9 @@ label.hxChoice > input[invalid] + hx-tile {
   border-color: #d32f2f;
   border-width: 2px;
   color: #d32f2f;
+}
+label.hxChoice > input[invalid] + hx-tile > p {
+  color: #424242;
 }
 label.hxChoice > input[invalid] + hx-tile hx-tile-description {
   color: #424242;
@@ -1373,6 +1400,10 @@ label.hxChoice > input[disabled] + hx-tile:hover {
   color: #757575;
   cursor: not-allowed;
 }
+label.hxChoice > input[disabled] + hx-tile > p,
+label.hxChoice > input[disabled] + hx-tile:hover > p {
+  color: inherit;
+}
 label.hxChoice > input[disabled] + hx-tile hx-tile-description,
 label.hxChoice > input[disabled] + hx-tile:hover hx-tile-description {
   color: inherit;
@@ -1380,6 +1411,45 @@ label.hxChoice > input[disabled] + hx-tile:hover hx-tile-description {
 label.hxChoice > input[disabled] + hx-tile hx-icon,
 label.hxChoice > input[disabled] + hx-tile:hover hx-icon {
   color: #bdbdbd;
+}
+.beta-hxForm label {
+  color: #616161;
+  display: block;
+  font-size: 0.875rem;
+}
+.beta-hxForm input + label {
+  color: #424242;
+  display: inline-block;
+  font-size: 1rem;
+}
+.beta-hxForm > * + * {
+  margin-top: 1rem;
+}
+.beta-hxForm fieldset > legend {
+  color: #616161;
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+.beta-hxForm fieldset > label {
+  font-size: 1rem;
+  margin: 0;
+}
+.beta-hxForm fieldset > label + label {
+  margin-top: 0.25rem;
+}
+.beta-hxForm select,
+.beta-hxForm input[type="range"] {
+  display: block;
+  width: 100%;
+}
+.beta-hxForm .beta-hxField .beta-hxFieldName {
+  color: #616161;
+  font-size: 0.875rem;
+}
+.beta-hxForm .beta-hxField .beta-hxOptionLabel {
+  color: #424242;
+  font-size: 1rem;
 }
 /* ===== GRID ===== */
 .hxRow {
@@ -2133,6 +2203,7 @@ a[href="#content"]:focus {
 #content {
   flex-grow: 1;
   min-width: 0px;
+  overflow: auto;
 }
 .hxSiderail {
   background-color: #eeeeee;
@@ -2206,23 +2277,50 @@ body.hxHorizontal #foot {
   -ms-grid-row: 3;
   grid-area: footer;
 }
-hx-def + hx-def {
+dl.hxList {
+  display: block;
+  margin: 0;
+}
+dl.hxList > div {
+  display: flex;
+}
+dl.hxList > div + div {
   margin-top: 20px;
 }
-hx-dt {
+dl.hxList dd {
+  flex: 0 0 83.33333333%;
+  max-width: 83.33333333%;
+  display: block;
+  flex-shrink: 1;
+  margin-left: 20px;
+  order: 2;
+}
+dl.hxList dt {
   flex: 0 0 16.66666667%;
   max-width: 16.66666667%;
   color: #6b6b6b;
+  display: block;
   flex-shrink: 1;
   order: 1;
   text-align: right;
 }
-hx-dd {
-  flex: 0 0 83.33333333%;
-  max-width: 83.33333333%;
-  flex-shrink: 1;
-  margin-left: 20px;
-  order: 2;
+dl.hxList.hxVertical > div {
+  flex-direction: column;
+}
+dl.hxList.hxVertical dt,
+dl.hxList.hxVertical dd {
+  flex: 0 0 auto;
+  max-width: none;
+}
+dl.hxList.hxVertical dt {
+  font-weight: 700;
+  text-align: left;
+}
+dl.hxList.hxVertical dd {
+  margin: 0;
+}
+hx-def + hx-def {
+  margin-top: 20px;
 }
 hx-dl.hxVertical hx-def {
   flex-direction: column;
@@ -2799,8 +2897,12 @@ h6 {
 .hxSubdued {
   color: #6b6b6b;
 }
-.hxCaption {
+.hxFigure figcaption,
+.hxCaption,
+.hxTable caption {
   color: #616161;
+  font-size: 0.875rem;
+  font-weight: 300;
 }
 .hxSubBody {
   font-size: 0.75rem;
@@ -2935,8 +3037,8 @@ h6 {
     - A.K.A. "Shame" File
     - Allow !important
 \* =============================== */
-figure {
-  margin: 0 0 1rem;
+.hxFigure {
+  margin: 0;
 }
 p {
   margin: 0;

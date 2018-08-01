@@ -8,6 +8,20 @@
 
   <link rel="shortcut icon" href="images/favicon.png">
 
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
@@ -60,6 +74,24 @@
   </a>
 
 
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
   </hx-reveal>
 
 
@@ -104,12 +136,6 @@ class="current">
 
 
       
-      <a href="components/busy" >
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -124,6 +150,12 @@ class="current">
       
       <a href="components/choice-tiles" >
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@ class="current">
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@ class="current">
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@ class="current">
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" >
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" >
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -553,16 +543,9 @@ class="current">
     </h1>
 
 <section>
-  <div class="hxAlert hxAlert--warning">
-    <div class="hxAlert__icon">
-      <hx-icon type="exclamation-triangle"></hx-icon>
-    </div>
-    <div class="hxAlert__text">
-      <span class="hxAlert__status">Warning</span>
-      HelixUI grid classes are not compatible with Bootstrap grid styles.
-    </div>
-  </div>
-  <br />
+  <hx-alert type="warning" status="warning" static>
+    HelixUI grid classes are not compatible with Bootstrap grid styles.
+  </hx-alert>
 
   <p>
     The Grid CSS module provides utility classes based on flexbox to help
@@ -578,24 +561,26 @@ class="current">
       <em>width</em> amongst their children.
     </li>
   </ul>
-
-  <div class="demo grid-demo">
-    <p>
-      It was discovered that by rarely reviewing the VOC meetings, we can
-      practice the ranked XP task for the agile branch. If it takes you too
-      long to join the viable XP manifesto, then you are not burning out enough.
-    </p>
-    <div class="hxRow">
-      <div class="hxCol"><p>Column 1 of 3</p></div>
-      <div class="hxCol"><p>Column 2 of 3</p></div>
-      <div class="hxCol"><p>Column 3 of 3</p></div>
+  <div class="example">
+    <div class="grid-demo">
+      <p>
+        It was discovered that by rarely reviewing the VOC meetings, we can
+        practice the ranked XP task for the agile branch. If it takes you too
+        long to join the viable XP manifesto, then you are not burning out enough.
+      </p>
+      <div class="hxRow">
+        <div class="hxCol"><p>Column 1 of 3</p></div>
+        <div class="hxCol"><p>Column 2 of 3</p></div>
+        <div class="hxCol"><p>Column 3 of 3</p></div>
+      </div>
+      <p>
+        Try to commit the burndown standard, maybe it will help join the MVP
+        standards. As a user, I should be able to block the burndown deadline so
+        that I can block the minimum WIP methods near the parallel deadlines.
+      </p>
     </div>
-    <p>
-      Try to commit the burndown standard, maybe it will help join the MVP
-      standards. As a user, I should be able to block the burndown deadline so
-      that I can block the minimum WIP methods near the parallel deadlines.
-    </p>
-  </div>
+
+    <footer>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Column 1 of 3<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -603,7 +588,9 @@ class="current">
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Column 3 of 3<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-</code></pre></section>
+</code></pre>    </footer>
+  </div>
+</section>
 
 <section><!-- columns -->
   <h2 id="columns">Columns</h2>
@@ -617,22 +604,25 @@ class="current">
       Columns <em>share width equally</em> among other columns in the same row.
     </li>
   </ul>
-  <div class="demo grid-demo">
-    <div class="demo-container text-center">
-      <div class="hxRow">
-        <div class="hxCol">1/1</div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol">1/2</div>
-        <div class="hxCol">2/2</div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol">1/3</div>
-        <div class="hxCol">2/3</div>
-        <div class="hxCol">3/3</div>
+  <div class="example">
+    <div class="grid-demo">
+      <div class="demo-container text-center">
+        <div class="hxRow">
+          <div class="hxCol">1/1</div>
+        </div>
+        <div class="hxRow">
+          <div class="hxCol">1/2</div>
+          <div class="hxCol">2/2</div>
+        </div>
+        <div class="hxRow">
+          <div class="hxCol">1/3</div>
+          <div class="hxCol">2/3</div>
+          <div class="hxCol">3/3</div>
+        </div>
       </div>
     </div>
-  </div>
+
+    <footer>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -645,7 +635,9 @@ class="current">
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>2/3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>3/3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code></pre></section>
+</code></pre>    </footer>
+  </div>
+</section>
 
 <section><!-- column width -->
   <h2 id="column-width">Column Width</h2>
@@ -661,38 +653,40 @@ class="current">
     <li><code>.hxSpan-{N}-{size}</code> responsive classes are available.</li>
     <li><code>.hxSpan-{N}</code> is shorthand for <code>.hxSpan-{N}-xs</code></li>
   </ul>
-
-  <div class="demo grid-demo">
-    <div class="demo-container text-center">
-      <div class="hxRow">
-        <div class="hxCol hxSpan-12">12</div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol hxSpan-1">1</div>
-        <div class="hxCol hxSpan-11">11</div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol hxSpan-2">2</div>
-        <div class="hxCol hxSpan-10">10</div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol hxSpan-3">3</div>
-        <div class="hxCol hxSpan-9">9</div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol hxSpan-4">4</div>
-        <div class="hxCol hxSpan-8">8</div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol hxSpan-5">5</div>
-        <div class="hxCol hxSpan-7">7</div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol hxSpan-6">6</div>
-        <div class="hxCol hxSpan-6">6</div>
+  <div class="example">
+    <div class="grid-demo">
+      <div class="demo-container text-center">
+        <div class="hxRow">
+          <div class="hxCol hxSpan-12">12</div>
+        </div>
+        <div class="hxRow">
+          <div class="hxCol hxSpan-1">1</div>
+          <div class="hxCol hxSpan-11">11</div>
+        </div>
+        <div class="hxRow">
+          <div class="hxCol hxSpan-2">2</div>
+          <div class="hxCol hxSpan-10">10</div>
+        </div>
+        <div class="hxRow">
+          <div class="hxCol hxSpan-3">3</div>
+          <div class="hxCol hxSpan-9">9</div>
+        </div>
+        <div class="hxRow">
+          <div class="hxCol hxSpan-4">4</div>
+          <div class="hxCol hxSpan-8">8</div>
+        </div>
+        <div class="hxRow">
+          <div class="hxCol hxSpan-5">5</div>
+          <div class="hxCol hxSpan-7">7</div>
+        </div>
+        <div class="hxRow">
+          <div class="hxCol hxSpan-6">6</div>
+          <div class="hxCol hxSpan-6">6</div>
+        </div>
       </div>
     </div>
-  </div>
+
+    <footer>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxSpan-12"</span>&gt;</span>12<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -720,7 +714,9 @@ class="current">
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxSpan-6"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxSpan-6"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code></pre></section>
+</code></pre>    </footer>
+  </div>
+</section>
 
 <section><!-- column offset -->
   <h2 id="column-offset">Column Offset</h2>
@@ -736,25 +732,27 @@ class="current">
       <code>.hxOffset-{N}</code> is shorthand for <code>.hxOffset-{N}-xs</code>
     </li>
   </ul>
-
-  <div class="demo grid-demo">
-    <div class="demo-container text-center">
-      <div class="hxRow">
-        <div class="hxCol hxSpan-2">2</div>
-        <div class="hxCol hxSpan-6 hxOffset-1">6</div>
-        <div class="hxCol hxSpan-2 hxOffset-1">2</div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol hxSpan-2 hxOffset-2">2</div>
-        <div class="hxCol hxSpan-4">4</div>
-        <div class="hxCol hxSpan-2">2</div>
-      </div>
-      <div class="hxRow">
-        <div class="hxCol hxSpan-4">4</div>
-        <div class="hxCol hxSpan-4 hxOffset-4">4</div>
+  <div class="example">
+    <div class="grid-demo">
+      <div class="demo-container text-center">
+        <div class="hxRow">
+          <div class="hxCol hxSpan-2">2</div>
+          <div class="hxCol hxSpan-6 hxOffset-1">6</div>
+          <div class="hxCol hxSpan-2 hxOffset-1">2</div>
+        </div>
+        <div class="hxRow">
+          <div class="hxCol hxSpan-2 hxOffset-2">2</div>
+          <div class="hxCol hxSpan-4">4</div>
+          <div class="hxCol hxSpan-2">2</div>
+        </div>
+        <div class="hxRow">
+          <div class="hxCol hxSpan-4">4</div>
+          <div class="hxCol hxSpan-4 hxOffset-4">4</div>
+        </div>
       </div>
     </div>
-  </div>
+
+    <footer>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxSpan-2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxSpan-6 hxOffset-1"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -769,21 +767,16 @@ class="current">
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxSpan-4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxSpan-4 hxOffset-4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code></pre></section>
+</code></pre>    </footer>
+  </div>
+</section>
 
 <section><!-- column ordering -->
   <h2 id="column-ordering">Column Ordering</h2>
-  <div class="hxAlert">
-    <div class="hxAlert__icon">
-      <hx-icon type="info-circle"></hx-icon>
-    </div>
-    <div class="hxAlert__text">
-      <span class="hxAlert__status">FYI</span>
-      Reordering columns does not change tab order.<br />
-      Tab order is based on the DOM order, not visual appearance.
-    </div>
-  </div>
-  <br />
+  <hx-alert type="info" status="fyi" static>
+    Reordering columns does not change tab order.<br />
+    Tab order is based on the DOM order, not visual appearance.
+  </hx-alert>
   <p>
     Use the <code>.hxOrder-{N}</code> class (1 &le; N &le; 12) to reorder
     your columns.
@@ -801,23 +794,28 @@ class="current">
     The <code>.hxOrder-*</code> classes reordered them in the proper
     numerical order.
   </p>
-  <div class="demo grid-demo">
-    <div class="demo-container text-center">
-      <div class="hxRow">
-        <div class="hxCol hxOrder-2">#2</div>
-        <div class="hxCol hxOrder-4">#4</div>
-        <div class="hxCol hxOrder-1">#1</div>
-        <div class="hxCol hxOrder-3">#3</div>
+  <div class="example">
+    <div class="grid-demo">
+      <div class="demo-container text-center">
+        <div class="hxRow">
+          <div class="hxCol hxOrder-2">#2</div>
+          <div class="hxCol hxOrder-4">#4</div>
+          <div class="hxCol hxOrder-1">#1</div>
+          <div class="hxCol hxOrder-3">#3</div>
+        </div>
       </div>
     </div>
-  </div>
+
+    <footer>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxOrder-2"</span>&gt;</span>#2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxOrder-4"</span>&gt;</span>#4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxOrder-1"</span>&gt;</span>#1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxOrder-3"</span>&gt;</span>#3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code></pre></section>
+</code></pre>    </footer>
+  </div>
+</section>
 
 <section><!-- responsive options -->
   <h2 id="responsive-options">Responsive Options</h2>
@@ -875,24 +873,27 @@ class="current">
       </tr>
     </tbody>
   </table>
-  <div class="demo grid-demo">
-    <div class="demo-container text-center">
-      <div id="querySize"></div>
-      <div class="hxRow">
-        <div class="demoCol hxCol hxSpan-12-xs hxSpan-4-sm hxSpan-3-md hxSpan-2-lg hxSpan-1-xl"></div>
-        <div class="demoCol hxCol hxSpan-6-xs hxSpan-4-sm hxSpan-6-md hxSpan-8-lg hxSpan-10-xl"></div>
-        <div class="demoCol hxCol hxSpan-6-xs hxSpan-4-sm hxSpan-3-md hxSpan-2-lg hxSpan-1-xl"></div>
-      </div>
-      <div class="hxRow">
-        <div class="demoCol hxCol hxSpan-12-xs hxSpan-4-sm hxSpan-3-md hxSpan-2-lg hxSpan-1-xl"></div>
-        <div class="demoCol hxCol hxSpan-12-xs hxSpan-8-sm hxSpan-9-md hxSpan-10-lg hxSpan-11-xl"></div>
-      </div>
-      <div class="hxRow">
-        <div class="demoCol hxCol hxSpan-12-xs hxSpan-8-sm hxSpan-6-md hxSpan-4-lg hxSpan-3-xl"></div>
-        <div class="demoCol hxCol hxSpan-12-xs hxSpan-4-sm hxSpan-6-md hxSpan-8-lg hxSpan-9-xl"></div>
+  <div class="example">
+    <div class="grid-demo">
+      <div class="demo-container text-center">
+        <div id="querySize"></div>
+        <div class="hxRow">
+          <div class="demoCol hxCol hxSpan-12-xs hxSpan-4-sm hxSpan-3-md hxSpan-2-lg hxSpan-1-xl"></div>
+          <div class="demoCol hxCol hxSpan-6-xs hxSpan-4-sm hxSpan-6-md hxSpan-8-lg hxSpan-10-xl"></div>
+          <div class="demoCol hxCol hxSpan-6-xs hxSpan-4-sm hxSpan-3-md hxSpan-2-lg hxSpan-1-xl"></div>
+        </div>
+        <div class="hxRow">
+          <div class="demoCol hxCol hxSpan-12-xs hxSpan-4-sm hxSpan-3-md hxSpan-2-lg hxSpan-1-xl"></div>
+          <div class="demoCol hxCol hxSpan-12-xs hxSpan-8-sm hxSpan-9-md hxSpan-10-lg hxSpan-11-xl"></div>
+        </div>
+        <div class="hxRow">
+          <div class="demoCol hxCol hxSpan-12-xs hxSpan-8-sm hxSpan-6-md hxSpan-4-lg hxSpan-3-xl"></div>
+          <div class="demoCol hxCol hxSpan-12-xs hxSpan-4-sm hxSpan-6-md hxSpan-8-lg hxSpan-9-xl"></div>
+        </div>
       </div>
     </div>
-  </div>
+
+    <footer>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"demoCol hxCol hxSpan-12-xs hxSpan-4-sm hxSpan-3-md hxSpan-2-lg hxSpan-1-xl"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"demoCol hxCol hxSpan-6-xs hxSpan-4-sm hxSpan-6-md hxSpan-8-lg hxSpan-10-xl"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -906,20 +907,15 @@ class="current">
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"demoCol hxCol hxSpan-12-xs hxSpan-8-sm hxSpan-6-md hxSpan-4-lg hxSpan-3-xl"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"demoCol hxCol hxSpan-12-xs hxSpan-4-sm hxSpan-6-md hxSpan-8-lg hxSpan-9-xl"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code></pre></section>
+</code></pre>    </footer>
+  </div>
+</section>
 
 <section><!-- column wrapping -->
   <h2 id="column-wrapping">Column Wrapping</h2>
-  <div class="hxAlert">
-    <div class="hxAlert__icon">
-      <hx-icon type="info-circle"></hx-icon>
-    </div>
-    <div class="hxAlert__text">
-      <span class="hxAlert__status">NOTE</span>
-      Columns wrap if the total column width count within the row exceeds 12.
-    </div>
-  </div>
-  <br />
+  <hx-alert type="info" status="note" static>
+    Columns wrap if the total column width count within the row exceeds 12.
+  </hx-alert>
   <p>
     The following example should arrange the content into:
   </p>
@@ -928,22 +924,25 @@ class="current">
     <li>4 columns on medium screens</li>
     <li>6 columns on all other sizes</li>
   </ul>
-  <div class="demo grid-demo">
-    <div class="demo-container text-center">
-      <div class="hxRow">
-        <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Snow White</div>
-        <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">The Evil Queen</div>
-        <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">The Prince</div>
-        <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Happy</div>
-        <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Sleepy</div>
-        <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Sneezy</div>
-        <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Grumpy</div>
-        <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Bashful</div>
-        <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Dopey</div>
-        <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Doc</div>
+  <div class="example">
+    <div class="grid-demo">
+      <div class="demo-container text-center">
+        <div class="hxRow">
+          <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Snow White</div>
+          <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">The Evil Queen</div>
+          <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">The Prince</div>
+          <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Happy</div>
+          <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Sleepy</div>
+          <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Sneezy</div>
+          <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Grumpy</div>
+          <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Bashful</div>
+          <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Dopey</div>
+          <div class="hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg">Doc</div>
+        </div>
       </div>
     </div>
-  </div>
+
+    <footer>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg"</span>&gt;</span>Snow White<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg"</span>&gt;</span>The Evil Queen<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -956,44 +955,42 @@ class="current">
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg"</span>&gt;</span>Dopey<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxSpan-4-xs hxSpan-3-md hxSpan-2-lg"</span>&gt;</span>Doc<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code></pre></section>
+</code></pre>    </footer>
+  </div>
+</section>
 
 <section><!-- nesting containers -->
   <h2 id="nesting-containers">Nesting Containers</h2>
-  <div class="hxAlert hxAlert--warning">
-    <div class="hxAlert__icon">
-      <hx-icon type="exclamation-triangle"></hx-icon>
-    </div>
-    <div class="hxAlert__text">
-      <span class="hxAlert__status">Warning</span>
-      Do not apply row and column container classes to the same element.
-    </div>
-  </div>
-  <br />
+  <hx-alert type="warning" status="warning" static>
+    Do not apply row and column container classes to the same element.
+  </hx-alert>
   <p>You can nest rows and columns as deep as necessary.</p>
-  <div class="demo grid-demo">
-    <div class="demo-container text-center">
-      <div class="hxRow">
-        <div class="hxCol hxSpan-12">12
-          <div class="hxRow">
-            <div class="hxCol hxSpan-6">6
-              <div class="hxRow">
-                <div class="hxCol hxSpan-4">4</div>
-                <div class="hxCol hxSpan-4">4</div>
-                <div class="hxCol hxSpan-4">4</div>
+  <div class="example">
+    <div class="grid-demo">
+      <div class="demo-container text-center">
+        <div class="hxRow">
+          <div class="hxCol hxSpan-12">12
+            <div class="hxRow">
+              <div class="hxCol hxSpan-6">6
+                <div class="hxRow">
+                  <div class="hxCol hxSpan-4">4</div>
+                  <div class="hxCol hxSpan-4">4</div>
+                  <div class="hxCol hxSpan-4">4</div>
+                </div>
               </div>
-            </div>
-            <div class="hxCol hxSpan-6">6
-              <div class="hxRow">
-                <div class="hxCol hxSpan-3">3</div>
-                <div class="hxCol hxSpan-9">9</div>
+              <div class="hxCol hxSpan-6">6
+                <div class="hxRow">
+                  <div class="hxCol hxSpan-3">3</div>
+                  <div class="hxCol hxSpan-9">9</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <footer>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxSpan-12"</span>&gt;</span>12
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
@@ -1013,53 +1010,51 @@ class="current">
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code></pre></section>
+</code></pre>    </footer>
+  </div>
+</section>
 
 <section><!-- styling containers -->
   <h2 id="styling-containers">Styling Containers</h2>
-  <div class="hxAlert hxAlert--warning">
-    <div class="hxAlert__icon">
-      <hx-icon type="exclamation-triangle"></hx-icon>
-    </div>
-    <div class="hxAlert__text">
-      <span class="hxAlert__status">Warning</span>
-      Do not attempt to style rows or columns directly.
-    </div>
-  </div>
-  <br />
+  <hx-alert type="warning" status="warning" static>
+    Do not attempt to style rows or columns directly.
+  </hx-alert>
   <ul>
     <li>Rows have margins set to align the outer columns with surrounding content.</li>
     <li>Columns in a row have padding applied to them to simulate gutters.</li>
     <li>Wrap your content in a <code>&lt;div&gt;</code> to apply custom CSS.</li>
   </ul>
-  <div class="demo grid-demo">
-    <div class="hxRow">
-      <div class="hxCol hxSpan-4">
-        <p>
-          As a user, I should be able to measure the flexible project
-          management so that I can decide the alpha VOC relationships
-          outside the big interactions. If we adjust upon the relationships,
-          we can get the pair meeting outside the WIP commitment.
-        </p>
-      </div>
-      <div class="hxCol hxSpan-4">
-        <div class="example-styled-container">
+  <div class="example">
+    <div class="grid-demo">
+      <div class="hxRow">
+        <div class="hxCol hxSpan-4">
           <p>
-            This is a custom styled container! Notice how it fills the
-            green areas of the column.
+            As a user, I should be able to measure the flexible project
+            management so that I can decide the alpha VOC relationships
+            outside the big interactions. If we adjust upon the relationships,
+            we can get the pair meeting outside the WIP commitment.
+          </p>
+        </div>
+        <div class="hxCol hxSpan-4">
+          <div class="example-styled-container">
+            <p>
+              This is a custom styled container! Notice how it fills the
+              green areas of the column.
+            </p>
+          </div>
+        </div>
+        <div class="hxCol hxSpan-4">
+          <p>
+            As a user, I should be able to measure the flexible project
+            management so that I can decide the alpha VOC relationships
+            outside the big interactions. If we adjust upon the relationships,
+            we can get the pair meeting outside the WIP commitment.
           </p>
         </div>
       </div>
-      <div class="hxCol hxSpan-4">
-        <p>
-          As a user, I should be able to measure the flexible project
-          management so that I can decide the alpha VOC relationships
-          outside the big interactions. If we adjust upon the relationships,
-          we can get the pair meeting outside the WIP commitment.
-        </p>
-      </div>
     </div>
-  </div>
+
+    <footer>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol hxSpan-4"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
@@ -1076,7 +1071,9 @@ class="current">
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code></pre></section>
+</code></pre>    </footer>
+  </div>
+</section>
 
 <section><!-- going gutterless -->
   <h2 id="going-gutterless">Going Gutterless</h2>
@@ -1086,25 +1083,27 @@ class="current">
       to remove gutters from its immediate children.
     </li>
   </ul>
-  <p>
-    <small>
-      Notice how the nested row in the second column still applies its gutters.
-    </small>
+  <p class="hxSubBody hxSubdued">
+    <hx-icon type="info-circle"></hx-icon>
+    Notice how the nested row in the second column still applies its gutters.
   </p>
-  <div class="demo grid-demo">
-    <div class="demo-container text-center">
-      <div class="hxRow hxGutterless">
-        <div class="hxCol">1/3</div>
-        <div class="hxCol">1/3
-          <div class="hxRow">
-            <div class="hxCol">1/2</div>
-            <div class="hxCol">1/2</div>
+  <div class="example">
+    <div class="grid-demo">
+      <div class="demo-container text-center">
+        <div class="hxRow hxGutterless">
+          <div class="hxCol">1/3</div>
+          <div class="hxCol">1/3
+            <div class="hxRow">
+              <div class="hxCol">1/2</div>
+              <div class="hxCol">1/2</div>
+            </div>
           </div>
+          <div class="hxCol">1/3</div>
         </div>
-        <div class="hxCol">1/3</div>
       </div>
     </div>
-  </div>
+
+    <footer>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRow hxGutterless"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/3
@@ -1115,7 +1114,9 @@ class="current">
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxCol"</span>&gt;</span>1/3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code></pre></section>
+</code></pre>    </footer>
+  </div>
+</section>
 
 <section>
   <h2 id="see-also">See Also</h2>
@@ -1177,12 +1178,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-06-12
+      2018-07-23
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>

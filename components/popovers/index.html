@@ -8,6 +8,20 @@
 
   <link rel="shortcut icon" href="images/favicon.png">
 
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
@@ -60,6 +74,24 @@
   </a>
 
 
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
   </hx-reveal>
 
 
@@ -104,12 +136,6 @@ class="current">
 
 
       
-      <a href="components/busy" >
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -124,6 +150,12 @@ class="current">
       
       <a href="components/choice-tiles" >
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@ class="current">
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@ class="current">
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@ class="current">
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" >
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" >
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -553,45 +543,47 @@ class="current">
     </h1>
 
   <section>
-    <h2 id="demos">Demos</h2>
-    <div id="vue-popoverDemo" class="hxRow" v-cloak>
-      <div class="hxCol hxSpan-12-xs hxSpan-3-lg hxOrder-2-lg">
-        <h3>Options</h3>
-        <p>
-          <b>Position:</b><br />
-          <select v-model="position">
-            <option v-for="_position in positions" :value="_position">
+    <h2 id="basic-popover">Basic Popover</h2>
+    <div class="example" id="vue-popoverDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <p>
+            <label for="selPosition">Position</label>
+            <select id="selPosition" v-model="position">
+              <option v-for="_position in positions" :value="_position">
 {{ _position.label }}
-            </option>
-          </select>
-        </p>
+              </option>
+            </select>
+          </p>
+        </form>
+      </header>
+
+      <div>
+        <button data-popover="myPopover" class="hxBtn">Toggle</button>
+
+        <hx-popover id="myPopover"
+          :position="position.value"
+          v-for="_position in positions"
+          v-if="_position.value === position.value">
+
+          <hx-popover-head>
+            Popover Header
+          </hx-popover-head>
+
+          <hx-popover-body>
+            <p>This is my popover body</p>
+          </hx-popover-body>
+
+          <hx-popover-foot>
+            <button class="hxBtn hxPrimary">Submit</button>
+            <button class="hxBtn">Cancel</button>
+          </hx-popover-foot>
+        </hx-popover>
       </div>
-      <div class="hxCol hxSpan-12-xs hxSpan-9-lg hxOrder-1-lg">
-        <h3>Basic Popover</h3>
-        <div class="demo popover-demo">
-          <button data-popover="myPopover" class="hxBtn">Toggle</button>
 
-          <hx-popover id="myPopover"
-            :position="position.value"
-            v-for="_position in positions"
-            v-if="_position.value === position.value">
-
-            <hx-popover-head>
-              Popover Header
-            </hx-popover-head>
-
-            <hx-popover-body>
-              <p>This is my popover body</p>
-            </hx-popover-body>
-
-            <hx-popover-foot>
-              <button class="hxBtn hxPrimary">Submit</button>
-              <button class="hxBtn">Cancel</button>
-            </hx-popover-foot>
-          </hx-popover>
-        </div>
+      <footer>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">data-popover</span>=<span class="hljs-string">"myPopover"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Toggle<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-popover</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myPopover"</span> <span class="hljs-attr">position</span>=<span class="hljs-string">"bottom-right"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-popover</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myPopover"</span> <span class="hljs-attr">position</span>=<span class="hljs-string">"{{ position.value }}"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-popover-head</span>&gt;</span>
     Popover Header
   <span class="hljs-tag">&lt;/<span class="hljs-name">hx-popover-head</span>&gt;</span>
@@ -605,121 +597,7 @@ class="current">
     <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">hx-popover-foot</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-popover</span>&gt;</span>
-</code></pre>      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2 id="appearance">Appearance</h2>
-    <div class="popover-appearance">
-      <table>
-        <tbody>
-          <tr>
-              <td>
-                <hx-popover position="top">
-                  <hx-popover-body>
-                    <code>position="top"</code>
-                  </hx-popover-body>
-                </hx-popover>
-              </td>
-
-              <td>
-                <hx-popover position="top-left">
-                  <hx-popover-body>
-                    <code>position="top-left"</code>
-                  </hx-popover-body>
-                </hx-popover>
-              </td>
-
-                </tr><tr>
-              <td>
-                <hx-popover position="top-right">
-                  <hx-popover-body>
-                    <code>position="top-right"</code>
-                  </hx-popover-body>
-                </hx-popover>
-              </td>
-
-              <td>
-                <hx-popover position="bottom">
-                  <hx-popover-body>
-                    <code>position="bottom"</code>
-                  </hx-popover-body>
-                </hx-popover>
-              </td>
-
-                </tr><tr>
-              <td>
-                <hx-popover position="bottom-left">
-                  <hx-popover-body>
-                    <code>position="bottom-left"</code>
-                  </hx-popover-body>
-                </hx-popover>
-              </td>
-
-              <td>
-                <hx-popover position="bottom-right">
-                  <hx-popover-body>
-                    <code>position="bottom-right"</code>
-                  </hx-popover-body>
-                </hx-popover>
-              </td>
-
-                </tr><tr>
-              <td>
-                <hx-popover position="right">
-                  <hx-popover-body>
-                    <code>position="right"</code>
-                  </hx-popover-body>
-                </hx-popover>
-              </td>
-
-              <td>
-                <hx-popover position="right-top">
-                  <hx-popover-body>
-                    <code>position="right-top"</code>
-                  </hx-popover-body>
-                </hx-popover>
-              </td>
-
-                </tr><tr>
-              <td>
-                <hx-popover position="right-bottom">
-                  <hx-popover-body>
-                    <code>position="right-bottom"</code>
-                  </hx-popover-body>
-                </hx-popover>
-              </td>
-
-              <td>
-                <hx-popover position="left">
-                  <hx-popover-body>
-                    <code>position="left"</code>
-                  </hx-popover-body>
-                </hx-popover>
-              </td>
-
-                </tr><tr>
-              <td>
-                <hx-popover position="left-top">
-                  <hx-popover-body>
-                    <code>position="left-top"</code>
-                  </hx-popover-body>
-                </hx-popover>
-              </td>
-
-              <td>
-                <hx-popover position="left-bottom">
-                  <hx-popover-body>
-                    <code>position="left-bottom"</code>
-                  </hx-popover-body>
-                </hx-popover>
-              </td>
-
-                </tr><tr>
-          </tr>
-        </tbody>
-      </table>
+</code></pre>      </footer>
     </div>
   </section>
 
@@ -727,6 +605,7 @@ class="current">
   <h2 id="see-also">See Also</h2>
   <ul>
       <li><a href="components/buttons">Buttons</a></li>
+      <li><a href="components/popovers/test.html">Testing - Popovers</a></li>
       <li><a href="elements/hx-popover-body">&lt;hx-popover-body&gt;</a></li>
       <li><a href="elements/hx-popover-foot">&lt;hx-popover-foot&gt;</a></li>
       <li><a href="elements/hx-popover-head">&lt;hx-popover-head&gt;</a></li>
@@ -738,10 +617,7 @@ class="current">
     <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#demos">Demos</a>
-        
-
-            <a href="#appearance">Appearance</a>
+            <a href="#basic-popover">Basic Popover</a>
         
         <a href="#see-also">See Also</a>
       <hr />
@@ -762,12 +638,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-04-12
+      2018-07-23
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>

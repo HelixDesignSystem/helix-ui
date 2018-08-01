@@ -8,6 +8,20 @@
 
   <link rel="shortcut icon" href="images/favicon.png">
 
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
@@ -60,6 +74,24 @@
   </a>
 
 
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
   </hx-reveal>
 
 
@@ -104,12 +136,6 @@ class="current">
 
 
       
-      <a href="components/busy" >
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -124,6 +150,12 @@ class="current">
       
       <a href="components/choice-tiles" >
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@ class="current">
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@ class="current">
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@ class="current">
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" >
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" >
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -553,131 +543,150 @@ class="current">
     </h1>
 
   <section>
-    <h2 id="menu">Basic Menu</h2>
-    <div class="demo">
-      <hx-disclosure class="hxBtn" aria-controls="menuId">
-        <hx-icon type="cog"></hx-icon>
-        Actions
-        <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
-      </hx-disclosure>
-      <hx-menu id="menuId">
-        <hx-menuitem>Action 1</hx-menuitem>
-        <hx-menuitem>Action 2</hx-menuitem>
-        <hx-menuitem>Action 3</hx-menuitem>
-      </hx-menu>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"menuId"</span>&gt;</span>
+    <h2 id="basic-menu">Basic Menu</h2>
+    <div class="example">
+      <div>
+        <hx-disclosure class="hxBtn" aria-controls="basicMenuId">
+          <hx-icon type="cog"></hx-icon>
+          Actions
+          <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+        </hx-disclosure>
+        <hx-menu id="basicMenuId">
+          <hx-menuitem>Action 1</hx-menuitem>
+          <hx-menuitem>Action 2</hx-menuitem>
+          <hx-menuitem>Action 3</hx-menuitem>
+        </hx-menu>
+      </div>
+
+      <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"basicMenuId"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"cog"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
   Actions
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxPrimary"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-menu</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"menuId"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-menu</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"basicMenuId"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 1<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 2<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 3<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-menu</span>&gt;</span>
-</code></pre>  </section>
+</code></pre>      </footer>
+    </div>
+  </section>
 
   <section>
     <h2 id="cog-menu">Cog Menu</h2>
-    <div class="demo">
-      <hx-disclosure class="hxBtn hxCog" aria-controls="cogmenuId">
-        <hx-icon type="cog"></hx-icon>
-      </hx-disclosure>
-      <hx-menu id="cogmenuId">
-        <hx-menuitem>Action 1</hx-menuitem>
-        <hx-menuitem>Action 2</hx-menuitem>
-        <hx-menuitem>Action 3</hx-menuitem>
-      </hx-menu>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxCog"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"cogmenuId"</span>&gt;</span>
+    <div class="example">
+      <div>
+        <hx-disclosure class="hxBtn hxCog" aria-controls="cogMenuId">
+          <hx-icon type="cog"></hx-icon>
+        </hx-disclosure>
+        <hx-menu id="cogMenuId">
+          <hx-menuitem>Action 1</hx-menuitem>
+          <hx-menuitem>Action 2</hx-menuitem>
+          <hx-menuitem>Action 3</hx-menuitem>
+        </hx-menu>
+      </div>
+
+      <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxCog"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"cogMenuId"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"cog"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-menu</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"cogmenuId"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-menu</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"cogMenuId"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 1<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 2<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 3<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-menu</span>&gt;</span>
-</code></pre>  </section>
+</code></pre>      </footer>
+    </div>
+  </section>
 
   <section>
-    <h2 id="advanced-menu">Advanced Menu</h2>
-    <div class="demo">
-      <hx-disclosure class="hxBtn" aria-controls="advancedmenuId">
-        <hx-icon type="cog"></hx-icon>
-        Actions
-        <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
-      </hx-disclosure>
-      <hx-menu id="advancedmenuId">
-        <hx-menuitem-group>
-          <header>TITLE</header>
-          <hx-menuitem>Action 1</hx-menuitem>
-          <hx-menuitem>Action 2</hx-menuitem>
-          <hx-menuitem>Action 3</hx-menuitem>
-        </hx-menuitem-group>
-        <hx-menuitem-group>
-          <header>TITLE</header>
-          <hx-menuitem>Action 1</hx-menuitem>
-          <hx-menuitem>Action 2</hx-menuitem>
-          <hx-menuitem>Action 3</hx-menuitem>
-        </hx-menuitem-group>
-      </hx-menu>
-    </div>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"advancedmenuId"</span>&gt;</span>
+    <h2 id="grouped-menu">Grouped Menu</h2>
+    <div class="example">
+      <div>
+        <hx-disclosure class="hxBtn" aria-controls="groupedMenuId">
+          <hx-icon type="cog"></hx-icon>
+          Actions
+          <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+        </hx-disclosure>
+        <hx-menu id="groupedMenuId">
+          <section>
+            <header>TITLE</header>
+            <hx-menuitem>Action 1</hx-menuitem>
+            <hx-menuitem>Action 2</hx-menuitem>
+            <hx-menuitem>Action 3</hx-menuitem>
+          </section>
+          <section>
+            <header>TITLE</header>
+            <hx-menuitem>Action 1</hx-menuitem>
+            <hx-menuitem>Action 2</hx-menuitem>
+            <hx-menuitem>Action 3</hx-menuitem>
+          </section>
+        </hx-menu>
+      </div>
+
+      <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"groupedMenuId"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"cog"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
   Actions
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxPrimary"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-menu</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"advancedmenuId"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem-group</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-menu</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"groupedMenuId"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>TITLE<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 1<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 2<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 3<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem-group</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem-group</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>TITLE<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 1<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 2<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 3<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem-group</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-menu</span>&gt;</span>
-</code></pre>  </section>
+</code></pre>      </footer>
+    </div>
+  </section>
 
   <section>
     <h2 id="split-menu">Split Menu</h2>
-    <div class="demo">
-      <div class="hxBtnGroup hxPrimary" id="split-group">
-        <button class="hxBtn">Split Menu</button>
-        <hx-disclosure class="hxBtn" aria-controls="splitmenuId">
-          <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
-        </hx-disclosure>
+    <div class="example">
+      <div>
+        <div class="hxBtnGroup hxPrimary" id="split-group">
+          <button class="hxBtn">Split Menu</button>
+          <hx-disclosure class="hxBtn" aria-controls="splitMenuId">
+            <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+          </hx-disclosure>
+        </div>
+        <hx-menu id="splitMenuId" relative-to="split-group">
+          <hx-menuitem>Action 1</hx-menuitem>
+          <hx-menuitem>Action 2</hx-menuitem>
+          <hx-menuitem>Action 3</hx-menuitem>
+        </hx-menu>
       </div>
-      <hx-menu id="splitmenuId" relative-to="split-group">
-        <hx-menuitem>Action 1</hx-menuitem>
-        <hx-menuitem>Action 2</hx-menuitem>
-        <hx-menuitem>Action 3</hx-menuitem>
-      </hx-menu>
-    </div>
+
+      <footer>
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtnGroup hxPrimary"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"split-group"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Split Menu<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"splitmenuId"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"splitMenuId"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxPrimary"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-menu</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"splitmenuId"</span> <span class="hljs-attr">relative-to</span>=<span class="hljs-string">"split-group"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-menu</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"splitMenuId"</span> <span class="hljs-attr">relative-to</span>=<span class="hljs-string">"split-group"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 1<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 2<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 3<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-menu</span>&gt;</span>
-</code></pre>  </section>
+</code></pre>      </footer>
+    </div>
+  </section>
 
 <section>
   <h2 id="see-also">See Also</h2>
   <ul>
       <li><a href="components/buttons">Buttons</a></li>
       <li><a href="elements/hx-menu">&lt;hx-menu&gt;</a></li>
-      <li><a href="elements/hx-menuitem-group">&lt;hx-menuitem-group&gt;</a></li>
       <li><a href="elements/hx-menuitem">&lt;hx-menuitem&gt;</a></li>
   </ul>
 </section>
@@ -686,13 +695,13 @@ class="current">
     <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#menu">Basic Menu</a>
+            <a href="#basic-menu">Basic Menu</a>
         
 
             <a href="#cog-menu">Cog Menu</a>
         
 
-            <a href="#advanced-menu">Advanced Menu</a>
+            <a href="#grouped-menu">Grouped Menu</a>
         
 
             <a href="#split-menu">Split Menu</a>
@@ -716,12 +725,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-04-12
+      2018-07-26
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>

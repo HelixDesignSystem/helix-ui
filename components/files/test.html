@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>&lt;hx-def&gt; - HelixUI</title>
+  <title>Testing - Files - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
 
   <link rel="shortcut icon" href="images/favicon.png">
+
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
 
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
@@ -60,6 +74,24 @@
   </a>
 
 
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
   </hx-reveal>
 
 
@@ -68,11 +100,11 @@
 
   <hx-disclosure
     aria-controls="nav-Components"
->
+class="current">
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" >
+  <hx-reveal id="nav-Components" open>
       
       <a href="components/accordions" >
     Accordions
@@ -104,12 +136,6 @@
 
 
       
-      <a href="components/busy" >
-    Busy
-  </a>
-
-
-      
       <a href="components/buttons" >
     Buttons
   </a>
@@ -124,6 +150,12 @@
       
       <a href="components/choice-tiles" >
     Choice Tiles
+  </a>
+
+
+      
+      <a href="components/files" class="current">
+    Files
   </a>
 
 
@@ -148,6 +180,12 @@
       
       <a href="components/lists" >
     Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
   </a>
 
 
@@ -194,12 +232,6 @@
 
 
       
-      <a href="components/progress" >
-    Progress
-  </a>
-
-
-      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -214,12 +246,6 @@
       
       <a href="components/selector-strips" >
     Selector Strips
-  </a>
-
-
-      
-      <a href="components/status-pills" >
-    Status Pills
   </a>
 
 
@@ -267,11 +293,11 @@
 
   <hx-disclosure
     aria-controls="nav-Custom Elements"
-class="current">
+>
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Custom Elements" open>
+  <hx-reveal id="nav-Custom Elements" >
       
       <a href="elements/hx-accordion" >
     &lt;hx-accordion&gt;
@@ -303,32 +329,8 @@ class="current">
 
 
       
-      <a href="elements/hx-dd" >
-    &lt;hx-dd&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-def" class="current">
-    &lt;hx-def&gt;
-  </a>
-
-
-      
       <a href="elements/hx-disclosure" >
     &lt;hx-disclosure&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dl" >
-    &lt;hx-dl&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-dt" >
-    &lt;hx-dt&gt;
   </a>
 
 
@@ -341,6 +343,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
   </a>
 
 
@@ -359,12 +367,6 @@ class="current">
       
       <a href="elements/hx-menuitem" >
     &lt;hx-menuitem&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-menuitem-group" >
-    &lt;hx-menuitem-group&gt;
   </a>
 
 
@@ -513,18 +515,6 @@ class="current">
 
 
       
-      <a href="elements/hx-tile-description" >
-    &lt;hx-tile-description&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-tile-title" >
-    &lt;hx-tile-title&gt;
-  </a>
-
-
-      
       <a href="elements/hx-toast" >
     &lt;hx-toast&gt;
   </a>
@@ -541,98 +531,231 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox-md">
-    <h1>&lt;hx-def&gt;
-<min-version data-tooltip="page-min-version">
-    v0.2.0+
-</min-version>
+  <main id="content" class="hxBox-lg">
+    <h1>Testing - Files</h1>
 
-<hx-tooltip id="page-min-version" position="right">
-    HelixUI v0.2.0 or later required
-</hx-tooltip>
-    </h1>
+  <style>
+    /* Beta Auto Grid Styles */
+    .hxRow.hxAuto > .hxCol { flex-grow: 0; }
+    .hxRow .hxCol.hxAuto { flex: 0 0 auto; }
+  </style>
 
   <section>
-    <p>
-      The custom <code>&lt;hx-def&gt;</code> element defines a single definition
-      within a description list.
-    </p>
-
-    <hx-dl class="hxBox-md metadata">
-      <hx-def>
-        <hx-dt>Permitted Parents</hx-dt>
-        <hx-dd>
-          an <a href="elements/hx-dl">&lt;hx-dl&gt;</a> element
-        </hx-dd>
-      </hx-def>
-      <hx-def>
-        <hx-dt>Permitted Children</hx-dt>
-        <hx-dd>
-          one or more of the following:
-          <ul>
-            <li>an <a href="elements/hx-dt">&lt;hx-dt&gt;</a> element</li>
-            <li>an <a href="elements/hx-dd">&lt;hx-dd&gt;</a> element</li>
-          </ul>
-        </hx-dd>
-      </hx-def>
-      <hx-def>
-        <hx-dt>Events</hx-dt>
-        <hx-dd><em>none</em></hx-dd>
-      </hx-def>
-    </hx-dl>
+    <nav class="hxBreadcrumb">
+      <a href="components/files">Files</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">Testing - Files</a>
+    </nav>
   </section>
 
-    
-    <section>
-      <h2 id="attributes">Attributes</h2>
-      <p>
-        Attributes allow you to configure an element in a
-        declarative manner via markup.
-      </p>
-        <p class="hxSubdued">
-          <small>
-            <hx-icon type="info-circle"></hx-icon>
-            This element does not have any configurable attributes.
-          </small>
-        </p>
-    </section>
+  <section>
+    <h2>Sub-optimal Attributes</h2>
+    <div class="hxRow hxAuto">
+      <div class="hxCol">
+        <h3>Empty Element</h3>
+        <hx-file-tile></hx-file-tile>
+      </div>
 
-    
-    <section>
-      <h2 id="properties">Properties</h2>
-      <p>
-        Properties allow you to configure an element in an
-        imperative manner via JavaScript.
-      </p>
-        <p class="hxSubdued">
-          <small>
-            <hx-icon type="info-circle"></hx-icon>
-            This element does not have any configurable properties.
-          </small>
-        </p>
-    </section>
+      <div class="hxCol">
+        <h3>Name Only (no extension)</h3>
+        <hx-file-tile
+          name="filename-without-extension"
+        ></hx-file-tile>
+      </div>
 
-<section>
-  <h2 id="see-also">See Also</h2>
-  <ul>
-      <li><a href="components/lists">Lists</a></li>
-      <li><a href="elements/hx-dd">&lt;hx-dd&gt;</a></li>
-      <li><a href="elements/hx-dl">&lt;hx-dl&gt;</a></li>
-      <li><a href="elements/hx-dt">&lt;hx-dt&gt;</a></li>
-  </ul>
-</section>
+      <div class="hxCol">
+        <h3>Name Only (with extension)</h3>
+        <hx-file-tile
+          name="file-name-with-extension.docx"
+        ></hx-file-tile>
+      </div>
+
+      <div class="hxCol">
+        <h3>Details Only</h3>
+        <hx-file-tile
+          details="0Kb"
+        ></hx-file-tile>
+      </div>
+
+      <div class="hxCol">
+        <h3>Very Long Details Only</h3>
+        <hx-file-tile
+          details="The quick brown fox jumps over the lazy dog and stuff"
+        ></hx-file-tile>
+      </div>
+
+      <div class="hxCol">
+        <h3>Unknown Icon</h3>
+        <hx-file-tile
+          icon="shenanigans"
+          name="invalid.ico"
+        ></hx-file-tile>
+        <small>icon = "shenanigans"</small>
+      </div>
+
+      <div class="hxCol">
+        <h3>Success without HREF</h3>
+        <hx-file-tile
+          details="1Kb"
+          icon="mime-image"
+          name="success-without-href.png"
+        ></hx-file-tile>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Default State (Success)</h2>
+    <div class="hxRow hxAuto">
+      <div class="hxCol">
+        <h3>No Truncation</h3>
+        <hx-file-tile
+          details="1Kb"
+          href="files/easteregg.txt"
+          icon="mime-image"
+          name="non-truncated-file-name1.png"
+        ></hx-file-tile>
+        <small>28 characters</small>
+      </div>
+
+      <div class="hxCol">
+        <h3>Logically Truncated</h3>
+        <hx-file-tile
+          details="2Kb"
+          href="files/easteregg.txt"
+          icon="mime-data"
+          name="truncated-file-name-final.xls"
+        ></hx-file-tile>
+        <small>29 characters, no visual truncation</small>
+      </div>
+
+      <div class="hxCol">
+        <h3>Visually Truncated</h3>
+        <hx-file-tile
+          details="3Kb"
+          href="files/easteregg.txt"
+          icon="paperclip"
+          name="visually-truncated-filename-really-really-really-really-really-long-final-02.pptx"
+        ></hx-file-tile>
+        <small>many characters, center truncation applied</small>
+      </div>
+
+      <div class="hxCol">
+        <h3>Downloadable with Custom Name</h3>
+        <hx-file-tile
+          details="50B"
+          href="files/easteregg.txt"
+          icon="mime-text"
+          name="downloadable-easter-egg.txt"
+        ></hx-file-tile>
+        <small>href defined</small>
+      </div>
+
+      <!-- TODO: immitate hovering over <a> in Shadow DOM -->
+      <!-- TODO: immitate hovering over <button id="hxDismiss"> in Shadow DOM -->
+    </div>
+  </section>
+
+  <section>
+    <h2>Loading State</h2>
+    <div class="hxRow hxAuto">
+      <div class="hxCol">
+        <small>[progress]</small>
+        <hx-file-tile
+          icon="mime-system"
+          name="win32.exe"
+          progress
+        ></hx-file-tile>
+      </div>
+
+        <div class="hxCol">
+          <small>[progress=""]</small>
+          <hx-file-tile
+            icon="mime-system"
+            name="win32.exe"
+            progress=""
+          ></hx-file-tile>
+        </div>
+        <div class="hxCol">
+          <small>[progress="soon"]</small>
+          <hx-file-tile
+            icon="mime-system"
+            name="win32.exe"
+            progress="soon"
+          ></hx-file-tile>
+        </div>
+        <div class="hxCol">
+          <small>[progress="-7"]</small>
+          <hx-file-tile
+            icon="mime-system"
+            name="win32.exe"
+            progress="-7"
+          ></hx-file-tile>
+        </div>
+        <div class="hxCol">
+          <small>[progress="0"]</small>
+          <hx-file-tile
+            icon="mime-system"
+            name="win32.exe"
+            progress="0"
+          ></hx-file-tile>
+        </div>
+        <div class="hxCol">
+          <small>[progress="42"]</small>
+          <hx-file-tile
+            icon="mime-system"
+            name="win32.exe"
+            progress="42"
+          ></hx-file-tile>
+        </div>
+        <div class="hxCol">
+          <small>[progress="100"]</small>
+          <hx-file-tile
+            icon="mime-system"
+            name="win32.exe"
+            progress="100"
+          ></hx-file-tile>
+        </div>
+        <div class="hxCol">
+          <small>[progress="110"]</small>
+          <hx-file-tile
+            icon="mime-system"
+            name="win32.exe"
+            progress="110"
+          ></hx-file-tile>
+        </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Error State</h2>
+    <div class="hxRow hxAuto">
+      <div class="hxCol">
+        <h3>Error</h3>
+        <hx-file-tile
+          icon="mime-archive"
+          invalid
+          name="theinternet.tgz"
+        ></hx-file-tile>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var fileTiles = document.querySelectorAll('hx-file-tile');
+
+      function _noDefault (evt) {
+        evt.preventDefault();
+      }
+
+      Array.from(fileTiles).forEach(function (fileTile) {
+        fileTile.addEventListener('cancel', _noDefault);
+        fileTile.addEventListener('delete', _noDefault);
+      });
+    })();
+  </script>
   </main>
-  <aside class="hxSiderail hxBox-md">
-    <h1 class="hxHeading-4">On this page:</h1>
-    <nav class="article-toc">
-      
-      <a href="#attributes">Attributes</a>
-      <a href="#properties">Properties</a>
-        <a href="#see-also">See Also</a>
-      <hr />
-      <a class="top-link" href="#top">Back to Top</a>
-    </nav>
-  </aside>
     </div>
   </div>
 
@@ -647,12 +770,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-05-22
+      2018-07-23
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.11.0" target="_blank">
-      v0.11.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.0" target="_blank">
+      v0.12.0
     </a>)
   </small>
 </div>
