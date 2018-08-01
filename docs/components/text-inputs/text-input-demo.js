@@ -12,13 +12,13 @@ if (document.getElementById('vue-textInputDemo')) {
         computed: {
             attrPlaceholder: function () {
                 if (this.placeholder !== '') {
-                    return `placeholder=${this.placeholder}`;
+                    return `placeholder="${this.placeholder}"`;
                 }
                 return '';
             },
             attrValue: function () {
                 if (this.value !== '') {
-                    return `value=${this.value}`;
+                    return `value="${this.value}"`;
                 }
                 return '';
             },
@@ -50,7 +50,7 @@ if (document.getElementById('vue-textAreaDemo')) {
         computed: {
             attrPlaceholder: function () {
                 if (this.placeholder !== '') {
-                    return `placeholder=${this.placeholder}`;
+                    return `placeholder="${this.placeholder}"`;
                 }
                 return '';
             },
@@ -61,7 +61,6 @@ if (document.getElementById('vue-textAreaDemo')) {
                       ${this.isDisabled ? 'disabled' : ''}
                       ${this.isInvalid ? 'invalid' : ''}
                       ${this.attrPlaceholder}
-                      type="text"
                     >${this.value}</textarea>
                 `);
             },
