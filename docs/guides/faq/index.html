@@ -1,0 +1,142 @@
+---
+title: Frequently Asked Questions
+---
+{% extends 'guide.njk' %}
+{% block content %}
+  <section>
+    <h2 id="what-are-web-components">What are Web Components?</h2>
+    <p class="comfortable">
+      Web Components are a set of W3C-standard APIs that enable developers to
+      create custom HTML tags that encapsulate markup, style, and behavior in
+      a framework-agnostic fashion.
+    </p>
+
+    <br />
+
+    <dl class="hxList metadata hxBox-sm">
+      <div>
+        <dt>HTML Imports</dt>
+        <dd>
+          <p>
+            Defines the mechanisms needed to reuse HTML documents in other HTML documents.
+          </p>
+          <p class="comfortable hxSubBody hxSubdued">
+            <hx-icon type="info-circle"></hx-icon>
+            This technology was abandoned in favor of ES6 Modules in mid-2018.
+          </p>
+        </dd>
+      </div>
+
+      <div>
+        <dt>HTML Templates</dt>
+        <dd>
+          <p>
+            Allows the creation of document fragments that go unrendered on page load, but
+            can be instantiated later.
+          </p>
+        </dd>
+      </div>
+
+      <div>
+        <dt>Shadow DOM</dt>
+        <dd>
+          <p>
+            Provides the ability to define encapsulated HTML and CSS.
+          </p>
+        </dd>
+      </div>
+
+      <div>
+        <dt>Custom Elements</dt>
+        <dd>
+          <p>
+            Provides the foundation for creating "custom" HTML elements.
+          </p>
+        </dd>
+      </div>
+    </dl>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="info-circle"></hx-icon>
+      Learn more about Web Components at
+      <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">MDN</a>
+      and
+      <a href="https://www.webcomponents.org/">webcomponents.org</a>.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="supported-browsers">Which Browsers are Supported?</h2>
+    <p>
+      HelixUI is built to be compatible with the following browsers:
+    </p>
+
+    <br />
+
+    <dl class="hxList metadata hxBox-sm">
+      <div>
+        <dt>Google Chrome</dt>
+        <dd>latest</dd>
+      </div>
+      <div>
+        <dt>Mozilla Firefox</dt>
+        <dd>latest</dd>
+      </div>
+      <div>
+        <dt>Internet Explorer</dt>
+        <dd>11</dd>
+      </div>
+      <div>
+        <dt>Microsoft Edge</dt>
+        <dd>latest</dd>
+      </div>
+      <div>
+        <dt>Apple Safari</dt>
+        <dd>latest</dd>
+      </div>
+    </dl>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="info-circle"></hx-icon>
+      Visit the <a href="guides/polyfills">Polyfills</a> guide for more details about browser compatibility.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="supported-frameworks">Which Frameworks are Supported?</h2>
+    <p class="comfortable">
+      HelixUI is built on W3C-standard APIs, so compatibility with client-side
+      frameworks should be pretty good.  However, HelixUI is built to ensure
+      maximum compatibility with the following client-side frameworks:
+    </p>
+
+    <br />
+
+    <dl class="hxList metadata hxBox-sm">
+      <div>
+        <dt>Vanilla HTML</dt>
+        <dd>5+</dd>
+      </div>
+      <div>
+        <dt>Angular</dt>
+        <dd>2+</dd>
+      </div>
+      <div>
+        <dt>AngularJS</dt>
+        <dd>1.7</dd>
+      </div>
+      <div>
+        <dt>React</dt>
+        <dd>15+</dd>
+      </div>
+      <div>
+        <dt>VueJS</dt>
+        <dd>2.5+</dd>
+      </div>
+    </dl>
+
+    <p class="comfortable hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon> Visit
+      <a href="https://custom-elements-everywhere.com/">custom-elements-everywhere.com</a>
+      to check the compabitility of your chosen framework.
+    </p>
+  </section>
+{% endblock %}

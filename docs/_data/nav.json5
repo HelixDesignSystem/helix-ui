@@ -4,6 +4,9 @@
         path: 'guides',
         children: [
             { label: 'Getting Started', path: 'getting-started' },
+            { label: 'FAQ', path: 'faq' },
+            { label: 'React Compatibility', path: 'react-compatibility' },
+            { label: 'Polyfills', path: 'polyfills' },
         ]
     },
 

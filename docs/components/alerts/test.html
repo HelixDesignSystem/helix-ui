@@ -1,0 +1,26 @@
+---
+title: Testing - Alerts
+---
+{% extends 'test.njk' %}
+{% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/alerts">Alerts</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  <section class="hxRow">
+    <div class="hxCol hxSpan-3-md">
+      <h3>Light DOM White Space</h3>
+      <hx-alert status="STATUS"> Message with leading white space (no trailing)</hx-alert>
+      <hx-alert status="STATUS">Message with trailing white space (no leading) </hx-alert>
+      <hx-alert status="STATUS">Message without leading/trailing white space</hx-alert>
+      <hx-alert status="STATUS">Long message without leading white space.
+        It has filler text added in an attempt to get the message to wrap
+        to multiple lines, in order to test how the status arranges itself.
+      </hx-alert>
+    </div>
+  </section>
+{% endblock %}
