@@ -3438,7 +3438,7 @@ class HXPopoverElement extends HXElement {
             return;
         }
 
-        this._target = this.getRootNode().querySelector('[data-popover=' + this.id + ']');
+        this._target = this.getRootNode().querySelector(`[data-popover="${this.id}"]`);
         if (!this._target) {
             return;
         }
@@ -3462,7 +3462,7 @@ class HXPopoverElement extends HXElement {
         return [ 'open' ];
     }
 
-    $onAttributeChange (attr, oldVal, newVal) { 
+    $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'open') {
             let isOpen = (newVal !== null);
             this.setAttribute('aria-hidden', !isOpen);
@@ -4513,7 +4513,7 @@ class HXTooltipElement extends HXElement {
         this.setAttribute('aria-hidden', !this.open);
 
         if (this.id) {
-            this._target = this.getRootNode().querySelector('[data-tooltip=' + this.id + ']');
+            this._target = this.getRootNode().querySelector(`[data-tooltip="${this.id}"]`);
         } else {
             return;
         }
@@ -4697,7 +4697,7 @@ var elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.12.0";
+var version = "0.12.1";
 
 /** @module helix-ui */
 

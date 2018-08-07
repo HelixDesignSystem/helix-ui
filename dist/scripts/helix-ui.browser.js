@@ -4181,7 +4181,7 @@
                     return;
                 }
 
-                this._target = this.getRootNode().querySelector('[data-popover=' + this.id + ']');
+                this._target = this.getRootNode().querySelector('[data-popover="' + this.id + '"]');
                 if (!this._target) {
                     return;
                 }
@@ -5517,7 +5517,7 @@
                 this.setAttribute('aria-hidden', !this.open);
 
                 if (this.id) {
-                    this._target = this.getRootNode().querySelector('[data-tooltip=' + this.id + ']');
+                    this._target = this.getRootNode().querySelector('[data-tooltip="' + this.id + '"]');
                 } else {
                     return;
                 }
@@ -5750,7 +5750,7 @@
         HXTooltipElement: HXTooltipElement
     });
 
-    var version = "0.12.0";
+    var version = "0.12.1";
 
     /** @module helix-ui */
 
