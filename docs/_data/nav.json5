@@ -76,6 +76,7 @@
             { label: '<hx-disclosure>', path: 'hx-disclosure' },
             { label: '<hx-error>', path: 'hx-error' },
             { label: '<hx-file-icon>', path: 'hx-file-icon' },
+            { label: '<hx-file-input>', path: 'hx-file-input' },
             { label: '<hx-file-tile>', path: 'hx-file-tile' },
             { label: '<hx-icon>', path: 'hx-icon' },
             { label: '<hx-menu>', path: 'hx-menu' },

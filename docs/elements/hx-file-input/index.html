@@ -1,0 +1,82 @@
+---
+title: <hx-file-input>
+minver: 0.13.0
+also:
+  components/files: Files
+---
+{% extends 'element.njk' %}
+{% block content %}
+
+  <section>
+    <p>
+      The custom <code>{{page.title}}</code> element renders a button to access 
+      the system file selector dialog.
+    </p>
+
+    <dl class="hxBox-md metadata hxList">
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>any</dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd><code>&lt;input type="file" /&gt;</code></dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd><em>none</em></dd>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <h2 id="methods">Methods</h2>
+    <dl>
+      <dt>click()</dt>
+      <dd>Simulates a mouse click on the element.</dd>
+    </dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl>
+    <dt>icon {Enum&lt;String&gt;}</dt>
+    <dd>
+      <p>
+        Changes the icon to one of the
+        <a href="components/icons/#available-icons">available icons</a>.
+      </p>
+    </dd>
+
+    <dt>label {String} <i>(optional)</i></dt>
+    <dd>
+      <p>
+        Sets the label of the file selector.
+      </p>
+    </dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl>
+    <dt>fileInput {HTMLInputElement}</dt>
+    <dd>
+      <p>
+        Returns the first <code>&lt;input type="file" /&gt;</code> child (if present).
+      </p>
+    </dd>
+    <dt>icon {String}</dt>
+    <dd>
+      <p>
+        Manipulates the <code>icon</code> attribute.
+      </p>
+    </dd>
+
+    <dt>label {String}</dt>
+    <dd>
+      <p>
+        Manipulates the <code>label</code> attribute.
+      </p>
+    </dd>
+  </dl>
+{% endblock %}

@@ -11,6 +11,7 @@ export { HXDisclosureElement } from './elements/HXDisclosureElement.js';
 export { HXElement } from './elements/HXElement.js';
 export { HXErrorElement } from './elements/HXErrorElement.js';
 export { HXFileIconElement } from './elements/HXFileIconElement.js';
+export { HXFileInputElement } from './elements/HXFileInputElement.js';
 export { HXFileTileElement } from './elements/HXFileTileElement.js';
 export { HXIconElement } from './elements/HXIconElement.js';
 export { HXMenuElement } from './elements/HXMenuElement.js';

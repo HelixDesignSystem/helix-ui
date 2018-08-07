@@ -1,0 +1,89 @@
+---
+title: Testing - File Selectors
+---
+{% extends 'test.njk' %}
+{% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/files">Files</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  <h2>Upload File Selectors</h2>
+  <section>
+    <h3>Primary with Label</h3>
+    <hx-file-input
+      class="hxPrimary"
+      label="Upload File">
+      <input type="file" />
+    </hx-file-input>
+  </section>
+
+  <section>
+    <h3>Secondary with Label</h3>
+    <hx-file-input
+      label="Upload File">
+      <input type="file" />
+    </hx-file-input>
+  </section>
+
+  <section>
+    <h3>Tertiary with Label</h3>
+    <hx-file-input
+      class="hxTertiary"
+      label="Upload File">
+      <input type="file" />
+    </hx-file-input>
+  </section>  
+
+  <section>
+    <h3>Tertiary without Label</h3>
+    <hx-file-input
+      class="hxTertiary">
+      <input type="file" />
+    </hx-file-input>
+  </section>
+
+  <br />
+  
+  <h2>Attach File Selectors</h2>
+  <section>
+    <h3>Primary with Label</h3>
+    <hx-file-input
+      class="hxPrimary"
+      icon="paperclip"
+      label="Attach File">
+      <input type="file" />
+    </hx-file-input>
+  </section>
+
+  <section>
+    <h3>Secondary with Label</h3>
+    <hx-file-input
+      icon="paperclip"
+      label="Attach File">
+      <input type="file" />
+    </hx-file-input>
+  </section>
+
+  <section>
+    <h3>Tertiary with Label</h3>
+    <hx-file-input
+      class="hxTertiary"
+      icon="paperclip"
+      label="Attach File">
+      <input type="file" />
+    </hx-file-input>
+  </section>
+
+  <section>
+    <h3>Tertiary without Icon</h3>
+    <hx-file-input
+      class="hxTertiary"
+      icon="paperclip">
+      <input type="file" />
+    </hx-file-input>
+  </section>
+{% endblock %}
