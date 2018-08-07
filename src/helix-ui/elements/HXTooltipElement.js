@@ -55,7 +55,7 @@ export class HXTooltipElement extends HXElement {
         this.setAttribute('aria-hidden', !this.open);
 
         if (this.id) {
-            this._target = this.getRootNode().querySelector('[data-tooltip=' + this.id + ']');
+            this._target = this.getRootNode().querySelector(`[data-tooltip="${this.id}"]`);
         } else {
             return;
         }
