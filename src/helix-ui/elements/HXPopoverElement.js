@@ -54,7 +54,7 @@ export class HXPopoverElement extends HXElement {
             return;
         }
 
-        this._target = this.getRootNode().querySelector('[data-popover=' + this.id + ']');
+        this._target = this.getRootNode().querySelector(`[data-popover="${this.id}"]`);
         if (!this._target) {
             return;
         }
@@ -78,7 +78,7 @@ export class HXPopoverElement extends HXElement {
         return [ 'open' ];
     }
 
-    $onAttributeChange (attr, oldVal, newVal) { 
+    $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'open') {
             let isOpen = (newVal !== null);
             this.setAttribute('aria-hidden', !isOpen);
