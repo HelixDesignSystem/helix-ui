@@ -1,29 +1,46 @@
 import Util from '../../_util';
 
-if (document.getElementById('vue-fileIconDemo')) {
-    new Vue({
-        el: '#vue-fileIconDemo',
-        data: {
-            ext: 'gzip',
-            type: 'mime-archive',
-        },
-        computed: {
-            attrType: function () {
-                if (this.type.trim() !== '') {
-                    return `type="${this.type}"`;
-                }
-                return '';
+(function () {
+    const TYPES = [ 
+        '',
+        'key',
+        'mime-archive', 
+        'mime-audio',
+        'mime-code',
+        'mime-data',
+        'mime-image',
+        'mime-system', 
+        'mime-text',
+        'mime-video',
+        'paperclip',
+    ];
+
+    if (document.getElementById('vue-fileIconDemo')) {
+        new Vue({
+            el: '#vue-fileIconDemo',
+            data: {
+                ext: 'pub',
+                type: TYPES[1],
+                types: TYPES,
             },
-            snippet: function () {
-                return Util.snippet(`
-                    <hx-file-icon ${this.attrType}>
-                      ${this.ext}
-                    </hx-file-icon>
-                `);
+            computed: {
+                attrType: function () {
+                    if (this.type.trim() !== '') {
+                        return `type="${this.type}"`;
+                    }
+                    return '';
+                },
+                snippet: function () {
+                    return Util.snippet(`
+                        <hx-file-icon ${this.attrType}>
+                          ${this.ext}
+                        </hx-file-icon>
+                    `);
+                },
             },
-        },
-    });
-}
+        });
+    }
+})();
 
 if (document.getElementById('vue-availableIcons')) {
     const Icons = {
