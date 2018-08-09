@@ -6,8 +6,8 @@ node_js:
 notifications:
   email: false
 addons:
-  firefox: '60.0'
-  chrome: stable
+  firefox: '61.0'
+  sauce_connect: true
 branch:
   only:
   - master

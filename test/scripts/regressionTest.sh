@@ -28,4 +28,4 @@ npm run clean:regression
 npm run build
 
 # fire off ava
-ava node built/dom-snapshots/**/*.js --verbose${UPDATE}
+ava node built/dom-snapshots/**/*.js --verbose${UPDATE} --fail-fast

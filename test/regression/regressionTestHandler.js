@@ -3,7 +3,9 @@
 const fs = require('fs-extra');
 const path = require('path');
 const child_process = require('child_process');
+
 const generateSingleTest = require('./generateSingleTest');
+
 const rawArgs = Array.prototype.slice.call(process.argv, 2);
 
 const args = { browsers: [], components: [] };
@@ -17,7 +19,10 @@ rawArgs.forEach(argWithFlag => {
 if (args.browsers.length === 0) {
     args.browsers = [
         'firefox',
-        'chrome'  
+        'chrome',
+        'safari',
+        'internet explorer',
+        'MicrosoftEdge'
     ];
 }
 
@@ -40,17 +45,20 @@ args.components.forEach(component => {
     }
 });
 
+const sauceLabsBuildIdentifier = `local-dev-test-${new Date().toISOString()}`;
 matches.forEach(component => {
     args.browsers.forEach(browser => {
         const browserAlias = {
-            ff: 'firefox'
+            ff: 'firefox',
+            ie: 'internet explorer',
+            edge: 'MicrosoftEdge',
         }[browser];
         browser = browserAlias ? browserAlias : browser;
         const browserFilename = browser.replace(/\s/g, '-');
         const fileName = [component.replace(/\//g, '-').replace(/\.html/, '').replace(/(-test|-index)/, ''), browserFilename].join('-');
         fs.writeFileSync(
             path.join('dom-snapshots', `${fileName}.ts`),
-            generateSingleTest(browser, component)
+            generateSingleTest(browser, component, sauceLabsBuildIdentifier)
         );
     });
 });
