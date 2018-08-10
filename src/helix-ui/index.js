@@ -1,21 +1,59 @@
-/** @module helix-ui */
-import * as elements from './elements';
-import { version as SEMVER } from '../../package.json';
-import ICONS from './icons';
+/** @module HelixUI */
+import * as Elements from './elements';
+export { version as VERSION } from '../../package.json';
+export { default as ICONS } from './icons';
+export { default as Utils } from './utils';
+
+/**
+ * @external CustomEvent
+ * @description Constructor polyfilled by [webcomponentsjs](https://github.com/webcomponents/webcomponentsjs).
+ *
+ * - MDN: [CustomEvent()](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent)
+ */
+
+/**
+ * @external Element
+ * @description
+ * - MDN: [Element](https://developer.mozilla.org/en-US/docs/Web/API/Element)
+ */
+
+/**
+ * @external Event
+ * @description Constructor polyfilled by [webcomponentsjs](https://github.com/webcomponents/webcomponentsjs).
+ *
+ * - MDN: [Event()](https://developer.mozilla.org/en-US/docs/Web/API/Event/Event)
+ */
+
+/**
+ * @external HTMLElement
+ * @extends external:Element
+ * @description
+ * Every custom element must directly or indirectly extend this base class.
+ *
+ * - MDN: [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)
+ */
+
+/**
+ * @external HTMLTemplateElement
+ * @extends external:HTMLElement
+ * @description Polyfilled by [webcomponentsjs](https://github.com/webcomponents/webcomponentsjs).
+ *
+ * - MDN: [HTMLTemplateElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement)
+ */
 
 /*
  * Register element definitions with the Custom Element registry.
  */
 function _defineElements () {
-    for (let attr in elements) {
-        elements[attr].$define();
+    for (let element in Elements) {
+        Elements[element].$define();
     }
 }
 
 /**
  * Initialize HelixUI when Web Components are ready.
  */
-function initialize () {
+export function initialize () {
     if (window.WebComponents) {
         // Polyfill detected
         if (window.WebComponents.ready) {
@@ -33,33 +71,6 @@ function initialize () {
     }
 }
 
-let [major, minor, patch] = SEMVER.split('.').map(Number); // eslint-disable-line
-
-/**
- * Current version metadata
- *
- * ```javascript
- * console.log(HelixUI.VERSION)            // { major: 0, minor: 1, patch: 2 }
- * console.log(HelixUI.VERSION.toString()) // "0.1.2"
- * console.log(`${HelixUI.VERSION}`)       // "0.1.2"
- * ```
- *
- * @type {Object}
- * @prop {String} version.semver - Semantic version string
- * @prop {Integer} version.major - Major version number
- * @prop {Integer} version.minor - Minor version number
- * @prop {Integer} version.patch - Patch version number
- */
-const VERSION = {
-    major,
-    minor,
-    patch,
-};
-VERSION.toString = () => { return SEMVER }; // eslint-disable-line
-
-export default {
-    elements,
-    initialize,
-    ICONS,
-    VERSION,
+export {
+    Elements,
 };

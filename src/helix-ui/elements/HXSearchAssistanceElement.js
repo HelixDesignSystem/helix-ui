@@ -1,5 +1,6 @@
 import { HXElement } from './HXElement';
-import { onScroll, getPosition } from '../util';
+import { getPosition } from '../utils/position';
+import { onScroll } from '../utils';
 
 /**
  * Fires when the element's contents are concealed.

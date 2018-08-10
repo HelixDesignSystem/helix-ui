@@ -1,5 +1,5 @@
 import { HXElement } from './HXElement';
-import { getPositionWithArrow } from '../util';
+import { getPositionWithArrow } from '../utils/position';
 import debounce from 'lodash/debounce';
 import shadowMarkup from './HXPopoverElement.html';
 import shadowStyles from './HXPopoverElement.less';

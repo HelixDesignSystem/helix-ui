@@ -1,5 +1,5 @@
 import { HXElement } from './HXElement';
-import { KEYS } from '../util';
+import { KEYS } from '../utils';
 
 /**
  * Defines behavior for the `<hx-disclosure>` element.

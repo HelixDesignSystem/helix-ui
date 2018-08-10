@@ -1,4 +1,7 @@
-import offsetFunctions from './position/offsetFunctions';
+/**
+ * @module HelixUI/Utils/Position
+ */
+import Offset, { offsetFunctionMap } from './offset';
 
 /**
  * @typedef {Object} PositionConfig
@@ -45,13 +48,75 @@ import offsetFunctions from './position/offsetFunctions';
  *   - `left-top`
  */
 
-/** @module */
+/**
+ * @name verticalOpposites
+ * @type {Object}
+ * @description Position value map of vertical opposites.
+ *
+ * - `top` &rarr; `bottom`
+ * - `right-start` &rarr; `right-end`
+ * - `left-bottom` &rarr; `left-top`
+ * - etc.
+ */
+export const verticalOpposites = {
+    'top': 'bottom',
+    'top-right': 'bottom-right',
+    'top-left': 'bottom-left',
+    'top-start': 'bottom-start',
+    'top-end': 'bottom-end',
+    'right': 'right',
+    'right-top': 'right-bottom',
+    'right-bottom': 'right-top',
+    'right-start': 'right-end',
+    'right-end': 'right-start',
+    'bottom': 'top',
+    'bottom-right': 'top-right',
+    'bottom-left': 'top-left',
+    'bottom-start': 'top-start',
+    'bottom-end': 'top-end',
+    'left': 'left',
+    'left-top': 'left-bottom',
+    'left-bottom': 'left-top',
+    'left-start': 'left-end',
+    'left-end': 'left-start',
+};
+
+/**
+ * @name horizontalOpposites
+ * @type {Object}
+ * @description Position value map of horizontal opposites.
+ *
+ * - `left` &rarr; `right`
+ * - `top-left` &rarr; `top-right`
+ * - `bottom-start` &rarr; `bottom-end`
+ * - etc.
+ */
+export const horizontalOpposites = {
+    'top': 'top',
+    'top-right': 'top-left',
+    'top-left': 'top-right',
+    'top-start': 'top-end',
+    'top-end': 'top-start',
+    'right': 'left',
+    'right-top': 'left-top',
+    'right-bottom': 'left-bottom',
+    'right-start': 'left-start',
+    'right-end': 'left-end',
+    'bottom': 'bottom',
+    'bottom-right': 'bottom-left',
+    'bottom-left': 'bottom-right',
+    'bottom-start': 'bottom-end',
+    'bottom-end': 'bottom-start',
+    'left': 'right',
+    'left-top': 'right-top',
+    'left-bottom': 'right-bottom',
+    'left-start': 'right-start',
+    'left-end': 'right-end',
+};
 
 /**
  * Calculate the top, right, bottom, and left x/y values of
  * an element at given coordinates.
- *
- * @function _getElementBox
  *
  * @param {HTMLElement} element
  * @param {Object} coord - (x,y) coordinates
@@ -69,8 +134,6 @@ function _getElementBox (element, coord) {
 
 /**
  * Calculate coordinates of an element in relation to a reference element.
- *
- * @function _getCoords
  *
  * @param {String} position - the position of the offset element
  * @param {HTMLElement} offsetElement - the element to calculate (x,y) coordinates
@@ -91,7 +154,7 @@ function _getCoords (position, offsetElement, referenceElement, config) {
     let offRect = offsetElement.getBoundingClientRect();
     let refRect = referenceElement.getBoundingClientRect();
 
-    [ coords.x, coords.y ] = offsetFunctions[position](offRect, refRect, config);
+    [ coords.x, coords.y ] = offsetFunctionMap[position](offRect, refRect, config);
     coords.x += window.pageXOffset;
     coords.y += window.pageYOffset;
 
@@ -100,8 +163,6 @@ function _getCoords (position, offsetElement, referenceElement, config) {
 
 /**
  * Determine if any side of an element is obscured by the viewport.
- *
- * @function _getOffscreenMetadata
  *
  * @param {HTMLElement} element - the element to check against the viewport
  * @param {Object} coords - (x,y) coordinates
@@ -136,66 +197,18 @@ function _getOffscreenMetadata (element, coords) {
  * Modify the position of an element so that it appears toward
  * the center of the viewport.
  *
- * @function _repositionTowardCenter
- *
  * @param {String} position - the current position
  * @param {Object} offscreen - offscreen metadata
  *
  * @returns {String} corrected position
  */
 function _repositionTowardCenter (position, offscreen) {
-    let vShiftMap = {
-        'top': 'bottom',
-        'top-right': 'bottom-right',
-        'top-left': 'bottom-left',
-        'top-start': 'bottom-start',
-        'top-end': 'bottom-end',
-        'right': 'right',
-        'right-top': 'right-bottom',
-        'right-bottom': 'right-top',
-        'right-start': 'right-end',
-        'right-end': 'right-start',
-        'bottom': 'top',
-        'bottom-right': 'top-right',
-        'bottom-left': 'top-left',
-        'bottom-start': 'top-start',
-        'bottom-end': 'top-end',
-        'left': 'left',
-        'left-top': 'left-bottom',
-        'left-bottom': 'left-top',
-        'left-start': 'left-end',
-        'left-end': 'left-start',
-    };
-
-    let hShiftMap = {
-        'top': 'top',
-        'top-right': 'top-left',
-        'top-left': 'top-right',
-        'top-start': 'top-end',
-        'top-end': 'top-start',
-        'right': 'left',
-        'right-top': 'left-top',
-        'right-bottom': 'left-bottom',
-        'right-start': 'left-start',
-        'right-end': 'left-end',
-        'bottom': 'bottom',
-        'bottom-right': 'bottom-left',
-        'bottom-left': 'bottom-right',
-        'bottom-start': 'bottom-end',
-        'bottom-end': 'bottom-start',
-        'left': 'right',
-        'left-top': 'right-top',
-        'left-bottom': 'right-bottom',
-        'left-start': 'right-start',
-        'left-end': 'right-end',
-    };
-
     if (offscreen.vertically) {
-        position = vShiftMap[position];
+        position = verticalOpposites[position];
     }
 
     if (offscreen.horizontally) {
-        position = hShiftMap[position];
+        position = horizontalOpposites[position];
     }
 
     return position;
@@ -204,8 +217,6 @@ function _repositionTowardCenter (position, offscreen) {
 /**
  * Calculate coordinates of an element in relation to a reference element
  * while attempting to keep the element visible in the viewport.
- *
- * @function getPosition
  *
  * @param {Element} offsetElement - element to position
  * @param {Element} referenceElement - reference element used to calculate position of offsetElement
@@ -243,14 +254,12 @@ export function getPosition (offsetElement, referenceElement, config) {
  * Calculate coordinates of an element in relation to a reference element
  * while attempting to keep the element visible in the viewport.
  *
- * @function getPositionWithArrow
- *
  * @param {Element} offsetElement - element to position
  * @param {Element} referenceElement - reference element used to calculate position of offsetElement
  *
  * @param {PositionConfig} config - configuration object
  * @param {Integer} [config.margin=12] - distance in pixels between the base and the tip of the arrow
- * @param {Integer} [config.offset=20] - distance in pixels from the edge of the 
+ * @param {Integer} [config.offset=20] - distance in pixels from the edge of the
  * offset element to the center of the arrow
  *
  * @returns {XYPosition}
@@ -265,3 +274,9 @@ export function getPositionWithArrow (offsetElement, referenceElement, config) {
 
     return getPosition(offsetElement, referenceElement, cfg);
 }
+
+export default {
+    Offset,
+    getPosition,
+    getPositionWithArrow,
+};
