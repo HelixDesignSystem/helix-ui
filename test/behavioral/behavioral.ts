@@ -31,9 +31,17 @@ export function suite(browserName: string) {
     });
 
     test("nav/guides", async testExecutionObject => {
-        await util.$x(driver, "//nav//hx-disclosure", "Guides").click();
-        let guidesText = await driver.findElement(By.id("nav-Guides")).getText();
-        testExecutionObject.deepEqual(guidesText, "Getting Started");
+        const expected = [
+            "Getting Started",
+            "FAQ",
+            "React Compatibility",
+            "Polyfills"
+        ];
+        await driver.findElement(By.css("hx-disclosure")).click();
+        const reveal = await driver.findElement(By.id("nav-Guides"));
+        const links = await reveal.findElements(By.tagName('a'));
+        const text = await util.getElementsText(links);
+        testExecutionObject.deepEqual(text, expected);
     });
 
      /**
@@ -44,15 +52,15 @@ export function suite(browserName: string) {
     if (browserName === "chrome") {
         test("tabs/first", async testExecutionObject => {
             await util.go(driver, "components/tabs");
-            await tabTest(testExecutionObject, snappit, driver, "Cupcake Ipsum");
+            await tabTest(testExecutionObject, driver, "android-desserts-tab-0", "Cupcake Ipsum");
         });
 
         test("tabs/second", async testExecutionObject => {
-            await tabTest(testExecutionObject, snappit, driver, "Biscuit Marshmallow");
+            await tabTest(testExecutionObject, driver, "marshmallow", "Biscuit Marshmallow");
         });
 
         test("tabs/third", async testExecutionObject => {
-            await tabTest(testExecutionObject, snappit, driver, "Caramels Marzipan");
+            await tabTest(testExecutionObject, driver, "android-desserts-tab-2", "Caramels Marzipan");
         });
     }
 
