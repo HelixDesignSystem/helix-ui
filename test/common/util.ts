@@ -28,18 +28,6 @@ export async function snapshot(t: TestContext, element: WebElement) {
     t.snapshot(await element.getAttribute("outerHTML"));
 }
 
-export function $x(
-    driver: WebDriver,
-    xpath: string,
-    byText = "",
-) {
-    if (byText.length) {
-        xpath += `[contains(text(), '${byText}')]`;
-    }
-
-    return driver.findElement(By.xpath(xpath));
-}
-
 export async function getElementsText(
     elements: WebElement[]
 ) {
@@ -57,9 +45,6 @@ export async function getElementsText(
  * Once that happens, pull this out of `util.ts` and move it someplace more page-object-y.
  */
 export var selectors = {
-    nav: "#stage > #nav",
-    components: "#stage",
-    tab: "//hx-tablist/hx-tab",
-    domDiff: "*[data-dom-diff]",
+    domDiff: "*[data-dom-diff]"
 }
 
