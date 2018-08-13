@@ -1,0 +1,23 @@
+:host {
+  background-color: transparent;
+  color: currentColor; display: inline-block;
+  flex-shrink: 0;
+  height: 1em;
+  width: 1em;
+
+  #hxIcon {
+    box-sizing: border-box;
+    display: block;
+    flex-shrink: 0;
+    height: 100%;
+    line-height: 1;
+    width: 100%;
+
+    svg {
+      fill: currentColor;
+      height: auto; // because IE
+      stroke: none;
+      vertical-align: bottom;
+    }
+  }
+}

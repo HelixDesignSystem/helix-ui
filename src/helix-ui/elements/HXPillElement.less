@@ -1,39 +1,40 @@
 @import "./HXElement";
-@import "elements/hx-icon";
+@import (reference) "components/buttons";
 
-button {
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  padding: 0;
-}
-
-#hxPill {
-  background-color: @gray-400;
-  border-radius: 1em; 
-  color: @gray-900;
-  padding: 0 1rem;
-  white-space: nowrap;
-}
-
-#hxDismiss {
-  color: @gray-600;
-  display: none;
-  height: 1.5em;
-  margin: 0 -0.5rem 0 0;
-  width: 1.5em;
-  
-  hx-icon {
-    font-size: 0.75em;
+:host {
+  #hxPill {
+    background-color: @gray-400;
+    border-radius: 1em;
+    color: @gray-900;
+    display: flex;
+    height: 100%;
+    padding: 0 1rem;
+    white-space: nowrap;
+    width: 100%;
   }
 
-  &:hover {
-    color: @gray-1000;
+  #hxDismiss {
+    #Button.reset();
+    align-items: center;
+    color: @gray-600;
+    display: none;
+    height: 1.5em;
+    justify-content: center;
+    margin: 0 -0.5rem 0 0;
+    width: 1.5em;
+
+    > span {
+      font-size: 0.75em;
+    }
+
+    &:hover {
+      color: @gray-1000;
+    }
   }
 }
 
 :host([dismissable]) {
   #hxDismiss {
-    display: inline-block;
+    display: inline-flex;
   }
 }
