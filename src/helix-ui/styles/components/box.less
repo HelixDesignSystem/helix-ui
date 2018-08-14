@@ -1,3 +1,58 @@
+#Box {
+  .xs() {
+    padding: 0.5rem;
+  }
+  .sm() {
+    padding: 0.75rem;
+  }
+  .md() {
+    padding: 1.25rem;
+  }
+  .lg() {
+    padding: 2rem;
+  }
+  .xl() {
+    padding: 3rem;
+  }
+  .xxl() {
+    padding: 4.5rem;
+  }
+  .flush () {
+    padding: 0rem;
+  }
+}
+
+.hxBox {
+  &.hxXs {
+    #Box.xs();
+  }
+
+  &.hxSm {
+    #Box.sm();
+  }
+
+  &.hxMd {
+    #Box.md();
+  }
+
+  &.hxLg {
+    #Box.lg();
+  }
+
+  &.hxXl {
+    #Box.xl();
+  }
+
+  &.hx2x {
+    #Box.xxl();
+  }
+
+  &.hxFlush {
+    #Box.flush();
+  }
+}
+
+// DEPRECATED: remove in v1.0.0
 .hxBox-xs {
   padding: 0.5rem; // 8px
 }

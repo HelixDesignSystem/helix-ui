@@ -1,0 +1,62 @@
+---
+title: <hx-div>
+minver: 0.13.0
+also:
+  components/box: Box
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>{{page.title}}</code> element is a utility element
+      to provide a base for styling as well as for implementing scrolling
+      content.
+    </p>
+
+    <dl class="hxBox-md metadata hxList">
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>any</dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd>Flow content</dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd>
+          Any of the following:
+          <ul>
+            <li>
+              <code>scroll</code> (Emitted from <code>document</code> as a
+              <code>CustomEvent</code> instance.)
+            </li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl>
+    <dt>scroll</dt>
+    <dd>
+      <p>Indicates scroll direction.</p>
+      <p class="hxSubBody hxSubdued">
+        <hx-icon type="info-circle"></hx-icon>
+        Valid values: "vertical", "horizontal", "both", and "none"
+      </p>
+    </dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl>
+    <dt>scroll {String|Null}</dt>
+    <dd>
+      Manipulates the <code>scroll</code> attribute.
+      Null if <code>scroll</code> attribute is not present.
+    </dd>
+  </dl>
+{% endblock %}

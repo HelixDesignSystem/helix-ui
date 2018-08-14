@@ -1,4 +1,5 @@
 import { HXElement } from './HXElement';
+import { onScroll } from '../util';
 
 /**
  * Fires when the element's contents are concealed.
@@ -34,6 +35,11 @@ export class HXTabpanelElement extends HXElement {
         this.$defaultAttribute('role', 'tabpanel');
         this.$upgradeProperty('open');
         this.setAttribute('aria-expanded', this.open);
+        this.addEventListener('scroll', onScroll);
+    }
+
+    $onDisconnect () {
+        this.removeEventListener('scroll', onScroll);
     }
 
     static get $observedAttributes () {
