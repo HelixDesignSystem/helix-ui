@@ -38,6 +38,17 @@ export async function getElementsText(
     return Promise.all(getTextPromises);
 }
 
+/**
+ * Shadow Root element extraction code used by CTUI team.
+ * 
+ * @param element 
+ */
+export const shadowRoots = (element: WebElementPromise) => {
+    const driver = element.getDriver();
+        return new WebElementPromise(driver,driver.executeScript('return arguments[0].shadowRoot', element),  
+    );
+};
+
 /* A "starter page object" until there's a greater need for something more robust.
  * For now this only contains common CSS selectors used throughout tests in the
  * behavioral directory, but may also contain functions in the future.
