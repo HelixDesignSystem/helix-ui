@@ -2,8 +2,10 @@
 
 const HelixUI = require('helix-ui');
 const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
 const sinon = require('sinon');
+global.window = new jsdom.JSDOM().window;
+global.document = window.document;
+global.HTMLElement = window.HTMLElement;
 
 describe('helix-ui', function() {
     it('it should define initialize', () => {
