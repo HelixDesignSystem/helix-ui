@@ -43,6 +43,12 @@
     &:hover {
       color: @cyan-500;
     }
+
+    &:focus {
+      border-color: @cyan-700;
+      box-shadow: @focus-glow;
+      outline: 0;
+    }
   }
 
   #hxIconWrapper {
@@ -117,6 +123,12 @@
         color: inherit;
       }
     }//hovered with href
+
+    &:focus {
+      border-color: @cyan-700;
+      box-shadow: @focus-glow;
+      outline: 0;
+    }
   }//#hxLink
 
   #hxState--loading {
