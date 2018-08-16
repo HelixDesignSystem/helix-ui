@@ -73,6 +73,7 @@
     "serve": "bin/serve.js",
     "prestart": "yarn clean:public && yarn generate",
     "start": "bin/start.js",
+    "test:unit": "mocha src/**/*.spec.js",
     "test": "cd test; yarn test"
   },
   "repository": "https://github.com/rackerlabs/helix-ui.git",
@@ -88,5 +89,8 @@
   "bugs": {
     "url": "https://github.com/rackerlabs/helix-ui/issues"
   },
-  "homepage": "https://github.com/rackerlabs/helix-ui#readme"
+  "homepage": "https://github.com/rackerlabs/helix-ui#readme",
+  "dependencies": {
+    "jsdom": "^11.12.0"
+  }
 }
