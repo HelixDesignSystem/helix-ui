@@ -1,5 +1,4 @@
 @import "./HXElement";
-@import "elements/hx-icon";
 @import (reference) 'components/box';
 @import (reference) 'components/buttons';
 
@@ -24,7 +23,7 @@
     top: 0;
     width: 100%;
   }
-  
+
   &::before {
     border: 1px solid @gray-300;
   }
@@ -37,34 +36,34 @@
     align-items: center;
     display: flex;
     margin: 0 0.75rem 0 0.5rem;
-  
+
     hx-icon {
       font-size: 2rem;
     }
   }
-  
+
   #hxContent {
     flex-grow: 1;
     margin-right: 1.5rem;
     text-align: right;
     word-wrap: break-word;
-  
+
     div {
       font-size: 0.875rem;
       text-align: left;
     }
   }
-  
+
   #hxCta {
     &:extend(.hxBtn);
     &:extend(.hxBtn.hxLink);
     text-transform: uppercase;
-  
+
     &:empty {
       display: none;
     }
   }
-  
+
   #hxDismiss {
     background-color: transparent;
     border: 0;
