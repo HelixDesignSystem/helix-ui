@@ -352,6 +352,44 @@ hx-disclosure[aria-expanded="true"] .menu-icon,
 hx-disclosure[aria-expanded="true"] > hx-icon.hxPrimary {
   transform: scaleY(-1);
 }
+hx-div {
+  display: block;
+}
+hx-div[scroll="horizontal"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+hx-div[scroll="vertical"] {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+hx-div[scroll="both"] {
+  overflow: auto;
+}
+hx-div[scroll="none"] {
+  overflow: visible;
+}
+hx-div.hxXs {
+  padding: 0.5rem;
+}
+hx-div.hxSm {
+  padding: 0.75rem;
+}
+hx-div.hxMd {
+  padding: 1.25rem;
+}
+hx-div.hxLg {
+  padding: 2rem;
+}
+hx-div.hxXl {
+  padding: 3rem;
+}
+hx-div.hx2x {
+  padding: 4.5rem;
+}
+hx-div.hxFlush {
+  padding: 0rem;
+}
 hx-dl {
   display: block;
 }
@@ -361,25 +399,33 @@ hx-error {
 hx-file-icon {
   display: inline-block;
 }
+hx-file-input {
+  display: inline-block;
+  position: relative;
+}
+hx-file-input input[type="file"] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  outline: none;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  z-index: -10;
+}
 hx-file-tile {
   display: block;
   height: 3.75rem;
   width: 25rem;
 }
 hx-icon {
-  background-color: transparent;
-  color: inherit;
   display: inline-block;
-  flex-shrink: 0;
-  height: auto;
-  line-height: 1;
-  vertical-align: middle;
-  width: 1em;
-}
-hx-icon svg {
-  fill: currentColor;
   height: 1em;
-  stroke: none;
+  width: 1em;
 }
 hx-menu {
   background-color: #ffffff;
@@ -994,6 +1040,27 @@ hx-icon + .hxBadge {
   margin-left: -0.75rem;
   padding: 0 3px;
   vertical-align: top;
+}
+.hxBox.hxXs {
+  padding: 0.5rem;
+}
+.hxBox.hxSm {
+  padding: 0.75rem;
+}
+.hxBox.hxMd {
+  padding: 1.25rem;
+}
+.hxBox.hxLg {
+  padding: 2rem;
+}
+.hxBox.hxXl {
+  padding: 3rem;
+}
+.hxBox.hx2x {
+  padding: 4.5rem;
+}
+.hxBox.hxFlush {
+  padding: 0rem;
 }
 .hxBox-xs {
   padding: 0.5rem;

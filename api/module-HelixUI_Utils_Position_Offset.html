@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: util/position/offsetFunctions</title>
+    <title>JSDoc: Module: HelixUI/Utils/Position/Offset</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: util/position/offsetFunctions</h1>
+    <h1 class="page-title">Module: HelixUI/Utils/Position/Offset</h1>
 
     
 
@@ -91,7 +91,7 @@ is the reference element, and the menu is the target element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line6">line 6</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -136,6 +136,88 @@ is the reference element, and the menu is the target element.</p>
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="~offsetFunctionMap"><span class="type-signature">(inner) </span>offsetFunctionMap<span class="type-signature"> :function</span></h4>
+
+
+
+
+<div class="description">
+    <p>Key/value map of position values and offset calculation functions</p>
+<pre class="prettyprint source"><code>{
+  &quot;right-bottom&quot;: getRightBottom,
+  &quot;top&quot;: getTop,
+  &quot;top-left&quot;: getTopLeft,
+  ...
+}</code></pre>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">function</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line407">line 407</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -146,7 +228,7 @@ is the reference element, and the menu is the target element.</p>
     
 
     
-    <h4 class="name" id="~getBottom"><span class="type-signature">(inner) </span>getBottom<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getBottom"><span class="type-signature">(static) </span>getBottom<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -244,7 +326,7 @@ reference element, with their y-axes aligned.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -295,7 +377,7 @@ reference element, with their y-axes aligned.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line62">line 62</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line62">line 62</a>
     </li></ul></dd>
     
 
@@ -329,7 +411,7 @@ reference element, with their y-axes aligned.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -347,7 +429,7 @@ reference element, with their y-axes aligned.</p>
     
 
     
-    <h4 class="name" id="~getBottomEnd"><span class="type-signature">(inner) </span>getBottomEnd<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getBottomEnd"><span class="type-signature">(static) </span>getBottomEnd<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -446,7 +528,7 @@ with the right edge of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -497,7 +579,7 @@ with the right edge of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line286">line 286</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line286">line 286</a>
     </li></ul></dd>
     
 
@@ -531,7 +613,7 @@ with the right edge of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -549,7 +631,7 @@ with the right edge of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getBottomLeft"><span class="type-signature">(inner) </span>getBottomLeft<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getBottomLeft"><span class="type-signature">(static) </span>getBottomLeft<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -648,7 +730,7 @@ with the y-axis of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -699,7 +781,7 @@ with the y-axis of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line324">line 324</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line324">line 324</a>
     </li></ul></dd>
     
 
@@ -733,7 +815,7 @@ with the y-axis of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -751,7 +833,7 @@ with the y-axis of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getBottomRight"><span class="type-signature">(inner) </span>getBottomRight<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getBottomRight"><span class="type-signature">(static) </span>getBottomRight<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -850,7 +932,7 @@ with the y-axis of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -901,7 +983,7 @@ with the y-axis of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line267">line 267</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line267">line 267</a>
     </li></ul></dd>
     
 
@@ -935,7 +1017,7 @@ with the y-axis of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -953,7 +1035,7 @@ with the y-axis of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getBottomStart"><span class="type-signature">(inner) </span>getBottomStart<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getBottomStart"><span class="type-signature">(static) </span>getBottomStart<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -1052,7 +1134,7 @@ with the left edge of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -1103,7 +1185,7 @@ with the left edge of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line305">line 305</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line305">line 305</a>
     </li></ul></dd>
     
 
@@ -1137,7 +1219,7 @@ with the left edge of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -1155,7 +1237,7 @@ with the left edge of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getCenter"><span class="type-signature">(inner) </span>getCenter<span class="signature">(off, ref)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getCenter"><span class="type-signature">(static) </span>getCenter<span class="signature">(off, ref)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -1280,7 +1362,7 @@ with the left edge of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line27">line 27</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line27">line 27</a>
     </li></ul></dd>
     
 
@@ -1314,7 +1396,7 @@ with the left edge of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -1332,7 +1414,7 @@ with the left edge of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getLeft"><span class="type-signature">(inner) </span>getLeft<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getLeft"><span class="type-signature">(static) </span>getLeft<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -1430,7 +1512,7 @@ reference element, with their x-axes aligned.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -1481,7 +1563,7 @@ reference element, with their x-axes aligned.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line80">line 80</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -1515,7 +1597,7 @@ reference element, with their x-axes aligned.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -1533,7 +1615,7 @@ reference element, with their x-axes aligned.</p>
     
 
     
-    <h4 class="name" id="~getLeftBottom"><span class="type-signature">(inner) </span>getLeftBottom<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getLeftBottom"><span class="type-signature">(static) </span>getLeftBottom<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -1632,7 +1714,7 @@ x-axis of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -1683,7 +1765,7 @@ x-axis of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line343">line 343</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line343">line 343</a>
     </li></ul></dd>
     
 
@@ -1717,7 +1799,7 @@ x-axis of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -1735,7 +1817,7 @@ x-axis of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getLeftEnd"><span class="type-signature">(inner) </span>getLeftEnd<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getLeftEnd"><span class="type-signature">(static) </span>getLeftEnd<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -1834,7 +1916,7 @@ bottom edge of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -1885,7 +1967,7 @@ bottom edge of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line362">line 362</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line362">line 362</a>
     </li></ul></dd>
     
 
@@ -1919,7 +2001,7 @@ bottom edge of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -1937,7 +2019,7 @@ bottom edge of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getLeftStart"><span class="type-signature">(inner) </span>getLeftStart<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getLeftStart"><span class="type-signature">(static) </span>getLeftStart<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -2036,7 +2118,7 @@ top edge of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -2087,7 +2169,7 @@ top edge of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line381">line 381</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line381">line 381</a>
     </li></ul></dd>
     
 
@@ -2121,7 +2203,7 @@ top edge of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -2139,7 +2221,7 @@ top edge of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getLeftTop"><span class="type-signature">(inner) </span>getLeftTop<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getLeftTop"><span class="type-signature">(static) </span>getLeftTop<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -2238,7 +2320,7 @@ x-axis of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -2289,7 +2371,7 @@ x-axis of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line400">line 400</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line400">line 400</a>
     </li></ul></dd>
     
 
@@ -2323,7 +2405,7 @@ x-axis of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -2341,7 +2423,7 @@ x-axis of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getRight"><span class="type-signature">(inner) </span>getRight<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getRight"><span class="type-signature">(static) </span>getRight<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -2439,7 +2521,7 @@ reference element, with their x-axes aligned.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -2490,7 +2572,7 @@ reference element, with their x-axes aligned.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line97">line 97</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line97">line 97</a>
     </li></ul></dd>
     
 
@@ -2524,7 +2606,7 @@ reference element, with their x-axes aligned.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -2542,7 +2624,7 @@ reference element, with their x-axes aligned.</p>
     
 
     
-    <h4 class="name" id="~getRightBottom"><span class="type-signature">(inner) </span>getRightBottom<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getRightBottom"><span class="type-signature">(static) </span>getRightBottom<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -2641,7 +2723,7 @@ x-axis of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -2692,7 +2774,7 @@ x-axis of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line248">line 248</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line248">line 248</a>
     </li></ul></dd>
     
 
@@ -2726,7 +2808,7 @@ x-axis of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -2744,7 +2826,7 @@ x-axis of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getRightEnd"><span class="type-signature">(inner) </span>getRightEnd<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getRightEnd"><span class="type-signature">(static) </span>getRightEnd<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -2843,7 +2925,7 @@ bottom edge of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -2894,7 +2976,7 @@ bottom edge of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line229">line 229</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line229">line 229</a>
     </li></ul></dd>
     
 
@@ -2928,7 +3010,7 @@ bottom edge of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -2946,7 +3028,7 @@ bottom edge of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getRightStart"><span class="type-signature">(inner) </span>getRightStart<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getRightStart"><span class="type-signature">(static) </span>getRightStart<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -3045,7 +3127,7 @@ top edge of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -3096,7 +3178,7 @@ top edge of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line210">line 210</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line210">line 210</a>
     </li></ul></dd>
     
 
@@ -3130,7 +3212,7 @@ top edge of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -3148,7 +3230,7 @@ top edge of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getRightTop"><span class="type-signature">(inner) </span>getRightTop<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getRightTop"><span class="type-signature">(static) </span>getRightTop<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -3247,7 +3329,7 @@ x-axis of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -3298,7 +3380,7 @@ x-axis of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line191">line 191</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line191">line 191</a>
     </li></ul></dd>
     
 
@@ -3332,7 +3414,7 @@ x-axis of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -3350,7 +3432,7 @@ x-axis of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getTop"><span class="type-signature">(inner) </span>getTop<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getTop"><span class="type-signature">(static) </span>getTop<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -3448,7 +3530,7 @@ reference element, with their y-axes aligned.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -3499,7 +3581,7 @@ reference element, with their y-axes aligned.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line44">line 44</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -3533,7 +3615,7 @@ reference element, with their y-axes aligned.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -3551,7 +3633,7 @@ reference element, with their y-axes aligned.</p>
     
 
     
-    <h4 class="name" id="~getTopEnd"><span class="type-signature">(inner) </span>getTopEnd<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getTopEnd"><span class="type-signature">(static) </span>getTopEnd<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -3650,7 +3732,7 @@ with the right edge of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -3701,7 +3783,7 @@ with the right edge of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line153">line 153</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line153">line 153</a>
     </li></ul></dd>
     
 
@@ -3735,7 +3817,7 @@ with the right edge of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -3753,7 +3835,7 @@ with the right edge of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getTopLeft"><span class="type-signature">(inner) </span>getTopLeft<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getTopLeft"><span class="type-signature">(static) </span>getTopLeft<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -3852,7 +3934,7 @@ with the y-axis of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -3903,7 +3985,7 @@ with the y-axis of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line115">line 115</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line115">line 115</a>
     </li></ul></dd>
     
 
@@ -3937,7 +4019,7 @@ with the y-axis of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -3955,7 +4037,7 @@ with the y-axis of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getTopRight"><span class="type-signature">(inner) </span>getTopRight<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getTopRight"><span class="type-signature">(static) </span>getTopRight<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -4054,7 +4136,7 @@ with the y-axis of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -4105,7 +4187,7 @@ with the y-axis of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line172">line 172</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line172">line 172</a>
     </li></ul></dd>
     
 
@@ -4139,7 +4221,7 @@ with the y-axis of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -4157,7 +4239,7 @@ with the y-axis of the reference element.</p>
     
 
     
-    <h4 class="name" id="~getTopStart"><span class="type-signature">(inner) </span>getTopStart<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {<a href="global.html#XYCoordinate">XYCoordinate</a>}</span></h4>
+    <h4 class="name" id=".getTopStart"><span class="type-signature">(static) </span>getTopStart<span class="signature">(off, ref, config)</span><span class="type-signature"> &rarr; {XYCoordinate}</span></h4>
     
 
     
@@ -4256,7 +4338,7 @@ with the left edge of the reference element.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#PositionConfig">PositionConfig</a></span>
+<span class="param-type">PositionConfig</span>
 
 
             
@@ -4307,7 +4389,7 @@ with the left edge of the reference element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util_position_offsetFunctions.js.html">util/position/offsetFunctions.js</a>, <a href="util_position_offsetFunctions.js.html#line134">line 134</a>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line134">line 134</a>
     </li></ul></dd>
     
 
@@ -4341,7 +4423,7 @@ with the left edge of the reference element.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#XYCoordinate">XYCoordinate</a></span>
+<span class="param-type">XYCoordinate</span>
 
 
     </dd>
@@ -4357,6 +4439,82 @@ with the left edge of the reference element.</p>
     
 
     
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id="~XYCoordinate">XYCoordinate</h4>
+
+
+
+
+<div class="description">
+    <p>[x,y] coordinate array</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_position_offset.js.html">utils/position/offset.js</a>, <a href="utils_position_offset.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+    
 
     
 </article>
@@ -4369,13 +4527,13 @@ with the left edge of the reference element.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-elements.html">elements</a></li><li><a href="module-helix-ui.html">helix-ui</a></li><li><a href="module-util.html">util</a></li><li><a href="module-util_keys.html">util/keys</a></li><li><a href="module-util_position.html">util/position</a></li><li><a href="module-util_position_offsetFunctions.html">util/position/offsetFunctions</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Menu:close">Menu:close</a></li><li><a href="global.html#event:Menu:open">Menu:open</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Popover:close">Popover:close</a></li><li><a href="global.html#event:Popover:open">Popover:open</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:SearchAssistance:close">SearchAssistance:close</a></li><li><a href="global.html#event:SearchAssistance:open">SearchAssistance:open</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li><li><a href="global.html#event:Tooltip:close">Tooltip:close</a></li><li><a href="global.html#event:Tooltip:open">Tooltip:open</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Position.html">HelixUI/Utils/Position</a></li><li><a href="module-HelixUI_Utils_Position_Offset.html">HelixUI/Utils/Position/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Menu:close">Menu:close</a></li><li><a href="global.html#event:Menu:open">Menu:open</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Popover:close">Popover:close</a></li><li><a href="global.html#event:Popover:open">Popover:open</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:SearchAssistance:close">SearchAssistance:close</a></li><li><a href="global.html#event:SearchAssistance:open">SearchAssistance:open</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li><li><a href="global.html#event:Tooltip:close">Tooltip:close</a></li><li><a href="global.html#event:Tooltip:open">Tooltip:open</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Aug 07 2018 17:09:26 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Aug 17 2018 13:05:58 GMT-0500 (CDT)
 </footer>
 
 <script> prettyPrint(); </script>

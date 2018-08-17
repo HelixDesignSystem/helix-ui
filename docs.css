@@ -113,26 +113,40 @@ min-version {
   padding: 0.25em 0.75em;
   vertical-align: middle;
 }
-.box-demo [class*="hxBox"] {
+.box-demo hx-div {
   border: 1px dashed #9e9e9e;
 }
 .box-demo p {
   margin: 0;
 }
-.box-demo .hxBox-xs {
+.box-demo .hxXs {
   box-shadow: inset 0 0 0 0.5rem #f8bbd0;
 }
-.box-demo .hxBox-sm {
+.box-demo .hxSm {
   box-shadow: inset 0 0 0 0.75rem #f8bbd0;
 }
-.box-demo .hxBox-md {
-  box-shadow: inset 0 0 0 1rem #f8bbd0;
-}
-.box-demo .hxBox-lg {
+.box-demo .hxMd {
   box-shadow: inset 0 0 0 1.25rem #f8bbd0;
 }
-.box-demo .hxBox-xl {
-  box-shadow: inset 0 0 0 1.5rem #f8bbd0;
+.box-demo .hxLg {
+  box-shadow: inset 0 0 0 2rem #f8bbd0;
+}
+.box-demo .hxXl {
+  box-shadow: inset 0 0 0 3rem #f8bbd0;
+}
+.box-demo .hx2x {
+  box-shadow: inset 0 0 0 4.5rem #f8bbd0;
+}
+.example > div.scroll-box-demo {
+  overflow: hidden;
+  padding: 0;
+}
+.example > div.scroll-box-demo > hx-div {
+  height: 15rem;
+}
+.example > div.scroll-box-demo > hx-div[scroll="both"],
+.example > div.scroll-box-demo > hx-div[scroll="horizontal"] {
+  white-space: nowrap;
 }
 .hxBtn.pseudo-focus {
   outline: none;

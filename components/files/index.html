@@ -335,6 +335,12 @@ class="current">
 
 
       
+      <a href="elements/hx-div" >
+    &lt;hx-div&gt;
+  </a>
+
+
+      
       <a href="elements/hx-error" >
     &lt;hx-error&gt;
   </a>
@@ -343,6 +349,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-input" >
+    &lt;hx-file-input&gt;
   </a>
 
 
@@ -543,7 +555,66 @@ class="current">
     </h1>
 
   <section>
-    <h2 id="basic-file-tile">Basic File Tile</h2>
+    <h2 id="file-selector">File Selector</h2>
+    <p class="hxSubBody">Added: v0.13.0</p>
+    <div class="example" id="vue-fileInputDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend>Variant</legend>
+            <label v-for="_variant in variants">
+              <input
+                :value="_variant"
+                name="variant"
+                type="radio"
+                v-model="variant"
+              />
+              <span v-text="_variant.label"></span>
+              <em class="hxSubBody" v-if="_variant.default">(default)</em>
+            </label>
+          </fieldset>
+          <fieldset>
+            <legend>Icon</legend>
+            <label v-for="_icon in icons">
+              <input
+                :value="_icon"
+                name="icon"
+                type="radio"
+                v-model="icon"
+              />
+              <span v-text="_icon"></span>
+            </label>
+          </fieldset>
+          <p>
+            <label for="inputLabel">Label</label>
+            <input id="inputLabel" class="hxTextCtrl" v-model="label" />
+          </p>
+          <fieldset>
+            <legend>Options</legend>
+            <label>
+              <input type="checkbox" v-model="isMultiple">
+              Multiple
+            </label>
+          </fieldset>
+        </form>
+      </header>
+      <div>
+        <hx-file-input
+          :class="variant.val"
+          :icon="icon"
+          :label="label">
+          <input type="file" :multiple="isMultiple" />
+        </hx-file-input>
+      </div>
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="file-tile">File Tile</h2>
+    <p class="hxSubBody">Added: v0.12.0</p>
     <div class="example" id="vue-fileTileDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
@@ -563,8 +634,11 @@ class="current">
             </label>
           </fieldset>
           <p>
-            <label for="txtIcon">Icon</label>
-            <input id="txtIcon" class="hxTextCtrl" v-model="icon" />
+            <label for="selIcon">Icon</label>
+            <select id="selIcon" v-model="icon">
+              <option v-for="_icon in icons" :value="_icon" v-text="_icon">
+              </option>
+            </select>
           </p>
           <p>
             <label for="txtName">Name</label>
@@ -653,8 +727,10 @@ class="current">
 <section>
   <h2 id="see-also">See Also</h2>
   <ul>
-      <li><a href="components/files/test.html">Testing - Files</a></li>
+      <li><a href="components/files/test-file-selectors.html">Testing - File Selectors</a></li>
+      <li><a href="components/files/test-file-tiles.html">Testing - File Tiles</a></li>
       <li><a href="components/Icons">Icons</a></li>
+      <li><a href="elements/hx-file-input">&lt;hx-file-input&gt;</a></li>
       <li><a href="elements/hx-file-tile">&lt;hx-file-tile&gt;</a></li>
   </ul>
 </section>
@@ -663,7 +739,10 @@ class="current">
     <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
-            <a href="#basic-file-tile">Basic File Tile</a>
+            <a href="#file-selector">File Selector</a>
+        
+
+            <a href="#file-tile">File Tile</a>
         
         <a href="#see-also">See Also</a>
       <hr />
@@ -684,12 +763,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-08-07
+      2018-08-14
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.1" target="_blank">
-      v0.12.1
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.13.0" target="_blank">
+      v0.13.0
     </a>)
   </small>
 </div>

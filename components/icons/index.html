@@ -335,6 +335,12 @@ class="current">
 
 
       
+      <a href="elements/hx-div" >
+    &lt;hx-div&gt;
+  </a>
+
+
+      
       <a href="elements/hx-error" >
     &lt;hx-error&gt;
   </a>
@@ -343,6 +349,12 @@ class="current">
       
       <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-input" >
+    &lt;hx-file-input&gt;
   </a>
 
 
@@ -545,7 +557,7 @@ class="current">
   <section>
     <h2 id="basic-icon">Basic Icon</h2>
     <p>
-      Add a styleable SVG icon with the <code>&lt;hx-icon&gt;</code> element.
+      Use the <code>&lt;hx-icon&gt;</code> element to render a styleable inline SVG icon.
     </p>
     <div class="example">
       <div>
@@ -568,8 +580,11 @@ class="current">
       <header>
         <form class="beta-hxForm">
           <p>
-            <label for="txtType">Type</label>
-            <input id="txtType" class="hxTextCtrl" v-model="type" />
+            <label for="selType">Type</label>
+            <select id="selType" v-model="type">
+              <option v-for="_type in types" :value="_type" v-text="_type">
+              </option>
+            </select>
           </p>
           <p>
             <label for="txtExt">File Extension</label>
@@ -594,7 +609,7 @@ class="current">
   <section>
     <h2 id="available-icons">Available Icons</h2>
     <p>
-      <a href="downloads/helix-ui-0.12.1-icons.tgz">
+      <a href="downloads/helix-ui-0.13.0-icons.tgz">
         <hx-icon type="download"></hx-icon>
         Download All Icons (SVG)
       </a>
@@ -708,12 +723,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-07-23
+      2018-08-17
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.12.1" target="_blank">
-      v0.12.1
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.13.0" target="_blank">
+      v0.13.0
     </a>)
   </small>
 </div>
