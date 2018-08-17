@@ -1,10 +1,5 @@
 /**
- * [x,y] coordinate array
- * @typedef {Array} XYCoordinate
- */
-
-/**
- * @module
+ * @module HelixUI/Utils/Position/Offset
  * @description
  * Each function calculates the (x,y) coordinates of a target element,
  * so that it is positioned in relation to a reference element.
@@ -16,6 +11,11 @@
  */
 
 /**
+ * [x,y] coordinate array
+ * @typedef {Array} XYCoordinate
+ */
+
+/**
  * Calculate (x,y) coordinates needed to center align two elements.
  *
  * ![center reference](/images/api/pos-center.png)
@@ -24,7 +24,7 @@
  * @param {HTMLElement} ref - reference element
  * @return {XYCoordinate}
  */
-function getCenter (off, ref) {
+export function getCenter (off, ref) {
     let x = ref.left + (ref.width / 2) - (off.width / 2);
     let y = ref.top + (ref.height / 2) - (off.height / 2);
     return [ x, y ];
@@ -41,7 +41,7 @@ function getCenter (off, ref) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getTop (off, ref, config) {
+export function getTop (off, ref, config) {
     let [ x, y ] = getCenter(off, ref);
     y = ref.top - off.height;
     y -= config.margin;
@@ -59,7 +59,7 @@ function getTop (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getBottom (off, ref, config) {
+export function getBottom (off, ref, config) {
     let [ x, y ] = getCenter(off, ref);
     y = ref.top + ref.height;
     y += config.margin;
@@ -77,7 +77,7 @@ function getBottom (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getLeft (off, ref, config) {
+export function getLeft (off, ref, config) {
     let [ x, y ] = getCenter(off, ref);
     x = ref.left - off.width - config.margin;
     return [ x, y ];
@@ -94,7 +94,7 @@ function getLeft (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getRight (off, ref, config) {
+export function getRight (off, ref, config) {
     let [ x, y ] = getCenter(off, ref);
     x = ref.left + ref.width + config.margin;
     return [ x, y ];
@@ -112,7 +112,7 @@ function getRight (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getTopLeft (off, ref, config) {
+export function getTopLeft (off, ref, config) {
     let [ x, y ] = getTop(off, ref, config);
     x -= (off.width / 2);
     x += config.offset;
@@ -131,7 +131,7 @@ function getTopLeft (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getTopStart (off, ref, config) {
+export function getTopStart (off, ref, config) {
     let [ x, y ] = getTop(off, ref, config);
     x = ref.left;
     x += config.offset;
@@ -150,7 +150,7 @@ function getTopStart (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getTopEnd (off, ref, config) {
+export function getTopEnd (off, ref, config) {
     let [ x, y ] = getTop(off, ref, config);
     x = ref.right - off.width;
     x -= config.offset;
@@ -169,7 +169,7 @@ function getTopEnd (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getTopRight (off, ref, config) {
+export function getTopRight (off, ref, config) {
     let [ x, y ] = getTop(off, ref, config);
     x += (off.width / 2);
     x -= config.offset;
@@ -188,7 +188,7 @@ function getTopRight (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getRightTop (off, ref, config) {
+export function getRightTop (off, ref, config) {
     let [ x, y ] = getRight(off, ref, config);
     y -= (off.height / 2);
     y += config.offset;
@@ -207,7 +207,7 @@ function getRightTop (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getRightStart (off, ref, config) {
+export function getRightStart (off, ref, config) {
     let [ x, y ] = getRight(off, ref, config);
     y = ref.top;
     y += config.offset;
@@ -226,7 +226,7 @@ function getRightStart (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getRightEnd (off, ref, config) {
+export function getRightEnd (off, ref, config) {
     let [ x, y ] = getRight(off, ref, config);
     y = ref.bottom - off.height;
     y -= config.offset;
@@ -245,7 +245,7 @@ function getRightEnd (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getRightBottom (off, ref, config) {
+export function getRightBottom (off, ref, config) {
     let [ x, y ] = getRight(off, ref, config);
     y += off.height / 2;
     y -= config.offset;
@@ -264,7 +264,7 @@ function getRightBottom (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getBottomRight (off, ref, config) {
+export function getBottomRight (off, ref, config) {
     let [ x, y ] = getBottom(off, ref, config);
     x += (off.width / 2);
     x -= config.offset;
@@ -283,7 +283,7 @@ function getBottomRight (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getBottomEnd (off, ref, config) {
+export function getBottomEnd (off, ref, config) {
     let [ x, y ] = getBottom(off, ref, config);
     x = ref.right - off.width;
     x -= config.offset;
@@ -302,7 +302,7 @@ function getBottomEnd (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getBottomStart (off, ref, config) {
+export function getBottomStart (off, ref, config) {
     let [ x, y ] = getBottom(off, ref, config);
     x = ref.left;
     x += config.offset;
@@ -321,7 +321,7 @@ function getBottomStart (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getBottomLeft (off, ref, config) {
+export function getBottomLeft (off, ref, config) {
     let [ x, y ] = getBottom(off, ref, config);
     x -= (off.width / 2);
     x += config.offset;
@@ -340,7 +340,7 @@ function getBottomLeft (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getLeftBottom (off, ref, config) {
+export function getLeftBottom (off, ref, config) {
     let [ x, y ] = getLeft(off, ref, config);
     y += off.height / 2;
     y -= config.offset;
@@ -359,7 +359,7 @@ function getLeftBottom (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getLeftEnd (off, ref, config) {
+export function getLeftEnd (off, ref, config) {
     let [ x, y ] = getLeft(off, ref, config);
     y = ref.bottom - off.height;
     y -= config.offset;
@@ -378,7 +378,7 @@ function getLeftEnd (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getLeftStart (off, ref, config) {
+export function getLeftStart (off, ref, config) {
     let [ x, y ] = getLeft(off, ref, config);
     y = ref.top;
     y += config.offset;
@@ -397,14 +397,29 @@ function getLeftStart (off, ref, config) {
  * @param {PositionConfig} config - position configuration
  * @return {XYCoordinate}
  */
-function getLeftTop (off, ref, config) {
+export function getLeftTop (off, ref, config) {
     let [ x, y ] = getLeft(off, ref, config);
     y -= (off.height / 2);
     y += config.offset;
     return [ x, y ];
 }
 
-const offsetFunctions = {
+/**
+ * Key/value map of position values and offset calculation functions
+ *
+ * ```
+ * {
+ *   "right-bottom": getRightBottom,
+ *   "top": getTop,
+ *   "top-left": getTopLeft,
+ *   ...
+ * }
+ * ```
+ *
+ * @enum {Function}
+ * @name offsetFunctionMap
+ */
+export const offsetFunctionMap = {
     'top-left': getTopLeft,
     'top-start': getTopStart,
     'top': getTop,
@@ -428,4 +443,26 @@ const offsetFunctions = {
     'center': getCenter,
 };
 
-export default offsetFunctions;
+export default {
+    getBottom,
+    getBottomEnd,
+    getBottomLeft,
+    getBottomRight,
+    getBottomStart,
+    getCenter,
+    getLeft,
+    getLeftBottom,
+    getLeftEnd,
+    getLeftStart,
+    getLeftTop,
+    getRight,
+    getRightBottom,
+    getRightEnd,
+    getRightStart,
+    getTop,
+    getTopEnd,
+    getTopLeft,
+    getTopRight,
+    getTopStart,
+    offsetFunctionMap,
+};

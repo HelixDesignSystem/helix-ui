@@ -1,25 +1,13 @@
-import { KEYS } from '../util';
+import { KEYS } from '../utils';
 
 // Keep track of prepared templates
 const TEMPLATE_CACHE = {};
-
-/**
- * @external HTMLElement
- * @see <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement" target="_blank">MDN - HTMLElement</a>
- */
-
-/**
- * @external CustomEvent
- * @see <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent">MDN - CustomEvent()</a>
- * @see <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Event/Event">MDN - Event()</a>
- */
 
 /**
  * Define functionality common to all HelixUI elements.
  *
  * @extends external:HTMLElement
  * @hideconstructor
- * @requires util
  * @since 0.2.0
  */
 export class HXElement extends HTMLElement {

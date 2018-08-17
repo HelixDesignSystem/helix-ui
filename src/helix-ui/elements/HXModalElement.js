@@ -1,5 +1,5 @@
 import { HXElement } from './HXElement';
-import { KEYS } from '../util';
+import { KEYS } from '../utils';
 import shadowMarkup from './HXModalElement.html';
 import shadowStyles from './HXModalElement.less';
 

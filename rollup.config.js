@@ -38,70 +38,47 @@ let eslintPlugin = eslint({
     ],
 });
 
-// Intro/Outro placed INSIDE the applied dependency function
-let intro = `window.addEventListener('WebComponentsReady', function () {`;
-let outro = `});`;
-
-let browserOutput = {
-    format: 'umd',
-    intro,
-    outro,
-    sourcemap: false,
-}
+let browserConfig = {
+    input: 'src/browser-entry.js',
+    output: {
+        file: 'dist/scripts/helix-ui.browser.js',
+        footer: 'HelixUI.initialize();', // initialize on load
+        format: 'umd',
+        name: 'HelixUI',
+        sourcemap: false,
+    },
+    plugins: [
+        json(),
+        resolve(),
+        commonjs(),
+        htmlPlugin,
+        lessPlugin,
+        babelPlugin,
+    ],
+};
 
 export default [
     // src/browser-entry.js --> dist/helix-ui.browser.js (UMD)
-    {
-        input: 'src/browser-entry.js',
-        output: [
-            {
-                ...browserOutput,
-                file: 'dist/scripts/helix-ui.browser.js',
-            }
-        ],
-        plugins: [
-            json(),
-            resolve(),
-            commonjs(),
-            htmlPlugin,
-            lessPlugin,
-            babelPlugin,
-        ],
-        watch: {
-            include: 'src/**/*',
-            exclude: 'node_modules/**',
-        },
-    },
+    browserConfig,
 
-    // src/browser-entry.js --> dis/helix-ui.browser.min.js (UMD)
+    // src/browser-entry.js --> dist/helix-ui.browser.min.js (UMD)
     {
-        input: 'src/browser-entry.js',
-        output: [
-            {
-                ...browserOutput,
-                file: 'dist/scripts/helix-ui.browser.min.js',
-            }
-        ],
+        ...browserConfig,
+        output: {
+            ...browserConfig.output,
+            file: 'dist/scripts/helix-ui.browser.min.js',
+        },
         plugins: [
-            json(),
-            resolve(),
-            commonjs(),
-            htmlPlugin,
-            lessPlugin,
             eslintPlugin,
-            babelPlugin,
+            ...browserConfig.plugins,
             uglify({}, minify),
         ],
-        watch: {
-            include: 'src/**/*',
-            exclude: 'node_modules/**',
-        },
     },
 
-    // src/node-entry.js --> dist/helix-ui.js (CJS)
-    // src/node-entry.js --> dist/helix-ui.es.js (ESM)
+    // src/helix-ui/index.js --> dist/helix-ui.js (CJS)
+    // src/helix-ui/index.js --> dist/helix-ui.es.js (ESM)
     {
-        input: 'src/node-entry.js',
+        input: 'src/helix-ui/index.js',
         output: [
             {
                 file: pkg.main,

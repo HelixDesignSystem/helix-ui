@@ -1,5 +1,5 @@
 import { HXElement } from './HXElement';
-import { getPosition } from '../util';
+import { getPosition } from '../utils/position';
 
 /**
  * Fires when the element is concealed.
