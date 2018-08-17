@@ -74,6 +74,7 @@
             { label: '<hx-busy>', path: 'hx-busy' },
             { label: '<hx-checkbox>', path: 'hx-checkbox' },
             { label: '<hx-disclosure>', path: 'hx-disclosure' },
+            { label: '<hx-div>', path: 'hx-div' },
             { label: '<hx-error>', path: 'hx-error' },
             { label: '<hx-file-icon>', path: 'hx-file-icon' },
             { label: '<hx-file-input>', path: 'hx-file-input' },

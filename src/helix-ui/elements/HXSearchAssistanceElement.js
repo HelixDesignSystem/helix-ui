@@ -1,5 +1,5 @@
 import { HXElement } from './HXElement';
-import { getPosition } from '../util';
+import { onScroll, getPosition } from '../util';
 
 /**
  * Fires when the element's contents are concealed.
@@ -37,15 +37,20 @@ export class HXSearchAssistanceElement extends HXElement {
         this.$upgradeProperty('position');
         this.$upgradeProperty('relativeTo');
         this.$defaultAttribute('position', 'bottom-start');
+        this.addEventListener('scroll', onScroll);
     }
-    
+
+    $onDisconnect () {
+        this.removeEventListener('scroll', onScroll);
+    }
+
     static get $observedAttributes () {
         return [ 'open' ];
     }
 
     $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'open') {
-            let isOpen = (newVal !== null); 
+            let isOpen = (newVal !== null);
             this.$emit(isOpen ? 'open' : 'close');
         }
     }

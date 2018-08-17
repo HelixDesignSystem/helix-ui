@@ -1,6 +1,7 @@
 'use strict';
 import 'whatwg-fetch';
 
+import './_config';
 import './components/accordions/accordion-demo';
 import './components/alerts/alert-demo';
 import './components/box/box-demo';

@@ -1,0 +1,51 @@
+@import (reference) 'components/box';
+
+hx-div {
+  display: block;
+
+  &[scroll="horizontal"] {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  &[scroll="vertical"] {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  &[scroll="both"] {
+    overflow: auto;
+  }
+
+  &[scroll="none"] {
+    overflow: visible;
+  }
+
+  &.hxXs {
+    #Box.xs();
+  }
+
+  &.hxSm {
+    #Box.sm();
+  }
+
+  &.hxMd {
+    #Box.md();
+  }
+
+  &.hxLg {
+    #Box.lg();
+  }
+
+  &.hxXl {
+    #Box.xl();
+  }
+
+  &.hx2x {
+    #Box.xxl();
+  }
+
+  &.hxFlush {
+    #Box.flush();
+  }
+}

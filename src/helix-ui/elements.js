@@ -8,6 +8,7 @@ export { HXAlertElement } from './elements/HXAlertElement.js';
 export { HXBusyElement } from './elements/HXBusyElement.js';
 export { HXCheckboxElement } from './elements/HXCheckboxElement.js';
 export { HXDisclosureElement } from './elements/HXDisclosureElement.js';
+export { HXDivElement } from './elements/HXDivElement.js';
 export { HXElement } from './elements/HXElement.js';
 export { HXErrorElement } from './elements/HXErrorElement.js';
 export { HXFileIconElement } from './elements/HXFileIconElement.js';
