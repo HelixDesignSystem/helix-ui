@@ -78,7 +78,7 @@
     "serve": "bin/serve.js",
     "prestart": "yarn clean:public && yarn generate",
     "start": "bin/start.js",
-    "test:unit": "mocha src/**/*.spec.js",
+    "test:unit": "mocha test/helpers.unit.js src/**/*.spec.js",
     "test": "cd test; yarn test"
   },
   "repository": "https://github.com/rackerlabs/helix-ui.git",
