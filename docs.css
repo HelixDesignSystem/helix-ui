@@ -113,6 +113,7 @@ min-version {
   padding: 0.25em 0.75em;
   vertical-align: middle;
 }
+.box-demo .hxBox,
 .box-demo hx-div {
   border: 1px dashed #9e9e9e;
 }

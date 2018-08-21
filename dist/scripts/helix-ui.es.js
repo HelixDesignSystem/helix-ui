@@ -1961,6 +1961,65 @@ class HXDisclosureElement extends HXElement {
     }
 }
 
+/**
+ * Nullable string denoting direction for scrolling.
+ *
+ * Valid Values:
+ *   - 'horizontal'
+ *   - 'vertical'
+ *   - 'both'
+ *
+ * @typedef {Enum<string>|Null} ScrollDirection
+ */
+
+/**
+ * Defines behavior for the `<hx-div>` element.
+ *
+ * @extends HXElement
+ * @hideconstructor
+ */
+class HXDivElement extends HXElement {
+    static get is () {
+        return 'hx-div';
+    }
+
+    static get $observedAttributes () {
+        return [ 'scroll' ];
+    }
+
+    $onAttributeChange (attr, oldVal, newVal) {
+        if (attr === 'scroll') {
+            if (newVal !== null) {
+                this._resetScroll();
+                this.addEventListener('scroll', onScroll);
+            } else {
+                this.removeEventListener('scroll', onScroll);
+            }
+        }
+    }
+
+    /** @type {ScrollDirection} */
+    get scroll () {
+        return this.getAttribute('scroll');
+    }
+
+    /** @type {ScrollDirection} */
+    set scroll (newVal) {
+        if (newVal === null) {
+            this.removeAttribute('scroll');
+        } else {
+            this.setAttribute('scroll', newVal);
+        }
+    }
+
+    /** @private */
+    _resetScroll () {
+        // reset scroll by scrolling to top left corner
+        this.scrollTop = 0;
+        this.scrollLeft = 0;
+    }
+}
+
 var shadowStyles$3 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxError {\n  display: inline-flex;\n}\n#hxError * + * {\n  margin-left: 0.25rem;\n}\n";
 
 var shadowMarkup$3 = "<div id='hxError'><span><hx-icon type='exclamation-circle' id='hxIcon'></hx-icon></span><span><slot></slot></span></div>";
@@ -4912,6 +4971,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXBusyElement: HXBusyElement,
     HXCheckboxElement: HXCheckboxElement,
     HXDisclosureElement: HXDisclosureElement,
+    HXDivElement: HXDivElement,
     HXElement: HXElement,
     HXErrorElement: HXErrorElement,
     HXFileIconElement: HXFileIconElement,
@@ -4936,7 +4996,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.13.0";
+var version = "0.13.1";
 
 /** @module HelixUI */
 
