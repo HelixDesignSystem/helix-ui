@@ -2,20 +2,46 @@ hx-drop-zone {
   display: block;
   position: relative;
 
+  /*
+  // look into how we can do this, bowling?
+  hx-file-icon {
+    display: block;
+  }
+  */
+
+  &::after {
+    border: 4px dashed @cyan-500;
+    content: '';
+    display: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  &[drag]{
+    &::after {
+      display: block;
+    }
+  } 
+
+  &[drag="over"] {
+    &::after {
+      background-color: rgba(255, 255, 255, 0.6);
+      border-style: solid;
+    }
+  }
+  
+  // move up?
+  &:not(.hxFence) {
+    padding: 0 !important;
+  }
+
   // if drop zone is ALSO a fence
   &.hxFence {
     &[drag]{
-      border-width: 4px;
-      padding: 0;
-    } 
-
-    &[drag="away"] {
-      //border: 1px dashed @cyan-500;
-    }
-
-    &[drag="over"] {
-      //border: 1px solid @cyan-500;
-      //opacity: 0.6;
+      border-color: transparent;
     }
   }
 }
@@ -23,6 +49,6 @@ hx-drop-zone {
 .hxFence {
   border: 1px dashed @gray-600;
   font-size: 0.875rem;
-  min-height: 6.25rem; //100px
+  //min-height: 6.25rem; //100px
   text-align: center;
 }

@@ -1,3 +1,4 @@
+/*
 @import "./HXElement";
 @import "base/links";
 
@@ -25,6 +26,37 @@
 :host(.hxFence) {
   #hxDropZone {
     padding: 3px;
+  }
+}
+
+  display: block;
+  max-width: 100%;
+  width: 450px;
+  
+  #hxDropZone {
+    border: 2px dashed @gray-600;
+    border-radius: 4px;
+    display: block;
+    height: 100%;
+    padding: 25px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+
+  input[type="file"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    z-index: -10;
   }
 }
 */

@@ -1,37 +1,34 @@
 import { HXElement } from './HXElement';
-import shadowMarkup from './HXDropZoneElement.html';
-import shadowStyles from './HXDropZoneElement.less';
 
 export class HXDropZoneElement extends HXElement {
     static get is () {
         return 'hx-drop-zone';
     }
 
-    static get template () {
-        return `<style>${shadowStyles}</style>${shadowMarkup}`;
-    }
-
     $onCreate () {
-        this._docDragLeaveTimeout;
         this._isDragging = false;
         this._isZoneDragging = false;
         this._onDocDragLeave = this._onDocDragLeave.bind(this);
         this._onDocDragOver = this._onDocDragOver.bind(this);
-        this._zoneDragLeaveTimeout;
+        this._onDrop = this._onDrop.bind(this);
     }
 
     $onConnect () {
         document.addEventListener('dragleave', this._onDocDragLeave);
         document.addEventListener('dragover', this._onDocDragOver);
+        document.addEventListener('drop', this._onDrop);
         this.addEventListener('dragleave', this._onDragLeave);
         this.addEventListener('dragover', this._onDragOver);
+        this.addEventListener('drop', this._onDrop);
     }
 
     $onDisconnect () {
         document.removeEventListener('dragleave', this._onDocDragLeave);
         document.removeEventListener('dragover', this._onDocDragOver);
+        document.removeEventListener('drop', this._onDrop);
         this.removeEventListener('dragleave', this._onDragLeave);
         this.removeEventListener('dragover', this._onDragOver);
+        this.removeEventListener('drop', this._onDrop);
     }
 
     get drag () {
@@ -82,5 +79,12 @@ export class HXDropZoneElement extends HXElement {
             }
         }
         window.clearTimeout(this._zoneDragLeaveTimeout);
+    }
+
+    _onDrop (evt) {
+        evt.preventDefault();
+        this.removeAttribute('drag');
+        this._isDragging = false;
+        this._isZoneDragging = false;
     }
 }
