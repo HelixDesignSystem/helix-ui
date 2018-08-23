@@ -11,6 +11,43 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
+    <h2 id="drop-zone">Drop Zone</h2>
+    <div class="example">
+      <div>
+        <hx-drop-zone>
+          <div class="hxFence">
+            <hx-file-icon type="paperclip"></hx-file-icon>
+          </div>
+          Drop any .png, .pdf, csv, or 
+          <hx-file-input
+            class="hxTertiary" 
+            label="browse your files">
+            <input type="file" />
+          </hx-file-input>
+        </hx-drop-zone>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="drop-zone">Drop Zone</h2>
+    <div class="example">
+      <div>
+        <hx-drop-zone class="hxFence">
+          <hx-file-icon type="paperclip"></hx-file-icon>
+            <div>
+            Drop any .png, .pdf, csv, or 
+            <hx-file-input
+              class="hxTertiary" 
+              label="browse your files">
+              <input type="file" />
+            </hx-file-input>
+            </div>
+        </hx-drop-zone>
+      </div>
+    </div>
+  </section>
+  <section>
     <h2 id="file-selector">File Selector</h2>
     <p class="hxSubBody">Added: v0.13.0</p>
     <div class="example" id="vue-fileInputDemo" v-cloak>
