@@ -2,6 +2,7 @@
 title: Files
 minver: 0.12.0
 also:
+  components/files/test-drop-zone.html: Testing - Drop Zones
   components/files/test-file-selectors.html: Testing - File Selectors
   components/files/test-file-tiles.html: Testing - File Tiles
   components/Icons: Icons
@@ -11,13 +12,30 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="drop-zone">Drop Zone</h2>
+    <h2 id="basic-drop-zone">Basic Drop Zone</h2>
     <div class="example">
       <div>
         <hx-drop-zone>
           <div class="hxFence">
             <hx-file-icon type="paperclip"></hx-file-icon>
+            Drop any .png, .pdf, csv, or 
+            <hx-file-input
+              class="hxTertiary" 
+              label="browse your files">
+              <input type="file" />
+            </hx-file-input>
           </div>
+        </hx-drop-zone>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="fenced-drop-zone">Fenced Drop Zone</h2>
+    <div class="example">
+      <div>
+        <hx-drop-zone class="hxFence">
+          <hx-file-icon type="paperclip"></hx-file-icon>
           Drop any .png, .pdf, csv, or 
           <hx-file-input
             class="hxTertiary" 
@@ -29,24 +47,8 @@ also:
     </div>
   </section>
 
-  <section>
-    <h2 id="drop-zone">Drop Zone</h2>
-    <div class="example">
-      <div>
-        <hx-drop-zone class="hxFence">
-          <hx-file-icon type="paperclip"></hx-file-icon>
-            <div>
-            Drop any .png, .pdf, csv, or 
-            <hx-file-input
-              class="hxTertiary" 
-              label="browse your files">
-              <input type="file" />
-            </hx-file-input>
-            </div>
-        </hx-drop-zone>
-      </div>
-    </div>
-  </section>
+
+
   <section>
     <h2 id="file-selector">File Selector</h2>
     <p class="hxSubBody">Added: v0.13.0</p>

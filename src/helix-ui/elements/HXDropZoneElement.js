@@ -1,8 +1,14 @@
 import { HXElement } from './HXElement';
+import shadowMarkup from './HXDropZoneElement.html';
+import shadowStyles from './HXDropZoneElement.less';
 
 export class HXDropZoneElement extends HXElement {
     static get is () {
         return 'hx-drop-zone';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
     $onCreate () {

@@ -34,6 +34,7 @@
   }
 }
 
+<<<<<<< HEAD
 :host([icon]) {
   #hxIcon {
     display: inline-block;
@@ -43,6 +44,16 @@
     #hxLabel {
       margin-left: 0.5rem;
     }
+=======
+:host(:not([icon])) {
+  #hxIcon {
+    display: none;
+  }
+  
+  #hxLabel {
+    // Important is needed to override ShadyCSS specificity
+    margin: 0 !important;
+>>>>>>> refactor(file-icon and file-selector): updated style changes
   }
 }
 
