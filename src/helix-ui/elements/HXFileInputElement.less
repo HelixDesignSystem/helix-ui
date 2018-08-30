@@ -24,11 +24,20 @@
   }
 
   #hxLabel {
-    margin-left: 0.5rem;
-
     &:empty {
       display: none;
     }
+  }
+}
+
+:host(:not([icon])) {
+  #hxIcon {
+    display: none;
+  }
+  
+  #hxLabel {
+    // Important is needed to override ShadyCSS specificity
+    margin: 0 !important;
   }
 }
 

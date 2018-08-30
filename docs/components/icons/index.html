@@ -49,9 +49,13 @@ also:
       </header>
 
       <div class="demo">
-        <hx-file-icon
+        <hx-file-icon v-if="ext !== ''"
+          :extension="ext"
           :type="type"
-          v-text="ext"
+        ></hx-file-icon>
+      
+        <hx-file-icon v-else
+          :type="type"
         ></hx-file-icon>
       </div>
 
