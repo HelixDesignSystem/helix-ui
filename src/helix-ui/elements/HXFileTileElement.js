@@ -255,11 +255,6 @@ export class HXFileTileElement extends HXElement {
     }
 
     /** @private */
-    get _elExt () {
-        return this.shadowRoot.getElementById('hxExt');
-    }
-
-    /** @private */
     get _elIcon () {
         return this.shadowRoot.getElementById('hxIcon');
     }
@@ -290,7 +285,7 @@ export class HXFileTileElement extends HXElement {
 
     /** @private */
     _attrNameUpdate (oldVal, newVal) {
-        this._elExt.innerText = this.extension;
+        this._elIcon.extension = (this.extension !== '' ? this.extension : null);
 
         if (this.truncated) {
             this._renderName();

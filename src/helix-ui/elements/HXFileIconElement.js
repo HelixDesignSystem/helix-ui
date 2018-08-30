@@ -41,7 +41,11 @@ export class HXFileIconElement extends HXElement {
     }
 
     set extension (newVal) {
-        this.setAttribute('extension', newVal);
+        if (newVal === null) {
+            this.removeAttribute('extension');
+        } else {
+            this.setAttribute('extension', newVal);
+        }
     }
 
     get type () {

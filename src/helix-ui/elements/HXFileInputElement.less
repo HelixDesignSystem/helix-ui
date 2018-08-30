@@ -17,10 +17,14 @@
     #Button.secondary();
     #Button.medium();
     width: 100%;
+
+    #hxLabel {
+      margin: 0;
+    }
   }
 
   #hxIcon {
-    margin: 0;
+    display: none;
   }
 
   #hxLabel {
@@ -30,14 +34,15 @@
   }
 }
 
-:host(:not([icon])) {
+:host([icon]) {
   #hxIcon {
-    display: none;
+    display: inline-block;
   }
-  
-  #hxLabel {
-    // Important is needed to override ShadyCSS specificity
-    margin: 0 !important;
+
+  #hxButton {
+    #hxLabel {
+      margin-left: 0.5rem;
+    }
   }
 }
 
