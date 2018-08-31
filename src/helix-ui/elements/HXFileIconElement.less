@@ -9,10 +9,15 @@
   }
 
   #hxOverlay {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
     line-height: 1;
     position: absolute;
     text-align: center;
-    top: 0.5rem;
+    top: 0;
     width: 100%;
   }
 
@@ -22,9 +27,24 @@
   }
 
   #hxExt {
+    display: none;
     font-size: 0.5rem;
     line-height: 1.5;
     margin-top: 1px;
     text-transform: uppercase;
   }
 }
+
+:host([extension]) {
+  #hxFileIcon {
+    #hxOverlay {
+      height: auto;
+      top: 0.5rem;
+    }
+
+    #hxExt {
+      display: block;
+    }
+  }
+}
+
