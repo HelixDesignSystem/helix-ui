@@ -1,0 +1,70 @@
+---
+title: Vertical Layout Preview
+---
+<!DOCTYPE html>
+<html lang="en"><!-- lang is necessary for screen reader compatibility -->
+{% include 'partials/head.njk' %}
+<body class="hxVertical" id="top">
+  <!-- Accessibility: This link should be the first item in tab order. -->
+  <a href="#content">Skip to main content</a>
+
+  <header id="head">
+    <!-- Eyebrow Goes Here -->
+  </header>
+
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
+        {% include 'partials/lorem-nav.njk' %}
+      </nav>
+
+      <main role="main" id="content" class="hxBox hxMd">
+        <nav class="hxBreadcrumb">
+          <a href="#">Home</a>
+          <hx-icon class="delimiter" type="angle-right"></hx-icon>
+          <a href="components/layouts">Layouts</a>
+          <hx-icon class="delimiter" type="angle-right"></hx-icon>
+          <a href="#">Vertical Layout</a>
+        </nav>
+
+        <h1>Main Content</h1>
+
+        <ul>
+          <li>
+            Footer will be pushed off viewport by lengthy content.
+          </li>
+          <li>
+            All content scrolls vertically as a <i>single document</i>.
+          </li>
+        </ul>
+
+        <p>
+          <a
+            class="hxBtn hxLg hxPrimary"
+            download="HelixUI-Vertical-index.html"
+            href="files/vertical-layout-template.html"
+          >
+            <hx-icon type="download"></hx-icon>
+            <span>Download Vertical Template</span>
+          </a>
+        </p>
+      </main>
+
+      <aside class="hxSiderail hxBox hxMd">
+        <h2>Side Rail</h2>
+        <ul>
+          <li>
+            A side rail may appear before or after main content.
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+
+  <footer id="foot" class="hxRow hxGutterless">
+    {% include 'partials/footer_nav.njk' %}
+  </footer>
+
+  {% include 'partials/after_footer.njk' %}
+</body>
+</html>
