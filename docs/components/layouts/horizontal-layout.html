@@ -1,0 +1,81 @@
+---
+title: Horizontal Layout Preview
+---
+<!DOCTYPE html>
+<html lang="en"><!-- lang is necessary for screen reader compatibility -->
+{% include 'partials/head.njk' %}
+<body class="hxHorizontal" id="top">
+  <!-- Accessibility: This link should be the first item in tab order. -->
+  <a href="#content">Skip to main content</a>
+
+  <header id="head">
+    <!-- Eyebrow Goes Here -->
+  </header>
+
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
+        {% include 'partials/lorem-nav.njk' %}
+      </nav>
+
+      <main role="main" id="content">
+        <hx-panel class="hxSpan-7-xs">
+          <hx-panelbody class="hxBox hxMd">
+            <nav class="hxBreadcrumb">
+              <a href="#">Home</a>
+              <hx-icon class="delimiter" type="angle-right"></hx-icon>
+              <a href="components/layouts">Layouts</a>
+              <hx-icon class="delimiter" type="angle-right"></hx-icon>
+              <a href="#">Horizontal Layout</a>
+            </nav>
+            <h1>Primary Panel</h1>
+
+            <ul>
+              <li>
+                Horizontal layout enables two variable width panels, entitled
+                "primary" and "secondary", to operate adjacent to one another.
+                User selections or interactions with the primary panel
+                facilitate information displayed on secondary panels.
+              </li>
+              <li>
+                Although data is correlated between each panel, panels can
+                scroll independently.
+              </li>
+              <li>
+                Panel widths cannot be adjusted manually by the user.
+              </li>
+              <li>
+                Columns can be adjusted based on the density of information
+                displaying so each panel is optimized for readability.
+              </li>
+            </ul>
+
+            <p>
+              <a
+                class="hxBtn hxLg hxPrimary"
+                download="HelixUI-Horizontal-index.html"
+                href="files/horizontal-layout-template.html"
+              >
+                <hx-icon type="download"></hx-icon>
+                <span>Download Horizontal Template</span>
+              </a>
+            </p>
+          </hx-panelbody>
+        </hx-panel>
+
+        <hx-panel class="hxSpan-5-xs">
+          <hx-panelbody class="hxBox hxMd">
+            <h2>Secondary Panel</h2>
+          </hx-panelbody>
+        </hx-panel>
+      </main>
+    </div>
+  </div>
+
+  <footer id="foot" class="hxRow hxGutterless">
+    {% include 'partials/footer_nav.njk' %}
+  </footer>
+
+  {% include 'partials/after_footer.njk' %}
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"><!-- lang is necessary for screen reader compatibility -->
+<head>
+  <title>Vertical - App Title</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="images/favicon.png" />
+
+  <!-- DO NOT BUNDLE: HelixUI Styles -->
+  <link rel="stylesheet" href="path/to/helix-ui/dist/styles/helix-ui.min.css" />
+  <!-- DO NOT COMPILE: Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="path/to/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+  <!-- DO NOT COMPILE: Appends polyfills to <head> if needed by user's browser. -->
+  <script src="path/to/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+</head>
+<body class="hxVertical" id="top">
+  <!-- Accessibility: This link should be the first item in tab order. -->
+  <a href="#content">Skip to main content</a>
+
+  <header id="head">
+    <!-- Eyebrow Goes Here -->
+  </header>
+
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
+        <!-- Product Navigation -->
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+
+        <hx-disclosure aria-controls="section-1">
+          Section 1
+          <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+        </hx-disclosure>
+        <hx-reveal id="section-1" open>
+          <a href="#">Link 1-1</a>
+          <a href="#">Link 1-2</a>
+          <a href="#">Link 1-3</a>
+
+          <hx-disclosure aria-controls="section-1-2">
+            Section 2
+            <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+          </hx-disclosure>
+          <hx-reveal id="section-1-2" open>
+            <a href="#">Link 2-1</a>
+            <a href="#">Link 2-2</a>
+            <a href="#">Link 2-3</a>
+          </hx-reveal>
+        </hx-reveal>
+        <!-- end:Product Navigation -->
+      </nav>
+
+      <!-- Accessibility: [role="main"] must be present on main#content -->
+      <main role="main" id="content" class="hxBox hxMd">
+        <h1>Page Content</h1>
+      </main>
+
+      <aside class="hxSiderail hxBox hxMd">
+        <p>Side Rail (optional)</p>
+      </aside>
+    </div>
+  </div>
+
+  <footer id="foot">
+    &copy; 2018 Rackspace US, Inc.
+    <nav>
+      <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+      <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+    </nav>
+  </footer>
+
+  <!--
+    DO NOT BUNDLE: ES5-compiled assets specifically for use in the browser.
+    Provides additional polyfills and automatically initializes HelixUI.
+  -->
+  <script src="path/to/helix-ui/scripts/helix-ui.browser.min.js"></script>
+
+  <a id="bottom"></a>
+</body>
+</html>
