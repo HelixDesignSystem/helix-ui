@@ -15,10 +15,10 @@ title: Testing - Popovers
     <h2>Appearance</h2>
     <div class="popover-appearance">
       {% for _position in [
-        'top', 'top-left', 'top-right',
-        'bottom', 'bottom-left', 'bottom-right',
-        'right', 'right-top', 'right-bottom',
-        'left', 'left-top', 'left-bottom'
+        'top-start', 'top-left', 'top', 'top-right', 'top-end',
+        'bottom-start', 'bottom-left', 'bottom', 'bottom-right', 'bottom-end',
+        'right-start', 'right-top', 'right', 'right-bottom', 'right-end',
+        'left-start', 'left-top', 'left', 'left-bottom', 'left-end'
       ] %}
         <hx-popover position="{{_position}}">
           <hx-div>
@@ -27,6 +27,66 @@ title: Testing - Popovers
         </hx-popover>
       {% endfor %}
     </div>
+  </section>
+
+  <section>
+    <h2>Full Markup Appearance</h2>
+    <div class="popover-appearance">
+      <hx-popover position="right-bottom">
+        <header>
+          Popover Head
+        </header>
+
+        <hx-div>
+          <p>Popover Body</p>
+        </hx-div>
+
+        <footer>
+          <button class="hxBtn hxPrimary">Submit</button>
+          <button class="hxBtn">Cancel</button>
+        </footer>
+      </hx-popover>
+    </div>
+  </section>
+
+  <section>
+    <h2>Deprecated Markup Appearance</h2>
+    <div class="popover-appearance">
+      <hx-popover position="right-bottom">
+        <hx-popover-head>
+          Popover Head
+        </hx-popover-head>
+
+        <hx-popover-body>
+          <p>Popover Body</p>
+        </hx-popover-body>
+
+        <hx-popover-foot>
+          <button class="hxBtn hxPrimary">Submit</button>
+          <button class="hxBtn">Cancel</button>
+        </hx-popover-foot>
+      </hx-popover>
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      <span id="heading-relativeTo">relative-to</span>
+    </h2>
+    <p>
+      <hx-disclosure aria-controls="popRelative" class="hxBtn">
+        Open relative to section Title
+      </hx-disclosure>
+    </p>
+    <hx-popover
+      id="popRelative"
+      position="top-start"
+      relative-to="heading-relativeTo"
+    >
+      <hx-div>
+        I'm over the heading!
+      </hx-div>
+    </hx-popover>
   </section>
 
   <section>

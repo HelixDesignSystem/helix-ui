@@ -263,6 +263,11 @@ export function getPositionWithArrow (offsetElement, referenceElement, config) {
         offset: 20, // distance from the edge to the center of the arrow
     };
 
+    // Remove offset for '*-start' and '*-end' positions:
+    if (/(start|end)$/.test(config.position)) {
+        defaults.offset = 0;
+    }
+
     let cfg = Object.assign({}, defaults, config);
 
     return getPosition(offsetElement, referenceElement, cfg);
