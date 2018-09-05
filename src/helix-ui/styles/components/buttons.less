@@ -1,3 +1,6 @@
+/* ================================================== *\
+ * MIXINS
+\* ================================================== */
 #Button {
   .reset() {
     background-color: transparent;
@@ -134,6 +137,10 @@
   }
 }
 
+/* ================================================== *\
+ * COMPONENT STYLES
+\* ================================================== */
+
 .hxBtn,
 a[href].hxBtn {
   #Button.reset();
@@ -211,53 +218,8 @@ a[href].hxBtn {
   }
 }//.hxBtnGroup
 
-
-// DARK BUTTONS (BETA)
-.hxBtn.beta-hxDark,
-a[href].hxBtn.beta-hxDark {
-  border-color: @cyan-500;
-  color: @cyan-500;
-
-  &:hover {
-    &:extend(.hxBtn:hover);
-    color: @gray-0;
-  }
-  &:active {
-    &:extend(.hxBtn:active);
-  }
-  &:focus {
-    &:extend(.hxBtn:focus);
-    box-shadow: 0 0 4px 2px fade(@cyan-500, 60%);
-  }
-}
-
-// ========== TODO ==========
-// encapsulate these styles in an <hx-button> element
+// ========== COG BUTTON ==========
 .hxBtn {
-  hx-icon {
-    &:first-child {
-      margin-right: 8px;
-    }
-
-    &:last-child {
-      margin-left: 8px;
-    }
-
-    &:only-child {
-      margin: 0;
-    }
-  }
-
-  // NOTE: this will only work for prescribed markup shown in the code snippets
-  // provided in the Busy component documentation. Deviation from the snippet
-  // will result in undesirable appearance.
-  //
-  // This is fragile, but a better implementation is in the works.
-  hx-busy:last-child {
-    margin-left: 0.5rem;
-  }
-
-  // Cog button
   &.hxCog {
     border: none;
     padding: 0.25rem;
@@ -287,9 +249,35 @@ a[href].hxBtn.beta-hxDark {
       }
     }
   }
-}//.hxBtn (TODO)
+}
 
-// ========== DEPRECATED ==========
+/* ================================================== *\
+ * BETA STYLES
+\* ================================================== */
+
+// DARK BUTTONS
+.hxBtn.beta-hxDark,
+a[href].hxBtn.beta-hxDark {
+  border-color: @cyan-500;
+  color: @cyan-500;
+
+  &:hover {
+    &:extend(.hxBtn:hover);
+    color: @gray-0;
+  }
+  &:active {
+    &:extend(.hxBtn:active);
+  }
+  &:focus {
+    &:extend(.hxBtn:focus);
+    box-shadow: 0 0 4px 2px fade(@cyan-500, 60%);
+  }
+}
+
+/* ================================================== *\
+ * DEPRECATED STYLES
+\* ================================================== */
+
 // ----- Remove in v1.0.0 -----
 .hxBtn--primary {
   &:extend(.hxBtn.hxPrimary all);
