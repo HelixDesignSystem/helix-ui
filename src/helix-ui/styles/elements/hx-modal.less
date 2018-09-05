@@ -1,54 +1,71 @@
 hx-modal {
-  color: initial;
   display: none;
-  font-family: "Roboto", sans-serif;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: normal;
-  letter-spacing: normal;
-  text-align: initial;
-  text-decoration: none;
-  text-shadow: none;
-  text-transform: none;
-  white-space: normal;
-  word-break: normal;
-  word-spacing: normal;
-  word-wrap: normal;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
 
-  &::before {
-    background-color: fade(@gray-1000, 60%);
-    content: " ";
-    height: 100%;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: @modal-backdrop-z-index;
-  }
-
+#hxContent.hx-modal,
+hx-modal {
   &[open] {
-    display: flex;
-    flex-direction: column;
+    display: block;
   }
 
+  > header {
+    flex-shrink: 0;
+    line-height: 1;
+    order: 1;
+    padding: 1.25rem;
+
+    // refactor this later
+    h1, h2, h3, h4, h5, h6 {
+      &:only-child {
+        line-height: 1;
+      }
+    }
+  }
+
+  > hx-div {
+    flex-grow: 1;
+    order: 2;
+    padding: 0 1.25rem;
+
+    &:first-child {
+      padding-top: 4rem;
+    }
+
+    &:last-child {
+      padding-bottom: 1.25rem;
+    }
+  }
+
+  > footer {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    order: 3;
+    padding: 1.25rem;
+
+    .hxBtn + .hxBtn {
+      margin-left: 1.25rem;
+    }
+  }
+
+  // DEPRECATED: remove in v1.0.0
   hx-modalhead {
     flex-shrink: 0;
     order: 1;
-
-    & + * {
-      margin-top: 1.25rem;
-    }
   }
 
+  // DEPRECATED: remove in v1.0.0
   hx-modalbody {
     flex-grow: 1;
     order: 2;
-
-    & + * {
-      margin-top: 1.25rem;
-    }
   }
 
+  // DEPRECATED: remove in v1.0.0
   hx-modalfoot {
     flex-shrink: 0;
     order: 3;
