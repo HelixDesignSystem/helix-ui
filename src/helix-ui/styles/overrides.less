@@ -12,6 +12,8 @@
 p {
   margin: 0;
 
+  // FIXME: this has the potential to throw off alignment
+  // of fixed position elements like tooltips and popovers
   & + * {
     margin-top: 0.5rem;
   }
