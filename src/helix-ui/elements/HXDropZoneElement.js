@@ -35,19 +35,31 @@ export class HXDropZoneElement extends HXElement {
         return this.getAttribute('drag');
     }
 
-    /** @private */
+    /** 
+     * @private 
+     * @see https://goo.gl/zaoexR
+     */
     _isFileDrag (evt) {
-        return (evt.dataTransfer.types.indexOf('Files') !== -1);
+        if (evt.dataTransfer.types) {
+            if (evt.dataTransfer.types.indexOf) {
+                return (evt.dataTransfer.types.indexOf('Files') !== -1);
+            } else {
+                return evt.dataTransfer.types.contains('Files');
+            }
+        } else {
+            return false;
+        }
     }
 
     // #2 this gets called when the dragged item leaves the document (leaves to a child element or window altogether)
     /** @private */
     _onDocDragLeave () {
+        window.clearTimeout(this._docDragLeaveTimeout);
         // callback must be an arrow function to preserve "this"
         this._docDragLeaveTimeout = window.setTimeout(() => {
             this._isDragging = false;
             this.removeAttribute('drag');
-        }, 0);
+        }, 250);
     }
 
     // #1 this handler fires continuously as long as the user is dragging on the page
@@ -65,7 +77,8 @@ export class HXDropZoneElement extends HXElement {
     // #4 this gets called when the dragged item leaves the zone (leaves to a child element or zone altogether)
     /** @private */
     _onDragLeave (evt) {
-        evt.preventDefault();
+        //evt.preventDefault();
+        window.clearTimeout(this._zoneDragLeaveTimeout);
         // callback must be an arrow function to preserve "this"
         this._zoneDragLeaveTimeout = window.setTimeout(() => {
             this._isZoneDragging = false;
@@ -76,6 +89,7 @@ export class HXDropZoneElement extends HXElement {
     // #3 this handler fires continuously as long as the user is dragging on the zone
     /** @private */
     _onDragOver (evt) {
+        // needed for onDrop to work
         evt.preventDefault();
         if (!this._isZoneDragging) {
             this._isZoneDragging = true;
@@ -83,12 +97,12 @@ export class HXDropZoneElement extends HXElement {
                 this.setAttribute('drag', 'over');
             }
         }
+        window.clearTimeout(this._docDragLeaveTimeout);
         window.clearTimeout(this._zoneDragLeaveTimeout);
     }
 
     /** @private */
     _onDrop (evt) {
-        //evt.preventDefault();
         this.removeAttribute('drag');
         this._isDragging = false;
         this._isZoneDragging = false;

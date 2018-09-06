@@ -15,6 +15,11 @@ also:
   <section>
     <h2 id="drop-fence">Drop Fence</h2>
     <p class="hxSubBody">Added: v0.14.0</p>
+    <p>A visual container that provides a visual affordance of drag-and-drop capabilities.</p>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      Styles always removes padding.
+    </p>
     <div class="example">
       <div>
         <div class="hxFence">
@@ -51,34 +56,42 @@ also:
   <section>
     <h2 id="drop-zone">Drop Zone</h2>
     <p class="hxSubBody">Added: v0.14.0</p>
+    <p>A visual container that provides an overlay, marking the boundaries of where a user can drop a file.</p>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      Styles always removes padding.
+    </p>
     <div class="example" id="vue-dropZoneDemo">
       <div>
         <hx-drop-zone
           @drop.prevent="onDrop">
           <div class="hxFence">
             <hx-file-icon type="paperclip"></hx-file-icon>
-            Drop files here or
-            <hx-file-input
-              class="hxTertiary" 
-              label="browse your files">
-              <input type="file" />
-            </hx-file-input>
-          </div>
-        </hx-drop-zone>
-      </div>
-
-      <footer>
-        {% code 'text' %}
-          <hx-drop-zone
-            @drop.prevent="onDrop">
-            <div class="hxFence">
-              <hx-file-icon type="paperclip"></hx-file-icon>
+            <p>
               Drop files here or
               <hx-file-input
                 class="hxTertiary" 
                 label="browse your files">
                 <input type="file" />
               </hx-file-input>
+            </p>
+          </div>
+        </hx-drop-zone>
+      </div>
+
+      <footer>
+        {% code 'text' %}
+          <hx-drop-zone>
+            <div class="hxFence">
+              <hx-file-icon type="paperclip"></hx-file-icon>
+              <p>
+                Drop files here or
+                <hx-file-input
+                  class="hxTertiary" 
+                  label="browse your files">
+                  <input type="file" />
+                </hx-file-input>
+              </p>
             </div>
           </hx-drop-zone>
         {% endcode %}
