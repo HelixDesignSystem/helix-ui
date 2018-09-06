@@ -35,11 +35,13 @@ export class HXDropZoneElement extends HXElement {
         return this.getAttribute('drag');
     }
 
+    /** @private */
     _isFileDrag (evt) {
         return (evt.dataTransfer.types.indexOf('Files') !== -1);
     }
 
     // #2 this gets called when the dragged item leaves the document (leaves to a child element or window altogether)
+    /** @private */
     _onDocDragLeave () {
         // callback must be an arrow function to preserve "this"
         this._docDragLeaveTimeout = window.setTimeout(() => {
@@ -49,6 +51,7 @@ export class HXDropZoneElement extends HXElement {
     }
 
     // #1 this handler fires continuously as long as the user is dragging on the page
+    /** @private */
     _onDocDragOver (evt) {
         if (!this._isDragging) {
             this._isDragging = true;
@@ -60,6 +63,7 @@ export class HXDropZoneElement extends HXElement {
     }
 
     // #4 this gets called when the dragged item leaves the zone (leaves to a child element or zone altogether)
+    /** @private */
     _onDragLeave (evt) {
         evt.preventDefault();
         // callback must be an arrow function to preserve "this"
@@ -70,6 +74,7 @@ export class HXDropZoneElement extends HXElement {
     }
 
     // #3 this handler fires continuously as long as the user is dragging on the zone
+    /** @private */
     _onDragOver (evt) {
         evt.preventDefault();
         if (!this._isZoneDragging) {
@@ -81,10 +86,18 @@ export class HXDropZoneElement extends HXElement {
         window.clearTimeout(this._zoneDragLeaveTimeout);
     }
 
+    drop () {
+        if (this.$emit('drop')) {
+            this.remove();
+        }
+    }
+
+    /** @private */
     _onDrop (evt) {
-        evt.preventDefault();
+        //evt.preventDefault();
         this.removeAttribute('drag');
         this._isDragging = false;
         this._isZoneDragging = false;
+        this.drop();
     }
 }

@@ -1,13 +1,8 @@
+@import (reference) 'components/box';
+
 hx-drop-zone {
   display: block;
   position: relative;
-
-  /*
-  // look into how we can do this, bowling?
-  hx-file-icon {
-    display: block;
-  }
-  */
 
   &::after {
     border: 4px dashed @cyan-500;
@@ -33,22 +28,18 @@ hx-drop-zone {
     }
   }
   
-  // move up?
   &:not(.hxFence) {
     padding: 0 !important;
-  }
-
-  // if drop zone is ALSO a fence
-  &.hxFence {
-    &[drag]{
-      border-color: transparent;
-    }
   }
 }
 
 .hxFence {
+  #Box.md();
   border: 1px dashed @gray-600;
   font-size: 0.875rem;
-  //min-height: 6.25rem; //100px
   text-align: center;
+
+  hx-file-icon {
+    display: block;
+  }
 }

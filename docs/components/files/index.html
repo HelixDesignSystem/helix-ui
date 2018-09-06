@@ -6,19 +6,54 @@ also:
   components/files/test-file-selectors.html: Testing - File Selectors
   components/files/test-file-tiles.html: Testing - File Tiles
   components/Icons: Icons
+  elements/hx-drop-zone: <hx-drop-zone>
   elements/hx-file-input: <hx-file-input>
   elements/hx-file-tile: <hx-file-tile>
 ---
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="basic-drop-zone">Basic Drop Zone</h2>
+    <h2 id="drop-fence">Drop Fence</h2>
+    <p class="hxSubBody">Added: v0.14.0</p>
     <div class="example">
       <div>
-        <hx-drop-zone>
+        <div class="hxFence">
+          <hx-file-icon type="paperclip"></hx-file-icon>
+          Drop a file here or 
+          <hx-file-input
+            class="hxTertiary" 
+            label="browse your files">
+            <input type="file" />
+          </hx-file-input>
+        </div>
+      </div>
+
+      <footer>
+        {% code 'text' %}
           <div class="hxFence">
             <hx-file-icon type="paperclip"></hx-file-icon>
-            Drop any .png, .pdf, csv, or 
+            Drop a file here or 
+            <hx-file-input
+              class="hxTertiary" 
+              label="browse your files">
+              <input type="file" />
+            </hx-file-input>
+          </div>
+        {% endcode %}
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="drop-zone">Drop Zone</h2>
+    <p class="hxSubBody">Added: v0.14.0</p>
+    <div class="example" id="vue-dropZoneDemo">
+      <div>
+        <hx-drop-zone
+          @drop="onDrop">
+          <div class="hxFence">
+            <hx-file-icon type="paperclip"></hx-file-icon>
+            Drop a file here or
             <hx-file-input
               class="hxTertiary" 
               label="browse your files">
@@ -27,23 +62,22 @@ also:
           </div>
         </hx-drop-zone>
       </div>
-    </div>
-  </section>
 
-  <section>
-    <h2 id="fenced-drop-zone">Fenced Drop Zone</h2>
-    <div class="example">
-      <div>
-        <hx-drop-zone class="hxFence">
-          <hx-file-icon type="paperclip"></hx-file-icon>
-          Drop any .png, .pdf, csv, or 
-          <hx-file-input
-            class="hxTertiary" 
-            label="browse your files">
-            <input type="file" />
-          </hx-file-input>
-        </hx-drop-zone>
-      </div>
+      <footer>
+        {% code 'text' %}
+          <hx-drop-zone>
+            <div class="hxFence">
+              <hx-file-icon type="paperclip"></hx-file-icon>
+              Drop a file here or
+              <hx-file-input
+                class="hxTertiary" 
+                label="browse your files">
+                <input type="file" />
+              </hx-file-input>
+            </div>
+          </hx-drop-zone>
+        {% endcode %}
+      </footer>
     </div>
   </section>
   
