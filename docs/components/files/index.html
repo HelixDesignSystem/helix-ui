@@ -19,12 +19,14 @@ also:
       <div>
         <div class="hxFence">
           <hx-file-icon type="paperclip"></hx-file-icon>
-          Drop a file here or 
-          <hx-file-input
-            class="hxTertiary" 
-            label="browse your files">
-            <input type="file" />
-          </hx-file-input>
+          <p>
+            Drop files here or
+            <hx-file-input
+              class="hxTertiary" 
+              label="browse your files">
+              <input type="file" />
+            </hx-file-input>
+          </p>
         </div>
       </div>
 
@@ -32,12 +34,14 @@ also:
         {% code 'text' %}
           <div class="hxFence">
             <hx-file-icon type="paperclip"></hx-file-icon>
-            Drop a file here or 
-            <hx-file-input
-              class="hxTertiary" 
-              label="browse your files">
-              <input type="file" />
-            </hx-file-input>
+            <p>
+              Drop files here or
+              <hx-file-input
+                class="hxTertiary" 
+                label="browse your files">
+                <input type="file" />
+              </hx-file-input>
+            </p>
           </div>
         {% endcode %}
       </footer>
@@ -50,10 +54,10 @@ also:
     <div class="example" id="vue-dropZoneDemo">
       <div>
         <hx-drop-zone
-          @drop="onDrop">
+          @drop.prevent="onDrop">
           <div class="hxFence">
             <hx-file-icon type="paperclip"></hx-file-icon>
-            Drop a file here or
+            Drop files here or
             <hx-file-input
               class="hxTertiary" 
               label="browse your files">
@@ -65,10 +69,11 @@ also:
 
       <footer>
         {% code 'text' %}
-          <hx-drop-zone>
+          <hx-drop-zone
+            @drop.prevent="onDrop">
             <div class="hxFence">
               <hx-file-icon type="paperclip"></hx-file-icon>
-              Drop a file here or
+              Drop files here or
               <hx-file-input
                 class="hxTertiary" 
                 label="browse your files">

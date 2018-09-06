@@ -86,18 +86,11 @@ export class HXDropZoneElement extends HXElement {
         window.clearTimeout(this._zoneDragLeaveTimeout);
     }
 
-    drop () {
-        if (this.$emit('drop')) {
-            this.remove();
-        }
-    }
-
     /** @private */
     _onDrop (evt) {
         //evt.preventDefault();
         this.removeAttribute('drag');
         this._isDragging = false;
         this._isZoneDragging = false;
-        this.drop();
     }
 }
