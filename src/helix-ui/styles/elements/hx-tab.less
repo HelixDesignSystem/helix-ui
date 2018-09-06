@@ -4,12 +4,13 @@ hx-tab {
   border: 1px solid transparent;
   bottom: -1px;
   color: @gray-700;
-  display: inline-block;
+  display: inline-flex;
   flex-shrink: 0;
   font-size: 0.875rem;
   font-weight: 500;
   padding: 0.5rem 0.75rem;
   position: relative;
+  z-index: 0;
 
   &:hover {
     color: @cyan-500;
@@ -18,11 +19,16 @@ hx-tab {
 
   &:active {
     color: @cyan-700;
+    z-index: 1;
   }
   
   &[current] {
     background-color: inherit;
     border-color: @gray-300 @gray-300 transparent;
     color: @cyan-900;
+  }
+
+  > * + * {
+    margin-left: 0.25rem;
   }
 }
