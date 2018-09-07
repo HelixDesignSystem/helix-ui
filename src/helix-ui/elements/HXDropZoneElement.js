@@ -76,7 +76,7 @@ export class HXDropZoneElement extends HXElement {
 
     // #4 this gets called when the dragged item leaves the zone (leaves to a child element or zone altogether)
     /** @private */
-    _onDragLeave (evt) {
+    _onDragLeave () {
         //evt.preventDefault();
         window.clearTimeout(this._zoneDragLeaveTimeout);
         // callback must be an arrow function to preserve "this"
@@ -102,7 +102,7 @@ export class HXDropZoneElement extends HXElement {
     }
 
     /** @private */
-    _onDrop (evt) {
+    _onDrop () {
         this.removeAttribute('drag');
         this._isDragging = false;
         this._isZoneDragging = false;

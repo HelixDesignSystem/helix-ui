@@ -3,9 +3,7 @@ if (document.getElementById('vue-dropZoneDemo')) {
         el: '#vue-dropZoneDemo',
         methods: {
             onDrop: function (evt) {
-                console.log('@drop');
                 // Prevent default behavior (Prevent file from being opened)
-                //evt.preventDefault();
                 if (evt.dataTransfer.items) {
                     // Use DataTransferItemList interface to access the file(s)
                     for (var i = 0; i < evt.dataTransfer.items.length; i++) {
@@ -16,10 +14,8 @@ if (document.getElementById('vue-dropZoneDemo')) {
                         }
                     }
                 } else {
-                // Use DataTransfer interface to access the file(s)
-                    for (var i = 0; i < evt.dataTransfer.files.length; i++) {
-                        alert('file drop successful! ' + evt.dataTransfer.files[i].name);
-                    }
+                    // TO DO: find solution, alert currently not working in ie11
+                    alert('Cannot detect dropped files in this browser.');
                 }
             },
         },
