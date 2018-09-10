@@ -6,10 +6,10 @@ also:
 ---
 {% extends 'element.njk' %}
 {% block content %}
-
   <section>
     <p>
-      The custom <code>{{page.title}}</code> element provides an area where a user can drop files.
+      The custom <code>{{page.title}}</code> element provides a visual overlay 
+      when dragging a file, marking the boundaries of where a user can drop.
     </p>
 
     <dl class="hxBox-md metadata hxList">
@@ -27,8 +27,12 @@ also:
           Any of the following:
           <ul>
             <li>
-              <code>drop</code> - See MDN's <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop" 
-              target="_blank">"File Drag and Drop"</a> for more information.
+              <code>drop</code> - See MDN's 
+              <a href="https://goo.gl/aKLYsQ" target="_blank"> 
+                "File Drag and Drop"
+                <hx-icon type="external-link"></hx-icon>
+              </a> 
+              for more information.
             </li>
           </ul>
         </dd>
@@ -37,12 +41,27 @@ also:
   </section>
 {% endblock %}
 
+{% block attributes %}
+  <dt>drag {String}</dt>
+    <dd>
+      <i>(read-only)</i>
+      <p>
+        Its value is automatically set by the element itself and mainly used for CSS styling purposes.
+      </p>
+    </dd>
+{% endblock %}
+
 {% block properties %}
   <dt>drag {String}</dt>
     <dd>
+      <i>(read-only)</i>
       <p>
-        <i>(read-only)</i>
-        Determines if file is dragged on the document or area.
+        A value of "away" means a file drag is detected on the document, 
+        away from the drop zone.
+      </p>
+      <p>
+        A value of "over" means a file drag is detected on the document, 
+        over the drop zone.
       </p>
     </dd>
 {% endblock %}

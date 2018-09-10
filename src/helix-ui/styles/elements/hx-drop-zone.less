@@ -3,6 +3,7 @@
 hx-drop-zone {
   display: block;
   min-height: 0; // because IE
+  padding: 0 !important;
   position: relative;
 
   &::after {
@@ -27,10 +28,6 @@ hx-drop-zone {
       background-color: rgba(255, 255, 255, 0.6);
       border-style: solid;
     }
-  }
-  
-  &:not(.hxFence) {
-    padding: 0 !important;
   }
 }
 

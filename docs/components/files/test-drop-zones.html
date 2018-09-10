@@ -1,5 +1,5 @@
 ---
-title: Testing - Drop Zone
+title: Testing - Drop Zones
 ---
 {% extends 'test.njk' %}
 {% block content %}
@@ -21,14 +21,14 @@ title: Testing - Drop Zone
   <section>
     <h2>Visible Drop Zone (file not over element)</h2>
     <hx-drop-zone drag="away">
-      Visible Drop Zone (file not over element)
+      <p>Visible Drop Zone (file not over element)</p>
     </hx-drop-zone>
   </section>
 
   <section>
     <h2>Visible Drop Zone (file over element)</h2>
     <hx-drop-zone drag="over">
-      Visible Drop Zone (file over element)
+      <p>Visible Drop Zone (file over element)</p>
     </hx-drop-zone>
   </section>
 
@@ -36,7 +36,7 @@ title: Testing - Drop Zone
     <h2>Drop Zone with Child Fence</h2>
     <hx-drop-zone>
       <div class="hxFence hxBox hxMd">
-        Invisible Drop Zone
+        <p>Invisible Drop Zone</p>
       </div>
     </hx-drop-zone>
   </section>
@@ -45,7 +45,7 @@ title: Testing - Drop Zone
     <h2>Visible Drop Zone with Child Fence (file not over element)</h2>
     <hx-drop-zone drag="away">
       <div class="hxFence hxBox hxMd">
-        Visible Drop Zone (file not over element)
+        <p>Visible Drop Zone (file not over element)</p>
       </div>
     </hx-drop-zone>
   </section>
@@ -54,7 +54,7 @@ title: Testing - Drop Zone
     <h2>Visible Drop Zone with Child Fence (file over element)</h2>
     <hx-drop-zone drag="over">
       <div class="hxFence hxBox hxMd">
-        Visible Drop Zone (file over element)
+        <p>Visible Drop Zone (file over element)</p>
       </div>
     </hx-drop-zone>
   </section>

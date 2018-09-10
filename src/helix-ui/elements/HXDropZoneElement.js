@@ -6,11 +6,12 @@ export class HXDropZoneElement extends HXElement {
     }
 
     $onCreate () {
-        this._isDragging = false;
+        this._isDocDragging = false;
         this._isZoneDragging = false;
         this._onDocDragLeave = this._onDocDragLeave.bind(this);
         this._onDocDragOver = this._onDocDragOver.bind(this);
         this._onDrop = this._onDrop.bind(this);
+        this._stopDragging = this._stopDragging.bind(this);
     }
 
     $onConnect () {
@@ -31,42 +32,45 @@ export class HXDropZoneElement extends HXElement {
         this.removeEventListener('drop', this._onDrop);
     }
 
+    /**
+     * @readonly
+     * @type {String}
+     */
     get drag () {
         return this.getAttribute('drag');
     }
 
     /** 
      * @private 
-     * @see https://goo.gl/zaoexR
+     * @returns {Boolean}
      */
     _isFileDrag (evt) {
-        if (evt.dataTransfer.types) {
-            if (evt.dataTransfer.types.indexOf) {
-                return (evt.dataTransfer.types.indexOf('Files') !== -1);
+        let _types = evt.dataTransfer.types;
+        if (_types) {
+            if (_types.indexOf) {
+                return (_types.indexOf('Files') !== -1);
             } else {
-                return evt.dataTransfer.types.contains('Files');
+                return _types.contains('Files');
             }
         } else {
             return false;
         }
     }
 
-    // #2 this gets called when the dragged item leaves the document (leaves to a child element or window altogether)
+    // #2 this gets called when the dragged item leaves the document 
+    // (leaves to a child element or window altogether)
     /** @private */
     _onDocDragLeave () {
         window.clearTimeout(this._docDragLeaveTimeout);
         // callback must be an arrow function to preserve "this"
-        this._docDragLeaveTimeout = window.setTimeout(() => {
-            this._isDragging = false;
-            this.removeAttribute('drag');
-        }, 250);
+        this._docDragLeaveTimeout = window.setTimeout(this._stopDragging, 250);
     }
 
     // #1 this handler fires continuously as long as the user is dragging on the page
     /** @private */
     _onDocDragOver (evt) {
-        if (!this._isDragging) {
-            this._isDragging = true;
+        if (!this._isDocDragging) {
+            this._isDocDragging = true;
             if (this._isFileDrag(evt)) {
                 this.setAttribute('drag', 'away');
             }
@@ -74,10 +78,10 @@ export class HXDropZoneElement extends HXElement {
         window.clearTimeout(this._docDragLeaveTimeout);
     }
 
-    // #4 this gets called when the dragged item leaves the zone (leaves to a child element or zone altogether)
+    // #4 this gets called when the dragged item leaves the zone 
+    // (leaves to a child element or zone altogether)
     /** @private */
     _onDragLeave () {
-        //evt.preventDefault();
         window.clearTimeout(this._zoneDragLeaveTimeout);
         // callback must be an arrow function to preserve "this"
         this._zoneDragLeaveTimeout = window.setTimeout(() => {
@@ -89,8 +93,7 @@ export class HXDropZoneElement extends HXElement {
     // #3 this handler fires continuously as long as the user is dragging on the zone
     /** @private */
     _onDragOver (evt) {
-        // needed for onDrop to work
-        evt.preventDefault();
+        evt.preventDefault(); // needed for onDrop to work
         if (!this._isZoneDragging) {
             this._isZoneDragging = true;
             if (this._isFileDrag(evt)) {
@@ -103,8 +106,13 @@ export class HXDropZoneElement extends HXElement {
 
     /** @private */
     _onDrop () {
+        this._stopDragging();
+    }
+
+    /** @private */
+    _stopDragging () {
         this.removeAttribute('drag');
-        this._isDragging = false;
+        this._isDocDragging = false;
         this._isZoneDragging = false;
     }
 }
