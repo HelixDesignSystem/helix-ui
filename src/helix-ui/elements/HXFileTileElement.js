@@ -319,7 +319,7 @@ export class HXFileTileElement extends HXElement {
 
     /** @private */
     _renderName () {
-        let _name = escape(this.name);
+        let _name = this.name;
         this._elName.innerHTML = `
             <span>${_name.slice(0, -PRE_TRUNC)}</span>
             <span>${_name.slice(-PRE_TRUNC)}</span>
