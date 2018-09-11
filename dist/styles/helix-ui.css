@@ -780,7 +780,6 @@ hx-tabcontent {
   border-color: #e0e0e0 transparent;
   border-style: solid;
   border-width: 1px;
-  flex-basis: 14rem;
   flex-shrink: 0;
   min-height: 14rem;
   overflow: hidden;
