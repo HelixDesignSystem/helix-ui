@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en"><!-- lang is necessary for screen reader compatibility -->
+<head>
+  <title>Horizontal Layout Preview - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
+
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  <!-- Font Awesome Brand Icons -->
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  <link rel="stylesheet" href="docs.css">
+
+  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="vendor/custom-elements-es5-adapter.js"></script>
+
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
+</head>
+<body class="hxHorizontal" id="top">
+  <!-- Accessibility: This link should be the first item in tab order. -->
+  <a href="#content">Skip to main content</a>
+
+  <header id="head">
+    <!-- Eyebrow Goes Here -->
+  </header>
+
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
+<a href="#">Link 1</a>
+<a href="#">Link 2</a>
+<a href="#">Link 3</a>
+
+<hx-disclosure aria-controls="section-1">
+  Section 1
+  <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+</hx-disclosure>
+<hx-reveal id="section-1" open>
+  <a href="#">Link 1-1</a>
+  <a href="#">Link 1-2</a>
+  <a href="#">Link 1-3</a>
+
+  <hx-disclosure aria-controls="section-1-2">
+    Section 2
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="section-1-2" open>
+    <a href="#">Link 2-1</a>
+    <a href="#">Link 2-2</a>
+    <a href="#">Link 2-3</a>
+  </hx-reveal>
+</hx-reveal>
+
+      </nav>
+
+      <main role="main" id="content">
+        <hx-panel class="hxSpan-7-xs">
+          <hx-panelbody class="hxBox hxMd">
+            <nav class="hxBreadcrumb">
+              <a href="#">Home</a>
+              <hx-icon class="delimiter" type="angle-right"></hx-icon>
+              <a href="components/layouts">Layouts</a>
+              <hx-icon class="delimiter" type="angle-right"></hx-icon>
+              <a href="#">Horizontal Layout</a>
+            </nav>
+            <h1>Primary Panel</h1>
+
+            <ul>
+              <li>
+                Horizontal layout enables two variable width panels, entitled
+                "primary" and "secondary", to operate adjacent to one another.
+                User selections or interactions with the primary panel
+                facilitate information displayed on secondary panels.
+              </li>
+              <li>
+                Although data is correlated between each panel, panels can
+                scroll independently.
+              </li>
+              <li>
+                Panel widths cannot be adjusted manually by the user.
+              </li>
+              <li>
+                Columns can be adjusted based on the density of information
+                displaying so each panel is optimized for readability.
+              </li>
+            </ul>
+
+            <p>
+              <a
+                class="hxBtn hxLg hxPrimary"
+                download="HelixUI-Horizontal-index.html"
+                href="files/horizontal-layout-template.html"
+              >
+                <hx-icon type="download"></hx-icon>
+                <span>Download Horizontal Template</span>
+              </a>
+            </p>
+          </hx-panelbody>
+        </hx-panel>
+
+        <hx-panel class="hxSpan-5-xs">
+          <hx-panelbody class="hxBox hxMd">
+            <h2>Secondary Panel</h2>
+          </hx-panelbody>
+        </hx-panel>
+      </main>
+    </div>
+  </div>
+
+  <footer id="foot" class="hxRow hxGutterless">
+<div class="hxCol">
+&copy; 2018 Rackspace US, Inc.
+<nav>
+  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+</nav>
+</div>
+<div class="hxCol text-right">
+    <small>
+      Last Updated:
+      2018-09-11
+    </small>
+
+  <small>
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.13.1" target="_blank">
+      v0.13.1
+    </a>)
+  </small>
+</div>
+  </footer>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+<script src="dist/scripts/helix-ui.browser.js"></script>
+<script src="docs.js"></script>
+</body>
+</html>

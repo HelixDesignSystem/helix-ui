@@ -25,9 +25,11 @@
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
-  <!-- Polyfill Loader -->
-  <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="vendor/custom-elements-es5-adapter.js"></script>
 
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
   <!-- This link should be the first item a user can tab to. -->
@@ -657,7 +659,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-08-21
+      2018-09-11
     </small>
 
   <small>
@@ -667,17 +669,6 @@ class="current">
   </small>
 </div>
   </footer>
-
-<!-- intelligently load ES5 Adapter (if needed) -->
-<span id="ce-es5-adapter">
-  <script>
-    if (!window.customElements) {
-      var elAdapter = document.querySelector('#ce-es5-adapter');
-      elAdapter.parentElement.removeChild(elAdapter);
-    }
-  </script>
-  <script src="https://unpkg.com/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
-</span>
 
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
 <script src="dist/scripts/helix-ui.browser.js"></script>

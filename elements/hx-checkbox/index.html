@@ -25,9 +25,11 @@
   <link rel="stylesheet" href="dist/styles/helix-ui.css">
   <link rel="stylesheet" href="docs.css">
 
-  <!-- Polyfill Loader -->
-  <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="vendor/custom-elements-es5-adapter.js"></script>
 
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
   <!-- This link should be the first item a user can tab to. -->
@@ -562,6 +564,10 @@ class="current">
 
     <dl class="hxBox-md metadata hxList">
       <div>
+        <dt>Display</dt>
+        <dd>inline</dd>
+      </div>
+      <div>
         <dt>Permitted Parents</dt>
         <dd>any</dd>
       </div>
@@ -626,6 +632,7 @@ class="current">
   <h2 id="see-also">See Also</h2>
   <ul>
       <li><a href="components/checkboxes">Checkboxes</a></li>
+      <li><a href="guides/react-compatibility/#significant-white-space">Significant White Space (React Compatibility)</a></li>
   </ul>
 </section>
   </main>
@@ -656,7 +663,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-07-23
+      2018-09-11
     </small>
 
   <small>
@@ -666,17 +673,6 @@ class="current">
   </small>
 </div>
   </footer>
-
-<!-- intelligently load ES5 Adapter (if needed) -->
-<span id="ce-es5-adapter">
-  <script>
-    if (!window.customElements) {
-      var elAdapter = document.querySelector('#ce-es5-adapter');
-      elAdapter.parentElement.removeChild(elAdapter);
-    }
-  </script>
-  <script src="https://unpkg.com/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
-</span>
 
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
 <script src="dist/scripts/helix-ui.browser.js"></script>

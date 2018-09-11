@@ -40,7 +40,7 @@
             }
 
             // Check if any ancestors match selectors
-            while (el !== null && el.nodetype === 1) {
+            while (el !== null && el.nodeType === 1) {
                 if (el.matches(selectors)) {
                     return el;
                 } else {

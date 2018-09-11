@@ -751,12 +751,13 @@ hx-tab {
   border: 1px solid transparent;
   bottom: -1px;
   color: #757575;
-  display: inline-block;
+  display: inline-flex;
   flex-shrink: 0;
   font-size: 0.875rem;
   font-weight: 500;
   padding: 0.5rem 0.75rem;
   position: relative;
+  z-index: 0;
 }
 hx-tab:hover {
   color: #16b9d4;
@@ -764,17 +765,24 @@ hx-tab:hover {
 }
 hx-tab:active {
   color: #0e94a6;
+  z-index: 1;
 }
 hx-tab[current] {
   background-color: inherit;
   border-color: #e0e0e0 #e0e0e0 transparent;
   color: #0c7c84;
 }
+hx-tab > * + * {
+  margin-left: 0.25rem;
+}
 hx-tabcontent {
   background-color: inherit;
   border-color: #e0e0e0 transparent;
   border-style: solid;
   border-width: 1px;
+  flex-basis: 14rem;
+  flex-shrink: 0;
+  min-height: 14rem;
   overflow: hidden;
 }
 hx-tabcontent {
@@ -793,7 +801,7 @@ hx-tabcontent {
 }
 hx-tablist {
   background-color: inherit;
-  display: block;
+  display: flex;
   padding: 0 0.5rem;
 }
 hx-tablist {
@@ -1103,6 +1111,12 @@ hx-tile {
   font-size: 0.5rem;
   margin-right: 0.5rem;
 }
+/* ================================================== *\
+ * MIXINS
+\* ================================================== */
+/* ================================================== *\
+ * COMPONENT STYLES
+\* ================================================== */
 .hxBtn,
 a[href].hxBtn {
   background-color: transparent;
@@ -1314,31 +1328,6 @@ a[href].hxBtnGroup.hxLink > .hxBtn[disabled] {
 .hxBtnGroup.hxLink > .hxBtn + .hxBtn {
   margin-left: 1.25rem;
 }
-.hxBtn.beta-hxDark,
-a[href].hxBtn.beta-hxDark {
-  border-color: #16b9d4;
-  color: #16b9d4;
-}
-.hxBtn.beta-hxDark:hover,
-a[href].hxBtn.beta-hxDark:hover {
-  color: #ffffff;
-}
-.hxBtn.beta-hxDark:focus,
-a[href].hxBtn.beta-hxDark:focus {
-  box-shadow: 0 0 4px 2px rgba(22, 185, 212, 0.6);
-}
-.hxBtn hx-icon:first-child {
-  margin-right: 8px;
-}
-.hxBtn hx-icon:last-child {
-  margin-left: 8px;
-}
-.hxBtn hx-icon:only-child {
-  margin: 0;
-}
-.hxBtn hx-busy:last-child {
-  margin-left: 0.5rem;
-}
 .hxBtn.hxCog {
   border: none;
   padding: 0.25rem;
@@ -1363,6 +1352,25 @@ a[href].hxBtn.beta-hxDark:focus {
 .hxBtn.hxCog[disabled] hx-icon {
   color: #bdbdbd;
 }
+/* ================================================== *\
+ * BETA STYLES
+\* ================================================== */
+.hxBtn.beta-hxDark,
+a[href].hxBtn.beta-hxDark {
+  border-color: #16b9d4;
+  color: #16b9d4;
+}
+.hxBtn.beta-hxDark:hover,
+a[href].hxBtn.beta-hxDark:hover {
+  color: #ffffff;
+}
+.hxBtn.beta-hxDark:focus,
+a[href].hxBtn.beta-hxDark:focus {
+  box-shadow: 0 0 4px 2px rgba(22, 185, 212, 0.6);
+}
+/* ================================================== *\
+ * DEPRECATED STYLES
+\* ================================================== */
 .hxRow > label.hxChoice {
   flex-grow: 1;
   margin: 0 0 20px;
@@ -2345,8 +2353,8 @@ body.hxHorizontal #foot {
   grid-area: footer;
 }
 dl.hxList {
+  margin: 1em 0;
   display: block;
-  margin: 0;
 }
 dl.hxList > div {
   display: flex;
@@ -3105,7 +3113,7 @@ h6 {
     - Allow !important
 \* =============================== */
 .hxFigure {
-  margin: 0;
+  margin: 1em 0;
 }
 p {
   margin: 0;
