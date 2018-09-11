@@ -97,10 +97,16 @@ title: Getting Started with HelixUI
       </li>
       <li>Proceed to "Step 3: Choose a Layout".</li>
     </ol>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="info-circle"></hx-icon>
+      Version 2.x (or later) is recommended, because it is more efficient
+      in loading required polyfill bundles.
+    </p>
     <hx-tabset class="beta-hxBound">
       <hx-tablist>
         <hx-tab>NPM</hx-tab>
         <hx-tab>Download</hx-tab>
+        <hx-tab>unpkg</hx-tab>
       </hx-tablist>
       <hx-tabcontent>
         <hx-tabpanel class="hxBox-xl">
@@ -131,6 +137,17 @@ title: Getting Started with HelixUI
               <hx-icon type="external-link"></hx-icon>
             </a>.
           </p>
+        </hx-tabpanel>
+        <hx-tabpanel class="hxBox-xl">
+          <p>
+            Alternatively, you can load the polyfills directly from
+            <a href="https://unpkg.com">unpkg.com</a> via the following URLs.
+          </p>
+
+          <ul>
+            <li><code>https://unpkg.com/@webcomponents/webcomponentsjs@2/webcomponents-loader.js</code></li>
+            <li><code>https://unpkg.com/@webcomponents/webcomponentsjs@2/custom-elements-es5-adapter.js</code></li>
+          </ul>
         </hx-tabpanel>
       </hx-tabcontent>
     </hx-tabset>
