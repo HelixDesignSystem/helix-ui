@@ -2,10 +2,12 @@
 title: Files
 minver: 0.12.0
 also:
+  components/files/test-drop-fences.html: Testing - Drop Fences
   components/files/test-drop-zones.html: Testing - Drop Zones
   components/files/test-file-selectors.html: Testing - File Selectors
   components/files/test-file-tiles.html: Testing - File Tiles
   components/Icons: Icons
+  elements/hx-drop-fence: <hx-drop-fence>
   elements/hx-drop-zone: <hx-drop-zone>
   elements/hx-file-input: <hx-file-input>
   elements/hx-file-tile: <hx-file-tile>
@@ -26,8 +28,7 @@ also:
     <div class="example" id="vue-dropZoneDemo">
       <div>
         <hx-drop-zone @drop.prevent="onDrop">
-          <div class="hxFence">
-            <hx-file-icon type="paperclip"></hx-file-icon>
+          <hx-drop-fence>
             <p>
               Drop files here or
               <hx-file-input
@@ -36,15 +37,14 @@ also:
                 <input type="file" />
               </hx-file-input>.
             </p>
-          </div>
+          </hx-drop-fence>
         </hx-drop-zone>
       </div>
 
       <footer>
         {% code 'html' %}
           <hx-drop-zone>
-            <div class="hxFence">
-              <hx-file-icon type="paperclip"></hx-file-icon>
+            <hx-drop-fence>
               <p>
                 Drop files here or
                 <hx-file-input
@@ -53,7 +53,7 @@ also:
                   <input type="file" />
                 </hx-file-input>.
               </p>
-            </div>
+            </hx-drop-fence>
           </hx-drop-zone>
         {% endcode %}
       </footer>

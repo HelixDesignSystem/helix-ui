@@ -1,0 +1,67 @@
+---
+title: Testing - Drop Fences
+---
+{% extends 'test.njk' %}
+{% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/files">Files</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  <section>
+    <h2>Drop Fence (Empty)</h2>
+    <hx-drop-fence>
+    </hx-drop-fence>
+  </section>
+
+  <section>
+    <h2>Drop Fence with Short Plain Text</h2>
+    <hx-drop-fence>
+      Test text here
+    </hx-drop-fence>
+  </section>
+
+  <section>
+    <h2>Drop Fence with Short Text</h2>
+    <hx-drop-fence>
+      <p>Test text here</p>
+    </hx-drop-fence>
+  </section>
+
+  <section>
+    <h2>Drop Fence with Short Text and File Selector</h2>
+    <hx-drop-fence>
+      <p>
+        Test text here and
+        <hx-file-input
+          class="hxTertiary" 
+          label="file selector here">
+          <input type="file" />
+        </hx-file-input>.
+      </p>
+    </hx-drop-fence>
+  </section>
+
+  <section>
+    <h2>Drop Fence with Long Plain Text</h2>
+    <hx-drop-fence>
+      Sugar plum cupcake cheesecake jelly-o. Halvah jelly-o sweet roll 
+      topping cotton candy bear claw. Sweet sesame snaps jelly-o cotton 
+      candy carrot cake chocolate bar dragee.
+    </hx-drop-fence>
+  </section>
+
+  <section>
+    <h2>Drop Fence with Long Text</h2>
+    <hx-drop-fence>
+      <p>
+        Sugar plum cupcake cheesecake jelly-o. Halvah jelly-o sweet roll 
+        topping cotton candy bear claw. Sweet sesame snaps jelly-o cotton 
+        candy carrot cake chocolate bar dragee.
+      </p>
+    </hx-drop-fence>
+  </section>
+{% endblock %}
