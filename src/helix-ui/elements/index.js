@@ -5,6 +5,7 @@ export { HXBusyElement } from './HXBusyElement';
 export { HXCheckboxElement } from './HXCheckboxElement';
 export { HXDisclosureElement } from './HXDisclosureElement';
 export { HXDivElement } from './HXDivElement';
+export { HXDropZoneElement } from './HXDropZoneElement';
 export { HXElement } from './HXElement';
 export { HXErrorElement } from './HXErrorElement';
 export { HXFileIconElement } from './HXFileIconElement';

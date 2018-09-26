@@ -24,6 +24,12 @@ import Util from '../../_util';
                 types: TYPES,
             },
             computed: {
+                attrExtension: function () {
+                    if (this.ext.trim() !== '') {
+                        return `extension="${this.ext}"`;
+                    }
+                    return '';
+                },
                 attrType: function () {
                     if (this.type.trim() !== '') {
                         return `type="${this.type}"`;
@@ -32,8 +38,9 @@ import Util from '../../_util';
                 },
                 snippet: function () {
                     return Util.snippet(`
-                        <hx-file-icon ${this.attrType}>
-                          ${this.ext}
+                        <hx-file-icon 
+                          ${this.attrExtension}
+                          ${this.attrType}>
                         </hx-file-icon>
                     `);
                 },

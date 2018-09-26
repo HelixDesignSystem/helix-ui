@@ -133,7 +133,9 @@ function _getElementBox (element, coord) {
 }
 
 /**
- * Calculate coordinates of an element in relation to a reference element.
+ * Calculate fixed coordinates of an element in relation to a reference element.
+ *
+ * **NOTE**: Coordinates are calculated based on the viewport, not the document.
  *
  * @param {String} position - the position of the offset element
  * @param {HTMLElement} offsetElement - the element to calculate (x,y) coordinates
@@ -155,8 +157,6 @@ function _getCoords (position, offsetElement, referenceElement, config) {
     let refRect = referenceElement.getBoundingClientRect();
 
     [ coords.x, coords.y ] = offsetFunctionMap[position](offRect, refRect, config);
-    coords.x += window.pageXOffset;
-    coords.y += window.pageYOffset;
 
     return coords;
 }
@@ -172,18 +172,11 @@ function _getCoords (position, offsetElement, referenceElement, config) {
  */
 function _getOffscreenMetadata (element, coords) {
     let elementBox = _getElementBox(element, coords);
-    let viewportBox = {
-        top: window.pageYOffset,
-        right: window.innerWidth + window.pageXOffset,
-        bottom: window.innerHeight + window.pageYOffset,
-        left: window.pageXOffset,
-    };
-
     let offscreen = {
-        top: elementBox.top < viewportBox.top,
-        right: elementBox.right > viewportBox.right,
-        bottom: elementBox.bottom > viewportBox.bottom,
-        left: elementBox.left < viewportBox.left,
+        top: elementBox.top < 0,
+        right: elementBox.right > window.innerWidth,
+        bottom: elementBox.bottom > window.innerHeight,
+        left: elementBox.left < 0,
     };
 
     offscreen.vertically = (offscreen.top || offscreen.bottom);
@@ -269,6 +262,11 @@ export function getPositionWithArrow (offsetElement, referenceElement, config) {
         margin: 12, // base to tip of the arrow
         offset: 20, // distance from the edge to the center of the arrow
     };
+
+    // Remove offset for '*-start' and '*-end' positions:
+    if (/(start|end)$/.test(config.position)) {
+        defaults.offset = 0;
+    }
 
     let cfg = Object.assign({}, defaults, config);
 

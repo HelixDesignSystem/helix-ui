@@ -99,14 +99,25 @@ title: Testing - File Tiles
       </div>
 
       <div class="hxCol">
-        <h3>Visually Truncated</h3>
+        <h3>Visually Truncated no Spaces</h3>
         <hx-file-tile
           details="3Kb"
           href="files/easteregg.txt"
           icon="paperclip"
           name="visually-truncated-filename-really-really-really-really-really-long-final-02.pptx"
         ></hx-file-tile>
-        <small>many characters, center truncation applied</small>
+        <small>many characters without spaces, center truncation applied</small>
+      </div>
+
+      <div class="hxCol">
+        <h3>Visually Truncated with Spaces</h3>
+        <hx-file-tile
+          details="3Kb"
+          href="files/easteregg.txt"
+          icon="paperclip"
+          name="visually truncated filename with spaces that is really-really-really-really-really-long-final-02.pptx"
+        ></hx-file-tile>
+        <small>many characters with spaces, center truncation applied</small>
       </div>
 
       <div class="hxCol">
