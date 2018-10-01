@@ -154,7 +154,7 @@ export class HXFileTileElement extends HXElement {
      * @type {String}
      */
     get name () {
-        return this.getAttribute('name' || '');
+        return this.getAttribute('name') || '';
     }
     set name (newVal) {
         if (newVal === null) {
@@ -289,8 +289,10 @@ export class HXFileTileElement extends HXElement {
 
         if (this.truncated) {
             this._renderName();
+            this._elLink.setAttribute('title', this.name);
         } else {
             this._elName.innerText = this.name;
+            this._elLink.removeAttribute('title');
         }
 
         if (newVal === null) {
