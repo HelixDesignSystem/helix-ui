@@ -1,3 +1,5 @@
+import Util from '../../_util';
+
 (function () {
     const ICONS = [ 
         '',
@@ -23,6 +25,7 @@
                 icons: ICONS,
                 name: 'id_rsa.pub',
                 progress: 42,
+                readonly: false,
                 state: 'downloadable',
             },
             methods: {
@@ -40,6 +43,18 @@
                 },
                 isInvalid: function () {
                     return this.state === 'invalid' ;
+                },
+                downloadableSnippet: function () {
+                    return Util.snippet(`
+                        <hx-file-input
+                          details="${this.details}"
+                          href="${this.href}"
+                          icon="${this.icon}"
+                          name="${this.name}"
+                          ${this.readonly ? 'readonly' : ''}
+                        >
+                        </hx-file-input>
+                    `);
                 },
             },
         });

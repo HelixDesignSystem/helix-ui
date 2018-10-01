@@ -27,7 +27,7 @@
     #Button.tertiary();
 
     hx-icon {
-      // FIXME: fix in SURF-1219
+      // FIXME
       margin-left: 0.25rem !important;
     }
   }
@@ -178,5 +178,15 @@
 
   #hxState--loading {
     display: block;
+  }
+}
+
+:host([readonly]) {
+  #hxDismiss {
+    display: none;
+  }
+
+  #hxContentWrapper {
+    padding: 0.5rem;
   }
 }
