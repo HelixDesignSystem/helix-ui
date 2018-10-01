@@ -59,6 +59,7 @@ export class HXFileTileElement extends HXElement {
         this.$upgradeProperty('icon');
         this.$upgradeProperty('name');
         this.$upgradeProperty('progress');
+        this.$upgradeProperty('readonly');
 
         this._btnDismiss.addEventListener('click', this._onDismiss);
         this._btnRetry.addEventListener('click', this._onRetry);
@@ -76,6 +77,7 @@ export class HXFileTileElement extends HXElement {
             'icon',
             'name',
             'progress',
+            'readonly',
         ];
     }
 
@@ -111,6 +113,24 @@ export class HXFileTileElement extends HXElement {
     get extension () {
         let re = /(?:\.([^.]+))?$/;
         return re.exec(this.name)[1] || '';
+    }
+
+    /**
+     * If present, the HXFileTileElement is read only and the dismiss will not
+     * be shown.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get readonly () {
+        return this.hasAttribute('readonly');
+    }
+    set readonly (value) {
+        if (value) {
+            this.setAttribute('readonly', '');
+        } else {
+            this.removeAttribute('readonly');
+        }
     }
 
     /**
