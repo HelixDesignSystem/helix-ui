@@ -13,7 +13,6 @@
   background-image: linear-gradient(0deg, @cyan-100, @gray-0 20%);
 }
 
-// part of app layout
 #app-header {
   display: flex;
   padding-right: 1rem;
@@ -68,10 +67,6 @@
     font-weight: 500;
     margin-bottom: 0.5rem;
     text-decoration: none;
-
-    &:hover {
-      //text-decoration: underline;
-    }
   }
 
   .top-link {
@@ -84,7 +79,6 @@
   }
 }
 
-// TODO: need to update once we define vertical rhythm
 main {
   > section + section {
     margin-top: 3rem;
@@ -92,7 +86,6 @@ main {
 }
 
 // Component Status Styles
-// TODO: remove block
 hx-status {
   &.hxFill {
     &.hxDeprecated {
@@ -172,7 +165,6 @@ min-version {
 @import 'demo/typography-docs';
 
 // SHAME
-// currently being used in elements docs
 dl:not(.hxList) {
   dd {
     margin-bottom: 0.5em;
@@ -269,14 +261,12 @@ dl:not(.hxList) {
   }
 }
 
-// currently being used in React compatibility guide
 iframe[src*="codepen.io"] {
   border: 2px solid @gray-900;
   height: 25rem;
   width: 100%;
 }
 
-// currently being used in polyfills guide
 hx-icon {
   &.native-support {
     color: @green-500;

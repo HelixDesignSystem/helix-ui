@@ -1,10 +1,9 @@
-// TODO: consider moving to layout component
+// TODO: move everything in file to typography component
 html {
   font-family: @font-sans-serif;
   font-size: 16px;
 }
 
-// TODO: consider moving to layout component
 body {
   color: @gray-900;
   font-family: @font-sans-serif;
@@ -14,7 +13,6 @@ body {
 }
 
 // HEADINGS
-// TODO: consider moving into typography component
 h1, h2, h3, h4, h5, h6 {
   font-family: @font-sans-serif;
   font-weight: 400;
@@ -24,13 +22,6 @@ h1, h2, h3, h4, h5, h6 {
   & + * {
     margin-top: 0.5rem;
   }
-}
-
-// TODO: verify font size
-// TODO: keep an eye for forms
-// should this be in a reset?
-fieldset label {
-  font-size: 0.875rem; // NOTE: Edge/IE will truncate to 0.88rem
 }
 
 kbd {
