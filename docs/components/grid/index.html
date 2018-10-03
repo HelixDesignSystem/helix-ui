@@ -20,7 +20,7 @@ also:
 
 <section><!-- rows -->
   <h2 id="rows">Rows</h2>
-  <ul>
+  <ul class="hxList">
     <li>
       Rows are containers that allow you to divide their
       <em>width</em> amongst their children.
@@ -61,7 +61,7 @@ also:
 
 <section><!-- columns -->
   <h2 id="columns">Columns</h2>
-  <ul>
+  <ul class="hxList">
     <li>
       Columns are containers that allow you to divide their
       <em>height</em> amongst their children.
@@ -118,7 +118,7 @@ also:
     Use the <code>.hxSpan-{N}</code> modifier (1 &le; N &le; 12) to create
     columns that are a fraction of a 12-column row width.
   </p>
-  <ul>
+  <ul class="hxList">
     <li><code>.hxSpan-{N}-{size}</code> responsive classes are available.</li>
     <li><code>.hxSpan-{N}</code> is shorthand for <code>.hxSpan-{N}-xs</code></li>
   </ul>
@@ -195,7 +195,7 @@ also:
     You can use the <code>.hxOffset-{N}</code> class (1 &le; N &le; 11)
     to offset your column from the start of the row.
   </p>
-  <ul>
+  <ul class="hxList">
     <li>
       <code>.hxOffset-{N}-{size}</code> responsive classes are available
     </li>
@@ -254,7 +254,7 @@ also:
     Use the <code>.hxOrder-{N}</code> class (1 &le; N &le; 12) to reorder
     your columns.
   </p>
-  <ul>
+  <ul class="hxList">
     <li>
       <code>.hxOrder-{N}-{size}</code> responsive classes are available
     </li>
@@ -294,7 +294,7 @@ also:
 
 <section><!-- responsive options -->
   <h2 id="responsive-options">Responsive Options</h2>
-  <ul>
+  <ul class="hxList">
     <li>All column modifiers support adding an optional breakpoint.</li>
     <li>
       Omitting the breakpoint will default to <code>xs</code>
@@ -396,7 +396,7 @@ also:
   <p>
     The following example should arrange the content into:
   </p>
-  <ul>
+  <ul class="hxList">
     <li>3 columns on small screens</li>
     <li>4 columns on medium screens</li>
     <li>6 columns on all other sizes</li>
@@ -500,7 +500,7 @@ also:
   <hx-alert type="warning" status="warning" static>
     Do not attempt to style rows or columns directly.
   </hx-alert>
-  <ul>
+  <ul class="hxList">
     <li>Rows have margins set to align the outer columns with surrounding content.</li>
     <li>Columns in a row have padding applied to them to simulate gutters.</li>
     <li>Wrap your content in a <code>&lt;div&gt;</code> to apply custom CSS.</li>
@@ -560,7 +560,7 @@ also:
 
 <section><!-- going gutterless -->
   <h2 id="going-gutterless">Going Gutterless</h2>
-  <ul>
+  <ul class="hxList">
     <li>
       Add the <code>.hxGutterless</code> CSS class to your row container
       to remove gutters from its immediate children.
