@@ -106,12 +106,14 @@ export class HXMenuElement extends HXElement {
     }
 
     _setPosition () {
-        var offset = getPosition(this, this.relativeElement, {
+        let offset = getPosition({
+            element: this,
+            reference: this.relativeElement,
             position: this.position,
             margin: 2,
         });
-        this.style.top = offset.y + 'px';
-        this.style.left = offset.x + 'px';
+        this.style.top = `${offset.y}px`;
+        this.style.left = `${offset.x}px`;
     }
 
     _isDescendant (el) {

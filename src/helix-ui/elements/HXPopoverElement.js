@@ -183,9 +183,12 @@ export class HXPopoverElement extends HXElement {
     /** @private */
     _reposition () {
         if (this.relativeElement) {
-            let offset = getPositionWithArrow(this, this.relativeElement, {
+            let offset = getPositionWithArrow({
+                element: this,
+                reference: this.relativeElement,
                 position: this.position,
             });
+
             this.style.top = `${offset.y}px`;
             this.style.left = `${offset.x}px`;
             this.position = offset.position;
