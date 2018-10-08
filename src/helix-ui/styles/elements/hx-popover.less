@@ -1,75 +1,69 @@
 @import (reference) "components/typography";
 
 hx-popover {
-  background-color: @gray-0;
-  border: solid 1px @gray-300;
-  box-shadow: @layering-shadow;
-  color: @gray-900;
   display: none; // hide by default
-  flex-direction: column;
   max-width: 32rem; //~512px
   min-width: 20rem; //~320px
   position: fixed;
   z-index: @popover-z-index;
 
+  > hx-popover-head, // DEPRECATED: remove in v1.0.0
+  > header {
+    order: 1;
+  }
+
+  > hx-popover-body, // DEPRECATED: remove in v1.0.0
+  > hx-div {
+    order: 2;
+  }
+
+  > hx-popover-foot, // DEPRECATED: remove in v1.0.0
+  > footer {
+    order: 3;
+  }
+}
+
+#hxPopover.hx-popover, // ShadyDOM selector
+hx-popover {
+  color: @gray-900;
+  flex-direction: column;
+
   &[open] {
     display: flex;
-    margin: 0; // prevent margin from shifting element location
+    margin: 0; // prevent margin from shifting position
   }
 
   > header {
     &:extend(.hxHeading-4);
     flex-shrink: 0;
-    order: 1;
-    padding: 1.25rem 1.25rem 0 1.25rem;
+    padding: 1.25rem;
+  }
+
+  > hx-div:not([scroll]) {
+    overflow: hidden;
   }
 
   > hx-div {
     flex-grow: 1;
     max-height: 20rem; //~320px
-    order: 2;
-    overflow: hidden;
-    padding: 1.25rem;
+    padding: 0 1.25rem;
+
+    &:first-child {
+      padding-top: 1.25rem;
+    }
+
+    &:last-child {
+      padding-bottom: 1.25rem;
+    }
   }
 
   > footer {
     flex-shrink: 0;
-    order: 3;
-    padding: 0 1.25rem 1.25rem;
+    padding: 1.25rem;
 
-    // TODO: replace with .hxBtnSet
+    // TODO: replace with .hxButtonSet
     .hxBtn + .hxBtn {
       margin-left: 1.25rem;
     }
-  }
-}
-
-// Polyfilled Browsers
-#hxPopover.hx-popover {
-  > header {
-    &:extend(hx-popover > header);
-  }
-
-  > hx-div {
-    &:extend(hx-popover > hx-div);
-  }
-
-  > footer {
-    &:extend(hx-popover > footer all);
-  }
-}
-
-// DEPRECATED: remove in v1.0.0
-hx-popover {
-  & > &-head {
-    &:extend(hx-popover > header);
-  }
-
-  & > &-body {
-    &:extend(hx-popover > hx-div);
-  }
-
-  & > &-foot {
-    &:extend(hx-popover > footer all);
   }
 }
