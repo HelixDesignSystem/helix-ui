@@ -159,6 +159,13 @@ also:
               <label for="txtDetails">Details</label>
               <input id="txtDetails" class="hxTextCtrl" v-model="details" />
             </p>
+            <fieldset>
+              <legend>Options</legend>
+              <label>
+                <input type="checkbox" v-model="readonly" />
+                Readonly
+              </label>
+            </fieldset>
           </template>
           <p v-if="isLoading">
             <label for="rngProgress">Progress</label>
@@ -174,20 +181,14 @@ also:
             :href="href"
             :icon="icon"
             :name="name"
+            :readonly="readonly"
             @cancel="onEvent"
             @delete="onEvent"
           ></hx-file-tile>
         </div>
 
         <footer>
-          {% code 'html' %}{% raw %}
-            <hx-file-tile
-              details="{{details}}"
-              href="{{href}}"
-              icon="{{icon}}"
-              name="{{name}}">
-            </hx-file-tile>{% endraw %}
-          {% endcode %}
+          <pre><code v-text="downloadableSnippet"></code></pre>
         </footer>
       </template>
 
