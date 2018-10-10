@@ -1,0 +1,35 @@
+---
+title: <hx-popover-head>
+minver: 0.4.1
+also:
+  components/popovers: Popovers
+  elements/hx-popover: <hx-popover>
+  elements/hx-popover-body: <hx-popover-body>
+  elements/hx-popover-foot: <hx-popover-foot>
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>{{page.title}}</code> element aligns content to the
+      top of a popover.
+    </p>
+
+    <dl class="hxBox-md metadata hxList">
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>
+          an <a href="elements/hx-popover">&lt;hx-popover&gt;</a> element
+        </dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd>flow content</dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd><em>none</em></dd>
+      </div>
+    </dl>
+  </section>
+{% endblock %}
