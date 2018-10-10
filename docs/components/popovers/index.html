@@ -4,8 +4,10 @@ minver: 0.2.0
 also:
   components/buttons: Buttons
   components/popovers/test.html: Testing - Popovers
+  elements/hx-popover-body: <hx-popover-body>
+  elements/hx-popover-foot: <hx-popover-foot>
+  elements/hx-popover-head: <hx-popover-head>
   elements/hx-popover: <hx-popover>
-  api/module-HelixUI_Utils_Position_Offset.html: API - Positioning
 ---
 {% extends 'component.njk' %}
 {% block content %}
@@ -25,54 +27,45 @@ also:
         </form>
       </header>
 
-      <div
-        v-for="_position in positions"
-        v-if="_position.value === position.value"
-      >
-        <hx-disclosure aria-controls="demoPopover" class="hxBtn">
-          Toggle
-        </hx-disclosure>
+      <div>
+        <button data-popover="myPopover" class="hxBtn">Toggle</button>
 
-        <hx-popover
-          id="demoPopover"
-          :key="position.label"
+        <hx-popover id="myPopover"
           :position="position.value"
-        >
-          <header>
+          v-for="_position in positions"
+          v-if="_position.value === position.value">
+
+          <hx-popover-head>
             Popover Header
-          </header>
+          </hx-popover-head>
 
-          <hx-div>
-            <p>This is my popover body.</p>
-          </hx-div>
+          <hx-popover-body>
+            <p>This is my popover body</p>
+          </hx-popover-body>
 
-          <footer>
+          <hx-popover-foot>
             <button class="hxBtn hxPrimary">Submit</button>
             <button class="hxBtn">Cancel</button>
-          </footer>
+          </hx-popover-foot>
         </hx-popover>
       </div>
 
       <footer>
         {% code 'html' %}{% raw %}
-          <hx-disclosure aria-controls="demoPopover" class="hxBtn">
-            Toggle
-          </hx-disclosure>
-          <hx-popover id="demoPopover" position="{{ position.value }}">
-            <header>
+          <button data-popover="myPopover" class="hxBtn">Toggle</button>
+          <hx-popover id="myPopover" position="{{ position.value }}">
+            <hx-popover-head>
               Popover Header
-            </header>
+            </hx-popover-head>
 
-            <hx-div>
-              <p>
-                This is my popover body.
-              </p>
-            </hx-div>
+            <hx-popover-body>
+              <p>This is my popover body</p>
+            </hx-popover-body>
 
-            <footer>
+            <hx-popover-foot>
               <button class="hxBtn hxPrimary">Submit</button>
               <button class="hxBtn">Cancel</button>
-            </footer>
+            </hx-popover-foot>
           </hx-popover>{% endraw %}
         {% endcode %}
       </footer>

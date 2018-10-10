@@ -59,6 +59,7 @@ export class HXFileTileElement extends HXElement {
         this.$upgradeProperty('icon');
         this.$upgradeProperty('name');
         this.$upgradeProperty('progress');
+        this.$upgradeProperty('readonly');
 
         this._btnDismiss.addEventListener('click', this._onDismiss);
         this._btnRetry.addEventListener('click', this._onRetry);
@@ -114,6 +115,23 @@ export class HXFileTileElement extends HXElement {
     }
 
     /**
+     * If present, the dismiss will not be shown.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get readonly () {
+        return this.hasAttribute('readonly');
+    }
+    set readonly (value) {
+        if (value) {
+            this.setAttribute('readonly', '');
+        } else {
+            this.removeAttribute('readonly');
+        }
+    }
+
+    /**
      * URL to download the file.
      *
      * @type {String}
@@ -154,7 +172,7 @@ export class HXFileTileElement extends HXElement {
      * @type {String}
      */
     get name () {
-        return this.getAttribute('name' || '');
+        return this.getAttribute('name') || '';
     }
     set name (newVal) {
         if (newVal === null) {
@@ -289,8 +307,10 @@ export class HXFileTileElement extends HXElement {
 
         if (this.truncated) {
             this._renderName();
+            this._elLink.setAttribute('title', this.name);
         } else {
             this._elName.innerText = this.name;
+            this._elLink.removeAttribute('title');
         }
 
         if (newVal === null) {
