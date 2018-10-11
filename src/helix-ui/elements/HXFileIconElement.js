@@ -22,23 +22,43 @@ export class HXFileIconElement extends HXElement {
     }
 
     static get $observedAttributes () {
-        return [ 'type' ];
+        return [ 'extension', 'type' ];
     }
     
     $onAttributeChange (attr, oldVal, newVal) {
-        if (attr === 'type') {
-            this._elIcon.type = newVal;
+        switch (attr) {
+            case 'extension':
+                this._elExt.innerText = newVal;
+                break;
+            case 'type':
+                this._elIcon.type = newVal;
+                break;
         }
     }
 
-    // GETTERS
+    get extension () {
+        return this.getAttribute('extension');
+    }
+
+    set extension (newVal) {
+        if (newVal === null) {
+            this.removeAttribute('extension');
+        } else {
+            this.setAttribute('extension', newVal);
+        }
+    }
+
     get type () {
         return this.getAttribute('type');
     }
 
-    // SETTERS
     set type (newVal) {
         return this.setAttribute('type', newVal);
+    }
+
+    /** @private */
+    get _elExt () {
+        return this.shadowRoot.getElementById('hxExt');
     }
 
     /** @private */

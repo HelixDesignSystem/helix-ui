@@ -16,13 +16,13 @@
       </nav>
 
       {% block layout %}
-        <main role="main" id="content" class="hxBox-md">
+        <main role="main" id="content" class="hxBox hxMd">
           {% block content %}
             {# page content goes here #}
           {% endblock %}
         </main>
 
-        <aside class="hxSiderail hxBox-md">
+        <aside class="hxSiderail hxBox hxMd">
           {% block sidebar %}
             {% include 'partials/sidebar.njk' %}
           {% endblock %}

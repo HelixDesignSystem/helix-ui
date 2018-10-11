@@ -1,8 +1,14 @@
 @import (reference) 'components/grid';
 
+#List {
+  .reset() {
+    margin: 1em 0;
+  }
+}
+
 dl.hxList {
+  #List.reset();
   display: block;
-  margin: 0;
 
   > div {
     display: flex;

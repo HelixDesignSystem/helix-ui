@@ -2,14 +2,64 @@
 title: Files
 minver: 0.12.0
 also:
+  components/files/test-drop-fences.html: Testing - Drop Fences
+  components/files/test-drop-zones.html: Testing - Drop Zones
   components/files/test-file-selectors.html: Testing - File Selectors
   components/files/test-file-tiles.html: Testing - File Tiles
   components/Icons: Icons
+  elements/hx-drop-fence: <hx-drop-fence>
+  elements/hx-drop-zone: <hx-drop-zone>
   elements/hx-file-input: <hx-file-input>
   elements/hx-file-tile: <hx-file-tile>
 ---
 {% extends 'component.njk' %}
 {% block content %}
+  <section>
+    <h2 id="drop-zone">Drop Zone</h2>
+    <p class="hxSubBody">Added: v0.14.0</p>
+    <p>
+      A container that provides a visual overlay when dragging a file, marking 
+      the boundaries of where a user can drop.
+    </p>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      The drop zone ignores any padding applied to it.
+    </p>
+    <div class="example" id="vue-dropZoneDemo">
+      <div>
+        <hx-drop-zone @drop.prevent="onDrop">
+          <hx-drop-fence>
+            <p>
+              Drop files here or
+              <hx-file-input
+                class="hxTertiary" 
+                label="browse your files">
+                <input type="file" />
+              </hx-file-input>.
+            </p>
+          </hx-drop-fence>
+        </hx-drop-zone>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <hx-drop-zone>
+            <hx-drop-fence>
+              <p>
+                Drop files here or
+                <hx-file-input
+                  class="hxTertiary" 
+                  label="browse your files">
+                  <input type="file" />
+                </hx-file-input>.
+              </p>
+            </hx-drop-fence>
+          </hx-drop-zone>
+        {% endcode %}
+      </footer>
+    </div>
+  </section>
+  
   <section>
     <h2 id="file-selector">File Selector</h2>
     <p class="hxSubBody">Added: v0.13.0</p>

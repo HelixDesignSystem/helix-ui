@@ -1,6 +1,6 @@
 {
   "name": "helix-ui",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "description": "Web Component Library",
   "keywords": [
     "custom elements",
@@ -14,7 +14,7 @@
     "dist/"
   ],
   "peerDependencies": {
-    "@webcomponents/webcomponentsjs": "*"
+    "@webcomponents/webcomponentsjs": "^1.2.4 || ^2.0.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

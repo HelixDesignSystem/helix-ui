@@ -17,17 +17,31 @@
     #Button.secondary();
     #Button.medium();
     width: 100%;
+
+    #hxLabel {
+      margin: 0;
+    }
   }
 
   #hxIcon {
-    margin: 0;
+    display: none;
   }
 
   #hxLabel {
-    margin-left: 0.5rem;
-
     &:empty {
       display: none;
+    }
+  }
+}
+
+:host([icon]) {
+  #hxIcon {
+    display: inline-block;
+  }
+
+  #hxButton {
+    #hxLabel {
+      margin-left: 0.5rem;
     }
   }
 }

@@ -5,13 +5,15 @@
 
 .hxFigure {
   // TODO: update this once spacing system is defined
-  margin: 0;
+  margin: 1em 0;
 }
 
 // FIXME: correct paragraph margins
 p {
   margin: 0;
 
+  // FIXME: this has the potential to throw off alignment
+  // of fixed position elements like tooltips and popovers
   & + * {
     margin-top: 0.5rem;
   }

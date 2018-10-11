@@ -20,7 +20,7 @@ also:
       </div>
       <div>
         <dt>Permitted Children</dt>
-        <dd>phrasing content (specifically, an optional file extension)</dd>
+        <dd>none (content will be removed upon element upgrade)</dd>
       </div>
       <div>
         <dt>Events</dt>
@@ -32,6 +32,12 @@ also:
 
 {% block attributes %}
   <dl>
+    <dt>extension {String} <i>(optional)</i></dt>
+    <dd>
+      Sets the extension of the file icon.
+    </dd>
+  </dl>
+  <dl>
     <dt>type {String}</dt>
     <dd>
       Changes the displayed icon to one of the
@@ -41,6 +47,13 @@ also:
 {% endblock %}
 
 {% block properties %}
+  <dt>extension {String}</dt>
+  <dd>
+    <p>
+      Manipulates the <code>extension</code> attribute.
+    </p>
+  </dd>
+  
   <dl>
     <dt>type {String}</dt>
     <dd>

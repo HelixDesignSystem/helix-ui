@@ -1,0 +1,67 @@
+---
+title: <hx-drop-zone>
+minver: 0.14.0
+also:
+  components/files: Files
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>{{page.title}}</code> element provides a visual overlay 
+      when dragging a file, marking the boundaries of where a user can drop.
+    </p>
+
+    <dl class="hxBox-md metadata hxList">
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>any</dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd>any</dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd>
+          Any of the following:
+          <ul>
+            <li>
+              <code>drop</code> - See MDN's 
+              <a href="https://goo.gl/aKLYsQ" target="_blank"> 
+                "File Drag and Drop"
+                <hx-icon type="external-link"></hx-icon>
+              </a> 
+              for more information.
+            </li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dt>drag {String}</dt>
+    <dd>
+      <i>(read-only)</i>
+      <p>
+        Its value is automatically set by the element itself and mainly used for CSS styling purposes.
+      </p>
+    </dd>
+{% endblock %}
+
+{% block properties %}
+  <dt>drag {String}</dt>
+    <dd>
+      <i>(read-only)</i>
+      <p>
+        A value of "away" means a file drag is detected on the document, 
+        away from the drop zone.
+      </p>
+      <p>
+        A value of "over" means a file drag is detected on the document, 
+        over the drop zone.
+      </p>
+    </dd>
+{% endblock %}
