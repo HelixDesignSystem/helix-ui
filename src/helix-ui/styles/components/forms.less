@@ -8,6 +8,19 @@
   // a.k.a. "field name"
   label {
     .FieldName();
+    margin: 0;
+    padding: 0;
+  }
+
+  legend {
+    border: none;
+    color: inherit;
+    display: block;
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 0;
+    padding: 0;
+    width: 100%;
   }
 
   input + label { // a.k.a. "option label"
@@ -21,6 +34,9 @@
   }
 
   fieldset {
+    border: none;
+    padding: 0;
+
     > legend {
       .FieldName();
       margin-bottom: 0.25rem; // ~4px
