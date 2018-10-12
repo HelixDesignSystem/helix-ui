@@ -343,6 +343,18 @@ class="current">
 
 
       
+      <a href="elements/hx-drop-fence" >
+    &lt;hx-drop-fence&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-drop-zone" >
+    &lt;hx-drop-zone&gt;
+  </a>
+
+
+      
       <a href="elements/hx-error" >
     &lt;hx-error&gt;
   </a>
@@ -557,6 +569,50 @@ class="current">
     </h1>
 
   <section>
+    <h2 id="drop-zone">Drop Zone</h2>
+    <p class="hxSubBody">Added: v0.14.0</p>
+    <p>
+      A container that provides a visual overlay when dragging a file, marking 
+      the boundaries of where a user can drop.
+    </p>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      The drop zone ignores any padding applied to it.
+    </p>
+    <div class="example" id="vue-dropZoneDemo">
+      <div>
+        <hx-drop-zone @drop.prevent="onDrop">
+          <hx-drop-fence>
+            <p>
+              Drop files here or
+              <hx-file-input
+                class="hxTertiary" 
+                label="browse your files">
+                <input type="file" />
+              </hx-file-input>.
+            </p>
+          </hx-drop-fence>
+        </hx-drop-zone>
+      </div>
+
+      <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-drop-zone</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-drop-fence</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+      Drop files here or
+      <span class="hljs-tag">&lt;<span class="hljs-name">hx-file-input</span>
+        <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTertiary"</span> 
+        <span class="hljs-attr">label</span>=<span class="hljs-string">"browse your files"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-input</span>&gt;</span>.
+    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">hx-drop-fence</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-drop-zone</span>&gt;</span>
+</code></pre>      </footer>
+    </div>
+  </section>
+  
+  <section>
     <h2 id="file-selector">File Selector</h2>
     <p class="hxSubBody">Added: v0.13.0</p>
     <div class="example" id="vue-fileInputDemo" v-cloak>
@@ -655,6 +711,13 @@ class="current">
               <label for="txtDetails">Details</label>
               <input id="txtDetails" class="hxTextCtrl" v-model="details" />
             </p>
+            <fieldset>
+              <legend>Options</legend>
+              <label>
+                <input type="checkbox" v-model="readonly" />
+                Readonly
+              </label>
+            </fieldset>
           </template>
           <p v-if="isLoading">
             <label for="rngProgress">Progress</label>
@@ -670,19 +733,15 @@ class="current">
             :href="href"
             :icon="icon"
             :name="name"
+            :readonly="readonly"
             @cancel="onEvent"
             @delete="onEvent"
           ></hx-file-tile>
         </div>
 
         <footer>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-file-tile</span>
-  <span class="hljs-attr">details</span>=<span class="hljs-string">"{{details}}"</span>
-  <span class="hljs-attr">href</span>=<span class="hljs-string">"{{href}}"</span>
-  <span class="hljs-attr">icon</span>=<span class="hljs-string">"{{icon}}"</span>
-  <span class="hljs-attr">name</span>=<span class="hljs-string">"{{name}}"</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-tile</span>&gt;</span>
-</code></pre>        </footer>
+          <pre><code v-text="downloadableSnippet"></code></pre>
+        </footer>
       </template>
 
       <template v-if="isLoading">
@@ -729,9 +788,13 @@ class="current">
 <section>
   <h2 id="see-also">See Also</h2>
   <ul>
+      <li><a href="components/files/test-drop-fences.html">Testing - Drop Fences</a></li>
+      <li><a href="components/files/test-drop-zones.html">Testing - Drop Zones</a></li>
       <li><a href="components/files/test-file-selectors.html">Testing - File Selectors</a></li>
       <li><a href="components/files/test-file-tiles.html">Testing - File Tiles</a></li>
       <li><a href="components/Icons">Icons</a></li>
+      <li><a href="elements/hx-drop-fence">&lt;hx-drop-fence&gt;</a></li>
+      <li><a href="elements/hx-drop-zone">&lt;hx-drop-zone&gt;</a></li>
       <li><a href="elements/hx-file-input">&lt;hx-file-input&gt;</a></li>
       <li><a href="elements/hx-file-tile">&lt;hx-file-tile&gt;</a></li>
   </ul>
@@ -741,6 +804,9 @@ class="current">
     <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
+            <a href="#drop-zone">Drop Zone</a>
+        
+
             <a href="#file-selector">File Selector</a>
         
 
@@ -765,12 +831,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-09-17
+      2018-10-10
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.13.1" target="_blank">
-      v0.13.1
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.14.0" target="_blank">
+      v0.14.0
     </a>)
   </small>
 </div>

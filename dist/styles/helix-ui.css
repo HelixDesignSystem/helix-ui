@@ -393,6 +393,36 @@ hx-div.hxFlush {
 hx-dl {
   display: block;
 }
+hx-drop-fence {
+  padding: 1.25rem;
+  border: 1px dashed #9e9e9e;
+  display: block;
+  font-size: 0.875rem;
+  text-align: center;
+}
+hx-drop-zone {
+  display: block;
+  min-height: 0;
+  padding: 0 !important;
+  position: relative;
+}
+hx-drop-zone::after {
+  border: 4px dashed #16b9d4;
+  content: '';
+  display: none;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+hx-drop-zone[drag]::after {
+  display: block;
+}
+hx-drop-zone[drag="over"]::after {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-style: solid;
+}
 hx-error {
   color: #d32f2f;
 }
@@ -439,6 +469,7 @@ hx-menu {
 }
 hx-menu[open] {
   display: block;
+  margin: 0;
 }
 hx-menu > section {
   display: block;
@@ -640,6 +671,7 @@ hx-popover {
 hx-popover[open] {
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 hx-popover > hx-popover-head {
   order: 1;
@@ -678,12 +710,10 @@ hx-progress {
   display: block;
   height: 0.5rem;
 }
-hx-reveal,
-hx-tabpanel {
+hx-reveal {
   display: none;
 }
-hx-reveal[open],
-hx-tabpanel[open] {
+hx-reveal[open] {
   display: block;
 }
 hx-search {
@@ -695,6 +725,7 @@ hx-search-assistance {
 }
 hx-search-assistance[open] {
   display: block;
+  margin: 0;
 }
 hx-status {
   background-color: transparent;
@@ -780,65 +811,39 @@ hx-tabcontent {
   border-color: #e0e0e0 transparent;
   border-style: solid;
   border-width: 1px;
-  flex-basis: 0px;
-  flex-shrink: 0;
+  display: block;
   min-height: 14rem;
-  overflow: hidden;
-}
-hx-tabcontent {
+  overflow-y: auto;
   -ms-grid-row: 2;
   -ms-grid-column: 1;
-  display: -ms-grid;
-  -ms-grid-rows: 1fr;
-  -ms-grid-columns: 1fr;
-}
-@supports (--is-modern: true) {
-  hx-tabcontent {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
+  grid-area: content;
 }
 hx-tablist {
   background-color: inherit;
   display: flex;
   padding: 0 0.5rem;
-}
-hx-tablist {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
-}
-@supports (--is-modern: true) {
-  hx-tablist {
-    flex-grow: 0;
-  }
+  grid-area: list;
 }
 hx-tabpanel {
   background-color: transparent;
-  overflow-y: auto;
+  display: none;
   padding: 1.5rem 1.25rem;
 }
 hx-tabpanel[open] {
   display: block;
 }
-hx-tabpanel {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-}
 hx-tabset {
   background-color: inherit;
   height: 100%;
-}
-hx-tabset {
   display: -ms-grid;
   -ms-grid-rows: auto 1fr;
   -ms-grid-columns: 1fr;
-}
-@supports (--is-modern: true) {
-  hx-tabset {
-    display: flex;
-    flex-direction: column;
-  }
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas: 'list' 'content';
 }
 hx-tile {
   border-radius: 2px;
@@ -942,6 +947,7 @@ hx-tooltip {
 }
 hx-tooltip[open] {
   display: block;
+  margin: 0;
 }
 /* ========== COMPONENTS ========== *\
     - Complex CSS Selectors
@@ -1130,10 +1136,16 @@ a[href].hxBtn {
   margin: 0;
   padding: 0;
   border-radius: 2px;
+  display: inline-flex;
+  justify-content: center;
   border: 1px solid #0c7c84;
   color: #0c7c84;
   font-size: 0.875rem;
   padding: 8px 12px;
+}
+.hxBtn > * + *,
+a[href].hxBtn > * + * {
+  margin-left: 0.5rem;
 }
 .hxBtn:focus,
 a[href].hxBtn:focus,
@@ -2464,25 +2476,18 @@ hx-dl.hxVertical hx-dd {
   color: #ffffff;
 }
 .hxNav hx-reveal a[href],
-.hxNav hx-reveal hx-disclosure,
-.hxNav hx-tabpanel a[href],
-.hxNav hx-tabpanel hx-disclosure {
+.hxNav hx-reveal hx-disclosure {
   padding-left: 2.5rem;
 }
 .hxNav hx-reveal hx-reveal a[href],
-.hxNav hx-reveal hx-reveal hx-disclosure,
-.hxNav hx-tabpanel hx-tabpanel a[href],
-.hxNav hx-tabpanel hx-tabpanel hx-disclosure {
+.hxNav hx-reveal hx-reveal hx-disclosure {
   padding-left: 3.75rem;
 }
-.hxNav hx-reveal hx-reveal hx-disclosure,
-.hxNav hx-tabpanel hx-tabpanel hx-disclosure {
+.hxNav hx-reveal hx-reveal hx-disclosure {
   text-transform: capitalize;
 }
 .hxNav hx-reveal hx-reveal hx-reveal a[href],
-.hxNav hx-reveal hx-reveal hx-reveal hx-disclosure,
-.hxNav hx-tabpanel hx-tabpanel hx-tabpanel a[href],
-.hxNav hx-tabpanel hx-tabpanel hx-tabpanel hx-disclosure {
+.hxNav hx-reveal hx-reveal hx-reveal hx-disclosure {
   padding-left: 5rem;
 }
 .hxPagination {
@@ -2921,6 +2926,18 @@ textarea.hxTextCtrl {
   color: #d8d8d8;
   cursor: not-allowed;
   resize: none;
+}
+.hxTextCtrl[disabled]::-moz-placeholder {
+  color: inherit;
+}
+.hxTextCtrl[disabled]::-ms-input-placeholder {
+  color: inherit;
+}
+.hxTextCtrl[disabled]::-webkit-input-placeholder {
+  color: inherit;
+}
+.hxTextCtrl[disabled]::placeholder {
+  color: inherit;
 }
 /* ========== HEADINGS ========== */
 h1,

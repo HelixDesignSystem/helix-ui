@@ -180,6 +180,14 @@
         "path": "hx-div"
       },
       {
+        "label": "<hx-drop-fence>",
+        "path": "hx-drop-fence"
+      },
+      {
+        "label": "<hx-drop-zone>",
+        "path": "hx-drop-zone"
+      },
+      {
         "label": "<hx-error>",
         "path": "hx-error"
       },

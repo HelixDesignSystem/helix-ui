@@ -2007,7 +2007,7 @@
             }
 
             /**
-             * Property reflectin the `static` HTML attribute, indicating whether the
+             * Property reflecting the `static` HTML attribute, indicating whether the
              * alert may be dismissed. If true, the dismiss button will not be shown.
              *
              * @default false
@@ -2564,9 +2564,199 @@
         return HXDivElement;
     }(HXElement);
 
-    var shadowStyles$3 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxError {\n  display: inline-flex;\n}\n#hxError * + * {\n  margin-left: 0.25rem;\n}\n";
+    var shadowStyles$3 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxDropFence {\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  justify-content: center;\n  width: 100%;\n}\n#hxDropFence > div {\n  margin-top: 0.5rem;\n  max-width: 30rem;\n}\n";
 
-    var shadowMarkup$3 = "<div id='hxError'><span><hx-icon type='exclamation-circle' id='hxIcon'></hx-icon></span><span><slot></slot></span></div>";
+    var shadowMarkup$3 = "<div id='hxDropFence'><hx-file-icon type='paperclip'></hx-file-icon><div><slot></slot></div></div>";
+
+    /**
+     * Defines behavior for the `<hx-drop-fence>` element.
+     *
+     * @extends HXElement
+     * @hideconstructor
+     * @since 0.14.0
+     */
+    var HXDropFenceElement = function (_HXElement) {
+        inherits(HXDropFenceElement, _HXElement);
+
+        function HXDropFenceElement() {
+            classCallCheck(this, HXDropFenceElement);
+            return possibleConstructorReturn(this, (HXDropFenceElement.__proto__ || Object.getPrototypeOf(HXDropFenceElement)).apply(this, arguments));
+        }
+
+        createClass(HXDropFenceElement, null, [{
+            key: 'is',
+            get: function get$$1() {
+                return 'hx-drop-fence';
+            }
+        }, {
+            key: 'template',
+            get: function get$$1() {
+                return '<style>' + shadowStyles$3 + '</style>' + shadowMarkup$3;
+            }
+        }]);
+        return HXDropFenceElement;
+    }(HXElement);
+
+    var HXDropZoneElement = function (_HXElement) {
+        inherits(HXDropZoneElement, _HXElement);
+
+        function HXDropZoneElement() {
+            classCallCheck(this, HXDropZoneElement);
+            return possibleConstructorReturn(this, (HXDropZoneElement.__proto__ || Object.getPrototypeOf(HXDropZoneElement)).apply(this, arguments));
+        }
+
+        createClass(HXDropZoneElement, [{
+            key: '$onCreate',
+            value: function $onCreate() {
+                this._isDocDragging = false;
+                this._isZoneDragging = false;
+                this._onDocDragLeave = this._onDocDragLeave.bind(this);
+                this._onDocDragOver = this._onDocDragOver.bind(this);
+                this._onDrop = this._onDrop.bind(this);
+                this._stopDragging = this._stopDragging.bind(this);
+            }
+        }, {
+            key: '$onConnect',
+            value: function $onConnect() {
+                document.addEventListener('dragleave', this._onDocDragLeave);
+                document.addEventListener('dragover', this._onDocDragOver);
+                document.addEventListener('drop', this._onDrop);
+                this.addEventListener('dragleave', this._onDragLeave);
+                this.addEventListener('dragover', this._onDragOver);
+                this.addEventListener('drop', this._onDrop);
+            }
+        }, {
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
+                document.removeEventListener('dragleave', this._onDocDragLeave);
+                document.removeEventListener('dragover', this._onDocDragOver);
+                document.removeEventListener('drop', this._onDrop);
+                this.removeEventListener('dragleave', this._onDragLeave);
+                this.removeEventListener('dragover', this._onDragOver);
+                this.removeEventListener('drop', this._onDrop);
+            }
+
+            /**
+             * @readonly
+             * @type {String}
+             */
+
+        }, {
+            key: '_isFileDrag',
+
+
+            /** 
+             * @private 
+             * @returns {Boolean}
+             */
+            value: function _isFileDrag(evt) {
+                var _types = evt.dataTransfer.types;
+                if (_types) {
+                    if (_types.indexOf) {
+                        return _types.indexOf('Files') !== -1;
+                    } else {
+                        return _types.contains('Files');
+                    }
+                } else {
+                    return false;
+                }
+            }
+
+            // #2 this gets called when the dragged item leaves the document 
+            // (leaves to a child element or window altogether)
+            /** @private */
+
+        }, {
+            key: '_onDocDragLeave',
+            value: function _onDocDragLeave() {
+                window.clearTimeout(this._docDragLeaveTimeout);
+                // callback must be an arrow function to preserve "this"
+                this._docDragLeaveTimeout = window.setTimeout(this._stopDragging, 250);
+            }
+
+            // #1 this handler fires continuously as long as the user is dragging on the page
+            /** @private */
+
+        }, {
+            key: '_onDocDragOver',
+            value: function _onDocDragOver(evt) {
+                if (!this._isDocDragging) {
+                    this._isDocDragging = true;
+                    if (this._isFileDrag(evt)) {
+                        this.setAttribute('drag', 'away');
+                    }
+                }
+                window.clearTimeout(this._docDragLeaveTimeout);
+            }
+
+            // #4 this gets called when the dragged item leaves the zone 
+            // (leaves to a child element or zone altogether)
+            /** @private */
+
+        }, {
+            key: '_onDragLeave',
+            value: function _onDragLeave() {
+                var _this2 = this;
+
+                window.clearTimeout(this._zoneDragLeaveTimeout);
+                // callback must be an arrow function to preserve "this"
+                this._zoneDragLeaveTimeout = window.setTimeout(function () {
+                    _this2._isZoneDragging = false;
+                    _this2.setAttribute('drag', 'away');
+                }, 0);
+            }
+
+            // #3 this handler fires continuously as long as the user is dragging on the zone
+            /** @private */
+
+        }, {
+            key: '_onDragOver',
+            value: function _onDragOver(evt) {
+                evt.preventDefault(); // needed for onDrop to work
+                if (!this._isZoneDragging) {
+                    this._isZoneDragging = true;
+                    if (this._isFileDrag(evt)) {
+                        this.setAttribute('drag', 'over');
+                    }
+                }
+                window.clearTimeout(this._docDragLeaveTimeout);
+                window.clearTimeout(this._zoneDragLeaveTimeout);
+            }
+
+            /** @private */
+
+        }, {
+            key: '_onDrop',
+            value: function _onDrop() {
+                this._stopDragging();
+            }
+
+            /** @private */
+
+        }, {
+            key: '_stopDragging',
+            value: function _stopDragging() {
+                this.removeAttribute('drag');
+                this._isDocDragging = false;
+                this._isZoneDragging = false;
+            }
+        }, {
+            key: 'drag',
+            get: function get$$1() {
+                return this.getAttribute('drag');
+            }
+        }], [{
+            key: 'is',
+            get: function get$$1() {
+                return 'hx-drop-zone';
+            }
+        }]);
+        return HXDropZoneElement;
+    }(HXElement);
+
+    var shadowStyles$4 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxError {\n  display: inline-flex;\n}\n#hxError * + * {\n  margin-left: 0.25rem;\n}\n";
+
+    var shadowMarkup$4 = "<div id='hxError'><span><hx-icon type='exclamation-circle' id='hxIcon'></hx-icon></span><span><slot></slot></span></div>";
 
     /**
      * Defines behavior for the `<hx-error>` element.
@@ -2591,15 +2781,15 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$3 + '</style>' + shadowMarkup$3;
+                return '<style>' + shadowStyles$4 + '</style>' + shadowMarkup$4;
             }
         }]);
         return HXErrorElement;
     }(HXElement);
 
-    var shadowStyles$4 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxFileIcon {\n  position: relative;\n}\n#hxFileIcon #hxBase {\n  font-size: 2.5rem;\n  height: 1em;\n}\n#hxFileIcon #hxOverlay {\n  line-height: 1;\n  position: absolute;\n  text-align: center;\n  top: 0.5rem;\n  width: 100%;\n}\n#hxFileIcon #hxIcon {\n  font-size: 1rem;\n  height: 1em;\n}\n#hxFileIcon #hxExt {\n  font-size: 0.5rem;\n  line-height: 1.5;\n  margin-top: 1px;\n  text-transform: uppercase;\n}\n";
+    var shadowStyles$5 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxFileIcon {\n  position: relative;\n}\n#hxFileIcon #hxBase {\n  font-size: 2.5rem;\n  height: 1em;\n}\n#hxFileIcon #hxOverlay {\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  justify-content: center;\n  line-height: 1;\n  position: absolute;\n  text-align: center;\n  top: 0;\n  width: 100%;\n}\n#hxFileIcon #hxIcon {\n  font-size: 1rem;\n  height: 1em;\n}\n#hxFileIcon #hxExt {\n  display: none;\n  font-size: 0.5rem;\n  line-height: 1.5;\n  margin-top: 1px;\n  text-transform: uppercase;\n}\n:host([extension]) #hxFileIcon #hxOverlay {\n  height: auto;\n  top: 0.5rem;\n}\n:host([extension]) #hxFileIcon #hxExt {\n  display: block;\n}\n";
 
-    var shadowMarkup$4 = "<div id='hxFileIcon'><hx-icon type='file' id='hxBase'></hx-icon><div id='hxOverlay'><hx-icon id='hxIcon'></hx-icon><div id='hxExt'><slot></slot></div></div></div>";
+    var shadowMarkup$5 = "<div id='hxFileIcon'><hx-icon type='file' id='hxBase'></hx-icon><div id='hxOverlay'><hx-icon id='hxIcon'></hx-icon><div id='hxExt'></div></div></div>";
 
     /**
      * Defines behavior for the `<hx-file-icon>` element.
@@ -2623,23 +2813,42 @@
         }, {
             key: '$onAttributeChange',
             value: function $onAttributeChange(attr, oldVal, newVal) {
-                if (attr === 'type') {
-                    this._elIcon.type = newVal;
+                switch (attr) {
+                    case 'extension':
+                        this._elExt.innerText = newVal;
+                        break;
+                    case 'type':
+                        this._elIcon.type = newVal;
+                        break;
                 }
             }
-
-            // GETTERS
-
+        }, {
+            key: 'extension',
+            get: function get$$1() {
+                return this.getAttribute('extension');
+            },
+            set: function set$$1(newVal) {
+                if (newVal === null) {
+                    this.removeAttribute('extension');
+                } else {
+                    this.setAttribute('extension', newVal);
+                }
+            }
         }, {
             key: 'type',
             get: function get$$1() {
                 return this.getAttribute('type');
-            }
-
-            // SETTERS
-            ,
+            },
             set: function set$$1(newVal) {
                 return this.setAttribute('type', newVal);
+            }
+
+            /** @private */
+
+        }, {
+            key: '_elExt',
+            get: function get$$1() {
+                return this.shadowRoot.getElementById('hxExt');
             }
 
             /** @private */
@@ -2657,20 +2866,20 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$4 + '</style>' + shadowMarkup$4;
+                return '<style>' + shadowStyles$5 + '</style>' + shadowMarkup$5;
             }
         }, {
             key: '$observedAttributes',
             get: function get$$1() {
-                return ['type'];
+                return ['extension', 'type'];
             }
         }]);
         return HXFileIconElement;
     }(HXElement);
 
-    var shadowMarkup$5 = "<div id='hxFile'><div id='hxContent'><slot></slot></div><button id='hxButton' type='button'><hx-icon id='hxIcon' type='upload'></hx-icon><span id='hxLabel'></span></button></div>";
+    var shadowMarkup$6 = "<div id='hxFile'><div id='hxContent'><slot></slot></div><button id='hxButton' type='button'><hx-icon id='hxIcon'></hx-icon><span id='hxLabel'></span></button></div>";
 
-    var shadowStyles$5 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n:host #hxContent {\n  /*\n      Needed to prevent focusing of native file inputs.\n      Especially true for Microsoft browsers, because\n      Edge and IE have double tab stops.\n    */\n  display: none;\n}\n:host #hxButton {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n  border-radius: 2px;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  font-size: 0.875rem;\n  padding: 8px 12px;\n  width: 100%;\n}\n:host #hxButton:focus {\n  outline: none;\n}\n:host #hxButton[disabled] {\n  cursor: not-allowed;\n}\n:host #hxButton[disabled]:focus {\n  box-shadow: none;\n}\n:host #hxButton:hover {\n  background-color: #16b9d4;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host #hxButton:active {\n  background-color: #0e94a6;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host #hxButton:focus {\n  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);\n}\n:host #hxButton[disabled] {\n  background-color: transparent;\n  border-color: #d8d8d8;\n  color: #d8d8d8;\n}\n:host #hxIcon {\n  margin: 0;\n}\n:host #hxLabel {\n  margin-left: 0.5rem;\n}\n:host #hxLabel:empty {\n  display: none;\n}\n:host(.hxPrimary) #hxButton {\n  background-color: #0c7c84;\n  color: #ffffff;\n}\n:host(.hxPrimary) #hxButton:hover {\n  background-color: #16b9d4;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host(.hxPrimary) #hxButton:active {\n  background-color: #0e94a6;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host(.hxPrimary) #hxButton:focus {\n  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);\n  outline: none;\n}\n:host(.hxPrimary) #hxButton[disabled] {\n  background-color: #d8d8d8;\n  border-color: transparent;\n  color: #757575;\n}\n:host(.hxTertiary) #hxButton {\n  background-color: transparent;\n  border: none;\n  color: #0c7c84;\n  padding-left: 0;\n  padding-right: 0;\n}\n:host(.hxTertiary) #hxButton:hover {\n  background-color: transparent;\n  border-color: transparent;\n  color: #16b9d4;\n}\n:host(.hxTertiary) #hxButton:active {\n  background-color: transparent;\n  border-color: transparent;\n  color: #0e94a6;\n}\n:host(.hxTertiary) #hxButton:focus {\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host(.hxTertiary) #hxButton[disabled] {\n  background-color: transparent;\n  border-color: transparent;\n  color: #d8d8d8;\n}\n";
+    var shadowStyles$6 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n:host #hxContent {\n  /*\n      Needed to prevent focusing of native file inputs.\n      Especially true for Microsoft browsers, because\n      Edge and IE have double tab stops.\n    */\n  display: none;\n}\n:host #hxButton {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n  border-radius: 2px;\n  display: inline-flex;\n  justify-content: center;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  font-size: 0.875rem;\n  padding: 8px 12px;\n  width: 100%;\n}\n:host #hxButton > * + * {\n  margin-left: 0.5rem;\n}\n:host #hxButton:focus {\n  outline: none;\n}\n:host #hxButton[disabled] {\n  cursor: not-allowed;\n}\n:host #hxButton[disabled]:focus {\n  box-shadow: none;\n}\n:host #hxButton:hover {\n  background-color: #16b9d4;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host #hxButton:active {\n  background-color: #0e94a6;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host #hxButton:focus {\n  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);\n}\n:host #hxButton[disabled] {\n  background-color: transparent;\n  border-color: #d8d8d8;\n  color: #d8d8d8;\n}\n:host #hxButton #hxLabel {\n  margin: 0;\n}\n:host #hxIcon {\n  display: none;\n}\n:host #hxLabel:empty {\n  display: none;\n}\n:host([icon]) #hxIcon {\n  display: inline-block;\n}\n:host([icon]) #hxButton #hxLabel {\n  margin-left: 0.5rem;\n}\n:host(.hxPrimary) #hxButton {\n  background-color: #0c7c84;\n  color: #ffffff;\n}\n:host(.hxPrimary) #hxButton:hover {\n  background-color: #16b9d4;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host(.hxPrimary) #hxButton:active {\n  background-color: #0e94a6;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host(.hxPrimary) #hxButton:focus {\n  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);\n  outline: none;\n}\n:host(.hxPrimary) #hxButton[disabled] {\n  background-color: #d8d8d8;\n  border-color: transparent;\n  color: #757575;\n}\n:host(.hxTertiary) #hxButton {\n  background-color: transparent;\n  border: none;\n  color: #0c7c84;\n  padding-left: 0;\n  padding-right: 0;\n}\n:host(.hxTertiary) #hxButton:hover {\n  background-color: transparent;\n  border-color: transparent;\n  color: #16b9d4;\n}\n:host(.hxTertiary) #hxButton:active {\n  background-color: transparent;\n  border-color: transparent;\n  color: #0e94a6;\n}\n:host(.hxTertiary) #hxButton:focus {\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host(.hxTertiary) #hxButton[disabled] {\n  background-color: transparent;\n  border-color: transparent;\n  color: #d8d8d8;\n}\n";
 
     /**
      * Defines behavior for the `<hx-file-input>` element.
@@ -2807,7 +3016,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$5 + '</style>' + shadowMarkup$5;
+                return '<style>' + shadowStyles$6 + '</style>' + shadowMarkup$6;
             }
         }, {
             key: '$observedAttributes',
@@ -2818,9 +3027,9 @@
         return HXFileInputElement;
     }(HXElement);
 
-    var shadowMarkup$6 = "<div id='hxFileTile'><a id='hxLink'><div id='hxIconWrapper'><hx-file-icon id='hxIcon'><span id='hxExt'></span></hx-file-icon><hx-icon type='download'></hx-icon></div><div id='hxContentWrapper'><div id='hxName'></div><div id='hxState--downloadable'><div id='hxDetails'></div></div><div id='hxState--loading'><hx-progress id='hxProgress'></hx-progress></div><div id='hxState--invalid'><button id='hxRetry' type='button'>Retry<hx-icon type='redo'></hx-icon></button></div></div></a><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
+    var shadowMarkup$7 = "<div id='hxFileTile'><a id='hxLink'><div id='hxIconWrapper'><hx-file-icon id='hxIcon'></hx-file-icon><hx-icon type='download'></hx-icon></div><div id='hxContentWrapper'><div id='hxName'></div><div id='hxState--downloadable'><div id='hxDetails'></div></div><div id='hxState--loading'><hx-progress id='hxProgress'></hx-progress></div><div id='hxState--invalid'><button id='hxRetry' type='button'>Retry<hx-icon type='redo'></hx-icon></button></div></div></a><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-    var shadowStyles$6 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\na[href] {\n  background-color: transparent;\n  color: #0d74d1;\n  text-decoration: none;\n}\na[href]:hover,\na[href]:active {\n  color: #3391ff;\n  cursor: pointer;\n  text-decoration: none;\n}\na[href][disabled],\na[href].disabled {\n  color: #616161;\n  pointer-events: none;\n}\nhx-progress {\n  display: block;\n  height: 0.5rem;\n}\nhx-progress {\n  background-color: #d8d8d8;\n  border-radius: 1em;\n  color: #16b9d4;\n  overflow: hidden;\n}\n:host button {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n}\n:host #hxFileTile {\n  background-color: #f5f5f5;\n  border-radius: 2px;\n  border: 2px solid transparent;\n  color: #424242;\n  display: flex;\n  font-size: 0.875rem;\n  height: 100%;\n  width: 100%;\n}\n:host #hxRetry {\n  border-radius: 2px;\n  padding: 0.125rem 0.5rem;\n  background-color: transparent;\n  border: none;\n  color: #0c7c84;\n  padding-left: 0;\n  padding-right: 0;\n}\n:host #hxRetry:focus {\n  outline: none;\n}\n:host #hxRetry[disabled] {\n  cursor: not-allowed;\n}\n:host #hxRetry[disabled]:focus {\n  box-shadow: none;\n}\n:host #hxRetry:hover {\n  background-color: transparent;\n  border-color: transparent;\n  color: #16b9d4;\n}\n:host #hxRetry:active {\n  background-color: transparent;\n  border-color: transparent;\n  color: #0e94a6;\n}\n:host #hxRetry:focus {\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxRetry[disabled] {\n  background-color: transparent;\n  border-color: transparent;\n  color: #d8d8d8;\n}\n:host #hxRetry hx-icon {\n  margin-left: 0.25rem !important;\n}\n:host #hxDismiss {\n  flex-shrink: 0;\n  font-size: 1rem;\n  line-height: 0;\n  padding: 0.5rem 0.75rem;\n}\n:host #hxDismiss:hover {\n  color: #16b9d4;\n}\n:host #hxDismiss:focus {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n  outline: 0;\n}\n:host #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  flex: 0 0 48px;\n  height: 100%;\n  justify-content: center;\n  line-height: 0;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxIconWrapper > hx-icon {\n  display: none;\n  font-size: 2rem;\n}\n:host #hxContentWrapper {\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1;\n  justify-content: center;\n  overflow: hidden;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxName {\n  color: #0c7c84;\n  display: flex;\n  font-weight: 500;\n}\n:host #hxName > span {\n  white-space: pre;\n}\n:host #hxName > span:first-child {\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n:host #hxName > span:last-child {\n  flex-shrink: 0;\n}\n:host #hxDetails {\n  font-weight: 300;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n:host #hxLink {\n  color: #424242;\n  display: flex;\n  flex-grow: 1;\n  overflow: hidden;\n}\n:host #hxLink[href]:hover {\n  color: #16b9d4;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-file-icon {\n  display: none;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-icon {\n  display: inline-block;\n}\n:host #hxLink[href]:hover #hxName {\n  color: inherit;\n}\n:host #hxLink:focus {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n  outline: 0;\n}\n:host #hxState--loading hx-progress {\n  display: inline-block;\n  width: 100%;\n}\n:host #hxState--loading,\n:host #hxState--invalid {\n  display: none;\n}\n:host([invalid]) #hxFileTile {\n  border-color: #d32f2f;\n}\n:host([invalid]) #hxIconWrapper,\n:host([invalid]) #hxName {\n  color: #6b6b6b;\n}\n:host([invalid]) #hxState--downloadable {\n  display: none;\n}\n:host([invalid]) #hxState--invalid {\n  display: block;\n}\n:host([progress]) #hxLink {\n  color: #9e9e9e;\n}\n:host([progress]) #hxIconWrapper,\n:host([progress]) #hxName {\n  color: #6b6b6b;\n}\n:host([progress]) #hxState--downloadable {\n  display: none;\n}\n:host([progress]) #hxState--loading {\n  display: block;\n}\n";
+    var shadowStyles$7 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\na[href] {\n  background-color: transparent;\n  color: #0d74d1;\n  text-decoration: none;\n}\na[href]:hover,\na[href]:active {\n  color: #3391ff;\n  cursor: pointer;\n  text-decoration: none;\n}\na[href][disabled],\na[href].disabled {\n  color: #616161;\n  pointer-events: none;\n}\nhx-progress {\n  display: block;\n  height: 0.5rem;\n}\nhx-progress {\n  background-color: #d8d8d8;\n  border-radius: 1em;\n  color: #16b9d4;\n  overflow: hidden;\n}\n:host button {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n}\n:host #hxFileTile {\n  background-color: #f5f5f5;\n  border-radius: 2px;\n  border: 2px solid transparent;\n  color: #424242;\n  display: flex;\n  font-size: 0.875rem;\n  height: 100%;\n  width: 100%;\n}\n:host #hxRetry {\n  border-radius: 2px;\n  display: inline-flex;\n  justify-content: center;\n  padding: 0.125rem 0.5rem;\n  background-color: transparent;\n  border: none;\n  color: #0c7c84;\n  padding-left: 0;\n  padding-right: 0;\n}\n:host #hxRetry > * + * {\n  margin-left: 0.5rem;\n}\n:host #hxRetry:focus {\n  outline: none;\n}\n:host #hxRetry[disabled] {\n  cursor: not-allowed;\n}\n:host #hxRetry[disabled]:focus {\n  box-shadow: none;\n}\n:host #hxRetry:hover {\n  background-color: transparent;\n  border-color: transparent;\n  color: #16b9d4;\n}\n:host #hxRetry:active {\n  background-color: transparent;\n  border-color: transparent;\n  color: #0e94a6;\n}\n:host #hxRetry:focus {\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxRetry[disabled] {\n  background-color: transparent;\n  border-color: transparent;\n  color: #d8d8d8;\n}\n:host #hxRetry hx-icon {\n  margin-left: 0.25rem !important;\n}\n:host #hxDismiss {\n  flex-shrink: 0;\n  font-size: 1rem;\n  line-height: 0;\n  padding: 0.5rem 0.75rem;\n}\n:host #hxDismiss:hover {\n  color: #16b9d4;\n}\n:host #hxDismiss:focus {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n  outline: 0;\n}\n:host #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  flex: 0 0 48px;\n  height: 100%;\n  justify-content: center;\n  line-height: 0;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxIconWrapper > hx-icon {\n  display: none;\n  font-size: 2rem;\n}\n:host #hxContentWrapper {\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1;\n  justify-content: center;\n  overflow: hidden;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxName {\n  color: #0c7c84;\n  display: flex;\n  font-weight: 500;\n}\n:host #hxName > span {\n  white-space: pre;\n}\n:host #hxName > span:first-child {\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n:host #hxName > span:last-child {\n  flex-shrink: 0;\n}\n:host #hxDetails {\n  font-weight: 300;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n:host #hxLink {\n  color: #424242;\n  display: flex;\n  flex-grow: 1;\n  overflow: hidden;\n}\n:host #hxLink[href]:hover {\n  color: #16b9d4;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-file-icon {\n  display: none;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-icon {\n  display: inline-block;\n}\n:host #hxLink[href]:hover #hxName {\n  color: inherit;\n}\n:host #hxLink:focus {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n  outline: 0;\n}\n:host #hxState--loading hx-progress {\n  display: inline-block;\n  width: 100%;\n}\n:host #hxState--loading,\n:host #hxState--invalid {\n  display: none;\n}\n:host([invalid]) #hxFileTile {\n  border-color: #d32f2f;\n}\n:host([invalid]) #hxIconWrapper,\n:host([invalid]) #hxName {\n  color: #6b6b6b;\n}\n:host([invalid]) #hxState--downloadable {\n  display: none;\n}\n:host([invalid]) #hxState--invalid {\n  display: block;\n}\n:host([progress]) #hxLink {\n  color: #9e9e9e;\n}\n:host([progress]) #hxIconWrapper,\n:host([progress]) #hxName {\n  color: #6b6b6b;\n}\n:host([progress]) #hxState--downloadable {\n  display: none;\n}\n:host([progress]) #hxState--loading {\n  display: block;\n}\n:host([readonly]) #hxDismiss {\n  display: none;\n}\n:host([readonly]) #hxContentWrapper {\n  padding: 0.5rem;\n}\n";
 
     // number of characters to avoid truncation at start/end of file name
     var PRE_TRUNC = 14;
@@ -2881,6 +3090,7 @@
                 this.$upgradeProperty('icon');
                 this.$upgradeProperty('name');
                 this.$upgradeProperty('progress');
+                this.$upgradeProperty('readonly');
 
                 this._btnDismiss.addEventListener('click', this._onDismiss);
                 this._btnRetry.addEventListener('click', this._onRetry);
@@ -2973,12 +3183,14 @@
         }, {
             key: '_attrNameUpdate',
             value: function _attrNameUpdate(oldVal, newVal) {
-                this._elExt.innerText = this.extension;
+                this._elIcon.extension = this.extension !== '' ? this.extension : null;
 
                 if (this.truncated) {
                     this._renderName();
+                    this._elLink.setAttribute('title', this.name);
                 } else {
                     this._elName.innerText = this.name;
+                    this._elLink.removeAttribute('title');
                 }
 
                 if (newVal === null) {
@@ -3016,7 +3228,7 @@
         }, {
             key: '_renderName',
             value: function _renderName() {
-                var _name = escape(this.name);
+                var _name = this.name;
                 this._elName.innerHTML = '\n            <span>' + _name.slice(0, -PRE_TRUNC) + '</span>\n            <span>' + _name.slice(-PRE_TRUNC) + '</span>\n        ';
             }
         }, {
@@ -3024,6 +3236,26 @@
             get: function get$$1() {
                 var re = /(?:\.([^.]+))?$/;
                 return re.exec(this.name)[1] || '';
+            }
+
+            /**
+             * If present, the dismiss will not be shown.
+             *
+             * @default false
+             * @type {Boolean}
+             */
+
+        }, {
+            key: 'readonly',
+            get: function get$$1() {
+                return this.hasAttribute('readonly');
+            },
+            set: function set$$1(value) {
+                if (value) {
+                    this.setAttribute('readonly', '');
+                } else {
+                    this.removeAttribute('readonly');
+                }
             }
 
             /**
@@ -3079,7 +3311,7 @@
         }, {
             key: 'name',
             get: function get$$1() {
-                return this.getAttribute('name');
+                return this.getAttribute('name') || '';
             },
             set: function set$$1(newVal) {
                 if (newVal === null) {
@@ -3174,14 +3406,6 @@
             /** @private */
 
         }, {
-            key: '_elExt',
-            get: function get$$1() {
-                return this.shadowRoot.getElementById('hxExt');
-            }
-
-            /** @private */
-
-        }, {
             key: '_elIcon',
             get: function get$$1() {
                 return this.shadowRoot.getElementById('hxIcon');
@@ -3218,7 +3442,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$6 + '</style>' + shadowMarkup$6;
+                return '<style>' + shadowStyles$7 + '</style>' + shadowMarkup$7;
             }
         }, {
             key: '$observedAttributes',
@@ -3475,9 +3699,9 @@
     MAP['technical-change'] = MAP['server-config'];
     MAP['technical-incident'] = MAP['server-incident'];
 
-    var shadowStyles$7 = ":host {\n  background-color: transparent;\n  color: currentColor;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  width: 1em;\n}\n:host #hxIcon {\n  box-sizing: border-box;\n  display: block;\n  flex-shrink: 0;\n  height: 100%;\n  line-height: 1;\n  width: 100%;\n}\n:host #hxIcon svg {\n  fill: currentColor;\n  height: auto;\n  stroke: none;\n  vertical-align: bottom;\n}\n";
+    var shadowStyles$8 = ":host {\n  background-color: transparent;\n  color: currentColor;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  width: 1em;\n}\n:host #hxIcon {\n  box-sizing: border-box;\n  display: block;\n  flex-shrink: 0;\n  height: 100%;\n  line-height: 1;\n  width: 100%;\n}\n:host #hxIcon svg {\n  fill: currentColor;\n  height: auto;\n  stroke: none;\n  vertical-align: bottom;\n}\n";
 
-    var shadowMarkup$7 = "<span id='hxIcon'><svg xmlns='http://www.w3.org/2000/svg' focusable='false' viewBox='0 0 16 16'><path id='hxPath'></path></svg></span>";
+    var shadowMarkup$8 = "<span id='hxIcon'><svg xmlns='http://www.w3.org/2000/svg' focusable='false' viewBox='0 0 16 16'><path id='hxPath'></path></svg></span>";
 
     var DIV = document.createElement('div');
 
@@ -3589,7 +3813,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$7 + '</style>' + shadowMarkup$7;
+                return '<style>' + shadowStyles$8 + '</style>' + shadowMarkup$8;
             }
         }, {
             key: '$observedAttributes',
@@ -3784,9 +4008,9 @@
         return HXMenuitemElement;
     }(HXElement);
 
-    var shadowMarkup$8 = "<div id='hxModal'><button type='button' id='hxClose'><hx-icon type='times'></hx-icon></button><slot></slot></div>";
+    var shadowMarkup$9 = "<div id='hxModal'><button type='button' id='hxClose'><hx-icon type='times'></hx-icon></button><slot></slot></div>";
 
-    var shadowStyles$8 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxModal {\n  background-color: #ffffff;\n  box-shadow: 0px 7px 9px 0 rgba(0, 0, 0, 0.3);\n  display: flex;\n  flex-direction: column;\n  left: 50%;\n  max-width: 40rem;\n  min-height: 12.5rem;\n  min-width: 25rem;\n  padding: 1.25rem;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1201;\n}\n#hxModal #hxClose {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  height: 1rem;\n  line-height: 1;\n  padding: 0;\n  position: absolute;\n  right: 1.25rem;\n  top: 1.25rem;\n}\n";
+    var shadowStyles$9 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxModal {\n  background-color: #ffffff;\n  box-shadow: 0px 7px 9px 0 rgba(0, 0, 0, 0.3);\n  display: flex;\n  flex-direction: column;\n  left: 50%;\n  max-width: 40rem;\n  min-height: 12.5rem;\n  min-width: 25rem;\n  padding: 1.25rem;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1201;\n}\n#hxModal #hxClose {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  height: 1rem;\n  line-height: 1;\n  padding: 0;\n  position: absolute;\n  right: 1.25rem;\n  top: 1.25rem;\n}\n";
 
     /**
      * Fires when the element is concealed.
@@ -3910,7 +4134,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$8 + '</style>' + shadowMarkup$8;
+                return '<style>' + shadowStyles$9 + '</style>' + shadowMarkup$9;
             }
         }, {
             key: '$observedAttributes',
@@ -3921,9 +4145,9 @@
         return HXModalElement;
     }(HXElement);
 
-    var shadowMarkup$9 = "<div id='hxPill'><span><slot></slot></span><button id='hxDismiss' type='button'><span><hx-icon type='times'></hx-icon></span></button></div>";
+    var shadowMarkup$a = "<div id='hxPill'><span><slot></slot></span><button id='hxDismiss' type='button'><span><hx-icon type='times'></hx-icon></span></button></div>";
 
-    var shadowStyles$9 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n:host #hxPill {\n  background-color: #d8d8d8;\n  border-radius: 1em;\n  color: #424242;\n  display: flex;\n  height: 100%;\n  padding: 0 1rem;\n  white-space: nowrap;\n  width: 100%;\n}\n:host #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n  align-items: center;\n  color: #9e9e9e;\n  display: none;\n  height: 1.5em;\n  justify-content: center;\n  margin: 0 -0.5rem 0 0;\n  width: 1.5em;\n}\n:host #hxDismiss > span {\n  font-size: 0.75em;\n}\n:host #hxDismiss:hover {\n  color: #000000;\n}\n:host([dismissable]) #hxDismiss {\n  display: inline-flex;\n}\n";
+    var shadowStyles$a = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n:host #hxPill {\n  background-color: #d8d8d8;\n  border-radius: 1em;\n  color: #424242;\n  display: flex;\n  height: 100%;\n  padding: 0 1rem;\n  white-space: nowrap;\n  width: 100%;\n}\n:host #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n  align-items: center;\n  color: #9e9e9e;\n  display: none;\n  height: 1.5em;\n  justify-content: center;\n  margin: 0 -0.5rem 0 0;\n  width: 1.5em;\n}\n:host #hxDismiss > span {\n  font-size: 0.75em;\n}\n:host #hxDismiss:hover {\n  color: #000000;\n}\n:host([dismissable]) #hxDismiss {\n  display: inline-flex;\n}\n";
 
     /**
      * Fires when the dismiss button ("X") is pressed.
@@ -4001,7 +4225,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$9 + '</style>' + shadowMarkup$9;
+                return '<style>' + shadowStyles$a + '</style>' + shadowMarkup$a;
             }
         }]);
         return HXPillElement;
@@ -4481,9 +4705,9 @@
 
     var debounce_1 = debounce;
 
-    var shadowMarkup$a = "<div class='position-arrow'><div id='hxPopover'><slot></slot></div></div>";
+    var shadowMarkup$b = "<div class='position-arrow'><div id='hxPopover'><slot></slot></div></div>";
 
-    var shadowStyles$a = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#hxPopover {\n  overflow: hidden;\n}\n";
+    var shadowStyles$b = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#hxPopover {\n  overflow: hidden;\n}\n";
 
     /**
      * Fires when the element is concealed.
@@ -4627,7 +4851,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$a + '</style>' + shadowMarkup$a;
+                return '<style>' + shadowStyles$b + '</style>' + shadowMarkup$b;
             }
         }, {
             key: '$observedAttributes',
@@ -4638,9 +4862,9 @@
         return HXPopoverElement;
     }(HXElement);
 
-    var shadowMarkup$b = "<div id='hxProgress'><div id='hxFill'></div></div>";
+    var shadowMarkup$c = "<div id='hxProgress'><div id='hxFill'></div></div>";
 
-    var shadowStyles$b = "#hxProgress {\n  height: 100%;\n}\n#hxProgress #hxFill {\n  background-color: currentColor;\n  box-sizing: border-box;\n  height: 100%;\n  width: 0%;\n}\n";
+    var shadowStyles$c = "#hxProgress {\n  height: 100%;\n}\n#hxProgress #hxFill {\n  background-color: currentColor;\n  box-sizing: border-box;\n  height: 100%;\n  width: 0%;\n}\n";
 
     var MIN = 0;
     var MAX = 100;
@@ -4728,7 +4952,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$b + '</style>' + shadowMarkup$b;
+                return '<style>' + shadowStyles$c + '</style>' + shadowMarkup$c;
             }
         }, {
             key: '$observedAttributes',
@@ -4940,9 +5164,9 @@
         return HXSearchAssistanceElement;
     }(HXElement);
 
-    var shadowStyles$c = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\n:host {\n  display: block;\n  font-size: 1rem;\n  height: 2rem;\n  min-width: 8rem;\n}\n:host #hxSearch {\n  display: flex;\n  height: 100%;\n  position: relative;\n}\n:host #hxIcon {\n  color: #757575;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 1;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxNativeControl {\n  background-color: transparent;\n  border: none;\n  color: #424242;\n  cursor: inherit;\n  flex-grow: 1;\n  font-weight: 400;\n  min-width: 0;\n  order: 2;\n  width: 0;\n  z-index: 1;\n}\n:host #hxNativeControl::-moz-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-ms-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-webkit-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxNativeControl:focus {\n  outline: none;\n}\n:host #hxNativeControl:focus ~ #hxClear {\n  color: #0e94a6;\n}\n:host #hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxCustomControl {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #bdbdbd;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 0;\n}\n:host #hxClear {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 3;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxClear::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxClear:focus {\n  outline: none;\n}\n:host #hxClear:focus hx-icon {\n  outline-offset: 2px;\n  outline: 1px dotted currentColor;\n}\n:host #hxClear:focus ~ * {\n  color: #0e94a6;\n}\n:host #hxClear:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host([invalid]) {\n  color: #d32f2f;\n}\n:host([invalid]) #hxIcon,\n:host([invalid]) #hxClear {\n  color: inherit;\n}\n:host([invalid]) #hxCustomControl {\n  border-color: #d32f2f;\n  border-width: 2px;\n}\n:host([invalid]) #hxClear:focus hx-icon {\n  outline-color: currentColor;\n}\n:host([invalid]) #hxNativeControl:focus ~ #hxClear {\n  color: #d32f2f;\n}\n:host([invalid]) #hxClear:focus ~ #hxCustomControl,\n:host([invalid]) #hxNativeControl:focus ~ #hxCustomControl {\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n  border-color: #d32f2f;\n}\n:host([disabled]) {\n  color: #d8d8d8;\n}\n:host([disabled]) #hxSearch {\n  color: inherit;\n  cursor: not-allowed;\n}\n:host([disabled]) #hxIcon {\n  color: inherit;\n}\n:host([disabled]) #hxClear {\n  display: none;\n}\n:host([disabled]) #hxNativeControl {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-moz-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-ms-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-webkit-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxCustomControl {\n  background-color: #f5f5f5;\n  border-color: #e0e0e0;\n  border-width: 1px;\n}\n";
+    var shadowStyles$d = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\n:host {\n  display: block;\n  font-size: 1rem;\n  height: 2rem;\n  min-width: 8rem;\n}\n:host #hxSearch {\n  display: flex;\n  height: 100%;\n  position: relative;\n}\n:host #hxIcon {\n  color: #757575;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 1;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxNativeControl {\n  background-color: transparent;\n  border: none;\n  color: #424242;\n  cursor: inherit;\n  flex-grow: 1;\n  font-weight: 400;\n  min-width: 0;\n  order: 2;\n  width: 0;\n  z-index: 1;\n}\n:host #hxNativeControl::-moz-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-ms-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-webkit-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxNativeControl:focus {\n  outline: none;\n}\n:host #hxNativeControl:focus ~ #hxClear {\n  color: #0e94a6;\n}\n:host #hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxCustomControl {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #bdbdbd;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 0;\n}\n:host #hxClear {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 3;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxClear::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxClear:focus {\n  outline: none;\n}\n:host #hxClear:focus hx-icon {\n  outline-offset: 2px;\n  outline: 1px dotted currentColor;\n}\n:host #hxClear:focus ~ * {\n  color: #0e94a6;\n}\n:host #hxClear:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host([invalid]) {\n  color: #d32f2f;\n}\n:host([invalid]) #hxIcon,\n:host([invalid]) #hxClear {\n  color: inherit;\n}\n:host([invalid]) #hxCustomControl {\n  border-color: #d32f2f;\n  border-width: 2px;\n}\n:host([invalid]) #hxClear:focus hx-icon {\n  outline-color: currentColor;\n}\n:host([invalid]) #hxNativeControl:focus ~ #hxClear {\n  color: #d32f2f;\n}\n:host([invalid]) #hxClear:focus ~ #hxCustomControl,\n:host([invalid]) #hxNativeControl:focus ~ #hxCustomControl {\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n  border-color: #d32f2f;\n}\n:host([disabled]) {\n  color: #d8d8d8;\n}\n:host([disabled]) #hxSearch {\n  color: inherit;\n  cursor: not-allowed;\n}\n:host([disabled]) #hxIcon {\n  color: inherit;\n}\n:host([disabled]) #hxClear {\n  display: none;\n}\n:host([disabled]) #hxNativeControl {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-moz-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-ms-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-webkit-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxCustomControl {\n  background-color: #f5f5f5;\n  border-color: #e0e0e0;\n  border-width: 1px;\n}\n";
 
-    var shadowMarkup$c = "<label id='hxSearch'><input type='text' role='search' id='hxNativeControl' autocomplete='off'> <button type='button' id='hxClear' hidden aria-label='Clear search'><hx-icon type='times'></hx-icon></button><div id='hxIcon'><hx-icon type='search'></hx-icon></div><div id='hxCustomControl'></div></label>";
+    var shadowMarkup$d = "<label id='hxSearch'><input type='text' role='search' id='hxNativeControl' autocomplete='off'> <button type='button' id='hxClear' hidden aria-label='Clear search'><hx-icon type='times'></hx-icon></button><div id='hxIcon'><hx-icon type='search'></hx-icon></div><div id='hxCustomControl'></div></label>";
 
     /**
      * Fires when the element loses focus.
@@ -5182,7 +5406,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$c + '</style>' + shadowMarkup$c;
+                return '<style>' + shadowStyles$d + '</style>' + shadowMarkup$d;
             }
         }, {
             key: '$observedAttributes',
@@ -5632,9 +5856,9 @@
         return HXTabsetElement;
     }(HXElement);
 
-    var shadowMarkup$d = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
+    var shadowMarkup$e = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-    var shadowStyles$d = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxToast {\n  padding: 0.75rem;\n}\n#hxToast #hxCta {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n  border-radius: 2px;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  font-size: 0.875rem;\n  padding: 8px 12px;\n}\n#hxToast {\n  background-color: #ffffff;\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  color: #424242;\n  display: flex;\n  min-height: 3.5rem;\n  position: relative;\n  width: 22rem;\n}\n#hxToast::before,\n#hxToast::after {\n  content: '';\n  display: block;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#hxToast::before {\n  border: 1px solid #e0e0e0;\n}\n#hxToast::after {\n  border-left: 8px solid currentColor;\n}\n#hxToast #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  margin: 0 0.75rem 0 0.5rem;\n}\n#hxToast #hxIconWrapper hx-icon {\n  font-size: 2rem;\n}\n#hxToast #hxContent {\n  flex-grow: 1;\n  margin-right: 1.5rem;\n  text-align: right;\n  word-wrap: break-word;\n}\n#hxToast #hxContent div {\n  font-size: 0.875rem;\n  text-align: left;\n}\n#hxToast #hxCta {\n  text-transform: uppercase;\n}\n#hxToast #hxCta:empty {\n  display: none;\n}\n#hxToast #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 0.75rem;\n  height: 2.25rem;\n  line-height: 0;\n  margin: 0;\n  padding: 0.75rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 2.25rem;\n}\n:host([type=\"info\"]) #hxToast::after {\n  border-left-color: #3b44a9;\n}\n:host([type=\"info\"]) #hxIcon {\n  color: #3b44a9;\n}\n:host([type=\"error\"]) #hxToast::after {\n  border-left-color: #d32f2f;\n}\n:host([type=\"error\"]) #hxIcon {\n  color: #d32f2f;\n}\n:host([type=\"success\"]) #hxToast::after {\n  border-left-color: #4caf51;\n}\n:host([type=\"success\"]) #hxIcon {\n  color: #4caf51;\n}\n";
+    var shadowStyles$e = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxToast {\n  padding: 0.75rem;\n}\n#hxToast #hxCta {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n  border-radius: 2px;\n  display: inline-flex;\n  justify-content: center;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  font-size: 0.875rem;\n  padding: 8px 12px;\n}\n#hxToast {\n  background-color: #ffffff;\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  color: #424242;\n  display: flex;\n  min-height: 3.5rem;\n  position: relative;\n  width: 22rem;\n}\n#hxToast::before,\n#hxToast::after {\n  content: '';\n  display: block;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#hxToast::before {\n  border: 1px solid #e0e0e0;\n}\n#hxToast::after {\n  border-left: 8px solid currentColor;\n}\n#hxToast #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  margin: 0 0.75rem 0 0.5rem;\n}\n#hxToast #hxIconWrapper hx-icon {\n  font-size: 2rem;\n}\n#hxToast #hxContent {\n  flex-grow: 1;\n  margin-right: 1.5rem;\n  text-align: right;\n  word-wrap: break-word;\n}\n#hxToast #hxContent div {\n  font-size: 0.875rem;\n  text-align: left;\n}\n#hxToast #hxCta {\n  text-transform: uppercase;\n}\n#hxToast #hxCta:empty {\n  display: none;\n}\n#hxToast #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 0.75rem;\n  height: 2.25rem;\n  line-height: 0;\n  margin: 0;\n  padding: 0.75rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 2.25rem;\n}\n:host([type=\"info\"]) #hxToast::after {\n  border-left-color: #3b44a9;\n}\n:host([type=\"info\"]) #hxIcon {\n  color: #3b44a9;\n}\n:host([type=\"error\"]) #hxToast::after {\n  border-left-color: #d32f2f;\n}\n:host([type=\"error\"]) #hxIcon {\n  color: #d32f2f;\n}\n:host([type=\"success\"]) #hxToast::after {\n  border-left-color: #4caf51;\n}\n:host([type=\"success\"]) #hxIcon {\n  color: #4caf51;\n}\n";
 
     var ICONS$1 = {
         'error': 'exclamation-circle',
@@ -5817,7 +6041,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$d + '</style>' + shadowMarkup$d;
+                return '<style>' + shadowStyles$e + '</style>' + shadowMarkup$e;
             }
         }, {
             key: '$observedAttributes',
@@ -5828,9 +6052,9 @@
         return HXToastElement;
     }(HXElement);
 
-    var shadowMarkup$e = "<div id='hxTooltip' class='position-arrow'><slot></slot></div>";
+    var shadowMarkup$f = "<div id='hxTooltip' class='position-arrow'><slot></slot></div>";
 
-    var shadowStyles$e = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#hxTooltip {\n  padding: 1.25rem;\n}\n";
+    var shadowStyles$f = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#hxTooltip {\n  padding: 1.25rem;\n}\n";
 
     /**
      * Fires when the element's contents are concealed.
@@ -6072,7 +6296,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$e + '</style>' + shadowMarkup$e;
+                return '<style>' + shadowStyles$f + '</style>' + shadowMarkup$f;
             }
         }, {
             key: '$observedAttributes',
@@ -6093,6 +6317,8 @@
         HXCheckboxElement: HXCheckboxElement,
         HXDisclosureElement: HXDisclosureElement,
         HXDivElement: HXDivElement,
+        HXDropFenceElement: HXDropFenceElement,
+        HXDropZoneElement: HXDropZoneElement,
         HXElement: HXElement,
         HXErrorElement: HXErrorElement,
         HXFileIconElement: HXFileIconElement,
@@ -6117,7 +6343,7 @@
         HXTooltipElement: HXTooltipElement
     });
 
-    var version = "0.13.1";
+    var version = "0.14.0";
 
     /** @module HelixUI */
 

@@ -589,6 +589,11 @@ hx-icon.danger {
   margin: 20px;
   position: relative;
 }
+.test#popover-in-scrolling-container hx-div[scroll="vertical"] {
+  border: 1px solid;
+  height: 15rem;
+  width: 30rem;
+}
 .tabs-demo {
   height: 25rem;
   max-height: 40rem;

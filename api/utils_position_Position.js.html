@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: utils/position/Position.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: utils/position/Position.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module HelixUI/Utils/Position
+ */
+import Offset, { offsetFunctionMap } from './offset';
+
+export class Position {
+    constructor (element, referenceElement) {
+        this._element = element;
+        this._rect = element.getBoundingClientRect();
+
+        this._elRef = referenceElement;
+        this._refRect = referenceElement.getBoundingClientRect();
+        return this;
+    }
+
+    /**
+     * @readonly
+     * @type {HTMLElement}
+     */
+    get element () {
+        return this._element;
+    }
+
+
+    /**
+     * @type {OffsetOptions}
+     */
+    get offsetOptions () {
+        return {
+            dX: this.dX,
+            dY: this.dY,
+        };
+    }
+
+    /**
+     * @type {Integer}
+     */
+    get dX () {
+        let dX = this._isBeside ? this.margin : this.offset;
+
+        /*
+         * Invert dX to shift positioned element LEFT
+         *
+         *  - top-right
+         *  - top-end
+         *  - bottom-right
+         *  - bottom-end
+         */
+        if (/^(top|bottom)-(right|end)/.test(this.position)) {
+            dX = -dX;
+        }
+
+        return dX;
+    }
+
+    /**
+     * @type {Integer}
+     */
+    get dY () {
+        let dY = this._isBeside ? this.offset : this.margin;
+
+        /*
+         * Invert dY to shift positioned element UP
+         *
+         *  - left-bottom
+         *  - left-end
+         *  - right-bottom
+         *  - right-end
+         */
+        if (/^(left|right)-(bottom|end)/.test(this.position)) {
+            dY = -dY;
+        }
+
+        return dY;
+    }
+
+    /**
+     * @type {Integer}
+     */
+    get margin () {
+        return this._margin || 0;
+    }
+    set margin (val) {
+        this._margin = val || 0;
+    }
+
+    /**
+     * @type {Boolean}
+     */
+    get hasArrow () {
+        return !!this._hasArrow;
+    }
+    set hasArrow (val) {
+        this._hasArrow = !!val;
+    }
+
+    /**
+     * @type {Integer}
+     */
+    get offset () {
+        let offset = this._offset || 0;
+
+        if (this.hasArrow) {
+            /*
+             * Apply 20px offset toward center point for anything BUT
+             * "top", "bottom", "left", or "right", so that we can
+             * get the point of the arrow to align to the center of
+             * the reference element.
+             */
+            if (!/^(left|right|top|bottom)$/.test(this.position)) {
+                offset = 20;
+            }
+        }
+
+        return offset;
+    }
+    set offset (val) {
+        this._offset = val || 0;
+    }
+
+    /**
+     * @type {PositionString}
+     */
+    get position () {
+        return this._position || 'center';
+    }
+    set position (val) {
+        this._position = val;
+    }
+
+    /**
+     * @type {Integer}
+     * @readonly
+     */
+    get x () {
+        return this._x || 0;
+    }
+
+    /**
+     * @type {Integer}
+     * @readonly
+     */
+    get y () {
+        return this._y || 0;
+    }
+
+    /**
+     * @readonly
+     * @type {Coordinates}
+     */
+    get coordinates () {
+        if (!this._coords) {
+            this._coords = this.calculateCoordinates();
+        }
+        return this._coords;
+    }
+
+    /**
+     * Updates "coordinates" property when executed.
+     * @returns {Coordinates}
+     */
+    calculateCoordinates () {
+        let _getCoords = offsetFunctionMap[this.position];
+
+        this._coords = _getCoords(this._rect, this._refRect, this.offsetOptions);
+
+        if (!this.allowOffscreen &amp;&amp; this._isOffscreen) {
+            //this._coords = _getCoords(this._rect, this._refRect, this.offsetOptions);
+            // reposition toward center
+        }
+
+        return this._coords;
+    }
+
+    /**
+     * @private
+     * @type {PositionRect}
+     */
+    get _newRect () {
+        let { x, y } = this.coordinates;
+        let { height, width } = this._rect;
+
+        return {
+            top: y,
+            right: x + width,
+            bottom: y + height,
+            left: x,
+        };
+    }
+
+    _repositionTowardCenter () {
+        let { top, bottom, left, right } = this.offscreen;
+
+        if (top || bottom) {
+            this.position = VerticalOpposites[this.position];
+        }
+
+        if (left || right) {
+            this.position = HorizontalOpposites[this.position];
+        }
+
+        return this.position;
+    }
+
+    /**
+     * @private
+     * @type {Boolean}
+     */
+    get _isBeside () {
+        return /^(left|right)/.test(this.position);
+    }
+
+    /**
+     * @type {Boolean}
+     */
+    get _isOffscreen () {
+        let { top, bottom, left, right } = this.offscreen;
+
+        return (top || bottom || left || right);
+    }
+
+    /**
+     * @type {ViewportCollisions}
+     */
+    get offscreen () {
+        let newRect = this._newRect;
+
+        let bottom = newRect.bottom > window.innerHeight;
+        let left = newRect.left &lt; 0;
+        let right = newRect.right > window.innerWidth;
+        let top = newRect.top &lt; 0;
+
+        return { bottom, left, right, top };
+    }
+}
+
+/**
+ * @typedef {Object} PositionConfig
+ * @prop {PositionString} [position=center] - position of offsetElement in relation to referenceElement
+ * @prop {Integer} [margin=0] - distance in pixels between offset element and reference element
+ * @prop {Integer} [offset=0] - offset in pixels towards the center axis
+ */
+
+/**
+ * @typedef {Object} Position
+ * @description
+ * Position metadata used to update visual state of a positioned element.
+ * @prop {PositionString} position - calculated position based on collision detection logic
+ * @prop {Integer} x - x coordinate in relation to the viewport
+ * @prop {Integer} y - y coordinate in relation to the viewport
+ */
+
+/**
+ * @typedef {String} PositionString
+ * @description
+ * Valid values:
+ *
+ *   - `bottom-end`
+ *   - `bottom-left`
+ *   - `bottom-right`
+ *   - `bottom-start`
+ *   - `bottom`
+ *   - `center`
+ *   - `left-bottom`
+ *   - `left-end`
+ *   - `left-start`
+ *   - `left-top`
+ *   - `left`
+ *   - `right-bottom`
+ *   - `right-end`
+ *   - `right-start`
+ *   - `right-top`
+ *   - `right`
+ *   - `top-end`
+ *   - `top-left`
+ *   - `top-right`
+ *   - `top-start`
+ *   - `top`
+ */
+
+/**
+ * @typedef {Object} PositionRect
+ * @description Calculated DOMRect-like object
+ * @prop {Integer} bottom
+ * @prop {Integer} left
+ * @prop {Integer} right
+ * @prop {Integer} top
+ */
+
+/**
+ * @typedef {Enum&lt;Boolean>} ViewportCollisions
+ * @description
+ * metadata object with boolean values to quickly
+ * identify which sides of an element are outside the viewport
+ *
+ * @prop {Boolean} bottom - true if bottom edge is outside of viewport
+ * @prop {Boolean} left - true if left edge is outside of viewport
+ * @prop {Boolean} right - true if right edge is outside of viewport
+ * @prop {Boolean} top - true if top edge is outside of viewport
+ */
+
+/**
+ * Default position configuration
+ */
+export const DEFAULT_CONFIG = {
+    margin: 0,
+    offset: 0,
+    position: 'center',
+};
+
+/**
+ * @name VerticalOpposites
+ * @type {Object}
+ * @description Position value map of vertical opposites.
+ *
+ * - `top` &amp;rarr; `bottom`
+ * - `right-start` &amp;rarr; `right-end`
+ * - `left-bottom` &amp;rarr; `left-top`
+ * - etc.
+ */
+export const VerticalOpposites = {
+    'top': 'bottom',
+    'top-right': 'bottom-right',
+    'top-left': 'bottom-left',
+    'top-start': 'bottom-start',
+    'top-end': 'bottom-end',
+    'right': 'right',
+    'right-top': 'right-bottom',
+    'right-bottom': 'right-top',
+    'right-start': 'right-end',
+    'right-end': 'right-start',
+    'bottom': 'top',
+    'bottom-right': 'top-right',
+    'bottom-left': 'top-left',
+    'bottom-start': 'top-start',
+    'bottom-end': 'top-end',
+    'left': 'left',
+    'left-top': 'left-bottom',
+    'left-bottom': 'left-top',
+    'left-start': 'left-end',
+    'left-end': 'left-start',
+};
+
+/**
+ * @name HorizontalOpposites
+ * @type {Object}
+ * @description Position value map of horizontal opposites.
+ *
+ * - `left` &amp;rarr; `right`
+ * - `top-left` &amp;rarr; `top-right`
+ * - `bottom-start` &amp;rarr; `bottom-end`
+ * - etc.
+ */
+export const HorizontalOpposites = {
+    'top': 'top',
+    'top-right': 'top-left',
+    'top-left': 'top-right',
+    'top-start': 'top-end',
+    'top-end': 'top-start',
+    'right': 'left',
+    'right-top': 'left-top',
+    'right-bottom': 'left-bottom',
+    'right-start': 'left-start',
+    'right-end': 'left-end',
+    'bottom': 'bottom',
+    'bottom-right': 'bottom-left',
+    'bottom-left': 'bottom-right',
+    'bottom-start': 'bottom-end',
+    'bottom-end': 'bottom-start',
+    'left': 'right',
+    'left-top': 'right-top',
+    'left-bottom': 'right-bottom',
+    'left-start': 'right-start',
+    'left-end': 'right-end',
+};
+
+/**
+ * Build a guaranteed valid configuration object.
+ * @param {Object} [config={}] - questionable configuration object
+ * @returns {PositionConfig}
+ */
+function _buildValidConfig (config = {}, defaults = {}) {
+    return Object.assign({}, DEFAULT_CONFIG, defaults, config);
+}
+
+/**
+ * Calculate the top, right, bottom, and left x/y values of
+ * an element at given coordinates.
+ *
+ * @param {HTMLElement} element
+ * @param {Coordinate} coord - { x, y } coordinate
+ *
+ * @returns {PositionRect}
+ */
+function _getRectAtCoords (element, coord) {
+    let { x, y } = coord;
+    let { height, width } = element.getBoundingClientRect();
+
+    return {
+        top: y,
+        right: x + width,
+        bottom: y + height,
+        left: x,
+    };
+}
+
+/**
+ * Translate a position configuration into offset options
+ *
+ * @param {PositionConfig} [config={}] - position configuration
+ * @returns {OffsetOptions}
+ */
+function _getOffsetOptions (config={}) {
+    let isLeftOrRight = /^(left|right)/.test(config.position);
+
+    let margin = config.margin || 0;
+    let offset = config.offset || 0;
+
+    // Deltas
+    let dX = isLeftOrRight ? margin : offset;
+    let dY = isLeftOrRight ? offset : margin;
+
+    /*
+     * Invert dX to shift positioned element LEFT
+     *
+     *  - top-right
+     *  - top-end
+     *  - bottom-right
+     *  - bottom-end
+     */
+    if (/^(top|bottom)-(right|end)/.test(config.position)) {
+        dX = -dX;
+    }
+
+    /*
+     * Invert dY to shift positioned element UP
+     *
+     *  - left-bottom
+     *  - left-end
+     *  - right-bottom
+     *  - right-end
+     */
+    if (/^(left|right)-(bottom|end)/.test(config.position)) {
+        dY = -dY;
+    }
+
+    return { dX, dY };
+}
+
+/**
+ * Calculate _fixed_ coordinates of an offset element in relation to a reference element.
+ *
+ * Translates margin and offset to dX and dY
+ *
+ * @param {HTMLElement} elOff - the element to calculate (x,y) coordinates
+ * @param {HTMLElement} elRef - the element that is being offset from
+ * @param {PositionConfig} config - position configuration object
+ *
+ * @returns {Coordinates}
+ */
+function _getCoords (elOff, elRef, config) {
+    let offRect = elOff.getBoundingClientRect();
+    let refRect = elRef.getBoundingClientRect();
+
+    let opts = _getOffsetOptions(config);
+    let _calculate = offsetFunctionMap[config.position];
+
+    let coords = _calculate(offRect, refRect, opts);
+
+    return coords;
+}
+
+/**
+ * Determine if any side of an element is obscured by the viewport.
+ *
+ * @param {HTMLElement} element - the element to check against the viewport
+ * @param {Object} coords - (x,y) coordinates
+ *
+ * @returns {ViewportCollisions}
+ */
+// NOTE: Position.isOffscreen();
+function _getViewportCollisions (element, coords) {
+    // TODO: rename?
+    let rect = _getRectAtCoords(element, coords);
+
+    let bottom = rect.bottom > window.innerHeight;
+    let left = rect.left &lt; 0;
+    let right = rect.right > window.innerWidth;
+    let top = rect.top &lt; 0;
+
+    return {
+        vertically: (top || bottom),
+        horizontally: (left || right),
+        anywhere: (top || bottom || left || right),
+    };
+}
+
+/**
+ * Modify the position of an element so that it appears toward
+ * the center of the viewport.
+ *
+ * @param {String} position - the current position
+ * @param {Object} isOffscreen - offscreen metadata
+ *
+ * @returns {String} corrected position
+ */
+// TODO: does this need to be separate?
+function _repositionTowardCenter (position, isOffscreen) {
+    if (isOffscreen.vertically) {
+        position = VerticalOpposites[position];
+    }
+
+    if (isOffscreen.horizontally) {
+        position = HorizontalOpposites[position];
+    }
+
+    return position;
+}
+
+/**
+ * Calculate coordinates of an element in relation to a reference element
+ * while attempting to keep the element visible in the viewport.
+ *
+ * @param {Element} elOff - element to position
+ * @param {Element} elRef - reference element used to calculate position of offsetElement
+ * @param {PositionConfig} config - position configuration
+ *
+ * @returns {Position}
+ */
+export function getPosition (elOff, elRef, config) {
+    let _config = _buildValidConfig(config);
+
+    // calculate initial coords
+    let coords = _getCoords(elOff, elRef, _config);
+
+    let isOffscreen = _getViewportCollisions(elOff, coords);
+    if (isOffscreen.anywhere) {
+        // reposition toward center
+        _config.position = _repositionTowardCenter(config.position, isOffscreen);
+        // recalculate coords
+        let newCoords = _getCoords(elOff, elRef, _config);
+
+        // double check collisions
+        isOffscreen = _getViewportCollisions(elOff, coords);
+        if (!isOffscreen.anywhere) {
+            coords = newCoords;
+        }
+    }
+
+    let { x, y } = coords;
+    let { position } = _config;
+
+    return { position, x, y };
+}
+
+/**
+ * Calculate coordinates of an element in relation to a reference element
+ * while attempting to keep the element visible in the viewport.
+ *
+ * @param {Element} elOff - element to position
+ * @param {Element} elRef - reference element used to calculate position of elOff
+ * @param {PositionConfig} [config={}] - position of elOff in relation to elRef
+ *
+ * @returns {Position}
+ */
+export function getPositionWithArrow (elOff, elRef, config) {
+    let _config = _buildValidConfig(config);
+
+    /*
+     * Apply 20px offset toward center point for anything BUT
+     * "top", "bottom", "left", or "right", so that we can
+     * get the point of the arrow to align to the center of
+     * the reference element.
+     */
+    if (!/^(left|right|top|bottom)$/.test(_config.position)) {
+        _config.offset = 20;
+    }
+
+    return getPosition(elOff, elRef, _config);
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Position.html">HelixUI/Utils/Position</a></li><li><a href="module-HelixUI_Utils_Position_Offset.html">HelixUI/Utils/Position/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Menu:close">Menu:close</a></li><li><a href="global.html#event:Menu:open">Menu:open</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Popover:close">Popover:close</a></li><li><a href="global.html#event:Popover:open">Popover:open</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:SearchAssistance:close">SearchAssistance:close</a></li><li><a href="global.html#event:SearchAssistance:open">SearchAssistance:open</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li><li><a href="global.html#event:Tooltip:close">Tooltip:close</a></li><li><a href="global.html#event:Tooltip:open">Tooltip:open</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Oct 12 2018 10:48:15 GMT-0500 (CDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
