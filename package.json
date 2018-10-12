@@ -27,6 +27,7 @@
     "clean-css": "^4.1.9",
     "eslint": "4.x",
     "eslint-loader": "2.x",
+    "esm": "^3.0.84",
     "express": "^4.16.3",
     "front-matter": "^2.2.0",
     "fs-extra": "6.x",
@@ -78,7 +79,7 @@
     "serve": "bin/serve.js",
     "prestart": "yarn clean:public && yarn generate",
     "start": "bin/start.js",
-    "test:unit": "mocha test/helpers.unit.js src/**/*.spec.js",
+    "test:unit": "mocha test/run_unit.js",
     "test": "cd test; yarn test"
   },
   "repository": "https://github.com/rackerlabs/helix-ui.git",

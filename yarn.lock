@@ -2073,6 +2073,10 @@ eslint@4.x, eslint@^4.1.1:
     table "4.0.2"
     text-table "~0.2.0"
 
+esm@^3.0.84:
+  version "3.0.84"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.84.tgz#bb108989f4673b32d4f62406869c28eed3815a63"
+
 espree@^3.5.4:
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/espree/-/espree-3.5.4.tgz#b0f447187c8a8bed944b815a660bddf5deb5d1a7"
@@ -2532,6 +2536,10 @@ gauge@~2.7.3:
 get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
+
+get-caller-file@^1.0.2:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
 
 get-func-name@^2.0.0:
   version "2.0.0"
@@ -3723,6 +3731,13 @@ mocha@^5.2.0:
     minimatch "3.0.4"
     mkdirp "0.5.1"
     supports-color "5.4.0"
+
+mock-require@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/mock-require/-/mock-require-3.0.2.tgz#7ce759b559e3b194be5f20a5b1cece0eb363f53d"
+  dependencies:
+    get-caller-file "^1.0.2"
+    normalize-path "^2.1.1"
 
 moment@^2.18.1:
   version "2.22.2"
