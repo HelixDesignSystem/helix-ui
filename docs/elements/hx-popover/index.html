@@ -3,16 +3,17 @@ title: <hx-popover>
 minver: 0.2.0
 also:
   components/popovers: Popovers
-  elements/hx-popover-body: <hx-popover-body>
-  elements/hx-popover-foot: <hx-popover-foot>
-  elements/hx-popover-head: <hx-popover-head>
+  elements/hx-disclosure: <hx-disclosure>
+  elements/hx-div: <hx-div>
 ---
 {% extends 'element.njk' %}
 {% block content %}
   <section>
-    <p>
-      The custom <code>&lt;hx-popover&gt;</code> element defines a section of
-      floating content to appear nearby other elements.
+    <p class="comfortable">
+      The custom <code>{{page.title}}</code> element defines a section of
+      floating content to appear nearby other elements. It is often toggled by
+      a companion
+      <a href="elements/hx-disclosure">&lt;hx-disclosure&gt;</a> element.
     </p>
 
     <dl class="hxBox-md metadata hxList">
@@ -23,11 +24,19 @@ also:
       <div>
         <dt>Permitted Children</dt>
         <dd>
-          in this order:
+          In this order:
           <ol>
-            <li>an optional <a href="elements/hx-popover-head">&lt;hx-popover-head&gt;</a> element</li>
-            <li>an <a href="elements/hx-popover-body">&lt;hx-popover-body&gt;</a> element</li>
-            <li>an optional <a href="elements/hx-popover-foot">&lt;hx-popover-foot&gt;</a> element</li>
+            <li>
+              <code>&lt;header&gt;</code>
+              <span class="hxSubBody">(optional)</span>
+            </li>
+            <li>
+              <code>&lt;hx-div&gt;</code>
+            </li>
+            <li>
+              <code>&lt;footer&gt;</code>
+              <span class="hxSubBody">(optional)</span>
+            </li>
           </ol>
         </dd>
       </div>
@@ -62,6 +71,15 @@ also:
 
 {% block properties %}
   <dl>
+    <dt>controlElement (HTMLElement)</dt>
+    <dd>
+      <p>
+        <i>(read-only)</i>
+        Returns the HTML element with the <code>aria-controls</code>
+        attribute that matches the popover ID.
+      </p>
+    </dd>
+
     <dt>open (Boolean [false])</dt>
     <dd>
       Manipulates the <code>open</code> attribute.

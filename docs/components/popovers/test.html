@@ -15,15 +15,15 @@ title: Testing - Popovers
     <h2>Appearance</h2>
     <div class="popover-appearance">
       {% for _position in [
-        'top', 'top-left', 'top-right',
-        'bottom', 'bottom-left', 'bottom-right',
-        'right', 'right-top', 'right-bottom',
-        'left', 'left-top', 'left-bottom'
+        'top-start', 'top-left', 'top', 'top-right', 'top-end',
+        'bottom-start', 'bottom-left', 'bottom', 'bottom-right', 'bottom-end',
+        'right-start', 'right-top', 'right', 'right-bottom', 'right-end',
+        'left-start', 'left-top', 'left', 'left-bottom', 'left-end'
       ] %}
         <hx-popover position="{{_position}}">
-          <hx-popover-body>
+          <hx-div>
             <code>position="{{_position}}"</code>
-          </hx-popover-body>
+          </hx-div>
         </hx-popover>
       {% endfor %}
     </div>
@@ -202,14 +202,14 @@ title: Testing - Popovers
   <section>
     <h2>Unconventional HTML5-compatible ID</h2>
     <p>
-      <button class="hxBtn" data-popover="2d90208e58f24216be64de517570c628" type="button">
-        <code>data-popover="2d90208e58f24216be64de517570c628"</code>
-      </button>
+      <hx-disclosure aria-controls="2d90208e58f24216be64de517570c628" class="hxBtn">
+        <code>hx-disclosure[aria-controls="2d90208e58f24216be64de517570c628"]</code>
+      </hx-disclosure>
     </p>
     <hx-popover id="2d90208e58f24216be64de517570c628">
-      <hx-popover-body>
+      <hx-div>
         How do you like my hat?
-      </hx-popover-body>
+      </hx-div>
     </hx-popover>
   </section>
 

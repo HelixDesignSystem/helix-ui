@@ -112,7 +112,7 @@ export class HXAlertElement extends HXElement {
     }
 
     /**
-     * Property reflecting the `static` HTML attribute, indicating whether the
+     * Property reflectin the `static` HTML attribute, indicating whether the
      * alert may be dismissed. If true, the dismiss button will not be shown.
      *
      * @default false

@@ -131,18 +131,6 @@ title: Testing - File Tiles
         <small>href defined</small>
       </div>
 
-      <div class="hxCol">
-        <h3>Visually Truncated, Downloadable and Readonly</h3>
-        <hx-file-tile
-          details="50B"
-          href="files/easteregg.txt"
-          icon="mime-text"
-          name="SupercalifragilisticexpialidociousSupercalifragilisticexpialidociousSupercalifragilisticexpialidocious.txt"
-          readonly
-        ></hx-file-tile>
-        <small>visually truncated with many characters, downloadable and readonly</small>
-      </div>
-
       <!-- TODO: immitate hovering over <a> in Shadow DOM -->
       <!-- TODO: immitate hovering over <button id="hxDismiss"> in Shadow DOM -->
     </div>
@@ -171,26 +159,6 @@ title: Testing - File Tiles
           ></hx-file-tile>
         </div>
       {% endfor %}
-
-      <div class="hxCol">
-        <small>[progress="100" and readonly]</small>
-        <hx-file-tile
-          icon="mime-system"
-          name="win32.exe"
-          progress="100"
-          readonly
-        ></hx-file-tile>
-      </div>
-
-      <div class="hxCol">
-        <small>[progress="100", visually truncated and readonly]</small>
-        <hx-file-tile
-          icon="mime-system"
-          name="win32supercalifragilisticexpialidociousSupercalifragilisticexpialidociousSupercalifragilisticexpialidocious.exe"
-          progress="100"
-          readonly
-        ></hx-file-tile>
-      </div>
     </div>
   </section>
 
@@ -203,16 +171,6 @@ title: Testing - File Tiles
           icon="mime-archive"
           invalid
           name="theinternet.tgz"
-        ></hx-file-tile>
-      </div>
-
-      <div class="hxCol">
-        <h3>Error, Visually Truncated and Readonly</h3>
-        <hx-file-tile
-          icon="mime-archive"
-          invalid
-          name="SupercalifragilisticexpialidociousSupercalifragilisticexpialidociousSupercalifragilisticexpialidocious.tgz"
-          readonly
         ></hx-file-tile>
       </div>
     </div>
