@@ -64,12 +64,7 @@ also:
     <dt>position</dt>
     <dd>
       Configures the position of the popover in relation to its
-      relative element.
-    </dd>
-
-    <dt>relative-to (optional)</dt>
-    <dd>
-      ID of an element that the popover is positioned relative to.
+      trigger element.
     </dd>
   </dl>
 {% endblock %}
@@ -87,34 +82,12 @@ also:
 
     <dt>open (Boolean [false])</dt>
     <dd>
-      <p>
-        Manipulates the <code>open</code> attribute.
-      </p>
+      Manipulates the <code>open</code> attribute.
     </dd>
 
     <dt>position (String [bottom-right])</dt>
     <dd>
-      <p>
-        Manipulates the <code>position</code> attribute.
-      </p>
-    </dd>
-
-    <dt>relativeElement (HTMLElement)</dt>
-    <dd>
-      <p class="comfortable">
-        <i>(read-only)</i>
-        Returns the HTML element used as a reference to calculate the position of
-        the popover. If the <code>relative-to</code> attribute is set, this will
-        be the element with ID matching the <code>relativeTo</code> property value.
-        Otherwise, this will be the <code>controlElement</code>.
-      </p>
-    </dd>
-
-    <dt>relativeTo (String)</dt>
-    <dd>
-      <p>
-        Manipulates the <code>relative-to</code> attribute.
-      </p>
+      Manipulates the <code>position</code> attribute.
     </dd>
   </dl>
 {% endblock %}

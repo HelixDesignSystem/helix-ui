@@ -33,26 +33,6 @@ title: Testing - Popovers
     <h2>Full Markup Appearance</h2>
     <div class="popover-appearance">
       <hx-popover position="right-bottom">
-        <header>
-          Popover Head
-        </header>
-
-        <hx-div>
-          <p>Popover Body</p>
-        </hx-div>
-
-        <footer>
-          <button class="hxBtn hxPrimary">Submit</button>
-          <button class="hxBtn">Cancel</button>
-        </footer>
-      </hx-popover>
-    </div>
-  </section>
-
-  <section>
-    <h2>Deprecated Markup Appearance</h2>
-    <div class="popover-appearance">
-      <hx-popover position="right-bottom">
         <hx-popover-head>
           Popover Head
         </hx-popover-head>
@@ -70,23 +50,153 @@ title: Testing - Popovers
   </section>
 
   <section>
-    <h2>
-      <span id="heading-relativeTo">relative-to</span>
-    </h2>
-    <p>
-      <hx-disclosure aria-controls="popRelative" class="hxBtn">
-        Open relative to section Title
-      </hx-disclosure>
-    </p>
-    <hx-popover
-      id="popRelative"
-      position="top-start"
-      relative-to="heading-relativeTo"
-    >
-      <hx-div>
-        I'm over the heading!
-      </hx-div>
-    </hx-popover>
+    <h2>Scrolling Content (Head, Body, and Foot)</h2>
+    <div class="popover-appearance">
+      <hx-popover position="right-bottom">
+        <hx-popover-head>
+          Popover Head
+        </hx-popover-head>
+
+        <hx-popover-body>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+        </hx-popover-body>
+
+        <hx-popover-foot>
+          <button class="hxBtn hxPrimary">Submit</button>
+          <button class="hxBtn">Cancel</button>
+        </hx-popover-foot>
+      </hx-popover>
+    </div>
+  </section>
+
+  <section>
+    <h2>Scrolling Content (Head and Body)</h2>
+    <div class="popover-appearance">
+      <hx-popover position="right-bottom">
+        <hx-popover-head>
+          Popover Head
+        </hx-popover-head>
+
+        <hx-popover-body>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+        </hx-popover-body>
+      </hx-popover>
+    </div>
+  </section>
+
+  <section>
+    <h2>Scrolling Content (Body and Foot)</h2>
+    <div class="popover-appearance">
+      <hx-popover position="right-bottom">
+        <hx-popover-body>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+        </hx-popover-body>
+
+        <hx-popover-foot>
+          <button class="hxBtn hxPrimary">Submit</button>
+          <button class="hxBtn">Cancel</button>
+        </hx-popover-foot>
+      </hx-popover>
+    </div>
+  </section>
+
+  <section>
+    <h2>Scrolling Content (Body only)</h2>
+    <div class="popover-appearance">
+      <hx-popover position="right-bottom">
+        <hx-popover-body>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+        </hx-popover-body>
+      </hx-popover>
+    </div>
   </section>
 
   <section>
@@ -109,22 +219,22 @@ title: Testing - Popovers
       <li>TODO: Should we hide the popover when its relative element isn't visible (scrolls out of view)?</li>
     </ul>
     <hx-div scroll="vertical" class="scrolling hxMd">
-      <hx-disclosure aria-controls="popScrolling" class="hxBtn">
+      <button data-popover="popScrolling" class="hxBtn" type="button">
         Open Popover
-      </hx-disclosure>
+      </button>
       <hx-popover position="top" id="popScrolling">
-        <header>
+        <hx-popover-head>
           Popover Header
-        </header>
+        </hx-popover-head>
 
-        <hx-div>
+        <hx-popover-body>
           <p>This is my popover body.</p>
-        </hx-div>
+        </hx-popover-body>
 
-        <footer>
+        <hx-popover-foot>
           <button class="hxBtn hxPrimary">Submit</button>
           <button class="hxBtn">Cancel</button>
-        </footer>
+        </hx-popover-foot>
       </hx-popover>
 
       <p>
