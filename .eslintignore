@@ -8,3 +8,6 @@ test/*
 
 # files
 _config.*
+
+# spec files
+src/**/*.spec.js
