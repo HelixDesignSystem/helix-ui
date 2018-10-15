@@ -67,7 +67,7 @@
     "clean": "rm -fr node_modules",
     "clean:public": "bin/cleanPublic.js",
     "compile": "bin/compile.js",
-    "test:coverage": "nyc --reporter=lcov --reporter=text --reporter=text-summary mocha",
+    "test:coverage": "nyc --reporter=lcov mocha",
     "pregenerate": "yarn compile",
     "generate": "bin/generate.js",
     "preghpages": "yarn generate",
