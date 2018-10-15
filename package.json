@@ -84,6 +84,9 @@
     "test:unit": "mocha test/run_unit.js",
     "test": "cd test; yarn test"
   },
+  "nyc": {
+    "exclude": ["src/**/*.spec.js", "test/run_unit.js"] 
+  },
   "repository": "https://github.com/rackerlabs/helix-ui.git",
   "author": "Ryan Johnson <rhino.citguy@gmail.com>",
   "contributors": [
