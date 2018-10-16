@@ -161,7 +161,12 @@ export class HXTooltipElement extends HXElement {
 
     /** @private */
     _setPosition () {
-        var offset = getPositionWithArrow(this, this._target, { 'position': this.position });
+        let offset = getPositionWithArrow({
+            element: this,
+            reference: this._target,
+            position: this.position,
+        });
+
         this.style.top = `${offset.y}px`;
         this.style.left = `${offset.x}px`;
         this.position = offset.position;

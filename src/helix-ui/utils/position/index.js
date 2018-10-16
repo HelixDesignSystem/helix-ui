@@ -5,19 +5,20 @@ import Offset, { offsetFunctionMap } from './offset';
 
 /**
  * @typedef {Object} PositionConfig
- * @prop {PositionString} [position=top] - position of offsetElement in relation to referenceElement
+ * @prop {Element} element - element to position
+ * @prop {Element} reference - reference element used to calculate position of the offset element
+ * @prop {PositionString} [position=center] - position of offsetElement in relation to referenceElement
  * @prop {Integer} [margin=0] - distance in pixels between offset element and reference element
  * @prop {Integer} [offset=0] - offset in pixels towards the center axis
  */
 
 /**
- * @typedef {Object} XYPosition
+ * @typedef {Object} Position
  * @description
- * Absolute (x,y) coordinates and metadata for positioning a target element
- * in relation to a reference element.
- * @prop {PositionString} position
- * @prop {Integer} x
- * @prop {Integer} y
+ * Position metadata used to update visual state of a positioned element.
+ * @prop {PositionString} position - calculated position based on collision detection logic
+ * @prop {Integer} x - x coordinate in relation to the viewport
+ * @prop {Integer} y - y coordinate in relation to the viewport
  */
 
 /**
@@ -25,31 +26,64 @@ import Offset, { offsetFunctionMap } from './offset';
  * @description
  * Valid values:
  *
- *   - `center`
- *   - `top-left`
- *   - `top-start`
- *   - `top`
- *   - `top-end`
- *   - `top-right`
- *   - `right-top`
- *   - `right-start`
- *   - `right`
- *   - `right-end`
- *   - `right-bottom`
- *   - `bottom-right`
  *   - `bottom-end`
- *   - `bottom`
- *   - `bottom-start`
  *   - `bottom-left`
+ *   - `bottom-right`
+ *   - `bottom-start`
+ *   - `bottom`
+ *   - `center`
  *   - `left-bottom`
  *   - `left-end`
- *   - `left`
  *   - `left-start`
  *   - `left-top`
+ *   - `left`
+ *   - `right-bottom`
+ *   - `right-end`
+ *   - `right-start`
+ *   - `right-top`
+ *   - `right`
+ *   - `top-end`
+ *   - `top-left`
+ *   - `top-right`
+ *   - `top-start`
+ *   - `top`
  */
 
 /**
- * @name verticalOpposites
+ * @typedef {Object} PositionRect
+ * @description Calculated DOMRect-like object
+ * @prop {Integer} bottom
+ * @prop {Integer} left
+ * @prop {Integer} right
+ * @prop {Integer} top
+ */
+
+/**
+ * @typedef {Enum<Boolean>} ViewportCollisions
+ * @description
+ * metadata object with boolean values to quickly
+ * identify which sides of an element are outside the viewport
+ *
+ * @prop {Boolean} anywhere - true if any edge is outside of viewport
+ * @prop {Boolean} bottom - true if bottom edge is outside of viewport
+ * @prop {Boolean} horizontal - true if left or right edge is outside of viewport
+ * @prop {Boolean} left - true if left edge is outside of viewport
+ * @prop {Boolean} right - true if right edge is outside of viewport
+ * @prop {Boolean} top - true if top edge is outside of viewport
+ * @prop {Boolean} vertical - true if top or bottom edge is outside of viewport
+ */
+
+/**
+ * Default position configuration
+ */
+export const DEFAULT_CONFIG = {
+    margin: 0,
+    offset: 0,
+    position: 'center',
+};
+
+/**
+ * @name VerticalOpposites
  * @type {Object}
  * @description Position value map of vertical opposites.
  *
@@ -58,7 +92,7 @@ import Offset, { offsetFunctionMap } from './offset';
  * - `left-bottom` &rarr; `left-top`
  * - etc.
  */
-export const verticalOpposites = {
+export const VerticalOpposites = {
     'top': 'bottom',
     'top-right': 'bottom-right',
     'top-left': 'bottom-left',
@@ -82,7 +116,7 @@ export const verticalOpposites = {
 };
 
 /**
- * @name horizontalOpposites
+ * @name HorizontalOpposites
  * @type {Object}
  * @description Position value map of horizontal opposites.
  *
@@ -91,7 +125,7 @@ export const verticalOpposites = {
  * - `bottom-start` &rarr; `bottom-end`
  * - etc.
  */
-export const horizontalOpposites = {
+export const HorizontalOpposites = {
     'top': 'top',
     'top-right': 'top-left',
     'top-left': 'top-right',
@@ -119,44 +153,82 @@ export const horizontalOpposites = {
  * an element at given coordinates.
  *
  * @param {HTMLElement} element
- * @param {Object} coord - (x,y) coordinates
+ * @param {Coordinate} coord - { x, y } coordinate
+ *
+ * @returns {PositionRect}
  */
-function _getElementBox (element, coord) {
-    let boundingRect = element.getBoundingClientRect();
+function _getRectAtCoords (element, coord) {
+    let { x, y } = coord;
+    let { height, width } = element.getBoundingClientRect();
 
     return {
-        top: coord.y,
-        right: coord.x + boundingRect.width,
-        bottom: coord.y + boundingRect.height,
-        left: coord.x,
+        bottom: y + height,
+        left: x,
+        right: x + width,
+        top: y,
     };
 }
 
 /**
- * Calculate fixed coordinates of an element in relation to a reference element.
+ * Translate a position configuration into offset options
  *
- * **NOTE**: Coordinates are calculated based on the viewport, not the document.
- *
- * @param {String} position - the position of the offset element
- * @param {HTMLElement} offsetElement - the element to calculate (x,y) coordinates
- * @param {HTMLElement} referenceElement - the element that is being offset from
- * @param {PositionConfig} config - configuration object
- *
- * @returns {XYPosition}
+ * @param {PositionConfig} config - position configuration
+ * @returns {OffsetOptions}
  */
-function _getCoords (position, offsetElement, referenceElement, config) {
-    // The 'position' property is added to provide information about final
-    // calculated position of offset element in relation to reference element
-    let coords = {
-        x: 0,
-        y: 0,
-        position,
-    };
+function _getOffsetOptions (config) {
+    let isLeftOrRight = /^(left|right)/.test(config.position);
 
-    let offRect = offsetElement.getBoundingClientRect();
-    let refRect = referenceElement.getBoundingClientRect();
+    let margin = config.margin || 0;
+    let offset = config.offset || 0;
 
-    [ coords.x, coords.y ] = offsetFunctionMap[position](offRect, refRect, config);
+    // Deltas
+    let dX = isLeftOrRight ? margin : offset;
+    let dY = isLeftOrRight ? offset : margin;
+
+    /*
+     * Invert dX to shift positioned element LEFT
+     *
+     *  - top-right
+     *  - top-end
+     *  - bottom-right
+     *  - bottom-end
+     */
+    if (/^(top|bottom)-(right|end)/.test(config.position)) {
+        dX = -dX;
+    }
+
+    /*
+     * Invert dY to shift positioned element UP
+     *
+     *  - left-bottom
+     *  - left-end
+     *  - right-bottom
+     *  - right-end
+     */
+    if (/^(left|right)-(bottom|end)/.test(config.position)) {
+        dY = -dY;
+    }
+
+    return { dX, dY };
+}
+
+/**
+ * Calculate _fixed_ coordinates of an offset element in relation to a reference element.
+ *
+ * Translates margin and offset to dX and dY
+ *
+ * @param {PositionConfig} config - position configuration object
+ *
+ * @returns {Coordinates}
+ */
+function _getCoords (config) {
+    let offRect = config.element.getBoundingClientRect();
+    let refRect = config.reference.getBoundingClientRect();
+
+    let opts = _getOffsetOptions(config);
+    let _calculate = offsetFunctionMap[config.position];
+
+    let coords = _calculate(offRect, refRect, opts);
 
     return coords;
 }
@@ -167,23 +239,28 @@ function _getCoords (position, offsetElement, referenceElement, config) {
  * @param {HTMLElement} element - the element to check against the viewport
  * @param {Object} coords - (x,y) coordinates
  *
- * @returns {Object} metadata object with boolean values to quickly
- * identify which sides of an element are outside the viewport
+ * @returns {ViewportCollisions}
  */
-function _getOffscreenMetadata (element, coords) {
-    let elementBox = _getElementBox(element, coords);
-    let offscreen = {
-        top: elementBox.top < 0,
-        right: elementBox.right > window.innerWidth,
-        bottom: elementBox.bottom > window.innerHeight,
-        left: elementBox.left < 0,
+function _getViewportCollisions (element, coords) {
+    let rect = _getRectAtCoords(element, coords);
+
+    let bottom = rect.bottom > window.innerHeight;
+    let left = rect.left < 0;
+    let right = rect.right > window.innerWidth;
+    let top = rect.top < 0;
+    let vertically = (top || bottom);
+    let horizontally = (left || right);
+    let anywhere = (vertically || horizontally);
+
+    return {
+        anywhere,
+        bottom, 
+        horizontally,
+        left, 
+        right,
+        top, 
+        vertically,
     };
-
-    offscreen.vertically = (offscreen.top || offscreen.bottom);
-    offscreen.horizontally = (offscreen.left || offscreen.right);
-    offscreen.anywhere = (offscreen.vertically || offscreen.horizontally);
-
-    return offscreen;
 }
 
 /**
@@ -191,17 +268,17 @@ function _getOffscreenMetadata (element, coords) {
  * the center of the viewport.
  *
  * @param {String} position - the current position
- * @param {Object} offscreen - offscreen metadata
+ * @param {ViewportCollisions} isOffscreen - offscreen metadata
  *
  * @returns {String} corrected position
  */
-function _repositionTowardCenter (position, offscreen) {
-    if (offscreen.vertically) {
-        position = verticalOpposites[position];
+function _repositionTowardCenter (position, isOffscreen) {
+    if (isOffscreen.vertically) {
+        position = VerticalOpposites[position];
     }
 
-    if (offscreen.horizontally) {
-        position = horizontalOpposites[position];
+    if (isOffscreen.horizontally) {
+        position = HorizontalOpposites[position];
     }
 
     return position;
@@ -211,66 +288,66 @@ function _repositionTowardCenter (position, offscreen) {
  * Calculate coordinates of an element in relation to a reference element
  * while attempting to keep the element visible in the viewport.
  *
- * @param {Element} offsetElement - element to position
- * @param {Element} referenceElement - reference element used to calculate position of offsetElement
- * @param {PositionConfig} config - configuration object
+ * @param {PositionConfig} config - position configuration
  *
- * @returns {XYPosition}
+ * @returns {Position}
  */
-export function getPosition (offsetElement, referenceElement, config) {
-    let defaults = {
-        position: 'top',
-        margin: 0,
-        offset: 0,
-    };
-    let cfg = Object.assign({}, defaults, config);
+export function getPosition (config) {
+    let _config = Object.assign({}, DEFAULT_CONFIG, config);
 
-    let coords = _getCoords(cfg.position, offsetElement, referenceElement, cfg);
-    let isOffscreen = _getOffscreenMetadata(offsetElement, coords);
+    if (!_config.element) {
+        throw 'The "element" configuration property must be defined.';
+    }
 
+    if (!_config.reference) {
+        throw 'The "reference" configuration property must be defined.';
+    }
+
+    // calculate initial coords
+    let coords = _getCoords(_config);
+
+    let isOffscreen = _getViewportCollisions(_config.element, coords);
     if (isOffscreen.anywhere) {
-        let newPosition = _repositionTowardCenter(cfg.position, isOffscreen);
-        let newCoords = _getCoords(newPosition, offsetElement, referenceElement, cfg);
+        // reposition toward center
+        _config.position = _repositionTowardCenter(config.position, isOffscreen);
+        // recalculate coords
+        let newCoords = _getCoords(_config);
 
-        //If the repositioned element is no longer offscreen,
-        //use the respositioned element coordinates
-        isOffscreen = _getOffscreenMetadata(offsetElement, newCoords);
+        // double check collisions
+        isOffscreen = _getViewportCollisions(_config.element, coords);
         if (!isOffscreen.anywhere) {
             coords = newCoords;
         }
     }
 
-    return coords;
+    let { x, y } = coords;
+    let { position } = _config;
+
+    return { position, x, y };
 }
 
 /**
  * Calculate coordinates of an element in relation to a reference element
  * while attempting to keep the element visible in the viewport.
  *
- * @param {Element} offsetElement - element to position
- * @param {Element} referenceElement - reference element used to calculate position of offsetElement
+ * @param {PositionConfig} config - position configuration
  *
- * @param {PositionConfig} config - configuration object
- * @param {Integer} [config.margin=12] - distance in pixels between the base and the tip of the arrow
- * @param {Integer} [config.offset=20] - distance in pixels from the edge of the
- * offset element to the center of the arrow
- *
- * @returns {XYPosition}
+ * @returns {Position}
  */
-export function getPositionWithArrow (offsetElement, referenceElement, config) {
-    let defaults = {
-        margin: 12, // base to tip of the arrow
-        offset: 20, // distance from the edge to the center of the arrow
-    };
+export function getPositionWithArrow (config) {
+    let _config = Object.assign({}, DEFAULT_CONFIG, config);
+    _config.offset = 20;
 
-    // Remove offset for '*-start' and '*-end' positions:
-    if (/(start|end)$/.test(config.position)) {
-        defaults.offset = 0;
+    /*
+     * Remove offset if position is "top", "bottom", "left", or "right", 
+     * so that the point of the arrow always aligns to the center of
+     * the reference element.
+     */
+    if (/^(left|right|top|bottom)$/.test(_config.position)) {
+        _config.offset = 0;
     }
 
-    let cfg = Object.assign({}, defaults, config);
-
-    return getPosition(offsetElement, referenceElement, cfg);
+    return getPosition(_config);
 }
 
 export default {

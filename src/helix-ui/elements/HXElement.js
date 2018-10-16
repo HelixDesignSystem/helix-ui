@@ -121,6 +121,11 @@ export class HXElement extends HTMLElement {
         this.$onConnect();
     }
 
+    // Called when an instance of the element is removed from the DOM.
+    disconnectedCallback () {
+        this.$onDisconnect();
+    }
+
     /**
      * Custom Elements API property used to determine when to call the
      * attributeChangedCallback() lifecycle method.
