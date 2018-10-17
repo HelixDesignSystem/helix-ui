@@ -1,5 +1,44 @@
 @import (reference) "components/typography";
 
+// Table style resets
+.hxTable {
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: none;
+  font-size: 1rem; // 16px
+  margin: 1.5rem 0;
+  padding: 0;
+  width: 100%;
+
+  thead,
+  tbody,
+  tfoot {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+
+    tr {
+      background-color: transparent;
+      border: none;
+      margin: 0;
+      padding: 0;
+
+      th,
+      td {
+        background-color: transparent;
+        border: none;
+        font-size: 1rem;
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+      }
+    }
+  }
+}
+
 // ===== States =====
 @state-selected-bg: @cyan-50;
 

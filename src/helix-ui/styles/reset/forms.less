@@ -1,4 +1,5 @@
 /* ========== FORMS & CONTROLS ========== */
+// DEPRECATED STYLE RESETS
 button {
   color: inherit;
   font: inherit;
@@ -29,4 +30,14 @@ legend {
   margin-bottom: 0;
   padding: 0;
   width: 100%;
+}
+
+// Remove "X" added by Edge and IE
+input::-ms-clear {
+  display: none;
+}
+
+// Ensure that browsers inherit the proper font settings.
+textarea {
+  font: inherit;
 }
