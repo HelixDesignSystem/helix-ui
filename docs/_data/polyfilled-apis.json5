@@ -20,7 +20,7 @@
   {
     name: 'Element.attachShadow()',
     mdn: 'API/Element/attachShadow',
-    missing: ['firefox', 'edge', 'ie'],
+    missing: ['edge', 'ie'],
     polyfill: 'webcomponentsjs',
   },
   {
@@ -32,7 +32,7 @@
   {
     name: 'Element.shadowRoot',
     mdn: 'API/Element/shadowRoot',
-    missing: ['firefox', 'edge', 'ie'],
+    missing: ['edge', 'ie'],
     polyfill: 'webcomponentsjs',
   },
   {
@@ -68,7 +68,7 @@
   {
     name: 'Window.customElements',
     mdn: 'API/Window/customElements',
-    missing: ['firefox', 'edge', 'ie'],
+    missing: ['edge', 'ie'],
     polyfill: 'webcomponentsjs',
   },
 ]
