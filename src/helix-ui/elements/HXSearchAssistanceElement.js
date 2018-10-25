@@ -1,6 +1,8 @@
 import { HXElement } from './HXElement';
 import { getPosition } from '../utils/position';
-import { onScroll } from '../utils';
+import debounce from 'lodash/debounce';
+
+const DEFAULT_POSITION = 'bottom-start';
 
 /**
  * Fires when the element's contents are concealed.
@@ -33,16 +35,22 @@ export class HXSearchAssistanceElement extends HXElement {
         return 'hx-search-assistance';
     }
 
+    $onCreate () {
+        this._onDocumentScroll = this._onDocumentScroll.bind(this);
+        this._reposition = this._reposition.bind(this);
+
+        this._onWindowResize = debounce(this._reposition, 50);
+    }
+
     $onConnect () {
         this.$upgradeProperty('open');
         this.$upgradeProperty('position');
         this.$upgradeProperty('relativeTo');
-        this.$defaultAttribute('position', 'bottom-start');
-        this.addEventListener('scroll', onScroll);
-    }
 
-    $onDisconnect () {
-        this.removeEventListener('scroll', onScroll);
+        this.$defaultAttribute('position', DEFAULT_POSITION);
+        this._initialPosition = this.position;
+
+        this.setAttribute('aria-hidden', !this.open);
     }
 
     static get $observedAttributes () {
@@ -51,11 +59,46 @@ export class HXSearchAssistanceElement extends HXElement {
 
     $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'open') {
-            let isOpen = (newVal !== null);
-            this.$emit(isOpen ? 'open' : 'close');
+            this._attrOpenChange(oldVal, newVal);
         }
     }
 
+    /**
+     * External element that controls <hx-search-assistance> visibility.
+     *
+     * @readonly
+     * @type {HTMLElement}
+     */
+    get controlElement () {
+        return this.getRootNode().querySelector(`[aria-controls="${this.id}"]`);
+    }
+
+    /**
+     * Determine if <hx-search-assistance> is visible.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get open () {
+        return this.hasAttribute('open');
+    }
+    set open (value) {
+        if (value) {
+            this.setAttribute('open', '');
+        } else {
+            this.removeAttribute('open');
+        }
+    }
+
+    /**
+     * Where to position <hx-search-assistance> in relation to its reference element.
+     *
+     * @default 'bottom-start'
+     * @type {PositionString}
+     */
+    get position () {
+        return this.getAttribute('position') || DEFAULT_POSITION;
+    }
     set position (value) {
         if (value) {
             this.setAttribute('position', value);
@@ -64,43 +107,75 @@ export class HXSearchAssistanceElement extends HXElement {
         }
     }
 
-    get position () {
-        return this.getAttribute('position');
+    /**
+     * Reference element used to calculate <hx-search-assistance> position.
+     *
+     * @readonly
+     * @type {HTMLElement}
+     */
+    get relativeElement () {
+        if (this.relativeTo) {
+            return this.getRootNode().getElementById(this.relativeTo);
+        } else {
+            return this.controlElement;
+        }
     }
 
+    /**
+     * ID of an element relatively to <hx-search-assistance>.
+     *
+     * @type {String}
+     */
+    get relativeTo () {
+        return this.getAttribute('relative-to');
+    }
     set relativeTo (value) {
         this.setAttribute('relative-to', value);
     }
 
-    get relativeTo () {
-        return this.getAttribute('relative-to');
+    /** @private */
+    _addOpenListeners () {
+        document.addEventListener('scroll', this._onDocumentScroll);
+        window.addEventListener('resize', this._onWindowResize);
     }
 
-    get relativeElement () {
-        return this.getRootNode().getElementById(this.relativeTo);
-    }
+    /** @private */
+    _attrOpenChange (oldVal, newVal) {
+        let isOpen = (newVal !== null);
+        this.setAttribute('aria-hidden', !isOpen);
+        this.$emit(isOpen ? 'open' : 'close');
 
-    set open (value) {
-        if (value) {
-            this.setAttribute('open', '');
-            this._setPosition();
+        if (isOpen) {
+            this._addOpenListeners();
+            this._reposition();
         } else {
-            this.removeAttribute('open');
+            this._removeOpenListeners();
+            this.position = this._initialPosition;
         }
     }
 
-    get open () {
-        return this.hasAttribute('open');
+    /** @private */
+    _onDocumentScroll () {
+        this._reposition();
     }
 
-    _setPosition () {
-        let offset = getPosition({
-            element: this,
-            reference: this.relativeElement,
-            position: this.position,
-            margin: 4,
-        });
-        this.style.top = `${offset.y}px`;
-        this.style.left = `${offset.x}px`;
+    /** @private */
+    _removeOpenListeners () {
+        document.removeEventListener('scroll', this._onDocumentScroll);
+        window.removeEventListener('resize', this._onWindowResize);
+    }
+
+    /** @private */
+    _reposition () {
+        if (this.relativeElement) {
+            let { x, y } = getPosition({
+                element: this,
+                reference: this.relativeElement,
+                position: this.position,
+            });
+
+            this.style.top = `${y}px`;
+            this.style.left = `${x}px`;
+        }
     }
 }
