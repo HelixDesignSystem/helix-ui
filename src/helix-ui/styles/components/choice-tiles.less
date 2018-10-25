@@ -47,6 +47,7 @@ label.hxChoice > input + hx-tile {
   background-color: @gray-0;
   border: solid 1px @gray-400;
   color: @gray-900;
+  cursor: pointer;
 
   .hx-tile-icon {
     color: @gray-700;
@@ -66,6 +67,10 @@ label.hxChoice > input:focus + hx-tile {
 label.hxChoice > input:checked + hx-tile {
   border-color: @cyan-900;
   color: @cyan-900;
+
+  .hx-tile-icon {
+    color: @cyan-900;
+  }
 
   > p {
     color: @gray-900;

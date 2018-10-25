@@ -22,5 +22,6 @@ before_script:
 - yarn serve > /dev/null 2>&1 &
 - while ! curl --silent http://localhost:3000 > /dev/null 2>&1; do sleep 1; done
 script:
+# - yarn test:coverage  
 - yarn lint
 - yarn test

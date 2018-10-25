@@ -13,3 +13,7 @@ dist/
 
 # Private credentials/config
 _config.private.js
+
+# Removing Coverage Reports folder created.
+coverage
+.nyc_output
