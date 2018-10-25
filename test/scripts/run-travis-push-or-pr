@@ -8,12 +8,12 @@ if [ "$TRAVIS_BRANCH" == "master" ]; then
         npm run test:regression -- --browsers=edge
         echo "Testing IE"
         npm run test:regression -- --browsers=ie
-        echo "Testing Chrome"
-        npm run test:regression -- --browsers=chrome
-        echo "Testing Safari"
-        npm run test:regression -- --browsers=safari
-        echo "Testing Firefox"
-        npm run test:regression -- --browsers=ff
+        #echo "Testing Chrome"
+        #npm run test:regression -- --browsers=chrome
+        #echo "Testing Safari"
+        #npm run test:regression -- --browsers=safari
+        #echo "Testing Firefox"
+        #npm run test:regression -- --browsers=ff
     else
         npm run test:regression -- "$@"
     fi
