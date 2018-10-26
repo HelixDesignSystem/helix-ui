@@ -1,5 +1,8 @@
 import { HXElement } from './HXElement';
 import { getPosition } from '../utils/position';
+import debounce from 'lodash/debounce';
+
+const DEFAULT_POSITION = 'bottom-start';
 
 /**
  * Fires when the element is concealed.
@@ -33,20 +36,22 @@ export class HXMenuElement extends HXElement {
 
     $onCreate () {
         this._onDocumentClick = this._onDocumentClick.bind(this);
+        this._onDocumentScroll = this._onDocumentScroll.bind(this);
+        this._reposition = this._reposition.bind(this);
+
+        this._onWindowResize = debounce(this._reposition, 50);
     }
 
     $onConnect () {
         this.$upgradeProperty('open');
         this.$upgradeProperty('position');
         this.$upgradeProperty('relativeTo');
-        this.$defaultAttribute('position', 'bottom-start');
-        this.$defaultAttribute('role', 'menu');
-        this._initialPosition = this.position;
-        document.addEventListener('click', this._onDocumentClick);
-    }
 
-    $onDisconnect () {
-        document.removeEventListener('click', this._onDocumentClick);
+        this.$defaultAttribute('position', DEFAULT_POSITION);
+        this.$defaultAttribute('role', 'menu');
+
+        this.setAttribute('aria-hidden', !this.open);
+        this.setAttribute('aria-expanded', this.open);
     }
 
     static get $observedAttributes () {
@@ -55,84 +60,134 @@ export class HXMenuElement extends HXElement {
 
     $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'open') {
-            let isOpen = (newVal !== null);
-            this.setAttribute('aria-expanded', isOpen);
-            this.$emit(isOpen ? 'open' : 'close');
+            this._attrOpenChange(oldVal, newVal);
         }
     }
 
-    set position (value) {
-        if (value) {
-            this.setAttribute('position', value);
-        } else {
-            this.removeAttribute('position');
-        }
+    /**
+     * External element that controls menu visibility.
+     * This is commonly a `<hx-disclosure>`.
+     *
+     * @readonly
+     * @type {HTMLElement}
+     */
+    get controlElement () {
+        return this.getRootNode().querySelector(`[aria-controls="${this.id}"]`);
     }
 
-    get position () {
-        if (this.hasAttribute('position')) {
-            return this.getAttribute('position');
-        }
-        return undefined;
+    /**
+     * Determines if the menu is revealed.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get open () {
+        return this.hasAttribute('open');
     }
-
-    set relativeTo (value) {
-        this.setAttribute('relative-to', value);
-    }
-
-    get relativeTo () {
-        return this.getAttribute('relative-to');
-    }
-
-    get relativeElement () {
-        if (this.relativeTo) {
-            return this.getRootNode().getElementById(this.relativeTo);
-        } else {
-            return this.getRootNode().querySelector(`[aria-controls="${this.id}"]`);
-        }
-    }
-
     set open (value) {
         if (value) {
             this.setAttribute('open', '');
-            this._setPosition();
         } else {
             this.removeAttribute('open');
         }
     }
 
-    get open () {
-        return this.hasAttribute('open');
+    // TODO: Need to re-evaluate how we handle positioning when scrolling    
+    /**
+     * Where to position the open menu in relation to its reference element.
+     *
+     * @default 'bottom-start'
+     * @type {PositionString}
+     */
+    get position () {
+        return this.getAttribute('position') || DEFAULT_POSITION;
+    }
+    set position (value) {
+        this.setAttribute('position', value);
     }
 
-    _setPosition () {
-        let offset = getPosition({
-            element: this,
-            reference: this.relativeElement,
-            position: this.position,
-            margin: 2,
-        });
-        this.style.top = `${offset.y}px`;
-        this.style.left = `${offset.x}px`;
-    }
-
-    _isDescendant (el) {
-        if (el.closest(`hx-menu[id="${this.id}"]`)) {
-            return true;
+    /**
+     * Reference element used to calculate open menu position.
+     *
+     * @readonly
+     * @type {HTMLElement}
+     */
+    get relativeElement () {
+        if (this.relativeTo) {
+            return this.getRootNode().getElementById(this.relativeTo);
+        } else {
+            return this.controlElement;
         }
-        return false;
     }
 
-    _isDisclosure (el) {
-        if (el.closest(`hx-disclosure[aria-controls="${this.id}"]`)) {
-            return true;
+    /**
+     * ID of the element to position the menu.
+     *
+     * @type {String}
+     */
+    get relativeTo () {
+        return this.getAttribute('relative-to');
+    }
+    set relativeTo (value) {
+        this.setAttribute('relative-to', value);
+    }
+
+    /** @private */
+    _addOpenListeners () {
+        document.addEventListener('click', this._onDocumentClick);
+        document.addEventListener('scroll', this._onDocumentScroll);
+        window.addEventListener('resize', this._onWindowResize);
+    }
+
+    /** @private */
+    _attrOpenChange (oldVal, newVal) {
+        let isOpen = (newVal !== null);
+        this.setAttribute('aria-hidden', !isOpen);
+        this.setAttribute('aria-expanded', isOpen);
+        this.$emit(isOpen ? 'open' : 'close');
+
+        if (isOpen) {
+            this._addOpenListeners();
+            this._reposition();
+        } else {
+            this._removeOpenListeners();
         }
-        return false;
     }
 
-    _onDocumentClick (event) {
-        if (!this._isDescendant(event.target) && !this._isDisclosure(event.target)) {
+    /** @private */
+    _onDocumentClick (evt) {
+        let isDescendant = this.contains(evt.target);
+        let withinControl = this.controlElement.contains(evt.target);
+        let isBackground = (!isDescendant && !withinControl);
+
+        if (this.open && isBackground) {
             this.open = false;
+        }
+    }
+
+    /** @private */
+    _onDocumentScroll () {
+        this._reposition();
+    }
+
+    /** @private */
+    _removeOpenListeners () {
+        document.removeEventListener('click', this._onDocumentClick);
+        document.removeEventListener('scroll', this._onDocumentScroll);
+        window.removeEventListener('resize', this._onWindowResize);
+    }
+
+    /** @private */
+    _reposition () {
+        if (this.relativeElement) {
+            let { x, y } = getPosition({
+                element: this,
+                reference: this.relativeElement,
+                position: this.position,
+            });
+
+            this.style.top = `${y}px`;
+            this.style.left = `${x}px`;
         }
     }
 }
