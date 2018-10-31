@@ -1,4 +1,15 @@
 # HelixUI
+The HelixUI library provides front-end developers a set of reusable CSS classes and HTML Custom Elements that adhere to Helix design standards.
+
+Adopting the library will enable developers to build products with consistent
+markup, styles, and behavior across a variety of frameworks.
+
+[Homepage](https://rackerlabs.github.io/helix-ui/)
+
+## Documentation
+ * [Getting Started](https://rackerlabs.github.io/helix-ui/guides/getting-started/)
+
+ * [React Compatiblity](https://rackerlabs.github.io/helix-ui/guides/react-compatibility/)
 
 ## Developer Setup
 
