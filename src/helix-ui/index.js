@@ -41,33 +41,39 @@ export { default as Utils } from './utils';
  * - MDN: [HTMLTemplateElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement)
  */
 
-/*
- * Register element definitions with the Custom Element registry.
- */
-function _defineElements () {
+// Register element definitions with the Custom Element registry.
+function _defineElements (callback) {
     for (let element in Elements) {
         Elements[element].$define();
     }
+    callback();
 }
 
 /**
  * Initialize HelixUI when Web Components are ready.
+ * @param {Function} [callback] optional callback to execute after initialization
  */
-export function initialize () {
+export function initialize (callback) {
+    let fnCallback = callback || function (){};
+
+    if (typeof fnCallback !== 'function') {
+        throw new Error('initialize() called with a non-function argument');
+    }
+
     if (window.WebComponents) {
         // Polyfill detected
         if (window.WebComponents.ready) {
             // polyfill already finished loading, initialize immediately
-            _defineElements();
+            _defineElements(fnCallback);
         } else {
             // initialize when polyfill has finished loading
             window.addEventListener('WebComponentsReady', function () {
-                _defineElements();
+                _defineElements(fnCallback);
             });
         }
     } else {
         // No polyfills detected, initialize immediately
-        _defineElements();
+        _defineElements(fnCallback);
     }
 }
 
