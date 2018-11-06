@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 
-const { generateAll } = require('../lib/generate');
-const { copyDocs, copyDist } = require('../lib/copy');
+const { copyDocs, copyDist } = require('./_util/copy');
+const { generateAll } = require('./_generate');
 
 (function () {
     copyDist();

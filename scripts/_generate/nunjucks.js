@@ -1,7 +1,8 @@
 'use strict';
 
-const CONFIG = require('../_config');
 const nunjucks = require('nunjucks');
+
+const CONFIG = require('../_config');
 
 const njkSrcDir = `${CONFIG.root}/${CONFIG.docsDir}/_nunjucks`;
 
