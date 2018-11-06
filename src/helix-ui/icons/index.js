@@ -1,3 +1,5 @@
+// WARNING while this looks like valid es modules its dependent upon rollup
+// plugins to generate valid javascript
 import _account from './account.svg';
 import _angleBottom from './angle-bottom.svg';
 import _angleDown from './angle-down.svg';
