@@ -10,9 +10,7 @@ db.json
 public/
 .deploy*/
 dist/
-
-# Private credentials/config
-_config.private.js
+lib/
 
 # Removing Coverage Reports folder created.
 coverage

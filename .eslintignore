@@ -1,13 +1,10 @@
 # directories
 bin/*
 lib/*
+scripts/*
 node_modules/*
 public/*
-source/vendor/*
 test/*
-
-# files
-_config.*
 
 # spec files
 src/**/*.spec.js

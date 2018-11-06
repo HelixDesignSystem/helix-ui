@@ -1,14 +1,14 @@
 'use strict';
 
-const CONFIG = require('../_config');
 const JSON5 = require('json5');
-const PKG = require('../package.json');
-const _ = require('lodash');
 const fm = require('front-matter');
 const fs = require('fs');
 const globby = require('globby');
 const moment = require('moment');
 const path = require('path');
+
+const PKG = require('../../package.json');
+const CONFIG = require('../_config');
 
 // Fetch data from {CONFIG.docsDir}/_data
 function getData () {
@@ -63,7 +63,6 @@ function _getPageContext (relPath) {
 
 function forFile (relPath) {
     return {
-        _: _,
         site: CONFIG.site,
         data: getData(),
         page: _getPageContext(relPath),

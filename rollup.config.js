@@ -1,13 +1,14 @@
 import babel from 'rollup-plugin-babel';
 import html from 'rollup-plugin-html';
 import json from 'rollup-plugin-json';
-import pkg from './package.json';
 import { uglify } from 'rollup-plugin-uglify';
 import { minify } from 'uglify-es';
-import less from './lib/rollup-plugin-less';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import eslint from 'rollup-plugin-eslint';
+
+import pkg from './package.json';
+import less from './plugins/rollup-plugin-less';
 
 let htmlPlugin = html ({
     include: [
