@@ -65,27 +65,30 @@
   "scripts": {
     "apidocs": "jsdoc -c jsdoc.conf.json",
     "clean": "rm -fr node_modules",
-    "clean:public": "bin/cleanPublic.js",
-    "compile": "bin/compile.js",
+    "clean:public": "scripts/cleanPublic.js",
+    "compile": "scripts/compile.js",
     "test:coverage": "nyc --reporter=lcov mocha",
     "pregenerate": "yarn compile",
-    "generate": "bin/generate.js",
+    "generate": "scripts/generate.js",
     "preghpages": "yarn generate",
-    "ghpages": "bin/ghpages.js",
+    "ghpages": "scripts/publish.js",
     "install:clean": "rm -fr node_modules && yarn install",
     "lint": "eslint -c .eslintrc.prod.json src",
     "postversion": "git push origin --tags",
     "prepublishOnly": "yarn compile",
     "rollup": "rollup -c rollup.config.js",
     "preserve": "yarn clean:public && yarn generate",
-    "serve": "bin/serve.js",
+    "serve": "scripts/serve.js",
     "prestart": "yarn clean:public && yarn generate",
-    "start": "bin/start.js",
+    "start": "scripts/start.js",
     "test:unit": "mocha test/run_unit.js",
     "test": "cd test; yarn test"
   },
   "nyc": {
-    "exclude": ["src/**/*.spec.js", "test/run_unit.js"] 
+    "exclude": [
+      "src/**/*.spec.js",
+      "test/run_unit.js"
+    ]
   },
   "repository": "https://github.com/rackerlabs/helix-ui.git",
   "author": "Ryan Johnson <rhino.citguy@gmail.com>",

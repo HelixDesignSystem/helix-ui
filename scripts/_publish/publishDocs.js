@@ -4,11 +4,11 @@
  * Tasks in this file handle pushing assets to remote servers
  * for user consumption.
  */
-
-const CONFIG = require('../_config');
-const PKG = require('../package.json');
 const ghPages = require('gh-pages');
 const moment = require('moment');
+
+const PKG = require('../../package.json');
+const CONFIG = require('../_config');
 
 // Pushes public/ to github pages
 async function publishDocs () {

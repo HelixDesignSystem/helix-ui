@@ -4,13 +4,13 @@
  * Tasks in this file handle compiling distributable assets
  * from src/* to dist/*
  */
-
-const CONFIG = require('../_config');
 const CleanCSS = require('clean-css');
 const LESS = require('less');
 const path = require('path');
 const { ensureDir } = require('fs-extra');
-const { exec, readFile, writeFile } = require('./util');
+
+const CONFIG = require('../_config');
+const { exec, readFile, writeFile } = require('../_util');
 
 // See http://lesscss.org/usage/#programmatic-usage
 async function compileStyles () {

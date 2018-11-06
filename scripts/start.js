@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 'use strict';
 
-const CONFIG = require('../_config');
 const _ = require('lodash');
 const browserSync = require('browser-sync').create();
 const exec = require('child_process').exec;
-const { compileScripts, compileStyles } = require('../lib/compile');
-const { copyDist } = require('../lib/copy');
-const { generateAll, generateApis } = require('../lib/generate');
 
-const serverRoutes = {}
+const CONFIG = require('./_config');
+const { compileScripts, compileStyles } = require('./_compile');
+const { copyDist } = require('./_util/copy');
+const { generateAll, generateApis } = require('./_generate');
+
+const serverRoutes = {};
 serverRoutes[CONFIG.site.baseHref] = CONFIG.publicDir;
 
 browserSync.emitter.on('init', () => {
