@@ -23,6 +23,7 @@
     "babel-preset-env": "^1.6.1",
     "browser-sync": "2.x",
     "chai": "^4.2.0",
+    "chalk": "^2.4.1",
     "cheerio": "^1.0.0-rc.2",
     "clean-css": "^4.1.9",
     "eslint": "4.x",
@@ -32,6 +33,7 @@
     "front-matter": "^2.2.0",
     "fs-extra": "6.x",
     "gh-pages": "^1.0.0",
+    "glob": "^7.1.3",
     "globby": "8.x",
     "highlight.js": "^9.12.0",
     "jsdoc": "^3.5.5",
@@ -85,7 +87,10 @@
     "test": "cd test; yarn test"
   },
   "nyc": {
-    "exclude": ["src/**/*.spec.js", "test/run_unit.js"] 
+    "exclude": [
+      "src/**/*.spec.js",
+      "test/run_unit.js"
+    ]
   },
   "repository": "https://github.com/rackerlabs/helix-ui.git",
   "author": "Ryan Johnson <rhino.citguy@gmail.com>",
