@@ -1,6 +1,10 @@
-<div id="hxModal">
-  <button type="button" id="hxClose">
-    <hx-icon type="times"></hx-icon>
-  </button>
-  <slot></slot>
+<div id="hxBackdrop">
+  <div id="hxModal">
+    <button type="button" id="hxClose">
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <div id="hxContent">
+      <slot></slot>
+    </div>
+  </div>
 </div>

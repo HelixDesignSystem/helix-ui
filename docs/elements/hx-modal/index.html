@@ -3,9 +3,6 @@ title: <hx-modal>
 minver: 0.2.1
 also:
   components/modals: Modals
-  elements/hx-modalhead: <hx-modalhead>
-  elements/hx-modalbody: <hx-modalbody>
-  elements/hx-modalfoot: <hx-modalfoot>
 ---
 {% extends 'element.njk' %}
 {% block content %}
@@ -23,11 +20,19 @@ also:
       <div>
         <dt>Permitted Children</dt>
         <dd>
-          in this order:
+          In this order:
           <ol class="hxList">
-            <li>an optional <a href="elements/hx-modalhead">&lt;hx-modalhead&gt;</a> element</li>
-            <li>an <a href="elements/hx-modalbody">&lt;hx-modalbody&gt;</a> element</li>
-            <li>an optional <a href="elements/hx-modalfoot">&lt;hx-modalfoot&gt;</a> element</li>
+            <li>
+              <code>&lt;header&gt;</code>
+              <span class="hxSubBody">(optional)</span>
+            </li>
+            <li>
+              <code><a href="elements/hx-div">&lt;hx-div&gt;</a></code>
+            </li>
+            <li>
+              <code>&lt;footer&gt;</code>
+              <span class="hxSubBody">(optional)</span>
+            </li>
           </ol>
         </dd>
       </div>
