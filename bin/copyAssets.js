@@ -8,15 +8,13 @@
  *
  */
 const chalk = require("chalk");
-const fs = require("fs");
+const fs = require("fs-extra");
 const glob = require("glob");
 const UglifyJS = require("uglify-es");
 
 const argv = require("yargs")
     .usage("Usage: $0 -o [str]")
     .default("o", "public/assets").argv;
-
-console.log(argv.o);
 
 const DEST_FOLDER = argv.o;
 const WEBCOMPONENT_BUNDLES_FOLDER = `${DEST_FOLDER}/bundles`;
@@ -46,11 +44,9 @@ const STATIC_ASSETS = {
     }
 };
 
-// Ensure /public/assets and /public/assets/bundles folders exist prior to copying assets
+// Ensure dest folders exist prior to copying assets
 TARGET_FOLDERS.forEach(folder => {
-    if (!fs.existsSync(folder)) {
-        fs.mkdirSync(folder);
-    }
+    fs.ensureDirSync(folder);
 });
 
 const copyFile = (src, filename) => {
