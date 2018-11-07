@@ -1,6 +1,5 @@
 import { HXElement } from './HXElement';
-import shadowStyles from './HXErrorElement.less';
-import shadowMarkup from './HXErrorElement.html';
+import { HXErrorElement as shadow } from './templates.json';
 
 /**
  * Defines behavior for the `<hx-error>` element.
@@ -15,6 +14,6 @@ export class HXErrorElement extends HXElement {
     }
 
     static get template () {
-        return `<style>${shadowStyles}</style>${shadowMarkup}`;
+        return `<style>${shadow.styles}</style>${shadow.markup}`;
     }
 }

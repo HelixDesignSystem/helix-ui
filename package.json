@@ -8,11 +8,15 @@
     "ui toolkit",
     "v1"
   ],
-  "main": "dist/scripts/helix-ui.js",
-  "module": "dist/scripts/helix-ui.es.js",
+  "main": "lib/index.js",
+  "module": "lib/helix-ui.js",
   "files": [
-    "dist/"
+    "dist/",
+    "lib/"
   ],
+  "dependencies": {
+    "esm": "^3.0.84"
+  },
   "peerDependencies": {
     "@webcomponents/webcomponentsjs": "^1.2.4 || ^2.0.4"
   },
@@ -27,7 +31,6 @@
     "clean-css": "^4.1.9",
     "eslint": "4.x",
     "eslint-loader": "2.x",
-    "esm": "^3.0.84",
     "express": "^4.16.3",
     "front-matter": "^2.2.0",
     "fs-extra": "6.x",
@@ -64,6 +67,7 @@
   },
   "scripts": {
     "apidocs": "jsdoc -c jsdoc.conf.json",
+    "build": "scripts/build.js",
     "clean": "rm -fr node_modules",
     "clean:public": "scripts/cleanPublic.js",
     "compile": "scripts/compile.js",
@@ -82,6 +86,7 @@
     "prestart": "yarn clean:public && yarn generate",
     "start": "scripts/start.js",
     "test:unit": "mocha test/run_unit.js",
+    "pretest": "yarn lint",
     "test": "cd test; yarn test"
   },
   "nyc": {
