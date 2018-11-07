@@ -86,6 +86,9 @@
     "test:unit": "mocha test/run_unit.js",
     "test": "cd test; yarn test"
   },
+  "bin": {
+    "copy-helix-assets": "bin/copyAssets.js"
+  },
   "nyc": {
     "exclude": [
       "src/**/*.spec.js",
@@ -106,5 +109,8 @@
   "bugs": {
     "url": "https://github.com/rackerlabs/helix-ui/issues"
   },
-  "homepage": "https://github.com/rackerlabs/helix-ui#readme"
+  "homepage": "https://github.com/rackerlabs/helix-ui#readme",
+  "dependencies": {
+    "commander": "latest"
+  }
 }
