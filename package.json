@@ -64,6 +64,15 @@
     "webpack": "4.x",
     "whatwg-fetch": "^2.0.4"
   },
+  "dependencies": {
+    "yargs": "^12.0.2"
+  },
+  "bin": {
+    "copy-helix-assets": "bin/copyAssets.js"
+  },
+  "engines" : {
+    "node" : ">=8.0.0"
+  },
   "scripts": {
     "apidocs": "jsdoc -c jsdoc.conf.json",
     "clean": "rm -fr node_modules",
@@ -86,9 +95,6 @@
     "test:unit": "mocha test/run_unit.js",
     "test": "cd test; yarn test"
   },
-  "bin": {
-    "copy-helix-assets": "bin/copyAssets.js"
-  },
   "nyc": {
     "exclude": [
       "src/**/*.spec.js",
@@ -110,8 +116,5 @@
   "bugs": {
     "url": "https://github.com/rackerlabs/helix-ui/issues"
   },
-  "homepage": "https://github.com/rackerlabs/helix-ui#readme",
-  "dependencies": {
-    "yargs": "^12.0.2"
-  }
+  "homepage": "https://github.com/rackerlabs/helix-ui#readme"
 }
