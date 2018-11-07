@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 /*
- * @fileOverview Script that copies static assets such as Helix UI CSS and JS from
- *   node_modules to public/assets folder
+ * @fileOverview Script to copy Helix assets (CSS and JS and webcomponent polyfills) from
+ *   node_modules to destination folder (defaults to public/assets)
  *
  *   NOTE: This script require Node.js 8.5 or later
  *
@@ -14,6 +14,8 @@ const UglifyJS = require("uglify-es");
 
 const argv = require("yargs")
     .usage("Usage: $0 -o [str]")
+    .alias('o', 'output')
+    .describe('o', 'Destination folder')
     .default("o", "public/assets").argv;
 
 const DEST_FOLDER = argv.o;

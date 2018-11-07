@@ -71,7 +71,7 @@
     "copy-helix-assets": "bin/copyAssets.js"
   },
   "engines" : {
-    "node" : ">=8.0.0"
+    "node" : ">=8.5.0"
   },
   "scripts": {
     "apidocs": "jsdoc -c jsdoc.conf.json",
