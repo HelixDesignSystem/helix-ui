@@ -101,6 +101,7 @@
     "Andrew Yurisich",
     "Cathy Siller",
     "Evan Nabors",
+    "Kamal Gill",
     "Shaleen Agarwal",
     "Steven Salinas",
     "Ty Taylor"
@@ -111,6 +112,6 @@
   },
   "homepage": "https://github.com/rackerlabs/helix-ui#readme",
   "dependencies": {
-    "commander": "latest"
+    "yargs": "^12.0.2"
   }
 }

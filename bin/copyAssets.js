@@ -8,18 +8,17 @@
  *
  */
 const chalk = require("chalk");
-const program = require("commander");
 const fs = require("fs");
 const glob = require("glob");
 const UglifyJS = require("uglify-es");
 
-program.option(
-    "-o, --output",
-    "Destination folder (defaults to public/assets)"
-);
-program.parse(process.argv);
+const argv = require("yargs")
+    .usage("Usage: $0 -o [str]")
+    .default("o", "public/assets").argv;
 
-const DEST_FOLDER = program.output || "public/assets";
+console.log(argv.o);
+
+const DEST_FOLDER = argv.o;
 const WEBCOMPONENT_BUNDLES_FOLDER = `${DEST_FOLDER}/bundles`;
 const TARGET_FOLDERS = [DEST_FOLDER, WEBCOMPONENT_BUNDLES_FOLDER];
 
