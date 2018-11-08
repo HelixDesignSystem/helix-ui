@@ -1,15 +1,16 @@
-// absolute path for icon folder, use path.resolve
-const iconFolder = './src/helix-ui/icons/';
+#!/usr/bin/env node
+
 const fs = require('fs');
+const globby = require('globby');
+const path = require('path');
+const iconFolder = path.resolve(__dirname, '../src/helix-ui/icons/')
 
-fs.readdirSync(iconFolder).forEach(file => {
-  console.log(file);
-})
-
-// in the forEach
-// concat of absolute icon folder + filename
-fs.readFileSync(filename, function(err, data) {
-    if (err) {
-        throw err;
-    }
+const Icons = {};
+globby.sync('*.svg', { cwd: iconFolder }).forEach(file => {
+    let filename = path.join(iconFolder, file)
+    let data = fs.readFileSync(filename, { encoding: 'utf8' });
+    Icons[file] = data;
 });
+
+let jsonString = JSON.stringify(Icons, null, 2);
+fs.writeFileSync(path.join(iconFolder, 'icons.json'), jsonString);
