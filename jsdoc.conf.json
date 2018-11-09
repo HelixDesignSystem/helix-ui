@@ -5,7 +5,7 @@
   },
   "source": {
     "include": [
-      "src/helix-ui"
+      "src"
     ]
   },
   "markdown": {

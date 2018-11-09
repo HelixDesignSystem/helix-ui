@@ -7,13 +7,12 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import eslint from 'rollup-plugin-eslint';
 
-import pkg from './package.json';
 import less from './plugins/rollup-plugin-less';
 
 let htmlPlugin = html ({
     include: [
         '**/*.svg',
-        '**/*.html',
+        '**/*.html', // TODO: may no longer need
     ],
     htmlMinifierOptions: {
         collapseWhitespace: true,
@@ -28,7 +27,7 @@ let babelPlugin = babel({
 let lessPlugin = less({
     options: {
         paths: [
-            'src/helix-ui/styles',
+            'src/styles',
         ]
     }
 });
@@ -40,11 +39,11 @@ let eslintPlugin = eslint({
 });
 
 let browserConfig = {
-    input: 'src/browser-entry.js',
+    input: 'src/helix-ui.browser.js',
     output: {
         file: 'dist/scripts/helix-ui.browser.js',
         footer: 'HelixUI.initialize();', // initialize on load
-        format: 'umd',
+        format: 'iife',
         name: 'HelixUI',
         sourcemap: false,
     },
@@ -59,10 +58,10 @@ let browserConfig = {
 };
 
 export default [
-    // src/browser-entry.js --> dist/helix-ui.browser.js (UMD)
+    // src/helix-ui.browser.js --> dist/helix-ui.browser.js (UMD)
     browserConfig,
 
-    // src/browser-entry.js --> dist/helix-ui.browser.min.js (UMD)
+    // src/helix-ui.browser.js --> dist/helix-ui.browser.min.js (UMD)
     {
         ...browserConfig,
         output: {
@@ -73,29 +72,6 @@ export default [
             eslintPlugin,
             ...browserConfig.plugins,
             uglify({}, minify),
-        ],
-    },
-
-    // src/helix-ui/index.js --> dist/helix-ui.js (CJS)
-    // src/helix-ui/index.js --> dist/helix-ui.es.js (ESM)
-    {
-        input: 'src/helix-ui/index.js',
-        output: [
-            {
-                file: pkg.main,
-                format: 'cjs',
-            },
-            {
-                file: pkg.module,
-                format: 'es',
-            }
-        ],
-        plugins: [
-            json(),
-            resolve(),
-            commonjs(),
-            htmlPlugin,
-            lessPlugin,
         ],
     },
 ]
