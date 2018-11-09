@@ -3,12 +3,12 @@
 const fs = require('fs');
 const globby = require('globby');
 const path = require('path');
-const iconFolder = path.resolve(__dirname, '../src/helix-ui/icons/')
+const iconFolder = path.resolve(__dirname, '../src/helix-ui/icons/');
 
 const Icons = {};
 globby.sync('*.svg', { cwd: iconFolder }).forEach(file => {
-    let filename = path.join(iconFolder, file)
-    let data = fs.readFileSync(filename, { encoding: 'utf8' });
+    let absFilePath = path.join(iconFolder, file);
+    let data = fs.readFileSync(absFilePath, { encoding: 'utf8' });
     Icons[file] = data;
 });
 
