@@ -91,7 +91,7 @@ async function generateDownloads () {
             name: `helix-ui-${pkg.version}`,
         },
         {
-            src: `${CONFIG.sourceDir}/helix-ui/icons`,
+            src: `${CONFIG.sourceDir}/icons`,
             name: `helix-ui-${pkg.version}-icons`,
         }
     ];

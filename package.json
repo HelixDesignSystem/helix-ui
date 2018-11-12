@@ -70,6 +70,7 @@
     "build": "scripts/build.js",
     "clean": "rm -fr node_modules",
     "clean:public": "scripts/cleanPublic.js",
+    "precompile": "yarn build",
     "compile": "scripts/compile.js",
     "test:coverage": "nyc --reporter=lcov mocha",
     "pregenerate": "yarn compile",
