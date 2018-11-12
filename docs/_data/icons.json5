@@ -4,36 +4,36 @@
         minver: '0.1.10',
     },
     {
-        name: 'angle-bottom',
-        minver: '0.2.1',
+        name: 'angleBottom',
+        minver: '0.15.0',
     },
     {
-        name: 'angle-down',
-        minver: '0.1.0',
+        name: 'angleDown',
+        minver: '0.15.0',
     },
     {
-        name: 'angle-end',
-        minver: '0.2.1',
+        name: 'angleEnd',
+        minver: '0.15.0',
     },
     {
-        name: 'angle-left',
-        minver: '0.1.0',
+        name: 'angleLeft',
+        minver: '0.15.0',
     },
     {
-        name: 'angle-right',
-        minver: '0.1.0',
+        name: 'angleRight',
+        minver: '0.15.0',
     },
     {
-        name: 'angle-start',
-        minver: '0.2.1',
+        name: 'angleStart',
+        minver: '0.15.0',
     },
     {
-        name: 'angle-top',
-        minver: '0.2.1',
+        name: 'angleTop',
+        minver: '0.15.0',
     },
     {
-        name: 'angle-up',
-        minver: '0.1.0',
+        name: 'angleUp',
+        minver: '0.15.0',
     },
     {
         name: 'bell',
@@ -63,8 +63,12 @@
         minver: '0.1.0',
     },
     {
-        name: 'checkmark-circle',
-        minver: '0.1.10',
+        name: 'checkmarkCircle',
+        minver: '0.15.0',
+    },
+    {
+        name: 'clock',
+        minver: '0.15.0',
     },
     {
         name: 'cog',
@@ -96,26 +100,20 @@
         ],
     },
     {
-        name: 'exclamation-circle',
-        minver: '0.1.0',
+        name: 'exclamationCircle',
+        minver: '0.15.0',
     },
     {
-        name: 'exclamation-diamond',
-        minver: '0.2.1',
+        name: 'exclamationDiamond',
+        minver: '0.15.0',
     },
     {
-        name: 'exclamation-triangle',
-        minver: '0.1.0',
+        name: 'exclamationTriangle',
+        minver: '0.15.0',
     },
     {
-        name: 'export',
-        minver: '0.1.4',
-        deprecated: true,
-        replacement: 'upload',
-    },
-    {
-        name: 'external-link',
-        minver: '0.1.10',
+        name: 'externalLink',
+        minver: '0.15.0',
     },
     {
         name: 'file',
@@ -141,93 +139,76 @@
         minver: '0.7.0',
     },
     {
-        name: 'help-circle',
-        minver: '0.1.10',
+        name: 'helpCircle',
+        minver: '0.15.0',
         keywords: [
             'question',
         ],
     },
     {
-        name: 'info-circle',
-        minver: '0.1.0',
+        name: 'infoCircle',
+        minver: '0.15.0',
     },
     {
-        name: 'input-file',
-        minver: '0.1.0',
+        name: 'kbdArrowDown',
+        minver: '0.15.0',
     },
     {
-        name: 'input-time',
-        minver: '0.1.0',
-        keywords: [
-            'clock',
-        ],
+        name: 'kbdArrowLeft',
+        minver: '0.15.0',
     },
     {
-        name: 'input-url',
-        minver: '0.1.0',
-        deprecated: true,
-        replacement: 'globe',
+        name: 'kbdArrowRight',
+        minver: '0.15.0',
     },
     {
-        name: 'kbd-arrow-down',
-        minver: '0.1.0',
+        name: 'kbdArrowUp',
+        minver: '0.15.0',
     },
     {
-        name: 'kbd-arrow-left',
-        minver: '0.1.0',
+        name: 'kbdCapslock',
+        minver: '0.15.0',
     },
     {
-        name: 'kbd-arrow-right',
-        minver: '0.1.0',
-    },
-    {
-        name: 'kbd-arrow-up',
-        minver: '0.1.0',
-    },
-    {
-        name: 'kbd-capslock',
-        minver: '0.1.0',
-    },
-    {
-        name: 'kbd-command',
-        minver: '0.1.0',
+        name: 'kbdCommand',
+        minver: '0.15.0',
         keywords: [
             'cmd',
         ],
     },
     {
-        name: 'kbd-delete',
-        minver: '0.1.0',
+        name: 'kbdDelete',
+        minver: '0.15.0',
         keywords: [
             'backspace',
         ],
     },
     {
-        name: 'kbd-eject',
-        minver: '0.1.0',
+        name: 'kbdEject',
+        minver: '0.15.0',
     },
     {
-        name: 'kbd-option',
-        minver: '0.1.0',
+        name: 'kbdOption',
+        minver: '0.15.0',
     },
     {
-        name: 'kbd-return',
-        minver: '0.1.0',
+        name: 'kbdReturn',
+        minver: '0.15.0',
         keywords: [
             'enter',
         ],
     },
     {
-        name: 'kbd-shift',
-        minver: '0.1.0',
+        name: 'kbdShift',
+        minver: '0.15.0',
     },
     {
-        name: 'kbd-space',
-        minver: '0.1.0',
+        name: 'kbdSpace',
+        minver: '0.15.0',
     },
     {
-        name: 'kbd-tab',
-        minver: '0.1.0',
+        name: 'kbdTab',
+        minver: '0.15.0',
     },
     {
         name: 'key',
@@ -261,8 +242,8 @@
         ],
     },
     {
-        name: 'mime-archive',
-        minver: '0.7.0',
+        name: 'mimeArchive',
+        minver: '0.15.0',
         keywords: [
             '7z',
             'apk',
@@ -276,8 +257,8 @@
         ],
     },
     {
-        name: 'mime-audio',
-        minver: '0.7.0',
+        name: 'mimeAudio',
+        minver: '0.15.0',
         keywords: [
             'aif',
             'mid',
@@ -288,8 +269,8 @@
         ],
     },
     {
-        name: 'mime-code',
-        minver: '0.7.0',
+        name: 'mimeCode',
+        minver: '0.15.0',
         keywords: [
             'bat',
             'css',
@@ -303,8 +284,8 @@
         ],
     },
     {
-        name: 'mime-data',
-        minver: '0.7.0',
+        name: 'mimeData',
+        minver: '0.15.0',
         keywords: [
             'csv',
             'dat',
@@ -321,8 +302,8 @@
         ],
     },
     {
-        name: 'mime-image',
-        minver: '0.7.0',
+        name: 'mimeImage',
+        minver: '0.15.0',
         keywords: [
             'ai',
             'bmp',
@@ -339,8 +320,8 @@
         ],
     },
     {
-        name: 'mime-system',
-        minver: '0.7.0',
+        name: 'mimeSystem',
+        minver: '0.15.0',
         keywords: [
             'bak',
             'bin',
@@ -360,8 +341,8 @@
         ],
     },
     {
-        name: 'mime-text',
-        minver: '0.7.0',
+        name: 'mimeText',
+        minver: '0.15.0',
         keywords: [
             'doc',
             'docx',
@@ -372,8 +353,8 @@
         ],
     },
     {
-        name: 'mime-video',
-        minver: '0.7.0',
+        name: 'mimeVideo',
+        minver: '0.15.0',
         keywords: [
             '3gp',
             'avi',
@@ -396,8 +377,8 @@
         ],
     },
     {
-        name: 'minus-circle',
-        minver: '0.1.10',
+        name: 'minusCircle',
+        minver: '0.15.0',
         keywords: [
             'remove',
         ],
@@ -447,8 +428,8 @@
         ],
     },
     {
-        name: 'plus-or-minus',
-        minver: '0.1.0',
+        name: 'plusOrMinus',
+        minver: '0.15.0',
         keywords: [
             'math',
             'variance',
@@ -473,28 +454,28 @@
         minver: '0.1.10',
     },
     {
-        name: 'server-config',
-        minver: '0.7.0',
+        name: 'serverConfig',
+        minver: '0.15.0',
         keywords: [
             'change',
             'manage',
         ],
     },
     {
-        name: 'server-incident',
-        minver: '0.7.0',
+        name: 'serverIncident',
+        minver: '0.15.0',
     },
     {
         name: 'sort',
         minver: '0.1.4',
     },
     {
-        name: 'sort-down',
-        minver: '0.1.4',
+        name: 'sortDown',
+        minver: '0.15.0',
     },
     {
-        name: 'sort-up',
-        minver: '0.1.4',
+        name: 'sortUp',
+        minver: '0.15.0',
     },
     {
         name: 'support',
@@ -508,18 +489,6 @@
     {
         name: 'tag',
         minver: '0.1.10',
-    },
-    {
-        name: 'technical-change',
-        minver: '0.2.0',
-        deprecated: true,
-        replacement: 'server-config',
-    },
-    {
-        name: 'technical-incident',
-        minver: '0.2.0',
-        deprecated: true,
-        replacement: 'server-incident',
     },
     {
         name: 'ticketing',
@@ -536,8 +505,8 @@
         ],
     },
     {
-        name: 'times-circle',
-        minver: '0.1.0',
+        name: 'timesCircle',
+        minver: '0.15.0',
         keywords: [
             'close',
             'remove',
@@ -568,5 +537,300 @@
             'customer',
             'person',
         ],
+    },
+
+    /* DEPRECATED */
+    {
+        name: 'angle-bottom',
+        minver: '0.2.1',
+        deprecated: true,
+        replacement: 'angleBottom',
+    },
+    {
+        name: 'angle-down',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'angleDown',
+    },
+    {
+        name: 'angle-end',
+        minver: '0.2.1',
+        deprecated: true,
+        replacement: 'angleEnd',
+    },
+    {
+        name: 'angle-left',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'angleLeft',
+    },
+    {
+        name: 'angle-right',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'angleRight',
+    },
+    {
+        name: 'angle-start',
+        minver: '0.2.1',
+        deprecated: true,
+        replacement: 'angleStart',
+    },
+    {
+        name: 'angle-top',
+        minver: '0.2.1',
+        deprecated: true,
+        replacement: 'angleTop',
+    },
+    {
+        name: 'angle-up',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'angleUp',
+    },
+    {
+        name: 'checkmark-circle',
+        minver: '0.1.10',
+        deprecated: true,
+        replacement: 'checkmarkCircle',
+    },
+    {
+        name: 'exclamation-circle',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'exclamationCircle',
+    },
+    {
+        name: 'exclamation-diamond',
+        minver: '0.2.1',
+        deprecated: true,
+        replacement: 'exclamationDiamond',
+    },
+    {
+        name: 'exclamation-triangle',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'exclamationTriangle',
+    },
+    {
+        name: 'export',
+        minver: '0.1.4',
+        deprecated: true,
+        replacement: 'upload',
+    },
+    {
+        name: 'external-link',
+        minver: '0.1.10',
+        deprecated: true,
+        replacement: 'externalLink',
+    },
+    {
+        name: 'help-circle',
+        minver: '0.1.10',
+        deprecated: true,
+        replacement: 'helpCircle',
+    },
+    {
+        name: 'info-circle',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'infoCircle',
+    },
+    {
+        name: 'input-file',
+        minver: '0.1.0',
+        deprecated: true,
+    },
+    {
+        name: 'input-time',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'clock',
+    },
+    {
+        name: 'input-url',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'globe',
+    },
+    {
+        name: 'kbd-arrow-down',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'kbdArrowDown',
+    },
+    {
+        name: 'kbd-arrow-left',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'kbdArrowLeft',
+    },
+    {
+        name: 'kbd-arrow-right',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'kbdArrowRight',
+    },
+    {
+        name: 'kbd-arrow-up',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'kbdArrowUp',
+    },
+    {
+        name: 'kbd-capslock',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'kbdCapslock',
+    },
+    {
+        name: 'kbd-command',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'kbdCommand',
+    },
+    {
+        name: 'kbd-delete',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'kbdDelete',
+    },
+    {
+        name: 'kbd-eject',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'kbdEject',
+    },
+    {
+        name: 'kbd-option',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'kbdOption',
+    },
+    {
+        name: 'kbd-return',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'kbdReturn',
+    },
+    {
+        name: 'kbd-shift',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'kbdShift',
+    },
+    {
+        name: 'kbd-space',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'kbdSpace',
+    },
+    {
+        name: 'kbd-tab',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'kbdTab',
+    },
+    {
+        name: 'mime-archive',
+        minver: '0.7.0',
+        deprecated: true,
+        replacement: 'mimeArchive',
+    },
+    {
+        name: 'mime-audio',
+        minver: '0.7.0',
+        deprecated: true,
+        replacement: 'mimeAudio',
+    },
+    {
+        name: 'mime-code',
+        minver: '0.7.0',
+        deprecated: true,
+        replacement: 'mimeCode',
+    },
+    {
+        name: 'mime-data',
+        minver: '0.7.0',
+        deprecated: true,
+        replacement: 'mimeData',
+    },
+    {
+        name: 'mime-image',
+        minver: '0.7.0',
+        deprecated: true,
+        replacement: 'mimeImage',
+    },
+    {
+        name: 'mime-system',
+        minver: '0.7.0',
+        deprecated: true,
+        replacement: 'mimeSystem',
+    },
+    {
+        name: 'mime-text',
+        minver: '0.7.0',
+        deprecated: true,
+        replacement: 'mimeText',
+    },
+    {
+        name: 'mime-video',
+        minver: '0.7.0',
+        deprecated: true,
+        replacement: 'mimeVideo',
+    },
+    {
+        name: 'minus-circle',
+        minver: '0.1.10',
+        deprecated: true,
+        replacement: 'minusCircle',
+    },
+    {
+        name: 'plus-or-minus',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'plusOrMinus',
+    },
+    {
+        name: 'server-config',
+        minver: '0.7.0',
+        deprecated: true,
+        replacement: 'serverConfig',
+    },
+    {
+        name: 'server-incident',
+        minver: '0.7.0',
+        deprecated: true,
+        replacement: 'serverIncident',
+    },
+    {
+        name: 'sort-down',
+        minver: '0.1.4',
+        deprecated: true,
+        replacement: 'sortDown',
+    },
+    {
+        name: 'sort-up',
+        minver: '0.1.4',
+        deprecated: true,
+        replacement: 'sortUp',
+    },
+    {
+        name: 'technical-change',
+        minver: '0.2.0',
+        deprecated: true,
+        replacement: 'serverConfig',
+    },
+    {
+        name: 'technical-incident',
+        minver: '0.2.0',
+        deprecated: true,
+        replacement: 'serverIncident',
+    },
+    {
+        name: 'times-circle',
+        minver: '0.1.0',
+        deprecated: true,
+        replacement: 'timesCircle',
     },
 ]

@@ -15,3 +15,7 @@ lib/
 # Removing Coverage Reports folder created.
 coverage
 .nyc_output
+
+# FIXME: remove these when 'build' task is updated to generate lib/* assets
+src/icons/icons.json
+src/elements/templates.json

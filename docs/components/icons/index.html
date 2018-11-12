@@ -49,13 +49,13 @@ also:
       </header>
 
       <div class="demo">
-        <hx-file-icon 
+        <hx-file-icon
           v-if="ext !== ''"
           :extension="ext"
           :type="type"
         ></hx-file-icon>
-      
-        <hx-file-icon 
+
+        <hx-file-icon
           v-else
           :type="type"
         ></hx-file-icon>
@@ -113,7 +113,11 @@ also:
 
                   <!-- version/deprecation -->
                   <hx-error v-if="icon.deprecated" class="hxSubBody">
-                    Deprecated (use "{{icon.replacement}}")
+                    Deprecated
+                    <span v-if="icon.replacement">
+                      (use "{{icon.replacement}}")
+                    </span>
+                    <span v-else>(no replacement)</span>
                   </hx-error>
                   <span v-else>
                     <small v-if="icon.minver" class="hxSubdued">Added: v{{icon.minver}}</small>

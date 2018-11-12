@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const { buildTemplates } = require('./_build/templates');
+const { buildAll } = require('./_build');
 
 (async function () {
-    await buildTemplates();
+    await buildAll();
 })();

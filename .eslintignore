@@ -1,9 +1,9 @@
 # directories
-bin/*
+dist/*
 lib/*
-scripts/*
 node_modules/*
 public/*
+scripts/*
 test/*
 
 # spec files
