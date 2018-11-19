@@ -92,7 +92,7 @@ export class HXMenuElement extends HXElement {
         }
     }
 
-    // TODO: Need to re-evaluate how we handle positioning when scrolling    
+    // TODO: Need to re-evaluate how we handle positioning when scrolling
     /**
      * Where to position the open menu in relation to its reference element.
      *
