@@ -1,127 +1,292 @@
+// Positioning with Arrows (tooltitps, popovers, etc.)
+
 @import 'vars';
 
-@arrow-corner-spacing: 12px;
-@arrow-offset: -6px;
-@shadow-offset: -7px;
+// Distance from tip to nearest tooltip corner
+@arrow-offset: 1.25rem; // 20px
 
-.position-arrow {
-  background-color: @gray-0;
+// length of one side of the square arrow container
+// 13px chosen because the hypotenuse calculates closest to 16px (per spec)
+@arrow-short-side: 13px;
 
-  &::before,
-  &::after {
-    content: " ";
-    display: block;
-    height: 12px;
-    position: absolute;
-    transform: rotate(-45deg);
-    width: 12px;
+// Calculate long side (i.e., the hypotenuse of the arrow container)
+@arrow-long-side: sqrt(2 * pow(@arrow-short-side, 2)); // 18.385px
+
+// Calculate height of arrow from base to tip
+// floor(9.1925) => 9px
+@arrow-height: floor(@arrow-long-side / 2);
+
+// Calculate inward distance for positioning
+// subtract 1px due to imperfect rounding
+@arrow-margin: @arrow-height - 1;
+
+@border-color: @gray-300;
+@border-width: 1px;
+
+/* MIXINS */
+#Arrow {
+  .children(@rules) {
+    &::before,
+    &::after {
+      @rules();
+    }
   }
 
-  &::before {
-    background-color: @gray-300;
+  .shadow(@rules) {
+    &::before {
+      // Always add "border" shadow
+      // NOTE: Use "box-shadow+: ..." (note the +) to add additional shadows
+      box-shadow+: 0 0 0 1px @gray-300;
+
+      @rules();
+    }
+  }
+
+  .body(@rules) {
+    &::after {
+      @rules();
+    }
+  }
+
+  .rotate(@deg: 0deg; @from: center;) {
+    .children({
+      transform-origin: @from;
+      transform: rotate(@deg);
+    });
+  }
+}//#Arrow
+
+.has-arrow {
+  @right-shadow: 3px 3px 3px 0 @shadow-color;
+  @left-shadow: -3px 3px 3px 0 @shadow-color;
+  @border-shadow: 0 0 0 @border-width @border-color;
+
+  position: relative;
+
+  #Arrow.shadow({
     z-index: -1;
-  }
-}
+  });
 
-:host {
-  //'left-top', 'right-top', 'top'
-  &([position$='top']) .position-arrow {
-    &::before,
-    &::after {
-      bottom: @arrow-corner-spacing;
-    }
-  }
+  #Arrow.children({
+    content: '';
+    display: block;
+    height: @arrow-short-side;
+    position: absolute;
+    width: @arrow-short-side;
+  });
 
-  //'left-bottom', 'right-bottom', 'bottom'
-  &([position$='bottom']) .position-arrow {
-    &::before,
-    &::after {
-      top: @arrow-corner-spacing;
-    }
-  }
+  /*======================================== *\
+   * TOP POSITIONS
+  \*======================================== */
+  &[position^="top"] {
+    margin-bottom: @arrow-margin;
 
-  //'top-left', 'bottom-left', 'left'
-  &([position$='left']) .position-arrow {
-    &::before,
-    &::after {
-      right: @arrow-corner-spacing;
-    }
-  }
+    #Arrow.children({
+      bottom: -(@arrow-margin);
+    });
 
-  //'top-right', 'bottom-right', 'right'
-  &([position$='right']) .position-arrow {
-    &::before,
-    &::after {
-      left: @arrow-corner-spacing;
-    }
+    #Arrow.body({
+      background-image: linear-gradient(
+        to bottom left,
+        transparent 50%,
+        @gray-0 50%
+      );
+    });
   }
 
-  //'top-left', 'top-right', 'top'
-  &([position^='top']) .position-arrow {
-    &::before {
-      bottom: @shadow-offset;
-      box-shadow: -3px 3px 3px 0 @shadow-color;
-    }
-
-    &::after {
-      background-image: linear-gradient(-135deg, transparent 50%, @gray-0 50%);
-      bottom: @arrow-offset;
-    }
+  &[position="top"] {
+    #Arrow.children({
+      left: 50%; // offset, tip centered
+    });
+    #Arrow.shadow({
+      box-shadow+: @left-shadow;
+    });
+    #Arrow.rotate(-45deg, bottom left);
   }
 
-  //'bottom-left', 'bottom-right', 'bottom'
-  &([position^='bottom']) .position-arrow {
-    &::before {
-      top: @shadow-offset;
-    }
-
-    &::after {
-      background-image: linear-gradient(45deg, transparent 50%, @gray-0 50%);
-      top: @arrow-offset;
-    }
-  }
-
-  //'left-top', 'left-bottom', 'left'
-  &([position^='left']) .position-arrow {
-    &::before {
-      box-shadow: -3px 3px 3px 0 @shadow-color;
-      right: @shadow-offset;
-    }
-
-    &::after {
-      background-image: linear-gradient(135deg, transparent 50%, @gray-0 50%);
-      right: @arrow-offset;
-    }
-  }
-
-  //'right-top', 'right-bottom', 'right'
-  &([position^='right']) .position-arrow {
-    &::before {
-      box-shadow: -3px 3px 3px 0 @shadow-color;
-      left: @shadow-offset;
-    }
-
-    &::after {
-      background-image: linear-gradient(-45deg, transparent 50%, @gray-0 50%);
+  &[position="top-right"] {
+    #Arrow.children({
       left: @arrow-offset;
-    }
+    });
+    #Arrow.shadow({
+      box-shadow+: @left-shadow;
+    });
+    #Arrow.rotate(-45deg, bottom left);
   }
 
-  &([position='top']) .position-arrow,
-  &([position='bottom']) .position-arrow {
-    &::before,
-    &::after {
-      left: 50%;
-      transform: translateX(-50%) rotate(-45deg);
-    }
+  &[position="top-left"] {
+    #Arrow.children({
+      right: @arrow-offset;
+    });
+    #Arrow.body({
+      background-image: linear-gradient(
+        to bottom right,
+        transparent 50%,
+        @gray-0 50%
+      );
+    });
+    #Arrow.shadow({
+      box-shadow+: @right-shadow;
+    });
+    #Arrow.rotate(45deg, bottom right);
   }
 
-  &([position='left']) .position-arrow,
-  &([position='right']) .position-arrow {
-    &::before,
-    &::after {
-      bottom: 50%;
-      transform: translateY(50%) rotate(-45deg);
-    }
+  /*======================================== *\
+   * RIGHT POSITIONS
+  \*======================================== */
+  &[position^="right"] {
+    margin-left: @arrow-margin;
+
+    #Arrow.children({
+      left: -(@arrow-margin);
+    });
+
+    #Arrow.body({
+      background-image: linear-gradient(
+        to top left,
+        transparent 50%,
+        @gray-0 50%
+      );
+    });
+  }
+
+  &[position="right"] {
+    #Arrow.children({
+      top: 50%; // offset, tip centered
+    });
+    #Arrow.shadow({
+      box-shadow+: @left-shadow;
+    });
+    #Arrow.rotate(-45deg, top left);
+  }
+
+  &[position="right-bottom"] {
+    #Arrow.children({
+      top: @arrow-offset;
+    });
+    #Arrow.shadow({
+      box-shadow+: @left-shadow;
+    });
+    #Arrow.rotate(-45deg, top left);
+  }
+
+  &[position="right-top"] {
+    #Arrow.children({
+      bottom: @arrow-offset;
+    });
+    #Arrow.body({
+      background-image: linear-gradient(
+        to bottom left,
+        transparent 50%,
+        @gray-0 50%
+      );
+    });
+    #Arrow.shadow({
+      box-shadow+: @right-shadow;
+    });
+    #Arrow.rotate(45deg, bottom left);
+  }
+
+  /*======================================== *\
+   * BOTTOM POSITIONS
+  \*======================================== */
+  &[position^="bottom"] {
+    margin-top: @arrow-margin;
+
+    #Arrow.children({
+      top: -(@arrow-margin);
+    });
+
+    #Arrow.body({
+      background-image: linear-gradient(
+        to top left,
+        transparent 50%,
+        @gray-0 50%
+      );
+    });
+  }
+
+  &[position="bottom"] {
+    #Arrow.children({
+      left: 50%; // offset, tip centered
+    });
+    #Arrow.rotate(45deg, top left);
+  }
+
+  &[position="bottom-right"] {
+    #Arrow.children({
+      left: @arrow-offset;
+    });
+    #Arrow.rotate(45deg, top left);
+  }
+
+  &[position="bottom-left"] {
+    #Arrow.children({
+      right: @arrow-offset;
+    });
+    #Arrow.body({
+      background-image: linear-gradient(
+        to top right,
+        transparent 50%,
+        @gray-0 50%
+      );
+    });
+    #Arrow.rotate(-45deg, top right);
+  }
+
+  /*======================================== *\
+   * LEFT POSITIONS
+  \*======================================== */
+  &[position^="left"] {
+    margin-right: @arrow-margin;
+
+    #Arrow.children({
+      right: -(@arrow-margin);
+    });
+
+    #Arrow.body({
+      background-image: linear-gradient(
+        to top right,
+        transparent 50%,
+        @gray-0 50%
+      );
+    });
+  }
+
+  &[position="left"] {
+    #Arrow.children({
+      top: 50%; // offset, tip centered
+    });
+    #Arrow.shadow({
+      box-shadow+: @right-shadow;
+    });
+    #Arrow.rotate(45deg, top right);
+  }
+
+  &[position="left-bottom"] {
+    #Arrow.children({
+      top: @arrow-offset;
+    });
+    #Arrow.shadow({
+      box-shadow+: @right-shadow;
+    });
+    #Arrow.rotate(45deg, top right);
+  }
+
+  &[position="left-top"] {
+    #Arrow.children({
+      bottom: @arrow-offset;
+    });
+    #Arrow.body({
+      background-image: linear-gradient(
+        to bottom right,
+        transparent 50%,
+        @gray-0 50%
+      );
+    });
+    #Arrow.shadow({
+      box-shadow+: @left-shadow;
+    });
+    #Arrow.rotate(-45deg, bottom right);
   }
 }

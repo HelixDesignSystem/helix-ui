@@ -4,9 +4,6 @@ minver: 0.2.0
 also:
   components/buttons: Buttons
   components/popovers/test.html: Testing - Popovers
-  elements/hx-popover-body: <hx-popover-body>
-  elements/hx-popover-foot: <hx-popover-foot>
-  elements/hx-popover-head: <hx-popover-head>
   elements/hx-popover: <hx-popover>
 ---
 {% extends 'component.njk' %}
@@ -28,47 +25,158 @@ also:
       </header>
 
       <div>
-        <button data-popover="myPopover" class="hxBtn">Toggle</button>
+        <hx-disclosure aria-controls="demoPopover" class="hxBtn">
+          Toggle
+        </hx-disclosure>
 
-        <hx-popover id="myPopover"
+        <hx-popover
+          id="demoPopover"
           :position="position.value"
-          v-for="_position in positions"
-          v-if="_position.value === position.value">
-
-          <hx-popover-head>
+        >
+          <header>
             Popover Header
-          </hx-popover-head>
+          </header>
 
-          <hx-popover-body>
-            <p>This is my popover body</p>
-          </hx-popover-body>
+          <hx-div>
+            <p>This is my popover body.</p>
+          </hx-div>
 
-          <hx-popover-foot>
+          <footer>
             <button class="hxBtn hxPrimary">Submit</button>
             <button class="hxBtn">Cancel</button>
-          </hx-popover-foot>
+          </footer>
         </hx-popover>
       </div>
 
       <footer>
         {% code 'html' %}{% raw %}
-          <button data-popover="myPopover" class="hxBtn">Toggle</button>
-          <hx-popover id="myPopover" position="{{ position.value }}">
-            <hx-popover-head>
+          <hx-disclosure aria-controls="demoPopover" class="hxBtn">
+            Toggle
+          </hx-disclosure>
+          <hx-popover id="demoPopover" position="{{ position.value }}">
+            <header>
               Popover Header
-            </hx-popover-head>
+            </header>
 
-            <hx-popover-body>
-              <p>This is my popover body</p>
-            </hx-popover-body>
+            <hx-div>
+              <p>
+                This is my popover body.
+              </p>
+            </hx-div>
 
-            <hx-popover-foot>
+            <footer>
               <button class="hxBtn hxPrimary">Submit</button>
               <button class="hxBtn">Cancel</button>
-            </hx-popover-foot>
+            </footer>
           </hx-popover>{% endraw %}
         {% endcode %}
       </footer>
     </div>
+  </section>
+
+  <section>
+    <h2 id="scrolling-popover">Scrolling Popover</h2>
+    <div class="example" id="vue-scrollingPopoverDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <p>
+            <label for="selPosition">Position</label>
+            <select id="selPosition" v-model="position">
+              <option v-for="_position in positions" :value="_position">
+                {% raw %}{{ _position.label }}{% endraw %}
+              </option>
+            </select>
+          </p>
+        </form>
+      </header>
+
+      <div>
+        <hx-disclosure aria-controls="scrollingPopoverDemo" class="hxBtn">
+          Toggle
+        </hx-disclosure>
+
+        <hx-popover
+          id="scrollingPopoverDemo"
+          :position="position.value"
+        >
+          <header>
+            Popover Header
+          </header>
+
+          <hx-div scroll="vertical">
+            <p>
+              Try to decide the major scrum, maybe it will help join the VOC
+              impediments. A simple blocker always takes less time than a minor
+              one. As a user, I should be able to burn out the pirate size so
+              that I can satify the prioritized MVP models within the backlog
+              branches. If we detail above the methodologies, we can get the
+              monthly work in progress before the XP branch.
+            </p>
+
+            <p>
+              Given viable relationships, always refactoring the steady velocity
+              until the cross-functional user story will almost test the big
+              standard. If we close inside the stories, we can get the ranked
+              documentation around the MVP model. Try to adapt the monthly
+              stakeholder, maybe it will help satify the XP deadlines. It was
+              discovered that by rarely reviewing the VOC trends, we can refactor
+              the acceptance VOC model inside the rapid test. If it takes you too
+              long to review the certified WIP bug, then you are not opening
+              enough. Given standup items, successfully preventing the ranked
+              project management in front of the sustainable release planning
+              will typically practice the continuous ScrumMaster.
+            </p>
+
+            <p>
+              A simple spec always takes less time than a minimum one. We must
+              typically open the adaptive VOC pace! Given maintainable
+              requirements, quickly adjusting the multiple stakeholder off the
+              pair sequence will appropriately plan the single methodology. It was
+              discovered that by efficiently learning the MVP interactions, we can
+              spike the alpha WIP cycle time by the pirate project management.
+              Given predictable charts, elegantly practicing the standup sprint to
+              the rapid product owner will perfectly work the cross-functional
+              feedback.
+            </p>
+          </hx-div>
+
+          <footer>
+            <button class="hxBtn hxPrimary">Submit</button>
+            <button class="hxBtn">Cancel</button>
+          </footer>
+        </hx-popover>
+      </div>
+
+      <footer>
+        {% code 'html' %}{% raw %}
+          <hx-disclosure aria-controls="scrollingPopoverDemo" class="hxBtn">
+            Toggle
+          </hx-disclosure>
+
+          <hx-popover id="scrollingPopoverDemo" position="{{ position.value }}">
+            <header>
+              Popover Header
+            </header>
+
+            <hx-div scroll="vertical">
+              <p>...</p>
+              <p>...</p>
+              <p>...</p>
+            </hx-div>
+
+            <footer>
+              <button class="hxBtn hxPrimary">Submit</button>
+              <button class="hxBtn">Cancel</button>
+            </footer>
+          </hx-popover>{% endraw %}
+        {% endcode %}
+      </footer>
+    </div>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      Please refer to <a href="components/box/#scrolling-containers">
+      "Scrolling Containers"</a> documentation for more information about
+      scrolling popover content.
+    </p>
   </section>
 {% endblock %}

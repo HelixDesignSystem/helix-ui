@@ -1,44 +1,69 @@
-// TODO: see if there's a better way to reset all the things
+@import (reference) "components/typography";
+
 hx-popover {
-  background-color: @gray-0;
-  border: solid 1px @gray-300;
-  box-shadow: 0px 3px 3px 0 @shadow-color;
-  color: @gray-900;
-  display: none;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: normal;
-  left: 0;
-  letter-spacing: normal;
+  display: none; // hide by default
   max-width: 32rem; //~512px
   min-width: 20rem; //~320px
-  position: absolute;
-  text-align: left;
-  text-decoration: none;
-  text-shadow: none;
-  text-transform: none;
-  top: 0;
-  white-space: normal;
-  word-break: normal;
-  word-spacing: normal;
-  word-wrap: normal;
+  position: fixed;
   z-index: @popover-z-index;
 
-  &[open] {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-  }
-
-  & > &-head {
+  > hx-popover-head, // DEPRECATED: remove in v1.0.0
+  > header {
     order: 1;
   }
 
-  & > &-body {
+  > hx-popover-body, // DEPRECATED: remove in v1.0.0
+  > hx-div {
     order: 2;
   }
 
-  & > &-foot {
+  > hx-popover-foot, // DEPRECATED: remove in v1.0.0
+  > footer {
     order: 3;
+  }
+}
+
+#hxPopover.hx-popover, // ShadyDOM selector
+hx-popover {
+  color: @gray-900;
+  flex-direction: column;
+
+  &[open] {
+    display: flex;
+    margin: 0; // prevent margin from shifting position
+  }
+
+  > header {
+    &:extend(.hxHeading-4);
+    flex-shrink: 0;
+    padding: 1.25rem;
+  }
+
+  > hx-div:not([scroll]) {
+    overflow: hidden;
+  }
+
+  > hx-div {
+    flex-grow: 1;
+    max-height: 20rem; //~320px
+    padding: 0 1.25rem;
+
+    &:first-child {
+      padding-top: 1.25rem;
+    }
+
+    &:last-child {
+      padding-bottom: 1.25rem;
+    }
+  }
+
+  > footer {
+    flex-shrink: 0;
+    padding: 1.25rem;
+
+    // TODO: replace with .hxButtonSet
+    .hxBtn + .hxBtn {
+      margin-left: 1.25rem;
+    }
   }
 }

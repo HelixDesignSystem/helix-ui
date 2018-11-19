@@ -55,13 +55,48 @@ also:
 
 {% block properties %}
   <dl>
-    <dt>open</dt>
-    <dd>Opens the search assistance</dd>
+    <dt>controlElement (HTMLElement)</dt>
+    <dd>
+      <p>
+        <i>(read-only)</i>
+        Returns the HTML element with the <code>aria-controls</code>
+        attribute that matches the <code>&lt;hx-search&gt;</code> id.
+      </p>
+    </dd>
 
-    <dt>position {String="bottom-start"}</dt>
-    <dd>Positions the search assistance</dd>
+    <dt>open (Boolean [false])</dt>
+    <dd>
+      <p>
+        Manipulates the <code>open</code> attribute.  Opens the search
+        assistance.
+      </p>
+    </dd>
 
-    <dt>relativeTo (optional)</dt>
-    <dd>ID of an element that the search assistance is positioned relative to.</dd>
+    <dt>position (String [bottom-start])</dt>
+    <dd>
+      <p>
+        Manipulates the <code>position</code> attribute.
+      </p>
+    </dd>
+
+    <dt>relativeElement (HTMLElement)</dt>
+    <dd>
+      <p class="comfortable">
+        <i>(read-only)</i>
+        Returns the HTML element used as a reference to calculate the position of
+        the visible search assistance. If the
+        <code>relative-to</code> attribute is set, this will be the element with
+        ID matching the <code>relativeTo</code> property value. Otherwise, this
+        will be the <code>controlElement</code>.
+      </p>
+    </dd>
+
+    <dt>relativeTo (String)</dt>
+    <dd>
+      <p>
+        Manipulates the <code>relative-to</code> attribute. ID of an element
+        that the search assistance is positioned relative to.
+      </p>
+    </dd>
   </dl>
 {% endblock %}

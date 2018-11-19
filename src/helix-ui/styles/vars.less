@@ -59,6 +59,13 @@
 @red-900: #d32f2f;
 // Shadow
 @shadow-color: fade(@gray-1000, 16%);
+@backdrop-color: fade(@gray-1000, 60%);
+
+// ===== SHADOWS =====
+// Tooltips, Menus, Popovers, etc.
+@layering-shadow: 0 3px 3px 0 @shadow-color;
+// Modals, Toasts, etc.
+//@focusing-shadow: TBD
 
 // ===== FONTS =====
 @font-sans-serif: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -88,5 +95,4 @@
 @search-assistance-z-index: 100;
 @tooltip-z-index: 1000;
 @popover-z-index: 1100;
-@modal-backdrop-z-index: 1200;
-@modal-content-z-index: 1201;
+@modal-z-index: 1200;

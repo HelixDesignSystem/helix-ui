@@ -1,32 +1,22 @@
 hx-tooltip {
-    background-color: @gray-0;
-    border-color: @gray-300;
-    border-style: solid;
-    border-width: 1px;
-    box-shadow: 0px 3px 3px 0 @shadow-color;
-    color: initial;
-    display: none;
-    font-family: "Roboto", sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: normal;
-    left: 0;
-    letter-spacing: normal;
-    max-width: 25rem;
-    position: absolute;
-    text-align: left;
-    text-decoration: none;
-    text-shadow: none;
-    text-transform: none;
-    top: 0;
-    white-space: normal;
-    word-break: normal;
-    word-spacing: normal;
-    word-wrap: normal;
-    z-index: @tooltip-z-index;
+  color: @gray-900;
+  display: none;
+  font-size: 0.875rem;
+  max-width: 25rem; // 400px
+  position: fixed;
+  text-align: left;
+  z-index: @tooltip-z-index;
 
-    &[open] {
-        display: block;
-        margin: 0;
-    }
+  &[open] {
+    display: inline-block;
+    margin: 0;
+  }
+}
+
+#hxTooltip.hx-tooltip,
+hx-tooltip {
+  > header {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
 }

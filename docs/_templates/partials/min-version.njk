@@ -1,4 +1,4 @@
-<min-version data-tooltip="page-min-version">
+<min-version id="page-min-version">
   {% if page.minver %}
     v{{page.minver}}+
   {% else %}
@@ -6,7 +6,7 @@
   {% endif %}
 </min-version>
 
-<hx-tooltip id="page-min-version" position="right">
+<hx-tooltip for="page-min-version" position="right">
   {% if page.minver %}
     HelixUI v{{page.minver}} or later required
   {% else %}
