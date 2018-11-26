@@ -9,7 +9,7 @@ also:
 {% block content %}
   <section>
     <p>
-      The custom <code>&lt;hx-checkbox&gt;</code> element renders an interactive
+      The custom <code>{{page.title}}</code> element renders an interactive
       checkbox control for use within forms.
     </p>
 
@@ -57,13 +57,13 @@ also:
 
 {% block properties %}
   <dl>
-    <dt>checked (Boolean [false])</dt>
+    <dt>checked {Boolean [false]}</dt>
     <dd>Determines if checkbox is checked.</dd>
 
-    <dt>disabled (Boolean [false])</dt>
+    <dt>disabled {Boolean [false]}</dt>
     <dd>Determines if checkbox is disabled.</dd>
 
-    <dt>indeterminate (Boolean [false])</dt>
+    <dt>indeterminate {Boolean [false]}</dt>
     <dd>Determines if checkbox is indeterminate.</dd>
   </dl>
 {% endblock %}

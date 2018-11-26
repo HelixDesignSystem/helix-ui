@@ -9,7 +9,7 @@ also:
 {% block content %}
   <section>
     <p>
-      The custom <code>&lt;hx-menu&gt;</code> element defines a list of choices
+      The custom <code>{{page.title}}</code> element defines a list of choices
       to the user, such as a list of actions or functions.
     </p>
 
@@ -50,7 +50,7 @@ also:
     <dt>position</dt>
     <dd>Positions the menu</dd>
 
-    <dt>relative-to (optional)</dt>
+    <dt>relative-to <i>(optional)</i></dt>
     <dd>
       ID of an element that the menu is positioned relative to. If not
       set, the menu will be positioned relative to the element with the
@@ -60,34 +60,38 @@ also:
 {% endblock %}
 
 {% block properties %}
-  <dl>
-    <dt>controlElement (HTMLElement)</dt>
+  <dl class="memberList">
+    <dt>
+      controlElement (HTMLElement)
+      <hx-pill class="hxSubBody">read-only</hx-pill>
+    </dt>
     <dd>
       <p>
-        <i>(read-only)</i>
         Returns the HTML element with the <code>aria-controls</code>
         attribute that matches the <code>&lt;hx-menu&gt;</code> ID.
       </p>
     </dd>
 
-    <dt>open (Boolean [false])</dt>
+    <dt>open {Boolean [false]}</dt>
     <dd>
       <p>
         Manipulates the <code>open</code> attribute.
       </p>
     </dd>
 
-    <dt>position (String ["bottom-start"])</dt>
+    <dt>position {String ["bottom-start"]}</dt>
     <dd>
       <p>
         Manipulates the <code>position</code> attribute.
       </p>
     </dd>
 
-    <dt>relativeElement (HTMLElement)</dt>
+    <dt>
+      relativeElement (HTMLElement)
+      <hx-pill class="hxSubBody">read-only</hx-pill>
+    </dt>
     <dd>
-      <p class="comfortable">
-        <i>(read-only)</i>
+      <p>
         Returns the HTML element used as a reference to calculate the position of
         the open menu. If the <code>relative-to</code> attribute is set, this will
         be the element with ID matching the <code>relativeTo</code> property value.
@@ -95,7 +99,7 @@ also:
       </p>
     </dd>
 
-    <dt>relativeTo (String)</dt>
+    <dt>relativeTo {String}</dt>
     <dd>
       <p>
         Manipulates the <code>relative-to</code> attribute.

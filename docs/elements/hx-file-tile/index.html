@@ -114,11 +114,13 @@ also:
 
 {% block properties %}
   <dl>
-    <dt>extension {String}</dt>
+    <dt>
+      extension {String}
+      <hx-pill class="hxSubBody">read-only</hx-pill>
+    </dt>
     <dd>
       <p>
-        <i>(read-only)</i> Inferred file extension from the
-        </code>name</code> attribute.
+        Inferred file extension from the </code>name</code> attribute.
       </p>
     </dd>
 
@@ -143,11 +145,13 @@ also:
       </p>
     </dd>
 
-    <dt>loading {Boolean}</dt>
+    <dt>
+      loading {Boolean}
+      <hx-pill class="hxSubBody">read-only</hx-pill>
+    </dt>
     <dd>
       <p>
-        <i>(read-only)</i> Returns <code>true</code> when the
-        <code>progress</code> attribute is present.
+        Returns <code>true</code> when the <code>progress</code> attribute is present.
       </p>
     </dd>
 
@@ -172,10 +176,12 @@ also:
       </p>
     </dd>
 
-    <dt>truncated {Boolean}</dt>
+    <dt>
+      truncated {Boolean}
+      <hx-pill class="hxSubBody">read-only</hx-pill>
+    </dt>
     <dd>
       <p>
-        <i>(read-only)</i>
         Returns <code>true</code> if the length of the <code>name</code> attribute
         is long enough to truncate.
       </p>
