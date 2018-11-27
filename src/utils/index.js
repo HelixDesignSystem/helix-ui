@@ -86,3 +86,26 @@ export default {
     Position,
     onScroll,
 };
+
+/**
+ * @function
+ * @param {class} baseClass - Base class to apply mixin behavior
+ * @param {...function} mixins - mixin factory functions
+ * @returns {class}
+ *
+ * @example
+ * import { mix } from 'utils';
+ *
+ * // Define unique superclass with behaviors from one or more mixin classes
+ * class _ABElement extends mix(HXElement, MixinA, MixinB) {}
+ *
+ * // Extend unique superclass and define additional logic
+ * class HXNewElement extends _ABElement {
+ *   // logic unique to HXNewElement ...
+ * }
+ */
+export function mix (baseClass, ...mixins) {
+    return mixins.reduce((klass, mixin) => {
+        return mixin(klass);
+    }, baseClass);
+}

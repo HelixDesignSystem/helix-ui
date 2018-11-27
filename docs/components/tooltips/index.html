@@ -8,8 +8,19 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="show-on-hover">Show on Hover</h2>
-    <div class="example" id="vue-tooltipHoverDemo" v-cloak>
+    <p class="comfortable">
+      A tooltip is a component that provides descriptive information related to an element when
+      the element receives keyboard focus or the mouse hovers over it.
+    </p>
+    <p class="comfortable">
+      Tooltips should not contain interactive content. Consider using the
+      <a href="components/popovers">Popover</a> component for interactive content.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="basic-tooltip">Basic Tooltip</h2>
+    <div class="example" id="vue-tooltipDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
           <p>
@@ -25,72 +36,33 @@ also:
 
       <div>
         <p>
-          <hx-icon data-tooltip="tooltip1" type="help-circle"></hx-icon>
+          <hx-icon id="icon1" type="help-circle"></hx-icon>
         </p>
-        <hx-tooltip
-          :key="_position.id"
-          :position="_position.value"
-          id="tooltip1"
-          v-for="_position in positions"
-          v-if="_position.value === position.value"
-          v-text="_position.label">
+        <hx-tooltip for="icon1" :position="position.value">
+        {% raw %}
+          {{position.label}} Tooltip
+        {% endraw %}
         </hx-tooltip>
       </div>
 
       <footer>
         {% code 'html' %}{% raw %}
           <p>
-            <hx-icon data-tooltip="tooltip1" type="help-circle"></hx-icon>
+            <hx-icon "icon1" type="help-circle"></hx-icon>
           </p>
-          <hx-tooltip id="tooltip1" position="{{position.value}}">
-            {{position.label}}
+          <hx-tooltip for="icon1" position="{{position.value}}">
+            {{position.label}} Tooltip
           </hx-tooltip>{% endraw %}
         {% endcode %}
       </footer>
     </div>
-  </section>
-
-  <section>
-    <h2 id="show-on-click">Show on Click</h2>
-    <div class="example" id="vue-tooltipClickDemo" v-cloak>
-      <header>
-        <form class="beta-hxForm">
-          <p>
-            <label for="selPositionClick">Position</label>
-            <select id="selPositionClick" v-model="position">
-              <option v-for="_position in positions" :value="_position">
-                {% raw %}{{ _position.label }}{% endraw %}
-              </option>
-            </select>
-          </p>
-        </form>
-      </header>
-
-      <div>
-        <button class="hxBtn" data-tooltip="tooltip2">
-          Click to toggle tooltip
-        </button>
-        <hx-tooltip
-          :key="_position.id"
-          :position="_position.value"
-          id="tooltip2"
-          trigger-event="click"
-          v-for="_position in positions"
-          v-if="_position.value === position.value">
-          {% raw %}{{ position.label }}{% endraw %}
-        </hx-tooltip>
-      </div>
-
-      <footer>
-        {% code 'html' %}{% raw %}
-          <button class="hxBtn" data-tooltip="tooltip2">
-            Click to toggle tooltip
-          </button>
-          <hx-tooltip id="tooltip2" position="{{position.value}}" trigger-event="click">
-            {{position.label}}
-          </hx-tooltip>{% endraw %}
-        {% endcode %}
-      </footer>
-    </div>
+    <!--
+    <p class="hxSubdued hxSubBody comfortable">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      For accessibility, make sure that the control element can receive focus
+      (i.e., use a native focusable element or an element with a non-negative
+      <code>tabindex</code> attribute).
+    </p>
+    -->
   </section>
 {% endblock %}

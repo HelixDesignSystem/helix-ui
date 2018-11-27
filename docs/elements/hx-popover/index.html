@@ -31,7 +31,7 @@ also:
               <span class="hxSubBody">(optional)</span>
             </li>
             <li>
-              <code>&lt;hx-div&gt;</code>
+              <code><a href="elements/hx-div">&lt;hx-div&gt;</a></code>
             </li>
             <li>
               <code>&lt;footer&gt;</code>
@@ -45,8 +45,18 @@ also:
         <dd>
           Any of the following:
           <ul class="hxList">
-            <li><code>close</code></li>
-            <li><code>open</code></li>
+            <li>
+              <!-- Revealable Mixin -->
+              <code>close</code>
+            </li>
+            <li>
+              <!-- Revealable Mixin -->
+              <code>open</code>
+            </li>
+            <li>
+              <!-- Positionable Mixin -->
+              <code>reposition</code>
+            </li>
           </ul>
         </dd>
       </div>
@@ -55,65 +65,108 @@ also:
 {% endblock %}
 
 {% block attributes %}
-  <dl>
-    <dt>open</dt>
+  <dl class="memberList">
+    <!-- Revealable Mixin -->
+    <dt>open (optional)</dt>
     <dd>
-      When present, the popover will be revealed.
+      <p>
+        If present, the <code>{{page.title}}</code> will be shown on screen.
+      </p>
     </dd>
 
-    <dt>position</dt>
+    <!-- Positionable Mixin-->
+    <dt>position (optional)</dt>
     <dd>
-      Configures the position of the popover in relation to its
-      relative element.
+      <p>
+        Configures the position of the <code>{{page.title}}</code>
+        in relation to its <i>relative element</i>.
+      </p>
     </dd>
 
+    <!-- Positionable Mixin -->
     <dt>relative-to (optional)</dt>
     <dd>
-      ID of an element that the popover is positioned relative to.
+      <p>
+        The ID of an element in the same document as the
+        <code>{{page.title}}</code> element and the <i>control element</i>.
+        The first element with a matching ID is known as the
+        <i>relative element</i> for the <code>{{page.title}}</code>.
+      </p>
+      <p>
+        If omitted, the <i>control element</i> will act as the
+        <i>relative element</i>.
+      </p>
     </dd>
   </dl>
 {% endblock %}
 
 {% block properties %}
-  <dl>
-    <dt>controlElement (HTMLElement)</dt>
+  <dl class="memberList">
+    <!-- Positionable Mixin -->
+    <dt>
+      controlElement (HTMLElement)
+      <hx-pill class="hxSubBody">read-only</hx-pill>
+    </dt>
     <dd>
       <p>
-        <i>(read-only)</i>
-        Returns the HTML element with the <code>aria-controls</code>
-        attribute that matches the popover ID.
+        HTML element whose <code>aria-controls</code>
+        attribute matches the ID of the <code>{{page.title}}</code>.
+      </p>
+      <p>
+        The <i>control element</i> is used to attach various DOM event
+        listeners, in order to determine when to show or hide the
+        <code>{{page.title}}</code>.
       </p>
     </dd>
 
+    <!-- Revealable Mixin -->
     <dt>open (Boolean [false])</dt>
     <dd>
       <p>
-        Manipulates the <code>open</code> attribute.
+        Indicates whether or not the <code>{{page.title}}</code>
+        should be displayed.
       </p>
     </dd>
 
+    <!-- Positionable Mixin-->
     <dt>position (String [bottom-right])</dt>
     <dd>
       <p>
-        Manipulates the <code>position</code> attribute.
+        Configures the position of the <code>{{page.title}}</code>,
+        in relation to its <i>relative element</i>.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Reflects the <code>position</code> attribute.
       </p>
     </dd>
 
-    <dt>relativeElement (HTMLElement)</dt>
+    <!-- Positionable Mixin-->
+    <dt>
+      relativeElement (HTMLElement)
+      <hx-pill class="hxSubBody">read-only</hx-pill>
+    </dt>
     <dd>
-      <p class="comfortable">
-        <i>(read-only)</i>
-        Returns the HTML element used as a reference to calculate the position of
-        the popover. If the <code>relative-to</code> attribute is set, this will
-        be the element with ID matching the <code>relativeTo</code> property value.
-        Otherwise, this will be the <code>controlElement</code>.
+      <p>
+        HTML element used as a point of reference for calculating the fixed
+        position of the <code>{{page.title}}</code>.
+      </p>
+      <p>
+        If the <code>relative-to</code> attribute is defined, this will return
+        the first element whose ID matches the <code>relativeTo</code> property.
+        Otherwise, it will return the value of <code>controlElement</code>.
       </p>
     </dd>
 
+    <!-- Positionable Mixin-->
     <dt>relativeTo (String)</dt>
     <dd>
       <p>
-        Manipulates the <code>relative-to</code> attribute.
+        A string corresponding to the ID of the <i>relative element</i>.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Reflects the <code>relative-to</code> attribute.
       </p>
     </dd>
   </dl>
