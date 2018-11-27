@@ -1,0 +1,186 @@
+---
+title: Vertical Layout Preview
+---
+<!DOCTYPE html>
+<html lang="en"><!-- lang is necessary for screen reader compatibility -->
+{% include 'partials/head.njk' %}
+<body class="hxVertical" id="top">
+  <!-- Accessibility: This link should be the first item in tab order. -->
+  <a href="#content">Skip to main content</a>
+
+  <header id="head">
+    <!-- Eyebrow Goes Here -->
+  </header>
+
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
+        {% include 'partials/lorem-nav.njk' %}
+      </nav>
+
+      <main role="main" id="content" class="hxBox hxMd">
+        <header>
+          <nav class="hxBreadcrumb">
+            <a href="#">Rackspace Home</a>
+            <hx-icon class="delimiter" type="angle-right"></hx-icon>
+            <a href="components/layouts">User Management</a>
+            <hx-icon class="delimiter" type="angle-right"></hx-icon>
+            <a href="#">Users</a>
+            <hx-icon class="delimiter" type="angle-right"></hx-icon>
+            <a href="#">Create User</a>
+          </nav>
+
+          <h1>Create User</h1>
+        </header>
+<section class="hxSection">
+        <header class="hxSectionHeader">
+          <h3>Contact Information</h3>
+        </header>
+          <div class="hxField">
+            <div class="hxRow">
+              <div class="hxCol hxSpan-12">
+                <h4 class="hxFieldName">Full Name</h4>
+              </div>
+            </div>
+            <div class="hxRow">
+              <div class="hxFieldInput hxCol hxSpan-12-xs hxSpan-12-sm hxSpan-6-md hxSpan-5-lg hxSpan-4-xl">
+                <label class="hxFieldInputLabel">First Name</label>
+                <input type="text" class="hxTextCtrl" name="first name" id="first-name">
+                <div class="hxFieldInputHelpText">Enter your first name</div>
+                <div class="hxFieldInputErrorText"><hx-icon type="exclamation-circle"></hx-icon> Oops!  Something is wrong!</div>
+              </div>
+              <div class="hxFieldInput hxCol hxSpan-12-xs hxSpan-12-sm hxSpan-6-md hxSpan-5-lg hxSpan-4-xl">
+                <label class="hxFieldInputLabel">Last Name</label>
+                <input type="text" class="hxTextCtrl">
+                <div class="hxFieldInputHelpText">Enter your last name</div>
+                <div class="hxFieldInputErrorText"><hx-icon type="exclamation-circle"></hx-icon> Oops!  Something is wrong!</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hxField">
+            <div class="hxRow">
+              <div class="hxFieldInput hxCol hxSpan-12-xs hxSpan-12-sm hxSpan-6-md hxSpan-5-lg hxSpan-4-xl">
+                <label class="hxFieldInputLabel">Email Address</label>
+                <input type="text" class="hxTextCtrl">
+                <div class="hxFieldInputHelpText">EX: roger.dodger@testing-town.com</div>
+                <div class="hxFieldInputErrorText"><hx-icon type="exclamation-circle"></hx-icon> Oops!  Something is wrong!</div>
+              </div>
+            </div>
+          </div>
+          <div class="hxField">
+            <div class="hxRow">
+              <div class="hxFieldInput hxCol hxSpan-12-xs hxSpan-12-sm hxSpan-6-md hxSpan-5-lg hxSpan-4-xl">
+                <label class="hxFieldInputLabel">Phone Number</label>
+                <input type="text" class="hxTextCtrl">
+                <div class="hxFieldInputErrorText"><hx-icon type="exclamation-circle"></hx-icon> Oops!  Something is wrong!</div>
+              </div>
+            </div>
+          </div>
+          <div class="hxField">
+            <div class="hxFieldInput hxCol hxSpan-12-xs hxSpan-12-sm hxSpan-6-md hxSpan-5-lg hxSpan-4-xl">
+              <label class="hxFieldInputLabel">Contact Type</label>
+              <div class="hxFieldInput">
+                <input type="checkbox" id="contact-type-technical" />
+                <label class="hxFieldInputLabel" for="contact-type-technical">Technical</label>
+              </div>
+              <div class="hxFieldInput">
+                <input type="checkbox" id="contact-type-administrative" />
+                <label class="hxFieldInputLabel" for="contact-type-administrative">Administrative</label>
+              </div>
+            </div>
+          </div>
+</section>
+<section class="hxSection">
+<header class="hxSectionHeader">
+<h3>Authentication</h3>
+</header>
+        
+          <div class="hxField">
+            <div class="hxRow">
+              <div class="hxCol hxSpan-12">
+                <h4 class="hxFieldName">Password</h4>
+              </div>
+            </div>
+            <div class="hxRow">
+              <div class="hxFieldInput hxCol hxSpan-12-xs hxSpan-12-sm hxSpan-6-md hxSpan-5-lg hxSpan-4-xl">
+                <label class="hxFieldInputLabel">Enter Password</label>
+                <input type="text" class="hxTextCtrl">
+                <div class="hxFieldInputHelpText">At least 8 characters with 1 uppercase, 1 lowercase, and 1 number</div>
+                <div class="hxFieldInputErrorText"><hx-icon type="exclamation-circle"></hx-icon> Oops!  Something is wrong!</div>
+              </div>
+              <div class="hxFieldInput hxCol hxSpan-12-xs hxSpan-12-sm hxSpan-6-md hxSpan-5-lg hxSpan-4-xl">
+                <label class="hxFieldInputLabel">Confirm Password</label>
+                <input type="text" class="hxTextCtrl">
+                <div class="hxFieldInputErrorText"><hx-icon type="exclamation-circle"></hx-icon> Oops!  Something is wrong!</div>
+              </div>
+            </div>
+          </div>
+          <div class="hxField">
+            <div class="hxRow">
+              <div class="hxCol hxSpan-12">
+                <h4 class="hxFieldName">Security Question &amp; Answer</h4>
+                <p class="hxFieldDescription">The security question and answer are used to verify your identity with Rackspace support.</p>
+              </div>
+            </div>
+            <div class="hxRow">
+              <div class="hxFieldInput hxCol hxSpan-12-xs hxSpan-12-sm hxSpan-6-md hxSpan-5-lg hxSpan-4-xl">
+                <label class="hxFieldInputLabel">Question</label>
+                <select class="hxDropdownSelector">
+                  <option value="1">What is the location of a dream vacation?</option><option value="1017">What's your fathers name?</option><option value="2">Where is the best place to live?</option><option value="3">What is your favorite book?</option><option value="4">What is your favorite color?</option><option value="5">Who let the dogs out?</option><option value="6">What is your pass phrase?</option>
+                </select>
+                <div class="hxFieldInputErrorText"><hx-icon type="exclamation-circle"></hx-icon> Oops!  Something is wrong!</div>
+              </div>
+              <div class="hxFieldInput hxCol hxSpan-12-xs hxSpan-12-sm hxSpan-6-md hxSpan-5-lg hxSpan-4-xl">
+                <label class="hxFieldInputLabel">Answer</label>
+                <input type="text" class="hxTextCtrl">
+                <div class="hxFieldInputErrorText"><hx-icon type="exclamation-circle"></hx-icon> Oops!  Something is wrong!</div>
+              </div>
+            </div>
+          </div>
+</section>
+
+
+    <div class="hxSection">
+        <button class="hxBtn hxPrimary">Create User</button>
+        <button class="hxBtn hxTertiary">Cancel</button>
+    </div>
+
+  </main>
+
+  <aside class="hxSiderail hxBox hxMd">
+    <h4>Managing Your Server</h4>
+    <h5>Log into your server now</h5>
+    <p>For Linux, use the command below to log in via SSH. Open a terminal application and run:</p>
+    <pre><code>ssh root@12.345.678.901</code></pre>
+    <a href="">More Remote Login Commands <hx-icon type="external-link"></a>
+    <hr>
+    <h5>Help me with&hellip;</h5>
+    <ul>
+      <li><a href="">Configuring Basic Security</a></li>
+      <li><a href="">Rebuilding My Server</a></li>
+      <li><a href="">Creating a Monitoring Check</a></li>
+      <li><a href="">Resizing My Server</a></li>
+      <li><a href="">Generate a CSR</a></li>
+    </ul>
+    <a href="">Learn more about Cloud Servers <hx-icon type="external-link"></a>
+    <hr>
+    <h5>What's Next?</h5>
+    <ul>
+      <li><a href="">Configuring and Using DNS</a></li>
+      <li><a href="">Load Balancing My Servers</a></li>
+      <li><a href="">Configuring Outbound Email</a></li>
+      <li><a href="">Increase performance with CDN</a></li>
+    </ul>
+    <a href="">See our how-to articles <hx-icon type="external-link"></a>
+  </aside>
+</div>
+</div>
+
+<footer id="foot" class="hxRow hxGutterless">
+  {% include 'partials/footer_nav.njk' %}
+</footer>
+
+{% include 'partials/after_footer.njk' %}
+</body>
+</html>
