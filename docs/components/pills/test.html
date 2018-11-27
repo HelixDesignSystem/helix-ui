@@ -1,0 +1,57 @@
+---
+title: Testing - Pills
+---
+{% extends 'test.njk' %}
+{% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/pills">Pills</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  <section>
+    <h2>Outside Tables</h2>
+    <p>
+      <hx-pill>Persistent</hx-pill>
+      <hx-pill dismissable>Dismissible</hx-pill>
+    </p>
+  </section>
+
+  <section>
+    <h2>Inside Tables</h2>
+    <table class="hxTable">
+      <tbody>
+        <tr>
+          <td>
+            <hx-pill>Persistent</hx-pill>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <hx-pill dismissable>Dismissable</hx-pill>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Inside Tables (Condensed)</h2>
+    <table class="hxTable hxTable--condensed">
+      <tbody>
+        <tr>
+          <td>
+            <hx-pill>Persistent</hx-pill>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <hx-pill dismissable>Dismissable</hx-pill>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+{% endblock %}
