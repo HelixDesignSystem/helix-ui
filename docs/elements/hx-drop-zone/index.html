@@ -42,22 +42,25 @@ also:
 {% endblock %}
 
 {% block attributes %}
-  <dt>
-    drag {String}
-    <hx-pill class="hxSubBody">read-only</hx-pill>
-  </dt>
+  <dl>
+    <dt>
+      drag {String}
+      <hx-pill class="hxSubBody">read-only</hx-pill>
+    </dt>
     <dd>
       <p>
         Its value is automatically set by the element itself and mainly used for CSS styling purposes.
       </p>
     </dd>
+  </dl>
 {% endblock %}
 
 {% block properties %}
-  <dt>
-    drag {String}
-    <hx-pill class="hxSubBody">read-only</hx-pill>
-  </dt>
+  <dl>
+    <dt>
+      drag {String}
+      <hx-pill class="hxSubBody">read-only</hx-pill>
+    </dt>
     <dd>
       <p>
         A value of "away" means a file drag is detected on the document,
@@ -68,4 +71,5 @@ also:
         over the drop zone.
       </p>
     </dd>
+  </dl>
 {% endblock %}
