@@ -74,7 +74,6 @@ also:
   <dl>
     <dt>current-panel {Number} <i>(optional)</i></dt>
     <dd>
-      <i>(optional)</i>
       Zero-based index of the panel you wish to open. For example, a value
       of "0" will open the first panel, "1" will open the second, etc.).
       If omitted, any number of panels can be opened at once.
@@ -89,9 +88,11 @@ also:
       Manipulates the <code>current-panel</code> attribute
     </dd>
 
-    <dt>panels {Array&lt;Element&gt;}</dt>
+    <dt>
+      panels {Array&lt;Element&gt;}
+      <hx-pill class="hxSubBody">read-only</hx-pill>
+    </dt>
     <dd>
-      <i>(read-only)</i>
       Returns an array of live <code>&lt;hx-accordion-panel&gt;</code> elements.
     </dd>
   </dl>
