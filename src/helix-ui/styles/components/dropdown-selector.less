@@ -1,0 +1,39 @@
+@import (reference) "mixins";
+
+.hxDropdownSelector {
+  #Mix.placeholder();
+
+  background-color: @gray-0;
+  border-radius: 2px;
+  border: 1px solid @gray-500;
+  color: @gray-900;
+  display: block;
+  font-size: 1rem; // 16px
+  height: 2rem;
+  padding: 0 0.5rem;
+  width: 100%;
+
+  &:focus {
+    border-color: @cyan-700;
+    box-shadow: @focus-glow;
+    outline: 0;
+
+    &[invalid] {
+      box-shadow: @focus-glow-invalid;
+    }
+  }
+
+  &[invalid] {
+    border: 2px solid @red-900;
+  }
+
+  &[disabled] {
+    #Mix.disabledPlaceholder();
+    background-color: @gray-50;
+    border-color: @gray-300;
+    border-width: 1px;
+    color: @gray-400;
+    cursor: not-allowed;
+    resize: none;
+  }
+}
