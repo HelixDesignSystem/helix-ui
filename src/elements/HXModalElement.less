@@ -1,30 +1,54 @@
 @import "./HXElement";
+@import (reference) "components/buttons";
 
-#hxModal {
-  background-color: @gray-0;
-  box-shadow: 0px 7px 9px 0 fade(@gray-1000, 30%);
-  display: flex;
-  flex-direction: column;
-  left: 50%;
-  max-width: 40rem; //640px (NOT in spec)
-  min-height: 12.5rem; // 200px (per spec)
-  min-width: 25rem; // 400px (per spec)
-  padding: 1.25rem;
-  position: fixed;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: @modal-content-z-index;
+:host {
+  display: none;
+  z-index: @modal-z-index;
+
+  #hxBackdrop {
+    align-items: center;
+    background-color: @backdrop-color;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding: 1.25rem;
+    width: 100%;
+  }
+
+  #hxModal {
+    background-color: @gray-0;
+    box-shadow: 0px 7px 9px 0 fade(@gray-1000, 30%);
+    display: flex;
+    max-width: 40rem; //640px (NOT in spec)
+    min-height: 3.5rem;
+    min-width: 25rem; // 400px (per spec)
+    position: relative;
+    width: 50%;
+  }
+
+  @supports (--modern: true) {
+    #hxModal {
+      min-height: 12.5rem; // true to spec
+    }
+  }
+
+  #hxContent {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
 
   #hxClose {
-    background-color: transparent;
-    border: none;
+    #Button.reset();
     color: @gray-700;
-    cursor: pointer;
     height: 1rem;
-    line-height: 1;
-    padding: 0;
     position: absolute;
     right: 1.25rem;
     top: 1.25rem;
   }
+}
+
+:host([open]) {
+  display: block;
 }

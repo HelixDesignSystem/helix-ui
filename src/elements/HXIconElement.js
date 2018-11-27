@@ -22,7 +22,6 @@ export class HXIconElement extends HXElement {
 
     $onConnect () {
         this.$upgradeProperty('type');
-        this.$defaultAttribute('aria-hidden', true);
     }
 
     static get $observedAttributes () {

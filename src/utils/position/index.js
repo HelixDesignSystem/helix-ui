@@ -7,7 +7,7 @@ import Offset, { offsetFunctionMap } from './offset';
  * @typedef {Object} PositionConfig
  * @prop {Element} element - element to position
  * @prop {Element} reference - reference element used to calculate position of the offset element
- * @prop {PositionString} [position=center] - position of offsetElement in relation to referenceElement
+ * @prop {String} [position=center] - position of offsetElement in relation to referenceElement
  * @prop {Integer} [margin=0] - distance in pixels between offset element and reference element
  * @prop {Integer} [offset=0] - offset in pixels towards the center axis
  */
@@ -16,46 +16,9 @@ import Offset, { offsetFunctionMap } from './offset';
  * @typedef {Object} Position
  * @description
  * Position metadata used to update visual state of a positioned element.
- * @prop {PositionString} position - calculated position based on collision detection logic
+ * @prop {String} position - calculated position based on collision detection logic
  * @prop {Integer} x - x coordinate in relation to the viewport
  * @prop {Integer} y - y coordinate in relation to the viewport
- */
-
-/**
- * @typedef {String} PositionString
- * @description
- * Valid values:
- *
- *   - `bottom-end`
- *   - `bottom-left`
- *   - `bottom-right`
- *   - `bottom-start`
- *   - `bottom`
- *   - `center`
- *   - `left-bottom`
- *   - `left-end`
- *   - `left-start`
- *   - `left-top`
- *   - `left`
- *   - `right-bottom`
- *   - `right-end`
- *   - `right-start`
- *   - `right-top`
- *   - `right`
- *   - `top-end`
- *   - `top-left`
- *   - `top-right`
- *   - `top-start`
- *   - `top`
- */
-
-/**
- * @typedef {Object} PositionRect
- * @description Calculated DOMRect-like object
- * @prop {Integer} bottom
- * @prop {Integer} left
- * @prop {Integer} right
- * @prop {Integer} top
  */
 
 /**
@@ -73,26 +36,13 @@ import Offset, { offsetFunctionMap } from './offset';
  * @prop {Boolean} vertical - true if top or bottom edge is outside of viewport
  */
 
-/**
- * Default position configuration
- */
-export const DEFAULT_CONFIG = {
+const DEFAULT_CONFIG = {
     margin: 0,
     offset: 0,
     position: 'center',
 };
 
-/**
- * @name VerticalOpposites
- * @type {Object}
- * @description Position value map of vertical opposites.
- *
- * - `top` &rarr; `bottom`
- * - `right-start` &rarr; `right-end`
- * - `left-bottom` &rarr; `left-top`
- * - etc.
- */
-export const VerticalOpposites = {
+const VerticalOpposites = {
     'top': 'bottom',
     'top-right': 'bottom-right',
     'top-left': 'bottom-left',
@@ -115,17 +65,7 @@ export const VerticalOpposites = {
     'left-end': 'left-start',
 };
 
-/**
- * @name HorizontalOpposites
- * @type {Object}
- * @description Position value map of horizontal opposites.
- *
- * - `left` &rarr; `right`
- * - `top-left` &rarr; `top-right`
- * - `bottom-start` &rarr; `bottom-end`
- * - etc.
- */
-export const HorizontalOpposites = {
+const HorizontalOpposites = {
     'top': 'top',
     'top-right': 'top-left',
     'top-left': 'top-right',
@@ -155,7 +95,8 @@ export const HorizontalOpposites = {
  * @param {HTMLElement} element
  * @param {Coordinate} coord - { x, y } coordinate
  *
- * @returns {PositionRect}
+ * @returns {Object} Calculated, DOMRect-like object
+ * with `bottom`, `left`, `right`, and `top` properties.
  */
 function _getRectAtCoords (element, coord) {
     let { x, y } = coord;
@@ -236,12 +177,13 @@ function _getCoords (config) {
 /**
  * Determine if any side of an element is obscured by the viewport.
  *
- * @param {HTMLElement} element - the element to check against the viewport
+ * @param {PositionCOnfig} config - position configuration
  * @param {Object} coords - (x,y) coordinates
  *
  * @returns {ViewportCollisions}
  */
-function _getViewportCollisions (element, coords) {
+function _getViewportCollisions (config, coords) {
+    let { element } = config;
     let rect = _getRectAtCoords(element, coords);
 
     let bottom = rect.bottom > window.innerHeight;
@@ -254,11 +196,11 @@ function _getViewportCollisions (element, coords) {
 
     return {
         anywhere,
-        bottom, 
+        bottom,
         horizontally,
-        left, 
+        left,
         right,
-        top, 
+        top,
         vertically,
     };
 }
@@ -267,12 +209,14 @@ function _getViewportCollisions (element, coords) {
  * Modify the position of an element so that it appears toward
  * the center of the viewport.
  *
- * @param {String} position - the current position
+ * @param {PositionConfig} config - position configuration
  * @param {ViewportCollisions} isOffscreen - offscreen metadata
  *
  * @returns {String} corrected position
  */
-function _repositionTowardCenter (position, isOffscreen) {
+function _repositionTowardCenter (config, isOffscreen) {
+    let { position } = config;
+
     if (isOffscreen.vertically) {
         position = VerticalOpposites[position];
     }
@@ -303,25 +247,27 @@ export function getPosition (config) {
         throw 'The "reference" configuration property must be defined.';
     }
 
-    // calculate initial coords
+    let { position } = _config;
     let coords = _getCoords(_config);
+    let isOffscreen = _getViewportCollisions(_config, coords);
 
-    let isOffscreen = _getViewportCollisions(_config.element, coords);
     if (isOffscreen.anywhere) {
-        // reposition toward center
-        _config.position = _repositionTowardCenter(config.position, isOffscreen);
+        let newConfig = Object.assign({}, _config);
+
+        newConfig.position = _repositionTowardCenter(newConfig, isOffscreen);
+
         // recalculate coords
-        let newCoords = _getCoords(_config);
+        let newCoords = _getCoords(newConfig);
 
         // double check collisions
-        isOffscreen = _getViewportCollisions(_config.element, coords);
+        isOffscreen = _getViewportCollisions(newConfig, newCoords);
         if (!isOffscreen.anywhere) {
             coords = newCoords;
+            position = newConfig.position;
         }
     }
 
     let { x, y } = coords;
-    let { position } = _config;
 
     return { position, x, y };
 }
@@ -339,7 +285,7 @@ export function getPositionWithArrow (config) {
     _config.offset = 20;
 
     /*
-     * Remove offset if position is "top", "bottom", "left", or "right", 
+     * Remove offset if position is "top", "bottom", "left", or "right",
      * so that the point of the arrow always aligns to the center of
      * the reference element.
      */

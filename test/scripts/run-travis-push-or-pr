@@ -1,30 +1,31 @@
 #!/usr/bin/env bash
 set -e
 
-if [ "$TRAVIS_BRANCH" == "master" ]; then
-    # this is a "pr" job for travis-ci, run the full saucelabs suite
-    if [ "$#" -eq "0" ]; then
-        echo "Testing Edge"
-        npm run test:regression -- --browsers=edge
-        echo "Testing IE"
-        npm run test:regression -- --browsers=ie
-        #echo "Testing Chrome"
-        #npm run test:regression -- --browsers=chrome
-        #echo "Testing Safari"
-        #npm run test:regression -- --browsers=safari
-        #echo "Testing Firefox"
-        #npm run test:regression -- --browsers=ff
-    else
-        npm run test:regression -- "$@"
-    fi
-else
-    # this is a "push" job for travis-ci, keep it short and sweet
-    cd ..
-    # npm run lint
-    npm run apidocs
-    npm run generate
-    npm run rollup
-    cd -
-    npm run build
-    npm run lint
-fi
+# COMMON TESTING
+cd ..
+# npm run lint
+npm run apidocs
+npm run generate
+npm run rollup
+cd -
+npm run build
+npm run lint
+
+# IF PULL REQUEST
+#if [ "$TRAVIS_BRANCH" == "master" ]; then
+#    # this is a "pr" job for travis-ci, run the full saucelabs suite
+#    if [ "$#" -eq "0" ]; then
+#        echo "Testing Edge"
+#        npm run test:regression -- --browsers=edge
+#        echo "Testing IE"
+#        npm run test:regression -- --browsers=ie
+#        #echo "Testing Chrome"
+#        #npm run test:regression -- --browsers=chrome
+#        #echo "Testing Safari"
+#        #npm run test:regression -- --browsers=safari
+#        #echo "Testing Firefox"
+#        #npm run test:regression -- --browsers=ff
+#    else
+#        npm run test:regression -- "$@"
+#    fi
+#fi

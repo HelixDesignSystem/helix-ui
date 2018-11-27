@@ -116,7 +116,7 @@ export class HXElement extends HTMLElement {
 
     // Called when an instance of the element is attached to the DOM.
     connectedCallback () {
-        this._$tabIndex = this.getAttribute('tabindex') || 0;
+        this._$tabIndex = this.getAttribute('tabindex');
         this.$upgradeProperty('disabled');
         this.$onConnect();
     }
@@ -149,7 +149,9 @@ export class HXElement extends HTMLElement {
                 this.setAttribute('aria-disabled', true);
                 this.blur();
             } else {
-                this.setAttribute('tabindex', this._$tabIndex);
+                if (this._$tabIndex) {
+                    this.setAttribute('tabindex', this._$tabIndex);
+                }
                 this.removeAttribute('aria-disabled');
             }
         }

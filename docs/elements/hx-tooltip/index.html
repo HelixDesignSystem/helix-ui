@@ -8,7 +8,7 @@ also:
 {% block content %}
   <section>
     <p>
-      The custom <code>&lt;hx-tooltip&gt;</code> element displays supplemental
+      The custom <code>{{page.title}}</code> element displays supplemental
       information related to an element on the page.
     </p>
 
@@ -26,8 +26,18 @@ also:
         <dd>
           Any of the following:
           <ul class="hxList">
-            <li><code>close</code></li>
-            <li><code>open</code></li>
+            <li>
+              <!-- Revealable Mixin -->
+              <code>close</code>
+            </li>
+            <li>
+              <!-- Revealable Mixin -->
+              <code>open</code>
+            </li>
+            <li>
+              <!-- Positionable Mixin -->
+              <code>reposition</code>
+            </li>
           </ul>
         </dd>
       </div>
@@ -36,33 +46,131 @@ also:
 {% endblock %}
 
 {% block attributes %}
-  <dl>
-    <dt>id (String) Required</dt>
+  <dl class="memberList">
+    <!-- HXTooltipElement -->
+    <dt>for</dt>
     <dd>
-      <p>Links element to target data-element attr placed on the target element.</p>
       <p>
-        <strong>NOTE:</strong> Currently this will only find the first element with data-tooltip attr on the page.
+        The ID of an element in the same document as the
+        <code>{{page.title}}</code> element. The first element with a
+        matching ID is known as the <i>control element</i> for the
+        <code>{{page.title}}</code>.
+      </p>
+    </dd>
+
+    <!-- Revealable Mixin -->
+    <dt>open (optional)</dt>
+    <dd>
+      <p>
+        If present, the <code>{{page.title}}</code> will be shown on screen.
+      </p>
+    </dd>
+
+    <!-- Positionable Mixin-->
+    <dt>position (optional)</dt>
+    <dd>
+      <p>
+        Configures the position of the <code>{{page.title}}</code>
+        in relation to its <i>relative element</i>.
+      </p>
+    </dd>
+
+    <!-- Positionable Mixin -->
+    <dt>relative-to (optional)</dt>
+    <dd>
+      <p>
+        The ID of an element in the same document as the
+        <code>{{page.title}}</code> element and the <i>control element</i>.
+        The first element with a matching ID is known as the
+        <i>relative element</i> for the <code>{{page.title}}</code>.
+      </p>
+      <p>
+        If omitted, the <i>control element</i> will act as the
+        <i>relative element</i>.
       </p>
     </dd>
   </dl>
 {% endblock %}
 
 {% block properties %}
-  <dl>
-    <dt>open (Boolean [false])</dt>
-    <dd>Determines whether or not tooltip is shown</dd>
-
-    <dt>position (String [top])</dt>
-    <dd>Determines where tooltip is positioned</dd>
-
-    <dt>trigger-event (String [hover])</dt>
+  <dl class="memberList">
+    <!-- Positionable Mixin -->
+    <dt>
+      controlElement (HTMLElement)
+      <hx-pill class="hxSubBody">read-only</hx-pill>
+    </dt>
     <dd>
-      Determines what fires the tooltip
-      possible values:
-      <ul class="hxList">
-        <li>click</li>
-        <li>hover</li>
-      </ul>
+      <p>
+        HTML element whose ID matches the <code>htmlFor</code> value.
+      </p>
+      <p>
+        The <i>control element</i> is used to attach various DOM event
+        listeners, in order to determine when to show or hide the
+        <code>{{page.title}}</code>.
+      </p>
+    </dd>
+
+    <!-- HXTooltipElement -->
+    <dt>htmlFor (String)</dt>
+    <dd>
+      <p>
+        A string corresponding to the ID of the <i>control element</i>.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Reflects the <code>for</code> attribute.
+      </p>
+    </dd>
+
+    <!-- Revealable Mixin -->
+    <dt>open (Boolean [false])</dt>
+    <dd>
+      <p>
+        Indicates whether or not the <code>{{page.title}}</code>
+        should be displayed.
+      </p>
+    </dd>
+
+    <!-- Positionable Mixin-->
+    <dt>position (String [top])</dt>
+    <dd>
+      <p>
+        Configures the position of the <code>{{page.title}}</code>,
+        in relation to its <i>relative element</i>.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Reflects the <code>position</code> attribute.
+      </p>
+    </dd>
+
+    <!-- Positionable Mixin-->
+    <dt>
+      relativeElement (HTMLElement)
+      <hx-pill class="hxSubBody">read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        HTML element used as a point of reference for calculating the fixed
+        position of the <code>{{page.title}}</code>.
+      </p>
+      <p>
+        If the <code>relative-to</code> attribute is defined, this will return
+        the first element whose ID matches the <code>relativeTo</code> property.
+        Otherwise, it will return the value of <code>controlElement</code>.
+      </p>
+    </dd>
+
+    <!-- Positionable Mixin-->
+    <dt>relativeTo (String)</dt>
+    <dd>
+      <p>
+        A string corresponding to the ID of the <i>relative element</i>.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Reflects the <code>relative-to</code> attribute.
+      </p>
     </dd>
   </dl>
 {% endblock %}
