@@ -25,15 +25,19 @@ also:
           <fieldset>
             <legend>Options</legend>
             <label>
-              <input type="checkbox" v-model="isDismissable" />
-              Dismissable
+              <input type="checkbox" v-model="isPersistent" />
+              Persist
             </label>
           </fieldset>
         </form>
       </header>
 
       <div>
-        <hx-pill :dismissable="isDismissable" v-text="content"></hx-pill>
+        <hx-pill
+          :persist="isPersistent"
+          v-text="content"
+          @dismiss="onEvent">
+        </hx-pill>
       </div>
 
       <footer>
