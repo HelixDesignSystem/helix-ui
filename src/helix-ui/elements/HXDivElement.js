@@ -1,5 +1,7 @@
 import { HXElement } from './HXElement';
 import { onScroll } from '../utils';
+import shadowMarkup from './HXDivElement.html';
+import shadowStyles from './HXDivElement.less';
 
 /**
  * Nullable string denoting direction for scrolling.
@@ -21,6 +23,10 @@ import { onScroll } from '../utils';
 export class HXDivElement extends HXElement {
     static get is () {
         return 'hx-div';
+    }
+
+    static get template () {
+        return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
     static get $observedAttributes () {

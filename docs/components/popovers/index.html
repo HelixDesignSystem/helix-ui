@@ -7,6 +7,7 @@ also:
   elements/hx-popover: <hx-popover>
 ---
 {% extends 'component.njk' %}
+{% from 'lorem.njk' import lorem %}
 {% block content %}
   <section>
     <h2 id="basic-popover">Basic Popover</h2>
@@ -104,40 +105,7 @@ also:
           </header>
 
           <hx-div scroll="vertical">
-            <p>
-              Try to decide the major scrum, maybe it will help join the VOC
-              impediments. A simple blocker always takes less time than a minor
-              one. As a user, I should be able to burn out the pirate size so
-              that I can satify the prioritized MVP models within the backlog
-              branches. If we detail above the methodologies, we can get the
-              monthly work in progress before the XP branch.
-            </p>
-
-            <p>
-              Given viable relationships, always refactoring the steady velocity
-              until the cross-functional user story will almost test the big
-              standard. If we close inside the stories, we can get the ranked
-              documentation around the MVP model. Try to adapt the monthly
-              stakeholder, maybe it will help satify the XP deadlines. It was
-              discovered that by rarely reviewing the VOC trends, we can refactor
-              the acceptance VOC model inside the rapid test. If it takes you too
-              long to review the certified WIP bug, then you are not opening
-              enough. Given standup items, successfully preventing the ranked
-              project management in front of the sustainable release planning
-              will typically practice the continuous ScrumMaster.
-            </p>
-
-            <p>
-              A simple spec always takes less time than a minimum one. We must
-              typically open the adaptive VOC pace! Given maintainable
-              requirements, quickly adjusting the multiple stakeholder off the
-              pair sequence will appropriately plan the single methodology. It was
-              discovered that by efficiently learning the MVP interactions, we can
-              spike the alpha WIP cycle time by the pirate project management.
-              Given predictable charts, elegantly practicing the standup sprint to
-              the rapid product owner will perfectly work the cross-functional
-              feedback.
-            </p>
+            {{ lorem(3) }}
           </hx-div>
 
           <footer>

@@ -1,4 +1,6 @@
-@import (reference) "components/typography";
+@import (reference) 'vars';
+@import (reference) 'components/typography';
+@import (reference) 'elements/hx-div';
 
 hx-popover {
   display: none; // hide by default
@@ -36,7 +38,7 @@ hx-popover {
   > header {
     &:extend(.hxHeading-4);
     flex-shrink: 0;
-    padding: 1.25rem;
+    padding: @space[md];
   }
 
   > hx-div:not([scroll]) {
@@ -44,26 +46,39 @@ hx-popover {
   }
 
   > hx-div {
+    --padding-left: @space[md];
+    --padding-right: @space[md];
     flex-grow: 1;
     max-height: 20rem; //~320px
-    padding: 0 1.25rem;
+
+    #HXDiv.shadyRoot({
+      padding: 0 @space[md];
+    });
 
     &:first-child {
-      padding-top: 1.25rem;
+      --padding-top: @space[md];
+
+      #HXDiv.shadyRoot({
+        padding-top: @space[md];
+      });
     }
 
     &:last-child {
-      padding-bottom: 1.25rem;
+      --padding-bottom: @space[md];
+
+      #HXDiv.shadyRoot({
+        padding-bottom: @space[md];
+      });
     }
   }
 
   > footer {
     flex-shrink: 0;
-    padding: 1.25rem;
+    padding: @space[md];
 
     // TODO: replace with .hxButtonSet
     .hxBtn + .hxBtn {
-      margin-left: 1.25rem;
+      margin-left: @space[md];
     }
   }
 }

@@ -9,6 +9,7 @@ also:
   elements/hx-modal: <hx-modal>
 ---
 {% extends 'component.njk' %}
+{% from 'lorem.njk' import lorem %}
 {% block content %}
   <section>
     <h2 id="basic-modal">Basic Modal</h2>
@@ -74,79 +75,7 @@ also:
             <h3>Demo Modal Header</h3>
           </header>
           <hx-div scroll="vertical">
-            <p>
-              Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-              halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-              macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-              wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-              chups apple pie pie sesame snaps chocolate.
-            </p>
-
-            <p>
-              I love sweet roll I love sugar plum pie. Toffee lemon drops
-              cotton candy cake gummi bears chocolate bar. Tart chocolate
-              cotton candy halvah oat cake jelly beans. Jelly tart pudding
-              biscuit pastry dragee topping caramels muffin. Pastry pudding
-              oat cake chocolate bar. Candy tart croissant. I love icing candy
-              croissant I love carrot cake.
-            </p>
-
-            <p>
-              Powder halvah candy cookie bear claw donut fruitcake brownie.
-              Lemon drops I love gingerbread carrot cake oat cake fruitcake
-              brownie gummies fruitcake. Liquorice gingerbread powder sweet.
-              Marzipan cheesecake cake. Candy cupcake bonbon carrot cake chupa
-              chups pie pie. Donut gummies I love lemon drops gingerbread
-              powder candy topping caramels. Pie toffee croissant jelly-o.
-            </p>
-
-            <p>
-              Wafer bonbon I love souffle marzipan candy. I love fruitcake
-              caramels bonbon I love I love I love. Cheesecake cookie I love
-              jelly-o. Pudding gummies tiramisu pastry tart apple pie tiramisu.
-              Halvah candy canes chocolate bar apple pie cookie. Carrot cake
-              pudding dragee jelly pastry oat cake lemon drops. Biscuit candy
-              chocolate sugar plum I love biscuit ice cream chocolate oat cake.
-              Tootsie roll sweet I love fruitcake powder.
-            </p>
-
-            <p>
-              I love jujubes topping jelly gummi bears toffee sugar
-              plum. Jelly tiramisu carrot cake pudding toffee macaroon sesame
-              snaps cotton candy. I love candy jelly beans. I love I love
-              wafer bonbon. Apple pie tiramisu wafer topping. Souffle wafer
-              sweet roll cotton candy cheesecake I love pudding. Chupa chups
-              jelly beans muffin pie sugar plum gummies. Pudding dessert
-              macaroon jelly-o pastry topping brownie gingerbread. Icing
-              biscuit tiramisu chocolate bar lemon drops brownie I love
-              caramels. Biscuit muffin cotton candy pastry cotton candy sweet.
-            </p>
-
-            <p>
-              Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-              halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-              macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-              wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-              chups apple pie pie sesame snaps chocolate.
-            </p>
-
-            <p>
-              I love sweet roll I love sugar plum pie. Toffee lemon drops
-              cotton candy cake gummi bears chocolate bar. Tart chocolate
-              cotton candy halvah oat cake jelly beans. Jelly tart pudding
-              biscuit pastry dragee topping caramels muffin. Pastry pudding
-              oat cake chocolate bar. Candy tart croissant. I love icing candy
-              croissant I love carrot cake.
-            </p>
-
-            <p>
-              Powder halvah candy cookie bear claw donut fruitcake brownie.
-              Lemon drops I love gingerbread carrot cake oat cake fruitcake
-              brownie gummies fruitcake. Liquorice gingerbread powder sweet.
-              Marzipan cheesecake cake. Candy cupcake bonbon carrot cake chupa
-              chups pie pie. Donut gummies I love lemon drops gingerbread
-              powder candy topping caramels. Pie toffee croissant jelly-o.
-            </p>
+            {{ lorem(6) }}
           </hx-div>
           <footer>
             <button class="hxBtn hxPrimary">Confirm</button>
@@ -166,8 +95,6 @@ also:
               <h3>Demo Modal Header</h3>
             </header>
             <hx-div scroll="vertical">
-              <p>...</p>
-              <p>...</p>
               <p>...</p>
               <p>...</p>
               <p>...</p>

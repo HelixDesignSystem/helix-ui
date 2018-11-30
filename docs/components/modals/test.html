@@ -2,6 +2,7 @@
 title: Testing - Modals
 ---
 {% extends 'test.njk' %}
+{% from 'lorem.njk' import lorem %}
 {% block content %}
   <section>
     <nav class="hxBreadcrumb">
@@ -11,13 +12,14 @@ title: Testing - Modals
     </nav>
   </section>
 
+  <!-- BASIC MODALS -->
   <section>
-    <h2>Basic Modal</h2>
-    <hx-disclosure aria-controls="basic-modal" class="hxBtn">
-      Open Modal
-    </hx-disclosure>
+    <h2>Basic Modals</h2>
 
-    <hx-modal id="basic-modal">
+    <hx-disclosure aria-controls="basic-all-modal" class="hxBtn">
+     Basic: Head, Body, and Foot
+    </hx-disclosure>
+    <hx-modal id="basic-all-modal">
       <header>
         <h3>Modal Header</h3>
       </header>
@@ -32,15 +34,11 @@ title: Testing - Modals
         <button class="hxBtn">Cancel</button>
       </footer>
     </hx-modal>
-  </section>
 
-  <section>
-    <h2>Modal with Body Only</h2>
-    <hx-disclosure aria-controls="body-modal" class="hxBtn">
-      Open Modal
+    <hx-disclosure aria-controls="basic-body-modal" class="hxBtn">
+      Basic: Body-only
     </hx-disclosure>
-
-    <hx-modal id="body-modal">
+    <hx-modal id="basic-body-modal">
       <hx-div>
         <p>
           This is the body of a demo modal. No further actions can happen
@@ -48,15 +46,11 @@ title: Testing - Modals
         </p>
       </hx-div>
     </hx-modal>
-  </section>
 
-  <section>
-    <h2>Modal with Header and Body</h2>
-    <hx-disclosure aria-controls="header-body-modal" class="hxBtn">
-      Open Modal
+    <hx-disclosure aria-controls="basic-header-body-modal" class="hxBtn">
+      Basic: Head and Body
     </hx-disclosure>
-
-    <hx-modal id="header-body-modal">
+    <hx-modal id="basic-header-body-modal">
       <header>
         <h3>Demo Modal Header</h3>
       </header>
@@ -67,15 +61,11 @@ title: Testing - Modals
         </p>
       </hx-div>
     </hx-modal>
-  </section>
 
-  <section>
-    <h2>Modal with Body and Footer</h2>
-    <hx-disclosure aria-controls="body-footer-modal" class="hxBtn">
-      Open Modal
+    <hx-disclosure aria-controls="basic-body-footer-modal" class="hxBtn">
+      Basic: Body and Foot
     </hx-disclosure>
-
-    <hx-modal id="body-footer-modal">
+    <hx-modal id="basic-body-footer-modal">
       <hx-div>
         <p>
           This is the body of a demo modal. No further actions can happen
@@ -87,89 +77,17 @@ title: Testing - Modals
         <button class="hxBtn">Cancel</button>
       </footer>
     </hx-modal>
-  </section>
 
-  <section>
-    <h2>Modal with Scroll</h2>
-    <hx-disclosure aria-controls="scroll-modal" class="hxBtn">
-      Open Modal
+    <hx-disclosure aria-controls="basic-empty-modal" class="hxBtn">
+      Basic: Empty
     </hx-disclosure>
-
-    <hx-modal id="scroll-modal">
-      <header>
-        <h3>Demo Modal Header</h3>
-      </header>
-      <hx-div scroll="vertical">
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-      </hx-div>
-      <footer>
-        <button class="hxBtn hxPrimary">Confirm</button>
-        <button class="hxBtn">Cancel</button>
-      </footer>
+    <hx-modal id="basic-empty-modal">
     </hx-modal>
-  </section>
 
-  <section>
-    <h2>Modal with Positioned Elements</h2>
-    <hx-disclosure aria-controls="modal-with-positioned-elements" class="hxBtn">
-      Open Modal
+    <hx-disclosure aria-controls="basic-with-positioned-children" class="hxBtn">
+      Basic: Positioned Children
     </hx-disclosure>
-
-    <hx-modal id="modal-with-positioned-elements">
+    <hx-modal id="basic-with-positioned-children">
       <header>
         <h3>Modal Header</h3>
       </header>
@@ -217,13 +135,63 @@ title: Testing - Modals
     </hx-modal>
   </section>
 
+  <!-- SCROLLING MODALS -->
   <section>
-    <h2>Scrolling Modal with Positioned Elements</h2>
-    <hx-disclosure aria-controls="scrolling-modal-with-positioned-elements" class="hxBtn">
-      Open Modal
+    <h2>Scrolling Modals</h2>
+    <hx-disclosure aria-controls="scroll-all-modal" class="hxBtn">
+      Scroll: Head, Body, and Foot
     </hx-disclosure>
+    <hx-modal id="scroll-all-modal">
+      <header>
+        <h3>Demo Modal Header</h3>
+      </header>
+      <hx-div scroll="vertical">
+        {{ lorem(6) }}
+      </hx-div>
+      <footer>
+        <button class="hxBtn hxPrimary">Confirm</button>
+        <button class="hxBtn">Cancel</button>
+      </footer>
+    </hx-modal>
 
-    <hx-modal id="scrolling-modal-with-positioned-elements">
+    <hx-disclosure aria-controls="scroll-body-modal" class="hxBtn">
+      Scroll: Body-Only
+    </hx-disclosure>
+    <hx-modal id="scroll-body-modal">
+      <hx-div scroll="vertical">
+        {{ lorem(6) }}
+      </hx-div>
+    </hx-modal>
+
+    <hx-disclosure aria-controls="scroll-header-body-modal" class="hxBtn">
+      Scroll: Head and Body
+    </hx-disclosure>
+    <hx-modal id="scroll-header-body-modal">
+      <header>
+        <h3>Demo Modal Header</h3>
+      </header>
+      <hx-div scroll="vertical">
+        {{ lorem(6) }}
+      </hx-div>
+    </hx-modal>
+
+    <hx-disclosure aria-controls="scroll-body-footer-modal" class="hxBtn">
+      Scroll: Body and Foot
+    </hx-disclosure>
+    <hx-modal id="scroll-body-footer-modal">
+      <hx-div scroll="vertical">
+        {{ lorem(6) }}
+      </hx-div>
+      <footer>
+        <button class="hxBtn hxPrimary">Confirm</button>
+        <button class="hxBtn">Cancel</button>
+      </footer>
+    </hx-modal>
+
+    <hx-disclosure aria-controls="scroll-with-positioned-children" class="hxBtn">
+      Scroll: Positioned Children
+    </hx-disclosure>
+    <hx-modal id="scroll-with-positioned-children">
       <header>
         <h3>Modal Header</h3>
       </header>
@@ -240,62 +208,6 @@ title: Testing - Modals
           </hx-disclosure>
           <br />
           <hx-icon id="tooltip2" type="help-circle"></hx-icon>
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
         </p>
 
         <hx-menu id="modalMenuId2">
@@ -324,27 +236,22 @@ title: Testing - Modals
         <hx-tooltip for="tooltip2" position="top">
           Top
         </hx-tooltip>
+
+        {{ lorem(6) }}
       </hx-div>
+      <footer>
+        <button class="hxBtn hxPrimary">Confirm</button>
+        <button class="hxBtn">Cancel</button>
+      </footer>
     </hx-modal>
   </section>
 
   <section>
-    <h2>Empty Modal</h2>
-    <hx-disclosure aria-controls="empty-modal" class="hxBtn">
-      Open Modal
+    <h2>Deprecated Modals</h2>
+    <hx-disclosure aria-controls="deprecated-all-modal" class="hxBtn">
+      Deprecated: Head, Body, and Foot
     </hx-disclosure>
-
-    <hx-modal id="empty-modal">
-    </hx-modal>
-  </section>
-
-  <section>
-    <h2>Deprecated Markup</h2>
-    <hx-disclosure aria-controls="deprecated-modal" class="hxBtn">
-      Open Modal
-    </hx-disclosure>
-
-    <hx-modal id="deprecated-modal">
+    <hx-modal id="deprecated-all-modal">
       <hx-modalhead>
         <h3>Demo Modal Header</h3>
       </hx-modalhead>
@@ -359,15 +266,11 @@ title: Testing - Modals
         <button class="hxBtn">Cancel</button>
       </hx-modalfoot>
     </hx-modal>
-  </section>
 
-  <section>
-    <h2>Deprecated Markup Body Only</h2>
-    <hx-disclosure aria-controls="deprecated-modal-body" class="hxBtn">
-      Open Modal
+    <hx-disclosure aria-controls="deprecated-body-modal" class="hxBtn">
+      Deprecated: Body-only
     </hx-disclosure>
-
-    <hx-modal id="deprecated-modal-body">
+    <hx-modal id="deprecated-body-modal">
       <hx-modalbody>
         <p>
           This is the body of a demo modal. No further actions can happen
@@ -375,74 +278,16 @@ title: Testing - Modals
         </p>
       </hx-modalbody>
     </hx-modal>
-  </section>
 
-  <section>
-    <h2>Deprecated Markup with Scrolling</h2>
-    <hx-disclosure aria-controls="deprecated-modal-scroll" class="hxBtn">
-      Open Modal
+    <hx-disclosure aria-controls="deprecated-scroll-modal" class="hxBtn">
+      Deprecated: Scrolling
     </hx-disclosure>
-
-    <hx-modal id="deprecated-modal-scroll">
+    <hx-modal id="deprecated-scroll-modal">
       <hx-modalhead>
         <h3>Demo Modal Header</h3>
       </hx-modalhead>
       <hx-modalbody>
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
-
-        <p>
-          Ice cream cheesecake jujubes. Sugar plum brownie biscuit powder toffee
-          halvah brownie. Donut lollipop bonbon. Wafer cotton candy marshmallow
-          macaroon souffle toffee. Fruitcake sugar plum souffle biscuit. Pie
-          wafer pastry jujubes brownie ice cream donut cake. Cheesecake chupa
-          chups apple pie pie sesame snaps chocolate.
-        </p>
+        {{ lorem(6) }}
       </hx-modalbody>
       <hx-modalfoot>
         <button class="hxBtn hxPrimary">Confirm</button>
