@@ -32,6 +32,7 @@ export class HXPillElement extends HXElement {
 
     $onConnect () {
         this._btnDismiss.addEventListener('click', this._onDismiss);
+        this.$upgradeProperty('persist');
     }
 
     $onDisconnect () {
@@ -39,10 +40,28 @@ export class HXPillElement extends HXElement {
     }
 
     /**
+     * Property reflecting the `persist` HTML attribute, indicating whether the
+     * pill may be dismissed. If true, the dismiss button will not be shown.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get persist () {
+        return this.hasAttribute('persist');
+    }
+    set persist (value) {
+        if (value) {
+            this.setAttribute('persist', '');
+        } else {
+            this.removeAttribute('persist');
+        }
+    }
+
+    /**
      * Dismiss the pill (removes element from the DOM)
      */
     dismiss () {
-        if (this.$emit('dismiss')) {
+        if (!this.persist && this.$emit('dismiss')) {
             // only if event was not canceled by consumer
             this.remove();
         }
