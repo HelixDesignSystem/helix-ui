@@ -39,10 +39,6 @@ export class HXPillElement extends HXElement {
         this._btnDismiss.removeEventListener('click', this._onDismiss);
     }
 
-    static get $observedAttributes () {
-        return [ 'persist' ];
-    }
-
     /**
      * Property reflecting the `persist` HTML attribute, indicating whether the
      * pill may be dismissed. If true, the dismiss button will not be shown.
@@ -55,7 +51,7 @@ export class HXPillElement extends HXElement {
     }
     set persist (value) {
         if (value) {
-            this.setAttribute('persist', ''); // boolean
+            this.setAttribute('persist', '');
         } else {
             this.removeAttribute('persist');
         }
@@ -65,7 +61,7 @@ export class HXPillElement extends HXElement {
      * Dismiss the pill (removes element from the DOM)
      */
     dismiss () {
-        if (this.$emit('dismiss')) {
+        if (!this.persist && this.$emit('dismiss')) {
             // only if event was not canceled by consumer
             this.remove();
         }
