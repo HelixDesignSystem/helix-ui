@@ -37,7 +37,7 @@
     "jsdoc": "^3.5.5",
     "jsdom": "^12.2.0",
     "json5": "1.x",
-    "less": "2.x",
+    "less": "3.x",
     "less-loader": "^4.0.5",
     "lodash": "^4.17.4",
     "mocha": "^5.2.0",
