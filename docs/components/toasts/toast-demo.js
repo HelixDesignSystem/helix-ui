@@ -17,8 +17,9 @@ if (document.getElementById('vue-toastDemo')) {
             types: TYPES,
         },
         methods: {
-            onSubmit: function () {
-                alert('Unicorn pigeon puppy pop rainbows delight social pop!');
+            onEvent: function (evt) {
+                evt.preventDefault();
+                alert(`Event: "${evt.type}"`);
             },
         },
         computed: {

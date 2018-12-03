@@ -41,7 +41,9 @@ also:
         <hx-toast
           :type="type.value"
           :cta="cta"
-          @submit="onSubmit">
+          @dismiss="onEvent"
+          @submit="onEvent"
+        >
           {% raw %}{{content}}{% endraw %}
         </hx-toast>
       </div>
