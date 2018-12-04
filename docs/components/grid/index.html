@@ -8,7 +8,7 @@ also:
 {% extends 'component.njk' %}
 {% block content %}
 <section>
-  <hx-alert type="warning" status="warning" static>
+  <hx-alert type="warning" status="warning" persist>
     HelixUI grid classes are not compatible with Bootstrap grid styles.
   </hx-alert>
 
@@ -246,7 +246,7 @@ also:
 
 <section><!-- column ordering -->
   <h2 id="column-ordering">Column Ordering</h2>
-  <hx-alert type="info" status="fyi" static>
+  <hx-alert type="info" status="fyi" persist>
     Reordering columns does not change tab order.<br />
     Tab order is based on the DOM order, not visual appearance.
   </hx-alert>
@@ -390,7 +390,7 @@ also:
 
 <section><!-- column wrapping -->
   <h2 id="column-wrapping">Column Wrapping</h2>
-  <hx-alert type="info" status="note" static>
+  <hx-alert type="info" status="note" persist>
     Columns wrap if the total column width count within the row exceeds 12.
   </hx-alert>
   <p>
@@ -440,7 +440,7 @@ also:
 
 <section><!-- nesting containers -->
   <h2 id="nesting-containers">Nesting Containers</h2>
-  <hx-alert type="warning" status="warning" static>
+  <hx-alert type="warning" status="warning" persist>
     Do not apply row and column container classes to the same element.
   </hx-alert>
   <p>You can nest rows and columns as deep as necessary.</p>
@@ -497,7 +497,7 @@ also:
 
 <section><!-- styling containers -->
   <h2 id="styling-containers">Styling Containers</h2>
-  <hx-alert type="warning" status="warning" static>
+  <hx-alert type="warning" status="warning" persist>
     Do not attempt to style rows or columns directly.
   </hx-alert>
   <ul class="hxList">
