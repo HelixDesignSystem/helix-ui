@@ -41,6 +41,9 @@ also:
 
 {% block attributes %}
   <dl>
+    <dt>disabled</dt>
+    <dd>When present, disables the ability to manually toggle the open state.</dd>
+
     <dt>open</dt>
     <dd>Opens the panel</dd>
   </dl>
@@ -48,6 +51,17 @@ also:
 
 {% block properties %}
   <dl>
+    <dt>disabled {Boolean [false]}</dt>
+    <dd>
+      <p>
+        Disables user interaction.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Reflects the <code>disabled</code> attribute.
+      </p>
+    </dd>
+
     <dt>open {Boolean}</dt>
     <dd>Determines if panel is open.</dd>
   </dl>
