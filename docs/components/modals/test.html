@@ -3,6 +3,110 @@ title: Testing - Modals
 ---
 {% extends 'test.njk' %}
 {% from 'lorem.njk' import lorem %}
+{% import 'helix.njk' as Helix %}
+{% macro modal(id, className='', scrolls=false, showHead=true, showBody=true, showFoot=true, hasChildren=false) %}
+  <hx-modal id="{{id}}" class="{{className}}">
+    {% if showHead %}
+      <header>
+        <h3>Modal Header</h3>
+      </header>
+    {% endif %}
+
+    {% if showBody %}
+      <hx-div {{'scroll=vertical' if scrolls}}>
+        <p>
+          This is the body of a demo modal.
+          No further actions can happen
+          on the page until this modal is closed.
+        </p>
+
+        {% if hasChildren %}
+          <p>
+            <hx-disclosure class="hxBtn" aria-controls="{{id}}-menu">
+              <hx-icon type="cog"></hx-icon>
+              <span>Actions</span>
+              <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+            </hx-disclosure>
+            &nbsp;
+            {{Helix.disclosure('Toggle Popover', id+'-popover')}}
+            &nbsp;
+            <hx-icon id="{{id}}-tooltip" type="help-circle"></hx-icon>
+          </p>
+        {% endif %}
+
+        {{ lorem(8) if scrolls }}
+
+        {% if hasChildren %}
+          <hx-menu id="{{id}}-menu">
+            <hx-menuitem>Action 1</hx-menuitem>
+            <hx-menuitem>Action 2</hx-menuitem>
+            <hx-menuitem>Action 3</hx-menuitem>
+          </hx-menu>
+
+          <hx-popover id="{{id}}-popover" position="bottom-right">
+            <header>
+              Popover Header
+            </header>
+
+            <hx-div>
+              <p>
+                This is my popover body.
+              </p>
+            </hx-div>
+
+            <footer>
+              <button class="hxBtn hxPrimary">Submit</button>
+              <button class="hxBtn">Cancel</button>
+            </footer>
+          </hx-popover>
+
+          <hx-tooltip for="{{id}}-tooltip" position="top">
+            Top
+          </hx-tooltip>
+        {% endif %}
+      </hx-div>
+    {% endif %}
+
+    {% if showFoot %}
+      <footer>
+        <button class="hxBtn hxPrimary">Confirm</button>
+        <button class="hxBtn">Cancel</button>
+      </footer>
+    {% endif %}
+  </hx-modal>
+{% endmacro %}
+{# ----- Test Macros ----- #}
+{% macro testFull(n, className, scrolls) %}
+  {% set id="modal-" + n %}
+  {{Helix.disclosure('Full', id)}}
+  {{modal(id, className, scrolls)}}
+{% endmacro %}
+{% macro testOnlyBody(n, className, scrolls) %}
+  {% set id="modal-body-only-" + n %}
+  {{Helix.disclosure('Body-only', id)}}
+  {{modal(id, className, scrolls, showHead=false, showFoot=false)}}
+{% endmacro %}
+{% macro testNoHeader(n, className, scrolls) %}
+  {% set id="modal-no-header-" + n %}
+  {{Helix.disclosure('No Header', id)}}
+  {{modal(id, className, scrolls, showHead=false)}}
+{% endmacro %}
+{% macro testNoFooter(n, className, scrolls) %}
+  {% set id="modal-no-footer-" + n %}
+  {{Helix.disclosure('No Footer', id)}}
+  {{modal(id, className, scrolls, showFoot=false)}}
+{% endmacro %}
+{% macro testEmpty(n, className, scrolls) %}
+  {% set id="modal-empty-" + n %}
+  {{Helix.disclosure('Empty', id)}}
+  {{modal(id, className, scrolls, showHead=false, showBody=false, showFoot=false)}}
+{% endmacro %}
+{% macro testPositioned(n, className, scrolls) %}
+  {% set id="modal-positioned-children-" + n %}
+  {{Helix.disclosure('Positioned Children', id)}}
+  {{modal(id, className, scrolls, hasChildren=true)}}
+{% endmacro %}
+
 {% block content %}
   <section>
     <nav class="hxBreadcrumb">
@@ -12,245 +116,51 @@ title: Testing - Modals
     </nav>
   </section>
 
+  {% set modalSizes = {
+    SM: 'hxSm',
+    MD: '',
+    LG: 'hxLg'
+  } %}
   <!-- BASIC MODALS -->
   <section>
     <h2>Basic Modals</h2>
-
-    <hx-disclosure aria-controls="basic-all-modal" class="hxBtn">
-     Basic: Head, Body, and Foot
-    </hx-disclosure>
-    <hx-modal id="basic-all-modal">
-      <header>
-        <h3>Modal Header</h3>
-      </header>
-      <hx-div>
-        <p>
-          This is the body of a demo modal. No further actions can happen
-          on the page until this modal is closed.
-        </p>
-      </hx-div>
-      <footer>
-        <button class="hxBtn hxPrimary">Confirm</button>
-        <button class="hxBtn">Cancel</button>
-      </footer>
-    </hx-modal>
-
-    <hx-disclosure aria-controls="basic-body-modal" class="hxBtn">
-      Basic: Body-only
-    </hx-disclosure>
-    <hx-modal id="basic-body-modal">
-      <hx-div>
-        <p>
-          This is the body of a demo modal. No further actions can happen
-          on the page until this modal is closed.
-        </p>
-      </hx-div>
-    </hx-modal>
-
-    <hx-disclosure aria-controls="basic-header-body-modal" class="hxBtn">
-      Basic: Head and Body
-    </hx-disclosure>
-    <hx-modal id="basic-header-body-modal">
-      <header>
-        <h3>Demo Modal Header</h3>
-      </header>
-      <hx-div>
-        <p>
-          This is the body of a demo modal. No further actions can happen
-          on the page until this modal is closed.
-        </p>
-      </hx-div>
-    </hx-modal>
-
-    <hx-disclosure aria-controls="basic-body-footer-modal" class="hxBtn">
-      Basic: Body and Foot
-    </hx-disclosure>
-    <hx-modal id="basic-body-footer-modal">
-      <hx-div>
-        <p>
-          This is the body of a demo modal. No further actions can happen
-          on the page until this modal is closed.
-        </p>
-      </hx-div>
-      <footer>
-        <button class="hxBtn hxPrimary">Confirm</button>
-        <button class="hxBtn">Cancel</button>
-      </footer>
-    </hx-modal>
-
-    <hx-disclosure aria-controls="basic-empty-modal" class="hxBtn">
-      Basic: Empty
-    </hx-disclosure>
-    <hx-modal id="basic-empty-modal">
-    </hx-modal>
-
-    <hx-disclosure aria-controls="basic-with-positioned-children" class="hxBtn">
-      Basic: Positioned Children
-    </hx-disclosure>
-    <hx-modal id="basic-with-positioned-children">
-      <header>
-        <h3>Modal Header</h3>
-      </header>
-      <hx-div>
-        <p>
-          <hx-disclosure class="hxBtn" aria-controls="modalMenuId">
-            <hx-icon type="cog"></hx-icon>
-            <span>Actions</span>
-            <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
-          </hx-disclosure>
-          <br />
-          <hx-disclosure aria-controls="modalPopover" class="hxBtn">
-            Toggle Popover
-          </hx-disclosure>
-          <br />
-          <hx-icon id="tooltip1" type="help-circle"></hx-icon>
-        </p>
-        <hx-menu id="modalMenuId">
-          <hx-menuitem>Action 1</hx-menuitem>
-          <hx-menuitem>Action 2</hx-menuitem>
-          <hx-menuitem>Action 3</hx-menuitem>
-        </hx-menu>
-
-        <hx-popover id="modalPopover" position="bottom-right">
-          <header>
-            Popover Header
-          </header>
-
-          <hx-div>
-            <p>
-              This is my popover body.
-            </p>
-          </hx-div>
-
-          <footer>
-            <button class="hxBtn hxPrimary">Submit</button>
-            <button class="hxBtn">Cancel</button>
-          </footer>
-        </hx-popover>
-
-        <hx-tooltip for="tooltip1" position="top">
-          Top
-        </hx-tooltip>
-      </hx-div>
-    </hx-modal>
+    {% for size, className in modalSizes %}
+      {% set id = [size, loop.index].join('-') %}
+      <section>
+        <h3>Size: {{size}}</h3>
+        {{testFull(id, className)}}
+        {{testEmpty(id, className)}}
+        {{testOnlyBody(id, className)}}
+        {{testNoFooter(id, className)}}
+        {{testNoHeader(id, className)}}
+        {{testPositioned(id, className)}}
+      </section>
+      <br />
+    {% endfor %}
   </section>
 
   <!-- SCROLLING MODALS -->
   <section>
     <h2>Scrolling Modals</h2>
-    <hx-disclosure aria-controls="scroll-all-modal" class="hxBtn">
-      Scroll: Head, Body, and Foot
-    </hx-disclosure>
-    <hx-modal id="scroll-all-modal">
-      <header>
-        <h3>Demo Modal Header</h3>
-      </header>
-      <hx-div scroll="vertical">
-        {{ lorem(6) }}
-      </hx-div>
-      <footer>
-        <button class="hxBtn hxPrimary">Confirm</button>
-        <button class="hxBtn">Cancel</button>
-      </footer>
-    </hx-modal>
-
-    <hx-disclosure aria-controls="scroll-body-modal" class="hxBtn">
-      Scroll: Body-Only
-    </hx-disclosure>
-    <hx-modal id="scroll-body-modal">
-      <hx-div scroll="vertical">
-        {{ lorem(6) }}
-      </hx-div>
-    </hx-modal>
-
-    <hx-disclosure aria-controls="scroll-header-body-modal" class="hxBtn">
-      Scroll: Head and Body
-    </hx-disclosure>
-    <hx-modal id="scroll-header-body-modal">
-      <header>
-        <h3>Demo Modal Header</h3>
-      </header>
-      <hx-div scroll="vertical">
-        {{ lorem(6) }}
-      </hx-div>
-    </hx-modal>
-
-    <hx-disclosure aria-controls="scroll-body-footer-modal" class="hxBtn">
-      Scroll: Body and Foot
-    </hx-disclosure>
-    <hx-modal id="scroll-body-footer-modal">
-      <hx-div scroll="vertical">
-        {{ lorem(6) }}
-      </hx-div>
-      <footer>
-        <button class="hxBtn hxPrimary">Confirm</button>
-        <button class="hxBtn">Cancel</button>
-      </footer>
-    </hx-modal>
-
-    <hx-disclosure aria-controls="scroll-with-positioned-children" class="hxBtn">
-      Scroll: Positioned Children
-    </hx-disclosure>
-    <hx-modal id="scroll-with-positioned-children">
-      <header>
-        <h3>Modal Header</h3>
-      </header>
-      <hx-div scroll="vertical">
-        <p>
-          <hx-disclosure class="hxBtn" aria-controls="modalMenuId2">
-            <hx-icon type="cog"></hx-icon>
-            <span>Actions</span>
-            <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
-          </hx-disclosure>
-          <br />
-          <hx-disclosure aria-controls="modalPopover2" class="hxBtn">
-            Toggle Popover
-          </hx-disclosure>
-          <br />
-          <hx-icon id="tooltip2" type="help-circle"></hx-icon>
-        </p>
-
-        <hx-menu id="modalMenuId2">
-          <hx-menuitem>Action 1</hx-menuitem>
-          <hx-menuitem>Action 2</hx-menuitem>
-          <hx-menuitem>Action 3</hx-menuitem>
-        </hx-menu>
-
-        <hx-popover id="modalPopover2" position="bottom-right">
-          <header>
-            Popover Header
-          </header>
-
-          <hx-div>
-            <p>
-              This is my popover body.
-            </p>
-          </hx-div>
-
-          <footer>
-            <button class="hxBtn hxPrimary">Submit</button>
-            <button class="hxBtn">Cancel</button>
-          </footer>
-        </hx-popover>
-
-        <hx-tooltip for="tooltip2" position="top">
-          Top
-        </hx-tooltip>
-
-        {{ lorem(6) }}
-      </hx-div>
-      <footer>
-        <button class="hxBtn hxPrimary">Confirm</button>
-        <button class="hxBtn">Cancel</button>
-      </footer>
-    </hx-modal>
+    {% for size, className in modalSizes %}
+      {% set id = [size, 'scrolling', loop.index].join('-') %}
+      <section>
+        <h3>Size: {{size}}</h3>
+        {{testFull(id, className, scrolls=true)}}
+        {{testEmpty(id, className, scrolls=true)}}
+        {{testOnlyBody(id, className, scrolls=true)}}
+        {{testNoFooter(id, className, scrolls=true)}}
+        {{testNoHeader(id, className, scrolls=true)}}
+        {{testPositioned(id, className, scrolls=true)}}
+      </section>
+      <br />
+    {% endfor %}
   </section>
 
+  <!-- DEPRECATED MARKUP -->
   <section>
     <h2>Deprecated Modals</h2>
-    <hx-disclosure aria-controls="deprecated-all-modal" class="hxBtn">
-      Deprecated: Head, Body, and Foot
-    </hx-disclosure>
+    {{Helix.disclosure('Deprecated: Basic', 'deprecated-all-modal')}}
     <hx-modal id="deprecated-all-modal">
       <hx-modalhead>
         <h3>Demo Modal Header</h3>
@@ -267,9 +177,7 @@ title: Testing - Modals
       </hx-modalfoot>
     </hx-modal>
 
-    <hx-disclosure aria-controls="deprecated-body-modal" class="hxBtn">
-      Deprecated: Body-only
-    </hx-disclosure>
+    {{Helix.disclosure('Deprecated: Body-only', 'deprecated-body-modal')}}
     <hx-modal id="deprecated-body-modal">
       <hx-modalbody>
         <p>
@@ -279,9 +187,7 @@ title: Testing - Modals
       </hx-modalbody>
     </hx-modal>
 
-    <hx-disclosure aria-controls="deprecated-scroll-modal" class="hxBtn">
-      Deprecated: Scrolling
-    </hx-disclosure>
+    {{Helix.disclosure('Deprecated: Scrolling', 'deprecated-scroll-modal')}}
     <hx-modal id="deprecated-scroll-modal">
       <hx-modalhead>
         <h3>Demo Modal Header</h3>
