@@ -40,8 +40,8 @@ also:
           <fieldset>
             <legend>Options</legend>
             <label>
-              <input type="checkbox" v-model="isStatic">
-              Static
+              <input type="checkbox" v-model="isPersistent">
+              Persist
             </label>
           </fieldset>
         </form>
@@ -50,10 +50,11 @@ also:
       <div>
         <hx-alert
           :cta="cta"
-          :static="isStatic"
+          :persist="isPersistent"
           :status="status"
           :type="type.value"
-          @submit="onSubmit"
+          @dismiss="onEvent"
+          @submit="onEvent"
         >
           {% raw %}{{content}}{% endraw %}
         </hx-alert>

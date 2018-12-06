@@ -1,3 +1,6 @@
+@import (reference) 'vars';
+@import (reference) 'elements/hx-div';
+
 hx-modal {
   display: none;
   height: 100vh;
@@ -17,9 +20,9 @@ hx-modal {
     flex-shrink: 0;
     line-height: 1;
     order: 1;
-    padding: 1.25rem;
+    padding: @space[md];
 
-    // refactor this later
+    // TODO: refactor this
     h1, h2, h3, h4, h5, h6 {
       &:only-child {
         line-height: 1;
@@ -28,16 +31,25 @@ hx-modal {
   }
 
   > hx-div {
+    --padding-left: @space[md];
+    --padding-right: @space[md];
     flex-grow: 1;
     order: 2;
-    padding: 0 1.25rem;
+
+    #HXDiv.shadyRoot({
+      padding: 0 @space[md];
+    });
 
     &:first-child {
-      padding-top: 4rem;
+      margin-top: 4rem;
     }
 
     &:last-child {
-      padding-bottom: 1.25rem;
+      --padding-bottom: @space[md];
+
+      #HXDiv.shadyRoot({
+        padding-bottom: @space[md];
+      });
     }
   }
 
@@ -46,26 +58,25 @@ hx-modal {
     flex-shrink: 0;
     justify-content: center;
     order: 3;
-    padding: 1.25rem;
+    padding: @space[md];
 
     .hxBtn + .hxBtn {
-      margin-left: 1.25rem;
+      margin-left: @space[md];
     }
   }
 
   // DEPRECATED: remove in v1.0.0
+
   hx-modalhead {
     flex-shrink: 0;
     order: 1;
   }
 
-  // DEPRECATED: remove in v1.0.0
   hx-modalbody {
     flex-grow: 1;
     order: 2;
   }
 
-  // DEPRECATED: remove in v1.0.0
   hx-modalfoot {
     flex-shrink: 0;
     order: 3;

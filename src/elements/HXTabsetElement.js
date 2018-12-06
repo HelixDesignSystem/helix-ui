@@ -30,16 +30,18 @@ export class HXTabsetElement extends HXElement {
     }
 
     $onConnect () {
-        this.$upgradeProperty('current-tab');
-        this.$defaultAttribute('id', this.$generateId());
-        this._setupIds();
-        this.currentTab = Number(this.getAttribute('current-tab')) || 0;
-        this.$tablist = this.querySelector('hx-tablist');
-        this.$tablist.addEventListener('keyup', this._onKeyUp);
-        this.$tablist.addEventListener('keydown', this.$preventScroll);
-        this.tabs.forEach(tab => {
-            tab.addEventListener('click', this._onTabClick);
-        });
+        setTimeout(() => {
+            this.$upgradeProperty('current-tab');
+            this.$defaultAttribute('id', this.$generateId());
+            this._setupIds();
+            this.currentTab = Number(this.getAttribute('current-tab')) || 0;
+            this.$tablist = this.querySelector('hx-tablist');
+            this.$tablist.addEventListener('keyup', this._onKeyUp);
+            this.$tablist.addEventListener('keydown', this.$preventScroll);
+            this.tabs.forEach(tab => {
+                tab.addEventListener('click', this._onTabClick);
+            });
+        }, 0); // temp fix for SURF-1396, IE11/Edge bug
     }
 
     $onDisconnect () {

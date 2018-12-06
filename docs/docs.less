@@ -85,29 +85,6 @@ main {
   }
 }
 
-// Component Status Styles
-hx-status {
-  &.hxFill {
-    &.hxDeprecated {
-      background-color: @gray-1000;
-      border-color: @gray-900;
-      color: @gray-0;
-    }
-
-    &.hxInProgress {
-      background-color: @yellow-900;
-      border-color: @yellow-500;
-      color: @gray-1000;
-    }
-
-    &.hxStable {
-      background-color: @green-900;
-      border-color: @green-900;
-      color: @gray-0;
-    }
-  }
-}
-
 p.comfortable {
   max-width: 80ch;
 }
@@ -186,6 +163,7 @@ dl:not(.hxList) {
 }
 
 [v-cloak] {
+  height: 0;
   opacity: 0;
 
   & + [app-loading] {

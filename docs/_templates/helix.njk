@@ -1,0 +1,5 @@
+{% macro disclosure(label, controls, className="hxBtn") %}
+  <hx-disclosure aria-controls="{{controls}}" class="{{className}}">
+    {{label}}
+  </hx-disclosure>
+{% endmacro %}
