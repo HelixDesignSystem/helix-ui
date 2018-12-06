@@ -1,0 +1,23 @@
+// @supports used to prevent IE from loading the ShadyCSS-rewritten styles.
+// This is so we can write shorter, less-specific CSS selectors in order
+// to apply ShadyCSS overrides in the LightDOM.
+@supports (--skip-ie: true) {
+  :host {
+    --padding-base: 0;
+
+    --padding-top: var(--padding-base);
+    --padding-right: var(--padding-base);
+    --padding-bottom: var(--padding-base);
+    --padding-left: var(--padding-base);
+
+    --padding:
+      var(--padding-top)
+      var(--padding-right)
+      var(--padding-bottom)
+      var(--padding-left);
+
+    #hxDiv {
+      padding: var(--padding);
+    }
+  }
+}

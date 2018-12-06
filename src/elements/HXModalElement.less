@@ -4,51 +4,73 @@
 :host {
   display: none;
   z-index: @modal-z-index;
-
-  #hxBackdrop {
-    align-items: center;
-    background-color: @backdrop-color;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    padding: 1.25rem;
-    width: 100%;
-  }
-
-  #hxModal {
-    background-color: @gray-0;
-    box-shadow: 0px 7px 9px 0 fade(@gray-1000, 30%);
-    display: flex;
-    max-width: 40rem; //640px (NOT in spec)
-    min-height: 3.5rem;
-    min-width: 25rem; // 400px (per spec)
-    position: relative;
-    width: 50%;
-  }
-
-  @supports (--modern: true) {
-    #hxModal {
-      min-height: 12.5rem; // true to spec
-    }
-  }
-
-  #hxContent {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  #hxClose {
-    #Button.reset();
-    color: @gray-700;
-    height: 1rem;
-    position: absolute;
-    right: 1.25rem;
-    top: 1.25rem;
-  }
 }
 
 :host([open]) {
   display: block;
 }
+
+#hxBackdrop {
+  align-items: center;
+  background-color: @backdrop-color;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  padding: 1.25rem;
+  width: 100%;
+}
+
+#hxModal {
+  background-color: @gray-0;
+  box-shadow: 0px 7px 9px 0 fade(@gray-1000, 30%);
+  display: flex;
+  min-height: 3.5rem;
+  min-width: 25rem; // 400px
+  position: relative;
+}
+
+@supports (--modern: true) {
+  #hxModal {
+    min-height: 12.5rem; // true to spec
+  }
+}
+
+#hxContent {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+}
+
+#hxClose {
+  #Button.reset();
+  color: @gray-700;
+  height: 1rem;
+  position: absolute;
+  right: 1.25rem;
+  top: 1.25rem;
+}
+
+// ----- Width Variants -----
+:host(.hxSm) {
+  #hxModal {
+    max-width: 30rem; // 480px
+    width: 40%;
+  }
+}
+
+:host {
+  #hxModal {
+    max-width: 50rem; // 800px
+    width: 60%;
+  }
+}
+
+:host(.hxLg) {
+  #hxModal {
+    max-width: 70rem; // 1120px
+    width: 80%;
+  }
+}
+

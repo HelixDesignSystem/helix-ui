@@ -1,7 +1,18 @@
+@import (reference) 'vars';
 @import (reference) 'components/box';
+
+// TODO: refactor and find a better home for this mixin
+#HXDiv {
+  .shadyRoot(@rules) {
+    > #hxDiv {
+      @rules();
+    }
+  }
+}
 
 hx-div {
   display: block;
+  padding: 0 !important; // avoid unfixable padding-block-end bug
 
   &[scroll="horizontal"] {
     overflow-x: auto;
@@ -20,32 +31,84 @@ hx-div {
   &[scroll="none"] {
     overflow: visible;
   }
+}
 
+// ===== Polyfilled browsers =====
+// CSS specificity overrides selectors in the next block
+hx-div {
   &.hxXs {
-    #Box.xs();
+    #HXDiv.shadyRoot({
+      #Box.xs();
+    });
   }
 
   &.hxSm {
-    #Box.sm();
+    #HXDiv.shadyRoot({
+      #Box.sm();
+    });
   }
 
   &.hxMd {
-    #Box.md();
+    #HXDiv.shadyRoot({
+      #Box.md();
+    });
   }
 
   &.hxLg {
-    #Box.lg();
+    #HXDiv.shadyRoot({
+      #Box.lg();
+    });
   }
 
   &.hxXl {
-    #Box.xl();
+    #HXDiv.shadyRoot({
+      #Box.xl();
+    });
   }
 
   &.hx2x {
-    #Box.xxl();
+    #HXDiv.shadyRoot({
+      #Box.xxl();
+    });
   }
 
   &.hxFlush {
-    #Box.flush();
+    #HXDiv.shadyRoot({
+      #Box.flush();
+    });
+  }
+}
+
+// ===== Modern Browsers =====
+// Should only apply to browsers with ShadowDOM support.
+@supports(--modern: true) {
+  hx-div {
+    &.hxXs {
+      --padding-base: @space[xs];
+    }
+
+    &.hxSm {
+      --padding-base: @space[sm];
+    }
+
+    &.hxMd {
+      --padding-base: @space[md];
+    }
+
+    &.hxLg {
+      --padding-base: @space[lg];
+    }
+
+    &.hxXl {
+      --padding-base: @space[xl];
+    }
+
+    &.hx2x {
+      --padding-base: @space[xxl];
+    }
+
+    &.hxFlush {
+      --padding-base: @space[flush];;
+    }
   }
 }

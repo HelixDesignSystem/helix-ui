@@ -50,7 +50,7 @@ export class HXAlertElement extends HXElement {
 
     $onConnect () {
         this.$upgradeProperty('cta');
-        this.$upgradeProperty('static');
+        this.$upgradeProperty('persist');
         this.$upgradeProperty('status');
         this.$upgradeProperty('type');
 
@@ -66,7 +66,6 @@ export class HXAlertElement extends HXElement {
     static get $observedAttributes () {
         return [
             'cta',
-            'static',
             'status',
             'type',
         ];
@@ -112,20 +111,20 @@ export class HXAlertElement extends HXElement {
     }
 
     /**
-     * Property reflecting the `static` HTML attribute, indicating whether the
+     * Property reflecting the `persist` HTML attribute, indicating whether the
      * alert may be dismissed. If true, the dismiss button will not be shown.
      *
      * @default false
      * @type {Boolean}
      */
-    get static () {
-        return this.hasAttribute('static');
+    get persist () {
+        return this.hasAttribute('persist');
     }
-    set static (value) {
+    set persist (value) {
         if (value) {
-            this.setAttribute('static', ''); // boolean
+            this.setAttribute('persist', '');
         } else {
-            this.removeAttribute('static');
+            this.removeAttribute('persist');
         }
     }
 
@@ -169,7 +168,7 @@ export class HXAlertElement extends HXElement {
      * Dismiss the alert (removes element from the DOM).
      */
     dismiss () {
-        if (this.$emit('dismiss')) {
+        if (!this.persist && this.$emit('dismiss')) {
             // only if event was not canceled by consumer
             this.remove();
         }

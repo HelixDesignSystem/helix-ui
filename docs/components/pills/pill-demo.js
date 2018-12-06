@@ -5,13 +5,19 @@ if (document.getElementById('vue-pillDemo')) {
         el: '#vue-pillDemo',
         data: {
             content: 'status: unicorns!',
-            isDismissable: false,
+            isPersistent: false,
+        },
+        methods: {
+            onEvent: function (evt) {
+                evt.preventDefault();
+                alert(`Event: "${evt.type}"`);
+            },
         },
         computed: {
             snippet: function () {
                 return Util.snippet(`
                     <hx-pill
-                      ${this.isDismissable ? 'dismissable' : ''}
+                      ${this.isPersistent ? 'persist' : ''}
                     >
                       ${this.content}
                     </hx-pill>

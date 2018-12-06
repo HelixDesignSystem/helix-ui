@@ -14,14 +14,15 @@ if (document.getElementById('vue-alertDemo')) {
         data: {
             content: 'Nope! Nope! Nope! Nope! Nope!',
             cta: 'burn it',
-            isStatic: false,
+            isPersistent: false,
             status: 'spider',
             type: TYPES[0],
             types: TYPES,
         },
         methods: {
-            onSubmit: function () {
-                alert('The spider didn\'t see that coming!');
+            onEvent: function (evt) {
+                evt.preventDefault();
+                alert(`Event: "${evt.type}"`);
             },
         },
         computed: {
@@ -51,7 +52,7 @@ if (document.getElementById('vue-alertDemo')) {
                     <hx-alert
                       ${this.attrCta}
                       ${this.attrStatus}
-                      ${this.isStatic ? 'static' : ''}
+                      ${this.isPersistent ? 'persist' : ''}
                       ${this.attrType}
                     >
                       ${this.content}

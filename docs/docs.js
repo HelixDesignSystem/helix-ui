@@ -14,6 +14,7 @@ import './components/files/file-tile-demo';
 import './components/icons/icon-demo';
 import './components/lists/list-demo';
 import './components/loaders/loader-demo';
+import './components/modals/modal-demo';
 import './components/panels/panel-demo';
 import './components/pills/pill-demo';
 import './components/popovers/popover-demo';
