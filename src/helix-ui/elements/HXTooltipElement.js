@@ -96,7 +96,7 @@ export class HXTooltipElement extends _ProtoClass {
     get controlElement () {
         let rootNode = this.getRootNode();
 
-        // FIXME: use `if (this.parentNode) { ... }`
+        // FIXME: use `if (this.isConnected) { ... }`
         if (rootNode !== this) {
             // FIXME: replace getElementById() with querySelector()
             return rootNode.getElementById(this.htmlFor);
