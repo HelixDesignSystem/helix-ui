@@ -27,12 +27,17 @@ export class HXAccordionElement extends HXElement {
 
     $onConnect () {
         this.$upgradeProperty('currentPanel');
+        // FIXME: panels are not connected at this point
         this.panels.forEach(panel => {
             panel.addEventListener('open', this._onPanelOpen);
         });
+
+        // FIXME: initialize on connect
     }
 
     $onDisconnect () {
+        // FIXME: panels may not be present on disconnect
+        // (react disconnects children before the parent)
         this.panels.forEach(panel => {
             panel.removeEventListener('open', this._onPanelOpen);
         });
@@ -45,6 +50,7 @@ export class HXAccordionElement extends HXElement {
     $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'current-panel') {
             if (newVal !== null) {
+                // FIXME: this may not initialize correctly if called while disconnected
                 this._openPanel(Number(newVal));
                 this.$emit('panelchange');
             }
@@ -123,6 +129,7 @@ export class HXAccordionElement extends HXElement {
         }
     }
 
+    // FIXME: only works correctly if connected to DOM
     /** @private */
     _openPanel (index) {
         if (this._isNavigable) {

@@ -56,6 +56,8 @@ export class HXDisclosureElement extends HXElement {
     $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'aria-expanded') {
             if (this.target) {
+                // FIXME: move into $onConnect with updated initialization logic
+                // (target may not be connected when disclosure connects)
                 let setTo = (newVal === 'true');
                 if (this.target.open !== setTo) {
                     this.target.open = setTo;
@@ -82,6 +84,7 @@ export class HXDisclosureElement extends HXElement {
     get target () {
         if (!this._target) {
             let targetId = this.getAttribute('aria-controls');
+            // FIXME: getRootNode() will not return document context before connect
             this._target = this.getRootNode().getElementById(targetId);
         }
         return this._target;

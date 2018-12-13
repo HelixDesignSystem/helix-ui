@@ -33,12 +33,17 @@ export class HXDivElement extends HXElement {
         return [ 'scroll' ];
     }
 
+    // FIXME: ensure 'scroll' event listener added on connect (if scroll attr present)
+    // FIXME: ensure 'scroll' event listener is removed on disconnect
+
     $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'scroll') {
+            // FIXME: only run if connected
             if (newVal !== null) {
                 this._resetScroll();
                 this.addEventListener('scroll', onScroll);
             } else {
+                // FIXME: listener doesn't get removed if element disconnects
                 this.removeEventListener('scroll', onScroll);
             }
         }

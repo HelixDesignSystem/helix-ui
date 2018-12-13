@@ -33,11 +33,14 @@ export class HXTabsetElement extends HXElement {
         setTimeout(() => {
             this.$upgradeProperty('current-tab');
             this.$defaultAttribute('id', this.$generateId());
+            // FIXME: calls this.tabs, but tabs may not be present when tabset connects
             this._setupIds();
             this.currentTab = Number(this.getAttribute('current-tab')) || 0;
+            // FIXME: hx-tablist may not be present when tabset connects
             this.$tablist = this.querySelector('hx-tablist');
             this.$tablist.addEventListener('keyup', this._onKeyUp);
             this.$tablist.addEventListener('keydown', this.$preventScroll);
+            // FIXME: tags may not be present when tabset connects
             this.tabs.forEach(tab => {
                 tab.addEventListener('click', this._onTabClick);
             });
@@ -45,6 +48,7 @@ export class HXTabsetElement extends HXElement {
     }
 
     $onDisconnect () {
+        // FIXME: convert this.$tablist to getter
         this.$tablist.removeEventListener('keyup', this._onKeyUp);
         this.$tablist.removeEventListener('keydown', this.$preventScroll);
         this.tabs.forEach(tab => {
@@ -58,6 +62,7 @@ export class HXTabsetElement extends HXElement {
 
     $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'current-tab') {
+            // FIXME: only run if connected
             if (!isNaN(newVal)) {
                 this._activateTab(Number(newVal));
                 this.$emit('tabchange');
@@ -114,6 +119,7 @@ export class HXTabsetElement extends HXElement {
             // select next
             this.currentTab += 1;
         }
+        // FIXME: this.tabs might return an empty array
         this.tabs[this.currentTab].focus();
     }
 
@@ -129,6 +135,7 @@ export class HXTabsetElement extends HXElement {
             // select previous
             this.currentTab -= 1;
         }
+        // FIXME: this.tabs might return an empty array
         this.tabs[this.currentTab].focus();
     }
 
@@ -153,6 +160,7 @@ export class HXTabsetElement extends HXElement {
 
     /** @private */
     _activateTab (idx) {
+        // FIXME: this.tabs will return empty array before tabset connects
         this.tabs.forEach((tab, tabIdx) => {
             if (idx === tabIdx) {
                 tab.current = true;
@@ -164,6 +172,7 @@ export class HXTabsetElement extends HXElement {
             }
         });
 
+        // FIXME: this.tabpanels will return empty array before tabset connects
         this.tabpanels.forEach((tabpanel, panelIdx) => {
             tabpanel.open = (idx === panelIdx);
         });
@@ -172,6 +181,7 @@ export class HXTabsetElement extends HXElement {
     /** @private */
     _setupIds () {
         let tabsetId = this.getAttribute('id');
+        // FIXME: this.tabs will return empty array before connect
         this.tabs.forEach((tab, idx) => {
             let tabpanel = this.tabpanels[idx];
             // Default tab and panel ID
