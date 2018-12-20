@@ -38,7 +38,9 @@ export const Positionable = (superclass) => {
             this.addEventListener('open', this.__onOpen);
             this.addEventListener('close', this.__onClose);
 
-            // FIXME: add open listeners if already open
+            if (this.open) {
+                this.__addOpenListeners();
+            }
         }
 
         /** @override */
@@ -74,8 +76,9 @@ export const Positionable = (superclass) => {
          * @type {HTMLElement}
          */
         get controlElement () {
-            // FIXME: only run if connected
-            return this.getRootNode().querySelector(`[aria-controls="${this.id}"]`);
+            if (this.isConnected) {
+                return this.getRootNode().querySelector(`[aria-controls="${this.id}"]`);
+            }
         }
 
         /**
