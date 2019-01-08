@@ -67,6 +67,13 @@
         minver: '0.1.10',
     },
     {
+        name: 'clock',
+        minver: '0.15.0',
+        keywords: [
+            'time'
+        ]
+    },
+    {
         name: 'cog',
         minver: '0.1.0',
         keywords: [
@@ -158,9 +165,8 @@
     {
         name: 'input-time',
         minver: '0.1.0',
-        keywords: [
-            'clock',
-        ],
+        deprecated: true,
+        replacement: 'clock'
     },
     {
         name: 'input-url',
