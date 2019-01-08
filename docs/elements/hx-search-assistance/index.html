@@ -29,6 +29,7 @@ also:
           <ul class="hxList">
             <li><code>close</code></li>
             <li><code>open</code></li>
+            <li><code>reposition</code></li>
             <li>
               <code>scroll</code> (Emitted from <code>document</code> as a
               <code>CustomEvent</code> instance.)
@@ -42,10 +43,10 @@ also:
 
 {% block attributes %}
   <dl>
-    <dt>open</dt>
+    <dt>open <i>(optional)</i></dt>
     <dd>Opens the search assistance</dd>
 
-    <dt>position {String [bottom-start]}</dt>
+    <dt>position <i>(optional)</i></dt>
     <dd>Positions the search assistance</dd>
 
     <dt>relative-to <i>(optional)</i></dt>

@@ -39,12 +39,6 @@ export class HXTooltipElement extends _ProtoClass {
         this._onCtrlMouseEnter = this._onCtrlMouseEnter.bind(this);
         this._onCtrlMouseLeave = this._onCtrlMouseLeave.bind(this);
         this._onKeyUp = this._onKeyUp.bind(this);
-
-        // TODO: What if 'id' is blank?
-        this.$defaultAttribute('id', `tip-${this.$generateId()}`);
-
-        this.$defaultAttribute('role', 'tooltip');
-        this.$defaultAttribute('data-offset', 20);
         this._isHovering = false;
     }
 
@@ -54,7 +48,13 @@ export class HXTooltipElement extends _ProtoClass {
 
         this.$upgradeProperty('htmlFor');
 
-        this._attachListeners();
+        // TODO: What if 'id' is blank?
+        this.$defaultAttribute('id', `tip-${this.$generateId()}`);
+
+        this.$defaultAttribute('role', 'tooltip');
+        this.$defaultAttribute('data-offset', 20);
+
+        this._connectToControl();
     }
 
     /** @override */
@@ -75,7 +75,7 @@ export class HXTooltipElement extends _ProtoClass {
 
         switch (attr) {
             case 'for':
-                this._attrForChange(oldVal, newVal);
+                this._connectToControl();
                 break;
 
             case 'position':
@@ -93,7 +93,11 @@ export class HXTooltipElement extends _ProtoClass {
      * @returns {HTMLElement|undefined}
      */
     get controlElement () {
-        return this.getRootNode().getElementById(this.htmlFor);
+        let rootNode = this.getRootNode();
+
+        if (rootNode !== this) {
+            return rootNode.getElementById(this.htmlFor);
+        }
     }
 
     /**
@@ -143,18 +147,20 @@ export class HXTooltipElement extends _ProtoClass {
     }
 
     /** @private */
-    _attrForChange () {
-        // detach listeners from old control element
-        this._detachListeners();
+    _connectToControl () {
+        if (this.controlElement) {
+            // detach listeners from old control element
+            this._detachListeners();
 
-        // re-memoize control element
-        delete this._controlElement;
-        this._controlElement = this.controlElement;
+            // re-memoize control element
+            delete this._controlElement;
+            this._controlElement = this.controlElement;
 
-        this._makeControlAccessible();
+            this._makeControlAccessible();
 
-        // attach listeners to new control element
-        this._attachListeners();
+            // attach listeners to new control element
+            this._attachListeners();
+        }
     }
 
     /**

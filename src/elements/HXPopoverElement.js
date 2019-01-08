@@ -28,6 +28,11 @@ export class HXPopoverElement extends _ProtoClass {
     $onCreate () {
         super.$onCreate();
         this.DEFAULT_POSITION = 'bottom-right';
+    }
+
+    /** @override */
+    $onConnect () {
+        super.$onConnect();
         this.$defaultAttribute('data-offset', 20);
     }
 
