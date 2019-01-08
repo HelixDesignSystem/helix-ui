@@ -201,22 +201,16 @@ also:
     </hx-alert>
     <hx-alert type="warning" status="warning" persist>
       Adding the <code>disabled</code> attribute to a link <b>will not</b>
-      prevent user interaction. Consider using a <code>&lt;button&gt;</code>
-      instead.
+      prevent user interaction.
     </hx-alert>
     <div class="example">
       <div>
-        <a href="#">Normal Link</a>
-        <br />
-        <a href="#" class="pseudo-active">Pressed Link</a>
-        <br />
-        <a href="#" disabled>"Disabled" Link</a>
+        <a href="#">Link Text</a>
       </div>
 
       <footer>
         {% code 'html' %}
-          <a href="#">Normal Link</a>
-          <a href="#" disabled>"Disabled" Link</a>
+          <a href="#">Link Text</a>
         {% endcode %}
       </footer>
     </div>
