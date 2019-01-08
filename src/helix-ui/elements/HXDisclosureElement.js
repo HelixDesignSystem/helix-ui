@@ -1,5 +1,5 @@
 import { HXElement } from './HXElement';
-import { KEYS } from '../utils';
+import { KEYS, defer, preventKeyScroll } from '../utils';
 
 /**
  * Defines behavior for the `<hx-disclosure>` element.
@@ -14,6 +14,7 @@ export class HXDisclosureElement extends HXElement {
     }
 
     $onCreate () {
+        this.$onConnect = defer(this.$onConnect);
         this._onTargetOpen = this._onTargetOpen.bind(this);
         this._onTargetClose = this._onTargetClose.bind(this);
     }
@@ -27,26 +28,22 @@ export class HXDisclosureElement extends HXElement {
 
         if (this.target) {
             this.expanded = this.target.hasAttribute('open');
-            this.target.addEventListener('open', this._onTargetOpen);
-            this.target.addEventListener('close', this._onTargetClose);
         } else {
             this.expanded = false;
         }
 
+        this._addTargetListeners();
         this.addEventListener('click', this._onClick);
-        this.addEventListener('keydown', this.$preventScroll);
+        this.addEventListener('keydown', preventKeyScroll);
         this.addEventListener('keyup', this._onKeyUp);
     }
 
     $onDisconnect () {
         this.removeEventListener('click', this._onClick);
-        this.removeEventListener('keydown', this.$preventScroll);
+        this.removeEventListener('keydown', preventKeyScroll);
         this.removeEventListener('keyup', this._onKeyUp);
 
-        if (this.target) {
-            this.target.removeEventListener('open', this._onTargetOpen);
-            this.target.removeEventListener('close', this._onTargetClose);
-        }
+        this._removeTargetListeners();
     }
 
     static get $observedAttributes () {
@@ -56,8 +53,6 @@ export class HXDisclosureElement extends HXElement {
     $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'aria-expanded') {
             if (this.target) {
-                // FIXME: move into $onConnect with updated initialization logic
-                // (target may not be connected when disclosure connects)
                 let setTo = (newVal === 'true');
                 if (this.target.open !== setTo) {
                     this.target.open = setTo;
@@ -82,9 +77,8 @@ export class HXDisclosureElement extends HXElement {
      * @type {HTMLElement}
      */
     get target () {
-        if (!this._target) {
+        if (this.isConnected && !this._target) {
             let targetId = this.getAttribute('aria-controls');
-            // FIXME: getRootNode() will not return document context before connect
             this._target = this.getRootNode().getElementById(targetId);
         }
         return this._target;
@@ -96,6 +90,14 @@ export class HXDisclosureElement extends HXElement {
     click () {
         if (!this.disabled) {
             this.expanded = !this.expanded;
+        }
+    }
+
+    /** @private */
+    _addTargetListeners () {
+        if (this.target) {
+            this.target.addEventListener('open', this._onTargetOpen);
+            this.target.addEventListener('close', this._onTargetClose);
         }
     }
 
@@ -124,5 +126,13 @@ export class HXDisclosureElement extends HXElement {
     /** @private */
     _onClick () {
         this.click();
+    }
+
+    /** @private */
+    _removeTargetListeners () {
+        if (this.target) {
+            this.target.removeEventListener('open', this._onTargetOpen);
+            this.target.removeEventListener('close', this._onTargetClose);
+        }
     }
 }

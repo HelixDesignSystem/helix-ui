@@ -1,5 +1,3 @@
-import { KEYS } from '../utils';
-
 // Keep track of prepared templates
 const TEMPLATE_CACHE = {};
 
@@ -59,12 +57,6 @@ export class HXElement extends HTMLElement {
      * Custom Element lifecycle method.
      *
      * Use this callback to initialize an element's behavior.
-     *
-     * **Client-side Framework Compatibility**
-     *
-     * It is worth noting that client-side frameworks like React may not reconstruct
-     * instances of an element, but may connect and disconnect the initial instance
-     * from the DOM.
      *
      * @abstract
      * @ignore
@@ -141,7 +133,7 @@ export class HXElement extends HTMLElement {
         return [ ...common, ...extra ];
     }
 
-    // Called when an attribute UPDATES (not just when it changes).
+    // Called when an attribute is SET (not just when it changes).
     attributeChangedCallback (attr, oldVal, newVal) {
         if (attr === 'disabled') {
             if (newVal !== null) {
@@ -163,22 +155,27 @@ export class HXElement extends HTMLElement {
         }
     }//attributeChangedCallback
 
+    /* ===== PUBLIC PROPERTIES ===== */
+
     /**
-     * Captures the value from the unupgraded instance and deletes the property
-     * so it does not shadow the custom element's own property setter. This way,
-     * when the element's definition does finally load, it can immediately
-     * reflect the correct state.
+     * Indicates whether the element is disabled.
+     * A disabled element is nonfunctional and noninteractive.
      *
-     * @param {String} prop - property name to upgrade
-     * @see https://goo.gl/MDp6j5
+     * @default false
+     * @type {Boolean}
      */
-    $upgradeProperty (prop) {
-        if (this.hasOwnProperty(prop)) {
-            let value = this[prop];
-            delete this[prop];
-            this[prop] = value;
+    get disabled () {
+        return this.hasAttribute('disabled');
+    }
+    set disabled (value) {
+        if (value) {
+            this.setAttribute('disabled', '');
+        } else {
+            this.removeAttribute('disabled');
         }
     }
+
+    /* ===== PUBLIC METHODS ===== */
 
     /**
      * Assign a value to an HTML attribute, if the attribute isn't present.
@@ -192,42 +189,6 @@ export class HXElement extends HTMLElement {
             this.setAttribute(name, val);
         }
     }
-
-    /**
-     * Generate a unique ID
-     *
-     * **Pseudo-random Algorithm**
-     * This functionality is pseudo-random, and you should not depend on 100%
-     * random values. Given a large enough dataset, this method has the
-     * potential to generate duplicate values.
-     *
-     * For the purposes of most applications, the dataset is small enough that
-     * the potential for duplicate values is almost 0, meaning that it's good
-     * enough for use.
-     */
-    $generateId () {
-        return Math
-            .random()     // 0.7093288430261266
-            .toString(36) // "0.pjag2nwxb2o"
-            .substr(2,8); // "pjag2nwx"
-    }//$generateId()
-
-    /**
-     * Event listener callback function to prevent page scrolling on `keydown`.
-     *
-     * @param {Event} evt - Event to act on.
-     */
-    $preventScroll (evt) {
-        switch (evt.keyCode) {
-            case KEYS.Down:
-            case KEYS.Left:
-            case KEYS.Right:
-            case KEYS.Space:
-            case KEYS.Up:
-                evt.preventDefault();
-                break;
-        }
-    }//$preventScroll()
 
     /**
      * Emit a custom event
@@ -291,22 +252,26 @@ export class HXElement extends HTMLElement {
     }
 
     /**
-     * Indicates whether the element is disabled.
-     * A disabled element is nonfunctional and noninteractive.
+     * Captures the value from the unupgraded instance and deletes the property
+     * so it does not shadow the custom element's own property setter. This way,
+     * when the element's definition does finally load, it can immediately
+     * reflect the correct state.
      *
-     * @default false
-     * @type {Boolean}
+     * @param {String} prop - property name to upgrade
+     * @see https://goo.gl/MDp6j5
      */
-    get disabled () {
-        return this.hasAttribute('disabled');
-    }
-    set disabled (value) {
-        if (value) {
-            this.setAttribute('disabled', '');
-        } else {
-            this.removeAttribute('disabled');
+    $upgradeProperty (prop) {
+        if (this.hasOwnProperty(prop)) {
+            let value = this[prop];
+            delete this[prop];
+            this[prop] = value;
         }
     }
+
+    /* ===== PRIVATE PROPERTIES ===== */
+    // TBD
+
+    /* ===== PRIVATE METHODS ===== */
 
     /**
      * @private
@@ -357,14 +322,4 @@ export class HXElement extends HTMLElement {
             this.shadowRoot.appendChild(_template.content.cloneNode(true));
         }
     }//_$setupShadowDOM()
-
-    /** @private */
-    _$replaceWith (txtReplacement) {
-        /* eslint-disable no-console */
-        console.warn(`
-            DEPRECATED: Use ${txtReplacement} instead.
-            Old functionality will be removed in an upcoming major release.
-        `);
-        /* eslint-enable no-console */
-    }
 }

@@ -56,6 +56,60 @@ export const KEYS = {
 };
 
 /**
+ * Defers execution of callback function until _next_ event loop.
+ *
+ * @param {Function} callback
+ * @returns {Function}
+ */
+export function defer (cb) {
+    return () => setTimeout(cb, 0);
+}
+
+/**
+ * Generate a unique ID
+ *
+ * **Pseudo-random Algorithm**
+ * This functionality is pseudo-random, and you should not depend on 100%
+ * random values. Given a large enough dataset, this method has the
+ * potential to generate duplicate values.
+ *
+ * For the purposes of most applications, the dataset is small enough that
+ * the potential for duplicate values is almost 0, meaning that it's good
+ * enough for use.
+ *
+ * @see https://gist.github.com/gordonbrander/2230317
+ */
+export function generateId () {
+    return Math
+        .random()     // 0.7093288430261266
+        .toString(36) // "0.pjag2nwxb2o"
+        .substr(2,8); // "pjag2nwx"
+}
+
+/**
+ * @function
+ * @param {class} baseClass - Base class to apply mixin behavior
+ * @param {...function} mixins - mixin factory functions
+ * @returns {class}
+ *
+ * @example
+ * import { mix } from 'utils';
+ *
+ * // Define unique superclass with behaviors from one or more mixin classes
+ * class _ABElement extends mix(HXElement, MixinA, MixinB) {}
+ *
+ * // Extend unique superclass and define additional logic
+ * class HXNewElement extends _ABElement {
+ *   // logic unique to HXNewElement ...
+ * }
+ */
+export function mix (baseClass, ...mixins) {
+    return mixins.reduce((klass, mixin) => {
+        return mixin(klass);
+    }, baseClass);
+}
+
+/**
  * Communicate scroll events from elements at arbitrary depths in the DOM tree
  * (because 'scroll' events do not bubble).
  *
@@ -81,31 +135,45 @@ export function onScroll (evt) {
     return document.dispatchEvent(_evtScroll);
 }//onScroll()
 
+/**
+ * Event listener callback function to prevent page scrolling on `keydown`.
+ *
+ * @param {Event} evt - Event to act on.
+ */
+export function preventKeyScroll (evt) {
+    switch (evt.keyCode) {
+        case KEYS.Down:
+        case KEYS.Left:
+        case KEYS.Right:
+        case KEYS.Space:
+        case KEYS.Up:
+            evt.preventDefault();
+            break;
+    }
+}
+
+/**
+ * Warn user of deprecation.
+ *
+ * @param {String} txtReplacement - "use instead" replacement
+ */
+export function replaceWith (txtReplacement) {
+    /* eslint-disable no-console */
+    console.warn(`
+        DEPRECATED: Use ${txtReplacement} instead.
+        Old functionality will be removed in an upcoming major release.
+    `);
+    /* eslint-enable no-console */
+}
+
+// Not everything needs to be part of the default export
 export default {
     KEYS,
     Position,
+    defer,
+    generateId,
+    mix,
     onScroll,
+    preventKeyScroll,
+    replaceWith,
 };
-
-/**
- * @function
- * @param {class} baseClass - Base class to apply mixin behavior
- * @param {...function} mixins - mixin factory functions
- * @returns {class}
- *
- * @example
- * import { mix } from 'utils';
- *
- * // Define unique superclass with behaviors from one or more mixin classes
- * class _ABElement extends mix(HXElement, MixinA, MixinB) {}
- *
- * // Extend unique superclass and define additional logic
- * class HXNewElement extends _ABElement {
- *   // logic unique to HXNewElement ...
- * }
- */
-export function mix (baseClass, ...mixins) {
-    return mixins.reduce((klass, mixin) => {
-        return mixin(klass);
-    }, baseClass);
-}
