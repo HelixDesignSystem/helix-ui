@@ -75,7 +75,6 @@ export class HXTooltipElement extends _ProtoClass {
 
         switch (attr) {
             case 'for':
-                // FIXME: only run if connected to DOM
                 this._connectToControl();
                 break;
 
@@ -94,12 +93,8 @@ export class HXTooltipElement extends _ProtoClass {
      * @returns {HTMLElement|undefined}
      */
     get controlElement () {
-        let rootNode = this.getRootNode();
-
-        // FIXME: use `if (this.isConnected) { ... }`
-        if (rootNode !== this) {
-            // FIXME: replace getElementById() with querySelector()
-            return rootNode.getElementById(this.htmlFor);
+        if (this.isConnected) {
+            return this.getRootNode().querySelector(`#${this.htmlFor}`);
         }
     }
 
@@ -132,7 +127,6 @@ export class HXTooltipElement extends _ProtoClass {
             return false;
         }
 
-        // FIXME: getRootNode() will not return document context before connect
         return (this.getRootNode().activeElement === ctrl);
     }
 
