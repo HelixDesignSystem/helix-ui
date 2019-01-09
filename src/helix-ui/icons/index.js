@@ -12,6 +12,7 @@ import _billing from './billing.svg';
 import _calendar from './calendar.svg';
 import _checkmark from './checkmark.svg';
 import _checkmarkCircle from './checkmark-circle.svg';
+import _clock from './clock.svg';
 import _cog from './cog.svg';
 import _copy from './copy.svg';
 import _download from './download.svg';
@@ -27,7 +28,6 @@ import _globe from './globe.svg';
 import _helpCircle from './help-circle.svg';
 import _infoCircle from './info-circle.svg';
 import _inputFile from './input-file.svg';
-import _inputTime from './input-time.svg';
 import _kbdArrowDown from './kbd-arrow-down.svg';
 import _kbdArrowLeft from './kbd-arrow-left.svg';
 import _kbdArrowRight from './kbd-arrow-right.svg';
@@ -93,6 +93,7 @@ const MAP = {
     'calendar': _calendar,
     'checkmark': _checkmark,
     'checkmark-circle': _checkmarkCircle,
+    'clock': _clock,
     'cog': _cog,
     'copy': _copy,
     'download': _download,
@@ -108,7 +109,6 @@ const MAP = {
     'help-circle': _helpCircle,
     'info-circle': _infoCircle,
     'input-file': _inputFile,
-    'input-time': _inputTime,
     'kbd-arrow-down': _kbdArrowDown,
     'kbd-arrow-left': _kbdArrowLeft,
     'kbd-arrow-right': _kbdArrowRight,
@@ -165,5 +165,6 @@ MAP['export'] = MAP['upload'];
 MAP['input-url'] = MAP['globe'];
 MAP['technical-change'] = MAP['server-config'];
 MAP['technical-incident'] = MAP['server-incident'];
+MAP['input-time'] = MAP['clock'];
 
 export default MAP;
