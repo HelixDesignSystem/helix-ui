@@ -1,7 +1,7 @@
 import { HXElement } from './HXElement';
 
 import { Positionable } from '../mixins/Positionable';
-import { KEYS, mix } from '../utils';
+import { KEYS, mix, generateId } from '../utils';
 
 import shadowMarkup from './HXTooltipElement.html';
 import shadowStyles from './HXTooltipElement.less';
@@ -49,7 +49,7 @@ export class HXTooltipElement extends _ProtoClass {
         this.$upgradeProperty('htmlFor');
 
         // TODO: What if 'id' is blank?
-        this.$defaultAttribute('id', `tip-${this.$generateId()}`);
+        this.$defaultAttribute('id', `tip-${generateId()}`);
 
         this.$defaultAttribute('role', 'tooltip');
         this.$defaultAttribute('data-offset', 20);

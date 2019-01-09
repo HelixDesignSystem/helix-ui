@@ -1,5 +1,5 @@
 import { HXElement } from './HXElement';
-import { KEYS } from '../utils';
+import { KEYS, defer, generateId, preventKeyScroll } from '../utils';
 
 /**
  * Fires when the currently active tab changes.
@@ -25,32 +25,28 @@ export class HXTabsetElement extends HXElement {
     }
 
     $onCreate () {
+        this.$onConnect = defer(this.$onConnect);
         this._onKeyUp = this._onKeyUp.bind(this);
         this._onTabClick = this._onTabClick.bind(this);
     }
 
     $onConnect () {
-        setTimeout(() => {
-            this.$upgradeProperty('current-tab');
-            this.$defaultAttribute('id', this.$generateId());
-            // FIXME: calls this.tabs, but tabs may not be present when tabset connects
-            this._setupIds();
-            this.currentTab = Number(this.getAttribute('current-tab')) || 0;
-            // FIXME: hx-tablist may not be present when tabset connects
-            this.$tablist = this.querySelector('hx-tablist');
-            this.$tablist.addEventListener('keyup', this._onKeyUp);
-            this.$tablist.addEventListener('keydown', this.$preventScroll);
-            // FIXME: tags may not be present when tabset connects
-            this.tabs.forEach(tab => {
-                tab.addEventListener('click', this._onTabClick);
-            });
-        }, 0); // temp fix for SURF-1396, IE11/Edge bug
+        this.$upgradeProperty('current-tab');
+        this.$defaultAttribute('id', generateId());
+        this._setupIds();
+        this.currentTab = Number(this.getAttribute('current-tab')) || 0;
+        this.$tablist = this.querySelector('hx-tablist');
+        this.$tablist.addEventListener('keyup', this._onKeyUp);
+        this.$tablist.addEventListener('keydown', preventKeyScroll);
+        this.tabs.forEach(tab => {
+            tab.addEventListener('click', this._onTabClick);
+        });
     }
 
     $onDisconnect () {
         // FIXME: convert this.$tablist to getter
         this.$tablist.removeEventListener('keyup', this._onKeyUp);
-        this.$tablist.removeEventListener('keydown', this.$preventScroll);
+        this.$tablist.removeEventListener('keydown', preventKeyScroll);
         this.tabs.forEach(tab => {
             tab.removeEventListener('click', this._onTabClick);
         });
