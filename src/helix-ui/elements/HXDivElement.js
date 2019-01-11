@@ -1,7 +1,8 @@
 import { HXElement } from './HXElement';
-import { onScroll } from '../utils';
 import shadowMarkup from './HXDivElement.html';
 import shadowStyles from './HXDivElement.less';
+
+import { onScroll } from '../utils';
 
 /**
  * Nullable string denoting direction for scrolling.
