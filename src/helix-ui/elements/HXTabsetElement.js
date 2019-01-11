@@ -32,7 +32,7 @@ export class HXTabsetElement extends HXElement {
 
     $onConnect () {
         this.$upgradeProperty('current-tab');
-        this.$defaultAttribute('id', generateId());
+        this.$defaultAttribute('id', `tabset-${generateId()}`);
         this._setupIds();
         this.currentTab = Number(this.getAttribute('current-tab')) || 0;
         this.$tablist = this.querySelector('hx-tablist');
