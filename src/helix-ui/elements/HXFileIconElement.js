@@ -1,6 +1,6 @@
 import { HXElement } from './HXElement';
-import shadowStyles from './HXFileIconElement.less';
 import shadowMarkup from './HXFileIconElement.html';
+import shadowStyles from './HXFileIconElement.less';
 
 /**
  * Defines behavior for the `<hx-file-icon>` element.
@@ -16,7 +16,7 @@ export class HXFileIconElement extends HXElement {
     static get template () {
         return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
-        
+
     $onConnect () {
         this.$upgradeProperty('type');
     }
@@ -24,7 +24,7 @@ export class HXFileIconElement extends HXElement {
     static get $observedAttributes () {
         return [ 'extension', 'type' ];
     }
-    
+
     $onAttributeChange (attr, oldVal, newVal) {
         switch (attr) {
             case 'extension':

@@ -1,6 +1,6 @@
 import { HXElement } from './HXElement';
-import shadowStyles from './HXSearchElement.less';
 import shadowMarkup from './HXSearchElement.html';
+import shadowStyles from './HXSearchElement.less';
 
 /**
  * Fires when the element loses focus.
