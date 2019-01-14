@@ -1,10 +1,9 @@
 import { HXElement } from './HXElement';
+import shadowMarkup from './HXTooltipElement.html';
+import shadowStyles from './HXTooltipElement.less';
 
 import { Positionable } from '../mixins/Positionable';
 import { KEYS, mix, generateId } from '../utils';
-
-import shadowMarkup from './HXTooltipElement.html';
-import shadowStyles from './HXTooltipElement.less';
 
 const TOOLTIP_DELAY = 500;
 

@@ -1,4 +1,5 @@
 import { HXElement } from './HXElement';
+
 import { onScroll } from '../utils';
 
 /**
