@@ -51,7 +51,7 @@
     name: 'Node.isConnected',
     mdn: 'API/Node/isConnected',
     missing: ['edge', 'ie'],
-    polyfill: 'helix-ui',
+    polyfill: 'webcomponentsjs',
   },
   {
     name: 'Node.getRootNode()',
