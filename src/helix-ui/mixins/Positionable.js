@@ -39,7 +39,7 @@ export const Positionable = (superclass) => {
             this.addEventListener('close', this.__onClose);
 
             if (this.open) {
-                this.__addOpenListeners();
+                this.$emit('open');
             }
         }
 
@@ -100,8 +100,12 @@ export const Positionable = (superclass) => {
          * @type {HTMLElement}
          */
         get relativeElement () {
+            if (!this.isConnected) {
+                return;
+            }
+
             if (this.relativeTo) {
-                return this.getRootNode().getElementById(this.relativeTo);
+                return this.getRootNode().querySelector(`#${this.relativeTo}`);
             } else {
                 return this.controlElement;
             }
@@ -120,27 +124,13 @@ export const Positionable = (superclass) => {
         }
 
         /**
-         * Calculate fixed {x,y} coordinates relative to another HTML element.
-         *
-         * @returns {Object} Coordinate object with `x` and `y` properties.
-         */
-        getCoordinates () {
-            let posRect = this.getBoundingClientRect();
-            let relRect = this.relativeElement.getBoundingClientRect();
-            let calculate = offsetFunctionMap[this.position];
-            let opts = this.__getDeltas();
-
-            return calculate(posRect, relRect, opts);
-        }
-
-        /**
          * Calculate and apply new (x,y) coordinates.
          *
          * Requires the element to be open with a `relativeElement`.
          */
         reposition () {
             if (this.open && this.relativeElement) {
-                let { x, y } = this.getCoordinates();
+                let { x, y } = this.__getCoordinates();
 
                 this.style.top = `${y}px`;
                 this.style.left = `${x}px`;
@@ -153,9 +143,31 @@ export const Positionable = (superclass) => {
          * Add event listeners that only apply when open.
          */
         __addOpenListeners () {
+            if (!this.controlElement) {
+                return;
+            }
+
             document.addEventListener('click', this.__onDocumentClick);
             document.addEventListener('scroll', this.__onDocumentScroll, { passive: true });
             window.addEventListener('resize', this.__onWindowResize, { passive: true });
+        }
+
+        /**
+         * Calculate fixed {x,y} coordinates relative to another HTML element.
+         *
+         * @returns {Object} Coordinate object with `x` and `y` properties.
+         */
+        __getCoordinates () {
+            if (!this.relativeElement) {
+                return { x: 0, y: 0 };
+            }
+
+            let posRect = this.getBoundingClientRect();
+            let relRect = this.relativeElement.getBoundingClientRect();
+            let calculate = offsetFunctionMap[this.position];
+            let opts = this.__getDeltas();
+
+            return calculate(posRect, relRect, opts);
         }
 
         /**
@@ -220,6 +232,10 @@ export const Positionable = (superclass) => {
          * @param {Event} evt
          */
         __onDocumentClick (evt) {
+            if (!this.controlElement) {
+                return;
+            }
+
             let inComponent = this.contains(evt.target);
             let inControl = this.controlElement.contains(evt.target);
             let isBackground = (!inComponent && !inControl);
@@ -240,9 +256,7 @@ export const Positionable = (superclass) => {
          * Positionable 'open' event listener.
          */
         __onOpen () {
-            if (this.relativeElement) {
-                this.__addOpenListeners();
-            }
+            this.__addOpenListeners();
             this.reposition();
         }
 
