@@ -1,6 +1,6 @@
 import { HXElement } from './HXElement';
 
-import { replaceWith } from '../utils';
+import { defer } from '../utils';
 
 /**
  * Fires in single-panel mode, when the current panel changes.
@@ -24,17 +24,19 @@ export class HXAccordionElement extends HXElement {
     }
 
     $onCreate () {
+        this.$onConnect = defer(this.$onConnect);
         this._onPanelOpen = this._onPanelOpen.bind(this);
     }
 
-    // FIXME: defer $onConnect until children finished connecting
     $onConnect () {
         this.$upgradeProperty('currentPanel');
         this.panels.forEach(panel => {
             panel.addEventListener('open', this._onPanelOpen);
         });
 
-        // FIXME: if current-panel set, ensure the associated panel is open
+        if (this._isNavigable) {
+            this._openPanel(this.currentPanel);
+        }
     }
 
     $onDisconnect () {
@@ -67,7 +69,10 @@ export class HXAccordionElement extends HXElement {
      * not just the immediate children.
      */
     get panels () {
-        // (VERIFY) FIXME: return [] if not connected
+        if (!this.isConnected) {
+            return [];
+        }
+
         return Array.from(this.querySelectorAll('hx-accordion-panel'));
     }
 
@@ -123,7 +128,6 @@ export class HXAccordionElement extends HXElement {
 
     /** @private */
     _onPanelOpen (evt) {
-        // FIXME: idx could be -1 if _onPanelOpen() called before connect
         let idx = this.panels.indexOf(evt.target);
         if (this._isNavigable) {
             this.currentPanel = idx;
@@ -143,23 +147,5 @@ export class HXAccordionElement extends HXElement {
                 }
             });
         }
-    }
-
-    // FIXME: remove for v0.15
-    /**
-     * @deprecated Use {@link HXAccordionElement#selectNext|selectNext()}
-     */
-    nextPanel () {
-        replaceWith('HXAccordionElement#selectNext()');
-        this.selectNext();
-    }
-
-    // FIXME: remove for v0.15
-    /**
-     * @deprecated Use {@link HXAccordionElement#selectPrevious|selectPrevious()}
-     */
-    previousPanel () {
-        replaceWith('HXAccordionElement#selectPrevious()');
-        this.selectPrevious();
     }
 }
