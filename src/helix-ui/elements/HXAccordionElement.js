@@ -27,19 +27,17 @@ export class HXAccordionElement extends HXElement {
         this._onPanelOpen = this._onPanelOpen.bind(this);
     }
 
+    // FIXME: defer $onConnect until children finished connecting
     $onConnect () {
         this.$upgradeProperty('currentPanel');
-        // FIXME: panels are not connected at this point
         this.panels.forEach(panel => {
             panel.addEventListener('open', this._onPanelOpen);
         });
 
-        // FIXME: initialize on connect
+        // FIXME: if current-panel set, ensure the associated panel is open
     }
 
     $onDisconnect () {
-        // FIXME: panels may not be present on disconnect
-        // (react disconnects children before the parent)
         this.panels.forEach(panel => {
             panel.removeEventListener('open', this._onPanelOpen);
         });
@@ -52,7 +50,6 @@ export class HXAccordionElement extends HXElement {
     $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'current-panel') {
             if (newVal !== null) {
-                // FIXME: this may not initialize correctly if called while disconnected
                 this._openPanel(Number(newVal));
                 this.$emit('panelchange');
             }
@@ -70,6 +67,7 @@ export class HXAccordionElement extends HXElement {
      * not just the immediate children.
      */
     get panels () {
+        // (VERIFY) FIXME: return [] if not connected
         return Array.from(this.querySelectorAll('hx-accordion-panel'));
     }
 
@@ -125,13 +123,13 @@ export class HXAccordionElement extends HXElement {
 
     /** @private */
     _onPanelOpen (evt) {
+        // FIXME: idx could be -1 if _onPanelOpen() called before connect
         let idx = this.panels.indexOf(evt.target);
         if (this._isNavigable) {
             this.currentPanel = idx;
         }
     }
 
-    // FIXME: only works correctly if connected to DOM
     /** @private */
     _openPanel (index) {
         if (this._isNavigable) {
@@ -147,6 +145,7 @@ export class HXAccordionElement extends HXElement {
         }
     }
 
+    // FIXME: remove for v0.15
     /**
      * @deprecated Use {@link HXAccordionElement#selectNext|selectNext()}
      */
@@ -155,6 +154,7 @@ export class HXAccordionElement extends HXElement {
         this.selectNext();
     }
 
+    // FIXME: remove for v0.15
     /**
      * @deprecated Use {@link HXAccordionElement#selectPrevious|selectPrevious()}
      */
