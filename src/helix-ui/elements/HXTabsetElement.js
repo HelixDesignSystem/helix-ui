@@ -36,20 +36,20 @@ export class HXTabsetElement extends HXElement {
         this.$defaultAttribute('id', `tabset-${generateId()}`);
         this._setupIds();
         this.currentTab = Number(this.getAttribute('current-tab')) || 0;
-        // FIXME: convert this.$tablist to private getter as this._tablist
-        this.$tablist = this.querySelector('hx-tablist');
-        this.$tablist.addEventListener('keyup', this._onKeyUp);
-        this.$tablist.addEventListener('keydown', preventKeyScroll);
+        this._tablist.addEventListener('keyup', this._onKeyUp);
+        this._tablist.addEventListener('keydown', preventKeyScroll);
         this.tabs.forEach(tab => {
             tab.addEventListener('click', this._onTabClick);
         });
 
-        // FIXME: if current-tab set, ensure the associated tab and tabpanel is open
+        if (this.hasAttribute('current-tab')) {
+            this._activateTab(this.currentTab);
+        }
     }
 
     $onDisconnect () {
-        this.$tablist.removeEventListener('keyup', this._onKeyUp);
-        this.$tablist.removeEventListener('keydown', preventKeyScroll);
+        this._tablist.removeEventListener('keyup', this._onKeyUp);
+        this._tablist.removeEventListener('keydown', preventKeyScroll);
         this.tabs.forEach(tab => {
             tab.removeEventListener('click', this._onTabClick);
         });
@@ -77,8 +77,9 @@ export class HXTabsetElement extends HXElement {
     }
     set currentTab (idx) {
         // NOTE: Keep an eye on this logic for React compatibility
-        // React _may_ set the currentTab property before connect
-        // if so, we'll need to check if isConnected before continuing
+        if (!this.isConnected) {
+            return;
+        }
 
         if (isNaN(idx)) {
             throw new TypeError(`'currentTab' expects an numeric index. Got ${typeof idx} instead.`);
@@ -92,15 +93,6 @@ export class HXTabsetElement extends HXElement {
     }
 
     /**
-     * All `<hx-tab>` elements within the tabset.
-     * @readonly
-     * @type {HXTabElement[]}
-     */
-    get tabs () {
-        return Array.from(this.querySelectorAll('hx-tablist > hx-tab'));
-    }
-
-    /**
      * All `<hx-tabpanel>` elements within the tabset.
      * @readonly
      * @type {HXTabpanelElement[]}
@@ -110,11 +102,21 @@ export class HXTabsetElement extends HXElement {
     }
 
     /**
+     * All `<hx-tab>` elements within the tabset.
+     * @readonly
+     * @type {HXTabElement[]}
+     */
+    get tabs () {
+        return Array.from(this.querySelectorAll('hx-tablist > hx-tab'));
+    }
+
+    /**
      * Select next tab in tabset.
      */
     selectNext () {
-        // FIXME: this.tabs might return an empty array
-        // maybe short-circuit if not connected
+        if (!this.isConnected) {
+            return;
+        }
 
         // if current tab is the last tab
         if (this.currentTab === (this.tabs.length - 1)) {
@@ -131,8 +133,9 @@ export class HXTabsetElement extends HXElement {
      * Select previous tab in tabset.
      */
     selectPrevious () {
-        // FIXME: this.tabs might return an empty array
-        // maybe short-circuit if not connected
+        if (!this.isConnected) {
+            return;
+        }
 
         // if current tab is the first tab
         if (this.currentTab === 0) {
@@ -143,6 +146,11 @@ export class HXTabsetElement extends HXElement {
             this.currentTab -= 1;
         }
         this.tabs[this.currentTab].focus();
+    }
+
+    /** @private */
+    get _tablist () {
+        return this.querySelector('hx-tablist');
     }
 
     /**
@@ -158,14 +166,6 @@ export class HXTabsetElement extends HXElement {
         if (evt.keyCode === KEYS.Left) {
             this.selectPrevious();
         }
-    }
-
-    /**
-     * @private
-     * @todo migrate tab click listener logic to HXTabElement
-     */
-    _onTabClick (evt) {
-        this.currentTab = this.tabs.indexOf(evt.target);
     }
 
     /** @private */
@@ -184,6 +184,14 @@ export class HXTabsetElement extends HXElement {
         this.tabpanels.forEach((tabpanel, panelIdx) => {
             tabpanel.open = (idx === panelIdx);
         });
+    }
+
+    /**
+     * @private
+     * @todo migrate tab click listener logic to HXTabElement
+     */
+    _onTabClick (evt) {
+        this.currentTab = this.tabs.indexOf(evt.target);
     }
 
     /** @private */
