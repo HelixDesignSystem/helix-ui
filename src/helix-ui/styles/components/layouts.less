@@ -179,6 +179,11 @@ body.hxHorizontal {
     overflow-x: auto;
     overflow-y: hidden;
 
+    > .hxPanel + .hxPanel {
+      border-left: 1px solid @gray-300;
+    }
+
+    // DEPRECATED, remove in v1.0.0
     > hx-panel + hx-panel {
       border-left: 1px solid @gray-300;
     }

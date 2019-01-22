@@ -6,6 +6,83 @@
   padding: (0.5 * @grid-gutter-size);
 }
 
+.hxPanel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  > * {
+    display: block;
+  }
+
+  & > header {
+    flex-shrink: 0;
+    order: 1;
+  }
+
+  & > hx-div {
+    flex-grow: 1;
+    order: 2;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  & > footer {
+    flex-shrink: 0;
+    order: 3;
+  }
+
+  &.beta-hxCard {
+    background-color: @gray-0;
+    border: 1px solid @gray-300;
+    flex-basis: 0px; // because IE
+    flex-grow: 1;
+    height: auto; // override panel
+    margin: (0.5 * @grid-gutter-size);
+    max-width: 40ch;
+    min-width: 30ch;
+
+    > header {
+      border-bottom: 1px solid @gray-300;
+      flex-shrink: 0;
+      order: 1;
+    }
+
+    > div {
+      flex-grow: 1;
+      order: 2;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    > footer {
+      border-top: 1px solid @gray-300;
+      flex-shrink: 0;
+      order: 3;
+    }
+
+    > header,
+    > div,
+    > footer {
+      padding: 1.25rem;
+    }
+
+    &.hxOpen {
+      text-align: center;
+
+      > header {
+        border: none;
+      }
+
+      > footer {
+        border: none;
+      }
+    }
+  }
+}
+
+// DEPRECATED: remove in v1.0.0
 hx-panel {
   &.beta-hxCard {
     background-color: @gray-0;
