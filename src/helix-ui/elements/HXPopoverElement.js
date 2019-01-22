@@ -28,12 +28,18 @@ export class HXPopoverElement extends _ProtoClass {
     $onCreate () {
         super.$onCreate();
         this.DEFAULT_POSITION = 'bottom-right';
+        this.POSITION_OFFSET = 20;
     }
 
     /** @override */
     $onConnect () {
         super.$onConnect();
-        this.$defaultAttribute('data-offset', 20);
+        this.addEventListener('reposition', this._onReposition);
+    }
+
+    $onDisconnect () {
+        super.$onDisconnect();
+        this.removeEventListener('reposition', this._onReposition);
     }
 
     /** @override */
@@ -41,12 +47,28 @@ export class HXPopoverElement extends _ProtoClass {
         super.$onAttributeChange(attr, oldVal, newVal);
 
         if (attr === 'position') {
-            this._elRoot.setAttribute('position', newVal);
+            this._setShadowPosition(newVal);
         }
     }
 
     /** @private */
     get _elRoot () {
         return this.shadowRoot.getElementById('hxPopover');
+    }
+
+    /**
+     * Update visual display of arrow in Shadow DOM based on optimal position.
+     * @private
+     */
+    _onReposition () {
+        this._setShadowPosition(this.optimumPosition);
+    }
+
+    /**
+     * @private
+     * @param {NormalizedPositionString}
+     */
+    _setShadowPosition (position) {
+        this._elRoot.setAttribute('position', position);
     }
 }

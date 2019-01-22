@@ -31,7 +31,8 @@ export class HXTooltipElement extends _ProtoClass {
         super.$onCreate();
 
         // overrides Positionable default
-        this.DEFAULT_POSITION = 'top';
+        this.DEFAULT_POSITION = 'top-center';
+        this.POSITION_OFFSET = 20;
 
         this._onCtrlBlur = this._onCtrlBlur.bind(this);
         this._onCtrlFocus = this._onCtrlFocus.bind(this);
@@ -49,10 +50,9 @@ export class HXTooltipElement extends _ProtoClass {
 
         // TODO: What if 'id' is blank?
         this.$defaultAttribute('id', `tip-${generateId()}`);
-
         this.$defaultAttribute('role', 'tooltip');
-        this.$defaultAttribute('data-offset', 20);
 
+        this.addEventListener('reposition', this._onReposition);
         this._connectToControl();
     }
 
@@ -60,6 +60,7 @@ export class HXTooltipElement extends _ProtoClass {
     $onDisconnect () {
         super.$onDisconnect();
 
+        this.removeEventListener('reposition', this._onReposition);
         this._detachListeners();
     }
 
@@ -78,7 +79,7 @@ export class HXTooltipElement extends _ProtoClass {
                 break;
 
             case 'position':
-                this._elRoot.setAttribute('position', newVal);
+                this._setShadowPosition(newVal);
                 break;
         }
     }
@@ -284,6 +285,16 @@ export class HXTooltipElement extends _ProtoClass {
                 this.open = false;
             }
         }
+    }
+
+    /** @private */
+    _onReposition () {
+        this._setShadowPosition(this.optimumPosition);
+    }
+
+    /** @private */
+    _setShadowPosition (position) {
+        this._elRoot.setAttribute('position', position);
     }
 
     /**
