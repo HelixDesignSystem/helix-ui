@@ -1,13 +1,16 @@
 ---
 title: Panels
 minver: 0.2.0
+also:
+  components/panels/test.html: Testing - Panels
+  elements/hx-div: <hx-div>
 ---
 {% extends 'component.njk' %}
 {% block content %}
   <section>
     <p>
-      A panel is a utility for sectioning content vertically into a head,
-      body, and foot.
+      A panel is a utility for sectioning content vertically into a header,
+      body, and footer.
     </p>
   </section>
   <section>
@@ -23,11 +26,11 @@ minver: 0.2.0
             <legend>Options</legend>
             <label>
               <input type="checkbox" v-model="hasHead" />
-              Include Head
+              Include Header
             </label>
             <label>
               <input type="checkbox" v-model="hasFoot" />
-              Include Foot
+              Include Footer
             </label>
           </fieldset>
         </form>
