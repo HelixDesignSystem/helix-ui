@@ -5,6 +5,19 @@
   opacity: 1;
 }
 
+#Positionable {
+  .base {
+    display: none;
+    left: 0;
+    position: fixed;
+    top: 0;
+
+    &[open] {
+      margin: 0;
+    }
+  }
+}
+
 #Mix {
   // https://css-tricks.com/snippets/css/style-placeholder-text/
   .placeholder {

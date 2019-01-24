@@ -1,5 +1,6 @@
 import { HXElement } from './HXElement';
-import { KEYS } from '../utils';
+
+import { KEYS, defer, generateId, preventKeyScroll } from '../utils';
 
 /**
  * Fires when the currently active tab changes.
@@ -25,28 +26,30 @@ export class HXTabsetElement extends HXElement {
     }
 
     $onCreate () {
+        this.$onConnect = defer(this.$onConnect);
         this._onKeyUp = this._onKeyUp.bind(this);
         this._onTabClick = this._onTabClick.bind(this);
     }
 
     $onConnect () {
-        setTimeout(() => {
-            this.$upgradeProperty('current-tab');
-            this.$defaultAttribute('id', this.$generateId());
-            this._setupIds();
-            this.currentTab = Number(this.getAttribute('current-tab')) || 0;
-            this.$tablist = this.querySelector('hx-tablist');
-            this.$tablist.addEventListener('keyup', this._onKeyUp);
-            this.$tablist.addEventListener('keydown', this.$preventScroll);
-            this.tabs.forEach(tab => {
-                tab.addEventListener('click', this._onTabClick);
-            });
-        }, 0); // temp fix for SURF-1396, IE11/Edge bug
+        this.$upgradeProperty('current-tab');
+        this.$defaultAttribute('id', `tabset-${generateId()}`);
+        this._setupIds();
+        this.currentTab = Number(this.getAttribute('current-tab')) || 0;
+        this._tablist.addEventListener('keyup', this._onKeyUp);
+        this._tablist.addEventListener('keydown', preventKeyScroll);
+        this.tabs.forEach(tab => {
+            tab.addEventListener('click', this._onTabClick);
+        });
+
+        if (this.hasAttribute('current-tab')) {
+            this._activateTab(this.currentTab);
+        }
     }
 
     $onDisconnect () {
-        this.$tablist.removeEventListener('keyup', this._onKeyUp);
-        this.$tablist.removeEventListener('keydown', this.$preventScroll);
+        this._tablist.removeEventListener('keyup', this._onKeyUp);
+        this._tablist.removeEventListener('keydown', preventKeyScroll);
         this.tabs.forEach(tab => {
             tab.removeEventListener('click', this._onTabClick);
         });
@@ -73,6 +76,11 @@ export class HXTabsetElement extends HXElement {
         return Number(this.getAttribute('current-tab') || 0);
     }
     set currentTab (idx) {
+        // NOTE: Keep an eye on this logic for React compatibility
+        if (!this.isConnected) {
+            return;
+        }
+
         if (isNaN(idx)) {
             throw new TypeError(`'currentTab' expects an numeric index. Got ${typeof idx} instead.`);
         }
@@ -85,15 +93,6 @@ export class HXTabsetElement extends HXElement {
     }
 
     /**
-     * All `<hx-tab>` elements within the tabset.
-     * @readonly
-     * @type {HXTabElement[]}
-     */
-    get tabs () {
-        return Array.from(this.querySelectorAll('hx-tablist > hx-tab'));
-    }
-
-    /**
      * All `<hx-tabpanel>` elements within the tabset.
      * @readonly
      * @type {HXTabpanelElement[]}
@@ -103,9 +102,22 @@ export class HXTabsetElement extends HXElement {
     }
 
     /**
+     * All `<hx-tab>` elements within the tabset.
+     * @readonly
+     * @type {HXTabElement[]}
+     */
+    get tabs () {
+        return Array.from(this.querySelectorAll('hx-tablist > hx-tab'));
+    }
+
+    /**
      * Select next tab in tabset.
      */
     selectNext () {
+        if (!this.isConnected) {
+            return;
+        }
+
         // if current tab is the last tab
         if (this.currentTab === (this.tabs.length - 1)) {
             // select first
@@ -121,6 +133,10 @@ export class HXTabsetElement extends HXElement {
      * Select previous tab in tabset.
      */
     selectPrevious () {
+        if (!this.isConnected) {
+            return;
+        }
+
         // if current tab is the first tab
         if (this.currentTab === 0) {
             // select last
@@ -132,9 +148,15 @@ export class HXTabsetElement extends HXElement {
         this.tabs[this.currentTab].focus();
     }
 
+    /** @private */
+    get _tablist () {
+        return this.querySelector('hx-tablist');
+    }
+
     /**
      * Handle navigating the tabs via arrow keys
      * @private
+     * @todo migrate keyup listener logic to HXTablistElement
      */
     _onKeyUp (evt) {
         if (evt.keyCode === KEYS.Right) {
@@ -144,11 +166,6 @@ export class HXTabsetElement extends HXElement {
         if (evt.keyCode === KEYS.Left) {
             this.selectPrevious();
         }
-    }
-
-    /** @private */
-    _onTabClick (evt) {
-        this.currentTab = this.tabs.indexOf(evt.target);
     }
 
     /** @private */
@@ -167,6 +184,14 @@ export class HXTabsetElement extends HXElement {
         this.tabpanels.forEach((tabpanel, panelIdx) => {
             tabpanel.open = (idx === panelIdx);
         });
+    }
+
+    /**
+     * @private
+     * @todo migrate tab click listener logic to HXTabElement
+     */
+    _onTabClick (evt) {
+        this.currentTab = this.tabs.indexOf(evt.target);
     }
 
     /** @private */

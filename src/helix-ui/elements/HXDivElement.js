@@ -1,7 +1,8 @@
 import { HXElement } from './HXElement';
-import { onScroll } from '../utils';
 import shadowMarkup from './HXDivElement.html';
 import shadowStyles from './HXDivElement.less';
+
+import { onScroll } from '../utils';
 
 /**
  * Nullable string denoting direction for scrolling.
@@ -29,6 +30,10 @@ export class HXDivElement extends HXElement {
         return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
+    $onDisconnect () {
+        this._removeScrollListeners();
+    }
+
     static get $observedAttributes () {
         return [ 'scroll' ];
     }
@@ -39,7 +44,7 @@ export class HXDivElement extends HXElement {
                 this._resetScroll();
                 this.addEventListener('scroll', onScroll);
             } else {
-                this.removeEventListener('scroll', onScroll);
+                this._removeScrollListeners();
             }
         }
     }
@@ -63,5 +68,10 @@ export class HXDivElement extends HXElement {
         // reset scroll by scrolling to top left corner
         this.scrollTop = 0;
         this.scrollLeft = 0;
+    }
+
+    /** @private */
+    _removeScrollListeners () {
+        this.removeEventListener('scroll', onScroll);
     }
 }

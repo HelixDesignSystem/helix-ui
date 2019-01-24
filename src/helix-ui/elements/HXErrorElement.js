@@ -1,6 +1,6 @@
 import { HXElement } from './HXElement';
-import shadowStyles from './HXErrorElement.less';
 import shadowMarkup from './HXErrorElement.html';
+import shadowStyles from './HXErrorElement.less';
 
 /**
  * Defines behavior for the `<hx-error>` element.
