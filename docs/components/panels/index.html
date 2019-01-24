@@ -25,11 +25,11 @@ also:
           <fieldset>
             <legend>Options</legend>
             <label>
-              <input type="checkbox" v-model="hasHead" />
+              <input type="checkbox" v-model="hasHeader" />
               Include Header
             </label>
             <label>
-              <input type="checkbox" v-model="hasFoot" />
+              <input type="checkbox" v-model="hasFooter" />
               Include Footer
             </label>
           </fieldset>
@@ -38,7 +38,7 @@ also:
 
       <div class="demo panel-demo">
         <div class="hxPanel">
-          <header v-if="hasHead">Panel Head</header>
+          <header v-if="hasHeader">Panel Header</header>
           <hx-div>
             <p>Panel Body</p>
             <p>
@@ -52,12 +52,12 @@ also:
               the lean MVP pattern, then you are not coding enough.
             </p>
           </hx-div>
-          <footer v-if="hasFoot">Panel Foot</footer>
+          <footer v-if="hasFooter">Panel Footer</footer>
         </div>
       </div>
 
       <footer>
-        <template v-if="hasHead && hasFoot">
+        <template v-if="hasHeader && hasFooter">
           {% code 'html' %}
             <div class="hxPanel">
               <header></header>
@@ -66,7 +66,7 @@ also:
             </div>
           {% endcode %}
         </template>
-        <template v-else-if="hasHead">
+        <template v-else-if="hasHeader">
           {% code 'html' %}
             <div class="hxPanel">
               <header></header>
@@ -74,7 +74,7 @@ also:
             </div>
           {% endcode %}
         </template>
-        <template v-else-if="hasFoot">
+        <template v-else-if="hasFooter">
           {% code 'html' %}
             <div class="hxPanel">
               <hx-div></hx-div>
