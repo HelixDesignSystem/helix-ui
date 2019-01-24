@@ -61,6 +61,7 @@
   @left-shadow: -3px 3px 3px 0 @shadow-color;
   @border-shadow: 0 0 0 @border-width @border-color;
 
+  margin: 0;
   position: relative;
 
   #Arrow.shadow({
@@ -94,7 +95,8 @@
     });
   }
 
-  &[position="top"] {
+  &[position="top"], // DEPRECATED: remove in v1.0.0
+  &[position="top-center"] {
     #Arrow.children({
       left: 50%; // offset, tip centered
     });
@@ -150,7 +152,8 @@
     });
   }
 
-  &[position="right"] {
+  &[position="right"], // DEPRECATED: remove in v1.0.0
+  &[position="right-middle"] {
     #Arrow.children({
       top: 50%; // offset, tip centered
     });
@@ -206,7 +209,8 @@
     });
   }
 
-  &[position="bottom"] {
+  &[position="bottom"], // DEPRECATED: remove in v1.0.0
+  &[position="bottom-center"] {
     #Arrow.children({
       left: 50%; // offset, tip centered
     });
@@ -253,7 +257,8 @@
     });
   }
 
-  &[position="left"] {
+  &[position="left"], // DEPRECATED: remove in v1.0.0
+  &[position="left-middle"] {
     #Arrow.children({
       top: 50%; // offset, tip centered
     });

@@ -1,5 +1,5 @@
 /**
- * @module HelixUI/Utils/Position/Offset
+ * @module HelixUI/Utils/Offset
  * @description
  * Utilities to calculate coordinates of an offset element
  * in relation to a relative element.
@@ -24,13 +24,13 @@
  */
 
 /**
- * @typedef {Object} Coordinates
- * @prop {Integer} x - X coordinate
- * @prop {Integer} y - Y coordinate
+ * @global
+ * @typedef {Number} Coordinate
+ * @description Numeric, pixel coordinate
  */
 
 /**
- * @typedef {Object} Delta
+ * @typedef {Object} OffsetDelta
  * @description
  * Calculated metadata
  *
@@ -51,13 +51,20 @@
  */
 
 /**
+ * @typedef {Object} XYCoordinates
+ * @global
+ *
+ * @prop {Coordinate} x - X coordinate
+ * @prop {Coordinate} y - Y coordinate
+ */
+
+/**
  * Utility function to calculate delta metadata
  *
- * @private
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Delta}
+ * @returns {OffsetDelta}
  */
 function _getDeltas (off, ref, opts = {}) {
     // height delta
@@ -78,7 +85,7 @@ function _getDeltas (off, ref, opts = {}) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getCenter (off, ref, opts = {}) {
     let { dW, dH, dX, dY } = _getDeltas(off, ref, opts);
@@ -96,7 +103,7 @@ export function getCenter (off, ref, opts = {}) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getTop (off, ref, opts) {
     let { dY } = _getDeltas(off, ref, opts);
@@ -113,7 +120,7 @@ export function getTop (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getBottom (off, ref, opts) {
     let { dY } = _getDeltas(off, ref, opts);
@@ -130,7 +137,7 @@ export function getBottom (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getLeft (off, ref, opts) {
     let { dX } = _getDeltas(off, ref, opts);
@@ -147,7 +154,7 @@ export function getLeft (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getRight (off, ref, opts) {
     let { dX } = _getDeltas(off, ref, opts);
@@ -165,7 +172,7 @@ export function getRight (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getTopLeft (off, ref, opts) {
     let { x: xT, y } = getTop(off, ref, opts);
@@ -182,7 +189,7 @@ export function getTopLeft (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getTopStart (off, ref, opts) {
     let { dX } = _getDeltas(off, ref, opts);
@@ -200,7 +207,7 @@ export function getTopStart (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getTopEnd (off, ref, opts) {
     let { dX } = _getDeltas(off, ref, opts);
@@ -218,7 +225,7 @@ export function getTopEnd (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getTopRight (off, ref, opts) {
     let { x: xT, y } = getTop(off, ref, opts);
@@ -235,7 +242,7 @@ export function getTopRight (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getRightTop (off, ref, opts) {
     let { y: yR, x } = getRight(off, ref, opts);
@@ -252,7 +259,7 @@ export function getRightTop (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getRightStart (off, ref, opts) {
     let { dY } = _getDeltas(off, ref, opts);
@@ -270,7 +277,7 @@ export function getRightStart (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getRightEnd (off, ref, opts) {
     let { dY } = _getDeltas(off, ref, opts);
@@ -288,7 +295,7 @@ export function getRightEnd (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getRightBottom (off, ref, opts) {
     let { x, y: yR } = getRight(off, ref, opts);
@@ -305,7 +312,7 @@ export function getRightBottom (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getBottomRight (off, ref, opts) {
     let { x: xB, y } = getBottom(off, ref, opts);
@@ -322,7 +329,7 @@ export function getBottomRight (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getBottomEnd (off, ref, opts) {
     let { dX } = _getDeltas(off, ref, opts);
@@ -340,7 +347,7 @@ export function getBottomEnd (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getBottomStart (off, ref, opts) {
     let { dX } = _getDeltas(off, ref, opts);
@@ -358,7 +365,7 @@ export function getBottomStart (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getBottomLeft (off, ref, opts) {
     let { x: xB, y } = getBottom(off, ref, opts);
@@ -375,7 +382,7 @@ export function getBottomLeft (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getLeftBottom (off, ref, opts) {
     let { x, y: yL } = getLeft(off, ref, opts);
@@ -392,7 +399,7 @@ export function getLeftBottom (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getLeftEnd (off, ref, opts) {
     let { dY } = _getDeltas(off, ref, opts);
@@ -411,7 +418,7 @@ export function getLeftEnd (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getLeftStart (off, ref, opts) {
     let { dY } = _getDeltas(off, ref, opts);
@@ -429,7 +436,7 @@ export function getLeftStart (off, ref, opts) {
  * @param {DOMRect} off - bounding rectangle for the target element
  * @param {DOMRect} ref - bounding rectangle for the reference element
  * @param {OffsetOptions} [opts={}] - offset configuration
- * @returns {Coordinates}
+ * @returns {XYCoordinates}
  */
 export function getLeftTop (off, ref, opts) {
     let { x, y: yL } = getLeft(off, ref, opts);
@@ -444,29 +451,37 @@ export function getLeftTop (off, ref, opts) {
  * @enum {Function}
  * @name offsetFunctionMap
  */
-export const offsetFunctionMap = {
-    'top-left': getTopLeft,
-    'top-start': getTopStart,
-    'top': getTop,
-    'top-end': getTopEnd,
-    'top-right': getTopRight,
-    'right-top': getRightTop,
-    'right-start': getRightStart,
-    'right': getRight,
-    'right-end': getRightEnd,
-    'right-bottom': getRightBottom,
-    'bottom-right': getBottomRight,
+const fnMap = {
+    'bottom-center': getBottom,
     'bottom-end': getBottomEnd,
-    'bottom': getBottom,
-    'bottom-start': getBottomStart,
     'bottom-left': getBottomLeft,
+    'bottom-right': getBottomRight,
+    'bottom-start': getBottomStart,
+    'center-middle': getCenter,
     'left-bottom': getLeftBottom,
     'left-end': getLeftEnd,
-    'left': getLeft,
+    'left-middle': getLeft,
     'left-start': getLeftStart,
     'left-top': getLeftTop,
-    'center': getCenter,
+    'right-bottom': getRightBottom,
+    'right-end': getRightEnd,
+    'right-middle': getRight,
+    'right-start': getRightStart,
+    'right-top': getRightTop,
+    'top-center': getTop,
+    'top-end': getTopEnd,
+    'top-left': getTopLeft,
+    'top-right': getTopRight,
+    'top-start': getTopStart,
 };
+// position aliases
+fnMap['left'] = fnMap['left-middle'];
+fnMap['top'] = fnMap['top-center'];
+fnMap['right'] = fnMap['right-middle'];
+fnMap['bottom'] = fnMap['bottom-center'];
+fnMap['center'] = fnMap['center-middle'];
+
+export const offsetFunctionMap = fnMap;
 
 export default {
     getBottom,

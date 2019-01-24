@@ -1,7 +1,8 @@
 /**
  * @module HelixUI/Utils
  */
-import Position from './position';
+import Alignment from './alignment';
+import Offset from './offset';
 
 /**
  * Key/value map of key names and their keycode.
@@ -168,8 +169,9 @@ export function replaceWith (txtReplacement) {
 
 // Not everything needs to be part of the default export
 export default {
+    Alignment,
     KEYS,
-    Position,
+    Offset,
     defer,
     generateId,
     mix,
