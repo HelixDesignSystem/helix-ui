@@ -30,8 +30,12 @@ export class HXDivElement extends HXElement {
         return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
+    $onConnect () {
+        this.addEventListener('scroll', onScroll);
+    }
+
     $onDisconnect () {
-        this._removeScrollListeners();
+        this.removeEventListener('scroll', onScroll);
     }
 
     static get $observedAttributes () {
@@ -42,9 +46,6 @@ export class HXDivElement extends HXElement {
         if (attr === 'scroll') {
             if (newVal !== null) {
                 this._resetScroll();
-                this.addEventListener('scroll', onScroll);
-            } else {
-                this._removeScrollListeners();
             }
         }
     }
@@ -68,10 +69,5 @@ export class HXDivElement extends HXElement {
         // reset scroll by scrolling to top left corner
         this.scrollTop = 0;
         this.scrollLeft = 0;
-    }
-
-    /** @private */
-    _removeScrollListeners () {
-        this.removeEventListener('scroll', onScroll);
     }
 }

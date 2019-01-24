@@ -5,14 +5,29 @@
   overflow: hidden;
   resize: vertical;
 
+  .hxPanel {
+    border: @demo-container-border;
+
+    > header {
+      border-bottom: @demo-container-border;
+    }
+
+    > footer {
+      border-top: @demo-container-border;
+    }
+  }
+
+  // DEPRECATED, remove in v1.0.0
   hx-panel {
     border: @demo-container-border;
   }
 
+  // DEPRECATED, remove in v1.0.0
   hx-panelhead {
     border-bottom: @demo-container-border;
   }
 
+  // DEPRECATED, remove in v1.0.0
   hx-panelfoot {
     border-top: @demo-container-border;
   }
