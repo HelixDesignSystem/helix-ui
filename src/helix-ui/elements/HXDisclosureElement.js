@@ -80,7 +80,7 @@ export class HXDisclosureElement extends HXElement {
     get target () {
         if (this.isConnected && !this._target) {
             let targetId = this.getAttribute('aria-controls');
-            this._target = this.getRootNode().querySelector(`#${targetId}`);
+            this._target = this.getRootNode().querySelector(`[id="${targetId}"]`);
         }
         return this._target;
     }
