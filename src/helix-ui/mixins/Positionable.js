@@ -179,7 +179,7 @@ export const Positionable = (superclass) => {
             }
 
             if (this.relativeTo) {
-                return this.getRootNode().querySelector(`#${this.relativeTo}`);
+                return this.getRootNode().querySelector(`[id="${this.relativeTo}"]`);
             } else {
                 return this.controlElement;
             }

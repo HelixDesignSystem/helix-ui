@@ -3,7 +3,7 @@ import shadowMarkup from './HXTooltipElement.html';
 import shadowStyles from './HXTooltipElement.less';
 
 import { Positionable } from '../mixins/Positionable';
-import { KEYS, mix, generateId } from '../utils';
+import { KEYS, defer, mix, generateId } from '../utils';
 
 const TOOLTIP_DELAY = 500;
 
@@ -34,6 +34,7 @@ export class HXTooltipElement extends _ProtoClass {
         this.DEFAULT_POSITION = 'top-center';
         this.POSITION_OFFSET = 20;
 
+        this.$onConnect = defer(this.$onConnect);
         this._onCtrlBlur = this._onCtrlBlur.bind(this);
         this._onCtrlFocus = this._onCtrlFocus.bind(this);
         this._onCtrlMouseEnter = this._onCtrlMouseEnter.bind(this);
@@ -94,7 +95,7 @@ export class HXTooltipElement extends _ProtoClass {
      */
     get controlElement () {
         if (this.isConnected) {
-            return this.getRootNode().querySelector(`#${this.htmlFor}`);
+            return this.getRootNode().querySelector(`[id="${this.htmlFor}"]`);
         }
     }
 
