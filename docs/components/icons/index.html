@@ -49,13 +49,13 @@ also:
       </header>
 
       <div class="demo">
-        <hx-file-icon 
+        <hx-file-icon
           v-if="ext !== ''"
           :extension="ext"
           :type="type"
         ></hx-file-icon>
-      
-        <hx-file-icon 
+
+        <hx-file-icon
           v-else
           :type="type"
         ></hx-file-icon>
@@ -141,7 +141,7 @@ also:
         </p>
       </div>
     </div>
-    <div app-loading class="hxBox-lg">
+    <div app-loading class="hxBox hxLg">
       <hx-busy></hx-busy>
       <p>Loading...</p>
     </div>

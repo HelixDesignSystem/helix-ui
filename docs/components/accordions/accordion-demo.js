@@ -24,7 +24,7 @@ if (document.getElementById('vue-singlePanelAccordionDemo')) {
                   <hx-accordion current-panel="${this.currentPanel}">
                     <hx-accordion-panel ${this.currentPanel === 0 ? 'open' : ''}>
                       <header slot="header">Cupcake Ipsum</header>
-                      <div class="hxBox-md">
+                      <div class="hxBox hxMd">
                         <!-- body content goes here -->
                       </div>
                     </hx-accordion-panel>
