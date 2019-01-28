@@ -25,7 +25,7 @@ title: Testing - Buttons
 
   <!-- Button Element -->
   <section>
-    <h3>Button Element</h3>
+    <h2>Button Element</h2>
     <p>Using: <code>&lt;button&gt;</code></p>
     <table class="hxTable hxTable--condensed">
       {% for _variant in variants %}
@@ -47,7 +47,7 @@ title: Testing - Buttons
 
   <!-- Anchor Element -->
   <section>
-    <h3>Anchor Element</h3>
+    <h2>Anchor Element</h2>
     <p>Using: <code>&lt;a&gt;</code></p>
     <table class="hxTable hxTable--condensed">
       {% for _variant in variants %}
@@ -69,7 +69,7 @@ title: Testing - Buttons
 
   <!-- Link Element -->
   <section>
-    <h3>Link Element</h3>
+    <h2>Link Element</h2>
     <p>Using: <code>&lt;a href="#"&gt;</code></p>
     <table class="hxTable hxTable--condensed">
       {% for _variant in variants %}
@@ -112,4 +112,183 @@ title: Testing - Buttons
       </table>
     </section>
   {% endfor %}
+
+  <!-- Various Element Children -->
+  <section>
+    <h2>Various Element Children</h2>
+    <!-- konami icons -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="kbd-arrow-up"></hx-icon>
+          <hx-icon type="kbd-arrow-up"></hx-icon>
+          <hx-icon type="kbd-arrow-down"></hx-icon>
+          <hx-icon type="kbd-arrow-down"></hx-icon>
+          <hx-icon type="kbd-arrow-left"></hx-icon>
+          <hx-icon type="kbd-arrow-right"></hx-icon>
+          <hx-icon type="kbd-arrow-left"></hx-icon>
+          <hx-icon type="kbd-arrow-right"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="flag"></hx-icon>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-busy + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-busy></hx-busy>
+          <hx-icon type="filter"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + hx-busy -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="phone"></hx-icon>
+          <hx-busy></hx-busy>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + hx-busy + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="pencil"></hx-icon>
+          <hx-busy></hx-busy>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-busy + hx-icon + hx-busy -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-busy></hx-busy>
+          <hx-icon type="calendar"></hx-icon>
+          <hx-busy></hx-busy>
+        </button>
+      {% endfor %}
+    </p>
+  </section>
+
+  <!-- Supported Markup (text + non-text children ) -->
+  <section>
+    <h2>Supported Markup</h2>
+    <p>
+      The following examples are supported and should have correct spacing.
+    </p>
+    <!-- hx-icon + text -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="angle-left"></hx-icon>
+          <span>prev</span>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- text + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <span>next</span>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + text + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="cog"></hx-icon>
+          <span>actions</span>
+          <hx-icon type="angle-down"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- text + hx-busy -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}" disabled>
+          <span>Loading</span>
+          <hx-busy></hx-busy>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + text + hx-busy -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="cog"></hx-icon>
+          <span>wrapped text</span>
+          <hx-busy></hx-busy>
+        </button>
+      {% endfor %}
+    </p>
+  </section>
+
+  <hr />
+
+  <!-- Unsupported Markup (text + non-text children ) -->
+  <section>
+    <h2>Unsupported Markup</h2>
+    <p>
+      The following examples are not supported for button children spacing.
+    </p>
+    <!-- hx-icon + text -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="angle-left"></hx-icon>
+          prev
+        </button>
+      {% endfor %}
+    </p>
+    <!-- text + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          next
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + text + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="cog"></hx-icon>
+          actions
+          <hx-icon type="angle-down"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- text + hx-busy -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}" disabled>
+          Loading
+          <hx-busy></hx-busy>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + text + hx-busy -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="cog"></hx-icon>
+          unwrapped text
+          <hx-busy></hx-busy>
+        </button>
+      {% endfor %}
+    </p>
+  </section>
 {% endblock %}
