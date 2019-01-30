@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: mixins/Positionable.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: mixins/Positionable.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Revealable } from './Revealable';
+import { mix } from '../utils';
+import { offsetFunctionMap } from '../utils/offset';
+import {
+    normalizePosition,
+    optimizePositionForCollisions,
+} from '../utils/alignment';
+
+/**
+ * @typedef {Object} OptimumPositionMetadata
+ * @description
+ * Calculated metadata describing a positionable element's optimum position.
+ *
+ * @prop {Coordinate} x - optimum x coordinate
+ * @prop {Coordinate} y - optimum y coordinate
+ * @prop {PositionString} position - optimum position
+ */
+
+/**
+ * @typedef {Object} PositionableRect
+ * @description
+ * Calculated, DOMRect-like object
+ *
+ * @prop {Number} bottom - distance from top of viewport to bottom edge of rect
+ * @prop {Number} left - distance from left of viewport to left edge of rect
+ * @prop {Number} right - distance from left of viewport to right edge of rect
+ * @prop {Number} top - distance from top of viewport to top edge of rect
+ */
+
+/**
+ * @typedef {Object} PredicateCollisions
+ * @global
+ * @description
+ * Metadata object with predicate values for quick collision evaluation.
+ *
+ * @prop {Boolean} anywhere - true if any edge collides
+ * @prop {Boolean} bottom - true if bottom edge collides
+ * @prop {Boolean} horizontal - true if left or right edge collide
+ * @prop {Boolean} left - true if left edge collides
+ * @prop {Boolean} right - true if right edge collides
+ * @prop {Boolean} top - true if top edge collides
+ * @prop {Boolean} vertical - true if top or bottom edge collide
+ */
+
+/**
+ * @typedef {Object} XYDeltas
+ * @description x and y adjustments for alignment
+ *
+ * @prop {Number} dX - x delta
+ * @prop {Number} dY - y delta
+ */
+
+/**
+ * @interface
+ * @since 0.15.0
+ * @implements Revealable
+ *
+ * @description
+ * Defines behavior needed to calculate absolute coordinates
+ * and apply them to an instance.
+ */
+export const Positionable = (superclass) => {
+    class ProtoClass extends mix(superclass, Revealable) {}
+
+    /** @lends Positionable */
+    class _Positionable extends ProtoClass {
+        /** @override */
+        $onCreate () {
+            super.$onCreate();
+
+            this.__onDocumentClick = this.__onDocumentClick.bind(this);
+            this.__onDocumentScroll = this.__onDocumentScroll.bind(this);
+            this.__onWindowResize = this.__onWindowResize.bind(this);
+
+            this.DEFAULT_POSITION = 'bottom-center';
+            this.POSITION_OFFSET = 0;
+        }
+
+        /** @override */
+        $onConnect () {
+            super.$onConnect();
+
+            this.$upgradeProperty('position');
+            this.$upgradeProperty('relativeTo');
+
+            this.$defaultAttribute('position', this.DEFAULT_POSITION);
+
+            this.addEventListener('open', this.__onOpen);
+            this.addEventListener('close', this.__onClose);
+
+            if (this.open) {
+                this.$emit('open');
+            }
+        }
+
+        /** @override */
+        $onDisconnect () {
+            super.$onDisconnect();
+
+            this.removeEventListener('open', this.__onOpen);
+            this.removeEventListener('close', this.__onClose);
+
+            this.__removeOpenListeners();
+        }
+
+        /** @override */
+        static get $observedAttributes () {
+            let attrs = super.$observedAttributes;
+            return attrs.concat([ 'position' ]);
+        }
+
+        /** @override */
+        $onAttributeChange (attr, oldVal, newVal) {
+            super.$onAttributeChange(attr, oldVal, newVal);
+
+            if (attr === 'position') {
+                this.reposition();
+            }
+        }
+
+        /**
+         * External element that controls positioned element visibility.
+         * This is commonly a `&lt;button>` or `&lt;hx-disclosure>`.
+         *
+         * @readonly
+         * @type {HTMLElement}
+         */
+        get controlElement () {
+            if (this.isConnected) {
+                return this.getRootNode().querySelector(`[aria-controls="${this.id}"]`);
+            }
+        }
+
+        /**
+         * Optimum position calculated by internal algorithm.
+         * Will return undefined if element hasn't been repositioned.
+         *
+         * @readonly
+         * @type {PositionString|undefined}
+         */
+        get optimumPosition () {
+            return this._optimumPosition;
+        }
+
+        /**
+         * Where to position the element against its relativeElement.
+         *
+         * **NOTE:** Values are normalized upon setting, which means that
+         * the value retrieved may differ from the value being set.
+         *
+         * ```javascript
+         * el.position = 'top';
+         * el.position; // 'top-center'
+         *
+         * el.position = 'bottom-center';
+         * el.position; // 'bottom-center'
+         * ```
+         *
+         * @type {PositionString}
+         */
+        get position () {
+            let _configured = this.getAttribute('position') || this.DEFAULT_POSITION;
+            return normalizePosition(_configured);
+        }
+        set position (value) {
+            let _position = normalizePosition(value);
+            this.setAttribute('position', _position);
+        }
+
+        /**
+         * Reference element used to calculate positionable element's position.
+         *
+         * @readonly
+         * @type {HTMLElement|undefined}
+         */
+        get relativeElement () {
+            if (!this.isConnected) {
+                return;
+            }
+
+            if (this.relativeTo) {
+                return this.getRootNode().querySelector(`[id="${this.relativeTo}"]`);
+            } else {
+                return this.controlElement;
+            }
+        }
+
+        /**
+         * ID of an element to relatively position against.
+         *
+         * @type {String}
+         */
+        get relativeTo () {
+            return this.getAttribute('relative-to');
+        }
+        set relativeTo (value) {
+            this.setAttribute('relative-to', value);
+        }
+
+        /**
+         * Calculate and apply new (x,y) coordinates.
+         */
+        reposition () {
+            if (this.open &amp;&amp; this.relativeElement) {
+                let { x, y, position } = this.__calculatePosition();
+
+                /*
+                 * FYI: `getClientRect()` (via `getBoundingClientRect()`) may incorrectly calculate
+                 * the `width` property if the `left` CSS property is not explicitly defined.
+                 */
+                this.style.top = `${y}px`;
+                this.style.left = `${x}px`;
+
+                this._optimumPosition = position;
+
+                this.$emit('reposition');
+            }
+        }
+
+        /**
+         * Add active event listeners (e.g, document `click`)
+         * These listeners rely on `this.controlElement` to manipulate
+         * the open state of the positionable element.
+         */
+        __addActiveListeners () {
+            if (this.controlElement) {
+                document.addEventListener('click', this.__onDocumentClick);
+            }
+        }
+
+        /**
+         * Add event listeners that only apply when open.
+         */
+        __addOpenListeners () {
+            this.__addActiveListeners();
+            this.__addPassiveListeners();
+        }
+
+        /**
+         * Add passive event listeners (e.g., document `scroll` and
+         * window `resize`). These listeners rely on `this.relativeElement`
+         * to reposition the positionable element.
+         */
+        __addPassiveListeners () {
+            if (this.relativeElement) {
+                document.addEventListener('scroll', this.__onDocumentScroll, { passive: true });
+                window.addEventListener('resize', this.__onWindowResize, { passive: true });
+            }
+        }
+
+        /**
+         * Calculate optimum position and fixed {x,y} coordinates needed
+         * to arrange the positionable element in relation to its
+         * `relativeElement`, taking viewport size into account.
+         *
+         * @returns {OptimumPositionMetadata}
+         */
+        __calculatePosition () {
+            if (!this.relativeElement) {
+                return { x: 0, y: 0 };
+            }
+
+            let posRect = this.getBoundingClientRect();
+            let relRect = this.relativeElement.getBoundingClientRect();
+
+            let position = this.position;
+            let deltas = this.__getDeltas(position);
+            let calculate = offsetFunctionMap[position];
+
+            // calculate initial coords
+            let coords = calculate(posRect, relRect, deltas);
+
+            // check if any edge of the element is off screen
+            let isOffscreen = this.__getViewportCollisions(coords);
+
+            if (isOffscreen.anywhere) {
+                let optimumPosition = optimizePositionForCollisions(position, isOffscreen);
+                let optimumDeltas = this.__getDeltas(optimumPosition);
+                let optimumCalculate = offsetFunctionMap[optimumPosition];
+
+                // recalculate coords based on optimum position
+                let optimumCoords = optimumCalculate(posRect, relRect, optimumDeltas);
+
+                return {
+                    position: optimumPosition,
+                    x: optimumCoords.x,
+                    y: optimumCoords.y,
+                };
+            }
+
+            return {
+                position,
+                x: coords.x,
+                y: coords.y,
+            };
+        }
+
+        /**
+         * Calculate X and Y adjustments based on position.
+         *
+         * @param {PositionString} position
+         * @returns {XYDeltas}
+         */
+        __getDeltas (position) {
+            let isLeftOrRight = /^(left|right)/.test(position);
+            let margin = 0; // main-axis adjustment
+            let offset = this.__getOffset(); // cross-axis adjustment
+
+            let dX = isLeftOrRight ? margin : offset;
+            let dY = isLeftOrRight ? offset : margin;
+
+            /*
+             * Invert dX to shift positioned element LEFT
+             *
+             *  - top-right
+             *  - top-end
+             *  - bottom-right
+             *  - bottom-end
+             */
+            if (/^(top|bottom)-(right|end)/.test(position)) {
+                dX = -dX;
+            }
+
+            /*
+             * Invert dY to shift positioned element UP
+             *
+             *  - left-bottom
+             *  - left-end
+             *  - right-bottom
+             *  - right-end
+             */
+            if (/^(left|right)-(bottom|end)/.test(position)) {
+                dY = -dY;
+            }
+
+            return { dX, dY };
+        }
+
+        /**
+         * Calculate offset based on class configuration and
+         * positionable element's configured position.
+         */
+        __getOffset () {
+            let offset = this.POSITION_OFFSET || 0;
+
+            /*
+             * Remove offset if positioned on major axis
+             * so that the point of an optional arrow always aligns
+             * to the center of the reference element.
+             */
+            if (/-(center|middle)$/.test(this.position)) {
+                offset = 0;
+            }
+
+            return offset;
+        }
+
+        /**
+         * Calculates DOMRect-like metadata as if the positioned element
+         * were placed at the given coordinates.
+         *
+         * @param {XYCoordinates} coords
+         * @returns {PositionableRect}
+         */
+        __getRectAtCoords (coords) {
+            let { x, y } = coords;
+            let { height, width } = this.getBoundingClientRect();
+
+            return {
+                bottom: y + height,
+                left: x,
+                right: x + width,
+                top: y,
+            };
+        }
+
+        /**
+         * Given a set of coordinates, determine if any edge of the
+         * positionable element collides with the viewport.
+         *
+         * @param {XYCoordinates} coords
+         * @returns {PredicateCollisions}
+         * Value returned only if collisions are detected.
+         */
+        __getViewportCollisions (coords) {
+            let rect = this.__getRectAtCoords(coords);
+
+            let bottom = rect.bottom > window.innerHeight;
+            let left = rect.left &lt; 0;
+            let right = rect.right > window.innerWidth;
+            let top = rect.top &lt; 0;
+            let vertically = (top || bottom);
+            let horizontally = (left || right);
+            let anywhere = (vertically || horizontally);
+
+            return {
+                anywhere,
+                bottom,
+                horizontally,
+                left,
+                right,
+                top,
+                vertically,
+            };
+        }
+
+        /**
+         * Positionable 'close' event listener.
+         */
+        __onClose () {
+            this.__removeOpenListeners();
+        }
+
+        /**
+         * Document 'click' event listener.
+         * @param {Event} evt
+         */
+        __onDocumentClick (evt) {
+            if (!this.controlElement) {
+                return;
+            }
+
+            let inComponent = this.contains(evt.target);
+            let inControl = this.controlElement.contains(evt.target);
+            let isBackground = (!inComponent &amp;&amp; !inControl);
+
+            if (this.open &amp;&amp; isBackground) {
+                this.open = false;
+            }
+        }
+
+        /**
+         * Document 'scroll' event listener.
+         */
+        __onDocumentScroll () {
+            this.reposition();
+        }
+
+        /**
+         * Positionable 'open' event listener.
+         */
+        __onOpen () {
+            this.__addOpenListeners();
+            this.reposition();
+        }
+
+        /**
+         * Window 'resize' event listener.
+         */
+        __onWindowResize () {
+            this.reposition();
+        }
+
+        /**
+         * Remove event listeners that only apply when open.
+         */
+        __removeOpenListeners () {
+            // active listeners
+            document.removeEventListener('click', this.__onDocumentClick);
+            // passive listeners
+            document.removeEventListener('scroll', this.__onDocumentScroll);
+            window.removeEventListener('resize', this.__onWindowResize);
+        }
+    }
+
+    return _Positionable;
+};
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Alignment.html">HelixUI/Utils/Alignment</a></li><li><a href="module-HelixUI_Utils_Offset.html">HelixUI/Utils/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-DOMRect.html">DOMRect</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Revealable:close">Revealable:close</a></li><li><a href="global.html#event:Revealable:open">Revealable:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li></ul><h3>Interfaces</h3><ul><li><a href="Positionable.html">Positionable</a></li><li><a href="Revealable.html">Revealable</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 30 2019 15:03:20 GMT-0600 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

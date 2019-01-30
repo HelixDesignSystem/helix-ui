@@ -62,14 +62,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Guides"
+    aria-controls="nav-guides"
 >
     Guides
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Guides" >
+  <hx-reveal id="nav-guides" >
       
       <a href="guides/getting-started" >
     Getting Started
@@ -99,14 +98,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Components"
+    aria-controls="nav-components"
 class="current">
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" open>
+  <hx-reveal id="nav-components" open>
       
       <a href="components/accordions" >
     Accordions
@@ -292,14 +290,13 @@ class="current">
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Custom Elements"
+    aria-controls="nav-elements"
 >
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Custom Elements" >
+  <hx-reveal id="nav-elements" >
       
       <a href="elements/hx-accordion" >
     &lt;hx-accordion&gt;
@@ -403,48 +400,6 @@ class="current">
 
 
       
-      <a href="elements/hx-modalbody" >
-    &lt;hx-modalbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalfoot" >
-    &lt;hx-modalfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalhead" >
-    &lt;hx-modalhead&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panel" >
-    &lt;hx-panel&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelbody" >
-    &lt;hx-panelbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelfoot" >
-    &lt;hx-panelfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelhead" >
-    &lt;hx-panelhead&gt;
-  </a>
-
-
-      
       <a href="elements/hx-pill" >
     &lt;hx-pill&gt;
   </a>
@@ -453,24 +408,6 @@ class="current">
       
       <a href="elements/hx-popover" >
     &lt;hx-popover&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-body" >
-    &lt;hx-popover-body&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-foot" >
-    &lt;hx-popover-foot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-head" >
-    &lt;hx-popover-head&gt;
   </a>
 
 
@@ -557,13 +494,13 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox-md">
+  <main id="content" class="hxBox hxMd">
     <h1>Buttons
-<min-version data-tooltip="page-min-version">
+<min-version id="page-min-version">
     v0.1.6+
 </min-version>
 
-<hx-tooltip id="page-min-version" position="right">
+<hx-tooltip for="page-min-version" position="right">
     HelixUI v0.1.6 or later required
 </hx-tooltip>
     </h1>
@@ -580,7 +517,7 @@ class="current">
       Define a basic button by adding the <code>.hxBtn</code>
       CSS class to any of the following elements:
     </p>
-    <ul>
+    <ul class="hxList">
       <li><code>&lt;button&gt;</code></li>
       <li><code>&lt;a href="..."&gt;</code></li>
       <li><code>&lt;input type="button"&gt;</code></li>
@@ -620,21 +557,49 @@ class="current">
       </header>
 
       <div>
-        <button :class="classes" type="button">Button</button>
-        <a href="#" :class="classes">Link</a>
-        <input type="button" :class="classes" value="Input" @click.prevent />
-        <input type="submit" :class="classes" value="Submit" @click.prevent />
-        <input type="reset" :class="classes" value="Reset" @click.prevent />
+        <p>
+          <button :class="classes" type="button">
+            Press Me
+          </button>
+        </p>
+        <p>
+          <button :class="classes" disabled>
+            <span>Loading</span>
+            <hx-busy></hx-busy>
+          </button>
+        </p>
+        <p>
+          <a href="#" :class="classes">
+            <hx-icon type="download"></hx-icon>
+            <span>Download</span>
+          </a>
+        </p>
       </div>
 
       <footer>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{classes}}"</span>&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{classes}}"</span>&gt;</span>Link<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{classes}}"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Input"</span> /&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{classes}}"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Submit"</span> /&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"reset"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{classes}}"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Reset"</span> /&gt;</span>
+<pre><code class="html"><span class="hljs-comment">&lt;!-- text-only (no span necessary) --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{classes}}"</span>&gt;</span>
+  Press Me
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- text + non-text (span around text required) --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{classes}}"</span> <span class="hljs-attr">disabled</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Loading<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-busy</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-busy</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- non-text + text (span around text required) --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{classes}}"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"download"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Download<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 </code></pre>      </footer>
     </div>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="info-circle"></hx-icon>
+      Text nodes within buttons <i>must</i> be wrapped in a <code>&lt;span&gt;</code>,
+      if non-text siblings are present.
+    </p>
   </section>
 
   <section>
@@ -701,15 +666,17 @@ class="current">
 
 <section>
   <h2 id="see-also">See Also</h2>
-  <ul>
+  <ul class="hxList">
       <li><a href="components/buttons/test.html">Testing - Buttons</a></li>
+      <li><a href="components/loaders/#busy">Busy Loader</a></li>
+      <li><a href="components/files/#file-selector">File Selector</a></li>
       <li><a href="components/menus">Menus</a></li>
       <li><a href="components/popovers">Popovers</a></li>
       <li><a href="components/reveals">Reveals</a></li>
   </ul>
 </section>
   </main>
-  <aside class="hxSiderail hxBox-md">
+  <aside class="hxSiderail hxBox hxMd">
     <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
@@ -719,7 +686,7 @@ class="current">
             <a href="#button-group">Button Group</a>
         
         <a href="#see-also">See Also</a>
-      <hr />
+      <hr class="hxDivider" />
       <a class="top-link" href="#top">Back to Top</a>
     </nav>
   </aside>
@@ -728,7 +695,7 @@ class="current">
 
   <footer id="foot" class="hxRow hxGutterless">
 <div class="hxCol">
-&copy; 2018 Rackspace US, Inc.
+&copy; 2019 Rackspace US, Inc.
 <nav>
   <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
   <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
@@ -737,12 +704,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-10-12
+      2019-01-30
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.14.0" target="_blank">
-      v0.14.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.15.0" target="_blank">
+      v0.15.0
     </a>)
   </small>
 </div>

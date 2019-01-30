@@ -62,14 +62,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Guides"
+    aria-controls="nav-guides"
 >
     Guides
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Guides" >
+  <hx-reveal id="nav-guides" >
       
       <a href="guides/getting-started" >
     Getting Started
@@ -99,14 +98,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Components"
+    aria-controls="nav-components"
 class="current">
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" open>
+  <hx-reveal id="nav-components" open>
       
       <a href="components/accordions" >
     Accordions
@@ -292,14 +290,13 @@ class="current">
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Custom Elements"
+    aria-controls="nav-elements"
 >
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Custom Elements" >
+  <hx-reveal id="nav-elements" >
       
       <a href="elements/hx-accordion" >
     &lt;hx-accordion&gt;
@@ -403,48 +400,6 @@ class="current">
 
 
       
-      <a href="elements/hx-modalbody" >
-    &lt;hx-modalbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalfoot" >
-    &lt;hx-modalfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalhead" >
-    &lt;hx-modalhead&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panel" >
-    &lt;hx-panel&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelbody" >
-    &lt;hx-panelbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelfoot" >
-    &lt;hx-panelfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelhead" >
-    &lt;hx-panelhead&gt;
-  </a>
-
-
-      
       <a href="elements/hx-pill" >
     &lt;hx-pill&gt;
   </a>
@@ -453,24 +408,6 @@ class="current">
       
       <a href="elements/hx-popover" >
     &lt;hx-popover&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-body" >
-    &lt;hx-popover-body&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-foot" >
-    &lt;hx-popover-foot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-head" >
-    &lt;hx-popover-head&gt;
   </a>
 
 
@@ -557,7 +494,7 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox-lg">
+  <main id="content" class="hxBox hxLg">
     <h1>Testing - Buttons</h1>
 
   <section>
@@ -571,7 +508,7 @@ class="current">
 
   <!-- Button Element -->
   <section>
-    <h3>Button Element</h3>
+    <h2>Button Element</h2>
     <p>Using: <code>&lt;button&gt;</code></p>
     <table class="hxTable hxTable--condensed">
       <tbody>
@@ -657,7 +594,7 @@ class="current">
 
   <!-- Anchor Element -->
   <section>
-    <h3>Anchor Element</h3>
+    <h2>Anchor Element</h2>
     <p>Using: <code>&lt;a&gt;</code></p>
     <table class="hxTable hxTable--condensed">
       <tbody>
@@ -743,7 +680,7 @@ class="current">
 
   <!-- Link Element -->
   <section>
-    <h3>Link Element</h3>
+    <h2>Link Element</h2>
     <p>Using: <code>&lt;a href="#"&gt;</code></p>
     <table class="hxTable hxTable--condensed">
       <tbody>
@@ -1080,13 +1017,312 @@ class="current">
         </tbody>
       </table>
     </section>
+
+  <!-- Various Element Children -->
+  <section>
+    <h2>Various Element Children</h2>
+    <!-- konami icons -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          <hx-icon type="kbd-arrow-up"></hx-icon>
+          <hx-icon type="kbd-arrow-up"></hx-icon>
+          <hx-icon type="kbd-arrow-down"></hx-icon>
+          <hx-icon type="kbd-arrow-down"></hx-icon>
+          <hx-icon type="kbd-arrow-left"></hx-icon>
+          <hx-icon type="kbd-arrow-right"></hx-icon>
+          <hx-icon type="kbd-arrow-left"></hx-icon>
+          <hx-icon type="kbd-arrow-right"></hx-icon>
+        </button>
+        <button class="hxBtn ">
+          <hx-icon type="kbd-arrow-up"></hx-icon>
+          <hx-icon type="kbd-arrow-up"></hx-icon>
+          <hx-icon type="kbd-arrow-down"></hx-icon>
+          <hx-icon type="kbd-arrow-down"></hx-icon>
+          <hx-icon type="kbd-arrow-left"></hx-icon>
+          <hx-icon type="kbd-arrow-right"></hx-icon>
+          <hx-icon type="kbd-arrow-left"></hx-icon>
+          <hx-icon type="kbd-arrow-right"></hx-icon>
+        </button>
+        <button class="hxBtn hxTertiary">
+          <hx-icon type="kbd-arrow-up"></hx-icon>
+          <hx-icon type="kbd-arrow-up"></hx-icon>
+          <hx-icon type="kbd-arrow-down"></hx-icon>
+          <hx-icon type="kbd-arrow-down"></hx-icon>
+          <hx-icon type="kbd-arrow-left"></hx-icon>
+          <hx-icon type="kbd-arrow-right"></hx-icon>
+          <hx-icon type="kbd-arrow-left"></hx-icon>
+          <hx-icon type="kbd-arrow-right"></hx-icon>
+        </button>
+    </p>
+    <!-- hx-icon + hx-icon -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          <hx-icon type="flag"></hx-icon>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn ">
+          <hx-icon type="flag"></hx-icon>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn hxTertiary">
+          <hx-icon type="flag"></hx-icon>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+    </p>
+    <!-- hx-busy + hx-icon -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          <hx-busy></hx-busy>
+          <hx-icon type="filter"></hx-icon>
+        </button>
+        <button class="hxBtn ">
+          <hx-busy></hx-busy>
+          <hx-icon type="filter"></hx-icon>
+        </button>
+        <button class="hxBtn hxTertiary">
+          <hx-busy></hx-busy>
+          <hx-icon type="filter"></hx-icon>
+        </button>
+    </p>
+    <!-- hx-icon + hx-busy -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          <hx-icon type="phone"></hx-icon>
+          <hx-busy></hx-busy>
+        </button>
+        <button class="hxBtn ">
+          <hx-icon type="phone"></hx-icon>
+          <hx-busy></hx-busy>
+        </button>
+        <button class="hxBtn hxTertiary">
+          <hx-icon type="phone"></hx-icon>
+          <hx-busy></hx-busy>
+        </button>
+    </p>
+    <!-- hx-icon + hx-busy + hx-icon -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          <hx-icon type="pencil"></hx-icon>
+          <hx-busy></hx-busy>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn ">
+          <hx-icon type="pencil"></hx-icon>
+          <hx-busy></hx-busy>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn hxTertiary">
+          <hx-icon type="pencil"></hx-icon>
+          <hx-busy></hx-busy>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+    </p>
+    <!-- hx-busy + hx-icon + hx-busy -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          <hx-busy></hx-busy>
+          <hx-icon type="calendar"></hx-icon>
+          <hx-busy></hx-busy>
+        </button>
+        <button class="hxBtn ">
+          <hx-busy></hx-busy>
+          <hx-icon type="calendar"></hx-icon>
+          <hx-busy></hx-busy>
+        </button>
+        <button class="hxBtn hxTertiary">
+          <hx-busy></hx-busy>
+          <hx-icon type="calendar"></hx-icon>
+          <hx-busy></hx-busy>
+        </button>
+    </p>
+  </section>
+
+  <!-- Supported Markup (text + non-text children ) -->
+  <section>
+    <h2>Supported Markup</h2>
+    <p>
+      The following examples are supported and should have correct spacing.
+    </p>
+    <!-- hx-icon + text -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          <hx-icon type="angle-left"></hx-icon>
+          <span>prev</span>
+        </button>
+        <button class="hxBtn ">
+          <hx-icon type="angle-left"></hx-icon>
+          <span>prev</span>
+        </button>
+        <button class="hxBtn hxTertiary">
+          <hx-icon type="angle-left"></hx-icon>
+          <span>prev</span>
+        </button>
+    </p>
+    <!-- text + hx-icon -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          <span>next</span>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn ">
+          <span>next</span>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn hxTertiary">
+          <span>next</span>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+    </p>
+    <!-- hx-icon + text + hx-icon -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          <hx-icon type="cog"></hx-icon>
+          <span>actions</span>
+          <hx-icon type="angle-down"></hx-icon>
+        </button>
+        <button class="hxBtn ">
+          <hx-icon type="cog"></hx-icon>
+          <span>actions</span>
+          <hx-icon type="angle-down"></hx-icon>
+        </button>
+        <button class="hxBtn hxTertiary">
+          <hx-icon type="cog"></hx-icon>
+          <span>actions</span>
+          <hx-icon type="angle-down"></hx-icon>
+        </button>
+    </p>
+    <!-- text + hx-busy -->
+    <p>
+        <button class="hxBtn hxPrimary" disabled>
+          <span>Loading</span>
+          <hx-busy></hx-busy>
+        </button>
+        <button class="hxBtn " disabled>
+          <span>Loading</span>
+          <hx-busy></hx-busy>
+        </button>
+        <button class="hxBtn hxTertiary" disabled>
+          <span>Loading</span>
+          <hx-busy></hx-busy>
+        </button>
+    </p>
+    <!-- hx-icon + text + hx-busy -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          <hx-icon type="cog"></hx-icon>
+          <span>wrapped text</span>
+          <hx-busy></hx-busy>
+        </button>
+        <button class="hxBtn ">
+          <hx-icon type="cog"></hx-icon>
+          <span>wrapped text</span>
+          <hx-busy></hx-busy>
+        </button>
+        <button class="hxBtn hxTertiary">
+          <hx-icon type="cog"></hx-icon>
+          <span>wrapped text</span>
+          <hx-busy></hx-busy>
+        </button>
+    </p>
+  </section>
+
+  <hr />
+
+  <!-- Unsupported Markup (text + non-text children ) -->
+  <section>
+    <h2>Unsupported Markup</h2>
+    <p>
+      The following examples are not supported for button children spacing.
+    </p>
+    <!-- hx-icon + text -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          <hx-icon type="angle-left"></hx-icon>
+          prev
+        </button>
+        <button class="hxBtn ">
+          <hx-icon type="angle-left"></hx-icon>
+          prev
+        </button>
+        <button class="hxBtn hxTertiary">
+          <hx-icon type="angle-left"></hx-icon>
+          prev
+        </button>
+    </p>
+    <!-- text + hx-icon -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          next
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn ">
+          next
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+        <button class="hxBtn hxTertiary">
+          next
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+    </p>
+    <!-- hx-icon + text + hx-icon -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          <hx-icon type="cog"></hx-icon>
+          actions
+          <hx-icon type="angle-down"></hx-icon>
+        </button>
+        <button class="hxBtn ">
+          <hx-icon type="cog"></hx-icon>
+          actions
+          <hx-icon type="angle-down"></hx-icon>
+        </button>
+        <button class="hxBtn hxTertiary">
+          <hx-icon type="cog"></hx-icon>
+          actions
+          <hx-icon type="angle-down"></hx-icon>
+        </button>
+    </p>
+    <!-- text + hx-busy -->
+    <p>
+        <button class="hxBtn hxPrimary" disabled>
+          Loading
+          <hx-busy></hx-busy>
+        </button>
+        <button class="hxBtn " disabled>
+          Loading
+          <hx-busy></hx-busy>
+        </button>
+        <button class="hxBtn hxTertiary" disabled>
+          Loading
+          <hx-busy></hx-busy>
+        </button>
+    </p>
+    <!-- hx-icon + text + hx-busy -->
+    <p>
+        <button class="hxBtn hxPrimary">
+          <hx-icon type="cog"></hx-icon>
+          unwrapped text
+          <hx-busy></hx-busy>
+        </button>
+        <button class="hxBtn ">
+          <hx-icon type="cog"></hx-icon>
+          unwrapped text
+          <hx-busy></hx-busy>
+        </button>
+        <button class="hxBtn hxTertiary">
+          <hx-icon type="cog"></hx-icon>
+          unwrapped text
+          <hx-busy></hx-busy>
+        </button>
+    </p>
+  </section>
   </main>
     </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
 <div class="hxCol">
-&copy; 2018 Rackspace US, Inc.
+&copy; 2019 Rackspace US, Inc.
 <nav>
   <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
   <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
@@ -1095,12 +1331,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-09-25
+      2019-01-30
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.14.0" target="_blank">
-      v0.14.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.15.0" target="_blank">
+      v0.15.0
     </a>)
   </small>
 </div>

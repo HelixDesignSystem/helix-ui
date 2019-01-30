@@ -27,35 +27,23 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import { HXElement } from './HXElement';
-import { getPositionWithArrow } from '../utils/position';
-import debounce from 'lodash/debounce';
 import shadowMarkup from './HXPopoverElement.html';
 import shadowStyles from './HXPopoverElement.less';
 
-/**
- * Fires when the element is concealed.
- *
- * @event Popover:close
- * @since 0.6.0
- * @type {CustomEvent}
- */
+import { Positionable } from '../mixins/Positionable';
+import { mix } from '../utils';
 
-/**
- * Fires when the element is revealed.
- *
- * @event Popover:open
- * @since 0.6.0
- * @type {CustomEvent}
- */
+class _ProtoClass extends mix(HXElement, Positionable) {}
 
 /**
  * Defines behavior for the `&lt;hx-popover>` element.
  *
- * @extends HXElement
  * @hideconstructor
+ * @extends HXElement
+ * @extends Positionable
  * @since 0.2.0
  */
-export class HXPopoverElement extends HXElement {
+export class HXPopoverElement extends _ProtoClass {
     static get is () {
         return 'hx-popover';
     }
@@ -64,103 +52,52 @@ export class HXPopoverElement extends HXElement {
         return `&lt;style>${shadowStyles}&lt;/style>${shadowMarkup}`;
     }
 
+    /** @override */
     $onCreate () {
-        this._toggle = this._toggle.bind(this);
-        this._setPosition = this._setPosition.bind(this);
-        this._closeOnBackdropClick = this._closeOnBackdropClick.bind(this);
+        super.$onCreate();
+        this.DEFAULT_POSITION = 'bottom-right';
+        this.POSITION_OFFSET = 20;
     }
 
+    /** @override */
     $onConnect () {
-        this.$upgradeProperty('open');
-        this.$upgradeProperty('position');
-        this.$defaultAttribute('position', 'bottom-right');
-        this._initialPosition = this.position;
-
-        this.setAttribute('aria-hidden', !this.open);
-
-        if (!this.id) {
-            return;
-        }
-
-        this._target = this.getRootNode().querySelector(`[data-popover="${this.id}"]`);
-        if (!this._target) {
-            return;
-        }
-
-        this._target.addEventListener('click', this._toggle);
-        window.addEventListener('resize', debounce(this._setPosition, 100));
-        document.addEventListener('click', this._closeOnBackdropClick);
+        super.$onConnect();
+        this.addEventListener('reposition', this._onReposition);
     }
 
     $onDisconnect () {
-        if (!this._target) {
-            return;
-        }
-
-        this._target.removeEventListener('click', this._toggle);
-        window.removeEventListener('resize', debounce(this._setPosition, 100));
-        document.removeEventListener('click', this._closeOnBackdropClick);
+        super.$onDisconnect();
+        this.removeEventListener('reposition', this._onReposition);
     }
 
-    static get $observedAttributes () {
-        return [ 'open' ];
-    }
-
+    /** @override */
     $onAttributeChange (attr, oldVal, newVal) {
-        if (attr === 'open') {
-            let isOpen = (newVal !== null);
-            this.setAttribute('aria-hidden', !isOpen);
-            this.$emit(isOpen ? 'open' : 'close');
+        super.$onAttributeChange(attr, oldVal, newVal);
+
+        if (attr === 'position') {
+            this._setShadowPosition(newVal);
         }
     }
 
-    _toggle () {
-        this.open = !this.open;
+    /** @private */
+    get _elRoot () {
+        return this.shadowRoot.getElementById('hxPopover');
     }
 
-    _setPosition () {
-        let offset = getPositionWithArrow(this, this._target, { position: this.position });
-        this.style.top = `${offset.y}px`;
-        this.style.left = `${offset.x}px`;
-        this.position = offset.position;
+    /**
+     * Update visual display of arrow in Shadow DOM based on optimal position.
+     * @private
+     */
+    _onReposition () {
+        this._setShadowPosition(this.optimumPosition);
     }
 
-    _closeOnBackdropClick (event) {
-        if (this._isBackground(event) &amp;&amp; this.open) {
-            this.open = false;
-        }
-    }
-
-    _isBackground (event) {
-        let inComponent = this.contains(event.target);
-        let inTarget = this._target.contains(event.target);
-        return !inComponent &amp;&amp; !inTarget;
-    }
-
-    set open (value) {
-        if (value) {
-            this.setAttribute('open', '');
-            this._setPosition();
-        } else {
-            this.removeAttribute('open');
-            this.position = this._initialPosition;
-        }
-    }
-
-    get open () {
-        return this.hasAttribute('open');
-    }
-
-    set position (value) {
-        if (value) {
-            this.setAttribute('position', value);
-        } else {
-            this.removeAttribute('position');
-        }
-    }
-
-    get position () {
-        return this.getAttribute('position');
+    /**
+     * @private
+     * @param {NormalizedPositionString}
+     */
+    _setShadowPosition (position) {
+        this._elRoot.setAttribute('position', position);
     }
 }
 </code></pre>
@@ -173,13 +110,13 @@ export class HXPopoverElement extends HXElement {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Position.html">HelixUI/Utils/Position</a></li><li><a href="module-HelixUI_Utils_Position_Offset.html">HelixUI/Utils/Position/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Menu:close">Menu:close</a></li><li><a href="global.html#event:Menu:open">Menu:open</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Popover:close">Popover:close</a></li><li><a href="global.html#event:Popover:open">Popover:open</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:SearchAssistance:close">SearchAssistance:close</a></li><li><a href="global.html#event:SearchAssistance:open">SearchAssistance:open</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li><li><a href="global.html#event:Tooltip:close">Tooltip:close</a></li><li><a href="global.html#event:Tooltip:open">Tooltip:open</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Alignment.html">HelixUI/Utils/Alignment</a></li><li><a href="module-HelixUI_Utils_Offset.html">HelixUI/Utils/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-DOMRect.html">DOMRect</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Revealable:close">Revealable:close</a></li><li><a href="global.html#event:Revealable:open">Revealable:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li></ul><h3>Interfaces</h3><ul><li><a href="Positionable.html">Positionable</a></li><li><a href="Revealable.html">Revealable</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Oct 12 2018 10:48:15 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 30 2019 15:03:20 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -27,7 +27,8 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import { HXElement } from './HXElement';
-import { KEYS } from '../utils';
+
+import { KEYS, defer, generateId, preventKeyScroll } from '../utils';
 
 /**
  * Fires when the currently active tab changes.
@@ -53,26 +54,30 @@ export class HXTabsetElement extends HXElement {
     }
 
     $onCreate () {
+        this.$onConnect = defer(this.$onConnect);
         this._onKeyUp = this._onKeyUp.bind(this);
         this._onTabClick = this._onTabClick.bind(this);
     }
 
     $onConnect () {
         this.$upgradeProperty('current-tab');
-        this.$defaultAttribute('id', this.$generateId());
+        this.$defaultAttribute('id', `tabset-${generateId()}`);
         this._setupIds();
         this.currentTab = Number(this.getAttribute('current-tab')) || 0;
-        this.$tablist = this.querySelector('hx-tablist');
-        this.$tablist.addEventListener('keyup', this._onKeyUp);
-        this.$tablist.addEventListener('keydown', this.$preventScroll);
+        this._tablist.addEventListener('keyup', this._onKeyUp);
+        this._tablist.addEventListener('keydown', preventKeyScroll);
         this.tabs.forEach(tab => {
             tab.addEventListener('click', this._onTabClick);
         });
+
+        if (this.hasAttribute('current-tab')) {
+            this._activateTab(this.currentTab);
+        }
     }
 
     $onDisconnect () {
-        this.$tablist.removeEventListener('keyup', this._onKeyUp);
-        this.$tablist.removeEventListener('keydown', this.$preventScroll);
+        this._tablist.removeEventListener('keyup', this._onKeyUp);
+        this._tablist.removeEventListener('keydown', preventKeyScroll);
         this.tabs.forEach(tab => {
             tab.removeEventListener('click', this._onTabClick);
         });
@@ -99,6 +104,11 @@ export class HXTabsetElement extends HXElement {
         return Number(this.getAttribute('current-tab') || 0);
     }
     set currentTab (idx) {
+        // NOTE: Keep an eye on this logic for React compatibility
+        if (!this.isConnected) {
+            return;
+        }
+
         if (isNaN(idx)) {
             throw new TypeError(`'currentTab' expects an numeric index. Got ${typeof idx} instead.`);
         }
@@ -111,15 +121,6 @@ export class HXTabsetElement extends HXElement {
     }
 
     /**
-     * All `&lt;hx-tab>` elements within the tabset.
-     * @readonly
-     * @type {HXTabElement[]}
-     */
-    get tabs () {
-        return Array.from(this.querySelectorAll('hx-tablist > hx-tab'));
-    }
-
-    /**
      * All `&lt;hx-tabpanel>` elements within the tabset.
      * @readonly
      * @type {HXTabpanelElement[]}
@@ -129,9 +130,22 @@ export class HXTabsetElement extends HXElement {
     }
 
     /**
+     * All `&lt;hx-tab>` elements within the tabset.
+     * @readonly
+     * @type {HXTabElement[]}
+     */
+    get tabs () {
+        return Array.from(this.querySelectorAll('hx-tablist > hx-tab'));
+    }
+
+    /**
      * Select next tab in tabset.
      */
     selectNext () {
+        if (!this.isConnected) {
+            return;
+        }
+
         // if current tab is the last tab
         if (this.currentTab === (this.tabs.length - 1)) {
             // select first
@@ -147,6 +161,10 @@ export class HXTabsetElement extends HXElement {
      * Select previous tab in tabset.
      */
     selectPrevious () {
+        if (!this.isConnected) {
+            return;
+        }
+
         // if current tab is the first tab
         if (this.currentTab === 0) {
             // select last
@@ -158,9 +176,15 @@ export class HXTabsetElement extends HXElement {
         this.tabs[this.currentTab].focus();
     }
 
+    /** @private */
+    get _tablist () {
+        return this.querySelector('hx-tablist');
+    }
+
     /**
      * Handle navigating the tabs via arrow keys
      * @private
+     * @todo migrate keyup listener logic to HXTablistElement
      */
     _onKeyUp (evt) {
         if (evt.keyCode === KEYS.Right) {
@@ -170,11 +194,6 @@ export class HXTabsetElement extends HXElement {
         if (evt.keyCode === KEYS.Left) {
             this.selectPrevious();
         }
-    }
-
-    /** @private */
-    _onTabClick (evt) {
-        this.currentTab = this.tabs.indexOf(evt.target);
     }
 
     /** @private */
@@ -193,6 +212,14 @@ export class HXTabsetElement extends HXElement {
         this.tabpanels.forEach((tabpanel, panelIdx) => {
             tabpanel.open = (idx === panelIdx);
         });
+    }
+
+    /**
+     * @private
+     * @todo migrate tab click listener logic to HXTabElement
+     */
+    _onTabClick (evt) {
+        this.currentTab = this.tabs.indexOf(evt.target);
     }
 
     /** @private */
@@ -233,13 +260,13 @@ export class HXTabsetElement extends HXElement {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Position.html">HelixUI/Utils/Position</a></li><li><a href="module-HelixUI_Utils_Position_Offset.html">HelixUI/Utils/Position/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Menu:close">Menu:close</a></li><li><a href="global.html#event:Menu:open">Menu:open</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Popover:close">Popover:close</a></li><li><a href="global.html#event:Popover:open">Popover:open</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:SearchAssistance:close">SearchAssistance:close</a></li><li><a href="global.html#event:SearchAssistance:open">SearchAssistance:open</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li><li><a href="global.html#event:Tooltip:close">Tooltip:close</a></li><li><a href="global.html#event:Tooltip:open">Tooltip:open</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Alignment.html">HelixUI/Utils/Alignment</a></li><li><a href="module-HelixUI_Utils_Offset.html">HelixUI/Utils/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-DOMRect.html">DOMRect</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Revealable:close">Revealable:close</a></li><li><a href="global.html#event:Revealable:open">Revealable:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li></ul><h3>Interfaces</h3><ul><li><a href="Positionable.html">Positionable</a></li><li><a href="Revealable.html">Revealable</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Oct 12 2018 10:48:15 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 30 2019 15:03:20 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -26,9 +26,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { KEYS } from '../utils';
-
-// Keep track of prepared templates
+            <pre class="prettyprint source linenums"><code>// Keep track of prepared templates
 const TEMPLATE_CACHE = {};
 
 /**
@@ -88,12 +86,6 @@ export class HXElement extends HTMLElement {
      *
      * Use this callback to initialize an element's behavior.
      *
-     * **Client-side Framework Compatibility**
-     *
-     * It is worth noting that client-side frameworks like React may not reconstruct
-     * instances of an element, but may connect and disconnect the initial instance
-     * from the DOM.
-     *
      * @abstract
      * @ignore
      */
@@ -144,9 +136,14 @@ export class HXElement extends HTMLElement {
 
     // Called when an instance of the element is attached to the DOM.
     connectedCallback () {
-        this._$tabIndex = this.getAttribute('tabindex') || 0;
+        this._$tabIndex = this.getAttribute('tabindex');
         this.$upgradeProperty('disabled');
         this.$onConnect();
+    }
+
+    // Called when an instance of the element is removed from the DOM.
+    disconnectedCallback () {
+        this.$onDisconnect();
     }
 
     /**
@@ -164,7 +161,7 @@ export class HXElement extends HTMLElement {
         return [ ...common, ...extra ];
     }
 
-    // Called when an attribute UPDATES (not just when it changes).
+    // Called when an attribute is SET (not just when it changes).
     attributeChangedCallback (attr, oldVal, newVal) {
         if (attr === 'disabled') {
             if (newVal !== null) {
@@ -172,7 +169,9 @@ export class HXElement extends HTMLElement {
                 this.setAttribute('aria-disabled', true);
                 this.blur();
             } else {
-                this.setAttribute('tabindex', this._$tabIndex);
+                if (this._$tabIndex) {
+                    this.setAttribute('tabindex', this._$tabIndex);
+                }
                 this.removeAttribute('aria-disabled');
             }
         }
@@ -184,22 +183,27 @@ export class HXElement extends HTMLElement {
         }
     }//attributeChangedCallback
 
+    /* ===== PUBLIC PROPERTIES ===== */
+
     /**
-     * Captures the value from the unupgraded instance and deletes the property
-     * so it does not shadow the custom element's own property setter. This way,
-     * when the element's definition does finally load, it can immediately
-     * reflect the correct state.
+     * Indicates whether the element is disabled.
+     * A disabled element is nonfunctional and noninteractive.
      *
-     * @param {String} prop - property name to upgrade
-     * @see https://goo.gl/MDp6j5
+     * @default false
+     * @type {Boolean}
      */
-    $upgradeProperty (prop) {
-        if (this.hasOwnProperty(prop)) {
-            let value = this[prop];
-            delete this[prop];
-            this[prop] = value;
+    get disabled () {
+        return this.hasAttribute('disabled');
+    }
+    set disabled (value) {
+        if (value) {
+            this.setAttribute('disabled', '');
+        } else {
+            this.removeAttribute('disabled');
         }
     }
+
+    /* ===== PUBLIC METHODS ===== */
 
     /**
      * Assign a value to an HTML attribute, if the attribute isn't present.
@@ -213,42 +217,6 @@ export class HXElement extends HTMLElement {
             this.setAttribute(name, val);
         }
     }
-
-    /**
-     * Generate a unique ID
-     *
-     * **Pseudo-random Algorithm**
-     * This functionality is pseudo-random, and you should not depend on 100%
-     * random values. Given a large enough dataset, this method has the
-     * potential to generate duplicate values.
-     *
-     * For the purposes of most applications, the dataset is small enough that
-     * the potential for duplicate values is almost 0, meaning that it's good
-     * enough for use.
-     */
-    $generateId () {
-        return Math
-            .random()     // 0.7093288430261266
-            .toString(36) // "0.pjag2nwxb2o"
-            .substr(2,8); // "pjag2nwx"
-    }//$generateId()
-
-    /**
-     * Event listener callback function to prevent page scrolling on `keydown`.
-     *
-     * @param {Event} evt - Event to act on.
-     */
-    $preventScroll (evt) {
-        switch (evt.keyCode) {
-            case KEYS.Down:
-            case KEYS.Left:
-            case KEYS.Right:
-            case KEYS.Space:
-            case KEYS.Up:
-                evt.preventDefault();
-                break;
-        }
-    }//$preventScroll()
 
     /**
      * Emit a custom event
@@ -312,22 +280,26 @@ export class HXElement extends HTMLElement {
     }
 
     /**
-     * Indicates whether the element is disabled.
-     * A disabled element is nonfunctional and noninteractive.
+     * Captures the value from the unupgraded instance and deletes the property
+     * so it does not shadow the custom element's own property setter. This way,
+     * when the element's definition does finally load, it can immediately
+     * reflect the correct state.
      *
-     * @default false
-     * @type {Boolean}
+     * @param {String} prop - property name to upgrade
+     * @see https://goo.gl/MDp6j5
      */
-    get disabled () {
-        return this.hasAttribute('disabled');
-    }
-    set disabled (value) {
-        if (value) {
-            this.setAttribute('disabled', '');
-        } else {
-            this.removeAttribute('disabled');
+    $upgradeProperty (prop) {
+        if (this.hasOwnProperty(prop)) {
+            let value = this[prop];
+            delete this[prop];
+            this[prop] = value;
         }
     }
+
+    /* ===== PRIVATE PROPERTIES ===== */
+    // TBD
+
+    /* ===== PRIVATE METHODS ===== */
 
     /**
      * @private
@@ -378,16 +350,6 @@ export class HXElement extends HTMLElement {
             this.shadowRoot.appendChild(_template.content.cloneNode(true));
         }
     }//_$setupShadowDOM()
-
-    /** @private */
-    _$replaceWith (txtReplacement) {
-        /* eslint-disable no-console */
-        console.warn(`
-            DEPRECATED: Use ${txtReplacement} instead.
-            Old functionality will be removed in an upcoming major release.
-        `);
-        /* eslint-enable no-console */
-    }
 }
 </code></pre>
         </article>
@@ -399,13 +361,13 @@ export class HXElement extends HTMLElement {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Position.html">HelixUI/Utils/Position</a></li><li><a href="module-HelixUI_Utils_Position_Offset.html">HelixUI/Utils/Position/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Menu:close">Menu:close</a></li><li><a href="global.html#event:Menu:open">Menu:open</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Popover:close">Popover:close</a></li><li><a href="global.html#event:Popover:open">Popover:open</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:SearchAssistance:close">SearchAssistance:close</a></li><li><a href="global.html#event:SearchAssistance:open">SearchAssistance:open</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li><li><a href="global.html#event:Tooltip:close">Tooltip:close</a></li><li><a href="global.html#event:Tooltip:open">Tooltip:open</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Alignment.html">HelixUI/Utils/Alignment</a></li><li><a href="module-HelixUI_Utils_Offset.html">HelixUI/Utils/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-DOMRect.html">DOMRect</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Revealable:close">Revealable:close</a></li><li><a href="global.html#event:Revealable:open">Revealable:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li></ul><h3>Interfaces</h3><ul><li><a href="Positionable.html">Positionable</a></li><li><a href="Revealable.html">Revealable</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Oct 12 2018 10:48:15 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 30 2019 15:03:20 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

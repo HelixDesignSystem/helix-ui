@@ -27,7 +27,6 @@
     "name": "Element.attachShadow()",
     "mdn": "API/Element/attachShadow",
     "missing": [
-      "firefox",
       "edge",
       "ie"
     ],
@@ -45,7 +44,6 @@
     "name": "Element.shadowRoot",
     "mdn": "API/Element/shadowRoot",
     "missing": [
-      "firefox",
       "edge",
       "ie"
     ],
@@ -63,6 +61,15 @@
     "name": "HTMLTemplateElement",
     "mdn": "API/HTMLTemplateElement",
     "missing": [
+      "ie"
+    ],
+    "polyfill": "webcomponentsjs"
+  },
+  {
+    "name": "Node.isConnected",
+    "mdn": "API/Node/isConnected",
+    "missing": [
+      "edge",
       "ie"
     ],
     "polyfill": "webcomponentsjs"
@@ -96,7 +103,6 @@
     "name": "Window.customElements",
     "mdn": "API/Window/customElements",
     "missing": [
-      "firefox",
       "edge",
       "ie"
     ],

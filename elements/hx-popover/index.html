@@ -62,14 +62,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Guides"
+    aria-controls="nav-guides"
 >
     Guides
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Guides" >
+  <hx-reveal id="nav-guides" >
       
       <a href="guides/getting-started" >
     Getting Started
@@ -99,14 +98,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Components"
+    aria-controls="nav-components"
 >
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" >
+  <hx-reveal id="nav-components" >
       
       <a href="components/accordions" >
     Accordions
@@ -292,14 +290,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Custom Elements"
+    aria-controls="nav-elements"
 class="current">
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Custom Elements" open>
+  <hx-reveal id="nav-elements" open>
       
       <a href="elements/hx-accordion" >
     &lt;hx-accordion&gt;
@@ -403,48 +400,6 @@ class="current">
 
 
       
-      <a href="elements/hx-modalbody" >
-    &lt;hx-modalbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalfoot" >
-    &lt;hx-modalfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalhead" >
-    &lt;hx-modalhead&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panel" >
-    &lt;hx-panel&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelbody" >
-    &lt;hx-panelbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelfoot" >
-    &lt;hx-panelfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelhead" >
-    &lt;hx-panelhead&gt;
-  </a>
-
-
-      
       <a href="elements/hx-pill" >
     &lt;hx-pill&gt;
   </a>
@@ -453,24 +408,6 @@ class="current">
       
       <a href="elements/hx-popover" class="current">
     &lt;hx-popover&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-body" >
-    &lt;hx-popover-body&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-foot" >
-    &lt;hx-popover-foot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-head" >
-    &lt;hx-popover-head&gt;
   </a>
 
 
@@ -557,24 +494,26 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox-md">
+  <main id="content" class="hxBox hxMd">
     <h1>&lt;hx-popover&gt;
-<min-version data-tooltip="page-min-version">
+<min-version id="page-min-version">
     v0.2.0+
 </min-version>
 
-<hx-tooltip id="page-min-version" position="right">
+<hx-tooltip for="page-min-version" position="right">
     HelixUI v0.2.0 or later required
 </hx-tooltip>
     </h1>
 
   <section>
-    <p>
+    <p class="comfortable">
       The custom <code>&lt;hx-popover&gt;</code> element defines a section of
-      floating content to appear nearby other elements.
+      floating content to appear nearby other elements. It is often toggled by
+      a companion
+      <a href="elements/hx-disclosure">&lt;hx-disclosure&gt;</a> element.
     </p>
 
-    <dl class="hxBox-md metadata hxList">
+    <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>
         <dd>any</dd>
@@ -582,11 +521,19 @@ class="current">
       <div>
         <dt>Permitted Children</dt>
         <dd>
-          in this order:
-          <ol>
-            <li>an optional <a href="elements/hx-popover-head">&lt;hx-popover-head&gt;</a> element</li>
-            <li>an <a href="elements/hx-popover-body">&lt;hx-popover-body&gt;</a> element</li>
-            <li>an optional <a href="elements/hx-popover-foot">&lt;hx-popover-foot&gt;</a> element</li>
+          In this order:
+          <ol class="hxList">
+            <li>
+              <code>&lt;header&gt;</code>
+              <span class="hxSubBody">(optional)</span>
+            </li>
+            <li>
+              <code><a href="elements/hx-div">&lt;hx-div&gt;</a></code>
+            </li>
+            <li>
+              <code>&lt;footer&gt;</code>
+              <span class="hxSubBody">(optional)</span>
+            </li>
           </ol>
         </dd>
       </div>
@@ -594,9 +541,19 @@ class="current">
         <dt>Events</dt>
         <dd>
           Any of the following:
-          <ul>
-            <li><code>close</code></li>
-            <li><code>open</code></li>
+          <ul class="hxList">
+            <li>
+              <!-- Revealable Mixin -->
+              <code>close</code>
+            </li>
+            <li>
+              <!-- Revealable Mixin -->
+              <code>open</code>
+            </li>
+            <li>
+              <!-- Positionable Mixin -->
+              <code>reposition</code>
+            </li>
           </ul>
         </dd>
       </div>
@@ -607,19 +564,40 @@ class="current">
     <section>
       <h2 id="attributes">Attributes</h2>
       <p>
-        Attributes allow you to configure an element in a
-        declarative manner via markup.
+        Attributes enable declarative configuration of an element,
+        via HTML markup.
       </p>
-  <dl>
-    <dt>open</dt>
+  <dl class="memberList">
+    <!-- Revealable Mixin -->
+    <dt>open <i>(optional)</i></dt>
     <dd>
-      When present, the popover will be revealed.
+      <p>
+        If present, the <code>&lt;hx-popover&gt;</code> will be shown on screen.
+      </p>
     </dd>
 
-    <dt>position</dt>
+    <!-- Positionable Mixin-->
+    <dt>position <i>(optional)</i></dt>
     <dd>
-      Configures the position of the popover in relation to its
-      trigger element.
+      <p>
+        Configures the position of the <code>&lt;hx-popover&gt;</code>
+        in relation to its <i>relative element</i>.
+      </p>
+    </dd>
+
+    <!-- Positionable Mixin -->
+    <dt>relative-to <i>(optional)</i></dt>
+    <dd>
+      <p>
+        The ID of an element in the same document as the
+        <code>&lt;hx-popover&gt;</code> element and the <i>control element</i>.
+        The first element with a matching ID is known as the
+        <i>relative element</i> for the <code>&lt;hx-popover&gt;</code>.
+      </p>
+      <p>
+        If omitted, the <i>control element</i> will act as the
+        <i>relative element</i>.
+      </p>
     </dd>
   </dl>
     </section>
@@ -628,40 +606,103 @@ class="current">
     <section>
       <h2 id="properties">Properties</h2>
       <p>
-        Properties allow you to configure an element in an
-        imperative manner via JavaScript.
+        JavaScript properties enable programmatic access to an element's
+        configuration and state.
       </p>
-  <dl>
-    <dt>open (Boolean [false])</dt>
+  <dl class="memberList">
+    <!-- Positionable Mixin -->
+    <dt>
+      controlElement {HTMLElement}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
     <dd>
-      Manipulates the <code>open</code> attribute.
+      <p>
+        Returns the first HTML element whose <code>aria-controls</code>
+        attribute matches the ID of the <code>&lt;hx-popover&gt;</code>.
+      </p>
+      <p>
+        The <i>control element</i> is used to attach various DOM event
+        listeners, in order to determine when to show or hide the
+        <code>&lt;hx-popover&gt;</code>.
+      </p>
     </dd>
 
-    <dt>position (String [bottom-right])</dt>
+<dt>open {Boolean [false]}</dt>
+<dd>
+  <p>
+    Indicates whether or not the <code>&lt;hx-popover&gt;</code>
+    should be displayed.
+  </p>
+</dd>
+<dt>optimumPosition {String|undefined}</dt>
+<dd>
+  <p>
+    Optimum position determined by internal positioning algorithm.
+  </p>
+  <p>
+    It will return undefined if <code>&lt;hx-popover&gt;</code>
+    hasn't been repositioned.
+  </p>
+</dd>
+
+    <!-- Positionable Mixin-->
+    <dt>position {String [bottom-right]}</dt>
     <dd>
-      Manipulates the <code>position</code> attribute.
+      <p>
+        Configures the position of the <code>&lt;hx-popover&gt;</code>,
+        in relation to its <i>relative element</i>.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Reflects the <code>position</code> attribute.
+      </p>
     </dd>
+
+<dt>
+  relativeElement {HTMLElement}
+  <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+</dt>
+<dd>
+  <p>
+    HTML element used as a point of reference for calculating the fixed
+    position of the <code>&lt;hx-popover&gt;</code>.
+  </p>
+  <p>
+    If the <code>relative-to</code> attribute is defined, this will return
+    the first element whose ID matches the <code>relativeTo</code> property.
+    Otherwise, it will return the value of <code>controlElement</code>.
+  </p>
+</dd>
+<dt>relativeTo {String}</dt>
+<dd>
+  <p>
+    A string corresponding to the ID of the <i>relative element</i>.
+  </p>
+  <p class="hxSubdued hxSubBody">
+    <hx-icon type="info-circle"></hx-icon>
+    Reflects the <code>relative-to</code> attribute.
+  </p>
+</dd>
   </dl>
     </section>
 
 <section>
   <h2 id="see-also">See Also</h2>
-  <ul>
+  <ul class="hxList">
       <li><a href="components/popovers">Popovers</a></li>
-      <li><a href="elements/hx-popover-body">&lt;hx-popover-body&gt;</a></li>
-      <li><a href="elements/hx-popover-foot">&lt;hx-popover-foot&gt;</a></li>
-      <li><a href="elements/hx-popover-head">&lt;hx-popover-head&gt;</a></li>
+      <li><a href="elements/hx-disclosure">&lt;hx-disclosure&gt;</a></li>
+      <li><a href="elements/hx-div">&lt;hx-div&gt;</a></li>
   </ul>
 </section>
   </main>
-  <aside class="hxSiderail hxBox-md">
+  <aside class="hxSiderail hxBox hxMd">
     <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
       <a href="#attributes">Attributes</a>
       <a href="#properties">Properties</a>
         <a href="#see-also">See Also</a>
-      <hr />
+      <hr class="hxDivider" />
       <a class="top-link" href="#top">Back to Top</a>
     </nav>
   </aside>
@@ -670,7 +711,7 @@ class="current">
 
   <footer id="foot" class="hxRow hxGutterless">
 <div class="hxCol">
-&copy; 2018 Rackspace US, Inc.
+&copy; 2019 Rackspace US, Inc.
 <nav>
   <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
   <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
@@ -679,12 +720,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-10-12
+      2019-01-30
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.14.0" target="_blank">
-      v0.14.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.15.0" target="_blank">
+      v0.15.0
     </a>)
   </small>
 </div>

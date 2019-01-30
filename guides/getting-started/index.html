@@ -62,14 +62,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Guides"
+    aria-controls="nav-guides"
 class="current">
     Guides
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Guides" open>
+  <hx-reveal id="nav-guides" open>
       
       <a href="guides/getting-started" class="current">
     Getting Started
@@ -99,14 +98,13 @@ class="current">
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Components"
+    aria-controls="nav-components"
 >
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" >
+  <hx-reveal id="nav-components" >
       
       <a href="components/accordions" >
     Accordions
@@ -292,14 +290,13 @@ class="current">
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Custom Elements"
+    aria-controls="nav-elements"
 >
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Custom Elements" >
+  <hx-reveal id="nav-elements" >
       
       <a href="elements/hx-accordion" >
     &lt;hx-accordion&gt;
@@ -403,48 +400,6 @@ class="current">
 
 
       
-      <a href="elements/hx-modalbody" >
-    &lt;hx-modalbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalfoot" >
-    &lt;hx-modalfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalhead" >
-    &lt;hx-modalhead&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panel" >
-    &lt;hx-panel&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelbody" >
-    &lt;hx-panelbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelfoot" >
-    &lt;hx-panelfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelhead" >
-    &lt;hx-panelhead&gt;
-  </a>
-
-
-      
       <a href="elements/hx-pill" >
     &lt;hx-pill&gt;
   </a>
@@ -453,24 +408,6 @@ class="current">
       
       <a href="elements/hx-popover" >
     &lt;hx-popover&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-body" >
-    &lt;hx-popover-body&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-foot" >
-    &lt;hx-popover-foot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-head" >
-    &lt;hx-popover-head&gt;
   </a>
 
 
@@ -557,7 +494,7 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox-xl">
+  <main id="content" class="hxBox hxMd">
     <h1>Getting Started with HelixUI</h1>
 
   <section>
@@ -578,7 +515,7 @@ class="current">
         <hx-tab>unpkg</hx-tab>
       </hx-tablist>
       <hx-tabcontent>
-        <hx-tabpanel class="hxBox-xl">
+        <hx-tabpanel class="hxBox hxLg">
           <p>
             Using <a href="https://npmjs.com">npm</a>:
           </p>
@@ -590,15 +527,15 @@ class="current">
           </p>
 <pre><code class="bash">yarn add helix-ui
 </code></pre>        </hx-tabpanel>
-        <hx-tabpanel class="hxBox-xl">
+        <hx-tabpanel class="hxBox hxLg">
           <p>
             If HelixUI is not available in your chosen package manager,
             pre-built assets are available for download.
           </p>
           <p>
-            <a href="downloads/helix-ui-0.14.0.tgz" class="hxBtn hxLg hxPrimary">
+            <a href="downloads/helix-ui-0.15.0.tgz" class="hxBtn hxLg hxPrimary">
               <hx-icon type="download"></hx-icon>
-              <span>Download HelixUI (v0.14.0)</span>
+              <span>Download HelixUI (v0.15.0)</span>
             </a>
           </p>
           <p class="hxSubBody">
@@ -613,22 +550,22 @@ class="current">
             </em>
           </p>
         </hx-tabpanel>
-        <hx-tabpanel class="hxBox-xl">
+        <hx-tabpanel class="hxBox hxLg">
           <p>
             Alternatively, you can load HelixUI directly from
             <a href="https://unpkg.com">unpkg.com</a> via the following URLs.
           </p>
 
           <h3>Development</h3>
-          <ul>
-            <li><code>https://unpkg.com/helix-ui@0.14.0/dist/styles/helix-ui.css</code></li>
-            <li><code>https://unpkg.com/helix-ui@0.14.0/dist/scripts/helix-ui.browser.js</code></li>
+          <ul class="hxList">
+            <li><code>https://unpkg.com/helix-ui@0.15.0/dist/styles/helix-ui.css</code></li>
+            <li><code>https://unpkg.com/helix-ui@0.15.0/dist/scripts/helix-ui.browser.js</code></li>
           </ul>
 
           <h3>Production (minified)</h3>
-          <ul>
-            <li><code>https://unpkg.com/helix-ui@0.14.0/dist/styles/helix-ui.min.css</code></li>
-            <li><code>https://unpkg.com/helix-ui@0.14.0/dist/scripts/helix-ui.browser.min.js</code></li>
+          <ul class="hxList">
+            <li><code>https://unpkg.com/helix-ui@0.15.0/dist/styles/helix-ui.min.css</code></li>
+            <li><code>https://unpkg.com/helix-ui@0.15.0/dist/scripts/helix-ui.browser.min.js</code></li>
           </ul>
         </hx-tabpanel>
       </hx-tabcontent>
@@ -641,7 +578,7 @@ class="current">
       To ensure that HelixUI has the minimum set of behavior required to function
       across all supported browsers, the Web Components polyfills must be installed.
     </p>
-    <ol>
+    <ol class="hxList">
       <li>
         Install <code>@webcomponents/webcomponentsjs</code> via one of the methods shown below.
       </li>
@@ -662,7 +599,7 @@ class="current">
         <hx-tab>unpkg</hx-tab>
       </hx-tablist>
       <hx-tabcontent>
-        <hx-tabpanel class="hxBox-xl">
+        <hx-tabpanel class="hxBox hxLg">
           <p>
             Using <a href="https://npmjs.com">npm</a>:
           </p>
@@ -674,7 +611,7 @@ class="current">
           </p>
 <pre><code class="bash">yarn add @webcomponents/webcomponentsjs
 </code></pre>        </hx-tabpanel>
-        <hx-tabpanel class="hxBox-xl">
+        <hx-tabpanel class="hxBox hxLg">
           <p>
             Download and extract one of the archives listed in the
             <a
@@ -687,13 +624,13 @@ class="current">
             </a>.
           </p>
         </hx-tabpanel>
-        <hx-tabpanel class="hxBox-xl">
+        <hx-tabpanel class="hxBox hxLg">
           <p>
             Alternatively, you can load the polyfills directly from
             <a href="https://unpkg.com">unpkg.com</a> via the following URLs.
           </p>
 
-          <ul>
+          <ul class="hxList">
             <li><code>https://unpkg.com/@webcomponents/webcomponentsjs@2/webcomponents-loader.js</code></li>
             <li><code>https://unpkg.com/@webcomponents/webcomponentsjs@2/custom-elements-es5-adapter.js</code></li>
           </ul>
@@ -708,7 +645,7 @@ class="current">
 
   <section>
     <h2 id="step-3">Step 3: Choose a Layout</h2>
-    <ol>
+    <ol class="hxList">
       <li>
         Choose one of the layouts shown below.
       </li>
@@ -730,7 +667,7 @@ class="current">
         <hx-tab>Horizontal Layout</hx-tab>
       </hx-tablist>
       <hx-tabcontent>
-        <hx-tabpanel class="hxBox-lg">
+        <hx-tabpanel class="hxBox hxLg">
           <p>
             Lengthy content can push the footer below the bottom of the viewport.
           </p>
@@ -757,7 +694,7 @@ class="current">
             </a>
           </p>
         </hx-tabpanel>
-        <hx-tabpanel class="hxBox-lg">
+        <hx-tabpanel class="hxBox hxLg">
           <p>
             Content is arranged horizontally in panels
             while the footer remains visible at all times.
@@ -796,14 +733,14 @@ class="current">
       Documentation for a component contains interactive demos and details
       about various interaction patterns.
     </p>
-    <ol>
+    <ol class="hxList">
       <li>Choose a component from the navigation on the left.</li>
       <li>Check the "See Also" section on the component page for more information.</li>
     </ol>
   </section>
 
   </main>
-  <aside class="hxSiderail hxBox-md">
+  <aside class="hxSiderail hxBox hxMd">
 <h1 class="hxHeading-4">On this page:</h1>
 <nav class="article-toc">
   
@@ -818,7 +755,7 @@ class="current">
 
             <a href="#step-4">Step 4: Add Content</a>
         
-  <hr />
+  <hr class="hxDivider" />
   <a class="top-link" href="#top">Back to Top</a>
 </nav>
   </aside>
@@ -827,7 +764,7 @@ class="current">
 
   <footer id="foot" class="hxRow hxGutterless">
 <div class="hxCol">
-&copy; 2018 Rackspace US, Inc.
+&copy; 2019 Rackspace US, Inc.
 <nav>
   <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
   <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
@@ -836,12 +773,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-10-12
+      2019-01-30
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.14.0" target="_blank">
-      v0.14.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.15.0" target="_blank">
+      v0.15.0
     </a>)
   </small>
 </div>

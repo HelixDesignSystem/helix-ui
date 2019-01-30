@@ -62,14 +62,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Guides"
+    aria-controls="nav-guides"
 >
     Guides
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Guides" >
+  <hx-reveal id="nav-guides" >
       
       <a href="guides/getting-started" >
     Getting Started
@@ -99,14 +98,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Components"
+    aria-controls="nav-components"
 class="current">
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" open>
+  <hx-reveal id="nav-components" open>
       
       <a href="components/accordions" >
     Accordions
@@ -292,14 +290,13 @@ class="current">
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Custom Elements"
+    aria-controls="nav-elements"
 >
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Custom Elements" >
+  <hx-reveal id="nav-elements" >
       
       <a href="elements/hx-accordion" >
     &lt;hx-accordion&gt;
@@ -403,48 +400,6 @@ class="current">
 
 
       
-      <a href="elements/hx-modalbody" >
-    &lt;hx-modalbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalfoot" >
-    &lt;hx-modalfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalhead" >
-    &lt;hx-modalhead&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panel" >
-    &lt;hx-panel&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelbody" >
-    &lt;hx-panelbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelfoot" >
-    &lt;hx-panelfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelhead" >
-    &lt;hx-panelhead&gt;
-  </a>
-
-
-      
       <a href="elements/hx-pill" >
     &lt;hx-pill&gt;
   </a>
@@ -453,24 +408,6 @@ class="current">
       
       <a href="elements/hx-popover" >
     &lt;hx-popover&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-body" >
-    &lt;hx-popover-body&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-foot" >
-    &lt;hx-popover-foot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-head" >
-    &lt;hx-popover-head&gt;
   </a>
 
 
@@ -557,7 +494,7 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox-lg">
+  <main id="content" class="hxBox hxLg">
     <h1>Testing - Popovers</h1>
 
   <section>
@@ -571,65 +508,71 @@ class="current">
   <section>
     <h2>Appearance</h2>
     <div class="popover-appearance">
-        <hx-popover position="top">
-          <hx-popover-body>
-            <code>position="top"</code>
-          </hx-popover-body>
-        </hx-popover>
+      <hx-popover>
+        <hx-div>
+          <code>default</code>
+        </hx-div>
+      </hx-popover>
+
         <hx-popover position="top-left">
-          <hx-popover-body>
+          <hx-div>
             <code>position="top-left"</code>
-          </hx-popover-body>
+          </hx-div>
+        </hx-popover>
+        <hx-popover position="top">
+          <hx-div>
+            <code>position="top"</code>
+          </hx-div>
         </hx-popover>
         <hx-popover position="top-right">
-          <hx-popover-body>
+          <hx-div>
             <code>position="top-right"</code>
-          </hx-popover-body>
-        </hx-popover>
-        <hx-popover position="bottom">
-          <hx-popover-body>
-            <code>position="bottom"</code>
-          </hx-popover-body>
+          </hx-div>
         </hx-popover>
         <hx-popover position="bottom-left">
-          <hx-popover-body>
+          <hx-div>
             <code>position="bottom-left"</code>
-          </hx-popover-body>
+          </hx-div>
+        </hx-popover>
+        <hx-popover position="bottom">
+          <hx-div>
+            <code>position="bottom"</code>
+          </hx-div>
         </hx-popover>
         <hx-popover position="bottom-right">
-          <hx-popover-body>
+          <hx-div>
             <code>position="bottom-right"</code>
-          </hx-popover-body>
-        </hx-popover>
-        <hx-popover position="right">
-          <hx-popover-body>
-            <code>position="right"</code>
-          </hx-popover-body>
+          </hx-div>
         </hx-popover>
         <hx-popover position="right-top">
-          <hx-popover-body>
+          <hx-div>
             <code>position="right-top"</code>
-          </hx-popover-body>
+          </hx-div>
+        </hx-popover>
+        <hx-popover position="right">
+          <hx-div>
+            <code>position="right"</code>
+          </hx-div>
         </hx-popover>
         <hx-popover position="right-bottom">
-          <hx-popover-body>
+          <hx-div>
             <code>position="right-bottom"</code>
-          </hx-popover-body>
-        </hx-popover>
-        <hx-popover position="left">
-          <hx-popover-body>
-            <code>position="left"</code>
-          </hx-popover-body>
+          </hx-div>
         </hx-popover>
         <hx-popover position="left-top">
-          <hx-popover-body>
+          <hx-div>
             <code>position="left-top"</code>
-          </hx-popover-body>
+          </hx-div>
+        </hx-popover>
+        <hx-popover position="left">
+          <hx-div>
+            <code>position="left"</code>
+          </hx-div>
         </hx-popover>
         <hx-popover position="left-bottom">
-          <hx-popover-body>
+          <hx-div>
             <code>position="left-bottom"</code>
-          </hx-popover-body>
+          </hx-div>
         </hx-popover>
     </div>
   </section>
@@ -638,106 +581,138 @@ class="current">
     <h2>Full Markup Appearance</h2>
     <div class="popover-appearance">
       <hx-popover position="right-bottom">
-        <hx-popover-head>
+        <header>
           Popover Head
-        </hx-popover-head>
+        </header>
 
-        <hx-popover-body>
+        <hx-div>
           <p>Popover Body</p>
-        </hx-popover-body>
+        </hx-div>
 
-        <hx-popover-foot>
+        <footer>
           <button class="hxBtn hxPrimary">Submit</button>
           <button class="hxBtn">Cancel</button>
-        </hx-popover-foot>
+        </footer>
       </hx-popover>
     </div>
   </section>
 
   <section>
-    <h2>Scrolling Content (Head, Body, and Foot)</h2>
-    <div class="popover-appearance">
-      <hx-popover position="right-bottom">
-        <hx-popover-head>
-          Popover Head
-        </hx-popover-head>
+    <div class="hxRow hxAuto">
+      <div class="hxCol">
+        <h2>Scrollable Content (vanilla hx-div)</h2>
+        <p>The body should not scroll without configuration of HX-DIV.</p>
+        <div class="popover-appearance">
+          <hx-popover position="left">
+            <header>
+              Popover Head
+            </header>
 
-        <hx-popover-body>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-        </hx-popover-body>
+            <hx-div>
+              <p>
+                Try to decide the major scrum, maybe it will help join the VOC
+                impediments. A simple blocker always takes less time than a minor
+                one. As a user, I should be able to burn out the pirate size so
+                that I can satify the prioritized MVP models within the backlog
+                branches. If we detail above the methodologies, we can get the
+                monthly work in progress before the XP branch.
+              </p>
 
-        <hx-popover-foot>
-          <button class="hxBtn hxPrimary">Submit</button>
-          <button class="hxBtn">Cancel</button>
-        </hx-popover-foot>
-      </hx-popover>
-    </div>
-  </section>
+              <p>
+                Given viable relationships, always refactoring the steady velocity
+                until the cross-functional user story will almost test the big
+                standard. If we close inside the stories, we can get the ranked
+                documentation around the MVP model. Try to adapt the monthly
+                stakeholder, maybe it will help satify the XP deadlines. It was
+                discovered that by rarely reviewing the VOC trends, we can refactor
+                the acceptance VOC model inside the rapid test. If it takes you too
+                long to review the certified WIP bug, then you are not opening
+                enough. Given standup items, successfully preventing the ranked
+                project management in front of the sustainable release planning
+                will typically practice the continuous ScrumMaster.
+              </p>
 
-  <section>
-    <h2>Scrolling Content (Head and Body)</h2>
-    <div class="popover-appearance">
-      <hx-popover position="right-bottom">
-        <hx-popover-head>
-          Popover Head
-        </hx-popover-head>
+              <p>
+                A simple spec always takes less time than a minimum one. We must
+                typically open the adaptive VOC pace! Given maintainable
+                requirements, quickly adjusting the multiple stakeholder off the
+                pair sequence will appropriately plan the single methodology. It was
+                discovered that by efficiently learning the MVP interactions, we can
+                spike the alpha WIP cycle time by the pirate project management.
+                Given predictable charts, elegantly practicing the standup sprint to
+                the rapid product owner will perfectly work the cross-functional
+                feedback.
+              </p>
+            </hx-div>
 
-        <hx-popover-body>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-          <p>Popover Body</p>
-        </hx-popover-body>
-      </hx-popover>
+            <footer>
+              <button class="hxBtn hxPrimary">Submit</button>
+              <button class="hxBtn">Cancel</button>
+            </footer>
+          </hx-popover>
+        </div>
+      </div>
+      <div class="hxCol">
+        <h2>Scrollable Content (configured hx-div)</h2>
+        <p>The body should scroll when HX-DIV is configured to scroll.</p>
+        <div class="popover-appearance">
+          <hx-popover position="left">
+            <header>
+              Popover Head
+            </header>
+
+            <hx-div scroll="vertical">
+              <p>
+                Try to decide the major scrum, maybe it will help join the VOC
+                impediments. A simple blocker always takes less time than a minor
+                one. As a user, I should be able to burn out the pirate size so
+                that I can satify the prioritized MVP models within the backlog
+                branches. If we detail above the methodologies, we can get the
+                monthly work in progress before the XP branch.
+              </p>
+
+              <p>
+                Given viable relationships, always refactoring the steady velocity
+                until the cross-functional user story will almost test the big
+                standard. If we close inside the stories, we can get the ranked
+                documentation around the MVP model. Try to adapt the monthly
+                stakeholder, maybe it will help satify the XP deadlines. It was
+                discovered that by rarely reviewing the VOC trends, we can refactor
+                the acceptance VOC model inside the rapid test. If it takes you too
+                long to review the certified WIP bug, then you are not opening
+                enough. Given standup items, successfully preventing the ranked
+                project management in front of the sustainable release planning
+                will typically practice the continuous ScrumMaster.
+              </p>
+
+              <p>
+                A simple spec always takes less time than a minimum one. We must
+                typically open the adaptive VOC pace! Given maintainable
+                requirements, quickly adjusting the multiple stakeholder off the
+                pair sequence will appropriately plan the single methodology. It was
+                discovered that by efficiently learning the MVP interactions, we can
+                spike the alpha WIP cycle time by the pirate project management.
+                Given predictable charts, elegantly practicing the standup sprint to
+                the rapid product owner will perfectly work the cross-functional
+                feedback.
+              </p>
+            </hx-div>
+
+            <footer>
+              <button class="hxBtn hxPrimary">Submit</button>
+              <button class="hxBtn">Cancel</button>
+            </footer>
+          </hx-popover>
+        </div>
+      </div>
     </div>
   </section>
 
   <section>
     <h2>Scrolling Content (Body and Foot)</h2>
     <div class="popover-appearance">
-      <hx-popover position="right-bottom">
-        <hx-popover-body>
+      <hx-popover position="left">
+        <hx-div scroll="vertical">
           <p>Popover Body</p>
           <p>Popover Body</p>
           <p>Popover Body</p>
@@ -761,12 +736,12 @@ class="current">
           <p>Popover Body</p>
           <p>Popover Body</p>
           <p>Popover Body</p>
-        </hx-popover-body>
+        </hx-div>
 
-        <hx-popover-foot>
+        <footer>
           <button class="hxBtn hxPrimary">Submit</button>
           <button class="hxBtn">Cancel</button>
-        </hx-popover-foot>
+        </footer>
       </hx-popover>
     </div>
   </section>
@@ -774,8 +749,8 @@ class="current">
   <section>
     <h2>Scrolling Content (Body only)</h2>
     <div class="popover-appearance">
-      <hx-popover position="right-bottom">
-        <hx-popover-body>
+      <hx-popover position="left">
+        <hx-div scroll="vertical">
           <p>Popover Body</p>
           <p>Popover Body</p>
           <p>Popover Body</p>
@@ -799,47 +774,67 @@ class="current">
           <p>Popover Body</p>
           <p>Popover Body</p>
           <p>Popover Body</p>
-        </hx-popover-body>
+        </hx-div>
       </hx-popover>
     </div>
   </section>
 
   <section>
-    <h2>Unconventional HTML5-compatible ID</h2>
+    <h2>
+      <span id="heading-relativeTo">relative-to</span>
+    </h2>
     <p>
-      <button class="hxBtn" data-popover="2d90208e58f24216be64de517570c628" type="button">
-        <code>data-popover="2d90208e58f24216be64de517570c628"</code>
-      </button>
+      <hx-disclosure aria-controls="popRelative" class="hxBtn">
+        Open relative to section Title
+      </hx-disclosure>
+    </p>
+    <hx-popover
+      id="popRelative"
+      position="top-right"
+      relative-to="heading-relativeTo"
+    >
+      <hx-div>
+        I'm over the heading!
+      </hx-div>
+    </hx-popover>
+  </section>
+
+  <section>
+    <h2>HTML5-compatible ID</h2>
+    <p>
+      <hx-disclosure aria-controls="2d90208e58f24216be64de517570c628" class="hxBtn">
+        <code>hx-disclosure[aria-controls="2d90208e58f24216be64de517570c628"]</code>
+      </hx-disclosure>
     </p>
     <hx-popover id="2d90208e58f24216be64de517570c628">
-      <hx-popover-body>
+      <hx-div>
         How do you like my hat?
-      </hx-popover-body>
+      </hx-div>
     </hx-popover>
   </section>
 
   <section id="popover-in-scrolling-container" class="test">
     <h2>Within Scrollable Container</h2>
-    <ul>
+    <ul class="hxList">
       <li>TODO: Should we hide the popover when its relative element isn't visible (scrolls out of view)?</li>
     </ul>
     <hx-div scroll="vertical" class="scrolling hxMd">
-      <button data-popover="popScrolling" class="hxBtn" type="button">
+      <hx-disclosure aria-controls="popScrolling" class="hxBtn">
         Open Popover
-      </button>
+      </hx-disclosure>
       <hx-popover position="top" id="popScrolling">
-        <hx-popover-head>
+        <header>
           Popover Header
-        </hx-popover-head>
+        </header>
 
-        <hx-popover-body>
+        <hx-div>
           <p>This is my popover body.</p>
-        </hx-popover-body>
+        </hx-div>
 
-        <hx-popover-foot>
+        <footer>
           <button class="hxBtn hxPrimary">Submit</button>
           <button class="hxBtn">Cancel</button>
-        </hx-popover-foot>
+        </footer>
       </hx-popover>
 
       <p>
@@ -923,13 +918,171 @@ class="current">
       </p>
     </hx-div>
   </section>
+
+  <hr />
+
+  <h2>Deprecated Markup</h2>
+
+  <section>
+    <h3>Deprecated Scrolling Content</h3>
+    <small>hx-popover-head, hx-popover-body, hx-popover-foot</small>
+    <div class="popover-appearance">
+      <hx-popover position="left">
+        <hx-popover-head>
+          Popover Head
+        </hx-popover-head>
+
+        <hx-popover-body>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+        </hx-popover-body>
+
+        <hx-popover-foot>
+          <button class="hxBtn hxPrimary">Submit</button>
+          <button class="hxBtn">Cancel</button>
+        </hx-popover-foot>
+      </hx-popover>
+    </div>
+  </section>
+
+  <section>
+    <h3>Deprecated Scrolling Content</h3>
+    <small>hx-popover-head, hx-popover-body</small>
+    <div class="popover-appearance">
+      <hx-popover position="left">
+        <hx-popover-head>
+          Popover Head
+        </hx-popover-head>
+
+        <hx-popover-body>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+        </hx-popover-body>
+      </hx-popover>
+    </div>
+  </section>
+
+  <section>
+    <h3>Deprecated Scrolling Content</h3>
+    <small>hx-popover-body, hx-popover-foot</small>
+    <div class="popover-appearance">
+      <hx-popover position="left">
+        <hx-popover-body>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+        </hx-popover-body>
+
+        <hx-popover-foot>
+          <button class="hxBtn hxPrimary">Submit</button>
+          <button class="hxBtn">Cancel</button>
+        </hx-popover-foot>
+      </hx-popover>
+    </div>
+  </section>
+
+  <section>
+    <h3>Deprecated Scrolling Content</h3>
+    <small>hx-popover-body only</small>
+    <div class="popover-appearance">
+      <hx-popover position="left">
+        <hx-popover-body>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+          <p>Popover Body</p>
+        </hx-popover-body>
+      </hx-popover>
+    </div>
+  </section>
   </main>
     </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
 <div class="hxCol">
-&copy; 2018 Rackspace US, Inc.
+&copy; 2019 Rackspace US, Inc.
 <nav>
   <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
   <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
@@ -938,12 +1091,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-10-12
+      2019-01-30
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.14.0" target="_blank">
-      v0.14.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.15.0" target="_blank">
+      v0.15.0
     </a>)
   </small>
 </div>

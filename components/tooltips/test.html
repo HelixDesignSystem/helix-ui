@@ -62,14 +62,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Guides"
+    aria-controls="nav-guides"
 >
     Guides
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Guides" >
+  <hx-reveal id="nav-guides" >
       
       <a href="guides/getting-started" >
     Getting Started
@@ -99,14 +98,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Components"
+    aria-controls="nav-components"
 class="current">
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" open>
+  <hx-reveal id="nav-components" open>
       
       <a href="components/accordions" >
     Accordions
@@ -292,14 +290,13 @@ class="current">
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Custom Elements"
+    aria-controls="nav-elements"
 >
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Custom Elements" >
+  <hx-reveal id="nav-elements" >
       
       <a href="elements/hx-accordion" >
     &lt;hx-accordion&gt;
@@ -403,48 +400,6 @@ class="current">
 
 
       
-      <a href="elements/hx-modalbody" >
-    &lt;hx-modalbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalfoot" >
-    &lt;hx-modalfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalhead" >
-    &lt;hx-modalhead&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panel" >
-    &lt;hx-panel&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelbody" >
-    &lt;hx-panelbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelfoot" >
-    &lt;hx-panelfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelhead" >
-    &lt;hx-panelhead&gt;
-  </a>
-
-
-      
       <a href="elements/hx-pill" >
     &lt;hx-pill&gt;
   </a>
@@ -453,24 +408,6 @@ class="current">
       
       <a href="elements/hx-popover" >
     &lt;hx-popover&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-body" >
-    &lt;hx-popover-body&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-foot" >
-    &lt;hx-popover-foot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-head" >
-    &lt;hx-popover-head&gt;
   </a>
 
 
@@ -557,7 +494,7 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox-lg">
+  <main id="content" class="hxBox hxLg">
     <h1>Testing - Tooltips</h1>
 
   <section>
@@ -569,40 +506,44 @@ class="current">
   </section>
 
   <section>
-    <h2>Appearance</h2>
+    <h2>Appearance (simple)</h2>
     <div class="tooltip-appearance">
-        <hx-tooltip open position="top">
-          top
-        </hx-tooltip>
+      <hx-tooltip open>
+        Default
+      </hx-tooltip>
+
         <hx-tooltip open position="top-left">
           top-left
+        </hx-tooltip>
+        <hx-tooltip open position="top">
+          top
         </hx-tooltip>
         <hx-tooltip open position="top-right">
           top-right
         </hx-tooltip>
-        <hx-tooltip open position="bottom">
-          bottom
-        </hx-tooltip>
         <hx-tooltip open position="bottom-left">
           bottom-left
+        </hx-tooltip>
+        <hx-tooltip open position="bottom">
+          bottom
         </hx-tooltip>
         <hx-tooltip open position="bottom-right">
           bottom-right
         </hx-tooltip>
-        <hx-tooltip open position="right">
-          right
-        </hx-tooltip>
         <hx-tooltip open position="right-top">
           right-top
+        </hx-tooltip>
+        <hx-tooltip open position="right">
+          right
         </hx-tooltip>
         <hx-tooltip open position="right-bottom">
           right-bottom
         </hx-tooltip>
-        <hx-tooltip open position="left">
-          left
-        </hx-tooltip>
         <hx-tooltip open position="left-top">
           left-top
+        </hx-tooltip>
+        <hx-tooltip open position="left">
+          left
         </hx-tooltip>
         <hx-tooltip open position="left-bottom">
           left-bottom
@@ -611,13 +552,238 @@ class="current">
   </section>
 
   <section>
-    <h2>Unconventional HTML5-compatible ID</h2>
-    <p>
-      <span data-tooltip="2d90208e58f24216be64de517570c628">
-        <code>data-tooltip="2d90208e58f24216be64de517570c628"</code>
-      </span>
-      <hx-tooltip id="2d90208e58f24216be64de517570c628">Do you like my hat?</hx-tooltip>
-    </p>
+    <h2>Appearance (formatted)</h2>
+    <div class="tooltip-appearance">
+      <hx-tooltip open position="right-bottom">
+        <header>Tooltip Header</header>
+        <p>
+          After inspecting the rear, driver-side battery injector,
+          we discovered that the <b>AC condenser</b> of the previous
+          gear isn't activating near the horn.
+        </p>
+      </hx-tooltip>
+    </div>
+  </section>
+
+  <section>
+    <h2>HTML5-compatible IDs</h2>
+
+    <div class="hxRow hxAuto">
+      <div class="hxCol">
+        <h3>ID on Target</h3>
+        <p>
+          <span id="000c075715ed46eb61242f85e80aaaa1">Hover Here</span>
+          <hx-tooltip for="000c075715ed46eb61242f85e80aaaa1">
+            Do you like my hat?
+          </hx-tooltip>
+        </p>
+      </div>
+      <div class="hxCol">
+        <h3>ID on Tooltip</h3>
+        <p>
+          <span id="html-tip-2">Hover Here</span>
+          <hx-tooltip
+            id="100d90208e58f24216be64de517bbbb2"
+            for="html-tip-2"
+          >
+            Do you like my hat?
+          </hx-tooltip>
+        </p>
+      </div>
+      <div class="hxCol">
+        <h3>ID on Both Tooltip and Target</h3>
+        <p>
+          <span id="200c075715ed46eb61242f85e80cccc3">Hover Here</span>
+          <hx-tooltip
+            for="200c075715ed46eb61242f85e80cccc3"
+            id="200d90208e58f24216be64de517dddd3"
+          >
+            Do you like my hat?
+          </hx-tooltip>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Various Target Elements</h2>
+    <div class="hxRow hxAuto">
+      <div class="hxCol">
+        <h3>Heading Target</h3>
+
+        <h4 id="heading-target">
+          #heading-target
+        </h4>
+        <hx-tooltip for="heading-target" position="bottom">
+          #heading-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>Button</h3>
+
+        <button class="hxBtn" id="button-target">
+          #button-target
+        </button>
+        <hx-tooltip for="button-target">
+          #button-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>Span</h3>
+
+        <p>
+          <span id="span-target">
+            #span-target
+          </span>
+        </p>
+        <hx-tooltip for="span-target">
+          #span-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>Anchor</h3>
+
+        <p>
+          <a id="anchor-target">
+            #anchor-target
+          </a>
+        </p>
+        <hx-tooltip for="anchor-target">
+          #anchor-target
+        </hx-tooltip>
+        <p class="hxSubdued hxSubBody">Shouldn't show via keyboard focus.</p>
+      </div>
+
+      <div class="hxCol">
+        <h3>Link</h3>
+
+        <p>
+          <a href="#" id="link-target">
+            #link-target
+          </a>
+        </p>
+        <hx-tooltip for="link-target">
+          #link-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>Disclosure</h3>
+
+        <hx-disclosure id="disclosure-target">
+          #disclosure-target
+        </hx-disclosure>
+        <hx-tooltip for="disclosure-target">
+          #disclosure-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>Icon</h3>
+
+        <p>
+          <hx-icon type="info-circle" id="icon-target"></hx-icon>
+        </p>
+        <hx-tooltip for="icon-target">
+          hx-icon#icon-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>Pill</h3>
+
+        <hx-pill id="pill-target">#pill-target</hx-pill>
+        <hx-tooltip for="pill-target">
+          #pill-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>File Input (wrapped)</h3>
+
+        <hx-file-input
+          icon="upload"
+          label="#file-input-target"
+        >
+          <input id="file-input-target" type="file" />
+        </hx-file-input>
+        <p class="hxSubdued hxSubBody">Shouldn't show.</p>
+
+        <hx-tooltip for="file-input-target">
+          #file-input-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>File Input (hx-file-input)</h3>
+
+        <hx-file-input
+          icon="upload"
+          id="hx-file-input-target"
+          label="#hx-file-input-target"
+        >
+          <input type="file" />
+        </hx-file-input>
+
+        <hx-tooltip for="hx-file-input-target">
+          #hx-file-input-target
+        </hx-tooltip>
+        <p>
+          <hx-error>Adds double tab stop</hx-error>
+        </p>
+      </div>
+
+      <div class="hxCol">
+        <h3>Text Input</h3>
+
+        <input
+           type="text"
+           class="hxTextCtrl"
+           placeholder="#text-input-target"
+           id="text-input-target"
+        />
+
+        <hx-tooltip for="text-input-target">
+          #text-input-target
+        </hx-tooltip>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Multiple Targets in Near Proximity</h2>
+    <table class="hxTable hxTable--condensed">
+      <tbody>
+<tr>
+          <td>
+            <hx-icon type="info-circle" id="tgtProximity0"></hx-icon>
+            <hx-tooltip for="tgtProximity0" position="right">Tooltip Message</hx-tooltip>
+          </td>
+        </tr><tr>
+          <td>
+            <hx-icon type="info-circle" id="tgtProximity1"></hx-icon>
+            <hx-tooltip for="tgtProximity1" position="right">Tooltip Message</hx-tooltip>
+          </td>
+        </tr><tr>
+          <td>
+            <hx-icon type="info-circle" id="tgtProximity2"></hx-icon>
+            <hx-tooltip for="tgtProximity2" position="right">Tooltip Message</hx-tooltip>
+          </td>
+        </tr><tr>
+          <td>
+            <hx-icon type="info-circle" id="tgtProximity3"></hx-icon>
+            <hx-tooltip for="tgtProximity3" position="right">Tooltip Message</hx-tooltip>
+          </td>
+        </tr><tr>
+          <td>
+            <hx-icon type="info-circle" id="tgtProximity4"></hx-icon>
+            <hx-tooltip for="tgtProximity4" position="right">Tooltip Message</hx-tooltip>
+          </td>
+        </tr>      </tbody>
+    </table>
   </section>
   </main>
     </div>
@@ -625,7 +791,7 @@ class="current">
 
   <footer id="foot" class="hxRow hxGutterless">
 <div class="hxCol">
-&copy; 2018 Rackspace US, Inc.
+&copy; 2019 Rackspace US, Inc.
 <nav>
   <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
   <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
@@ -634,12 +800,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-10-10
+      2019-01-30
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.14.0" target="_blank">
-      v0.14.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.15.0" target="_blank">
+      v0.15.0
     </a>)
   </small>
 </div>

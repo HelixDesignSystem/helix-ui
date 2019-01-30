@@ -83,6 +83,31 @@
       };
     }();
 
+    var get = function get(object, property, receiver) {
+      if (object === null) object = Function.prototype;
+      var desc = Object.getOwnPropertyDescriptor(object, property);
+
+      if (desc === undefined) {
+        var parent = Object.getPrototypeOf(object);
+
+        if (parent === null) {
+          return undefined;
+        } else {
+          return get(parent, property, receiver);
+        }
+      } else if ("value" in desc) {
+        return desc.value;
+      } else {
+        var getter = desc.get;
+
+        if (getter === undefined) {
+          return undefined;
+        }
+
+        return getter.call(receiver);
+      }
+    };
+
     var inherits = function (subClass, superClass) {
       if (typeof superClass !== "function" && superClass !== null) {
         throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
@@ -107,44 +132,6 @@
       return call && (typeof call === "object" || typeof call === "function") ? call : self;
     };
 
-    var slicedToArray = function () {
-      function sliceIterator(arr, i) {
-        var _arr = [];
-        var _n = true;
-        var _d = false;
-        var _e = undefined;
-
-        try {
-          for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-            _arr.push(_s.value);
-
-            if (i && _arr.length === i) break;
-          }
-        } catch (err) {
-          _d = true;
-          _e = err;
-        } finally {
-          try {
-            if (!_n && _i["return"]) _i["return"]();
-          } finally {
-            if (_d) throw _e;
-          }
-        }
-
-        return _arr;
-      }
-
-      return function (arr, i) {
-        if (Array.isArray(arr)) {
-          return arr;
-        } else if (Symbol.iterator in Object(arr)) {
-          return sliceIterator(arr, i);
-        } else {
-          throw new TypeError("Invalid attempt to destructure non-iterable instance");
-        }
-      };
-    }();
-
     var toConsumableArray = function (arr) {
       if (Array.isArray(arr)) {
         for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
@@ -153,931 +140,6 @@
       } else {
         return Array.from(arr);
       }
-    };
-
-    /**
-     * @module HelixUI/Utils/Position/Offset
-     * @description
-     * Each function calculates the (x,y) coordinates of a target element,
-     * so that it is positioned in relation to a reference element.
-     *
-     * If you wanted to position a menu below a button, the button
-     * is the reference element, and the menu is the target element.
-     *
-     * ![position reference](/images/api/positioning_ref.png)
-     */
-
-    /**
-     * [x,y] coordinate array
-     * @typedef {Array} XYCoordinate
-     */
-
-    /**
-     * Calculate (x,y) coordinates needed to center align two elements.
-     *
-     * ![center reference](/images/api/pos-center.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @return {XYCoordinate}
-     */
-    function getCenter(off, ref) {
-      var x = ref.left + ref.width / 2 - off.width / 2;
-      var y = ref.top + ref.height / 2 - off.height / 2;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element above a
-     * reference element, with their y-axes aligned.
-     *
-     * ![top reference](/images/api/pos-top.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getTop(off, ref, config) {
-      var _getCenter = getCenter(off, ref),
-          _getCenter2 = slicedToArray(_getCenter, 2),
-          x = _getCenter2[0],
-          y = _getCenter2[1];
-
-      y = ref.top - off.height;
-      y -= config.margin;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element below a
-     * reference element, with their y-axes aligned.
-     *
-     * ![bottom reference](/images/api/pos-bottom.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getBottom(off, ref, config) {
-      var _getCenter3 = getCenter(off, ref),
-          _getCenter4 = slicedToArray(_getCenter3, 2),
-          x = _getCenter4[0],
-          y = _getCenter4[1];
-
-      y = ref.top + ref.height;
-      y += config.margin;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element left of a
-     * reference element, with their x-axes aligned.
-     *
-     * ![left reference](/images/api/pos-left.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getLeft(off, ref, config) {
-      var _getCenter5 = getCenter(off, ref),
-          _getCenter6 = slicedToArray(_getCenter5, 2),
-          x = _getCenter6[0],
-          y = _getCenter6[1];
-
-      x = ref.left - off.width - config.margin;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element right of a
-     * reference element, with their x-axes aligned.
-     *
-     * ![right reference](/images/api/pos-right.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getRight(off, ref, config) {
-      var _getCenter7 = getCenter(off, ref),
-          _getCenter8 = slicedToArray(_getCenter7, 2),
-          x = _getCenter8[0],
-          y = _getCenter8[1];
-
-      x = ref.left + ref.width + config.margin;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element above and to the
-     * left of a reference element, so that the right edge of the target element aligns
-     * with the y-axis of the reference element.
-     *
-     * ![top-left reference](/images/api/pos-top-left.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getTopLeft(off, ref, config) {
-      var _getTop = getTop(off, ref, config),
-          _getTop2 = slicedToArray(_getTop, 2),
-          x = _getTop2[0],
-          y = _getTop2[1];
-
-      x -= off.width / 2;
-      x += config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element above and to the
-     * left of a reference element, so that the left edge of the target element aligns
-     * with the left edge of the reference element.
-     *
-     * ![top-start reference](/images/api/pos-top-start.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getTopStart(off, ref, config) {
-      var _getTop3 = getTop(off, ref, config),
-          _getTop4 = slicedToArray(_getTop3, 2),
-          x = _getTop4[0],
-          y = _getTop4[1];
-
-      x = ref.left;
-      x += config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element above and to the
-     * right of a reference element, so that the right edge of the target element aligns
-     * with the right edge of the reference element.
-     *
-     * ![top-end reference](/images/api/pos-top-end.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getTopEnd(off, ref, config) {
-      var _getTop5 = getTop(off, ref, config),
-          _getTop6 = slicedToArray(_getTop5, 2),
-          x = _getTop6[0],
-          y = _getTop6[1];
-
-      x = ref.right - off.width;
-      x -= config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element above and to the
-     * right of a reference element, so that the left edge of the target element aligns
-     * with the y-axis of the reference element.
-     *
-     * ![top-right reference](/images/api/pos-top-right.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getTopRight(off, ref, config) {
-      var _getTop7 = getTop(off, ref, config),
-          _getTop8 = slicedToArray(_getTop7, 2),
-          x = _getTop8[0],
-          y = _getTop8[1];
-
-      x += off.width / 2;
-      x -= config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element right and slightly higher
-     * than the target element, so that the bottom edge of the target element aligns with the
-     * x-axis of the reference element.
-     *
-     * ![right-top reference](/images/api/pos-right-top.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getRightTop(off, ref, config) {
-      var _getRight = getRight(off, ref, config),
-          _getRight2 = slicedToArray(_getRight, 2),
-          x = _getRight2[0],
-          y = _getRight2[1];
-
-      y -= off.height / 2;
-      y += config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element right and slightly higher
-     * than the target element, so that the top edge of the target element aligns with the
-     * top edge of the reference element.
-     *
-     * ![right-start reference](/images/api/pos-right-start.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getRightStart(off, ref, config) {
-      var _getRight3 = getRight(off, ref, config),
-          _getRight4 = slicedToArray(_getRight3, 2),
-          x = _getRight4[0],
-          y = _getRight4[1];
-
-      y = ref.top;
-      y += config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element right and slightly lower
-     * than the target element, so that the bottom edge of the target element aligns with the
-     * bottom edge of the reference element.
-     *
-     * ![right-end reference](/images/api/pos-right-end.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getRightEnd(off, ref, config) {
-      var _getRight5 = getRight(off, ref, config),
-          _getRight6 = slicedToArray(_getRight5, 2),
-          x = _getRight6[0],
-          y = _getRight6[1];
-
-      y = ref.bottom - off.height;
-      y -= config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element right and slightly lower
-     * than the target element, so that the top edge of the target element aligns with the
-     * x-axis of the reference element.
-     *
-     * ![right-bottom reference](/images/api/pos-right-bottom.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getRightBottom(off, ref, config) {
-      var _getRight7 = getRight(off, ref, config),
-          _getRight8 = slicedToArray(_getRight7, 2),
-          x = _getRight8[0],
-          y = _getRight8[1];
-
-      y += off.height / 2;
-      y -= config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element below and to the
-     * right of a reference element, so that the left edge of the target element aligns
-     * with the y-axis of the reference element.
-     *
-     * ![bottom-right reference](/images/api/pos-bottom-right.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getBottomRight(off, ref, config) {
-      var _getBottom = getBottom(off, ref, config),
-          _getBottom2 = slicedToArray(_getBottom, 2),
-          x = _getBottom2[0],
-          y = _getBottom2[1];
-
-      x += off.width / 2;
-      x -= config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element below and to the
-     * right of a reference element, so that the right edge of the target element aligns
-     * with the right edge of the reference element.
-     *
-     * ![bottom-end reference](/images/api/pos-bottom-end.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getBottomEnd(off, ref, config) {
-      var _getBottom3 = getBottom(off, ref, config),
-          _getBottom4 = slicedToArray(_getBottom3, 2),
-          x = _getBottom4[0],
-          y = _getBottom4[1];
-
-      x = ref.right - off.width;
-      x -= config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element below and to the
-     * left of a reference element, so that the left edge of the target element aligns
-     * with the left edge of the reference element.
-     *
-     * ![bottom-start reference](/images/api/pos-bottom-start.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getBottomStart(off, ref, config) {
-      var _getBottom5 = getBottom(off, ref, config),
-          _getBottom6 = slicedToArray(_getBottom5, 2),
-          x = _getBottom6[0],
-          y = _getBottom6[1];
-
-      x = ref.left;
-      x += config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element below and to the
-     * left of a reference element, so that the right edge of the target element aligns
-     * with the y-axis of the reference element.
-     *
-     * ![bottom-left reference](/images/api/pos-bottom-left.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getBottomLeft(off, ref, config) {
-      var _getBottom7 = getBottom(off, ref, config),
-          _getBottom8 = slicedToArray(_getBottom7, 2),
-          x = _getBottom8[0],
-          y = _getBottom8[1];
-
-      x -= off.width / 2;
-      x += config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element left and slightly lower
-     * than the target element, so that the top edge of the target element aligns with the
-     * x-axis of the reference element.
-     *
-     * ![left-bottom reference](/images/api/pos-left-bottom.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getLeftBottom(off, ref, config) {
-      var _getLeft = getLeft(off, ref, config),
-          _getLeft2 = slicedToArray(_getLeft, 2),
-          x = _getLeft2[0],
-          y = _getLeft2[1];
-
-      y += off.height / 2;
-      y -= config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element left and slightly lower
-     * than the target element, so that the bottom edge of the target element aligns with the
-     * bottom edge of the reference element.
-     *
-     * ![left-end reference](/images/api/pos-left-end.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getLeftEnd(off, ref, config) {
-      var _getLeft3 = getLeft(off, ref, config),
-          _getLeft4 = slicedToArray(_getLeft3, 2),
-          x = _getLeft4[0],
-          y = _getLeft4[1];
-
-      y = ref.bottom - off.height;
-      y -= config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element left and slightly higher
-     * than the target element, so that the top edge of the target element aligns with the
-     * top edge of the reference element.
-     *
-     * ![left-start reference](/images/api/pos-left-start.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getLeftStart(off, ref, config) {
-      var _getLeft5 = getLeft(off, ref, config),
-          _getLeft6 = slicedToArray(_getLeft5, 2),
-          x = _getLeft6[0],
-          y = _getLeft6[1];
-
-      y = ref.top;
-      y += config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Calculate (x,y) coordinates needed to position a target element left and slightly higher
-     * than the target element, so that the bottom edge of the target element aligns with the
-     * x-axis of the reference element.
-     *
-     * ![left-top reference](/images/api/pos-left-top.png)
-     *
-     * @param {HTMLElement} off - target element
-     * @param {HTMLElement} ref - reference element
-     * @param {PositionConfig} config - position configuration
-     * @return {XYCoordinate}
-     */
-    function getLeftTop(off, ref, config) {
-      var _getLeft7 = getLeft(off, ref, config),
-          _getLeft8 = slicedToArray(_getLeft7, 2),
-          x = _getLeft8[0],
-          y = _getLeft8[1];
-
-      y -= off.height / 2;
-      y += config.offset;
-      return [x, y];
-    }
-
-    /**
-     * Key/value map of position values and offset calculation functions
-     *
-     * ```
-     * {
-     *   "right-bottom": getRightBottom,
-     *   "top": getTop,
-     *   "top-left": getTopLeft,
-     *   ...
-     * }
-     * ```
-     *
-     * @enum {Function}
-     * @name offsetFunctionMap
-     */
-    var offsetFunctionMap = {
-      'top-left': getTopLeft,
-      'top-start': getTopStart,
-      'top': getTop,
-      'top-end': getTopEnd,
-      'top-right': getTopRight,
-      'right-top': getRightTop,
-      'right-start': getRightStart,
-      'right': getRight,
-      'right-end': getRightEnd,
-      'right-bottom': getRightBottom,
-      'bottom-right': getBottomRight,
-      'bottom-end': getBottomEnd,
-      'bottom': getBottom,
-      'bottom-start': getBottomStart,
-      'bottom-left': getBottomLeft,
-      'left-bottom': getLeftBottom,
-      'left-end': getLeftEnd,
-      'left': getLeft,
-      'left-start': getLeftStart,
-      'left-top': getLeftTop,
-      'center': getCenter
-    };
-
-    var Offset = {
-      getBottom: getBottom,
-      getBottomEnd: getBottomEnd,
-      getBottomLeft: getBottomLeft,
-      getBottomRight: getBottomRight,
-      getBottomStart: getBottomStart,
-      getCenter: getCenter,
-      getLeft: getLeft,
-      getLeftBottom: getLeftBottom,
-      getLeftEnd: getLeftEnd,
-      getLeftStart: getLeftStart,
-      getLeftTop: getLeftTop,
-      getRight: getRight,
-      getRightBottom: getRightBottom,
-      getRightEnd: getRightEnd,
-      getRightStart: getRightStart,
-      getTop: getTop,
-      getTopEnd: getTopEnd,
-      getTopLeft: getTopLeft,
-      getTopRight: getTopRight,
-      getTopStart: getTopStart,
-      offsetFunctionMap: offsetFunctionMap
-    };
-
-    /**
-     * @module HelixUI/Utils/Position
-     */
-
-    /**
-     * @typedef {Object} PositionConfig
-     * @prop {PositionString} [position=top] - position of offsetElement in relation to referenceElement
-     * @prop {Integer} [margin=0] - distance in pixels between offset element and reference element
-     * @prop {Integer} [offset=0] - offset in pixels towards the center axis
-     */
-
-    /**
-     * @typedef {Object} XYPosition
-     * @description
-     * Absolute (x,y) coordinates and metadata for positioning a target element
-     * in relation to a reference element.
-     * @prop {PositionString} position
-     * @prop {Integer} x
-     * @prop {Integer} y
-     */
-
-    /**
-     * @typedef {String} PositionString
-     * @description
-     * Valid values:
-     *
-     *   - `center`
-     *   - `top-left`
-     *   - `top-start`
-     *   - `top`
-     *   - `top-end`
-     *   - `top-right`
-     *   - `right-top`
-     *   - `right-start`
-     *   - `right`
-     *   - `right-end`
-     *   - `right-bottom`
-     *   - `bottom-right`
-     *   - `bottom-end`
-     *   - `bottom`
-     *   - `bottom-start`
-     *   - `bottom-left`
-     *   - `left-bottom`
-     *   - `left-end`
-     *   - `left`
-     *   - `left-start`
-     *   - `left-top`
-     */
-
-    /**
-     * @name verticalOpposites
-     * @type {Object}
-     * @description Position value map of vertical opposites.
-     *
-     * - `top` &rarr; `bottom`
-     * - `right-start` &rarr; `right-end`
-     * - `left-bottom` &rarr; `left-top`
-     * - etc.
-     */
-    var verticalOpposites = {
-        'top': 'bottom',
-        'top-right': 'bottom-right',
-        'top-left': 'bottom-left',
-        'top-start': 'bottom-start',
-        'top-end': 'bottom-end',
-        'right': 'right',
-        'right-top': 'right-bottom',
-        'right-bottom': 'right-top',
-        'right-start': 'right-end',
-        'right-end': 'right-start',
-        'bottom': 'top',
-        'bottom-right': 'top-right',
-        'bottom-left': 'top-left',
-        'bottom-start': 'top-start',
-        'bottom-end': 'top-end',
-        'left': 'left',
-        'left-top': 'left-bottom',
-        'left-bottom': 'left-top',
-        'left-start': 'left-end',
-        'left-end': 'left-start'
-    };
-
-    /**
-     * @name horizontalOpposites
-     * @type {Object}
-     * @description Position value map of horizontal opposites.
-     *
-     * - `left` &rarr; `right`
-     * - `top-left` &rarr; `top-right`
-     * - `bottom-start` &rarr; `bottom-end`
-     * - etc.
-     */
-    var horizontalOpposites = {
-        'top': 'top',
-        'top-right': 'top-left',
-        'top-left': 'top-right',
-        'top-start': 'top-end',
-        'top-end': 'top-start',
-        'right': 'left',
-        'right-top': 'left-top',
-        'right-bottom': 'left-bottom',
-        'right-start': 'left-start',
-        'right-end': 'left-end',
-        'bottom': 'bottom',
-        'bottom-right': 'bottom-left',
-        'bottom-left': 'bottom-right',
-        'bottom-start': 'bottom-end',
-        'bottom-end': 'bottom-start',
-        'left': 'right',
-        'left-top': 'right-top',
-        'left-bottom': 'right-bottom',
-        'left-start': 'right-start',
-        'left-end': 'right-end'
-    };
-
-    /**
-     * Calculate the top, right, bottom, and left x/y values of
-     * an element at given coordinates.
-     *
-     * @param {HTMLElement} element
-     * @param {Object} coord - (x,y) coordinates
-     */
-    function _getElementBox(element, coord) {
-        var boundingRect = element.getBoundingClientRect();
-
-        return {
-            top: coord.y,
-            right: coord.x + boundingRect.width,
-            bottom: coord.y + boundingRect.height,
-            left: coord.x
-        };
-    }
-
-    /**
-     * Calculate coordinates of an element in relation to a reference element.
-     *
-     * @param {String} position - the position of the offset element
-     * @param {HTMLElement} offsetElement - the element to calculate (x,y) coordinates
-     * @param {HTMLElement} referenceElement - the element that is being offset from
-     * @param {PositionConfig} config - configuration object
-     *
-     * @returns {XYPosition}
-     */
-    function _getCoords(position, offsetElement, referenceElement, config) {
-        // The 'position' property is added to provide information about final
-        // calculated position of offset element in relation to reference element
-        var coords = {
-            x: 0,
-            y: 0,
-            position: position
-        };
-
-        var offRect = offsetElement.getBoundingClientRect();
-        var refRect = referenceElement.getBoundingClientRect();
-
-        var _offsetFunctionMap$po = offsetFunctionMap[position](offRect, refRect, config);
-
-        var _offsetFunctionMap$po2 = slicedToArray(_offsetFunctionMap$po, 2);
-
-        coords.x = _offsetFunctionMap$po2[0];
-        coords.y = _offsetFunctionMap$po2[1];
-
-        coords.x += window.pageXOffset;
-        coords.y += window.pageYOffset;
-
-        return coords;
-    }
-
-    /**
-     * Determine if any side of an element is obscured by the viewport.
-     *
-     * @param {HTMLElement} element - the element to check against the viewport
-     * @param {Object} coords - (x,y) coordinates
-     *
-     * @returns {Object} metadata object with boolean values to quickly
-     * identify which sides of an element are outside the viewport
-     */
-    function _getOffscreenMetadata(element, coords) {
-        var elementBox = _getElementBox(element, coords);
-        var viewportBox = {
-            top: window.pageYOffset,
-            right: window.innerWidth + window.pageXOffset,
-            bottom: window.innerHeight + window.pageYOffset,
-            left: window.pageXOffset
-        };
-
-        var offscreen = {
-            top: elementBox.top < viewportBox.top,
-            right: elementBox.right > viewportBox.right,
-            bottom: elementBox.bottom > viewportBox.bottom,
-            left: elementBox.left < viewportBox.left
-        };
-
-        offscreen.vertically = offscreen.top || offscreen.bottom;
-        offscreen.horizontally = offscreen.left || offscreen.right;
-        offscreen.anywhere = offscreen.vertically || offscreen.horizontally;
-
-        return offscreen;
-    }
-
-    /**
-     * Modify the position of an element so that it appears toward
-     * the center of the viewport.
-     *
-     * @param {String} position - the current position
-     * @param {Object} offscreen - offscreen metadata
-     *
-     * @returns {String} corrected position
-     */
-    function _repositionTowardCenter(position, offscreen) {
-        if (offscreen.vertically) {
-            position = verticalOpposites[position];
-        }
-
-        if (offscreen.horizontally) {
-            position = horizontalOpposites[position];
-        }
-
-        return position;
-    }
-
-    /**
-     * Calculate coordinates of an element in relation to a reference element
-     * while attempting to keep the element visible in the viewport.
-     *
-     * @param {Element} offsetElement - element to position
-     * @param {Element} referenceElement - reference element used to calculate position of offsetElement
-     * @param {PositionConfig} config - configuration object
-     *
-     * @returns {XYPosition}
-     */
-    function getPosition(offsetElement, referenceElement, config) {
-        var defaults$$1 = {
-            position: 'top',
-            margin: 0,
-            offset: 0
-        };
-        var cfg = Object.assign({}, defaults$$1, config);
-
-        var coords = _getCoords(cfg.position, offsetElement, referenceElement, cfg);
-        var isOffscreen = _getOffscreenMetadata(offsetElement, coords);
-
-        if (isOffscreen.anywhere) {
-            var newPosition = _repositionTowardCenter(cfg.position, isOffscreen);
-            var newCoords = _getCoords(newPosition, offsetElement, referenceElement, cfg);
-
-            //If the repositioned element is no longer offscreen,
-            //use the respositioned element coordinates
-            isOffscreen = _getOffscreenMetadata(offsetElement, newCoords);
-            if (!isOffscreen.anywhere) {
-                coords = newCoords;
-            }
-        }
-
-        return coords;
-    }
-
-    /**
-     * Calculate coordinates of an element in relation to a reference element
-     * while attempting to keep the element visible in the viewport.
-     *
-     * @param {Element} offsetElement - element to position
-     * @param {Element} referenceElement - reference element used to calculate position of offsetElement
-     *
-     * @param {PositionConfig} config - configuration object
-     * @param {Integer} [config.margin=12] - distance in pixels between the base and the tip of the arrow
-     * @param {Integer} [config.offset=20] - distance in pixels from the edge of the
-     * offset element to the center of the arrow
-     *
-     * @returns {XYPosition}
-     */
-    function getPositionWithArrow(offsetElement, referenceElement, config) {
-        var defaults$$1 = {
-            margin: 12, // base to tip of the arrow
-            offset: 20 // distance from the edge to the center of the arrow
-        };
-
-        var cfg = Object.assign({}, defaults$$1, config);
-
-        return getPosition(offsetElement, referenceElement, cfg);
-    }
-
-    var Position = {
-        Offset: Offset,
-        getPosition: getPosition,
-        getPositionWithArrow: getPositionWithArrow
-    };
-
-    /**
-     * @module HelixUI/Utils
-     */
-
-    /**
-     * Key/value map of key names and their keycode.
-     *
-     * - Alt / Option
-     * - Backspace
-     * - Ctrl / Control
-     * - Del / Delete
-     * - Down
-     * - End
-     * - Enter / Return
-     * - Esc / Escape
-     * - Home
-     * - Ins / Insert
-     * - Left
-     * - PgDown / PageDown
-     * - PgUp / PageUp
-     * - Right
-     * - Shift
-     * - Space
-     * - Tab
-     * - Up
-     * @enum {Integer}
-     */
-    var KEYS = {
-        Alt: 18,
-        Backspace: 8,
-        Control: 17,
-        Ctrl: 17,
-        Del: 46,
-        Delete: 46,
-        Down: 40,
-        End: 35,
-        Enter: 13,
-        Esc: 27,
-        Escape: 27,
-        Home: 36,
-        Ins: 45,
-        Insert: 45,
-        Left: 37,
-        Option: 18,
-        PageDown: 34,
-        PageUp: 33,
-        PgDown: 34,
-        PgUp: 33,
-        Return: 13,
-        Right: 39,
-        Shift: 16,
-        Space: 32,
-        Tab: 9,
-        Up: 38
-    };
-
-    /**
-     * Communicate scroll events from elements at arbitrary depths in the DOM tree
-     * (because 'scroll' events do not bubble).
-     *
-     * The event is dispatched from the `document` object, instead of bubbling from
-     * the original element, to avoid interfering with 'scroll' event listeners
-     * attached to ancestor elements.
-     *
-     * We dispatch a CustomEvent so that we can communicate details about the
-     * originating target via the `detail` property on the event.
-     *
-     * @param {Event} evt - "scroll" event object
-     * @returns {Boolean}
-     */
-    function onScroll(evt) {
-        var _evtScroll = new CustomEvent('scroll', {
-            cancelable: true,
-            bubbles: false,
-            detail: {
-                target: evt.target
-            }
-        });
-
-        return document.dispatchEvent(_evtScroll);
-    } //onScroll()
-
-    var index = {
-        KEYS: KEYS,
-        Position: Position,
-        onScroll: onScroll
     };
 
     // Keep track of prepared templates
@@ -1111,12 +173,6 @@
              * Custom Element lifecycle method.
              *
              * Use this callback to initialize an element's behavior.
-             *
-             * **Client-side Framework Compatibility**
-             *
-             * It is worth noting that client-side frameworks like React may not reconstruct
-             * instances of an element, but may connect and disconnect the initial instance
-             * from the DOM.
              *
              * @abstract
              * @ignore
@@ -1232,9 +288,17 @@
         createClass(HXElement, [{
             key: 'connectedCallback',
             value: function connectedCallback() {
-                this._$tabIndex = this.getAttribute('tabindex') || 0;
+                this._$tabIndex = this.getAttribute('tabindex');
                 this.$upgradeProperty('disabled');
                 this.$onConnect();
+            }
+
+            // Called when an instance of the element is removed from the DOM.
+
+        }, {
+            key: 'disconnectedCallback',
+            value: function disconnectedCallback() {
+                this.$onDisconnect();
             }
 
             /**
@@ -1251,7 +315,7 @@
             key: 'attributeChangedCallback',
 
 
-            // Called when an attribute UPDATES (not just when it changes).
+            // Called when an attribute is SET (not just when it changes).
             value: function attributeChangedCallback(attr, oldVal, newVal) {
                 if (attr === 'disabled') {
                     if (newVal !== null) {
@@ -1259,7 +323,9 @@
                         this.setAttribute('aria-disabled', true);
                         this.blur();
                     } else {
-                        this.setAttribute('tabindex', this._$tabIndex);
+                        if (this._$tabIndex) {
+                            this.setAttribute('tabindex', this._$tabIndex);
+                        }
                         this.removeAttribute('aria-disabled');
                     }
                 }
@@ -1271,25 +337,21 @@
                 }
             } //attributeChangedCallback
 
+            /* ===== PUBLIC PROPERTIES ===== */
+
             /**
-             * Captures the value from the unupgraded instance and deletes the property
-             * so it does not shadow the custom element's own property setter. This way,
-             * when the element's definition does finally load, it can immediately
-             * reflect the correct state.
+             * Indicates whether the element is disabled.
+             * A disabled element is nonfunctional and noninteractive.
              *
-             * @param {String} prop - property name to upgrade
-             * @see https://goo.gl/MDp6j5
+             * @default false
+             * @type {Boolean}
              */
 
         }, {
-            key: '$upgradeProperty',
-            value: function $upgradeProperty(prop) {
-                if (this.hasOwnProperty(prop)) {
-                    var value = this[prop];
-                    delete this[prop];
-                    this[prop] = value;
-                }
-            }
+            key: '$defaultAttribute',
+
+
+            /* ===== PUBLIC METHODS ===== */
 
             /**
              * Assign a value to an HTML attribute, if the attribute isn't present.
@@ -1298,55 +360,11 @@
              * @param {String} val - value to assign
              * @see https://goo.gl/MUFHD8
              */
-
-        }, {
-            key: '$defaultAttribute',
             value: function $defaultAttribute(name, val) {
                 if (!this.hasAttribute(name)) {
                     this.setAttribute(name, val);
                 }
             }
-
-            /**
-             * Generate a unique ID
-             *
-             * **Pseudo-random Algorithm**
-             * This functionality is pseudo-random, and you should not depend on 100%
-             * random values. Given a large enough dataset, this method has the
-             * potential to generate duplicate values.
-             *
-             * For the purposes of most applications, the dataset is small enough that
-             * the potential for duplicate values is almost 0, meaning that it's good
-             * enough for use.
-             */
-
-        }, {
-            key: '$generateId',
-            value: function $generateId() {
-                return Math.random() // 0.7093288430261266
-                .toString(36) // "0.pjag2nwxb2o"
-                .substr(2, 8); // "pjag2nwx"
-            } //$generateId()
-
-            /**
-             * Event listener callback function to prevent page scrolling on `keydown`.
-             *
-             * @param {Event} evt - Event to act on.
-             */
-
-        }, {
-            key: '$preventScroll',
-            value: function $preventScroll(evt) {
-                switch (evt.keyCode) {
-                    case KEYS.Down:
-                    case KEYS.Left:
-                    case KEYS.Right:
-                    case KEYS.Space:
-                    case KEYS.Up:
-                        evt.preventDefault();
-                        break;
-                }
-            } //$preventScroll()
 
             /**
              * Emit a custom event
@@ -1422,16 +440,29 @@
             }
 
             /**
-             * Indicates whether the element is disabled.
-             * A disabled element is nonfunctional and noninteractive.
+             * Captures the value from the unupgraded instance and deletes the property
+             * so it does not shadow the custom element's own property setter. This way,
+             * when the element's definition does finally load, it can immediately
+             * reflect the correct state.
              *
-             * @default false
-             * @type {Boolean}
+             * @param {String} prop - property name to upgrade
+             * @see https://goo.gl/MDp6j5
              */
 
         }, {
-            key: '_$prepareTemplate',
+            key: '$upgradeProperty',
+            value: function $upgradeProperty(prop) {
+                if (this.hasOwnProperty(prop)) {
+                    var value = this[prop];
+                    delete this[prop];
+                    this[prop] = value;
+                }
+            }
 
+            /* ===== PRIVATE PROPERTIES ===== */
+            // TBD
+
+            /* ===== PRIVATE METHODS ===== */
 
             /**
              * @private
@@ -1440,6 +471,9 @@
              * @param {String} strTemplate - HTML template content
              * @returns {HTMLTemplate}
              */
+
+        }, {
+            key: '_$prepareTemplate',
             value: function _$prepareTemplate(strTemplate) {
                 var _elementName = this.constructor.is;
 
@@ -1486,15 +520,6 @@
                 }
             } //_$setupShadowDOM()
 
-            /** @private */
-
-        }, {
-            key: '_$replaceWith',
-            value: function _$replaceWith(txtReplacement) {
-                /* eslint-disable no-console */
-                console.warn('\n            DEPRECATED: Use ' + txtReplacement + ' instead.\n            Old functionality will be removed in an upcoming major release.\n        ');
-                /* eslint-enable no-console */
-            }
         }, {
             key: 'disabled',
             get: function get$$1() {
@@ -1517,6 +542,1084 @@
         }]);
         return HXElement;
     }(HTMLElement);
+
+    /**
+     * @module HelixUI/Utils/Alignment
+     * @description
+     * Alignment logic in regards to positioning
+     *
+     * See https://codepen.io/CITguy/pen/b1286136d695391a40a6d708b765361c
+     */
+
+    /**
+     * @typedef {String} AlignmentString
+     * @global
+     *
+     * @description
+     * Positions are composed of alignments (e.g., the position `top-left`
+     * has alignments `top` and `left`).  Some alignments are axis-specific,
+     * while others are not. Alignments `start` and `end` may apply to either
+     * horizontal (x-axis) alignment OR vertical (y-axis) aligment.
+     *
+     * Values:
+     * - `bottom`
+     * - `center`
+     * - `end`
+     * - `left`
+     * - `middle`
+     * - `right`
+     * - `start`
+     * - `top`
+     */
+
+    /**
+     * @typedef {String} PositionString
+     * @global
+     *
+     * @description
+     *
+     * **Supported Positions**
+     *
+     * The following, normalized values are suported.
+     * - `bottom-start`
+     * - `bottom-left`
+     * - `bottom-center`
+     * - `bottom-right`
+     * - `bottom-end`
+     * - `center-middle`
+     * - `left-start`
+     * - `left-top`
+     * - `left-middle`
+     * - `left-bottom`
+     * - `left-end`
+     * - `right-start`
+     * - `right-top`
+     * - `right-middle`
+     * - `right-bottom`
+     * - `right-end`
+     * - `top-start`
+     * - `top-left`
+     * - `top-center`
+     * - `top-right`
+     * - `top-end`
+     *
+     *
+     * **Deprecated Positions**
+     *
+     * Support for the following values will be removed in a future release.
+     * - `bottom`
+     * - `center`
+     * - `left`
+     * - `right`
+     * - `top`
+     */
+
+    var OPPOSITE_ALIGNMENTS = {
+        'bottom': 'top',
+        'center': 'center',
+        'end': 'start',
+        'left': 'right',
+        'middle': 'middle',
+        'right': 'left',
+        'start': 'end',
+        'top': 'bottom'
+    };
+
+    /**
+     * Convert position string into vertical alignment, horizontal alignment,
+     * and main axis properties.
+     *
+     * @param {PositionString} position user-configured position string
+     * @returns {Object} alignment metadata
+     */
+    function getAlignment(position) {
+        var crossAlign = void 0; // cross-axis alignment
+        var crossAxis = getCrossAxis(position);
+        var mainAlign = void 0; // main-axis alignment
+        var mainAxis = getMainAxis(position);
+        // x-axis and y-axis alignment (in relation to viewport coordinates)
+        var yAlign = getVerticalAlignment(position);
+        var xAlign = getHorizontalAlignment(position);
+
+        // https://regex101.com/r/1oRJf8/7
+        var startEndMatch = position.match(/(start|end)$/);
+        if (startEndMatch) {
+            if (mainAxis === 'x') {
+                yAlign = startEndMatch[0];
+            } else {
+                xAlign = startEndMatch[0];
+            }
+        }
+
+        // determine main-axis and cross-axis alignment
+        if (mainAxis === 'x') {
+            mainAlign = xAlign;
+            crossAlign = yAlign;
+        } else {
+            mainAlign = yAlign;
+            crossAlign = xAlign;
+        }
+
+        return {
+            crossAlign: crossAlign,
+            crossAxis: crossAxis,
+            mainAlign: mainAlign,
+            mainAxis: mainAxis,
+            xAlign: xAlign,
+            yAlign: yAlign
+        };
+    }
+
+    /**
+     * Determine secondary axis (x or y; opposite of main axis) from position.
+     *
+     * @param {PositionString} position
+     * @returns {Enum<String>}
+     */
+    function getCrossAxis(position) {
+        return getMainAxis(position) === 'x' ? 'y' : 'x';
+    }
+
+    /**
+     * Determine x-axis alignment from position
+     *
+     * @param {PositionString} position
+     * @returns {AlignmentString}
+     */
+    function getHorizontalAlignment(position) {
+        var xAlign = 'center';
+
+        // https://regex101.com/r/1oRJf8/5
+        var hMatch = position.match(/^(left|right)|(left|right)$/);
+        if (hMatch) {
+            xAlign = hMatch[0];
+        }
+
+        return xAlign;
+    }
+
+    /**
+     * Determine primary axis (x or y) from position
+     *
+     * @param {PositionString} position
+     * @returns {Enum}
+     */
+    function getMainAxis(position) {
+        // https://regex101.com/r/1oRJf8/1
+        if (/^(top|bottom)/.test(position)) {
+            return 'y';
+        } else {
+            return 'x';
+        }
+    }
+
+    /**
+     * Determine y-axis alignment from position
+     *
+     * @param {PositionString} position
+     * @returns {AlignmentString}
+     */
+    function getVerticalAlignment(position) {
+        var yAlign = 'middle';
+
+        // https://regex101.com/r/1oRJf8/4
+        var vMatch = position.match(/^(top|bottom)|(top|bottom)$/);
+        if (vMatch) {
+            yAlign = vMatch[0];
+        }
+
+        return yAlign;
+    }
+
+    /**
+     * Calculates position string that is horizontally opposite of given position.
+     *
+     * @param {PositionString} position
+     * @returns {PositionString} horizontally inverted position string
+     */
+    function invertPositionHorizontally(position) {
+        var _getAlignment = getAlignment(position),
+            mainAxis = _getAlignment.mainAxis,
+            xAlign = _getAlignment.xAlign,
+            yAlign = _getAlignment.yAlign;
+
+        var newXAlign = OPPOSITE_ALIGNMENTS[xAlign];
+        return mainAxis === 'x' ? newXAlign + '-' + yAlign : yAlign + '-' + newXAlign;
+    }
+
+    /**
+     * Calculates position string that is vertically opposite of given position.
+     *
+     * @param {PositionString} position
+     * @returns {PositionString} vertically inverted position string
+     */
+    function invertPositionVertically(position) {
+        var _getAlignment2 = getAlignment(position),
+            mainAxis = _getAlignment2.mainAxis,
+            xAlign = _getAlignment2.xAlign,
+            yAlign = _getAlignment2.yAlign;
+
+        var newYAlign = OPPOSITE_ALIGNMENTS[yAlign];
+        return mainAxis === 'x' ? xAlign + '-' + newYAlign : newYAlign + '-' + xAlign;
+    }
+
+    /**
+     * Normalize user-configured position to "{mainAlign}-{crossAlign}" format.
+     *
+     * - "top" -> "top-center"
+     * - "right" -> "right-middle"
+     * - "center" -> "center-middle"
+     * - etc.
+     *
+     * @param {PositionString} position
+     * @returns {PositionString}
+     */
+    function normalizePosition(position) {
+        var _getAlignment3 = getAlignment(position),
+            crossAlign = _getAlignment3.crossAlign,
+            mainAlign = _getAlignment3.mainAlign;
+
+        return mainAlign + '-' + crossAlign;
+    }
+
+    /**
+     * @param {PositionString} position
+     * @param {PredicateCollisions} collides
+     */
+    function optimizePositionForCollisions(position, collides) {
+        var _getAlignment4 = getAlignment(position),
+            xAlign = _getAlignment4.xAlign,
+            yAlign = _getAlignment4.yAlign;
+
+        // COLLIDE TOP
+        // 'top-*' -> 'bottom-*' (CHANGE)
+        // '{H}-top' -> '{H}-bottom' (CHANGE)
+        // 'bottom-*' -> 'bottom-*' (no change)
+        // '{H}-bottom' -> '{H}-bottom' (no change)
+        // '{H}-start|middle|end' -> '{H}-start|middle|end' (no change)
+
+
+        if (collides.top && yAlign === 'top') {
+            position = invertPositionVertically(position);
+        }
+
+        // COLLIDE BOTTOM
+        // 'bottom-*' -> 'top-*' (CHANGE)
+        // '{H}-bottom' -> '{H}-top' (CHANGE)
+        // 'top-*' -> 'top-*' (no change)
+        // '{H}-top' -> '{H}-top' (no change)
+        // '{H}-start|middle|end' -> '{H}-start|middle|end' (no change)
+        if (collides.bottom && yAlign === 'bottom') {
+            position = invertPositionVertically(position);
+        }
+
+        // COLLIDE LEFT
+        // 'left-*' -> 'right-*' (CHANGE)
+        // '{V}-left' -> '{V}-right' (CHANGE)
+        // 'right-*' -> 'right-*' (no change)
+        // '{V}-right' -> '{V}-right' (no change)
+        // '{V}-start|center|end' -> '{V}-start|center|end' (no change)
+        if (collides.left && xAlign === 'left') {
+            position = invertPositionHorizontally(position);
+        }
+
+        // COLLIDE RIGHT
+        // 'right-*' -> 'left-*' (CHANGE)
+        // '{V}-right' -> '{V}-left' (CHANGE)
+        // 'left-*' -> 'left-*' (no change)
+        // '{V}-left' -> '{V}-left' (no change)
+        // '{V}-start|center|end' -> '{V}-start|center|end' (no change)
+        if (collides.right && xAlign === 'right') {
+            position = invertPositionHorizontally(position);
+        }
+
+        // TODO: What if both sides of an axis collide?
+        // e.g., both left/right or top/bottom collide
+
+        return position;
+    }
+
+    var Alignment = {
+        getAlignment: getAlignment,
+        getCrossAxis: getCrossAxis,
+        getHorizontalAlignment: getHorizontalAlignment,
+        getMainAxis: getMainAxis,
+        getVerticalAlignment: getVerticalAlignment,
+        invertPositionHorizontally: invertPositionHorizontally,
+        invertPositionVertically: invertPositionVertically,
+        normalizePosition: normalizePosition,
+        optimizePositionForCollisions: optimizePositionForCollisions
+    };
+
+    /**
+     * @module HelixUI/Utils/Offset
+     * @description
+     * Utilities to calculate coordinates of an offset element
+     * in relation to a relative element.
+     *
+     * @example <caption>Positioning a menu below a button</caption>
+     * let elOffset = document.querySelector('menu');
+     * let elReference = document.querySelector('button');
+     *
+     * // grab bounding DOMRects
+     * let offRect = elOffset.getBoundingClientRect();
+     * let refRect = elRef.getBoundingClientRect();
+     *
+     * // Calculate coordinates
+     * let { x, y } = getBottom(offRect, refRect);
+     */
+
+    /**
+     * @external DOMRect
+     * @description Object returned by Element.getBoundingClientRect().
+     *
+     * - MDN: [DOMRect](https://developer.mozilla.org/en-US/docs/Web/API/DOMRect)
+     */
+
+    /**
+     * @global
+     * @typedef {Number} Coordinate
+     * @description Numeric, pixel coordinate
+     */
+
+    /**
+     * @typedef {Object} OffsetDelta
+     * @description
+     * Calculated metadata
+     *
+     * @prop {Integer} dH - height difference between target element and offset element
+     * @prop {Integer} dW - width difference between target element and offset element
+     * @prop {Integer} dX - X delta (a positive value shifts the target RIGHT)
+     * @prop {Integer} dY - Y delta (a positive value shifts the target DOWN)
+     */
+
+    /**
+     * @typedef {Object} OffsetOptions
+     * @description
+     * Offset configuration object
+     *
+     * @default {}
+     * @prop {Integer} [dX=0] - X offset (a positive value shifts the target RIGHT)
+     * @prop {Integer} [dY=0] - Y offset (a positive value shifts the target DOWN)
+     */
+
+    /**
+     * @typedef {Object} XYCoordinates
+     * @global
+     *
+     * @prop {Coordinate} x - X coordinate
+     * @prop {Coordinate} y - Y coordinate
+     */
+
+    /**
+     * Utility function to calculate delta metadata
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {OffsetDelta}
+     */
+    function _getDeltas(off, ref) {
+      var opts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+      // height delta
+      var dH = ref.height - off.height;
+      // width delta
+      var dW = ref.width - off.width;
+      // X delta
+      var dX = opts.dX || 0;
+      // Y delta
+      var dY = opts.dY || 0;
+
+      return { dH: dH, dW: dW, dX: dX, dY: dY };
+    }
+
+    /**
+     * Calculate { x, y } coordinates needed to center align two elements.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getCenter(off, ref) {
+      var opts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+      var _getDeltas2 = _getDeltas(off, ref, opts),
+          dW = _getDeltas2.dW,
+          dH = _getDeltas2.dH,
+          dX = _getDeltas2.dX,
+          dY = _getDeltas2.dY;
+
+      var x = ref.left + dW / 2 + dX;
+      var y = ref.top + dH / 2 + dY;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate { x, y } coordinates needed to position a target element above a
+     * reference element, with their y-axes aligned.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getTop(off, ref, opts) {
+      var _getDeltas3 = _getDeltas(off, ref, opts),
+          dY = _getDeltas3.dY;
+
+      var _getCenter = getCenter(off, ref, opts),
+          x = _getCenter.x;
+
+      var y = ref.top - off.height + dY;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element below a
+     * reference element, with their y-axes aligned.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getBottom(off, ref, opts) {
+      var _getDeltas4 = _getDeltas(off, ref, opts),
+          dY = _getDeltas4.dY;
+
+      var _getCenter2 = getCenter(off, ref, opts),
+          x = _getCenter2.x;
+
+      var y = ref.top + ref.height + dY;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element left of a
+     * reference element, with their x-axes aligned.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getLeft(off, ref, opts) {
+      var _getDeltas5 = _getDeltas(off, ref, opts),
+          dX = _getDeltas5.dX;
+
+      var _getCenter3 = getCenter(off, ref, opts),
+          y = _getCenter3.y;
+
+      var x = ref.left - off.width + dX;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element right of a
+     * reference element, with their x-axes aligned.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getRight(off, ref, opts) {
+      var _getDeltas6 = _getDeltas(off, ref, opts),
+          dX = _getDeltas6.dX;
+
+      var _getCenter4 = getCenter(off, ref, opts),
+          y = _getCenter4.y;
+
+      var x = ref.left + ref.width + dX;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element above and to the
+     * left of a reference element, so that the right edge of the target element aligns
+     * with the y-axis of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getTopLeft(off, ref, opts) {
+      var _getTop = getTop(off, ref, opts),
+          xT = _getTop.x,
+          y = _getTop.y;
+
+      var x = xT - off.width / 2;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element above and to the
+     * left of a reference element, so that the left edge of the target element aligns
+     * with the left edge of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getTopStart(off, ref, opts) {
+      var _getDeltas7 = _getDeltas(off, ref, opts),
+          dX = _getDeltas7.dX;
+
+      var x = ref.left + dX;
+
+      var _getTop2 = getTop(off, ref, opts),
+          y = _getTop2.y;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element above and to the
+     * right of a reference element, so that the right edge of the target element aligns
+     * with the right edge of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getTopEnd(off, ref, opts) {
+      var _getDeltas8 = _getDeltas(off, ref, opts),
+          dX = _getDeltas8.dX;
+
+      var x = ref.right - off.width + dX;
+
+      var _getTop3 = getTop(off, ref, opts),
+          y = _getTop3.y;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element above and to the
+     * right of a reference element, so that the left edge of the target element aligns
+     * with the y-axis of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getTopRight(off, ref, opts) {
+      var _getTop4 = getTop(off, ref, opts),
+          xT = _getTop4.x,
+          y = _getTop4.y;
+
+      var x = xT + off.width / 2;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element right and slightly higher
+     * than the target element, so that the bottom edge of the target element aligns with the
+     * x-axis of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getRightTop(off, ref, opts) {
+      var _getRight = getRight(off, ref, opts),
+          yR = _getRight.y,
+          x = _getRight.x;
+
+      var y = yR - off.height / 2;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element right and slightly higher
+     * than the target element, so that the top edge of the target element aligns with the
+     * top edge of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getRightStart(off, ref, opts) {
+      var _getDeltas9 = _getDeltas(off, ref, opts),
+          dY = _getDeltas9.dY;
+
+      var _getRight2 = getRight(off, ref, opts),
+          x = _getRight2.x;
+
+      var y = ref.top + dY;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element right and slightly lower
+     * than the target element, so that the bottom edge of the target element aligns with the
+     * bottom edge of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getRightEnd(off, ref, opts) {
+      var _getDeltas10 = _getDeltas(off, ref, opts),
+          dY = _getDeltas10.dY;
+
+      var _getRight3 = getRight(off, ref, opts),
+          x = _getRight3.x;
+
+      var y = ref.bottom - off.height + dY;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element right and
+     * slightly lower than the target element, so that the top edge of the target
+     * element aligns with the x-axis of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getRightBottom(off, ref, opts) {
+      var _getRight4 = getRight(off, ref, opts),
+          x = _getRight4.x,
+          yR = _getRight4.y;
+
+      var y = yR + off.height / 2;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element below and to the
+     * right of a reference element, so that the left edge of the target element aligns
+     * with the y-axis of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getBottomRight(off, ref, opts) {
+      var _getBottom = getBottom(off, ref, opts),
+          xB = _getBottom.x,
+          y = _getBottom.y;
+
+      var x = xB + off.width / 2;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element below and to the
+     * right of a reference element, so that the right edge of the target element aligns
+     * with the right edge of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getBottomEnd(off, ref, opts) {
+      var _getDeltas11 = _getDeltas(off, ref, opts),
+          dX = _getDeltas11.dX;
+
+      var x = ref.right - off.width + dX;
+
+      var _getBottom2 = getBottom(off, ref, opts),
+          y = _getBottom2.y;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element below and to the
+     * left of a reference element, so that the left edge of the target element aligns
+     * with the left edge of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getBottomStart(off, ref, opts) {
+      var _getDeltas12 = _getDeltas(off, ref, opts),
+          dX = _getDeltas12.dX;
+
+      var _getBottom3 = getBottom(off, ref, opts),
+          y = _getBottom3.y;
+
+      var x = ref.left + dX;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element below and to the
+     * left of a reference element, so that the right edge of the target element aligns
+     * with the y-axis of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getBottomLeft(off, ref, opts) {
+      var _getBottom4 = getBottom(off, ref, opts),
+          xB = _getBottom4.x,
+          y = _getBottom4.y;
+
+      var x = xB - off.width / 2;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element left and slightly lower
+     * than the target element, so that the top edge of the target element aligns with the
+     * x-axis of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getLeftBottom(off, ref, opts) {
+      var _getLeft = getLeft(off, ref, opts),
+          x = _getLeft.x,
+          yL = _getLeft.y;
+
+      var y = yL + off.height / 2;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element left and slightly lower
+     * than the target element, so that the bottom edge of the target element aligns with the
+     * bottom edge of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getLeftEnd(off, ref, opts) {
+      var _getDeltas13 = _getDeltas(off, ref, opts),
+          dY = _getDeltas13.dY;
+
+      var _getLeft2 = getLeft(off, ref, opts),
+          x = _getLeft2.x;
+
+      var y = ref.bottom - off.height + dY;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element left and slightly higher
+     * than the target element, so that the top edge of the target element aligns with the
+     * top edge of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getLeftStart(off, ref, opts) {
+      var _getDeltas14 = _getDeltas(off, ref, opts),
+          dY = _getDeltas14.dY;
+
+      var _getLeft3 = getLeft(off, ref, opts),
+          x = _getLeft3.x;
+
+      var y = ref.top + dY;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Calculate (x,y) coordinates needed to position a target element left and slightly higher
+     * than the target element, so that the bottom edge of the target element aligns with the
+     * x-axis of the reference element.
+     *
+     * @param {DOMRect} off - bounding rectangle for the target element
+     * @param {DOMRect} ref - bounding rectangle for the reference element
+     * @param {OffsetOptions} [opts={}] - offset configuration
+     * @returns {XYCoordinates}
+     */
+    function getLeftTop(off, ref, opts) {
+      var _getLeft4 = getLeft(off, ref, opts),
+          x = _getLeft4.x,
+          yL = _getLeft4.y;
+
+      var y = yL - off.height / 2;
+
+      return { x: x, y: y };
+    }
+
+    /**
+     * Key/value map of position values and their respective offset calculation function
+     *
+     * @enum {Function}
+     * @name offsetFunctionMap
+     */
+    var fnMap = {
+      'bottom-center': getBottom,
+      'bottom-end': getBottomEnd,
+      'bottom-left': getBottomLeft,
+      'bottom-right': getBottomRight,
+      'bottom-start': getBottomStart,
+      'center-middle': getCenter,
+      'left-bottom': getLeftBottom,
+      'left-end': getLeftEnd,
+      'left-middle': getLeft,
+      'left-start': getLeftStart,
+      'left-top': getLeftTop,
+      'right-bottom': getRightBottom,
+      'right-end': getRightEnd,
+      'right-middle': getRight,
+      'right-start': getRightStart,
+      'right-top': getRightTop,
+      'top-center': getTop,
+      'top-end': getTopEnd,
+      'top-left': getTopLeft,
+      'top-right': getTopRight,
+      'top-start': getTopStart
+    };
+    // position aliases
+    fnMap['left'] = fnMap['left-middle'];
+    fnMap['top'] = fnMap['top-center'];
+    fnMap['right'] = fnMap['right-middle'];
+    fnMap['bottom'] = fnMap['bottom-center'];
+    fnMap['center'] = fnMap['center-middle'];
+
+    var offsetFunctionMap = fnMap;
+
+    var Offset = {
+      getBottom: getBottom,
+      getBottomEnd: getBottomEnd,
+      getBottomLeft: getBottomLeft,
+      getBottomRight: getBottomRight,
+      getBottomStart: getBottomStart,
+      getCenter: getCenter,
+      getLeft: getLeft,
+      getLeftBottom: getLeftBottom,
+      getLeftEnd: getLeftEnd,
+      getLeftStart: getLeftStart,
+      getLeftTop: getLeftTop,
+      getRight: getRight,
+      getRightBottom: getRightBottom,
+      getRightEnd: getRightEnd,
+      getRightStart: getRightStart,
+      getTop: getTop,
+      getTopEnd: getTopEnd,
+      getTopLeft: getTopLeft,
+      getTopRight: getTopRight,
+      getTopStart: getTopStart,
+      offsetFunctionMap: offsetFunctionMap
+    };
+
+    /**
+     * @module HelixUI/Utils
+     */
+
+    /**
+     * Key/value map of key names and their keycode.
+     *
+     * - Alt / Option
+     * - Backspace
+     * - Ctrl / Control
+     * - Del / Delete
+     * - Down
+     * - End
+     * - Enter / Return
+     * - Esc / Escape
+     * - Home
+     * - Ins / Insert
+     * - Left
+     * - PgDown / PageDown
+     * - PgUp / PageUp
+     * - Right
+     * - Shift
+     * - Space
+     * - Tab
+     * - Up
+     * @enum {Integer}
+     */
+    var KEYS = {
+        Alt: 18,
+        Backspace: 8,
+        Control: 17,
+        Ctrl: 17,
+        Del: 46,
+        Delete: 46,
+        Down: 40,
+        End: 35,
+        Enter: 13,
+        Esc: 27,
+        Escape: 27,
+        Home: 36,
+        Ins: 45,
+        Insert: 45,
+        Left: 37,
+        Option: 18,
+        PageDown: 34,
+        PageUp: 33,
+        PgDown: 34,
+        PgUp: 33,
+        Return: 13,
+        Right: 39,
+        Shift: 16,
+        Space: 32,
+        Tab: 9,
+        Up: 38
+    };
+
+    /**
+     * Defers execution of callback function until _next_ event loop.
+     *
+     * @param {Function} callback
+     * @returns {Function}
+     */
+    function defer(cb) {
+        return function () {
+            return setTimeout(cb, 0);
+        };
+    }
+
+    /**
+     * Generate a unique ID
+     *
+     * **Pseudo-random Algorithm**
+     * This functionality is pseudo-random, and you should not depend on 100%
+     * random values. Given a large enough dataset, this method has the
+     * potential to generate duplicate values.
+     *
+     * For the purposes of most applications, the dataset is small enough that
+     * the potential for duplicate values is almost 0, meaning that it's good
+     * enough for use.
+     *
+     * @see https://gist.github.com/gordonbrander/2230317
+     */
+    function generateId() {
+        return Math.random() // 0.7093288430261266
+        .toString(36) // "0.pjag2nwxb2o"
+        .substr(2, 8); // "pjag2nwx"
+    }
+
+    /**
+     * @function
+     * @param {class} baseClass - Base class to apply mixin behavior
+     * @param {...function} mixins - mixin factory functions
+     * @returns {class}
+     *
+     * @example
+     * import { mix } from 'utils';
+     *
+     * // Define unique superclass with behaviors from one or more mixin classes
+     * class _ABElement extends mix(HXElement, MixinA, MixinB) {}
+     *
+     * // Extend unique superclass and define additional logic
+     * class HXNewElement extends _ABElement {
+     *   // logic unique to HXNewElement ...
+     * }
+     */
+    function mix(baseClass) {
+        for (var _len = arguments.length, mixins = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+            mixins[_key - 1] = arguments[_key];
+        }
+
+        return mixins.reduce(function (klass, mixin) {
+            return mixin(klass);
+        }, baseClass);
+    }
+
+    /**
+     * Communicate scroll events from elements at arbitrary depths in the DOM tree
+     * (because 'scroll' events do not bubble).
+     *
+     * The event is dispatched from the `document` object, instead of bubbling from
+     * the original element, to avoid interfering with 'scroll' event listeners
+     * attached to ancestor elements.
+     *
+     * We dispatch a CustomEvent so that we can communicate details about the
+     * originating target via the `detail` property on the event.
+     *
+     * @param {Event} evt - "scroll" event object
+     * @returns {Boolean}
+     */
+    function onScroll(evt) {
+        var _evtScroll = new CustomEvent('scroll', {
+            cancelable: true,
+            bubbles: false,
+            detail: {
+                target: evt.target
+            }
+        });
+
+        return document.dispatchEvent(_evtScroll);
+    } //onScroll()
+
+    /**
+     * Event listener callback function to prevent page scrolling on `keydown`.
+     *
+     * @param {Event} evt - Event to act on.
+     */
+    function preventKeyScroll(evt) {
+        switch (evt.keyCode) {
+            case KEYS.Down:
+            case KEYS.Left:
+            case KEYS.Right:
+            case KEYS.Space:
+            case KEYS.Up:
+                evt.preventDefault();
+                break;
+        }
+    }
+
+    /**
+     * Warn user of deprecation.
+     *
+     * @param {String} txtReplacement - "use instead" replacement
+     */
+    function replaceWith(txtReplacement) {
+        /* eslint-disable no-console */
+        console.warn('\n        DEPRECATED: Use ' + txtReplacement + ' instead.\n        Old functionality will be removed in an upcoming major release.\n    ');
+        /* eslint-enable no-console */
+    }
+
+    // Not everything needs to be part of the default export
+    var index = {
+        Alignment: Alignment,
+        KEYS: KEYS,
+        Offset: Offset,
+        defer: defer,
+        generateId: generateId,
+        mix: mix,
+        onScroll: onScroll,
+        preventKeyScroll: preventKeyScroll,
+        replaceWith: replaceWith
+    };
 
     /**
      * Fires in single-panel mode, when the current panel changes.
@@ -1545,6 +1648,7 @@
         createClass(HXAccordionElement, [{
             key: '$onCreate',
             value: function $onCreate() {
+                this.$onConnect = defer(this.$onConnect);
                 this._onPanelOpen = this._onPanelOpen.bind(this);
             }
         }, {
@@ -1556,6 +1660,10 @@
                 this.panels.forEach(function (panel) {
                     panel.addEventListener('open', _this2._onPanelOpen);
                 });
+
+                if (this._isNavigable) {
+                    this._openPanel(this.currentPanel);
+                }
             }
         }, {
             key: '$onDisconnect',
@@ -1631,10 +1739,10 @@
 
         }, {
             key: '_openPanel',
-            value: function _openPanel(index) {
+            value: function _openPanel(index$$1) {
                 if (this._isNavigable) {
                     this.panels.forEach(function (panel, idx) {
-                        if (Number(index) === idx) {
+                        if (Number(index$$1) === idx) {
                             panel.open = true;
                             panel.focus();
                         } else {
@@ -1644,31 +1752,13 @@
                     });
                 }
             }
-
-            /**
-             * @deprecated Use {@link HXAccordionElement#selectNext|selectNext()}
-             */
-
-        }, {
-            key: 'nextPanel',
-            value: function nextPanel() {
-                this._$replaceWith('HXAccordionElement#selectNext()');
-                this.selectNext();
-            }
-
-            /**
-             * @deprecated Use {@link HXAccordionElement#selectPrevious|selectPrevious()}
-             */
-
-        }, {
-            key: 'previousPanel',
-            value: function previousPanel() {
-                this._$replaceWith('HXAccordionElement#selectPrevious()');
-                this.selectPrevious();
-            }
         }, {
             key: 'panels',
             get: function get$$1() {
+                if (!this.isConnected) {
+                    return [];
+                }
+
                 return Array.from(this.querySelectorAll('hx-accordion-panel'));
             }
 
@@ -1722,7 +1812,7 @@
 
     var shadowMarkup = "<button type='button' id='hxToggle' aria-controls='body' aria-expanded='false'><div class='header'><span class='header__content'><slot name='header'></slot></span><hx-icon class='header__icon' type='angle-down'></hx-icon></div></button><div id='hxBody' aria-expanded='false'><slot></slot></div>";
 
-    var shadowStyles = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxToggle {\n  background-color: transparent;\n  border: 0;\n  cursor: pointer;\n  padding: 0;\n  text-align: left;\n  width: 100%;\n}\n#hxToggle[aria-expanded=\"true\"] .header__icon {\n  transform: scaleY(-1);\n}\n.header {\n  align-items: center;\n  display: flex;\n}\n.header__content {\n  flex-shrink: 0;\n  flex-grow: 1;\n}\n.header__icon {\n  flex-shrink: 0;\n  margin-left: 0.5rem;\n}\n#hxBody {\n  display: none;\n}\n#hxBody[aria-expanded=\"true\"] {\n  display: block;\n}\n";
+    var shadowStyles = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxToggle {\n  background-color: transparent;\n  border: 0;\n  cursor: pointer;\n  padding: 0;\n  text-align: left;\n  width: 100%;\n}\n#hxToggle[aria-expanded=\"true\"] .header__icon {\n  transform: scaleY(-1);\n}\n#hxToggle[disabled] {\n  cursor: not-allowed;\n}\n.header {\n  align-items: center;\n  display: flex;\n}\n.header__content {\n  flex-shrink: 0;\n  flex-grow: 1;\n}\n.header__icon {\n  flex-shrink: 0;\n  margin-left: 0.5rem;\n}\n#hxBody {\n  display: none;\n}\n#hxBody[aria-expanded=\"true\"] {\n  display: block;\n}\n";
 
     /**
      * Fires when the element's contents are concealed.
@@ -1776,11 +1866,16 @@
         }, {
             key: '$onAttributeChange',
             value: function $onAttributeChange(attr, oldVal, newVal) {
-                if (attr === 'open') {
-                    var isOpen = newVal !== null;
-                    this._btnToggle.setAttribute('aria-expanded', isOpen);
-                    this._elBody.setAttribute('aria-expanded', isOpen);
-                    this.$emit(isOpen ? 'open' : 'close');
+                var hasValue = newVal !== null;
+                switch (attr) {
+                    case 'disabled':
+                        this._btnToggle.disabled = hasValue;
+                        break;
+                    case 'open':
+                        this._btnToggle.setAttribute('aria-expanded', hasValue);
+                        this._elBody.setAttribute('aria-expanded', hasValue);
+                        this.$emit(hasValue ? 'open' : 'close');
+                        break;
                 }
             }
 
@@ -1853,7 +1948,7 @@
 
     var shadowMarkup$1 = "<div id='hxAlert'><span id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></span><span id='hxContent'><span id='hxStatus'></span><slot></slot></span><button id='hxCta' type='button'></button> <button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-    var shadowStyles$1 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxAlert {\n  display: flex;\n}\n#hxAlert button {\n  align-self: flex-start;\n  background-color: transparent;\n  border: 0;\n  cursor: pointer;\n}\n#hxAlert #hxIconWrapper {\n  flex-shrink: 0;\n  padding: 1rem;\n}\n#hxAlert #hxContent {\n  flex-grow: 1;\n  margin-right: 1rem;\n  padding: 1rem 0;\n}\n#hxAlert #hxStatus {\n  float: left;\n  font-weight: 500;\n  margin-right: 0.25rem;\n  text-transform: uppercase;\n}\n#hxAlert #hxStatus:after {\n  content: \":\";\n}\n#hxAlert #hxStatus:empty {\n  display: none;\n}\n#hxAlert #hxCta {\n  flex-shrink: 0;\n  font-weight: 500;\n  padding: 1rem 0;\n  text-transform: uppercase;\n  white-space: nowrap;\n}\n#hxAlert #hxCta:empty {\n  display: none;\n}\n#hxAlert #hxDismiss {\n  flex-shrink: 0;\n  height: 3rem;\n  padding: 1rem;\n  width: 3rem;\n}\n:host([static]) #hxAlert #hxDismiss {\n  display: none;\n}\n:host([static]) #hxAlert #hxCta {\n  margin-right: 1rem;\n}\n";
+    var shadowStyles$1 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxAlert {\n  display: flex;\n}\nbutton {\n  align-self: flex-start;\n  background-color: transparent;\n  border: 0;\n  cursor: pointer;\n}\n#hxIconWrapper {\n  flex-shrink: 0;\n  padding: 1rem;\n}\n#hxContent {\n  flex-grow: 1;\n  margin-right: 1rem;\n  padding: 1rem 0;\n}\n#hxStatus {\n  float: left;\n  font-weight: 500;\n  margin-right: 0.25rem;\n  text-transform: uppercase;\n}\n#hxStatus:after {\n  content: \":\";\n}\n#hxStatus:empty {\n  display: none;\n}\n#hxCta {\n  flex-shrink: 0;\n  font-weight: 500;\n  padding: 1rem 0;\n  text-transform: uppercase;\n  white-space: nowrap;\n}\n#hxCta:empty {\n  display: none;\n}\n#hxDismiss {\n  flex-shrink: 0;\n  height: 3rem;\n  padding: 1rem;\n  width: 3rem;\n}\n:host([persist]) #hxDismiss {\n  display: none;\n}\n:host([persist]) #hxCta {\n  margin-right: 1rem;\n}\n";
 
     var ICONS = {
         'error': 'exclamation-circle',
@@ -1905,7 +2000,7 @@
             key: '$onConnect',
             value: function $onConnect() {
                 this.$upgradeProperty('cta');
-                this.$upgradeProperty('static');
+                this.$upgradeProperty('persist');
                 this.$upgradeProperty('status');
                 this.$upgradeProperty('type');
 
@@ -1957,7 +2052,7 @@
              * Dismiss the alert (removes element from the DOM).
              */
             value: function dismiss() {
-                if (this.$emit('dismiss')) {
+                if (!this.persist && this.$emit('dismiss')) {
                     // only if event was not canceled by consumer
                     this.remove();
                 }
@@ -2007,7 +2102,7 @@
             }
 
             /**
-             * Property reflecting the `static` HTML attribute, indicating whether the
+             * Property reflecting the `persist` HTML attribute, indicating whether the
              * alert may be dismissed. If true, the dismiss button will not be shown.
              *
              * @default false
@@ -2015,15 +2110,15 @@
              */
 
         }, {
-            key: 'static',
+            key: 'persist',
             get: function get$$1() {
-                return this.hasAttribute('static');
+                return this.hasAttribute('persist');
             },
             set: function set$$1(value) {
                 if (value) {
-                    this.setAttribute('static', ''); // boolean
+                    this.setAttribute('persist', '');
                 } else {
-                    this.removeAttribute('static');
+                    this.removeAttribute('persist');
                 }
             }
 
@@ -2110,7 +2205,7 @@
         }, {
             key: '$observedAttributes',
             get: function get$$1() {
-                return ['cta', 'static', 'status', 'type'];
+                return ['cta', 'status', 'type'];
             }
         }]);
         return HXAlertElement;
@@ -2173,7 +2268,7 @@
 
     var shadowMarkup$2 = "<label id='hxCheckbox'><input type='checkbox' id='hxNativeControl'><div id='hxCustomControl'><hx-icon type='checkmark' id='hxTick'></hx-icon><hx-icon type='minus' id='hxMinus'></hx-icon></div></label>";
 
-    var shadowStyles$2 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxCheckbox {\n  display: flex;\n  height: 100%;\n  position: relative;\n  width: 100%;\n}\n#hxCustomControl {\n  align-content: center;\n  align-items: center;\n  background-color: #ffffff;\n  border: 1px solid currentColor;\n  border-radius: 2px;\n  color: #bdbdbd;\n  display: flex;\n  font-size: 0.625rem;\n  /* ~10px */\n  height: 100%;\n  justify-content: center;\n  left: 0;\n  position: absolute;\n  top: 0;\n  vertical-align: middle;\n  width: 100%;\n  z-index: 10;\n  /* icons */\n}\n#hxCustomControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n#hxCustomControl #hxMinus,\n#hxCustomControl #hxTick {\n  display: none;\n  height: 1em;\n  line-height: 1;\n  width: 1em;\n}\n#hxNativeControl:checked:not(:indeterminate) ~ #hxCustomControl #hxTick {\n  display: block;\n}\n#hxNativeControl:indeterminate ~ #hxCustomControl #hxMinus {\n  display: block;\n}\n#hxNativeControl {\n  /* opacity 0 because Firefox and OS focus styles */\n  opacity: 0;\n  z-index: 0;\n  /* default checked and indeterminate (checked or unchecked) */\n  /* disabled unchecked */\n}\n#hxNativeControl:focus {\n  border: none;\n  outline: none;\n}\n#hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n#hxNativeControl:checked ~ #hxCustomControl,\n#hxNativeControl:indeterminate ~ #hxCustomControl {\n  color: #0c7c84;\n}\n#hxNativeControl:checked ~ #hxCustomControl:hover,\n#hxNativeControl:indeterminate ~ #hxCustomControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n#hxNativeControl:disabled ~ #hxCustomControl {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n  cursor: not-allowed;\n}\n#hxNativeControl:disabled ~ #hxCustomControl:hover {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n}\n/* invalid */\n:host([invalid]) {\n  /* below styles needed to override above, custom control styles */\n  /* invalid and checked or indeterminate */\n  /* invalid and disabled */\n}\n:host([invalid]) #hxCustomControl {\n  border-width: 2px;\n  color: #d32f2f;\n}\n:host([invalid]) #hxCustomControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #d32f2f;\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n}\n:host([invalid]) #hxNativeControl:checked ~ #hxCustomControl,\n:host([invalid]) #hxNativeControl:indeterminate ~ #hxCustomControl {\n  color: #d32f2f;\n}\n:host([invalid]) #hxNativeControl:checked ~ #hxCustomControl:hover,\n:host([invalid]) #hxNativeControl:indeterminate ~ #hxCustomControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #hxNativeControl:disabled ~ #hxCustomControl {\n  border-width: 1px;\n  color: #bdbdbd;\n}\n:host([invalid]) #hxNativeControl:disabled ~ #hxCustomControl:hover {\n  background-color: #eeeeee;\n}\n";
+    var shadowStyles$2 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxCheckbox {\n  display: flex;\n  height: 100%;\n  position: relative;\n  width: 100%;\n}\n#hxCustomControl {\n  align-content: center;\n  align-items: center;\n  background-color: #ffffff;\n  border: 1px solid currentColor;\n  border-radius: 2px;\n  color: #bdbdbd;\n  display: flex;\n  font-size: 0.625rem;\n  /* ~10px */\n  height: 100%;\n  justify-content: center;\n  left: 0;\n  position: absolute;\n  top: 0;\n  vertical-align: middle;\n  width: 100%;\n  z-index: 10;\n  /* icons */\n}\n#hxCustomControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n#hxCustomControl #hxMinus,\n#hxCustomControl #hxTick {\n  display: none;\n  height: 1em;\n  line-height: 1;\n  width: 1em;\n}\n#hxNativeControl:checked:not(:indeterminate) ~ #hxCustomControl #hxTick {\n  display: block;\n}\n#hxNativeControl:indeterminate ~ #hxCustomControl #hxMinus {\n  display: block;\n}\n#hxNativeControl {\n  /* opacity 0 because Firefox and OS focus styles */\n  opacity: 0;\n  z-index: 0;\n  /* default checked and indeterminate (checked or unchecked) */\n  /* disabled unchecked */\n}\n#hxNativeControl:focus {\n  border: none;\n  outline: none;\n}\n#hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n#hxNativeControl:checked ~ #hxCustomControl,\n#hxNativeControl:indeterminate ~ #hxCustomControl {\n  color: #0c7c84;\n}\n#hxNativeControl:checked ~ #hxCustomControl:hover,\n#hxNativeControl:indeterminate ~ #hxCustomControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n#hxNativeControl:disabled ~ #hxCustomControl {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n  cursor: not-allowed;\n}\n#hxNativeControl:disabled ~ #hxCustomControl:hover {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n}\n/* invalid */\n:host([invalid]) {\n  /* below styles needed to override above, custom control styles */\n  /* invalid and checked or indeterminate */\n  /* invalid and disabled */\n}\n:host([invalid]) #hxCustomControl {\n  border-width: 2px;\n  color: #d32f2f;\n}\n:host([invalid]) #hxCustomControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #d32f2f;\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n}\n:host([invalid]) #hxNativeControl:checked ~ #hxCustomControl,\n:host([invalid]) #hxNativeControl:indeterminate ~ #hxCustomControl {\n  color: #d32f2f;\n}\n:host([invalid]) #hxNativeControl:checked ~ #hxCustomControl:hover,\n:host([invalid]) #hxNativeControl:indeterminate ~ #hxCustomControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #hxNativeControl:disabled ~ #hxCustomControl {\n  border-width: 1px;\n  color: #bdbdbd;\n}\n:host([invalid]) #hxNativeControl:disabled ~ #hxCustomControl:hover {\n  background-color: #eeeeee;\n}\n";
 
     /**
      * Fires when the element's `checked` state changes
@@ -2343,6 +2438,7 @@
         createClass(HXDisclosureElement, [{
             key: '$onCreate',
             value: function $onCreate() {
+                this.$onConnect = defer(this.$onConnect);
                 this._onTargetOpen = this._onTargetOpen.bind(this);
                 this._onTargetClose = this._onTargetClose.bind(this);
             }
@@ -2357,27 +2453,23 @@
 
                 if (this.target) {
                     this.expanded = this.target.hasAttribute('open');
-                    this.target.addEventListener('open', this._onTargetOpen);
-                    this.target.addEventListener('close', this._onTargetClose);
                 } else {
                     this.expanded = false;
                 }
 
+                this._addTargetListeners();
                 this.addEventListener('click', this._onClick);
-                this.addEventListener('keydown', this.$preventScroll);
+                this.addEventListener('keydown', preventKeyScroll);
                 this.addEventListener('keyup', this._onKeyUp);
             }
         }, {
             key: '$onDisconnect',
             value: function $onDisconnect() {
                 this.removeEventListener('click', this._onClick);
-                this.removeEventListener('keydown', this.$preventScroll);
+                this.removeEventListener('keydown', preventKeyScroll);
                 this.removeEventListener('keyup', this._onKeyUp);
 
-                if (this.target) {
-                    this.target.removeEventListener('open', this._onTargetOpen);
-                    this.target.removeEventListener('close', this._onTargetClose);
-                }
+                this._removeTargetListeners();
             }
         }, {
             key: '$onAttributeChange',
@@ -2407,6 +2499,17 @@
             value: function click() {
                 if (!this.disabled) {
                     this.expanded = !this.expanded;
+                }
+            }
+
+            /** @private */
+
+        }, {
+            key: '_addTargetListeners',
+            value: function _addTargetListeners() {
+                if (this.target) {
+                    this.target.addEventListener('open', this._onTargetOpen);
+                    this.target.addEventListener('close', this._onTargetClose);
                 }
             }
 
@@ -2448,6 +2551,17 @@
             value: function _onClick() {
                 this.click();
             }
+
+            /** @private */
+
+        }, {
+            key: '_removeTargetListeners',
+            value: function _removeTargetListeners() {
+                if (this.target) {
+                    this.target.removeEventListener('open', this._onTargetOpen);
+                    this.target.removeEventListener('close', this._onTargetClose);
+                }
+            }
         }, {
             key: 'expanded',
             get: function get$$1() {
@@ -2465,9 +2579,9 @@
         }, {
             key: 'target',
             get: function get$$1() {
-                if (!this._target) {
+                if (this.isConnected && !this._target) {
                     var targetId = this.getAttribute('aria-controls');
-                    this._target = this.getRootNode().getElementById(targetId);
+                    this._target = this.getRootNode().querySelector('[id="' + targetId + '"]');
                 }
                 return this._target;
             }
@@ -2484,6 +2598,10 @@
         }]);
         return HXDisclosureElement;
     }(HXElement);
+
+    var shadowMarkup$3 = "<div id='hxDiv'><slot></slot></div>";
+
+    var shadowStyles$3 = "@supports (--skip-ie: true) {\n  :host {\n    --padding-base: 0;\n    --padding-top: var(--padding-base);\n    --padding-right: var(--padding-base);\n    --padding-bottom: var(--padding-base);\n    --padding-left: var(--padding-base);\n    --padding: var(--padding-top) var(--padding-right) var(--padding-bottom) var(--padding-left);\n  }\n  :host #hxDiv {\n    padding: var(--padding);\n  }\n}\n";
 
     /**
      * Nullable string denoting direction for scrolling.
@@ -2511,14 +2629,21 @@
         }
 
         createClass(HXDivElement, [{
+            key: '$onConnect',
+            value: function $onConnect() {
+                this.addEventListener('scroll', onScroll);
+            }
+        }, {
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
+                this.removeEventListener('scroll', onScroll);
+            }
+        }, {
             key: '$onAttributeChange',
             value: function $onAttributeChange(attr, oldVal, newVal) {
                 if (attr === 'scroll') {
                     if (newVal !== null) {
                         this._resetScroll();
-                        this.addEventListener('scroll', onScroll);
-                    } else {
-                        this.removeEventListener('scroll', onScroll);
                     }
                 }
             }
@@ -2556,6 +2681,11 @@
                 return 'hx-div';
             }
         }, {
+            key: 'template',
+            get: function get$$1() {
+                return '<style>' + shadowStyles$3 + '</style>' + shadowMarkup$3;
+            }
+        }, {
             key: '$observedAttributes',
             get: function get$$1() {
                 return ['scroll'];
@@ -2564,9 +2694,9 @@
         return HXDivElement;
     }(HXElement);
 
-    var shadowStyles$3 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxDropFence {\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  justify-content: center;\n  width: 100%;\n}\n#hxDropFence > div {\n  margin-top: 0.5rem;\n  max-width: 30rem;\n}\n";
+    var shadowMarkup$4 = "<div id='hxDropFence'><hx-file-icon type='paperclip'></hx-file-icon><div><slot></slot></div></div>";
 
-    var shadowMarkup$3 = "<div id='hxDropFence'><hx-file-icon type='paperclip'></hx-file-icon><div><slot></slot></div></div>";
+    var shadowStyles$4 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxDropFence {\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  justify-content: center;\n  width: 100%;\n}\n#hxDropFence > div {\n  margin-top: 0.5rem;\n  max-width: 30rem;\n}\n";
 
     /**
      * Defines behavior for the `<hx-drop-fence>` element.
@@ -2591,7 +2721,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$3 + '</style>' + shadowMarkup$3;
+                return '<style>' + shadowStyles$4 + '</style>' + shadowMarkup$4;
             }
         }]);
         return HXDropFenceElement;
@@ -2754,9 +2884,9 @@
         return HXDropZoneElement;
     }(HXElement);
 
-    var shadowStyles$4 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxError {\n  display: inline-flex;\n}\n#hxError * + * {\n  margin-left: 0.25rem;\n}\n";
+    var shadowMarkup$5 = "<div id='hxError'><span><hx-icon type='exclamation-circle' id='hxIcon'></hx-icon></span><span><slot></slot></span></div>";
 
-    var shadowMarkup$4 = "<div id='hxError'><span><hx-icon type='exclamation-circle' id='hxIcon'></hx-icon></span><span><slot></slot></span></div>";
+    var shadowStyles$5 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxError {\n  display: inline-flex;\n}\n#hxError * + * {\n  margin-left: 0.25rem;\n}\n";
 
     /**
      * Defines behavior for the `<hx-error>` element.
@@ -2781,15 +2911,15 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$4 + '</style>' + shadowMarkup$4;
+                return '<style>' + shadowStyles$5 + '</style>' + shadowMarkup$5;
             }
         }]);
         return HXErrorElement;
     }(HXElement);
 
-    var shadowStyles$5 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxFileIcon {\n  position: relative;\n}\n#hxFileIcon #hxBase {\n  font-size: 2.5rem;\n  height: 1em;\n}\n#hxFileIcon #hxOverlay {\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  justify-content: center;\n  line-height: 1;\n  position: absolute;\n  text-align: center;\n  top: 0;\n  width: 100%;\n}\n#hxFileIcon #hxIcon {\n  font-size: 1rem;\n  height: 1em;\n}\n#hxFileIcon #hxExt {\n  display: none;\n  font-size: 0.5rem;\n  line-height: 1.5;\n  margin-top: 1px;\n  text-transform: uppercase;\n}\n:host([extension]) #hxFileIcon #hxOverlay {\n  height: auto;\n  top: 0.5rem;\n}\n:host([extension]) #hxFileIcon #hxExt {\n  display: block;\n}\n";
+    var shadowMarkup$6 = "<div id='hxFileIcon'><hx-icon type='file' id='hxBase'></hx-icon><div id='hxOverlay'><hx-icon id='hxIcon'></hx-icon><div id='hxExt'></div></div></div>";
 
-    var shadowMarkup$5 = "<div id='hxFileIcon'><hx-icon type='file' id='hxBase'></hx-icon><div id='hxOverlay'><hx-icon id='hxIcon'></hx-icon><div id='hxExt'></div></div></div>";
+    var shadowStyles$6 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxFileIcon {\n  position: relative;\n}\n#hxFileIcon #hxBase {\n  font-size: 2.5rem;\n  height: 1em;\n}\n#hxFileIcon #hxOverlay {\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  justify-content: center;\n  line-height: 1;\n  position: absolute;\n  text-align: center;\n  top: 0;\n  width: 100%;\n}\n#hxFileIcon #hxIcon {\n  font-size: 1rem;\n  height: 1em;\n}\n#hxFileIcon #hxExt {\n  display: none;\n  font-size: 0.5rem;\n  line-height: 1.5;\n  margin-top: 1px;\n  text-transform: uppercase;\n}\n:host([extension]) #hxFileIcon #hxOverlay {\n  height: auto;\n  top: 0.5rem;\n}\n:host([extension]) #hxFileIcon #hxExt {\n  display: block;\n}\n";
 
     /**
      * Defines behavior for the `<hx-file-icon>` element.
@@ -2866,7 +2996,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$5 + '</style>' + shadowMarkup$5;
+                return '<style>' + shadowStyles$6 + '</style>' + shadowMarkup$6;
             }
         }, {
             key: '$observedAttributes',
@@ -2877,9 +3007,9 @@
         return HXFileIconElement;
     }(HXElement);
 
-    var shadowMarkup$6 = "<div id='hxFile'><div id='hxContent'><slot></slot></div><button id='hxButton' type='button'><hx-icon id='hxIcon'></hx-icon><span id='hxLabel'></span></button></div>";
+    var shadowMarkup$7 = "<div id='hxFile'><div id='hxContent'><slot></slot></div><button id='hxButton' type='button'><hx-icon id='hxIcon'></hx-icon><span id='hxLabel'></span></button></div>";
 
-    var shadowStyles$6 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n:host #hxContent {\n  /*\n      Needed to prevent focusing of native file inputs.\n      Especially true for Microsoft browsers, because\n      Edge and IE have double tab stops.\n    */\n  display: none;\n}\n:host #hxButton {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n  border-radius: 2px;\n  display: inline-flex;\n  justify-content: center;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  font-size: 0.875rem;\n  padding: 8px 12px;\n  width: 100%;\n}\n:host #hxButton > * + * {\n  margin-left: 0.5rem;\n}\n:host #hxButton:focus {\n  outline: none;\n}\n:host #hxButton[disabled] {\n  cursor: not-allowed;\n}\n:host #hxButton[disabled]:focus {\n  box-shadow: none;\n}\n:host #hxButton:hover {\n  background-color: #16b9d4;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host #hxButton:active {\n  background-color: #0e94a6;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host #hxButton:focus {\n  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);\n}\n:host #hxButton[disabled] {\n  background-color: transparent;\n  border-color: #d8d8d8;\n  color: #d8d8d8;\n}\n:host #hxButton #hxLabel {\n  margin: 0;\n}\n:host #hxIcon {\n  display: none;\n}\n:host #hxLabel:empty {\n  display: none;\n}\n:host([icon]) #hxIcon {\n  display: inline-block;\n}\n:host([icon]) #hxButton #hxLabel {\n  margin-left: 0.5rem;\n}\n:host(.hxPrimary) #hxButton {\n  background-color: #0c7c84;\n  color: #ffffff;\n}\n:host(.hxPrimary) #hxButton:hover {\n  background-color: #16b9d4;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host(.hxPrimary) #hxButton:active {\n  background-color: #0e94a6;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host(.hxPrimary) #hxButton:focus {\n  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);\n  outline: none;\n}\n:host(.hxPrimary) #hxButton[disabled] {\n  background-color: #d8d8d8;\n  border-color: transparent;\n  color: #757575;\n}\n:host(.hxTertiary) #hxButton {\n  background-color: transparent;\n  border: none;\n  color: #0c7c84;\n  padding-left: 0;\n  padding-right: 0;\n}\n:host(.hxTertiary) #hxButton:hover {\n  background-color: transparent;\n  border-color: transparent;\n  color: #16b9d4;\n}\n:host(.hxTertiary) #hxButton:active {\n  background-color: transparent;\n  border-color: transparent;\n  color: #0e94a6;\n}\n:host(.hxTertiary) #hxButton:focus {\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host(.hxTertiary) #hxButton[disabled] {\n  background-color: transparent;\n  border-color: transparent;\n  color: #d8d8d8;\n}\n";
+    var shadowStyles$7 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n:host #hxContent {\n  /*\n      Needed to prevent focusing of native file inputs.\n      Especially true for Microsoft browsers, because\n      Edge and IE have double tab stops.\n    */\n  display: none;\n}\n:host #hxButton {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n  border-radius: 2px;\n  display: inline-flex;\n  justify-content: center;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  font-size: 0.875rem;\n  padding: 8px 12px;\n  width: 100%;\n}\n:host #hxButton > * + * {\n  margin-left: 0.5rem;\n}\n:host #hxButton:focus {\n  outline: none;\n}\n:host #hxButton[disabled] {\n  cursor: not-allowed;\n}\n:host #hxButton[disabled]:focus {\n  box-shadow: none;\n}\n:host #hxButton:hover {\n  background-color: #16b9d4;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host #hxButton:active {\n  background-color: #0e94a6;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host #hxButton:focus {\n  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);\n}\n:host #hxButton[disabled] {\n  background-color: transparent;\n  border-color: #d8d8d8;\n  color: #d8d8d8;\n}\n:host #hxButton #hxLabel {\n  margin: 0;\n}\n:host #hxIcon {\n  display: none;\n}\n:host #hxLabel:empty {\n  display: none;\n}\n:host([icon]) #hxIcon {\n  display: inline-block;\n}\n:host([icon]) #hxButton #hxLabel {\n  margin-left: 0.5rem;\n}\n:host(.hxPrimary) #hxButton {\n  background-color: #0c7c84;\n  color: #ffffff;\n}\n:host(.hxPrimary) #hxButton:hover {\n  background-color: #16b9d4;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host(.hxPrimary) #hxButton:active {\n  background-color: #0e94a6;\n  border-color: transparent;\n  color: #ffffff;\n}\n:host(.hxPrimary) #hxButton:focus {\n  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);\n  outline: none;\n}\n:host(.hxPrimary) #hxButton[disabled] {\n  background-color: #d8d8d8;\n  border-color: transparent;\n  color: #757575;\n}\n:host(.hxTertiary) #hxButton {\n  background-color: transparent;\n  border: none;\n  color: #0c7c84;\n  padding-left: 0;\n  padding-right: 0;\n}\n:host(.hxTertiary) #hxButton:hover {\n  background-color: transparent;\n  border-color: transparent;\n  color: #16b9d4;\n}\n:host(.hxTertiary) #hxButton:active {\n  background-color: transparent;\n  border-color: transparent;\n  color: #0e94a6;\n}\n:host(.hxTertiary) #hxButton:focus {\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host(.hxTertiary) #hxButton[disabled] {\n  background-color: transparent;\n  border-color: transparent;\n  color: #d8d8d8;\n}\n";
 
     /**
      * Defines behavior for the `<hx-file-input>` element.
@@ -3016,7 +3146,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$6 + '</style>' + shadowMarkup$6;
+                return '<style>' + shadowStyles$7 + '</style>' + shadowMarkup$7;
             }
         }, {
             key: '$observedAttributes',
@@ -3027,9 +3157,9 @@
         return HXFileInputElement;
     }(HXElement);
 
-    var shadowMarkup$7 = "<div id='hxFileTile'><a id='hxLink'><div id='hxIconWrapper'><hx-file-icon id='hxIcon'></hx-file-icon><hx-icon type='download'></hx-icon></div><div id='hxContentWrapper'><div id='hxName'></div><div id='hxState--downloadable'><div id='hxDetails'></div></div><div id='hxState--loading'><hx-progress id='hxProgress'></hx-progress></div><div id='hxState--invalid'><button id='hxRetry' type='button'>Retry<hx-icon type='redo'></hx-icon></button></div></div></a><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
+    var shadowMarkup$8 = "<div id='hxFileTile'><a id='hxLink'><div id='hxIconWrapper'><hx-file-icon id='hxIcon'></hx-file-icon><hx-icon type='download'></hx-icon></div><div id='hxContentWrapper'><div id='hxName'></div><div id='hxState--downloadable'><div id='hxDetails'></div></div><div id='hxState--loading'><hx-progress id='hxProgress'></hx-progress></div><div id='hxState--invalid'><button id='hxRetry' type='button'>Retry<hx-icon type='redo'></hx-icon></button></div></div></a><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-    var shadowStyles$7 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\na[href] {\n  background-color: transparent;\n  color: #0d74d1;\n  text-decoration: none;\n}\na[href]:hover,\na[href]:active {\n  color: #3391ff;\n  cursor: pointer;\n  text-decoration: none;\n}\na[href][disabled],\na[href].disabled {\n  color: #616161;\n  pointer-events: none;\n}\nhx-progress {\n  display: block;\n  height: 0.5rem;\n}\nhx-progress {\n  background-color: #d8d8d8;\n  border-radius: 1em;\n  color: #16b9d4;\n  overflow: hidden;\n}\n:host button {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n}\n:host #hxFileTile {\n  background-color: #f5f5f5;\n  border-radius: 2px;\n  border: 2px solid transparent;\n  color: #424242;\n  display: flex;\n  font-size: 0.875rem;\n  height: 100%;\n  width: 100%;\n}\n:host #hxRetry {\n  border-radius: 2px;\n  display: inline-flex;\n  justify-content: center;\n  padding: 0.125rem 0.5rem;\n  background-color: transparent;\n  border: none;\n  color: #0c7c84;\n  padding-left: 0;\n  padding-right: 0;\n}\n:host #hxRetry > * + * {\n  margin-left: 0.5rem;\n}\n:host #hxRetry:focus {\n  outline: none;\n}\n:host #hxRetry[disabled] {\n  cursor: not-allowed;\n}\n:host #hxRetry[disabled]:focus {\n  box-shadow: none;\n}\n:host #hxRetry:hover {\n  background-color: transparent;\n  border-color: transparent;\n  color: #16b9d4;\n}\n:host #hxRetry:active {\n  background-color: transparent;\n  border-color: transparent;\n  color: #0e94a6;\n}\n:host #hxRetry:focus {\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxRetry[disabled] {\n  background-color: transparent;\n  border-color: transparent;\n  color: #d8d8d8;\n}\n:host #hxRetry hx-icon {\n  margin-left: 0.25rem !important;\n}\n:host #hxDismiss {\n  flex-shrink: 0;\n  font-size: 1rem;\n  line-height: 0;\n  padding: 0.5rem 0.75rem;\n}\n:host #hxDismiss:hover {\n  color: #16b9d4;\n}\n:host #hxDismiss:focus {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n  outline: 0;\n}\n:host #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  flex: 0 0 48px;\n  height: 100%;\n  justify-content: center;\n  line-height: 0;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxIconWrapper > hx-icon {\n  display: none;\n  font-size: 2rem;\n}\n:host #hxContentWrapper {\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1;\n  justify-content: center;\n  overflow: hidden;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxName {\n  color: #0c7c84;\n  display: flex;\n  font-weight: 500;\n}\n:host #hxName > span {\n  white-space: pre;\n}\n:host #hxName > span:first-child {\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n:host #hxName > span:last-child {\n  flex-shrink: 0;\n}\n:host #hxDetails {\n  font-weight: 300;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n:host #hxLink {\n  color: #424242;\n  display: flex;\n  flex-grow: 1;\n  overflow: hidden;\n}\n:host #hxLink[href]:hover {\n  color: #16b9d4;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-file-icon {\n  display: none;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-icon {\n  display: inline-block;\n}\n:host #hxLink[href]:hover #hxName {\n  color: inherit;\n}\n:host #hxLink:focus {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n  outline: 0;\n}\n:host #hxState--loading hx-progress {\n  display: inline-block;\n  width: 100%;\n}\n:host #hxState--loading,\n:host #hxState--invalid {\n  display: none;\n}\n:host([invalid]) #hxFileTile {\n  border-color: #d32f2f;\n}\n:host([invalid]) #hxIconWrapper,\n:host([invalid]) #hxName {\n  color: #6b6b6b;\n}\n:host([invalid]) #hxState--downloadable {\n  display: none;\n}\n:host([invalid]) #hxState--invalid {\n  display: block;\n}\n:host([progress]) #hxLink {\n  color: #9e9e9e;\n}\n:host([progress]) #hxIconWrapper,\n:host([progress]) #hxName {\n  color: #6b6b6b;\n}\n:host([progress]) #hxState--downloadable {\n  display: none;\n}\n:host([progress]) #hxState--loading {\n  display: block;\n}\n:host([readonly]) #hxDismiss {\n  display: none;\n}\n:host([readonly]) #hxContentWrapper {\n  padding: 0.5rem;\n}\n";
+    var shadowStyles$8 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\na[href] {\n  background-color: transparent;\n  color: #0d74d1;\n  text-decoration: none;\n}\na[href]:hover,\na[href]:active {\n  color: #3391ff;\n  cursor: pointer;\n  text-decoration: none;\n}\nhx-progress {\n  display: block;\n  height: 0.5rem;\n}\nhx-progress {\n  background-color: #d8d8d8;\n  border-radius: 1em;\n  color: #16b9d4;\n  overflow: hidden;\n}\n:host button {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n}\n:host #hxFileTile {\n  background-color: #f5f5f5;\n  border-radius: 2px;\n  border: 2px solid transparent;\n  color: #424242;\n  display: flex;\n  font-size: 0.875rem;\n  height: 100%;\n  width: 100%;\n}\n:host #hxRetry {\n  border-radius: 2px;\n  display: inline-flex;\n  justify-content: center;\n  padding: 0.125rem 0.5rem;\n  background-color: transparent;\n  border: none;\n  color: #0c7c84;\n  padding-left: 0;\n  padding-right: 0;\n}\n:host #hxRetry > * + * {\n  margin-left: 0.5rem;\n}\n:host #hxRetry:focus {\n  outline: none;\n}\n:host #hxRetry[disabled] {\n  cursor: not-allowed;\n}\n:host #hxRetry[disabled]:focus {\n  box-shadow: none;\n}\n:host #hxRetry:hover {\n  background-color: transparent;\n  border-color: transparent;\n  color: #16b9d4;\n}\n:host #hxRetry:active {\n  background-color: transparent;\n  border-color: transparent;\n  color: #0e94a6;\n}\n:host #hxRetry:focus {\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxRetry[disabled] {\n  background-color: transparent;\n  border-color: transparent;\n  color: #d8d8d8;\n}\n:host #hxRetry hx-icon {\n  margin-left: 0.25rem !important;\n}\n:host #hxDismiss {\n  flex-shrink: 0;\n  font-size: 1rem;\n  line-height: 0;\n  padding: 0.5rem 0.75rem;\n}\n:host #hxDismiss:hover {\n  color: #16b9d4;\n}\n:host #hxDismiss:focus {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n  outline: 0;\n}\n:host #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  flex: 0 0 48px;\n  height: 100%;\n  justify-content: center;\n  line-height: 0;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxIconWrapper > hx-icon {\n  display: none;\n  font-size: 2rem;\n}\n:host #hxContentWrapper {\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1;\n  justify-content: center;\n  overflow: hidden;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxName {\n  color: #0c7c84;\n  display: flex;\n  font-weight: 500;\n}\n:host #hxName > span {\n  white-space: pre;\n}\n:host #hxName > span:first-child {\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n:host #hxName > span:last-child {\n  flex-shrink: 0;\n}\n:host #hxDetails {\n  font-weight: 300;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n:host #hxLink {\n  color: #424242;\n  display: flex;\n  flex-grow: 1;\n  overflow: hidden;\n}\n:host #hxLink[href]:hover {\n  color: #16b9d4;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-file-icon {\n  display: none;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-icon {\n  display: inline-block;\n}\n:host #hxLink[href]:hover #hxName {\n  color: inherit;\n}\n:host #hxLink:focus {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n  outline: 0;\n}\n:host #hxState--loading hx-progress {\n  display: inline-block;\n  width: 100%;\n}\n:host #hxState--loading,\n:host #hxState--invalid {\n  display: none;\n}\n:host([invalid]) #hxFileTile {\n  border-color: #d32f2f;\n}\n:host([invalid]) #hxIconWrapper,\n:host([invalid]) #hxName {\n  color: #6b6b6b;\n}\n:host([invalid]) #hxState--downloadable {\n  display: none;\n}\n:host([invalid]) #hxState--invalid {\n  display: block;\n}\n:host([progress]) #hxLink {\n  color: #9e9e9e;\n}\n:host([progress]) #hxIconWrapper,\n:host([progress]) #hxName {\n  color: #6b6b6b;\n}\n:host([progress]) #hxState--downloadable {\n  display: none;\n}\n:host([progress]) #hxState--loading {\n  display: block;\n}\n:host([readonly]) #hxDismiss {\n  display: none;\n}\n:host([readonly]) #hxContentWrapper {\n  padding: 0.5rem;\n}\n";
 
     // number of characters to avoid truncation at start/end of file name
     var PRE_TRUNC = 14;
@@ -3442,7 +3572,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$7 + '</style>' + shadowMarkup$7;
+                return '<style>' + shadowStyles$8 + '</style>' + shadowMarkup$8;
             }
         }, {
             key: '$observedAttributes',
@@ -3452,6 +3582,10 @@
         }]);
         return HXFileTileElement;
     }(HXElement);
+
+    var shadowMarkup$9 = "<span id='hxIcon' aria-hidden='true'><svg xmlns='http://www.w3.org/2000/svg' focusable='false' viewBox='0 0 16 16'><path id='hxPath'></path></svg></span>";
+
+    var shadowStyles$9 = ":host {\n  background-color: transparent;\n  color: currentColor;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  width: 1em;\n}\n:host #hxIcon {\n  box-sizing: border-box;\n  display: block;\n  flex-shrink: 0;\n  height: 100%;\n  line-height: 1;\n  width: 100%;\n}\n:host #hxIcon svg {\n  fill: currentColor;\n  height: auto;\n  stroke: none;\n  vertical-align: bottom;\n}\n";
 
     var _account = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M15.2 2c.44 0 .8.36.8.8v10.4c0 .44-.36.8-.8.8h-2.4a1.2 1.2 0 1 0-2.4 0H5.6a1.2 1.2 0 0 0-2.4 0H.8c-.44 0-.8-.36-.8-.8V2.8c0-.44.36-.8.8-.8h14.4zM9 10.562v-.437a.44.44 0 0 0-.242-.392c-.075-.037-1.859-.92-3.258-.92s-3.183.883-3.258.92a.44.44 0 0 0-.242.392v.437c0 .242.196.438.438.438h6.125A.438.438 0 0 0 9 10.562zm-5.287-4.74v.875c0 .965.785 1.75 1.75 1.75s1.75-.785 1.75-1.75v-.875c0-.965-.785-1.75-1.75-1.75s-1.75.785-1.75 1.75zM10 11h4v-1h-4v1zm0-3h4V7h-4v1zm0-3h4V4h-4v1z'/></svg>";
 
@@ -3480,6 +3614,8 @@
     var _checkmark = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M7.038 14.997c-.438 0-.858-.192-1.145-.53L1.355 9.111a1.5 1.5 0 0 1 2.289-1.939l3.171 3.742 5.392-9.175a1.5 1.5 0 0 1 2.586 1.52L8.331 14.257a1.5 1.5 0 0 1-1.293.74'/></svg>";
 
     var _checkmarkCircle = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M12.16 5.9l-4.164 5.418a1 1 0 0 1-.74.39c-.018.002-.035.002-.053.002-.273 0-.535-.113-.725-.312L3.91 8.694a1 1 0 0 1 1.45-1.378l1.763 1.856 3.451-4.492A1 1 0 0 1 12.16 5.9M8 1C4.14 1 1 4.14 1 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7'/></svg>";
+
+    var _clock = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm1-7.478V3a1 1 0 1 0-2 0v4.792a.998.998 0 0 0 .278.83l2.558 2.613a.989.989 0 0 0 1.407.008l.007-.008a1 1 0 0 0 .008-1.406L9 7.522z'/></svg>";
 
     var _cog = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8.006 10.16A2.19 2.19 0 0 1 5.82 7.973a2.19 2.19 0 0 1 2.187-2.188 2.19 2.19 0 0 1 2.188 2.188 2.19 2.19 0 0 1-2.188 2.187m6.778-3.458l-1.292-.209a5.673 5.673 0 0 0-.73-1.635l.807-.972a.246.246 0 0 0-.014-.323L12.22 2.23a.253.253 0 0 0-.326-.019l-1.058.834a5.634 5.634 0 0 0-1.615-.626l-.085-1.2A.238.238 0 0 0 8.904 1H7.019a.243.243 0 0 0-.237.218l-.102 1.23a5.63 5.63 0 0 0-1.539.618L4.03 2.209a.256.256 0 0 0-.327.021L2.369 3.563a.253.253 0 0 0-.019.326l.845 1.059a5.65 5.65 0 0 0-.688 1.597l-1.29.1A.241.241 0 0 0 1 6.88v1.886c0 .12.098.23.217.245l1.228.148a5.62 5.62 0 0 0 .647 1.669l-.741.93a.25.25 0 0 0 .018.325l1.333 1.333a.263.263 0 0 0 .33.024l.915-.677c.547.35 1.157.609 1.81.756l.094 1.263a.24.24 0 0 0 .235.218h1.761c.12 0 .232-.097.247-.217l.16-1.264a5.634 5.634 0 0 0 1.776-.735l.862.654a.26.26 0 0 0 .329-.022l1.334-1.333a.263.263 0 0 0 .023-.331l-.671-.903c.33-.563.568-1.187.69-1.852l1.185-.094A.24.24 0 0 0 15 8.668V6.955a.267.267 0 0 0-.216-.253'/></svg>";
 
@@ -3510,8 +3646,6 @@
     var _infoCircle = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1c3.859 0 7 3.141 7 7 0 3.861-3.141 7-7 7s-7-3.139-7-7c0-3.859 3.141-7 7-7zm-.25 4.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zm1.785 6.019h-.542c.004-1.328.003-4.146-.003-4.633-.003-.251-.115-.374-.32-.37-.189.006-.376.003-.565.002H7.302 6.5a.5.5 0 1 0 0 1h.497a889.327 889.327 0 0 0 0 4H6.5a.5.5 0 1 0 0 1h3.035a.5.5 0 0 0 0-1z'/></svg>";
 
     var _inputFile = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M15 4c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V5c0-.005.003-.009.003-.013 0-.005-.003-.008-.003-.013V3c0-.55.45-1 1-1h4c.55 0 1 .45 1 1v1h9zm-7.3 8.022l.053-.001a1 1 0 0 0 .74-.39l3.237-4.214a1.001 1.001 0 0 0-1.586-1.219L7.62 9.485 6.426 8.23a1 1 0 1 0-1.45 1.378l2 2.103c.19.199.451.311.724.311z'/></svg>";
-
-    var _inputTime = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M15.827 10.24a.5.5 0 0 1 .066.686l-2.197 2.878c-.099.13-.233.163-.399.196a.707.707 0 0 1-.366-.13l-1.399-1.438a.467.467 0 0 1 0-.686c.2-.196.532-.163.732 0l1.033 1.013 1.83-2.454a.523.523 0 0 1 .7-.065zM6.022 2c3.326 0 6.022 2.675 6.022 5.973 0 3.299-2.696 5.974-6.022 5.974S0 11.272 0 7.973C0 4.675 2.696 2 6.022 2zm1.122 7.449V4.412a.904.904 0 0 0-.915-.894c-.505 0-.913.4-.913.894v3.233l-1.82-.016h-.01a.904.904 0 0 0-.914.886.904.904 0 0 0 .906.902l3.666.032z'/></svg>";
 
     var _kbdArrowDown = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 16L13 11.087 8.856 11.087 8.856 0 7.144 0 7.144 11.087 3 11.087z'/></svg>";
 
@@ -3626,6 +3760,7 @@
         'calendar': _calendar,
         'checkmark': _checkmark,
         'checkmark-circle': _checkmarkCircle,
+        'clock': _clock,
         'cog': _cog,
         'copy': _copy,
         'download': _download,
@@ -3641,7 +3776,6 @@
         'help-circle': _helpCircle,
         'info-circle': _infoCircle,
         'input-file': _inputFile,
-        'input-time': _inputTime,
         'kbd-arrow-down': _kbdArrowDown,
         'kbd-arrow-left': _kbdArrowLeft,
         'kbd-arrow-right': _kbdArrowRight,
@@ -3698,10 +3832,7 @@
     MAP['input-url'] = MAP['globe'];
     MAP['technical-change'] = MAP['server-config'];
     MAP['technical-incident'] = MAP['server-incident'];
-
-    var shadowStyles$8 = ":host {\n  background-color: transparent;\n  color: currentColor;\n  display: inline-block;\n  flex-shrink: 0;\n  height: 1em;\n  width: 1em;\n}\n:host #hxIcon {\n  box-sizing: border-box;\n  display: block;\n  flex-shrink: 0;\n  height: 100%;\n  line-height: 1;\n  width: 100%;\n}\n:host #hxIcon svg {\n  fill: currentColor;\n  height: auto;\n  stroke: none;\n  vertical-align: bottom;\n}\n";
-
-    var shadowMarkup$8 = "<span id='hxIcon'><svg xmlns='http://www.w3.org/2000/svg' focusable='false' viewBox='0 0 16 16'><path id='hxPath'></path></svg></span>";
+    MAP['input-time'] = MAP['clock'];
 
     var DIV = document.createElement('div');
 
@@ -3723,7 +3854,6 @@
             key: '$onConnect',
             value: function $onConnect() {
                 this.$upgradeProperty('type');
-                this.$defaultAttribute('aria-hidden', true);
             }
         }, {
             key: '$onAttributeChange',
@@ -3813,7 +3943,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$8 + '</style>' + shadowMarkup$8;
+                return '<style>' + shadowStyles$9 + '</style>' + shadowMarkup$9;
             }
         }, {
             key: '$observedAttributes',
@@ -3825,32 +3955,682 @@
     }(HXElement);
 
     /**
-     * Fires when the element is concealed.
+     * Fires when a positionable element is concealed.
      *
-     * @event Menu:close
-     * @since 0.6.0
+     * @event Revealable:close
+     * @since 0.15.0
      * @type {CustomEvent}
      */
 
     /**
-     * Fires when the element is revealed.
+     * Fires when a positionable element is revealed.
      *
-     * @event Menu:open
-     * @since 0.6.0
+     * @event Revealable:open
+     * @since 0.15.0
      * @type {CustomEvent}
      */
+
+    /**
+     * @description
+     * Defines behavior for opening and closing an element.
+     * @interface
+     */
+    var Revealable = function Revealable(superclass) {
+        /** @lends Revealable */
+        var _Revealable = function (_superclass) {
+            inherits(_Revealable, _superclass);
+
+            function _Revealable() {
+                classCallCheck(this, _Revealable);
+                return possibleConstructorReturn(this, (_Revealable.__proto__ || Object.getPrototypeOf(_Revealable)).apply(this, arguments));
+            }
+
+            createClass(_Revealable, [{
+                key: '$onConnect',
+
+                /** @override */
+                value: function $onConnect() {
+                    get(_Revealable.prototype.__proto__ || Object.getPrototypeOf(_Revealable.prototype), '$onConnect', this).call(this);
+
+                    this.$upgradeProperty('open');
+                    this.setAttribute('aria-hidden', !this.open);
+                }
+
+                /** @override */
+
+            }, {
+                key: '$onAttributeChange',
+
+                /** @override */
+                value: function $onAttributeChange(attr, oldVal, newVal) {
+                    get(_Revealable.prototype.__proto__ || Object.getPrototypeOf(_Revealable.prototype), '$onAttributeChange', this).call(this, attr, oldVal, newVal);
+
+                    if (attr === 'open') {
+                        var isOpen = newVal !== null;
+                        this.setAttribute('aria-hidden', !isOpen);
+                        this.$emit(isOpen ? 'open' : 'close');
+                    }
+                }
+
+                /**
+                 * Determines if the element is revealed.
+                 *
+                 * @default false
+                 * @type {Boolean}
+                 */
+
+            }, {
+                key: 'open',
+                get: function get$$1() {
+                    return this.hasAttribute('open');
+                },
+                set: function set$$1(value) {
+                    if (value) {
+                        this.setAttribute('open', '');
+                    } else {
+                        this.removeAttribute('open');
+                    }
+                }
+            }], [{
+                key: '$observedAttributes',
+                get: function get$$1() {
+                    var attrs = get(_Revealable.__proto__ || Object.getPrototypeOf(_Revealable), '$observedAttributes', this);
+                    return attrs.concat(['open']);
+                }
+            }]);
+            return _Revealable;
+        }(superclass);
+
+        return _Revealable;
+    };
+
+    /**
+     * @typedef {Object} OptimumPositionMetadata
+     * @description
+     * Calculated metadata describing a positionable element's optimum position.
+     *
+     * @prop {Coordinate} x - optimum x coordinate
+     * @prop {Coordinate} y - optimum y coordinate
+     * @prop {PositionString} position - optimum position
+     */
+
+    /**
+     * @typedef {Object} PositionableRect
+     * @description
+     * Calculated, DOMRect-like object
+     *
+     * @prop {Number} bottom - distance from top of viewport to bottom edge of rect
+     * @prop {Number} left - distance from left of viewport to left edge of rect
+     * @prop {Number} right - distance from left of viewport to right edge of rect
+     * @prop {Number} top - distance from top of viewport to top edge of rect
+     */
+
+    /**
+     * @typedef {Object} PredicateCollisions
+     * @global
+     * @description
+     * Metadata object with predicate values for quick collision evaluation.
+     *
+     * @prop {Boolean} anywhere - true if any edge collides
+     * @prop {Boolean} bottom - true if bottom edge collides
+     * @prop {Boolean} horizontal - true if left or right edge collide
+     * @prop {Boolean} left - true if left edge collides
+     * @prop {Boolean} right - true if right edge collides
+     * @prop {Boolean} top - true if top edge collides
+     * @prop {Boolean} vertical - true if top or bottom edge collide
+     */
+
+    /**
+     * @typedef {Object} XYDeltas
+     * @description x and y adjustments for alignment
+     *
+     * @prop {Number} dX - x delta
+     * @prop {Number} dY - y delta
+     */
+
+    /**
+     * @interface
+     * @since 0.15.0
+     * @implements Revealable
+     *
+     * @description
+     * Defines behavior needed to calculate absolute coordinates
+     * and apply them to an instance.
+     */
+    var Positionable = function Positionable(superclass) {
+        var ProtoClass = function (_mix) {
+            inherits(ProtoClass, _mix);
+
+            function ProtoClass() {
+                classCallCheck(this, ProtoClass);
+                return possibleConstructorReturn(this, (ProtoClass.__proto__ || Object.getPrototypeOf(ProtoClass)).apply(this, arguments));
+            }
+
+            return ProtoClass;
+        }(mix(superclass, Revealable));
+
+        /** @lends Positionable */
+
+
+        var _Positionable = function (_ProtoClass) {
+            inherits(_Positionable, _ProtoClass);
+
+            function _Positionable() {
+                classCallCheck(this, _Positionable);
+                return possibleConstructorReturn(this, (_Positionable.__proto__ || Object.getPrototypeOf(_Positionable)).apply(this, arguments));
+            }
+
+            createClass(_Positionable, [{
+                key: '$onCreate',
+
+                /** @override */
+                value: function $onCreate() {
+                    get(_Positionable.prototype.__proto__ || Object.getPrototypeOf(_Positionable.prototype), '$onCreate', this).call(this);
+
+                    this.__onDocumentClick = this.__onDocumentClick.bind(this);
+                    this.__onDocumentScroll = this.__onDocumentScroll.bind(this);
+                    this.__onWindowResize = this.__onWindowResize.bind(this);
+
+                    this.DEFAULT_POSITION = 'bottom-center';
+                    this.POSITION_OFFSET = 0;
+                }
+
+                /** @override */
+
+            }, {
+                key: '$onConnect',
+                value: function $onConnect() {
+                    get(_Positionable.prototype.__proto__ || Object.getPrototypeOf(_Positionable.prototype), '$onConnect', this).call(this);
+
+                    this.$upgradeProperty('position');
+                    this.$upgradeProperty('relativeTo');
+
+                    this.$defaultAttribute('position', this.DEFAULT_POSITION);
+
+                    this.addEventListener('open', this.__onOpen);
+                    this.addEventListener('close', this.__onClose);
+
+                    if (this.open) {
+                        this.$emit('open');
+                    }
+                }
+
+                /** @override */
+
+            }, {
+                key: '$onDisconnect',
+                value: function $onDisconnect() {
+                    get(_Positionable.prototype.__proto__ || Object.getPrototypeOf(_Positionable.prototype), '$onDisconnect', this).call(this);
+
+                    this.removeEventListener('open', this.__onOpen);
+                    this.removeEventListener('close', this.__onClose);
+
+                    this.__removeOpenListeners();
+                }
+
+                /** @override */
+
+            }, {
+                key: '$onAttributeChange',
+
+
+                /** @override */
+                value: function $onAttributeChange(attr, oldVal, newVal) {
+                    get(_Positionable.prototype.__proto__ || Object.getPrototypeOf(_Positionable.prototype), '$onAttributeChange', this).call(this, attr, oldVal, newVal);
+
+                    if (attr === 'position') {
+                        this.reposition();
+                    }
+                }
+
+                /**
+                 * External element that controls positioned element visibility.
+                 * This is commonly a `<button>` or `<hx-disclosure>`.
+                 *
+                 * @readonly
+                 * @type {HTMLElement}
+                 */
+
+            }, {
+                key: 'reposition',
+
+
+                /**
+                 * Calculate and apply new (x,y) coordinates.
+                 */
+                value: function reposition() {
+                    if (this.open && this.relativeElement) {
+                        var _calculatePosition = this.__calculatePosition(),
+                            x = _calculatePosition.x,
+                            y = _calculatePosition.y,
+                            position = _calculatePosition.position;
+
+                        /*
+                         * FYI: `getClientRect()` (via `getBoundingClientRect()`) may incorrectly calculate
+                         * the `width` property if the `left` CSS property is not explicitly defined.
+                         */
+
+
+                        this.style.top = y + 'px';
+                        this.style.left = x + 'px';
+
+                        this._optimumPosition = position;
+
+                        this.$emit('reposition');
+                    }
+                }
+
+                /**
+                 * Add active event listeners (e.g, document `click`)
+                 * These listeners rely on `this.controlElement` to manipulate
+                 * the open state of the positionable element.
+                 */
+
+            }, {
+                key: '__addActiveListeners',
+                value: function __addActiveListeners() {
+                    if (this.controlElement) {
+                        document.addEventListener('click', this.__onDocumentClick);
+                    }
+                }
+
+                /**
+                 * Add event listeners that only apply when open.
+                 */
+
+            }, {
+                key: '__addOpenListeners',
+                value: function __addOpenListeners() {
+                    this.__addActiveListeners();
+                    this.__addPassiveListeners();
+                }
+
+                /**
+                 * Add passive event listeners (e.g., document `scroll` and
+                 * window `resize`). These listeners rely on `this.relativeElement`
+                 * to reposition the positionable element.
+                 */
+
+            }, {
+                key: '__addPassiveListeners',
+                value: function __addPassiveListeners() {
+                    if (this.relativeElement) {
+                        document.addEventListener('scroll', this.__onDocumentScroll, { passive: true });
+                        window.addEventListener('resize', this.__onWindowResize, { passive: true });
+                    }
+                }
+
+                /**
+                 * Calculate optimum position and fixed {x,y} coordinates needed
+                 * to arrange the positionable element in relation to its
+                 * `relativeElement`, taking viewport size into account.
+                 *
+                 * @returns {OptimumPositionMetadata}
+                 */
+
+            }, {
+                key: '__calculatePosition',
+                value: function __calculatePosition() {
+                    if (!this.relativeElement) {
+                        return { x: 0, y: 0 };
+                    }
+
+                    var posRect = this.getBoundingClientRect();
+                    var relRect = this.relativeElement.getBoundingClientRect();
+
+                    var position = this.position;
+                    var deltas = this.__getDeltas(position);
+                    var calculate = offsetFunctionMap[position];
+
+                    // calculate initial coords
+                    var coords = calculate(posRect, relRect, deltas);
+
+                    // check if any edge of the element is off screen
+                    var isOffscreen = this.__getViewportCollisions(coords);
+
+                    if (isOffscreen.anywhere) {
+                        var optimumPosition = optimizePositionForCollisions(position, isOffscreen);
+                        var optimumDeltas = this.__getDeltas(optimumPosition);
+                        var optimumCalculate = offsetFunctionMap[optimumPosition];
+
+                        // recalculate coords based on optimum position
+                        var optimumCoords = optimumCalculate(posRect, relRect, optimumDeltas);
+
+                        return {
+                            position: optimumPosition,
+                            x: optimumCoords.x,
+                            y: optimumCoords.y
+                        };
+                    }
+
+                    return {
+                        position: position,
+                        x: coords.x,
+                        y: coords.y
+                    };
+                }
+
+                /**
+                 * Calculate X and Y adjustments based on position.
+                 *
+                 * @param {PositionString} position
+                 * @returns {XYDeltas}
+                 */
+
+            }, {
+                key: '__getDeltas',
+                value: function __getDeltas(position) {
+                    var isLeftOrRight = /^(left|right)/.test(position);
+                    var margin = 0; // main-axis adjustment
+                    var offset = this.__getOffset(); // cross-axis adjustment
+
+                    var dX = isLeftOrRight ? margin : offset;
+                    var dY = isLeftOrRight ? offset : margin;
+
+                    /*
+                     * Invert dX to shift positioned element LEFT
+                     *
+                     *  - top-right
+                     *  - top-end
+                     *  - bottom-right
+                     *  - bottom-end
+                     */
+                    if (/^(top|bottom)-(right|end)/.test(position)) {
+                        dX = -dX;
+                    }
+
+                    /*
+                     * Invert dY to shift positioned element UP
+                     *
+                     *  - left-bottom
+                     *  - left-end
+                     *  - right-bottom
+                     *  - right-end
+                     */
+                    if (/^(left|right)-(bottom|end)/.test(position)) {
+                        dY = -dY;
+                    }
+
+                    return { dX: dX, dY: dY };
+                }
+
+                /**
+                 * Calculate offset based on class configuration and
+                 * positionable element's configured position.
+                 */
+
+            }, {
+                key: '__getOffset',
+                value: function __getOffset() {
+                    var offset = this.POSITION_OFFSET || 0;
+
+                    /*
+                     * Remove offset if positioned on major axis
+                     * so that the point of an optional arrow always aligns
+                     * to the center of the reference element.
+                     */
+                    if (/-(center|middle)$/.test(this.position)) {
+                        offset = 0;
+                    }
+
+                    return offset;
+                }
+
+                /**
+                 * Calculates DOMRect-like metadata as if the positioned element
+                 * were placed at the given coordinates.
+                 *
+                 * @param {XYCoordinates} coords
+                 * @returns {PositionableRect}
+                 */
+
+            }, {
+                key: '__getRectAtCoords',
+                value: function __getRectAtCoords(coords) {
+                    var x = coords.x,
+                        y = coords.y;
+
+                    var _getBoundingClientRec = this.getBoundingClientRect(),
+                        height = _getBoundingClientRec.height,
+                        width = _getBoundingClientRec.width;
+
+                    return {
+                        bottom: y + height,
+                        left: x,
+                        right: x + width,
+                        top: y
+                    };
+                }
+
+                /**
+                 * Given a set of coordinates, determine if any edge of the
+                 * positionable element collides with the viewport.
+                 *
+                 * @param {XYCoordinates} coords
+                 * @returns {PredicateCollisions}
+                 * Value returned only if collisions are detected.
+                 */
+
+            }, {
+                key: '__getViewportCollisions',
+                value: function __getViewportCollisions(coords) {
+                    var rect = this.__getRectAtCoords(coords);
+
+                    var bottom = rect.bottom > window.innerHeight;
+                    var left = rect.left < 0;
+                    var right = rect.right > window.innerWidth;
+                    var top = rect.top < 0;
+                    var vertically = top || bottom;
+                    var horizontally = left || right;
+                    var anywhere = vertically || horizontally;
+
+                    return {
+                        anywhere: anywhere,
+                        bottom: bottom,
+                        horizontally: horizontally,
+                        left: left,
+                        right: right,
+                        top: top,
+                        vertically: vertically
+                    };
+                }
+
+                /**
+                 * Positionable 'close' event listener.
+                 */
+
+            }, {
+                key: '__onClose',
+                value: function __onClose() {
+                    this.__removeOpenListeners();
+                }
+
+                /**
+                 * Document 'click' event listener.
+                 * @param {Event} evt
+                 */
+
+            }, {
+                key: '__onDocumentClick',
+                value: function __onDocumentClick(evt) {
+                    if (!this.controlElement) {
+                        return;
+                    }
+
+                    var inComponent = this.contains(evt.target);
+                    var inControl = this.controlElement.contains(evt.target);
+                    var isBackground = !inComponent && !inControl;
+
+                    if (this.open && isBackground) {
+                        this.open = false;
+                    }
+                }
+
+                /**
+                 * Document 'scroll' event listener.
+                 */
+
+            }, {
+                key: '__onDocumentScroll',
+                value: function __onDocumentScroll() {
+                    this.reposition();
+                }
+
+                /**
+                 * Positionable 'open' event listener.
+                 */
+
+            }, {
+                key: '__onOpen',
+                value: function __onOpen() {
+                    this.__addOpenListeners();
+                    this.reposition();
+                }
+
+                /**
+                 * Window 'resize' event listener.
+                 */
+
+            }, {
+                key: '__onWindowResize',
+                value: function __onWindowResize() {
+                    this.reposition();
+                }
+
+                /**
+                 * Remove event listeners that only apply when open.
+                 */
+
+            }, {
+                key: '__removeOpenListeners',
+                value: function __removeOpenListeners() {
+                    // active listeners
+                    document.removeEventListener('click', this.__onDocumentClick);
+                    // passive listeners
+                    document.removeEventListener('scroll', this.__onDocumentScroll);
+                    window.removeEventListener('resize', this.__onWindowResize);
+                }
+            }, {
+                key: 'controlElement',
+                get: function get$$1() {
+                    if (this.isConnected) {
+                        return this.getRootNode().querySelector('[aria-controls="' + this.id + '"]');
+                    }
+                }
+
+                /**
+                 * Optimum position calculated by internal algorithm.
+                 * Will return undefined if element hasn't been repositioned.
+                 *
+                 * @readonly
+                 * @type {PositionString|undefined}
+                 */
+
+            }, {
+                key: 'optimumPosition',
+                get: function get$$1() {
+                    return this._optimumPosition;
+                }
+
+                /**
+                 * Where to position the element against its relativeElement.
+                 *
+                 * **NOTE:** Values are normalized upon setting, which means that
+                 * the value retrieved may differ from the value being set.
+                 *
+                 * ```javascript
+                 * el.position = 'top';
+                 * el.position; // 'top-center'
+                 *
+                 * el.position = 'bottom-center';
+                 * el.position; // 'bottom-center'
+                 * ```
+                 *
+                 * @type {PositionString}
+                 */
+
+            }, {
+                key: 'position',
+                get: function get$$1() {
+                    var _configured = this.getAttribute('position') || this.DEFAULT_POSITION;
+                    return normalizePosition(_configured);
+                },
+                set: function set$$1(value) {
+                    var _position = normalizePosition(value);
+                    this.setAttribute('position', _position);
+                }
+
+                /**
+                 * Reference element used to calculate positionable element's position.
+                 *
+                 * @readonly
+                 * @type {HTMLElement|undefined}
+                 */
+
+            }, {
+                key: 'relativeElement',
+                get: function get$$1() {
+                    if (!this.isConnected) {
+                        return;
+                    }
+
+                    if (this.relativeTo) {
+                        return this.getRootNode().querySelector('[id="' + this.relativeTo + '"]');
+                    } else {
+                        return this.controlElement;
+                    }
+                }
+
+                /**
+                 * ID of an element to relatively position against.
+                 *
+                 * @type {String}
+                 */
+
+            }, {
+                key: 'relativeTo',
+                get: function get$$1() {
+                    return this.getAttribute('relative-to');
+                },
+                set: function set$$1(value) {
+                    this.setAttribute('relative-to', value);
+                }
+            }], [{
+                key: '$observedAttributes',
+                get: function get$$1() {
+                    var attrs = get(_Positionable.__proto__ || Object.getPrototypeOf(_Positionable), '$observedAttributes', this);
+                    return attrs.concat(['position']);
+                }
+            }]);
+            return _Positionable;
+        }(ProtoClass);
+
+        return _Positionable;
+    };
+
+    var _ProtoClass = function (_mix) {
+        inherits(_ProtoClass, _mix);
+
+        function _ProtoClass() {
+            classCallCheck(this, _ProtoClass);
+            return possibleConstructorReturn(this, (_ProtoClass.__proto__ || Object.getPrototypeOf(_ProtoClass)).apply(this, arguments));
+        }
+
+        return _ProtoClass;
+    }(mix(HXElement, Positionable));
 
     /**
      * Defines behavior for the `<hx-menu>` element.
      *
-     * @emits Menu:close
-     * @emits Menu:open
      * @extends HXElement
+     * @extends Positionable
      * @hideconstructor
      * @since 0.2.0
      */
-    var HXMenuElement = function (_HXElement) {
-        inherits(HXMenuElement, _HXElement);
+
+
+    var HXMenuElement = function (_ProtoClass2) {
+        inherits(HXMenuElement, _ProtoClass2);
 
         function HXMenuElement() {
             classCallCheck(this, HXMenuElement);
@@ -3859,125 +4639,31 @@
 
         createClass(HXMenuElement, [{
             key: '$onCreate',
+
+
+            /** @override */
             value: function $onCreate() {
-                this._onDocumentClick = this._onDocumentClick.bind(this);
+                get(HXMenuElement.prototype.__proto__ || Object.getPrototypeOf(HXMenuElement.prototype), '$onCreate', this).call(this);
+                this.DEFAULT_POSITION = 'bottom-start';
             }
+
+            /** @override */
+
         }, {
             key: '$onConnect',
             value: function $onConnect() {
-                this.$upgradeProperty('open');
-                this.$upgradeProperty('position');
-                this.$upgradeProperty('relativeTo');
-                this.$defaultAttribute('position', 'bottom-start');
+                get(HXMenuElement.prototype.__proto__ || Object.getPrototypeOf(HXMenuElement.prototype), '$onConnect', this).call(this);
                 this.$defaultAttribute('role', 'menu');
-                this._initialPosition = this.position;
-                document.addEventListener('click', this._onDocumentClick);
-            }
-        }, {
-            key: '$onDisconnect',
-            value: function $onDisconnect() {
-                document.removeEventListener('click', this._onDocumentClick);
-            }
-        }, {
-            key: '$onAttributeChange',
-            value: function $onAttributeChange(attr, oldVal, newVal) {
-                if (attr === 'open') {
-                    var isOpen = newVal !== null;
-                    this.setAttribute('aria-expanded', isOpen);
-                    this.$emit(isOpen ? 'open' : 'close');
-                }
-            }
-        }, {
-            key: '_setPosition',
-            value: function _setPosition() {
-                var offset = getPosition(this, this.relativeElement, {
-                    position: this.position,
-                    margin: 2
-                });
-                this.style.top = offset.y + 'px';
-                this.style.left = offset.x + 'px';
-            }
-        }, {
-            key: '_isDescendant',
-            value: function _isDescendant(el) {
-                if (el.closest('hx-menu[id="' + this.id + '"]')) {
-                    return true;
-                }
-                return false;
-            }
-        }, {
-            key: '_isDisclosure',
-            value: function _isDisclosure(el) {
-                if (el.closest('hx-disclosure[aria-controls="' + this.id + '"]')) {
-                    return true;
-                }
-                return false;
-            }
-        }, {
-            key: '_onDocumentClick',
-            value: function _onDocumentClick(event) {
-                if (!this._isDescendant(event.target) && !this._isDisclosure(event.target)) {
-                    this.open = false;
-                }
-            }
-        }, {
-            key: 'position',
-            set: function set$$1(value) {
-                if (value) {
-                    this.setAttribute('position', value);
-                } else {
-                    this.removeAttribute('position');
-                }
-            },
-            get: function get$$1() {
-                if (this.hasAttribute('position')) {
-                    return this.getAttribute('position');
-                }
-                return undefined;
-            }
-        }, {
-            key: 'relativeTo',
-            set: function set$$1(value) {
-                this.setAttribute('relative-to', value);
-            },
-            get: function get$$1() {
-                return this.getAttribute('relative-to');
-            }
-        }, {
-            key: 'relativeElement',
-            get: function get$$1() {
-                if (this.relativeTo) {
-                    return this.getRootNode().getElementById(this.relativeTo);
-                } else {
-                    return this.getRootNode().querySelector('[aria-controls="' + this.id + '"]');
-                }
-            }
-        }, {
-            key: 'open',
-            set: function set$$1(value) {
-                if (value) {
-                    this.setAttribute('open', '');
-                    this._setPosition();
-                } else {
-                    this.removeAttribute('open');
-                }
-            },
-            get: function get$$1() {
-                return this.hasAttribute('open');
+                this.setAttribute('aria-expanded', this.open);
             }
         }], [{
             key: 'is',
             get: function get$$1() {
                 return 'hx-menu';
             }
-        }, {
-            key: '$observedAttributes',
-            get: function get$$1() {
-                return ['open'];
-            }
         }]);
         return HXMenuElement;
-    }(HXElement);
+    }(_ProtoClass);
 
     /**
      * Defines behavior for the `<hx-menuitem>` element.
@@ -4008,9 +4694,9 @@
         return HXMenuitemElement;
     }(HXElement);
 
-    var shadowMarkup$9 = "<div id='hxModal'><button type='button' id='hxClose'><hx-icon type='times'></hx-icon></button><slot></slot></div>";
+    var shadowMarkup$a = "<div id='hxBackdrop'><div id='hxModal'><button type='button' id='hxClose'><hx-icon type='times'></hx-icon></button><div id='hxContent'><slot></slot></div></div></div>";
 
-    var shadowStyles$9 = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxModal {\n  background-color: #ffffff;\n  box-shadow: 0px 7px 9px 0 rgba(0, 0, 0, 0.3);\n  display: flex;\n  flex-direction: column;\n  left: 50%;\n  max-width: 40rem;\n  min-height: 12.5rem;\n  min-width: 25rem;\n  padding: 1.25rem;\n  position: fixed;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1201;\n}\n#hxModal #hxClose {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  height: 1rem;\n  line-height: 1;\n  padding: 0;\n  position: absolute;\n  right: 1.25rem;\n  top: 1.25rem;\n}\n";
+    var shadowStyles$a = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n:host {\n  display: none;\n  z-index: 1200;\n}\n:host([open]) {\n  display: block;\n}\n#hxBackdrop {\n  align-items: center;\n  background-color: rgba(0, 0, 0, 0.6);\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  justify-content: center;\n  padding: 1.25rem;\n  width: 100%;\n}\n#hxModal {\n  background-color: #ffffff;\n  box-shadow: 0px 7px 9px 0 rgba(0, 0, 0, 0.3);\n  display: flex;\n  min-height: 3.5rem;\n  min-width: 25rem;\n  position: relative;\n}\n@supports (--modern: true) {\n  #hxModal {\n    min-height: 12.5rem;\n  }\n}\n#hxContent {\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  width: 100%;\n}\n#hxClose {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n  color: #757575;\n  height: 1rem;\n  position: absolute;\n  right: 1.25rem;\n  top: 1.25rem;\n}\n:host(.hxSm) #hxModal {\n  max-width: 30rem;\n  width: 40%;\n}\n:host #hxModal {\n  max-width: 50rem;\n  width: 60%;\n}\n:host(.hxLg) #hxModal {\n  max-width: 70rem;\n  width: 80%;\n}\n";
 
     /**
      * Fires when the element is concealed.
@@ -4134,7 +4820,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$9 + '</style>' + shadowMarkup$9;
+                return '<style>' + shadowStyles$a + '</style>' + shadowMarkup$a;
             }
         }, {
             key: '$observedAttributes',
@@ -4145,9 +4831,9 @@
         return HXModalElement;
     }(HXElement);
 
-    var shadowMarkup$a = "<div id='hxPill'><span><slot></slot></span><button id='hxDismiss' type='button'><span><hx-icon type='times'></hx-icon></span></button></div>";
+    var shadowMarkup$b = "<div id='hxPill'><span><slot></slot></span><button id='hxDismiss' type='button'><span><hx-icon type='times'></hx-icon></span></button></div>";
 
-    var shadowStyles$a = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n:host #hxPill {\n  background-color: #d8d8d8;\n  border-radius: 1em;\n  color: #424242;\n  display: flex;\n  height: 100%;\n  padding: 0 1rem;\n  white-space: nowrap;\n  width: 100%;\n}\n:host #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n  align-items: center;\n  color: #9e9e9e;\n  display: none;\n  height: 1.5em;\n  justify-content: center;\n  margin: 0 -0.5rem 0 0;\n  width: 1.5em;\n}\n:host #hxDismiss > span {\n  font-size: 0.75em;\n}\n:host #hxDismiss:hover {\n  color: #000000;\n}\n:host([dismissable]) #hxDismiss {\n  display: inline-flex;\n}\n";
+    var shadowStyles$b = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n:host #hxPill {\n  background-color: #d8d8d8;\n  border-radius: 1em;\n  color: #424242;\n  display: flex;\n  height: 100%;\n  padding: 0 1rem;\n  white-space: nowrap;\n  width: 100%;\n}\n:host #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n  align-items: center;\n  color: #9e9e9e;\n  display: inline-flex;\n  height: 1.5em;\n  justify-content: center;\n  margin: 0 -0.5rem 0 0;\n  width: 1.5em;\n}\n:host #hxDismiss > span {\n  font-size: 0.75em;\n}\n:host #hxDismiss:hover {\n  color: #000000;\n}\n:host([persist]) #hxDismiss {\n  display: none;\n}\n";
 
     /**
      * Fires when the dismiss button ("X") is pressed.
@@ -4181,6 +4867,7 @@
             key: '$onConnect',
             value: function $onConnect() {
                 this._btnDismiss.addEventListener('click', this._onDismiss);
+                this.$upgradeProperty('persist');
             }
         }, {
             key: '$onDisconnect',
@@ -4189,13 +4876,22 @@
             }
 
             /**
-             * Dismiss the pill (removes element from the DOM)
+             * Property reflecting the `persist` HTML attribute, indicating whether the
+             * pill may be dismissed. If true, the dismiss button will not be shown.
+             *
+             * @default false
+             * @type {Boolean}
              */
 
         }, {
             key: 'dismiss',
+
+
+            /**
+             * Dismiss the pill (removes element from the DOM)
+             */
             value: function dismiss() {
-                if (this.$emit('dismiss')) {
+                if (!this.persist && this.$emit('dismiss')) {
                     // only if event was not canceled by consumer
                     this.remove();
                 }
@@ -4213,6 +4909,18 @@
             /** @private */
 
         }, {
+            key: 'persist',
+            get: function get$$1() {
+                return this.hasAttribute('persist');
+            },
+            set: function set$$1(value) {
+                if (value) {
+                    this.setAttribute('persist', '');
+                } else {
+                    this.removeAttribute('persist');
+                }
+            }
+        }, {
             key: '_btnDismiss',
             get: function get$$1() {
                 return this.shadowRoot.getElementById('hxDismiss');
@@ -4225,515 +4933,39 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$a + '</style>' + shadowMarkup$a;
+                return '<style>' + shadowStyles$b + '</style>' + shadowMarkup$b;
             }
         }]);
         return HXPillElement;
     }(HXElement);
 
-    /**
-     * Checks if `value` is the
-     * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
-     * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
-     *
-     * @static
-     * @memberOf _
-     * @since 0.1.0
-     * @category Lang
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if `value` is an object, else `false`.
-     * @example
-     *
-     * _.isObject({});
-     * // => true
-     *
-     * _.isObject([1, 2, 3]);
-     * // => true
-     *
-     * _.isObject(_.noop);
-     * // => true
-     *
-     * _.isObject(null);
-     * // => false
-     */
-    function isObject(value) {
-      var type = typeof value;
-      return value != null && (type == 'object' || type == 'function');
-    }
+    var shadowMarkup$c = "<div id='hxPopover' class='has-arrow'><slot></slot></div>";
 
-    var isObject_1 = isObject;
+    var shadowStyles$c = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n/* MIXINS */\n.has-arrow {\n  margin: 0;\n  position: relative;\n  /*======================================== *\\\n   * TOP POSITIONS\n  \\*======================================== */\n  /*======================================== *\\\n   * RIGHT POSITIONS\n  \\*======================================== */\n  /*======================================== *\\\n   * BOTTOM POSITIONS\n  \\*======================================== */\n  /*======================================== *\\\n   * LEFT POSITIONS\n  \\*======================================== */\n}\n.has-arrow::before {\n  box-shadow: 0 0 0 1px #e0e0e0;\n  z-index: -1;\n}\n.has-arrow::before,\n.has-arrow::after {\n  content: '';\n  display: block;\n  height: 13px;\n  position: absolute;\n  width: 13px;\n}\n.has-arrow[position^=\"top\"] {\n  margin-bottom: 8px;\n}\n.has-arrow[position^=\"top\"]::before,\n.has-arrow[position^=\"top\"]::after {\n  bottom: -8px;\n}\n.has-arrow[position^=\"top\"]::after {\n  background-image: linear-gradient(to bottom left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"top\"]::before,\n.has-arrow[position=\"top-center\"]::before,\n.has-arrow[position=\"top\"]::after,\n.has-arrow[position=\"top-center\"]::after {\n  left: 50%;\n}\n.has-arrow[position=\"top\"]::before,\n.has-arrow[position=\"top-center\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"top\"]::before,\n.has-arrow[position=\"top-center\"]::before,\n.has-arrow[position=\"top\"]::after,\n.has-arrow[position=\"top-center\"]::after {\n  transform-origin: bottom left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"top-right\"]::before,\n.has-arrow[position=\"top-right\"]::after {\n  left: 1.25rem;\n}\n.has-arrow[position=\"top-right\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"top-right\"]::before,\n.has-arrow[position=\"top-right\"]::after {\n  transform-origin: bottom left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"top-left\"]::before,\n.has-arrow[position=\"top-left\"]::after {\n  right: 1.25rem;\n}\n.has-arrow[position=\"top-left\"]::after {\n  background-image: linear-gradient(to bottom right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"top-left\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"top-left\"]::before,\n.has-arrow[position=\"top-left\"]::after {\n  transform-origin: bottom right;\n  transform: rotate(45deg);\n}\n.has-arrow[position^=\"right\"] {\n  margin-left: 8px;\n}\n.has-arrow[position^=\"right\"]::before,\n.has-arrow[position^=\"right\"]::after {\n  left: -8px;\n}\n.has-arrow[position^=\"right\"]::after {\n  background-image: linear-gradient(to top left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"right\"]::before,\n.has-arrow[position=\"right-middle\"]::before,\n.has-arrow[position=\"right\"]::after,\n.has-arrow[position=\"right-middle\"]::after {\n  top: 50%;\n}\n.has-arrow[position=\"right\"]::before,\n.has-arrow[position=\"right-middle\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"right\"]::before,\n.has-arrow[position=\"right-middle\"]::before,\n.has-arrow[position=\"right\"]::after,\n.has-arrow[position=\"right-middle\"]::after {\n  transform-origin: top left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"right-bottom\"]::before,\n.has-arrow[position=\"right-bottom\"]::after {\n  top: 1.25rem;\n}\n.has-arrow[position=\"right-bottom\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"right-bottom\"]::before,\n.has-arrow[position=\"right-bottom\"]::after {\n  transform-origin: top left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"right-top\"]::before,\n.has-arrow[position=\"right-top\"]::after {\n  bottom: 1.25rem;\n}\n.has-arrow[position=\"right-top\"]::after {\n  background-image: linear-gradient(to bottom left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"right-top\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"right-top\"]::before,\n.has-arrow[position=\"right-top\"]::after {\n  transform-origin: bottom left;\n  transform: rotate(45deg);\n}\n.has-arrow[position^=\"bottom\"] {\n  margin-top: 8px;\n}\n.has-arrow[position^=\"bottom\"]::before,\n.has-arrow[position^=\"bottom\"]::after {\n  top: -8px;\n}\n.has-arrow[position^=\"bottom\"]::after {\n  background-image: linear-gradient(to top left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"bottom\"]::before,\n.has-arrow[position=\"bottom-center\"]::before,\n.has-arrow[position=\"bottom\"]::after,\n.has-arrow[position=\"bottom-center\"]::after {\n  left: 50%;\n}\n.has-arrow[position=\"bottom\"]::before,\n.has-arrow[position=\"bottom-center\"]::before,\n.has-arrow[position=\"bottom\"]::after,\n.has-arrow[position=\"bottom-center\"]::after {\n  transform-origin: top left;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"bottom-right\"]::before,\n.has-arrow[position=\"bottom-right\"]::after {\n  left: 1.25rem;\n}\n.has-arrow[position=\"bottom-right\"]::before,\n.has-arrow[position=\"bottom-right\"]::after {\n  transform-origin: top left;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"bottom-left\"]::before,\n.has-arrow[position=\"bottom-left\"]::after {\n  right: 1.25rem;\n}\n.has-arrow[position=\"bottom-left\"]::after {\n  background-image: linear-gradient(to top right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"bottom-left\"]::before,\n.has-arrow[position=\"bottom-left\"]::after {\n  transform-origin: top right;\n  transform: rotate(-45deg);\n}\n.has-arrow[position^=\"left\"] {\n  margin-right: 8px;\n}\n.has-arrow[position^=\"left\"]::before,\n.has-arrow[position^=\"left\"]::after {\n  right: -8px;\n}\n.has-arrow[position^=\"left\"]::after {\n  background-image: linear-gradient(to top right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"left\"]::before,\n.has-arrow[position=\"left-middle\"]::before,\n.has-arrow[position=\"left\"]::after,\n.has-arrow[position=\"left-middle\"]::after {\n  top: 50%;\n}\n.has-arrow[position=\"left\"]::before,\n.has-arrow[position=\"left-middle\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"left\"]::before,\n.has-arrow[position=\"left-middle\"]::before,\n.has-arrow[position=\"left\"]::after,\n.has-arrow[position=\"left-middle\"]::after {\n  transform-origin: top right;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"left-bottom\"]::before,\n.has-arrow[position=\"left-bottom\"]::after {\n  top: 1.25rem;\n}\n.has-arrow[position=\"left-bottom\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"left-bottom\"]::before,\n.has-arrow[position=\"left-bottom\"]::after {\n  transform-origin: top right;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"left-top\"]::before,\n.has-arrow[position=\"left-top\"]::after {\n  bottom: 1.25rem;\n}\n.has-arrow[position=\"left-top\"]::after {\n  background-image: linear-gradient(to bottom right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"left-top\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"left-top\"]::before,\n.has-arrow[position=\"left-top\"]::after {\n  transform-origin: bottom right;\n  transform: rotate(-45deg);\n}\n#hxPopover {\n  background-color: #ffffff;\n  border: solid 1px #e0e0e0;\n  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n";
 
-    var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+    var _ProtoClass$1 = function (_mix) {
+        inherits(_ProtoClass, _mix);
 
-    /** Detect free variable `global` from Node.js. */
-    var freeGlobal = typeof commonjsGlobal == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
-
-    var _freeGlobal = freeGlobal;
-
-    /** Detect free variable `self`. */
-    var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
-
-    /** Used as a reference to the global object. */
-    var root = _freeGlobal || freeSelf || Function('return this')();
-
-    var _root = root;
-
-    /**
-     * Gets the timestamp of the number of milliseconds that have elapsed since
-     * the Unix epoch (1 January 1970 00:00:00 UTC).
-     *
-     * @static
-     * @memberOf _
-     * @since 2.4.0
-     * @category Date
-     * @returns {number} Returns the timestamp.
-     * @example
-     *
-     * _.defer(function(stamp) {
-     *   console.log(_.now() - stamp);
-     * }, _.now());
-     * // => Logs the number of milliseconds it took for the deferred invocation.
-     */
-    var now = function() {
-      return _root.Date.now();
-    };
-
-    var now_1 = now;
-
-    /** Built-in value references. */
-    var Symbol$1 = _root.Symbol;
-
-    var _Symbol = Symbol$1;
-
-    /** Used for built-in method references. */
-    var objectProto = Object.prototype;
-
-    /** Used to check objects for own properties. */
-    var hasOwnProperty = objectProto.hasOwnProperty;
-
-    /**
-     * Used to resolve the
-     * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
-     * of values.
-     */
-    var nativeObjectToString = objectProto.toString;
-
-    /** Built-in value references. */
-    var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
-
-    /**
-     * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
-     *
-     * @private
-     * @param {*} value The value to query.
-     * @returns {string} Returns the raw `toStringTag`.
-     */
-    function getRawTag(value) {
-      var isOwn = hasOwnProperty.call(value, symToStringTag),
-          tag = value[symToStringTag];
-
-      try {
-        value[symToStringTag] = undefined;
-      } catch (e) {}
-
-      var result = nativeObjectToString.call(value);
-      {
-        if (isOwn) {
-          value[symToStringTag] = tag;
-        } else {
-          delete value[symToStringTag];
+        function _ProtoClass() {
+            classCallCheck(this, _ProtoClass);
+            return possibleConstructorReturn(this, (_ProtoClass.__proto__ || Object.getPrototypeOf(_ProtoClass)).apply(this, arguments));
         }
-      }
-      return result;
-    }
 
-    var _getRawTag = getRawTag;
-
-    /** Used for built-in method references. */
-    var objectProto$1 = Object.prototype;
-
-    /**
-     * Used to resolve the
-     * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
-     * of values.
-     */
-    var nativeObjectToString$1 = objectProto$1.toString;
-
-    /**
-     * Converts `value` to a string using `Object.prototype.toString`.
-     *
-     * @private
-     * @param {*} value The value to convert.
-     * @returns {string} Returns the converted string.
-     */
-    function objectToString(value) {
-      return nativeObjectToString$1.call(value);
-    }
-
-    var _objectToString = objectToString;
-
-    /** `Object#toString` result references. */
-    var nullTag = '[object Null]',
-        undefinedTag = '[object Undefined]';
-
-    /** Built-in value references. */
-    var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
-
-    /**
-     * The base implementation of `getTag` without fallbacks for buggy environments.
-     *
-     * @private
-     * @param {*} value The value to query.
-     * @returns {string} Returns the `toStringTag`.
-     */
-    function baseGetTag(value) {
-      if (value == null) {
-        return value === undefined ? undefinedTag : nullTag;
-      }
-      return (symToStringTag$1 && symToStringTag$1 in Object(value))
-        ? _getRawTag(value)
-        : _objectToString(value);
-    }
-
-    var _baseGetTag = baseGetTag;
-
-    /**
-     * Checks if `value` is object-like. A value is object-like if it's not `null`
-     * and has a `typeof` result of "object".
-     *
-     * @static
-     * @memberOf _
-     * @since 4.0.0
-     * @category Lang
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
-     * @example
-     *
-     * _.isObjectLike({});
-     * // => true
-     *
-     * _.isObjectLike([1, 2, 3]);
-     * // => true
-     *
-     * _.isObjectLike(_.noop);
-     * // => false
-     *
-     * _.isObjectLike(null);
-     * // => false
-     */
-    function isObjectLike(value) {
-      return value != null && typeof value == 'object';
-    }
-
-    var isObjectLike_1 = isObjectLike;
-
-    /** `Object#toString` result references. */
-    var symbolTag = '[object Symbol]';
-
-    /**
-     * Checks if `value` is classified as a `Symbol` primitive or object.
-     *
-     * @static
-     * @memberOf _
-     * @since 4.0.0
-     * @category Lang
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
-     * @example
-     *
-     * _.isSymbol(Symbol.iterator);
-     * // => true
-     *
-     * _.isSymbol('abc');
-     * // => false
-     */
-    function isSymbol(value) {
-      return typeof value == 'symbol' ||
-        (isObjectLike_1(value) && _baseGetTag(value) == symbolTag);
-    }
-
-    var isSymbol_1 = isSymbol;
-
-    /** Used as references for various `Number` constants. */
-    var NAN = 0 / 0;
-
-    /** Used to match leading and trailing whitespace. */
-    var reTrim = /^\s+|\s+$/g;
-
-    /** Used to detect bad signed hexadecimal string values. */
-    var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
-
-    /** Used to detect binary string values. */
-    var reIsBinary = /^0b[01]+$/i;
-
-    /** Used to detect octal string values. */
-    var reIsOctal = /^0o[0-7]+$/i;
-
-    /** Built-in method references without a dependency on `root`. */
-    var freeParseInt = parseInt;
-
-    /**
-     * Converts `value` to a number.
-     *
-     * @static
-     * @memberOf _
-     * @since 4.0.0
-     * @category Lang
-     * @param {*} value The value to process.
-     * @returns {number} Returns the number.
-     * @example
-     *
-     * _.toNumber(3.2);
-     * // => 3.2
-     *
-     * _.toNumber(Number.MIN_VALUE);
-     * // => 5e-324
-     *
-     * _.toNumber(Infinity);
-     * // => Infinity
-     *
-     * _.toNumber('3.2');
-     * // => 3.2
-     */
-    function toNumber(value) {
-      if (typeof value == 'number') {
-        return value;
-      }
-      if (isSymbol_1(value)) {
-        return NAN;
-      }
-      if (isObject_1(value)) {
-        var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
-        value = isObject_1(other) ? (other + '') : other;
-      }
-      if (typeof value != 'string') {
-        return value === 0 ? value : +value;
-      }
-      value = value.replace(reTrim, '');
-      var isBinary = reIsBinary.test(value);
-      return (isBinary || reIsOctal.test(value))
-        ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
-        : (reIsBadHex.test(value) ? NAN : +value);
-    }
-
-    var toNumber_1 = toNumber;
-
-    /** Error message constants. */
-    var FUNC_ERROR_TEXT = 'Expected a function';
-
-    /* Built-in method references for those with the same name as other `lodash` methods. */
-    var nativeMax = Math.max,
-        nativeMin = Math.min;
-
-    /**
-     * Creates a debounced function that delays invoking `func` until after `wait`
-     * milliseconds have elapsed since the last time the debounced function was
-     * invoked. The debounced function comes with a `cancel` method to cancel
-     * delayed `func` invocations and a `flush` method to immediately invoke them.
-     * Provide `options` to indicate whether `func` should be invoked on the
-     * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
-     * with the last arguments provided to the debounced function. Subsequent
-     * calls to the debounced function return the result of the last `func`
-     * invocation.
-     *
-     * **Note:** If `leading` and `trailing` options are `true`, `func` is
-     * invoked on the trailing edge of the timeout only if the debounced function
-     * is invoked more than once during the `wait` timeout.
-     *
-     * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
-     * until to the next tick, similar to `setTimeout` with a timeout of `0`.
-     *
-     * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
-     * for details over the differences between `_.debounce` and `_.throttle`.
-     *
-     * @static
-     * @memberOf _
-     * @since 0.1.0
-     * @category Function
-     * @param {Function} func The function to debounce.
-     * @param {number} [wait=0] The number of milliseconds to delay.
-     * @param {Object} [options={}] The options object.
-     * @param {boolean} [options.leading=false]
-     *  Specify invoking on the leading edge of the timeout.
-     * @param {number} [options.maxWait]
-     *  The maximum time `func` is allowed to be delayed before it's invoked.
-     * @param {boolean} [options.trailing=true]
-     *  Specify invoking on the trailing edge of the timeout.
-     * @returns {Function} Returns the new debounced function.
-     * @example
-     *
-     * // Avoid costly calculations while the window size is in flux.
-     * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
-     *
-     * // Invoke `sendMail` when clicked, debouncing subsequent calls.
-     * jQuery(element).on('click', _.debounce(sendMail, 300, {
-     *   'leading': true,
-     *   'trailing': false
-     * }));
-     *
-     * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
-     * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
-     * var source = new EventSource('/stream');
-     * jQuery(source).on('message', debounced);
-     *
-     * // Cancel the trailing debounced invocation.
-     * jQuery(window).on('popstate', debounced.cancel);
-     */
-    function debounce(func, wait, options) {
-      var lastArgs,
-          lastThis,
-          maxWait,
-          result,
-          timerId,
-          lastCallTime,
-          lastInvokeTime = 0,
-          leading = false,
-          maxing = false,
-          trailing = true;
-
-      if (typeof func != 'function') {
-        throw new TypeError(FUNC_ERROR_TEXT);
-      }
-      wait = toNumber_1(wait) || 0;
-      if (isObject_1(options)) {
-        leading = !!options.leading;
-        maxing = 'maxWait' in options;
-        maxWait = maxing ? nativeMax(toNumber_1(options.maxWait) || 0, wait) : maxWait;
-        trailing = 'trailing' in options ? !!options.trailing : trailing;
-      }
-
-      function invokeFunc(time) {
-        var args = lastArgs,
-            thisArg = lastThis;
-
-        lastArgs = lastThis = undefined;
-        lastInvokeTime = time;
-        result = func.apply(thisArg, args);
-        return result;
-      }
-
-      function leadingEdge(time) {
-        // Reset any `maxWait` timer.
-        lastInvokeTime = time;
-        // Start the timer for the trailing edge.
-        timerId = setTimeout(timerExpired, wait);
-        // Invoke the leading edge.
-        return leading ? invokeFunc(time) : result;
-      }
-
-      function remainingWait(time) {
-        var timeSinceLastCall = time - lastCallTime,
-            timeSinceLastInvoke = time - lastInvokeTime,
-            timeWaiting = wait - timeSinceLastCall;
-
-        return maxing
-          ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke)
-          : timeWaiting;
-      }
-
-      function shouldInvoke(time) {
-        var timeSinceLastCall = time - lastCallTime,
-            timeSinceLastInvoke = time - lastInvokeTime;
-
-        // Either this is the first call, activity has stopped and we're at the
-        // trailing edge, the system time has gone backwards and we're treating
-        // it as the trailing edge, or we've hit the `maxWait` limit.
-        return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
-          (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
-      }
-
-      function timerExpired() {
-        var time = now_1();
-        if (shouldInvoke(time)) {
-          return trailingEdge(time);
-        }
-        // Restart the timer.
-        timerId = setTimeout(timerExpired, remainingWait(time));
-      }
-
-      function trailingEdge(time) {
-        timerId = undefined;
-
-        // Only invoke if we have `lastArgs` which means `func` has been
-        // debounced at least once.
-        if (trailing && lastArgs) {
-          return invokeFunc(time);
-        }
-        lastArgs = lastThis = undefined;
-        return result;
-      }
-
-      function cancel() {
-        if (timerId !== undefined) {
-          clearTimeout(timerId);
-        }
-        lastInvokeTime = 0;
-        lastArgs = lastCallTime = lastThis = timerId = undefined;
-      }
-
-      function flush() {
-        return timerId === undefined ? result : trailingEdge(now_1());
-      }
-
-      function debounced() {
-        var time = now_1(),
-            isInvoking = shouldInvoke(time);
-
-        lastArgs = arguments;
-        lastThis = this;
-        lastCallTime = time;
-
-        if (isInvoking) {
-          if (timerId === undefined) {
-            return leadingEdge(lastCallTime);
-          }
-          if (maxing) {
-            // Handle invocations in a tight loop.
-            timerId = setTimeout(timerExpired, wait);
-            return invokeFunc(lastCallTime);
-          }
-        }
-        if (timerId === undefined) {
-          timerId = setTimeout(timerExpired, wait);
-        }
-        return result;
-      }
-      debounced.cancel = cancel;
-      debounced.flush = flush;
-      return debounced;
-    }
-
-    var debounce_1 = debounce;
-
-    var shadowMarkup$b = "<div class='position-arrow'><div id='hxPopover'><slot></slot></div></div>";
-
-    var shadowStyles$b = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#hxPopover {\n  overflow: hidden;\n}\n";
-
-    /**
-     * Fires when the element is concealed.
-     *
-     * @event Popover:close
-     * @since 0.6.0
-     * @type {CustomEvent}
-     */
-
-    /**
-     * Fires when the element is revealed.
-     *
-     * @event Popover:open
-     * @since 0.6.0
-     * @type {CustomEvent}
-     */
+        return _ProtoClass;
+    }(mix(HXElement, Positionable));
 
     /**
      * Defines behavior for the `<hx-popover>` element.
      *
-     * @extends HXElement
      * @hideconstructor
+     * @extends HXElement
+     * @extends Positionable
      * @since 0.2.0
      */
-    var HXPopoverElement = function (_HXElement) {
-        inherits(HXPopoverElement, _HXElement);
+
+
+    var HXPopoverElement = function (_ProtoClass2) {
+        inherits(HXPopoverElement, _ProtoClass2);
 
         function HXPopoverElement() {
             classCallCheck(this, HXPopoverElement);
@@ -4742,106 +4974,70 @@
 
         createClass(HXPopoverElement, [{
             key: '$onCreate',
+
+
+            /** @override */
             value: function $onCreate() {
-                this._toggle = this._toggle.bind(this);
-                this._setPosition = this._setPosition.bind(this);
-                this._closeOnBackdropClick = this._closeOnBackdropClick.bind(this);
+                get(HXPopoverElement.prototype.__proto__ || Object.getPrototypeOf(HXPopoverElement.prototype), '$onCreate', this).call(this);
+                this.DEFAULT_POSITION = 'bottom-right';
+                this.POSITION_OFFSET = 20;
             }
+
+            /** @override */
+
         }, {
             key: '$onConnect',
             value: function $onConnect() {
-                this.$upgradeProperty('open');
-                this.$upgradeProperty('position');
-                this.$defaultAttribute('position', 'bottom-right');
-                this._initialPosition = this.position;
-
-                this.setAttribute('aria-hidden', !this.open);
-
-                if (!this.id) {
-                    return;
-                }
-
-                this._target = this.getRootNode().querySelector('[data-popover="' + this.id + '"]');
-                if (!this._target) {
-                    return;
-                }
-
-                this._target.addEventListener('click', this._toggle);
-                window.addEventListener('resize', debounce_1(this._setPosition, 100));
-                document.addEventListener('click', this._closeOnBackdropClick);
+                get(HXPopoverElement.prototype.__proto__ || Object.getPrototypeOf(HXPopoverElement.prototype), '$onConnect', this).call(this);
+                this.addEventListener('reposition', this._onReposition);
             }
         }, {
             key: '$onDisconnect',
             value: function $onDisconnect() {
-                if (!this._target) {
-                    return;
-                }
-
-                this._target.removeEventListener('click', this._toggle);
-                window.removeEventListener('resize', debounce_1(this._setPosition, 100));
-                document.removeEventListener('click', this._closeOnBackdropClick);
+                get(HXPopoverElement.prototype.__proto__ || Object.getPrototypeOf(HXPopoverElement.prototype), '$onDisconnect', this).call(this);
+                this.removeEventListener('reposition', this._onReposition);
             }
+
+            /** @override */
+
         }, {
             key: '$onAttributeChange',
             value: function $onAttributeChange(attr, oldVal, newVal) {
-                if (attr === 'open') {
-                    var isOpen = newVal !== null;
-                    this.setAttribute('aria-hidden', !isOpen);
-                    this.$emit(isOpen ? 'open' : 'close');
+                get(HXPopoverElement.prototype.__proto__ || Object.getPrototypeOf(HXPopoverElement.prototype), '$onAttributeChange', this).call(this, attr, oldVal, newVal);
+
+                if (attr === 'position') {
+                    this._setShadowPosition(newVal);
                 }
             }
+
+            /** @private */
+
         }, {
-            key: '_toggle',
-            value: function _toggle() {
-                this.open = !this.open;
+            key: '_onReposition',
+
+
+            /**
+             * Update visual display of arrow in Shadow DOM based on optimal position.
+             * @private
+             */
+            value: function _onReposition() {
+                this._setShadowPosition(this.optimumPosition);
+            }
+
+            /**
+             * @private
+             * @param {NormalizedPositionString}
+             */
+
+        }, {
+            key: '_setShadowPosition',
+            value: function _setShadowPosition(position) {
+                this._elRoot.setAttribute('position', position);
             }
         }, {
-            key: '_setPosition',
-            value: function _setPosition() {
-                var offset = getPositionWithArrow(this, this._target, { position: this.position });
-                this.style.top = offset.y + 'px';
-                this.style.left = offset.x + 'px';
-                this.position = offset.position;
-            }
-        }, {
-            key: '_closeOnBackdropClick',
-            value: function _closeOnBackdropClick(event) {
-                if (this._isBackground(event) && this.open) {
-                    this.open = false;
-                }
-            }
-        }, {
-            key: '_isBackground',
-            value: function _isBackground(event) {
-                var inComponent = this.contains(event.target);
-                var inTarget = this._target.contains(event.target);
-                return !inComponent && !inTarget;
-            }
-        }, {
-            key: 'open',
-            set: function set$$1(value) {
-                if (value) {
-                    this.setAttribute('open', '');
-                    this._setPosition();
-                } else {
-                    this.removeAttribute('open');
-                    this.position = this._initialPosition;
-                }
-            },
+            key: '_elRoot',
             get: function get$$1() {
-                return this.hasAttribute('open');
-            }
-        }, {
-            key: 'position',
-            set: function set$$1(value) {
-                if (value) {
-                    this.setAttribute('position', value);
-                } else {
-                    this.removeAttribute('position');
-                }
-            },
-            get: function get$$1() {
-                return this.getAttribute('position');
+                return this.shadowRoot.getElementById('hxPopover');
             }
         }], [{
             key: 'is',
@@ -4851,20 +5047,15 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$b + '</style>' + shadowMarkup$b;
-            }
-        }, {
-            key: '$observedAttributes',
-            get: function get$$1() {
-                return ['open'];
+                return '<style>' + shadowStyles$c + '</style>' + shadowMarkup$c;
             }
         }]);
         return HXPopoverElement;
-    }(HXElement);
+    }(_ProtoClass$1);
 
-    var shadowMarkup$c = "<div id='hxProgress'><div id='hxFill'></div></div>";
+    var shadowMarkup$d = "<div id='hxProgress'><div id='hxFill'></div></div>";
 
-    var shadowStyles$c = "#hxProgress {\n  height: 100%;\n}\n#hxProgress #hxFill {\n  background-color: currentColor;\n  box-sizing: border-box;\n  height: 100%;\n  width: 0%;\n}\n";
+    var shadowStyles$d = "#hxProgress {\n  height: 100%;\n}\n#hxProgress #hxFill {\n  background-color: currentColor;\n  box-sizing: border-box;\n  height: 100%;\n  width: 0%;\n}\n";
 
     var MIN = 0;
     var MAX = 100;
@@ -4952,7 +5143,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$c + '</style>' + shadowMarkup$c;
+                return '<style>' + shadowStyles$d + '</style>' + shadowMarkup$d;
             }
         }, {
             key: '$observedAttributes',
@@ -5046,34 +5237,30 @@
         return HXRevealElement;
     }(HXElement);
 
-    /**
-     * Fires when the element's contents are concealed.
-     *
-     * @event SearchAssistance:close
-     * @since 0.6.0
-     * @type {CustomEvent}
-     */
+    var _ProtoClass$2 = function (_mix) {
+        inherits(_ProtoClass, _mix);
 
-    /**
-     * Fires when the element's contents are revealed.
-     *
-     * @event SearchAssistance:open
-     * @since 0.6.0
-     * @type {CustomEvent}
-     */
+        function _ProtoClass() {
+            classCallCheck(this, _ProtoClass);
+            return possibleConstructorReturn(this, (_ProtoClass.__proto__ || Object.getPrototypeOf(_ProtoClass)).apply(this, arguments));
+        }
+
+        return _ProtoClass;
+    }(mix(HXElement, Positionable));
 
     /**
      * Defines behavior for the `<hx-search-assistance>` element.
      *
-     * @emits SearchAssistance:close
-     * @emits SearchAssistance:open
      * @extends HXElement
+     * @extends Positionable
      * @hideconstructor
      * @see HXSearchElement
      * @since 0.6.0
      */
-    var HXSearchAssistanceElement = function (_HXElement) {
-        inherits(HXSearchAssistanceElement, _HXElement);
+
+
+    var HXSearchAssistanceElement = function (_ProtoClass2) {
+        inherits(HXSearchAssistanceElement, _ProtoClass2);
 
         function HXSearchAssistanceElement() {
             classCallCheck(this, HXSearchAssistanceElement);
@@ -5081,92 +5268,26 @@
         }
 
         createClass(HXSearchAssistanceElement, [{
-            key: '$onConnect',
-            value: function $onConnect() {
-                this.$upgradeProperty('open');
-                this.$upgradeProperty('position');
-                this.$upgradeProperty('relativeTo');
-                this.$defaultAttribute('position', 'bottom-start');
-                this.addEventListener('scroll', onScroll);
-            }
-        }, {
-            key: '$onDisconnect',
-            value: function $onDisconnect() {
-                this.removeEventListener('scroll', onScroll);
-            }
-        }, {
-            key: '$onAttributeChange',
-            value: function $onAttributeChange(attr, oldVal, newVal) {
-                if (attr === 'open') {
-                    var isOpen = newVal !== null;
-                    this.$emit(isOpen ? 'open' : 'close');
-                }
-            }
-        }, {
-            key: '_setPosition',
-            value: function _setPosition() {
-                var offset = getPosition(this, this.relativeElement, {
-                    position: this.position,
-                    margin: 4
-                });
-                this.style.top = offset.y + 'px';
-                this.style.left = offset.x + 'px';
-            }
-        }, {
-            key: 'position',
-            set: function set$$1(value) {
-                if (value) {
-                    this.setAttribute('position', value);
-                } else {
-                    this.removeAttribute('position');
-                }
-            },
-            get: function get$$1() {
-                return this.getAttribute('position');
-            }
-        }, {
-            key: 'relativeTo',
-            set: function set$$1(value) {
-                this.setAttribute('relative-to', value);
-            },
-            get: function get$$1() {
-                return this.getAttribute('relative-to');
-            }
-        }, {
-            key: 'relativeElement',
-            get: function get$$1() {
-                return this.getRootNode().getElementById(this.relativeTo);
-            }
-        }, {
-            key: 'open',
-            set: function set$$1(value) {
-                if (value) {
-                    this.setAttribute('open', '');
-                    this._setPosition();
-                } else {
-                    this.removeAttribute('open');
-                }
-            },
-            get: function get$$1() {
-                return this.hasAttribute('open');
+            key: '$onCreate',
+
+
+            /** @override */
+            value: function $onCreate() {
+                get(HXSearchAssistanceElement.prototype.__proto__ || Object.getPrototypeOf(HXSearchAssistanceElement.prototype), '$onCreate', this).call(this);
+                this.DEFAULT_POSITION = 'bottom-start';
             }
         }], [{
             key: 'is',
             get: function get$$1() {
                 return 'hx-search-assistance';
             }
-        }, {
-            key: '$observedAttributes',
-            get: function get$$1() {
-                return ['open'];
-            }
         }]);
         return HXSearchAssistanceElement;
-    }(HXElement);
+    }(_ProtoClass$2);
 
-    var shadowStyles$d = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\n:host {\n  display: block;\n  font-size: 1rem;\n  height: 2rem;\n  min-width: 8rem;\n}\n:host #hxSearch {\n  display: flex;\n  height: 100%;\n  position: relative;\n}\n:host #hxIcon {\n  color: #757575;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 1;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxNativeControl {\n  background-color: transparent;\n  border: none;\n  color: #424242;\n  cursor: inherit;\n  flex-grow: 1;\n  font-weight: 400;\n  min-width: 0;\n  order: 2;\n  width: 0;\n  z-index: 1;\n}\n:host #hxNativeControl::-moz-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-ms-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-webkit-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxNativeControl:focus {\n  outline: none;\n}\n:host #hxNativeControl:focus ~ #hxClear {\n  color: #0e94a6;\n}\n:host #hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxCustomControl {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #bdbdbd;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 0;\n}\n:host #hxClear {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 3;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxClear::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxClear:focus {\n  outline: none;\n}\n:host #hxClear:focus hx-icon {\n  outline-offset: 2px;\n  outline: 1px dotted currentColor;\n}\n:host #hxClear:focus ~ * {\n  color: #0e94a6;\n}\n:host #hxClear:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host([invalid]) {\n  color: #d32f2f;\n}\n:host([invalid]) #hxIcon,\n:host([invalid]) #hxClear {\n  color: inherit;\n}\n:host([invalid]) #hxCustomControl {\n  border-color: #d32f2f;\n  border-width: 2px;\n}\n:host([invalid]) #hxClear:focus hx-icon {\n  outline-color: currentColor;\n}\n:host([invalid]) #hxNativeControl:focus ~ #hxClear {\n  color: #d32f2f;\n}\n:host([invalid]) #hxClear:focus ~ #hxCustomControl,\n:host([invalid]) #hxNativeControl:focus ~ #hxCustomControl {\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n  border-color: #d32f2f;\n}\n:host([disabled]) {\n  color: #d8d8d8;\n}\n:host([disabled]) #hxSearch {\n  color: inherit;\n  cursor: not-allowed;\n}\n:host([disabled]) #hxIcon {\n  color: inherit;\n}\n:host([disabled]) #hxClear {\n  display: none;\n}\n:host([disabled]) #hxNativeControl {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-moz-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-ms-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-webkit-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxCustomControl {\n  background-color: #f5f5f5;\n  border-color: #e0e0e0;\n  border-width: 1px;\n}\n";
+    var shadowMarkup$e = "<label id='hxSearch'><input type='text' role='search' id='hxNativeControl' autocomplete='off'> <button type='button' id='hxClear' hidden aria-label='Clear search'><hx-icon type='times'></hx-icon></button><div id='hxIcon'><hx-icon type='search'></hx-icon></div><div id='hxCustomControl'></div></label>";
 
-    var shadowMarkup$d = "<label id='hxSearch'><input type='text' role='search' id='hxNativeControl' autocomplete='off'> <button type='button' id='hxClear' hidden aria-label='Clear search'><hx-icon type='times'></hx-icon></button><div id='hxIcon'><hx-icon type='search'></hx-icon></div><div id='hxCustomControl'></div></label>";
+    var shadowStyles$e = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\n:host {\n  display: block;\n  font-size: 1rem;\n  height: 2rem;\n  min-width: 8rem;\n}\n:host #hxSearch {\n  display: flex;\n  height: 100%;\n  position: relative;\n}\n:host #hxIcon {\n  color: #757575;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 1;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxNativeControl {\n  background-color: transparent;\n  border: none;\n  color: #424242;\n  cursor: inherit;\n  flex-grow: 1;\n  font-weight: 400;\n  min-width: 0;\n  order: 2;\n  width: 0;\n  z-index: 1;\n}\n:host #hxNativeControl::-moz-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-ms-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-webkit-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxNativeControl:focus {\n  outline: none;\n}\n:host #hxNativeControl:focus ~ #hxClear {\n  color: #0e94a6;\n}\n:host #hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxCustomControl {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #bdbdbd;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 0;\n}\n:host #hxClear {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 3;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxClear::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxClear:focus {\n  outline: none;\n}\n:host #hxClear:focus hx-icon {\n  outline-offset: 2px;\n  outline: 1px dotted currentColor;\n}\n:host #hxClear:focus ~ * {\n  color: #0e94a6;\n}\n:host #hxClear:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host([invalid]) {\n  color: #d32f2f;\n}\n:host([invalid]) #hxIcon,\n:host([invalid]) #hxClear {\n  color: inherit;\n}\n:host([invalid]) #hxCustomControl {\n  border-color: #d32f2f;\n  border-width: 2px;\n}\n:host([invalid]) #hxClear:focus hx-icon {\n  outline-color: currentColor;\n}\n:host([invalid]) #hxNativeControl:focus ~ #hxClear {\n  color: #d32f2f;\n}\n:host([invalid]) #hxClear:focus ~ #hxCustomControl,\n:host([invalid]) #hxNativeControl:focus ~ #hxCustomControl {\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n  border-color: #d32f2f;\n}\n:host([disabled]) {\n  color: #d8d8d8;\n}\n:host([disabled]) #hxSearch {\n  color: inherit;\n  cursor: not-allowed;\n}\n:host([disabled]) #hxIcon {\n  color: inherit;\n}\n:host([disabled]) #hxClear {\n  display: none;\n}\n:host([disabled]) #hxNativeControl {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-moz-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-ms-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-webkit-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxCustomControl {\n  background-color: #f5f5f5;\n  border-color: #e0e0e0;\n  border-width: 1px;\n}\n";
 
     /**
      * Fires when the element loses focus.
@@ -5406,7 +5527,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$d + '</style>' + shadowMarkup$d;
+                return '<style>' + shadowStyles$e + '</style>' + shadowMarkup$e;
             }
         }, {
             key: '$observedAttributes',
@@ -5641,6 +5762,7 @@
         createClass(HXTabsetElement, [{
             key: '$onCreate',
             value: function $onCreate() {
+                this.$onConnect = defer(this.$onConnect);
                 this._onKeyUp = this._onKeyUp.bind(this);
                 this._onTabClick = this._onTabClick.bind(this);
             }
@@ -5650,23 +5772,26 @@
                 var _this2 = this;
 
                 this.$upgradeProperty('current-tab');
-                this.$defaultAttribute('id', this.$generateId());
+                this.$defaultAttribute('id', 'tabset-' + generateId());
                 this._setupIds();
                 this.currentTab = Number(this.getAttribute('current-tab')) || 0;
-                this.$tablist = this.querySelector('hx-tablist');
-                this.$tablist.addEventListener('keyup', this._onKeyUp);
-                this.$tablist.addEventListener('keydown', this.$preventScroll);
+                this._tablist.addEventListener('keyup', this._onKeyUp);
+                this._tablist.addEventListener('keydown', preventKeyScroll);
                 this.tabs.forEach(function (tab) {
                     tab.addEventListener('click', _this2._onTabClick);
                 });
+
+                if (this.hasAttribute('current-tab')) {
+                    this._activateTab(this.currentTab);
+                }
             }
         }, {
             key: '$onDisconnect',
             value: function $onDisconnect() {
                 var _this3 = this;
 
-                this.$tablist.removeEventListener('keyup', this._onKeyUp);
-                this.$tablist.removeEventListener('keydown', this.$preventScroll);
+                this._tablist.removeEventListener('keyup', this._onKeyUp);
+                this._tablist.removeEventListener('keydown', preventKeyScroll);
                 this.tabs.forEach(function (tab) {
                     tab.removeEventListener('click', _this3._onTabClick);
                 });
@@ -5695,6 +5820,10 @@
              * Select next tab in tabset.
              */
             value: function selectNext() {
+                if (!this.isConnected) {
+                    return;
+                }
+
                 // if current tab is the last tab
                 if (this.currentTab === this.tabs.length - 1) {
                     // select first
@@ -5713,6 +5842,10 @@
         }, {
             key: 'selectPrevious',
             value: function selectPrevious() {
+                if (!this.isConnected) {
+                    return;
+                }
+
                 // if current tab is the first tab
                 if (this.currentTab === 0) {
                     // select last
@@ -5724,13 +5857,17 @@
                 this.tabs[this.currentTab].focus();
             }
 
-            /**
-             * Handle navigating the tabs via arrow keys
-             * @private
-             */
+            /** @private */
 
         }, {
             key: '_onKeyUp',
+
+
+            /**
+             * Handle navigating the tabs via arrow keys
+             * @private
+             * @todo migrate keyup listener logic to HXTablistElement
+             */
             value: function _onKeyUp(evt) {
                 if (evt.keyCode === KEYS.Right) {
                     this.selectNext();
@@ -5739,14 +5876,6 @@
                 if (evt.keyCode === KEYS.Left) {
                     this.selectPrevious();
                 }
-            }
-
-            /** @private */
-
-        }, {
-            key: '_onTabClick',
-            value: function _onTabClick(evt) {
-                this.currentTab = this.tabs.indexOf(evt.target);
             }
 
             /** @private */
@@ -5768,6 +5897,17 @@
                 this.tabpanels.forEach(function (tabpanel, panelIdx) {
                     tabpanel.open = idx === panelIdx;
                 });
+            }
+
+            /**
+             * @private
+             * @todo migrate tab click listener logic to HXTabElement
+             */
+
+        }, {
+            key: '_onTabClick',
+            value: function _onTabClick(evt) {
+                this.currentTab = this.tabs.indexOf(evt.target);
             }
 
             /** @private */
@@ -5808,6 +5948,11 @@
                 return Number(this.getAttribute('current-tab') || 0);
             },
             set: function set$$1(idx) {
+                // NOTE: Keep an eye on this logic for React compatibility
+                if (!this.isConnected) {
+                    return;
+                }
+
                 if (isNaN(idx)) {
                     throw new TypeError('\'currentTab\' expects an numeric index. Got ' + (typeof idx === 'undefined' ? 'undefined' : _typeof(idx)) + ' instead.');
                 }
@@ -5817,6 +5962,18 @@
                 }
 
                 this.setAttribute('current-tab', idx);
+            }
+
+            /**
+             * All `<hx-tabpanel>` elements within the tabset.
+             * @readonly
+             * @type {HXTabpanelElement[]}
+             */
+
+        }, {
+            key: 'tabpanels',
+            get: function get$$1() {
+                return Array.from(this.querySelectorAll('hx-tabpanel'));
             }
 
             /**
@@ -5830,17 +5987,10 @@
             get: function get$$1() {
                 return Array.from(this.querySelectorAll('hx-tablist > hx-tab'));
             }
-
-            /**
-             * All `<hx-tabpanel>` elements within the tabset.
-             * @readonly
-             * @type {HXTabpanelElement[]}
-             */
-
         }, {
-            key: 'tabpanels',
+            key: '_tablist',
             get: function get$$1() {
-                return Array.from(this.querySelectorAll('hx-tabpanel'));
+                return this.querySelector('hx-tablist');
             }
         }], [{
             key: 'is',
@@ -5856,9 +6006,9 @@
         return HXTabsetElement;
     }(HXElement);
 
-    var shadowMarkup$e = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
+    var shadowMarkup$f = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-    var shadowStyles$e = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxToast {\n  padding: 0.75rem;\n}\n#hxToast #hxCta {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n  border-radius: 2px;\n  display: inline-flex;\n  justify-content: center;\n  border: 1px solid #0c7c84;\n  color: #0c7c84;\n  font-size: 0.875rem;\n  padding: 8px 12px;\n}\n#hxToast {\n  background-color: #ffffff;\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  color: #424242;\n  display: flex;\n  min-height: 3.5rem;\n  position: relative;\n  width: 22rem;\n}\n#hxToast::before,\n#hxToast::after {\n  content: '';\n  display: block;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#hxToast::before {\n  border: 1px solid #e0e0e0;\n}\n#hxToast::after {\n  border-left: 8px solid currentColor;\n}\n#hxToast #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  margin: 0 0.75rem 0 0.5rem;\n}\n#hxToast #hxIconWrapper hx-icon {\n  font-size: 2rem;\n}\n#hxToast #hxContent {\n  flex-grow: 1;\n  margin-right: 1.5rem;\n  text-align: right;\n  word-wrap: break-word;\n}\n#hxToast #hxContent div {\n  font-size: 0.875rem;\n  text-align: left;\n}\n#hxToast #hxCta {\n  text-transform: uppercase;\n}\n#hxToast #hxCta:empty {\n  display: none;\n}\n#hxToast #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 0.75rem;\n  height: 2.25rem;\n  line-height: 0;\n  margin: 0;\n  padding: 0.75rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 2.25rem;\n}\n:host([type=\"info\"]) #hxToast::after {\n  border-left-color: #3b44a9;\n}\n:host([type=\"info\"]) #hxIcon {\n  color: #3b44a9;\n}\n:host([type=\"error\"]) #hxToast::after {\n  border-left-color: #d32f2f;\n}\n:host([type=\"error\"]) #hxIcon {\n  color: #d32f2f;\n}\n:host([type=\"success\"]) #hxToast::after {\n  border-left-color: #4caf51;\n}\n:host([type=\"success\"]) #hxIcon {\n  color: #4caf51;\n}\n";
+    var shadowStyles$f = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxToast #hxCta {\n  background-color: transparent;border: 0;color: inherit;cursor: pointer;display: inline-block;font: inherit;font-weight: 500;line-height: 1;margin: 0;padding: 0;border-radius: 2px;display: inline-flex;justify-content: center;border: 1px solid #0c7c84;color: #0c7c84;font-size: 0.875rem;padding: 8px 12px;\n}\n#hxToast {\n  padding: 0.75rem;\n  background-color: #ffffff;\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  color: #424242;\n  display: flex;\n  min-height: 3.5rem;\n  position: relative;\n  width: 22rem;\n}\n#hxToast::before,\n#hxToast::after {\n  content: '';\n  display: block;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#hxToast::before {\n  border: 1px solid #e0e0e0;\n}\n#hxToast::after {\n  border-left: 8px solid currentColor;\n}\n#hxToast #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  margin: 0 0.75rem 0 0.5rem;\n}\n#hxToast #hxIconWrapper hx-icon {\n  font-size: 2rem;\n}\n#hxToast #hxContent {\n  flex-grow: 1;\n  margin-right: 1.5rem;\n  text-align: right;\n  word-wrap: break-word;\n}\n#hxToast #hxContent div {\n  font-size: 0.875rem;\n  text-align: left;\n}\n#hxToast #hxCta {\n  text-transform: uppercase;\n}\n#hxToast #hxCta:empty {\n  display: none;\n}\n#hxToast #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 0.75rem;\n  height: 2.25rem;\n  line-height: 0;\n  margin: 0;\n  padding: 0.75rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 2.25rem;\n}\n:host([type=\"info\"]) #hxToast::after {\n  border-left-color: #3b44a9;\n}\n:host([type=\"info\"]) #hxIcon {\n  color: #3b44a9;\n}\n:host([type=\"error\"]) #hxToast::after {\n  border-left-color: #d32f2f;\n}\n:host([type=\"error\"]) #hxIcon {\n  color: #d32f2f;\n}\n:host([type=\"success\"]) #hxToast::after {\n  border-left-color: #4caf51;\n}\n:host([type=\"success\"]) #hxIcon {\n  color: #4caf51;\n}\n";
 
     var ICONS$1 = {
         'error': 'exclamation-circle',
@@ -6041,7 +6191,7 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$e + '</style>' + shadowMarkup$e;
+                return '<style>' + shadowStyles$f + '</style>' + shadowMarkup$f;
             }
         }, {
             key: '$observedAttributes',
@@ -6052,37 +6202,35 @@
         return HXToastElement;
     }(HXElement);
 
-    var shadowMarkup$f = "<div id='hxTooltip' class='position-arrow'><slot></slot></div>";
+    var shadowMarkup$g = "<div id='hxTooltip' class='has-arrow'><slot></slot></div>";
 
-    var shadowStyles$f = ":host *,\n:host *::before,\n:host *::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n.position-arrow {\n  background-color: #ffffff;\n}\n.position-arrow::before,\n.position-arrow::after {\n  content: \" \";\n  display: block;\n  height: 12px;\n  position: absolute;\n  transform: rotate(-45deg);\n  width: 12px;\n}\n.position-arrow::before {\n  background-color: #e0e0e0;\n  z-index: -1;\n}\n:host([position$='top']) .position-arrow::before,\n:host([position$='top']) .position-arrow::after {\n  bottom: 12px;\n}\n:host([position$='bottom']) .position-arrow::before,\n:host([position$='bottom']) .position-arrow::after {\n  top: 12px;\n}\n:host([position$='left']) .position-arrow::before,\n:host([position$='left']) .position-arrow::after {\n  right: 12px;\n}\n:host([position$='right']) .position-arrow::before,\n:host([position$='right']) .position-arrow::after {\n  left: 12px;\n}\n:host([position^='top']) .position-arrow::before {\n  bottom: -7px;\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n:host([position^='top']) .position-arrow::after {\n  background-image: linear-gradient(-135deg, transparent 50%, #ffffff 50%);\n  bottom: -6px;\n}\n:host([position^='bottom']) .position-arrow::before {\n  top: -7px;\n}\n:host([position^='bottom']) .position-arrow::after {\n  background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%);\n  top: -6px;\n}\n:host([position^='left']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  right: -7px;\n}\n:host([position^='left']) .position-arrow::after {\n  background-image: linear-gradient(135deg, transparent 50%, #ffffff 50%);\n  right: -6px;\n}\n:host([position^='right']) .position-arrow::before {\n  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  left: -7px;\n}\n:host([position^='right']) .position-arrow::after {\n  background-image: linear-gradient(-45deg, transparent 50%, #ffffff 50%);\n  left: -6px;\n}\n:host([position='top']) .position-arrow::before,\n:host([position='bottom']) .position-arrow::before,\n:host([position='top']) .position-arrow::after,\n:host([position='bottom']) .position-arrow::after {\n  left: 50%;\n  transform: translateX(-50%) rotate(-45deg);\n}\n:host([position='left']) .position-arrow::before,\n:host([position='right']) .position-arrow::before,\n:host([position='left']) .position-arrow::after,\n:host([position='right']) .position-arrow::after {\n  bottom: 50%;\n  transform: translateY(50%) rotate(-45deg);\n}\n#hxTooltip {\n  padding: 1.25rem;\n}\n";
+    var shadowStyles$g = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n/* MIXINS */\n.has-arrow {\n  margin: 0;\n  position: relative;\n  /*======================================== *\\\n   * TOP POSITIONS\n  \\*======================================== */\n  /*======================================== *\\\n   * RIGHT POSITIONS\n  \\*======================================== */\n  /*======================================== *\\\n   * BOTTOM POSITIONS\n  \\*======================================== */\n  /*======================================== *\\\n   * LEFT POSITIONS\n  \\*======================================== */\n}\n.has-arrow::before {\n  box-shadow: 0 0 0 1px #e0e0e0;\n  z-index: -1;\n}\n.has-arrow::before,\n.has-arrow::after {\n  content: '';\n  display: block;\n  height: 13px;\n  position: absolute;\n  width: 13px;\n}\n.has-arrow[position^=\"top\"] {\n  margin-bottom: 8px;\n}\n.has-arrow[position^=\"top\"]::before,\n.has-arrow[position^=\"top\"]::after {\n  bottom: -8px;\n}\n.has-arrow[position^=\"top\"]::after {\n  background-image: linear-gradient(to bottom left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"top\"]::before,\n.has-arrow[position=\"top-center\"]::before,\n.has-arrow[position=\"top\"]::after,\n.has-arrow[position=\"top-center\"]::after {\n  left: 50%;\n}\n.has-arrow[position=\"top\"]::before,\n.has-arrow[position=\"top-center\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"top\"]::before,\n.has-arrow[position=\"top-center\"]::before,\n.has-arrow[position=\"top\"]::after,\n.has-arrow[position=\"top-center\"]::after {\n  transform-origin: bottom left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"top-right\"]::before,\n.has-arrow[position=\"top-right\"]::after {\n  left: 1.25rem;\n}\n.has-arrow[position=\"top-right\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"top-right\"]::before,\n.has-arrow[position=\"top-right\"]::after {\n  transform-origin: bottom left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"top-left\"]::before,\n.has-arrow[position=\"top-left\"]::after {\n  right: 1.25rem;\n}\n.has-arrow[position=\"top-left\"]::after {\n  background-image: linear-gradient(to bottom right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"top-left\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"top-left\"]::before,\n.has-arrow[position=\"top-left\"]::after {\n  transform-origin: bottom right;\n  transform: rotate(45deg);\n}\n.has-arrow[position^=\"right\"] {\n  margin-left: 8px;\n}\n.has-arrow[position^=\"right\"]::before,\n.has-arrow[position^=\"right\"]::after {\n  left: -8px;\n}\n.has-arrow[position^=\"right\"]::after {\n  background-image: linear-gradient(to top left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"right\"]::before,\n.has-arrow[position=\"right-middle\"]::before,\n.has-arrow[position=\"right\"]::after,\n.has-arrow[position=\"right-middle\"]::after {\n  top: 50%;\n}\n.has-arrow[position=\"right\"]::before,\n.has-arrow[position=\"right-middle\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"right\"]::before,\n.has-arrow[position=\"right-middle\"]::before,\n.has-arrow[position=\"right\"]::after,\n.has-arrow[position=\"right-middle\"]::after {\n  transform-origin: top left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"right-bottom\"]::before,\n.has-arrow[position=\"right-bottom\"]::after {\n  top: 1.25rem;\n}\n.has-arrow[position=\"right-bottom\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"right-bottom\"]::before,\n.has-arrow[position=\"right-bottom\"]::after {\n  transform-origin: top left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"right-top\"]::before,\n.has-arrow[position=\"right-top\"]::after {\n  bottom: 1.25rem;\n}\n.has-arrow[position=\"right-top\"]::after {\n  background-image: linear-gradient(to bottom left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"right-top\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"right-top\"]::before,\n.has-arrow[position=\"right-top\"]::after {\n  transform-origin: bottom left;\n  transform: rotate(45deg);\n}\n.has-arrow[position^=\"bottom\"] {\n  margin-top: 8px;\n}\n.has-arrow[position^=\"bottom\"]::before,\n.has-arrow[position^=\"bottom\"]::after {\n  top: -8px;\n}\n.has-arrow[position^=\"bottom\"]::after {\n  background-image: linear-gradient(to top left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"bottom\"]::before,\n.has-arrow[position=\"bottom-center\"]::before,\n.has-arrow[position=\"bottom\"]::after,\n.has-arrow[position=\"bottom-center\"]::after {\n  left: 50%;\n}\n.has-arrow[position=\"bottom\"]::before,\n.has-arrow[position=\"bottom-center\"]::before,\n.has-arrow[position=\"bottom\"]::after,\n.has-arrow[position=\"bottom-center\"]::after {\n  transform-origin: top left;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"bottom-right\"]::before,\n.has-arrow[position=\"bottom-right\"]::after {\n  left: 1.25rem;\n}\n.has-arrow[position=\"bottom-right\"]::before,\n.has-arrow[position=\"bottom-right\"]::after {\n  transform-origin: top left;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"bottom-left\"]::before,\n.has-arrow[position=\"bottom-left\"]::after {\n  right: 1.25rem;\n}\n.has-arrow[position=\"bottom-left\"]::after {\n  background-image: linear-gradient(to top right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"bottom-left\"]::before,\n.has-arrow[position=\"bottom-left\"]::after {\n  transform-origin: top right;\n  transform: rotate(-45deg);\n}\n.has-arrow[position^=\"left\"] {\n  margin-right: 8px;\n}\n.has-arrow[position^=\"left\"]::before,\n.has-arrow[position^=\"left\"]::after {\n  right: -8px;\n}\n.has-arrow[position^=\"left\"]::after {\n  background-image: linear-gradient(to top right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"left\"]::before,\n.has-arrow[position=\"left-middle\"]::before,\n.has-arrow[position=\"left\"]::after,\n.has-arrow[position=\"left-middle\"]::after {\n  top: 50%;\n}\n.has-arrow[position=\"left\"]::before,\n.has-arrow[position=\"left-middle\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"left\"]::before,\n.has-arrow[position=\"left-middle\"]::before,\n.has-arrow[position=\"left\"]::after,\n.has-arrow[position=\"left-middle\"]::after {\n  transform-origin: top right;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"left-bottom\"]::before,\n.has-arrow[position=\"left-bottom\"]::after {\n  top: 1.25rem;\n}\n.has-arrow[position=\"left-bottom\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"left-bottom\"]::before,\n.has-arrow[position=\"left-bottom\"]::after {\n  transform-origin: top right;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"left-top\"]::before,\n.has-arrow[position=\"left-top\"]::after {\n  bottom: 1.25rem;\n}\n.has-arrow[position=\"left-top\"]::after {\n  background-image: linear-gradient(to bottom right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"left-top\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"left-top\"]::before,\n.has-arrow[position=\"left-top\"]::after {\n  transform-origin: bottom right;\n  transform: rotate(-45deg);\n}\n#hxTooltip {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #e0e0e0;\n  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16);\n  padding: 0.75rem;\n}\n";
 
-    /**
-     * Fires when the element's contents are concealed.
-     *
-     * @event Tooltip:close
-     * @since 0.6.0
-     * @type {CustomEvent}
-     */
+    var TOOLTIP_DELAY = 500;
 
-    /**
-     * Fires when the element's contents are revealed.
-     *
-     * @event Tooltip:open
-     * @since 0.6.0
-     * @type {CustomEvent}
-     */
+    var _ProtoClass$3 = function (_mix) {
+        inherits(_ProtoClass, _mix);
+
+        function _ProtoClass() {
+            classCallCheck(this, _ProtoClass);
+            return possibleConstructorReturn(this, (_ProtoClass.__proto__ || Object.getPrototypeOf(_ProtoClass)).apply(this, arguments));
+        }
+
+        return _ProtoClass;
+    }(mix(HXElement, Positionable));
 
     /**
      * Defines behavior for the `<hx-tooltip>` element.
      *
-     * @emits Tooltip:close
-     * @emits Tooltip:open
      * @extends HXElement
+     * @extends Positionable
      * @hideconstructor
      * @since 0.2.0
      */
-    var HXTooltipElement = function (_HXElement) {
-        inherits(HXTooltipElement, _HXElement);
+
+
+    var HXTooltipElement = function (_ProtoClass2) {
+        inherits(HXTooltipElement, _ProtoClass2);
 
         function HXTooltipElement() {
             classCallCheck(this, HXTooltipElement);
@@ -6091,202 +6239,360 @@
 
         createClass(HXTooltipElement, [{
             key: '$onCreate',
+
+
+            /** @override */
             value: function $onCreate() {
-                this._onShow = this._onShow.bind(this);
-                this._onHide = this._onHide.bind(this);
-                this._onClick = this._onClick.bind(this);
-                this._setPosition = this._setPosition.bind(this);
-                this._onDocumentClick = this._onDocumentClick.bind(this);
+                get(HXTooltipElement.prototype.__proto__ || Object.getPrototypeOf(HXTooltipElement.prototype), '$onCreate', this).call(this);
+
+                // overrides Positionable default
+                this.DEFAULT_POSITION = 'top-center';
+                this.POSITION_OFFSET = 20;
+
+                this.$onConnect = defer(this.$onConnect);
+                this._onCtrlBlur = this._onCtrlBlur.bind(this);
+                this._onCtrlFocus = this._onCtrlFocus.bind(this);
+                this._onCtrlMouseEnter = this._onCtrlMouseEnter.bind(this);
+                this._onCtrlMouseLeave = this._onCtrlMouseLeave.bind(this);
+                this._onKeyUp = this._onKeyUp.bind(this);
+                this._isHovering = false;
             }
+
+            /** @override */
+
         }, {
             key: '$onConnect',
             value: function $onConnect() {
-                this.$defaultAttribute('position', 'top');
-                this.initialPosition = this.position;
-                this.$upgradeProperty('open');
+                get(HXTooltipElement.prototype.__proto__ || Object.getPrototypeOf(HXTooltipElement.prototype), '$onConnect', this).call(this);
+
+                this.$upgradeProperty('htmlFor');
+
+                // TODO: What if 'id' is blank?
+                this.$defaultAttribute('id', 'tip-' + generateId());
                 this.$defaultAttribute('role', 'tooltip');
 
-                this.setAttribute('aria-hidden', !this.open);
-
-                if (this.id) {
-                    this._target = this.getRootNode().querySelector('[data-tooltip="' + this.id + '"]');
-                } else {
-                    return;
-                }
-                this._connectHandlers();
+                this.addEventListener('reposition', this._onReposition);
+                this._connectToControl();
             }
+
+            /** @override */
+
         }, {
             key: '$onDisconnect',
             value: function $onDisconnect() {
-                if (!this._target) {
-                    return;
-                }
-                this._destroyHandlers();
+                get(HXTooltipElement.prototype.__proto__ || Object.getPrototypeOf(HXTooltipElement.prototype), '$onDisconnect', this).call(this);
+
+                this.removeEventListener('reposition', this._onReposition);
+                this._detachListeners();
             }
+
+            /** @override */
+
         }, {
             key: '$onAttributeChange',
+
+
+            /** @override */
             value: function $onAttributeChange(attr, oldVal, newVal) {
-                if (attr === 'open') {
-                    var isOpen = newVal !== null;
-                    this.setAttribute('aria-hidden', !isOpen);
-                    this.$emit(isOpen ? 'open' : 'close');
+                get(HXTooltipElement.prototype.__proto__ || Object.getPrototypeOf(HXTooltipElement.prototype), '$onAttributeChange', this).call(this, attr, oldVal, newVal);
+
+                switch (attr) {
+                    case 'for':
+                        this._connectToControl();
+                        break;
+
+                    case 'position':
+                        this._setShadowPosition(newVal);
+                        break;
                 }
             }
 
             /**
-             * Where to position the menu in relation to its reference element.
+             * External element that controls tooltip visibility.
              *
-             * @default "top"
-             * @type {PositionString}
+             * Returns the first element with an "id" matching the tooltip's "htmlFor" value.
+             *
+             * @readonly
+             * @returns {HTMLElement|undefined}
              */
 
         }, {
-            key: '_connectHandlers',
+            key: '_attachListeners',
 
 
             /** @private */
-            value: function _connectHandlers() {
-                window.addEventListener('resize', debounce_1(this._setPosition, 100));
-                if (this.triggerEvent === 'click') {
-                    document.addEventListener('click', this._onDocumentClick);
-                    this._target.addEventListener('click', this._onClick);
-                } else {
-                    this._target.addEventListener('focus', this._onShow);
-                    this._target.addEventListener('blur', this._onHide);
-                    this._target.addEventListener('mouseenter', this._onShow);
-                    this._target.addEventListener('mouseleave', this._onHide);
+            value: function _attachListeners() {
+                var ctrl = this._controlElement;
+
+                if (!ctrl) {
+                    return;
+                }
+
+                ctrl.addEventListener('blur', this._onCtrlBlur);
+                ctrl.addEventListener('focus', this._onCtrlFocus);
+                ctrl.addEventListener('mouseenter', this._onCtrlMouseEnter);
+                ctrl.addEventListener('mouseleave', this._onCtrlMouseLeave);
+            }
+
+            /** @private */
+
+        }, {
+            key: '_connectToControl',
+            value: function _connectToControl() {
+                if (this.controlElement) {
+                    // detach listeners from old control element
+                    this._detachListeners();
+
+                    // re-memoize control element
+                    delete this._controlElement;
+                    this._controlElement = this.controlElement;
+
+                    this._makeControlAccessible();
+
+                    // attach listeners to new control element
+                    this._attachListeners();
                 }
             }
 
-            /** @private */
+            /**
+             * Remove all possible event listeners from the control element.
+             *
+             * @private
+             */
 
         }, {
-            key: '_destroyHandlers',
-            value: function _destroyHandlers() {
-                window.removeEventListener('resize', debounce_1(this._setPosition, 100));
-                document.removeEventListener('click', this._onDocumentClick);
-                this._target.removeEventListener('focus', this._onShow);
-                this._target.removeEventListener('blur', this._onHide);
-                this._target.removeEventListener('mouseenter', this._onShow);
-                this._target.removeEventListener('mouseleave', this._onHide);
-                this._target.removeEventListener('click', this._onClick);
-            }
+            key: '_detachListeners',
+            value: function _detachListeners() {
+                var ctrl = this._controlElement;
 
-            /** @private */
-
-        }, {
-            key: '_setPosition',
-            value: function _setPosition() {
-                var offset = getPositionWithArrow(this, this._target, { 'position': this.position });
-                this.style.top = offset.y + 'px';
-                this.style.left = offset.x + 'px';
-                this.position = offset.position;
-            }
-
-            /** @private */
-
-        }, {
-            key: '_onHide',
-            value: function _onHide() {
-                var _this2 = this;
-
-                if (this._showTimer) {
-                    clearTimeout(this._showTimer);
+                if (!ctrl) {
+                    return;
                 }
-                this._onHideTimer = setTimeout(function () {
-                    _this2.open = false;
-                }, 1600);
+
+                ctrl.removeEventListener('blur', this._onCtrlBlur);
+                ctrl.removeEventListener('focus', this._onCtrlFocus);
+                ctrl.removeEventListener('keyup', this._onKeyUp);
+                ctrl.removeEventListener('mouseenter', this._onCtrlMouseEnter);
+                ctrl.removeEventListener('mouseleave', this._onCtrlMouseLeave);
             }
 
-            /** @private */
+            /**
+             * Hide tooltip after delay
+             *
+             * @private
+             */
 
         }, {
-            key: '_onShow',
-            value: function _onShow() {
+            key: '_hide',
+            value: function _hide() {
                 var _this3 = this;
 
-                if (this._onHideTimer) {
-                    clearTimeout(this._onHideTimer);
+                // cancel SHOW
+                clearTimeout(this._showTimeout);
+
+                if (this.open && !this._isCtrlFocused) {
+                    // clear old timeout (if it exists)
+                    clearTimeout(this._hideTimeout);
+
+                    // schedule HIDE
+                    this._hideTimeout = setTimeout(function () {
+                        _this3.open = false;
+                    }, TOOLTIP_DELAY);
                 }
-                this._showTimer = setTimeout(function () {
-                    _this3.open = true;
-                }, 500);
             }
 
             /** @private */
 
         }, {
-            key: '_onClick',
-            value: function _onClick() {
-                this.open = !this.open;
+            key: '_makeControlAccessible',
+            value: function _makeControlAccessible() {
+                var ctrl = this._controlElement;
+
+                if (!ctrl) {
+                    return;
+                }
+
+                ctrl.setAttribute('aria-describedby', this.id);
+
+                // FIXME: broken in MS browsers (https://goo.gl/dgyTrz)
+                if (ctrl.tabIndex < 0) {
+                    ctrl.tabIndex = 0;
+                }
+            }
+
+            /**
+             * Handle 'blur' event on control element.
+             *
+             * @a11y keyboard interaction
+             * @private
+             */
+
+        }, {
+            key: '_onCtrlBlur',
+            value: function _onCtrlBlur() {
+                this.controlElement.removeEventListener('keyup', this._onKeyUp);
+
+                if (!this._isHovering) {
+                    this._hide();
+                }
+            }
+
+            /**
+             * Handle 'focus' on control element
+             *
+             * @a11y keyboard interaction
+             * @a11y mouse interaction (click)
+             * @private
+             */
+
+        }, {
+            key: '_onCtrlFocus',
+            value: function _onCtrlFocus() {
+                this.controlElement.addEventListener('keyup', this._onKeyUp);
+
+                this._show();
+            }
+
+            /**
+             * Handle 'mouseenter' on control element
+             *
+             * @a11y mouse interaction
+             * @private
+             */
+
+        }, {
+            key: '_onCtrlMouseEnter',
+            value: function _onCtrlMouseEnter() {
+                this._isHovering = true;
+
+                this._show();
+            }
+
+            /**
+             * Handle 'mouseleave' on control element
+             *
+             * @a11y mouse interaction
+             * @private
+             */
+
+        }, {
+            key: '_onCtrlMouseLeave',
+            value: function _onCtrlMouseLeave() {
+                this._isHovering = false;
+
+                if (!this._isCtrlFocused) {
+                    this._hide();
+                }
+            }
+
+            /**
+             * Handle pressing 'Esc' key when focused.
+             *
+             * @a11y keyboard interaction
+             * @private
+             */
+
+        }, {
+            key: '_onKeyUp',
+            value: function _onKeyUp(event) {
+                if (this.open && event.keyCode === KEYS.Escape) {
+                    // Prevents calling ESC handlers further up in the DOM.
+                    // (e.g. Modal esc-to-close)
+                    event.stopPropagation();
+
+                    if (!this._isHovering) {
+                        this.open = false;
+                    }
+                }
             }
 
             /** @private */
 
         }, {
-            key: '_onDocumentClick',
-            value: function _onDocumentClick(event) {
-                var inComponent = this.contains(event.target);
-                var inTarget = this._target.contains(event.target);
-                var isBackground = !inComponent && !inTarget;
+            key: '_onReposition',
+            value: function _onReposition() {
+                this._setShadowPosition(this.optimumPosition);
+            }
 
-                if (isBackground) {
-                    this.open = false;
+            /** @private */
+
+        }, {
+            key: '_setShadowPosition',
+            value: function _setShadowPosition(position) {
+                this._elRoot.setAttribute('position', position);
+            }
+
+            /**
+             * Show Tooltip after delay
+             *
+             * @private
+             */
+
+        }, {
+            key: '_show',
+            value: function _show() {
+                var _this4 = this;
+
+                // cancel HIDE
+                clearTimeout(this._hideTimeout);
+
+                if (!this.open) {
+                    // clear old timeout (if it exists)
+                    clearTimeout(this._showTimeout);
+
+                    // schedule SHOW
+                    this._showTimeout = setTimeout(function () {
+                        _this4.open = true;
+                    }, TOOLTIP_DELAY);
                 }
             }
         }, {
-            key: 'position',
+            key: 'controlElement',
             get: function get$$1() {
-                return this.getAttribute('position');
-            },
-            set: function set$$1(value) {
-                if (value) {
-                    this.setAttribute('position', value);
-                } else {
-                    this.removeAttribute('position');
+                if (this.isConnected) {
+                    return this.getRootNode().querySelector('[id="' + this.htmlFor + '"]');
                 }
             }
 
             /**
-             * Event that will trigger the appearance of the tooltip.
+             * ID of alternate control element
              *
-             * @default "mouseenter"
-             * @type {String}
+             * @type {string}
              */
 
         }, {
-            key: 'triggerEvent',
+            key: 'htmlFor',
             get: function get$$1() {
-                return this.getAttribute('trigger-event');
+                return this.getAttribute('for');
             },
             set: function set$$1(value) {
-                if (value) {
-                    this.setAttribute('trigger-event', value);
-                } else {
-                    this.removeAttribute('trigger-event');
-                }
+                this.setAttribute('for', value);
+            }
+
+            /** @private */
+
+        }, {
+            key: '_elRoot',
+            get: function get$$1() {
+                return this.shadowRoot.getElementById('hxTooltip');
             }
 
             /**
-             * Determines if the tooltip is revealed.
-             *
-             * @default false
-             * @type {Boolean}
+             * True, if controlElement is the active element.
+             * @private
+             * @type {boolean}
              */
 
         }, {
-            key: 'open',
+            key: '_isCtrlFocused',
             get: function get$$1() {
-                return this.hasAttribute('open');
-            },
-            set: function set$$1(value) {
-                if (value) {
-                    this.setAttribute('open', '');
-                    this._setPosition();
-                } else {
-                    this.removeAttribute('open');
-                    this.position = this.initialPosition;
+                var ctrl = this._controlElement;
+
+                if (!ctrl) {
+                    return false;
                 }
+
+                return this.getRootNode().activeElement === ctrl;
             }
         }], [{
             key: 'is',
@@ -6296,16 +6602,16 @@
         }, {
             key: 'template',
             get: function get$$1() {
-                return '<style>' + shadowStyles$f + '</style>' + shadowMarkup$f;
+                return '<style>' + shadowStyles$g + '</style>' + shadowMarkup$g;
             }
         }, {
             key: '$observedAttributes',
             get: function get$$1() {
-                return ['open'];
+                return get(HXTooltipElement.__proto__ || Object.getPrototypeOf(HXTooltipElement), '$observedAttributes', this).concat(['for']);
             }
         }]);
         return HXTooltipElement;
-    }(HXElement);
+    }(_ProtoClass$3);
 
 
 
@@ -6343,7 +6649,7 @@
         HXTooltipElement: HXTooltipElement
     });
 
-    var version = "0.14.0";
+    var version = "0.15.0";
 
     /** @module HelixUI */
 

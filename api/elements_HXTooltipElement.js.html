@@ -27,37 +27,25 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import { HXElement } from './HXElement';
-import { getPositionWithArrow } from '../utils/position';
-import debounce from 'lodash/debounce';
 import shadowMarkup from './HXTooltipElement.html';
 import shadowStyles from './HXTooltipElement.less';
 
-/**
- * Fires when the element's contents are concealed.
- *
- * @event Tooltip:close
- * @since 0.6.0
- * @type {CustomEvent}
- */
+import { Positionable } from '../mixins/Positionable';
+import { KEYS, defer, mix, generateId } from '../utils';
 
-/**
- * Fires when the element's contents are revealed.
- *
- * @event Tooltip:open
- * @since 0.6.0
- * @type {CustomEvent}
- */
+const TOOLTIP_DELAY = 500;
+
+class _ProtoClass extends mix(HXElement, Positionable) {}
 
 /**
  * Defines behavior for the `&lt;hx-tooltip>` element.
  *
- * @emits Tooltip:close
- * @emits Tooltip:open
  * @extends HXElement
+ * @extends Positionable
  * @hideconstructor
  * @since 0.2.0
  */
-export class HXTooltipElement extends HXElement {
+export class HXTooltipElement extends _ProtoClass {
     static get is () {
         return 'hx-tooltip';
     }
@@ -66,168 +54,295 @@ export class HXTooltipElement extends HXElement {
         return `&lt;style>${shadowStyles}&lt;/style>${shadowMarkup}`;
     }
 
+    /** @override */
     $onCreate () {
-        this._onShow = this._onShow.bind(this);
-        this._onHide = this._onHide.bind(this);
-        this._onClick = this._onClick.bind(this);
-        this._setPosition = this._setPosition.bind(this);
-        this._onDocumentClick = this._onDocumentClick.bind(this);
+        super.$onCreate();
+
+        // overrides Positionable default
+        this.DEFAULT_POSITION = 'top-center';
+        this.POSITION_OFFSET = 20;
+
+        this.$onConnect = defer(this.$onConnect);
+        this._onCtrlBlur = this._onCtrlBlur.bind(this);
+        this._onCtrlFocus = this._onCtrlFocus.bind(this);
+        this._onCtrlMouseEnter = this._onCtrlMouseEnter.bind(this);
+        this._onCtrlMouseLeave = this._onCtrlMouseLeave.bind(this);
+        this._onKeyUp = this._onKeyUp.bind(this);
+        this._isHovering = false;
     }
 
+    /** @override */
     $onConnect () {
-        this.$defaultAttribute('position', 'top');
-        this.initialPosition = this.position;
-        this.$upgradeProperty('open');
+        super.$onConnect();
+
+        this.$upgradeProperty('htmlFor');
+
+        // TODO: What if 'id' is blank?
+        this.$defaultAttribute('id', `tip-${generateId()}`);
         this.$defaultAttribute('role', 'tooltip');
 
-        this.setAttribute('aria-hidden', !this.open);
-
-        if (this.id) {
-            this._target = this.getRootNode().querySelector(`[data-tooltip="${this.id}"]`);
-        } else {
-            return;
-        }
-        this._connectHandlers();
+        this.addEventListener('reposition', this._onReposition);
+        this._connectToControl();
     }
 
+    /** @override */
     $onDisconnect () {
-        if (!this._target) {
+        super.$onDisconnect();
+
+        this.removeEventListener('reposition', this._onReposition);
+        this._detachListeners();
+    }
+
+    /** @override */
+    static get $observedAttributes () {
+        return super.$observedAttributes.concat([ 'for' ]);
+    }
+
+    /** @override */
+    $onAttributeChange (attr, oldVal, newVal) {
+        super.$onAttributeChange(attr, oldVal, newVal);
+
+        switch (attr) {
+            case 'for':
+                this._connectToControl();
+                break;
+
+            case 'position':
+                this._setShadowPosition(newVal);
+                break;
+        }
+    }
+
+    /**
+     * External element that controls tooltip visibility.
+     *
+     * Returns the first element with an "id" matching the tooltip's "htmlFor" value.
+     *
+     * @readonly
+     * @returns {HTMLElement|undefined}
+     */
+    get controlElement () {
+        if (this.isConnected) {
+            return this.getRootNode().querySelector(`[id="${this.htmlFor}"]`);
+        }
+    }
+
+    /**
+     * ID of alternate control element
+     *
+     * @type {string}
+     */
+    get htmlFor () {
+        return this.getAttribute('for');
+    }
+    set htmlFor (value) {
+        this.setAttribute('for', value);
+    }
+
+    /** @private */
+    get _elRoot () {
+        return this.shadowRoot.getElementById('hxTooltip');
+    }
+
+    /**
+     * True, if controlElement is the active element.
+     * @private
+     * @type {boolean}
+     */
+    get _isCtrlFocused () {
+        let ctrl = this._controlElement;
+
+        if (!ctrl) {
+            return false;
+        }
+
+        return (this.getRootNode().activeElement === ctrl);
+    }
+
+    /** @private */
+    _attachListeners () {
+        let ctrl = this._controlElement;
+
+        if (!ctrl) {
             return;
         }
-        this._destroyHandlers();
+
+        ctrl.addEventListener('blur', this._onCtrlBlur);
+        ctrl.addEventListener('focus', this._onCtrlFocus);
+        ctrl.addEventListener('mouseenter', this._onCtrlMouseEnter);
+        ctrl.addEventListener('mouseleave', this._onCtrlMouseLeave);
     }
 
-    static get $observedAttributes () {
-        return [ 'open' ];
-    }
+    /** @private */
+    _connectToControl () {
+        if (this.controlElement) {
+            // detach listeners from old control element
+            this._detachListeners();
 
-    $onAttributeChange (attr, oldVal, newVal) {
-        if (attr === 'open') {
-            let isOpen = (newVal !== null);
-            this.setAttribute('aria-hidden', !isOpen);
-            this.$emit(isOpen ? 'open' : 'close');
+            // re-memoize control element
+            delete this._controlElement;
+            this._controlElement = this.controlElement;
+
+            this._makeControlAccessible();
+
+            // attach listeners to new control element
+            this._attachListeners();
         }
     }
 
     /**
-     * Where to position the menu in relation to its reference element.
+     * Remove all possible event listeners from the control element.
      *
-     * @default "top"
-     * @type {PositionString}
+     * @private
      */
-    get position () {
-        return this.getAttribute('position');
+    _detachListeners () {
+        let ctrl = this._controlElement;
+
+        if (!ctrl) {
+            return;
+        }
+
+        ctrl.removeEventListener('blur', this._onCtrlBlur);
+        ctrl.removeEventListener('focus', this._onCtrlFocus);
+        ctrl.removeEventListener('keyup', this._onKeyUp);
+        ctrl.removeEventListener('mouseenter', this._onCtrlMouseEnter);
+        ctrl.removeEventListener('mouseleave', this._onCtrlMouseLeave);
     }
-    set position (value) {
-        if (value) {
-            this.setAttribute('position', value);
-        } else {
-            this.removeAttribute('position');
+
+    /**
+     * Hide tooltip after delay
+     *
+     * @private
+     */
+    _hide () {
+        // cancel SHOW
+        clearTimeout(this._showTimeout);
+
+        if (this.open &amp;&amp; !this._isCtrlFocused) {
+            // clear old timeout (if it exists)
+            clearTimeout(this._hideTimeout);
+
+            // schedule HIDE
+            this._hideTimeout = setTimeout(() => {
+                this.open = false;
+            }, TOOLTIP_DELAY);
+        }
+    }
+
+    /** @private */
+    _makeControlAccessible () {
+        let ctrl = this._controlElement;
+
+        if (!ctrl) {
+            return;
+        }
+
+        ctrl.setAttribute('aria-describedby', this.id);
+
+        // FIXME: broken in MS browsers (https://goo.gl/dgyTrz)
+        if (ctrl.tabIndex &lt; 0) {
+            ctrl.tabIndex = 0;
         }
     }
 
     /**
-     * Event that will trigger the appearance of the tooltip.
+     * Handle 'blur' event on control element.
      *
-     * @default "mouseenter"
-     * @type {String}
+     * @a11y keyboard interaction
+     * @private
      */
-    get triggerEvent () {
-        return this.getAttribute('trigger-event');
-    }
-    set triggerEvent (value) {
-        if (value) {
-            this.setAttribute('trigger-event', value);
-        } else {
-            this.removeAttribute('trigger-event');
+    _onCtrlBlur () {
+        this.controlElement.removeEventListener('keyup', this._onKeyUp);
+
+        if (!this._isHovering) {
+            this._hide();
         }
     }
 
     /**
-     * Determines if the tooltip is revealed.
+     * Handle 'focus' on control element
      *
-     * @default false
-     * @type {Boolean}
+     * @a11y keyboard interaction
+     * @a11y mouse interaction (click)
+     * @private
      */
-    get open () {
-        return this.hasAttribute('open');
+    _onCtrlFocus () {
+        this.controlElement.addEventListener('keyup', this._onKeyUp);
+
+        this._show();
     }
-    set open (value) {
-        if (value) {
-            this.setAttribute('open', '');
-            this._setPosition();
-        } else {
-            this.removeAttribute('open');
-            this.position = this.initialPosition;
+
+    /**
+     * Handle 'mouseenter' on control element
+     *
+     * @a11y mouse interaction
+     * @private
+     */
+    _onCtrlMouseEnter () {
+        this._isHovering = true;
+
+        this._show();
+    }
+
+    /**
+     * Handle 'mouseleave' on control element
+     *
+     * @a11y mouse interaction
+     * @private
+     */
+    _onCtrlMouseLeave () {
+        this._isHovering = false;
+
+        if (!this._isCtrlFocused) {
+            this._hide();
+        }
+    }
+
+    /**
+     * Handle pressing 'Esc' key when focused.
+     *
+     * @a11y keyboard interaction
+     * @private
+     */
+    _onKeyUp (event) {
+        if (this.open &amp;&amp; event.keyCode === KEYS.Escape) {
+            // Prevents calling ESC handlers further up in the DOM.
+            // (e.g. Modal esc-to-close)
+            event.stopPropagation();
+
+            if (!this._isHovering) {
+                this.open = false;
+            }
         }
     }
 
     /** @private */
-    _connectHandlers () {
-        window.addEventListener('resize', debounce(this._setPosition,100));
-        if (this.triggerEvent === 'click') {
-            document.addEventListener('click', this._onDocumentClick);
-            this._target.addEventListener('click', this._onClick);
-        } else {
-            this._target.addEventListener('focus', this._onShow);
-            this._target.addEventListener('blur', this._onHide);
-            this._target.addEventListener('mouseenter', this._onShow);
-            this._target.addEventListener('mouseleave', this._onHide);
-        }
+    _onReposition () {
+        this._setShadowPosition(this.optimumPosition);
     }
 
     /** @private */
-    _destroyHandlers () {
-        window.removeEventListener('resize', debounce(this._setPosition,100));
-        document.removeEventListener('click', this._onDocumentClick);
-        this._target.removeEventListener('focus', this._onShow);
-        this._target.removeEventListener('blur', this._onHide);
-        this._target.removeEventListener('mouseenter', this._onShow);
-        this._target.removeEventListener('mouseleave', this._onHide);
-        this._target.removeEventListener('click', this._onClick);
+    _setShadowPosition (position) {
+        this._elRoot.setAttribute('position', position);
     }
 
-    /** @private */
-    _setPosition () {
-        var offset = getPositionWithArrow(this, this._target, { 'position': this.position });
-        this.style.top = `${offset.y}px`;
-        this.style.left = `${offset.x}px`;
-        this.position = offset.position;
-    }
+    /**
+     * Show Tooltip after delay
+     *
+     * @private
+     */
+    _show () {
+        // cancel HIDE
+        clearTimeout(this._hideTimeout);
 
-    /** @private */
-    _onHide () {
-        if (this._showTimer) {
-            clearTimeout(this._showTimer);
-        }
-        this._onHideTimer = setTimeout(() => {
-            this.open = false;
-        }, 1600);
-    }
+        if (!this.open) {
+            // clear old timeout (if it exists)
+            clearTimeout(this._showTimeout);
 
-    /** @private */
-    _onShow () {
-        if (this._onHideTimer) {
-            clearTimeout(this._onHideTimer);
-        }
-        this._showTimer = setTimeout(() => {
-            this.open = true;
-        }, 500);
-    }
-
-    /** @private */
-    _onClick () {
-        this.open = !this.open;
-    }
-
-    /** @private */
-    _onDocumentClick (event) {
-        let inComponent = this.contains(event.target);
-        let inTarget = this._target.contains(event.target);
-        let isBackground = !inComponent &amp;&amp; !inTarget;
-
-        if (isBackground) {
-            this.open = false;
+            // schedule SHOW
+            this._showTimeout = setTimeout(() => {
+                this.open = true;
+            }, TOOLTIP_DELAY);
         }
     }
 }
@@ -241,13 +356,13 @@ export class HXTooltipElement extends HXElement {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Position.html">HelixUI/Utils/Position</a></li><li><a href="module-HelixUI_Utils_Position_Offset.html">HelixUI/Utils/Position/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Menu:close">Menu:close</a></li><li><a href="global.html#event:Menu:open">Menu:open</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Popover:close">Popover:close</a></li><li><a href="global.html#event:Popover:open">Popover:open</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:SearchAssistance:close">SearchAssistance:close</a></li><li><a href="global.html#event:SearchAssistance:open">SearchAssistance:open</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li><li><a href="global.html#event:Tooltip:close">Tooltip:close</a></li><li><a href="global.html#event:Tooltip:open">Tooltip:open</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Alignment.html">HelixUI/Utils/Alignment</a></li><li><a href="module-HelixUI_Utils_Offset.html">HelixUI/Utils/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-DOMRect.html">DOMRect</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Checkbox:change">Checkbox:change</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Revealable:close">Revealable:close</a></li><li><a href="global.html#event:Revealable:open">Revealable:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li></ul><h3>Interfaces</h3><ul><li><a href="Positionable.html">Positionable</a></li><li><a href="Revealable.html">Revealable</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Oct 12 2018 10:48:15 GMT-0500 (CDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 30 2019 15:03:20 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -62,14 +62,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Guides"
+    aria-controls="nav-guides"
 >
     Guides
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Guides" >
+  <hx-reveal id="nav-guides" >
       
       <a href="guides/getting-started" >
     Getting Started
@@ -99,14 +98,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Components"
+    aria-controls="nav-components"
 class="current">
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" open>
+  <hx-reveal id="nav-components" open>
       
       <a href="components/accordions" >
     Accordions
@@ -292,14 +290,13 @@ class="current">
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Custom Elements"
+    aria-controls="nav-elements"
 >
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Custom Elements" >
+  <hx-reveal id="nav-elements" >
       
       <a href="elements/hx-accordion" >
     &lt;hx-accordion&gt;
@@ -403,48 +400,6 @@ class="current">
 
 
       
-      <a href="elements/hx-modalbody" >
-    &lt;hx-modalbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalfoot" >
-    &lt;hx-modalfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalhead" >
-    &lt;hx-modalhead&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panel" >
-    &lt;hx-panel&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelbody" >
-    &lt;hx-panelbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelfoot" >
-    &lt;hx-panelfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelhead" >
-    &lt;hx-panelhead&gt;
-  </a>
-
-
-      
       <a href="elements/hx-pill" >
     &lt;hx-pill&gt;
   </a>
@@ -453,24 +408,6 @@ class="current">
       
       <a href="elements/hx-popover" >
     &lt;hx-popover&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-body" >
-    &lt;hx-popover-body&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-foot" >
-    &lt;hx-popover-foot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-head" >
-    &lt;hx-popover-head&gt;
   </a>
 
 
@@ -557,19 +494,19 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox-md">
+  <main id="content" class="hxBox hxMd">
     <h1>Grid
-<min-version data-tooltip="page-min-version">
+<min-version id="page-min-version">
     v0.1.0+
 </min-version>
 
-<hx-tooltip id="page-min-version" position="right">
+<hx-tooltip for="page-min-version" position="right">
     HelixUI v0.1.0 or later required
 </hx-tooltip>
     </h1>
 
 <section>
-  <hx-alert type="warning" status="warning" static>
+  <hx-alert type="warning" status="warning" persist>
     HelixUI grid classes are not compatible with Bootstrap grid styles.
   </hx-alert>
 
@@ -581,7 +518,7 @@ class="current">
 
 <section><!-- rows -->
   <h2 id="rows">Rows</h2>
-  <ul>
+  <ul class="hxList">
     <li>
       Rows are containers that allow you to divide their
       <em>width</em> amongst their children.
@@ -620,7 +557,7 @@ class="current">
 
 <section><!-- columns -->
   <h2 id="columns">Columns</h2>
-  <ul>
+  <ul class="hxList">
     <li>
       Columns are containers that allow you to divide their
       <em>height</em> amongst their children.
@@ -675,7 +612,7 @@ class="current">
     Use the <code>.hxSpan-{N}</code> modifier (1 &le; N &le; 12) to create
     columns that are a fraction of a 12-column row width.
   </p>
-  <ul>
+  <ul class="hxList">
     <li><code>.hxSpan-{N}-{size}</code> responsive classes are available.</li>
     <li><code>.hxSpan-{N}</code> is shorthand for <code>.hxSpan-{N}-xs</code></li>
   </ul>
@@ -750,7 +687,7 @@ class="current">
     You can use the <code>.hxOffset-{N}</code> class (1 &le; N &le; 11)
     to offset your column from the start of the row.
   </p>
-  <ul>
+  <ul class="hxList">
     <li>
       <code>.hxOffset-{N}-{size}</code> responsive classes are available
     </li>
@@ -799,7 +736,7 @@ class="current">
 
 <section><!-- column ordering -->
   <h2 id="column-ordering">Column Ordering</h2>
-  <hx-alert type="info" status="fyi" static>
+  <hx-alert type="info" status="fyi" persist>
     Reordering columns does not change tab order.<br />
     Tab order is based on the DOM order, not visual appearance.
   </hx-alert>
@@ -807,7 +744,7 @@ class="current">
     Use the <code>.hxOrder-{N}</code> class (1 &le; N &le; 12) to reorder
     your columns.
   </p>
-  <ul>
+  <ul class="hxList">
     <li>
       <code>.hxOrder-{N}-{size}</code> responsive classes are available
     </li>
@@ -845,7 +782,7 @@ class="current">
 
 <section><!-- responsive options -->
   <h2 id="responsive-options">Responsive Options</h2>
-  <ul>
+  <ul class="hxList">
     <li>All column modifiers support adding an optional breakpoint.</li>
     <li>
       Omitting the breakpoint will default to <code>xs</code>
@@ -939,13 +876,13 @@ class="current">
 
 <section><!-- column wrapping -->
   <h2 id="column-wrapping">Column Wrapping</h2>
-  <hx-alert type="info" status="note" static>
+  <hx-alert type="info" status="note" persist>
     Columns wrap if the total column width count within the row exceeds 12.
   </hx-alert>
   <p>
     The following example should arrange the content into:
   </p>
-  <ul>
+  <ul class="hxList">
     <li>3 columns on small screens</li>
     <li>4 columns on medium screens</li>
     <li>6 columns on all other sizes</li>
@@ -987,7 +924,7 @@ class="current">
 
 <section><!-- nesting containers -->
   <h2 id="nesting-containers">Nesting Containers</h2>
-  <hx-alert type="warning" status="warning" static>
+  <hx-alert type="warning" status="warning" persist>
     Do not apply row and column container classes to the same element.
   </hx-alert>
   <p>You can nest rows and columns as deep as necessary.</p>
@@ -1042,10 +979,10 @@ class="current">
 
 <section><!-- styling containers -->
   <h2 id="styling-containers">Styling Containers</h2>
-  <hx-alert type="warning" status="warning" static>
+  <hx-alert type="warning" status="warning" persist>
     Do not attempt to style rows or columns directly.
   </hx-alert>
-  <ul>
+  <ul class="hxList">
     <li>Rows have margins set to align the outer columns with surrounding content.</li>
     <li>Columns in a row have padding applied to them to simulate gutters.</li>
     <li>Wrap your content in a <code>&lt;div&gt;</code> to apply custom CSS.</li>
@@ -1103,7 +1040,7 @@ class="current">
 
 <section><!-- going gutterless -->
   <h2 id="going-gutterless">Going Gutterless</h2>
-  <ul>
+  <ul class="hxList">
     <li>
       Add the <code>.hxGutterless</code> CSS class to your row container
       to remove gutters from its immediate children.
@@ -1146,13 +1083,13 @@ class="current">
 
 <section>
   <h2 id="see-also">See Also</h2>
-  <ul>
+  <ul class="hxList">
       <li><a href="components/box">Box</a></li>
       <li><a href="components/layouts">Layouts</a></li>
   </ul>
 </section>
   </main>
-  <aside class="hxSiderail hxBox-md">
+  <aside class="hxSiderail hxBox hxMd">
     <h1 class="hxHeading-4">On this page:</h1>
     <nav class="article-toc">
       
@@ -1186,7 +1123,7 @@ class="current">
             <a href="#going-gutterless">Going Gutterless</a>
         
         <a href="#see-also">See Also</a>
-      <hr />
+      <hr class="hxDivider" />
       <a class="top-link" href="#top">Back to Top</a>
     </nav>
   </aside>
@@ -1195,7 +1132,7 @@ class="current">
 
   <footer id="foot" class="hxRow hxGutterless">
 <div class="hxCol">
-&copy; 2018 Rackspace US, Inc.
+&copy; 2019 Rackspace US, Inc.
 <nav>
   <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
   <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
@@ -1204,12 +1141,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-10-12
+      2019-01-08
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.14.0" target="_blank">
-      v0.14.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.15.0" target="_blank">
+      v0.15.0
     </a>)
   </small>
 </div>

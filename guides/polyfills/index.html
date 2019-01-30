@@ -62,14 +62,13 @@
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Guides"
+    aria-controls="nav-guides"
 class="current">
     Guides
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Guides" open>
+  <hx-reveal id="nav-guides" open>
       
       <a href="guides/getting-started" >
     Getting Started
@@ -99,14 +98,13 @@ class="current">
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Components"
+    aria-controls="nav-components"
 >
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Components" >
+  <hx-reveal id="nav-components" >
       
       <a href="components/accordions" >
     Accordions
@@ -292,14 +290,13 @@ class="current">
 
   
     
-
   <hx-disclosure
-    aria-controls="nav-Custom Elements"
+    aria-controls="nav-elements"
 >
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-Custom Elements" >
+  <hx-reveal id="nav-elements" >
       
       <a href="elements/hx-accordion" >
     &lt;hx-accordion&gt;
@@ -403,48 +400,6 @@ class="current">
 
 
       
-      <a href="elements/hx-modalbody" >
-    &lt;hx-modalbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalfoot" >
-    &lt;hx-modalfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-modalhead" >
-    &lt;hx-modalhead&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panel" >
-    &lt;hx-panel&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelbody" >
-    &lt;hx-panelbody&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelfoot" >
-    &lt;hx-panelfoot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-panelhead" >
-    &lt;hx-panelhead&gt;
-  </a>
-
-
-      
       <a href="elements/hx-pill" >
     &lt;hx-pill&gt;
   </a>
@@ -453,24 +408,6 @@ class="current">
       
       <a href="elements/hx-popover" >
     &lt;hx-popover&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-body" >
-    &lt;hx-popover-body&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-foot" >
-    &lt;hx-popover-foot&gt;
-  </a>
-
-
-      
-      <a href="elements/hx-popover-head" >
-    &lt;hx-popover-head&gt;
   </a>
 
 
@@ -557,7 +494,7 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox-xl">
+  <main id="content" class="hxBox hxMd">
     <h1>Polyfills</h1>
 
   <section>
@@ -631,7 +568,7 @@ class="current">
 </td>
           <td>    <hx-icon class="native-support" type="checkmark"></hx-icon>
 </td>
-          <td>    <hx-icon class="polyfill-needed" type="times"></hx-icon>
+          <td>    <hx-icon class="native-support" type="checkmark"></hx-icon>
 </td>
           <td>    <hx-icon class="polyfill-needed" type="times"></hx-icon>
 </td>
@@ -659,7 +596,7 @@ class="current">
 </td>
           <td>    <hx-icon class="native-support" type="checkmark"></hx-icon>
 </td>
-          <td>    <hx-icon class="polyfill-needed" type="times"></hx-icon>
+          <td>    <hx-icon class="native-support" type="checkmark"></hx-icon>
 </td>
           <td>    <hx-icon class="polyfill-needed" type="times"></hx-icon>
 </td>
@@ -690,6 +627,20 @@ class="current">
           <td>    <hx-icon class="native-support" type="checkmark"></hx-icon>
 </td>
           <td>    <hx-icon class="native-support" type="checkmark"></hx-icon>
+</td>
+          <td>    <hx-icon class="polyfill-needed" type="times"></hx-icon>
+</td>
+          <td><code>webcomponentsjs</code></td>
+        </tr>
+        <tr>
+          <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/isConnected">Node.isConnected</a></td>
+          <td>    <hx-icon class="native-support" type="checkmark"></hx-icon>
+</td>
+          <td>    <hx-icon class="native-support" type="checkmark"></hx-icon>
+</td>
+          <td>    <hx-icon class="native-support" type="checkmark"></hx-icon>
+</td>
+          <td>    <hx-icon class="polyfill-needed" type="times"></hx-icon>
 </td>
           <td>    <hx-icon class="polyfill-needed" type="times"></hx-icon>
 </td>
@@ -743,7 +694,7 @@ class="current">
 </td>
           <td>    <hx-icon class="native-support" type="checkmark"></hx-icon>
 </td>
-          <td>    <hx-icon class="polyfill-needed" type="times"></hx-icon>
+          <td>    <hx-icon class="native-support" type="checkmark"></hx-icon>
 </td>
           <td>    <hx-icon class="polyfill-needed" type="times"></hx-icon>
 </td>
@@ -768,7 +719,7 @@ class="current">
     <p>
       Access the following resources to find polyfills.
     </p>
-    <ul>
+    <ul class="hxList">
       <li>
         <a href="https://developer.mozilla.org">MDN documentation</a>
         may include polyfills for JavaScript and Web APIs.
@@ -786,7 +737,7 @@ class="current">
   </section>
 
   </main>
-  <aside class="hxSiderail hxBox-md">
+  <aside class="hxSiderail hxBox hxMd">
 <h1 class="hxHeading-4">On this page:</h1>
 <nav class="article-toc">
   
@@ -795,7 +746,7 @@ class="current">
 
             <a href="#additional-polyfills">Additional Polyfills</a>
         
-  <hr />
+  <hr class="hxDivider" />
   <a class="top-link" href="#top">Back to Top</a>
 </nav>
   </aside>
@@ -804,7 +755,7 @@ class="current">
 
   <footer id="foot" class="hxRow hxGutterless">
 <div class="hxCol">
-&copy; 2018 Rackspace US, Inc.
+&copy; 2019 Rackspace US, Inc.
 <nav>
   <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
   <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
@@ -813,12 +764,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2018-10-12
+      2018-12-05
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.14.0" target="_blank">
-      v0.14.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.15.0" target="_blank">
+      v0.15.0
     </a>)
   </small>
 </div>

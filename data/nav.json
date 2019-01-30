@@ -220,52 +220,12 @@
         "path": "hx-modal"
       },
       {
-        "label": "<hx-modalbody>",
-        "path": "hx-modalbody"
-      },
-      {
-        "label": "<hx-modalfoot>",
-        "path": "hx-modalfoot"
-      },
-      {
-        "label": "<hx-modalhead>",
-        "path": "hx-modalhead"
-      },
-      {
-        "label": "<hx-panel>",
-        "path": "hx-panel"
-      },
-      {
-        "label": "<hx-panelbody>",
-        "path": "hx-panelbody"
-      },
-      {
-        "label": "<hx-panelfoot>",
-        "path": "hx-panelfoot"
-      },
-      {
-        "label": "<hx-panelhead>",
-        "path": "hx-panelhead"
-      },
-      {
         "label": "<hx-pill>",
         "path": "hx-pill"
       },
       {
         "label": "<hx-popover>",
         "path": "hx-popover"
-      },
-      {
-        "label": "<hx-popover-body>",
-        "path": "hx-popover-body"
-      },
-      {
-        "label": "<hx-popover-foot>",
-        "path": "hx-popover-foot"
-      },
-      {
-        "label": "<hx-popover-head>",
-        "path": "hx-popover-head"
       },
       {
         "label": "<hx-progress>",
