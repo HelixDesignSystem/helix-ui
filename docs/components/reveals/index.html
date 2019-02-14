@@ -14,11 +14,11 @@ also:
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isDisabled" />
-              Disabled
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div>
+              <input id="chkIsDisabled" type="checkbox" v-model="isDisabled" />
+              <label for="chkIsDisabled">Disabled</label>
+            </div>
           </fieldset>
         </form>
       </header>

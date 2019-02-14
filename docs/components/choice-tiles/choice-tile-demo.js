@@ -1,18 +1,17 @@
 import Util from '../../_util';
 
 if (document.getElementById('vue-choiceDemo')) {
+    let SIZES = [
+        { value: 'hxSm', label: 'Small' },
+        { value: '', label: 'Medium' },
+        { value: 'hxLg', label: 'Large' },
+    ];
+
     new Vue({
         el: '#vue-choiceDemo',
         data: {
-            size: {
-                label: 'Default',
-                value: '',
-            },
-            sizes: [
-                { value: 'hxSm', label: 'Small' },
-                { value: '', label: 'Default' },
-                { value: 'hxLg', label: 'Large' },
-            ],
+            size: SIZES[1], // Medium
+            sizes: SIZES,
             description: 'A couple of descriptive lines or a small bit of help text.',
             isChecked: false,
             isDisabled: false,

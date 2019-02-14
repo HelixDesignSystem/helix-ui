@@ -17,32 +17,33 @@ also:
     <div class="example" id="vue-alertDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <p>
-            <label for="selType">Type</label>
+          <div class="hxSelect">
             <select id="selType" v-model="type">
               <option v-for="_type in types" :value="_type">
                 {% raw %}{{ _type.label }}{% endraw %}
               </option>
             </select>
-          </p>
+            <hx-select></hx-select>
+            <label for="selType" class="beta-hxFieldName">Type</label>
+          </div>
           <p>
-            <label for="txtStatus">Status</label>
+            <label for="txtStatus" class="beta-hxFieldName">Status</label>
             <input id="txtStatus" class="hxTextCtrl" v-model="status" />
           </p>
           <p>
-            <label for="txtCta">CTA</label>
+            <label for="txtCta" class="beta-hxFieldName">CTA</label>
             <input id="txtCta" class="hxTextCtrl" v-model="cta" />
           </p>
           <p>
-            <label for="txtContent">Content</label>
+            <label for="txtContent" class="beta-hxFieldName">Content</label>
             <textarea id="txtContent" class="hxTextCtrl" v-model="content"></textarea>
           </p>
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isPersistent">
-              Persist
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div>
+              <input id="chkIsPersistent" type="checkbox" v-model="isPersistent">
+              <label for="chkIsPersistent">Persist</label>
+            </div>
           </fieldset>
         </form>
       </header>

@@ -13,23 +13,23 @@ also:
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isChecked" />
-              Checked
-            </label>
-            <label>
-              <input type="checkbox" v-model="isDisabled" />
-              Disabled
-            </label>
-            <label>
-              <input type="checkbox" v-model="isIndeterminate" />
-              Indeterminate
-            </label>
-            <label>
-              <input type="checkbox" v-model="isInvalid" />
-              Invalid
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div>
+              <input id="chkIsChecked" type="checkbox" v-model="isChecked" />
+              <label for="chkIsChecked">Checked</label>
+            </div>
+            <div>
+              <input id="chkIsDisabled" type="checkbox" v-model="isDisabled" />
+              <label for="chkIsDisabled">Disabled</label>
+            </div>
+            <div>
+              <input id="chkIsIndeterminate" type="checkbox" v-model="isIndeterminate" />
+              <label for="chkIsIndeterminate">Indeterminate</label>
+            </div>
+            <div>
+              <input id="chkIsInvalid" type="checkbox" v-model="isInvalid" />
+              <label for="chkIsInvalid">Invalid</label>
+            </div>
           </fieldset>
         </form>
       </header>

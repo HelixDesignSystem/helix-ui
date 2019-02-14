@@ -34,30 +34,36 @@ also:
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>Variant</legend>
-            <label v-for="_variant in variants">
+            <legend class="beta-hxFieldName">Variant</legend>
+            <div v-for="(_variant, idx) in variants">
               <input
+                :id="'radBasicVariant' + idx"
                 :value="_variant"
                 name="variant"
                 type="radio"
                 v-model="variant"
               />
-              <span v-text="_variant.label"></span>
-              <em class="hxSubBody" v-if="_variant.default">(default)</em>
-            </label>
+              <label :for="'radBasicVariant' + idx">
+                <span v-text="_variant.label"></span>
+                <em class="hxSubBody" v-if="_variant.default">(default)</em>
+              </label>
+            </div>
           </fieldset>
           <fieldset>
-            <legend>Size</legend>
-            <label v-for="_size in sizes">
+            <legend class="beta-hxFieldName">Size</legend>
+            <div v-for="(_size, idx) in sizes">
               <input
+                :id="'radBasicSize' + idx"
                 :value="_size"
                 name="size"
                 type="radio"
                 v-model="size"
               />
-              <span v-text="_size.label"></span>
-              <em class="hxSubBody" v-if="_size.default">(default)</em>
-            </label>
+              <label :for="'radBasicSize' + idx">
+                <span v-text="_size.label"></span>
+                <em class="hxSubBody" v-if="_size.default">(default)</em>
+              </label>
+            </div>
           </fieldset>
         </form>
       </header>
@@ -122,30 +128,36 @@ also:
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>Variant</legend>
-            <label v-for="_variant in variants">
+            <legend class="beta-hxFieldName">Variant</legend>
+            <div v-for="(_variant, idx) in variants">
               <input
+                :id="'radGroupVariant' + idx"
                 :value="_variant"
                 name="variant"
                 type="radio"
                 v-model="variant"
               />
-              <span v-text="_variant.label"></span>
-              <em class="hxSubBody" v-if="_variant.default">(default)</em>
-            </label>
+              <label :for="'radGroupVariant' + idx">
+                <span v-text="_variant.label"></span>
+                <em class="hxSubBody" v-if="_variant.default">(default)</em>
+              </label>
+            </div>
           </fieldset>
           <fieldset>
-            <legend>Size</legend>
-            <label v-for="_size in sizes">
+            <legend class="beta-hxFieldName">Size</legend>
+            <div v-for="(_size, idx) in sizes">
               <input
+                :id="'radGroupSize' + idx"
                 :value="_size"
                 name="size"
                 type="radio"
                 v-model="size"
               />
-              <span v-text="_size.label"></span>
-              <em class="hxSubBody" v-if="_size.default">(default)</em>
-            </label>
+              <label :for="'radGroupSize' + idx">
+                <span v-text="_size.label"></span>
+                <em class="hxSubBody" v-if="_size.default">(default)</em>
+              </label>
+            </div>
           </fieldset>
         </form>
       </header>
