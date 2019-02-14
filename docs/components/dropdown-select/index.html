@@ -1,0 +1,96 @@
+---
+title: Dropdown Select
+minver: 0.16.0
+also:
+  components/dropdown-select/test.html: Testing - Dropdown Select
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <p class="comfortable">
+    The {{page.title}} component provides markup that enables a consistent
+    visual appearance of the HTML <code>&lt;select&gt;</code> element.
+  </p>
+
+  <section>
+    <h2 id="basic-select">Basic Select</h2>
+    <div class="example" id="vue-selectDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div>
+              <input id="chkRequired" type="checkbox" v-model="isRequired" />
+              <label for="chkRequired">Required</label>
+            </div>
+            <div>
+              <input id="chkDisabled" type="checkbox" v-model="isDisabled" />
+              <label for="chkDisabled">Disabled</label>
+            </div>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <div class="hxSelect">
+          <select
+            id="selDemo"
+            :disabled="isDisabled"
+            :required="isRequired"
+          >
+            <option value="">-- Please Select --</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+          <hx-select></hx-select>
+          <label for="selDemo">
+            Choose an Option
+          </label>
+        </div>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+    <div app-loading class="hxBox hxLg">
+      <hx-busy></hx-busy>
+      <p>Loading...</p>
+    </div>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="info-circle"></hx-icon>
+      <code>&lt;select&gt;</code> must be defined before
+      <code>&lt;hx-select&gt;</code> and <code>&lt;label&gt;</code>
+      for styles to be effective.
+    </p>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="info-circle"></hx-icon>
+      Extra elements will be hidden.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="validation">Validation</h2>
+    <p class="comfortable">
+      A {{page.title}} is designed to take advantage of standardized
+      <a href="https://mzl.la/2SuKTmv">HTML form validation</a> capabilities.
+      Error styles will be applied as long as the <code>&lt;select&gt;</code>
+      element matches the <code>:invalid</code> CSS pseudo-class.
+    </p>
+    <p>
+      There are two ways to modify validity of the
+      <code>&lt;select&gt;</code> element.
+    </p>
+    <ol class="hxList">
+      <li>
+        add or remove the <code>required</code> attribute
+      </li>
+      <li>
+        calling its
+        <a href="https://mzl.la/2MQYTkd">
+          <code>setCustomValidity()</code>
+        </a> method
+      </li>
+    </ol>
+  </section>
+{% endblock %}

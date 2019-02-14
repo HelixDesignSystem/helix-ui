@@ -22,6 +22,7 @@
             { label: 'Buttons', path: 'buttons' },
             { label: 'Checkboxes', path: 'checkboxes' },
             { label: 'Choice Tiles', path: 'choice-tiles' },
+            { label: 'Dropdown Select', path: 'dropdown-select' },
             //{ label: 'Colors', path: 'colors' },
             { label: 'Files', path: 'files' },
             { label: 'Grid', path: 'grid' },

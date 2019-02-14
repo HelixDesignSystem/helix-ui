@@ -1,3 +1,25 @@
+@import './mixins/microsoft';
+@import './mixins/mozilla';
+@import './mixins/standard';
+@import './mixins/webkit';
+
+// Generic reset mixin
+#Reset() {
+  .placeholder() {
+    #MS.reset.placeholder();
+    #Moz.reset.placeholder();
+    #Webkit.reset.placeholder();
+    #Std.reset.placeholder();
+  }
+
+  .select() {
+    #MS.reset.select();
+    #Moz.reset.select();
+    #Webkit.reset.select();
+    #Std.reset.select();
+  }
+}
+
 .u-placeholder() {
   color: @gray-750;
   font-style: italic;
@@ -18,66 +40,47 @@
   }
 }
 
+// TODO: move mixins to #Helix namespace
 #Mix {
   // https://css-tricks.com/snippets/css/style-placeholder-text/
   .placeholder {
-    // Firefox 19+
-    &::-moz-placeholder {
-      .u-placeholder;
-    }
-    // IE 10+
-    &::-ms-input-placeholder {
-      .u-placeholder;
-    }
-    // Chrome, Safari, Opera
-    &::-webkit-input-placeholder {
-      .u-placeholder;
-    }
-    // W3C Spec
-    &::placeholder {
-      .u-placeholder;
-    }
-  }//.placeholder();
+    #Moz.set.placeholder({
+      .u-placeholder();
+    });
+    #MS.set.placeholder({
+      .u-placeholder();
+    });
+    #Webkit.set.placeholder({
+      .u-placeholder();
+    });
+    #Std.set.placeholder({
+      .u-placeholder();
+    });
+  }
 
-  .disabledPlaceholder {
-    &::-moz-placeholder {
-      color: inherit;
-    }
-    &::-ms-input-placeholder {
-      color: inherit;
-    }
-    &::-webkit-input-placeholder {
-      color: inherit;
-    }
-    &::placeholder {
-      color: inherit;
-    }
-  }//.disabledPlaceholder()
+  .disabledPlaceholder() {
+    #Reset.placeholder();
+  }
 
   .resetFocus {
-    &::-moz-focus-inner {
-      outline: none;
-      border: none;
-    }
-
-    &:focus {
-      outline: none;
-    }
-  }//.resetFocus
+    #Moz.reset.focus();
+    #Std.reset.focus();
+  }
 
   /*
-    Useful to hide checkbox/radio inputs in-place
+    Useful to visually hide form controls in-place
     in order to style sibling elements
 
-    <label>
-      <input /><!-- hide me -->
-      <span><!-- style me --></span>
-    </label>
+    <div>
+      <input id="foo" /><!-- hide me -->
+      <label for="foo"><!-- style me --></label>
+    </div>
   */
   .hideInput {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
+    #Moz.reset.appearance();
+    #Webkit.reset.appearance();
+    #Std.reset.appearance();
+
     border: 0;
     height: 1px;
     margin: -1px;

@@ -1,0 +1,28 @@
+@import (reference) 'components/dropdown-select';
+
+.selects-test {
+  .hxSelect {
+    > select {
+      // imitate :focus
+      &.mock-focus {
+        &:extend(.hxSelect select:focus all);
+      }
+
+      // imitate :invalid:focus
+      &:invalid.mock-focus {
+        &:extend(.hxSelect select:invalid:focus all);
+      }
+
+      // DEPRECATED: remove in future release
+      // imitate [invalid]:focus
+      &[invalid].mock-focus {
+        &:extend(.hxSelect select[invalid]:focus all);
+      }
+
+      // imitate :disabled:focus
+      &:disabled.mock-focus {
+        &:extend(.hxSelect select:disabled:focus all);
+      }
+    }
+  }
+}

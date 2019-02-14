@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{site.language}}">
-{% include 'partials/head.njk' %}
+<head>
+  {% include 'partials/head.njk' %}
+
+  {% block head %}
+    {# custom stuff goes here #}
+  {% endblock %}
+</head>
 <body class="hxVertical" id="top">
   <!-- This link should be the first item a user can tab to. -->
   <a href="#content">Skip to main content</a>
@@ -36,5 +42,9 @@
   </footer>
 
   {% include 'partials/after_footer.njk' %}
+
+  {% block after_footer %}
+    {# custom scripts/markup go here #}
+  {% endblock %}
 </body>
 </html>

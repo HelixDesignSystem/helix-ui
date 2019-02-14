@@ -1,0 +1,79 @@
+// Mixins for Firefox (-moz- prefixed CSS)
+#Moz() {
+  // RESET mixins are applied within a ruleset
+  .reset() {
+    .appearance() {
+      -moz-appearance: none;
+    }
+
+    // Removes the dotted border that appears around the
+    // element with keyboard focus.
+    .focus() {
+      #Moz.set.focus-inner({
+        border: 0;
+        outline: none;
+      });
+    }
+
+    // replaces `color` with `text-shadow` of given @color
+    // (eliminates the dotted focus ring)
+    .focusring(@color: #000) {
+      #Moz.set.focusring({
+        // FF uses color to draw the ring. make it transparent
+        color: transparent;
+        // however we still need to display <option> text
+        text-shadow: 0 0 0 @color;
+      });
+    }
+
+    // This removes the red glow that appears when a validatable
+    // form control element matches the :invalid pseudo-class.
+    .invalid() {
+      #Moz.set.ui-invalid({
+        box-shadow: none;
+        border: 0;
+        outline: 0;
+      });
+    }
+
+    .placeholder() {
+      #Moz.set.placeholder({
+        color: inherit;
+      });
+    }
+
+    .select() {
+      #Moz.reset.appearance();
+      #Moz.reset.invalid();
+    }
+  }
+
+  // SET mixins require passing a ruleset
+  .set() {
+    .focus-inner(@rules) {
+      &::-moz-focus-inner {
+        @rules();
+      }
+    }
+
+    .focusring(@rules) {
+      // yes, one colon (:)
+      &:-moz-focusring {
+        @rules();
+      }
+    }
+
+    .ui-invalid(@rules) {
+      // yes, one colon (:)
+      &:-moz-ui-invalid {
+        @rules();
+      }
+    }
+
+    .placeholder(@rules) {
+      &::-moz-placeholder {
+        @rules();
+      }
+    }
+  }
+}
