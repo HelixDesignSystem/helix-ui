@@ -1,0 +1,245 @@
+@import (reference) 'mixins';
+@import (reference) 'vars';
+
+// BASE STYLES
+hx-radio {
+  border-radius: 1rem;
+  display: inline-block;
+  height: 1rem;
+  vertical-align: baseline;
+  width: 1rem;
+}
+
+// LAYOUT GEOMETRY
+hx-radio-control {
+  -ms-grid-column-align: start;
+  -ms-grid-columns: auto 1fr;
+  -ms-grid-rows: auto auto;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas:
+    'ctrl lbl'
+    '.    help';
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  justify-items: start;
+
+  > * {
+    margin: 0;
+  }
+
+  // facade + text
+  > label {
+    // grid child
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+    grid-area: lbl;
+
+    // grid parent
+    -ms-grid-column: auto 1fr;
+    -ms-grid-row: auto;
+    display: -ms-grid;
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-areas: 'facade txt';
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto;
+    padding: 0;
+
+    > hx-radio {
+      -ms-grid-column: 1;
+      -ms-grid-row: 1;
+      display: none;
+      grid-area: facade;
+      margin-top: 0.25rem;
+    }
+  }
+
+  > p {
+    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+    grid-area: help;
+  }
+
+  > input[type="radio"] {
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    border-radius: 1rem;
+    grid-area: ctrl;
+    height: 1rem;
+    margin: 0.25rem 0.5rem 0 0;
+    width: 1rem;
+
+    &::-ms-check {
+      box-sizing: border-box;
+    }
+  }
+}
+
+// PRISTINE/VALID STATE
+hx-radio-control {
+  > label > hx-radio {
+    background-color: @gray-0;
+    border: 1px solid currentColor;
+    color: @gray-500;
+  }
+
+  > p {
+    color: @gray-750;
+    font-size: 0.75rem;
+  }
+
+  > input[type="radio"] {
+    color: @gray-500;
+
+    &::-ms-check {
+      background-color: @gray-0;
+      border: 1px solid currentColor;
+      color: inherit;
+    }
+
+    &:focus {
+      box-shadow: @focus-glow;
+
+      ~ label > hx-radio {
+        box-shadow: @focus-glow;
+      }
+    }
+
+    &:hover {
+      color: @cyan-500;
+
+      &::-ms-check {
+        background-color: @cyan-50;
+        color: @cyan-500;
+      }
+    }
+
+    &:checked {
+      color: @cyan-900;
+
+      ~ label > hx-radio {
+        border: 1px solid currentColor;
+        color: @cyan-900;
+        position: relative;
+
+        &::after {
+          background-color: currentColor;
+          border-radius: 1rem;
+          content: "";
+          height: 0.5rem;
+          left: 50%;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 0.5rem;
+        }
+      }
+    }
+
+    &:valid ~ label > hx-radio:hover {
+      background-color: @cyan-50;
+      border: 1px solid currentColor;
+      color: @cyan-500;
+    }
+  }
+}
+
+// INVALID STATE
+hx-radio-control > input[type="radio"]:invalid {
+  color: @red-900;
+
+  &::-ms-check {
+    border-width: 2px;
+  }
+
+  ~ label > hx-radio {
+    border: 2px solid currentColor;
+    color: @red-900;
+  }
+
+  &:focus {
+    box-shadow: @focus-glow-invalid;
+
+    ~ label > hx-radio {
+      box-shadow: @focus-glow-invalid;
+    }
+  }
+
+  // native/ie11 styles
+  &:hover::-ms-check {
+    background-color: @red-100;
+    border: 2px solid currentColor;
+    color: @red-900;
+  }
+
+  // facade styles
+  ~ label > hx-radio:hover {
+    background-color: @red-100;
+    border: 2px solid currentColor;
+    color: @red-900;
+  }
+}
+
+// DISABLED STATE
+hx-radio-control > input[type="radio"]:disabled {
+  color: @gray-500;
+  cursor: not-allowed;
+
+  // ie11 styles
+  &::-ms-check {
+    background-color: @gray-100;
+    border: 1px solid currentColor;
+    color: @gray-500;
+  }
+
+  &:focus {
+    box-shadow: @focus-glow-disabled;
+  }
+
+  &:hover {
+    &::-ms-check {
+      background-color: @gray-100;
+      border: 1px solid currentColor;
+      color: @gray-500;
+    }
+  }
+
+  // facade styles
+  ~ label {
+    color: @gray-700;
+
+    > hx-radio {
+      border: 1px solid currentColor;
+      color: @gray-500;
+      cursor: not-allowed;
+
+      &,
+      &:hover {
+        background-color: @gray-100;
+        border: 1px solid currentColor;
+        color: @gray-500;
+      }
+    }
+  }
+}
+
+@supports (--modern: true) {
+  hx-radio-control {
+    > input[type="radio"] {
+      #Mix.hideInput();
+
+      &::-ms-check {
+        display: none;
+      }
+    }
+
+    > label > hx-radio {
+      display: inline-block;
+    }
+
+    > p {
+      margin-left: 1.5rem;
+    }
+  }
+}
