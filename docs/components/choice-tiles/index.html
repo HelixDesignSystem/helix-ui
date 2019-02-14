@@ -12,40 +12,45 @@ also:
     <div class="example" id="vue-choiceDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <p>
-            <label for="selSize">Size</label>
+          <div class="hxSelect">
             <select id="selSize" v-model="size">
               <option v-for="_size in sizes" :value="_size">
                 {% raw %}{{ _size.label }}{% endraw %}
               </option>
             </select>
-          </p>
+            <hx-select></hx-select>
+            <label for="selSize" class="beta-hxFieldName">Size</label>
+          </div>
           <p>
-            <label for="txtTitle">Title</label>
+            <label for="txtTitle" class="beta-hxFieldName">Title</label>
             <input id="txtTitle" class="hxTextCtrl" v-model="title" />
           </p>
           <p>
-            <label for="txtDescription">Description</label>
+            <label for="txtDescription" class="beta-hxFieldName">Description</label>
             <textarea id="txtDescription" class="hxTextCtrl" v-model="description"></textarea>
           </p>
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isChecked" />
-              Checked
-            </label>
-            <label>
-              <input type="checkbox" v-model="isDisabled" />
-              Disabled
-            </label>
-            <label>
-              <input type="checkbox" v-model="isInvalid" />
-              Invalid
-            </label>
-            <label>
-              <input type="checkbox" v-model="isSubdued" />
-              Subdued
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div class="hxCheckbox">
+              <input id="chkIsChecked" type="checkbox" v-model="isChecked" />
+              <hx-checkbox for="chkIsChecked"></hx-checkbox>
+              <label for="chkIsChecked">Checked</label>
+            </div>
+            <div class="hxCheckbox">
+              <input id="chkIsDisabled" type="checkbox" v-model="isDisabled" />
+              <hx-checkbox for="chkIsDisabled"></hx-checkbox>
+              <label for="chkIsDisabled">Disabled</label>
+            </div>
+            <div class="hxCheckbox">
+              <input id="chkIsInvalid" type="checkbox" v-model="isInvalid" />
+              <hx-checkbox for="chkIsInvalid"></hx-checkbox>
+              <label for="chkIsInvalid">Invalid</label>
+            </div>
+            <div class="hxCheckbox">
+              <input id="chkIsSubdued" type="checkbox" v-model="isSubdued" />
+              <hx-checkbox for="chkIsSubdued"></hx-checkbox>
+              <label for="chkIsSubdued">Subdued</label>
+            </div>
           </fieldset>
         </form>
       </header>
@@ -79,78 +84,74 @@ also:
     <h2 id="option-grid">Option Grid</h2>
     <div class="example">
       <div>
-        <form class="beta-hxForm">
-          <fieldset>
-            <div class="hxRow">
-              <label class="hxChoice hxCol hxSpan-4-xs">
-                <input type="radio" name="sample" value="1" checked />
-                <hx-tile>
-                  <hx-icon type="checkmark"></hx-icon>
-                  <div class="hx-tile-icon">
-                    <hx-icon type="server"></hx-icon>
-                  </div>
-                  <header>Servers</header>
-                  <p>Servers description</p>
-                </hx-tile>
-              </label>
-              <label class="hxChoice hxCol hxSpan-4-xs">
-                <input type="radio" name="sample" value="2" />
-                <hx-tile>
-                  <hx-icon type="checkmark"></hx-icon>
-                  <div class="hx-tile-icon">
-                    <hx-icon type="technical-change"></hx-icon>
-                  </div>
-                  <header>Configurations</header>
-                  <p>Configurations description</p>
-                </hx-tile>
-              </label>
-              <label class="hxChoice hxCol hxSpan-4-xs">
-                <input type="radio" name="sample" value="3" />
-                <hx-tile>
-                  <hx-icon type="checkmark"></hx-icon>
-                  <div class="hx-tile-icon">
-                    <hx-icon type="technical-incident"></hx-icon>
-                  </div>
-                  <header>Incidents</header>
-                  <p>Incidents description</p>
-                </hx-tile>
-              </label>
-              <label class="hxChoice hxCol hxSpan-4-xs">
-                <input type="radio" name="sample" value="4" />
-                <hx-tile>
-                  <hx-icon type="checkmark"></hx-icon>
-                  <div class="hx-tile-icon">
-                    <hx-icon type="billing"></hx-icon>
-                  </div>
-                  <header>Billing</header>
-                  <p>Billing description</p>
-                </hx-tile>
-              </label>
-              <label class="hxChoice hxCol hxSpan-4-xs">
-                <input type="radio" name="sample" value="5" />
-                <hx-tile>
-                  <hx-icon type="checkmark"></hx-icon>
-                  <div class="hx-tile-icon">
-                    <hx-icon type="account"></hx-icon>
-                  </div>
-                  <header>Account</header>
-                  <p>Account description</p>
-                </hx-tile>
-              </label>
-              <label class="hxChoice hxCol hxSpan-4-xs">
-                <input type="radio" name="sample" value="6" disabled />
-                <hx-tile>
-                  <hx-icon type="checkmark"></hx-icon>
-                  <div class="hx-tile-icon">
-                    <hx-icon type="minus-circle"></hx-icon>
-                  </div>
-                  <header>Disabled Tile</header>
-                  <p>Disabled Tile description</p>
-                </hx-tile>
-              </label>
-            </div>
-          </fieldset>
-        </form>
+        <div class="hxRow">
+          <label class="hxChoice hxCol hxSpan-4-xs">
+            <input type="radio" name="sample" value="1" checked />
+            <hx-tile>
+              <hx-icon type="checkmark"></hx-icon>
+              <div class="hx-tile-icon">
+                <hx-icon type="server"></hx-icon>
+              </div>
+              <header>Servers</header>
+              <p>Servers description</p>
+            </hx-tile>
+          </label>
+          <label class="hxChoice hxCol hxSpan-4-xs">
+            <input type="radio" name="sample" value="2" />
+            <hx-tile>
+              <hx-icon type="checkmark"></hx-icon>
+              <div class="hx-tile-icon">
+                <hx-icon type="technical-change"></hx-icon>
+              </div>
+              <header>Configurations</header>
+              <p>Configurations description</p>
+            </hx-tile>
+          </label>
+          <label class="hxChoice hxCol hxSpan-4-xs">
+            <input type="radio" name="sample" value="3" />
+            <hx-tile>
+              <hx-icon type="checkmark"></hx-icon>
+              <div class="hx-tile-icon">
+                <hx-icon type="technical-incident"></hx-icon>
+              </div>
+              <header>Incidents</header>
+              <p>Incidents description</p>
+            </hx-tile>
+          </label>
+          <label class="hxChoice hxCol hxSpan-4-xs">
+            <input type="radio" name="sample" value="4" />
+            <hx-tile>
+              <hx-icon type="checkmark"></hx-icon>
+              <div class="hx-tile-icon">
+                <hx-icon type="billing"></hx-icon>
+              </div>
+              <header>Billing</header>
+              <p>Billing description</p>
+            </hx-tile>
+          </label>
+          <label class="hxChoice hxCol hxSpan-4-xs">
+            <input type="radio" name="sample" value="5" />
+            <hx-tile>
+              <hx-icon type="checkmark"></hx-icon>
+              <div class="hx-tile-icon">
+                <hx-icon type="account"></hx-icon>
+              </div>
+              <header>Account</header>
+              <p>Account description</p>
+            </hx-tile>
+          </label>
+          <label class="hxChoice hxCol hxSpan-4-xs">
+            <input type="radio" name="sample" value="6" disabled />
+            <hx-tile>
+              <hx-icon type="checkmark"></hx-icon>
+              <div class="hx-tile-icon">
+                <hx-icon type="minus-circle"></hx-icon>
+              </div>
+              <header>Disabled Tile</header>
+              <p>Disabled Tile description</p>
+            </hx-tile>
+          </label>
+        </div>
       </div>
 
       <footer>

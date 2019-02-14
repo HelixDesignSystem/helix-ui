@@ -23,14 +23,15 @@ also:
     <div class="example" id="vue-tooltipDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <p>
-            <label for="selPosition">Position</label>
+          <div class="hxSelect">
             <select id="selPosition" v-model="position">
               <option v-for="_position in positions" :value="_position">
                 {% raw %}{{ _position.label }}{% endraw %}
               </option>
             </select>
-          </p>
+            <hx-select></hx-select>
+            <label for="selPosition" class="beta-hxFieldName">Position</label>
+          </div>
         </form>
       </header>
 

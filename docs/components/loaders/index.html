@@ -14,11 +14,12 @@ also:
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isPaused" />
-              Paused
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div class="hxCheckbox">
+              <input id="chkIsPaused" type="checkbox" v-model="isPaused" />
+              <hx-checkbox for="chkIsPaused"></hx-checkbox>
+              <label for="chkIsPaused">Paused</label>
+            </div>
           </fieldset>
         </form>
       </header>
@@ -66,12 +67,10 @@ also:
     <div class="example" id="vue-progressDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div>
-            <p>
-              <label for="rngPct">Value</label>
-              <input id="rngPct" type="range" min="0" max="100" step="1" v-model="pct" />
-            </p>
-          </div>
+          <p>
+            <label for="rngPct" class="beta-hxFieldName">Value</label>
+            <input id="rngPct" type="range" min="0" max="100" step="1" v-model="pct" />
+          </p>
         </form>
       </header>
 

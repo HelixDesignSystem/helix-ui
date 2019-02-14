@@ -15,7 +15,7 @@ also:
       <header>
         <form class="beta-hxForm">
           <p>
-            <label for="txtContent">Content:</label>
+            <label for="txtContent" class="beta-hxFieldName">Content:</label>
             <textarea
               class="hxTextCtrl"
               id="txtContent"
@@ -23,11 +23,12 @@ also:
             ></textarea>
           </p>
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isPersistent" />
-              Persist
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div class="hxCheckbox">
+              <input id="chkIsPersistent" type="checkbox" v-model="isPersistent" />
+              <hx-checkbox for="chkIsPersistent"></hx-checkbox>
+              <label for="chkIsPersistent">Persist</label>
+            </div>
           </fieldset>
         </form>
       </header>
@@ -52,20 +53,22 @@ also:
     <div class="example" id="vue-statusPillDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <p>
-            <label for="selVariant">Variant</label>
+          <div class="hxSelect">
             <select id="selVariant" v-model="variant">
               <option v-for="_variant in variants" :value="_variant">
                 {% raw %}{{ _variant.label }}{% endraw %}
               </option>
             </select>
-          </p>
+            <hx-select></hx-select>
+            <label for="selVariant" class="beta-hxFieldName">Variant</label>
+          </div>
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isFilled">
-              Filled
-            </label>
+            <legend class="beta-hxFieldname">Options</legend>
+            <div class="hxCheckbox">
+              <input id="chkIsFilled" type="checkbox" v-model="isFilled">
+              <hx-checkbox for="chkIsFilled"></hx-checkbox>
+              <label for="chkIsFilled">Filled</label>
+            </div>
           </fieldset>
         </form>
       </header>

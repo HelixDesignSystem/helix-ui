@@ -14,7 +14,7 @@ also:
       <header>
         <form class="beta-hxForm">
           <p>
-            <label for="txtPlaceholder">Placeholder</label>
+            <label for="txtPlaceholder" class="beta-hxFieldName">Placeholder</label>
             <input
               class="hxTextCtrl"
               id="txtPlaceholder"
@@ -23,7 +23,7 @@ also:
             />
           </p>
           <p>
-            <label for="txtValue">Value</label>
+            <label for="txtValue" class="beta-hxFieldName">Value</label>
             <input
               class="hxTextCtrl"
               id="txtValue"
@@ -32,15 +32,17 @@ also:
             />
           </p>
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isDisabled" />
-              Disabled
-            </label>
-            <label>
-              <input type="checkbox" v-model="isInvalid" />
-              Invalid
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div class="hxCheckbox">
+              <input id="chkIsDisabled" type="checkbox" v-model="isDisabled" />
+              <hx-checkbox for="chkIsDisabled"></hx-checkbox>
+              <label for="chkIsDisabled">Disabled</label>
+            </div>
+            <div class="hxCheckbox">
+              <input id="chkIsInvalid" type="checkbox" v-model="isInvalid" />
+              <hx-checkbox for="chkIsInvalid"></hx-checkbox>
+              <label for="chkIsInvalid">Invalid</label>
+            </div>
           </fieldset>
         </form>
       </header>
