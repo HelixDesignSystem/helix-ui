@@ -131,9 +131,11 @@ min-version {
   vertical-align: middle;
 }
 
+// Import from docs/styles/*
 @import 'demo/box-docs';
 @import 'demo/button-docs';
 @import 'demo/choice-tiles-docs';
+@import 'demo/dropdown-select-docs';
 @import 'demo/grid-docs';
 @import 'demo/icon-docs';
 @import 'demo/nav-docs';
@@ -142,6 +144,9 @@ min-version {
 @import 'demo/tabs-docs';
 @import 'demo/tooltip-docs';
 @import 'demo/typography-docs';
+
+// TODO: update pipeline to only load these styles for test pages
+@import 'docs-test';
 
 // SHAME
 dl:not(.hxList) {

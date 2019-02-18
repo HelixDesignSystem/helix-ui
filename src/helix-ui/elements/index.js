@@ -22,6 +22,7 @@ export { HXProgressElement } from './HXProgressElement';
 export { HXRevealElement } from './HXRevealElement';
 export { HXSearchAssistanceElement } from './HXSearchAssistanceElement';
 export { HXSearchElement } from './HXSearchElement';
+export { HXSelectElement } from './HXSelectElement';
 export { HXTabElement } from './HXTabElement';
 export { HXTabcontentElement } from './HXTabcontentElement';
 export { HXTablistElement } from './HXTablistElement';

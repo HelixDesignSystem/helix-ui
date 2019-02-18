@@ -1,0 +1,30 @@
+// experimental
+.test-content {
+  counter-reset: suite;
+
+  table {
+    border-spacing: 2rem;
+    max-width: 100%;
+  }
+
+  test-suite {
+    counter-increment: suite;
+    counter-reset: test;
+    display: block;
+    margin: 3rem 0;
+
+    suite-name {
+      &::before {
+        content: counters(suite, '.') ' - ';
+      }
+    }
+
+    test-name {
+      counter-increment: test;
+
+      &::before {
+        content: counters(suite, '.') '.' counter(test) ' - ';
+      }
+    }
+  }
+}

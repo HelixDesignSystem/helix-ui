@@ -1,0 +1,74 @@
+// Mixins for microsoft browsers (-ms- prefixed CSS)
+#MS() {
+  // RESET mixins are applied within a ruleset
+  .reset() {
+    .clear() {
+      #MS.set.clear({
+        display: none;
+      });
+    }
+
+    .input() {
+      #MS.reset.clear();
+      font: inherit; // text-like input (text, number, date, etc.)
+    }
+
+    .placeholder() {
+      #MS.set.placeholder({
+        color: inherit;
+      });
+    }
+
+    .select() {
+      #MS.set.value({
+        background-color: transparent;
+        color: inherit;
+        padding: 0;
+      });
+
+      #MS.set.expand({
+        background-color: transparent;
+        border: 0;
+        color: inherit;
+        margin: 0;
+      });
+    }
+  }
+
+  // SET mixins require passing a ruleset
+  .set() {
+    // TODO: add mixins for all ::-ms-* pseudo-elements
+
+    // "X" displayed when focused and not blank
+    .clear(@rules) {
+      &::-ms-clear {
+        @rules();
+      }
+    }
+
+    // drop-down button for <select>
+    .expand(@rules) {
+      &::-ms-expand {
+        @rules();
+      }
+    }
+
+    .placeholder(@rules) {
+      &::-ms-input-placeholder {
+        @rules();
+      }
+    }
+
+    /*
+      1. user input for input[type="text"]
+      2. user input for input[type="password"]
+      3. chosen value for <select>
+      ...
+    */
+    .value(@rules) {
+      &::-ms-value {
+        @rules();
+      }
+    }
+  }
+}

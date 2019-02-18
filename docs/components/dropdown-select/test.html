@@ -1,0 +1,739 @@
+---
+title: Testing - Dropdown Select
+---
+{% extends 'test.njk' %}
+{% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/dropdown-select">Dropdown Select</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  <test-suite>
+    <h2>
+      <suite-name>Vanilla Select - Optional</suite-name>
+    </h2>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>:valid</th>
+          <th>:invalid</th>
+          <th>[invalid]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">:enabled</th>
+          <td>
+            <!-- :optional:enabled:valid -->
+            <label for="selVanilla-OEV">
+              <test-name>:optional:enabled:valid</test-name>
+            </label>
+            <br />
+            <select id="selVanilla-OEV">
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </td>
+          <td>
+            <!-- :optional:enabled:invalid -->
+            <label for="selVanilla-OEI">
+              <test-name>:optional:enabled:invalid</test-name>
+            </label>
+            <br />
+            <select id="selVanilla-OEI" data-mock-invalid>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </td>
+          <td>
+            <!-- :optional:enabled[invalid] -->
+            <label for="selVanilla-OEIa">
+              <test-name>:optional:enabled[invalid]</test-name>
+            </label>
+            <br />
+            <select id="selVanilla-OEIa" invalid>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">:disabled</th>
+          <td>
+            <!-- :optional:disabled:valid -->
+            <label for="selVanilla-ODV">
+              <test-name>:optional:disabled:valid</test-name>
+            </label>
+            <br />
+            <select id="selVanilla-ODV" disabled>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </td>
+          <td>
+            <!-- :optional:disabled:invalid -->
+            <label for="selVanilla-ODI">
+              <test-name>:optional:disabled:invalid</test-name>
+            </label>
+            <br />
+            <select id="selVanilla-ODI" data-mock-invalid disabled>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </td>
+          <td>
+            <!-- :optional:disabled[invalid] -->
+            <label for="selVanilla-ODIa">
+              <test-name>:optional:disabled[invalid]</test-name>
+            </label>
+            <br />
+            <select id="selVanilla-ODIa" disabled invalid>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </test-suite>
+
+  <test-suite>
+    <h2>
+      <suite-name>Vanilla Select - Required</suite-name>
+    </h2>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>:valid</th>
+          <th>:invalid</th>
+          <th>[invalid]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">:enabled</th>
+          <td>
+            <!-- :required:enabled:valid -->
+            <label for="selVanilla-REV">
+              <test-name>:required:enabled:valid</test-name>
+            </label>
+            <br />
+            <select id="selVanilla-REV" required>
+              <option value="">Invalid Option</option>
+              <option value="valid" selected>Valid Option</option>
+            </select>
+          </td>
+          <td>
+            <!-- :required:enabled:invalid -->
+            <label for="selVanilla-REI">
+              <test-name>:required:enabled:invalid</test-name>
+            </label>
+            <br />
+            <select id="selVanilla-REI" required>
+              <option value="" selected>Invalid Option</option>
+              <option value="valid">Valid Option</option>
+            </select>
+          </td>
+          <td>
+            <!-- :required:enabled[invalid] -->
+            <label for="selVanilla-REIa">
+              <test-name>:required:enabled[invalid]</test-name>
+            </label>
+            <br />
+            <select id="selVanilla-REIa" invalid required>
+              <option value="">Invalid Option</option>
+              <option value="valid" selected>Valid Option</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">:disabled</th>
+          <td>
+            <!-- :required:disabled:valid -->
+            <label for="selVanilla-RDV">
+              <test-name>:required:disabled:valid</test-name>
+            </label>
+            <br />
+            <select id="selVanilla-ODV" disabled required>
+              <option value="">Invalid Option</option>
+              <option value="valid" selected>Valid Option</option>
+            </select>
+          </td>
+          <td>
+            <!-- :required:disabled:invalid -->
+            <label for="selVanilla-RDI">
+              <test-name>:required:disabled:invalid</test-name>
+            </label>
+            <br />
+            <select id="selVanilla-RDI" disabled>
+              <option value="" selected>Invalid Option</option>
+              <option value="valid">Valid Option</option>
+            </select>
+          </td>
+          <td>
+            <!-- :required:disabled[invalid] -->
+            <label for="selVanilla-RDIa">
+              <test-name>:required:disabled[invalid]</test-name>
+            </label>
+            <br />
+            <select id="selVanilla-RDIa" disabled invalid required>
+              <option value="">Invalid Option</option>
+              <option value="valid" selected>Valid Option</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </test-suite>
+
+  <test-suite class="selects-test">
+    <h2>
+      <suite-name>HXSelect - Optional</suite-name>
+    </h2>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>:valid</th>
+          <th>:invalid</th>
+          <th>[invalid]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">:enabled</th>
+          <td>
+            <!-- :optional:enabled:valid -->
+            <div class="hxSelect">
+              <select id="hxSelect-OEV">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-OEV">
+                <test-name>:optional:enabled:valid</test-name>
+              </label>
+            </div>
+
+            <br />
+
+            <!-- :optional:enabled:valid:focus -->
+            <div class="hxSelect">
+              <select id="hxSelect-OEV-f" class="mock-focus">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-OEV-f">
+                <test-name>:optional:enabled:valid:focus</test-name>
+              </label>
+            </div>
+          </td>
+          <td>
+            <!-- :optional:enabled:invalid -->
+            <div class="hxSelect">
+              <select id="hxSelect-OEI" data-mock-invalid>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-OEI">
+                <test-name>:optional:enabled:invalid</test-name>
+              </label>
+            </div>
+
+            <br />
+
+            <!-- :optional:enabled:invalid:focus -->
+            <div class="hxSelect">
+              <select id="hxSelect-OEI-f" class="mock-focus" data-mock-invalid>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-OEI-f">
+                <test-name>:optional:enabled:invalid:focus</test-name>
+              </label>
+            </div>
+          </td>
+          <td>
+            <!-- :optional:enabled[invalid] -->
+            <div class="hxSelect">
+              <select id="hxSelect-OEIa" invalid>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-OEIa">
+                <test-name>:optional:enabled[invalid]</test-name>
+              </label>
+            </div>
+
+            <br />
+
+            <!-- :optional:enabled[invalid]:focus -->
+            <div class="hxSelect">
+              <select id="hxSelect-OEIa-f" class="mock-focus" invalid>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-OEIa-f">
+                <test-name>:optional:enabled[invalid]:focus</test-name>
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">:disabled</th>
+          <td>
+            <!-- :optional:disabled:valid -->
+            <div class="hxSelect">
+              <select id="hxSelect-ODV" disabled>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-ODV">
+                <test-name>:optional:disabled:valid</test-name>
+              </label>
+            </div>
+
+            <br />
+
+            <!-- :optional:disabled:valid:focus -->
+            <div class="hxSelect">
+              <select id="hxSelect-ODV-f" class="mock-focus" disabled>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-ODV-f">
+                <test-name>:optional:disabled:valid:focus</test-name>
+              </label>
+            </div>
+          </td>
+          <td>
+            <!-- :optional:disabled:invalid -->
+            <div class="hxSelect">
+              <select id="hxSelect-ODI" data-mock-invalid disabled>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-ODI">
+                <test-name>:optional:disabled:invalid</test-name>
+              </label>
+            </div>
+
+            <br />
+
+            <!-- :optional:disabled:invalid:focus -->
+            <div class="hxSelect">
+              <select id="hxSelect-ODI-f" class="mock-focus" data-mock-invalid disabled>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-ODI-f">
+                <test-name>:optional:disabled:invalid:focus</test-name>
+              </label>
+            </div>
+          </td>
+          <td>
+            <!-- :optional:disabled[invalid] -->
+            <div class="hxSelect">
+              <select id="hxSelect-ODIa" disabled invalid>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-ODIa">
+                <test-name>:optional:disabled[invalid]</test-name>
+              </label>
+            </div>
+
+            <br />
+
+            <!-- :optional:disabled[invalid]:focus -->
+            <div class="hxSelect">
+              <select id="hxSelect-ODIa-f" class="mock-focus" disabled invalid>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-ODIa-f">
+                <test-name>:optional:disabled[invalid]:focus</test-name>
+              </label>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="hxSubBody hxSubdued">
+      *JavaScript required to match <code>:optional:invalid</code>
+    </p>
+  </test-suite>
+
+  <test-suite class="selects-test">
+    <h2>
+      <suite-name>HXSelect - Required</suite-name>
+    </h2>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>:valid</th>
+          <th>:invalid</th>
+          <th>[invalid]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">:enabled</th>
+          <td>
+            <!-- :required:enabled:valid -->
+            <div class="hxSelect">
+              <select id="hxSelect-REV" required>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-REV">
+                <test-name>:required:enabled:valid</test-name>
+              </label>
+            </div>
+
+            <br />
+
+            <!-- :required:enabled:valid:focus -->
+            <div class="hxSelect">
+              <select id="hxSelect-REV-f" class="mock-focus" required>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-REV-f">
+                <test-name>:required:enabled:valid:focus</test-name>
+              </label>
+            </div>
+          </td>
+          <td>
+            <!-- :required:enabled:invalid -->
+            <div class="hxSelect">
+              <select id="hxSelect-REI" required>
+                <option value="" selected>Invalid Option</option>
+                <option value="valid">Valid Option</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-REI">
+                <test-name>:required:enabled:invalid</test-name>
+              </label>
+            </div>
+
+            <br />
+
+            <!-- :required:enabled:invalid:focus -->
+            <div class="hxSelect">
+              <select id="hxSelect-REI-f" class="mock-focus" required>
+                <option value="" selected>Invalid Option</option>
+                <option value="valid">Valid Option</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-REI-f">
+                <test-name>:required:enabled:invalid:focus</test-name>
+              </label>
+            </div>
+          </td>
+          <td>
+            <!-- :required:enabled[invalid] -->
+            <div class="hxSelect">
+              <select id="hxSelect-REIa" invalid required>
+                <option value="">Invalid Option</option>
+                <option value="valid" selected>Valid Option</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-REIa">
+                <test-name>:required:enabled[invalid]</test-name>
+              </label>
+            </div>
+
+            <br />
+
+            <!-- :required:enabled[invalid]:focus -->
+            <div class="hxSelect">
+              <select id="hxSelect-REIa-f" class="mock-focus" required invalid>
+                <option value="">Invalid Option</option>
+                <option value="valid" selected>Valid Option</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-REIa-f">
+                <test-name>:required:enabled[invalid]:focus</test-name>
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">:disabled</th>
+          <td>
+            <!-- :required:disabled:valid -->
+            <div class="hxSelect">
+              <select id="hxSelect-RDV" disabled required>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-RDV">
+                <test-name>:required:disabled:valid</test-name>
+              </label>
+            </div>
+
+            <br />
+
+            <!-- :required:disabled:valid:focus -->
+            <div class="hxSelect">
+              <select id="hxSelect-RDV-f" class="mock-focus" disabled required>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-RDV-f">
+                <test-name>:required:disabled:valid:focus</test-name>
+              </label>
+            </div>
+          </td>
+          <td>
+            <!-- :required:disabled:invalid -->
+            <div class="hxSelect">
+              <select id="hxSelect-RDI" disabled required>
+                <option value="" selected>Invalid Option</option>
+                <option value="valid">Valid Option</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-RDI">
+                <test-name>:required:disabled:invalid</test-name>
+              </label>
+            </div>
+
+            <br />
+
+            <!-- :required:disabled:invalid:focus -->
+            <div class="hxSelect">
+              <select id="hxSelect-RDI-f" class="mock-focus" disabled required>
+                <option value="" selected>Invalid Option</option>
+                <option value="valid">Valid Option</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-RDI-f">
+                <test-name>:required:disabled:invalid:focus</test-name>
+              </label>
+            </div>
+          </td>
+          <td>
+            <!-- :required:disabled[invalid] -->
+            <div class="hxSelect">
+              <select id="hxSelect-RDIa" disabled invalid required>
+                <option value="">Invalid Option</option>
+                <option value="valid" selected>Valid Option</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-RDIa">
+                <test-name>:required:disabled[invalid]</test-name>
+              </label>
+            </div>
+
+            <br />
+
+            <!-- :required:disabled[invalid]:focus -->
+            <div class="hxSelect">
+              <select id="hxSelect-RDIa-f" class="mock-focus" disabled invalid required>
+                <option value="">Invalid Option</option>
+                <option value="valid" selected>Valid Option</option>
+              </select>
+              <hx-select></hx-select>
+              <label for="hxSelect-RDIa-f">
+                <test-name>:required:disabled[invalid]:focus</test-name>
+              </label>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </test-suite>
+
+  <test-suite>
+    <h2>
+      <suite-name>HXSelect - Display Order</suite-name>
+    </h2>
+    <p class="hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      We only care about display order, so none of the folowing tests
+      pass accessibility (no <code>select[id]</code> or <code>label[for]</code>).
+    </p>
+    <p>
+      Because of IE's grid implementation, we cannot auto arrange extra elements.
+      Only <code>label</code>, <code>select</code>, and <code>hx-select</code>
+      elements are supported as direct children of <code>.hxSelect</code>.
+    </p>
+    <ul class="hxList">
+      <li>
+        If present, the label should appear before the control.
+      </li>
+      <li>
+        Extra elements should not be visible.
+      </li>
+    </ul>
+
+    <div class="hxRow">
+      <div class="hxCol hxSpan-3">
+        <p>
+          <test-name>
+            <code>select + hx-select</code>
+          </test-name>
+        </p>
+        <div class="hxSelect">
+          <select>
+            <option>select</option>
+          </select>
+          <hx-select></hx-select>
+        </div>
+      </div>
+      <div class="hxCol hxSpan-3">
+        <p>
+          <test-name>
+            <code>select + hx-select + label</code>
+          </test-name>
+        </p>
+        <div class="hxSelect">
+          <select>
+            <option>select</option>
+          </select>
+          <hx-select></hx-select>
+          <label>label</label>
+        </div>
+      </div>
+      <div class="hxCol hxSpan-3">
+        <p>
+          <test-name>
+            <code>select + label + hx-select</code>
+          </test-name>
+        </p>
+        <div class="hxSelect">
+          <select>
+            <option>select</option>
+          </select>
+          <label>label</label>
+          <hx-select></hx-select>
+        </div>
+      </div>
+      <div class="hxCol hxSpan-3">
+        <p>
+          <test-name>
+            <code>select + div + hx-select + label</code>
+          </test-name>
+        </p>
+        <div class="hxSelect">
+          <select>
+            <option>select</option>
+          </select>
+          <div>div</div>
+          <hx-select></hx-select>
+          <label>label</label>
+        </div>
+      </div>
+      <div class="hxCol hxSpan-3">
+        <p>
+          <test-name>
+            <code>select + label + div + hx-select</code>
+          </test-name>
+        </p>
+        <div class="hxSelect">
+          <select>
+            <option>select</option>
+          </select>
+          <label>label</label>
+          <div>div</div>
+          <hx-select></hx-select>
+        </div>
+      </div>
+      <div class="hxCol hxSpan-3">
+        <p>
+          <test-name>
+            <code>div + select + label + hx-select</code>
+          </test-name>
+        </p>
+        <div class="hxSelect">
+          <div>div</div>
+          <select>
+            <option>select</option>
+          </select>
+          <label>label</label>
+          <hx-select></hx-select>
+        </div>
+      </div>
+      <div class="hxCol hxSpan-3">
+        <p>
+          <test-name>
+            <code>div + select + hx-error + label + hx-select</code>
+          </test-name>
+        </p>
+        <div class="hxSelect">
+          <div>div</div>
+          <select>
+            <option>select</option>
+          </select>
+          <hx-error>hx-error</hx-error>
+          <label>label</label>
+          <hx-select></hx-select>
+        </div>
+      </div>
+    </div>
+  </test-suite>
+
+  <test-suite>
+    <h2>
+      <suite-name>HXSelect - Miscellaneous</suite-name>
+    </h2>
+    <div class="hxRow">
+      <div class="hxCol hxSpan-4">
+        <div class="hxSelect">
+          <select id="selLongOption-enabled">
+            <option value="1">
+              Option 1 with a long description. I bet you think this description
+              is longer than it actually is, but it's only long enough to show
+              how the arrow obscures the value.
+            </option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+          <hx-select></hx-select>
+          <label for="selLongOption-enabled">
+            <test-name>lengthy option - enabled</test-name>
+          </label>
+        </div>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <div class="hxSelect">
+          <select id="selLongOption-disabled" disabled>
+            <option value="1">
+              Option 1 with a long description. I bet you think this description
+              is longer than it actually is, but it's only long enough to show
+              how the arrow obscures the value.
+            </option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+          <hx-select></hx-select>
+          <label for="selLongOption-disabled">
+            <test-name>lengthy option - disabled</test-name>
+          </label>
+        </div>
+      </div>
+    </div>
+  </test-suite>
+{% endblock %}
