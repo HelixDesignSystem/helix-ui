@@ -18,12 +18,14 @@ also:
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div>
+            <div class="hxCheckbox">
               <input id="chkRequired" type="checkbox" v-model="isRequired" />
+              <hx-checkbox for="chkRequired"></hx-checkbox>
               <label for="chkRequired">Required</label>
             </div>
-            <div>
+            <div class="hxCheckbox">
               <input id="chkDisabled" type="checkbox" v-model="isDisabled" />
+              <hx-checkbox for="chkDisabled"></hx-checkbox>
               <label for="chkDisabled">Disabled</label>
             </div>
           </fieldset>

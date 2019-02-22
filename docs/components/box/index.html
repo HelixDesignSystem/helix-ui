@@ -52,8 +52,7 @@ also:
     <div class="example" id="vue-boxDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <p>
-            <label for="selSpacing">Spacing</label>
+          <div class="hxSelect">
             <select id="selSpacing" v-model="spacing">
               <option
                 v-for="_spacing in spacings"
@@ -61,7 +60,9 @@ also:
                 :value="_spacing"
               ></option>
             </select>
-          </p>
+            <hx-select></hx-select>
+            <label for="selSpacing" class="beta-hxFieldName">Spacing</label>
+          </div>
         </form>
       </header>
 
@@ -167,23 +168,26 @@ also:
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>Scroll Direction</legend>
-            <label v-for="_direction in directions">
+            <legend class="beta-hxFieldName">Scroll Direction</legend>
+            <div v-for="(_direction, idx) in directions" class="hxRadio">
               <input
+                :id="'radDirection' + idx"
                 :value="_direction"
                 name="direction"
                 type="radio"
                 v-model="direction"
               />
-              <span v-text="_direction"></span>
-            </label>
+              <hx-radio :for="'radDirection' + idx"></hx-radio>
+              <label :for="'radDirection' + idx" v-text="_direction"></label>
+            </div>
           </fieldset>
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isListening" />
-              Log events to console
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div class="hxCheckbox">
+              <input id="chkLogEvents" type="checkbox" v-model="isListening" />
+              <hx-checkbox for="chkLogEvents"></hx-checkbox>
+              <label for="chkLogEvents">Log events to console</label>
+            </div>
           </fieldset>
         </form>
       </header>

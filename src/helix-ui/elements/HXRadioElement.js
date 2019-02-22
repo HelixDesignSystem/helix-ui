@@ -1,22 +1,15 @@
 import { HXElement } from './HXElement';
-import shadowMarkup from './HXCheckboxElement.html';
-import shadowStyles from './HXCheckboxElement.less';
 
 /**
- * Defines behavior for the `<hx-checkbox>` element.
+ * Defines behavior for the `<hx-radio>` element.
  *
  * @extends HXElement
  * @hideconstructor
  */
-export class HXCheckboxElement extends HXElement {
+export class HXRadioElement extends HXElement {
     /** @override */
     static get is () {
-        return 'hx-checkbox';
-    }
-
-    /** @override */
-    static get template () {
-        return `<style>${shadowStyles}</style>${shadowMarkup}`;
+        return 'hx-radio';
     }
 
     /** @override */
@@ -38,7 +31,7 @@ export class HXCheckboxElement extends HXElement {
     }
 
     /**
-     * ID of associated checkbox control.
+     * ID of associated radio control.
      *
      * @type {string}
      */

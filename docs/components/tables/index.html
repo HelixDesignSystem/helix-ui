@@ -10,26 +10,30 @@ minver: 0.1.7
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>Data Density</legend>
-            <label>
-              <input type="radio" name="density" v-model="isCondensed" :value="false" />
-              Normal
-            </label>
-            <label>
-              <input type="radio" name="density" v-model="isCondensed" :value="true" />
-              Condensed
-            </label>
+            <legend class="beta-hxFieldName">Data Density</legend>
+            <div class="hxRadio">
+              <input id="radNormal" type="radio" name="density" v-model="isCondensed" :value="false" />
+              <hx-radio for="radNormal"></hx-radio>
+              <label for="radNormal">Normal</label>
+            </div>
+            <div class="hxRadio">
+              <input id="radCondensed" type="radio" name="density" v-model="isCondensed" :value="true" />
+              <hx-radio for="radCondensed"></hx-radio>
+              <label for="radCondensed">Condensed</label>
+            </div>
           </fieldset>
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isBound" />
-              Bound
-            </label>
-            <label>
-              <input type="checkbox" v-model="isHoverable" />
-              Hoverable
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div class="hxCheckbox">
+              <input id="chkBound" type="checkbox" v-model="isBound" />
+              <hx-checkbox for="chkBound"></hx-checkbox>
+              <label for="chkBound">Bound</label>
+            </div>
+            <div class="hxCheckbox">
+              <input id="chkHoverable" type="checkbox" v-model="isHoverable" />
+              <hx-checkbox for="chkHoverable"></hx-checkbox>
+              <label for="chkHoverable">Hoverable</label>
+            </div>
           </fieldset>
         </form>
       </header>

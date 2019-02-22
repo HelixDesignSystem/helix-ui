@@ -19,6 +19,7 @@ export { HXModalElement } from './HXModalElement';
 export { HXPillElement } from './HXPillElement';
 export { HXPopoverElement } from './HXPopoverElement';
 export { HXProgressElement } from './HXProgressElement';
+export { HXRadioElement } from './HXRadioElement';
 export { HXRevealElement } from './HXRevealElement';
 export { HXSearchAssistanceElement } from './HXSearchAssistanceElement';
 export { HXSearchElement } from './HXSearchElement';

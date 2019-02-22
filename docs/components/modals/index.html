@@ -17,24 +17,29 @@ also:
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>Size</legend>
-            <label v-for="_size in sizes">
+            <legend class="beta-hxFieldName">Size</legend>
+            <div v-for="(_size, idx) in sizes" class="hxRadio">
               <input
+                :id="'radSize' + idx"
                 :value="_size"
                 name="size"
                 type="radio"
                 v-model="size"
               />
-              <span v-text="_size.label"></span>
-              <em class="hxSubBody" v-if="_size.default">(default)</em>
-            </label>
+              <hx-radio :for="'radSize' + idx"></hx-radio>
+              <label :for="'radSize' + idx">
+                <span v-text="_size.label"></span>
+                <em class="hxSubBody" v-if="_size.default">(default)</em>
+              </label>
+            </div>
           </fieldset>
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isScrollable">
-              Scroll Body
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div class="hxCheckbox">
+              <input id="chkIsScrollable" type="checkbox" v-model="isScrollable">
+              <hx-checkbox for="chkIsScrollable"></hx-checkbox>
+              <label for="chkIsScrollable">Scroll Body</label>
+            </div>
           </fieldset>
         </form>
       </header>
