@@ -1,4 +1,4 @@
-a[href] {
+:link {
   background-color: transparent;
   color: @blue-700;
   text-decoration: none;
@@ -9,9 +9,4 @@ a[href] {
     cursor: pointer;
     text-decoration: none;
   }
-}
-
-// DEPRECATED: remove in v1.0.0
-a[href].disabled {
-  &:extend(a[href][disabled]);
 }
