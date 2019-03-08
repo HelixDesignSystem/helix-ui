@@ -52,7 +52,8 @@ also:
     <div class="example" id="vue-boxDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div class="hxSelect">
+          <div>
+            <label for="selSpacing" class="beta-hxFieldName">Spacing</label>
             <select id="selSpacing" v-model="spacing">
               <option
                 v-for="_spacing in spacings"
@@ -60,8 +61,6 @@ also:
                 :value="_spacing"
               ></option>
             </select>
-            <hx-select></hx-select>
-            <label for="selSpacing" class="beta-hxFieldName">Spacing</label>
           </div>
         </form>
       </header>
@@ -169,7 +168,7 @@ also:
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Scroll Direction</legend>
-            <div v-for="(_direction, idx) in directions" class="hxRadio">
+            <div v-for="(_direction, idx) in directions">
               <input
                 :id="'radDirection' + idx"
                 :value="_direction"
@@ -177,15 +176,13 @@ also:
                 type="radio"
                 v-model="direction"
               />
-              <hx-radio :for="'radDirection' + idx"></hx-radio>
               <label :for="'radDirection' + idx" v-text="_direction"></label>
             </div>
           </fieldset>
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div class="hxCheckbox">
+            <div>
               <input id="chkLogEvents" type="checkbox" v-model="isListening" />
-              <hx-checkbox for="chkLogEvents"></hx-checkbox>
               <label for="chkLogEvents">Log events to console</label>
             </div>
           </fieldset>
