@@ -18,14 +18,13 @@ also:
     <div class="example" id="vue-toastDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div class="hxSelect">
+          <div>
+            <label for="selType" class="beta-hxFieldName">Type</label>
             <select id="selType" v-model="type">
               <option v-for="_type in types" :value="_type">
                 {% raw %}{{ _type.label }}{% endraw %}
               </option>
             </select>
-            <hx-select></hx-select>
-            <label for="selType" class="beta-hxFieldName">Type</label>
           </div>
           <p>
             <label for="txtCta" class="beta-hxFieldName">CTA</label>

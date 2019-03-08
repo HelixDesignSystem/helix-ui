@@ -68,7 +68,7 @@ also:
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Variant</legend>
-            <div v-for="(_variant, idx) in variants" class="hxRadio">
+            <div v-for="(_variant, idx) in variants">
               <input
                 :id="'radSelectorVariant' + idx"
                 :value="_variant"
@@ -76,7 +76,6 @@ also:
                 type="radio"
                 v-model="variant"
               />
-              <hx-radio :for="'radSelectorVariant' + idx"></hx-radio>
               <label :for="'radSelectorVariant' + idx">
                 <span v-text="_variant.label"></span>
                 <em class="hxSubBody" v-if="_variant.default">(default)</em>
@@ -85,7 +84,7 @@ also:
           </fieldset>
           <fieldset>
             <legend class="beta-hxFieldName">Icon</legend>
-            <div v-for="(_icon, idx) in icons" class="hxRadio">
+            <div v-for="(_icon, idx) in icons">
               <input
                 :id="'radSelectorIcon' + idx"
                 :value="_icon"
@@ -93,7 +92,6 @@ also:
                 type="radio"
                 v-model="icon"
               />
-              <hx-radio :for="'radSelectorIcon' + idx"></hx-radio>
               <label
                 :for="'radSelectorIcon' + idx"
                 v-text="_icon"
@@ -101,14 +99,13 @@ also:
             </div>
           </fieldset>
           <p>
-            <label for="inputLabel" class="beta-hxFieldName">Label</label>
-            <input id="inputLabel" class="hxTextCtrl" v-model="label" />
+            <label for="txtLabel" class="beta-hxFieldName">Label</label>
+            <input id="txtLabel" class="hxTextCtrl" v-model="label" />
           </p>
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div class="hxCheckbox">
+            <div>
               <input id="chkIsMultiple" type="checkbox" v-model="isMultiple">
-              <hx-checkbox for="chkIsMultiple"></hx-checkbox>
               <label for="chkIsMultiple">Multiple</label>
             </div>
           </fieldset>
@@ -136,29 +133,25 @@ also:
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">States</legend>
-            <div class="hxRadio">
+            <div>
               <input id="radTileDownloadable" type="radio" value="downloadable" name="file-state" v-model="state" />
-              <hx-radio for="radTileDownloadable"></hx-radio>
               <label for="radTileDownloadable">Downloadable</label>
             </div>
-            <div class="hxRadio">
+            <div>
               <input id="radTileLoading" type="radio" value="loading" name="file-state" v-model="state" />
-              <hx-radio for="radTileLoading"></hx-radio>
               <label for="radTileLoading">Loading</label>
             </div>
-            <div class="hxRadio">
+            <div>
               <input id="radTileInvalid" type="radio" value="invalid" name="file-state" v-model="state" />
-              <hx-radio for="radTileInvalid"></hx-radio>
               <label for="radTileInvalid">Invalid</label>
             </div>
           </fieldset>
-          <div class="hxSelect">
+          <div>
+            <label for="selIcon" class="beta-hxFieldName">Icon</label>
             <select id="selIcon" v-model="icon">
               <option v-for="_icon in icons" :value="_icon" v-text="_icon">
               </option>
             </select>
-            <hx-select></hx-select>
-            <label for="selIcon" class="beta-hxFieldName">Icon</label>
           </div>
           <p>
             <label for="txtName" class="beta-hxFieldName">Name</label>
@@ -175,9 +168,8 @@ also:
             </p>
             <fieldset>
               <legend class="beta-hxFieldName">Options</legend>
-              <div class="hxCheckbox">
+              <div>
                 <input id="chkTileReadOnly" type="checkbox" v-model="readonly" />
-                <hx-checkbox for="chkTileReadOnly"></hx-checkbox>
                 <label for="chkTileReadOnly">Readonly</label>
               </div>
             </fieldset>

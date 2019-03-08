@@ -11,27 +11,23 @@ minver: 0.1.7
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Data Density</legend>
-            <div class="hxRadio">
+            <div>
               <input id="radNormal" type="radio" name="density" v-model="isCondensed" :value="false" />
-              <hx-radio for="radNormal"></hx-radio>
               <label for="radNormal">Normal</label>
             </div>
-            <div class="hxRadio">
+            <div>
               <input id="radCondensed" type="radio" name="density" v-model="isCondensed" :value="true" />
-              <hx-radio for="radCondensed"></hx-radio>
               <label for="radCondensed">Condensed</label>
             </div>
           </fieldset>
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div class="hxCheckbox">
+            <div>
               <input id="chkBound" type="checkbox" v-model="isBound" />
-              <hx-checkbox for="chkBound"></hx-checkbox>
               <label for="chkBound">Bound</label>
             </div>
-            <div class="hxCheckbox">
+            <div>
               <input id="chkHoverable" type="checkbox" v-model="isHoverable" />
-              <hx-checkbox for="chkHoverable"></hx-checkbox>
               <label for="chkHoverable">Hoverable</label>
             </div>
           </fieldset>

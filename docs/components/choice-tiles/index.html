@@ -12,14 +12,13 @@ also:
     <div class="example" id="vue-choiceDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div class="hxSelect">
+          <div>
+            <label for="selSize" class="beta-hxFieldName">Size</label>
             <select id="selSize" v-model="size">
               <option v-for="_size in sizes" :value="_size">
                 {% raw %}{{ _size.label }}{% endraw %}
               </option>
             </select>
-            <hx-select></hx-select>
-            <label for="selSize" class="beta-hxFieldName">Size</label>
           </div>
           <p>
             <label for="txtTitle" class="beta-hxFieldName">Title</label>
@@ -31,24 +30,20 @@ also:
           </p>
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div class="hxCheckbox">
+            <div>
               <input id="chkIsChecked" type="checkbox" v-model="isChecked" />
-              <hx-checkbox for="chkIsChecked"></hx-checkbox>
               <label for="chkIsChecked">Checked</label>
             </div>
-            <div class="hxCheckbox">
+            <div>
               <input id="chkIsDisabled" type="checkbox" v-model="isDisabled" />
-              <hx-checkbox for="chkIsDisabled"></hx-checkbox>
               <label for="chkIsDisabled">Disabled</label>
             </div>
-            <div class="hxCheckbox">
+            <div>
               <input id="chkIsInvalid" type="checkbox" v-model="isInvalid" />
-              <hx-checkbox for="chkIsInvalid"></hx-checkbox>
               <label for="chkIsInvalid">Invalid</label>
             </div>
-            <div class="hxCheckbox">
+            <div>
               <input id="chkIsSubdued" type="checkbox" v-model="isSubdued" />
-              <hx-checkbox for="chkIsSubdued"></hx-checkbox>
               <label for="chkIsSubdued">Subdued</label>
             </div>
           </fieldset>

@@ -24,9 +24,8 @@ also:
           </p>
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div class="hxCheckbox">
+            <div>
               <input id="chkIsPersistent" type="checkbox" v-model="isPersistent" />
-              <hx-checkbox for="chkIsPersistent"></hx-checkbox>
               <label for="chkIsPersistent">Persist</label>
             </div>
           </fieldset>
@@ -53,20 +52,18 @@ also:
     <div class="example" id="vue-statusPillDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div class="hxSelect">
+          <div>
+            <label for="selVariant" class="beta-hxFieldName">Variant</label>
             <select id="selVariant" v-model="variant">
               <option v-for="_variant in variants" :value="_variant">
                 {% raw %}{{ _variant.label }}{% endraw %}
               </option>
             </select>
-            <hx-select></hx-select>
-            <label for="selVariant" class="beta-hxFieldName">Variant</label>
           </div>
           <fieldset>
             <legend class="beta-hxFieldname">Options</legend>
-            <div class="hxCheckbox">
+            <div>
               <input id="chkIsFilled" type="checkbox" v-model="isFilled">
-              <hx-checkbox for="chkIsFilled"></hx-checkbox>
               <label for="chkIsFilled">Filled</label>
             </div>
           </fieldset>
