@@ -266,3 +266,33 @@ dl.memberList {
 /* Beta Auto Grid Styles */
 .hxRow.hxAuto > .hxCol { flex-grow: 0; }
 .hxRow .hxCol.hxAuto { flex: 0 0 auto; }
+
+/* ----- Test Page Styling ----- */
+.test-content {
+  section {
+    > * {
+      margin: 1rem 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    > section {
+      margin-bottom: 2rem;
+      margin-left: 2rem;
+    }
+
+    > table {
+      border: 1px solid @gray-400;
+
+      td, th {
+        padding: 1em;
+      }
+    }
+  }
+}

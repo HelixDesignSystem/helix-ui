@@ -2,7 +2,13 @@
 
 {% block layout %}
   <main id="content" class="hxBox hxMd">
-    <h1>{{ page.title }}</h1>
+    <header>
+      <h1>{{ page.title }}</h1>
+
+      {% block page_header %}
+        {# extra header content goes here #}
+      {% endblock %}
+    </header>
 
     {% block content %}
       {# page content goes here #}

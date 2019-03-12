@@ -2,9 +2,16 @@
 
 {% block layout %}
   <main id="content" class="hxBox hxMd">
-    <h1>{{ page.title }}
-      {% include 'partials/min-version.njk' %}
-    </h1>
+    <header>
+      <h1>
+        {{ page.title }}
+        {% include 'partials/min-version.njk' %}
+      </h1>
+
+      {% block page_header %}
+        {# extra header content goes here #}
+      {% endblock %}
+    </header>
 
     {% block content %}
       {# freeform page content goes here #}
@@ -12,34 +19,36 @@
 
     {# ATTRIBUTES #}
     <section>
-      <h2 id="attributes">Attributes</h2>
-      <p>
-        Attributes enable declarative configuration of an element,
-        via HTML markup.
-      </p>
+      <header>
+        <h2 id="attributes">Attributes</h2>
+        <p>
+          Attributes enable declarative configuration of an element,
+          via HTML markup.
+        </p>
+      </header>
+
       {% block attributes %}
-        <p class="hxSubdued">
-          <small>
-            <hx-icon type="info-circle"></hx-icon>
-            This element does not have any configurable attributes.
-          </small>
+        <p class="hxSubdued hxSubBody">
+          <hx-icon type="info-circle"></hx-icon>
+          This element does not have any configurable attributes.
         </p>
       {% endblock %}
     </section>
 
     {# PROPERTIES #}
     <section>
-      <h2 id="properties">Properties</h2>
-      <p>
-        JavaScript properties enable programmatic access to an element's
-        configuration and state.
-      </p>
+      <header>
+        <h2 id="properties">Properties</h2>
+        <p>
+          JavaScript properties enable programmatic access to an element's
+          configuration and state.
+        </p>
+      </header>
+
       {% block properties %}
-        <p class="hxSubdued">
-          <small>
-            <hx-icon type="info-circle"></hx-icon>
-            This element does not have any configurable properties.
-          </small>
+        <p class="hxSubdued hxSubBody">
+          <hx-icon type="info-circle"></hx-icon>
+          This element does not have any configurable properties.
         </p>
       {% endblock %}
     </section>
@@ -48,8 +57,12 @@
       {% include 'partials/see-also.njk' %}
     {% endif %}
   </main>
+
   <aside class="hxSiderail hxBox hxMd">
-    <h1 class="hxHeading-4">On this page:</h1>
+    <header>
+      <h1 class="hxHeading-4">On this page:</h1>
+    </header>
+
     <nav class="article-toc">
       {{ page.raw | toc | safe }}
       <a href="#attributes">Attributes</a>
