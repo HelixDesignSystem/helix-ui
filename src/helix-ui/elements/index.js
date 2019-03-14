@@ -23,6 +23,7 @@ export { HXRadioElement } from './HXRadioElement';
 export { HXRevealElement } from './HXRevealElement';
 export { HXSearchAssistanceElement } from './HXSearchAssistanceElement';
 export { HXSearchElement } from './HXSearchElement';
+export { HXSelectControlElement } from './HXSelectControlElement';
 export { HXSelectElement } from './HXSelectElement';
 export { HXTabElement } from './HXTabElement';
 export { HXTabcontentElement } from './HXTabcontentElement';
