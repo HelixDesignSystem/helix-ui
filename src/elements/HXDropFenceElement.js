@@ -1,6 +1,6 @@
 import { HXElement } from './HXElement';
-import shadowStyles from './HXDropFenceElement.less';
 import shadowMarkup from './HXDropFenceElement.html';
+import shadowStyles from './HXDropFenceElement.less';
 
 /**
  * Defines behavior for the `<hx-drop-fence>` element.

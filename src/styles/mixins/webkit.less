@@ -1,0 +1,28 @@
+// Mixins for Webkit-based browsers (-webkit- prefixed CSS)
+#Webkit() {
+  // RESET mixins are applied within a ruleset
+  .reset() {
+    .appearance() {
+      -webkit-appearance: none;
+    }
+
+    .placeholder() {
+      #Webkit.set.placeholder({
+        color: inherit;
+      });
+    }
+
+    .select() {
+      #Webkit.reset.appearance();
+    }
+  }
+
+  // SET mixins require passing a ruleset
+  .set() {
+    .placeholder(@rules) {
+      &::-webkit-input-placeholder {
+        @rules();
+      }
+    }
+  }
+}

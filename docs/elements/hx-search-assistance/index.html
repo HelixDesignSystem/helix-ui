@@ -13,7 +13,7 @@ also:
       for the user, such as recent or suggested searches depending on their context.
     </p>
 
-    <dl class="hxBox-md metadata hxList">
+    <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>
         <dd>any</dd>
@@ -56,52 +56,40 @@ also:
 
 {% block properties %}
   <dl class="memberList">
+    <!-- Positionable Mixin -->
     <dt>
       controlElement {HTMLElement}
       <hx-pill class="hxSubBody" persist>read-only</hx-pill>
     </dt>
     <dd>
       <p>
-        Returns the HTML element with the <code>aria-controls</code>
-        attribute that matches the <code>&lt;hx-search&gt;</code> id.
+        Returns the first HTML element whose <code>aria-controls</code>
+        attribute matches the ID of the <code>{{page.title}}</code>.
       </p>
-    </dd>
-
-    <dt>open {Boolean [false]}</dt>
-    <dd>
       <p>
-        Manipulates the <code>open</code> attribute.  Opens the search
-        assistance.
+        The <i>control element</i> is used to attach various DOM event
+        listeners, in order to determine when to show or hide the
+        <code>{{page.title}}</code>.
       </p>
     </dd>
 
+    {% include 'props/Revealable/open.njk' %}
+    {% include 'props/Positionable/optimumPosition.njk' %}
+
+    <!-- Positionable Mixin-->
     <dt>position {String [bottom-start]}</dt>
     <dd>
       <p>
-        Manipulates the <code>position</code> attribute.
+        Configures the position of the <code>{{page.title}}</code>,
+        in relation to its <i>relative element</i>.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Reflects the <code>position</code> attribute.
       </p>
     </dd>
 
-    <dt>
-      relativeElement {HTMLElement}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      <p>
-        Returns the HTML element used as a reference to calculate the position of
-        the visible search assistance. If the
-        <code>relative-to</code> attribute is set, this will be the element with
-        ID matching the <code>relativeTo</code> property value. Otherwise, this
-        will be the <code>controlElement</code>.
-      </p>
-    </dd>
-
-    <dt>relativeTo {String}</dt>
-    <dd>
-      <p>
-        Manipulates the <code>relative-to</code> attribute. ID of an element
-        that the search assistance is positioned relative to.
-      </p>
-    </dd>
+    {% include 'props/Positionable/relativeElement.njk' %}
+    {% include 'props/Positionable/relativeTo.njk' %}
   </dl>
 {% endblock %}

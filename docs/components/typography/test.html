@@ -12,7 +12,7 @@ title: Testing - Typography
   </section>
 
   <section>
-    <h2>Error Message</h2>
+    <h2>Error Text</h2>
     <div data-dom-diff="hxError-with-dom-line-breaks">
       <hx-error>
         Line Breaks
@@ -28,5 +28,34 @@ title: Testing - Typography
     <p class="hxSubBody">
       Compressed Markup - No line breaks in composed DOM.
     </p>
+  </section>
+
+  <section>
+    <h2>Link</h2>
+    <dl class="hxList">
+      <div>
+        <dt>Default</dt>
+        <dd>
+          <a href="#">Link One</a>
+        </dd>
+      </div>
+      <div>
+        <dt>Active/Pressed</dt>
+        <dd>
+          <a href="#" class="pseudo-active">Link Two</a>
+        </dd>
+      </div>
+      <div>
+        <dt>"Disabled"</dt>
+        <dd>
+          <p>
+            <a href="#" disabled>Link Three</a> -
+            <small>
+              (incorrect semantics) Should <em>not</em> have special styling
+            </small>
+          </p>
+        </dd>
+      </div>
+    </dl>
   </section>
 {% endblock %}

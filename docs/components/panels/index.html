@@ -2,17 +2,15 @@
 title: Panels
 minver: 0.2.0
 also:
-  elements/hx-panel: <hx-panel>
-  elements/hx-panelbody: <hx-panelbody>
-  elements/hx-panelfoot: <hx-panelfoot>
-  elements/hx-panelhead: <hx-panelhead>
+  components/panels/test.html: Testing - Panels
+  elements/hx-div: <hx-div>
 ---
 {% extends 'component.njk' %}
 {% block content %}
   <section>
     <p>
-      A panel is a utility for sectioning content vertically into a head,
-      body, and foot.
+      A panel is a utility for sectioning content vertically into a header,
+      body, and footer.
     </p>
   </section>
   <section>
@@ -27,21 +25,21 @@ also:
           <fieldset>
             <legend>Options</legend>
             <label>
-              <input type="checkbox" v-model="hasHead" />
-              Include Head
+              <input type="checkbox" v-model="hasHeader" />
+              Include Header
             </label>
             <label>
-              <input type="checkbox" v-model="hasFoot" />
-              Include Foot
+              <input type="checkbox" v-model="hasFooter" />
+              Include Footer
             </label>
           </fieldset>
         </form>
       </header>
 
       <div class="demo panel-demo">
-        <hx-panel>
-          <hx-panelhead v-if="hasHead">Panel Head</hx-panelhead>
-          <hx-panelbody>
+        <div class="hxPanel">
+          <header v-if="hasHeader">Panel Header</header>
+          <hx-div>
             <p>Panel Body</p>
             <p>
               If it takes you too long to document the backlog PR bottleneck, then
@@ -53,42 +51,42 @@ also:
               emergence down the WIP colocation. If it takes you too long to release
               the lean MVP pattern, then you are not coding enough.
             </p>
-          </hx-panelbody>
-          <hx-panelfoot v-if="hasFoot">Panel Foot</hx-panelfoot>
-        </hx-panel>
+          </hx-div>
+          <footer v-if="hasFooter">Panel Footer</footer>
+        </div>
       </div>
 
       <footer>
-        <template v-if="hasHead && hasFoot">
+        <template v-if="hasHeader && hasFooter">
           {% code 'html' %}
-            <hx-panel>
-              <hx-panelhead></hx-panelhead>
-              <hx-panelbody></hx-panelbody>
-              <hx-panelfoot></hx-panelfoot>
-            </hx-panel>
+            <div class="hxPanel">
+              <header></header>
+              <hx-div></hx-div>
+              <footer></footer>
+            </div>
           {% endcode %}
         </template>
-        <template v-else-if="hasHead">
+        <template v-else-if="hasHeader">
           {% code 'html' %}
-            <hx-panel>
-              <hx-panelhead></hx-panelhead>
-              <hx-panelbody></hx-panelbody>
-            </hx-panel>
+            <div class="hxPanel">
+              <header></header>
+              <hx-div></hx-div>
+            </div>
           {% endcode %}
         </template>
-        <template v-else-if="hasFoot">
+        <template v-else-if="hasFooter">
           {% code 'html' %}
-            <hx-panel>
-              <hx-panelbody></hx-panelbody>
-              <hx-panelfoot></hx-panelfoot>
-            </hx-panel>
+            <div class="hxPanel">
+              <hx-div></hx-div>
+              <footer></footer>
+            </div>
           {% endcode %}
         </template>
         <template v-else>
           {% code 'html' %}
-            <hx-panel>
-              <hx-panelbody></hx-panelbody>
-            </hx-panel>
+            <div class="hxPanel">
+              <hx-div></hx-div>
+            </div>
           {% endcode %}
         </template>
       </footer>

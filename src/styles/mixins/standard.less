@@ -1,0 +1,40 @@
+// Mixins for browsers that are compliant with CSS specs (unprefixed CSS)
+#Std() {
+  // RESET mixins are applied within a ruleset
+  .reset() {
+    .appearance() {
+      appearance: none;
+    }
+
+    .focus() {
+      #Std.set.focus({
+        outline: none;
+      });
+    }
+
+    .placeholder() {
+      #Std.set.placeholder({
+        color: inherit;
+      });
+    }
+
+    .select() {
+      #Std.reset.appearance();
+    }
+  }
+
+  // SET mixins require passing a ruleset
+  .set() {
+    .focus(@rules) {
+      &:focus {
+        @rules();
+      }
+    }
+
+    .placeholder(@rules) {
+      &::placeholder {
+        @rules();
+      }
+    }
+  }
+}

@@ -41,7 +41,7 @@ title: Testing - Tooltips
   </section>
 
   <section>
-    <h2>Unconventional HTML5-compatible IDs</h2>
+    <h2>HTML5-compatible IDs</h2>
 
     <div class="hxRow hxAuto">
       <div class="hxCol">
@@ -129,7 +129,7 @@ title: Testing - Tooltips
         <hx-tooltip for="anchor-target">
           #anchor-target
         </hx-tooltip>
-        <p class="hxSubdued hxSubBody">Shouldn't show.</p>
+        <p class="hxSubdued hxSubBody">Shouldn't show via keyboard focus.</p>
       </div>
 
       <div class="hxCol">
@@ -206,6 +206,9 @@ title: Testing - Tooltips
         <hx-tooltip for="hx-file-input-target">
           #hx-file-input-target
         </hx-tooltip>
+        <p>
+          <hx-error>Adds double tab stop</hx-error>
+        </p>
       </div>
 
       <div class="hxCol">

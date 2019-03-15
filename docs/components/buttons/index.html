@@ -3,6 +3,8 @@ title: Buttons
 minver: 0.1.6
 also:
   components/buttons/test.html: Testing - Buttons
+  components/loaders/#busy: Busy Loader
+  components/files/#file-selector: File Selector
   components/menus: Menus
   components/popovers: Popovers
   components/reveals: Reveals
@@ -61,23 +63,51 @@ also:
       </header>
 
       <div>
-        <button :class="classes" type="button">Button</button>
-        <a href="#" :class="classes">Link</a>
-        <input type="button" :class="classes" value="Input" @click.prevent />
-        <input type="submit" :class="classes" value="Submit" @click.prevent />
-        <input type="reset" :class="classes" value="Reset" @click.prevent />
+        <p>
+          <button :class="classes" type="button">
+            Press Me
+          </button>
+        </p>
+        <p>
+          <button :class="classes" disabled>
+            <span>Loading</span>
+            <hx-busy></hx-busy>
+          </button>
+        </p>
+        <p>
+          <a href="#" :class="classes">
+            <hx-icon type="download"></hx-icon>
+            <span>Download</span>
+          </a>
+        </p>
       </div>
 
       <footer>
         {% code 'html' %}{% raw %}
-          <button class="{{classes}}">Button</button>
-          <a href="#" class="{{classes}}">Link</a>
-          <input type="button" class="{{classes}}" value="Input" />
-          <input type="submit" class="{{classes}}" value="Submit" />
-          <input type="reset" class="{{classes}}" value="Reset" />{% endraw %}
+          <!-- text-only (no span necessary) -->
+          <button class="{{classes}}">
+            Press Me
+          </button>
+
+          <!-- text + non-text (span around text required) -->
+          <button class="{{classes}}" disabled>
+            <span>Loading</span>
+            <hx-busy></hx-busy>
+          </button>
+
+          <!-- non-text + text (span around text required) -->
+          <a href="#" class="{{classes}}">
+            <hx-icon type="download"></hx-icon>
+            <span>Download</span>
+          </a>{% endraw %}
         {% endcode %}
       </footer>
     </div>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="info-circle"></hx-icon>
+      Text nodes within buttons <i>must</i> be wrapped in a <code>&lt;span&gt;</code>,
+      if non-text siblings are present.
+    </p>
   </section>
 
   <section>

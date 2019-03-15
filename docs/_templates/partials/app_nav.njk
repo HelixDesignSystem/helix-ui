@@ -21,7 +21,7 @@
 
 {% macro section(section) %}
   {% set isCurrentCategory = (page.path.indexOf(section.path) === 0) %}
-  {% set revealId = 'nav-' + section.label %}{# TODO: CHECK THIS #}
+  {% set revealId = 'nav-' + section.path %}
 
   <hx-disclosure
     aria-controls="{{revealId}}"

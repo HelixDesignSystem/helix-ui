@@ -1,5 +1,6 @@
 import { HXElement } from './HXElement';
-import { KEYS } from '../utils';
+
+import { KEYS, defer, preventKeyScroll } from '../utils';
 
 /**
  * Defines behavior for the `<hx-disclosure>` element.
@@ -14,6 +15,7 @@ export class HXDisclosureElement extends HXElement {
     }
 
     $onCreate () {
+        this.$onConnect = defer(this.$onConnect);
         this._onTargetOpen = this._onTargetOpen.bind(this);
         this._onTargetClose = this._onTargetClose.bind(this);
     }
@@ -27,26 +29,22 @@ export class HXDisclosureElement extends HXElement {
 
         if (this.target) {
             this.expanded = this.target.hasAttribute('open');
-            this.target.addEventListener('open', this._onTargetOpen);
-            this.target.addEventListener('close', this._onTargetClose);
         } else {
             this.expanded = false;
         }
 
+        this._addTargetListeners();
         this.addEventListener('click', this._onClick);
-        this.addEventListener('keydown', this.$preventScroll);
+        this.addEventListener('keydown', preventKeyScroll);
         this.addEventListener('keyup', this._onKeyUp);
     }
 
     $onDisconnect () {
         this.removeEventListener('click', this._onClick);
-        this.removeEventListener('keydown', this.$preventScroll);
+        this.removeEventListener('keydown', preventKeyScroll);
         this.removeEventListener('keyup', this._onKeyUp);
 
-        if (this.target) {
-            this.target.removeEventListener('open', this._onTargetOpen);
-            this.target.removeEventListener('close', this._onTargetClose);
-        }
+        this._removeTargetListeners();
     }
 
     static get $observedAttributes () {
@@ -80,9 +78,9 @@ export class HXDisclosureElement extends HXElement {
      * @type {HTMLElement}
      */
     get target () {
-        if (!this._target) {
+        if (this.isConnected && !this._target) {
             let targetId = this.getAttribute('aria-controls');
-            this._target = this.getRootNode().getElementById(targetId);
+            this._target = this.getRootNode().querySelector(`[id="${targetId}"]`);
         }
         return this._target;
     }
@@ -93,6 +91,14 @@ export class HXDisclosureElement extends HXElement {
     click () {
         if (!this.disabled) {
             this.expanded = !this.expanded;
+        }
+    }
+
+    /** @private */
+    _addTargetListeners () {
+        if (this.target) {
+            this.target.addEventListener('open', this._onTargetOpen);
+            this.target.addEventListener('close', this._onTargetClose);
         }
     }
 
@@ -121,5 +127,13 @@ export class HXDisclosureElement extends HXElement {
     /** @private */
     _onClick () {
         this.click();
+    }
+
+    /** @private */
+    _removeTargetListeners () {
+        if (this.target) {
+            this.target.removeEventListener('open', this._onTargetOpen);
+            this.target.removeEventListener('close', this._onTargetClose);
+        }
     }
 }

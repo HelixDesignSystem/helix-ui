@@ -1,12 +1,13 @@
 @import (reference) 'vars';
+@import (reference) 'mixins';
 @import (reference) 'components/typography';
 @import (reference) 'elements/hx-div';
 
 hx-popover {
-  display: none; // hide by default
+  #Positionable.base();
+
   max-width: 32rem; //~512px
   min-width: 20rem; //~320px
-  position: fixed;
   z-index: @popover-z-index;
 
   > hx-popover-head, // DEPRECATED: remove in v1.0.0
@@ -25,6 +26,7 @@ hx-popover {
   }
 }
 
+// TODO: is there any way to simplify this?
 #hxPopover.hx-popover, // ShadyDOM selector
 hx-popover {
   color: @gray-900;
@@ -32,7 +34,6 @@ hx-popover {
 
   &[open] {
     display: flex;
-    margin: 0; // prevent margin from shifting position
   }
 
   > header {

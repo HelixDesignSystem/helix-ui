@@ -1,7 +1,8 @@
 import { HXElement } from './HXElement';
-import { KEYS } from '../utils';
 import shadowMarkup from './HXModalElement.html';
 import shadowStyles from './HXModalElement.less';
+
+import { KEYS } from '../utils';
 
 /**
  * Fires when the element is concealed.

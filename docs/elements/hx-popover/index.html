@@ -16,7 +16,7 @@ also:
       <a href="elements/hx-disclosure">&lt;hx-disclosure&gt;</a> element.
     </p>
 
-    <dl class="hxBox-md metadata hxList">
+    <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>
         <dd>any</dd>
@@ -109,7 +109,7 @@ also:
     </dt>
     <dd>
       <p>
-        HTML element whose <code>aria-controls</code>
+        Returns the first HTML element whose <code>aria-controls</code>
         attribute matches the ID of the <code>{{page.title}}</code>.
       </p>
       <p>
@@ -119,14 +119,8 @@ also:
       </p>
     </dd>
 
-    <!-- Revealable Mixin -->
-    <dt>open {Boolean [false]}</dt>
-    <dd>
-      <p>
-        Indicates whether or not the <code>{{page.title}}</code>
-        should be displayed.
-      </p>
-    </dd>
+    {% include 'props/Revealable/open.njk' %}
+    {% include 'props/Positionable/optimumPosition.njk' %}
 
     <!-- Positionable Mixin-->
     <dt>position {String [bottom-right]}</dt>
@@ -141,33 +135,7 @@ also:
       </p>
     </dd>
 
-    <!-- Positionable Mixin-->
-    <dt>
-      relativeElement {HTMLElement}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      <p>
-        HTML element used as a point of reference for calculating the fixed
-        position of the <code>{{page.title}}</code>.
-      </p>
-      <p>
-        If the <code>relative-to</code> attribute is defined, this will return
-        the first element whose ID matches the <code>relativeTo</code> property.
-        Otherwise, it will return the value of <code>controlElement</code>.
-      </p>
-    </dd>
-
-    <!-- Positionable Mixin-->
-    <dt>relativeTo {String}</dt>
-    <dd>
-      <p>
-        A string corresponding to the ID of the <i>relative element</i>.
-      </p>
-      <p class="hxSubdued hxSubBody">
-        <hx-icon type="info-circle"></hx-icon>
-        Reflects the <code>relative-to</code> attribute.
-      </p>
-    </dd>
+    {% include 'props/Positionable/relativeElement.njk' %}
+    {% include 'props/Positionable/relativeTo.njk' %}
   </dl>
 {% endblock %}

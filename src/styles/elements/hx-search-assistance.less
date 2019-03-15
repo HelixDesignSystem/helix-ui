@@ -1,8 +1,48 @@
+@import (reference) 'mixins';
+
 hx-search-assistance {
-  display: none;
+  #Positionable.base();
+
+  background-color: @gray-0;
+  border-radius: 2px;
+  border: 1px solid @gray-300;
+  box-shadow: 0px 3px 3px 0 @shadow-color;
+  max-height: 20rem; // 320px
+  max-width: 32rem; // 512px
+  min-width: 25rem; // 400px
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: @search-assistance-z-index;
+
+  > header {
+    align-items: center;
+    color: @gray-600;
+    display: flex;
+    height: 2.5rem; // 40px
+    padding: 0 0.75rem;
+  }
+
+  > section {
+    border-top: 1px solid @gray-400;
+    padding: 1rem 0;
+
+    > * {
+      padding: 0 0.75rem;
+    }
+
+    > header {
+      color: @gray-600;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-transform: uppercase;
+
+      + * {
+        margin-top: 0.5rem;
+      }
+    }
+  }
 
   &[open] {
     display: block;
-    margin: 0;
   }
 }

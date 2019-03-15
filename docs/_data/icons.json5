@@ -5,35 +5,35 @@
     },
     {
         name: 'angleBottom',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'angleDown',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'angleEnd',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'angleLeft',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'angleRight',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'angleStart',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'angleTop',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'angleUp',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'bell',
@@ -64,11 +64,14 @@
     },
     {
         name: 'checkmarkCircle',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'clock',
         minver: '0.15.0',
+        keywords: [
+            'time'
+        ]
     },
     {
         name: 'cog',
@@ -101,19 +104,19 @@
     },
     {
         name: 'exclamationCircle',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'exclamationDiamond',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'exclamationTriangle',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'externalLink',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'file',
@@ -140,75 +143,75 @@
     },
     {
         name: 'helpCircle',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'question',
         ],
     },
     {
         name: 'infoCircle',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'kbdArrowDown',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'kbdArrowLeft',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'kbdArrowRight',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'kbdArrowUp',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'kbdCapslock',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'kbdCommand',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'cmd',
         ],
     },
     {
         name: 'kbdDelete',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'backspace',
         ],
     },
     {
         name: 'kbdEject',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'kbdOption',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'kbdReturn',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'enter',
         ],
     },
     {
         name: 'kbdShift',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'kbdSpace',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'kbdTab',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'key',
@@ -243,7 +246,7 @@
     },
     {
         name: 'mimeArchive',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             '7z',
             'apk',
@@ -258,7 +261,7 @@
     },
     {
         name: 'mimeAudio',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'aif',
             'mid',
@@ -270,7 +273,7 @@
     },
     {
         name: 'mimeCode',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'bat',
             'css',
@@ -285,7 +288,7 @@
     },
     {
         name: 'mimeData',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'csv',
             'dat',
@@ -303,7 +306,7 @@
     },
     {
         name: 'mimeImage',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'ai',
             'bmp',
@@ -321,7 +324,7 @@
     },
     {
         name: 'mimeSystem',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'bak',
             'bin',
@@ -342,7 +345,7 @@
     },
     {
         name: 'mimeText',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'doc',
             'docx',
@@ -354,7 +357,7 @@
     },
     {
         name: 'mimeVideo',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             '3gp',
             'avi',
@@ -378,7 +381,7 @@
     },
     {
         name: 'minusCircle',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'remove',
         ],
@@ -429,7 +432,7 @@
     },
     {
         name: 'plusOrMinus',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'math',
             'variance',
@@ -455,7 +458,7 @@
     },
     {
         name: 'serverConfig',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'change',
             'manage',
@@ -463,7 +466,7 @@
     },
     {
         name: 'serverIncident',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'sort',
@@ -471,11 +474,11 @@
     },
     {
         name: 'sortDown',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'sortUp',
-        minver: '0.15.0',
+        minver: '0.N.0',
     },
     {
         name: 'support',
@@ -506,7 +509,7 @@
     },
     {
         name: 'timesCircle',
-        minver: '0.15.0',
+        minver: '0.N.0',
         keywords: [
             'close',
             'remove',
@@ -540,6 +543,7 @@
     },
 
     /* DEPRECATED */
+    /* TODO: migrate to separate file */
     {
         name: 'angle-bottom',
         minver: '0.2.1',

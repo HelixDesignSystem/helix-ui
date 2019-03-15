@@ -1,0 +1,161 @@
+@import (reference) 'vars';
+
+/*
+  .hxSelect
+  +---------+
+  | label   | row 1
+  +---------+
+  | control | row 2
+  +---------+
+     col 1
+*/
+
+/*
+  [1] - DEPRECATED! Remove in future release.
+        Add support for [invalid] attribute purely as a fallback.
+        Using this attribute is undesirable, because it goes against
+        standard :invalid state, which can be updated via HTML
+        Constraint Validation APIs.
+*/
+
+// ========== CONFIG ==========
+@hxSelect-border: 1px solid @gray-500;
+@hxSelect-border--invalid: 2px solid @red-900;
+@hxSelect-border--disabled: 1px solid @gray-500;
+@hxSelect-border--disabled-focused: 1px solid @cyan-500; // per team decision on 2019-02-07
+@hxSelect-color: @gray-900;
+@hxSelect-color--invalid: @gray-900;
+@hxSelect-color--disabled: @gray-700;
+@hxSelect-font-size: 1rem;
+@hxSelect-height: 2rem;
+
+// ========== BASE ==========
+hx-select {
+  border-radius: 2px;
+  border: @hxSelect-border;
+  color: @hxSelect-color;
+  display: block;
+  font-size: @hxSelect-font-size;
+  height: @hxSelect-height;
+  pointer-events: none;
+}
+
+// ========== COMPONENT ==========
+.hxSelect {
+  -ms-grid-columns: 1fr;
+  -ms-grid-rows: auto auto;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas:
+    'label'
+    'control';
+  min-width: 10rem; // ~20 chars/160px (NOTE: missing design spec)
+  width: 100%;
+
+  > * {
+    display: none;
+    margin: 0; // TODO: can this be handled by the spacing system?
+    width: 100%;
+  }
+
+  label {
+    -ms-grid-row: 1;
+    display: block;
+    grid-area: label;
+  }
+
+  // Hidden by default, because we can style native <select> in IE.
+  hx-select {
+    -ms-grid-row: 2;
+    grid-area: control;
+  }
+
+  // Show in modern browsers, so we can make use of
+  // CSS custom properties to customize appearance.
+  @supports (--modern: true) {
+    hx-select {
+      display: block;
+    }
+  }
+
+  select {
+    #Reset.select();
+    -ms-grid-row: 2;
+    background-color: @gray-0;
+    border-radius: 2px;
+    border: @hxSelect-border;
+    color: @hxSelect-color;
+    display: block;
+    font-size: @hxSelect-font-size;
+    grid-area: control;
+    height: @hxSelect-height;
+    padding-left: 0.75rem; // indent displayed value
+
+    // Adjust native trigger for MS browsers (mainly IE)
+    // Edge will obscure it with <hx-select>.
+    #MS.set.expand({
+      padding: 0 0.75rem;
+    });
+
+    // select:focus
+    &:focus {
+      #Moz.reset.focusring(@hxSelect-color);
+      box-shadow: @focus-glow;
+      outline: none;
+    }
+
+    // select[invalid]
+    // select:invalid
+    &[invalid], // [1] DEPRECATED: Remove in future release
+    &:invalid {
+      border: @hxSelect-border--invalid;
+      color: @hxSelect-color--invalid;
+
+      // select[invalid]:focus
+      // select:invalid:focus
+      &:focus {
+        box-shadow: @focus-glow-invalid;
+      }
+
+      // select[invalid] ~ hx-select
+      // select:invalid ~ hx-select
+      ~ hx-select {
+        border: @hxSelect-border--invalid;
+        color: @hxSelect-color--invalid;
+      }
+    }//invalid
+
+    // select:disabled
+    &:disabled {
+      background-color: @gray-100;
+      border-color: @gray-500;
+      border-style: solid;
+      border-width: 1px;
+      color: @hxSelect-color--disabled;
+      cursor: not-allowed;
+
+      // select:disabled ~ label
+      ~ label {
+        color: @gray-750;
+      }
+
+      // select:disabled ~ hx-select
+      ~ hx-select {
+        --hxSelect__trigger-background: var(--hxSelect__trigger-background--disabled);
+        border: @hxSelect-border--disabled;
+        color: @hxSelect-color--disabled;
+      }
+
+      // select:disabled:focus
+      &:focus {
+        #Moz.reset.focusring(@hxSelect-color--disabled);
+        border: @hxSelect-border--disabled-focused;
+        box-shadow: @focus-glow-disabled;
+
+        ~ hx-select {
+          border: @hxSelect-border--disabled-focused;
+        }
+      }
+    }//:disabled
+  }
+}

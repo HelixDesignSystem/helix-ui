@@ -1,5 +1,7 @@
 import { HXElement } from './HXElement';
 
+import { defer } from '../utils';
+
 /**
  * Fires in single-panel mode, when the current panel changes.
  *
@@ -22,6 +24,7 @@ export class HXAccordionElement extends HXElement {
     }
 
     $onCreate () {
+        this.$onConnect = defer(this.$onConnect);
         this._onPanelOpen = this._onPanelOpen.bind(this);
     }
 
@@ -30,6 +33,10 @@ export class HXAccordionElement extends HXElement {
         this.panels.forEach(panel => {
             panel.addEventListener('open', this._onPanelOpen);
         });
+
+        if (this._isNavigable) {
+            this._openPanel(this.currentPanel);
+        }
     }
 
     $onDisconnect () {
@@ -62,6 +69,10 @@ export class HXAccordionElement extends HXElement {
      * not just the immediate children.
      */
     get panels () {
+        if (!this.isConnected) {
+            return [];
+        }
+
         return Array.from(this.querySelectorAll('hx-accordion-panel'));
     }
 
@@ -136,21 +147,5 @@ export class HXAccordionElement extends HXElement {
                 }
             });
         }
-    }
-
-    /**
-     * @deprecated Use {@link HXAccordionElement#selectNext|selectNext()}
-     */
-    nextPanel () {
-        this._$replaceWith('HXAccordionElement#selectNext()');
-        this.selectNext();
-    }
-
-    /**
-     * @deprecated Use {@link HXAccordionElement#selectPrevious|selectPrevious()}
-     */
-    previousPanel () {
-        this._$replaceWith('HXAccordionElement#selectPrevious()');
-        this.selectPrevious();
     }
 }

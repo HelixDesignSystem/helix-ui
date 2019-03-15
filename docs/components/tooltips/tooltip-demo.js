@@ -4,7 +4,7 @@ if (document.getElementById('vue-tooltipDemo')) {
     new Vue({
         el: '#vue-tooltipDemo',
         data: {
-            position: POSITIONS[1], // "top"
+            position: POSITIONS[1], // "top-center"
             positions: POSITIONS,
         },
     });

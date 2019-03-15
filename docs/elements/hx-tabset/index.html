@@ -16,7 +16,7 @@ also:
       navigate between one or more tab panels.
     </p>
 
-    <dl class="hxBox-md metadata hxList">
+    <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>
         <dd>any</dd>
@@ -64,10 +64,25 @@ also:
 
 {% block attributes %}
   <dl>
-    <dt>current-tab {Integer=0}</dt>
+    <dt>current-tab</dt>
     <dd>
       <p>
-        Zero-based index of the currently active tab + tabpanel.
+        Zero-based index of the currently active tab.
+      </p>
+    </dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl class="memberList">
+    <dt>currentTab {Integer [0]}</dt>
+    <dd>
+      <p>
+        Zero-based index of the currently active tab.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Reflects the <code>current-tab</code> attribute.
       </p>
     </dd>
   </dl>

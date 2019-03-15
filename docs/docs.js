@@ -8,6 +8,7 @@ import './components/box/box-demo';
 import './components/buttons/button-demo';
 import './components/checkboxes/checkbox-demo';
 import './components/choice-tiles/choice-tile-demo';
+import './components/dropdown-select/select-demo';
 import './components/files/drop-zone-demo';
 import './components/files/file-input-demo';
 import './components/files/file-tile-demo';
@@ -36,3 +37,6 @@ import './components/tooltips/tooltip-demo';
         });
     });
 })();
+
+// TODO: update pipeline to load only on test pages
+import './scripts/test-helpers';
