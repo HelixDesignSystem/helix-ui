@@ -1,11 +1,11 @@
 'use strict';
 
-const _ = require('lodash');
 const path = require('path');
 const CONFIG = {};
 
-// PATHS
-CONFIG.root = path.resolve(__dirname);// absolute path to project directory
+/* ===== PATHS ===== */
+// absolute path to project directory
+CONFIG.root = path.resolve(__dirname, '../../');
 CONFIG.publicDir = 'public';
 CONFIG.sourceDir = 'src';
 CONFIG.docsDir = 'docs';

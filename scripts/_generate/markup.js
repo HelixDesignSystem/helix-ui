@@ -1,12 +1,13 @@
 'use strict';
 
-const CONFIG = require('../_config');
-const Context = require('./context');
-const Nunjucks = require('./nunjucks');
 const fm = require('front-matter');
 const fs = require('fs');
 const globby = require('globby');
 const path = require('path');
+
+const CONFIG = require('../_config');
+const Context = require('./context');
+const Nunjucks = require('./nunjucks');
 
 /*
  * Ensure that path is to .html file. This is the location of the file

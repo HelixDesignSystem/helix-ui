@@ -4,8 +4,9 @@
  * Tasks in this file handle copying files or directories to public/
  */
 
-const CONFIG = require('../_config');
 const { ensureDir, copy } = require('fs-extra');
+
+const CONFIG = require('../_config');
 
 async function copyDist () {
     let sourcePath = `${CONFIG.root}/${CONFIG.distDir}`;

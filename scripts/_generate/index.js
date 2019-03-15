@@ -5,16 +5,18 @@
  * needed for the component explorer documentation.
  */
 
-const CONFIG = require('../_config');
-const pkg = require('../package.json');
-const tar = require('tar');
-const Context = require('./context');
 const LESS = require('less');
-const Markup = require('./markup');
 const path = require('path');
+const tar = require('tar');
 const webpack = require('webpack');
 const { copy, ensureDir, ensureDirSync, remove } = require('fs-extra');
-const { exec, readFile, writeFile } = require('./util');
+
+const pkg = require('../../package.json');
+const CONFIG = require('../_config');
+const { exec, readFile, writeFile } = require('../_util');
+
+const Context = require('./context');
+const Markup = require('./markup');
 
 async function generateStyles () {
     console.log('Generating CSS');

@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 'use strict';
 
-const CONFIG = require('../_config');
 const express = require('express');
 const { exec } = require('child_process');
+
+const CONFIG = require('./_config');
 
 // Create Express App
 const app = express();

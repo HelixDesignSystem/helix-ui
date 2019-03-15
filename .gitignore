@@ -4,15 +4,13 @@ node_modules
 debug.log
 package-lock.json
 
-# Generated Hexo Files/Directories
+# Generated Files/Directories
 db.json
 *.log
 public/
 .deploy*/
 dist/
-
-# Private credentials/config
-_config.private.js
+lib/
 
 # Removing Coverage Reports folder created.
 coverage

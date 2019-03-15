@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-const { compileAll } = require('../lib/compile');
+const { compileAll } = require('./_compile');
 
 (function () {
     compileAll();
