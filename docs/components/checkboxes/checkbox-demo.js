@@ -4,26 +4,28 @@ if (document.getElementById('vue-checkboxDemo')) {
     new Vue({
         el: '#vue-checkboxDemo',
         data: {
-            isChecked: true,
+            isChecked: false,
             isDisabled: false,
             isIndeterminate: false,
-            isInvalid: false,
-        },
-        methods: {
-            onChange: function (evt) {
-                this.isChecked = evt.currentTarget.checked;
-            },
+            isRequired: false,
+            label: 'Check me out',
         },
         computed: {
             snippet: function () {
                 return Util.snippet(`
-                    <hx-checkbox
-                      ${this.isChecked ? 'checked' : ''}
-                      ${this.isDisabled ? 'disabled' : ''}
-                      ${this.isIndeterminate ? 'indeterminate' : ''}
-                      ${this.isInvalid ? 'invalid' : ''}
-                    >
-                    </hx-checkbox>
+                    <hx-checkbox-control>
+                      <input
+                        type="checkbox"
+                        id="chkDemo"
+                        ${this.isChecked ? 'checked' : ''}
+                        ${this.isDisabled ? 'disabled' : ''}
+                        ${this.isRequired ? 'required' : ''}
+                      />
+                      <label for="chkDemo">
+                        <hx-checkbox></hx-checkbox>
+                        ${this.label}
+                      </label>
+                    </hx-checkbox-control>
                 `);
             },
         },
