@@ -7,20 +7,20 @@ import { HXFormControlElement } from './HXFormControlElement';
  * @hideconstructor
  * @since 0.16.0
  */
-export class HXSelectControlElement extends HXFormControlElement {
+export class HXCheckboxControlElement extends HXFormControlElement {
     /** @override */
     static get is () {
-        return 'hx-select-control';
+        return 'hx-checkbox-control';
     }
 
     /**
-     * Fetch the first `<select>` descendant
+     * Fetch the first `<input type="checkbox">` descendant
      *
      * @override
      * @readonly
-     * @type {?HTMLSelectElement}
+     * @type {?HTMLInputElement}
      */
     get controlElement () {
-        return this.querySelector('select');
+        return this.querySelector('input[type="checkbox"]');
     }
 }
