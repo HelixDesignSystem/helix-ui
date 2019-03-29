@@ -1,3 +1,6 @@
+@import (reference) 'vars';
+@import (reference) 'components/box';
+
 // NOTE: be aware of changes needed in the base/typography.less
 @header-height: 3.5rem; // 56px
 @footer-height: 2.5rem; // 40px
@@ -194,3 +197,115 @@ body.hxHorizontal {
     grid-area: footer;
   }
 }//body.hxHorizontal
+
+// TODO: refactor and find a better home for this mixin
+#HXDiv {
+  .shadyRoot(@rules) {
+    > #hxDiv {
+      @rules();
+    }
+  }
+}
+
+hx-div {
+  display: block;
+  padding: 0 !important; // avoid unfixable padding-block-end bug
+
+  &[scroll="horizontal"] {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  &[scroll="vertical"] {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  &[scroll="both"] {
+    overflow: auto;
+  }
+
+  &[scroll="none"] {
+    overflow: visible;
+  }
+}
+
+// ===== Polyfilled browsers =====
+// CSS specificity overrides selectors in the next block
+hx-div {
+  &.hxXs {
+    #HXDiv.shadyRoot({
+      #Box.xs();
+    });
+  }
+
+  &.hxSm {
+    #HXDiv.shadyRoot({
+      #Box.sm();
+    });
+  }
+
+  &.hxMd {
+    #HXDiv.shadyRoot({
+      #Box.md();
+    });
+  }
+
+  &.hxLg {
+    #HXDiv.shadyRoot({
+      #Box.lg();
+    });
+  }
+
+  &.hxXl {
+    #HXDiv.shadyRoot({
+      #Box.xl();
+    });
+  }
+
+  &.hx2x {
+    #HXDiv.shadyRoot({
+      #Box.xxl();
+    });
+  }
+
+  &.hxFlush {
+    #HXDiv.shadyRoot({
+      #Box.flush();
+    });
+  }
+}
+
+// ===== Modern Browsers =====
+// Should only apply to browsers with ShadowDOM support.
+@supports(--modern: true) {
+  hx-div {
+    &.hxXs {
+      --padding-base: @space[xs];
+    }
+
+    &.hxSm {
+      --padding-base: @space[sm];
+    }
+
+    &.hxMd {
+      --padding-base: @space[md];
+    }
+
+    &.hxLg {
+      --padding-base: @space[lg];
+    }
+
+    &.hxXl {
+      --padding-base: @space[xl];
+    }
+
+    &.hx2x {
+      --padding-base: @space[xxl];
+    }
+
+    &.hxFlush {
+      --padding-base: @space[flush];;
+    }
+  }
+}

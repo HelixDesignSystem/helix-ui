@@ -21,3 +21,38 @@
     order: 3;
   }
 }
+
+// DEPRECATED, remove in v1.0.0
+hx-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  & > &head {
+    flex-shrink: 0;
+    order: 1;
+  }
+
+  & > &body {
+    flex-grow: 1;
+    order: 2;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  & > &foot {
+    flex-shrink: 0;
+    order: 3;
+  }
+}
+
+hx-panelbody,
+hx-panel-body,
+hx-panelfoot,
+hx-panel-foot,
+hx-panelhead,
+hx-panel-head {
+  display: block;
+}
+

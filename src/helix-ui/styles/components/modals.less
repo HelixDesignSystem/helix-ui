@@ -1,5 +1,5 @@
 @import (reference) 'vars';
-@import (reference) 'elements/hx-div';
+@import (reference) 'components/layouts';
 
 hx-modal {
   display: none;
@@ -80,5 +80,43 @@ hx-modal {
   hx-modalfoot {
     flex-shrink: 0;
     order: 3;
+  }
+}
+
+// DEPRECATED: remove in v1.0.0
+hx-modalbody {
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0 1.25rem;
+
+  &:first-child {
+    padding-top: 4rem;
+  }
+
+  &:last-child {
+    padding-bottom: 1.25rem;
+  }
+}
+
+hx-modalfoot {
+  display: flex;
+  justify-content: center;
+  padding: 1.25rem;
+
+  .hxBtn + .hxBtn {
+    margin-left: 1.25rem;
+  }
+}
+
+hx-modalhead {
+  display: block;
+  line-height: 1;
+  padding: 1.25rem;
+
+  h1, h2, h3, h4, h5, h6 {
+    &:only-child {
+      line-height: 1;
+    }
   }
 }
