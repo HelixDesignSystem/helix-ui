@@ -1,3 +1,5 @@
+@import "vars";
+
 /*
   NOTE: This implementation is known to be slightly buggy with IE11.
   In various scenarious, IE11 will render the element with a
@@ -33,7 +35,10 @@ hx-busy {
 }
 
 hx-progress {
+  background-color: @gray-400;
+  border-radius: 1em;
+  color: @cyan-500;
   display: block;
   height: 0.5rem;
+  overflow: hidden;
 }
-
