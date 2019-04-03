@@ -110,6 +110,7 @@ export class HXElement extends HTMLElement {
     connectedCallback () {
         this._$tabIndex = this.getAttribute('tabindex');
         this.$upgradeProperty('disabled');
+        this.setAttribute('hx-defined', '');
         this.$onConnect();
     }
 

@@ -10,3 +10,13 @@
         }
     });
 })();
+
+// Add [data-mock-indeterminate] to elements in test pagest ot force :indeterminate state
+(function () {
+    let allMockIndeterminate = document.querySelectorAll('[data-mock-indeterminate]');
+    let mockIndeterminateElements = Array.from(allMockIndeterminate);
+
+    mockIndeterminateElements.forEach(function (el) {
+        el.indeterminate = true;
+    });
+})();

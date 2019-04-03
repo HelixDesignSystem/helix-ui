@@ -1,0 +1,71 @@
+---
+title: Radios
+minver: 0.16.0
+also:
+  components/radios/test.html: Testing - Radios
+  elements/hx-radio: <hx-radio>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <h2 id="basic-radio">Basic Radio</h2>
+    <div class="example" id="vue-radioDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <p>
+            <label for="txtLabel">Label</label>
+            <input id="txtLabel" class="hxTextCtrl" v-model="label" />
+          </p>
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+            <hx-checkbox-control>
+              <input id="chkIsChecked" type="checkbox" v-model="isChecked" />
+              <label for="chkIsChecked">
+                <hx-checkbox></hx-checkbox>
+                Checked
+              </label>
+            </hx-checkbox-control>
+            <hx-checkbox-control>
+              <input id="chkIsDisabled" type="checkbox" v-model="isDisabled" />
+              <label for="chkIsDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
+            <hx-checkbox-control>
+              <input id="chkIsRequired" type="checkbox" v-model="isRequired" />
+              <label for="chkIsRequired">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+        </form>
+      </header>
+      <div>
+        <hx-radio-control>
+          <input
+            type="radio"
+            id="radDemo"
+            :checked="isChecked"
+            :disabled="isDisabled"
+            :required="isRequired"
+          />
+          <label for="radDemo">
+            <hx-radio></hx-radio>
+            {% raw %}{{label}}{% endraw %}
+          </label>
+        </hx-radio-control>
+      </div>
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      Webkit-based browsers (e.g., Chrome, Safari, etc.) do not match the
+      <code>:required</code> CSS psuedo-class to radios in a single-item
+      radio group.
+    </p>
+  </section>
+{% endblock %}

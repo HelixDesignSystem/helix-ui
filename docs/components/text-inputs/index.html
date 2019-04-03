@@ -18,23 +18,23 @@ also:
       <header>
         <form class="beta-hxForm">
           <p>
-            <label for="txtPlaceholder1">Placeholder</label>
+            <label for="txtPlaceholder1" class="beta-hxFieldName">Placeholder</label>
             <input id="txtPlaceholder1" class="hxTextCtrl" v-model="placeholder" />
           </p>
           <p>
-            <label for="txtValue1">Value</label>
+            <label for="txtValue1" class="beta-hxFieldName">Value</label>
             <input id="txtValue1" class="hxTextCtrl" v-model="value" />
           </p>
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isDisabled" />
-              Disabled
-            </label>
-            <label>
-              <input type="checkbox" v-model="isInvalid" />
-              Invalid
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div>
+              <input id="chkIsDisabled1" type="checkbox" v-model="isDisabled" />
+              <label for="chkIsDisabled1">Disabled</label>
+            </div>
+            <div>
+              <input id="chkIsInvalid1" type="checkbox" v-model="isInvalid" />
+              <label for="chkIsInvalid1">Invalid</label>
+            </div>
           </fieldset>
         </form>
       </header>
@@ -61,23 +61,23 @@ also:
       <header>
         <form class="beta-hxForm">
           <p>
-            <label for="txtPlaceholder2">Placeholder</label>
+            <label for="txtPlaceholder2" class="beta-hxFieldName">Placeholder</label>
             <input id="txtPlaceholder2" class="hxTextCtrl" v-model="placeholder" />
           </p>
           <p>
-            <label for="txtValue2">Value</label>
+            <label for="txtValue2" class="beta-hxFieldName">Value</label>
             <input id="txtValue2" class="hxTextCtrl" v-model="value" />
           </p>
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isDisabled" />
-              Disabled
-            </label>
-            <label>
-              <input type="checkbox" v-model="isInvalid" />
-              Invalid
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div>
+              <input id="chkIsDisabled2" type="checkbox" v-model="isDisabled" />
+              <label for="chkIsDisabled2">Disabled</label>
+            </div>
+            <div>
+              <input id="chkIsInvalid2" type="checkbox" v-model="isInvalid" />
+              <label for="chkIsInvalid2">Invalid</label>
+            </div>
           </fieldset>
         </form>
       </header>

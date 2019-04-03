@@ -34,15 +34,15 @@ also:
     <div class="example" id="vue-fileIconDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <p>
-            <label for="selType">Type</label>
+          <div>
+            <label for="selType" class="beta-hxFieldName">Type</label>
             <select id="selType" v-model="type">
               <option v-for="_type in types" :value="_type" v-text="_type">
               </option>
             </select>
-          </p>
+          </div>
           <p>
-            <label for="txtExt">File Extension</label>
+            <label for="txtExt" class="beta-hxFieldName">File Extension</label>
             <input id="txtExt" class="hxTextCtrl" v-model="ext" />
           </p>
         </form>

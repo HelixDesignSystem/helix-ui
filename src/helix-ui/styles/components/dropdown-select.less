@@ -1,95 +1,97 @@
 @import (reference) 'vars';
 
-/*
-  .hxSelect
-  +---------+
-  | label   | row 1
-  +---------+
-  | control | row 2
-  +---------+
-     col 1
-*/
-
-/*
-  [1] - DEPRECATED! Remove in future release.
-        Add support for [invalid] attribute purely as a fallback.
-        Using this attribute is undesirable, because it goes against
-        standard :invalid state, which can be updated via HTML
-        Constraint Validation APIs.
-*/
-
 // ========== CONFIG ==========
-@hxSelect-border: 1px solid @gray-500;
-@hxSelect-border--invalid: 2px solid @red-900;
-@hxSelect-border--disabled: 1px solid @gray-500;
-@hxSelect-border--disabled-focused: 1px solid @cyan-500; // per team decision on 2019-02-07
-@hxSelect-color: @gray-900;
-@hxSelect-color--invalid: @gray-900;
-@hxSelect-color--disabled: @gray-700;
-@hxSelect-font-size: 1rem;
-@hxSelect-height: 2rem;
+// Shared state styles (common to <select> and <hx-select>)
+@Select: {
+  @Pristine: {
+    background-color: @gray-0;
+    border: 1px solid @gray-500;
+    color: @gray-900;
+  }
 
-// ========== BASE ==========
-hx-select {
-  border-radius: 2px;
-  border: @hxSelect-border;
-  color: @hxSelect-color;
+  @Invalid: {
+    background-color: @gray-0;
+    border: 2px solid @red-900;
+    color: @gray-900;
+  }
+
+  @Disabled: {
+    background-color: @gray-100;
+    border: 1px solid @gray-500;
+    color: @gray-700;
+  }
+}
+
+// ========== BASE ELEMENTS ==========
+hx-select { // [001]
   display: block;
-  font-size: @hxSelect-font-size;
-  height: @hxSelect-height;
   pointer-events: none;
 }
 
-// ========== COMPONENT ==========
-.hxSelect {
+hx-select-control { // [001]
+  color: @gray-900;
+  font-size: 1rem;
+  height: 2rem;
+}
+
+// ========== RESETS ==========
+hx-select-control {
+  // [001] hx-select-control > *
+  > * {
+    margin: 0;
+    padding: 0;
+  }
+
+  // [002] hx-select-control > select
+  > select {
+    #Reset.select();
+  }
+}
+
+/* ========== LAYOUT ========== */
+hx-select-control { // [001]
   -ms-grid-columns: 1fr;
-  -ms-grid-rows: auto auto;
+  -ms-grid-rows: 1fr;
   display: -ms-grid;
   display: grid;
-  grid-template-areas:
-    'label'
-    'control';
-  min-width: 10rem; // ~20 chars/160px (NOTE: missing design spec)
-  width: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
 
+  // [001] hx-select-control > *
   > * {
-    display: none;
-    margin: 0; // TODO: can this be handled by the spacing system?
-    width: 100%;
-  }
-
-  label {
+    -ms-grid-column: 1;
     -ms-grid-row: 1;
-    display: block;
-    grid-area: label;
+    display: none; // blacklist all child elements, by default
+    grid-column-start: 1;
+    grid-row-start: 1;
   }
 
-  // Hidden by default, because we can style native <select> in IE.
-  hx-select {
-    -ms-grid-row: 2;
-    grid-area: control;
+  // [002] hx-select-control > hx-select
+  > hx-select {
+    // Hidden by default, because we can style native <select> in IE.
   }
 
-  // Show in modern browsers, so we can make use of
-  // CSS custom properties to customize appearance.
-  @supports (--modern: true) {
-    hx-select {
-      display: block;
-    }
+  // [002] hx-select-control > select
+  > select {
+    display: block; // whitelisted
+    width: 100%; // prevent overflow for lengthy option text
   }
+}
 
-  select {
-    #Reset.select();
-    -ms-grid-row: 2;
-    background-color: @gray-0;
+/* ========== PRISTINE ========== */
+hx-select-control {
+  @pristine: @Select[@Pristine];
+
+  // [001] hx-select-control > *
+  > * {
     border-radius: 2px;
-    border: @hxSelect-border;
-    color: @hxSelect-color;
-    display: block;
-    font-size: @hxSelect-font-size;
-    grid-area: control;
-    height: @hxSelect-height;
-    padding-left: 0.75rem; // indent displayed value
+    border: @pristine[border];
+  }
+
+  // [002] hx-select-control > select
+  > select {
+    background-color: @pristine[background-color];
+    padding-left: 0.75rem;
 
     // Adjust native trigger for MS browsers (mainly IE)
     // Edge will obscure it with <hx-select>.
@@ -97,65 +99,122 @@ hx-select {
       padding: 0 0.75rem;
     });
 
-    // select:focus
+    // [012] hx-select-control > select:focus
     &:focus {
-      #Moz.reset.focusring(@hxSelect-color);
+      #Moz.reset.focusring(@pristine[color]);
       box-shadow: @focus-glow;
       outline: none;
     }
+  }
+}
 
-    // select[invalid]
-    // select:invalid
-    &[invalid], // [1] DEPRECATED: Remove in future release
-    &:invalid {
-      border: @hxSelect-border--invalid;
-      color: @hxSelect-color--invalid;
+/* ========== INVALID ========== */
+hx-select-control {
+  @invalid: @Select[@Invalid];
 
-      // select[invalid]:focus
-      // select:invalid:focus
+  &[hx-changed],
+  &[hx-touched] {
+    // [022] hx-select-control[hx-changed] > select:invalid
+    // [022] hx-select-control[hx-touched] > select:invalid
+    > select:invalid {
+      background-color: @invalid[background-color];
+      border: @invalid[border];
+      color: @invalid[color];
+
+      // [032] hx-select-control[hx-changed] > select:invalid:focus
+      // [032] hx-select-control[hx-touched] > select:invalid:focus
       &:focus {
+        #Moz.reset.focusring(@invalid[color]);
         box-shadow: @focus-glow-invalid;
       }
 
-      // select[invalid] ~ hx-select
-      // select:invalid ~ hx-select
+      // [023] hx-select-control[hx-changed] > select:invalid ~ hx-select
+      // [023] hx-select-control[hx-touched] > select:invalid ~ hx-select
       ~ hx-select {
-        border: @hxSelect-border--invalid;
-        color: @hxSelect-color--invalid;
+        border: @invalid[border];
+        color: @invalid[color];
       }
-    }//invalid
+    }
+  }
 
-    // select:disabled
-    &:disabled {
-      background-color: @gray-100;
-      border-color: @gray-500;
-      border-style: solid;
-      border-width: 1px;
-      color: @hxSelect-color--disabled;
-      cursor: not-allowed;
+  .hxInvalid &,
+  &.hxInvalid {
+    // [022] .hxInvalid hx-select-control > select:enabled
+    // [022] hx-select-control.hxInvalid > select:enabled
+    > select:enabled {
+      background-color: @invalid[background-color];
+      border: @invalid[border];
+      color: @invalid[color];
 
-      // select:disabled ~ label
-      ~ label {
-        color: @gray-750;
-      }
-
-      // select:disabled ~ hx-select
-      ~ hx-select {
-        --hxSelect__trigger-background: var(--hxSelect__trigger-background--disabled);
-        border: @hxSelect-border--disabled;
-        color: @hxSelect-color--disabled;
-      }
-
-      // select:disabled:focus
+      // [032] .hxInvalid hx-select-control > select:enabled:focus
+      // [032] hx-select-control.hxInvalid > select:enabled:focus
       &:focus {
-        #Moz.reset.focusring(@hxSelect-color--disabled);
-        border: @hxSelect-border--disabled-focused;
-        box-shadow: @focus-glow-disabled;
-
-        ~ hx-select {
-          border: @hxSelect-border--disabled-focused;
-        }
+        #Moz.reset.focusring(@invalid[color]);
+        box-shadow: @focus-glow-invalid;
       }
-    }//:disabled
+
+      // [023] .hxInvalid hx-select-control > select:enabled ~ hx-select
+      // [023] hx-select-control.hxInvalid > select:enabled ~ hx-select
+      ~ hx-select {
+        border: @invalid[border];
+        color: @invalid[color];
+      }
+    }
+  }
+}
+
+/* ========== DISABLED ========== */
+// [012] hx-select-control > select:disabled
+hx-select-control > select:disabled {
+  @disabled: @Select[@Disabled];
+
+  background-color: @disabled[background-color];
+  border: @disabled[border];
+  color: @disabled[color];
+  cursor: not-allowed;
+
+  // [013] hx-select-control > select:disabled ~ hx-select
+  ~ hx-select {
+    --hxSelect__trigger-background: var(--hxSelect__trigger-background--disabled);
+    border: @disabled[border];
+    color: @disabled[color];
+  }
+
+  // [022] hx-select-control > select:disabled:focus
+  &:focus {
+    #Moz.reset.focusring(@disabled[color]);
+    border: @disabled[border];
+    box-shadow: @focus-glow-disabled;
+
+    // [023] hx-select-control > select:disabled:focus ~ hx-select
+    ~ hx-select {
+      border: @disabled[border];
+    }
+  }
+}
+
+/* ========== OVERRIDES ========== */
+
+// ----- IE Corrections -----
+// IE incorrectly matches :invalid when :disabled, so we need to
+// ensure that :disabled styles are applied, instead of :invalid
+hx-select-control > select:disabled:invalid { // [022]
+  &:extend(hx-select-control > select:disabled all);
+}
+
+// ----- Modern Browsers -----
+@supports (--modern: true) {
+  hx-select-control {
+    // [002] hx-select-control > select
+    > select {
+      border: 0; // style <hx-select> borders, instead
+    }
+
+    // [002] hx-select-control > hx-select
+    > hx-select {
+      // Show in modern browsers, so we can make use of
+      // CSS custom properties to customize appearance.
+      display: block;
+    }
   }
 }

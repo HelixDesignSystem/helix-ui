@@ -1,128 +1,33 @@
 @import "./HXElement";
 
-#hxCheckbox {
-  display: flex;
-  height: 100%;
-  position: relative;
-  width: 100%;
+:host {
+  --hxCheckbox__minus-display: none;
+  --hxCheckbox__tick-display: none;
 }
 
-#hxCustomControl {
-  align-content: center;
+#hxCheckbox {
   align-items: center;
-  background-color: @gray-0;
-  border: 1px solid currentColor;
-  border-radius: 2px;
-  color: @gray-500;
-  display: flex;
-  font-size: 0.625rem; /* ~10px */
+  display: grid;
+  font-size: 10px;
+  grid-template-areas: 'icon';
   height: 100%;
   justify-content: center;
-  left: 0;
-  position: absolute;
-  top: 0;
-  vertical-align: middle;
   width: 100%;
-  z-index: 10;
-
-  &:hover {
-    background-color: @cyan-50;
-    color: @cyan-500;
-  }
-
-  /* icons */
-  #hxMinus,
-  #hxTick {
-    display: none;
-    height: 1em;
-    line-height: 1;
-    width: 1em;
-  }
 }
 
-#hxNativeControl:checked:not(:indeterminate) ~ #hxCustomControl #hxTick {
-  display: block;
+/* icons */
+#hxMinus,
+#hxTick {
+  grid-area: icon;
+  height: 1em;
+  line-height: 1;
+  width: 1em;
 }
 
-#hxNativeControl:indeterminate ~ #hxCustomControl #hxMinus {
-  display: block;
+#hxMinus {
+  display: var(--hxCheckbox__minus-display);
 }
 
-#hxNativeControl {
-  /* opacity 0 because Firefox and OS focus styles */
-  opacity: 0;
-  z-index: 0;
-
-  &:focus {
-    border: none;
-    outline: none;
-
-    ~ #hxCustomControl {
-      border-color: @cyan-700;
-      box-shadow: @focus-glow;
-    }
-  }
-
-  /* default checked and indeterminate (checked or unchecked) */
-  &:checked, &:indeterminate {
-    ~ #hxCustomControl {
-      color: @cyan-900;
-
-      &:hover {
-        background-color: @cyan-50;
-        color: @cyan-500;
-      }
-    }
-  }
-
-  /* disabled unchecked */
-  &:disabled ~ #hxCustomControl {
-    background-color: @gray-100;
-    color: @gray-500;
-    cursor: not-allowed;
-
-    &:hover {
-      background-color: @gray-100;
-      color: @gray-500;
-    }
-  }//[disabled]
-}//input
-
-/* invalid */
-:host([invalid]){
-  #hxCustomControl {
-    border-width: 2px;
-    color: @red-900;
-
-    &:hover {
-      background-color: @red-100;
-    }
-  }
-
-  #hxNativeControl:focus ~ #hxCustomControl {
-    border-color: @red-900;
-    box-shadow: @focus-glow-invalid;
-  }
-
-  /* below styles needed to override above, custom control styles */
-  /* invalid and checked or indeterminate */
-  #hxNativeControl:checked, #hxNativeControl:indeterminate {
-    ~ #hxCustomControl {
-      color: @red-900;
-
-      &:hover {
-        background-color: @red-100;
-      }
-    }
-  }
-
-  /* invalid and disabled */
-  #hxNativeControl:disabled ~ #hxCustomControl {
-    border-width: 1px;
-    color: @gray-500;
-
-    &:hover {
-      background-color: @gray-100;
-    }
-  }
-}//[invalid]
+#hxTick {
+  display: var(--hxCheckbox__tick-display);
+}

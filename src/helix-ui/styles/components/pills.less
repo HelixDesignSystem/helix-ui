@@ -1,0 +1,62 @@
+hx-pill {
+  display: inline-block;
+  line-height: 1.5;
+}
+
+hx-status {
+  background-color: transparent;
+  border: 1px solid @gray-750;
+  border-radius: 1em; // 10px
+  color: @gray-750;
+  display: inline-block;
+  font-size: 0.625rem; // 10px
+  height: 1rem;
+  line-height: 1;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0.3em 0.8em 0.2em; // 3px 8px 2px
+  text-align: center;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &.hxEmphasisGray {
+    border-color: @gray-900;
+    color: @gray-900;
+  }
+
+  &.hxEmphasisPurple {
+    border-color: @purple-500;
+    color: @purple-500;
+  }
+
+  &.hxSubdued {
+    border-color: @gray-600;
+    color: @gray-600;
+  }
+
+  &.hxFill {
+    background-color: @gray-750;
+    border-color: @gray-750;
+    color: @gray-0;
+
+    &.hxEmphasisGray {
+      background-color: @gray-900;
+      border-color: @gray-900;
+      color: @gray-0;
+    }
+
+    &.hxEmphasisPurple {
+      background-color: @purple-500;
+      border-color: @purple-500;
+      color: @gray-0;
+    }
+
+    &.hxSubdued {
+      background-color: @gray-600;
+      border-color: @gray-600;
+      color: @gray-0;
+    }
+  }
+}
+

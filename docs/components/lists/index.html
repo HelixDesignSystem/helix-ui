@@ -11,11 +11,11 @@ minver: 0.2.0
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isVertical" />
-              Vertical Layout
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div>
+              <input id="chkIsVertical" type="checkbox" v-model="isVertical" />
+              <label for="chkIsVertical">Vertical Layout</label>
+            </div>
           </fieldset>
         </form>
       </header>

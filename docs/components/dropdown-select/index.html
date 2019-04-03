@@ -3,6 +3,8 @@ title: Dropdown Select
 minver: 0.16.0
 also:
   components/dropdown-select/test.html: Testing - Dropdown Select
+  elements/hx-select-control: <hx-select-control>
+  elements/hx-select: <hx-select>
 ---
 {% extends 'component.njk' %}
 {% block content %}
@@ -31,9 +33,8 @@ also:
       </header>
 
       <div>
-        <div class="hxSelect">
+        <hx-select-control>
           <select
-            id="selDemo"
             :disabled="isDisabled"
             :required="isRequired"
           >
@@ -43,10 +44,7 @@ also:
             <option value="3">Option 3</option>
           </select>
           <hx-select></hx-select>
-          <label for="selDemo">
-            Choose an Option
-          </label>
-        </div>
+        </hx-select-control>
       </div>
 
       <footer>
@@ -57,40 +55,28 @@ also:
       <hx-busy></hx-busy>
       <p>Loading...</p>
     </div>
-    <p class="hxSubBody hxSubdued">
-      <hx-icon type="info-circle"></hx-icon>
-      <code>&lt;select&gt;</code> must be defined before
-      <code>&lt;hx-select&gt;</code> and <code>&lt;label&gt;</code>
-      for styles to be effective.
-    </p>
-    <p class="hxSubBody hxSubdued">
-      <hx-icon type="info-circle"></hx-icon>
-      Extra elements will be hidden.
-    </p>
   </section>
 
+  <!--
+    TODO:
+    Need centralized documentation of HelixUI form control validation behavior.
+  -->
   <section>
     <h2 id="validation">Validation</h2>
     <p class="comfortable">
       A {{page.title}} is designed to take advantage of standardized
       <a href="https://mzl.la/2SuKTmv">HTML form validation</a> capabilities.
-      Error styles will be applied as long as the <code>&lt;select&gt;</code>
-      element matches the <code>:invalid</code> CSS pseudo-class.
     </p>
     <p>
-      There are two ways to modify validity of the
-      <code>&lt;select&gt;</code> element.
+      By default, a {{page.title}} is styled as if it were valid.
+      Otherwise, any form control that is invalid on initial render
+      would display as invalid before the user has had a chance to
+      interact with the form.
     </p>
-    <ol class="hxList">
-      <li>
-        add or remove the <code>required</code> attribute
-      </li>
-      <li>
-        calling its
-        <a href="https://mzl.la/2MQYTkd">
-          <code>setCustomValidity()</code>
-        </a> method
-      </li>
-    </ol>
+    <p>
+      As the user interacts with a {{page.title}}, it will automatically update
+      itself in order to communicate when it is appropriate for the browser
+      to apply invalid control styles.
+    </p>
   </section>
 {% endblock %}

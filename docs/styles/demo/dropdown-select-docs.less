@@ -1,28 +1,30 @@
 @import (reference) 'components/dropdown-select';
 
-.selects-test {
-  .hxSelect {
-    > select {
-      // imitate :focus
-      &.mock-focus {
-        &:extend(.hxSelect select:focus all);
-      }
+.test-content {
+  /* ----- PRISTINE ----- */
 
-      // imitate :invalid:focus
-      &:invalid.mock-focus {
-        &:extend(.hxSelect select:invalid:focus all);
-      }
+  hx-select-control > select.mock-focus {
+    /* imitate :focus */
+    &:extend(hx-select-control > select:focus all);
+  }
 
-      // DEPRECATED: remove in future release
-      // imitate [invalid]:focus
-      &[invalid].mock-focus {
-        &:extend(.hxSelect select[invalid]:focus all);
-      }
+  hx-select-control > select:disabled.mock-focus {
+    /* imitate :disabled:focus */
+    &:extend(hx-select-control > select:disabled:focus all);
+  }
 
-      // imitate :disabled:focus
-      &:disabled.mock-focus {
-        &:extend(.hxSelect select:disabled:focus all);
-      }
-    }
+  /* ----- CHANGED ----- */
+  hx-select-control[hx-changed] > select:invalid.mock-focus {
+    &:extend(hx-select-control[hx-changed] > select:invalid:focus all);
+  }
+
+  /* ----- TOUCHED ----- */
+  hx-select-control[hx-touched] > select:invalid.mock-focus {
+    &:extend(hx-select-control[hx-touched] > select:invalid:focus all);
+  }
+
+  /* ----- FORCE INVALID ----- */
+  hx-select-control.hxInvalid > select:invalid.mock-focus {
+    &:extend(hx-select-control.hxInvalid > select:invalid:focus all);
   }
 }

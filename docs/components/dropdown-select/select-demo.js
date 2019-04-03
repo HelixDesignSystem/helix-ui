@@ -8,21 +8,24 @@ if (document.getElementById('vue-selectDemo')) {
             isRequired: false,
         },
         computed: {
+            attrDisabled: function () {
+                return (this.isDisabled ? 'disabled' : '');
+            },
+            attrRequired: function () {
+                return (this.isRequired ? 'required' : '');
+            },
             snippet: function () {
                 return Util.snippet(`
-                    <div class="hxSelect">
+                    <hx-select-control>
                       <select
-                        ${this.isDisabled ? 'disabled' : ''}
-                        id="demoSelect"
-                        ${this.isRequired ? 'required' : ''}
+                        ${this.attrDisabled}
+                        ${this.attrRequired}
                       >
                         ...
                       </select>
 
                       <hx-select></hx-select>
-
-                      <label for="demoSelect">...</label>
-                    </div>
+                    </hx-select-control>
                 `);
             },
         },

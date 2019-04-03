@@ -1,0 +1,80 @@
+---
+title: <hx-select-control>
+minver: 0.16.0
+also:
+  components/dropdown-select: Dropdown Select
+  elements/hx-select: <hx-select>
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p>
+      The custom <code>{{page.title}}</code> element provides functionality to
+      augment native browser validation capabilities.
+    </p>
+
+    <dl class="metadata hxList">
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>any</dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd>
+          in this order:
+          <ul class="hxList">
+            <li>a <code>&lt;select&gt;</code> element</li>
+            <li>an <a href="elements/hx-select">&lt;hx-select&gt;</a> element</li>
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd><i>none</i></dd>
+      </div>
+    </dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl class="memberList">
+    <dt>
+      hx-changed {Boolean}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Present if descendant <code>&lt;select&gt;</code> element
+        has emitted a "change" event.
+      </p>
+    </dd>
+
+    <dt>
+      hx-touched {Boolean}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Present if descendant <code>&lt;select&gt;</code> element
+        has emitted a "blur" event.
+      </p>
+    </dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl class="memberList">
+    <dt>
+      controlElement {HTMLSelectElement|null}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Returns the first <code>&lt;select&gt;</code> descendant.
+      </p>
+      <p>
+        If no <code>&lt;select&gt;</code> element is found, returns <code>null</code>.
+      </p>
+    </dd>
+  </dl>
+{% endblock %}

@@ -1,14 +1,26 @@
-.FieldName() {
-  color: @gray-800;
-  display: block;
-  font-size: 0.875rem; // ~14px
-}
+@import (reference) 'mixins';
 
+// ---------- CONFIGURATION ----------
+// TBD
+
+// ---------- MIXINS ----------
+// TBD
+
+// ---------- RESETS ----------
 .beta-hxForm {
-  // a.k.a. "field name"
+  fieldset {
+    border: none;
+    padding: 0;
+  }
+
+  input {
+    #MS.reset.input();
+  }
+
   label {
-    .FieldName();
-    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
     padding: 0;
   }
 
@@ -16,39 +28,64 @@
     border: none;
     color: inherit;
     display: block;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1;
-    margin-bottom: 0;
     padding: 0;
     width: 100%;
   }
 
-  input + label { // a.k.a. "option label"
-    color: @gray-900;
-    display: inline-block;
-    font-size: 1rem;
+  select {
+    #Moz.reset.invalid();
   }
 
-  > * + * {
-    margin-top: 1rem;
+  textarea {
+    font: inherit;
+  }
+}
+//end:RESETS
+
+// ---------- BASE ----------
+*:disabled {
+  cursor: not-allowed;
+}
+//end:BASE
+
+// ---------- COMPONENT ----------
+.beta-hxForm {
+  > * {
+    margin: 1rem 0; // FIXME: solve with spacing system
+
+    &:first-child {
+      margin-top: 0; // FIXME: solve with spacing system
+    }
+
+    &:last-child {
+      margin-bottom: 0; // FIXME: solve with spacing system
+    }
   }
 
   fieldset {
-    border: none;
-    padding: 0;
+    > * {
+      margin: 0.25rem 0; // FIXME: solve with spacing system
+
+      &:first-child {
+        margin-top: 0; // FIXME: solve with spacing system
+      }
+
+      &:last-child {
+        margin-bottom: 0; // FIXME: solve with spacing system
+      }
+    }
 
     > legend {
-      .FieldName();
-      margin-bottom: 0.25rem; // ~4px
+      color: @gray-800;
+      font-size: 0.875rem; // ~14px
     }
 
     > label {
-      font-size: 1rem;
-      margin: 0;
-
-      + label {
-        margin-top: 0.25rem; // ~4px
-      }
+      display: block;
+      font-size: 1rem; // NOTE: this may change with checkboxes and radios
     }
   }
 
@@ -58,23 +95,21 @@
     width: 100%;
   }
 
+  .beta-hxFieldName {
+    color: @gray-800;
+    font-size: 0.875rem; // ~14px
+  }
 
   .beta-hxField {
-    .beta-hxFieldName {
-      color: @gray-800;
-      font-size: 0.875rem; // ~14px
-    }
-    // checkbox, radio, select, text input, switch/toggle, choice tile, selector strip, date/time picker, button
+    // checkbox, radio, select, text input, switch/toggle, etc.
     .beta-hxFieldControl {}
-
-    // radio or checkbox option label
-    .beta-hxOptionLabel {
-      color: @gray-900;
-      font-size: 1rem;
-    }
 
     .beta-hxFieldPrefix {} // $[100]
     .beta-hxFieldInfix {} // [12]:[45]
     .beta-hxFieldSuffix {} // [65]lbs
   }
 }
+//end:COMPONENT
+
+// ---------- HELPERS ----------
+// TBD

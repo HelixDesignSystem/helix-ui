@@ -1,0 +1,720 @@
+---
+title: Testing - Radios
+---
+{% set contentClasses = 'radios-test' %}
+{% extends 'test.njk' %}
+{% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/radios">Radios</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  <section>
+    <header>
+      <h2>Optional - Enabled - Unchecked</h2>
+      <code>:enabled :unchecked</code>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th>:valid</th>
+          <th>:invalid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalEnabledUncheckedValidNone"
+              />
+              <label for="radOptionalEnabledUncheckedValidNone">
+                <hx-radio></hx-radio>
+                :optional:enabled:unchecked:valid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalEnabledUncheckedValidFocus"
+                class="mock-focus"
+              />
+              <label for="radOptionalEnabledUncheckedValidFocus">
+                <hx-radio></hx-radio>
+                :optional:enabled:unchecked:valid:focus
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalEnabledUncheckedValidHover"
+                class="mock-hover"
+              />
+              <label for="radOptionalEnabledUncheckedValidHover">
+                <hx-radio></hx-radio>
+                :optional:enabled:unchecked:valid:hover
+              </label>
+            </hx-radio-control>
+          </td>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalEnabledUncheckedInvalidNone"
+                data-mock-invalid
+              />
+              <label for="radOptionalEnabledUncheckedInvalidNone">
+                <hx-radio></hx-radio>
+                :optional:enabled:unchecked:invalid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalEnabledUncheckedInvalidFocus"
+                class="mock-focus"
+                data-mock-invalid
+              />
+              <label for="radOptionalEnabledUncheckedInvalidFocus">
+                <hx-radio></hx-radio>
+                :optional:enabled:unchecked:invalid:focus
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalEnabledUncheckedInvalidHover"
+                class="mock-hover"
+                data-mock-invalid
+              />
+              <label for="radOptionalEnabledUncheckedInvalidHover">
+                <hx-radio></hx-radio>
+                :optional:enabled:unchecked:invalid:hover
+              </label>
+            </hx-radio-control>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <header>
+      <h2>Optional - Enabled - Checked</h2>
+      <code>:enabled :checked</code>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th>:valid</th>
+          <th>:invalid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalEnabledCheckedValidNone"
+                checked
+              />
+              <label for="radOptionalEnabledCheckedValidNone">
+                <hx-radio></hx-radio>
+                :optional:enabled:checked:valid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalEnabledCheckedValidFocus"
+                class="mock-focus"
+                checked
+              />
+              <label for="radOptionalEnabledCheckedValidFocus">
+                <hx-radio></hx-radio>
+                :optional:enabled:checked:valid:focus
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input type="radio"
+                id="radOptionalEnabledCheckedValidHover"
+                class="mock-hover"
+                checked
+              />
+              <label for="radOptionalEnabledCheckedValidHover">
+                <hx-radio></hx-radio>
+                :optional:enabled:checked:valid:hover
+              </label>
+            </hx-radio-control>
+          </td>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalEnabledCheckedInvalidNone"
+                checked
+                data-mock-invalid
+              />
+              <label for="radOptionalEnabledCheckedInvalidNone">
+                <hx-radio></hx-radio>
+                :optional:enabled:checked:invalid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalEnabledCheckedInvalidFocus"
+                class="mock-focus"
+                checked
+                data-mock-invalid
+              />
+              <label for="radOptionalEnabledCheckedInvalidFocus">
+                <hx-radio></hx-radio>
+                :optional:enabled:checked:invalid:focus
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalEnabledCheckedInvalidHover"
+                class="mock-hover"
+                checked
+                data-mock-invalid
+              />
+              <label for="radOptionalEnabledCheckedInvalidHover">
+                <hx-radio></hx-radio>
+                :optional:enabled:checked:invalid:hover
+              </label>
+            </hx-radio-control>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <header>
+      <h2>Optional - Disabled - Unchecked</h2>
+      <code>:disabled :unchecked</code>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th>:valid</th>
+          <th>:invalid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalDisabledUncheckedValidNone"
+                disabled
+              />
+              <label for="radOptionalDisabledUncheckedValidNone">
+                <hx-radio></hx-radio>
+                :optional:disabled:unchecked:valid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalDisabledUncheckedValidFocus"
+                class="mock-focus"
+                disabled
+              />
+              <label for="radOptionalDisabledUncheckedValidFocus">
+                <hx-radio></hx-radio>
+                :optional:disabled:unchecked:valid:focus
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalDisabledUncheckedValidHover"
+                class="mock-hover"
+                disabled
+              />
+              <label for="radOptionalDisabledUncheckedValidHover">
+                <hx-radio></hx-radio>
+                :optional:disabled:unchecked:valid:hover
+              </label>
+            </hx-radio-control>
+          </td>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalDisabledUncheckedInvalidNone"
+                data-mock-invalid
+                disabled
+              />
+              <label for="radOptionalDisabledUncheckedInvalidNone">
+                <hx-radio></hx-radio>
+                :optional:disabled:unchecked:invalid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalDisabledUncheckedInvalidFocus"
+                class="mock-focus"
+                data-mock-invalid
+                disabled
+              />
+              <label for="radOptionalDisabledUncheckedInvalidFocus">
+                <hx-radio></hx-radio>
+                :optional:disabled:unchecked:invalid:focus
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalDisabledUncheckedInvalidHover"
+                class="mock-hover"
+                data-mock-invalid
+                disabled
+              />
+              <label for="radOptionalDisabledUncheckedInvalidHover">
+                <hx-radio></hx-radio>
+                :optional:disabled:unchecked:invalid:hover
+              </label>
+            </hx-radio-control>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <header>
+      <h2>Optional - Disabled - Checked</h2>
+      <code>:disabled :checked</code>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th>:valid</th>
+          <th>:invalid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalDisabledCheckedValidNone"
+                checked
+                disabled
+              />
+              <label for="radOptionalDisabledCheckedValidNone">
+                <hx-radio></hx-radio>
+                :optional:disabled:checked:valid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalDisabledCheckedValidFocus"
+                class="mock-focus"
+                checked
+                disabled
+              />
+              <label for="radOptionalDisabledCheckedValidFocus">
+                <hx-radio></hx-radio>
+                :optional:disabled:checked:valid:focus
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input type="radio"
+                id="radOptionalDisabledCheckedValidHover"
+                class="mock-hover"
+                checked
+                disabled
+              />
+              <label for="radOptionalDisabledCheckedValidHover">
+                <hx-radio></hx-radio>
+                :optional:disabled:checked:valid:hover
+              </label>
+            </hx-radio-control>
+          </td>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalDisabledCheckedInvalidNone"
+                checked
+                data-mock-invalid
+                disabled
+              />
+              <label for="radOptionalDisabledCheckedInvalidNone">
+                <hx-radio></hx-radio>
+                :optional:disabled:checked:invalid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalDisabledCheckedInvalidFocus"
+                class="mock-focus"
+                checked
+                data-mock-invalid
+                disabled
+              />
+              <label for="radOptionalDisabledCheckedInvalidFocus">
+                <hx-radio></hx-radio>
+                :optional:disabled:checked:invalid:focus
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radOptionalDisabledCheckedInvalidHover"
+                class="mock-hover"
+                checked
+                data-mock-invalid
+                disabled
+              />
+              <label for="radOptionalDisabledCheckedInvalidHover">
+                <hx-radio></hx-radio>
+                :optional:disabled:checked:invalid:hover
+              </label>
+            </hx-radio-control>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <header>
+      <h2>Required - Enabled - Unchecked</h2>
+      <code>:enabled :unchecked</code>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th>:valid</th>
+          <th>:invalid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            N/A
+          </td>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredEnabledUncheckedInvalidNone"
+                name="radREU"
+                required
+              />
+              <label for="radRequiredEnabledUncheckedInvalidNone">
+                <hx-radio></hx-radio>
+                :required:enabled:unchecked:invalid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredEnabledUncheckedInvalidFocus"
+                class="mock-focus"
+                name="radREU"
+                required
+              />
+              <label for="radRequiredEnabledUncheckedInvalidFocus">
+                <hx-radio></hx-radio>
+                :required:enabled:unchecked:invalid:focus
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredEnabledUncheckedInvalidHover"
+                class="mock-hover"
+                name="radREU"
+                required
+              />
+              <label for="radRequiredEnabledUncheckedInvalidHover">
+                <hx-radio></hx-radio>
+                :required:enabled:unchecked:invalid:hover
+              </label>
+            </hx-radio-control>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <header>
+      <h2>Required - Enabled - Checked</h2>
+      <code>:enabled :checked</code>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th>:valid</th>
+          <th>:invalid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredEnabledCheckedValidNone"
+                checked
+                required
+              />
+              <label for="radRequiredEnabledCheckedValidNone">
+                <hx-radio></hx-radio>
+                :required:enabled:checked:valid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredEnabledCheckedValidFocus"
+                class="mock-focus"
+                checked
+                required
+              />
+              <label for="radRequiredEnabledCheckedValidFocus">
+                <hx-radio></hx-radio>
+                :required:enabled:checked:valid:focus
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input type="radio"
+                id="radRequiredEnabledCheckedValidHover"
+                class="mock-hover"
+                checked
+                required
+              />
+              <label for="radRequiredEnabledCheckedValidHover">
+                <hx-radio></hx-radio>
+                :required:enabled:checked:valid:hover
+              </label>
+            </hx-radio-control>
+          </td>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredEnabledCheckedInvalidNone"
+                checked
+                data-mock-invalid
+                required
+              />
+              <label for="radRequiredEnabledCheckedInvalidNone">
+                <hx-radio></hx-radio>
+                :required:enabled:checked:invalid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredEnabledCheckedInvalidFocus"
+                class="mock-focus"
+                checked
+                data-mock-invalid
+                required
+              />
+              <label for="radRequiredEnabledCheckedInvalidFocus">
+                <hx-radio></hx-radio>
+                :required:enabled:checked:invalid:focus
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredEnabledCheckedInvalidHover"
+                class="mock-hover"
+                checked
+                data-mock-invalid
+                required
+              />
+              <label for="radRequiredEnabledCheckedInvalidHover">
+                <hx-radio></hx-radio>
+                  :required:enabled:checked:invalid:hover
+              </label>
+            </hx-radio-control>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <header>
+      <h2>Required - Disabled - Unchecked</h2>
+      <code>:disabled :unchecked</code>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th>:valid</th>
+          <th>:invalid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            N/A
+          </td>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredDisabledUncheckedInvalidNone"
+                data-mock-invalid
+                disabled
+                required
+              />
+              <label for="radRequiredDisabledUncheckedInvalidNone">
+                <hx-radio></hx-radio>
+                :required:disabled:unchecked:invalid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+                <input
+                  type="radio"
+                  id="radRequiredDisabledUncheckedInvalidFocus"
+                  class="mock-focus"
+                  data-mock-invalid
+                  disabled
+                  required
+                />
+                <label for="radRequiredDisabledUncheckedInvalidFocus">
+                  <hx-radio></hx-radio>
+                  :required:disabled:unchecked:invalid:focus
+                </label>
+              </hx-radio-control>
+              <hx-radio-control>
+                <input
+                  type="radio"
+                  id="radRequiredDisabledUncheckedInvalidHover"
+                  class="mock-hover"
+                  data-mock-invalid
+                  disabled
+                  required
+                />
+                <label for="radRequiredDisabledUncheckedInvalidHover">
+                  <hx-radio></hx-radio>
+                  :required:disabled:unchecked:invalid:hover
+                </label>
+              </hx-radio-control>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <header>
+      <h2>Required - Disabled - Checked</h2>
+      <code>:disabled :checked</code>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th>:valid</th>
+          <th>:invalid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredDisabledCheckedValidNone"
+                checked
+                disabled
+                required
+              />
+              <label for="radRequiredDisabledCheckedValidNone">
+                <hx-radio></hx-radio>
+                :required:disabled:checked:valid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredDisabledCheckedValidFocus"
+                class="mock-focus"
+                checked
+                disabled
+                required
+              />
+              <label for="radRequiredDisabledCheckedValidFocus">
+                <hx-radio></hx-radio>
+                :required:disabled:checked:valid:focus
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredDisabledCheckedValidHover"
+                class="mock-hover"
+                checked
+                disabled
+                required
+              />
+              <label for="radRequiredDisabledCheckedValidHover">
+                <hx-radio></hx-radio>
+                :required:disabled:checked:valid:hover
+              </label>
+            </hx-radio-control>
+          </td>
+          <td>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredDisabledCheckedInvalidNone"
+                checked
+                data-mock-invalid
+                disabled
+                required
+              />
+              <label for="radRequiredDisabledCheckedInvalidNone">
+                <hx-radio></hx-radio>
+                :required:disabled:checked:invalid:(blur)
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredDisabledCheckedInvalidFocus"
+                class="mock-focus"
+                checked
+                data-mock-invalid
+                disabled
+                required
+              />
+              <label for="radRequiredDisabledCheckedInvalidFocus">
+                <hx-radio></hx-radio>
+                :required:disabled:checked:invalid:focus
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                type="radio"
+                id="radRequiredDisabledCheckedInvalidHover"
+                class="mock-hover"
+                checked
+                data-mock-invalid
+                disabled
+                required
+              />
+              <label for="radRequiredDisabledCheckedInvalidHover">
+                <hx-radio></hx-radio>
+                :required:disabled:checked:invalid:hover
+              </label>
+            </hx-radio-control>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

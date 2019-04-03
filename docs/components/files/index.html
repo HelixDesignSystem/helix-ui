@@ -18,7 +18,7 @@ also:
     <h2 id="drop-zone">Drop Zone</h2>
     <p class="hxSubBody">Added: v0.14.0</p>
     <p>
-      A container that provides a visual overlay when dragging a file, marking 
+      A container that provides a visual overlay when dragging a file, marking
       the boundaries of where a user can drop.
     </p>
     <p class="hxSubdued hxSubBody">
@@ -32,7 +32,7 @@ also:
             <p>
               Drop files here or
               <hx-file-input
-                class="hxTertiary" 
+                class="hxTertiary"
                 label="browse your files">
                 <input type="file" />
               </hx-file-input>.
@@ -48,7 +48,7 @@ also:
               <p>
                 Drop files here or
                 <hx-file-input
-                  class="hxTertiary" 
+                  class="hxTertiary"
                   label="browse your files">
                   <input type="file" />
                 </hx-file-input>.
@@ -59,7 +59,7 @@ also:
       </footer>
     </div>
   </section>
-  
+
   <section>
     <h2 id="file-selector">File Selector</h2>
     <p class="hxSubBody">Added: v0.13.0</p>
@@ -67,40 +67,47 @@ also:
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>Variant</legend>
-            <label v-for="_variant in variants">
+            <legend class="beta-hxFieldName">Variant</legend>
+            <div v-for="(_variant, idx) in variants">
               <input
+                :id="'radSelectorVariant' + idx"
                 :value="_variant"
                 name="variant"
                 type="radio"
                 v-model="variant"
               />
-              <span v-text="_variant.label"></span>
-              <em class="hxSubBody" v-if="_variant.default">(default)</em>
-            </label>
+              <label :for="'radSelectorVariant' + idx">
+                <span v-text="_variant.label"></span>
+                <em class="hxSubBody" v-if="_variant.default">(default)</em>
+              </label>
+            </div>
           </fieldset>
           <fieldset>
-            <legend>Icon</legend>
-            <label v-for="_icon in icons">
+            <legend class="beta-hxFieldName">Icon</legend>
+            <div v-for="(_icon, idx) in icons">
               <input
+                :id="'radSelectorIcon' + idx"
                 :value="_icon"
                 name="icon"
                 type="radio"
                 v-model="icon"
               />
-              <span v-text="_icon"></span>
-            </label>
+              <label
+                :for="'radSelectorIcon' + idx"
+                v-text="_icon"
+              ></label>
+            </div>
           </fieldset>
           <p>
-            <label for="inputLabel">Label</label>
-            <input id="inputLabel" class="hxTextCtrl" v-model="label" />
+            <label for="txtLabel" class="beta-hxFieldName">Label</label>
+            <input id="txtLabel" class="hxTextCtrl" v-model="label" />
           </p>
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isMultiple">
-              Multiple
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div>
+              <input id="chkIsMultiple" type="checkbox" v-model="isMultiple">
+              <label for="chkIsMultiple">Multiple</label>
+            </div>
           </fieldset>
         </form>
       </header>
@@ -125,50 +132,50 @@ also:
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>States</legend>
-            <label>
-              <input type="radio" value="downloadable" name="file-state" v-model="state" />
-              Downloadable
-            </label>
-            <label>
-              <input type="radio" value="loading" name="file-state" v-model="state" />
-              Loading
-            </label>
-            <label>
-              <input type="radio" value="invalid" name="file-state" v-model="state" />
-              Invalid
-            </label>
+            <legend class="beta-hxFieldName">States</legend>
+            <div>
+              <input id="radTileDownloadable" type="radio" value="downloadable" name="file-state" v-model="state" />
+              <label for="radTileDownloadable">Downloadable</label>
+            </div>
+            <div>
+              <input id="radTileLoading" type="radio" value="loading" name="file-state" v-model="state" />
+              <label for="radTileLoading">Loading</label>
+            </div>
+            <div>
+              <input id="radTileInvalid" type="radio" value="invalid" name="file-state" v-model="state" />
+              <label for="radTileInvalid">Invalid</label>
+            </div>
           </fieldset>
-          <p>
-            <label for="selIcon">Icon</label>
+          <div>
+            <label for="selIcon" class="beta-hxFieldName">Icon</label>
             <select id="selIcon" v-model="icon">
               <option v-for="_icon in icons" :value="_icon" v-text="_icon">
               </option>
             </select>
-          </p>
+          </div>
           <p>
-            <label for="txtName">Name</label>
+            <label for="txtName" class="beta-hxFieldName">Name</label>
             <input id="txtName" class="hxTextCtrl" v-model="name" />
           </p>
           <template v-if="isDownloadable">
             <p>
-              <label for="txtHref">HREF</label>
+              <label for="txtHref" class="beta-hxFieldName">HREF</label>
               <input id="txtHref" class="hxTextCtrl" v-model="href" />
             </p>
             <p>
-              <label for="txtDetails">Details</label>
+              <label for="txtDetails" class="beta-hxFieldName">Details</label>
               <input id="txtDetails" class="hxTextCtrl" v-model="details" />
             </p>
             <fieldset>
-              <legend>Options</legend>
-              <label>
-                <input type="checkbox" v-model="readonly" />
-                Readonly
-              </label>
+              <legend class="beta-hxFieldName">Options</legend>
+              <div>
+                <input id="chkTileReadOnly" type="checkbox" v-model="readonly" />
+                <label for="chkTileReadOnly">Readonly</label>
+              </div>
             </fieldset>
           </template>
           <p v-if="isLoading">
-            <label for="rngProgress">Progress</label>
+            <label for="rngProgress" class="beta-hxFieldName">Progress</label>
             <input id="rngProgress" type="range" v-model="progress"/>
           </p>
         </form>

@@ -23,15 +23,15 @@ also:
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="hasHeader" />
-              Include Header
-            </label>
-            <label>
-              <input type="checkbox" v-model="hasFooter" />
-              Include Footer
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div>
+              <input id="chkHasHeader" type="checkbox" v-model="hasHeader" />
+              <label for="chkHasHeader">Include Header</label>
+            </div>
+            <div>
+              <input id="chkHasFooter" type="checkbox" v-model="hasFooter" />
+              <label for="chkHasFooter">Include Footer</label>
+            </div>
           </fieldset>
         </form>
       </header>

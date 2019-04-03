@@ -1,0 +1,67 @@
+@import (reference) 'components/checkbox';
+
+.checkbox-test {
+  hx-checkbox-control {
+    > label {
+      > hx-checkbox {
+        display: none;
+      }
+    }
+
+    > input[type="checkbox"] {
+      // imitate :focus
+      &.mock-focus {
+        &:extend(hx-checkbox-control > input[type="checkbox"]:focus all);
+      }
+
+      // imitate :hover
+      &.mock-hover {
+        &:extend(hx-checkbox-control > input[type="checkbox"]:hover all);
+
+        ~ label > hx-checkbox {
+          &:extend(hx-checkbox-control > input[type="checkbox"]:valid ~ label > hx-checkbox:hover all);
+        }
+      }
+
+      // imitate :invalid:focus
+      &:invalid.mock-focus {
+        &:extend(hx-checkbox-control > input[type="checkbox"]:invalid:focus all);
+      }
+
+      // imitate :invalid:hover
+      &:invalid.mock-hover {
+        &:extend(hx-checkbox-control > input[type="checkbox"]:invalid:hover all);
+
+        ~ label > hx-checkbox {
+          &:extend(hx-checkbox-control > input[type="checkbox"]:invalid ~ label > hx-checkbox:hover all);
+        }
+      }
+
+      // imitate :disabled:focus
+      &:disabled.mock-focus {
+        &:extend(hx-checkbox-control > input[type="checkbox"]:disabled:focus all);
+      }
+
+      // imitate :disabled:hover
+      &:disabled.mock-hover {
+        &:extend(hx-checkbox-control > input[type="checkbox"]:disabled:hover all);
+
+        ~ label > hx-checkbox {
+          &:extend(hx-checkbox-control > input[type="checkbox"]:disabled ~ label > hx-checkbox:hover all);
+        }
+      }
+    }
+  }
+}
+
+@supports (--modern: true) {
+  .checkbox-test {
+    hx-checkbox-control {
+      > label {
+        > hx-checkbox {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

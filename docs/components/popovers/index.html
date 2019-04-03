@@ -14,14 +14,14 @@ also:
     <div class="example" id="vue-popoverDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <p>
-            <label for="selPosition">Position</label>
+          <div>
+            <label for="selPosition" class="beta-hxFieldName">Position</label>
             <select id="selPosition" v-model="position">
               <option v-for="_position in positions" :value="_position">
                 {% raw %}{{ _position.label }}{% endraw %}
               </option>
             </select>
-          </p>
+          </div>
         </form>
       </header>
 
@@ -80,14 +80,14 @@ also:
     <div class="example" id="vue-scrollingPopoverDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <p>
-            <label for="selPosition">Position</label>
+          <div>
+            <label for="selPosition" class="beta-hxFieldName">Position</label>
             <select id="selPosition" v-model="position">
               <option v-for="_position in positions" :value="_position">
                 {% raw %}{{ _position.label }}{% endraw %}
               </option>
             </select>
-          </p>
+          </div>
         </form>
       </header>
 

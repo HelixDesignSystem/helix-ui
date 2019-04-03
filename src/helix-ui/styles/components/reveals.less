@@ -1,0 +1,23 @@
+hx-disclosure {
+  cursor: pointer;
+  display: inline-block;
+
+  > hx-icon.hxPrimary {
+    height: 1em;
+  }
+
+  &[aria-expanded="true"] {
+    .menu-icon, // DEPRECATED: Remove in v1.0.0
+    > hx-icon.hxPrimary {
+      transform: scaleY(-1);
+    }
+  }
+}
+
+hx-reveal {
+  display: none;
+
+  &[open] {
+    display: block;
+  }
+}

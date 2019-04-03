@@ -1,0 +1,37 @@
+---
+title: <hx-select>
+minver: 0.16.0
+also:
+  components/dropdown-select: Dropdown Select
+  elements/hx-select-control: <hx-select-control>
+---
+{% extends 'element.njk' %}
+{% block content %}
+  <section>
+    <p class="comfortable">
+      The custom <code>{{page.title}}</code> element is a stylistic
+      facade designed to be layered on top of a native
+      <code>&lt;select&gt;</code> element within a
+      <a href="components/dropdown-select">Dropdown Select</a> component.
+    </p>
+
+    <dl class="metadata hxList">
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>
+          an
+          <a href="elements/hx-select-control">&lt;hx-select-control&gt;</a>
+          element
+        </dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd><i>none</i></dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd><i>none</i></dd>
+      </div>
+    </dl>
+  </section>
+{% endblock %}
