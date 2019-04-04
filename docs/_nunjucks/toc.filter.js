@@ -11,8 +11,8 @@ function tocFilter (str, options) {
     // we only care about h1-6[id] or h1-6[data-id]
     const mappedHeadineSelectors = headingSelectors.map( selector => {
         return [
-            `${selector}[id]`,
-            `${selector}[data-id]`,
+            `${selector}[id]:not(.skip-toc)`,
+            `${selector}[data-id]:not(.skip-toc)`,
         ].join(',');
     });
 

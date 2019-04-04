@@ -1,0 +1,116 @@
+---
+title: Textarea
+minver: 0.16.0
+also:
+  components/textarea/test.html: Testing - Textarea
+  elements/hx-textarea-control/index.html: <hx-textarea-control>
+---
+{% extends 'component.njk' %}
+{% block page_header %}
+  <p class="comfortable">
+    The {{page.title}} component provides markup to define a
+    multi-line text control.
+  </p>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <h2 id="basic-textarea">Basic Textarea</h2>
+    <div class="example" id="vue-textareaDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <div>
+            <hx-text-control>
+              <input
+                id="txtLabel"
+                type="text"
+                v-model="label"
+              />
+              <label for="txtLabel">
+                Label
+              </label>
+            </hx-text-control>
+          </div>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Annotate as</legend>
+
+            <hx-checkbox-control>
+              <input
+                id="chkHasAsterisk"
+                type="checkbox"
+                v-model="hasAsterisk"
+              />
+              <label for="chkHasAsterisk">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkHasOptional"
+                type="checkbox"
+                v-model="hasOptional"
+              />
+              <label for="chkHasOptional">
+                <hx-checkbox></hx-checkbox>
+                Optional
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Textarea Options</legend>
+
+            <hx-checkbox-control>
+              <input
+                id="chkDisabled"
+                type="checkbox"
+                v-model="isDisabled"
+              />
+              <label for="chkDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkRequired"
+                type="checkbox"
+                v-model="isRequired"
+              />
+              <label for="chkRequired">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+              <p>
+                (Invalid styling applied <i>after</i> user interaction.)
+              </p>
+            </hx-checkbox-control>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-textarea-control>
+          <textarea
+            id="txtAreaDemo"
+            :disabled="isDisabled"
+            :required="isRequired"
+          ></textarea>
+          <label
+            for="txtAreaDemo"
+            v-text="label"
+            :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }"
+          ></label>
+        </hx-textarea-control>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+  </section>
+{% endblock %}

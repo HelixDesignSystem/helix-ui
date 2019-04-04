@@ -24,7 +24,8 @@ import './components/reveals/reveal-demo';
 import './components/search/search-demo';
 import './components/stepper/stepper-demo';
 import './components/tables/table-demo';
-import './components/text-inputs/text-input-demo';
+import './components/text-input/text-input-demo';
+import './components/textarea/textarea-demo';
 import './components/toasts/toast-demo';
 import './components/tooltips/tooltip-demo';
 

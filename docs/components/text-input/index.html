@@ -1,0 +1,196 @@
+---
+title: Text Input
+minver: 0.16.0
+also:
+  components/text-input/test.html: Testing - Text Input
+  elements/hx-text-control/index.html: <hx-text-control>
+---
+{% extends 'component.njk' %}
+{% block page_header %}
+  <p class="comfortable">
+    The {{page.title}} component provides markup to define a
+    single-line text control.
+  </p>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <h2 id="basic-text-input">Basic Text Input</h2>
+    <div class="example" id="vue-textInputDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <div>
+            <hx-text-control>
+              <input
+                id="txtLabel"
+                type="text"
+                v-model="label"
+              />
+              <label for="txtLabel">
+                Label
+              </label>
+            </hx-text-control>
+          </div>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Annotate as</legend>
+
+            <hx-checkbox-control>
+              <input
+                id="chkHasAsterisk"
+                type="checkbox"
+                v-model="hasAsterisk"
+              />
+              <label for="chkHasAsterisk">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkHasOptional"
+                type="checkbox"
+                v-model="hasOptional"
+              />
+              <label for="chkHasOptional">
+                <hx-checkbox></hx-checkbox>
+                Optional
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Input Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkDisabled"
+                type="checkbox"
+                v-model="isDisabled"
+              />
+              <label for="chkDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkRequired"
+                type="checkbox"
+                v-model="isRequired"
+              />
+              <label for="chkRequired">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+              <p>
+                (Invalid styling applied <i>after</i> user interaction.)
+              </p>
+            </hx-checkbox-control>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-text-control>
+          <input
+            id="txtInputDemo"
+            type="text"
+            :disabled="isDisabled"
+            :required="isRequired"
+          />
+          <label
+            for="txtInputDemo"
+            v-text="label"
+            :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }"
+          ></label>
+        </hx-text-control>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      The <code>&lt;input&gt;</code> element <i>must</i> have the
+      <code>type="text"</code> attribute, in order for CSS styles
+      to apply.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="prefixed">Prefixed</h2>
+    <div class="example">
+      <div>
+        <hx-text-control>
+          <input
+            id="txtTwitterHandle"
+            type="text"
+          />
+          <label for="txtTwitterHandle">
+            Twitter Handle
+          </label>
+          <span class="hxPrefix">
+            @
+          </span>
+        </hx-text-control>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <hx-text-control>
+            <input
+              id="txtTwitterHandle"
+              type="text"
+            />
+            <label for="txtTwitterHandle">
+              Twitter Handle
+            </label>
+            <span class="hxPrefix">
+              @
+            </span>
+          </hx-text-control>
+        {% endcode %}
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="suffixed">Suffixed</h2>
+    <div class="example">
+      <div>
+        <hx-text-control>
+          <input
+            id="txtSubdomain"
+            type="text"
+          />
+          <label for="txtSubdomain">
+            Subdomain
+          </label>
+          <span class="hxSuffix">
+            .example.com
+          </span>
+        </hx-text-control>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <hx-text-control>
+            <input
+              id="txtSubdomain"
+              type="text"
+            />
+            <label for="txtSubdomain">
+              Subdomain
+            </label>
+            <span class="hxSuffix">
+              .example.com
+            </span>
+          </hx-text-control>
+        {% endcode %}
+      </footer>
+    </div>
+  </section>
+{% endblock %}

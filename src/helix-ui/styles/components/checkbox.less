@@ -1,5 +1,6 @@
-@import (reference) 'mixins';
 @import (reference) 'vars';
+@import (reference) 'mixins';
+@import (reference) 'components/forms';
 
 // ========== BASE ELEMENTS ==========
 hx-checkbox {
@@ -82,11 +83,8 @@ hx-checkbox {
 }
 
 hx-checkbox-control {
-  // help text
-  // TODO: centralize
   > p {
-    color: @gray-750;
-    font-size: 0.75rem;
+    .HelpText();
   }
 
   > input[type="checkbox"] {

@@ -1,0 +1,498 @@
+---
+title: Testing - Text Input
+---
+{% set contentClasses = 'text-input-spec' %}
+{% extends 'test.njk' %}
+{% macro textInput(id='', wasChanged=false, wasTouched=false, className='', isRequired=false, isDisabled=false, isFocused=false, isValid=true) %}
+  {% set isPristine = (className === '') and not (wasChanged or wasTouched) %}
+
+  {% set idAttr -%}textInput-
+    {{- 'p' if not (wasChanged or wasTouched) -}}
+    {{- 'c' if wasChanged -}}
+    {{- 't' if wasTouched -}}
+    {{- 'R' if isRequired else 'O' -}}
+    {{- 'D' if isDisabled else 'E' -}}
+    {{- 'V' if isValid else 'I' -}}
+    -
+    {{- 'f' if isFocused else 'b' -}}
+    {%- if id !== '' %}-{{id}}{% endif -%}
+  {%- endset %}
+
+  <hx-text-control
+    {% if className !== '' %}class="{{className}}" {% endif %}
+    {% if wasChanged %}hx-changed {% endif %}
+    {% if wasTouched %}hx-touched {% endif %}
+  >
+    <input
+      type="text"
+      id="{{idAttr | trim}}"
+      {% if isFocused %}class="mock-focus" {% endif %}
+      {% if isDisabled %}disabled {% endif %}
+      {% if isRequired %}
+        required
+        {% if isValid %}value="value"{% endif %}
+      {% elif not isValid %}
+        data-mock-invalid
+      {% endif %}
+    />
+    <label for="{{idAttr | trim}}">
+      {% if isPristine %}
+        Pristine,
+      {% else %}
+        {% if className !== '' %}.{{ className }},{% endif %}
+        {% if wasChanged %}Changed,{% endif %}
+        {% if wasTouched %}Touched,{% endif %}
+      {% endif %}
+      {{ 'Required' if isRequired else 'Optional' }},
+      {{ 'Disabled' if isDisabled else 'Enabled' }},
+      {{ 'Valid' if isValid else 'Invalid' }}
+      ({{ 'focus' if isFocused else 'blur' }})
+    </label>
+  </hx-text-control>
+{% endmacro %}
+
+{% block page_header %}
+  <nav class="hxBreadcrumb">
+    <a href="components/text-input">Text Input</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">{{page.title}}</a>
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="test-pristine">Pristine</h2>
+      <code>&lt;hx-text-control&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;input type="text"&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textInput('pristine')}}
+              {{textInput('pristine', isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('pristine', isValid=false)}}
+              {{textInput('pristine', isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textInput('pristine', isDisabled=true)}}
+              {{textInput('pristine', isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('pristine', isValid=false, isDisabled=true)}}
+              {{textInput('pristine', isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;input type="text" required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textInput('pristine', isRequired=true)}}
+              {{textInput('pristine', isRequired=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('pristine', isRequired=true, isValid=false)}}
+              {{textInput('pristine', isRequired=true, isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textInput('pristine', isRequired=true, isDisabled=true)}}
+              {{textInput('pristine', isRequired=true, isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('pristine', isRequired=true, isValid=false, isDisabled=true)}}
+              {{textInput('pristine', isRequired=true, isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-changed">Changed</h2>
+      <code>&lt;hx-text-control hx-changed&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;input type="text"&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textInput('changed', wasChanged=true )}}
+              {{textInput('changed', wasChanged=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('changed', wasChanged=true, isValid=false)}}
+              {{textInput('changed', wasChanged=true, isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textInput('changed', wasChanged=true, isDisabled=true)}}
+              {{textInput('changed', wasChanged=true, isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('changed', wasChanged=true, isValid=false, isDisabled=true)}}
+              {{textInput('changed', wasChanged=true, isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;input type="text" required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textInput('changed', wasChanged=true, isRequired=true)}}
+              {{textInput('changed', wasChanged=true, isRequired=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('changed', wasChanged=true, isRequired=true, isValid=false)}}
+              {{textInput('changed', wasChanged=true, isRequired=true, isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textInput('changed', wasChanged=true, isRequired=true, isDisabled=true)}}
+              {{textInput('changed', wasChanged=true, isRequired=true, isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('changed', wasChanged=true, isRequired=true, isValid=false, isDisabled=true)}}
+              {{textInput('changed', wasChanged=true, isRequired=true, isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-touched">Touched</h2>
+      <code>&lt;hx-text-control hx-touched&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;input type="text"&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textInput('touched', wasTouched=true )}}
+              {{textInput('touched', wasTouched=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('touched', wasTouched=true, isValid=false)}}
+              {{textInput('touched', wasTouched=true, isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textInput('touched', wasTouched=true, isDisabled=true)}}
+              {{textInput('touched', wasTouched=true, isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('touched', wasTouched=true, isValid=false, isDisabled=true)}}
+              {{textInput('touched', wasTouched=true, isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;input type="text" required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textInput('touched', wasTouched=true, isRequired=true)}}
+              {{textInput('touched', wasTouched=true, isRequired=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('touched', wasTouched=true, isRequired=true, isValid=false)}}
+              {{textInput('touched', wasTouched=true, isRequired=true, isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textInput('touched', wasTouched=true, isRequired=true, isDisabled=true)}}
+              {{textInput('touched', wasTouched=true, isRequired=true, isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('touched', wasTouched=true, isRequired=true, isValid=false, isDisabled=true)}}
+              {{textInput('touched', wasTouched=true, isRequired=true, isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-styled-invalid">Styled Invalid</h2>
+      <code>&lt;hx-text-control class="hxInvalid"&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;input type="text"&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textInput('invalid', className="hxInvalid" )}}
+              {{textInput('invalid', className="hxInvalid", isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('invalid', className="hxInvalid", isValid=false)}}
+              {{textInput('invalid', className="hxInvalid", isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textInput('invalid', className="hxInvalid", isDisabled=true)}}
+              {{textInput('invalid', className="hxInvalid", isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('invalid', className="hxInvalid", isValid=false, isDisabled=true)}}
+              {{textInput('invalid', className="hxInvalid", isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;input type="text" required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textInput('invalid', className="hxInvalid", isRequired=true)}}
+              {{textInput('invalid', className="hxInvalid", isRequired=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('invalid', className="hxInvalid", isRequired=true, isValid=false)}}
+              {{textInput('invalid', className="hxInvalid", isRequired=true, isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textInput('invalid', className="hxInvalid", isRequired=true, isDisabled=true)}}
+              {{textInput('invalid', className="hxInvalid", isRequired=true, isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textInput('invalid', className="hxInvalid", isRequired=true, isValid=false, isDisabled=true)}}
+              {{textInput('invalid', className="hxInvalid", isRequired=true, isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-with-placeholder">With Placeholder</h2>
+      <code>&lt;input type="text" placeholder="Type something..." /&gt;</code>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol hxSpan-4">
+        <hx-text-control>
+          <input
+            placeholder="Type something..."
+            type="text"
+          />
+          <label>Valid w/ Placeholder</label>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <hx-text-control class="hxInvalid">
+          <input
+            placeholder="Type something..."
+            type="text"
+          />
+          <label>Invalid w/ Placeholder</label>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <hx-text-control>
+          <input
+            disabled
+            placeholder="Type something..."
+            type="text"
+          />
+          <label>Disabled w/ Placeholder</label>
+        </hx-text-control>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-layout">Layout</h2>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Extra elements should not be visible.
+      </p>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol hxSpan-4">
+        <code>input + label</code>
+        <hx-text-control>
+          <input type="text" />
+          <label>Label</label>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label.hxRequired</code>
+        <hx-text-control>
+          <input type="text" />
+          <label class="hxRequired">Label</label>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label.hxOptional</code>
+        <hx-text-control>
+          <input type="text" />
+          <label class="hxOptional">Label</label>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label.hxRequired.hxOptional</code>
+        <hx-text-control>
+          <input type="text" />
+          <label class="hxRequired hxOptional">Label</label>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label + .hxPrefix</code>
+        <hx-text-control>
+          <input type="text" />
+          <label>Label</label>
+          <span class="hxPrefix">pfx</span>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label + .hxSuffix</code>
+        <hx-text-control>
+          <input type="text" />
+          <label>Label</label>
+          <span class="hxSuffix">sfx</span>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label + .hxPrefix + .hxSuffix</code>
+        <hx-text-control>
+          <input type="text" />
+          <label>Label</label>
+          <span class="hxPrefix">pfx</span>
+          <span class="hxSuffix">sfx</span>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label + div</code>
+        <hx-text-control>
+          <input type="text" />
+          <label>Label</label>
+          <div>DIV</div>
+        </hx-text-control>
+      </div>
+    </div>
+  </section>
+{% endblock %}
