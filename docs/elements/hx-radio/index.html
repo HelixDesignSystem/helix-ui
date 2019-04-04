@@ -3,8 +3,29 @@ title: <hx-radio>
 minver: 0.16.0
 also:
   components/radios: Radios
+  elements/hx-radio-control: <hx-radio-control>
 ---
 {% extends 'element.njk' %}
 {% block content %}
-  <p>TBD...</p>
+  <section>
+    <p class="comfortable">
+      The <code>{{page.title}}</code> inline element is a stylistic facade used
+      to build a <a href="components/radios">Radio</a> component.
+    </p>
+
+    <dl class="metadata hxList">
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>any element that accepts flow content</dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd><i>none</i></dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd><i>none</i></dd>
+      </div>
+    </dl>
+  </section>
 {% endblock %}
