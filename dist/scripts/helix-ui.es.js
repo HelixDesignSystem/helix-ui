@@ -110,6 +110,7 @@ class HXElement extends HTMLElement {
     connectedCallback () {
         this._$tabIndex = this.getAttribute('tabindex');
         this.$upgradeProperty('disabled');
+        this.setAttribute('hx-defined', '');
         this.$onConnect();
     }
 
@@ -1816,129 +1817,165 @@ class HXBusyElement extends HXElement {
     }
 }
 
-var shadowMarkup$2 = "<label id='hxCheckbox'><input type='checkbox' id='hxNativeControl'><div id='hxCustomControl'><hx-icon type='checkmark' id='hxTick'></hx-icon><hx-icon type='minus' id='hxMinus'></hx-icon></div></label>";
-
-var shadowStyles$2 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxCheckbox {\n  display: flex;\n  height: 100%;\n  position: relative;\n  width: 100%;\n}\n#hxCustomControl {\n  align-content: center;\n  align-items: center;\n  background-color: #ffffff;\n  border: 1px solid currentColor;\n  border-radius: 2px;\n  color: #bdbdbd;\n  display: flex;\n  font-size: 0.625rem;\n  /* ~10px */\n  height: 100%;\n  justify-content: center;\n  left: 0;\n  position: absolute;\n  top: 0;\n  vertical-align: middle;\n  width: 100%;\n  z-index: 10;\n  /* icons */\n}\n#hxCustomControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n#hxCustomControl #hxMinus,\n#hxCustomControl #hxTick {\n  display: none;\n  height: 1em;\n  line-height: 1;\n  width: 1em;\n}\n#hxNativeControl:checked:not(:indeterminate) ~ #hxCustomControl #hxTick {\n  display: block;\n}\n#hxNativeControl:indeterminate ~ #hxCustomControl #hxMinus {\n  display: block;\n}\n#hxNativeControl {\n  /* opacity 0 because Firefox and OS focus styles */\n  opacity: 0;\n  z-index: 0;\n  /* default checked and indeterminate (checked or unchecked) */\n  /* disabled unchecked */\n}\n#hxNativeControl:focus {\n  border: none;\n  outline: none;\n}\n#hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n#hxNativeControl:checked ~ #hxCustomControl,\n#hxNativeControl:indeterminate ~ #hxCustomControl {\n  color: #0c7c84;\n}\n#hxNativeControl:checked ~ #hxCustomControl:hover,\n#hxNativeControl:indeterminate ~ #hxCustomControl:hover {\n  background-color: #e4f9f9;\n  color: #16b9d4;\n}\n#hxNativeControl:disabled ~ #hxCustomControl {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n  cursor: not-allowed;\n}\n#hxNativeControl:disabled ~ #hxCustomControl:hover {\n  background-color: #eeeeee;\n  color: #bdbdbd;\n}\n/* invalid */\n:host([invalid]) {\n  /* below styles needed to override above, custom control styles */\n  /* invalid and checked or indeterminate */\n  /* invalid and disabled */\n}\n:host([invalid]) #hxCustomControl {\n  border-width: 2px;\n  color: #d32f2f;\n}\n:host([invalid]) #hxCustomControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #d32f2f;\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n}\n:host([invalid]) #hxNativeControl:checked ~ #hxCustomControl,\n:host([invalid]) #hxNativeControl:indeterminate ~ #hxCustomControl {\n  color: #d32f2f;\n}\n:host([invalid]) #hxNativeControl:checked ~ #hxCustomControl:hover,\n:host([invalid]) #hxNativeControl:indeterminate ~ #hxCustomControl:hover {\n  background-color: #ffcdd2;\n}\n:host([invalid]) #hxNativeControl:disabled ~ #hxCustomControl {\n  border-width: 1px;\n  color: #bdbdbd;\n}\n:host([invalid]) #hxNativeControl:disabled ~ #hxCustomControl:hover {\n  background-color: #eeeeee;\n}\n";
+const STATE = {
+    changed: 'hx-changed',
+    touched: 'hx-touched',
+};
 
 /**
- * Fires when the element's `checked` state changes
+ * Abstract class which defines shared behavior among all
+ * form control custom elements (e.g., HXSelectControlElement,
+ * HXCheckboxControlElement, etc.).
  *
- * @event Checkbox:change
- * @since 0.1.8
- * @type {CustomEvent}
+ * ## States
+ * States are applied as events occur on the `controlElement`.
+ *
+ * ### Changed
+ * Applies the `hx-changed` content attribute when controlElement
+ * emits a `change` event. This typically occurs after the value
+ * has been modified and the user moves away (blurs) the text control.
+ *
+ * ### Touched
+ * Applies the `hx-touched` content attribute when controlElement
+ * emits a `blur` event (meaning that the user has "visited" the
+ * text control and moved on).
+ *
+ * @abstract
+ * @hideconstructor
+ * @since 0.16.0
  */
+class HXFormControlElement extends HXElement {
+    /** @override */
+    constructor () {
+        super();
+
+        this._onCtrlBlur = this._onCtrlBlur.bind(this);
+        this._onCtrlChange = this._onCtrlChange.bind(this);
+    }
+
+    /**
+     * Adds `change` and `blur` event listeners to apply
+     * "changed" and "touched" states to the custom control
+     * element, in addition to superclass behavior.
+     *
+     * - preserves `$onConnect()` hook for subclasses
+     *
+     * @override
+     */
+    connectedCallback () {
+        super.connectedCallback();
+
+        let ctrl = this.controlElement;
+        if (ctrl) {
+            ctrl.addEventListener('change', this._onCtrlChange);
+            ctrl.addEventListener('blur', this._onCtrlBlur);
+        }
+    }
+
+    /**
+     * Removes event listeners added in connectedCallback,
+     * in addition to superclass behavior.
+     *
+     * - preserves `$onDisconnect()` hook for subclasses
+     *
+     * @override
+     */
+    disconnectedCallback () {
+        super.disconnectedCallback();
+
+        let ctrl = this.controlElement;
+        if (ctrl) {
+            ctrl.removeEventListener('change', this._onCtrlChange);
+            ctrl.removeEventListener('blur', this._onCtrlBlur);
+        }
+    }
+
+    /**
+     * This should be overridden by subclasses.
+     *
+     * Logic should make a best effort to return an HTML
+     * form control element (e.g., `<input>`, `<select>`,
+     * `<textarea>`, etc.).
+     *
+     * @abstract
+     * @default undefined
+     * @type {?HTMLElement}
+     */
+    get controlElement () {}
+
+    /**
+     * @readonly
+     * @type {Boolean} [false]
+     */
+    get wasChanged () {
+        return this.hasAttribute(STATE.changed);
+    }
+
+    /**
+     * @readonly
+     * @type {Boolean} [false]
+     */
+    get wasTouched () {
+        return this.hasAttribute(STATE.touched);
+    }
+
+    /** @private */
+    _onCtrlBlur () {
+        // communicate state via read-only, boolean content attribute
+        this.$defaultAttribute(STATE.touched, '');
+    }
+
+    /** @private */
+    _onCtrlChange () {
+        // communicate state via read-only, boolean content attribute
+        this.$defaultAttribute(STATE.changed, '');
+    }
+}
 
 /**
- * Defines behavior for the `<hx-checkbox>` element.
+ * Defines behavior for the `<hx-select-control>` element.
  *
- * @emits Checkbox:change
+ * @extends HXFormControlElement
+ * @hideconstructor
+ * @since 0.16.0
+ */
+class HXCheckboxControlElement extends HXFormControlElement {
+    /** @override */
+    static get is () {
+        return 'hx-checkbox-control';
+    }
+
+    /**
+     * Fetch the first `<input type="checkbox">` descendant
+     *
+     * @override
+     * @readonly
+     * @type {?HTMLInputElement}
+     */
+    get controlElement () {
+        return this.querySelector('input[type="checkbox"]');
+    }
+}
+
+var shadowMarkup$2 = "<div id='hxCheckbox'><hx-icon type='checkmark' id='hxTick'></hx-icon><hx-icon type='minus' id='hxMinus'></hx-icon></div>";
+
+var shadowStyles$2 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n:host {\n  --hxCheckbox__minus-display: none;\n  --hxCheckbox__tick-display: none;\n}\n#hxCheckbox {\n  align-items: center;\n  display: grid;\n  font-size: 10px;\n  grid-template-areas: 'icon';\n  height: 100%;\n  justify-content: center;\n  width: 100%;\n}\n/* icons */\n#hxMinus,\n#hxTick {\n  grid-area: icon;\n  height: 1em;\n  line-height: 1;\n  width: 1em;\n}\n#hxMinus {\n  display: var(--hxCheckbox__minus-display);\n}\n#hxTick {\n  display: var(--hxCheckbox__tick-display);\n}\n";
+
+/**
+ * Applies Shadow DOM to the `<hx-checkbox>` facade element.
+ *
  * @extends HXElement
  * @hideconstructor
- * @since 0.1.8
  */
 class HXCheckboxElement extends HXElement {
+    /** @override */
     static get is () {
         return 'hx-checkbox';
     }
 
+    /** @override */
     static get template () {
         return `<style>${shadowStyles$2}</style>${shadowMarkup$2}`;
-    }
-
-    $onCreate () {
-        this._onChange = this._onChange.bind(this);
-    }
-
-    $onConnect () {
-        this.$upgradeProperty('checked');
-        this.$upgradeProperty('disabled');
-        this.$upgradeProperty('indeterminate');
-        this._chkInput.addEventListener('change', this._onChange);
-    }
-
-    $onDisconnect () {
-        this._chkInput.removeEventListener('change', this._onChange);
-    }
-
-    static get $observedAttributes () {
-        return [
-            'checked',
-            'disabled',
-            'indeterminate',
-        ];
-    }
-
-    $onAttributeChange (attr, oldVal, newVal) {
-        const hasValue = (newVal !== null);
-        switch (attr) {
-            case 'indeterminate':
-                this._chkInput.indeterminate = hasValue;
-                break;
-            case 'checked':
-                if (this._chkInput.checked !== hasValue) {
-                    this._chkInput.checked = hasValue;
-                }
-                break;
-            case 'disabled':
-                this._chkInput.disabled = hasValue;
-                break;
-        }
-    }
-
-    /**
-     * @default false
-     * @type {Boolean}
-     */
-    get checked () {
-        return this.hasAttribute('checked');
-    }
-    set checked (value) {
-        if (value) {
-            this.setAttribute('checked', '');
-        } else {
-            this.removeAttribute('checked');
-        }
-    }
-
-    /**
-     * Indicates if the state of the element cannot be determined.
-     *
-     * @default false
-     * @type {Boolean}
-     */
-    get indeterminate () {
-        return this.hasAttribute('indeterminate');
-    }
-    set indeterminate (value) {
-        if (value) {
-            this.setAttribute('indeterminate', '');
-        } else {
-            this.removeAttribute('indeterminate');
-        }
-    }
-
-    /**
-     * Pass-through function to native input.
-     */
-    click () {
-        this._chkInput.click();
-    }
-
-    /** @private */
-    _onChange (evt) {
-        // Update internal state
-        this.checked = evt.target.checked;
-
-        // Prevent 'change' listeners from firing twice in polyfilled browsers.
-        evt.stopImmediatePropagation();
-
-        // Emit a new 'change' event from the custom element
-        this.$emit('change');
-    }
-
-    /** @private */
-    get _chkInput () {
-        return this.shadowRoot.getElementById('hxNativeControl');
     }
 }
 
@@ -2489,7 +2526,7 @@ class HXFileInputElement extends HXElement {
 
 var shadowMarkup$8 = "<div id='hxFileTile'><a id='hxLink'><div id='hxIconWrapper'><hx-file-icon id='hxIcon'></hx-file-icon><hx-icon type='download'></hx-icon></div><div id='hxContentWrapper'><div id='hxName'></div><div id='hxState--downloadable'><div id='hxDetails'></div></div><div id='hxState--loading'><hx-progress id='hxProgress'></hx-progress></div><div id='hxState--invalid'><button id='hxRetry' type='button'>Retry<hx-icon type='redo'></hx-icon></button></div></div></a><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-var shadowStyles$8 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\na[href] {\n  background-color: transparent;\n  color: #0d74d1;\n  text-decoration: none;\n}\na[href]:hover,\na[href]:active {\n  color: #3391ff;\n  cursor: pointer;\n  text-decoration: none;\n}\nhx-progress {\n  display: block;\n  height: 0.5rem;\n}\nhx-progress {\n  background-color: #d8d8d8;\n  border-radius: 1em;\n  color: #16b9d4;\n  overflow: hidden;\n}\n:host button {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n}\n:host #hxFileTile {\n  background-color: #f5f5f5;\n  border-radius: 2px;\n  border: 2px solid transparent;\n  color: #424242;\n  display: flex;\n  font-size: 0.875rem;\n  height: 100%;\n  width: 100%;\n}\n:host #hxRetry {\n  border-radius: 2px;\n  display: inline-flex;\n  justify-content: center;\n  padding: 0.125rem 0.5rem;\n  background-color: transparent;\n  border: none;\n  color: #0c7c84;\n  padding-left: 0;\n  padding-right: 0;\n}\n:host #hxRetry > * + * {\n  margin-left: 0.5rem;\n}\n:host #hxRetry:focus {\n  outline: none;\n}\n:host #hxRetry[disabled] {\n  cursor: not-allowed;\n}\n:host #hxRetry[disabled]:focus {\n  box-shadow: none;\n}\n:host #hxRetry:hover {\n  background-color: transparent;\n  border-color: transparent;\n  color: #16b9d4;\n}\n:host #hxRetry:active {\n  background-color: transparent;\n  border-color: transparent;\n  color: #0e94a6;\n}\n:host #hxRetry:focus {\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxRetry[disabled] {\n  background-color: transparent;\n  border-color: transparent;\n  color: #d8d8d8;\n}\n:host #hxRetry hx-icon {\n  margin-left: 0.25rem !important;\n}\n:host #hxDismiss {\n  flex-shrink: 0;\n  font-size: 1rem;\n  line-height: 0;\n  padding: 0.5rem 0.75rem;\n}\n:host #hxDismiss:hover {\n  color: #16b9d4;\n}\n:host #hxDismiss:focus {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n  outline: 0;\n}\n:host #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  flex: 0 0 48px;\n  height: 100%;\n  justify-content: center;\n  line-height: 0;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxIconWrapper > hx-icon {\n  display: none;\n  font-size: 2rem;\n}\n:host #hxContentWrapper {\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1;\n  justify-content: center;\n  overflow: hidden;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxName {\n  color: #0c7c84;\n  display: flex;\n  font-weight: 500;\n}\n:host #hxName > span {\n  white-space: pre;\n}\n:host #hxName > span:first-child {\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n:host #hxName > span:last-child {\n  flex-shrink: 0;\n}\n:host #hxDetails {\n  font-weight: 300;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n:host #hxLink {\n  color: #424242;\n  display: flex;\n  flex-grow: 1;\n  overflow: hidden;\n}\n:host #hxLink[href]:hover {\n  color: #16b9d4;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-file-icon {\n  display: none;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-icon {\n  display: inline-block;\n}\n:host #hxLink[href]:hover #hxName {\n  color: inherit;\n}\n:host #hxLink:focus {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n  outline: 0;\n}\n:host #hxState--loading hx-progress {\n  display: inline-block;\n  width: 100%;\n}\n:host #hxState--loading,\n:host #hxState--invalid {\n  display: none;\n}\n:host([invalid]) #hxFileTile {\n  border-color: #d32f2f;\n}\n:host([invalid]) #hxIconWrapper,\n:host([invalid]) #hxName {\n  color: #6b6b6b;\n}\n:host([invalid]) #hxState--downloadable {\n  display: none;\n}\n:host([invalid]) #hxState--invalid {\n  display: block;\n}\n:host([progress]) #hxLink {\n  color: #9e9e9e;\n}\n:host([progress]) #hxIconWrapper,\n:host([progress]) #hxName {\n  color: #6b6b6b;\n}\n:host([progress]) #hxState--downloadable {\n  display: none;\n}\n:host([progress]) #hxState--loading {\n  display: block;\n}\n:host([readonly]) #hxDismiss {\n  display: none;\n}\n:host([readonly]) #hxContentWrapper {\n  padding: 0.5rem;\n}\n";
+var shadowStyles$8 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\na[href] {\n  background-color: transparent;\n  color: #0d74d1;\n  text-decoration: none;\n}\na[href]:hover,\na[href]:active {\n  color: #3391ff;\n  cursor: pointer;\n  text-decoration: none;\n}\n/*\n  NOTE: This implementation is known to be slightly buggy with IE11.\n  In various scenarious, IE11 will render the element with a\n  \"squigglevision\"-like appearance. We were unable to pinpoint what\n  causes the bug, but factors contributing to it are sub-pixel calculations,\n  display + animation property issues, and even border-radius of the parent.\n\n  There's very little we can do about it, because the bug resides in the\n  IE rendering engine (which is no longer receiving updates). Design is aware\n  of the issue, and has noted that the issue is acceptable for IE compatibility.\n\n  1: explicitly set transform-box for IE/Edge compatibility\n  2: explicitly set transform-origin with full X/Y/Z values for IE/Edge compatibility\n*/\nhx-busy {\n  animation-play-state: running;\n  animation: hx-spin 0.8s linear infinite;\n  border-color: transparent currentColor currentColor;\n  border-radius: 1em;\n  border-style: solid;\n  border-width: 2px;\n  box-sizing: border-box;\n  display: inline-block;\n  height: 1em;\n  transform-box: border-box;\n  transform-origin: 0.5em 0.5em 0.5em;\n  vertical-align: middle;\n  width: 1em;\n}\nhx-busy[paused] {\n  animation-play-state: paused;\n}\nhx-progress {\n  background-color: #d8d8d8;\n  border-radius: 1em;\n  color: #16b9d4;\n  display: block;\n  height: 0.5rem;\n  overflow: hidden;\n}\n:host button {\n  background-color: transparent;\n  border: 0;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  font-weight: 500;\n  line-height: 1;\n  margin: 0;\n  padding: 0;\n}\n:host #hxFileTile {\n  background-color: #f5f5f5;\n  border-radius: 2px;\n  border: 2px solid transparent;\n  color: #424242;\n  display: flex;\n  font-size: 0.875rem;\n  height: 100%;\n  width: 100%;\n}\n:host #hxRetry {\n  border-radius: 2px;\n  display: inline-flex;\n  justify-content: center;\n  padding: 0.125rem 0.5rem;\n  background-color: transparent;\n  border: none;\n  color: #0c7c84;\n  padding-left: 0;\n  padding-right: 0;\n}\n:host #hxRetry > * + * {\n  margin-left: 0.5rem;\n}\n:host #hxRetry:focus {\n  outline: none;\n}\n:host #hxRetry[disabled] {\n  cursor: not-allowed;\n}\n:host #hxRetry[disabled]:focus {\n  box-shadow: none;\n}\n:host #hxRetry:hover {\n  background-color: transparent;\n  border-color: transparent;\n  color: #16b9d4;\n}\n:host #hxRetry:active {\n  background-color: transparent;\n  border-color: transparent;\n  color: #0e94a6;\n}\n:host #hxRetry:focus {\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxRetry[disabled] {\n  background-color: transparent;\n  border-color: transparent;\n  color: #d8d8d8;\n}\n:host #hxRetry hx-icon {\n  margin-left: 0.25rem !important;\n}\n:host #hxDismiss {\n  flex-shrink: 0;\n  font-size: 1rem;\n  line-height: 0;\n  padding: 0.5rem 0.75rem;\n}\n:host #hxDismiss:hover {\n  color: #16b9d4;\n}\n:host #hxDismiss:focus {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n  outline: 0;\n}\n:host #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  flex: 0 0 48px;\n  height: 100%;\n  justify-content: center;\n  line-height: 0;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxIconWrapper > hx-icon {\n  display: none;\n  font-size: 2rem;\n}\n:host #hxContentWrapper {\n  display: flex;\n  flex-direction: column;\n  flex-grow: 1;\n  justify-content: center;\n  overflow: hidden;\n  padding: 0.5rem 0 0.5rem 0.5rem;\n}\n:host #hxName {\n  color: #0c7c84;\n  display: flex;\n  font-weight: 500;\n}\n:host #hxName > span {\n  white-space: pre;\n}\n:host #hxName > span:first-child {\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n:host #hxName > span:last-child {\n  flex-shrink: 0;\n}\n:host #hxDetails {\n  font-weight: 300;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: pre;\n}\n:host #hxLink {\n  color: #424242;\n  display: flex;\n  flex-grow: 1;\n  overflow: hidden;\n}\n:host #hxLink[href]:hover {\n  color: #16b9d4;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-file-icon {\n  display: none;\n}\n:host #hxLink[href]:hover #hxIconWrapper > hx-icon {\n  display: inline-block;\n}\n:host #hxLink[href]:hover #hxName {\n  color: inherit;\n}\n:host #hxLink:focus {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n  outline: 0;\n}\n:host #hxState--loading hx-progress {\n  display: inline-block;\n  width: 100%;\n}\n:host #hxState--loading,\n:host #hxState--invalid {\n  display: none;\n}\n:host([invalid]) #hxFileTile {\n  border-color: #d32f2f;\n}\n:host([invalid]) #hxIconWrapper,\n:host([invalid]) #hxName {\n  color: #6b6b6b;\n}\n:host([invalid]) #hxState--downloadable {\n  display: none;\n}\n:host([invalid]) #hxState--invalid {\n  display: block;\n}\n:host([progress]) #hxLink {\n  color: #9e9e9e;\n}\n:host([progress]) #hxIconWrapper,\n:host([progress]) #hxName {\n  color: #6b6b6b;\n}\n:host([progress]) #hxState--downloadable {\n  display: none;\n}\n:host([progress]) #hxState--loading {\n  display: block;\n}\n:host([readonly]) #hxDismiss {\n  display: none;\n}\n:host([readonly]) #hxContentWrapper {\n  padding: 0.5rem;\n}\n";
 
 // number of characters to avoid truncation at start/end of file name
 const PRE_TRUNC = 14;
@@ -4099,6 +4136,53 @@ class HXProgressElement extends HXElement {
 }
 
 /**
+ * Defines behavior for the `<hx-radio-control>` element.
+ *
+ * @extends HXFormControlElement
+ * @hideconstructor
+ * @since 0.16.0
+ */
+class HXRadioControlElement extends HXFormControlElement {
+    /** @override */
+    static get is () {
+        return 'hx-radio-control';
+    }
+
+    /**
+     * Fetch the first `<input type="radio">` descendant
+     *
+     * @override
+     * @readonly
+     * @type {?HTMLInputElement}
+     */
+    get controlElement () {
+        return this.querySelector('input[type="radio"]');
+    }
+}
+
+var shadowMarkup$e = "<!--\n  TODO: update with SVG to render the radio button\n  See: https://codepen.io/CITguy/pen/KEoBNZ for a prototype.\n--><slot></slot>";
+
+var shadowStyles$e = "";
+
+/**
+ * Applies Shadow DOM to the `<hx-radio>` facade element.
+ *
+ * @extends HXElement
+ * @hideconstructor
+ */
+class HXRadioElement extends HXElement {
+    /** @override */
+    static get is () {
+        return 'hx-radio';
+    }
+
+    /** @override */
+    static get template () {
+        return `<style>${shadowStyles$e}</style>${shadowMarkup$e}`;
+    }
+}
+
+/**
  * Fires when the element's contents are concealed.
  *
  * @event Reveal:close
@@ -4187,9 +4271,9 @@ class HXSearchAssistanceElement extends _ProtoClass$2 {
     }
 }
 
-var shadowMarkup$e = "<label id='hxSearch'><input type='text' role='search' id='hxNativeControl' autocomplete='off'> <button type='button' id='hxClear' hidden aria-label='Clear search'><hx-icon type='times'></hx-icon></button><div id='hxIcon'><hx-icon type='search'></hx-icon></div><div id='hxCustomControl'></div></label>";
+var shadowMarkup$f = "<label id='hxSearch'><input type='text' role='search' id='hxNativeControl' autocomplete='off'> <button type='button' id='hxClear' hidden aria-label='Clear search'><hx-icon type='times'></hx-icon></button><div id='hxIcon'><hx-icon type='search'></hx-icon></div><div id='hxCustomControl'></div></label>";
 
-var shadowStyles$e = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\n:host {\n  display: block;\n  font-size: 1rem;\n  height: 2rem;\n  min-width: 8rem;\n}\n:host #hxSearch {\n  display: flex;\n  height: 100%;\n  position: relative;\n}\n:host #hxIcon {\n  color: #757575;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 1;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxNativeControl {\n  background-color: transparent;\n  border: none;\n  color: #424242;\n  cursor: inherit;\n  flex-grow: 1;\n  font-weight: 400;\n  min-width: 0;\n  order: 2;\n  width: 0;\n  z-index: 1;\n}\n:host #hxNativeControl::-moz-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-ms-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-webkit-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxNativeControl:focus {\n  outline: none;\n}\n:host #hxNativeControl:focus ~ #hxClear {\n  color: #0e94a6;\n}\n:host #hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxCustomControl {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #bdbdbd;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 0;\n}\n:host #hxClear {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 3;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxClear::-moz-focus-inner {\n  outline: none;\n  border: none;\n}\n:host #hxClear:focus {\n  outline: none;\n}\n:host #hxClear:focus hx-icon {\n  outline-offset: 2px;\n  outline: 1px dotted currentColor;\n}\n:host #hxClear:focus ~ * {\n  color: #0e94a6;\n}\n:host #hxClear:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host([invalid]) {\n  color: #d32f2f;\n}\n:host([invalid]) #hxIcon,\n:host([invalid]) #hxClear {\n  color: inherit;\n}\n:host([invalid]) #hxCustomControl {\n  border-color: #d32f2f;\n  border-width: 2px;\n}\n:host([invalid]) #hxClear:focus hx-icon {\n  outline-color: currentColor;\n}\n:host([invalid]) #hxNativeControl:focus ~ #hxClear {\n  color: #d32f2f;\n}\n:host([invalid]) #hxClear:focus ~ #hxCustomControl,\n:host([invalid]) #hxNativeControl:focus ~ #hxCustomControl {\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n  border-color: #d32f2f;\n}\n:host([disabled]) {\n  color: #d8d8d8;\n}\n:host([disabled]) #hxSearch {\n  color: inherit;\n  cursor: not-allowed;\n}\n:host([disabled]) #hxIcon {\n  color: inherit;\n}\n:host([disabled]) #hxClear {\n  display: none;\n}\n:host([disabled]) #hxNativeControl {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-moz-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-ms-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-webkit-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxCustomControl {\n  background-color: #f5f5f5;\n  border-color: #e0e0e0;\n  border-width: 1px;\n}\n";
+var shadowStyles$f = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\ninput::-ms-clear {\n  display: none;\n}\n:host {\n  display: block;\n  font-size: 1rem;\n  height: 2rem;\n  min-width: 8rem;\n}\n:host #hxSearch {\n  display: flex;\n  height: 100%;\n  position: relative;\n}\n:host #hxIcon {\n  color: #757575;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 1;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxNativeControl {\n  background-color: transparent;\n  border: none;\n  color: #424242;\n  cursor: inherit;\n  flex-grow: 1;\n  font-weight: 400;\n  min-width: 0;\n  order: 2;\n  width: 0;\n  z-index: 1;\n}\n:host #hxNativeControl::-moz-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-ms-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-webkit-input-placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::placeholder {\n  color: #6b6b6b;\n  font-style: italic;\n  font-weight: 400;\n  opacity: 1;\n}\n:host #hxNativeControl::-moz-focus-inner {\n  border: 0;\n  outline: none;\n}\n:host #hxNativeControl:focus {\n  outline: none;\n}\n:host #hxNativeControl:focus ~ #hxClear {\n  color: #0e94a6;\n}\n:host #hxNativeControl:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host #hxCustomControl {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #bdbdbd;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 0;\n}\n:host #hxClear {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  line-height: 1;\n  order: 3;\n  padding: 0.5rem;\n  z-index: 1;\n}\n:host #hxClear::-moz-focus-inner {\n  border: 0;\n  outline: none;\n}\n:host #hxClear:focus {\n  outline: none;\n}\n:host #hxClear:focus hx-icon {\n  outline-offset: 2px;\n  outline: 1px dotted currentColor;\n}\n:host #hxClear:focus ~ * {\n  color: #0e94a6;\n}\n:host #hxClear:focus ~ #hxCustomControl {\n  border-color: #0e94a6;\n  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);\n}\n:host([invalid]) {\n  color: #d32f2f;\n}\n:host([invalid]) #hxIcon,\n:host([invalid]) #hxClear {\n  color: inherit;\n}\n:host([invalid]) #hxCustomControl {\n  border-color: #d32f2f;\n  border-width: 2px;\n}\n:host([invalid]) #hxClear:focus hx-icon {\n  outline-color: currentColor;\n}\n:host([invalid]) #hxNativeControl:focus ~ #hxClear {\n  color: #d32f2f;\n}\n:host([invalid]) #hxClear:focus ~ #hxCustomControl,\n:host([invalid]) #hxNativeControl:focus ~ #hxCustomControl {\n  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);\n  border-color: #d32f2f;\n}\n:host([disabled]) {\n  color: #d8d8d8;\n}\n:host([disabled]) #hxSearch {\n  color: inherit;\n  cursor: not-allowed;\n}\n:host([disabled]) #hxIcon {\n  color: inherit;\n}\n:host([disabled]) #hxClear {\n  display: none;\n}\n:host([disabled]) #hxNativeControl {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-ms-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-moz-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::-webkit-input-placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxNativeControl::placeholder {\n  color: inherit;\n}\n:host([disabled]) #hxCustomControl {\n  background-color: #f5f5f5;\n  border-color: #e0e0e0;\n  border-width: 1px;\n}\n";
 
 /**
  * Fires when the element loses focus.
@@ -4236,7 +4320,7 @@ class HXSearchElement extends HXElement {
     }
 
     static get template () {
-        return `<style>${shadowStyles$e}</style>${shadowMarkup$e}`;
+        return `<style>${shadowStyles$f}</style>${shadowMarkup$f}`;
     }
 
     $onCreate () {
@@ -4394,6 +4478,54 @@ class HXSearchElement extends HXElement {
         this.value = evt.target.value;
         let hasValue = (evt.target.value !== '');
         this._btnClear.hidden = !hasValue;
+    }
+}
+
+/**
+ * Defines behavior for the `<hx-select-control>` element.
+ *
+ * @extends HXFormControlElement
+ * @hideconstructor
+ * @since 0.16.0
+ */
+class HXSelectControlElement extends HXFormControlElement {
+    /** @override */
+    static get is () {
+        return 'hx-select-control';
+    }
+
+    /**
+     * Fetch the first `<select>` descendant
+     *
+     * @override
+     * @readonly
+     * @type {?HTMLSelectElement}
+     */
+    get controlElement () {
+        return this.querySelector('select');
+    }
+}
+
+var shadowMarkup$g = "<div id='hxSelect'><div id='hxTrigger'><hx-icon type='angle-down'></hx-icon></div></div>";
+
+var shadowStyles$g = ":host {\n  overflow: hidden;\n}\n/*\n  #hxSelect\n  +---------------------------+---------+\n  | .                         | trigger | row 1 (auto)\n  +---------------------------+---------+\n    col 1                       col 2\n    (auto)                      (2.5rem)\n*/\n#hxSelect {\n  box-sizing: border-box;\n  display: grid;\n  grid-template-areas: '. trigger';\n  grid-template-columns: auto 2.5rem;\n  height: 100%;\n  width: 100%;\n}\n#hxTrigger {\n  align-items: center;\n  background-color: var(--hxSelect__trigger-background);\n  box-sizing: border-box;\n  color: inherit;\n  display: flex;\n  grid-area: trigger;\n  height: 100%;\n  justify-content: center;\n}\n";
+
+/**
+ * Applies Shadow DOM to the `<hx-select>` facade element.
+ *
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.16.0
+ */
+class HXSelectElement extends HXElement {
+    /** @override */
+    static get is () {
+        return 'hx-select';
+    }
+
+    /** @override */
+    static get template () {
+        return `<style>${shadowStyles$g}</style>${shadowMarkup$g}`;
     }
 }
 
@@ -4760,9 +4892,61 @@ class HXTabsetElement extends HXElement {
     }
 }
 
-var shadowMarkup$f = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
+/**
+ * Defines behavior for the `<hx-text-control>` element.
+ *
+ * @extends HXFormControlElement
+ * @hideconstructor
+ * @since 0.16.0
+ */
+class HXTextControlElement extends HXFormControlElement {
+    /** @override */
+    static get is () {
+        return 'hx-text-control';
+    }
 
-var shadowStyles$f = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxToast #hxCta {\n  background-color: transparent;border: 0;color: inherit;cursor: pointer;display: inline-block;font: inherit;font-weight: 500;line-height: 1;margin: 0;padding: 0;border-radius: 2px;display: inline-flex;justify-content: center;border: 1px solid #0c7c84;color: #0c7c84;font-size: 0.875rem;padding: 8px 12px;\n}\n#hxToast {\n  padding: 0.75rem;\n  background-color: #ffffff;\n  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.16);\n  color: #424242;\n  display: flex;\n  min-height: 3.5rem;\n  position: relative;\n  width: 22rem;\n}\n#hxToast::before,\n#hxToast::after {\n  content: '';\n  display: block;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#hxToast::before {\n  border: 1px solid #e0e0e0;\n}\n#hxToast::after {\n  border-left: 8px solid currentColor;\n}\n#hxToast #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  margin: 0 0.75rem 0 0.5rem;\n}\n#hxToast #hxIconWrapper hx-icon {\n  font-size: 2rem;\n}\n#hxToast #hxContent {\n  flex-grow: 1;\n  margin-right: 1.5rem;\n  text-align: right;\n  word-wrap: break-word;\n}\n#hxToast #hxContent div {\n  font-size: 0.875rem;\n  text-align: left;\n}\n#hxToast #hxCta {\n  text-transform: uppercase;\n}\n#hxToast #hxCta:empty {\n  display: none;\n}\n#hxToast #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 0.75rem;\n  height: 2.25rem;\n  line-height: 0;\n  margin: 0;\n  padding: 0.75rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 2.25rem;\n}\n:host([type=\"info\"]) #hxToast::after {\n  border-left-color: #3b44a9;\n}\n:host([type=\"info\"]) #hxIcon {\n  color: #3b44a9;\n}\n:host([type=\"error\"]) #hxToast::after {\n  border-left-color: #d32f2f;\n}\n:host([type=\"error\"]) #hxIcon {\n  color: #d32f2f;\n}\n:host([type=\"success\"]) #hxToast::after {\n  border-left-color: #4caf51;\n}\n:host([type=\"success\"]) #hxIcon {\n  color: #4caf51;\n}\n";
+    /**
+     * Fetch the first text `<input>` descendant,
+     * whether implicit (`<input />`) or explicit
+     * (`<input type="text" />`).
+     *
+     * @override
+     * @readonly
+     * @type {?HTMLInputElement}
+     */
+    get controlElement () {
+        return this.querySelector('input:not([type]), input[type="text"]');
+    }
+}
+
+/**
+ * Defines behavior for the `<hx-textarea-control>` element.
+ *
+ * @extends HXFormControlElement
+ * @hideconstructor
+ * @since 0.16.0
+ */
+class HXTextareaControlElement extends HXFormControlElement {
+    /** @override */
+    static get is () {
+        return 'hx-textarea-control';
+    }
+
+    /**
+     * Fetch the first text `<textarea>` descendant
+     *
+     * @override
+     * @readonly
+     * @type {?HTMLTextAreaElement}
+     */
+    get controlElement () {
+        return this.querySelector('textarea');
+    }
+}
+
+var shadowMarkup$h = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
+
+var shadowStyles$h = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n#hxToast #hxCta {\n  background-color: transparent;border: 0;color: inherit;cursor: pointer;display: inline-block;font: inherit;font-weight: 500;line-height: 1;margin: 0;padding: 0;border-radius: 2px;display: inline-flex;justify-content: center;border: 1px solid #0c7c84;color: #0c7c84;font-size: 0.875rem;padding: 8px 12px;\n}\n#hxToast {\n  padding: 0.75rem;\n  background-color: #ffffff;\n  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16);\n  color: #424242;\n  display: flex;\n  min-height: 3.5rem;\n  position: relative;\n  width: 22rem;\n}\n#hxToast::before,\n#hxToast::after {\n  content: '';\n  display: block;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#hxToast::before {\n  border: 1px solid #e0e0e0;\n}\n#hxToast::after {\n  border-left: 8px solid currentColor;\n}\n#hxToast #hxIconWrapper {\n  align-items: center;\n  display: flex;\n  margin: 0 0.75rem 0 0.5rem;\n}\n#hxToast #hxIconWrapper hx-icon {\n  font-size: 2rem;\n}\n#hxToast #hxContent {\n  flex-grow: 1;\n  margin-right: 1.5rem;\n  text-align: right;\n  word-wrap: break-word;\n}\n#hxToast #hxContent div {\n  font-size: 0.875rem;\n  text-align: left;\n}\n#hxToast #hxCta {\n  text-transform: uppercase;\n}\n#hxToast #hxCta:empty {\n  display: none;\n}\n#hxToast #hxDismiss {\n  background-color: transparent;\n  border: 0;\n  color: #757575;\n  cursor: pointer;\n  flex-shrink: 0;\n  font-size: 0.75rem;\n  height: 2.25rem;\n  line-height: 0;\n  margin: 0;\n  padding: 0.75rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 2.25rem;\n}\n:host([type=\"info\"]) #hxToast::after {\n  border-left-color: #3b44a9;\n}\n:host([type=\"info\"]) #hxIcon {\n  color: #3b44a9;\n}\n:host([type=\"error\"]) #hxToast::after {\n  border-left-color: #d32f2f;\n}\n:host([type=\"error\"]) #hxIcon {\n  color: #d32f2f;\n}\n:host([type=\"success\"]) #hxToast::after {\n  border-left-color: #4caf51;\n}\n:host([type=\"success\"]) #hxIcon {\n  color: #4caf51;\n}\n";
 
 const ICONS$1 = {
     'error': 'exclamation-circle',
@@ -4801,7 +4985,7 @@ class HXToastElement extends HXElement {
     }
 
     static get template () {
-        return `<style>${shadowStyles$f}</style>${shadowMarkup$f}`;
+        return `<style>${shadowStyles$h}</style>${shadowMarkup$h}`;
     }
 
     $onCreate () {
@@ -4914,9 +5098,9 @@ class HXToastElement extends HXElement {
     }
 }
 
-var shadowMarkup$g = "<div id='hxTooltip' class='has-arrow'><slot></slot></div>";
+var shadowMarkup$i = "<div id='hxTooltip' class='has-arrow'><slot></slot></div>";
 
-var shadowStyles$g = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n/* MIXINS */\n.has-arrow {\n  margin: 0;\n  position: relative;\n  /*======================================== *\\\n   * TOP POSITIONS\n  \\*======================================== */\n  /*======================================== *\\\n   * RIGHT POSITIONS\n  \\*======================================== */\n  /*======================================== *\\\n   * BOTTOM POSITIONS\n  \\*======================================== */\n  /*======================================== *\\\n   * LEFT POSITIONS\n  \\*======================================== */\n}\n.has-arrow::before {\n  box-shadow: 0 0 0 1px #e0e0e0;\n  z-index: -1;\n}\n.has-arrow::before,\n.has-arrow::after {\n  content: '';\n  display: block;\n  height: 13px;\n  position: absolute;\n  width: 13px;\n}\n.has-arrow[position^=\"top\"] {\n  margin-bottom: 8px;\n}\n.has-arrow[position^=\"top\"]::before,\n.has-arrow[position^=\"top\"]::after {\n  bottom: -8px;\n}\n.has-arrow[position^=\"top\"]::after {\n  background-image: linear-gradient(to bottom left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"top\"]::before,\n.has-arrow[position=\"top-center\"]::before,\n.has-arrow[position=\"top\"]::after,\n.has-arrow[position=\"top-center\"]::after {\n  left: 50%;\n}\n.has-arrow[position=\"top\"]::before,\n.has-arrow[position=\"top-center\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"top\"]::before,\n.has-arrow[position=\"top-center\"]::before,\n.has-arrow[position=\"top\"]::after,\n.has-arrow[position=\"top-center\"]::after {\n  transform-origin: bottom left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"top-right\"]::before,\n.has-arrow[position=\"top-right\"]::after {\n  left: 1.25rem;\n}\n.has-arrow[position=\"top-right\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"top-right\"]::before,\n.has-arrow[position=\"top-right\"]::after {\n  transform-origin: bottom left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"top-left\"]::before,\n.has-arrow[position=\"top-left\"]::after {\n  right: 1.25rem;\n}\n.has-arrow[position=\"top-left\"]::after {\n  background-image: linear-gradient(to bottom right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"top-left\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"top-left\"]::before,\n.has-arrow[position=\"top-left\"]::after {\n  transform-origin: bottom right;\n  transform: rotate(45deg);\n}\n.has-arrow[position^=\"right\"] {\n  margin-left: 8px;\n}\n.has-arrow[position^=\"right\"]::before,\n.has-arrow[position^=\"right\"]::after {\n  left: -8px;\n}\n.has-arrow[position^=\"right\"]::after {\n  background-image: linear-gradient(to top left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"right\"]::before,\n.has-arrow[position=\"right-middle\"]::before,\n.has-arrow[position=\"right\"]::after,\n.has-arrow[position=\"right-middle\"]::after {\n  top: 50%;\n}\n.has-arrow[position=\"right\"]::before,\n.has-arrow[position=\"right-middle\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"right\"]::before,\n.has-arrow[position=\"right-middle\"]::before,\n.has-arrow[position=\"right\"]::after,\n.has-arrow[position=\"right-middle\"]::after {\n  transform-origin: top left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"right-bottom\"]::before,\n.has-arrow[position=\"right-bottom\"]::after {\n  top: 1.25rem;\n}\n.has-arrow[position=\"right-bottom\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"right-bottom\"]::before,\n.has-arrow[position=\"right-bottom\"]::after {\n  transform-origin: top left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"right-top\"]::before,\n.has-arrow[position=\"right-top\"]::after {\n  bottom: 1.25rem;\n}\n.has-arrow[position=\"right-top\"]::after {\n  background-image: linear-gradient(to bottom left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"right-top\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"right-top\"]::before,\n.has-arrow[position=\"right-top\"]::after {\n  transform-origin: bottom left;\n  transform: rotate(45deg);\n}\n.has-arrow[position^=\"bottom\"] {\n  margin-top: 8px;\n}\n.has-arrow[position^=\"bottom\"]::before,\n.has-arrow[position^=\"bottom\"]::after {\n  top: -8px;\n}\n.has-arrow[position^=\"bottom\"]::after {\n  background-image: linear-gradient(to top left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"bottom\"]::before,\n.has-arrow[position=\"bottom-center\"]::before,\n.has-arrow[position=\"bottom\"]::after,\n.has-arrow[position=\"bottom-center\"]::after {\n  left: 50%;\n}\n.has-arrow[position=\"bottom\"]::before,\n.has-arrow[position=\"bottom-center\"]::before,\n.has-arrow[position=\"bottom\"]::after,\n.has-arrow[position=\"bottom-center\"]::after {\n  transform-origin: top left;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"bottom-right\"]::before,\n.has-arrow[position=\"bottom-right\"]::after {\n  left: 1.25rem;\n}\n.has-arrow[position=\"bottom-right\"]::before,\n.has-arrow[position=\"bottom-right\"]::after {\n  transform-origin: top left;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"bottom-left\"]::before,\n.has-arrow[position=\"bottom-left\"]::after {\n  right: 1.25rem;\n}\n.has-arrow[position=\"bottom-left\"]::after {\n  background-image: linear-gradient(to top right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"bottom-left\"]::before,\n.has-arrow[position=\"bottom-left\"]::after {\n  transform-origin: top right;\n  transform: rotate(-45deg);\n}\n.has-arrow[position^=\"left\"] {\n  margin-right: 8px;\n}\n.has-arrow[position^=\"left\"]::before,\n.has-arrow[position^=\"left\"]::after {\n  right: -8px;\n}\n.has-arrow[position^=\"left\"]::after {\n  background-image: linear-gradient(to top right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"left\"]::before,\n.has-arrow[position=\"left-middle\"]::before,\n.has-arrow[position=\"left\"]::after,\n.has-arrow[position=\"left-middle\"]::after {\n  top: 50%;\n}\n.has-arrow[position=\"left\"]::before,\n.has-arrow[position=\"left-middle\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"left\"]::before,\n.has-arrow[position=\"left-middle\"]::before,\n.has-arrow[position=\"left\"]::after,\n.has-arrow[position=\"left-middle\"]::after {\n  transform-origin: top right;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"left-bottom\"]::before,\n.has-arrow[position=\"left-bottom\"]::after {\n  top: 1.25rem;\n}\n.has-arrow[position=\"left-bottom\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"left-bottom\"]::before,\n.has-arrow[position=\"left-bottom\"]::after {\n  transform-origin: top right;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"left-top\"]::before,\n.has-arrow[position=\"left-top\"]::after {\n  bottom: 1.25rem;\n}\n.has-arrow[position=\"left-top\"]::after {\n  background-image: linear-gradient(to bottom right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"left-top\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"left-top\"]::before,\n.has-arrow[position=\"left-top\"]::after {\n  transform-origin: bottom right;\n  transform: rotate(-45deg);\n}\n#hxTooltip {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #e0e0e0;\n  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16);\n  padding: 0.75rem;\n}\n";
+var shadowStyles$i = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n/* MIXINS */\n.has-arrow {\n  margin: 0;\n  position: relative;\n  /*======================================== *\\\n   * TOP POSITIONS\n  \\*======================================== */\n  /*======================================== *\\\n   * RIGHT POSITIONS\n  \\*======================================== */\n  /*======================================== *\\\n   * BOTTOM POSITIONS\n  \\*======================================== */\n  /*======================================== *\\\n   * LEFT POSITIONS\n  \\*======================================== */\n}\n.has-arrow::before {\n  box-shadow: 0 0 0 1px #e0e0e0;\n  z-index: -1;\n}\n.has-arrow::before,\n.has-arrow::after {\n  content: '';\n  display: block;\n  height: 13px;\n  position: absolute;\n  width: 13px;\n}\n.has-arrow[position^=\"top\"] {\n  margin-bottom: 8px;\n}\n.has-arrow[position^=\"top\"]::before,\n.has-arrow[position^=\"top\"]::after {\n  bottom: -8px;\n}\n.has-arrow[position^=\"top\"]::after {\n  background-image: linear-gradient(to bottom left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"top\"]::before,\n.has-arrow[position=\"top-center\"]::before,\n.has-arrow[position=\"top\"]::after,\n.has-arrow[position=\"top-center\"]::after {\n  left: 50%;\n}\n.has-arrow[position=\"top\"]::before,\n.has-arrow[position=\"top-center\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"top\"]::before,\n.has-arrow[position=\"top-center\"]::before,\n.has-arrow[position=\"top\"]::after,\n.has-arrow[position=\"top-center\"]::after {\n  transform-origin: bottom left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"top-right\"]::before,\n.has-arrow[position=\"top-right\"]::after {\n  left: 1.25rem;\n}\n.has-arrow[position=\"top-right\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"top-right\"]::before,\n.has-arrow[position=\"top-right\"]::after {\n  transform-origin: bottom left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"top-left\"]::before,\n.has-arrow[position=\"top-left\"]::after {\n  right: 1.25rem;\n}\n.has-arrow[position=\"top-left\"]::after {\n  background-image: linear-gradient(to bottom right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"top-left\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"top-left\"]::before,\n.has-arrow[position=\"top-left\"]::after {\n  transform-origin: bottom right;\n  transform: rotate(45deg);\n}\n.has-arrow[position^=\"right\"] {\n  margin-left: 8px;\n}\n.has-arrow[position^=\"right\"]::before,\n.has-arrow[position^=\"right\"]::after {\n  left: -8px;\n}\n.has-arrow[position^=\"right\"]::after {\n  background-image: linear-gradient(to top left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"right\"]::before,\n.has-arrow[position=\"right-middle\"]::before,\n.has-arrow[position=\"right\"]::after,\n.has-arrow[position=\"right-middle\"]::after {\n  top: 50%;\n}\n.has-arrow[position=\"right\"]::before,\n.has-arrow[position=\"right-middle\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"right\"]::before,\n.has-arrow[position=\"right-middle\"]::before,\n.has-arrow[position=\"right\"]::after,\n.has-arrow[position=\"right-middle\"]::after {\n  transform-origin: top left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"right-bottom\"]::before,\n.has-arrow[position=\"right-bottom\"]::after {\n  top: 1.25rem;\n}\n.has-arrow[position=\"right-bottom\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"right-bottom\"]::before,\n.has-arrow[position=\"right-bottom\"]::after {\n  transform-origin: top left;\n  transform: rotate(-45deg);\n}\n.has-arrow[position=\"right-top\"]::before,\n.has-arrow[position=\"right-top\"]::after {\n  bottom: 1.25rem;\n}\n.has-arrow[position=\"right-top\"]::after {\n  background-image: linear-gradient(to bottom left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"right-top\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"right-top\"]::before,\n.has-arrow[position=\"right-top\"]::after {\n  transform-origin: bottom left;\n  transform: rotate(45deg);\n}\n.has-arrow[position^=\"bottom\"] {\n  margin-top: 8px;\n}\n.has-arrow[position^=\"bottom\"]::before,\n.has-arrow[position^=\"bottom\"]::after {\n  top: -8px;\n}\n.has-arrow[position^=\"bottom\"]::after {\n  background-image: linear-gradient(to top left, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"bottom\"]::before,\n.has-arrow[position=\"bottom-center\"]::before,\n.has-arrow[position=\"bottom\"]::after,\n.has-arrow[position=\"bottom-center\"]::after {\n  left: 50%;\n}\n.has-arrow[position=\"bottom\"]::before,\n.has-arrow[position=\"bottom-center\"]::before,\n.has-arrow[position=\"bottom\"]::after,\n.has-arrow[position=\"bottom-center\"]::after {\n  transform-origin: top left;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"bottom-right\"]::before,\n.has-arrow[position=\"bottom-right\"]::after {\n  left: 1.25rem;\n}\n.has-arrow[position=\"bottom-right\"]::before,\n.has-arrow[position=\"bottom-right\"]::after {\n  transform-origin: top left;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"bottom-left\"]::before,\n.has-arrow[position=\"bottom-left\"]::after {\n  right: 1.25rem;\n}\n.has-arrow[position=\"bottom-left\"]::after {\n  background-image: linear-gradient(to top right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"bottom-left\"]::before,\n.has-arrow[position=\"bottom-left\"]::after {\n  transform-origin: top right;\n  transform: rotate(-45deg);\n}\n.has-arrow[position^=\"left\"] {\n  margin-right: 8px;\n}\n.has-arrow[position^=\"left\"]::before,\n.has-arrow[position^=\"left\"]::after {\n  right: -8px;\n}\n.has-arrow[position^=\"left\"]::after {\n  background-image: linear-gradient(to top right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"left\"]::before,\n.has-arrow[position=\"left-middle\"]::before,\n.has-arrow[position=\"left\"]::after,\n.has-arrow[position=\"left-middle\"]::after {\n  top: 50%;\n}\n.has-arrow[position=\"left\"]::before,\n.has-arrow[position=\"left-middle\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"left\"]::before,\n.has-arrow[position=\"left-middle\"]::before,\n.has-arrow[position=\"left\"]::after,\n.has-arrow[position=\"left-middle\"]::after {\n  transform-origin: top right;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"left-bottom\"]::before,\n.has-arrow[position=\"left-bottom\"]::after {\n  top: 1.25rem;\n}\n.has-arrow[position=\"left-bottom\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, 3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"left-bottom\"]::before,\n.has-arrow[position=\"left-bottom\"]::after {\n  transform-origin: top right;\n  transform: rotate(45deg);\n}\n.has-arrow[position=\"left-top\"]::before,\n.has-arrow[position=\"left-top\"]::after {\n  bottom: 1.25rem;\n}\n.has-arrow[position=\"left-top\"]::after {\n  background-image: linear-gradient(to bottom right, transparent 50%, #ffffff 50%);\n}\n.has-arrow[position=\"left-top\"]::before {\n  box-shadow: 0 0 0 1px #e0e0e0, -3px 3px 3px 0 rgba(0, 0, 0, 0.16);\n}\n.has-arrow[position=\"left-top\"]::before,\n.has-arrow[position=\"left-top\"]::after {\n  transform-origin: bottom right;\n  transform: rotate(-45deg);\n}\n#hxTooltip {\n  background-color: #ffffff;\n  border-radius: 2px;\n  border: 1px solid #e0e0e0;\n  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16);\n  padding: 0.75rem;\n}\n";
 
 const TOOLTIP_DELAY = 500;
 
@@ -4936,7 +5120,7 @@ class HXTooltipElement extends _ProtoClass$3 {
     }
 
     static get template () {
-        return `<style>${shadowStyles$g}</style>${shadowMarkup$g}`;
+        return `<style>${shadowStyles$i}</style>${shadowMarkup$i}`;
     }
 
     /** @override */
@@ -5239,6 +5423,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXAccordionPanelElement: HXAccordionPanelElement,
     HXAlertElement: HXAlertElement,
     HXBusyElement: HXBusyElement,
+    HXCheckboxControlElement: HXCheckboxControlElement,
     HXCheckboxElement: HXCheckboxElement,
     HXDisclosureElement: HXDisclosureElement,
     HXDivElement: HXDivElement,
@@ -5249,6 +5434,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXFileIconElement: HXFileIconElement,
     HXFileInputElement: HXFileInputElement,
     HXFileTileElement: HXFileTileElement,
+    HXFormControlElement: HXFormControlElement,
     HXIconElement: HXIconElement,
     HXMenuElement: HXMenuElement,
     HXMenuitemElement: HXMenuitemElement,
@@ -5256,19 +5442,25 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXPillElement: HXPillElement,
     HXPopoverElement: HXPopoverElement,
     HXProgressElement: HXProgressElement,
+    HXRadioControlElement: HXRadioControlElement,
+    HXRadioElement: HXRadioElement,
     HXRevealElement: HXRevealElement,
     HXSearchAssistanceElement: HXSearchAssistanceElement,
     HXSearchElement: HXSearchElement,
+    HXSelectControlElement: HXSelectControlElement,
+    HXSelectElement: HXSelectElement,
     HXTabElement: HXTabElement,
     HXTabcontentElement: HXTabcontentElement,
     HXTablistElement: HXTablistElement,
     HXTabpanelElement: HXTabpanelElement,
     HXTabsetElement: HXTabsetElement,
+    HXTextControlElement: HXTextControlElement,
+    HXTextareaControlElement: HXTextareaControlElement,
     HXToastElement: HXToastElement,
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.15.0";
+var version = "0.16.0-rc.0";
 
 /** @module HelixUI */
 

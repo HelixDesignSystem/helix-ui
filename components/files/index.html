@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Files - HelixUI</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <base href="/helix-ui/">
+<title>Files - HelixUI</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/helix-ui/">
 
-  <link rel="shortcut icon" href="images/favicon.png">
+<link rel="shortcut icon" href="images/favicon.png">
 
-  <!-- Font Awesome Brand Icons -->
-  <link
-    crossorigin="anonymous"
-    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
-    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
-    rel="stylesheet"
-  />
-  <link
-    crossorigin="anonymous"
-    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
-    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
-    rel="stylesheet"
-  />
+<!-- Font Awesome Brand Icons -->
+<link
+  crossorigin="anonymous"
+  href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+  integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+  rel="stylesheet"
+/>
+<link
+  crossorigin="anonymous"
+  href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+  integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+  rel="stylesheet"
+/>
 
-  <link rel="stylesheet" href="dist/styles/helix-ui.css">
-  <link rel="stylesheet" href="docs.css">
+<link rel="stylesheet" href="dist/styles/helix-ui.css">
+<link rel="stylesheet" href="docs.css">
 
-  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
-  <script src="vendor/custom-elements-es5-adapter.js"></script>
+<!-- Converts ES5 custom element constructor functions to ES6 classes -->
+<script src="vendor/custom-elements-es5-adapter.js"></script>
 
-  <!-- loader appends polyfills, if needed -->
-  <script src="vendor/webcomponents-loader.js"></script>
+<!-- loader appends polyfills, if needed -->
+<script src="vendor/webcomponents-loader.js"></script>
+
+    
 </head>
 <body class="hxVertical" id="top">
   <!-- This link should be the first item a user can tab to. -->
@@ -154,6 +156,12 @@ class="current">
 
 
       
+      <a href="components/dropdown-select" >
+    Dropdown Select
+  </a>
+
+
+      
       <a href="components/files" class="current">
     Files
   </a>
@@ -232,6 +240,12 @@ class="current">
 
 
       
+      <a href="components/radios" >
+    Radios
+  </a>
+
+
+      
       <a href="components/reveals" >
     Reveals
   </a>
@@ -298,14 +312,14 @@ class="current">
   </hx-disclosure>
   <hx-reveal id="nav-elements" >
       
-      <a href="elements/hx-accordion" >
-    &lt;hx-accordion&gt;
+      <a href="elements/hx-accordion-panel" >
+    &lt;hx-accordion-panel&gt;
   </a>
 
 
       
-      <a href="elements/hx-accordion-panel" >
-    &lt;hx-accordion-panel&gt;
+      <a href="elements/hx-accordion" >
+    &lt;hx-accordion&gt;
   </a>
 
 
@@ -418,8 +432,20 @@ class="current">
 
 
       
+      <a href="elements/hx-radio" >
+    &lt;hx-radio&gt;
+  </a>
+
+
+      
       <a href="elements/hx-reveal" >
     &lt;hx-reveal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search-assistance" >
+    &lt;hx-search-assistance&gt;
   </a>
 
 
@@ -430,8 +456,14 @@ class="current">
 
 
       
-      <a href="elements/hx-search-assistance" >
-    &lt;hx-search-assistance&gt;
+      <a href="elements/hx-select-control" >
+    &lt;hx-select-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-select" >
+    &lt;hx-select&gt;
   </a>
 
 
@@ -495,7 +527,9 @@ class="current">
       </nav>
 
   <main id="content" class="hxBox hxMd">
-    <h1>Files
+    <header>
+      <h1>
+        Files
 <min-version id="page-min-version">
     v0.12.0+
 </min-version>
@@ -503,13 +537,16 @@ class="current">
 <hx-tooltip for="page-min-version" position="right">
     HelixUI v0.12.0 or later required
 </hx-tooltip>
-    </h1>
+      </h1>
+
+        
+    </header>
 
   <section>
     <h2 id="drop-zone">Drop Zone</h2>
     <p class="hxSubBody">Added: v0.14.0</p>
     <p>
-      A container that provides a visual overlay when dragging a file, marking 
+      A container that provides a visual overlay when dragging a file, marking
       the boundaries of where a user can drop.
     </p>
     <p class="hxSubdued hxSubBody">
@@ -523,7 +560,7 @@ class="current">
             <p>
               Drop files here or
               <hx-file-input
-                class="hxTertiary" 
+                class="hxTertiary"
                 label="browse your files">
                 <input type="file" />
               </hx-file-input>.
@@ -538,7 +575,7 @@ class="current">
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
       Drop files here or
       <span class="hljs-tag">&lt;<span class="hljs-name">hx-file-input</span>
-        <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTertiary"</span> 
+        <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTertiary"</span>
         <span class="hljs-attr">label</span>=<span class="hljs-string">"browse your files"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> /&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-input</span>&gt;</span>.
@@ -548,7 +585,7 @@ class="current">
 </code></pre>      </footer>
     </div>
   </section>
-  
+
   <section>
     <h2 id="file-selector">File Selector</h2>
     <p class="hxSubBody">Added: v0.13.0</p>
@@ -556,40 +593,47 @@ class="current">
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>Variant</legend>
-            <label v-for="_variant in variants">
+            <legend class="beta-hxFieldName">Variant</legend>
+            <div v-for="(_variant, idx) in variants">
               <input
+                :id="'radSelectorVariant' + idx"
                 :value="_variant"
                 name="variant"
                 type="radio"
                 v-model="variant"
               />
-              <span v-text="_variant.label"></span>
-              <em class="hxSubBody" v-if="_variant.default">(default)</em>
-            </label>
+              <label :for="'radSelectorVariant' + idx">
+                <span v-text="_variant.label"></span>
+                <em class="hxSubBody" v-if="_variant.default">(default)</em>
+              </label>
+            </div>
           </fieldset>
           <fieldset>
-            <legend>Icon</legend>
-            <label v-for="_icon in icons">
+            <legend class="beta-hxFieldName">Icon</legend>
+            <div v-for="(_icon, idx) in icons">
               <input
+                :id="'radSelectorIcon' + idx"
                 :value="_icon"
                 name="icon"
                 type="radio"
                 v-model="icon"
               />
-              <span v-text="_icon"></span>
-            </label>
+              <label
+                :for="'radSelectorIcon' + idx"
+                v-text="_icon"
+              ></label>
+            </div>
           </fieldset>
           <p>
-            <label for="inputLabel">Label</label>
-            <input id="inputLabel" class="hxTextCtrl" v-model="label" />
+            <label for="txtLabel" class="beta-hxFieldName">Label</label>
+            <input id="txtLabel" class="hxTextCtrl" v-model="label" />
           </p>
           <fieldset>
-            <legend>Options</legend>
-            <label>
-              <input type="checkbox" v-model="isMultiple">
-              Multiple
-            </label>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div>
+              <input id="chkIsMultiple" type="checkbox" v-model="isMultiple">
+              <label for="chkIsMultiple">Multiple</label>
+            </div>
           </fieldset>
         </form>
       </header>
@@ -614,50 +658,50 @@ class="current">
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend>States</legend>
-            <label>
-              <input type="radio" value="downloadable" name="file-state" v-model="state" />
-              Downloadable
-            </label>
-            <label>
-              <input type="radio" value="loading" name="file-state" v-model="state" />
-              Loading
-            </label>
-            <label>
-              <input type="radio" value="invalid" name="file-state" v-model="state" />
-              Invalid
-            </label>
+            <legend class="beta-hxFieldName">States</legend>
+            <div>
+              <input id="radTileDownloadable" type="radio" value="downloadable" name="file-state" v-model="state" />
+              <label for="radTileDownloadable">Downloadable</label>
+            </div>
+            <div>
+              <input id="radTileLoading" type="radio" value="loading" name="file-state" v-model="state" />
+              <label for="radTileLoading">Loading</label>
+            </div>
+            <div>
+              <input id="radTileInvalid" type="radio" value="invalid" name="file-state" v-model="state" />
+              <label for="radTileInvalid">Invalid</label>
+            </div>
           </fieldset>
-          <p>
-            <label for="selIcon">Icon</label>
+          <div>
+            <label for="selIcon" class="beta-hxFieldName">Icon</label>
             <select id="selIcon" v-model="icon">
               <option v-for="_icon in icons" :value="_icon" v-text="_icon">
               </option>
             </select>
-          </p>
+          </div>
           <p>
-            <label for="txtName">Name</label>
+            <label for="txtName" class="beta-hxFieldName">Name</label>
             <input id="txtName" class="hxTextCtrl" v-model="name" />
           </p>
           <template v-if="isDownloadable">
             <p>
-              <label for="txtHref">HREF</label>
+              <label for="txtHref" class="beta-hxFieldName">HREF</label>
               <input id="txtHref" class="hxTextCtrl" v-model="href" />
             </p>
             <p>
-              <label for="txtDetails">Details</label>
+              <label for="txtDetails" class="beta-hxFieldName">Details</label>
               <input id="txtDetails" class="hxTextCtrl" v-model="details" />
             </p>
             <fieldset>
-              <legend>Options</legend>
-              <label>
-                <input type="checkbox" v-model="readonly" />
-                Readonly
-              </label>
+              <legend class="beta-hxFieldName">Options</legend>
+              <div>
+                <input id="chkTileReadOnly" type="checkbox" v-model="readonly" />
+                <label for="chkTileReadOnly">Readonly</label>
+              </div>
             </fieldset>
           </template>
           <p v-if="isLoading">
-            <label for="rngProgress">Progress</label>
+            <label for="rngProgress" class="beta-hxFieldName">Progress</label>
             <input id="rngProgress" type="range" v-model="progress"/>
           </p>
         </form>
@@ -738,9 +782,12 @@ class="current">
 </section>
   </main>
   <aside class="hxSiderail hxBox hxMd">
-    <h1 class="hxHeading-4">On this page:</h1>
-    <nav class="article-toc">
-      
+<header>
+  <h1 class="hxHeading-4">On this page:</h1>
+</header>
+
+<nav class="article-toc">
+  
             <a href="#drop-zone">Drop Zone</a>
         
 
@@ -749,10 +796,10 @@ class="current">
 
             <a href="#file-tile">File Tile</a>
         
-        <a href="#see-also">See Also</a>
-      <hr class="hxDivider" />
-      <a class="top-link" href="#top">Back to Top</a>
-    </nav>
+    <a href="#see-also">See Also</a>
+  <hr class="hxDivider" />
+  <a class="top-link" href="#top">Back to Top</a>
+</nav>
   </aside>
     </div>
   </div>
@@ -768,12 +815,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2019-01-08
+      2019-04-04
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.15.0" target="_blank">
-      v0.15.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0-rc.0" target="_blank">
+      v0.16.0-rc.0
     </a>)
   </small>
 </div>
@@ -782,5 +829,7 @@ class="current">
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
 <script src="dist/scripts/helix-ui.browser.js"></script>
 <script src="docs.js"></script>
+
+    
 </body>
 </html>
