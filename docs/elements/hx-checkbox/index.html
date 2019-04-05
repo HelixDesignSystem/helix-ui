@@ -1,69 +1,31 @@
 ---
 title: <hx-checkbox>
-minver: 0.2.0
+minver: 0.16.0
 also:
   components/checkboxes: Checkboxes
-  guides/react-compatibility/#significant-white-space: Significant White Space (React Compatibility)
+  elements/hx-checkbox-control: <hx-checkbox-control>
 ---
 {% extends 'element.njk' %}
 {% block content %}
   <section>
-    <p>
-      The custom <code>{{page.title}}</code> element renders an interactive
-      checkbox control for use within forms.
+    <p class="comfortable">
+      The <code>{{page.title}}</code> inline element is a stylistic facade used
+      to build a <a href="components/checkboxes">Checkbox</a> component.
     </p>
 
     <dl class="metadata hxList">
       <div>
-        <dt>Display</dt>
-        <dd>inline</dd>
-      </div>
-      <div>
         <dt>Permitted Parents</dt>
-        <dd>any</dd>
+        <dd>any element that accepts flow content</dd>
       </div>
       <div>
         <dt>Permitted Children</dt>
-        <dd>none (content will be removed upon element upgrade)</dd>
+        <dd><i>none</i></dd>
       </div>
       <div>
         <dt>Events</dt>
-        <dd><code>change</code></dd>
+        <dd><i>none</i></dd>
       </div>
     </dl>
   </section>
-
-  <section>
-    <h2 id="methods">Methods</h2>
-    <dl>
-      <dt>click()</dt>
-      <dd>Simulates a mouse click on the element</dd>
-    </dl>
-  </section>
-{% endblock %}
-
-{% block attributes %}
-  <dl>
-    <dt>checked</dt>
-    <dd>Checks the checkbox</dd>
-
-    <dt>invalid</dt>
-    <dd>Invalidates the checkbox</dd>
-
-    <dt>disabled</dt>
-    <dd>Disables the checkbox</dd>
-  </dl>
-{% endblock %}
-
-{% block properties %}
-  <dl>
-    <dt>checked {Boolean [false]}</dt>
-    <dd>Determines if checkbox is checked.</dd>
-
-    <dt>disabled {Boolean [false]}</dt>
-    <dd>Determines if checkbox is disabled.</dd>
-
-    <dt>indeterminate {Boolean [false]}</dt>
-    <dd>Determines if checkbox is indeterminate.</dd>
-  </dl>
 {% endblock %}

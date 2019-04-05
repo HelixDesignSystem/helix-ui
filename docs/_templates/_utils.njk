@@ -1,0 +1,9 @@
+{% macro element(elementName) %}
+  <code>&lt;{{elementName}}&gt;</code>
+{% endmacro %}
+
+{% macro customElement(elementName) %}
+  <a href="elements/{{elementName}}">
+    {{element(elementName)}}
+  </a>
+{% endmacro %}

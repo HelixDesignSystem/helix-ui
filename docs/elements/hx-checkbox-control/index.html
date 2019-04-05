@@ -1,10 +1,10 @@
 ---
-title: <hx-select-control>
+title: <hx-checkbox-control>
 minver: 0.16.0
-controlElement: <select>
+controlElement: <input type="checkbox">
 also:
-  components/dropdown-select: Dropdown Select
-  elements/hx-select: <hx-select>
+  components/checkboxes: Checkboxes
+  elements/hx-checkbox: <hx-checkbox>
 ---
 {% extends 'element.njk' %}
 {% import '_utils.njk' as utils %}
@@ -12,8 +12,8 @@ also:
   <section>
     <p class="comfortable">
       The <code>{{page.title}}</code> block element is a container that provides
-      behavior which augments native browser validation capabilities. It is used
-      to build a <a href="components/dropdown-select">Dropdown Select</a> component.
+      behavior to augment native browser validation capabilities.  It is used to
+      build a <a href="components/checkboxes">Checkbox</a> component.
     </p>
 
     <dl class="metadata hxList">
@@ -26,8 +26,12 @@ also:
         <dd>
           in this order:
           <ol class="hxList">
-            <li>{{utils.element('select')}} element</li>
-            <li>{{utils.customElement('hx-select')}} element</li>
+            <li>checkbox {{utils.element('input')}} element</li>
+            <li>{{utils.element('label')}} element</li>
+            <li>
+              {{utils.element('p')}} element for control-level help text
+              <small class="hxSubdued">(optional)</small>
+            </li>
           </ol>
         </dd>
       </div>
@@ -68,7 +72,7 @@ also:
 {% block properties %}
   <dl class="memberList">
     <dt>
-      controlElement {?HTMLSelectElement}
+      controlElement {?HTMLInputElement}
       <hx-pill class="hxSubBody" persist>read-only</hx-pill>
     </dt>
     <dd>

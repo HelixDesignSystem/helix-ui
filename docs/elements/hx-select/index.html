@@ -6,23 +6,18 @@ also:
   elements/hx-select-control: <hx-select-control>
 ---
 {% extends 'element.njk' %}
+{% import '_utils.njk' as utils %}
 {% block content %}
   <section>
     <p class="comfortable">
-      The custom <code>{{page.title}}</code> element is a stylistic
-      facade designed to be layered on top of a native
-      <code>&lt;select&gt;</code> element within a
-      <a href="components/dropdown-select">Dropdown Select</a> component.
+      The <code>{{page.title}}</code> block element is a stylistic facade used
+      to build a <a href="components/dropdown-select">Dropdown Select</a> component.
     </p>
 
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>
-        <dd>
-          an
-          <a href="elements/hx-select-control">&lt;hx-select-control&gt;</a>
-          element
-        </dd>
+        <dd>{{utils.customElement('hx-select-control')}}</dd>
       </div>
       <div>
         <dt>Permitted Children</dt>
