@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Selector Strips - HelixUI</title>
+<title>&lt;hx-radio-control&gt; - HelixUI</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <base href="/helix-ui/">
@@ -102,11 +102,11 @@
     
   <hx-disclosure
     aria-controls="nav-components"
-class="current">
+>
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-components" open>
+  <hx-reveal id="nav-components" >
       
       <a href="components/accordions" >
     Accordions
@@ -258,7 +258,7 @@ class="current">
 
 
       
-      <a href="components/selector-strips" class="current">
+      <a href="components/selector-strips" >
     Selector Strips
   </a>
 
@@ -306,11 +306,11 @@ class="current">
     
   <hx-disclosure
     aria-controls="nav-elements"
->
+class="current">
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-elements" >
+  <hx-reveal id="nav-elements" open>
       
       <a href="elements/hx-accordion-panel" >
     &lt;hx-accordion-panel&gt;
@@ -438,7 +438,7 @@ class="current">
 
 
       
-      <a href="elements/hx-radio-control" >
+      <a href="elements/hx-radio-control" class="current">
     &lt;hx-radio-control&gt;
   </a>
 
@@ -541,13 +541,13 @@ class="current">
   <main id="content" class="hxBox hxMd">
     <header>
       <h1>
-        Selector Strips
+        &lt;hx-radio-control&gt;
 <min-version id="page-min-version">
-    v0.8.0+
+    v0.16.0+
 </min-version>
 
 <hx-tooltip for="page-min-version" position="right">
-    HelixUI v0.8.0 or later required
+    HelixUI v0.16.0 or later required
 </hx-tooltip>
       </h1>
 
@@ -555,133 +555,138 @@ class="current">
     </header>
 
   <section>
-    <h2 id="multi-select">Multi-Select</h2>
-    <p>a.k.a. "checkbox strip"<p>
-    <div class="example">
-      <div>
-        <div class="hxSelector">
-          <label>
-            <input type="checkbox" name="a" />
-            <span>a</span>
-          </label>
-          <label>
-            <input type="checkbox" name="b" checked />
-            <span>b</span>
-          </label>
-          <label>
-            <input type="checkbox" name="c" disabled />
-            <span>c</span>
-          </label>
-          <label>
-            <input type="checkbox" name="d" invalid />
-            <span>d</span>
-          </label>
-          <label>
-            <input type="checkbox" name="e" invalid checked />
-            <span>e</span>
-          </label>
-        </div>
-      </div>
+    <p class="comfortable">
+      The <code>&lt;hx-radio-control&gt;</code> block element is a container that provides
+      behavior to augment native browser validation capabilities. It is used to
+      build a <a href="components/radios">Radio</a> component.
+    </p>
 
-      <footer>
-<pre><code class="text">&lt;div <span class="hljs-keyword">class</span>="<span class="hljs-symbol">hxSelector</span>"&gt;
-  &lt;<span class="hljs-symbol">label</span>&gt;
-    &lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">type</span>="<span class="hljs-symbol">checkbox</span>" <span class="hljs-symbol">name</span>="<span class="hljs-symbol">a</span>" /&gt;
-    &lt;<span class="hljs-symbol">span</span>&gt;<span class="hljs-symbol">a</span>&lt;/<span class="hljs-symbol">span</span>&gt;
-  &lt;/<span class="hljs-symbol">label</span>&gt;
-  &lt;<span class="hljs-symbol">label</span>&gt;
-    &lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">type</span>="<span class="hljs-symbol">checkbox</span>" <span class="hljs-symbol">name</span>="<span class="hljs-symbol">b</span>" <span class="hljs-symbol">checked</span> /&gt;
-    &lt;<span class="hljs-symbol">span</span>&gt;<span class="hljs-symbol">b</span>&lt;/<span class="hljs-symbol">span</span>&gt;
-  &lt;/<span class="hljs-symbol">label</span>&gt;
-  &lt;<span class="hljs-symbol">label</span>&gt;
-    &lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">type</span>="<span class="hljs-symbol">checkbox</span>" <span class="hljs-symbol">name</span>="<span class="hljs-symbol">c</span>" <span class="hljs-symbol">disabled</span> /&gt;
-    &lt;<span class="hljs-symbol">span</span>&gt;<span class="hljs-symbol">c</span>&lt;/<span class="hljs-symbol">span</span>&gt;
-  &lt;/<span class="hljs-symbol">label</span>&gt;
-  &lt;<span class="hljs-symbol">label</span>&gt;
-    &lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">type</span>="<span class="hljs-symbol">checkbox</span>" <span class="hljs-symbol">name</span>="<span class="hljs-symbol">d</span>" <span class="hljs-symbol">invalid</span> /&gt;
-    &lt;<span class="hljs-symbol">span</span>&gt;<span class="hljs-symbol">d</span>&lt;/<span class="hljs-symbol">span</span>&gt;
-  &lt;/<span class="hljs-symbol">label</span>&gt;
-  &lt;<span class="hljs-symbol">label</span>&gt;
-    &lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">type</span>="<span class="hljs-symbol">checkbox</span>" <span class="hljs-symbol">name</span>="<span class="hljs-symbol">e</span>" <span class="hljs-symbol">invalid</span> <span class="hljs-symbol">checked</span> /&gt;
-    &lt;<span class="hljs-symbol">span</span>&gt;<span class="hljs-symbol">e</span>&lt;/<span class="hljs-symbol">span</span>&gt;
-  &lt;/<span class="hljs-symbol">label</span>&gt;
-&lt;/<span class="hljs-symbol">div</span>&gt;
-</code></pre>      </footer>
-    </div>
+    <dl class="metadata hxList">
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>any element that accepts flow content</dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd>
+          in this order:
+          <ul class="hxList">
+            <li>radio   <code>&lt;input&gt;</code>
+ element</li>
+            <li>  <code>&lt;label&gt;</code>
+ element</li>
+            <li>
+                <code>&lt;p&gt;</code>
+ element for control-level help text
+              <small class="hxSubdued">(optional)</small>
+            </li>
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd><i>none</i></dd>
+      </div>
+    </dl>
   </section>
 
-  <section>
-    <h2 id="single-select">Single-Select</h2>
-    <p>a.k.a. "radio strip"<p>
-    <div class="example">
-      <div>
-        <div class="hxSelector hxRadio">
-          <label>
-            <input type="radio" name="foo" checked />
-            <span>1</span>
-          </label>
-          <label>
-            <input type="radio" name="foo" />
-            <span>2</span>
-          </label>
-          <label>
-            <input type="radio" name="foo" disabled />
-            <span>3</span>
-          </label>
-          <label>
-            <input type="radio" name="foo" />
-            <span>4</span>
-          </label>
-          <label>
-            <input type="radio" name="foo" />
-            <span>5</span>
-          </label>
-        </div>
-      </div>
+    
+    <section>
+      <header>
+        <h2 id="attributes">Attributes</h2>
+        <p>
+          Attributes enable declarative configuration of an element,
+          via HTML markup.
+        </p>
+      </header>
 
-      <footer>
-<pre><code class="text">&lt;div <span class="hljs-keyword">class</span>="<span class="hljs-symbol">hxSelector</span> <span class="hljs-symbol">hxRadio</span>"&gt;
-  &lt;<span class="hljs-symbol">label</span>&gt;
-    &lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">type</span>="<span class="hljs-symbol">radio</span>" <span class="hljs-symbol">name</span>="<span class="hljs-symbol">foo</span>" <span class="hljs-symbol">checked</span> /&gt;
-    &lt;<span class="hljs-symbol">span</span>&gt;<span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">span</span>&gt;
-  &lt;/<span class="hljs-symbol">label</span>&gt;
-  &lt;<span class="hljs-symbol">label</span>&gt;
-    &lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">type</span>="<span class="hljs-symbol">radio</span>" <span class="hljs-symbol">name</span>="<span class="hljs-symbol">foo</span>" /&gt;
-    &lt;<span class="hljs-symbol">span</span>&gt;<span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">span</span>&gt;
-  &lt;/<span class="hljs-symbol">label</span>&gt;
-  &lt;<span class="hljs-symbol">label</span>&gt;
-    &lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">type</span>="<span class="hljs-symbol">radio</span>" <span class="hljs-symbol">name</span>="<span class="hljs-symbol">foo</span>" <span class="hljs-symbol">disabled</span> /&gt;
-    &lt;<span class="hljs-symbol">span</span>&gt;<span class="hljs-symbol">3</span>&lt;/<span class="hljs-symbol">span</span>&gt;
-  &lt;/<span class="hljs-symbol">label</span>&gt;
-  &lt;<span class="hljs-symbol">label</span>&gt;
-    &lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">type</span>="<span class="hljs-symbol">radio</span>" <span class="hljs-symbol">name</span>="<span class="hljs-symbol">foo</span>" /&gt;
-    &lt;<span class="hljs-symbol">span</span>&gt;<span class="hljs-symbol">4</span>&lt;/<span class="hljs-symbol">span</span>&gt;
-  &lt;/<span class="hljs-symbol">label</span>&gt;
-  &lt;<span class="hljs-symbol">label</span>&gt;
-    &lt;<span class="hljs-symbol">input</span> <span class="hljs-symbol">type</span>="<span class="hljs-symbol">radio</span>" <span class="hljs-symbol">name</span>="<span class="hljs-symbol">foo</span>" /&gt;
-    &lt;<span class="hljs-symbol">span</span>&gt;<span class="hljs-symbol">5</span>&lt;/<span class="hljs-symbol">span</span>&gt;
-  &lt;/<span class="hljs-symbol">label</span>&gt;
-&lt;/<span class="hljs-symbol">div</span>&gt;
-</code></pre>      </footer>
-    </div>
-  </section>
+  <dl class="memberList">
+    <dt>
+      hx-changed {Boolean}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Present if descendant <code>&lt;input type=&quot;radio&quot;&gt;</code> element
+        has emitted a "change" event.
+      </p>
+    </dd>
 
+    <dt>
+      hx-touched {Boolean}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Present if descendant <code>&lt;input type=&quot;radio&quot;&gt;</code> element
+        has emitted a "blur" event.
+      </p>
+    </dd>
+  </dl>
+    </section>
+
+    
+    <section>
+      <header>
+        <h2 id="properties">Properties</h2>
+        <p>
+          JavaScript properties enable programmatic access to an element's
+          configuration and state.
+        </p>
+      </header>
+
+  <dl class="memberList">
+    <dt>
+      controlElement {?HTMLInputElement}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Returns the first <code>&lt;input type=&quot;radio&quot;&gt;</code> descendant
+        or <code>null</code> if none are found.
+      </p>
+    </dd>
+
+    <dt>
+      wasChanged {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if <code>controlElement</code> has emitted a "change" event.
+    </dd>
+
+    <dt>
+      wasTouched {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if <code>controlElement</code> has emitted a "blur" event.
+    </dd>
+  </dl>
+    </section>
+
+<section>
+  <h2 id="see-also">See Also</h2>
+  <ul class="hxList">
+      <li><a href="components/radios">Radios</a></li>
+      <li><a href="elements/hx-radio">&lt;hx-radio&gt;</a></li>
+  </ul>
+</section>
   </main>
+
   <aside class="hxSiderail hxBox hxMd">
-<header>
-  <h1 class="hxHeading-4">On this page:</h1>
-</header>
+    <header>
+      <h1 class="hxHeading-4">On this page:</h1>
+    </header>
 
-<nav class="article-toc">
-  
-            <a href="#multi-select">Multi-Select</a>
-        
-
-            <a href="#single-select">Single-Select</a>
-        
-  <hr class="hxDivider" />
-  <a class="top-link" href="#top">Back to Top</a>
-</nav>
+    <nav class="article-toc">
+      
+      <a href="#attributes">Attributes</a>
+      <a href="#properties">Properties</a>
+        <a href="#see-also">See Also</a>
+      <hr class="hxDivider" />
+      <a class="top-link" href="#top">Back to Top</a>
+    </nav>
   </aside>
     </div>
   </div>
@@ -697,7 +702,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2019-02-21
+      2019-04-05
     </small>
 
   <small>

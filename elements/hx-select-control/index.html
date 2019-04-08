@@ -336,6 +336,12 @@ class="current">
 
 
       
+      <a href="elements/hx-checkbox-control" >
+    &lt;hx-checkbox-control&gt;
+  </a>
+
+
+      
       <a href="elements/hx-checkbox" >
     &lt;hx-checkbox&gt;
   </a>
@@ -428,6 +434,12 @@ class="current">
       
       <a href="elements/hx-progress" >
     &lt;hx-progress&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-radio-control" >
+    &lt;hx-radio-control&gt;
   </a>
 
 
@@ -543,24 +555,30 @@ class="current">
     </header>
 
   <section>
-    <p>
-      The custom <code>&lt;hx-select-control&gt;</code> element provides functionality to
-      augment native browser validation capabilities.
+    <p class="comfortable">
+      The <code>&lt;hx-select-control&gt;</code> block element is a container that provides
+      behavior which augments native browser validation capabilities. It is used
+      to build a <a href="components/dropdown-select">Dropdown Select</a> component.
     </p>
 
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>
-        <dd>any</dd>
+        <dd>any element that accepts flow content</dd>
       </div>
       <div>
         <dt>Permitted Children</dt>
         <dd>
           in this order:
-          <ul class="hxList">
-            <li>a <code>&lt;select&gt;</code> element</li>
-            <li>an <a href="elements/hx-select">&lt;hx-select&gt;</a> element</li>
-          </ul>
+          <ol class="hxList">
+            <li>  <code>&lt;select&gt;</code>
+ element</li>
+            <li>  <a href="elements/hx-select">
+      <code>&lt;hx-select&gt;</code>
+
+  </a>
+ element</li>
+          </ol>
         </dd>
       </div>
       <div>
@@ -617,16 +635,30 @@ class="current">
 
   <dl class="memberList">
     <dt>
-      controlElement {HTMLSelectElement|null}
+      controlElement {?HTMLSelectElement}
       <hx-pill class="hxSubBody" persist>read-only</hx-pill>
     </dt>
     <dd>
       <p>
-        Returns the first <code>&lt;select&gt;</code> descendant.
+        Returns the first <code>&lt;select&gt;</code> descendant
+        or <code>null</code> if none are found.
       </p>
-      <p>
-        If no <code>&lt;select&gt;</code> element is found, returns <code>null</code>.
-      </p>
+    </dd>
+
+    <dt>
+      wasChanged {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if <code>controlElement</code> has emitted a "change" event.
+    </dd>
+
+    <dt>
+      wasTouched {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if <code>controlElement</code> has emitted a "blur" event.
     </dd>
   </dl>
     </section>
@@ -668,7 +700,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2019-04-04
+      2019-04-05
     </small>
 
   <small>

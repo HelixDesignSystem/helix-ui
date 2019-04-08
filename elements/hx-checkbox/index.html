@@ -336,6 +336,12 @@ class="current">
 
 
       
+      <a href="elements/hx-checkbox-control" >
+    &lt;hx-checkbox-control&gt;
+  </a>
+
+
+      
       <a href="elements/hx-checkbox" class="current">
     &lt;hx-checkbox&gt;
   </a>
@@ -428,6 +434,12 @@ class="current">
       
       <a href="elements/hx-progress" >
     &lt;hx-progress&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-radio-control" >
+    &lt;hx-radio-control&gt;
   </a>
 
 
@@ -531,11 +543,11 @@ class="current">
       <h1>
         &lt;hx-checkbox&gt;
 <min-version id="page-min-version">
-    v0.2.0+
+    v0.16.0+
 </min-version>
 
 <hx-tooltip for="page-min-version" position="right">
-    HelixUI v0.2.0 or later required
+    HelixUI v0.16.0 or later required
 </hx-tooltip>
       </h1>
 
@@ -543,36 +555,24 @@ class="current">
     </header>
 
   <section>
-    <p>
-      The custom <code>&lt;hx-checkbox&gt;</code> element renders an interactive
-      checkbox control for use within forms.
+    <p class="comfortable">
+      The <code>&lt;hx-checkbox&gt;</code> inline element is a stylistic facade used
+      to build a <a href="components/checkboxes">Checkbox</a> component.
     </p>
 
     <dl class="metadata hxList">
       <div>
-        <dt>Display</dt>
-        <dd>inline</dd>
-      </div>
-      <div>
         <dt>Permitted Parents</dt>
-        <dd>any</dd>
+        <dd>any element that accepts flow content</dd>
       </div>
       <div>
         <dt>Permitted Children</dt>
-        <dd>none (content will be removed upon element upgrade)</dd>
+        <dd><i>none</i></dd>
       </div>
       <div>
         <dt>Events</dt>
-        <dd><code>change</code></dd>
+        <dd><i>none</i></dd>
       </div>
-    </dl>
-  </section>
-
-  <section>
-    <h2 id="methods">Methods</h2>
-    <dl>
-      <dt>click()</dt>
-      <dd>Simulates a mouse click on the element</dd>
     </dl>
   </section>
 
@@ -586,16 +586,10 @@ class="current">
         </p>
       </header>
 
-  <dl>
-    <dt>checked</dt>
-    <dd>Checks the checkbox</dd>
-
-    <dt>invalid</dt>
-    <dd>Invalidates the checkbox</dd>
-
-    <dt>disabled</dt>
-    <dd>Disables the checkbox</dd>
-  </dl>
+        <p class="hxSubdued hxSubBody">
+          <hx-icon type="info-circle"></hx-icon>
+          This element does not have any configurable attributes.
+        </p>
     </section>
 
     
@@ -608,23 +602,17 @@ class="current">
         </p>
       </header>
 
-  <dl>
-    <dt>checked {Boolean [false]}</dt>
-    <dd>Determines if checkbox is checked.</dd>
-
-    <dt>disabled {Boolean [false]}</dt>
-    <dd>Determines if checkbox is disabled.</dd>
-
-    <dt>indeterminate {Boolean [false]}</dt>
-    <dd>Determines if checkbox is indeterminate.</dd>
-  </dl>
+        <p class="hxSubdued hxSubBody">
+          <hx-icon type="info-circle"></hx-icon>
+          This element does not have any configurable properties.
+        </p>
     </section>
 
 <section>
   <h2 id="see-also">See Also</h2>
   <ul class="hxList">
       <li><a href="components/checkboxes">Checkboxes</a></li>
-      <li><a href="guides/react-compatibility/#significant-white-space">Significant White Space (React Compatibility)</a></li>
+      <li><a href="elements/hx-checkbox-control">&lt;hx-checkbox-control&gt;</a></li>
   </ul>
 </section>
   </main>
@@ -636,8 +624,6 @@ class="current">
 
     <nav class="article-toc">
       
-            <a href="#methods">Methods</a>
-        
       <a href="#attributes">Attributes</a>
       <a href="#properties">Properties</a>
         <a href="#see-also">See Also</a>
@@ -659,7 +645,7 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2019-04-04
+      2019-04-05
     </small>
 
   <small>
