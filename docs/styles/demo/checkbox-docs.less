@@ -8,13 +8,14 @@
       }
     }
 
+    /* ----- PRISTINE ----- */
     > input[type="checkbox"] {
-      // imitate :focus
+      /* imitate :focus */
       &.mock-focus {
         &:extend(hx-checkbox-control > input[type="checkbox"]:focus all);
       }
 
-      // imitate :hover
+      /* imitate :hover */
       &.mock-hover {
         &:extend(hx-checkbox-control > input[type="checkbox"]:hover all);
 
@@ -23,31 +24,56 @@
         }
       }
 
-      // imitate :invalid:focus
-      &:invalid.mock-focus {
-        &:extend(hx-checkbox-control > input[type="checkbox"]:invalid:focus all);
-      }
-
-      // imitate :invalid:hover
-      &:invalid.mock-hover {
-        &:extend(hx-checkbox-control > input[type="checkbox"]:invalid:hover all);
-
-        ~ label > hx-checkbox {
-          &:extend(hx-checkbox-control > input[type="checkbox"]:invalid ~ label > hx-checkbox:hover all);
-        }
-      }
-
-      // imitate :disabled:focus
+      /* imitate :disabled:focus */
       &:disabled.mock-focus {
         &:extend(hx-checkbox-control > input[type="checkbox"]:disabled:focus all);
       }
 
-      // imitate :disabled:hover
+      /* imitate :disabled:hover */
       &:disabled.mock-hover {
         &:extend(hx-checkbox-control > input[type="checkbox"]:disabled:hover all);
 
         ~ label > hx-checkbox {
           &:extend(hx-checkbox-control > input[type="checkbox"]:disabled ~ label > hx-checkbox:hover all);
+        }
+      }
+    }
+
+    /* ----- CHANGED OR TOUCHED ----- */
+    &[hx-changed],
+    &[hx-touched] {
+      > input[type="checkbox"]:invalid {
+        /* imitate :focus */
+        &.mock-focus {
+          &:extend(hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid:focus all);
+        }
+
+        /* imitate :hover */
+        &.mock-hover {
+          &:extend(hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid:hover all);
+
+          ~ label > hx-checkbox {
+            &:extend(hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid ~ label > hx-checkbox:hover all);
+          }
+        }
+      }
+    }
+
+    /* ----- FORCE INVALID ----- */
+    &.hxInvalid {
+      > input[type="checkbox"]:enabled {
+        /* imitate :focus */
+        &.mock-focus {
+          &:extend(hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:focus all);
+        }
+
+        /* imitate :hover */
+        &.mock-hover {
+          &:extend(hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:hover all);
+
+          ~ label > hx-checkbox {
+            &:extend(hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled ~ label > hx-checkbox:hover all);
+          }
         }
       }
     }
