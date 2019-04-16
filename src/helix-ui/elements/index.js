@@ -23,6 +23,7 @@ export { HXPopoverElement } from './HXPopoverElement';
 export { HXProgressElement } from './HXProgressElement';
 export { HXRadioControlElement } from './HXRadioControlElement';
 export { HXRadioElement } from './HXRadioElement';
+export { HXRadioSetElement } from './HXRadioSetElement';
 export { HXRevealElement } from './HXRevealElement';
 export { HXSearchAssistanceElement } from './HXSearchAssistanceElement';
 export { HXSearchElement } from './HXSearchElement';
