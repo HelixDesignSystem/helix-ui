@@ -7,27 +7,88 @@ also:
   elements/hx-select: <hx-select>
 ---
 {% extends 'component.njk' %}
-{% block content %}
+{% block page_header %}
   <p class="comfortable">
-    The {{page.title}} component provides markup that enables a consistent
-    visual appearance of the HTML <code>&lt;select&gt;</code> element.
+    The {{page.title}} component provides markup to define a single-selection,
+    drop-down list control (commonly used in forms).
   </p>
+{% endblock %}
 
+{% block content %}
   <section>
     <h2 id="basic-select">Basic Select</h2>
     <div class="example" id="vue-selectDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
+          <div>
+            <hx-text-control>
+              <input
+                id="txtLabel"
+                type="text"
+                v-model="label"
+              />
+              <label for="txtLabel">
+                Label Text
+              </label>
+            </hx-text-control>
+          </div>
+
           <fieldset>
-            <legend class="beta-hxFieldName">Options</legend>
-            <div>
-              <input id="chkRequired" type="checkbox" v-model="isRequired" />
-              <label for="chkRequired">Required</label>
-            </div>
-            <div>
-              <input id="chkDisabled" type="checkbox" v-model="isDisabled" />
-              <label for="chkDisabled">Disabled</label>
-            </div>
+            <legend class="beta-hxFieldName">Label Annotation</legend>
+
+            <hx-checkbox-control>
+              <input
+                id="chkHasAsterisk"
+                type="checkbox"
+                v-model="hasAsterisk"
+              />
+              <label for="chkHasAsterisk">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkHasOptional"
+                type="checkbox"
+                v-model="hasOptional"
+              />
+              <label for="chkHasOptional">
+                <hx-checkbox></hx-checkbox>
+                Optional
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Control Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkDisabled"
+                type="checkbox"
+                v-model="isDisabled"
+              />
+              <label for="chkDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkRequired"
+                type="checkbox"
+                v-model="isRequired"
+              />
+              <label for="chkRequired">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+              <p>
+                (Invalid styling applied <i>after</i> user interaction.)
+              </p>
+            </hx-checkbox-control>
           </fieldset>
         </form>
       </header>
@@ -35,6 +96,7 @@ also:
       <div>
         <hx-select-control>
           <select
+            id="selDemo"
             :disabled="isDisabled"
             :required="isRequired"
           >
@@ -44,6 +106,11 @@ also:
             <option value="3">Option 3</option>
           </select>
           <hx-select></hx-select>
+          <label
+            for="selDemo"
+            v-text="label"
+            :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }"
+          ></label>
         </hx-select-control>
       </div>
 
@@ -60,7 +127,6 @@ also:
   <!--
     TODO:
     Need centralized documentation of HelixUI form control validation behavior.
-  -->
   <section>
     <h2 id="validation">Validation</h2>
     <p class="comfortable">
@@ -79,4 +145,5 @@ also:
       to apply invalid control styles.
     </p>
   </section>
+  -->
 {% endblock %}
