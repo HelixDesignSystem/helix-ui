@@ -1,0 +1,497 @@
+---
+title: Testing - Textarea
+---
+{% set contentClasses = 'textarea-spec' %}
+{% extends 'test.njk' %}
+{% macro textarea(id='', wasChanged=false, wasTouched=false, className='', isRequired=false, isDisabled=false, isFocused=false, isValid=true) %}
+  {% set isPristine = (className === '') and not (wasChanged or wasTouched) %}
+
+  {% set idAttr -%}textarea-
+    {{- 'p' if not (wasChanged or wasTouched) -}}
+    {{- 'c' if wasChanged -}}
+    {{- 't' if wasTouched -}}
+    {{- 'R' if isRequired else 'O' -}}
+    {{- 'D' if isDisabled else 'E' -}}
+    {{- 'V' if isValid else 'I' -}}
+    -
+    {{- 'f' if isFocused else 'b' -}}
+    {%- if id !== '' %}-{{id}}{% endif -%}
+  {%- endset %}
+
+  <hx-textarea-control
+    {% if className !== '' %}class="{{className}}" {% endif %}
+    {% if wasChanged %}hx-changed {% endif %}
+    {% if wasTouched %}hx-touched {% endif %}
+  >
+    <textarea
+      id="{{idAttr | trim}}"
+      {% if isFocused %}class="mock-focus" {% endif %}
+      {% if isDisabled %}disabled {% endif %}
+      {% if isRequired %}
+        required
+      {% elif not isValid %}
+        data-mock-invalid
+      {% endif %}
+    >
+      {%- if isRequired and isValid -%}
+        Value
+      {%- endif -%}
+    </textarea>
+    <label for="{{idAttr | trim}}">
+      {% if isPristine %}
+        Pristine,
+      {% else %}
+        {% if className !== '' %}.{{ className }},{% endif %}
+        {% if wasChanged %}Changed,{% endif %}
+        {% if wasTouched %}Touched,{% endif %}
+      {% endif %}
+      {{ 'Required' if isRequired else 'Optional' }},
+      {{ 'Disabled' if isDisabled else 'Enabled' }},
+      {{ 'Valid' if isValid else 'Invalid' }}
+      ({{ 'focus' if isFocused else 'blur' }})
+    </label>
+  </hx-textarea-control>
+{% endmacro %}
+
+{% block page_header %}
+  <nav class="hxBreadcrumb">
+    <a href="components/textarea">Textarea</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">{{page.title}}</a>
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="test-pristine">Pristine</h2>
+      <code>&lt;hx-textarea-control&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;textarea&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textarea('pristine')}}
+              {{textarea('pristine', isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('pristine', isValid=false)}}
+              {{textarea('pristine', isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textarea('pristine', isDisabled=true)}}
+              {{textarea('pristine', isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('pristine', isValid=false, isDisabled=true)}}
+              {{textarea('pristine', isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;textarea required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textarea('pristine', isRequired=true)}}
+              {{textarea('pristine', isRequired=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('pristine', isRequired=true, isValid=false)}}
+              {{textarea('pristine', isRequired=true, isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textarea('pristine', isRequired=true, isDisabled=true)}}
+              {{textarea('pristine', isRequired=true, isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('pristine', isRequired=true, isValid=false, isDisabled=true)}}
+              {{textarea('pristine', isRequired=true, isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-changed">Changed</h2>
+      <code>&lt;hx-textarea-control hx-changed&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;textarea&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textarea('changed', wasChanged=true )}}
+              {{textarea('changed', wasChanged=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('changed', wasChanged=true, isValid=false)}}
+              {{textarea('changed', wasChanged=true, isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textarea('changed', wasChanged=true, isDisabled=true)}}
+              {{textarea('changed', wasChanged=true, isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('changed', wasChanged=true, isValid=false, isDisabled=true)}}
+              {{textarea('changed', wasChanged=true, isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;textarea required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textarea('changed', wasChanged=true, isRequired=true)}}
+              {{textarea('changed', wasChanged=true, isRequired=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('changed', wasChanged=true, isRequired=true, isValid=false)}}
+              {{textarea('changed', wasChanged=true, isRequired=true, isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textarea('changed', wasChanged=true, isRequired=true, isDisabled=true)}}
+              {{textarea('changed', wasChanged=true, isRequired=true, isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('changed', wasChanged=true, isRequired=true, isValid=false, isDisabled=true)}}
+              {{textarea('changed', wasChanged=true, isRequired=true, isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-touched">Touched</h2>
+      <code>&lt;hx-textarea-control hx-touched&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;textarea&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textarea('touched', wasTouched=true )}}
+              {{textarea('touched', wasTouched=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('touched', wasTouched=true, isValid=false)}}
+              {{textarea('touched', wasTouched=true, isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textarea('touched', wasTouched=true, isDisabled=true)}}
+              {{textarea('touched', wasTouched=true, isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('touched', wasTouched=true, isValid=false, isDisabled=true)}}
+              {{textarea('touched', wasTouched=true, isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;textarea required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textarea('touched', wasTouched=true, isRequired=true)}}
+              {{textarea('touched', wasTouched=true, isRequired=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('touched', wasTouched=true, isRequired=true, isValid=false)}}
+              {{textarea('touched', wasTouched=true, isRequired=true, isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textarea('touched', wasTouched=true, isRequired=true, isDisabled=true)}}
+              {{textarea('touched', wasTouched=true, isRequired=true, isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('touched', wasTouched=true, isRequired=true, isValid=false, isDisabled=true)}}
+              {{textarea('touched', wasTouched=true, isRequired=true, isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-styled-invalid">Styled Invalid</h2>
+      <code>&lt;hx-textarea-control class="hxInvalid"&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;textarea&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textarea('invalid', className="hxInvalid" )}}
+              {{textarea('invalid', className="hxInvalid", isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('invalid', className="hxInvalid", isValid=false)}}
+              {{textarea('invalid', className="hxInvalid", isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textarea('invalid', className="hxInvalid", isDisabled=true)}}
+              {{textarea('invalid', className="hxInvalid", isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('invalid', className="hxInvalid", isValid=false, isDisabled=true)}}
+              {{textarea('invalid', className="hxInvalid", isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;textarea required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {{textarea('invalid', className="hxInvalid", isRequired=true)}}
+              {{textarea('invalid', className="hxInvalid", isRequired=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('invalid', className="hxInvalid", isRequired=true, isValid=false)}}
+              {{textarea('invalid', className="hxInvalid", isRequired=true, isValid=false, isFocused=true)}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{textarea('invalid', className="hxInvalid", isRequired=true, isDisabled=true)}}
+              {{textarea('invalid', className="hxInvalid", isRequired=true, isDisabled=true, isFocused=true)}}
+            </td>
+            <td>
+              {{textarea('invalid', className="hxInvalid", isRequired=true, isValid=false, isDisabled=true)}}
+              {{textarea('invalid', className="hxInvalid", isRequired=true, isValid=false, isDisabled=true, isFocused=true)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-with-placeholder">With Placeholder</h2>
+      <code>&lt;textarea placeholder="Once upon a time..."&gt;</code>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol hxSpan-4">
+        <hx-textarea-control>
+          <textarea
+            placeholder="Once upon a time..."
+          ></textarea>
+          <label>Valid w/ Placeholder</label>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <hx-textarea-control class="hxInvalid">
+          <textarea
+            placeholder="Once upon a time..."
+          ></textarea>
+          <label>Invalid w/ Placeholder</label>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <hx-textarea-control>
+          <textarea
+            disabled
+            placeholder="Once upon a time..."
+          ></textarea>
+          <label>Disabled w/ Placeholder</label>
+        </hx-textarea-control>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-layout">Layout</h2>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Extra elements should not be visible.
+      </p>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label>Label</label>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label.hxRequired</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label class="hxRequired">Label</label>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label.hxOptional</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label class="hxOptional">Label</label>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label.hxRequired.hxOptional</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label class="hxRequired hxOptional">Label</label>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label + .hxPrefix</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label>Label</label>
+          <span class="hxPrefix">prefix</span>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label + .hxSuffix</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label>Label</label>
+          <span class="hxSuffix">suffix</span>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label + .hxPrefix + .hxSuffix</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label>Label</label>
+          <span class="hxPrefix">prefix</span>
+          <span class="hxSuffix">suffix</span>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label + p</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label>Label</label>
+          <p>Paragraph of text</p>
+        </hx-textarea-control>
+      </div>
+    </div>
+  </section>
+{% endblock %}

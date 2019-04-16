@@ -1,0 +1,28 @@
+@import (reference) 'components/forms';
+
+.text-input-spec {
+  hx-text-control {
+    /* ----- Pristine --------------- */
+    > input[type="text"].mock-focus {
+      .TextControl(pristine-focus);
+    }
+
+    /* ----- Disabled --------------- */
+    > input[type="text"]:disabled.mock-focus {
+      .TextControl(disabled-focus);
+    }
+
+    /* ----- Changed / Touched --------------- */
+    &[hx-changed],
+    &[hx-touched] {
+      > input[type="text"]:invalid.mock-focus {
+        .TextControl(invalid-focus);
+      }
+    }
+
+    /* ----- Styled Invalid --------------- */
+    &.hxInvalid > input[type="text"]:enabled.mock-focus {
+      .TextControl(invalid-focus);
+    }
+  }
+}

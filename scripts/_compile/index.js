@@ -31,7 +31,8 @@ async function compileStyles () {
             paths: CONFIG.less.paths.map((filepath) => {
                 return path.join(CONFIG.root, filepath);
             }),
-            filename: path.basename(cfg.entry)
+            filename: path.basename(cfg.entry),
+            rewriteUrls: true,
         });
     } catch (err) {
         console.log(`[COMPILE:Styles] Error: ${err.message}`);

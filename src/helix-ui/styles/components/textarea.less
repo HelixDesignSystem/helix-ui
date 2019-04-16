@@ -1,0 +1,93 @@
+@import (reference) "mixins";
+@import (reference) "components/forms";
+
+// ----- LAYOUT ----------
+/* (columnar-flexbox)
+  +-------------+
+  | label       |
+  +-------------+
+  | textarea    |
+  +-------------+
+*/
+hx-textarea-control {
+  display: flex;
+  flex-direction: column;
+
+  // blacklist
+  > * {
+    display: none;
+  }
+
+  // whitelist
+  > label,
+  > textarea {
+    display: block;
+  }
+
+  > label {
+    align-self: flex-start;
+    order: 1;
+  }
+
+  > textarea {
+    min-height: 6rem; // ~96px
+    order: 2;
+    overflow-x: hidden;
+    overflow-y: auto; // hide scrollbar by default in IE
+    padding: 0.5rem;
+    resize: vertical;
+  }
+}
+
+// ----- PRISTINE ----------
+hx-textarea-control {
+  > label {
+    .FieldName();
+  }
+
+  > textarea {
+    .TextControl(pristine);
+
+    &:focus {
+      .TextControl(pristine-focus);
+    }
+  }
+}//hx-textarea-control
+
+// ----- INVALID ----------
+hx-textarea-control {
+  &[hx-touched],
+  &[hx-changed] {
+    > textarea:invalid {
+      .TextControl(invalid);
+
+      &:focus {
+        .TextControl(invalid-focus);
+      }
+    }
+  }
+
+  &.hxInvalid {
+    > textarea:enabled {
+      .TextControl(invalid);
+
+      &:focus {
+        .TextControl(invalid-focus);
+      }
+    }
+  }
+}
+
+// ----- DISABLED ----------
+hx-textarea-control > textarea:disabled {
+  .TextControl(disabled);
+  resize: none;
+
+  ~ label {
+    .FieldName(disabled);
+  }
+
+  &:focus {
+    .TextControl(disabled-focus);
+  }
+}

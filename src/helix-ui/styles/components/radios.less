@@ -1,5 +1,6 @@
-@import (reference) 'mixins';
 @import (reference) 'vars';
+@import (reference) 'mixins';
+@import (reference) 'components/forms';
 
 // BASE STYLES
 hx-radio {
@@ -85,8 +86,7 @@ hx-radio-control {
   }
 
   > p {
-    color: @gray-750;
-    font-size: 0.75rem;
+    .HelpText();
   }
 
   > input[type="radio"] {

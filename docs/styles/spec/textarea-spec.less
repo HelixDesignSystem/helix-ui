@@ -1,0 +1,28 @@
+@import (reference) 'components/forms';
+
+.textarea-spec {
+  hx-textarea-control {
+    /* ----- Pristine --------------- */
+    > textarea.mock-focus {
+      .TextControl(pristine-focus);
+    }
+
+    /* ----- Disabled --------------- */
+    > textarea:disabled.mock-focus {
+      .TextControl(disabled-focus);
+    }
+
+    /* ----- Changed / Touched --------------- */
+    &[hx-changed],
+    &[hx-touched] {
+      > textarea:invalid.mock-focus {
+        .TextControl(invalid-focus);
+      }
+    }
+
+    /* ----- Styled Invalid --------------- */
+    &.hxInvalid > textarea:enabled.mock-focus {
+      .TextControl(invalid-focus);
+    }
+  }
+}
