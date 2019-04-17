@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Testing - Textarea - HelixUI</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/helix-ui/">
+
+<link rel="shortcut icon" href="images/favicon.png">
+
+<!-- Font Awesome Brand Icons -->
+<link
+  crossorigin="anonymous"
+  href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+  integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+  rel="stylesheet"
+/>
+<link
+  crossorigin="anonymous"
+  href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+  integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+  rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="dist/styles/helix-ui.css">
+<link rel="stylesheet" href="docs.css">
+
+<!-- Converts ES5 custom element constructor functions to ES6 classes -->
+<script src="vendor/custom-elements-es5-adapter.js"></script>
+
+<!-- loader appends polyfills, if needed -->
+<script src="vendor/webcomponents-loader.js"></script>
+
+    
+</head>
+<body class="hxVertical" id="top">
+  <!-- This link should be the first item a user can tab to. -->
+  <a href="#content">Skip to main content</a>
+
+  <header id="head">
+<div id="app-header">
+  <nav>
+    <a class="brand-logo" href="">
+      <img src="images/helix-logo.svg" alt="Logo" />
+    </a>
+  </nav>
+  <div>
+    <a
+      class="hxBtn beta-hxDark"
+      target="_blank"
+      href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
+    >
+      Report Bug
+    </a>
+  </div>
+</div>
+  </header>
+
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
+
+
+
+  
+    
+  <hx-disclosure
+    aria-controls="nav-guides"
+>
+    Guides
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-guides" >
+      
+      <a href="guides/getting-started" >
+    Getting Started
+  </a>
+
+
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+  <hx-disclosure
+    aria-controls="nav-components"
+class="current">
+    Components
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-components" open>
+      
+      <a href="components/accordions" >
+    Accordions
+  </a>
+
+
+      
+      <a href="components/alerts" >
+    Alerts
+  </a>
+
+
+      
+      <a href="components/badges" >
+    Badges
+  </a>
+
+
+      
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
+      <a href="components/breadcrumbs" >
+    Breadcrumbs
+  </a>
+
+
+      
+      <a href="components/buttons" >
+    Buttons
+  </a>
+
+
+      
+      <a href="components/checkboxes" >
+    Checkboxes
+  </a>
+
+
+      
+      <a href="components/choice-tiles" >
+    Choice Tiles
+  </a>
+
+
+      
+      <a href="components/dropdown-select" >
+    Dropdown Select
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
+  </a>
+
+
+      
+      <a href="components/icons" >
+    Icons
+  </a>
+
+
+      
+      <a href="components/layouts" >
+    Layouts
+  </a>
+
+
+      
+      <a href="components/lists" >
+    Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
+  </a>
+
+
+      
+      <a href="components/menus" >
+    Menus
+  </a>
+
+
+      
+      <a href="components/modals" >
+    Modals
+  </a>
+
+
+      
+      <a href="components/navigation" >
+    Navigation
+  </a>
+
+
+      
+      <a href="components/panels" >
+    Panels
+  </a>
+
+
+      
+      <a href="components/pagination" >
+    Pagination
+  </a>
+
+
+      
+      <a href="components/pills" >
+    Pills
+  </a>
+
+
+      
+      <a href="components/popovers" >
+    Popovers
+  </a>
+
+
+      
+      <a href="components/radios" >
+    Radios
+  </a>
+
+
+      
+      <a href="components/reveals" >
+    Reveals
+  </a>
+
+
+      
+      <a href="components/search" >
+    Search
+  </a>
+
+
+      
+      <a href="components/selector-strips" >
+    Selector Strips
+  </a>
+
+
+      
+      <a href="components/tables" >
+    Tables
+  </a>
+
+
+      
+      <a href="components/tabs" >
+    Tabs
+  </a>
+
+
+      
+      <a href="components/text-input" >
+    Text Input
+  </a>
+
+
+      
+      <a href="components/textarea" class="current">
+    Textarea
+  </a>
+
+
+      
+      <a href="components/toasts" >
+    Toasts
+  </a>
+
+
+      
+      <a href="components/tooltips" >
+    Tooltips
+  </a>
+
+
+      
+      <a href="components/typography" >
+    Typography
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+  <hx-disclosure
+    aria-controls="nav-elements"
+>
+    Custom Elements
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-elements" >
+      
+      <a href="elements/hx-accordion-panel" >
+    &lt;hx-accordion-panel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-accordion" >
+    &lt;hx-accordion&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-alert" >
+    &lt;hx-alert&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-busy" >
+    &lt;hx-busy&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-checkbox-control" >
+    &lt;hx-checkbox-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-checkbox" >
+    &lt;hx-checkbox&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-disclosure" >
+    &lt;hx-disclosure&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-div" >
+    &lt;hx-div&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-drop-fence" >
+    &lt;hx-drop-fence&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-drop-zone" >
+    &lt;hx-drop-zone&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-error" >
+    &lt;hx-error&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-icon" >
+    &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-input" >
+    &lt;hx-file-input&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-icon" >
+    &lt;hx-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menu" >
+    &lt;hx-menu&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem" >
+    &lt;hx-menuitem&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-modal" >
+    &lt;hx-modal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-pill" >
+    &lt;hx-pill&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover" >
+    &lt;hx-popover&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-progress" >
+    &lt;hx-progress&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-radio-control" >
+    &lt;hx-radio-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-radio" >
+    &lt;hx-radio&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-reveal" >
+    &lt;hx-reveal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search-assistance" >
+    &lt;hx-search-assistance&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search" >
+    &lt;hx-search&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-select-control" >
+    &lt;hx-select-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-select" >
+    &lt;hx-select&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-status" >
+    &lt;hx-status&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tab" >
+    &lt;hx-tab&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabcontent" >
+    &lt;hx-tabcontent&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tablist" >
+    &lt;hx-tablist&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabpanel" >
+    &lt;hx-tabpanel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabset" >
+    &lt;hx-tabset&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-text-control" >
+    &lt;hx-text-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-textarea-control" >
+    &lt;hx-textarea-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tile" >
+    &lt;hx-tile&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-toast" >
+    &lt;hx-toast&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tooltip" >
+    &lt;hx-tooltip&gt;
+  </a>
+
+
+  </hx-reveal>
+
+
+      </nav>
+
+  <main id="content" class="hxBox hxLg test-content textarea-spec">
+    <header>
+      <h1>Testing - Textarea</h1>
+
+  <nav class="hxBreadcrumb">
+    <a href="components/textarea">Textarea</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">Testing - Textarea</a>
+  </nav>
+    </header>
+
+  <section>
+    <header>
+      <h2 id="test-pristine">Pristine</h2>
+      <code>&lt;hx-textarea-control&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;textarea&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pOEV-b-pristine"
+    ></textarea>
+    <label for="textarea-pOEV-b-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pOEV-f-pristine"
+class="mock-focus"     ></textarea>
+    <label for="textarea-pOEV-f-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pOEI-b-pristine"
+        data-mock-invalid
+    ></textarea>
+    <label for="textarea-pOEI-b-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pOEI-f-pristine"
+class="mock-focus"         data-mock-invalid
+    ></textarea>
+    <label for="textarea-pOEI-f-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pODV-b-pristine"
+disabled     ></textarea>
+    <label for="textarea-pODV-b-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pODV-f-pristine"
+class="mock-focus" disabled     ></textarea>
+    <label for="textarea-pODV-f-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pODI-b-pristine"
+disabled         data-mock-invalid
+    ></textarea>
+    <label for="textarea-pODI-b-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pODI-f-pristine"
+class="mock-focus" disabled         data-mock-invalid
+    ></textarea>
+    <label for="textarea-pODI-f-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;textarea required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pREV-b-pristine"
+        required
+    >Value</textarea>
+    <label for="textarea-pREV-b-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pREV-f-pristine"
+class="mock-focus"         required
+    >Value</textarea>
+    <label for="textarea-pREV-f-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pREI-b-pristine"
+        required
+    ></textarea>
+    <label for="textarea-pREI-b-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pREI-f-pristine"
+class="mock-focus"         required
+    ></textarea>
+    <label for="textarea-pREI-f-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pRDV-b-pristine"
+disabled         required
+    >Value</textarea>
+    <label for="textarea-pRDV-b-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pRDV-f-pristine"
+class="mock-focus" disabled         required
+    >Value</textarea>
+    <label for="textarea-pRDV-f-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pRDI-b-pristine"
+disabled         required
+    ></textarea>
+    <label for="textarea-pRDI-b-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+  >
+    <textarea
+      id="textarea-pRDI-f-pristine"
+class="mock-focus" disabled         required
+    ></textarea>
+    <label for="textarea-pRDI-f-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-changed">Changed</h2>
+      <code>&lt;hx-textarea-control hx-changed&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;textarea&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cOEV-b-changed"
+    ></textarea>
+    <label for="textarea-cOEV-b-changed">
+Changed,      Optional,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cOEV-f-changed"
+class="mock-focus"     ></textarea>
+    <label for="textarea-cOEV-f-changed">
+Changed,      Optional,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cOEI-b-changed"
+        data-mock-invalid
+    ></textarea>
+    <label for="textarea-cOEI-b-changed">
+Changed,      Optional,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cOEI-f-changed"
+class="mock-focus"         data-mock-invalid
+    ></textarea>
+    <label for="textarea-cOEI-f-changed">
+Changed,      Optional,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cODV-b-changed"
+disabled     ></textarea>
+    <label for="textarea-cODV-b-changed">
+Changed,      Optional,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cODV-f-changed"
+class="mock-focus" disabled     ></textarea>
+    <label for="textarea-cODV-f-changed">
+Changed,      Optional,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cODI-b-changed"
+disabled         data-mock-invalid
+    ></textarea>
+    <label for="textarea-cODI-b-changed">
+Changed,      Optional,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cODI-f-changed"
+class="mock-focus" disabled         data-mock-invalid
+    ></textarea>
+    <label for="textarea-cODI-f-changed">
+Changed,      Optional,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;textarea required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cREV-b-changed"
+        required
+    >Value</textarea>
+    <label for="textarea-cREV-b-changed">
+Changed,      Required,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cREV-f-changed"
+class="mock-focus"         required
+    >Value</textarea>
+    <label for="textarea-cREV-f-changed">
+Changed,      Required,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cREI-b-changed"
+        required
+    ></textarea>
+    <label for="textarea-cREI-b-changed">
+Changed,      Required,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cREI-f-changed"
+class="mock-focus"         required
+    ></textarea>
+    <label for="textarea-cREI-f-changed">
+Changed,      Required,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cRDV-b-changed"
+disabled         required
+    >Value</textarea>
+    <label for="textarea-cRDV-b-changed">
+Changed,      Required,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cRDV-f-changed"
+class="mock-focus" disabled         required
+    >Value</textarea>
+    <label for="textarea-cRDV-f-changed">
+Changed,      Required,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cRDI-b-changed"
+disabled         required
+    ></textarea>
+    <label for="textarea-cRDI-b-changed">
+Changed,      Required,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-changed   >
+    <textarea
+      id="textarea-cRDI-f-changed"
+class="mock-focus" disabled         required
+    ></textarea>
+    <label for="textarea-cRDI-f-changed">
+Changed,      Required,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-touched">Touched</h2>
+      <code>&lt;hx-textarea-control hx-touched&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;textarea&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tOEV-b-touched"
+    ></textarea>
+    <label for="textarea-tOEV-b-touched">
+Touched,      Optional,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tOEV-f-touched"
+class="mock-focus"     ></textarea>
+    <label for="textarea-tOEV-f-touched">
+Touched,      Optional,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tOEI-b-touched"
+        data-mock-invalid
+    ></textarea>
+    <label for="textarea-tOEI-b-touched">
+Touched,      Optional,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tOEI-f-touched"
+class="mock-focus"         data-mock-invalid
+    ></textarea>
+    <label for="textarea-tOEI-f-touched">
+Touched,      Optional,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tODV-b-touched"
+disabled     ></textarea>
+    <label for="textarea-tODV-b-touched">
+Touched,      Optional,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tODV-f-touched"
+class="mock-focus" disabled     ></textarea>
+    <label for="textarea-tODV-f-touched">
+Touched,      Optional,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tODI-b-touched"
+disabled         data-mock-invalid
+    ></textarea>
+    <label for="textarea-tODI-b-touched">
+Touched,      Optional,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tODI-f-touched"
+class="mock-focus" disabled         data-mock-invalid
+    ></textarea>
+    <label for="textarea-tODI-f-touched">
+Touched,      Optional,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;textarea required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tREV-b-touched"
+        required
+    >Value</textarea>
+    <label for="textarea-tREV-b-touched">
+Touched,      Required,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tREV-f-touched"
+class="mock-focus"         required
+    >Value</textarea>
+    <label for="textarea-tREV-f-touched">
+Touched,      Required,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tREI-b-touched"
+        required
+    ></textarea>
+    <label for="textarea-tREI-b-touched">
+Touched,      Required,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tREI-f-touched"
+class="mock-focus"         required
+    ></textarea>
+    <label for="textarea-tREI-f-touched">
+Touched,      Required,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tRDV-b-touched"
+disabled         required
+    >Value</textarea>
+    <label for="textarea-tRDV-b-touched">
+Touched,      Required,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tRDV-f-touched"
+class="mock-focus" disabled         required
+    >Value</textarea>
+    <label for="textarea-tRDV-f-touched">
+Touched,      Required,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tRDI-b-touched"
+disabled         required
+    ></textarea>
+    <label for="textarea-tRDI-b-touched">
+Touched,      Required,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+hx-touched   >
+    <textarea
+      id="textarea-tRDI-f-touched"
+class="mock-focus" disabled         required
+    ></textarea>
+    <label for="textarea-tRDI-f-touched">
+Touched,      Required,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-styled-invalid">Styled Invalid</h2>
+      <code>&lt;hx-textarea-control class="hxInvalid"&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;textarea&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pOEV-b-invalid"
+    ></textarea>
+    <label for="textarea-pOEV-b-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pOEV-f-invalid"
+class="mock-focus"     ></textarea>
+    <label for="textarea-pOEV-f-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pOEI-b-invalid"
+        data-mock-invalid
+    ></textarea>
+    <label for="textarea-pOEI-b-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pOEI-f-invalid"
+class="mock-focus"         data-mock-invalid
+    ></textarea>
+    <label for="textarea-pOEI-f-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pODV-b-invalid"
+disabled     ></textarea>
+    <label for="textarea-pODV-b-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pODV-f-invalid"
+class="mock-focus" disabled     ></textarea>
+    <label for="textarea-pODV-f-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pODI-b-invalid"
+disabled         data-mock-invalid
+    ></textarea>
+    <label for="textarea-pODI-b-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pODI-f-invalid"
+class="mock-focus" disabled         data-mock-invalid
+    ></textarea>
+    <label for="textarea-pODI-f-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;textarea required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pREV-b-invalid"
+        required
+    >Value</textarea>
+    <label for="textarea-pREV-b-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pREV-f-invalid"
+class="mock-focus"         required
+    >Value</textarea>
+    <label for="textarea-pREV-f-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pREI-b-invalid"
+        required
+    ></textarea>
+    <label for="textarea-pREI-b-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pREI-f-invalid"
+class="mock-focus"         required
+    ></textarea>
+    <label for="textarea-pREI-f-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pRDV-b-invalid"
+disabled         required
+    >Value</textarea>
+    <label for="textarea-pRDV-b-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pRDV-f-invalid"
+class="mock-focus" disabled         required
+    >Value</textarea>
+    <label for="textarea-pRDV-f-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+            <td>
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pRDI-b-invalid"
+disabled         required
+    ></textarea>
+    <label for="textarea-pRDI-b-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-textarea-control>
+
+              
+
+  <hx-textarea-control
+class="hxInvalid"   >
+    <textarea
+      id="textarea-pRDI-f-invalid"
+class="mock-focus" disabled         required
+    ></textarea>
+    <label for="textarea-pRDI-f-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-textarea-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-with-placeholder">With Placeholder</h2>
+      <code>&lt;textarea placeholder="Once upon a time..."&gt;</code>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol hxSpan-4">
+        <hx-textarea-control>
+          <textarea
+            placeholder="Once upon a time..."
+          ></textarea>
+          <label>Valid w/ Placeholder</label>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <hx-textarea-control class="hxInvalid">
+          <textarea
+            placeholder="Once upon a time..."
+          ></textarea>
+          <label>Invalid w/ Placeholder</label>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <hx-textarea-control>
+          <textarea
+            disabled
+            placeholder="Once upon a time..."
+          ></textarea>
+          <label>Disabled w/ Placeholder</label>
+        </hx-textarea-control>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-layout">Layout</h2>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Extra elements should not be visible.
+      </p>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label>Label</label>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label.hxRequired</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label class="hxRequired">Label</label>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label.hxOptional</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label class="hxOptional">Label</label>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label.hxRequired.hxOptional</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label class="hxRequired hxOptional">Label</label>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label + .hxPrefix</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label>Label</label>
+          <span class="hxPrefix">prefix</span>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label + .hxSuffix</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label>Label</label>
+          <span class="hxSuffix">suffix</span>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label + .hxPrefix + .hxSuffix</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label>Label</label>
+          <span class="hxPrefix">prefix</span>
+          <span class="hxSuffix">suffix</span>
+        </hx-textarea-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>textarea + label + p</code>
+        <hx-textarea-control>
+          <textarea></textarea>
+          <label>Label</label>
+          <p>Paragraph of text</p>
+        </hx-textarea-control>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <aside class="hxSiderail hxBox hxMd">
+    <header>
+      <h1 class="hxHeading-4">On this page:</h1>
+    </header>
+
+    <nav class="article-toc">
+      
+            <a href="#test-pristine">Pristine</a>
+        
+
+            <a href="#test-changed">Changed</a>
+        
+
+            <a href="#test-touched">Touched</a>
+        
+
+            <a href="#test-styled-invalid">Styled Invalid</a>
+        
+
+            <a href="#test-with-placeholder">With Placeholder</a>
+        
+
+            <a href="#test-layout">Layout</a>
+        
+      <hr class="hxDivider" />
+      <a class="top-link" href="#top">Back to Top</a>
+    </nav>
+  </aside>
+    </div>
+  </div>
+
+  <footer id="foot" class="hxRow hxGutterless">
+<div class="hxCol">
+&copy; 2019 Rackspace US, Inc.
+<nav>
+  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+</nav>
+</div>
+<div class="hxCol text-right">
+    <small>
+      Last Updated:
+      2019-04-16
+    </small>
+
+  <small>
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0-rc.1" target="_blank">
+      v0.16.0-rc.1
+    </a>)
+  </small>
+</div>
+  </footer>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+<script src="dist/scripts/helix-ui.browser.js"></script>
+<script src="docs.js"></script>
+
+    
+</body>
+</html>

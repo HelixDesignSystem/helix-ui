@@ -1,0 +1,2090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Testing - Text Input - HelixUI</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/helix-ui/">
+
+<link rel="shortcut icon" href="images/favicon.png">
+
+<!-- Font Awesome Brand Icons -->
+<link
+  crossorigin="anonymous"
+  href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+  integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+  rel="stylesheet"
+/>
+<link
+  crossorigin="anonymous"
+  href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+  integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+  rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="dist/styles/helix-ui.css">
+<link rel="stylesheet" href="docs.css">
+
+<!-- Converts ES5 custom element constructor functions to ES6 classes -->
+<script src="vendor/custom-elements-es5-adapter.js"></script>
+
+<!-- loader appends polyfills, if needed -->
+<script src="vendor/webcomponents-loader.js"></script>
+
+    
+</head>
+<body class="hxVertical" id="top">
+  <!-- This link should be the first item a user can tab to. -->
+  <a href="#content">Skip to main content</a>
+
+  <header id="head">
+<div id="app-header">
+  <nav>
+    <a class="brand-logo" href="">
+      <img src="images/helix-logo.svg" alt="Logo" />
+    </a>
+  </nav>
+  <div>
+    <a
+      class="hxBtn beta-hxDark"
+      target="_blank"
+      href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
+    >
+      Report Bug
+    </a>
+  </div>
+</div>
+  </header>
+
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
+
+
+
+  
+    
+  <hx-disclosure
+    aria-controls="nav-guides"
+>
+    Guides
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-guides" >
+      
+      <a href="guides/getting-started" >
+    Getting Started
+  </a>
+
+
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+  <hx-disclosure
+    aria-controls="nav-components"
+class="current">
+    Components
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-components" open>
+      
+      <a href="components/accordions" >
+    Accordions
+  </a>
+
+
+      
+      <a href="components/alerts" >
+    Alerts
+  </a>
+
+
+      
+      <a href="components/badges" >
+    Badges
+  </a>
+
+
+      
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
+      <a href="components/breadcrumbs" >
+    Breadcrumbs
+  </a>
+
+
+      
+      <a href="components/buttons" >
+    Buttons
+  </a>
+
+
+      
+      <a href="components/checkboxes" >
+    Checkboxes
+  </a>
+
+
+      
+      <a href="components/choice-tiles" >
+    Choice Tiles
+  </a>
+
+
+      
+      <a href="components/dropdown-select" >
+    Dropdown Select
+  </a>
+
+
+      
+      <a href="components/files" >
+    Files
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
+  </a>
+
+
+      
+      <a href="components/icons" >
+    Icons
+  </a>
+
+
+      
+      <a href="components/layouts" >
+    Layouts
+  </a>
+
+
+      
+      <a href="components/lists" >
+    Lists
+  </a>
+
+
+      
+      <a href="components/loaders" >
+    Loaders
+  </a>
+
+
+      
+      <a href="components/menus" >
+    Menus
+  </a>
+
+
+      
+      <a href="components/modals" >
+    Modals
+  </a>
+
+
+      
+      <a href="components/navigation" >
+    Navigation
+  </a>
+
+
+      
+      <a href="components/panels" >
+    Panels
+  </a>
+
+
+      
+      <a href="components/pagination" >
+    Pagination
+  </a>
+
+
+      
+      <a href="components/pills" >
+    Pills
+  </a>
+
+
+      
+      <a href="components/popovers" >
+    Popovers
+  </a>
+
+
+      
+      <a href="components/radios" >
+    Radios
+  </a>
+
+
+      
+      <a href="components/reveals" >
+    Reveals
+  </a>
+
+
+      
+      <a href="components/search" >
+    Search
+  </a>
+
+
+      
+      <a href="components/selector-strips" >
+    Selector Strips
+  </a>
+
+
+      
+      <a href="components/tables" >
+    Tables
+  </a>
+
+
+      
+      <a href="components/tabs" >
+    Tabs
+  </a>
+
+
+      
+      <a href="components/text-input" class="current">
+    Text Input
+  </a>
+
+
+      
+      <a href="components/textarea" >
+    Textarea
+  </a>
+
+
+      
+      <a href="components/toasts" >
+    Toasts
+  </a>
+
+
+      
+      <a href="components/tooltips" >
+    Tooltips
+  </a>
+
+
+      
+      <a href="components/typography" >
+    Typography
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+  <hx-disclosure
+    aria-controls="nav-elements"
+>
+    Custom Elements
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-elements" >
+      
+      <a href="elements/hx-accordion-panel" >
+    &lt;hx-accordion-panel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-accordion" >
+    &lt;hx-accordion&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-alert" >
+    &lt;hx-alert&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-busy" >
+    &lt;hx-busy&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-checkbox-control" >
+    &lt;hx-checkbox-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-checkbox" >
+    &lt;hx-checkbox&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-disclosure" >
+    &lt;hx-disclosure&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-div" >
+    &lt;hx-div&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-drop-fence" >
+    &lt;hx-drop-fence&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-drop-zone" >
+    &lt;hx-drop-zone&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-error" >
+    &lt;hx-error&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-icon" >
+    &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-input" >
+    &lt;hx-file-input&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-icon" >
+    &lt;hx-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menu" >
+    &lt;hx-menu&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem" >
+    &lt;hx-menuitem&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-modal" >
+    &lt;hx-modal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-pill" >
+    &lt;hx-pill&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover" >
+    &lt;hx-popover&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-progress" >
+    &lt;hx-progress&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-radio-control" >
+    &lt;hx-radio-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-radio" >
+    &lt;hx-radio&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-reveal" >
+    &lt;hx-reveal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search-assistance" >
+    &lt;hx-search-assistance&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search" >
+    &lt;hx-search&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-select-control" >
+    &lt;hx-select-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-select" >
+    &lt;hx-select&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-status" >
+    &lt;hx-status&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tab" >
+    &lt;hx-tab&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabcontent" >
+    &lt;hx-tabcontent&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tablist" >
+    &lt;hx-tablist&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabpanel" >
+    &lt;hx-tabpanel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabset" >
+    &lt;hx-tabset&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-text-control" >
+    &lt;hx-text-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-textarea-control" >
+    &lt;hx-textarea-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tile" >
+    &lt;hx-tile&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-toast" >
+    &lt;hx-toast&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tooltip" >
+    &lt;hx-tooltip&gt;
+  </a>
+
+
+  </hx-reveal>
+
+
+      </nav>
+
+  <main id="content" class="hxBox hxLg test-content text-input-spec">
+    <header>
+      <h1>Testing - Text Input</h1>
+
+  <nav class="hxBreadcrumb">
+    <a href="components/text-input">Text Input</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">Testing - Text Input</a>
+  </nav>
+    </header>
+
+  <section>
+    <header>
+      <h2 id="test-pristine">Pristine</h2>
+      <code>&lt;hx-text-control&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;input type="text"&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pOEV-b-pristine"
+    />
+    <label for="textInput-pOEV-b-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pOEV-f-pristine"
+class="mock-focus"     />
+    <label for="textInput-pOEV-f-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pOEI-b-pristine"
+        data-mock-invalid
+    />
+    <label for="textInput-pOEI-b-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pOEI-f-pristine"
+class="mock-focus"         data-mock-invalid
+    />
+    <label for="textInput-pOEI-f-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pODV-b-pristine"
+disabled     />
+    <label for="textInput-pODV-b-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pODV-f-pristine"
+class="mock-focus" disabled     />
+    <label for="textInput-pODV-f-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pODI-b-pristine"
+disabled         data-mock-invalid
+    />
+    <label for="textInput-pODI-b-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pODI-f-pristine"
+class="mock-focus" disabled         data-mock-invalid
+    />
+    <label for="textInput-pODI-f-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;input type="text" required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pREV-b-pristine"
+        required
+value="value"    />
+    <label for="textInput-pREV-b-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pREV-f-pristine"
+class="mock-focus"         required
+value="value"    />
+    <label for="textInput-pREV-f-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pREI-b-pristine"
+        required
+    />
+    <label for="textInput-pREI-b-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pREI-f-pristine"
+class="mock-focus"         required
+    />
+    <label for="textInput-pREI-f-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pRDV-b-pristine"
+disabled         required
+value="value"    />
+    <label for="textInput-pRDV-b-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pRDV-f-pristine"
+class="mock-focus" disabled         required
+value="value"    />
+    <label for="textInput-pRDV-f-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pRDI-b-pristine"
+disabled         required
+    />
+    <label for="textInput-pRDI-b-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+  >
+    <input
+      type="text"
+      id="textInput-pRDI-f-pristine"
+class="mock-focus" disabled         required
+    />
+    <label for="textInput-pRDI-f-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-changed">Changed</h2>
+      <code>&lt;hx-text-control hx-changed&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;input type="text"&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cOEV-b-changed"
+    />
+    <label for="textInput-cOEV-b-changed">
+Changed,      Optional,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cOEV-f-changed"
+class="mock-focus"     />
+    <label for="textInput-cOEV-f-changed">
+Changed,      Optional,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cOEI-b-changed"
+        data-mock-invalid
+    />
+    <label for="textInput-cOEI-b-changed">
+Changed,      Optional,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cOEI-f-changed"
+class="mock-focus"         data-mock-invalid
+    />
+    <label for="textInput-cOEI-f-changed">
+Changed,      Optional,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cODV-b-changed"
+disabled     />
+    <label for="textInput-cODV-b-changed">
+Changed,      Optional,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cODV-f-changed"
+class="mock-focus" disabled     />
+    <label for="textInput-cODV-f-changed">
+Changed,      Optional,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cODI-b-changed"
+disabled         data-mock-invalid
+    />
+    <label for="textInput-cODI-b-changed">
+Changed,      Optional,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cODI-f-changed"
+class="mock-focus" disabled         data-mock-invalid
+    />
+    <label for="textInput-cODI-f-changed">
+Changed,      Optional,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;input type="text" required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cREV-b-changed"
+        required
+value="value"    />
+    <label for="textInput-cREV-b-changed">
+Changed,      Required,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cREV-f-changed"
+class="mock-focus"         required
+value="value"    />
+    <label for="textInput-cREV-f-changed">
+Changed,      Required,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cREI-b-changed"
+        required
+    />
+    <label for="textInput-cREI-b-changed">
+Changed,      Required,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cREI-f-changed"
+class="mock-focus"         required
+    />
+    <label for="textInput-cREI-f-changed">
+Changed,      Required,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cRDV-b-changed"
+disabled         required
+value="value"    />
+    <label for="textInput-cRDV-b-changed">
+Changed,      Required,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cRDV-f-changed"
+class="mock-focus" disabled         required
+value="value"    />
+    <label for="textInput-cRDV-f-changed">
+Changed,      Required,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cRDI-b-changed"
+disabled         required
+    />
+    <label for="textInput-cRDI-b-changed">
+Changed,      Required,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-changed   >
+    <input
+      type="text"
+      id="textInput-cRDI-f-changed"
+class="mock-focus" disabled         required
+    />
+    <label for="textInput-cRDI-f-changed">
+Changed,      Required,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-touched">Touched</h2>
+      <code>&lt;hx-text-control hx-touched&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;input type="text"&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tOEV-b-touched"
+    />
+    <label for="textInput-tOEV-b-touched">
+Touched,      Optional,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tOEV-f-touched"
+class="mock-focus"     />
+    <label for="textInput-tOEV-f-touched">
+Touched,      Optional,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tOEI-b-touched"
+        data-mock-invalid
+    />
+    <label for="textInput-tOEI-b-touched">
+Touched,      Optional,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tOEI-f-touched"
+class="mock-focus"         data-mock-invalid
+    />
+    <label for="textInput-tOEI-f-touched">
+Touched,      Optional,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tODV-b-touched"
+disabled     />
+    <label for="textInput-tODV-b-touched">
+Touched,      Optional,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tODV-f-touched"
+class="mock-focus" disabled     />
+    <label for="textInput-tODV-f-touched">
+Touched,      Optional,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tODI-b-touched"
+disabled         data-mock-invalid
+    />
+    <label for="textInput-tODI-b-touched">
+Touched,      Optional,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tODI-f-touched"
+class="mock-focus" disabled         data-mock-invalid
+    />
+    <label for="textInput-tODI-f-touched">
+Touched,      Optional,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;input type="text" required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tREV-b-touched"
+        required
+value="value"    />
+    <label for="textInput-tREV-b-touched">
+Touched,      Required,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tREV-f-touched"
+class="mock-focus"         required
+value="value"    />
+    <label for="textInput-tREV-f-touched">
+Touched,      Required,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tREI-b-touched"
+        required
+    />
+    <label for="textInput-tREI-b-touched">
+Touched,      Required,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tREI-f-touched"
+class="mock-focus"         required
+    />
+    <label for="textInput-tREI-f-touched">
+Touched,      Required,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tRDV-b-touched"
+disabled         required
+value="value"    />
+    <label for="textInput-tRDV-b-touched">
+Touched,      Required,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tRDV-f-touched"
+class="mock-focus" disabled         required
+value="value"    />
+    <label for="textInput-tRDV-f-touched">
+Touched,      Required,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tRDI-b-touched"
+disabled         required
+    />
+    <label for="textInput-tRDI-b-touched">
+Touched,      Required,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+hx-touched   >
+    <input
+      type="text"
+      id="textInput-tRDI-f-touched"
+class="mock-focus" disabled         required
+    />
+    <label for="textInput-tRDI-f-touched">
+Touched,      Required,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-styled-invalid">Styled Invalid</h2>
+      <code>&lt;hx-text-control class="hxInvalid"&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;input type="text"&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pOEV-b-invalid"
+    />
+    <label for="textInput-pOEV-b-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pOEV-f-invalid"
+class="mock-focus"     />
+    <label for="textInput-pOEV-f-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pOEI-b-invalid"
+        data-mock-invalid
+    />
+    <label for="textInput-pOEI-b-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pOEI-f-invalid"
+class="mock-focus"         data-mock-invalid
+    />
+    <label for="textInput-pOEI-f-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pODV-b-invalid"
+disabled     />
+    <label for="textInput-pODV-b-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pODV-f-invalid"
+class="mock-focus" disabled     />
+    <label for="textInput-pODV-f-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pODI-b-invalid"
+disabled         data-mock-invalid
+    />
+    <label for="textInput-pODI-b-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pODI-f-invalid"
+class="mock-focus" disabled         data-mock-invalid
+    />
+    <label for="textInput-pODI-f-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;input type="text" required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Valid</th>
+            <th>Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pREV-b-invalid"
+        required
+value="value"    />
+    <label for="textInput-pREV-b-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pREV-f-invalid"
+class="mock-focus"         required
+value="value"    />
+    <label for="textInput-pREV-f-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pREI-b-invalid"
+        required
+    />
+    <label for="textInput-pREI-b-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pREI-f-invalid"
+class="mock-focus"         required
+    />
+    <label for="textInput-pREI-f-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pRDV-b-invalid"
+disabled         required
+value="value"    />
+    <label for="textInput-pRDV-b-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Valid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pRDV-f-invalid"
+class="mock-focus" disabled         required
+value="value"    />
+    <label for="textInput-pRDV-f-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Valid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+            <td>
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pRDI-b-invalid"
+disabled         required
+    />
+    <label for="textInput-pRDI-b-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
+  </hx-text-control>
+
+              
+
+  <hx-text-control
+class="hxInvalid"   >
+    <input
+      type="text"
+      id="textInput-pRDI-f-invalid"
+class="mock-focus" disabled         required
+    />
+    <label for="textInput-pRDI-f-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
+  </hx-text-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-with-placeholder">With Placeholder</h2>
+      <code>&lt;input type="text" placeholder="Type something..." /&gt;</code>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol hxSpan-4">
+        <hx-text-control>
+          <input
+            placeholder="Type something..."
+            type="text"
+          />
+          <label>Valid w/ Placeholder</label>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <hx-text-control class="hxInvalid">
+          <input
+            placeholder="Type something..."
+            type="text"
+          />
+          <label>Invalid w/ Placeholder</label>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <hx-text-control>
+          <input
+            disabled
+            placeholder="Type something..."
+            type="text"
+          />
+          <label>Disabled w/ Placeholder</label>
+        </hx-text-control>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-layout">Layout</h2>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Extra elements should not be visible.
+      </p>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol hxSpan-4">
+        <code>input + label</code>
+        <hx-text-control>
+          <input type="text" />
+          <label>Label</label>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label.hxRequired</code>
+        <hx-text-control>
+          <input type="text" />
+          <label class="hxRequired">Label</label>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label.hxOptional</code>
+        <hx-text-control>
+          <input type="text" />
+          <label class="hxOptional">Label</label>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label.hxRequired.hxOptional</code>
+        <hx-text-control>
+          <input type="text" />
+          <label class="hxRequired hxOptional">Label</label>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label + .hxPrefix</code>
+        <hx-text-control>
+          <input type="text" />
+          <label>Label</label>
+          <span class="hxPrefix">pfx</span>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label + .hxSuffix</code>
+        <hx-text-control>
+          <input type="text" />
+          <label>Label</label>
+          <span class="hxSuffix">sfx</span>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label + .hxPrefix + .hxSuffix</code>
+        <hx-text-control>
+          <input type="text" />
+          <label>Label</label>
+          <span class="hxPrefix">pfx</span>
+          <span class="hxSuffix">sfx</span>
+        </hx-text-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>input + label + div</code>
+        <hx-text-control>
+          <input type="text" />
+          <label>Label</label>
+          <div>DIV</div>
+        </hx-text-control>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <aside class="hxSiderail hxBox hxMd">
+    <header>
+      <h1 class="hxHeading-4">On this page:</h1>
+    </header>
+
+    <nav class="article-toc">
+      
+            <a href="#test-pristine">Pristine</a>
+        
+
+            <a href="#test-changed">Changed</a>
+        
+
+            <a href="#test-touched">Touched</a>
+        
+
+            <a href="#test-styled-invalid">Styled Invalid</a>
+        
+
+            <a href="#test-with-placeholder">With Placeholder</a>
+        
+
+            <a href="#test-layout">Layout</a>
+        
+      <hr class="hxDivider" />
+      <a class="top-link" href="#top">Back to Top</a>
+    </nav>
+  </aside>
+    </div>
+  </div>
+
+  <footer id="foot" class="hxRow hxGutterless">
+<div class="hxCol">
+&copy; 2019 Rackspace US, Inc.
+<nav>
+  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+</nav>
+</div>
+<div class="hxCol text-right">
+    <small>
+      Last Updated:
+      2019-04-16
+    </small>
+
+  <small>
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0-rc.1" target="_blank">
+      v0.16.0-rc.1
+    </a>)
+  </small>
+</div>
+  </footer>
+
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+<script src="dist/scripts/helix-ui.browser.js"></script>
+<script src="docs.js"></script>
+
+    
+</body>
+</html>

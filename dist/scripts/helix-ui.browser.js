@@ -2269,16 +2269,19 @@
 
     var STATE = {
         changed: 'hx-changed',
+        dirty: 'hx-dirty',
         touched: 'hx-touched'
     };
 
     /**
      * Abstract class which defines shared behavior among all
      * form control custom elements (e.g., HXSelectControlElement,
-     * HXCheckboxControlElement, etc.).
+     * HXCheckboxControlElement, HXTextControlElement, etc.).
      *
      * ## States
-     * States are applied as events occur on the `controlElement`.
+     *
+     * ### Dirty
+     * Reflected by the `hx-dirty` content attribute when Changed or Touched.
      *
      * ### Changed
      * Applies the `hx-changed` content attribute when controlElement
@@ -2370,8 +2373,9 @@
 
             /** @private */
             value: function _onCtrlBlur() {
-                // communicate state via read-only, boolean content attribute
+                // communicate state via read-only, boolean content attributes
                 this.$defaultAttribute(STATE.touched, '');
+                this.$defaultAttribute(STATE.dirty, '');
             }
 
             /** @private */
@@ -2379,8 +2383,9 @@
         }, {
             key: '_onCtrlChange',
             value: function _onCtrlChange() {
-                // communicate state via read-only, boolean content attribute
+                // communicate state via read-only, boolean content attributes
                 this.$defaultAttribute(STATE.changed, '');
+                this.$defaultAttribute(STATE.dirty, '');
             }
         }, {
             key: 'controlElement',
@@ -5725,7 +5730,7 @@
 
     var shadowMarkup$g = "<div id='hxSelect'><div id='hxTrigger'><hx-icon type='angle-down'></hx-icon></div></div>";
 
-    var shadowStyles$g = ":host {\n  overflow: hidden;\n}\n/*\n  #hxSelect\n  +---------------------------+---------+\n  | .                         | trigger | row 1 (auto)\n  +---------------------------+---------+\n    col 1                       col 2\n    (auto)                      (2.5rem)\n*/\n#hxSelect {\n  box-sizing: border-box;\n  display: grid;\n  grid-template-areas: '. trigger';\n  grid-template-columns: auto 2.5rem;\n  height: 100%;\n  width: 100%;\n}\n#hxTrigger {\n  align-items: center;\n  background-color: var(--hxSelect__trigger-background);\n  box-sizing: border-box;\n  color: inherit;\n  display: flex;\n  grid-area: trigger;\n  height: 100%;\n  justify-content: center;\n}\n";
+    var shadowStyles$g = "#hxSelect {\n  display: none;\n}\n@supports (display: grid) {\n  /*\n      auto                        2.5rem\n    +---------------------------+---------+\n    | . (\"window\")              | trigger | auto\n    +---------------------------+---------+\n  */\n  #hxSelect {\n    box-sizing: border-box;\n    display: grid;\n    grid-template-areas: '. trigger';\n    grid-template-columns: auto 2.5rem;\n    height: 100%;\n    width: 100%;\n  }\n  #hxTrigger {\n    align-items: center;\n    background-color: var(--hxSelect__trigger-background);\n    box-sizing: border-box;\n    color: inherit;\n    display: flex;\n    grid-area: trigger;\n    height: 100%;\n    justify-content: center;\n  }\n}\n";
 
     /**
      * Applies Shadow DOM to the `<hx-select>` facade element.
@@ -6962,7 +6967,7 @@
         HXTooltipElement: HXTooltipElement
     });
 
-    var version = "0.16.0-rc.0";
+    var version = "0.16.0-rc.1";
 
     /** @module HelixUI */
 

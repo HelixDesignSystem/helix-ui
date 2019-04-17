@@ -276,8 +276,14 @@ class="current">
 
 
       
-      <a href="components/text-inputs" >
-    Text Inputs
+      <a href="components/text-input" >
+    Text Input
+  </a>
+
+
+      
+      <a href="components/textarea" >
+    Textarea
   </a>
 
 
@@ -516,6 +522,18 @@ class="current">
 
 
       
+      <a href="elements/hx-text-control" >
+    &lt;hx-text-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-textarea-control" >
+    &lt;hx-textarea-control&gt;
+  </a>
+
+
+      
       <a href="elements/hx-tile" >
     &lt;hx-tile&gt;
   </a>
@@ -538,28 +556,26 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox hxLg test-content ">
+  <main id="content" class="hxBox hxLg test-content dropdown-select-spec">
     <header>
       <h1>Testing - Dropdown Select</h1>
-
-        
-    </header>
 
   <nav class="hxBreadcrumb">
     <a href="components/dropdown-select">Dropdown Select</a>
     <hx-icon class="delimiter" type="angle-right"></hx-icon>
     <a href="#">Testing - Dropdown Select</a>
   </nav>
+    </header>
 
   <section>
     <header>
-      <h2>Pristine</h2>
+      <h2 id="test-pristine">Pristine</h2>
       <code>&lt;hx-select-control&gt;</code>
     </header>
       <section id="pristine-optional-states">
     <header>
       <h3>Optional</h3>
-      <code>select:optional</code>
+      <code>&lt;select&gt;</code>
     </header>
       <table>
     <thead>
@@ -572,14 +588,6 @@ class="current">
       <tr><!-- select:enabled -->
         <td>
 
-  <label for="hxSelect-pOEV-b-pristine">
-      Pristine,
-    Optional,
-    Enabled,
-    Valid
-    (blur)
-  </label>
-
   <hx-select-control
   >
     <select
@@ -589,17 +597,16 @@ class="current">
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pOEV-b-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Valid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pOEI-b-pristine">
-      Pristine,
-    Optional,
-    Enabled,
-    Invalid
-    (blur)
-  </label>
 
   <hx-select-control
   >
@@ -611,19 +618,18 @@ class="current">
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pOEI-b-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:enabled:focus -->
         <td>
-
-  <label for="hxSelect-pOEV-f-pristine">
-      Pristine,
-    Optional,
-    Enabled,
-    Valid
-    (focus)
-  </label>
 
   <hx-select-control
   >
@@ -634,17 +640,16 @@ class="mock-focus"     >
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pOEV-f-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Valid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pOEI-f-pristine">
-      Pristine,
-    Optional,
-    Enabled,
-    Invalid
-    (focus)
-  </label>
 
   <hx-select-control
   >
@@ -656,19 +661,18 @@ class="mock-focus"         data-mock-invalid
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pOEI-f-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:disabled -->
         <td>
-
-  <label for="hxSelect-pODV-b-pristine">
-      Pristine,
-    Optional,
-    Disabled,
-    Valid
-    (blur)
-  </label>
 
   <hx-select-control
   >
@@ -679,17 +683,16 @@ disabled     >
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pODV-b-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Valid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pODI-b-pristine">
-      Pristine,
-    Optional,
-    Disabled,
-    Invalid
-    (blur)
-  </label>
 
   <hx-select-control
   >
@@ -701,19 +704,18 @@ disabled         data-mock-invalid
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pODI-b-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:disabled:focus -->
         <td>
-
-  <label for="hxSelect-pODV-f-pristine">
-      Pristine,
-    Optional,
-    Disabled,
-    Valid
-    (focus)
-  </label>
 
   <hx-select-control
   >
@@ -724,17 +726,16 @@ class="mock-focus" disabled     >
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pODV-f-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Valid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pODI-f-pristine">
-      Pristine,
-    Optional,
-    Disabled,
-    Invalid
-    (focus)
-  </label>
 
   <hx-select-control
   >
@@ -746,6 +747,13 @@ class="mock-focus" disabled         data-mock-invalid
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pODI-f-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
       </tr>
@@ -761,7 +769,7 @@ class="mock-focus" disabled         data-mock-invalid
   <section id="pristine-required-states">
     <header>
       <h3>Required</h3>
-      <code>select:required</code>
+      <code>&lt;select required&gt;</code>
     </header>
       <table>
     <thead>
@@ -774,14 +782,6 @@ class="mock-focus" disabled         data-mock-invalid
       <tr><!-- select:enabled -->
         <td>
 
-  <label for="hxSelect-pREV-b-pristine">
-      Pristine,
-    Required,
-    Enabled,
-    Valid
-    (blur)
-  </label>
-
   <hx-select-control
   >
     <select
@@ -792,17 +792,16 @@ class="mock-focus" disabled         data-mock-invalid
           <option value="valid" selected>Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pREV-b-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Valid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pREI-b-pristine">
-      Pristine,
-    Required,
-    Enabled,
-    Invalid
-    (blur)
-  </label>
 
   <hx-select-control
   >
@@ -814,19 +813,18 @@ class="mock-focus" disabled         data-mock-invalid
           <option value="valid">Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pREI-b-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:enabled:focus -->
         <td>
-
-  <label for="hxSelect-pREV-f-pristine">
-      Pristine,
-    Required,
-    Enabled,
-    Valid
-    (focus)
-  </label>
 
   <hx-select-control
   >
@@ -838,17 +836,16 @@ class="mock-focus"         required
           <option value="valid" selected>Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pREV-f-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Valid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pREI-f-pristine">
-      Pristine,
-    Required,
-    Enabled,
-    Invalid
-    (focus)
-  </label>
 
   <hx-select-control
   >
@@ -860,19 +857,18 @@ class="mock-focus"         required
           <option value="valid">Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pREI-f-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:disabled -->
         <td>
-
-  <label for="hxSelect-pRDV-b-pristine">
-      Pristine,
-    Required,
-    Disabled,
-    Valid
-    (blur)
-  </label>
 
   <hx-select-control
   >
@@ -884,17 +880,16 @@ disabled         required
           <option value="valid" selected>Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pRDV-b-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Valid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pRDI-b-pristine">
-      Pristine,
-    Required,
-    Disabled,
-    Invalid
-    (blur)
-  </label>
 
   <hx-select-control
   >
@@ -906,19 +901,18 @@ disabled         required
           <option value="valid">Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pRDI-b-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:disabled:focus -->
         <td>
-
-  <label for="hxSelect-pRDV-f-pristine">
-      Pristine,
-    Required,
-    Disabled,
-    Valid
-    (focus)
-  </label>
 
   <hx-select-control
   >
@@ -930,17 +924,16 @@ class="mock-focus" disabled         required
           <option value="valid" selected>Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pRDV-f-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Valid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pRDI-f-pristine">
-      Pristine,
-    Required,
-    Disabled,
-    Invalid
-    (focus)
-  </label>
 
   <hx-select-control
   >
@@ -952,6 +945,13 @@ class="mock-focus" disabled         required
           <option value="valid">Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pRDI-f-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
       </tr>
@@ -964,13 +964,13 @@ class="mock-focus" disabled         required
 
   <section>
     <header>
-      <h2>Changed</h2>
-      <p><code>&lt;hx-select-control hx-changed&gt;</code></p>
+      <h2 id="test-dirty">Dirty</h2>
+      <code>&lt;hx-select-control hx-dirty&gt;</code>
     </header>
       <section id="changed-optional-states">
     <header>
       <h3>Optional</h3>
-      <code>select:optional</code>
+      <code>&lt;select&gt;</code>
     </header>
       <table>
     <thead>
@@ -983,172 +983,164 @@ class="mock-focus" disabled         required
       <tr><!-- select:enabled -->
         <td>
 
-  <label for="hxSelect-cOEV-b-changed">
-Changed,    Optional,
-    Enabled,
-    Valid
-    (blur)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cOEV-b-changed"
+      id="hxSelect-dOEV-b-changed"
     >
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dOEV-b-changed">
+Dirty,      Optional,
+      Enabled,
+      Valid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
         <td>
 
-  <label for="hxSelect-cOEI-b-changed">
-Changed,    Optional,
-    Enabled,
-    Invalid
-    (blur)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cOEI-b-changed"
+      id="hxSelect-dOEI-b-changed"
         data-mock-invalid
     >
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dOEI-b-changed">
+Dirty,      Optional,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:enabled:focus -->
         <td>
 
-  <label for="hxSelect-cOEV-f-changed">
-Changed,    Optional,
-    Enabled,
-    Valid
-    (focus)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cOEV-f-changed"
+      id="hxSelect-dOEV-f-changed"
 class="mock-focus"     >
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dOEV-f-changed">
+Dirty,      Optional,
+      Enabled,
+      Valid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
         <td>
 
-  <label for="hxSelect-cOEI-f-changed">
-Changed,    Optional,
-    Enabled,
-    Invalid
-    (focus)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cOEI-f-changed"
+      id="hxSelect-dOEI-f-changed"
 class="mock-focus"         data-mock-invalid
     >
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dOEI-f-changed">
+Dirty,      Optional,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:disabled -->
         <td>
 
-  <label for="hxSelect-cODV-b-changed">
-Changed,    Optional,
-    Disabled,
-    Valid
-    (blur)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cODV-b-changed"
+      id="hxSelect-dODV-b-changed"
 disabled     >
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dODV-b-changed">
+Dirty,      Optional,
+      Disabled,
+      Valid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
         <td>
 
-  <label for="hxSelect-cODI-b-changed">
-Changed,    Optional,
-    Disabled,
-    Invalid
-    (blur)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cODI-b-changed"
+      id="hxSelect-dODI-b-changed"
 disabled         data-mock-invalid
     >
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dODI-b-changed">
+Dirty,      Optional,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:disabled:focus -->
         <td>
 
-  <label for="hxSelect-cODV-f-changed">
-Changed,    Optional,
-    Disabled,
-    Valid
-    (focus)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cODV-f-changed"
+      id="hxSelect-dODV-f-changed"
 class="mock-focus" disabled     >
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dODV-f-changed">
+Dirty,      Optional,
+      Disabled,
+      Valid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
         <td>
 
-  <label for="hxSelect-cODI-f-changed">
-Changed,    Optional,
-    Disabled,
-    Invalid
-    (focus)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cODI-f-changed"
+      id="hxSelect-dODI-f-changed"
 class="mock-focus" disabled         data-mock-invalid
     >
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dODI-f-changed">
+Dirty,      Optional,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
       </tr>
@@ -1164,7 +1156,7 @@ class="mock-focus" disabled         data-mock-invalid
   <section id="changed-required-states">
     <header>
       <h3>Required</h3>
-      <code>select:required</code>
+      <code>&lt;select required&gt;</code>
     </header>
       <table>
     <thead>
@@ -1177,176 +1169,168 @@ class="mock-focus" disabled         data-mock-invalid
       <tr><!-- select:enabled -->
         <td>
 
-  <label for="hxSelect-cREV-b-changed">
-Changed,    Required,
-    Enabled,
-    Valid
-    (blur)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cREV-b-changed"
+      id="hxSelect-dREV-b-changed"
         required
     >
           <option value="">Invalid Option</option>
           <option value="valid" selected>Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dREV-b-changed">
+Dirty,      Required,
+      Enabled,
+      Valid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
         <td>
 
-  <label for="hxSelect-cREI-b-changed">
-Changed,    Required,
-    Enabled,
-    Invalid
-    (blur)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cREI-b-changed"
+      id="hxSelect-dREI-b-changed"
         required
     >
           <option value="" selected>Invalid Option</option>
           <option value="valid">Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dREI-b-changed">
+Dirty,      Required,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:enabled:focus -->
         <td>
 
-  <label for="hxSelect-cREV-f-changed">
-Changed,    Required,
-    Enabled,
-    Valid
-    (focus)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cREV-f-changed"
+      id="hxSelect-dREV-f-changed"
 class="mock-focus"         required
     >
           <option value="">Invalid Option</option>
           <option value="valid" selected>Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dREV-f-changed">
+Dirty,      Required,
+      Enabled,
+      Valid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
         <td>
 
-  <label for="hxSelect-cREI-f-changed">
-Changed,    Required,
-    Enabled,
-    Invalid
-    (focus)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cREI-f-changed"
+      id="hxSelect-dREI-f-changed"
 class="mock-focus"         required
     >
           <option value="" selected>Invalid Option</option>
           <option value="valid">Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dREI-f-changed">
+Dirty,      Required,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:disabled -->
         <td>
 
-  <label for="hxSelect-cRDV-b-changed">
-Changed,    Required,
-    Disabled,
-    Valid
-    (blur)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cRDV-b-changed"
+      id="hxSelect-dRDV-b-changed"
 disabled         required
     >
           <option value="">Invalid Option</option>
           <option value="valid" selected>Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dRDV-b-changed">
+Dirty,      Required,
+      Disabled,
+      Valid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
         <td>
 
-  <label for="hxSelect-cRDI-b-changed">
-Changed,    Required,
-    Disabled,
-    Invalid
-    (blur)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cRDI-b-changed"
+      id="hxSelect-dRDI-b-changed"
 disabled         required
     >
           <option value="" selected>Invalid Option</option>
           <option value="valid">Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dRDI-b-changed">
+Dirty,      Required,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:disabled:focus -->
         <td>
 
-  <label for="hxSelect-cRDV-f-changed">
-Changed,    Required,
-    Disabled,
-    Valid
-    (focus)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cRDV-f-changed"
+      id="hxSelect-dRDV-f-changed"
 class="mock-focus" disabled         required
     >
           <option value="">Invalid Option</option>
           <option value="valid" selected>Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dRDV-f-changed">
+Dirty,      Required,
+      Disabled,
+      Valid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
         <td>
 
-  <label for="hxSelect-cRDI-f-changed">
-Changed,    Required,
-    Disabled,
-    Invalid
-    (focus)
-  </label>
-
   <hx-select-control
-hx-changed   >
+hx-dirty   >
     <select
-      id="hxSelect-cRDI-f-changed"
+      id="hxSelect-dRDI-f-changed"
 class="mock-focus" disabled         required
     >
           <option value="" selected>Invalid Option</option>
           <option value="valid">Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-dRDI-f-changed">
+Dirty,      Required,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
       </tr>
@@ -1359,408 +1343,13 @@ class="mock-focus" disabled         required
 
   <section>
     <header>
-      <h2>Touched</h2>
-      <p><code>&lt;hx-select-control hx-touched&gt;</code></p>
-    </header>
-      <section id="touched-optional-states">
-    <header>
-      <h3>Optional</h3>
-      <code>select:optional</code>
-    </header>
-      <table>
-    <thead>
-      <tr>
-        <th>Valid</th>
-        <th>Invalid*</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><!-- select:enabled -->
-        <td>
-
-  <label for="hxSelect-tOEV-b-touched">
-Touched,    Optional,
-    Enabled,
-    Valid
-    (blur)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tOEV-b-touched"
-    >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-tOEI-b-touched">
-Touched,    Optional,
-    Enabled,
-    Invalid
-    (blur)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tOEI-b-touched"
-        data-mock-invalid
-    >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-      <tr><!-- select:enabled:focus -->
-        <td>
-
-  <label for="hxSelect-tOEV-f-touched">
-Touched,    Optional,
-    Enabled,
-    Valid
-    (focus)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tOEV-f-touched"
-class="mock-focus"     >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-tOEI-f-touched">
-Touched,    Optional,
-    Enabled,
-    Invalid
-    (focus)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tOEI-f-touched"
-class="mock-focus"         data-mock-invalid
-    >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-      <tr><!-- select:disabled -->
-        <td>
-
-  <label for="hxSelect-tODV-b-touched">
-Touched,    Optional,
-    Disabled,
-    Valid
-    (blur)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tODV-b-touched"
-disabled     >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-tODI-b-touched">
-Touched,    Optional,
-    Disabled,
-    Invalid
-    (blur)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tODI-b-touched"
-disabled         data-mock-invalid
-    >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-      <tr><!-- select:disabled:focus -->
-        <td>
-
-  <label for="hxSelect-tODV-f-touched">
-Touched,    Optional,
-    Disabled,
-    Valid
-    (focus)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tODV-f-touched"
-class="mock-focus" disabled     >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-tODI-f-touched">
-Touched,    Optional,
-    Disabled,
-    Invalid
-    (focus)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tODI-f-touched"
-class="mock-focus" disabled         data-mock-invalid
-    >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-    </tbody>
-  </table>
-    <p class="hxSubBody hxSubdued">
-      <hx-icon type="info-circle"></hx-icon>
-      JavaScript required to match <code>:optional:invalid</code>
-    </p>
-
-  </section>
-
-  <section id="touched-required-states">
-    <header>
-      <h3>Required</h3>
-      <code>select:required</code>
-    </header>
-      <table>
-    <thead>
-      <tr>
-        <th>Valid</th>
-        <th>Invalid</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><!-- select:enabled -->
-        <td>
-
-  <label for="hxSelect-tREV-b-touched">
-Touched,    Required,
-    Enabled,
-    Valid
-    (blur)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tREV-b-touched"
-        required
-    >
-          <option value="">Invalid Option</option>
-          <option value="valid" selected>Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-tREI-b-touched">
-Touched,    Required,
-    Enabled,
-    Invalid
-    (blur)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tREI-b-touched"
-        required
-    >
-          <option value="" selected>Invalid Option</option>
-          <option value="valid">Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-      <tr><!-- select:enabled:focus -->
-        <td>
-
-  <label for="hxSelect-tREV-f-touched">
-Touched,    Required,
-    Enabled,
-    Valid
-    (focus)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tREV-f-touched"
-class="mock-focus"         required
-    >
-          <option value="">Invalid Option</option>
-          <option value="valid" selected>Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-tREI-f-touched">
-Touched,    Required,
-    Enabled,
-    Invalid
-    (focus)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tREI-f-touched"
-class="mock-focus"         required
-    >
-          <option value="" selected>Invalid Option</option>
-          <option value="valid">Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-      <tr><!-- select:disabled -->
-        <td>
-
-  <label for="hxSelect-tRDV-b-touched">
-Touched,    Required,
-    Disabled,
-    Valid
-    (blur)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tRDV-b-touched"
-disabled         required
-    >
-          <option value="">Invalid Option</option>
-          <option value="valid" selected>Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-tRDI-b-touched">
-Touched,    Required,
-    Disabled,
-    Invalid
-    (blur)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tRDI-b-touched"
-disabled         required
-    >
-          <option value="" selected>Invalid Option</option>
-          <option value="valid">Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-      <tr><!-- select:disabled:focus -->
-        <td>
-
-  <label for="hxSelect-tRDV-f-touched">
-Touched,    Required,
-    Disabled,
-    Valid
-    (focus)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tRDV-f-touched"
-class="mock-focus" disabled         required
-    >
-          <option value="">Invalid Option</option>
-          <option value="valid" selected>Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-tRDI-f-touched">
-Touched,    Required,
-    Disabled,
-    Invalid
-    (focus)
-  </label>
-
-  <hx-select-control
-hx-touched   >
-    <select
-      id="hxSelect-tRDI-f-touched"
-class="mock-focus" disabled         required
-    >
-          <option value="" selected>Invalid Option</option>
-          <option value="valid">Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-  </section>
-
-  </section>
-
-  <section>
-    <header>
-      <h2>Styled Invalid (control-level)</h2>
-      <p><code>hx-select-control.hxInvalid</code></p>
+      <h2 id="test-visually-invalid">Visually Invalid</h2>
+      <code>&lt;hx-select-control class="hxInvalid"&gt;</code>
     </header>
       <section id="invalid-optional-states">
     <header>
       <h3>Optional</h3>
-      <code>select:optional</code>
+      <code>&lt;select&gt;</code>
     </header>
       <table>
     <thead>
@@ -1772,13 +1361,6 @@ class="mock-focus" disabled         required
     <tbody>
       <tr><!-- select:enabled -->
         <td>
-
-  <label for="hxSelect-pOEV-b-invalid">
-.hxInvalid,    Optional,
-    Enabled,
-    Valid
-    (blur)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -1789,16 +1371,15 @@ class="hxInvalid"   >
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pOEV-b-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Valid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pOEI-b-invalid">
-.hxInvalid,    Optional,
-    Enabled,
-    Invalid
-    (blur)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -1810,18 +1391,17 @@ class="hxInvalid"   >
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pOEI-b-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:enabled:focus -->
         <td>
-
-  <label for="hxSelect-pOEV-f-invalid">
-.hxInvalid,    Optional,
-    Enabled,
-    Valid
-    (focus)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -1832,16 +1412,15 @@ class="mock-focus"     >
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pOEV-f-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Valid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pOEI-f-invalid">
-.hxInvalid,    Optional,
-    Enabled,
-    Invalid
-    (focus)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -1853,18 +1432,17 @@ class="mock-focus"         data-mock-invalid
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pOEI-f-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:disabled -->
         <td>
-
-  <label for="hxSelect-pODV-b-invalid">
-.hxInvalid,    Optional,
-    Disabled,
-    Valid
-    (blur)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -1875,16 +1453,15 @@ disabled     >
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pODV-b-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Valid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pODI-b-invalid">
-.hxInvalid,    Optional,
-    Disabled,
-    Invalid
-    (blur)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -1896,18 +1473,17 @@ disabled         data-mock-invalid
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pODI-b-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:disabled:focus -->
         <td>
-
-  <label for="hxSelect-pODV-f-invalid">
-.hxInvalid,    Optional,
-    Disabled,
-    Valid
-    (focus)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -1918,16 +1494,15 @@ class="mock-focus" disabled     >
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pODV-f-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Valid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pODI-f-invalid">
-.hxInvalid,    Optional,
-    Disabled,
-    Invalid
-    (focus)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -1939,6 +1514,12 @@ class="mock-focus" disabled         data-mock-invalid
         <option value="2">Option 2</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pODI-f-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
       </tr>
@@ -1954,7 +1535,7 @@ class="mock-focus" disabled         data-mock-invalid
   <section id="invalid-required-states">
     <header>
       <h3>Required</h3>
-      <code>select:required</code>
+      <code>&lt;select required&gt;</code>
     </header>
       <table>
     <thead>
@@ -1966,13 +1547,6 @@ class="mock-focus" disabled         data-mock-invalid
     <tbody>
       <tr><!-- select:enabled -->
         <td>
-
-  <label for="hxSelect-pREV-b-invalid">
-.hxInvalid,    Required,
-    Enabled,
-    Valid
-    (blur)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -1984,16 +1558,15 @@ class="hxInvalid"   >
           <option value="valid" selected>Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pREV-b-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Valid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pREI-b-invalid">
-.hxInvalid,    Required,
-    Enabled,
-    Invalid
-    (blur)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -2005,18 +1578,17 @@ class="hxInvalid"   >
           <option value="valid">Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pREI-b-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Invalid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:enabled:focus -->
         <td>
-
-  <label for="hxSelect-pREV-f-invalid">
-.hxInvalid,    Required,
-    Enabled,
-    Valid
-    (focus)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -2028,16 +1600,15 @@ class="mock-focus"         required
           <option value="valid" selected>Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pREV-f-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Valid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pREI-f-invalid">
-.hxInvalid,    Required,
-    Enabled,
-    Invalid
-    (focus)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -2049,18 +1620,17 @@ class="mock-focus"         required
           <option value="valid">Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pREI-f-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Invalid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:disabled -->
         <td>
-
-  <label for="hxSelect-pRDV-b-invalid">
-.hxInvalid,    Required,
-    Disabled,
-    Valid
-    (blur)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -2072,16 +1642,15 @@ disabled         required
           <option value="valid" selected>Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pRDV-b-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Valid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pRDI-b-invalid">
-.hxInvalid,    Required,
-    Disabled,
-    Invalid
-    (blur)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -2093,18 +1662,17 @@ disabled         required
           <option value="valid">Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pRDI-b-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Invalid
+      (blur)
+    </label>
   </hx-select-control>
 </td>
       </tr>
       <tr><!-- select:disabled:focus -->
         <td>
-
-  <label for="hxSelect-pRDV-f-invalid">
-.hxInvalid,    Required,
-    Disabled,
-    Valid
-    (focus)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -2116,16 +1684,15 @@ class="mock-focus" disabled         required
           <option value="valid" selected>Valid Option</option>
     </select>
     <hx-select></hx-select>
+    <label for="hxSelect-pRDV-f-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Valid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
         <td>
-
-  <label for="hxSelect-pRDI-f-invalid">
-.hxInvalid,    Required,
-    Disabled,
-    Invalid
-    (focus)
-  </label>
 
   <hx-select-control
 class="hxInvalid"   >
@@ -2137,417 +1704,12 @@ class="mock-focus" disabled         required
           <option value="valid">Valid Option</option>
     </select>
     <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-  </section>
-
-  </section>
-
-  <section class="hxInvalid">
-    <header>
-      <h2>Styled Invalid (ancestor-level)</h2>
-      <p><code>.hxInvalid hx-select-control</code></p>
-    </header>
-      <section id="ancestor-invalid-optional-states">
-    <header>
-      <h3>Optional</h3>
-      <code>select:optional</code>
-    </header>
-      <table>
-    <thead>
-      <tr>
-        <th>Valid</th>
-        <th>Invalid*</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><!-- select:enabled -->
-        <td>
-
-  <label for="hxSelect-pOEV-b-ancestor-invalid">
-      Pristine,
-    Optional,
-    Enabled,
-    Valid
-    (blur)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pOEV-b-ancestor-invalid"
-    >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-pOEI-b-ancestor-invalid">
-      Pristine,
-    Optional,
-    Enabled,
-    Invalid
-    (blur)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pOEI-b-ancestor-invalid"
-        data-mock-invalid
-    >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-      <tr><!-- select:enabled:focus -->
-        <td>
-
-  <label for="hxSelect-pOEV-f-ancestor-invalid">
-      Pristine,
-    Optional,
-    Enabled,
-    Valid
-    (focus)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pOEV-f-ancestor-invalid"
-class="mock-focus"     >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-pOEI-f-ancestor-invalid">
-      Pristine,
-    Optional,
-    Enabled,
-    Invalid
-    (focus)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pOEI-f-ancestor-invalid"
-class="mock-focus"         data-mock-invalid
-    >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-      <tr><!-- select:disabled -->
-        <td>
-
-  <label for="hxSelect-pODV-b-ancestor-invalid">
-      Pristine,
-    Optional,
-    Disabled,
-    Valid
-    (blur)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pODV-b-ancestor-invalid"
-disabled     >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-pODI-b-ancestor-invalid">
-      Pristine,
-    Optional,
-    Disabled,
-    Invalid
-    (blur)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pODI-b-ancestor-invalid"
-disabled         data-mock-invalid
-    >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-      <tr><!-- select:disabled:focus -->
-        <td>
-
-  <label for="hxSelect-pODV-f-ancestor-invalid">
-      Pristine,
-    Optional,
-    Disabled,
-    Valid
-    (focus)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pODV-f-ancestor-invalid"
-class="mock-focus" disabled     >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-pODI-f-ancestor-invalid">
-      Pristine,
-    Optional,
-    Disabled,
-    Invalid
-    (focus)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pODI-f-ancestor-invalid"
-class="mock-focus" disabled         data-mock-invalid
-    >
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-    </tbody>
-  </table>
-    <p class="hxSubBody hxSubdued">
-      <hx-icon type="info-circle"></hx-icon>
-      JavaScript required to match <code>:optional:invalid</code>
-    </p>
-
-  </section>
-
-  <section id="ancestor-invalid-required-states">
-    <header>
-      <h3>Required</h3>
-      <code>select:required</code>
-    </header>
-      <table>
-    <thead>
-      <tr>
-        <th>Valid</th>
-        <th>Invalid</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><!-- select:enabled -->
-        <td>
-
-  <label for="hxSelect-pREV-b-ancestor-invalid">
-      Pristine,
-    Required,
-    Enabled,
-    Valid
-    (blur)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pREV-b-ancestor-invalid"
-        required
-    >
-          <option value="">Invalid Option</option>
-          <option value="valid" selected>Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-pREI-b-ancestor-invalid">
-      Pristine,
-    Required,
-    Enabled,
-    Invalid
-    (blur)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pREI-b-ancestor-invalid"
-        required
-    >
-          <option value="" selected>Invalid Option</option>
-          <option value="valid">Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-      <tr><!-- select:enabled:focus -->
-        <td>
-
-  <label for="hxSelect-pREV-f-ancestor-invalid">
-      Pristine,
-    Required,
-    Enabled,
-    Valid
-    (focus)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pREV-f-ancestor-invalid"
-class="mock-focus"         required
-    >
-          <option value="">Invalid Option</option>
-          <option value="valid" selected>Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-pREI-f-ancestor-invalid">
-      Pristine,
-    Required,
-    Enabled,
-    Invalid
-    (focus)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pREI-f-ancestor-invalid"
-class="mock-focus"         required
-    >
-          <option value="" selected>Invalid Option</option>
-          <option value="valid">Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-      <tr><!-- select:disabled -->
-        <td>
-
-  <label for="hxSelect-pRDV-b-ancestor-invalid">
-      Pristine,
-    Required,
-    Disabled,
-    Valid
-    (blur)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pRDV-b-ancestor-invalid"
-disabled         required
-    >
-          <option value="">Invalid Option</option>
-          <option value="valid" selected>Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-pRDI-b-ancestor-invalid">
-      Pristine,
-    Required,
-    Disabled,
-    Invalid
-    (blur)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pRDI-b-ancestor-invalid"
-disabled         required
-    >
-          <option value="" selected>Invalid Option</option>
-          <option value="valid">Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-      </tr>
-      <tr><!-- select:disabled:focus -->
-        <td>
-
-  <label for="hxSelect-pRDV-f-ancestor-invalid">
-      Pristine,
-    Required,
-    Disabled,
-    Valid
-    (focus)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pRDV-f-ancestor-invalid"
-class="mock-focus" disabled         required
-    >
-          <option value="">Invalid Option</option>
-          <option value="valid" selected>Valid Option</option>
-    </select>
-    <hx-select></hx-select>
-  </hx-select-control>
-</td>
-        <td>
-
-  <label for="hxSelect-pRDI-f-ancestor-invalid">
-      Pristine,
-    Required,
-    Disabled,
-    Invalid
-    (focus)
-  </label>
-
-  <hx-select-control
-  >
-    <select
-      id="hxSelect-pRDI-f-ancestor-invalid"
-class="mock-focus" disabled         required
-    >
-          <option value="" selected>Invalid Option</option>
-          <option value="valid">Valid Option</option>
-    </select>
-    <hx-select></hx-select>
+    <label for="hxSelect-pRDI-f-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Invalid
+      (focus)
+    </label>
   </hx-select-control>
 </td>
       </tr>
@@ -2560,7 +1722,7 @@ class="mock-focus" disabled         required
 
   <section>
     <header>
-      <h2>Layout</h2>
+      <h2 id="test-layout">Layout</h2>
       <p class="hxSubdued hxSubBody">
         <hx-icon type="info-circle"></hx-icon>
         Extra elements should not be visible.
@@ -2646,7 +1808,9 @@ class="mock-focus" disabled         required
   </section>
 
   <section>
-    <h2>Miscellaneous</h2>
+    <header>
+      <h2 id="test-misc">Miscellaneous</h2>
+    </header>
 
     <div class="hxRow">
       <div class="hxCol hxSpan-4">
@@ -2686,6 +1850,32 @@ class="mock-focus" disabled         required
     </div>
   </section>
   </main>
+
+  <aside class="hxSiderail hxBox hxMd">
+    <header>
+      <h1 class="hxHeading-4">On this page:</h1>
+    </header>
+
+    <nav class="article-toc">
+      
+            <a href="#test-pristine">Pristine</a>
+        
+
+            <a href="#test-dirty">Dirty</a>
+        
+
+            <a href="#test-visually-invalid">Visually Invalid</a>
+        
+
+            <a href="#test-layout">Layout</a>
+        
+
+            <a href="#test-misc">Miscellaneous</a>
+        
+      <hr class="hxDivider" />
+      <a class="top-link" href="#top">Back to Top</a>
+    </nav>
+  </aside>
     </div>
   </div>
 
@@ -2700,12 +1890,12 @@ class="mock-focus" disabled         required
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2019-04-04
+      2019-04-17
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0-rc.0" target="_blank">
-      v0.16.0-rc.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0-rc.1" target="_blank">
+      v0.16.0-rc.1
     </a>)
   </small>
 </div>

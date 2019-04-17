@@ -276,8 +276,14 @@ class="current">
 
 
       
-      <a href="components/text-inputs" >
-    Text Inputs
+      <a href="components/text-input" >
+    Text Input
+  </a>
+
+
+      
+      <a href="components/textarea" >
+    Textarea
   </a>
 
 
@@ -516,6 +522,18 @@ class="current">
 
 
       
+      <a href="elements/hx-text-control" >
+    &lt;hx-text-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-textarea-control" >
+    &lt;hx-textarea-control&gt;
+  </a>
+
+
+      
       <a href="elements/hx-tile" >
     &lt;hx-tile&gt;
   </a>
@@ -553,19 +571,41 @@ class="current">
     </nav>
   </section>
 
-  <section class="hxRow">
-    <div class="hxCol hxSpan-3-md">
+  <section>
+    <header>
       <h3>Light DOM White Space</h3>
-      <hx-alert status="STATUS"> Message with leading white space (no trailing)</hx-alert>
-      <hx-alert status="STATUS">Message with trailing white space (no leading) </hx-alert>
-      <hx-alert status="STATUS">Message without leading/trailing white space</hx-alert>
-      <hx-alert status="STATUS">Long message without leading white space.
-        It has filler text added in an attempt to get the message to wrap
-        to multiple lines, in order to test how the status arranges itself.
-      </hx-alert>
+    </header>
+    <div class="hxRow">
+      <div class="hxCol hxSpan-6-md">
+        <hx-alert status="STATUS"> Message with leading white space (no trailing)</hx-alert>
+      </div>
+      <div class="hxCol hxSpan-6-md">
+        <hx-alert status="STATUS">Message with trailing white space (no leading) </hx-alert>
+      </div>
+      <div class="hxCol hxSpan-6-md">
+        <hx-alert status="STATUS">Message without leading/trailing white space</hx-alert>
+      </div>
+      <div class="hxCol hxSpan-6-md">
+        <hx-alert status="STATUS">Long message without leading white space.
+          It has filler text added in an attempt to get the message to wrap
+          to multiple lines, in order to test how the status arranges itself.
+        </hx-alert>
+      </div>
     </div>
   </section>
   </main>
+
+  <aside class="hxSiderail hxBox hxMd">
+    <header>
+      <h1 class="hxHeading-4">On this page:</h1>
+    </header>
+
+    <nav class="article-toc">
+      
+      <hr class="hxDivider" />
+      <a class="top-link" href="#top">Back to Top</a>
+    </nav>
+  </aside>
     </div>
   </div>
 
@@ -580,12 +620,12 @@ class="current">
 <div class="hxCol text-right">
     <small>
       Last Updated:
-      2019-02-21
+      2019-04-16
     </small>
 
   <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0-rc.0" target="_blank">
-      v0.16.0-rc.0
+    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0-rc.1" target="_blank">
+      v0.16.0-rc.1
     </a>)
   </small>
 </div>

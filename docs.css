@@ -215,8 +215,11 @@ a[href].hxBtnGroup.hxLink > .hxBtn.pseudo-focus {
 .checkbox-test hx-checkbox-control > input[type="checkbox"].mock-focus {
   box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
 }
+.checkbox-test hx-checkbox-control > input[type="checkbox"].mock-focus::-ms-check {
+  border-color: #0e94a6;
+}
 .checkbox-test hx-checkbox-control > input[type="checkbox"].mock-focus ~ label > hx-checkbox {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  border-color: #0e94a6;box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
 }
 .checkbox-test hx-checkbox-control > input[type="checkbox"].mock-hover {
   color: #16b9d4;
@@ -227,20 +230,46 @@ a[href].hxBtnGroup.hxLink > .hxBtn.pseudo-focus {
 .checkbox-test hx-checkbox-control > input[type="checkbox"].mock-hover ~ label > hx-checkbox {
   background-color: #e4f9f9;border-color: #16b9d4;color: #16b9d4;
 }
-.checkbox-test hx-checkbox-control > input[type="checkbox"]:invalid.mock-focus {
+.checkbox-test hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid.mock-focus,
+.checkbox-test hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid.mock-focus {
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }
-.checkbox-test hx-checkbox-control > input[type="checkbox"]:invalid.mock-focus ~ label > hx-checkbox {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+.checkbox-test hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid.mock-focus::-ms-check,
+.checkbox-test hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid.mock-focus::-ms-check {
+  border-color: #d32f2f;
 }
-.checkbox-test hx-checkbox-control > input[type="checkbox"]:invalid.mock-hover::-ms-check {
+.checkbox-test hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid.mock-focus ~ label > hx-checkbox,
+.checkbox-test hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid.mock-focus ~ label > hx-checkbox {
+  border-color: #d32f2f;box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.checkbox-test hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid.mock-hover::-ms-check,
+.checkbox-test hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid.mock-hover::-ms-check {
   background-color: #ffcdd2;
 }
-.checkbox-test hx-checkbox-control > input[type="checkbox"]:invalid.mock-hover ~ label > hx-checkbox {
+.checkbox-test hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid.mock-hover ~ label > hx-checkbox,
+.checkbox-test hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid.mock-hover ~ label > hx-checkbox {
+  background-color: #ffcdd2;border-color: #d32f2f;color: #d32f2f;
+}
+.checkbox-test hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus {
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.checkbox-test hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus::-ms-check {
+  border-color: #d32f2f;
+}
+.checkbox-test hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus ~ label > hx-checkbox {
+  border-color: #d32f2f;box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.checkbox-test hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-hover::-ms-check {
+  background-color: #ffcdd2;
+}
+.checkbox-test hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-hover ~ label > hx-checkbox {
   background-color: #ffcdd2;border-color: #d32f2f;color: #d32f2f;
 }
 .checkbox-test hx-checkbox-control > input[type="checkbox"]:disabled.mock-focus::-ms-check {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  border-color: #bdbdbd;box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.checkbox-test hx-checkbox-control > input[type="checkbox"]:disabled.mock-focus ~ label > hx-checkbox {
+  border-color: #bdbdbd;
 }
 .checkbox-test hx-checkbox-control > input[type="checkbox"]:disabled.mock-hover::-ms-check {
   background-color: #eeeeee;border-color: #bdbdbd;color: #bdbdbd;
@@ -248,8 +277,28 @@ a[href].hxBtnGroup.hxLink > .hxBtn.pseudo-focus {
 .checkbox-test hx-checkbox-control > input[type="checkbox"]:disabled.mock-hover ~ label > hx-checkbox {
   background-color: #eeeeee;border-color: #bdbdbd;color: #bdbdbd;
 }
+.checkbox-test hx-checkbox-control {
+  /* ----- PRISTINE ----- */
+  /* ----- CHANGED OR TOUCHED ----- */
+  /* ----- FORCE INVALID ----- */
+}
 .checkbox-test hx-checkbox-control > label > hx-checkbox {
   display: none;
+}
+.checkbox-test hx-checkbox-control > input[type="checkbox"] {
+  /* imitate :focus */
+  /* imitate :hover */
+  /* imitate :disabled:focus */
+  /* imitate :disabled:hover */
+}
+.checkbox-test hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid,
+.checkbox-test hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid {
+  /* imitate :focus */
+  /* imitate :hover */
+}
+.checkbox-test hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled {
+  /* imitate :focus */
+  /* imitate :hover */
 }
 @supports (--modern: true) {
   .checkbox-test hx-checkbox-control > label > hx-checkbox {
@@ -299,44 +348,6 @@ a[href].hxBtnGroup.hxLink > .hxBtn.pseudo-focus {
   /* Invalid (focus, hover) */
   /* Invalid + Checked (focus, hover) */
   /* Disabled */
-}
-.test-content hx-select-control > select.mock-focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);outline: none;
-}
-.test-content hx-select-control > select.mock-focus:-moz-focusring {
-  color: transparent;text-shadow: 0 0 0 #424242;
-}
-.test-content hx-select-control[hx-changed] > select:invalid.mock-focus,
-.test-content hx-select-control[hx-touched] > select:invalid.mock-focus {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-.test-content hx-select-control[hx-changed] > select:invalid.mock-focus:-moz-focusring,
-.test-content hx-select-control[hx-touched] > select:invalid.mock-focus:-moz-focusring {
-  color: transparent;text-shadow: 0 0 0 #424242;
-}
-.test-content hx-select-control > select:disabled.mock-focus,
-.test-content hx-select-control > select:disabled:invalid.mock-focus {
-  border: 1px solid #bdbdbd;box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-.test-content hx-select-control > select:disabled.mock-focus:-moz-focusring,
-.test-content hx-select-control > select:disabled:invalid.mock-focus:-moz-focusring {
-  color: transparent;text-shadow: 0 0 0 #757575;
-}
-.test-content hx-select-control > select:disabled.mock-focus ~ hx-select,
-.test-content hx-select-control > select:disabled:invalid.mock-focus ~ hx-select {
-  border: 1px solid #bdbdbd;
-}
-.test-content {
-  /* ----- PRISTINE ----- */
-  /* ----- CHANGED ----- */
-  /* ----- TOUCHED ----- */
-  /* ----- FORCE INVALID ----- */
-}
-.test-content hx-select-control > select.mock-focus {
-  /* imitate :focus */
-}
-.test-content hx-select-control > select:disabled.mock-focus {
-  /* imitate :disabled:focus */
 }
 .grid-demo > .demo-container {
   border: 1px dashed #9e9e9e;
@@ -739,6 +750,93 @@ a.pseudo-active {
 .demo-typography .weight-bold {
   font-weight: 700;
 }
+.dropdown-select-spec hx-select-control {
+  /* ----- Pristine --------------- */
+  /* ----- Invalid ---------------*/
+}
+.dropdown-select-spec hx-select-control > select.mock-focus {
+  outline: none;
+  /* ----- Disabled --------------- */
+}
+.dropdown-select-spec hx-select-control > select.mock-focus:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #424242;
+}
+.dropdown-select-spec hx-select-control > select.mock-focus ~ hx-select {
+  border: 1px solid #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.dropdown-select-spec hx-select-control > select.mock-focus:disabled {
+  outline: none;
+}
+.dropdown-select-spec hx-select-control > select.mock-focus:disabled:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #424242;
+}
+.dropdown-select-spec hx-select-control > select.mock-focus:disabled ~ hx-select {
+  border: 1px solid #bdbdbd;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.dropdown-select-spec hx-select-control.hxInvalid > select.mock-focus:enabled,
+.dropdown-select-spec hx-select-control[hx-dirty] > select.mock-focus:enabled:invalid {
+  outline: none;
+}
+.dropdown-select-spec hx-select-control.hxInvalid > select.mock-focus:enabled:-moz-focusring,
+.dropdown-select-spec hx-select-control[hx-dirty] > select.mock-focus:enabled:invalid:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #424242;
+}
+.dropdown-select-spec hx-select-control.hxInvalid > select.mock-focus:enabled ~ hx-select,
+.dropdown-select-spec hx-select-control[hx-dirty] > select.mock-focus:enabled:invalid ~ hx-select {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.text-input-spec hx-text-control {
+  /* ----- Pristine --------------- */
+  /* ----- Disabled --------------- */
+  /* ----- Changed / Touched --------------- */
+  /* ----- Styled Invalid --------------- */
+}
+.text-input-spec hx-text-control > input[type="text"].mock-focus {
+  border: 1px solid #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  outline: 0;
+}
+.text-input-spec hx-text-control > input[type="text"]:disabled.mock-focus {
+  border: 1px solid #bdbdbd;
+}
+.text-input-spec hx-text-control[hx-changed] > input[type="text"]:invalid.mock-focus,
+.text-input-spec hx-text-control[hx-touched] > input[type="text"]:invalid.mock-focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.text-input-spec hx-text-control.hxInvalid > input[type="text"]:enabled.mock-focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.textarea-spec hx-textarea-control {
+  /* ----- Pristine --------------- */
+  /* ----- Disabled --------------- */
+  /* ----- Changed / Touched --------------- */
+  /* ----- Styled Invalid --------------- */
+}
+.textarea-spec hx-textarea-control > textarea.mock-focus {
+  border: 1px solid #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  outline: 0;
+}
+.textarea-spec hx-textarea-control > textarea:disabled.mock-focus {
+  border: 1px solid #bdbdbd;
+}
+.textarea-spec hx-textarea-control[hx-changed] > textarea:invalid.mock-focus,
+.textarea-spec hx-textarea-control[hx-touched] > textarea:invalid.mock-focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.textarea-spec hx-textarea-control.hxInvalid > textarea:enabled.mock-focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
 dl:not(.hxList) dd {
   margin-bottom: 0.5em;
   margin-left: 1em;
@@ -776,7 +874,7 @@ dl:not(.hxList) dd {
 }
 .example > div {
   background-color: #ffffff;
-  padding: 1.25rem;
+  padding: 2rem;
 }
 .example > footer {
   overflow: hidden;

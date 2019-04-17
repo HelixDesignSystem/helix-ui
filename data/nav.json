@@ -138,8 +138,12 @@
         "path": "tabs"
       },
       {
-        "label": "Text Inputs",
-        "path": "text-inputs"
+        "label": "Text Input",
+        "path": "text-input"
+      },
+      {
+        "label": "Textarea",
+        "path": "textarea"
       },
       {
         "label": "Toasts",
@@ -294,6 +298,14 @@
       {
         "label": "<hx-tabset>",
         "path": "hx-tabset"
+      },
+      {
+        "label": "<hx-text-control>",
+        "path": "hx-text-control"
+      },
+      {
+        "label": "<hx-textarea-control>",
+        "path": "hx-textarea-control"
       },
       {
         "label": "<hx-tile>",
