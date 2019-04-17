@@ -1,32 +1,33 @@
-:host {
-  // prevents trigger from overlapping border on various user zoom multipliers
-  overflow: hidden;
-}
-
-/*
-  #hxSelect
-  +---------------------------+---------+
-  | .                         | trigger | row 1 (auto)
-  +---------------------------+---------+
-    col 1                       col 2
-    (auto)                      (2.5rem)
-*/
+// Hide ShadowDOM content for IE
 #hxSelect {
-  box-sizing: border-box;
-  display: grid;
-  grid-template-areas: '. trigger';
-  grid-template-columns: auto 2.5rem;
-  height: 100%;
-  width: 100%;
+  display: none;
 }
 
-#hxTrigger {
-  align-items: center;
-  background-color: var(--hxSelect__trigger-background);
-  box-sizing: border-box;
-  color: inherit;
-  display: flex;
-  grid-area: trigger;
-  height: 100%;
-  justify-content: center;
+// Show ShadowDOM content for evergreen browsers
+@supports (display: grid) {
+  /*
+      auto                        2.5rem
+    +---------------------------+---------+
+    | . ("window")              | trigger | auto
+    +---------------------------+---------+
+  */
+  #hxSelect {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-areas: '. trigger';
+    grid-template-columns: auto 2.5rem;
+    height: 100%;
+    width: 100%;
+  }
+
+  #hxTrigger {
+    align-items: center;
+    background-color: var(--hxSelect__trigger-background);
+    box-sizing: border-box;
+    color: inherit;
+    display: flex;
+    grid-area: trigger;
+    height: 100%;
+    justify-content: center;
+  }
 }

@@ -2,16 +2,19 @@ import { HXElement } from './HXElement';
 
 const STATE = {
     changed: 'hx-changed',
+    dirty: 'hx-dirty',
     touched: 'hx-touched',
 };
 
 /**
  * Abstract class which defines shared behavior among all
  * form control custom elements (e.g., HXSelectControlElement,
- * HXCheckboxControlElement, etc.).
+ * HXCheckboxControlElement, HXTextControlElement, etc.).
  *
  * ## States
- * States are applied as events occur on the `controlElement`.
+ *
+ * ### Dirty
+ * Reflected by the `hx-dirty` content attribute when Changed or Touched.
  *
  * ### Changed
  * Applies the `hx-changed` content attribute when controlElement
@@ -104,13 +107,15 @@ export class HXFormControlElement extends HXElement {
 
     /** @private */
     _onCtrlBlur () {
-        // communicate state via read-only, boolean content attribute
+        // communicate state via read-only, boolean content attributes
         this.$defaultAttribute(STATE.touched, '');
+        this.$defaultAttribute(STATE.dirty, '');
     }
 
     /** @private */
     _onCtrlChange () {
-        // communicate state via read-only, boolean content attribute
+        // communicate state via read-only, boolean content attributes
         this.$defaultAttribute(STATE.changed, '');
+        this.$defaultAttribute(STATE.dirty, '');
     }
 }

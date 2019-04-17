@@ -1,14 +1,13 @@
 ---
 title: Testing - Dropdown Select
 ---
+{% set contentClasses = 'dropdown-select-spec' %}
 {% extends 'test.njk' %}
-{% macro dropdown(id='', wasChanged=false, wasTouched=false, className='', isRequired=false, isDisabled=false, isFocused=false, isValid=true) %}
-  {% set isPristine = (className === '') and not (wasChanged or wasTouched) %}
+{% macro dropdown(id='', isDirty=false, className='', isRequired=false, isDisabled=false, isFocused=false, isValid=true) %}
+  {% set isPristine = (className === '') and not isDirty %}
 
   {% set idAttr -%}hxSelect-
-    {{- 'p' if not (wasChanged or wasTouched) -}}
-    {{- 'c' if wasChanged -}}
-    {{- 't' if wasTouched -}}
+    {{- 'd' if isDirty else 'p' -}}
     {{- 'R' if isRequired else 'O' -}}
     {{- 'D' if isDisabled else 'E' -}}
     {{- 'V' if isValid else 'I' -}}
@@ -17,24 +16,9 @@ title: Testing - Dropdown Select
     {%- if id !== '' %}-{{id}}{% endif -%}
   {%- endset %}
 
-  <label for="{{idAttr | trim}}">
-    {% if isPristine %}
-      Pristine,
-    {% else %}
-      {% if className !== '' %}.{{ className }},{% endif %}
-      {% if wasChanged %}Changed,{% endif %}
-      {% if wasTouched %}Touched,{% endif %}
-    {% endif %}
-    {{ 'Required' if isRequired else 'Optional' }},
-    {{ 'Disabled' if isDisabled else 'Enabled' }},
-    {{ 'Valid' if isValid else 'Invalid' }}
-    ({{ 'focus' if isFocused else 'blur' }})
-  </label>
-
   <hx-select-control
     {% if className !== '' %}class="{{className}}" {% endif %}
-    {% if wasChanged %}hx-changed {% endif %}
-    {% if wasTouched %}hx-touched {% endif %}
+    {% if isDirty %}hx-dirty {% endif %}
   >
     <select
       id="{{idAttr | trim}}"
@@ -60,9 +44,21 @@ title: Testing - Dropdown Select
       {% endif %}
     </select>
     <hx-select></hx-select>
+    <label for="{{idAttr | trim}}">
+      {% if isPristine %}
+        Pristine,
+      {% else %}
+        {% if className !== '' %}.{{ className }},{% endif %}
+        {% if isDirty %}Dirty,{% endif %}
+      {% endif %}
+      {{ 'Required' if isRequired else 'Optional' }},
+      {{ 'Disabled' if isDisabled else 'Enabled' }},
+      {{ 'Valid' if isValid else 'Invalid' }}
+      ({{ 'focus' if isFocused else 'blur' }})
+    </label>
   </hx-select-control>
 {% endmacro %}
-{% macro stateTable(id, wasChanged=false, wasTouched=false, className="", isRequired=false) %}
+{% macro stateTable(id, isDirty=false, className="", isRequired=false) %}
   <table>
     <thead>
       <tr>
@@ -72,20 +68,20 @@ title: Testing - Dropdown Select
     </thead>
     <tbody>
       <tr><!-- select:enabled -->
-        <td>{{dropdown(id, wasChanged, wasTouched, className, isRequired)}}</td>
-        <td>{{dropdown(id, wasChanged, wasTouched, className, isRequired, isValid=false)}}</td>
+        <td>{{dropdown(id, isDirty, className, isRequired)}}</td>
+        <td>{{dropdown(id, isDirty, className, isRequired, isValid=false)}}</td>
       </tr>
       <tr><!-- select:enabled:focus -->
-        <td>{{dropdown(id, wasChanged, wasTouched, className, isRequired, isFocused=true)}}</td>
-        <td>{{dropdown(id, wasChanged, wasTouched, className, isRequired, isFocused=true, isValid=false)}}</td>
+        <td>{{dropdown(id, isDirty, className, isRequired, isFocused=true)}}</td>
+        <td>{{dropdown(id, isDirty, className, isRequired, isFocused=true, isValid=false)}}</td>
       </tr>
       <tr><!-- select:disabled -->
-        <td>{{dropdown(id, wasChanged, wasTouched, className, isRequired, isDisabled=true)}}</td>
-        <td>{{dropdown(id, wasChanged, wasTouched, className, isRequired, isDisabled=true, isValid=false)}}</td>
+        <td>{{dropdown(id, isDirty, className, isRequired, isDisabled=true)}}</td>
+        <td>{{dropdown(id, isDirty, className, isRequired, isDisabled=true, isValid=false)}}</td>
       </tr>
       <tr><!-- select:disabled:focus -->
-        <td>{{dropdown(id, wasChanged, wasTouched, className, isRequired, isDisabled=true, isFocused=true)}}</td>
-        <td>{{dropdown(id, wasChanged, wasTouched, className, isRequired, isDisabled=true, isFocused=true, isValid=false)}}</td>
+        <td>{{dropdown(id, isDirty, className, isRequired, isDisabled=true, isFocused=true)}}</td>
+        <td>{{dropdown(id, isDirty, className, isRequired, isDisabled=true, isFocused=true, isValid=false)}}</td>
       </tr>
     </tbody>
   </table>
@@ -96,34 +92,36 @@ title: Testing - Dropdown Select
     </p>
   {% endif %}
 {% endmacro %}
-{% macro stateTables(id, wasChanged=false, wasTouched=false, className="") %}
+{% macro stateTables(id, isDirty=false, className="") %}
   <section id="{{id}}-optional-states">
     <header>
       <h3>Optional</h3>
-      <code>select:optional</code>
+      <code>&lt;select&gt;</code>
     </header>
-    {{stateTable(id, wasChanged, wasTouched, className, isRequired=false)}}
+    {{stateTable(id, isDirty, className, isRequired=false)}}
   </section>
 
   <section id="{{id}}-required-states">
     <header>
       <h3>Required</h3>
-      <code>select:required</code>
+      <code>&lt;select required&gt;</code>
     </header>
-    {{stateTable(id, wasChanged, wasTouched, className, isRequired=true)}}
+    {{stateTable(id, isDirty, className, isRequired=true)}}
   </section>
 {% endmacro %}
 
-{% block content %}
+{% block page_header %}
   <nav class="hxBreadcrumb">
     <a href="components/dropdown-select">Dropdown Select</a>
     <hx-icon class="delimiter" type="angle-right"></hx-icon>
     <a href="#">{{page.title}}</a>
   </nav>
+{% endblock %}
 
+{% block content %}
   <section>
     <header>
-      <h2>Pristine</h2>
+      <h2 id="test-pristine">Pristine</h2>
       <code>&lt;hx-select-control&gt;</code>
     </header>
     {{stateTables('pristine')}}
@@ -131,39 +129,23 @@ title: Testing - Dropdown Select
 
   <section>
     <header>
-      <h2>Changed</h2>
-      <p><code>&lt;hx-select-control hx-changed&gt;</code></p>
+      <h2 id="test-dirty">Dirty</h2>
+      <code>&lt;hx-select-control hx-dirty&gt;</code>
     </header>
-    {{stateTables('changed', wasChanged=true)}}
+    {{stateTables('changed', isDirty=true)}}
   </section>
 
   <section>
     <header>
-      <h2>Touched</h2>
-      <p><code>&lt;hx-select-control hx-touched&gt;</code></p>
-    </header>
-    {{stateTables('touched', wasTouched=true)}}
-  </section>
-
-  <section>
-    <header>
-      <h2>Styled Invalid (control-level)</h2>
-      <p><code>hx-select-control.hxInvalid</code></p>
+      <h2 id="test-visually-invalid">Visually Invalid</h2>
+      <code>&lt;hx-select-control class="hxInvalid"&gt;</code>
     </header>
     {{stateTables('invalid', className="hxInvalid")}}
   </section>
 
-  <section class="hxInvalid">
-    <header>
-      <h2>Styled Invalid (ancestor-level)</h2>
-      <p><code>.hxInvalid hx-select-control</code></p>
-    </header>
-    {{stateTables('ancestor-invalid')}}
-  </section>
-
   <section>
     <header>
-      <h2>Layout</h2>
+      <h2 id="test-layout">Layout</h2>
       <p class="hxSubdued hxSubBody">
         <hx-icon type="info-circle"></hx-icon>
         Extra elements should not be visible.
@@ -249,7 +231,9 @@ title: Testing - Dropdown Select
   </section>
 
   <section>
-    <h2>Miscellaneous</h2>
+    <header>
+      <h2 id="test-misc">Miscellaneous</h2>
+    </header>
 
     <div class="hxRow">
       <div class="hxCol hxSpan-4">

@@ -1,0 +1,34 @@
+@import (reference) 'components/forms/SelectControl';
+@import (reference) 'components/forms/SelectFacade';
+
+.dropdown-select-spec {
+  hx-select-control {
+    /* ----- Pristine --------------- */
+    > select.mock-focus {
+      .SelectControl(pristine-focus);
+
+      ~ hx-select {
+        .SelectFacade(pristine-focus);
+      }
+
+      /* ----- Disabled --------------- */
+      &:disabled {
+        .SelectControl(disabled-focus);
+
+        ~ hx-select {
+          .SelectFacade(disabled-focus);
+        }
+      }
+    }
+
+    /* ----- Invalid ---------------*/
+    &.hxInvalid > select.mock-focus:enabled,
+    &[hx-dirty] > select.mock-focus:enabled:invalid {
+      .SelectControl(invalid-focus);
+
+      ~ hx-select {
+        .SelectFacade(invalid-focus);
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+/*
+  Mixins to style a native <select> control.
+*/
+
+.SelectControl(pristine) {
+  background-color: @gray-0;
+  color: @gray-900;
+}
+.SelectControl(pristine-focus) {
+  #Moz.reset.focusring(@gray-900);
+  outline: none;
+}
+
+.SelectControl(invalid) {
+  background-color: @gray-0;
+  color: @gray-900;
+}
+.SelectControl(invalid-focus) {
+  #Moz.reset.focusring(@gray-900);
+  outline: none;
+}
+
+.SelectControl(disabled) {
+  background-color: @gray-100;
+  color: @gray-700;
+}
+.SelectControl(disabled-focus) {
+  #Moz.reset.focusring(@gray-900);
+  outline: none;
+}
