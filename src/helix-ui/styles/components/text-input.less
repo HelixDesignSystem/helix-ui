@@ -103,26 +103,15 @@ hx-text-control {
 }
 
 // ----- INVALID ----------
-hx-text-control {
-  &[hx-touched],
-  &[hx-changed] {
-    > input[type="text"]:invalid {
-      .TextControl(invalid);
+/*
+  1. Prevent IE from incorrectly matching input:disabled:invalid
+*/
+hx-text-control[hx-dirty] > input[type="text"]:enabled:invalid, /* 1 */
+hx-text-control.hxInvalid > input[type="text"]:enabled {
+  .TextControl(invalid);
 
-      &:focus {
-        .TextControl(invalid-focus);
-      }
-    }
-  }
-
-  &.hxInvalid {
-    > input[type="text"]:enabled {
-      .TextControl(invalid);
-
-      &:focus {
-        .TextControl(invalid-focus);
-      }
-    }
+  &:focus {
+    .TextControl(invalid-focus);
   }
 }
 

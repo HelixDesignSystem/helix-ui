@@ -55,26 +55,15 @@ hx-textarea-control {
 }//hx-textarea-control
 
 // ----- INVALID ----------
-hx-textarea-control {
-  &[hx-touched],
-  &[hx-changed] {
-    > textarea:invalid {
-      .TextControl(invalid);
+/*
+  1. Prevent IE from incorrectly matching textarea:disabled:invalid
+*/
+hx-textarea-control[hx-dirty] > textarea:enabled:invalid, /* 1 */
+hx-textarea-control.hxInvalid > textarea:enabled {
+  .TextControl(invalid);
 
-      &:focus {
-        .TextControl(invalid-focus);
-      }
-    }
-  }
-
-  &.hxInvalid {
-    > textarea:enabled {
-      .TextControl(invalid);
-
-      &:focus {
-        .TextControl(invalid-focus);
-      }
-    }
+  &:focus {
+    .TextControl(invalid-focus);
   }
 }
 

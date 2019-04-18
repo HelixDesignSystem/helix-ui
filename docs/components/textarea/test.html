@@ -3,13 +3,11 @@ title: Testing - Textarea
 ---
 {% set contentClasses = 'textarea-spec' %}
 {% extends 'test.njk' %}
-{% macro textarea(id='', wasChanged=false, wasTouched=false, className='', isRequired=false, isDisabled=false, isFocused=false, isValid=true) %}
-  {% set isPristine = (className === '') and not (wasChanged or wasTouched) %}
+{% macro textarea(id='', isDirty=false, className='', isRequired=false, isDisabled=false, isFocused=false, isValid=true) %}
+  {% set isPristine = (className === '') and not isDirty %}
 
   {% set idAttr -%}textarea-
-    {{- 'p' if not (wasChanged or wasTouched) -}}
-    {{- 'c' if wasChanged -}}
-    {{- 't' if wasTouched -}}
+    {{- 'd' if isDirty else 'p' -}}
     {{- 'R' if isRequired else 'O' -}}
     {{- 'D' if isDisabled else 'E' -}}
     {{- 'V' if isValid else 'I' -}}
@@ -20,8 +18,7 @@ title: Testing - Textarea
 
   <hx-textarea-control
     {% if className !== '' %}class="{{className}}" {% endif %}
-    {% if wasChanged %}hx-changed {% endif %}
-    {% if wasTouched %}hx-touched {% endif %}
+    {% if isDirty %}hx-dirty {% endif %}
   >
     <textarea
       id="{{idAttr | trim}}"
@@ -42,8 +39,7 @@ title: Testing - Textarea
         Pristine,
       {% else %}
         {% if className !== '' %}.{{ className }},{% endif %}
-        {% if wasChanged %}Changed,{% endif %}
-        {% if wasTouched %}Touched,{% endif %}
+        {% if isDirty %}Dirty,{% endif %}
       {% endif %}
       {{ 'Required' if isRequired else 'Optional' }},
       {{ 'Disabled' if isDisabled else 'Enabled' }},
@@ -76,8 +72,8 @@ title: Testing - Textarea
       <table>
         <thead>
           <tr>
-            <th>Valid</th>
-            <th>Invalid</th>
+            <th>:valid</th>
+            <th>:invalid</th>
           </tr>
         </thead>
         <tbody>
@@ -113,8 +109,8 @@ title: Testing - Textarea
       <table>
         <thead>
           <tr>
-            <th>Valid</th>
-            <th>Invalid</th>
+            <th>:valid</th>
+            <th>:invalid</th>
           </tr>
         </thead>
         <tbody>
@@ -145,8 +141,8 @@ title: Testing - Textarea
 
   <section>
     <header>
-      <h2 id="test-changed">Changed</h2>
-      <code>&lt;hx-textarea-control hx-changed&gt;</code>
+      <h2 id="test-dirty">Dirty</h2>
+      <code>&lt;hx-textarea-control hx-dirty&gt;</code>
     </header>
 
     <section>
@@ -157,29 +153,29 @@ title: Testing - Textarea
       <table>
         <thead>
           <tr>
-            <th>Valid</th>
-            <th>Invalid</th>
+            <th>:valid</th>
+            <th>:invalid</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              {{textarea('changed', wasChanged=true )}}
-              {{textarea('changed', wasChanged=true, isFocused=true)}}
+              {{textarea('dirty', isDirty=true )}}
+              {{textarea('dirty', isDirty=true, isFocused=true)}}
             </td>
             <td>
-              {{textarea('changed', wasChanged=true, isValid=false)}}
-              {{textarea('changed', wasChanged=true, isValid=false, isFocused=true)}}
+              {{textarea('dirty', isDirty=true, isValid=false)}}
+              {{textarea('dirty', isDirty=true, isValid=false, isFocused=true)}}
             </td>
           </tr>
           <tr>
             <td>
-              {{textarea('changed', wasChanged=true, isDisabled=true)}}
-              {{textarea('changed', wasChanged=true, isDisabled=true, isFocused=true)}}
+              {{textarea('dirty', isDirty=true, isDisabled=true)}}
+              {{textarea('dirty', isDirty=true, isDisabled=true, isFocused=true)}}
             </td>
             <td>
-              {{textarea('changed', wasChanged=true, isValid=false, isDisabled=true)}}
-              {{textarea('changed', wasChanged=true, isValid=false, isDisabled=true, isFocused=true)}}
+              {{textarea('dirty', isDirty=true, isValid=false, isDisabled=true)}}
+              {{textarea('dirty', isDirty=true, isValid=false, isDisabled=true, isFocused=true)}}
             </td>
           </tr>
         </tbody>
@@ -194,29 +190,29 @@ title: Testing - Textarea
       <table>
         <thead>
           <tr>
-            <th>Valid</th>
-            <th>Invalid</th>
+            <th>:valid</th>
+            <th>:invalid</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              {{textarea('changed', wasChanged=true, isRequired=true)}}
-              {{textarea('changed', wasChanged=true, isRequired=true, isFocused=true)}}
+              {{textarea('dirty', isDirty=true, isRequired=true)}}
+              {{textarea('dirty', isDirty=true, isRequired=true, isFocused=true)}}
             </td>
             <td>
-              {{textarea('changed', wasChanged=true, isRequired=true, isValid=false)}}
-              {{textarea('changed', wasChanged=true, isRequired=true, isValid=false, isFocused=true)}}
+              {{textarea('dirty', isDirty=true, isRequired=true, isValid=false)}}
+              {{textarea('dirty', isDirty=true, isRequired=true, isValid=false, isFocused=true)}}
             </td>
           </tr>
           <tr>
             <td>
-              {{textarea('changed', wasChanged=true, isRequired=true, isDisabled=true)}}
-              {{textarea('changed', wasChanged=true, isRequired=true, isDisabled=true, isFocused=true)}}
+              {{textarea('dirty', isDirty=true, isRequired=true, isDisabled=true)}}
+              {{textarea('dirty', isDirty=true, isRequired=true, isDisabled=true, isFocused=true)}}
             </td>
             <td>
-              {{textarea('changed', wasChanged=true, isRequired=true, isValid=false, isDisabled=true)}}
-              {{textarea('changed', wasChanged=true, isRequired=true, isValid=false, isDisabled=true, isFocused=true)}}
+              {{textarea('dirty', isDirty=true, isRequired=true, isValid=false, isDisabled=true)}}
+              {{textarea('dirty', isDirty=true, isRequired=true, isValid=false, isDisabled=true, isFocused=true)}}
             </td>
           </tr>
         </tbody>
@@ -226,88 +222,7 @@ title: Testing - Textarea
 
   <section>
     <header>
-      <h2 id="test-touched">Touched</h2>
-      <code>&lt;hx-textarea-control hx-touched&gt;</code>
-    </header>
-
-    <section>
-      <header>
-        <h3>Optional</h3>
-        <code>&lt;textarea&gt;</code>
-      </header>
-      <table>
-        <thead>
-          <tr>
-            <th>Valid</th>
-            <th>Invalid</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              {{textarea('touched', wasTouched=true )}}
-              {{textarea('touched', wasTouched=true, isFocused=true)}}
-            </td>
-            <td>
-              {{textarea('touched', wasTouched=true, isValid=false)}}
-              {{textarea('touched', wasTouched=true, isValid=false, isFocused=true)}}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              {{textarea('touched', wasTouched=true, isDisabled=true)}}
-              {{textarea('touched', wasTouched=true, isDisabled=true, isFocused=true)}}
-            </td>
-            <td>
-              {{textarea('touched', wasTouched=true, isValid=false, isDisabled=true)}}
-              {{textarea('touched', wasTouched=true, isValid=false, isDisabled=true, isFocused=true)}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <header>
-        <h3>Required</h3>
-        <code>&lt;textarea required&gt;</code>
-      </header>
-      <table>
-        <thead>
-          <tr>
-            <th>Valid</th>
-            <th>Invalid</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              {{textarea('touched', wasTouched=true, isRequired=true)}}
-              {{textarea('touched', wasTouched=true, isRequired=true, isFocused=true)}}
-            </td>
-            <td>
-              {{textarea('touched', wasTouched=true, isRequired=true, isValid=false)}}
-              {{textarea('touched', wasTouched=true, isRequired=true, isValid=false, isFocused=true)}}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              {{textarea('touched', wasTouched=true, isRequired=true, isDisabled=true)}}
-              {{textarea('touched', wasTouched=true, isRequired=true, isDisabled=true, isFocused=true)}}
-            </td>
-            <td>
-              {{textarea('touched', wasTouched=true, isRequired=true, isValid=false, isDisabled=true)}}
-              {{textarea('touched', wasTouched=true, isRequired=true, isValid=false, isDisabled=true, isFocused=true)}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  </section>
-
-  <section>
-    <header>
-      <h2 id="test-styled-invalid">Styled Invalid</h2>
+      <h2 id="test-visually-invalid">Visually Invalid</h2>
       <code>&lt;hx-textarea-control class="hxInvalid"&gt;</code>
     </header>
 
@@ -319,8 +234,8 @@ title: Testing - Textarea
       <table>
         <thead>
           <tr>
-            <th>Valid</th>
-            <th>Invalid</th>
+            <th>:valid</th>
+            <th>:invalid</th>
           </tr>
         </thead>
         <tbody>
@@ -356,8 +271,8 @@ title: Testing - Textarea
       <table>
         <thead>
           <tr>
-            <th>Valid</th>
-            <th>Invalid</th>
+            <th>:valid</th>
+            <th>:invalid</th>
           </tr>
         </thead>
         <tbody>
