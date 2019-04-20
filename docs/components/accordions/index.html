@@ -7,13 +7,21 @@ also:
   elements/hx-accordion-panel: <hx-accordion-panel>
 ---
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="basic-accordion">Basic Accordion</h2>
-    <p>
-      A basic accordion will allow a user to expand and collapse
-      as many panels as desired.
-    </p>
+    <header>
+      <h2 id="basic-accordion">Basic Accordion</h2>
+      <p>
+        A basic accordion will allow a user to expand and collapse
+        as many panels as desired.
+      </p>
+    </header>
+
     <div class="example">
       <div>
         <hx-accordion>
@@ -70,12 +78,15 @@ also:
   </section>
 
   <section>
-    <h2 id="single-panel-accordion">Single Panel Accordion</h2>
-    <p>
-      By setting the <code>current-panel</code> attribute on an accordion, it
-      will be placed into "single-panel" mode. In this configuration, a user
-      will only be able to expand one panel at a time.
-    </p>
+    <header>
+      <h2 id="single-panel-accordion">Single Panel Accordion</h2>
+      <p>
+        By setting the <code>current-panel</code> attribute on an accordion, it
+        will be placed into "single-panel" mode. In this configuration, a user
+        will only be able to expand one panel at a time.
+      </p>
+    </header>
+
     <div class="example" id="vue-singlePanelAccordionDemo" v-cloak>
       <header>
         <form class="beta-hxForm">

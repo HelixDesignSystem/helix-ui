@@ -6,8 +6,9 @@ also:
   elements/hx-text-control/index.html: <hx-text-control>
 ---
 {% extends 'component.njk' %}
+
 {% block page_header %}
-  <p class="comfortable">
+  <p>
     The {{page.title}} component provides markup to define a
     single-line text control.
   </p>
@@ -15,26 +16,27 @@ also:
 
 {% block content %}
   <section>
-    <h2 id="basic-text-input">Basic Text Input</h2>
+    <header>
+      <h2 id="basic-text-input">Basic Text Input</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example" id="vue-textInputDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div>
-            <hx-text-control>
-              <input
-                id="txtLabel"
-                type="text"
-                v-model="label"
-              />
-              <label for="txtLabel">
-                Label Text
-              </label>
-            </hx-text-control>
-          </div>
+          <hx-text-control>
+            <input
+              id="txtLabel"
+              type="text"
+              v-model="label"
+            />
+            <label for="txtLabel">
+              Label Text
+            </label>
+          </hx-text-control>
 
           <fieldset>
             <legend class="beta-hxFieldName">Label Annotation</legend>
-
             <hx-checkbox-control>
               <input
                 id="chkHasAsterisk"
@@ -102,9 +104,10 @@ also:
           />
           <label
             for="txtInputDemo"
-            v-text="label"
             :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }"
-          ></label>
+          >
+            {% raw %}{{label}}{% endraw %}
+          </label>
         </hx-text-control>
       </div>
 
@@ -112,16 +115,23 @@ also:
         <pre><code v-text="snippet"></code></pre>
       </footer>
     </div>
-    <p class="hxSubBody hxSubdued">
-      <hx-icon type="exclamation-triangle"></hx-icon>
-      The <code>&lt;input&gt;</code> element <i>must</i> have the
-      <code>type="text"</code> attribute, in order for CSS styles
-      to apply.
-    </p>
+
+    <footer>
+      <p class="hxSubBody hxSubdued">
+        <hx-icon type="exclamation-triangle"></hx-icon>
+        The <code>&lt;input&gt;</code> element <i>must</i> have the
+        <code>type="text"</code> attribute, in order for CSS styles
+        to apply.
+      </p>
+    </footer>
   </section>
 
   <section>
-    <h2 id="prefixed">Prefixed</h2>
+    <header>
+      <h2 id="prefixed">Prefixed</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example">
       <div>
         <hx-text-control>
@@ -158,7 +168,11 @@ also:
   </section>
 
   <section>
-    <h2 id="suffixed">Suffixed</h2>
+    <header>
+      <h2 id="suffixed">Suffixed</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example">
       <div>
         <hx-text-control>

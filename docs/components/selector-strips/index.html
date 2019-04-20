@@ -3,10 +3,19 @@ title: Selector Strips
 minver: 0.8.0
 ---
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="multi-select">Multi-Select</h2>
-    <p>a.k.a. "checkbox strip"<p>
+    <header>
+      <h2 id="multi-select">Multi-Select</h2>
+      <p>a.k.a. "checkbox strip"<p>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example">
       <div>
         <div class="hxSelector">
@@ -63,8 +72,12 @@ minver: 0.8.0
   </section>
 
   <section>
-    <h2 id="single-select">Single-Select</h2>
-    <p>a.k.a. "radio strip"<p>
+    <header>
+      <h2 id="single-select">Single-Select</h2>
+      <p>a.k.a. "radio strip"<p>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example">
       <div>
         <div class="hxSelector hxRadio">

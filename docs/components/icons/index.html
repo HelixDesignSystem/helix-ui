@@ -6,12 +6,20 @@ also:
   elements/hx-file-icon: <hx-file-icon>
 ---
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="basic-icon">Basic Icon</h2>
-    <p>
-      Use the <code>&lt;hx-icon&gt;</code> element to render a styleable inline SVG icon.
-    </p>
+    <header>
+      <h2 id="basic-icon">Basic Icon</h2>
+      <p>
+        Use the <code>&lt;hx-icon&gt;</code> element to render a styleable inline SVG icon.
+      </p>
+    </header>
+
     <div class="example">
       <div>
         <hx-icon type="bell"></hx-icon>
@@ -26,25 +34,39 @@ also:
   </section>
 
   <section>
-    <h2 id="file-icons">File Icon</h2>
-    <p class="hxSubBody">Added: v0.9.0</p>
-    <p>
-      Create a styled "file" with optional icon and extension.
-    </p>
+    <header>
+      <h2 id="file-icons">File Icon</h2>
+      <p class="hxSubBody">Added: v0.9.0</p>
+      <p>
+        Create a styled "file" with optional icon and extension.
+      </p>
+    </header>
+
     <div class="example" id="vue-fileIconDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div>
-            <label for="selType" class="beta-hxFieldName">Type</label>
+          <hx-select-control>
             <select id="selType" v-model="type">
-              <option v-for="_type in types" :value="_type" v-text="_type">
+              <option v-for="_type in types" :value="_type">
+                {% raw %}{{_type}}{% endraw %}
               </option>
             </select>
-          </div>
-          <p>
-            <label for="txtExt" class="beta-hxFieldName">File Extension</label>
-            <input id="txtExt" class="hxTextCtrl" v-model="ext" />
-          </p>
+            <hx-select></hx-select>
+            <label for="selType">
+              Type
+            </label>
+          </hx-select-control>
+
+          <hx-text-control>
+            <input
+              id="txtExt"
+              type="text"
+              v-model="ext"
+            />
+            <label for="txtExt">
+              File Extension
+            </label>
+          </hx-text-control>
         </form>
       </header>
 
@@ -68,13 +90,17 @@ also:
   </section>
 
   <section>
-    <h2 id="available-icons">Available Icons</h2>
-    <p>
-      <a href="downloads/helix-ui-{{VERSION}}-icons.tgz">
-        <hx-icon type="download"></hx-icon>
-        Download All Icons (SVG)
-      </a>
-    </p>
+    <header>
+      <h2 id="available-icons">Available Icons</h2>
+      <p>
+        <a href="downloads/helix-ui-{{VERSION}}-icons.tgz">
+          <hx-icon type="download"></hx-icon>
+          Download All Icons (SVG)
+        </a>
+      </p>
+      {# TODO: add section description #}
+    </header>
+
     <div id="vue-availableIcons" v-cloak>
       <div class="hxRow">
         <div class="hxCol hxSpan-12-xs hxSpan-6-md hxSpan-4-xl">

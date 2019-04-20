@@ -6,8 +6,9 @@ also:
   elements/hx-textarea-control/index.html: <hx-textarea-control>
 ---
 {% extends 'component.njk' %}
+
 {% block page_header %}
-  <p class="comfortable">
+  <p>
     The {{page.title}} component provides markup to define a
     multi-line text control.
   </p>
@@ -15,26 +16,27 @@ also:
 
 {% block content %}
   <section>
-    <h2 id="basic-textarea">Basic Textarea</h2>
+    <header>
+      <h2 id="basic-textarea">Basic Textarea</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example" id="vue-textareaDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div>
-            <hx-text-control>
-              <input
-                id="txtLabel"
-                type="text"
-                v-model="label"
-              />
-              <label for="txtLabel">
-                Label Text
-              </label>
-            </hx-text-control>
-          </div>
+          <hx-text-control>
+            <input
+              id="txtLabel"
+              type="text"
+              v-model="label"
+            />
+            <label for="txtLabel">
+              Label Text
+            </label>
+          </hx-text-control>
 
           <fieldset>
             <legend class="beta-hxFieldName">Label Annotation</legend>
-
             <hx-checkbox-control>
               <input
                 id="chkHasAsterisk"
@@ -101,9 +103,10 @@ also:
           ></textarea>
           <label
             for="txtAreaDemo"
-            v-text="label"
             :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }"
-          ></label>
+          >
+            {% raw %}{{label}}{% endraw %}
+          </label>
         </hx-textarea-control>
       </div>
 

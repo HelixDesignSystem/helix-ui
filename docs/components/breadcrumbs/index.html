@@ -3,20 +3,20 @@ title: Breadcrumbs
 minver: 0.1.0
 ---
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  <p>
+    Breadcrumbs are simply hyperlinks separated by icon delimiters
+    within a navigation.
+  </p>
+{% endblock %}
+
 {% block content %}
-  <hx-alert type="warning" status="WARNING" persist>
-    The last breadcrumb hyperlink is styled to prevent mouse clicks, but it will not prevent keyboard activation.
-  </hx-alert>
-
   <section>
-    <p>
-      Breadcrumbs are simply hyperlinks separated by icon delimiters
-      within a navigation.
-    </p>
-  </section>
-
-  <section>
-    <h2 id="single-breadcrumb">Single Breadcrumb</h2>
+    <header>
+      <h2 id="single-breadcrumb">Single Breadcrumb</h2>
+      {# TODO: add section description #}
+    </header>
     <p>
       Build breadcrumb navigation by adding the <code>.hxBreadcrumb</code>
       CSS class to a <code>&lt;nav&gt;</code> element that contains at least one
@@ -40,7 +40,10 @@ minver: 0.1.0
   </section>
 
   <section>
-    <h2 id="multiple-breadcrumbs">Multiple Breadcrumbs</h2>
+    <header>
+      <h2 id="multiple-breadcrumbs">Multiple Breadcrumbs</h2>
+      {# TODO: add section description #}
+    </header>
     <p>
       Icon delimiters are added between each hyperlink using the <code>angle-right</code>
       icon with the <code>.delimiter</code> CSS class applied.
@@ -68,5 +71,18 @@ minver: 0.1.0
         {% endcode %}
       </footer>
     </div>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="accessibility">Accessibility</h2>
+    </header>
+
+    <ul class="hxList">
+      <li>
+        The last breadcrumb hyperlink is styled to prevent <i>mouse clicks</i>
+        (doesn't prevent keyboard activation).
+      </li>
+    </ul>
   </section>
 {% endblock %}

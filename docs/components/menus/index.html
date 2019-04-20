@@ -8,9 +8,18 @@ also:
   elements/hx-menuitem: <hx-menuitem>
 ---
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="basic-menu">Basic Menu</h2>
+    <header>
+      <h2 id="basic-menu">Basic Menu</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example">
       <div>
         <hx-disclosure class="hxBtn" aria-controls="basicMenuId">
@@ -43,7 +52,11 @@ also:
   </section>
 
   <section>
-    <h2 id="cog-menu">Cog Menu</h2>
+    <header>
+      <h2 id="cog-menu">Cog Menu</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example">
       <div>
         <hx-disclosure class="hxBtn hxCog" aria-controls="cogMenuId">
@@ -72,7 +85,11 @@ also:
   </section>
 
   <section>
-    <h2 id="grouped-menu">Grouped Menu</h2>
+    <header>
+      <h2 id="grouped-menu">Grouped Menu</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example">
       <div>
         <hx-disclosure class="hxBtn" aria-controls="groupedMenuId">
@@ -123,7 +140,11 @@ also:
   </section>
 
   <section>
-    <h2 id="split-menu">Split Menu</h2>
+    <header>
+      <h2 id="split-menu">Split Menu</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example">
       <div>
         <div class="hxBtnGroup hxPrimary" id="split-group">
