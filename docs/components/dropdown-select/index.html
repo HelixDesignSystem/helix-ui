@@ -8,34 +8,35 @@ also:
 ---
 {% extends 'component.njk' %}
 {% block page_header %}
-  <p class="comfortable">
-    The {{page.title}} component provides markup to define a single-selection,
+  <p>
+    The {{ page.title }} component provides markup to define a single-selection,
     drop-down list control (commonly used in forms).
   </p>
 {% endblock %}
 
 {% block content %}
   <section>
-    <h2 id="basic-select">Basic Select</h2>
+    <header>
+      <h2 id="basic-select">Basic Select</h2>
+      <!-- TODO: add section description -->
+    </header>
+
     <div class="example" id="vue-selectDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div>
-            <hx-text-control>
-              <input
-                id="txtLabel"
-                type="text"
-                v-model="label"
-              />
-              <label for="txtLabel">
-                Label Text
-              </label>
-            </hx-text-control>
-          </div>
+          <hx-text-control>
+            <input
+              id="txtLabel"
+              type="text"
+              v-model="label"
+            />
+            <label for="txtLabel">
+              Label Text
+            </label>
+          </hx-text-control>
 
           <fieldset>
             <legend class="beta-hxFieldName">Label Annotation</legend>
-
             <hx-checkbox-control>
               <input
                 id="chkHasAsterisk"
@@ -108,9 +109,10 @@ also:
           <hx-select></hx-select>
           <label
             for="selDemo"
-            v-text="label"
             :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }"
-          ></label>
+          >
+            {% raw %}{{ label }}{% endraw %}
+          </label>
         </hx-select-control>
       </div>
 
@@ -129,18 +131,18 @@ also:
     Need centralized documentation of HelixUI form control validation behavior.
   <section>
     <h2 id="validation">Validation</h2>
-    <p class="comfortable">
-      A {{page.title}} is designed to take advantage of standardized
+    <p>
+      A {{ page.title }} is designed to take advantage of standardized
       <a href="https://mzl.la/2SuKTmv">HTML form validation</a> capabilities.
     </p>
     <p>
-      By default, a {{page.title}} is styled as if it were valid.
+      By default, a {{ page.title }} is styled as if it were valid.
       Otherwise, any form control that is invalid on initial render
       would display as invalid before the user has had a chance to
       interact with the form.
     </p>
     <p>
-      As the user interacts with a {{page.title}}, it will automatically update
+      As the user interacts with a {{ page.title }}, it will automatically update
       itself in order to communicate when it is appropriate for the browser
       to apply invalid control styles.
     </p>

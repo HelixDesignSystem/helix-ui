@@ -7,18 +7,33 @@ also:
   elements/hx-reveal: <hx-reveal>
 ---
 {% extends 'component.njk' %}
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="basic-reveal">Basic Reveal</h2>
+    <header>
+      <h2 id="basic-reveal">Basic Reveal</h2>
+      <!-- TODO: add section description -->
+    </header>
+
     <div class="example" id="vue-revealDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div>
-              <input id="chkIsDisabled" type="checkbox" v-model="isDisabled" />
-              <label for="chkIsDisabled">Disabled</label>
-            </div>
+            <hx-checkbox-control>
+              <input
+                id="chkIsDisabled"
+                type="checkbox"
+                v-model="isDisabled"
+              />
+              <label for="chkIsDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
           </fieldset>
         </form>
       </header>
@@ -39,7 +54,11 @@ also:
       <footer>
         <template v-if="isDisabled">
           {% code 'html' %}
-            <hx-disclosure aria-controls="elReveal" class="hxBtn" disabled>
+            <hx-disclosure
+              aria-controls="elReveal"
+              class="hxBtn"
+              disabled
+            >
               Click me to show content!
             </hx-disclosure>
             <hx-reveal id="elReveal">
@@ -50,7 +69,10 @@ also:
 
         <template v-else>
           {% code 'html' %}
-            <hx-disclosure aria-controls="elReveal" class="hxBtn">
+            <hx-disclosure
+              aria-controls="elReveal"
+              class="hxBtn"
+            >
               Click me to show content!
             </hx-disclosure>
             <hx-reveal id="elReveal">

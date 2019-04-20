@@ -13,18 +13,28 @@ also:
   elements/hx-file-tile: <hx-file-tile>
 ---
 {% extends 'component.njk' %}
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="drop-zone">Drop Zone</h2>
-    <p class="hxSubBody">Added: v0.14.0</p>
+    <header>
+      <h2 id="drop-zone">Drop Zone</h2>
+      <p class="hxSubBody">Added: v0.14.0</p>
+      <!-- TODO: add section description -->
+    </header>
+
     <p>
       A container that provides a visual overlay when dragging a file, marking
       the boundaries of where a user can drop.
     </p>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="info-circle"></hx-icon>
       The drop zone ignores any padding applied to it.
     </p>
+
     <div class="example" id="vue-dropZoneDemo">
       <div>
         <hx-drop-zone @drop.prevent="onDrop">
@@ -61,14 +71,29 @@ also:
   </section>
 
   <section>
-    <h2 id="file-selector">File Selector</h2>
-    <p class="hxSubBody">Added: v0.13.0</p>
+    <header>
+      <h2 id="file-selector">File Selector</h2>
+      <p class="hxSubBody">Added: v0.13.0</p>
+      <!-- TODO: add section description -->
+    </header>
+
     <div class="example" id="vue-fileInputDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
+          <hx-text-control>
+            <input
+              id="txtLabel"
+              type="text"
+              v-model="label"
+            />
+            <label for="txtLabel">
+              Label
+            </label>
+          </hx-text-control>
+
           <fieldset>
-            <legend class="beta-hxFieldName">Variant</legend>
-            <div v-for="(_variant, idx) in variants">
+            <legend class="beta-hxFieldName">Button Variant</legend>
+            <hx-radio-control v-for="(_variant, idx) in variants">
               <input
                 :id="'radSelectorVariant' + idx"
                 :value="_variant"
@@ -77,14 +102,16 @@ also:
                 v-model="variant"
               />
               <label :for="'radSelectorVariant' + idx">
-                <span v-text="_variant.label"></span>
-                <em class="hxSubBody" v-if="_variant.default">(default)</em>
+                <hx-radio></hx-radio>
+                {% raw %}{{ _variant.label }}{% endraw %}
               </label>
-            </div>
+              <p v-if="_variant.default">(default)</p>
+            </hx-radio-control>
           </fieldset>
+
           <fieldset>
             <legend class="beta-hxFieldName">Icon</legend>
-            <div v-for="(_icon, idx) in icons">
+            <hx-radio-control v-for="(_icon, idx) in icons">
               <input
                 :id="'radSelectorIcon' + idx"
                 :value="_icon"
@@ -92,33 +119,43 @@ also:
                 type="radio"
                 v-model="icon"
               />
-              <label
-                :for="'radSelectorIcon' + idx"
-                v-text="_icon"
-              ></label>
-            </div>
+              <label :for="'radSelectorIcon' + idx">
+                <hx-radio></hx-radio>
+                {% raw %}{{ _icon }}{% endraw %}
+              </label>
+            </hx-radio-control>
           </fieldset>
-          <p>
-            <label for="txtLabel" class="beta-hxFieldName">Label</label>
-            <input id="txtLabel" class="hxTextCtrl" v-model="label" />
-          </p>
+
           <fieldset>
-            <legend class="beta-hxFieldName">Options</legend>
-            <div>
-              <input id="chkIsMultiple" type="checkbox" v-model="isMultiple">
-              <label for="chkIsMultiple">Multiple</label>
-            </div>
+            <legend class="beta-hxFieldName">Control Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkIsMultiple"
+                type="checkbox"
+                v-model="isMultiple"
+              />
+              <label for="chkIsMultiple">
+                <hx-checkbox></hx-checkbox>
+                Multiple
+              </label>
+            </hx-checkbox-control>
           </fieldset>
         </form>
       </header>
+
       <div>
         <hx-file-input
           :class="variant.val"
           :icon="icon"
-          :label="label">
-          <input type="file" :multiple="isMultiple" />
+          :label="label"
+        >
+          <input
+            type="file"
+            :multiple="isMultiple"
+          />
         </hx-file-input>
       </div>
+
       <footer>
         <pre><code v-text="snippet"></code></pre>
       </footer>
@@ -126,58 +163,128 @@ also:
   </section>
 
   <section>
-    <h2 id="file-tile">File Tile</h2>
-    <p class="hxSubBody">Added: v0.12.0</p>
+    <header>
+      <h2 id="file-tile">File Tile</h2>
+      <p class="hxSubBody">Added: v0.12.0</p>
+      <!-- TODO: add section description -->
+    </header>
+
     <div class="example" id="vue-fileTileDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <fieldset>
-            <legend class="beta-hxFieldName">States</legend>
-            <div>
-              <input id="radTileDownloadable" type="radio" value="downloadable" name="file-state" v-model="state" />
-              <label for="radTileDownloadable">Downloadable</label>
-            </div>
-            <div>
-              <input id="radTileLoading" type="radio" value="loading" name="file-state" v-model="state" />
-              <label for="radTileLoading">Loading</label>
-            </div>
-            <div>
-              <input id="radTileInvalid" type="radio" value="invalid" name="file-state" v-model="state" />
-              <label for="radTileInvalid">Invalid</label>
-            </div>
-          </fieldset>
-          <div>
-            <label for="selIcon" class="beta-hxFieldName">Icon</label>
+          <hx-text-control>
+            <input
+              id="txtName"
+              type="text"
+              v-model="name"
+            />
+            <label for="txtName">
+              Name
+            </label>
+          </hx-text-control>
+
+          <hx-select-control>
             <select id="selIcon" v-model="icon">
-              <option v-for="_icon in icons" :value="_icon" v-text="_icon">
+              <option v-for="_icon in icons" :value="_icon">
+                {% raw %}{{ _icon }}{% endraw %}
               </option>
             </select>
-          </div>
-          <p>
-            <label for="txtName" class="beta-hxFieldName">Name</label>
-            <input id="txtName" class="hxTextCtrl" v-model="name" />
-          </p>
+            <hx-select></hx-select>
+            <label for="selIcon">
+              Icon
+            </label>
+          </hx-select-control>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">State</legend>
+            <hx-radio-control>
+              <input
+                id="radTileDownloadable"
+                name="file-state"
+                type="radio"
+                v-model="state"
+                value="downloadable"
+              />
+              <label for="radTileDownloadable">
+                <hx-radio></hx-radio>
+                Downloadable
+              </label>
+            </hx-radio-control>
+
+            <hx-radio-control>
+              <input
+                id="radTileLoading"
+                name="file-state"
+                type="radio"
+                v-model="state"
+                value="loading"
+              />
+              <label for="radTileLoading">
+                <hx-radio></hx-radio>
+                Loading
+              </label>
+            </hx-radio-control>
+
+            <hx-radio-control>
+              <input
+                id="radTileInvalid"
+                name="file-state"
+                type="radio"
+                v-model="state"
+                value="invalid"
+              />
+              <label for="radTileInvalid">
+                <hx-radio></hx-radio>
+                Invalid
+              </label>
+            </hx-radio-control>
+          </fieldset>
+
           <template v-if="isDownloadable">
-            <p>
-              <label for="txtHref" class="beta-hxFieldName">HREF</label>
-              <input id="txtHref" class="hxTextCtrl" v-model="href" />
-            </p>
-            <p>
-              <label for="txtDetails" class="beta-hxFieldName">Details</label>
-              <input id="txtDetails" class="hxTextCtrl" v-model="details" />
-            </p>
+            <hx-text-control>
+              <input
+                id="txtHref"
+                type="text"
+                v-model="href"
+              />
+              <label for="txtHref">
+                HREF
+              </label>
+            </hx-text-control>
+
+            <hx-text-control>
+              <input
+                id="txtDetails"
+                type="text"
+                v-model="details"
+              />
+              <label for="txtDetails">
+                Details
+              </label>
+            </hx-text-control>
+
             <fieldset>
-              <legend class="beta-hxFieldName">Options</legend>
-              <div>
-                <input id="chkTileReadOnly" type="checkbox" v-model="readonly" />
-                <label for="chkTileReadOnly">Readonly</label>
-              </div>
+              <legend class="beta-hxFieldName">Tile Options</legend>
+              <hx-checkbox-control>
+                <input
+                  id="chkTileReadOnly"
+                  type="checkbox"
+                  v-model="readonly"
+                />
+                <label for="chkTileReadOnly">
+                  <hx-checkbox></hx-checkbox>
+                  Readonly
+                </label>
+              </hx-checkbox-control>
             </fieldset>
           </template>
-          <p v-if="isLoading">
-            <label for="rngProgress" class="beta-hxFieldName">Progress</label>
-            <input id="rngProgress" type="range" v-model="progress"/>
-          </p>
+
+          <template v-if="isLoading">
+            <div>
+              <label for="rngProgress" class="beta-hxFieldName">Progress</label>
+              <input id="rngProgress" type="range" v-model="progress"/>
+            </div>
+          </template>
         </form>
       </header>
 
@@ -212,9 +319,9 @@ also:
         <footer>
           {% code 'html' %}{% raw %}
             <hx-file-tile
-              icon="{{icon}}"
-              name="{{name}}"
-              progress="{{progress}}">
+              icon="{{ icon }}"
+              name="{{ name }}"
+              progress="{{ progress }}">
             </hx-file-tile>{% endraw %}
           {% endcode %}
         </footer>
@@ -234,9 +341,9 @@ also:
         <footer>
           {% code 'html' %}{% raw %}
             <hx-file-tile
-              icon="{{icon}}"
+              icon="{{ icon }}"
               invalid
-              name="{{name}}">
+              name="{{ name }}">
             </hx-file-tile>{% endraw %}
           {% endcode %}
         </footer>

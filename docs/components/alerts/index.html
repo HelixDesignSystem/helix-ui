@@ -6,43 +6,76 @@ also:
   elements/hx-alert: <hx-alert>
 ---
 {% extends 'component.njk' %}
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="basic-alert">Basic Alert</h2>
-    <p class="comfortable">
-      An alert provides users with a contextual message relating to a user action and
-      may provide an optional call to action (CTA) button that can be used to trigger
-      additional behavior, if desired.
-    </p>
+    <header>
+      <h2 id="basic-alert">Basic Alert</h2>
+    </header>
+
     <div class="example" id="vue-alertDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div>
-            <label for="selType" class="beta-hxFieldName">Type</label>
+          <hx-select-control>
             <select id="selType" v-model="type">
               <option v-for="_type in types" :value="_type">
                 {% raw %}{{ _type.label }}{% endraw %}
               </option>
             </select>
-          </div>
-          <p>
-            <label for="txtStatus" class="beta-hxFieldName">Status</label>
-            <input id="txtStatus" class="hxTextCtrl" v-model="status" />
-          </p>
-          <p>
-            <label for="txtCta" class="beta-hxFieldName">CTA</label>
-            <input id="txtCta" class="hxTextCtrl" v-model="cta" />
-          </p>
-          <p>
-            <label for="txtContent" class="beta-hxFieldName">Content</label>
-            <textarea id="txtContent" class="hxTextCtrl" v-model="content"></textarea>
-          </p>
+            <hx-select></hx-select>
+            <label for="selType">
+              Type
+            </label>
+          </hx-select-control>
+
+          <hx-text-control>
+            <input
+              id="txtStatus"
+              type="text"
+              v-model="status"
+            />
+            <label for="txtStatus">
+              Status
+            </label>
+          </hx-text-control>
+
+          <hx-text-control>
+            <input
+              id="txtCta"
+              type="text"
+              v-model="cta"
+            />
+            <label for="txtCta">
+              CTA
+            </label>
+          </hx-text-control>
+
+          <hx-textarea-control>
+            <textarea
+              id="txtContent"
+              v-model="content"
+            ></textarea>
+            <label for="txtContent">
+              Content
+            </label>
+          </hx-textarea-control>
+
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div>
-              <input id="chkIsPersistent" type="checkbox" v-model="isPersistent">
-              <label for="chkIsPersistent">Persist</label>
-            </div>
+            <hx-checkbox-control>
+              <input
+                id="chkIsPersistent"
+                type="checkbox"
+                v-model="isPersistent"
+              />
+              <label for="chkIsPersistent">
+                <hx-checkbox></hx-checkbox>
+                Persist
+              </label>
+            </hx-checkbox-control>
           </fieldset>
         </form>
       </header>
@@ -56,7 +89,7 @@ also:
           @dismiss="onEvent"
           @submit="onEvent"
         >
-          {% raw %}{{content}}{% endraw %}
+          {% raw %}{{ content }}{% endraw %}
         </hx-alert>
       </div>
 

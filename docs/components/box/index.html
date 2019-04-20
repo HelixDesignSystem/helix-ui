@@ -8,23 +8,29 @@ also:
   elements/hx-div: <hx-div>
 ---
 {% extends 'component.njk' %}
+{% block page_header %}
+  <p>
+    The box component provides a set of CSS classes to apply
+    padding evenly around the inside of an element.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p>
-      The box component provides a set of CSS classes to apply
-      padding evenly around the inside of an element.
-    </p>
-  </section>
+    <header>
+      <h2 id="containers">Containers</h2>
+      <!-- TODO: add section description -->
+    </header>
 
-  <section>
-    <h2 id="containers">Containers</h2>
     <p>
       Containers can be defined in one of two ways:
     </p>
+
     <ol class="hxList">
       <li>Using an <code>&lt;hx-div&gt;</code> element <em class="hxSubBody">(recommended)</em></li>
       <li>Adding the <code>.hxBox</code> CSS class to any block element</li>
     </ol>
+
     <div class="example">
       <div class="box-demo">
         <hx-div>hx-div</hx-div>
@@ -38,6 +44,7 @@ also:
         {% endcode %}
       </footer>
     </div>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="info-circle"></hx-icon>
       Visual styling added for demonstration purposes.
@@ -45,24 +52,28 @@ also:
   </section>
 
   <section>
-    <h2 id="spacing">Spacing</h2>
-    <p>
-      Spacing is applied evenly around the inside of a container by
-      adding one of the supported CSS classes to your container element.
-    </p>
+    <header>
+      <h2 id="spacing">Spacing</h2>
+      <p>
+        Spacing is applied evenly around the inside of a container by
+        adding one of the supported CSS classes to your container element.
+      </p>
+    </header>
+
     <div class="example" id="vue-boxDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div>
-            <label for="selSpacing" class="beta-hxFieldName">Spacing</label>
+          <hx-select-control>
             <select id="selSpacing" v-model="spacing">
-              <option
-                v-for="_spacing in spacings"
-                v-text="_spacing.label"
-                :value="_spacing"
-              ></option>
+              <option v-for="_spacing in spacings" :value="_spacing">
+                {% raw %}{{ _spacing.label }}{% endraw %}
+              </option>
             </select>
-          </div>
+            <hx-select></hx-select>
+            <label for="selSpacing">
+              Spacing
+            </label>
+          </hx-select-control>
         </form>
       </header>
 
@@ -82,20 +93,22 @@ also:
         <pre><code v-text="snippet"></code></pre>
         <template v-if="spacing.value !== ''">
           {% code 'html' %}{% raw %}
-            <div class="hxBox {{spacing.value}}"></div>{% endraw %}
+            <div class="hxBox {{ spacing.value }}"></div>{% endraw %}
           {% endcode %}
         </template>
         <template v-else>
-          {% code 'html' %}{% raw %}
-            <div class="hxBox"></div>{% endraw %}
+          {% code 'html' %}
+            <div class="hxBox"></div>
           {% endcode %}
         </template>
       </footer>
     </div>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="info-circle"></hx-icon>
       Visual styling added for demonstration purposes.
     </p>
+
     <table class="hxTable hxTable--condensed">
       <thead>
         <tr>
@@ -153,23 +166,29 @@ also:
   </section>
 
   <section>
-    <h2 id="scrolling-containers">Scrolling Containers</h2>
+    <header>
+      <h2 id="scrolling-containers">Scrolling Containers</h2>
+      <!-- TODO: add section description -->
+    </header>
+
     <hx-alert type="warning" persist>
       Scrolling containers must be implemented using the
       <code>&lt;hx-div&gt;</code> element in order to reliably calculate
       coordinates of absolutely positioned elements.
     </hx-alert>
+
     <p>
       Scrolling containers are defined by setting the value of an
       <code>&lt;hx-div&gt;</code> element's <code>scroll</code> attribute
       to one of the directions demonstrated below.
     </p>
+
     <div class="example" id="vue-scrollBoxDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Scroll Direction</legend>
-            <div v-for="(_direction, idx) in directions">
+            <hx-radio-control v-for="(_direction, idx) in directions">
               <input
                 :id="'radDirection' + idx"
                 :value="_direction"
@@ -177,15 +196,26 @@ also:
                 type="radio"
                 v-model="direction"
               />
-              <label :for="'radDirection' + idx" v-text="_direction"></label>
-            </div>
+              <label :for="'radDirection' + idx">
+                <hx-radio></hx-radio>
+                {% raw %}{{ _direction }}{% endraw %}
+              </label>
+            </hx-radio-control>
           </fieldset>
+
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div>
-              <input id="chkLogEvents" type="checkbox" v-model="isListening" />
-              <label for="chkLogEvents">Log events to console</label>
-            </div>
+            <hx-checkbox-control>
+              <input
+                id="chkLogEvents"
+                type="checkbox"
+                v-model="isListening"
+              />
+              <label for="chkLogEvents">
+                <hx-checkbox></hx-checkbox>
+                Log events to console
+              </label>
+            </hx-checkbox-control>
           </fieldset>
         </form>
       </header>
@@ -310,7 +340,7 @@ also:
 
       <footer>
         {% code 'html' %}{% raw %}
-          <hx-div scroll="{{direction}}"></hx-div>{% endraw %}
+          <hx-div scroll="{{ direction }}"></hx-div>{% endraw %}
         {% endcode %}
       </footer>
     </div>

@@ -7,15 +7,19 @@ also:
 ---
 {% extends 'component.njk' %}
 {% block page_header %}
-  <p class="comfortable">
-    The {{page.title}} component provides markup to define a
+  <p>
+    The {{ page.title }} component provides markup to define a
     multi-line text control.
   </p>
 {% endblock %}
 
 {% block content %}
   <section>
-    <h2 id="basic-textarea">Basic Textarea</h2>
+    <header>
+      <h2 id="basic-textarea">Basic Textarea</h2>
+      <!-- TODO: add section description -->
+    </header>
+
     <div class="example" id="vue-textareaDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
@@ -101,9 +105,10 @@ also:
           ></textarea>
           <label
             for="txtAreaDemo"
-            v-text="label"
             :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }"
-          ></label>
+          >
+            {% raw %}{{ label }}{% endraw %}
+          </label>
         </hx-textarea-control>
       </div>
 

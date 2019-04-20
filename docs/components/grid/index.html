@@ -6,26 +6,26 @@ also:
   components/layouts: Layouts
 ---
 {% extends 'component.njk' %}
-{% block content %}
-<section>
-  <hx-alert type="warning" status="warning" persist>
-    HelixUI grid classes are not compatible with Bootstrap grid styles.
-  </hx-alert>
-
+{% block page_header %}
   <p>
-    The Grid CSS module provides utility classes based on flexbox to help
-    with the positioning and layout of content within containers.
+    The Grid component provides CSS utility classes based on the
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout" target="_blank">
+      CSS Flexible Box Layout
+    </a>
+    to help with arranging content within containers.
   </p>
-</section>
+{% endblock %}
 
+{% block content %}
 <section><!-- rows -->
-  <h2 id="rows">Rows</h2>
-  <ul class="hxList">
-    <li>
+  <header>
+    <h2 id="rows">Rows</h2>
+    <p>
       Rows are containers that allow you to divide their
       <em>width</em> amongst their children.
-    </li>
-  </ul>
+    </p>
+  </header>
+
   <div class="example">
     <div class="grid-demo">
       <p>
@@ -60,17 +60,21 @@ also:
 </section>
 
 <section><!-- columns -->
-  <h2 id="columns">Columns</h2>
-  <ul class="hxList">
-    <li>
+  <header>
+    <h2 id="columns">Columns</h2>
+    <p>
       Columns are containers that allow you to divide their
       <em>height</em> amongst their children.
-    </li>
+    </p>
+  </header>
+
+  <ul class="hxList">
     <li>Columns are the basis for all positioned content within a row.</li>
     <li>
       Columns <em>share width equally</em> among other columns in the same row.
     </li>
   </ul>
+
   <div class="example">
     <div class="grid-demo">
       <div class="demo-container text-center">
@@ -109,19 +113,24 @@ also:
 </section>
 
 <section><!-- column width -->
-  <h2 id="column-width">Column Width</h2>
-  <p>
-    Column width modifiers will set the width of a column container to a
-    predefined percentage of the row width.
-  </p>
+  <header>
+    <h2 id="column-width">Column Width</h2>
+    <p>
+      Column width modifiers will set the width of a column container to a
+      predefined percentage of the row width.
+    </p>
+  </header>
+
   <p>
     Use the <code>.hxSpan-{N}</code> modifier (1 &le; N &le; 12) to create
     columns that are a fraction of a 12-column row width.
   </p>
+
   <ul class="hxList">
     <li><code>.hxSpan-{N}-{size}</code> responsive classes are available.</li>
     <li><code>.hxSpan-{N}</code> is shorthand for <code>.hxSpan-{N}-xs</code></li>
   </ul>
+
   <div class="example">
     <div class="grid-demo">
       <div class="demo-container text-center">
@@ -190,11 +199,14 @@ also:
 </section>
 
 <section><!-- column offset -->
-  <h2 id="column-offset">Column Offset</h2>
-  <p>
-    You can use the <code>.hxOffset-{N}</code> class (1 &le; N &le; 11)
-    to offset your column from the start of the row.
-  </p>
+  <header>
+    <h2 id="column-offset">Column Offset</h2>
+    <p>
+      You can use the <code>.hxOffset-{N}</code> class (1 &le; N &le; 11)
+      to offset your column from the start of the row.
+    </p>
+  </header>
+
   <ul class="hxList">
     <li>
       <code>.hxOffset-{N}-{size}</code> responsive classes are available
@@ -203,6 +215,7 @@ also:
       <code>.hxOffset-{N}</code> is shorthand for <code>.hxOffset-{N}-xs</code>
     </li>
   </ul>
+
   <div class="example">
     <div class="grid-demo">
       <div class="demo-container text-center">
@@ -245,15 +258,18 @@ also:
 </section>
 
 <section><!-- column ordering -->
-  <h2 id="column-ordering">Column Ordering</h2>
-  <hx-alert type="info" status="fyi" persist>
-    Reordering columns does not change tab order.<br />
-    Tab order is based on the DOM order, not visual appearance.
-  </hx-alert>
-  <p>
-    Use the <code>.hxOrder-{N}</code> class (1 &le; N &le; 12) to reorder
-    your columns.
-  </p>
+  <header>
+    <h2 id="column-ordering">Column Ordering</h2>
+    <hx-alert type="info" status="fyi" persist>
+      Reordering columns does not change tab order.<br />
+      Tab order is based on the DOM order, not visual appearance.
+    </hx-alert>
+    <p>
+      Use the <code>.hxOrder-{N}</code> class (1 &le; N &le; 12) to reorder
+      your columns.
+    </p>
+  </header>
+
   <ul class="hxList">
     <li>
       <code>.hxOrder-{N}-{size}</code> responsive classes are available
@@ -262,11 +278,13 @@ also:
       <code>.hxOrder-{N}</code> is shorthand for <code>.hxOrder-{N}-xs</code>
     </li>
   </ul>
+
   <p>
     The columns below are coded in HTML in the order of 2-4-1-3.<br />
     The <code>.hxOrder-*</code> classes reordered them in the proper
     numerical order.
   </p>
+
   <div class="example">
     <div class="grid-demo">
       <div class="demo-container text-center">
@@ -293,9 +311,14 @@ also:
 </section>
 
 <section><!-- responsive options -->
-  <h2 id="responsive-options">Responsive Options</h2>
+  <header>
+    <h2 id="responsive-options">Responsive Options</h2>
+    <p>
+      All column modifiers support adding an optional breakpoint.
+    </p>
+  </header>
+
   <ul class="hxList">
-    <li>All column modifiers support adding an optional breakpoint.</li>
     <li>
       Omitting the breakpoint will default to <code>xs</code>
       (applies to all breakpoints).
@@ -306,7 +329,9 @@ also:
     </li>
     <li>Larger breakpoints override smaller ones.</li>
   </ul>
+
   <table class="hxTable hxTable--condensed">
+    <!-- TODO: add table caption -->
     <thead>
       <tr>
         <th>CSS Class</th>
@@ -348,6 +373,7 @@ also:
       </tr>
     </tbody>
   </table>
+
   <div class="example">
     <div class="grid-demo">
       <div class="demo-container text-center">
@@ -389,18 +415,23 @@ also:
 </section>
 
 <section><!-- column wrapping -->
-  <h2 id="column-wrapping">Column Wrapping</h2>
-  <hx-alert type="info" status="note" persist>
-    Columns wrap if the total column width count within the row exceeds 12.
-  </hx-alert>
+  <header>
+    <h2 id="column-wrapping">Column Wrapping</h2>
+    <p>
+      Columns wrap if a row's total column count exceeds 12.
+    </p>
+  </header>
+
   <p>
     The following example should arrange the content into:
   </p>
+
   <ul class="hxList">
     <li>3 columns on small screens</li>
     <li>4 columns on medium screens</li>
     <li>6 columns on all other sizes</li>
   </ul>
+
   <div class="example">
     <div class="grid-demo">
       <div class="demo-container text-center">
@@ -439,11 +470,14 @@ also:
 </section>
 
 <section><!-- nesting containers -->
-  <h2 id="nesting-containers">Nesting Containers</h2>
-  <hx-alert type="warning" status="warning" persist>
-    Do not apply row and column container classes to the same element.
-  </hx-alert>
-  <p>You can nest rows and columns as deep as necessary.</p>
+  <header>
+    <h2 id="nesting-containers">Nesting Containers</h2>
+    <hx-alert type="warning" status="warning" persist>
+      Do not apply row and column container classes to the same element.
+    </hx-alert>
+    <p>Rows and columns can be nested as deep as needed.</p>
+  </header>
+
   <div class="example">
     <div class="grid-demo">
       <div class="demo-container text-center">
@@ -496,15 +530,22 @@ also:
 </section>
 
 <section><!-- styling containers -->
-  <h2 id="styling-containers">Styling Containers</h2>
-  <hx-alert type="warning" status="warning" persist>
-    Do not attempt to style rows or columns directly.
-  </hx-alert>
+  <header>
+    <h2 id="styling-containers">Styling Containers</h2>
+    <hx-alert type="warning" status="warning" persist>
+      Do not attempt to style rows or columns directly.
+    </hx-alert>
+    <p>
+      There are limitations to styling rows and columns.
+    </p>
+  </header>
+
   <ul class="hxList">
     <li>Rows have margins set to align the outer columns with surrounding content.</li>
     <li>Columns in a row have padding applied to them to simulate gutters.</li>
     <li>Wrap your content in a <code>&lt;div&gt;</code> to apply custom CSS.</li>
   </ul>
+
   <div class="example">
     <div class="grid-demo">
       <div class="hxRow">
@@ -559,17 +600,19 @@ also:
 </section>
 
 <section><!-- going gutterless -->
-  <h2 id="going-gutterless">Going Gutterless</h2>
-  <ul class="hxList">
-    <li>
+  <header>
+    <h2 id="going-gutterless">Going Gutterless</h2>
+    <p>
       Add the <code>.hxGutterless</code> CSS class to your row container
       to remove gutters from its immediate children.
-    </li>
-  </ul>
+    </p>
+  </header>
+
   <p class="hxSubBody hxSubdued">
     <hx-icon type="info-circle"></hx-icon>
     Notice how the nested row in the second column still applies its gutters.
   </p>
+
   <div class="example">
     <div class="grid-demo">
       <div class="demo-container text-center">
@@ -601,5 +644,16 @@ also:
       {% endcode %}
     </footer>
   </div>
+</section>
+
+<section><!-- compatibility -->
+  <header>
+    <h2 id="compatibility">Compatibility</h2>
+    <!-- TODO: add section description -->
+  </header>
+
+  <ul class="hxList">
+    <li>HelixUI Grid is not compatible with Bootstrap grid styles.</li>
+  </ul>
 </section>
 {% endblock %}

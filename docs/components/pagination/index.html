@@ -6,15 +6,17 @@ also:
   components/icons: Icons
 ---
 {% extends 'component.njk' %}
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <p>
-      The <code>aria-current</code> attribute needs to be added in order to apply style as well as denote semantic meaning.
-    </p>
-  </section>
+    <header>
+      <h2 id="first-page">First Page</h2>
+      <!-- TODO: add section description -->
+    </header>
 
-  <section>
-    <h2 id="first-page">First Page</h2>
     <div class="example">
       <div>
         <div class="hxPagination hxBtnGroup">
@@ -65,7 +67,11 @@ also:
   </section>
 
   <section>
-    <h2 id="middle-page">Middle Page</h2>
+    <header>
+      <h2 id="middle-page">Middle Page</h2>
+      <!-- TODO: add section description -->
+    </header>
+
     <div class="example">
       <div>
         <div class="hxPagination hxBtnGroup">
@@ -116,7 +122,11 @@ also:
   </section>
 
   <section>
-    <h2 id="last-page">Last Page</h2>
+    <header>
+      <h2 id="last-page">Last Page</h2>
+      <!-- TODO: add section description -->
+    </header>
+
     <div class="example">
       <div>
         <div class="hxPagination hxBtnGroup">
@@ -164,6 +174,18 @@ also:
         {% endcode %}
       </footer>
     </div>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="accessibility">Accessibility</h2>
+      <!-- TODO: add section description -->
+    </header>
+
+    <p>
+      The <code>aria-current</code> attribute needs to be added to the current
+      button in order to apply style as well as denote semantic meaning.
+    </p>
   </section>
 {% endblock %}
 

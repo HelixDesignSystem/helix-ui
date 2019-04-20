@@ -9,20 +9,30 @@ also:
 {% import '_utils.njk' as utils %}
 {% extends 'component.njk' %}
 
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="basic-popover">Basic Popover</h2>
+    <header>
+      <h2 id="basic-popover">Basic Popover</h2>
+    </header>
+
     <div class="example" id="vue-popoverDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div>
-            <label for="selPosition" class="beta-hxFieldName">Position</label>
+          <hx-select-control>
             <select id="selPosition" v-model="position">
               <option v-for="_position in positions" :value="_position">
                 {% raw %}{{ _position.label }}{% endraw %}
               </option>
             </select>
-          </div>
+            <hx-select></hx-select>
+            <label for="selPosition">
+              Position
+            </label>
+          </hx-select-control>
         </form>
       </header>
 
@@ -77,18 +87,25 @@ also:
   </section>
 
   <section>
-    <h2 id="scrolling-popover">Scrolling Popover</h2>
+    <header>
+      <h2 id="scrolling-popover">Scrolling Popover</h2>
+      <!-- TODO: add section description -->
+    </header>
+
     <div class="example" id="vue-scrollingPopoverDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div>
-            <label for="selPosition" class="beta-hxFieldName">Position</label>
-            <select id="selPosition" v-model="position">
+          <hx-select-control>
+            <select id="selPositionScroll" v-model="position">
               <option v-for="_position in positions" :value="_position">
                 {% raw %}{{ _position.label }}{% endraw %}
               </option>
             </select>
-          </div>
+            <hx-select></hx-select>
+            <label for="selPositionScroll">
+              Position
+            </label>
+          </hx-select-control>
         </form>
       </header>
 
@@ -141,6 +158,7 @@ also:
         {% endcode %}
       </footer>
     </div>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="info-circle"></hx-icon>
       Please refer to <a href="components/box/#scrolling-containers">

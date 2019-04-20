@@ -7,27 +7,45 @@ also:
   elements/hx-status: <hx-status>
 ---
 {% extends 'component.njk' %}
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="basic-pill">Basic Pill</h2>
-    <p class="hxSubBody">Added: v0.8.0</p>
+    <header>
+      <h2 id="basic-pill">Basic Pill</h2>
+      <p class="hxSubBody">Added: v0.8.0</p>
+      <!-- TODO: add section description -->
+    </header>
+
     <div class="example" id="vue-pillDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <p>
-            <label for="txtContent" class="beta-hxFieldName">Content:</label>
-            <textarea
-              class="hxTextCtrl"
+          <hx-text-control>
+            <input
               id="txtContent"
+              type="text"
               v-model="content"
-            ></textarea>
-          </p>
+            />
+            <label for="txtContent">
+              Content
+            </label>
+          </hx-text-control>
+
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div>
-              <input id="chkIsPersistent" type="checkbox" v-model="isPersistent" />
-              <label for="chkIsPersistent">Persist</label>
-            </div>
+            <hx-checkbox-control>
+              <input
+                id="chkIsPersistent"
+                type="checkbox"
+                v-model="isPersistent"
+              />
+              <label for="chkIsPersistent">
+                <hx-checkbox></hx-checkbox>
+                Persist
+              </label>
+            </hx-checkbox-control>
           </fieldset>
         </form>
       </header>
@@ -35,9 +53,10 @@ also:
       <div>
         <hx-pill
           :persist="isPersistent"
-          v-text="content"
           @dismiss="onEvent"
-        ></hx-pill>
+        >
+          {% raw %}{{ content }}{% endraw %}
+        </hx-pill>
       </div>
 
       <footer>
@@ -47,31 +66,48 @@ also:
   </section>
 
   <section>
-    <h2 id="status-pill">Status Pill</h2>
-    <p class="hxSubBody">Added: v0.1.14</p>
+    <header>
+      <h2 id="status-pill">Status Pill</h2>
+      <p class="hxSubBody">Added: v0.1.14</p>
+      <!-- TODO: add section description -->
+    </header>
+
     <div class="example" id="vue-statusPillDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div>
-            <label for="selVariant" class="beta-hxFieldName">Variant</label>
+          <hx-select-control>
             <select id="selVariant" v-model="variant">
               <option v-for="_variant in variants" :value="_variant">
                 {% raw %}{{ _variant.label }}{% endraw %}
               </option>
             </select>
-          </div>
+            <hx-select></hx-select>
+            <label for="selVariant">
+              Variant
+            </label>
+          </hx-select-control>
+
           <fieldset>
             <legend class="beta-hxFieldname">Options</legend>
-            <div>
-              <input id="chkIsFilled" type="checkbox" v-model="isFilled">
-              <label for="chkIsFilled">Filled</label>
-            </div>
+            <hx-checkbox-control>
+              <input
+                id="chkIsFilled"
+                type="checkbox"
+                v-model="isFilled"
+              />
+              <label for="chkIsFilled">
+                <hx-checkbox></hx-checkbox>
+                Filled
+              </label>
+            </hx-checkbox-control>
           </fieldset>
         </form>
       </header>
 
       <div class="status-demo">
-        <hx-status :class="cssClasses" v-text="variant.label"></hx-status>
+        <hx-status :class="cssClasses">
+          {% raw %}{{ variant.label }}{% endraw %}
+        </hx-status>
       </div>
 
       <footer>
@@ -81,8 +117,8 @@ also:
           {% endcode %}
         </template>
         <template v-else>
-          {% code 'html' %}
-            {% raw %}<hx-status class="{{cssClasses}}">...</hx-status>{% endraw %}
+          {% code 'html' %}{% raw %}
+            <hx-status class="{{ cssClasses }}">...</hx-status>{% endraw %}
           {% endcode %}
         </template>
       </footer>

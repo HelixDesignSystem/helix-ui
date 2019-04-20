@@ -7,30 +7,53 @@ also:
   elements/hx-radio: <hx-radio>
 ---
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="basic-radio">Basic Radio</h2>
+    <header>
+      <h2 id="basic-radio">Basic Radio</h2>
+    </header>
+
     <div class="example" id="vue-radioDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
+
             <hx-checkbox-control>
-              <input id="chkIsChecked" type="checkbox" v-model="isChecked" />
+              <input
+                id="chkIsChecked"
+                type="checkbox"
+                v-model="isChecked"
+              />
               <label for="chkIsChecked">
                 <hx-checkbox></hx-checkbox>
                 With Default Selection
               </label>
             </hx-checkbox-control>
+
             <hx-checkbox-control>
-              <input id="chkIsDisabled" type="checkbox" v-model="isDisabled" />
+              <input
+                id="chkIsDisabled"
+                type="checkbox"
+                v-model="isDisabled"
+              />
               <label for="chkIsDisabled">
                 <hx-checkbox></hx-checkbox>
                 Disabled
               </label>
             </hx-checkbox-control>
+
             <hx-checkbox-control>
-              <input id="chkIsRequired" type="checkbox" v-model="isRequired" />
+              <input
+                id="chkIsRequired"
+                type="checkbox"
+                v-model="isRequired"
+              />
               <label for="chkIsRequired">
                 <hx-checkbox></hx-checkbox>
                 Required
@@ -39,6 +62,7 @@ also:
           </fieldset>
         </form>
       </header>
+
       <div>
         <hx-radio-set>
           <hx-radio-control>
@@ -70,10 +94,12 @@ also:
           </hx-radio-control>
         </hx-radio-set>
       </div>
+
       <footer>
         <pre><code v-text="snippet"></code></pre>
       </footer>
     </div>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="info-circle"></hx-icon>
       Webkit-based browsers (e.g., Chrome, Safari, etc.) do not match the

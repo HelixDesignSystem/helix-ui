@@ -3,19 +3,34 @@ title: Lists
 minver: 0.2.0
 ---
 {% extends 'component.njk' %}
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="description-list">Description List</h2>
-    <p class="hxSubBody">Added: v0.2.0</p>
+    <header>
+      <h2 id="description-list">Description List</h2>
+      <p class="hxSubBody">Added: v0.2.0</p>
+      <!-- TODO: add section description -->
+    </header>
+
     <div class="example" id="vue-listDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div>
-              <input id="chkIsVertical" type="checkbox" v-model="isVertical" />
-              <label for="chkIsVertical">Vertical Layout</label>
-            </div>
+            <hx-checkbox-control>
+              <input
+                id="chkIsVertical"
+                type="checkbox"
+                v-model="isVertical"
+              />
+              <label for="chkIsVertical">
+                <hx-checkbox></hx-checkbox>
+                Vertical Layout
+              </label>
+            </hx-checkbox-control>
           </fieldset>
         </form>
       </header>
@@ -50,7 +65,7 @@ minver: 0.2.0
 
       <footer>
         {% code 'html' %}{% raw %}
-          <dl class="{{classes}}">
+          <dl class="{{ classes }}">
             <div>
               <dt>First Key Term</dt>
               <dd>...</dd>
@@ -70,8 +85,12 @@ minver: 0.2.0
   </section>
 
   <section>
-    <h2 id="unordered-list">Unordered List</h2>
-    <p class="hxSubBody">Added: v0.10.0</p>
+    <header>
+      <h2 id="unordered-list">Unordered List</h2>
+      <p class="hxSubBody">Added: v0.10.0</p>
+      <!-- TODO: add section description -->
+    </header>
+
     <div class="example">
       <div>
         <ul class="hxList">
@@ -110,8 +129,12 @@ minver: 0.2.0
   </section>
 
   <section>
-    <h2 id="ordered-list">Ordered List</h2>
-    <p class="hxSubBody">Added: v0.10.0</p>
+    <header>
+      <h2 id="ordered-list">Ordered List</h2>
+      <p class="hxSubBody">Added: v0.10.0</p>
+      <!-- TODO: add section description -->
+    </header>
+
     <div class="example">
       <div>
         <ol class="hxList">
