@@ -5,13 +5,15 @@ also:
   components/modals: Modals
 ---
 {% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element defines a section of
+    floating content that needs a forced action from the user.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p>
-      The custom <code>{{page.title}}</code> element defines a section of
-      floating content that needs a forced action from the user.
-    </p>
-
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>

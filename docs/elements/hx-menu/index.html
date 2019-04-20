@@ -6,13 +6,15 @@ also:
   elements/hx-menuitem: <hx-menuitem>
 ---
 {% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element defines a list of choices
+    to the user, such as a list of actions or functions.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p>
-      The custom <code>{{page.title}}</code> element defines a list of choices
-      to the user, such as a list of actions or functions.
-    </p>
-
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>

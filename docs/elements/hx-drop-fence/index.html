@@ -5,13 +5,15 @@ also:
   components/files: Files
 ---
 {% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element provides a visual
+    indication to the user that they can drag a file into an area.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p>
-      The custom <code>{{page.title}}</code> element provides a visual
-      indication to the user that they can drag a file into an area.
-    </p>
-
     <dl class="metadata hxList">
       <div>
         <dt>Display</dt>
