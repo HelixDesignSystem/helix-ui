@@ -2,16 +2,16 @@
 title: Getting Started with HelixUI
 ---
 {% extends 'guide.njk' %}
-{% block content %}
-  <section>
-    <p class="comfortable">
-      The HelixUI library provides front-end developers a set of reusable CSS
-      classes and HTML Custom Elements that adhere to Helix design standards.
-      Adopting the library will enable developers to build products with consistent
-      markup, styles, and behavior across a variety of frameworks.
-    </p>
-  </section>
+{% block page_header %}
+  <p>
+    The HelixUI library provides front-end developers a set of reusable CSS
+    classes and HTML Custom Elements that adhere to Helix design standards.
+    Adopting the library will enable developers to build products with consistent
+    markup, styles, and behavior across a variety of frameworks.
+  </p>
+{% endblock %}
 
+{% block content %}
   <section>
     <h2 id="step-1">Step 1: Install HelixUI</h2>
     <hx-tabset class="beta-hxBound">
@@ -84,7 +84,7 @@ title: Getting Started with HelixUI
 
   <section>
     <h2 id="step-2">Step 2: Install Polyfills</h2>
-    <p class="comfortable">
+    <p>
       To ensure that HelixUI has the minimum set of behavior required to function
       across all supported browsers, the Web Components polyfills must be installed.
     </p>
