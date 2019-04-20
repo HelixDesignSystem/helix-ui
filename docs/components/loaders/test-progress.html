@@ -1,7 +1,16 @@
 ---
-title: Testing <hx-progress>
+title: Testing - Progress Bar
 ---
 {% extends 'test.njk' %}
+
+{% block breadcrumbs %}
+  <nav class="hxBreadcrumb">
+    <a href="components/loaders">Loaders</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">{{page.title}}</a>
+  </nav>
+{% endblock %}
+
 {% block content %}
   <section>
     <h2>No Attributes</h2>
