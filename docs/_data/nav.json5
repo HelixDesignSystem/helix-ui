@@ -23,7 +23,6 @@
             { label: 'Checkboxes', path: 'checkboxes' },
             { label: 'Choice Tiles', path: 'choice-tiles' },
             { label: 'Dropdown Select', path: 'dropdown-select' },
-            //{ label: 'Colors', path: 'colors' },
             { label: 'Files', path: 'files' },
             { label: 'Grid', path: 'grid' },
             { label: 'Icons', path: 'icons' },
@@ -42,8 +41,8 @@
             { label: 'Menus', path: 'menus' },
             { label: 'Modals', path: 'modals' },
             { label: 'Navigation', path: 'navigation' },
-            { label: 'Panels', path: 'panels' },
             { label: 'Pagination', path: 'pagination' },
+            { label: 'Panels', path: 'panels' },
             { label: 'Pills', path: 'pills' },
             { label: 'Popovers', path: 'popovers' },
             { label: 'Radios', path: 'radios' },
@@ -105,15 +104,4 @@
             { label: '<hx-tooltip>', path: 'hx-tooltip' },
         ],
     },
-
-    /* COMING SOON...
-    {
-        label: 'API',
-        path: 'API',
-        children: [
-            { label: 'HXElement', path: 'HXElement' },
-            ...
-        ],
-    }
-    */
 ]

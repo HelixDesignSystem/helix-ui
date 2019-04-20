@@ -6,14 +6,63 @@
 // import grid mixins from toolkit
 @import (reference) 'components/grid';
 
+/* ---------------------------------------- *\
+ * CONFIG
+\* ---------------------------------------- */
 @demo-container-border: 1px dashed @gray-600;
 @demo-fill-color: fade(@orange-500, 25%);
 @demo-padding-color: @magenta-100;
 
-.homepage {
-  background-image: linear-gradient(0deg, @cyan-100, @gray-0 20%);
+/* ---------------------------------------- *\
+ * MIXINS
+\* ---------------------------------------- */
+.isSticky(vertical) {
+  bottom: 1rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 1rem;
 }
 
+/* ---------------------------------------- *\
+ * RESETS
+\* ---------------------------------------- */
+
+/* ---------------------------------------- *\
+ * BASE
+\* ---------------------------------------- */
+
+// keep line length to a readable size
+p {
+  max-width: 80ch;
+}
+
+main {
+  > * {
+    margin: 3rem 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // nested to prevent matching the global nav
+  header {
+    margin-bottom: 1rem;
+  }
+}
+
+// ensure any embedded codepen fits in with the rest of the app
+iframe[src*="codepen.io"] {
+  border: 2px solid @gray-900;
+  height: 25rem;
+  width: 100%;
+}
+
+// eyebrow navigation
 #app-header {
   display: flex;
   padding-right: 1rem;
@@ -32,36 +81,138 @@
       justify-content: flex-end;
     }
   }
-}
 
-.brand-logo {
-  align-items: center;
-  display: flex;
-  height: 3.5rem;
-  justify-content: center;
-  width: @app-nav-width;
+  // "HELIX" logo
+  .brand-logo {
+    align-items: center;
+    display: flex;
+    height: 3.5rem;
+    justify-content: center;
+    width: @app-nav-width;
 
-  &:focus {
-    box-shadow: none;
-    outline: none;
+    &:focus {
+      box-shadow: none;
+      outline: none;
+
+      img {
+        outline: 1px dotted @cyan-100;
+        outline-offset: 0.25rem;
+      }
+    }
 
     img {
-      outline: 1px dotted @cyan-100;
-      outline-offset: 0.25rem;
+      height: 2rem;
     }
   }
+}
 
-  img {
-    height: 2rem;
+#content {
+  #Box.lg();
+}
+
+.hxSiderail {
+  #Box.md();
+}
+
+/* ---------------------------------------- *\
+ * COMPONENTS
+\* ---------------------------------------- */
+
+// quick "custom" element to display minimum version of a feature
+min-version {
+  background-color: @magenta-500;
+  border-radius: 1em;
+  color: @gray-0;
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1;
+  padding: 0.25em 0.75em;
+  vertical-align: middle;
+}
+
+// communicates that a Vue applet is still loading
+[app-loading] {
+  display: none;
+  text-align: center;
+
+  hx-busy {
+    font-size: 2rem;
+
+    & + * {
+      margin-top: 0.5rem;
+    }
   }
 }
+
+// matches loading Vue applets
+[v-cloak] {
+  height: 0;
+  opacity: 0;
+
+  & + [app-loading] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// ----- BANNER ---------------
+// currently used by test page layout to display a warning to readers
+.banner {
+  .isSticky(vertical);
+  -ms-grid-columns: auto 1fr;
+  -ms-grid-row-align: baseline;
+  align-items: baseline;
+  background-color: @gray-0;
+  border: 2px solid currentColor;
+  color: @gray-950;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: 'icon content';
+  grid-template-columns: auto 1fr;
+  margin-top: 3rem;
+  padding: 1rem;
+  z-index: 1150; // popover < banner < modal
+
+  > * {
+    margin: 0;
+  }
+
+  .banner__icon {
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    grid-area: icon;
+    margin-right: 1rem; // because IE
+  }
+
+  .banner__body {
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+    grid-area: content;
+  }
+
+  &.warning {
+    background-color: @yellow-500;
+    border: 2px solid @yellow-900;
+  }
+}
+@supports (display: grid) {
+  .banner {
+    grid-gap: 1rem;
+
+    .banner__icon {
+      margin: 0; // because IE
+    }
+  }
+}
+//end:BANNER
 
 // Table Of Contents
 .article-toc {
+  .isSticky(vertical);
   display: block;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 1rem;
 
   > a {
     display: block;
@@ -80,111 +231,7 @@
   }
 }
 
-main {
-  > section + section {
-    margin-top: 3rem;
-  }
-}
-
-p.comfortable {
-  max-width: 80ch;
-}
-
-.metadata {
-  #Box.md();
-  background-color: @cyan-50;
-  border: 1px solid @cyan-100;
-  box-shadow: inset 0.5rem 0 0 0 @cyan-100;
-
-  dt {
-    #grid.span(3);
-  }
-
-  dd {
-    #grid.span(9);
-  }
-}
-
-.media {
-  display: flex;
-  padding: 1rem;
-
-  &__icon {
-    flex-shrink: 0;
-  }
-
-  &__body {
-    flex-grow: 1;
-    margin-left: 1rem;
-  }
-}
-
-min-version {
-  background-color: @magenta-500;
-  border-radius: 1em;
-  color: @gray-0;
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 1;
-  padding: 0.25em 0.75em;
-  vertical-align: middle;
-}
-
-// Import from docs/styles/*
-@import 'demo/box-docs';
-@import 'demo/button-docs';
-@import 'demo/choice-tiles-docs';
-@import 'demo/grid-docs';
-@import 'demo/icon-docs';
-@import 'demo/nav-docs';
-@import 'demo/panel-docs';
-@import 'demo/popover-docs';
-@import 'demo/tabset-docs';
-@import 'demo/tooltip-docs';
-@import 'demo/typography-docs';
-
-// Spec Styles
-@import 'spec/checkbox-spec';
-@import 'spec/dropdown-select-spec';
-@import 'spec/panel-spec';
-@import 'spec/radio-spec';
-@import 'spec/text-input-spec';
-@import 'spec/textarea-spec';
-
-// SHAME
-dl:not(.hxList) {
-  dd {
-    margin-bottom: 0.5em;
-    margin-left: 1em;
-  }
-}
-
-[app-loading] {
-  display: none;
-  text-align: center;
-
-  hx-busy {
-    font-size: 2rem;
-
-    & + * {
-      margin-top: 0.5rem;
-    }
-  }
-}
-
-[v-cloak] {
-  height: 0;
-  opacity: 0;
-
-  & + [app-loading] {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
+// EXAMPLE component
 .example {
   border: 1px solid @gray-300;
 
@@ -270,35 +317,78 @@ dl:not(.hxList) {
     }
   }
 }
+//end:EXAMPLE component
 
-iframe[src*="codepen.io"] {
-  border: 2px solid @gray-900;
-  height: 25rem;
-  width: 100%;
-}
+// "media" object (mainly for listing icons in Icons docs)
+.media {
+  display: flex;
+  padding: 1rem;
 
-hx-icon {
-  &.native-support {
-    color: @green-500;
+  &__icon {
+    flex-shrink: 0;
   }
 
-  &.polyfill-needed {
-    color: @red-900;
+  &__body {
+    flex-grow: 1;
+    margin-left: 1rem;
   }
 }
 
-dl.memberList {
-  max-width: 80ch;
+// element metadata container
+.metadata {
+  #Box.md();
+  background-color: @cyan-50;
+  border: 1px solid @cyan-100;
+  box-shadow: inset 0.5rem 0 0 0 @cyan-100;
+
+  dt {
+    #grid.span(3);
+  }
+
+  dd {
+    #grid.span(9);
+  }
 }
 
-/* Beta Auto Grid Styles */
-.hxRow.hxAuto > .hxCol { flex-grow: 0; }
-.hxRow .hxCol.hxAuto { flex: 0 0 auto; }
+/* ---------------------------------------- *\
+ * PAGE CLASSES
+\* ---------------------------------------- */
+
+/* ----- Element Page Styling ----- */
+.element-content {
+  // Attributes, Methods, and Properties
+  dl.memberList {
+    max-width: 80ch;
+  }
+}
+
+/* ----- Front Page Styling ----- */
+.front-page {
+  background-image: linear-gradient(0deg, @cyan-100, @gray-0 20%);
+}
+
+/* ----- Guide Page Styline ----- */
+.guide-content {
+  // polyfills compatibility table
+  hx-icon {
+    &.native-support {
+      color: @green-500;
+    }
+
+    &.polyfill-needed {
+      color: @red-900;
+    }
+  }
+}
 
 /* ----- Test Page Styling ----- */
 .test-content {
+  box-shadow: inset 0 0 0 0.5rem @yellow-900;
+  overflow: visible !important; // allow banner to be sticky
+
   section {
     > * {
+      // FIXME: breaks positioned elements
       margin: 1rem 0;
 
       &:first-child {
@@ -324,3 +414,41 @@ dl.memberList {
     }
   }
 }
+
+/* ---------------------------------------- *\
+ * HELPERS
+\* ---------------------------------------- */
+
+// Import from docs/styles/*
+@import 'demo/box-docs';
+@import 'demo/button-docs';
+@import 'demo/choice-tiles-docs';
+@import 'demo/grid-docs';
+@import 'demo/icon-docs';
+@import 'demo/nav-docs';
+@import 'demo/panel-docs';
+@import 'demo/popover-docs';
+@import 'demo/tabset-docs';
+@import 'demo/tooltip-docs';
+@import 'demo/typography-docs';
+// Spec Styles
+@import 'spec/checkbox-spec';
+@import 'spec/dropdown-select-spec';
+@import 'spec/panel-spec';
+@import 'spec/radio-spec';
+@import 'spec/text-input-spec';
+@import 'spec/textarea-spec';
+
+/* ---------------------------------------- *\
+ * OVERRIDES (a.k.a. "shame")
+\* ---------------------------------------- */
+dl:not(.hxList) {
+  dd {
+    margin-bottom: 0.5em;
+    margin-left: 1em;
+  }
+}
+
+/* Beta Auto Grid Styles */
+.hxRow.hxAuto > .hxCol { flex-grow: 0; }
+.hxRow .hxCol.hxAuto { flex: 0 0 auto; }
