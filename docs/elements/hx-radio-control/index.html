@@ -8,14 +8,16 @@ also:
 ---
 {% extends 'element.njk' %}
 {% import '_utils.njk' as utils %}
+{% block page_header %}
+  <p>
+    The <code>{{page.title}}</code> block element is a container that provides
+    behavior to augment native browser validation capabilities. It is used to
+    build a <a href="components/radios">Radio</a> component.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p class="comfortable">
-      The <code>{{page.title}}</code> block element is a container that provides
-      behavior to augment native browser validation capabilities. It is used to
-      build a <a href="components/radios">Radio</a> component.
-    </p>
-
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>

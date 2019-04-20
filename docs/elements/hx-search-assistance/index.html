@@ -6,13 +6,15 @@ also:
   elements/hx-search: <hx-search>
 ---
 {% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element contains a list of choices
+    for the user, such as recent or suggested searches depending on their context.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p>
-      The custom <code>{{page.title}}</code> element contains a list of choices
-      for the user, such as recent or suggested searches depending on their context.
-    </p>
-
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>

@@ -5,14 +5,15 @@ also:
   components/toasts: Toasts
 ---
 {% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element provides a user
+    with information for action outside of the user's current context.
+  </p>
+{% endblock %}
+
 {% block content %}
-
   <section>
-    <p>
-      The custom <code>{{page.title}}</code> element provides a user
-      with information for action outside of the user's current context.
-    </p>
-
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>

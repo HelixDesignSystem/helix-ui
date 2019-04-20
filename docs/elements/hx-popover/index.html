@@ -7,15 +7,17 @@ also:
   elements/hx-div: <hx-div>
 ---
 {% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element defines a section of
+    floating content to appear nearby other elements. It is often toggled by
+    a companion
+    <a href="elements/hx-disclosure">&lt;hx-disclosure&gt;</a> element.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p class="comfortable">
-      The custom <code>{{page.title}}</code> element defines a section of
-      floating content to appear nearby other elements. It is often toggled by
-      a companion
-      <a href="elements/hx-disclosure">&lt;hx-disclosure&gt;</a> element.
-    </p>
-
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>

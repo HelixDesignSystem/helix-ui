@@ -5,13 +5,15 @@ also:
   components/loaders: Loaders
 ---
 {% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element renders a progress bar
+    indicator to communicate the completion progress of a task.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p>
-      The custom <code>{{page.title}}</code> element renders a progress bar
-      indicator to communicate the completion progress of a task.
-    </p>
-
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>

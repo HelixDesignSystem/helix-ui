@@ -6,12 +6,15 @@ also:
   elements/hx-search-assistance: <hx-search-assistance>
 ---
 {% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element renders a search control
+    that accepts user input.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p>
-      The custom <code>{{page.title}}</code> element renders a search control
-      that accepts user input.
-    </p>
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>
@@ -49,19 +52,19 @@ also:
 {% endblock %}
 
 {% block attributes %}
-<dl>
-  <dt>disabled</dt>
-  <dd>Disables user interaction</dd>
+  <dl>
+    <dt>disabled</dt>
+    <dd>Disables user interaction</dd>
 
-  <dt>invalid</dt>
-  <dd>Marks input as invalid</dd>
+    <dt>invalid</dt>
+    <dd>Marks input as invalid</dd>
 
-  <dt>placeholder</dt>
-  <dd>Hint of what can be entered into the control</dd>
+    <dt>placeholder</dt>
+    <dd>Hint of what can be entered into the control</dd>
 
-  <dt>value</dt>
-  <dd>Initial value of the control</dd>
-</dl>
+    <dt>value</dt>
+    <dd>Initial value of the control</dd>
+  </dl>
 {% endblock %}
 
 {% block properties %}

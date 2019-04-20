@@ -6,14 +6,15 @@ also:
   components/icons: Icons
 ---
 {% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element is a tileable
+    representation of a remote file.
+  </p>
+{% endblock %}
+
 {% block content %}
-
   <section>
-    <p>
-      The custom <code>{{page.title}}</code> element is a tileable
-      representation of a remote file.
-    </p>
-
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>

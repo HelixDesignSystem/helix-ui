@@ -9,21 +9,21 @@ also:
   elements/hx-tabset: <hx-tabset>
 ---
 {% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element provides automatic
+    scrolling when content is too long to fit within a height-constrained
+    tabset. It should be accompanied by a companion
+    <a href="elements/hx-tab">&lt;hx-tab&gt;</a> element.
+  </p>
+  <p class="hxSubdued hxSubBody">
+    <hx-icon type="info-circle"></hx-icon>
+    The element is named after the accessible <code>tabpanel</code> role.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p>
-      The custom <code>{{page.title}}</code> element provides automatic
-      scrolling when content is too long to fit within a height-constrained
-      tabset. It should be accompanied by a companion
-      <a href="elements/hx-tab">&lt;hx-tab&gt;</a> element.
-    </p>
-    <p>
-      <small class="hxSubdued">
-        <hx-icon type="info-circle"></hx-icon>
-        The element is named after the accessible <code>tabpanel</code> role.
-      </small>
-    </p>
-
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>

@@ -7,14 +7,16 @@ also:
   elements/hx-reveal: <hx-reveal>
 ---
 {% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>&lt;hx-disclosure&gt;</code> element provides behavior
+    required to toggle content visibility of a companion
+    <a href="elements/hx-reveal">&lt;hx-reveal&gt;</a> element.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p>
-      The custom <code>&lt;hx-disclosure&gt;</code> element provides behavior
-      required to toggle content visibility of a companion
-      <a href="elements/hx-reveal">&lt;hx-reveal&gt;</a> element.
-    </p>
-
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>
