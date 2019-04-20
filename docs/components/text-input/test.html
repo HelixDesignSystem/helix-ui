@@ -36,18 +36,18 @@ title: Testing - Text Input
       {% if isPristine %}
         Pristine,
       {% else %}
-        {% if className !== '' %}.{{ className }},{% endif %}
+        {% if className !== '' %}.{{className}},{% endif %}
         {% if isDirty %}Dirty,{% endif %}
       {% endif %}
-      {{ 'Required' if isRequired else 'Optional' }},
-      {{ 'Disabled' if isDisabled else 'Enabled' }},
-      {{ 'Valid' if isValid else 'Invalid' }}
-      ({{ 'focus' if isFocused else 'blur' }})
+      {{'Required' if isRequired else 'Optional'}},
+      {{'Disabled' if isDisabled else 'Enabled'}},
+      {{'Valid' if isValid else 'Invalid'}}
+      ({{'focus' if isFocused else 'blur'}})
     </label>
   </hx-text-control>
 {% endmacro %}
 
-{% block page_header %}
+{% block breadcrumbs %}
   <nav class="hxBreadcrumb">
     <a href="components/text-input">Text Input</a>
     <hx-icon class="delimiter" type="angle-right"></hx-icon>

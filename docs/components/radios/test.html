@@ -3,6 +3,7 @@ title: Testing - Radios
 ---
 {% set contentClasses = 'radio-spec' %}
 {% extends 'test.njk' %}
+
 {% macro radio(id='', name='', isDirty=false, isRequired=false, isChecked=false, isDisabled=false, isFocused=false, isHovered=false, isValid=true) %}
   {% set isPristine = not isDirty %}
 
@@ -20,8 +21,8 @@ title: Testing - Radios
   {%- endset %}
 
   {% set className -%}
-    {{ 'mock-hover' if isHovered }}
-    {{ 'mock-focus' if isFocused }}
+    {{'mock-hover' if isHovered}}
+    {{'mock-focus' if isFocused}}
   {%- endset %}
 
   <hx-radio-control>
@@ -37,14 +38,14 @@ title: Testing - Radios
     />
     <label for="{{idAttr | trim}}">
       <hx-radio></hx-radio>
-      {{ id if id !=='' }}-
-      {{ 'Dirty' if isDirty else 'Pristine' }},
-      {{ 'Required' if isRequired else 'Optional' }},
-      {{ 'Disabled' if isDisabled else 'Enabled' }},
-      {{ 'Valid' if isValid else 'Invalid' }},
-      {{ 'Checked' if isChecked else 'Unchecked' }}
+      {{id if id !== ''}}-
+      {{'Dirty' if isDirty else 'Pristine'}},
+      {{'Required' if isRequired else 'Optional'}},
+      {{'Disabled' if isDisabled else 'Enabled'}},
+      {{'Valid' if isValid else 'Invalid'}},
+      {{'Checked' if isChecked else 'Unchecked'}}
       {% if isFocused or isHovered %}
-        ( 
+        (
           {{- ':focus' if isFocused -}}
           {{- ':hover' if isHovered -}}
         )
@@ -54,7 +55,6 @@ title: Testing - Radios
 {% endmacro %}
 
 {% macro radioSet(id='', className='', isDirty=false, isDisabled=false, isFocused=false, isHovered=false, isRequired=false, isValid=true) %}
-
   {% set focused2 = (isFocused and isValid) %}
   {% set name -%}radioSet-
     {{- id -}}
@@ -69,19 +69,17 @@ title: Testing - Radios
     {% if isDirty %}hx-dirty {% endif %}
     {% if className !== '' %}class="{{className}}" {% endif %}
   >
-    {{ radio(id='Radio1', name=name, isDirty=isDirty, isHovered=isHovered, isDisabled=isDisabled, isRequired=isRequired, isValid=isValid, isChecked=false) }}
-    {{ radio(id='Radio2', name=name, isDirty=isDirty, isHovered=isHovered, isDisabled=isDisabled, isRequired=isRequired, isValid=isValid, isChecked=isValid, isFocused=focused2) }}
+    {{radio(id='Radio1', name=name, isDirty=isDirty, isHovered=isHovered, isDisabled=isDisabled, isRequired=isRequired, isValid=isValid, isChecked=false)}}
+    {{radio(id='Radio2', name=name, isDirty=isDirty, isHovered=isHovered, isDisabled=isDisabled, isRequired=isRequired, isValid=isValid, isChecked=isValid, isFocused=focused2)}}
   </hx-radio-set>
 {% endmacro %}
 
-{% block page_header %}
-  <section>
-    <nav class="hxBreadcrumb">
-      <a href="components/radios">Radios</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">{{page.title}}</a>
-    </nav>
-  </section>
+{% block breadcrumbs %}
+  <nav class="hxBreadcrumb">
+    <a href="components/radios">Radios</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">{{page.title}}</a>
+  </nav>
 {% endblock %}
 
 {% block content %}
@@ -440,5 +438,5 @@ title: Testing - Radios
         </tbody>
       </table>
     </section>
-  </section>  
+  </section>
 {% endblock %}

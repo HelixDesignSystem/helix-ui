@@ -2,17 +2,20 @@
 title: Testing - Tooltips
 ---
 {% extends 'test.njk' %}
+
+{% block breadcrumbs %}
+  <nav class="hxBreadcrumb">
+    <a href="components/tooltips">Tooltips</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">{{page.title}}</a>
+  </nav>
+{% endblock %}
+
 {% block content %}
   <section>
-    <nav class="hxBreadcrumb">
-      <a href="components/tooltips">Tooltips</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">{{page.title}}</a>
-    </nav>
-  </section>
-
-  <section>
-    <h2>Appearance (simple)</h2>
+    <header>
+      <h2>Appearance (simple)</h2>
+    </header>
     <div class="tooltip-appearance">
       <hx-tooltip open>
         Default
@@ -27,7 +30,9 @@ title: Testing - Tooltips
   </section>
 
   <section>
-    <h2>Appearance (formatted)</h2>
+    <header>
+      <h2>Appearance (formatted)</h2>
+    </header>
     <div class="tooltip-appearance">
       <hx-tooltip open position="right-bottom">
         <header>Tooltip Header</header>
@@ -41,8 +46,9 @@ title: Testing - Tooltips
   </section>
 
   <section>
-    <h2>HTML5-compatible IDs</h2>
-
+    <header>
+      <h2>HTML5-compatible IDs</h2>
+    </header>
     <div class="hxRow hxAuto">
       <div class="hxCol">
         <h3>ID on Target</h3>
@@ -81,7 +87,9 @@ title: Testing - Tooltips
   </section>
 
   <section>
-    <h2>Various Target Elements</h2>
+    <header>
+      <h2>Various Target Elements</h2>
+    </header>
     <div class="hxRow hxAuto">
       <div class="hxCol">
         <h3>Heading Target</h3>
@@ -183,7 +191,10 @@ title: Testing - Tooltips
           icon="upload"
           label="#file-input-target"
         >
-          <input id="file-input-target" type="file" />
+          <input
+            id="file-input-target"
+            type="file"
+          />
         </hx-file-input>
         <p class="hxSubdued hxSubBody">Shouldn't show.</p>
 
@@ -229,7 +240,9 @@ title: Testing - Tooltips
   </section>
 
   <section>
-    <h2>Multiple Targets in Near Proximity</h2>
+    <header>
+      <h2>Multiple Targets in Near Proximity</h2>
+    </header>
     <table class="hxTable hxTable--condensed">
       <tbody>
         {% for i in range(0, 5) -%}
@@ -263,5 +276,5 @@ title: Testing - Tooltips
         </tr>
       </thead>
     </table>
- </section>
+  </section>
 {% endblock %}

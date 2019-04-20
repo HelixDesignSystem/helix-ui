@@ -1,8 +1,9 @@
 ---
 title: Testing - Textarea
 ---
-{% set contentClasses = 'textarea-spec' %}
 {% extends 'test.njk' %}
+{% set contentClasses = 'textarea-spec' %}
+
 {% macro textarea(id='', isDirty=false, className='', isRequired=false, isDisabled=false, isFocused=false, isValid=true) %}
   {% set isPristine = (className === '') and not isDirty %}
 
@@ -38,18 +39,18 @@ title: Testing - Textarea
       {% if isPristine %}
         Pristine,
       {% else %}
-        {% if className !== '' %}.{{ className }},{% endif %}
+        {% if className !== '' %}.{{className}},{% endif %}
         {% if isDirty %}Dirty,{% endif %}
       {% endif %}
-      {{ 'Required' if isRequired else 'Optional' }},
-      {{ 'Disabled' if isDisabled else 'Enabled' }},
-      {{ 'Valid' if isValid else 'Invalid' }}
-      ({{ 'focus' if isFocused else 'blur' }})
+      {{'Required' if isRequired else 'Optional'}},
+      {{'Disabled' if isDisabled else 'Enabled'}},
+      {{'Valid' if isValid else 'Invalid'}}
+      ({{'focus' if isFocused else 'blur'}})
     </label>
   </hx-textarea-control>
 {% endmacro %}
 
-{% block page_header %}
+{% block breadcrumbs %}
   <nav class="hxBreadcrumb">
     <a href="components/textarea">Textarea</a>
     <hx-icon class="delimiter" type="angle-right"></hx-icon>

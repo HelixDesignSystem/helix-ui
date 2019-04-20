@@ -1,17 +1,18 @@
 ---
 title: Testing - Checkboxes
 ---
-{% set contentClasses = 'checkbox-spec' %}
 {% extends 'test.njk' %}
-{% block content %}
-  <section>
-    <nav class="hxBreadcrumb">
-      <a href="components/checkboxes">Checkboxes</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">{{page.title}}</a>
-    </nav>
-  </section>
+{% set contentClasses = 'checkbox-spec' %}
 
+{% block breadcrumbs %}
+  <nav class="hxBreadcrumb">
+    <a href="components/checkboxes">Checkboxes</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">{{page.title}}</a>
+  </nav>
+{% endblock %}
+
+{% block content %}
   <!-- pristine optional -->
   <section>
     <header>

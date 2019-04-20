@@ -1,17 +1,18 @@
 ---
 title: Testing - Accordions
 ---
-{% set contentClasses = 'accordions-test' %}
 {% extends 'test.njk' %}
-{% block content %}
-  <section>
-    <nav class="hxBreadcrumb">
-      <a href="components/accordions">Accordions</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">{{page.title}}</a>
-    </nav>
-  </section>
+{% set contentClasses = 'accordions-test' %}
 
+{% block breadcrumbs %}
+  <nav class="hxBreadcrumb">
+    <a href="components/accordions">Accordions</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">{{page.title}}</a>
+  </nav>
+{% endblock %}
+
+{% block content %}
   <section>
     <h2>Open Enabled</h2>
     <hx-accordion>

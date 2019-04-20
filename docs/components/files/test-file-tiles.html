@@ -2,15 +2,16 @@
 title: Testing - File Tiles
 ---
 {% extends 'test.njk' %}
-{% block content %}
-  <section>
-    <nav class="hxBreadcrumb">
-      <a href="components/files">Files</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">{{page.title}}</a>
-    </nav>
-  </section>
 
+{% block breadcrumbs %}
+  <nav class="hxBreadcrumb">
+    <a href="components/files">Files</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">{{page.title}}</a>
+  </nav>
+{% endblock %}
+
+{% block content %}
   <section>
     <h2>Sub-optimal Attributes</h2>
     <div class="hxRow hxAuto">

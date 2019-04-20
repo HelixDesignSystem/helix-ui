@@ -40,7 +40,7 @@ title: Testing - Modals
           </p>
         {% endif %}
 
-        {{ utils.lorem(8) if scrolls }}
+        {{utils.lorem(8) if scrolls}}
 
         {% if hasChildren %}
           <hx-menu id="{{id}}-menu">
@@ -114,15 +114,15 @@ title: Testing - Modals
   {{modal(id, className, scrolls, hasChildren=true)}}
 {% endmacro %}
 
-{% block content %}
-  <section>
-    <nav class="hxBreadcrumb">
-      <a href="components/modals">Modals</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">{{page.title}}</a>
-    </nav>
-  </section>
+{% block breadcrumbs %}
+  <nav class="hxBreadcrumb">
+    <a href="components/modals">Modals</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">{{page.title}}</a>
+  </nav>
+{% endblock %}
 
+{% block content %}
   {% set modalSizes = {
     SM: 'hxSm',
     MD: '',
@@ -200,7 +200,7 @@ title: Testing - Modals
         <h3>Demo Modal Header</h3>
       </hx-modalhead>
       <hx-modalbody>
-        {{ utils.lorem(6) }}
+        {{utils.lorem(6)}}
       </hx-modalbody>
       <hx-modalfoot>
         <button class="hxBtn hxPrimary">Confirm</button>

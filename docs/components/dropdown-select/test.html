@@ -1,8 +1,9 @@
 ---
 title: Testing - Dropdown Select
 ---
-{% set contentClasses = 'dropdown-select-spec' %}
 {% extends 'test.njk' %}
+{% set contentClasses = 'dropdown-select-spec' %}
+
 {% macro dropdown(id='', isDirty=false, className='', isRequired=false, isDisabled=false, isFocused=false, isValid=true) %}
   {% set isPristine = (className === '') and not isDirty %}
 
@@ -48,22 +49,23 @@ title: Testing - Dropdown Select
       {% if isPristine %}
         Pristine,
       {% else %}
-        {% if className !== '' %}.{{ className }},{% endif %}
+        {% if className !== '' %}.{{className}},{% endif %}
         {% if isDirty %}Dirty,{% endif %}
       {% endif %}
-      {{ 'Required' if isRequired else 'Optional' }},
-      {{ 'Disabled' if isDisabled else 'Enabled' }},
-      {{ 'Valid' if isValid else 'Invalid' }}
-      ({{ 'focus' if isFocused else 'blur' }})
+      {{'Required' if isRequired else 'Optional'}},
+      {{'Disabled' if isDisabled else 'Enabled'}},
+      {{'Valid' if isValid else 'Invalid'}}
+      ({{'focus' if isFocused else 'blur'}})
     </label>
   </hx-select-control>
 {% endmacro %}
+
 {% macro stateTable(id, isDirty=false, className="", isRequired=false) %}
   <table>
     <thead>
       <tr>
         <th>:valid</th>
-        <th>:invalid{{ '*' if not isRequired }}</th>
+        <th>:invalid{{'*' if not isRequired}}</th>
       </tr>
     </thead>
     <tbody>
@@ -92,6 +94,7 @@ title: Testing - Dropdown Select
     </p>
   {% endif %}
 {% endmacro %}
+
 {% macro stateTables(id, isDirty=false, className="") %}
   <section id="{{id}}-optional-states">
     <header>
@@ -110,7 +113,7 @@ title: Testing - Dropdown Select
   </section>
 {% endmacro %}
 
-{% block page_header %}
+{% block breadcrumbs %}
   <nav class="hxBreadcrumb">
     <a href="components/dropdown-select">Dropdown Select</a>
     <hx-icon class="delimiter" type="angle-right"></hx-icon>

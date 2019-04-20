@@ -2,15 +2,16 @@
 title: Testing - File Selectors
 ---
 {% extends 'test.njk' %}
-{% block content %}
-  <section>
-    <nav class="hxBreadcrumb">
-      <a href="components/files">Files</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">{{page.title}}</a>
-    </nav>
-  </section>
 
+{% block breadcrumbs %}
+  <nav class="hxBreadcrumb">
+    <a href="components/files">Files</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">{{page.title}}</a>
+  </nav>
+{% endblock %}
+
+{% block content %}
   <h2>Upload File Selectors</h2>
   <section>
     <h3>Primary with Label</h3>
@@ -36,7 +37,7 @@ title: Testing - File Selectors
       label="Upload File">
       <input type="file" />
     </hx-file-input>
-  </section>  
+  </section>
 
   <section>
     <h3>Tertiary without Label</h3>
@@ -47,7 +48,7 @@ title: Testing - File Selectors
   </section>
 
   <br />
-  
+
   <h2>Attach File Selectors</h2>
   <section>
     <h3>Primary with Label</h3>

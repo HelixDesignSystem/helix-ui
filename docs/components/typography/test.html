@@ -2,60 +2,85 @@
 title: Testing - Typography
 ---
 {% extends 'test.njk' %}
+
+{% block breadcrumbs %}
+  <nav class="hxBreadcrumb">
+    <a href="components/typography">Typography</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">{{page.title}}</a>
+  </nav>
+{% endblock %}
+
 {% block content %}
   <section>
-    <nav class="hxBreadcrumb">
-      <a href="components/typography">Typography</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">{{page.title}}</a>
-    </nav>
+    <header>
+      <h2 id="error-text">Error Text</h2>
+    </header>
+
+    <section>
+      <header>
+        <h3>with line breaks</h3>
+        <p class="hxSubBody">
+          Uncompressed Markup - Line breaks present in composed DOM.
+        </p>
+      </header>
+
+      <div data-dom-diff="hxError-with-dom-line-breaks">
+        <hx-error>
+          Line Breaks
+        </hx-error>
+      </div>
+    </section>
+
+    <section>
+      <header>
+        <h3>without line breaks</h3>
+        <p class="hxSubBody">
+          Compressed Markup - No line breaks in composed DOM.
+        </p>
+      </header>
+
+      <div data-dom-diff="hxError-no-dom-line-breaks">
+        <hx-error>No Line Breaks</hx-error>
+      </div>
+    </section>
   </section>
 
   <section>
-    <h2>Error Text</h2>
-    <div data-dom-diff="hxError-with-dom-line-breaks">
-      <hx-error>
-        Line Breaks
-      </hx-error>
-    </div>
-    <p class="hxSubBody">
-      Uncompressed Markup - Line breaks present in composed DOM.
-    </p>
+    <header>
+      <h2 id="link">Link</h2>
+    </header>
 
-    <div data-dom-diff="hxError-no-dom-line-breaks">
-      <hx-error>No Line Breaks</hx-error>
-    </div>
-    <p class="hxSubBody">
-      Compressed Markup - No line breaks in composed DOM.
-    </p>
-  </section>
+    <section>
+      <header>
+        <h3>Default</h3>
+      </header>
+      <p>
+        <a href="#">Link One</a>
+      </p>
+    </section>
 
-  <section>
-    <h2>Link</h2>
-    <dl class="hxList">
-      <div>
-        <dt>Default</dt>
-        <dd>
-          <a href="#">Link One</a>
-        </dd>
-      </div>
-      <div>
-        <dt>Active/Pressed</dt>
-        <dd>
-          <a href="#" class="pseudo-active">Link Two</a>
-        </dd>
-      </div>
-      <div>
-        <dt>"Disabled"</dt>
-        <dd>
-          <p>
-            <a href="#" disabled>Link Three</a> -
-            <small>
-              (incorrect semantics) Should <em>not</em> have special styling
-            </small>
-          </p>
-        </dd>
-      </div>
-    </dl>
+    <section>
+      <header>
+        <h3>Active/Pressed</h3>
+      </header>
+      <p>
+        <a href="#" class="pseudo-active">Link Two</a>
+      </p>
+    </section>
+
+    <section>
+      <header>
+        <h3>Visually Disabled</h3>
+        <p>
+          <small>
+            (incorrect semantics) Should <em>not</em> have special styling
+          </small>
+        </p>
+      </header>
+      <p>
+        <a href="#" disabled>Link Three</a>
+      </p>
+    </section>
   </section>
 {% endblock %}
