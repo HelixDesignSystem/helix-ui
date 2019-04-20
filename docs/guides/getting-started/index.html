@@ -2,18 +2,23 @@
 title: Getting Started with HelixUI
 ---
 {% extends 'guide.njk' %}
+
+{% block page_header %}
+  <p>
+    The HelixUI library provides front-end developers a set of reusable CSS
+    classes and HTML Custom Elements that adhere to Helix design standards.
+    Adopting the library will enable developers to build products with consistent
+    markup, styles, and behavior across a variety of frameworks.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p class="comfortable">
-      The HelixUI library provides front-end developers a set of reusable CSS
-      classes and HTML Custom Elements that adhere to Helix design standards.
-      Adopting the library will enable developers to build products with consistent
-      markup, styles, and behavior across a variety of frameworks.
-    </p>
-  </section>
+    <header>
+      <h2 id="step-1">Step 1: Install HelixUI</h2>
+      {# TODO: add section description #}
+    </header>
 
-  <section>
-    <h2 id="step-1">Step 1: Install HelixUI</h2>
     <hx-tabset class="beta-hxBound">
       <hx-tablist>
         <hx-tab>NPM</hx-tab>
@@ -83,11 +88,14 @@ title: Getting Started with HelixUI
   </section>
 
   <section>
-    <h2 id="step-2">Step 2: Install Polyfills</h2>
-    <p class="comfortable">
-      To ensure that HelixUI has the minimum set of behavior required to function
-      across all supported browsers, the Web Components polyfills must be installed.
-    </p>
+    <header>
+      <h2 id="step-2">Step 2: Install Polyfills</h2>
+      <p>
+        To ensure that HelixUI has the minimum set of behavior required to function
+        across all supported browsers, the Web Components polyfills must be installed.
+      </p>
+    </header>
+
     <ol class="hxList">
       <li>
         Install <code>@webcomponents/webcomponentsjs</code> via one of the methods shown below.
@@ -97,11 +105,13 @@ title: Getting Started with HelixUI
       </li>
       <li>Proceed to "Step 3: Choose a Layout".</li>
     </ol>
+
     <p class="hxSubBody hxSubdued">
       <hx-icon type="info-circle"></hx-icon>
       Version 2.x (or later) is recommended, because it is more efficient
       in loading required polyfill bundles.
     </p>
+
     <hx-tabset class="beta-hxBound">
       <hx-tablist>
         <hx-tab>NPM</hx-tab>
@@ -151,14 +161,21 @@ title: Getting Started with HelixUI
         </hx-tabpanel>
       </hx-tabcontent>
     </hx-tabset>
-    <p class="hxSubdued hxSubBody">
-      <hx-icon type="info-circle"></hx-icon>
-      Visit the <a href="guides/polyfills">Polyfills</a> guide for more details.
-    </p>
+
+    <footer>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Visit the <a href="guides/polyfills">Polyfills</a> guide for more details.
+      </p>
+    </footer>
   </section>
 
   <section>
-    <h2 id="step-3">Step 3: Choose a Layout</h2>
+    <header>
+      <h2 id="step-3">Step 3: Choose a Layout</h2>
+      {# TODO: add section description #}
+    </header>
+
     <ol class="hxList">
       <li>
         Choose one of the layouts shown below.
@@ -170,11 +187,13 @@ title: Getting Started with HelixUI
         Modify the template markup to conform to your application's file structure.
       </li>
     </ol>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="info-circle"></hx-icon>
       Visit the <a href="components/layouts">Layouts</a> component
       documentation for customization details.
     </p>
+
     <hx-tabset class="beta-hxBound">
       <hx-tablist>
         <hx-tab>Vertical Layout</hx-tab>
@@ -241,12 +260,15 @@ title: Getting Started with HelixUI
   </section>
 
   <section><!-- Create Content -->
-    <h2 id="step-4">Step 4: Add Content</h2>
-    <p>
-      Add content and interactivity to your application using components.
-      Documentation for a component contains interactive demos and details
-      about various interaction patterns.
-    </p>
+    <header>
+      <h2 id="step-4">Step 4: Add Content</h2>
+      <p>
+        Add content and interactivity to your application using components.
+        Documentation for a component contains interactive demos and details
+        about various interaction patterns.
+      </p>
+    </header>
+
     <ol class="hxList">
       <li>Choose a component from the navigation on the left.</li>
       <li>Check the "See Also" section on the component page for more information.</li>
