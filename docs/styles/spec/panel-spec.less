@@ -1,0 +1,27 @@
+.specs-panel {
+
+  .spec {
+    &.scroll {
+      height: 20rem;
+      overflow: hidden;
+    }
+
+    &.visible {
+      /* Visualize Invisible Panel Boundaries */
+      hx-panel, // DEPRECATED: remove in v1.0.0
+      .hxPanel {
+        border: @demo-container-border;
+
+        > hx-panelhead, // DEPRECATED: remove in v1.0.0
+        > header {
+          border-bottom: @demo-container-border;
+        }
+
+        > hx-panelfoot, // DEPRECATED: remove in v1.0.0
+        > footer {
+          border-top: @demo-container-border;
+        }
+      }
+    }
+  }
+}

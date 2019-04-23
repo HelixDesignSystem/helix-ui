@@ -1,5 +1,7 @@
 import { HXElement } from './HXElement';
 
+import { onScroll } from '../utils';
+
 /**
  * Defines behavior for the `<hx-tabcontent>` element.
  *
@@ -14,5 +16,10 @@ export class HXTabcontentElement extends HXElement {
 
     $onConnect () {
         this.$defaultAttribute('role', 'presentation');
+        this.addEventListener('scroll', onScroll);
+    }
+
+    $onDisconnect () {
+        this.removeEventListener('scroll', onScroll);
     }
 }

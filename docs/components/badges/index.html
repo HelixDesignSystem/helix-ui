@@ -5,21 +5,26 @@ also:
   guides/react-compatibility/#significant-white-space: Significant White Space (React Compatibility)
   components/badges/test.html: Testing - Badges
 ---
+{% set contentClasses = 'docs-badge' %}
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  <p>
+    Badges are inline elements that communicate change to an area of the site.
+    They are implemented by applying the <code>.hxBadge</code> CSS class
+    to a <code>&lt;span&gt;</code> element.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p class="comfortable">
-      Badges are inline elements that communicate change to an area of the site.
-      They are implemented by applying the <code>.hxBadge</code> CSS class
-      to a <code>&lt;span&gt;</code> element.
-    </p>
-  </section>
+    <header>
+      <h2 id="link-badge">Link Badge</h2>
+      <p>
+        Badges may be used with a hyperlink to bring attention to new items at the destination.
+      </p>
+    </header>
 
-  <section>
-    <h2 id="link-badge">Link Badge</h2>
-    <p>
-      Badges may be used with a hyperlink to bring attention to new items at the destination.
-    </p>
     <div class="example">
       <div>
         <a href="">
@@ -40,10 +45,13 @@ also:
   </section>
 
   <section>
-    <h2 id="icon-badge">Icon Badge</h2>
-    <p>
-      Badges can be combined with icons to create a compact notification.
-    </p>
+    <header>
+      <h2 id="icon-badge">Icon Badge</h2>
+      <p>
+        Badges can be combined with icons to create a compact notification.
+      </p>
+    </header>
+
     <div class="example">
       <div>
         <hx-icon type="bell"></hx-icon>
@@ -84,30 +92,34 @@ also:
   </section>
 
   <section>
-    <h2 id="tab-badge">Tab Badge</h2>
-    <p>
-      Badges may be used in tabs to bring attention to new items in unselected tabs.
-    </p>
+    <header>
+      <h2 id="tab-badge">Tab Badge</h2>
+      <p>
+        Badges may be used in tabs to bring attention to new items in unselected tabs.
+      </p>
+    </header>
+
     <div class="example">
       <div>
         <hx-tabset>
           <hx-tablist>
             <hx-tab>
-              First
+              <span>First</span>
               <span class="hxBadge">1</span>
             </hx-tab>
             <hx-tab>
-              Second
+              <span>Second</span>
               <span class="hxBadge">32</span>
             </hx-tab>
-            <hx-tab>Third
+            <hx-tab>
+              <span>Third</span>
               <span class="hxBadge">99+</span>
             </hx-tab>
           </hx-tablist>
           <hx-tabcontent>
-            <hx-tabpanel>...</hx-tabpanel>
-            <hx-tabpanel>...</hx-tabpanel>
-            <hx-tabpanel>...</hx-tabpanel>
+            <hx-tabpanel>Tab 1</hx-tabpanel>
+            <hx-tabpanel>Tab 2</hx-tabpanel>
+            <hx-tabpanel>Tab 3</hx-tabpanel>
           </hx-tabcontent>
         </hx-tabset>
       </div>
@@ -117,22 +129,22 @@ also:
           <hx-tabset>
             <hx-tablist>
               <hx-tab>
-                First
+                <span>First</span>
                 <span class="hxBadge">1</span>
               </hx-tab>
               <hx-tab>
-                Second
+                <span>Second</span>
                 <span class="hxBadge">32</span>
               </hx-tab>
               <hx-tab>
-                Third
+                <span>Third</span>
                 <span class="hxBadge">99+</span>
               </hx-tab>
             </hx-tablist>
             <hx-tabcontent>
-              <hx-tabpanel>...</hx-tabpanel>
-              <hx-tabpanel>...</hx-tabpanel>
-              <hx-tabpanel>...</hx-tabpanel>
+              <hx-tabpanel>Tab 1</hx-tabpanel>
+              <hx-tabpanel>Tab 2</hx-tabpanel>
+              <hx-tabpanel>Tab 3</hx-tabpanel>
             </hx-tabcontent>
           </hx-tabset>
         {% endcode %}

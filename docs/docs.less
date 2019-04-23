@@ -140,13 +140,14 @@ min-version {
 @import 'demo/nav-docs';
 @import 'demo/panel-docs';
 @import 'demo/popover-docs';
-@import 'demo/tabs-docs';
+@import 'demo/tabset-docs';
 @import 'demo/tooltip-docs';
 @import 'demo/typography-docs';
 
 // Spec Styles
 @import 'spec/checkbox-spec';
 @import 'spec/dropdown-select-spec';
+@import 'spec/panel-spec';
 @import 'spec/radio-spec';
 @import 'spec/text-input-spec';
 @import 'spec/textarea-spec';
@@ -199,8 +200,22 @@ dl:not(.hxList) {
 
   // LIVE DEMO
   > div {
-    background-color: @gray-0;
+    @tileSize: 10px;
+    @color1: fade(black, 2%);
+    @color2: fade(white, 15%);
+    @img: linear-gradient(-45deg,
+      @color1 25%,
+      @color2 25%,
+      @color2 75%,
+      @color1 75%,
+      @color1
+    );
+
     padding: 2rem;
+    background-color: @gray-0;
+    background-image: @img, @img;
+    background-position: 0 0, @tileSize @tileSize;
+    background-size: (2 * @tileSize) (2 * @tileSize);
   }
 
   // CODE SNIPPET
@@ -210,6 +225,13 @@ dl:not(.hxList) {
     pre {
       border-radius: 0;
       border-width: 1px 0 0;
+    }
+  }
+
+  &.resizable {
+    > div {
+      overflow: hidden;
+      resize: vertical;
     }
   }
 }
