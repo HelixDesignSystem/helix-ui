@@ -1,6 +1,6 @@
 @import (reference) 'components/checkbox';
 
-.checkbox-test {
+.checkbox-spec {
   hx-checkbox-control {
     > label {
       > hx-checkbox {
@@ -39,27 +39,25 @@
       }
     }
 
-    /* ----- CHANGED OR TOUCHED ----- */
-    &[hx-changed],
-    &[hx-touched] {
+    /* ----- INVALID ----- */
+    &[hx-dirty] {
       > input[type="checkbox"]:invalid {
         /* imitate :focus */
         &.mock-focus {
-          &:extend(hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid:focus all);
+          &:extend(hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:focus all);
         }
 
         /* imitate :hover */
         &.mock-hover {
-          &:extend(hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid:hover all);
+          &:extend(hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:hover all);
 
           ~ label > hx-checkbox {
-            &:extend(hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid ~ label > hx-checkbox:hover all);
+            &:extend(hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid ~ label > hx-checkbox:hover all);
           }
         }
       }
     }
 
-    /* ----- FORCE INVALID ----- */
     &.hxInvalid {
       > input[type="checkbox"]:enabled {
         /* imitate :focus */
@@ -81,7 +79,7 @@
 }
 
 @supports (--modern: true) {
-  .checkbox-test {
+  .checkbox-spec {
     hx-checkbox-control {
       > label {
         > hx-checkbox {
