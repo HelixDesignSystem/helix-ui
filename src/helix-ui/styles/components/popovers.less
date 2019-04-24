@@ -3,7 +3,7 @@
 @import (reference) 'components/layouts';
 @import (reference) 'components/typography';
 
-hx-popover {
+hx-popover:extend(.hxComponent) {
   #Positionable.base();
 
   max-width: 32rem; //~512px
@@ -29,7 +29,6 @@ hx-popover {
 // TODO: is there any way to simplify this?
 #hxPopover.hx-popover, // ShadyDOM selector
 hx-popover {
-  color: @gray-900;
   flex-direction: column;
 
   &[open] {

@@ -1,12 +1,10 @@
 @import (reference) 'mixins';
 
-hx-tooltip {
+hx-tooltip:extend(.hxComponent) {
   #Positionable.base();
 
-  color: @gray-900;
   font-size: 0.875rem;
   max-width: 25rem; // 400px
-  text-align: left;
   z-index: @tooltip-z-index;
 
   &[open] {

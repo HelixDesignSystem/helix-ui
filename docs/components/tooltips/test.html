@@ -243,4 +243,25 @@ title: Testing - Tooltips
       </tbody>
     </table>
   </section>
+
+  <section>
+    <header>
+      <h2 id="tooltip-in-table-header">Tooltip Inside a Table Header</h2>
+    </header>
+    <table class="hxTable">
+      <thead>
+        <tr>
+          <th>
+            Rank
+            <p>
+              <hx-icon id="testIcon1" type="help-circle"></hx-icon>
+            </p>
+            <hx-tooltip for="testIcon1" open position="bottom-center">
+              Bottom Center Tooltip
+            </hx-tooltip>
+          </th>
+        </tr>
+      </thead>
+    </table>
+ </section>
 {% endblock %}
