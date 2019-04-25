@@ -146,7 +146,8 @@ hx-radio-control {
 }
 
 // INVALID STATE
-hx-radio-control > input[type="radio"]:invalid {
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid,
+hx-radio-set.hxInvalid input[type="radio"]:enabled {
   color: @red-900;
 
   &::-ms-check {

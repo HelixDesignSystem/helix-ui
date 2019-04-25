@@ -1,6 +1,6 @@
 @import (reference) 'components/radios';
 
-.radios-test {
+.radio-spec {
   hx-radio-control {
     > label {
       > hx-radio {
@@ -21,18 +21,6 @@
         }
       }
 
-      &:invalid.mock-focus {
-        &:extend(hx-radio-control > input[type="radio"]:invalid:focus all);
-      }
-
-      &:invalid.mock-hover {
-        &:extend(hx-radio-control > input[type="radio"]:invalid:hover all);
-
-        ~ label > hx-radio {
-          &:extend(hx-radio-control > input[type="radio"]:invalid ~ label > hx-radio:hover all);
-        }
-      }
-
       &:disabled.mock-focus {
         &:extend(hx-radio-control > input[type="radio"]:disabled:focus all);
       }
@@ -46,10 +34,26 @@
       }
     }
   }
+
+  // INVALID STATE
+  hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid,
+  hx-radio-set.hxInvalid input[type="radio"]:enabled {
+    &.mock-focus {
+      &:extend(hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid:focus all);
+    }
+
+    &.mock-hover {
+      &:extend(hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid:hover all);
+
+      ~ label > hx-radio {
+        &:extend(hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid ~ label > hx-radio:hover all);
+      }
+    }
+  }
 }
 
 @supports (--modern: true) {
-  .radios-test {
+  .radio-spec {
     hx-radio-control > label > hx-radio {
       display: inline-block;
     }

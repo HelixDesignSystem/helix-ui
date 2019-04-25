@@ -13,17 +13,13 @@ also:
     <div class="example" id="vue-radioDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <p>
-            <label for="txtLabel">Label</label>
-            <input id="txtLabel" class="hxTextCtrl" v-model="label" />
-          </p>
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
             <hx-checkbox-control>
               <input id="chkIsChecked" type="checkbox" v-model="isChecked" />
               <label for="chkIsChecked">
                 <hx-checkbox></hx-checkbox>
-                Checked
+                With Default Selection
               </label>
             </hx-checkbox-control>
             <hx-checkbox-control>
@@ -44,19 +40,35 @@ also:
         </form>
       </header>
       <div>
-        <hx-radio-control>
-          <input
-            type="radio"
-            id="radDemo"
-            :checked="isChecked"
-            :disabled="isDisabled"
-            :required="isRequired"
-          />
-          <label for="radDemo">
-            <hx-radio></hx-radio>
-            {% raw %}{{label}}{% endraw %}
-          </label>
-        </hx-radio-control>
+        <hx-radio-set>
+          <hx-radio-control>
+            <input
+              type="radio"
+              id="rad1Demo"
+              name="radioSetDemo"
+              :checked="isChecked"
+              :disabled="isDisabled"
+              :required="isRequired"
+            />
+            <label for="rad1Demo">
+              <hx-radio></hx-radio>
+              Option 1
+            </label>
+          </hx-radio-control>
+          <hx-radio-control>
+            <input
+              type="radio"
+              id="rad2Demo"
+              name="radioSetDemo"
+              :disabled="isDisabled"
+              :required="isRequired"
+            />
+            <label for="rad2Demo">
+              <hx-radio></hx-radio>
+              Option 2
+            </label>
+          </hx-radio-control>
+        </hx-radio-set>
       </div>
       <footer>
         <pre><code v-text="snippet"></code></pre>

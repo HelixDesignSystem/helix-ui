@@ -1,6 +1,6 @@
 import { HXElement } from './HXElement';
 
-const STATE = {
+export const STATE = {
     changed: 'hx-changed',
     dirty: 'hx-dirty',
     touched: 'hx-touched',
@@ -93,6 +93,14 @@ export class HXFormControlElement extends HXElement {
      * @readonly
      * @type {Boolean} [false]
      */
+    get isDirty () {
+        return this.hasAttribute(STATE.dirty);
+    }
+
+    /**
+     * @readonly
+     * @type {Boolean} [false]
+     */
     get wasChanged () {
         return this.hasAttribute(STATE.changed);
     }
@@ -108,14 +116,32 @@ export class HXFormControlElement extends HXElement {
     /** @private */
     _onCtrlBlur () {
         // communicate state via read-only, boolean content attributes
-        this.$defaultAttribute(STATE.touched, '');
-        this.$defaultAttribute(STATE.dirty, '');
+        this._stateTouched();
+        this._stateDirty();
     }
 
     /** @private */
     _onCtrlChange () {
         // communicate state via read-only, boolean content attributes
+        this._stateChanged();
+        this._stateDirty();
+    }
+
+    /** @private */
+    _stateChanged () {
         this.$defaultAttribute(STATE.changed, '');
+        this.$emit('hxchange', { bubbles: true });
+    }
+
+    /** @private */
+    _stateDirty () {
         this.$defaultAttribute(STATE.dirty, '');
+        this.$emit('hxdirty', { bubbles: true });
+    }
+
+    /** @private */
+    _stateTouched () {
+        this.$defaultAttribute(STATE.touched, '');
+        this.$emit('hxtouch', { bubbles: true });
     }
 }
