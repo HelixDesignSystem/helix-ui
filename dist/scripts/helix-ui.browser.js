@@ -2374,8 +2374,8 @@
             /** @private */
             value: function _onCtrlBlur() {
                 // communicate state via read-only, boolean content attributes
-                this.$defaultAttribute(STATE.touched, '');
-                this.$defaultAttribute(STATE.dirty, '');
+                this._stateTouched();
+                this._stateDirty();
             }
 
             /** @private */
@@ -2384,12 +2384,50 @@
             key: '_onCtrlChange',
             value: function _onCtrlChange() {
                 // communicate state via read-only, boolean content attributes
+                this._stateChanged();
+                this._stateDirty();
+            }
+
+            /** @private */
+
+        }, {
+            key: '_stateChanged',
+            value: function _stateChanged() {
                 this.$defaultAttribute(STATE.changed, '');
+                this.$emit('hxchange', { bubbles: true });
+            }
+
+            /** @private */
+
+        }, {
+            key: '_stateDirty',
+            value: function _stateDirty() {
                 this.$defaultAttribute(STATE.dirty, '');
+                this.$emit('hxdirty', { bubbles: true });
+            }
+
+            /** @private */
+
+        }, {
+            key: '_stateTouched',
+            value: function _stateTouched() {
+                this.$defaultAttribute(STATE.touched, '');
+                this.$emit('hxtouch', { bubbles: true });
             }
         }, {
             key: 'controlElement',
             get: function get$$1() {}
+
+            /**
+             * @readonly
+             * @type {Boolean} [false]
+             */
+
+        }, {
+            key: 'isDirty',
+            get: function get$$1() {
+                return this.hasAttribute(STATE.dirty);
+            }
 
             /**
              * @readonly
@@ -5305,6 +5343,72 @@
     }(HXElement);
 
     /**
+      * Defines behavior for the `<hx-radio-set>` element.
+      *
+      * @extends HXElement
+      * @hideconstructor
+      * @since 0.16.0
+      */
+    var HXRadioSetElement = function (_HXElement) {
+        inherits(HXRadioSetElement, _HXElement);
+
+        function HXRadioSetElement() {
+            classCallCheck(this, HXRadioSetElement);
+            return possibleConstructorReturn(this, (HXRadioSetElement.__proto__ || Object.getPrototypeOf(HXRadioSetElement)).apply(this, arguments));
+        }
+
+        createClass(HXRadioSetElement, [{
+            key: '$onConnect',
+            value: function $onConnect() {
+                this.addEventListener('hxchange', this._onHxchange);
+                this.addEventListener('hxdirty', this._onHxdirty);
+                this.addEventListener('hxtouch', this._onHxtouch);
+            }
+        }, {
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
+                this.removeEventListener('hxchange', this._onHxchange);
+                this.removeEventListener('hxdirty', this._onHxdirty);
+                this.removeEventListener('hxtouch', this._onHxtouch);
+            }
+
+            /** @private */
+
+        }, {
+            key: '_onHxchange',
+            value: function _onHxchange(evt) {
+                evt.stopPropagation();
+                this.$defaultAttribute(STATE.changed, '');
+            }
+
+            // TODO: revisit logic in phase 3
+            /** @private */
+
+        }, {
+            key: '_onHxdirty',
+            value: function _onHxdirty(evt) {
+                evt.stopPropagation();
+                this.$defaultAttribute(STATE.dirty, '');
+            }
+
+            /** @private */
+
+        }, {
+            key: '_onHxtouch',
+            value: function _onHxtouch(evt) {
+                evt.stopPropagation();
+                this.$defaultAttribute(STATE.touched, '');
+            }
+        }], [{
+            key: 'is',
+            get: function get$$1() {
+                return 'hx-radio-set';
+            }
+        }]);
+        return HXRadioSetElement;
+    }(HXElement);
+
+    /**
      * Fires when the element's contents are concealed.
      *
      * @event Reveal:close
@@ -6951,6 +7055,7 @@
         HXProgressElement: HXProgressElement,
         HXRadioControlElement: HXRadioControlElement,
         HXRadioElement: HXRadioElement,
+        HXRadioSetElement: HXRadioSetElement,
         HXRevealElement: HXRevealElement,
         HXSearchAssistanceElement: HXSearchAssistanceElement,
         HXSearchElement: HXSearchElement,
@@ -6967,7 +7072,7 @@
         HXTooltipElement: HXTooltipElement
     });
 
-    var version = "0.16.0-rc.1";
+    var version = "0.16.0-rc.2";
 
     /** @module HelixUI */
 

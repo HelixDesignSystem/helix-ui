@@ -212,99 +212,6 @@ a[href].hxBtnGroup.hxLink > .hxBtn.pseudo-focus {
 .hxBtn[class*="pseudo"] {
   pointer-events: none;
 }
-.checkbox-test hx-checkbox-control > input[type="checkbox"].mock-focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-.checkbox-test hx-checkbox-control > input[type="checkbox"].mock-focus::-ms-check {
-  border-color: #0e94a6;
-}
-.checkbox-test hx-checkbox-control > input[type="checkbox"].mock-focus ~ label > hx-checkbox {
-  border-color: #0e94a6;box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-.checkbox-test hx-checkbox-control > input[type="checkbox"].mock-hover {
-  color: #16b9d4;
-}
-.checkbox-test hx-checkbox-control > input[type="checkbox"].mock-hover::-ms-check {
-  background-color: #e4f9f9;color: #16b9d4;
-}
-.checkbox-test hx-checkbox-control > input[type="checkbox"].mock-hover ~ label > hx-checkbox {
-  background-color: #e4f9f9;border-color: #16b9d4;color: #16b9d4;
-}
-.checkbox-test hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid.mock-focus,
-.checkbox-test hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid.mock-focus {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-.checkbox-test hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid.mock-focus::-ms-check,
-.checkbox-test hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid.mock-focus::-ms-check {
-  border-color: #d32f2f;
-}
-.checkbox-test hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid.mock-focus ~ label > hx-checkbox,
-.checkbox-test hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid.mock-focus ~ label > hx-checkbox {
-  border-color: #d32f2f;box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-.checkbox-test hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid.mock-hover::-ms-check,
-.checkbox-test hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid.mock-hover::-ms-check {
-  background-color: #ffcdd2;
-}
-.checkbox-test hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid.mock-hover ~ label > hx-checkbox,
-.checkbox-test hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid.mock-hover ~ label > hx-checkbox {
-  background-color: #ffcdd2;border-color: #d32f2f;color: #d32f2f;
-}
-.checkbox-test hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-.checkbox-test hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus::-ms-check {
-  border-color: #d32f2f;
-}
-.checkbox-test hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus ~ label > hx-checkbox {
-  border-color: #d32f2f;box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-.checkbox-test hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-hover::-ms-check {
-  background-color: #ffcdd2;
-}
-.checkbox-test hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-hover ~ label > hx-checkbox {
-  background-color: #ffcdd2;border-color: #d32f2f;color: #d32f2f;
-}
-.checkbox-test hx-checkbox-control > input[type="checkbox"]:disabled.mock-focus::-ms-check {
-  border-color: #bdbdbd;box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-.checkbox-test hx-checkbox-control > input[type="checkbox"]:disabled.mock-focus ~ label > hx-checkbox {
-  border-color: #bdbdbd;
-}
-.checkbox-test hx-checkbox-control > input[type="checkbox"]:disabled.mock-hover::-ms-check {
-  background-color: #eeeeee;border-color: #bdbdbd;color: #bdbdbd;
-}
-.checkbox-test hx-checkbox-control > input[type="checkbox"]:disabled.mock-hover ~ label > hx-checkbox {
-  background-color: #eeeeee;border-color: #bdbdbd;color: #bdbdbd;
-}
-.checkbox-test hx-checkbox-control {
-  /* ----- PRISTINE ----- */
-  /* ----- CHANGED OR TOUCHED ----- */
-  /* ----- FORCE INVALID ----- */
-}
-.checkbox-test hx-checkbox-control > label > hx-checkbox {
-  display: none;
-}
-.checkbox-test hx-checkbox-control > input[type="checkbox"] {
-  /* imitate :focus */
-  /* imitate :hover */
-  /* imitate :disabled:focus */
-  /* imitate :disabled:hover */
-}
-.checkbox-test hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid,
-.checkbox-test hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid {
-  /* imitate :focus */
-  /* imitate :hover */
-}
-.checkbox-test hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled {
-  /* imitate :focus */
-  /* imitate :hover */
-}
-@supports (--modern: true) {
-  .checkbox-test hx-checkbox-control > label > hx-checkbox {
-    display: inline-block;
-  }
-}
 .choice-tile-demo label.hxChoice > input.pseudo-focus + hx-tile.hxSubdued,
 .choice-tile-demo label.hxChoice > input + hx-tile.pseudo-hover.hxSubdued,
 .choice-tile-demo label.hxChoice > input.pseudo-focus + hx-tile.hxSubdued,
@@ -662,50 +569,6 @@ hx-icon.danger {
   height: 15rem;
   width: 30rem;
 }
-.radios-test hx-radio-control > input[type="radio"].mock-focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-.radios-test hx-radio-control > input[type="radio"].mock-focus ~ label > hx-radio {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-.radios-test hx-radio-control > input[type="radio"].mock-hover {
-  color: #16b9d4;
-}
-.radios-test hx-radio-control > input[type="radio"].mock-hover::-ms-check {
-  background-color: #e4f9f9;color: #16b9d4;
-}
-.radios-test hx-radio-control > input[type="radio"].mock-hover ~ label > hx-radio {
-  background-color: #e4f9f9;border: 1px solid currentColor;color: #16b9d4;
-}
-.radios-test hx-radio-control > input[type="radio"]:invalid.mock-focus {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-.radios-test hx-radio-control > input[type="radio"]:invalid.mock-focus ~ label > hx-radio {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-.radios-test hx-radio-control > input[type="radio"]:invalid.mock-hover::-ms-check {
-  background-color: #ffcdd2;border: 2px solid currentColor;color: #d32f2f;
-}
-.radios-test hx-radio-control > input[type="radio"]:invalid.mock-hover ~ label > hx-radio {
-  background-color: #ffcdd2;border: 2px solid currentColor;color: #d32f2f;
-}
-.radios-test hx-radio-control > input[type="radio"]:disabled.mock-focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-.radios-test hx-radio-control > input[type="radio"]:disabled.mock-hover::-ms-check {
-  background-color: #eeeeee;border: 1px solid currentColor;color: #bdbdbd;
-}
-.radios-test hx-radio-control > input[type="radio"]:disabled.mock-hover ~ label > hx-radio {
-  background-color: #eeeeee;border: 1px solid currentColor;color: #bdbdbd;
-}
-.radios-test hx-radio-control > label > hx-radio {
-  display: none;
-}
-@supports (--modern: true) {
-  .radios-test hx-radio-control > label > hx-radio {
-    display: inline-block;
-  }
-}
 .tabs-demo {
   height: 25rem;
   max-height: 40rem;
@@ -750,6 +613,92 @@ a.pseudo-active {
 .demo-typography .weight-bold {
   font-weight: 700;
 }
+.checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-focus {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-focus::-ms-check {
+  border-color: #0e94a6;
+}
+.checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-focus ~ label > hx-checkbox {
+  border-color: #0e94a6;box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-hover {
+  color: #16b9d4;
+}
+.checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-hover::-ms-check {
+  background-color: #e4f9f9;color: #16b9d4;
+}
+.checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-hover ~ label > hx-checkbox {
+  background-color: #e4f9f9;border-color: #16b9d4;color: #16b9d4;
+}
+.checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-focus {
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-focus::-ms-check {
+  border-color: #d32f2f;
+}
+.checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-focus ~ label > hx-checkbox {
+  border-color: #d32f2f;box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-hover::-ms-check {
+  background-color: #ffcdd2;
+}
+.checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-hover ~ label > hx-checkbox {
+  background-color: #ffcdd2;border-color: #d32f2f;color: #d32f2f;
+}
+.checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus {
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus::-ms-check {
+  border-color: #d32f2f;
+}
+.checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus ~ label > hx-checkbox {
+  border-color: #d32f2f;box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-hover::-ms-check {
+  background-color: #ffcdd2;
+}
+.checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-hover ~ label > hx-checkbox {
+  background-color: #ffcdd2;border-color: #d32f2f;color: #d32f2f;
+}
+.checkbox-spec hx-checkbox-control > input[type="checkbox"]:disabled.mock-focus::-ms-check {
+  border-color: #bdbdbd;box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.checkbox-spec hx-checkbox-control > input[type="checkbox"]:disabled.mock-focus ~ label > hx-checkbox {
+  border-color: #bdbdbd;
+}
+.checkbox-spec hx-checkbox-control > input[type="checkbox"]:disabled.mock-hover::-ms-check {
+  background-color: #eeeeee;border-color: #bdbdbd;color: #bdbdbd;
+}
+.checkbox-spec hx-checkbox-control > input[type="checkbox"]:disabled.mock-hover ~ label > hx-checkbox {
+  background-color: #eeeeee;border-color: #bdbdbd;color: #bdbdbd;
+}
+.checkbox-spec hx-checkbox-control {
+  /* ----- PRISTINE ----- */
+  /* ----- INVALID ----- */
+}
+.checkbox-spec hx-checkbox-control > label > hx-checkbox {
+  display: none;
+}
+.checkbox-spec hx-checkbox-control > input[type="checkbox"] {
+  /* imitate :focus */
+  /* imitate :hover */
+  /* imitate :disabled:focus */
+  /* imitate :disabled:hover */
+}
+.checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid {
+  /* imitate :focus */
+  /* imitate :hover */
+}
+.checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled {
+  /* imitate :focus */
+  /* imitate :hover */
+}
+@supports (--modern: true) {
+  .checkbox-spec hx-checkbox-control > label > hx-checkbox {
+    display: inline-block;
+  }
+}
 .dropdown-select-spec hx-select-control {
   /* ----- Pristine --------------- */
   /* ----- Invalid ---------------*/
@@ -790,6 +739,54 @@ a.pseudo-active {
 .dropdown-select-spec hx-select-control[hx-dirty] > select.mock-focus:enabled:invalid ~ hx-select {
   border: 2px solid #d32f2f;
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.radio-spec hx-radio-control > input[type="radio"].mock-focus {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.radio-spec hx-radio-control > input[type="radio"].mock-focus ~ label > hx-radio {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.radio-spec hx-radio-control > input[type="radio"].mock-hover {
+  color: #16b9d4;
+}
+.radio-spec hx-radio-control > input[type="radio"].mock-hover::-ms-check {
+  background-color: #e4f9f9;color: #16b9d4;
+}
+.radio-spec hx-radio-control > input[type="radio"].mock-hover ~ label > hx-radio {
+  background-color: #e4f9f9;border: 1px solid currentColor;color: #16b9d4;
+}
+.radio-spec hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid.mock-focus,
+.radio-spec hx-radio-set.hxInvalid input[type="radio"]:enabled.mock-focus {
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.radio-spec hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid.mock-focus ~ label > hx-radio,
+.radio-spec hx-radio-set.hxInvalid input[type="radio"]:enabled.mock-focus ~ label > hx-radio {
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.radio-spec hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid.mock-hover::-ms-check,
+.radio-spec hx-radio-set.hxInvalid input[type="radio"]:enabled.mock-hover::-ms-check {
+  background-color: #ffcdd2;border: 2px solid currentColor;color: #d32f2f;
+}
+.radio-spec hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid.mock-hover ~ label > hx-radio,
+.radio-spec hx-radio-set.hxInvalid input[type="radio"]:enabled.mock-hover ~ label > hx-radio {
+  background-color: #ffcdd2;border: 2px solid currentColor;color: #d32f2f;
+}
+.radio-spec hx-radio-control > input[type="radio"]:disabled.mock-focus {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.radio-spec hx-radio-control > input[type="radio"]:disabled.mock-hover::-ms-check {
+  background-color: #eeeeee;border: 1px solid currentColor;color: #bdbdbd;
+}
+.radio-spec hx-radio-control > input[type="radio"]:disabled.mock-hover ~ label > hx-radio {
+  background-color: #eeeeee;border: 1px solid currentColor;color: #bdbdbd;
+}
+.radio-spec hx-radio-control > label > hx-radio {
+  display: none;
+}
+@supports (--modern: true) {
+  .radio-spec hx-radio-control > label > hx-radio {
+    display: inline-block;
+  }
 }
 .text-input-spec hx-text-control {
   /* ----- Pristine --------------- */

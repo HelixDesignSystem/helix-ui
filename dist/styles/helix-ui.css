@@ -825,40 +825,32 @@ hx-checkbox-control > input[type="checkbox"]:valid ~ label > hx-checkbox:hover {
   color: #16b9d4;
 }
 /* ========== INVALID ========== */
-hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid,
-hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid {
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid {
   color: #d32f2f;
 }
-hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid::-ms-check,
-hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid::-ms-check {
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid::-ms-check {
   border-width: 2px;
   border-color: #d32f2f !important;
   color: #d32f2f !important;
 }
-hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid:focus,
-hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid:focus {
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:focus {
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }
-hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid:focus::-ms-check,
-hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid:focus::-ms-check {
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:focus::-ms-check {
   border-color: #d32f2f;
 }
-hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid:focus ~ label > hx-checkbox,
-hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid:focus ~ label > hx-checkbox {
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:focus ~ label > hx-checkbox {
   border-color: #d32f2f;
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }
-hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid:hover::-ms-check,
-hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid:hover::-ms-check {
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:hover::-ms-check {
   background-color: #ffcdd2;
 }
-hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid ~ label > hx-checkbox,
-hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid ~ label > hx-checkbox {
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid ~ label > hx-checkbox {
   border: 2px solid #d32f2f;
   color: #d32f2f;
 }
-hx-checkbox-control[hx-changed] > input[type="checkbox"]:invalid ~ label > hx-checkbox:hover,
-hx-checkbox-control[hx-touched] > input[type="checkbox"]:invalid ~ label > hx-checkbox:hover {
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid ~ label > hx-checkbox:hover {
   background-color: #ffcdd2;
   border-color: #d32f2f;
   color: #d32f2f;
@@ -3075,28 +3067,35 @@ hx-radio-control > input[type="radio"]:valid ~ label > hx-radio:hover {
   border: 1px solid currentColor;
   color: #16b9d4;
 }
-hx-radio-control > input[type="radio"]:invalid {
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid,
+hx-radio-set.hxInvalid input[type="radio"]:enabled {
   color: #d32f2f;
 }
-hx-radio-control > input[type="radio"]:invalid::-ms-check {
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid::-ms-check,
+hx-radio-set.hxInvalid input[type="radio"]:enabled::-ms-check {
   border-width: 2px;
 }
-hx-radio-control > input[type="radio"]:invalid ~ label > hx-radio {
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid ~ label > hx-radio,
+hx-radio-set.hxInvalid input[type="radio"]:enabled ~ label > hx-radio {
   border: 2px solid currentColor;
   color: #d32f2f;
 }
-hx-radio-control > input[type="radio"]:invalid:focus {
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid:focus,
+hx-radio-set.hxInvalid input[type="radio"]:enabled:focus {
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }
-hx-radio-control > input[type="radio"]:invalid:focus ~ label > hx-radio {
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid:focus ~ label > hx-radio,
+hx-radio-set.hxInvalid input[type="radio"]:enabled:focus ~ label > hx-radio {
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }
-hx-radio-control > input[type="radio"]:invalid:hover::-ms-check {
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid:hover::-ms-check,
+hx-radio-set.hxInvalid input[type="radio"]:enabled:hover::-ms-check {
   background-color: #ffcdd2;
   border: 2px solid currentColor;
   color: #d32f2f;
 }
-hx-radio-control > input[type="radio"]:invalid ~ label > hx-radio:hover {
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid ~ label > hx-radio:hover,
+hx-radio-set.hxInvalid input[type="radio"]:enabled ~ label > hx-radio:hover {
   background-color: #ffcdd2;
   border: 2px solid currentColor;
   color: #d32f2f;
@@ -3723,18 +3722,14 @@ hx-text-control > input[type="text"]:focus {
   box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
   outline: 0;
 }
-hx-text-control[hx-touched] > input[type="text"]:invalid,
-hx-text-control[hx-changed] > input[type="text"]:invalid {
-  border: 2px solid #d32f2f;
-}
-hx-text-control[hx-touched] > input[type="text"]:invalid:focus,
-hx-text-control[hx-changed] > input[type="text"]:invalid:focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
+/*
+  1. Prevent IE from incorrectly matching input:disabled:invalid
+*/
+hx-text-control[hx-dirty] > input[type="text"]:enabled:invalid,
 hx-text-control.hxInvalid > input[type="text"]:enabled {
   border: 2px solid #d32f2f;
 }
+hx-text-control[hx-dirty] > input[type="text"]:enabled:invalid:focus,
 hx-text-control.hxInvalid > input[type="text"]:enabled:focus {
   border: 2px solid #d32f2f;
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
@@ -3833,18 +3828,14 @@ hx-textarea-control > textarea:focus {
   box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
   outline: 0;
 }
-hx-textarea-control[hx-touched] > textarea:invalid,
-hx-textarea-control[hx-changed] > textarea:invalid {
-  border: 2px solid #d32f2f;
-}
-hx-textarea-control[hx-touched] > textarea:invalid:focus,
-hx-textarea-control[hx-changed] > textarea:invalid:focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
+/*
+  1. Prevent IE from incorrectly matching textarea:disabled:invalid
+*/
+hx-textarea-control[hx-dirty] > textarea:enabled:invalid,
 hx-textarea-control.hxInvalid > textarea:enabled {
   border: 2px solid #d32f2f;
 }
+hx-textarea-control[hx-dirty] > textarea:enabled:invalid:focus,
 hx-textarea-control.hxInvalid > textarea:enabled:focus {
   border: 2px solid #d32f2f;
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: elements/HXProgressElement.js</title>
+    <title>JSDoc: Source: elements/HXRadioSetElement.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: elements/HXProgressElement.js</h1>
+    <h1 class="page-title">Source: elements/HXRadioSetElement.js</h1>
 
     
 
@@ -27,82 +27,49 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import { HXElement } from './HXElement';
-import shadowMarkup from './HXProgressElement.html';
-import shadowStyles from './HXProgressElement.less';
-
-const MIN = 0;
-const MAX = 100;
+import { STATE } from './HXFormControlElement';
 
 /**
- * @private
- * @param {*} val - Value to coerce into an Integer
- * @returns {Integer} Integer value between hard-coded MIN and MAX
- */
-function _parseValue (val) {
-    // coerce into an Integer
-    let safeVal = Math.round(Number(val) || MIN);
-    // guard upper bound
-    safeVal = safeVal > MAX ? MAX : safeVal;
-    // guard lower bound
-    safeVal = safeVal &lt; MIN ? MIN : safeVal;
-
-    return safeVal;
-}
-
-/**
- * Defines behavior for the `&lt;hx-progress>` element.
- *
- * @extends HXElement
- * @hideconstructor
- * @since 0.7.0
- */
-export class HXProgressElement extends HXElement {
+  * Defines behavior for the `&lt;hx-radio-set>` element.
+  *
+  * @extends HXElement
+  * @hideconstructor
+  * @since 0.16.0
+  */
+export class HXRadioSetElement extends HXElement {
     static get is () {
-        return 'hx-progress';
-    }
-
-    static get template () {
-        return `&lt;style>${shadowStyles}&lt;/style>${shadowMarkup}`;
+        return 'hx-radio-set';
     }
 
     $onConnect () {
-        this.$upgradeProperty('value');
-        this.$defaultAttribute('role', 'progressbar');
-        this.$defaultAttribute('aria-valuemin', MIN);
-        this.$defaultAttribute('aria-valuemax', MAX);
-        this.value = this.value;
+        this.addEventListener('hxchange', this._onHxchange);
+        this.addEventListener('hxdirty', this._onHxdirty);
+        this.addEventListener('hxtouch', this._onHxtouch);
     }
 
-    static get $observedAttributes () {
-        return [ 'value' ];
+    $onDisconnect () {
+        this.removeEventListener('hxchange', this._onHxchange);
+        this.removeEventListener('hxdirty', this._onHxdirty);
+        this.removeEventListener('hxtouch', this._onHxtouch);
     }
 
-    $onAttributeChange (attr, oldVal, newVal) {
-        if (attr === 'value') {
-            let safeVal = _parseValue(newVal);
-            this._elFill.style.width = `${safeVal}%`;
-            this.setAttribute('aria-valuenow', safeVal);
-        }
+    /** @private */
+    _onHxchange (evt) {
+        evt.stopPropagation();
+        this.$defaultAttribute(STATE.changed, '');
     }
 
-    /**
-     * Completion percentage
-     * @type {Integer}
-     */
-    get value () {
-        return _parseValue(this.getAttribute('value'));
-    }
-    set value (newVal) {
-        let safeVal = _parseValue(newVal);
-        this.setAttribute('value', safeVal);
+    // TODO: revisit logic in phase 3
+    /** @private */
+    _onHxdirty (evt) {
+        evt.stopPropagation();
+        this.$defaultAttribute(STATE.dirty, '');
     }
 
-    /**
-     * @private
-     * @type {HTMLElement}
-     */
-    get _elFill () {
-        return this.shadowRoot.getElementById('hxFill');
+    /** @private */
+    _onHxtouch (evt) {
+        evt.stopPropagation();
+        this.$defaultAttribute(STATE.touched, '');
     }
 }
 </code></pre>
