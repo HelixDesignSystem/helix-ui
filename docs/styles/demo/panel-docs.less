@@ -1,34 +1,25 @@
-.panel-demo {
-  height: 15rem;
-  max-height: 20rem;
-  min-height: 10rem;
-  overflow: hidden;
-  resize: vertical;
+.docs-panel {
+  #demo-basic {
+    height: 15rem;
+    max-height: 20rem;
+    min-height: 10rem;
 
-  .hxPanel {
-    border: @demo-container-border;
+    .hxPanel {
+      border: @demo-container-border;
 
-    > header {
-      border-bottom: @demo-container-border;
+      > header {
+        border-bottom: @demo-container-border;
+      }
+
+      > footer {
+        border-top: @demo-container-border;
+      }
     }
-
-    > footer {
-      border-top: @demo-container-border;
-    }
   }
 
-  // DEPRECATED, remove in v1.0.0
-  hx-panel {
-    border: @demo-container-border;
-  }
-
-  // DEPRECATED, remove in v1.0.0
-  hx-panelhead {
-    border-bottom: @demo-container-border;
-  }
-
-  // DEPRECATED, remove in v1.0.0
-  hx-panelfoot {
-    border-top: @demo-container-border;
+  #demo-tabbed {
+    height: 20rem;
+    max-height: 30rem;
+    min-height: 20rem;
   }
 }

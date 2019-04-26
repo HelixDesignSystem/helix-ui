@@ -18,6 +18,7 @@ import { KEYS, defer, generateId, preventKeyScroll } from '../utils';
  * @emits Tabset:tabchange
  * @extends HXElement
  * @hideconstructor
+ * @listens Tab:hxtabclick
  * @since 0.2.0
  */
 export class HXTabsetElement extends HXElement {
@@ -28,7 +29,6 @@ export class HXTabsetElement extends HXElement {
     $onCreate () {
         this.$onConnect = defer(this.$onConnect);
         this._onKeyUp = this._onKeyUp.bind(this);
-        this._onTabClick = this._onTabClick.bind(this);
     }
 
     $onConnect () {
@@ -38,9 +38,7 @@ export class HXTabsetElement extends HXElement {
         this.currentTab = Number(this.getAttribute('current-tab')) || 0;
         this._tablist.addEventListener('keyup', this._onKeyUp);
         this._tablist.addEventListener('keydown', preventKeyScroll);
-        this.tabs.forEach(tab => {
-            tab.addEventListener('click', this._onTabClick);
-        });
+        this.addEventListener('hxtabclick', this._onHxtabclick);
 
         if (this.hasAttribute('current-tab')) {
             this._activateTab(this.currentTab);
@@ -50,9 +48,7 @@ export class HXTabsetElement extends HXElement {
     $onDisconnect () {
         this._tablist.removeEventListener('keyup', this._onKeyUp);
         this._tablist.removeEventListener('keydown', preventKeyScroll);
-        this.tabs.forEach(tab => {
-            tab.removeEventListener('click', this._onTabClick);
-        });
+        this.removeEventListener('hxtabclick', this._onHxtabclick);
     }
 
     static get $observedAttributes () {
@@ -153,21 +149,6 @@ export class HXTabsetElement extends HXElement {
         return this.querySelector('hx-tablist');
     }
 
-    /**
-     * Handle navigating the tabs via arrow keys
-     * @private
-     * @todo migrate keyup listener logic to HXTablistElement
-     */
-    _onKeyUp (evt) {
-        if (evt.keyCode === KEYS.Right) {
-            this.selectNext();
-        }
-
-        if (evt.keyCode === KEYS.Left) {
-            this.selectPrevious();
-        }
-    }
-
     /** @private */
     _activateTab (idx) {
         this.tabs.forEach((tab, tabIdx) => {
@@ -186,12 +167,25 @@ export class HXTabsetElement extends HXElement {
         });
     }
 
-    /**
-     * @private
-     * @todo migrate tab click listener logic to HXTabElement
-     */
-    _onTabClick (evt) {
+    /** @private */
+    _onHxtabclick (evt) {
+        evt.stopPropagation();
         this.currentTab = this.tabs.indexOf(evt.target);
+    }
+
+    /**
+     * Handle navigating the tabs via arrow keys
+     * @private
+     * @todo migrate keyup listener logic to HXTablistElement
+     */
+    _onKeyUp (evt) {
+        if (evt.keyCode === KEYS.Right) {
+            this.selectNext();
+        }
+
+        if (evt.keyCode === KEYS.Left) {
+            this.selectPrevious();
+        }
     }
 
     /** @private */

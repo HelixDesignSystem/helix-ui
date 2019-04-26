@@ -8,12 +8,17 @@ also:
   elements/hx-tabpanel: <hx-tabpanel>
   elements/hx-tabset: <hx-tabset>
 ---
+{% set contentClasses = 'docs-tabset' %}
 {% extends 'component.njk' %}
+
 {% block content %}
   <section>
-    <h2 id="basic-tabset">Basic Tabset</h2>
-    <div class="example">
-      <div class="tabs-demo">
+    <header>
+      <h2 id="basic-tabset">Basic Tabset</h2>
+    </header>
+
+    <div class="example resizable">
+      <div id="demo-basic">
         <hx-tabset id="android-desserts">
           <hx-tablist>
             <hx-tab>Cupcake Ipsum</hx-tab>

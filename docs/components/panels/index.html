@@ -5,38 +5,65 @@ also:
   components/panels/test.html: Testing - Panels
   elements/hx-div: <hx-div>
 ---
+{% set contentClasses = 'docs-panel' %}
 {% extends 'component.njk' %}
+{% from 'lorem.njk' import lorem %}
+
+{% block page_header %}
+  <p>
+    The Panel component is a layout utility for sectioning content
+    vertically into a header, body, and footer.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p>
-      A panel is a utility for sectioning content vertically into a header,
-      body, and footer.
-    </p>
-  </section>
-  <section>
-    <h2 id="basic-panel">Basic Panel</h2>
-    <p class="hxSubBody hxSubdued">
-      <hx-icon type="info-circle"></hx-icon>
-      Watch how the panel reacts when you resize the demo, vertically.
-    </p>
-    <div class="example" id="vue-panelDemo" v-cloak>
+    <header>
+      <h2 id="basic-panel">Basic Panel</h2>
+      <p>
+        A basic panel allows body content to scroll vertically,
+        when the panel height is constrained.
+      </p>
+    </header>
+
+    <div id="vue-panelDemo" class="example resizable" v-cloak>
       <header>
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div>
-              <input id="chkHasHeader" type="checkbox" v-model="hasHeader" />
-              <label for="chkHasHeader">Include Header</label>
-            </div>
-            <div>
-              <input id="chkHasFooter" type="checkbox" v-model="hasFooter" />
-              <label for="chkHasFooter">Include Footer</label>
-            </div>
+            <hx-checkbox-control>
+              <input
+                id="chkHasHeader"
+                type="checkbox"
+                v-model="hasHeader"
+              />
+              <label for="chkHasHeader">
+                <hx-checkbox></hx-checkbox>
+                Include Header
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkHasFooter"
+                type="checkbox"
+                v-model="hasFooter"
+              />
+              <label for="chkHasFooter">
+                <hx-checkbox></hx-checkbox>
+                Include Footer
+              </label>
+            </hx-checkbox-control>
           </fieldset>
+
+          <p class="hxSubBody">
+            <hx-icon type="info-circle"></hx-icon>
+            Watch how the panel body reacts when you resize the example container.
+          </p>
         </form>
       </header>
 
-      <div class="demo panel-demo">
+      <div id="demo-basic">
         <div class="hxPanel">
           <header v-if="hasHeader">Panel Header</header>
           <hx-div>
@@ -91,10 +118,76 @@ also:
         </template>
       </footer>
     </div>
-    <p class="hxSubdued hxSubBody">
-      <hx-icon type="info-circle"></hx-icon>
-      Visual styling added for demonstration purposes.
+
+    <footer>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Visual styling added for demonstration purposes.
+      </p>
+    </footer>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="tabbed-panel">Tabbed Panel</h2>
+      <p>
+        A tabbed panel replaces the <code>&lt;hx-div&gt;</code> element
+        with a <a href="components/tabs">tabset</a>, to act as the panel body.
+      </p>
+    </header>
+
+    <p>
+      Tab content is allowed to scroll while tabs remain visible.
     </p>
 
+    <div class="example resizable">
+      <div id="demo-tabbed">
+        <div class="hxPanel hxTabbed">
+          <header>Panel Header</header>
+
+          <hx-tabset>
+            <hx-tablist>
+              <hx-tab>Basic</hx-tab>
+              <hx-tab>Scrolling</hx-tab>
+            </hx-tablist>
+
+            <hx-tabcontent>
+              <hx-tabpanel>
+                <p>Basic Tab Panel</p>
+              </hx-tabpanel>
+
+              <hx-tabpanel>
+                <p>Scrolling Tab Panel</p>
+                {{ lorem(5) }}
+              </hx-tabpanel>
+            </hx-tabcontent>
+          </hx-tabset>
+
+          <footer>Panel Footer</footer>
+        </div>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <div class="hxPanel hxTabbed">
+            <header>Panel Header</header>
+
+            <hx-tabset>
+              <hx-tablist>
+                <hx-tab>Basic</hx-tab>
+                <hx-tab>Scrolling</hx-tab>
+              </hx-tablist>
+
+              <hx-tabcontent>
+                <hx-tabpanel>...</hx-tabpanel>
+                <hx-tabpanel>...</hx-tabpanel>
+              </hx-tabcontent>
+            </hx-tabset>
+
+            <footer>Panel Footer</footer>
+          </div>
+        {% endcode %}
+      </footer>
+    </div>
   </section>
 {% endblock %}
