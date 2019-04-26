@@ -372,8 +372,6 @@ title: Testing - Popovers
     </hx-div>
   </section>
 
-  <hr />
-
   <h2>Deprecated Markup</h2>
 
   <section>
@@ -528,5 +526,34 @@ title: Testing - Popovers
         </hx-popover-body>
       </hx-popover>
     </div>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="popover-in-table-header">Popover Inside a Table Header</h2>
+    </header>
+    <table class="hxTable">
+      <thead>
+        <tr>
+          <th>
+            Table Header
+            <hx-disclosure aria-controls="testPopover" class="hxBtn" open>
+              <hx-icon type="cog"></hx-icon>
+            </hx-disclosure>
+            <hx-popover id="testPopover" open position="right">
+              <header>
+                Popover Header
+              </header>
+
+              <hx-div>
+                <p>
+                  This is my popover body.
+                </p>
+              </hx-div>
+            </hx-popover>
+          </th>
+        </tr>
+      </thead>
+    </table>
   </section>
 {% endblock %}
