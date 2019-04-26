@@ -4,6 +4,7 @@ minver: 0.16.0
 controlElement: <input type="radio">
 also:
   components/radios: Radios
+  elements/hx-radio-set: <hx-radio-set>
   elements/hx-radio: <hx-radio>
 ---
 {% extends 'element.njk' %}
@@ -21,20 +22,20 @@ also:
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>
-        <dd>any element that accepts flow content</dd>
+        <dd>an <a href="elements/hx-radio-set">&lt;hx-radio-set&gt;</a> element</li></dd>
       </div>
       <div>
         <dt>Permitted Children</dt>
         <dd>
           in this order:
-          <ul class="hxList">
+          <ol class="hxList">
             <li>radio {{utils.element('input')}} element</li>
             <li>{{utils.element('label')}} element</li>
             <li>
               {{utils.element('p')}} element for control-level help text
               <small class="hxSubdued">(optional)</small>
             </li>
-          </ul>
+          </ol>
         </dd>
       </div>
       <div>
@@ -55,6 +56,17 @@ also:
       <p>
         Present if descendant <code>{{page.controlElement}}</code> element
         has emitted a "change" event.
+      </p>
+    </dd>
+
+    <dt>
+      hx-dirty {Boolean}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Present if descendant <code>{{page.controlElement}}</code> element
+        has emitted a "change" or "blur" event.
       </p>
     </dd>
 
@@ -82,6 +94,14 @@ also:
         Returns the first <code>{{page.controlElement}}</code> descendant
         or <code>null</code> if none are found.
       </p>
+    </dd>
+
+    <dt>
+      isDirty {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if <code>controlElement</code> has emitted a "change" or "blur" event.
     </dd>
 
     <dt>

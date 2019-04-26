@@ -55,6 +55,17 @@ also:
     </dd>
 
     <dt>
+      hx-dirty {Boolean}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Present if descendant <code>{{page.controlElement}}</code> element
+        has emitted a "change" or "blur" event.
+      </p>
+    </dd>
+
+    <dt>
       hx-touched {Boolean}
       <hx-pill class="hxSubBody" persist>read-only</hx-pill>
     </dt>
@@ -78,6 +89,14 @@ also:
         Returns the first <code>{{page.controlElement}}</code> descendant
         or <code>null</code> if none are found.
       </p>
+    </dd>
+
+    <dt>
+      isDirty {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if <code>controlElement</code> has emitted a "change" or "blur" event.
     </dd>
 
     <dt>
