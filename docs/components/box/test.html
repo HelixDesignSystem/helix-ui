@@ -1,0 +1,23 @@
+---
+title: Testing - Boxes
+---
+{% extends 'test.njk' %}
+{% block content %}
+<section>
+  <nav class="hxBreadcrumb">
+    <a href="components/box">Box</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">{{page.title}}</a>
+  </nav>
+</section>
+
+<section>
+  <header>
+    <h2>Status inside Div</h2>
+  </header>
+
+  <hx-div>
+    <hx-status>hx-div &gt; hx-status</hx-status>
+  </hx-div>
+</section>
+{% endblock %}
