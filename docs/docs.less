@@ -16,7 +16,7 @@
 /* ---------------------------------------- *\
  * MIXINS
 \* ---------------------------------------- */
-.isSticky(vertical) {
+.sticky(vertical) {
   bottom: 1rem;
   position: -webkit-sticky;
   position: sticky;
@@ -26,6 +26,7 @@
 /* ---------------------------------------- *\
  * RESETS
 \* ---------------------------------------- */
+// TBD
 
 /* ---------------------------------------- *\
  * BASE
@@ -36,25 +37,6 @@ p {
   max-width: 80ch;
 }
 
-main {
-  > * {
-    margin: 3rem 0;
-
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  // nested to prevent matching the global nav
-  header {
-    margin-bottom: 1rem;
-  }
-}
-
 // ensure any embedded codepen fits in with the rest of the app
 iframe[src*="codepen.io"] {
   border: 2px solid @gray-900;
@@ -63,7 +45,7 @@ iframe[src*="codepen.io"] {
 }
 
 // eyebrow navigation
-#app-header {
+#head {
   display: flex;
   padding-right: 1rem;
 
@@ -79,6 +61,10 @@ iframe[src*="codepen.io"] {
 
     &:last-child {
       justify-content: flex-end;
+    }
+
+    > * + * {
+      margin-left: 0.5rem;
     }
   }
 
@@ -106,12 +92,32 @@ iframe[src*="codepen.io"] {
   }
 }
 
-#content {
-  #Box.lg();
-}
+body.hxVertical {
+  main {
+    #Box.lg();
 
-.hxSiderail {
-  #Box.md();
+    > * {
+      // NOTE: do not apply the below margin in a horizontal layout
+      margin: 3rem 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    // nested to prevent matching the global nav
+    header {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .hxSiderail {
+    #Box.md();
+  }
 }
 
 /* ---------------------------------------- *\
@@ -161,7 +167,7 @@ min-version {
 // ----- BANNER ---------------
 // currently used by test page layout to display a warning to readers
 .banner {
-  .isSticky(vertical);
+  .sticky(vertical);
   -ms-grid-columns: auto 1fr;
   -ms-grid-row-align: baseline;
   align-items: baseline;
@@ -211,7 +217,7 @@ min-version {
 
 // Table Of Contents
 .article-toc {
-  .isSticky(vertical);
+  .sticky(vertical);
   display: block;
 
   > a {
@@ -351,7 +357,7 @@ min-version {
 }
 
 /* ---------------------------------------- *\
- * PAGE CLASSES
+ * PAGE / CATEGORY STYLING
 \* ---------------------------------------- */
 
 /* ----- Element Page Styling ----- */

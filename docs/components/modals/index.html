@@ -8,8 +8,9 @@ also:
   elements/hx-div: <hx-div>
   elements/hx-modal: <hx-modal>
 ---
+{% import '_utils.njk' as utils %}
 {% extends 'component.njk' %}
-{% from 'lorem.njk' import lorem %}
+
 {% block content %}
   <section>
     <h2 id="basic-modal">Basic Modal</h2>
@@ -65,7 +66,7 @@ also:
               with content behind this modal cannot take
               place until this modal is closed.
             </p>
-            {{ lorem(8) }}
+            {{ utils.lorem(8) }}
           </hx-div>
 
           <hx-div v-else>

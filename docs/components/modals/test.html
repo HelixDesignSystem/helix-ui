@@ -1,9 +1,15 @@
 ---
 title: Testing - Modals
 ---
+{% import '_utils.njk' as utils %}
 {% extends 'test.njk' %}
-{% from 'lorem.njk' import lorem %}
-{% import 'helix.njk' as Helix %}
+
+{% macro disclosure(label, controls, className="hxBtn") %}
+  <hx-disclosure aria-controls="{{controls}}" class="{{className}}">
+    {{label}}
+  </hx-disclosure>
+{% endmacro %}
+
 {% macro modal(id, className='', scrolls=false, showHead=true, showBody=true, showFoot=true, hasChildren=false) %}
   <hx-modal id="{{id}}" class="{{className}}">
     {% if showHead %}
@@ -28,13 +34,13 @@ title: Testing - Modals
               <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
             </hx-disclosure>
             &nbsp;
-            {{Helix.disclosure('Toggle Popover', id+'-popover')}}
+            {{disclosure('Toggle Popover', id+'-popover')}}
             &nbsp;
             <hx-icon id="{{id}}-tooltip" type="help-circle"></hx-icon>
           </p>
         {% endif %}
 
-        {{ lorem(8) if scrolls }}
+        {{ utils.lorem(8) if scrolls }}
 
         {% if hasChildren %}
           <hx-menu id="{{id}}-menu">
@@ -75,35 +81,36 @@ title: Testing - Modals
     {% endif %}
   </hx-modal>
 {% endmacro %}
+
 {# ----- Test Macros ----- #}
 {% macro testFull(n, className, scrolls) %}
   {% set id="modal-" + n %}
-  {{Helix.disclosure('Full', id)}}
+  {{disclosure('Full', id)}}
   {{modal(id, className, scrolls)}}
 {% endmacro %}
 {% macro testOnlyBody(n, className, scrolls) %}
   {% set id="modal-body-only-" + n %}
-  {{Helix.disclosure('Body-only', id)}}
+  {{disclosure('Body-only', id)}}
   {{modal(id, className, scrolls, showHead=false, showFoot=false)}}
 {% endmacro %}
 {% macro testNoHeader(n, className, scrolls) %}
   {% set id="modal-no-header-" + n %}
-  {{Helix.disclosure('No Header', id)}}
+  {{disclosure('No Header', id)}}
   {{modal(id, className, scrolls, showHead=false)}}
 {% endmacro %}
 {% macro testNoFooter(n, className, scrolls) %}
   {% set id="modal-no-footer-" + n %}
-  {{Helix.disclosure('No Footer', id)}}
+  {{disclosure('No Footer', id)}}
   {{modal(id, className, scrolls, showFoot=false)}}
 {% endmacro %}
 {% macro testEmpty(n, className, scrolls) %}
   {% set id="modal-empty-" + n %}
-  {{Helix.disclosure('Empty', id)}}
+  {{disclosure('Empty', id)}}
   {{modal(id, className, scrolls, showHead=false, showBody=false, showFoot=false)}}
 {% endmacro %}
 {% macro testPositioned(n, className, scrolls) %}
   {% set id="modal-positioned-children-" + n %}
-  {{Helix.disclosure('Positioned Children', id)}}
+  {{disclosure('Positioned Children', id)}}
   {{modal(id, className, scrolls, hasChildren=true)}}
 {% endmacro %}
 
@@ -160,7 +167,7 @@ title: Testing - Modals
   <!-- DEPRECATED MARKUP -->
   <section>
     <h2>Deprecated Modals</h2>
-    {{Helix.disclosure('Deprecated: Basic', 'deprecated-all-modal')}}
+    {{disclosure('Deprecated: Basic', 'deprecated-all-modal')}}
     <hx-modal id="deprecated-all-modal">
       <hx-modalhead>
         <h3>Demo Modal Header</h3>
@@ -177,7 +184,7 @@ title: Testing - Modals
       </hx-modalfoot>
     </hx-modal>
 
-    {{Helix.disclosure('Deprecated: Body-only', 'deprecated-body-modal')}}
+    {{disclosure('Deprecated: Body-only', 'deprecated-body-modal')}}
     <hx-modal id="deprecated-body-modal">
       <hx-modalbody>
         <p>
@@ -187,13 +194,13 @@ title: Testing - Modals
       </hx-modalbody>
     </hx-modal>
 
-    {{Helix.disclosure('Deprecated: Scrolling', 'deprecated-scroll-modal')}}
+    {{disclosure('Deprecated: Scrolling', 'deprecated-scroll-modal')}}
     <hx-modal id="deprecated-scroll-modal">
       <hx-modalhead>
         <h3>Demo Modal Header</h3>
       </hx-modalhead>
       <hx-modalbody>
-        {{ lorem(6) }}
+        {{ utils.lorem(6) }}
       </hx-modalbody>
       <hx-modalfoot>
         <button class="hxBtn hxPrimary">Confirm</button>

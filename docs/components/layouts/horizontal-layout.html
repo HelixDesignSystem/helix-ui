@@ -1,81 +1,75 @@
 ---
 title: Horizontal Layout Preview
 ---
-<!DOCTYPE html>
-<html lang="en"><!-- lang is necessary for screen reader compatibility -->
-{% include 'partials/head.njk' %}
-<body class="hxHorizontal" id="top">
-  <!-- Accessibility: This link should be the first item in tab order. -->
-  <a href="#content">Skip to main content</a>
+{% extends 'application.njk' %}
+{% set bodyClass = 'hxHorizontal' %}
 
-  <header id="head">
-    <!-- Eyebrow Goes Here -->
-  </header>
+{% block app_nav %}
+  {% include 'partials/lorem-nav.njk' %}
+{% endblock %}
 
-  <div id="app">
-    <div id="stage">
-      <nav id="nav" class="hxNav">
-        {% include 'partials/lorem-nav.njk' %}
+{% block main %}
+  <div class="hxPanel hxSpan-7-xs">
+    <header class="hxBox hxMd">
+      <nav class="hxBreadcrumb">
+        <a href="#">Home</a>
+        <hx-icon class="delimiter" type="angle-right"></hx-icon>
+        <a href="components/layouts">Layouts</a>
+        <hx-icon class="delimiter" type="angle-right"></hx-icon>
+        <a href="#">Horizontal Layout</a>
       </nav>
+      <h1>Primary Panel</h1>
+    </header>
 
-      <main role="main" id="content">
-        <div class="hxPanel hxSpan-7-xs">
-          <hx-div class="hxMd">
-            <nav class="hxBreadcrumb">
-              <a href="#">Home</a>
-              <hx-icon class="delimiter" type="angle-right"></hx-icon>
-              <a href="components/layouts">Layouts</a>
-              <hx-icon class="delimiter" type="angle-right"></hx-icon>
-              <a href="#">Horizontal Layout</a>
-            </nav>
-            <h1>Primary Panel</h1>
+    <hx-div class="hxMd">
+      <ul class="hxList">
+        <li>
+          Horizontal layout enables two variable width panels, entitled
+          "primary" and "secondary", to operate adjacent to one another.
+          User selections or interactions with the primary panel
+          facilitate information displayed on secondary panels.
+        </li>
+        <li>
+          Although data is correlated between each panel, panels can
+          scroll independently.
+        </li>
+        <li>
+          Panel widths cannot be adjusted manually by the user.
+        </li>
+        <li>
+          Columns can be adjusted based on the density of information
+          displaying so each panel is optimized for readability.
+        </li>
+      </ul>
 
-            <ul class="hxList">
-              <li>
-                Horizontal layout enables two variable width panels, entitled
-                "primary" and "secondary", to operate adjacent to one another.
-                User selections or interactions with the primary panel
-                facilitate information displayed on secondary panels.
-              </li>
-              <li>
-                Although data is correlated between each panel, panels can
-                scroll independently.
-              </li>
-              <li>
-                Panel widths cannot be adjusted manually by the user.
-              </li>
-              <li>
-                Columns can be adjusted based on the density of information
-                displaying so each panel is optimized for readability.
-              </li>
-            </ul>
+      <p>
+        <a
+          class="hxBtn hxLg hxPrimary"
+          download="HelixUI-Horizontal-index.html"
+          href="files/horizontal-layout-template.html"
+        >
+          <hx-icon type="download"></hx-icon>
+          <span>Download Horizontal Template</span>
+        </a>
+      </p>
+    </hx-div>
 
-            <p>
-              <a
-                class="hxBtn hxLg hxPrimary"
-                download="HelixUI-Horizontal-index.html"
-                href="files/horizontal-layout-template.html"
-              >
-                <hx-icon type="download"></hx-icon>
-                <span>Download Horizontal Template</span>
-              </a>
-            </p>
-          </hx-div>
-        </div>
-
-        <div class="hxPanel hxSpan-5-xs">
-          <hx-div class="hxMd">
-            <h2>Secondary Panel</h2>
-          </hx-div>
-        </div>
-      </main>
-    </div>
+    <footer class="hxBox hxMd">
+      Primary Panel Footer (optional)
+    </footer>
   </div>
 
-  <footer id="foot" class="hxRow hxGutterless">
-    {% include 'partials/footer_nav.njk' %}
-  </footer>
+  <div class="hxPanel hxSpan-5-xs">
+    <header class="hxBox hxMd">
+      <h2>Secondary Panel Header</h2>
+    </header>
 
-  {% include 'partials/after_footer.njk' %}
-</body>
-</html>
+    <hx-div class="hxMd">
+      Secondary Panel Body
+    </hx-div>
+
+    <footer class="hxBox hxMd">
+      Secondary Panel Footer (optional)
+    </footer>
+  </div>
+{% endblock %}
