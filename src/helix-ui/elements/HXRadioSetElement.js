@@ -25,6 +25,30 @@ export class HXRadioSetElement extends HXElement {
         this.removeEventListener('hxtouch', this._onHxtouch);
     }
 
+    /**
+     * @readonly
+     * @type {Boolean} [false]
+     */
+    get isDirty () {
+        return this.hasAttribute(STATE.dirty);
+    }
+
+    /**
+     * @readonly
+     * @type {Boolean} [false]
+     */
+    get wasChanged () {
+        return this.hasAttribute(STATE.changed);
+    }
+
+    /**
+     * @readonly
+     * @type {Boolean} [false]
+     */
+    get wasTouched () {
+        return this.hasAttribute(STATE.touched);
+    }
+
     /** @private */
     _onHxchange (evt) {
         evt.stopPropagation();
