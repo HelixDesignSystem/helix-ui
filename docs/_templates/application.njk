@@ -22,13 +22,13 @@
       </nav>
 
       {% block layout %}
-        <main role="main" id="content" class="hxBox hxMd">
+        <main role="main" id="content">
           {% block content %}
             {# page content goes here #}
           {% endblock %}
         </main>
 
-        <aside class="hxSiderail hxBox hxMd">
+        <aside class="hxSiderail">
           {% block sidebar %}
             {% include 'partials/sidebar.njk' %}
           {% endblock %}
