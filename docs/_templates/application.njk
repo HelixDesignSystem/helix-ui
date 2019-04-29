@@ -1,50 +1,169 @@
 <!DOCTYPE html>
 <html lang="{{site.language}}">
 <head>
-  {% include 'partials/head.njk' %}
+  <title>{% if page.title %}{{page.title}} - {% endif %}{{site.title}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="{{site.baseHref}}">
 
-  {% block head %}
-    {# custom stuff goes here #}
-  {% endblock %}
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  {# Font Awesome Brand Icons #}
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  {# Font Awesome Core Styles (required for Brand icons) #}
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
+  {# HelixUI Styles (generated from src/) #}
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  {# Documentation Styles (generated from docs/) #}
+  <link rel="stylesheet" href="docs.css">
+
+  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="vendor/custom-elements-es5-adapter.js"></script>
+
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
 </head>
-<body class="hxVertical" id="top">
+<body class="{{bodyClass | d('hxVertical')}}" id="top">
   <!-- This link should be the first item a user can tab to. -->
   <a href="#content">Skip to main content</a>
 
   <header id="head">
-    {% include 'partials/global_nav.njk' %}
+    <nav>
+      <a class="brand-logo" href="">
+        <img src="images/helix-logo.svg" alt="Logo" />
+      </a>
+    </nav>
+
+    <div>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/"
+      >
+        <i class="fab fa-github"></i>
+        <span>View Source</span>
+      </a>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
+      >
+        Report Bug
+      </a>
+    </div>
   </header>
 
   <div id="app">
     <div id="stage">
       <nav id="nav" class="hxNav">
-        {% include 'partials/app_nav.njk' %}
+        {% block app_nav %}
+          {% include 'partials/app_nav.njk' %}
+        {% endblock %}
       </nav>
 
-      {% block layout %}
-        <main role="main" id="content">
+      <main role="main" id="content" class="{{mainClass}} {{contentClasses}}">
+        {% block main %}
+          <header>
+            {# TODO: use frontmatter to define breadcrumbs #}
+            {% block breadcrumbs %}
+              {# breadcrumbs go here (optional) #}
+            {% endblock %}
+
+            <h1>
+              {{ page.title }}
+
+              {% if page.minver %}
+                {% include 'partials/min-version.njk' %}
+              {% endif %}
+            </h1>
+
+            {% if page.beta %}
+              {# TODO: convert to official Banner when available in HelixUI assets #}
+              <hx-alert type="warning" status="BETA" persist>
+                Not recommended for production use.
+              </hx-alert>
+            {% endif %}
+
+            {% block page_header %}
+              {# extra header content goes here #}
+            {% endblock %}
+          </header>
+
           {% block content %}
             {# page content goes here #}
           {% endblock %}
-        </main>
+        {% endblock %}
 
+        {% if page.also %}
+          {% include 'partials/see-also.njk' %}
+        {% endif %}
+      </main>
+
+      {% if hasSiderail %}
         <aside class="hxSiderail">
-          {% block sidebar %}
-            {% include 'partials/sidebar.njk' %}
+          {% block siderail %}
+            <header>
+              <h1 class="hxHeading-4">On this page:</h1>
+            </header>
+
+            <nav class="article-toc">
+              {{ page.raw | toc | safe }}
+              {% block toc %}
+                {# extra links go here #}
+              {% endblock %}
+              {% if page.also %}
+                <a href="#see-also">See Also</a>
+              {% endif %}
+              <hr class="hxDivider" />
+              <a class="top-link" href="#top">Back to Top</a>
+            </nav>
           {% endblock %}
         </aside>
-      {% endblock %}
+      {% endif %}
     </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
-    {% include 'partials/footer_nav.njk' %}
+    <div class="hxCol">
+      &copy; 2019 Rackspace US, Inc.
+      <nav>
+        <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+        <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+      </nav>
+    </div>
+
+    <div class="hxCol hxRight">
+      {% if page.updated %}
+        <small>
+          Last Updated:
+          {{ page.updated.format(site.dateFormat) }}
+        </small>
+      {% endif %}
+
+      <small>
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v{{VERSION}}" target="_blank">
+          v{{VERSION}}
+        </a>)
+      </small>
+    </div>
   </footer>
 
-  {% include 'partials/after_footer.njk' %}
+  {# Documentation Dependencies #}
 
-  {% block after_footer %}
-    {# custom scripts/markup go here #}
-  {% endblock %}
+  {# Vue for Interactive Demos #}
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  {# HelixUI Behavior (generated from src/) #}
+  <script src="dist/scripts/helix-ui.browser.js"></script>
+  {# Documentation Behavior (generated from docs/) #}
+  <script src="docs.js"></script>
 </body>
 </html>

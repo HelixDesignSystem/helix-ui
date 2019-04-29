@@ -1,9 +1,9 @@
 ---
 title: Testing - Panels
 ---
-{% set contentClasses = 'specs-panel' %}
+{% import '_utils.njk' as utils %}
 {% extends 'test.njk' %}
-{% from 'lorem.njk' import lorem %}
+{% set contentClasses = 'specs-panel' %}
 
 {% block breadcrumbs %}
   <nav class="hxBreadcrumb">
@@ -59,11 +59,11 @@ title: Testing - Panels
               <p>Single Line</p>
             </hx-tabpanel>
             <hx-tabpanel>
-              {{ lorem(1) }}
+              {{ utils.lorem(1) }}
             </hx-tabpanel>
             <hx-tabpanel>
               <p>Several Paragraphs</p>
-              {{ lorem(5) }}
+              {{ utils.lorem(5) }}
             </hx-tabpanel>
           </hx-tabcontent>
         </hx-tabset>

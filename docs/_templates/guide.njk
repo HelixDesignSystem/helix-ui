@@ -1,28 +1,3 @@
 {% extends 'application.njk' %}
-
-{% block layout %}
-  <main id="content" class="guide-content">
-    <header>
-      {% block breadcrumbs %}
-        {# breadcrumbs go here (optional) #}
-      {% endblock %}
-
-      <h1>{{ page.title }}</h1>
-
-      {% block page_header %}
-        {# extra header content goes here #}
-      {% endblock %}
-    </header>
-
-    {% block content %}
-      {# page content goes here #}
-    {% endblock %}
-
-    {% if page.also %}
-      {% include 'partials/see-also.njk' %}
-    {% endif %}
-  </main>
-  <aside class="hxSiderail">
-    {% include 'partials/sidebar.njk' %}
-  </aside>
-{% endblock %}
+{% set hasSiderail = true %}
+{% set mainClass = 'guide-content' %}

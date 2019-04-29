@@ -1,70 +1,57 @@
 ---
 title: Vertical Layout Preview
 ---
-<!DOCTYPE html>
-<html lang="en"><!-- lang is necessary for screen reader compatibility -->
-{% include 'partials/head.njk' %}
-<body class="hxVertical" id="top">
-  <!-- Accessibility: This link should be the first item in tab order. -->
-  <a href="#content">Skip to main content</a>
+{% extends 'application.njk' %}
+{% set hasSiderail = true %}
 
-  <header id="head">
-    <!-- Eyebrow Goes Here -->
+{% block app_nav %}
+  {% include 'partials/lorem-nav.njk' %}
+{% endblock %}
+
+{% block main %}
+  <header>
+    <nav class="hxBreadcrumb">
+      <a href="#">Home</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="components/layouts">Layouts</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">Vertical Layout</a>
+    </nav>
+
+    <h1>Main Content</h1>
   </header>
 
-  <div id="app">
-    <div id="stage">
-      <nav id="nav" class="hxNav">
-        {% include 'partials/lorem-nav.njk' %}
-      </nav>
+  <section>
+    <ul class="hxList">
+      <li>
+        Footer will be pushed off viewport by lengthy content.
+      </li>
+      <li>
+        All content scrolls vertically as a <i>single document</i>.
+      </li>
+    </ul>
 
-      <main role="main" id="content" class="hxBox hxMd">
-        <nav class="hxBreadcrumb">
-          <a href="#">Home</a>
-          <hx-icon class="delimiter" type="angle-right"></hx-icon>
-          <a href="components/layouts">Layouts</a>
-          <hx-icon class="delimiter" type="angle-right"></hx-icon>
-          <a href="#">Vertical Layout</a>
-        </nav>
+    <p>
+      <a
+        class="hxBtn hxLg hxPrimary"
+        download="HelixUI-Vertical-index.html"
+        href="files/vertical-layout-template.html"
+      >
+        <hx-icon type="download"></hx-icon>
+        <span>Download Vertical Template</span>
+      </a>
+    </p>
+  </section>
+{% endblock %}
 
-        <h1>Main Content</h1>
+{% block siderail %}
+  <header>
+    <h2>Side Rail</h2>
+  </header>
 
-        <ul class="hxList">
-          <li>
-            Footer will be pushed off viewport by lengthy content.
-          </li>
-          <li>
-            All content scrolls vertically as a <i>single document</i>.
-          </li>
-        </ul>
-
-        <p>
-          <a
-            class="hxBtn hxLg hxPrimary"
-            download="HelixUI-Vertical-index.html"
-            href="files/vertical-layout-template.html"
-          >
-            <hx-icon type="download"></hx-icon>
-            <span>Download Vertical Template</span>
-          </a>
-        </p>
-      </main>
-
-      <aside class="hxSiderail hxBox hxMd">
-        <h2>Side Rail</h2>
-        <ul class="hxList">
-          <li>
-            A side rail may appear before or after main content.
-          </li>
-        </ul>
-      </aside>
-    </div>
-  </div>
-
-  <footer id="foot" class="hxRow hxGutterless">
-    {% include 'partials/footer_nav.njk' %}
-  </footer>
-
-  {% include 'partials/after_footer.njk' %}
-</body>
-</html>
+  <ul class="hxList">
+    <li>
+      A side rail may appear before or after main content.
+    </li>
+  </ul>
+{% endblock %}

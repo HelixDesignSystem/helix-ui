@@ -6,8 +6,9 @@ also:
   components/popovers/test.html: Testing - Popovers
   elements/hx-popover: <hx-popover>
 ---
+{% import '_utils.njk' as utils %}
 {% extends 'component.njk' %}
-{% from 'lorem.njk' import lorem %}
+
 {% block content %}
   <section>
     <h2 id="basic-popover">Basic Popover</h2>
@@ -105,7 +106,7 @@ also:
           </header>
 
           <hx-div scroll="vertical">
-            {{ lorem(3) }}
+            {{ utils.lorem(3) }}
           </hx-div>
 
           <footer>

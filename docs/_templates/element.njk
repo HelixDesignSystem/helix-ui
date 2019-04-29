@@ -1,81 +1,48 @@
 {% extends 'application.njk' %}
+{% set hasSiderail = true %}
+{% set mainClass = 'element-content' %}
 
-{% block layout %}
-  <main id="content" class="element-content">
+{% block toc %}
+  <a href="#attributes">Attributes</a>
+  <a href="#properties">Properties</a>
+{% endblock %}
+
+{% block main %}
+  {{super()}}
+
+  {# ATTRIBUTES #}
+  <section>
     <header>
-      {% block breadcrumbs %}
-        {# breadcrumbs go here (optional) #}
-      {% endblock %}
-
-      <h1>
-        {{ page.title }}
-        {% include 'partials/min-version.njk' %}
-      </h1>
-
-      {% block page_header %}
-        {# extra header content goes here #}
-      {% endblock %}
+      <h2 id="attributes">Attributes</h2>
+      <p>
+        Attributes enable declarative configuration of an element,
+        via HTML markup.
+      </p>
     </header>
 
-    {% block content %}
-      {# freeform page content goes here #}
+    {% block attributes %}
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        This element does not have any configurable attributes.
+      </p>
     {% endblock %}
+  </section>
 
-    {# ATTRIBUTES #}
-    <section>
-      <header>
-        <h2 id="attributes">Attributes</h2>
-        <p>
-          Attributes enable declarative configuration of an element,
-          via HTML markup.
-        </p>
-      </header>
-
-      {% block attributes %}
-        <p class="hxSubdued hxSubBody">
-          <hx-icon type="info-circle"></hx-icon>
-          This element does not have any configurable attributes.
-        </p>
-      {% endblock %}
-    </section>
-
-    {# PROPERTIES #}
-    <section>
-      <header>
-        <h2 id="properties">Properties</h2>
-        <p>
-          JavaScript properties enable programmatic access to an element's
-          configuration and state.
-        </p>
-      </header>
-
-      {% block properties %}
-        <p class="hxSubdued hxSubBody">
-          <hx-icon type="info-circle"></hx-icon>
-          This element does not have any configurable properties.
-        </p>
-      {% endblock %}
-    </section>
-
-    {% if page.also %}
-      {% include 'partials/see-also.njk' %}
-    {% endif %}
-  </main>
-
-  <aside class="hxSiderail">
+  {# PROPERTIES #}
+  <section>
     <header>
-      <h1 class="hxHeading-4">On this page:</h1>
+      <h2 id="properties">Properties</h2>
+      <p>
+        JavaScript properties enable programmatic access to an element's
+        configuration and state.
+      </p>
     </header>
 
-    <nav class="article-toc">
-      {{ page.raw | toc | safe }}
-      <a href="#attributes">Attributes</a>
-      <a href="#properties">Properties</a>
-      {% if page.also %}
-        <a href="#see-also">See Also</a>
-      {% endif %}
-      <hr class="hxDivider" />
-      <a class="top-link" href="#top">Back to Top</a>
-    </nav>
-  </aside>
+    {% block properties %}
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        This element does not have any configurable properties.
+      </p>
+    {% endblock %}
+  </section>
 {% endblock %}
