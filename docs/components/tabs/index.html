@@ -8,13 +8,18 @@ also:
   elements/hx-tabpanel: <hx-tabpanel>
   elements/hx-tabset: <hx-tabset>
 ---
-{% set contentClasses = 'docs-tabset' %}
 {% extends 'component.njk' %}
+{% set contentClasses = 'docs-tabset' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
 
 {% block content %}
   <section>
     <header>
       <h2 id="basic-tabset">Basic Tabset</h2>
+      {# TODO: add section description #}
     </header>
 
     <div class="example resizable">

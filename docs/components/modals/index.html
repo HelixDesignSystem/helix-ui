@@ -11,15 +11,23 @@ also:
 {% import '_utils.njk' as utils %}
 {% extends 'component.njk' %}
 
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="basic-modal">Basic Modal</h2>
+    <header>
+      <h2 id="basic-modal">Basic Modal</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example" id="vue-basicModalDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Size</legend>
-            <div v-for="(_size, idx) in sizes">
+            <hx-radio-control v-for="(_size, idx) in sizes">
               <input
                 :id="'radSize' + idx"
                 :value="_size"
@@ -28,17 +36,26 @@ also:
                 v-model="size"
               />
               <label :for="'radSize' + idx">
-                <span v-text="_size.label"></span>
-                <em class="hxSubBody" v-if="_size.default">(default)</em>
+                <hx-radio></hx-radio>
+                {% raw %}{{_size.label}}{% endraw %}
               </label>
-            </div>
+              <p v-if="_size.default">(default)</p>
+            </hx-radio-control>
           </fieldset>
+
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div>
-              <input id="chkIsScrollable" type="checkbox" v-model="isScrollable">
-              <label for="chkIsScrollable">Scroll Body</label>
-            </div>
+            <hx-checkbox-control>
+              <input
+                id="chkIsScrollable"
+                type="checkbox"
+                v-model="isScrollable"
+              />
+              <label for="chkIsScrollable">
+                <hx-checkbox></hx-checkbox>
+                Scroll Body
+              </label>
+            </hx-checkbox-control>
           </fieldset>
         </form>
       </header>
@@ -66,7 +83,7 @@ also:
               with content behind this modal cannot take
               place until this modal is closed.
             </p>
-            {{ utils.lorem(8) }}
+            {{utils.lorem(8)}}
           </hx-div>
 
           <hx-div v-else>
@@ -92,11 +109,14 @@ also:
       <hx-busy></hx-busy>
       <p>Loading...</p>
     </div>
-    <p class="hxSubdued hxSubBody">
-      <hx-icon type="info-circle"></hx-icon>
-      Please refer to
-      <a href="components/box/#scrolling-containers">"Scrolling Containers"</a>
-      documentation for more information about scrolling modal content.
-    </p>
+
+    <footer>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Please refer to
+        <a href="components/box/#scrolling-containers">"Scrolling Containers"</a>
+        documentation for more information about scrolling modal content.
+      </p>
+    </footer>
   </section>
 {% endblock %}

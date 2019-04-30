@@ -5,9 +5,18 @@ also:
   components/layouts: Layouts
 ---
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="vertical-navigation">Vertical Navigation</h2>
+    <header>
+      <h2 id="vertical-navigation">Vertical Navigation</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example">
       <div class="nav-demo">
         <nav class="hxNav">

@@ -1,17 +1,24 @@
 ---
 title: Stepper
+beta: true
 also:
   components/accordions: Accordions
   elements/hx-accordion-panel: <hx-accordion-panel>
   elements/hx-accordion: <hx-accordion>
 ---
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
-  <hx-alert type="warning" status="BETA" persist>
-    This component is not recommended for production use.
-  </hx-alert>
   <section>
-    <h2 id="basic-stepper">Basic Stepper</h2>
+    <header>
+      <h2 id="basic-stepper">Basic Stepper</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example" id="vue-stepperDemo" v-cloak>
       <div>
         <hx-accordion

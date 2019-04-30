@@ -6,19 +6,31 @@ also:
   elements/hx-progress: <hx-progress>
 ---
 {% extends 'component.njk' %}
+
 {% block content %}
   <section>
-    <h2 id="busy">Busy</h2>
-    <p class="hxSubBody">Added: v0.4.0</p>
+    <header>
+      <h2 id="busy">Busy</h2>
+      <p class="hxSubBody">Added: v0.4.0</p>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example" id="vue-busyDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div>
-              <input id="chkIsPaused" type="checkbox" v-model="isPaused" />
-              <label for="chkIsPaused">Paused</label>
-            </div>
+            <hx-checkbox-control>
+              <input
+                id="chkIsPaused"
+                type="checkbox"
+                v-model="isPaused"
+              />
+              <label for="chkIsPaused">
+                <hx-checkbox></hx-checkbox>
+                Paused
+              </label>
+            </hx-checkbox-control>
           </fieldset>
         </form>
       </header>
@@ -61,8 +73,12 @@ also:
   </section>
 
   <section>
-    <h2 id="progress-bar">Progress Bar</h2>
-    <p class="hxSubBody">Added: v0.7.0</p>
+    <header>
+      <h2 id="progress-bar">Progress Bar</h2>
+      <p class="hxSubBody">Added: v0.7.0</p>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example" id="vue-progressDemo" v-cloak>
       <header>
         <form class="beta-hxForm">

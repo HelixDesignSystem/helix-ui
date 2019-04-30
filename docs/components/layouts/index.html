@@ -8,28 +8,32 @@ also:
   components/navigation: Navigation
 ---
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  <p>
+    The Layouts component provides information about Helix application anatomy
+    for the purposes of advanced customization.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p class="comfortable">
-      The Layouts component provides information about Helix application anatomy
-      for the purposes of advanced customization.
+    <header>
+      <h2 id="layout-templates">Layout Templates</h2>
+      {# TODO: add section description #}
+    </header>
+
+    <p>
+      It is highly recommended that you use one of the pre-defined layout
+      templates described below.
     </p>
-    <p class="comfortable">
-      It is highly recommended that you use one of the pre-defined layout templates
-      mentioned in <a href="#layout-templates">Layout Templates</a> below.
-    </p>
-    <p class="comfortable">
-      If you find that the pre-defined templates don't meet your needs,
-      please skip ahead to <a href="#prerequisites">Prerequisites</a> to review
+
+    <p>
+      If you find that the pre-defined templates do not meet your needs, please
+      skip ahead to <a href="#prerequisites">Prerequisites</a> to review
       documentation needed to better understand how to customize your application.
     </p>
-  </section>
 
-  <section>
-    <h2 id="layout-templates">Layout Templates</h2>
-    <p>
-      Download or preview one of the pre-defined layout templates below.
-    </p>
     <p class="hxSubBody hxSubdued">
       <hx-icon type="info-circle"></hx-icon>
       All layout templates are optimized for use in single-page applications (SPAs).
@@ -102,11 +106,16 @@ also:
   </section>
 
   <section>
-    <h2 id="prerequisites">Prerequisites</h2>
-    <p class="comfortable">
+    <header>
+      <h2 id="prerequisites">Prerequisites</h2>
+      {# TODO: add section description #}
+    </header>
+
+    <p>
       To get the most out of this documentation, developers are
       expected to:
     </p>
+
     <ol class="hxList">
       <li>
         Review the instructions in the
@@ -125,11 +134,14 @@ also:
   </section>
 
   <section>
-    <h2 id="layout-anatomy">Layout Anatomy</h2>
-    <p class="comfortable">
-      Layouts are composed of several different areas. Understanding the purpose
-      for each area should help you locate the best place to add custom containers.
-    </p>
+    <header>
+      <h2 id="layout-anatomy">Layout Anatomy</h2>
+      <p>
+        Layouts are composed of several different areas. Understanding the purpose
+        for each area should help you locate the best place to add custom containers.
+      </p>
+    </header>
+
     <dl class="hxList">
       <div>
         <dt>
@@ -233,15 +245,19 @@ also:
   </section>
 
   <section><!-- Body -->
-    <h2 id="document-body">Document Body</h2>
-    <p>
-      The document <code>&lt;body&gt;</code> is the root element
-      for applying CSS needed for any application layout.
-    </p>
+    <header>
+      <h2 id="document-body">Document Body</h2>
+      <p>
+        The document <code>&lt;body&gt;</code> is the root element
+        for applying CSS needed for any application layout.
+      </p>
+    </header>
+
     <p>
       Add one of the following CSS classes to the <code>&lt;body&gt;</code> element
       to begin with pre-defined layout styles.
     </p>
+
     <ul class="hxList">
       <li><code>hxVertical</code> for a vertical layout</li>
       <li><code>hxHorizontal</code> for a horizontal layout</li>
@@ -249,15 +265,19 @@ also:
   </section>
 
   <section><!-- App Container -->
-    <h2 id="app-container">App Container</h2>
-    <p>
-      The app container serves as the mounting point
-      for your single-page application.
-    </p>
+    <header>
+      <h2 id="app-container">App Container</h2>
+      <p>
+        The app container serves as the mounting point
+        for your single-page application.
+      </p>
+    </header>
+
     <ul class="hxList">
       <li>It must have an ID of <code>app</code>.</li>
       <li>It can be any block element.</li>
     </ul>
+
     <hx-tabset class="beta-hxBound">
       <hx-tablist>
         <hx-tab>HTML</hx-tab>
@@ -289,20 +309,28 @@ also:
   </section>
 
   <section><!-- Stage -->
-    <h2 id="stage-area">Stage</h2>
-    <p class="comfortable">
-      The stage serves as the root element required by client-side frameworks
-      that use virtual DOM technologies (i.e., hyperscript). It can be divided
-      into three areas:
+    <header>
+      <h2 id="stage-area">Stage</h2>
+      <p>
+        The stage serves as the root element required by client-side frameworks
+        that use virtual DOM technologies (e.g., hyperscript).
+      </p>
+    </header>
+
+    <p>
+      The Stage can be divided into three areas:
     </p>
+
     <ol class="hxList">
       <li><a href="#nav-area">Nav</a> (optional)</li>
       <li><a href="#main-content">Main Content</a></li>
       <li>left or right <a href="#side-rail">Side Rail</a> (optional)</li>
     </ol>
+
     <p>
       The stage container must have an ID of <code>stage</code>.
     </p>
+
     <figure class="hxFigure">
       {% code 'html' %}
         <div id="stage">
@@ -331,10 +359,13 @@ also:
   </section>
 
   <section><!-- Nav -->
-    <h2 id="nav-area">Nav</h2>
-    <p>
-      The nav area houses hyperlinks to pages within your application.
-    </p>
+    <header>
+      <h2 id="nav-area">Nav</h2>
+      <p>
+        The nav area houses hyperlinks to pages within your application.
+      </p>
+    </header>
+
     <ul class="hxList">
       <li>
         It must have an ID of <code>nav</code>.
@@ -348,6 +379,7 @@ also:
         for content information.
       </li>
     </ul>
+
     <figure class="hxFigure">
       {% code 'html' %}
         <nav id="nav">
@@ -359,10 +391,13 @@ also:
   </section>
 
   <section><!-- Main Content -->
-    <h2 id="main-content">Main Content</h2>
-    <p>
-      The main content area houses primary page content.
-    </p>
+    <header>
+      <h2 id="main-content">Main Content</h2>
+      <p>
+        The main content area houses primary page content.
+      </p>
+    </header>
+
     <ul class="hxList">
       <li>
         It must have an ID of <code>content</code>.
@@ -376,16 +411,19 @@ also:
         legacy support for accessible user agents.
       </li>
     </ul>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="info-circle"></hx-icon>
       The main content area behaves like a non-wrapping grid row
       when used in a horizontal layout.
     </p>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="info-circle"></hx-icon>
       Padding must be applied manually, using <a href="components/box">Box</a>
       component styles.
     </p>
+
     <figure class="hxFigure">
       {% code 'html' %}
         <main role="main" id="content">
@@ -397,10 +435,13 @@ also:
   </section>
 
   <section><!-- Side Rail -->
-    <h2 id="side-rail">Side Rail</h2>
-    <p>
-      The side rail houses secondary page content.
-    </p>
+    <header>
+      <h2 id="side-rail">Side Rail</h2>
+      <p>
+        The side rail houses secondary page content.
+      </p>
+    </header>
+
     <ul class="hxList">
       <li>
         Use an <code>&lt;aside&gt;</code> element to provide the best support
@@ -410,14 +451,17 @@ also:
         Add the <code>hxSiderail</code> CSS class to apply visual styling.
       </li>
     </ul>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="exclamation-triangle"></hx-icon>
       Avoid using a side rail in a horizontal layout.
     </p>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="exclamation-triangle"></hx-icon>
       Avoid adding multiple side rails on a single page.
     </p>
+
     <figure class="hxFigure">
       {% code 'html' %}
         <aside class="hxSiderail">

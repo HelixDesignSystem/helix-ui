@@ -7,40 +7,68 @@ also:
   elements/hx-search-assistance: <hx-search-assistance>
 ---
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <h2 id="basic-search">Basic Search</h2>
+    <header>
+      <h2 id="basic-search">Basic Search</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example" id="vue-searchDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <p>
-            <label for="txtPlaceholder" class="beta-hxFieldName">Placeholder</label>
+          <hx-text-control>
             <input
-              class="hxTextCtrl"
               id="txtPlaceholder"
-              placeholder="e.g. Search..."
+              type="text"
               v-model="placeholder"
             />
-          </p>
-          <p>
-            <label for="txtValue" class="beta-hxFieldName">Value</label>
+            <label for="txtPlaceholder">
+              Placeholder
+            </label>
+          </hx-text-control>
+
+          <hx-text-control>
             <input
-              class="hxTextCtrl"
               id="txtValue"
-              placeholder="e.g. kittens"
+              type="text"
               v-model="searchValue"
             />
-          </p>
+            <label for="txtValue">
+              Value
+            </label>
+          </hx-text-control>
+
           <fieldset>
             <legend class="beta-hxFieldName">Options</legend>
-            <div>
-              <input id="chkIsDisabled" type="checkbox" v-model="isDisabled" />
-              <label for="chkIsDisabled">Disabled</label>
-            </div>
-            <div>
-              <input id="chkIsInvalid" type="checkbox" v-model="isInvalid" />
-              <label for="chkIsInvalid">Invalid</label>
-            </div>
+            <hx-checkbox-control>
+              <input
+                id="chkIsDisabled"
+                type="checkbox"
+                v-model="isDisabled"
+              />
+              <label for="chkIsDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkIsInvalid"
+                type="checkbox"
+                v-model="isInvalid"
+              />
+              <label for="chkIsInvalid">
+                <hx-checkbox></hx-checkbox>
+                Invalid
+              </label>
+            </hx-checkbox-control>
           </fieldset>
         </form>
       </header>
@@ -63,8 +91,12 @@ also:
   </section>
 
   <section>
-    <h2 id="search-assistance">Search Assistance</h2>
-    <p class="hxSubBody">Added: v0.6.0</p>
+    <header>
+      <h2 id="search-assistance">Search Assistance</h2>
+      <p class="hxSubBody">Added: v0.6.0</p>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example" id="vue-searchAssistanceDemo" v-cloak>
       <div>
         <hx-search
@@ -76,13 +108,15 @@ also:
           id="assisted-hx-search"
         ></hx-search>
         <hx-search-assistance relative-to="assisted-hx-search" ref="search">
-          <header>Search for "<span v-text="searchValue"></span>"</header>
+          {% raw %}
+          <header>Search for "{{searchValue}}"</header>
           <section v-if="hasValue">
             <header>Category Header</header>
-            <button class="hxSearchSuggestion">Here is a possible <b v-text="searchValue"></b></button>
-            <button class="hxSearchSuggestion">Here is a possible <b v-text="searchValue"></b></button>
-            <button class="hxSearchSuggestion">Here is a possible <b v-text="searchValue"></b></button>
+            <button class="hxSearchSuggestion">Here is a possible <b>{{searchValue}}</b></button>
+            <button class="hxSearchSuggestion">Here is a possible <b>{{searchValue}}</b></button>
+            <button class="hxSearchSuggestion">Here is a possible <b>{{searchValue}}</b></button>
           </section>
+          {% endraw %}
         </hx-search-assistance>
       </div>
 
@@ -106,9 +140,12 @@ also:
         {% endcode %}
       </footer>
     </div>
-    <p class="hxSubdued hxSubBody">
-      <hx-icon type="info-circle"></hx-icon>
-      Behavior to show/hide search assistance may differ in your app.
-    </p>
+
+    <footer>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Behavior to show/hide search assistance may differ in your app.
+      </p>
+    </footer>
   </section>
 {% endblock %}

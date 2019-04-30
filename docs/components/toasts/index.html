@@ -5,35 +5,57 @@ also:
   elements/hx-toast: <hx-toast>
 ---
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  <hx-alert type="info" status="note" persist>
+    Currently, only CTA and dismiss functionality of the toast itself has been
+    implemented. Positioning, stacking, animation, etc. functionality will be coming soon.
+  </hx-alert>
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section>
-    <hx-alert type="info" status="note" persist>
-      Currently, only CTA and dismiss functionality of the toast itself has been
-      implemented. Positioning, stacking, animation, etc. functionality will be coming soon.
-    </hx-alert>
-  </section>
+    <header>
+      <h2 id="basic-toast">Basic Toast</h2>
+      {# TODO: add section description #}
+    </header>
 
-  <section>
-    <h2 id="basic-toast">Basic Toast</h2>
     <div class="example" id="vue-toastDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
-          <div>
-            <label for="selType" class="beta-hxFieldName">Type</label>
+          <hx-select-control>
             <select id="selType" v-model="type">
               <option v-for="_type in types" :value="_type">
-                {% raw %}{{ _type.label }}{% endraw %}
+                {% raw %}{{_type.label}}{% endraw %}
               </option>
             </select>
-          </div>
-          <p>
-            <label for="txtCta" class="beta-hxFieldName">CTA</label>
-            <input id="txtCta" class="hxTextCtrl" v-model="cta" />
-          </p>
-          <p>
-            <label for="txtContent" class="beta-hxFieldName">Content</label>
-            <textarea id="txtContent" class="hxTextCtrl" v-model="content"></textarea>
-          </p>
+            <hx-select></hx-select>
+            <label for="selType">
+              Type
+            </label>
+          </hx-select-control>
+
+          <hx-text-control>
+            <input
+              id="txtCta"
+              type="text"
+              v-model="cta"
+            />
+            <label for="txtCta">
+              CTA
+            </label>
+          </hx-text-control>
+
+          <hx-textarea-control>
+            <textarea
+              id="txtContent"
+              v-model="content"
+            ></textarea>
+            <label for="txtContent">
+              Content
+            </label>
+          </hx-textarea-control>
         </form>
       </header>
 

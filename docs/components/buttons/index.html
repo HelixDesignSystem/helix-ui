@@ -10,19 +10,27 @@ also:
   components/reveals: Reveals
 ---
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  <p>
+    Buttons enable users to trigger actions on the current page.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p>
-      Buttons enable users to trigger actions on the current page.
-    </p>
-  </section>
+    <header>
+      <h2 id="basic-button">Basic Button</h2>
+      <p>
+        Define a basic button by adding the <code>.hxBtn</code>
+        CSS class to any supported element.
+      </p>
+    </header>
 
-  <section>
-    <h2 id="basic-button">Basic Button</h2>
     <p>
-      Define a basic button by adding the <code>.hxBtn</code>
-      CSS class to any of the following elements:
+      Supported elements are as follows:
     </p>
+
     <ul class="hxList">
       <li><code>&lt;button&gt;</code></li>
       <li><code>&lt;a href="..."&gt;</code></li>
@@ -30,12 +38,13 @@ also:
       <li><code>&lt;input type="reset"&gt;</code></li>
       <li><code>&lt;input type="submit"&gt;</code></li>
     </ul>
+
     <div class="example" id="vue-basicButtonDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Variant</legend>
-            <div v-for="(_variant, idx) in variants">
+            <hx-radio-control v-for="(_variant, idx) in variants">
               <input
                 :id="'radBasicVariant' + idx"
                 :value="_variant"
@@ -44,14 +53,16 @@ also:
                 v-model="variant"
               />
               <label :for="'radBasicVariant' + idx">
-                <span v-text="_variant.label"></span>
-                <em class="hxSubBody" v-if="_variant.default">(default)</em>
+                <hx-radio></hx-radio>
+                {% raw %}{{_variant.label}}{% endraw %}
               </label>
-            </div>
+              <p v-if="_variant.default">(default)</p>
+            </hx-radio-control>
           </fieldset>
+
           <fieldset>
             <legend class="beta-hxFieldName">Size</legend>
-            <div v-for="(_size, idx) in sizes">
+            <hx-radio-control v-for="(_size, idx) in sizes">
               <input
                 :id="'radBasicSize' + idx"
                 :value="_size"
@@ -60,10 +71,11 @@ also:
                 v-model="size"
               />
               <label :for="'radBasicSize' + idx">
-                <span v-text="_size.label"></span>
-                <em class="hxSubBody" v-if="_size.default">(default)</em>
+                <hx-radio></hx-radio>
+                {% raw %}{{_size.label}}{% endraw %}
               </label>
-            </div>
+              <p v-if="_size.default">(default)</p>
+            </hx-radio-control>
           </fieldset>
         </form>
       </header>
@@ -109,27 +121,37 @@ also:
         {% endcode %}
       </footer>
     </div>
-    <p class="hxSubBody hxSubdued">
-      <hx-icon type="info-circle"></hx-icon>
-      Text nodes within buttons <i>must</i> be wrapped in a <code>&lt;span&gt;</code>,
-      if non-text siblings are present.
-    </p>
+
+    <footer>
+      <p class="hxSubBody hxSubdued">
+        <hx-icon type="info-circle"></hx-icon>
+        Text nodes within buttons <i>must</i> be wrapped in a <code>&lt;span&gt;</code>,
+        if non-text siblings are present.
+      </p>
+    </footer>
   </section>
 
   <section>
-    <h2 id="button-group">Button Group</h2>
-    <p class="comfortable">
-      A button group is built by placing several buttons within a <code>&lt;div&gt;</code>
-      element having the <code>.hxBtnGroup</code> CSS class. Button variant classes are added
-      to the wrapper instead of the individual buttons to apply the same style to all buttons
-      in the group.
+    <header>
+      <h2 id="button-group">Button Group</h2>
+      <p>
+        A button group is built by placing several buttons within a
+        <code>&lt;div&gt;</code> element having the <code>.hxBtnGroup</code>
+        CSS class.
+      </p>
+    </header>
+
+    <p>
+      Button variant classes are added to the wrapper instead of the individual
+      buttons in order to apply the same style to all buttons within the group.
     </p>
+
     <div class="example" id="vue-buttonGroupDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Variant</legend>
-            <div v-for="(_variant, idx) in variants">
+            <hx-radio-control v-for="(_variant, idx) in variants">
               <input
                 :id="'radGroupVariant' + idx"
                 :value="_variant"
@@ -138,14 +160,16 @@ also:
                 v-model="variant"
               />
               <label :for="'radGroupVariant' + idx">
-                <span v-text="_variant.label"></span>
-                <em class="hxSubBody" v-if="_variant.default">(default)</em>
+                <hx-radio></hx-radio>
+                {% raw %}{{_variant.label}}{% endraw %}
               </label>
-            </div>
+              <p v-if="_variant.default">(default)</p>
+            </hx-radio-control>
           </fieldset>
+
           <fieldset>
             <legend class="beta-hxFieldName">Size</legend>
-            <div v-for="(_size, idx) in sizes">
+            <hx-radio-control v-for="(_size, idx) in sizes">
               <input
                 :id="'radGroupSize' + idx"
                 :value="_size"
@@ -154,10 +178,11 @@ also:
                 v-model="size"
               />
               <label :for="'radGroupSize' + idx">
-                <span v-text="_size.label"></span>
-                <em class="hxSubBody" v-if="_size.default">(default)</em>
+                <hx-radio></hx-radio>
+                {% raw %}{{_size.label}}{% endraw %}
               </label>
-            </div>
+              <p v-if="_size.default">(default)</p>
+            </hx-radio-control>
           </fieldset>
         </form>
       </header>
@@ -174,7 +199,7 @@ also:
 
       <footer>
         {% code 'html' %}{% raw %}
-          <div class="{{ classes }}">
+          <div class="{{classes}}">
             <button class="hxBtn">First</button>
             <button class="hxBtn">Second</button>
             <button class="hxBtn">

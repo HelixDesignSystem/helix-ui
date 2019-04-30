@@ -6,9 +6,18 @@ also:
   elements/hx-error: <hx-error>
 ---
 {% extends 'component.njk' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
 {% block content %}
   <section><!-- Typefaces -->
-    <h2 id="typefaces">Typefaces</h2>
+    <header>
+      <h2 id="typefaces">Typefaces</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example">
       <div class="demo-typography">
         <div class="hxRow">
@@ -32,7 +41,11 @@ also:
   </section>
 
   <section><!-- Headings -->
-    <h2 id="headers">Headings</h2>
+    <header>
+      <h2 id="headings">Headings</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example">
       <div>
         <h1>Heading One</h1>
@@ -97,11 +110,14 @@ also:
   </section>
 
   <section><!-- Subdued -->
-    <h2 id="subdued">Subdued</h2>
-    <p>
-      Add the <code>.hxSubdued</code> CSS class to any element to apply a
-      muted appearance.
-    </p>
+    <header>
+      <h2 id="subdued">Subdued</h2>
+      <p>
+        Add the <code>.hxSubdued</code> CSS class to any element to apply a
+        muted appearance.
+      </p>
+    </header>
+
     <div class="example">
       <div>
         <div class="hxSubdued">div.hxSubdued</div>
@@ -122,10 +138,15 @@ also:
   </section>
 
   <section><!-- Caption -->
-    <h2 id="caption">Caption</h2>
+    <header>
+      <h2 id="caption">Caption</h2>
+      {# TODO: add section description #}
+    </header>
+
     <p>
       Apply the Helix "caption" style with any of the following configurations:
     </p>
+
     <ul class="hxList">
       <li>
         A <code>&lt;caption&gt;</code> element within a
@@ -139,6 +160,7 @@ also:
         Add the <code>.hxCaption</code> CSS class to any element
       </li>
     </ul>
+
     <div class="example">
       <div>
         <figure class="hxFigure">
@@ -167,14 +189,20 @@ also:
   </section>
 
   <section><!-- Sub-Body -->
-    <h2 id="sub-body">Sub-Body</h2>
+    <header>
+      <h2 id="sub-body">Sub-Body</h2>
+      {# TODO: add section description #}
+    </header>
+
     <p>
       Apply the "sub-body" style with any of the following:
     </p>
+
     <ul class="hxList">
       <li>A <code>&lt;small&gt;</code> element</li>
       <li>Add the <code>.hxSubBody</code> CSS class to any element</li>
     </ul>
+
     <div class="example">
       <div>
         <small>small</small>
@@ -192,17 +220,25 @@ also:
   </section>
 
   <section><!-- Links -->
-    <h2 id="links">Links</h2>
-    <p>
-      Links should be used to refer a user to a resource or location.
-    </p>
-    <hx-alert type="info" status="note" persist>
-      Buttons are better suited to initiate in-page actions.
-    </hx-alert>
-    <hx-alert type="warning" status="warning" persist>
-      Adding the <code>disabled</code> attribute to a link <b>will not</b>
-      prevent user interaction.
-    </hx-alert>
+    <header>
+      <h2 id="links">Links</h2>
+      <p>
+        Hyperlinks (a.k.a., links) should be used to navigate a user to a
+        resource or location.
+      </p>
+    </header>
+
+    <ul class="hxList">
+      <li>
+        <a href="components/buttons">Buttons</a> are better suited to
+        initiate in-page actions.
+      </li>
+      <li>
+        Adding the <code>disabled</code> attribute to a link does not
+        prevent user interaction.
+      </li>
+    </ul>
+
     <div class="example">
       <div>
         <a href="#">Link Text</a>
@@ -217,11 +253,14 @@ also:
   </section>
 
   <section><!-- Inline Code -->
-    <h2 id="inline-code">Inline Code</h2>
-    <p>
-      Use the <code>&lt;code&gt;</code> element to differentiate descriptive
-      text from code snippets.
-    </p>
+    <header>
+      <h2 id="inline-code">Inline Code</h2>
+      <p>
+        Use the <code>&lt;code&gt;</code> element to differentiate descriptive
+        text from code snippets.
+      </p>
+    </header>
+
     <div class="example">
       <div>
         <p>
@@ -240,11 +279,14 @@ also:
   </section>
 
   <section><!-- Keyboard -->
-    <h2 id="keyboard">Keyboard</h2>
-    <p>
-      Use the <code>&lt;kbd&gt;</code> element to differentiate descriptive text
-      from instructional key presses.
-    </p>
+    <header>
+      <h2 id="keyboard">Keyboard</h2>
+      <p>
+        Use the <code>&lt;kbd&gt;</code> element to differentiate descriptive text
+        from instructional key presses.
+      </p>
+    </header>
+
     <div class="example">
       <div>
         <p>
@@ -265,7 +307,11 @@ also:
   </section>
 
   <section><!-- Code Block -->
-    <h2 id="code-block">Code Block</h2>
+    <header>
+      <h2 id="code-block">Code Block</h2>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example">
       <div class="demo">
         <pre><code>[Insert Code Here]</code></pre>
@@ -280,10 +326,12 @@ also:
   </section>
 
   <section><!-- Error Text -->
-    <h2 id="error-text">Error Text</h2>
-    <p>
-      <small>Added: v0.4.0</small>
-    </p>
+    <header>
+      <h2 id="error-text">Error Text</h2>
+      <p class="hxSubBody">Added: v0.4.0</p>
+      {# TODO: add section description #}
+    </header>
+
     <div class="example">
       <div>
         <hx-error>Error message goes here</hx-error>
@@ -298,11 +346,13 @@ also:
   </section>
 
   <section><!-- Syntax Highlighting -->
-    <h2 id="syntax-highlighting">Syntax Highlighting</h2>
-    <p>
-      HelixUI provides a built-in theme for use with the
-      <a href="https://highlightjs.org/">highlight.js</a> library.
-    </p>
+    <header>
+      <h2 id="syntax-highlighting">Syntax Highlighting</h2>
+      <p>
+        HelixUI provides a built-in theme for use with the
+        <a href="https://highlightjs.org/">highlight.js</a> library.
+      </p>
+    </header>
 
     <p>
       Below are some examples of the syntax highlighting in action.
