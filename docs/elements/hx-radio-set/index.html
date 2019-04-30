@@ -70,3 +70,31 @@ also:
     </dd>
   </dl>
 {% endblock %}
+
+{% block properties %}
+  <dl class="memberList">
+    <dt>
+      isDirty {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if the <code>hx-dirty</code> attribute is present.
+    </dd>
+
+    <dt>
+      wasChanged {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if the <code>hx-changed</code> attribute is present.
+    </dd>
+
+    <dt>
+      wasTouched {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if the <code>hx-touched</code> attribute is present.
+    </dd>
+  </dl>
+{% endblock %}
