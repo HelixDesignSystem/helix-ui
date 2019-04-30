@@ -1,0 +1,159 @@
+---
+title: Menu
+minver: 0.2.0
+also:
+  components/button: Button
+  components/menu/test.html: Testing - Menu
+  elements/hx-menu: <hx-menu>
+  elements/hx-menuitem: <hx-menuitem>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <h2 id="basic-menu">Basic Menu</h2>
+    <div class="example">
+      <div>
+        <hx-disclosure class="hxBtn" aria-controls="basicMenuId">
+          <hx-icon type="cog"></hx-icon>
+          <span>Actions</span>
+          <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+        </hx-disclosure>
+        <hx-menu id="basicMenuId">
+          <hx-menuitem>Action 1</hx-menuitem>
+          <hx-menuitem>Action 2</hx-menuitem>
+          <hx-menuitem>Action 3</hx-menuitem>
+        </hx-menu>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <hx-disclosure class="hxBtn" aria-controls="basicMenuId">
+            <hx-icon type="cog"></hx-icon>
+            <span>Actions</span>
+            <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+          </hx-disclosure>
+          <hx-menu id="basicMenuId">
+            <hx-menuitem>Action 1</hx-menuitem>
+            <hx-menuitem>Action 2</hx-menuitem>
+            <hx-menuitem>Action 3</hx-menuitem>
+          </hx-menu>
+        {% endcode %}
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="cog-menu">Cog Menu</h2>
+    <div class="example">
+      <div>
+        <hx-disclosure class="hxBtn hxCog" aria-controls="cogMenuId">
+          <hx-icon type="cog"></hx-icon>
+        </hx-disclosure>
+        <hx-menu id="cogMenuId">
+          <hx-menuitem>Action 1</hx-menuitem>
+          <hx-menuitem>Action 2</hx-menuitem>
+          <hx-menuitem>Action 3</hx-menuitem>
+        </hx-menu>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <hx-disclosure class="hxBtn hxCog" aria-controls="cogMenuId">
+            <hx-icon type="cog"></hx-icon>
+          </hx-disclosure>
+          <hx-menu id="cogMenuId">
+            <hx-menuitem>Action 1</hx-menuitem>
+            <hx-menuitem>Action 2</hx-menuitem>
+            <hx-menuitem>Action 3</hx-menuitem>
+          </hx-menu>
+        {% endcode %}
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="grouped-menu">Grouped Menu</h2>
+    <div class="example">
+      <div>
+        <hx-disclosure class="hxBtn" aria-controls="groupedMenuId">
+          <hx-icon type="cog"></hx-icon>
+          <span>Actions</span>
+          <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+        </hx-disclosure>
+        <hx-menu id="groupedMenuId">
+          <section>
+            <header>TITLE</header>
+            <hx-menuitem>Action 1</hx-menuitem>
+            <hx-menuitem>Action 2</hx-menuitem>
+            <hx-menuitem>Action 3</hx-menuitem>
+          </section>
+          <section>
+            <header>TITLE</header>
+            <hx-menuitem>Action 1</hx-menuitem>
+            <hx-menuitem>Action 2</hx-menuitem>
+            <hx-menuitem>Action 3</hx-menuitem>
+          </section>
+        </hx-menu>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <hx-disclosure class="hxBtn" aria-controls="groupedMenuId">
+            <hx-icon type="cog"></hx-icon>
+            <span>Actions</span>
+            <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+          </hx-disclosure>
+          <hx-menu id="groupedMenuId">
+            <section>
+              <header>TITLE</header>
+              <hx-menuitem>Action 1</hx-menuitem>
+              <hx-menuitem>Action 2</hx-menuitem>
+              <hx-menuitem>Action 3</hx-menuitem>
+            </section>
+            <section>
+              <header>TITLE</header>
+              <hx-menuitem>Action 1</hx-menuitem>
+              <hx-menuitem>Action 2</hx-menuitem>
+              <hx-menuitem>Action 3</hx-menuitem>
+            </section>
+          </hx-menu>
+        {% endcode %}
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="split-menu">Split Menu</h2>
+    <div class="example">
+      <div>
+        <div class="hxBtnGroup hxPrimary" id="split-group">
+          <button class="hxBtn">Split Menu</button>
+          <hx-disclosure class="hxBtn" aria-controls="splitMenuId">
+            <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+          </hx-disclosure>
+        </div>
+        <hx-menu id="splitMenuId" relative-to="split-group">
+          <hx-menuitem>Action 1</hx-menuitem>
+          <hx-menuitem>Action 2</hx-menuitem>
+          <hx-menuitem>Action 3</hx-menuitem>
+        </hx-menu>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <div class="hxBtnGroup hxPrimary" id="split-group">
+            <button class="hxBtn">Split Menu</button>
+            <hx-disclosure class="hxBtn" aria-controls="splitMenuId">
+              <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+            </hx-disclosure>
+          </div>
+          <hx-menu id="splitMenuId" relative-to="split-group">
+            <hx-menuitem>Action 1</hx-menuitem>
+            <hx-menuitem>Action 2</hx-menuitem>
+            <hx-menuitem>Action 3</hx-menuitem>
+          </hx-menu>
+        {% endcode %}
+      </footer>
+    </div>
+  </section>
+{% endblock %}

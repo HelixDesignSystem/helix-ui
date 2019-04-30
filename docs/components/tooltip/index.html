@@ -1,0 +1,68 @@
+---
+title: Tooltip
+minver: 0.2.0
+also:
+  components/tooltip/test.html: Testing - Tooltip
+  elements/hx-tooltip: <hx-tooltip>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <p class="comfortable">
+      A tooltip is a component that provides descriptive information related to an element when
+      the element receives keyboard focus or the mouse hovers over it.
+    </p>
+    <p class="comfortable">
+      Tooltips should not contain interactive content. Consider using the
+      <a href="components/popovers">Popover</a> component for interactive content.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="basic-tooltip">Basic Tooltip</h2>
+    <div class="example" id="vue-tooltipDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <div>
+            <label for="selPosition" class="beta-hxFieldName">Position</label>
+            <select id="selPosition" v-model="position">
+              <option v-for="_position in positions" :value="_position">
+                {% raw %}{{ _position.label }}{% endraw %}
+              </option>
+            </select>
+          </div>
+        </form>
+      </header>
+
+      <div>
+        <p>
+          <hx-icon id="icon1" type="help-circle"></hx-icon>
+        </p>
+        <hx-tooltip for="icon1" :position="position.value">
+        {% raw %}
+          {{position.label}} Tooltip
+        {% endraw %}
+        </hx-tooltip>
+      </div>
+
+      <footer>
+        {% code 'html' %}{% raw %}
+          <p>
+            <hx-icon id="icon1" type="help-circle"></hx-icon>
+          </p>
+          <hx-tooltip for="icon1" position="{{position.value}}">
+            {{position.label}} Tooltip
+          </hx-tooltip>{% endraw %}
+        {% endcode %}
+      </footer>
+    </div>
+    <!--
+    <p class="hxSubdued hxSubBody comfortable">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      For accessibility, make sure that the control element can receive focus
+      (i.e., use a native focusable element or an element with a non-negative
+      <code>tabindex</code> attribute).
+    </p>
+    -->
+  </section>
+{% endblock %}

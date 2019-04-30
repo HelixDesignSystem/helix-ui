@@ -1,0 +1,91 @@
+---
+title: Pill
+minver: 0.1.14
+also:
+  components/pill/test.html: Testing - Pill
+  elements/hx-pill: <hx-pill>
+  elements/hx-status: <hx-status>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <h2 id="basic-pill">Basic Pill</h2>
+    <p class="hxSubBody">Added: v0.8.0</p>
+    <div class="example" id="vue-pillDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <p>
+            <label for="txtContent" class="beta-hxFieldName">Content:</label>
+            <textarea
+              class="hxTextCtrl"
+              id="txtContent"
+              v-model="content"
+            ></textarea>
+          </p>
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div>
+              <input id="chkIsPersistent" type="checkbox" v-model="isPersistent" />
+              <label for="chkIsPersistent">Persist</label>
+            </div>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-pill
+          :persist="isPersistent"
+          v-text="content"
+          @dismiss="onEvent"
+        ></hx-pill>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="status-pill">Status Pill</h2>
+    <p class="hxSubBody">Added: v0.1.14</p>
+    <div class="example" id="vue-statusPillDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <div>
+            <label for="selVariant" class="beta-hxFieldName">Variant</label>
+            <select id="selVariant" v-model="variant">
+              <option v-for="_variant in variants" :value="_variant">
+                {% raw %}{{ _variant.label }}{% endraw %}
+              </option>
+            </select>
+          </div>
+          <fieldset>
+            <legend class="beta-hxFieldname">Options</legend>
+            <div>
+              <input id="chkIsFilled" type="checkbox" v-model="isFilled">
+              <label for="chkIsFilled">Filled</label>
+            </div>
+          </fieldset>
+        </form>
+      </header>
+
+      <div class="status-demo">
+        <hx-status :class="cssClasses" v-text="variant.label"></hx-status>
+      </div>
+
+      <footer>
+        <template v-if="cssClasses === ''">
+          {% code 'html' %}
+            {% raw %}<hx-status>...</hx-status>{% endraw %}
+          {% endcode %}
+        </template>
+        <template v-else>
+          {% code 'html' %}
+            {% raw %}<hx-status class="{{cssClasses}}">...</hx-status>{% endraw %}
+          {% endcode %}
+        </template>
+      </footer>
+    </div>
+  </section>
+{% endblock %}

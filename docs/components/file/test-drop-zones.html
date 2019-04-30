@@ -1,0 +1,61 @@
+---
+title: Testing - Drop Zone
+---
+{% extends 'test.njk' %}
+{% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/file">File</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  <section>
+    <h2>Invisible Drop Zone</h2>
+    <hx-drop-zone>
+      <p>Invisible Drop Zone</p>
+    </hx-drop-zone>
+  </section>
+
+  <section>
+    <h2>Visible Drop Zone (file not over element)</h2>
+    <hx-drop-zone drag="away">
+      <p>Visible Drop Zone (file not over element)</p>
+    </hx-drop-zone>
+  </section>
+
+  <section>
+    <h2>Visible Drop Zone (file over element)</h2>
+    <hx-drop-zone drag="over">
+      <p>Visible Drop Zone (file over element)</p>
+    </hx-drop-zone>
+  </section>
+
+  <section>
+    <h2>Drop Zone with Child Fence</h2>
+    <hx-drop-zone>
+      <hx-drop-fence>
+        <p>Invisible Drop Zone</p>
+      </hx-drop-fence>
+    </hx-drop-zone>
+  </section>
+
+  <section>
+    <h2>Visible Drop Zone with Child Fence (file not over element)</h2>
+    <hx-drop-zone drag="away">
+      <hx-drop-fence>
+        <p>Visible Drop Zone (file not over element)</p>
+      </hx-drop-fence>
+    </hx-drop-zone>
+  </section>
+
+  <section>
+    <h2>Visible Drop Zone with Child Fence (file over element)</h2>
+    <hx-drop-zone drag="over">
+      <hx-drop-fence>
+        <p>Visible Drop Zone (file over element)</p>
+      </hx-drop-fence>
+    </hx-drop-zone>
+  </section>
+{% endblock %}

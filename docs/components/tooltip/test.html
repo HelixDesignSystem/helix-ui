@@ -1,0 +1,267 @@
+---
+title: Testing - Tooltip
+---
+{% extends 'test.njk' %}
+{% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/tooltips">Tooltips</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  <section>
+    <h2>Appearance (simple)</h2>
+    <div class="tooltip-appearance">
+      <hx-tooltip open>
+        Default
+      </hx-tooltip>
+
+      {% for _position in data.positions.withArrow %}
+        <hx-tooltip open position="{{_position}}">
+          {{_position}}
+        </hx-tooltip>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section>
+    <h2>Appearance (formatted)</h2>
+    <div class="tooltip-appearance">
+      <hx-tooltip open position="right-bottom">
+        <header>Tooltip Header</header>
+        <p>
+          After inspecting the rear, driver-side battery injector,
+          we discovered that the <b>AC condenser</b> of the previous
+          gear isn't activating near the horn.
+        </p>
+      </hx-tooltip>
+    </div>
+  </section>
+
+  <section>
+    <h2>HTML5-compatible IDs</h2>
+
+    <div class="hxRow hxAuto">
+      <div class="hxCol">
+        <h3>ID on Target</h3>
+        <p>
+          <span id="000c075715ed46eb61242f85e80aaaa1">Hover Here</span>
+          <hx-tooltip for="000c075715ed46eb61242f85e80aaaa1">
+            Do you like my hat?
+          </hx-tooltip>
+        </p>
+      </div>
+      <div class="hxCol">
+        <h3>ID on Tooltip</h3>
+        <p>
+          <span id="html-tip-2">Hover Here</span>
+          <hx-tooltip
+            id="100d90208e58f24216be64de517bbbb2"
+            for="html-tip-2"
+          >
+            Do you like my hat?
+          </hx-tooltip>
+        </p>
+      </div>
+      <div class="hxCol">
+        <h3>ID on Both Tooltip and Target</h3>
+        <p>
+          <span id="200c075715ed46eb61242f85e80cccc3">Hover Here</span>
+          <hx-tooltip
+            for="200c075715ed46eb61242f85e80cccc3"
+            id="200d90208e58f24216be64de517dddd3"
+          >
+            Do you like my hat?
+          </hx-tooltip>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Various Target Elements</h2>
+    <div class="hxRow hxAuto">
+      <div class="hxCol">
+        <h3>Heading Target</h3>
+
+        <h4 id="heading-target" class="skip-toc">
+          #heading-target
+        </h4>
+        <hx-tooltip for="heading-target" position="bottom">
+          #heading-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>Button</h3>
+
+        <button class="hxBtn" id="button-target">
+          #button-target
+        </button>
+        <hx-tooltip for="button-target">
+          #button-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>Span</h3>
+
+        <p>
+          <span id="span-target">
+            #span-target
+          </span>
+        </p>
+        <hx-tooltip for="span-target">
+          #span-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>Anchor</h3>
+
+        <p>
+          <a id="anchor-target">
+            #anchor-target
+          </a>
+        </p>
+        <hx-tooltip for="anchor-target">
+          #anchor-target
+        </hx-tooltip>
+        <p class="hxSubdued hxSubBody">Shouldn't show via keyboard focus.</p>
+      </div>
+
+      <div class="hxCol">
+        <h3>Link</h3>
+
+        <p>
+          <a href="#" id="link-target">
+            #link-target
+          </a>
+        </p>
+        <hx-tooltip for="link-target">
+          #link-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>Disclosure</h3>
+
+        <hx-disclosure id="disclosure-target">
+          #disclosure-target
+        </hx-disclosure>
+        <hx-tooltip for="disclosure-target">
+          #disclosure-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>Icon</h3>
+
+        <p>
+          <hx-icon type="info-circle" id="icon-target"></hx-icon>
+        </p>
+        <hx-tooltip for="icon-target">
+          hx-icon#icon-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>Pill</h3>
+
+        <hx-pill id="pill-target">#pill-target</hx-pill>
+        <hx-tooltip for="pill-target">
+          #pill-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>File Input (wrapped)</h3>
+
+        <hx-file-input
+          icon="upload"
+          label="#file-input-target"
+        >
+          <input id="file-input-target" type="file" />
+        </hx-file-input>
+        <p class="hxSubdued hxSubBody">Shouldn't show.</p>
+
+        <hx-tooltip for="file-input-target">
+          #file-input-target
+        </hx-tooltip>
+      </div>
+
+      <div class="hxCol">
+        <h3>File Input (hx-file-input)</h3>
+
+        <hx-file-input
+          icon="upload"
+          id="hx-file-input-target"
+          label="#hx-file-input-target"
+        >
+          <input type="file" />
+        </hx-file-input>
+
+        <hx-tooltip for="hx-file-input-target">
+          #hx-file-input-target
+        </hx-tooltip>
+        <p>
+          <hx-error>Adds double tab stop</hx-error>
+        </p>
+      </div>
+
+      <div class="hxCol">
+        <h3>Text Input</h3>
+
+        <input
+           type="text"
+           class="hxTextCtrl"
+           placeholder="#text-input-target"
+           id="text-input-target"
+        />
+
+        <hx-tooltip for="text-input-target">
+          #text-input-target
+        </hx-tooltip>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Multiple Targets in Near Proximity</h2>
+    <table class="hxTable hxTable--condensed">
+      <tbody>
+        {% for i in range(0, 5) -%}
+        <tr>
+          <td>
+            <hx-icon type="info-circle" id="tgtProximity{{i}}"></hx-icon>
+            <hx-tooltip for="tgtProximity{{i}}" position="right">Tooltip Message</hx-tooltip>
+          </td>
+        </tr>
+        {%- endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="tooltip-in-table-header">Tooltip Inside a Table Header</h2>
+    </header>
+    <table class="hxTable">
+      <thead>
+        <tr>
+          <th>
+            Rank
+            <p>
+              <hx-icon id="testIcon1" type="help-circle"></hx-icon>
+            </p>
+            <hx-tooltip for="testIcon1" open position="bottom-center">
+              Bottom Center Tooltip
+            </hx-tooltip>
+          </th>
+        </tr>
+      </thead>
+    </table>
+ </section>
+{% endblock %}

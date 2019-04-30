@@ -1,0 +1,4354 @@
+---
+title: Testing - Checkbox
+---
+{% set contentClasses = 'checkbox-spec' %}
+{% extends 'test.njk' %}
+{% block content %}
+  <section>
+    <nav class="hxBreadcrumb">
+      <a href="components/checkbox">Checkbox</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">{{page.title}}</a>
+    </nav>
+  </section>
+
+  <!-- pristine optional -->
+  <section>
+    <header>
+      <h2 id="test-pristine">Pristine</h2>
+      <code>&lt;hx-checkbox-control&gt;</code>
+    </header>
+
+    <section id="pristine-optional-enabled-determinate-states">
+      <header>
+        <h3>Optional</h3>
+        <code>enabled:determinate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :optional, :enabled, (determinate), :valid -->
+              <hx-checkbox-control>
+                <input
+                  id="hxCheckbox-OEDV"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDV">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, (determinate), :valid, :focus -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-focus"
+                  id="hxCheckbox-OEDVF"
+                  type="checkbox"
+                 />
+                <label for="hxCheckbox-OEDVF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, (determinate), :valid, :hover -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-hover"
+                  id="hxCheckbox-OEDVH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDVH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :optional, :enabled, (determinate), :invalid -->
+              <hx-checkbox-control>
+                <input
+                  data-mock-invalid
+                  id="hxCheckbox-OEDI"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDI">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, (determinate), :invalid, :focus -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-focus"
+                  data-mock-invalid
+                  id="hxCheckbox-OEDIF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDIF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, (determinate), :invalid, :hover -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-hover"
+                  data-mock-invalid
+                  id="hxCheckbox-OEDIH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDIH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :optional, :enabled, (determinate), :valid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  id="hxCheckbox-OEDVC"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDVC">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, (determinate), :valid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  id="hxCheckbox-OEDVCF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDVCF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, (determinate), :valid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  id="hxCheckbox-OEDVCH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDVCH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :optional, :enabled, (determinate), :invalid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  data-mock-invalid
+                  id="hxCheckbox-OEDIC"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDIC">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, (determinate), :invalid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-invalid
+                  id="hxCheckbox-OEDICF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDICF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, (determinate), :invalid, :checked, :fhover-->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-invalid
+                  id="hxCheckbox-OEDICH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDICH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="pristine-optional-enabled-indeterminate-states">
+      <header>
+        <code>enabled:indeterminate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :optional, :enabled, :indeterminate, :valid -->
+              <hx-checkbox-control>
+                <input
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIV"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIV">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, :indeterminate, :valid:, focus -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIVF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIVF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, :indeterminate, :valid:, hover -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIVH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIVH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :optional, :enabled, :indeterminate, :invalid -->
+              <hx-checkbox-control>
+                <input
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEII"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEII">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, :indeterminate, :invalid, :focus -->
+              <hx-checkbox-control>
+                <input
+                  type="checkbox"
+                  id="hxCheckbox-OEIIF"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  class="mock-focus"
+                />
+                <label for="hxCheckbox-OEIIF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, :indeterminate, :invalid, :hover -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEIIH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIIH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :optional, :enabled, :indeterminate, :valid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIVC"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIVC">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, :indeterminate, :valid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIVCF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIVCF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, :indeterminate, :valid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIVCH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIVCH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :optional, :enabled, :indeterminate, :invalid, :checked -->
+               <hx-checkbox-control>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEIIC"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIIC">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, :indeterminate, :invalid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEIICF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIICF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :enabled, :indeterminate, :invalid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEIICH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIICH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="pristine-optional-disabled-determinate-states">
+      <header>
+        <code>disabled:determinate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :optional, :disabled, (determinate), :valid -->
+              <hx-checkbox-control>
+                <input
+                  disabled
+                  id="hxCheckbox-ODDV"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDV">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, (determinate), :valid, :focus -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-focus"
+                  disabled
+                  id="hxCheckbox-ODDVF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDVF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, (determinate), :valid, :hover -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-hover"
+                  disabled
+                  id="hxCheckbox-ODDVH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDVH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :optional, :disabled, (determinate), :invalid -->
+              <hx-checkbox-control>
+                <input
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDI"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDI">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, (determinate), :invalid, :focus -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-focus"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDIF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDIF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, (determinate), :invalid, :hover -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-hover"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDIH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDIH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :optional, :disabled, (determinate), :valid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  disabled
+                  id="hxCheckbox-ODDVC"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDVC">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, (determinate), :valid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  disabled
+                  id="hxCheckbox-ODDVCF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDVCF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, (determinate), :valid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  disabled
+                  id="hxCheckbox-ODDVCH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDVCH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :optional, :disabled, (determinate), :invalid, :checked -->
+               <hx-checkbox-control>
+                <input
+                  checked
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDIC"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDIC">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, (determinate), :invalid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDICF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDICF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, (determinate), :invalid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDICH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDICH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="pristine-optional-enabled-indeterminate-states">
+      <header>
+        <code>disabled:indeterminate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :optional, :disabled, :indeterminate, :valid -->
+              <hx-checkbox-control>
+                <input
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIV"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIV">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, :indeterminate, :valid, :focus -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIVF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIVF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, :indeterminate, :valid, :hover -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIVH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIVH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :optional, :disabled, :indeterminate, :invalid -->
+              <hx-checkbox-control>
+                <input
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODII"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODII">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, :indeterminate, :invalid, :focus -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODIIF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIIF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, :indeterminate, :invalid, :hover -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODIIH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIIH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :optional, :disabled, :indeterminate, :valid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIVC"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIVC">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, :indeterminate, :valid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIVCF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIVCF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, :indeterminate, :valid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIVCH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIVCH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :optional, :disabled, :indeterminate, :invalid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODIIC"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIIC">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, :indeterminate, :invalid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODIICF"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIICF">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :optional, :disabled, :indeterminate, :invalid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODIICH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIICH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <!-- pristine required -->
+  <section>
+    <section id="pristine-required-enabled-determinate-states">
+      <header>
+        <h3>Required</h3>
+        <code>enabled:determinate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :required, :enabled, (deteminate), :valid -->
+              <hx-checkbox-control>
+                <label for="hxCheckbox-REDV">
+                  N/A
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :required, :enabled, (determinate), :invalid -->
+              <hx-checkbox-control>
+                <input
+                  id="hxCheckbox-REDI"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDI">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :enabled, (determinate), :invalid, :focus -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-focus"
+                  id="hxCheckbox-REDIF"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDIF">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :enabled, (determinate), :invalid, :hover -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-hover"
+                  id="hxCheckbox-REDIH"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDIH">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :required, :enabled, (determinate), :valid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  id="hxCheckbox-REDVC"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDVC">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :enabled, (determinate), :valid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  id="hxCheckbox-REDVCF"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDVCF">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :enabled, (determinate), :valid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  id="hxCheckbox-REDVCH"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDVCH">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :required, :enabled, (determinate), :invalid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  data-mock-invalid
+                  id="hxCheckbox-REDIC"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDIC">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :enabled, (determinate), :invalid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-invalid
+                  id="hxCheckbox-REDICF"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDICF">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :enabled, (determinate), :invalid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-invalid
+                  id="hxCheckbox-REDICH"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDICH">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="pristine-required-enabled-indeterminate-states">
+      <header>
+        <code>enabled:indeterminate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :required, :enabled, :indeterminate, :valid -->
+              <hx-checkbox-control>
+                <label for="hxCheckbox-REIV">N/A</label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :required, :enabled, :indeterminate, :invalid -->
+              <hx-checkbox-control>
+                <input
+                  data-mock-indeterminate
+                  id="hxCheckbox-REII"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REII">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :enabled, :indeterminate:, :invalid, :focus -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  id="hxCheckbox-REIIF"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIIF">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :enabled, :indeterminate:, :invalid, :hover -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  id="hxCheckbox-REIIH"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIIH">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :required, :enabled:, :indeterminate, :valid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  id="hxCheckbox-REIVC"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIVC">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :enabled:, :indeterminate, :valid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  id="hxCheckbox-REIVCF"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIVCF">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :enabled:, :indeterminate, :valid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  id="hxCheckbox-REIVCH"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIVCH">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :required, :enabled:, :indeterminate, :invalid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-REIIC"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIIC">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :enabled:, :indeterminate, :invalid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-REIICF"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIICF">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :enabled:, :indeterminate, :invalid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-REIICH"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIICH">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="pristine-required-disabled-determinate-states">
+      <header>
+        <code>disabled:determinate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :required, :disabled, (determinate), :valid -->
+              <hx-checkbox-control>
+                <label for="hxCheckbox-RDDV">N/A</label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :required, :disabled, (determinate), :invalid -->
+              <hx-checkbox-control>
+                <input
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDI"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDI">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :disabled, (determinate), :invalid, :focus -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-focus"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDIF"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDIF">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :disabled, (determinate), :invalid, :hover -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-hover"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDIH"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDIH">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :required, :disabled, (determinate), :valid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  disabled
+                  id="hxCheckbox-RDDVC"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDVC">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :disabled, (determinate), :valid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  disabled
+                  id="hxCheckbox-RDDVCF"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDVCF">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :disabled, (determinate), :valid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  disabled
+                  id="hxCheckbox-RDDVCH"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDVCH">
+                <hx-checkbox></hx-checkbox>
+                Required, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :required, :disabled, (determinate), :invalid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDIC"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDIC">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :disabled, (determinate), :invalid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDICF"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDICF">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :disabled, (determinate), :invalid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDICH"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDICH">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="pristine-required-disabled-indeterminate-states">
+      <header>
+        <code>disabled:indeterminate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :required, :disabled, :indeterminate, :valid -->
+              <hx-checkbox-control>
+                <label for="hxCheckbox-RDIV">N/A</label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :required, :disabled, :indeterminate, :invalid -->
+              <hx-checkbox-control>
+                <input
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDII"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDII">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :disabled, :indeterminate, :invalid, :focus -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDIIF"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIIF">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :disabled, :indeterminate, :invalid, :hover -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDIIH"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIIH">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :required, :disabled, :indeterminate, :valid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-RDIVC"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIVC">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :disabled, :indeterminate, :valid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-RDIVCF"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIVCF">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :disabled, :indeterminate, :valid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-RDIVCH"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIVCH">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :required, :disabled, :indeterminate, :invalid, :checked -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDIIC"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIIC">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :disabled, :indeterminate, :invalid, :checked, :focus -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDIICF"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIICF">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :disabled, :indeterminate, :invalid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDIICH"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIICH">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <!-- dirty optional -->
+  <section>
+    <header>
+      <h2 id="test-dirty">Dirty</h2>
+      <code>&lt;hx-checkbox-control hx-dirty&gt;</code>
+    </header>
+
+    <section id="dirty-optional-enabled-determinate-states">
+      <header>
+        <h3>Optional</h3>
+        <code>enabled:determinate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :dirty, :optional, :enabled, (determinate), :valid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  id="hxCheckbox-OEDV-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDV-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, (determinate), :valid, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-focus"
+                  id="hxCheckbox-OEDV-f-dirty"
+                  type="checkbox"
+                 />
+                <label for="hxCheckbox-OEDV-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, (determinate), :valid, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-hover"
+                  id="hxCheckbox-OEDV-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDV-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :optional, :enabled, (determinate), :invalid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  data-mock-invalid
+                  id="hxCheckbox-OEDI-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDI-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, (determinate), :invalid, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-focus"
+                  data-mock-invalid
+                  id="hxCheckbox-OEDI-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDI-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, (determinate), :invalid, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-hover"
+                  data-mock-invalid
+                  id="hxCheckbox-OEDI-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDI-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :dirty, :optional, :enabled, (determinate), :valid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  id="hxCheckbox-OEDVC-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDVC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, (determinate), :valid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  id="hxCheckbox-OEDVC-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDVC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, (determinate), :valid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  id="hxCheckbox-OEDVC-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDVC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :optional, :enabled, (determinate), :invalid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  data-mock-invalid
+                  id="hxCheckbox-OEDIC-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDIC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, (determinate), :invalid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-invalid
+                  id="hxCheckbox-OEDIC-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDIC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, (determinate), :invalid, :checked, :fhover-->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-invalid
+                  id="hxCheckbox-OEDIC-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDIC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="dirty-optional-enabled-indeterminate-states">
+      <header>
+        <code>enabled:indeterminate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :dirty, :optional, :enabled, :indeterminate, :valid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIV-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIV-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, :indeterminate, :valid:, focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIV-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIV-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, :indeterminate, :valid:, hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIV-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIV-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :optional, :enabled, :indeterminate, :invalid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEII-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEII-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, :indeterminate, :invalid, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  type="checkbox"
+                  id="hxCheckbox-OEII-f-dirty"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  class="mock-focus"
+                />
+                <label for="hxCheckbox-OEII-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, :indeterminate, :invalid, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEII-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEII-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :dirty, :optional, :enabled, :indeterminate, :valid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIVC-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIVC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, :indeterminate, :valid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIVC-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIVC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, :indeterminate, :valid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIVC-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIVC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :optional, :enabled, :indeterminate, :invalid, :checked, :blur -->
+               <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEIIC-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIIC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, :indeterminate, :invalid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEIIC-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIIC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :enabled, :indeterminate, :invalid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEIIC-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIIC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="dirty-optional-disabled-determinate-states">
+      <header>
+        <code>disabled:determinate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :dirty, :optional, :disabled, (determinate), :valid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  disabled
+                  id="hxCheckbox-ODDV-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDV-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, (determinate), :valid, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-focus"
+                  disabled
+                  id="hxCheckbox-ODDV-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDV-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, (determinate), :valid, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-hover"
+                  disabled
+                  id="hxCheckbox-ODDV-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDV-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :optional, :disabled, (determinate), :invalid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDI-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDI-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, (determinate), :invalid, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-focus"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDI-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDI-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, (determinate), :invalid, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-hover"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDI-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDI-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :dirty, :optional, :disabled, (determinate), :valid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  disabled
+                  id="hxCheckbox-ODDVC-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDVC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, (determinate), :valid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  disabled
+                  id="hxCheckbox-ODDVC-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDVC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, (determinate), :valid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  disabled
+                  id="hxCheckbox-ODDVC-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDVC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :optional, :disabled, (determinate), :invalid, :checked, :blur -->
+               <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDIC-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDIC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, (determinate), :invalid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDIC-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDIC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, (determinate), :invalid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDIC-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDIC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="dirty-optional-disabled-indeterminate-states">
+      <header>
+        <code>disabled:indeterminate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :dirty, :optional, :disabled, :indeterminate, :valid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIV-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIV-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, :indeterminate, :valid, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIV-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIV-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, :indeterminate, :valid, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIV-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIV-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :optional, :disabled, :indeterminate, :invalid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODII-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODII-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, :indeterminate, :invalid, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODII-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODII-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, :indeterminate, :invalid, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODII-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODII-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :dirty, :optional, :disabled, :indeterminate, :valid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIVC-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIVC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, :indeterminate, :valid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIVC-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIVC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, :indeterminate, :valid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIVC-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIVC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :optional, :disabled, :indeterminate, :invalid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODIIC-b-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIIC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, :indeterminate, :invalid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODIIC-f-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIIC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :optional, :disabled, :indeterminate, :invalid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODIIC-h-dirty"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIIC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <!-- dirty required -->
+  <section>
+    <section id="dirty-required-enabled-determinate-states">
+      <header>
+        <h3>Required</h3>
+        <code>enabled:determinate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :dirty, :required, :enabled, (deteminate), :valid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <label for="hxCheckbox-REDV-b-dirty">
+                  N/A
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :required, :enabled, (determinate), :invalid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  id="hxCheckbox-REDI-b-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDI-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :enabled, (determinate), :invalid, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-focus"
+                  id="hxCheckbox-REDI-f-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDI-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :enabled, (determinate), :invalid, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-hover"
+                  id="hxCheckbox-REDI-h-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDI-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :dirty, :required, :enabled, (determinate), :valid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  id="hxCheckbox-REDVC-b-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDVC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :enabled, (determinate), :valid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  id="hxCheckbox-REDVC-f-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDVC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :enabled, (determinate), :valid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  id="hxCheckbox-REDVC-h-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDVC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :required, :enabled, (determinate), :invalid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  data-mock-invalid
+                  id="hxCheckbox-REDIC-b-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDIC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :enabled, (determinate), :invalid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-invalid
+                  id="hxCheckbox-REDIC-f-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDIC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :enabled, (determinate), :invalid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-invalid
+                  id="hxCheckbox-REDIC-h-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDIC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="dirty-required-enabled-indeterminate-states">
+      <header>
+        <code>enabled:indeterminate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :dirty, :required, :enabled, :indeterminate, :valid -->
+              <hx-checkbox-control hx-dirty>
+                <label for="hxCheckbox-REIV-b-dirty">
+                  N/A
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :required, :enabled, :indeterminate, :invalid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  data-mock-indeterminate
+                  id="hxCheckbox-REII-b-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REII-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :enabled, :indeterminate:, :invalid, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  id="hxCheckbox-REII-f-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REII-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :enabled, :indeterminate:, :invalid, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  id="hxCheckbox-REII-h-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REII-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :dirty, :required, :enabled:, :indeterminate, :valid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  id="hxCheckbox-REIVC-b-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIVC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :enabled:, :indeterminate, :valid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  id="hxCheckbox-REIVC-f-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIVC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :enabled:, :indeterminate, :valid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  id="hxCheckbox-REIVC-h-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIVC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :required, :enabled:, :indeterminate, :invalid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-REIIC-b-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIIC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :enabled:, :indeterminate, :invalid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-REIIC-f-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIIC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :enabled:, :indeterminate, :invalid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-REIIC-h-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIIC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="dirty-required-disabled-determinate-states">
+      <header>
+        <code>disabled:determinate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :dirty, :required, :disabled, (determinate), :valid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <label for="hxCheckbox-RDDV-b-dirty">
+                  N/A
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :required, :disabled, (determinate), :invalid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDI-b-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDI-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :disabled, (determinate), :invalid, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-focus"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDI-f-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDI-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :disabled, (determinate), :invalid, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-hover"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDI-h-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDI-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :dirty, :required, :disabled, (determinate), :valid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  disabled
+                  id="hxCheckbox-RDDVC-b-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDVC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :disabled, (determinate), :valid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  disabled
+                  id="hxCheckbox-RDDVC-f-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDVC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :disabled, (determinate), :valid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  disabled
+                  id="hxCheckbox-RDDVC-h-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDVC-h-dirty">
+                <hx-checkbox></hx-checkbox>
+                Required, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :required, :disabled, (determinate), :invalid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDIC-b-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDIC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :disabled, (determinate), :invalid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDIC-f-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDIC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :disabled, (determinate), :invalid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDIC-h-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDIC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="dirty-required-disabled-indeterminate-states">
+      <header>
+        <code>disabled:indeterminate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :dirty, :required, :disabled, :indeterminate, :valid -->
+              <hx-checkbox-control hx-dirty>
+                <label for="hxCheckbox-RDIV-b-dirty">
+                  N/A
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :required, :disabled, :indeterminate, :invalid, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDII-b-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDII-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :disabled, :indeterminate, :invalid, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDII-f-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDII-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :disabled, :indeterminate, :invalid, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDII-h-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDII-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :dirty, :required, :disabled, :indeterminate, :valid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-RDIVC-b-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIVC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :disabled, :indeterminate, :valid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-RDIVC-f-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIVC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :disabled, :indeterminate, :valid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-RDIVC-h-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIVC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :dirty, :required, :disabled, :indeterminate, :invalid, :checked, :blur -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  checked
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDIIC-b-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIIC-b-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :disabled, :indeterminate, :invalid, :checked, :focus -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDIIC-f-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIIC-f-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :dirty, :required, :disabled, :indeterminate, :invalid, :checked, :hover -->
+              <hx-checkbox-control hx-dirty>
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDIIC-h-dirty"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIIC-h-dirty">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <!-- visually invalid optional -->
+  <section>
+    <header>
+      <h2 id="test-visually-invalid">Visually Invalid</h2>
+      <code>&lt;hx-checkbox-control class="hxInvalid"&gt;</code>
+    </header>
+
+    <section id="hxInvalid-optional-enabled-determinate-states">
+      <header>
+        <h3>Optional</h3>
+        <code>enabled:determinate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :optional, :enabled, (determinate), :valid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  id="hxCheckbox-OEDV-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDV-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, (determinate), :valid, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-focus"
+                  id="hxCheckbox-OEDV-f-hxInvalid"
+                  type="checkbox"
+                 />
+                <label for="hxCheckbox-OEDV-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, (determinate), :valid, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-hover"
+                  id="hxCheckbox-OEDV-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDV-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :optional, :enabled, (determinate), :invalid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  data-mock-invalid
+                  id="hxCheckbox-OEDI-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDI-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, (determinate), :invalid, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-focus"
+                  data-mock-invalid
+                  id="hxCheckbox-OEDI-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDI-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, (determinate), :invalid, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-hover"
+                  data-mock-invalid
+                  id="hxCheckbox-OEDI-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDI-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :hxInvalid :optional, :enabled, (determinate), :valid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  id="hxCheckbox-OEDVC-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDVC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid :optional, :enabled, (determinate), :valid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  id="hxCheckbox-OEDVC-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDVC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, (determinate), :valid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-hover"
+                  id="hxCheckbox-OEDVC-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDVC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :optional, :enabled, (determinate), :invalid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  data-mock-invalid
+                  id="hxCheckbox-OEDIC-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDIC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, (determinate), :invalid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-invalid
+                  id="hxCheckbox-OEDIC-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDIC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, (determinate), :invalid, :checked, :fhover-->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-invalid
+                  id="hxCheckbox-OEDICH"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEDICH">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="hxInvalid-optional-enabled-indeterminate-states">
+      <header>
+        <code>enabled:indeterminate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :optional, :enabled, :indeterminate, :valid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIV-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIV-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, :indeterminate, :valid:, focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIV-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIV-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, :indeterminate, :valid:, hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIVH-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIVH-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :optional, :enabled, :indeterminate, :invalid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEII-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEII-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, :indeterminate, :invalid, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  type="checkbox"
+                  id="hxCheckbox-OEII-f-hxInvalid"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  class="mock-focus"
+                />
+                <label for="hxCheckbox-OEII-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, :indeterminate, :invalid, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEII-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEII-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :optional, :enabled, :indeterminate, :valid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIVC-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIVC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, :indeterminate, :valid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIVC-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIVC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, :indeterminate, :valid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  id="hxCheckbox-OEIVC-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIVC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :optional, :enabled, :indeterminate, :invalid, :checked :blur -->
+               <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEIIC-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIIC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, :indeterminate, :invalid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEIIC-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIIC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :enabled, :indeterminate, :invalid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-OEIIC-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-OEIIC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="hxInvalid-optional-disabled-determinate-states">
+      <header>
+        <code>disabled:determinate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :hxInvalid :optional, :disabled, (determinate), :valid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  disabled
+                  id="hxCheckbox-ODDV-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDV-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid :optional, :disabled, (determinate), :valid, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-focus"
+                  disabled
+                  id="hxCheckbox-ODDV-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDV-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :disabled, (determinate), :valid, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-hover"
+                  disabled
+                  id="hxCheckbox-ODDV-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDV-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :optional, :disabled, (determinate), :invalid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDI-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDI-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :disabled, (determinate), :invalid, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-focus"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDI-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDI-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :disabled, (determinate), :invalid, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-hover"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDI-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDI-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :optional, :disabled, (determinate), :valid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  disabled
+                  id="hxCheckbox-ODDVC-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDVC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :disabled, (determinate), :valid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  disabled
+                  id="hxCheckbox-ODDVC-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDVC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :disabled, (determinate), :valid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-hover"
+                  disabled
+                  id="hxCheckbox-ODDVC-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDVC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :optional, :disabled, (determinate), :invalid, :checked :blur -->
+               <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDIC-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDIC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid :optional, :disabled, (determinate), :invalid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDIC-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDIC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :disabled, (determinate), :invalid, :checked, :hover -->
+              <hx-checkbox-control>
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODDIC-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODDIC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="hxInvalid-optional-disabled-indeterminate-states">
+      <header>
+        <code>disabled:indeterminate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :optional, :disabled, :indeterminate, :valid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIV-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIV-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :disabled, :indeterminate, :valid, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIV-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIV-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :disabled, :indeterminate, :valid, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIV-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIV-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid :optional, :disabled, :indeterminate, :invalid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODII-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODII-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid :optional, :disabled, :indeterminate, :invalid, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODII-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODII-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :disabled, :indeterminate, :invalid, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODII-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODII-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :optional, :disabled, :indeterminate, :valid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIVC-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIVC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :disabled, :indeterminate, :valid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIVC-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIVC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :disabled, :indeterminate, :valid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIVC-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIVC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :optional, :disabled, :indeterminate, :invalid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODIIC-b-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIIC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :disabled, :indeterminate, :invalid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-ODIIC-f-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIIC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :optional, :disabled, :indeterminate, :valid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-ODIVC-h-hxInvalid"
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-ODIVC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Optional, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <!-- visually invalid required -->
+  <section>
+    <section id="hxInvalid-required-enabled-determinate-states" >
+      <header>
+        <h3>Required</h3>
+        <code>enabled:determinate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :required, :enabled, (deteminate), :valid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <label for="hxCheckbox-REDV-b-hxInvalid">
+                  N/A
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :required, :enabled, (determinate), :invalid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  id="hxCheckbox-REDI-b-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDI-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :enabled, (determinate), :invalid, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-focus"
+                  id="hxCheckbox-REDI-f-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDI-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :enabled, (determinate), :invalid, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-hover"
+                  id="hxCheckbox-REDIH-h-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDIH-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :required, :enabled, (determinate), :valid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  id="hxCheckbox-REDVC-b-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDVC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :enabled, (determinate), :valid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  id="hxCheckbox-REDVC-f-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDVC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :enabled, (determinate), :valid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-hover"
+                  id="hxCheckbox-REDVC-h-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDVC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :required, :enabled, (determinate), :invalid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  data-mock-invalid
+                  id="hxCheckbox-REDIC-b-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDIC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :enabled, (determinate), :invalid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-invalid
+                  id="hxCheckbox-REDIC-f-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDIC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :enabled, (determinate), :invalid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid                                      ">
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-invalid
+                  id="hxCheckbox-REDIC-h-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REDIC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="hxInvalid-required-enabled-indeterminate-states">
+      <header>
+        <code>enabled:indeterminate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :required, :enabled, :indeterminate, :valid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <label for="hxCheckbox-REIV-b-hxInvalid">
+                  N/A
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :required, :enabled, :indeterminate, :invalid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  data-mock-indeterminate
+                  id="hxCheckbox-REII-b-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REII-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :enabled, :indeterminate:, :invalid, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  id="hxCheckbox-REII-f-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REII-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :enabled, :indeterminate:, :invalid, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  id="hxCheckbox-REII-h-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REII-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :required, :enabled:, :indeterminate, :valid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  data-mock-indeterminate
+                  id="hxCheckbox-REIVC-b-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIVC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :enabled:, :indeterminate, :valid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  id="hxCheckbox-REIVC-f-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIVC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :required, :enabled:, :indeterminate, :valid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  id="hxCheckbox-REIVC-h-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIVC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :required, :enabled:, :indeterminate, :invalid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-REIIC-b-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIIC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :enabled:, :indeterminate, :invalid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-REIIC-f-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIIC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :enabled:, :indeterminate, :invalid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  id="hxCheckbox-REIIC-h-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-REIIC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Enabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="hxInvalid-required-disabled-determinate-states">
+      <header>
+        <code>disabled:determinate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :required, :disabled, (determinate), :valid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <label for="hxCheckbox-RDDV-b-hxInvalid">
+                  N/A
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :required, :disabled, (determinate), :invalid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDI-b-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDI-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :disabled, (determinate), :invalid, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-focus"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDI-f-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDI-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :disabled, (determinate), :invalid, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-hover"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDI-h-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDI-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :required, :disabled, (determinate), :valid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  disabled
+                  id="hxCheckbox-RDDVC-b-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDVC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :disabled, (determinate), :valid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  disabled
+                  id="hxCheckbox-RDDVC-f-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDVC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvlid, :required, :disabled, (determinate), :valid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-hover"
+                  disabled
+                  id="hxCheckbox-RDDVC-h-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDVC-h-hxInvalid">
+                <hx-checkbox></hx-checkbox>
+                Required, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :required, :disabled, (determinate), :invalid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDIC-b-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDIC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :disabled, (determinate), :invalid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDIC-f-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDIC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :disabled, (determinate), :invalid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDDIC-h-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDDIC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="hxInvalid-required-disabled-indeterminate-states">
+      <header>
+        <code>disabled:indeterminate</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :required, :disabled, :indeterminate, :valid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <label for="hxCheckbox-RDIV-b-hxInvalid">
+                  N/A
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :required, :disabled, :indeterminate, :invalid :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDII-b-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDII-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :disabled, :indeterminate, :invalid, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDII-f-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDII-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :disabled, :indeterminate, :invalid, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDII-h-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDII-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- :hxInvalid, :required, :disabled, :indeterminate, :valid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-RDIVC-b-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIVC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :disabled, :indeterminate, :valid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-RDIVC-f-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIVC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :disabled, :indeterminate, :valid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  disabled
+                  id="hxCheckbox-RDIVC-h-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIVC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+            <td>
+              <!-- :hxInvalid, :required, :disabled, :indeterminate, :invalid, :checked :blur -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  checked
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDIIC-b-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIIC-b-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (blur)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :disabled, :indeterminate, :invalid, :checked, :focus -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-focus"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDIIC-f-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIIC-f-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (focus)
+                </label>
+              </hx-checkbox-control>
+              <!-- :hxInvalid, :required, :disabled, :indeterminate, :invalid, :checked, :hover -->
+              <hx-checkbox-control class="hxInvalid">
+                <input
+                  class="mock-hover"
+                  data-mock-indeterminate
+                  data-mock-invalid
+                  disabled
+                  id="hxCheckbox-RDIIC-h-hxInvalid"
+                  required
+                  type="checkbox"
+                />
+                <label for="hxCheckbox-RDIIC-h-hxInvalid">
+                  <hx-checkbox></hx-checkbox>
+                  Required, Disabled, Checked (hover)
+                </label>
+              </hx-checkbox-control>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+{% endblock %}

@@ -1,0 +1,193 @@
+---
+title: Panel
+minver: 0.2.0
+also:
+  components/panel/test.html: Testing - Panel
+  elements/hx-div: <hx-div>
+---
+{% import '_utils.njk' as utils %}
+{% extends 'component.njk' %}
+{% set contentClasses = 'docs-panel' %}
+
+{% block page_header %}
+  <p>
+    The Panel component is a layout utility for sectioning content
+    vertically into a header, body, and footer.
+  </p>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="basic-panel">Basic Panel</h2>
+      <p>
+        A basic panel allows body content to scroll vertically,
+        when the panel height is constrained.
+      </p>
+    </header>
+
+    <div id="vue-panelDemo" class="example resizable" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkHasHeader"
+                type="checkbox"
+                v-model="hasHeader"
+              />
+              <label for="chkHasHeader">
+                <hx-checkbox></hx-checkbox>
+                Include Header
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkHasFooter"
+                type="checkbox"
+                v-model="hasFooter"
+              />
+              <label for="chkHasFooter">
+                <hx-checkbox></hx-checkbox>
+                Include Footer
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+
+          <p class="hxSubBody">
+            <hx-icon type="info-circle"></hx-icon>
+            Watch how the panel body reacts when you resize the example container.
+          </p>
+        </form>
+      </header>
+
+      <div id="demo-basic">
+        <div class="hxPanel">
+          <header v-if="hasHeader">Panel Header</header>
+          <hx-div>
+            <p>Panel Body</p>
+            <p>
+              If it takes you too long to document the backlog PR bottleneck, then
+              you are not detailing enough. If it takes you too long to plan the
+              burndown VOC production release, then you are not satifying enough.
+              If it takes you too long to launch the burndown PR sequence, then you
+              are not coding enough. We must exactly pick up the many MVP software
+              development! If we code off the processes, we can get the numerous
+              emergence down the WIP colocation. If it takes you too long to release
+              the lean MVP pattern, then you are not coding enough.
+            </p>
+          </hx-div>
+          <footer v-if="hasFooter">Panel Footer</footer>
+        </div>
+      </div>
+
+      <footer>
+        <template v-if="hasHeader && hasFooter">
+          {% code 'html' %}
+            <div class="hxPanel">
+              <header></header>
+              <hx-div></hx-div>
+              <footer></footer>
+            </div>
+          {% endcode %}
+        </template>
+        <template v-else-if="hasHeader">
+          {% code 'html' %}
+            <div class="hxPanel">
+              <header></header>
+              <hx-div></hx-div>
+            </div>
+          {% endcode %}
+        </template>
+        <template v-else-if="hasFooter">
+          {% code 'html' %}
+            <div class="hxPanel">
+              <hx-div></hx-div>
+              <footer></footer>
+            </div>
+          {% endcode %}
+        </template>
+        <template v-else>
+          {% code 'html' %}
+            <div class="hxPanel">
+              <hx-div></hx-div>
+            </div>
+          {% endcode %}
+        </template>
+      </footer>
+    </div>
+
+    <footer>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Visual styling added for demonstration purposes.
+      </p>
+    </footer>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="tabbed-panel">Tabbed Panel</h2>
+      <p>
+        A tabbed panel replaces the <code>&lt;hx-div&gt;</code> element
+        with a <a href="components/tabs">tabset</a>, to act as the panel body.
+      </p>
+    </header>
+
+    <p>
+      Tab content is allowed to scroll while tabs remain visible.
+    </p>
+
+    <div class="example resizable">
+      <div id="demo-tabbed">
+        <div class="hxPanel hxTabbed">
+          <header>Panel Header</header>
+
+          <hx-tabset>
+            <hx-tablist>
+              <hx-tab>Basic</hx-tab>
+              <hx-tab>Scrolling</hx-tab>
+            </hx-tablist>
+
+            <hx-tabcontent>
+              <hx-tabpanel>
+                <p>Basic Tab Panel</p>
+              </hx-tabpanel>
+
+              <hx-tabpanel>
+                <p>Scrolling Tab Panel</p>
+                {{ utils.lorem(5) }}
+              </hx-tabpanel>
+            </hx-tabcontent>
+          </hx-tabset>
+
+          <footer>Panel Footer</footer>
+        </div>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <div class="hxPanel hxTabbed">
+            <header>Panel Header</header>
+
+            <hx-tabset>
+              <hx-tablist>
+                <hx-tab>Basic</hx-tab>
+                <hx-tab>Scrolling</hx-tab>
+              </hx-tablist>
+
+              <hx-tabcontent>
+                <hx-tabpanel>...</hx-tabpanel>
+                <hx-tabpanel>...</hx-tabpanel>
+              </hx-tabcontent>
+            </hx-tabset>
+
+            <footer>Panel Footer</footer>
+          </div>
+        {% endcode %}
+      </footer>
+    </div>
+  </section>
+{% endblock %}

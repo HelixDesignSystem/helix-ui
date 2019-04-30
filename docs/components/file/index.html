@@ -1,0 +1,246 @@
+---
+title: File
+minver: 0.12.0
+also:
+  components/file/test-drop-fences.html: Testing - Drop Fence
+  components/file/test-drop-zones.html: Testing - Drop Zone
+  components/file/test-file-selectors.html: Testing - File Selector
+  components/file/test-file-tiles.html: Testing - File Tile
+  components/icon: Icon
+  elements/hx-drop-fence: <hx-drop-fence>
+  elements/hx-drop-zone: <hx-drop-zone>
+  elements/hx-file-input: <hx-file-input>
+  elements/hx-file-tile: <hx-file-tile>
+---
+{% extends 'component.njk' %}
+{% block content %}
+  <section>
+    <h2 id="drop-zone">Drop Zone</h2>
+    <p class="hxSubBody">Added: v0.14.0</p>
+    <p>
+      A container that provides a visual overlay when dragging a file, marking
+      the boundaries of where a user can drop.
+    </p>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      The drop zone ignores any padding applied to it.
+    </p>
+    <div class="example" id="vue-dropZoneDemo">
+      <div>
+        <hx-drop-zone @drop.prevent="onDrop">
+          <hx-drop-fence>
+            <p>
+              Drop files here or
+              <hx-file-input
+                class="hxTertiary"
+                label="browse your files">
+                <input type="file" />
+              </hx-file-input>.
+            </p>
+          </hx-drop-fence>
+        </hx-drop-zone>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <hx-drop-zone>
+            <hx-drop-fence>
+              <p>
+                Drop files here or
+                <hx-file-input
+                  class="hxTertiary"
+                  label="browse your files">
+                  <input type="file" />
+                </hx-file-input>.
+              </p>
+            </hx-drop-fence>
+          </hx-drop-zone>
+        {% endcode %}
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="file-selector">File Selector</h2>
+    <p class="hxSubBody">Added: v0.13.0</p>
+    <div class="example" id="vue-fileInputDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend class="beta-hxFieldName">Variant</legend>
+            <div v-for="(_variant, idx) in variants">
+              <input
+                :id="'radSelectorVariant' + idx"
+                :value="_variant"
+                name="variant"
+                type="radio"
+                v-model="variant"
+              />
+              <label :for="'radSelectorVariant' + idx">
+                <span v-text="_variant.label"></span>
+                <em class="hxSubBody" v-if="_variant.default">(default)</em>
+              </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend class="beta-hxFieldName">Icon</legend>
+            <div v-for="(_icon, idx) in icons">
+              <input
+                :id="'radSelectorIcon' + idx"
+                :value="_icon"
+                name="icon"
+                type="radio"
+                v-model="icon"
+              />
+              <label
+                :for="'radSelectorIcon' + idx"
+                v-text="_icon"
+              ></label>
+            </div>
+          </fieldset>
+          <p>
+            <label for="txtLabel" class="beta-hxFieldName">Label</label>
+            <input id="txtLabel" class="hxTextCtrl" v-model="label" />
+          </p>
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div>
+              <input id="chkIsMultiple" type="checkbox" v-model="isMultiple">
+              <label for="chkIsMultiple">Multiple</label>
+            </div>
+          </fieldset>
+        </form>
+      </header>
+      <div>
+        <hx-file-input
+          :class="variant.val"
+          :icon="icon"
+          :label="label">
+          <input type="file" :multiple="isMultiple" />
+        </hx-file-input>
+      </div>
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="file-tile">File Tile</h2>
+    <p class="hxSubBody">Added: v0.12.0</p>
+    <div class="example" id="vue-fileTileDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend class="beta-hxFieldName">States</legend>
+            <div>
+              <input id="radTileDownloadable" type="radio" value="downloadable" name="file-state" v-model="state" />
+              <label for="radTileDownloadable">Downloadable</label>
+            </div>
+            <div>
+              <input id="radTileLoading" type="radio" value="loading" name="file-state" v-model="state" />
+              <label for="radTileLoading">Loading</label>
+            </div>
+            <div>
+              <input id="radTileInvalid" type="radio" value="invalid" name="file-state" v-model="state" />
+              <label for="radTileInvalid">Invalid</label>
+            </div>
+          </fieldset>
+          <div>
+            <label for="selIcon" class="beta-hxFieldName">Icon</label>
+            <select id="selIcon" v-model="icon">
+              <option v-for="_icon in icons" :value="_icon" v-text="_icon">
+              </option>
+            </select>
+          </div>
+          <p>
+            <label for="txtName" class="beta-hxFieldName">Name</label>
+            <input id="txtName" class="hxTextCtrl" v-model="name" />
+          </p>
+          <template v-if="isDownloadable">
+            <p>
+              <label for="txtHref" class="beta-hxFieldName">HREF</label>
+              <input id="txtHref" class="hxTextCtrl" v-model="href" />
+            </p>
+            <p>
+              <label for="txtDetails" class="beta-hxFieldName">Details</label>
+              <input id="txtDetails" class="hxTextCtrl" v-model="details" />
+            </p>
+            <fieldset>
+              <legend class="beta-hxFieldName">Options</legend>
+              <div>
+                <input id="chkTileReadOnly" type="checkbox" v-model="readonly" />
+                <label for="chkTileReadOnly">Readonly</label>
+              </div>
+            </fieldset>
+          </template>
+          <p v-if="isLoading">
+            <label for="rngProgress" class="beta-hxFieldName">Progress</label>
+            <input id="rngProgress" type="range" v-model="progress"/>
+          </p>
+        </form>
+      </header>
+
+      <template v-if="isDownloadable">
+        <div>
+          <hx-file-tile
+            :details="details"
+            :href="href"
+            :icon="icon"
+            :name="name"
+            :readonly="readonly"
+            @cancel="onEvent"
+            @delete="onEvent"
+          ></hx-file-tile>
+        </div>
+
+        <footer>
+          <pre><code v-text="downloadableSnippet"></code></pre>
+        </footer>
+      </template>
+
+      <template v-if="isLoading">
+        <div>
+          <hx-file-tile
+            :icon="icon"
+            :name="name"
+            :progress="progress"
+            @cancel="onEvent"
+          ></hx-file-tile>
+        </div>
+
+        <footer>
+          {% code 'html' %}{% raw %}
+            <hx-file-tile
+              icon="{{icon}}"
+              name="{{name}}"
+              progress="{{progress}}">
+            </hx-file-tile>{% endraw %}
+          {% endcode %}
+        </footer>
+      </template>
+
+      <template v-if="isInvalid">
+        <div>
+          <hx-file-tile
+            :icon="icon"
+            :name="name"
+            @cancel="onEvent"
+            @retry="onEvent"
+            invalid
+          ></hx-file-tile>
+        </div>
+
+        <footer>
+          {% code 'html' %}{% raw %}
+            <hx-file-tile
+              icon="{{icon}}"
+              invalid
+              name="{{name}}">
+            </hx-file-tile>{% endraw %}
+          {% endcode %}
+        </footer>
+      </template>
+    </div>
+  </section>
+{% endblock %}

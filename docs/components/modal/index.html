@@ -1,0 +1,102 @@
+---
+title: Modal
+minver: 0.2.1
+also:
+  components/box/#scrolling-containers: Scrolling Containers (Box)
+  components/modal/test.html: Testing - Modal
+  elements/hx-disclosure: <hx-disclosure>
+  elements/hx-div: <hx-div>
+  elements/hx-modal: <hx-modal>
+---
+{% import '_utils.njk' as utils %}
+{% extends 'component.njk' %}
+
+{% block content %}
+  <section>
+    <h2 id="basic-modal">Basic Modal</h2>
+    <div class="example" id="vue-basicModalDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend class="beta-hxFieldName">Size</legend>
+            <div v-for="(_size, idx) in sizes">
+              <input
+                :id="'radSize' + idx"
+                :value="_size"
+                name="size"
+                type="radio"
+                v-model="size"
+              />
+              <label :for="'radSize' + idx">
+                <span v-text="_size.label"></span>
+                <em class="hxSubBody" v-if="_size.default">(default)</em>
+              </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+            <div>
+              <input id="chkIsScrollable" type="checkbox" v-model="isScrollable">
+              <label for="chkIsScrollable">Scroll Body</label>
+            </div>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-disclosure
+          aria-controls="demo-modal"
+          class="hxBtn"
+          id="open-modal"
+        >
+          Open Modal
+        </hx-disclosure>
+
+        <hx-modal
+          :class="size.className"
+          id="demo-modal"
+        >
+          <header>
+            <h3>Modal Header</h3>
+          </header>
+
+          <hx-div v-if="isScrollable" scroll="vertical">
+            <p>
+              This is the body of a demo modal. Interaction
+              with content behind this modal cannot take
+              place until this modal is closed.
+            </p>
+            {{ utils.lorem(8) }}
+          </hx-div>
+
+          <hx-div v-else>
+            <p>
+              This is the body of a demo modal. Interaction
+              with content behind this modal cannot take
+              place until this modal is closed.
+            </p>
+          </hx-div>
+
+          <footer>
+            <button class="hxBtn hxPrimary">Confirm</button>
+            <button class="hxBtn">Cancel</button>
+          </footer>
+        </hx-modal>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+    <div app-loading class="hxBox hxLg">
+      <hx-busy></hx-busy>
+      <p>Loading...</p>
+    </div>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      Please refer to
+      <a href="components/box/#scrolling-containers">"Scrolling Containers"</a>
+      documentation for more information about scrolling modal content.
+    </p>
+  </section>
+{% endblock %}
