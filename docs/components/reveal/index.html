@@ -1,0 +1,87 @@
+---
+title: Reveal
+minver: 0.2.0
+also:
+  components/button: Button
+  elements/hx-disclosure: <hx-disclosure>
+  elements/hx-reveal: <hx-reveal>
+---
+{% extends 'component.njk' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="basic-reveal">Basic Reveal</h2>
+      {# TODO: add section description #}
+    </header>
+
+    <div class="example" id="vue-revealDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkIsDisabled"
+                type="checkbox"
+                v-model="isDisabled"
+              />
+              <label for="chkIsDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-disclosure
+          :disabled="isDisabled"
+          aria-controls="elReveal"
+          class="hxBtn"
+        >
+          Click me to show content!
+        </hx-disclosure>
+        <hx-reveal id="elReveal">
+          <p>Peekaboo!</p>
+        </hx-reveal>
+      </div>
+
+      <footer>
+        <template v-if="isDisabled">
+          {% code 'html' %}
+            <hx-disclosure
+              aria-controls="elReveal"
+              class="hxBtn"
+              disabled
+            >
+              Click me to show content!
+            </hx-disclosure>
+            <hx-reveal id="elReveal">
+              <p>Peekaboo!</p>
+            </hx-reveal>
+          {% endcode %}
+        </template>
+
+        <template v-else>
+          {% code 'html' %}
+            <hx-disclosure
+              aria-controls="elReveal"
+              class="hxBtn"
+            >
+              Click me to show content!
+            </hx-disclosure>
+            <hx-reveal id="elReveal">
+              <p>Peekaboo!</p>
+            </hx-reveal>
+          {% endcode %}
+        </template>
+      </footer>
+    </div>
+  </section>
+{% endblock %}

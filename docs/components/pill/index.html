@@ -1,0 +1,128 @@
+---
+title: Pill
+minver: 0.1.14
+also:
+  components/pill/test.html: Testing - Pill
+  elements/hx-pill: <hx-pill>
+  elements/hx-status: <hx-status>
+---
+{% extends 'component.njk' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="basic-pill">Basic Pill</h2>
+      <p class="hxSubBody">Added: v0.8.0</p>
+      {# TODO: add section description #}
+    </header>
+
+    <div class="example" id="vue-pillDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <hx-text-control>
+            <input
+              id="txtContent"
+              type="text"
+              v-model="content"
+            />
+            <label for="txtContent">
+              Content
+            </label>
+          </hx-text-control>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkIsPersistent"
+                type="checkbox"
+                v-model="isPersistent"
+              />
+              <label for="chkIsPersistent">
+                <hx-checkbox></hx-checkbox>
+                Persist
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-pill
+          :persist="isPersistent"
+          @dismiss="onEvent"
+        >
+          {% raw %}{{content}}{% endraw %}
+        </hx-pill>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="status-pill">Status Pill</h2>
+      <p class="hxSubBody">Added: v0.1.14</p>
+      {# TODO: add section description #}
+    </header>
+
+    <div class="example" id="vue-statusPillDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <hx-select-control>
+            <select id="selVariant" v-model="variant">
+              <option v-for="_variant in variants" :value="_variant">
+                {% raw %}{{_variant.label}}{% endraw %}
+              </option>
+            </select>
+            <hx-select></hx-select>
+            <label for="selVariant">
+              Variant
+            </label>
+          </hx-select-control>
+
+          <fieldset>
+            <legend class="beta-hxFieldname">Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkIsFilled"
+                type="checkbox"
+                v-model="isFilled"
+              />
+              <label for="chkIsFilled">
+                <hx-checkbox></hx-checkbox>
+                Filled
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+        </form>
+      </header>
+
+      <div class="status-demo">
+        <hx-status :class="cssClasses">
+          {% raw %}{{variant.label}}{% endraw %}
+        </hx-status>
+      </div>
+
+      <footer>
+        <template v-if="cssClasses === ''">
+          {% code 'html' %}
+            {% raw %}<hx-status>...</hx-status>{% endraw %}
+          {% endcode %}
+        </template>
+        <template v-else>
+          {% code 'html' %}{% raw %}
+            <hx-status class="{{cssClasses}}">...</hx-status>{% endraw %}
+          {% endcode %}
+        </template>
+      </footer>
+    </div>
+  </section>
+{% endblock %}

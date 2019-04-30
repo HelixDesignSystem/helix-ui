@@ -1,0 +1,42 @@
+---
+title: Testing - Accordion
+crumbs:
+  - path: components/accordion
+    label: Accordion
+---
+{% extends 'test.njk' %}
+{% set contentClasses = 'accordions-test' %}
+
+{% block content %}
+  <section>
+    <h2>Open Enabled</h2>
+    <hx-accordion>
+      <hx-accordion-panel open>
+        <header slot="header">Cupcake Ipsum</header>
+        <div class="hxBox hxMd">
+          <p>
+            Sweet toffee pie icing croissant halvah chupa chups. Cotton candy pie
+            sesame snaps. Muffin sesame snaps cake toffee liquorice apple pie
+            apple pie chupa chups. Lemon drops caramels sugar plum.
+          </p>
+        </div>
+      </hx-accordion-panel>
+    </hx-accordion>
+  </section>
+
+  <section>
+    <h2>Closed Disabled</h2>
+    <hx-accordion>
+      <hx-accordion-panel disabled>
+        <header slot="header">Cupcake Ipsum</header>
+        <div class="hxBox hxMd">
+          <p>
+            Sweet toffee pie icing croissant halvah chupa chups. Cotton candy pie
+            sesame snaps. Muffin sesame snaps cake toffee liquorice apple pie
+            apple pie chupa chups. Lemon drops caramels sugar plum.
+          </p>
+        </div>
+      </hx-accordion-panel>
+    </hx-accordion>
+  </section>
+{% endblock %}

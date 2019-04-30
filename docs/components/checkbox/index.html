@@ -1,0 +1,118 @@
+---
+title: Checkbox
+minver: 0.1.8
+also:
+  components/checkbox/test.html: Testing - Checkbox
+  elements/hx-checkbox: <hx-checkbox>
+  elements/hx-checkbox-control: <hx-checkbox-control>
+---
+{% extends 'component.njk' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="basic-checkbox">Basic Checkbox</h2>
+      {# TODO: add section description #}
+    </header>
+
+    <div class="example" id="vue-checkboxDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <hx-text-control>
+            <input
+              id="txtLabel"
+              type="text"
+              v-model="label"
+            />
+            <label for="txtLabel">
+              Label
+            </label>
+          </hx-text-control>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkIsChecked"
+                type="checkbox"
+                v-model="isChecked"
+              />
+              <label for="chkIsChecked">
+                <hx-checkbox></hx-checkbox>
+                Checked
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkIsDisabled"
+                type="checkbox"
+                v-model="isDisabled"
+              />
+              <label for="chkIsDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkIndeterminate"
+                type="checkbox"
+                v-model="isIndeterminate"
+              />
+              <label for="chkIndeterminate">
+                <hx-checkbox></hx-checkbox>
+                Indeterminate
+              </label>
+              <p>
+                <code>
+                  {% raw %}
+                  (el.indeterminate = {{isIndeterminate}})
+                  {% endraw %}
+                </code>
+              </p>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkRequired"
+                type="checkbox"
+                v-model="isRequired"
+              />
+              <label for="chkRequired">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-checkbox-control>
+          <input
+            type="checkbox"
+            id="chkDemo"
+            :checked="isChecked"
+            :disabled="isDisabled"
+            :indeterminate.prop="isIndeterminate"
+            :required="isRequired"
+          />
+          <label for="chkDemo">
+            <hx-checkbox></hx-checkbox>
+            {% raw %}{{label}}{% endraw %}
+          </label>
+        </hx-checkbox-control>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,79 @@
+---
+title: Toast
+minver: 0.7.0
+also:
+  elements/hx-toast: <hx-toast>
+---
+{% extends 'component.njk' %}
+
+{% block page_header %}
+  <hx-alert type="info" status="note" persist>
+    Currently, only CTA and dismiss functionality of the toast itself has been
+    implemented. Positioning, stacking, animation, etc. functionality will be coming soon.
+  </hx-alert>
+  {# TODO: add component description #}
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="basic-toast">Basic Toast</h2>
+      {# TODO: add section description #}
+    </header>
+
+    <div class="example" id="vue-toastDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <hx-select-control>
+            <select id="selType" v-model="type">
+              <option v-for="_type in types" :value="_type">
+                {% raw %}{{_type.label}}{% endraw %}
+              </option>
+            </select>
+            <hx-select></hx-select>
+            <label for="selType">
+              Type
+            </label>
+          </hx-select-control>
+
+          <hx-text-control>
+            <input
+              id="txtCta"
+              type="text"
+              v-model="cta"
+            />
+            <label for="txtCta">
+              CTA
+            </label>
+          </hx-text-control>
+
+          <hx-textarea-control>
+            <textarea
+              id="txtContent"
+              v-model="content"
+            ></textarea>
+            <label for="txtContent">
+              Content
+            </label>
+          </hx-textarea-control>
+        </form>
+      </header>
+
+      <div class="toast-demo">
+        <hx-toast
+          :type="type.value"
+          :cta="cta"
+          @dismiss="onEvent"
+          @submit="onEvent"
+        >
+          {% raw %}{{content}}{% endraw %}
+        </hx-toast>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+  </section>
+{% endblock %}
+

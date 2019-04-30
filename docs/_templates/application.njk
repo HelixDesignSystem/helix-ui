@@ -73,10 +73,15 @@
       <main role="main" id="content" class="{{mainClass}} {{contentClasses}}">
         {% block main %}
           <header>
-            {# TODO: use frontmatter to define breadcrumbs #}
-            {% block breadcrumbs %}
-              {# breadcrumbs go here (optional) #}
-            {% endblock %}
+            {% if page.crumbs %}
+              <nav class="hxBreadcrumb">
+                {% for crumb in page.crumbs %}
+                  <a href="{{crumb.path}}">{{crumb.label}}</a>
+                  <hx-icon class="delimiter" type="angle-right"></hx-icon>
+                {% endfor %}
+                <a href="#">{{page.title}}</a>
+              </nav>
+            {% endif %}
 
             <h1>
               {{ page.title }}

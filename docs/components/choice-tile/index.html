@@ -1,0 +1,249 @@
+---
+title: Choice Tile
+minver: 0.4.0
+also:
+  components/choice-tile/test.html: Testing - Choice Tile
+  elements/hx-tile: <hx-tile>
+---
+{% extends 'component.njk' %}
+
+{% block page_header %}
+  {# TODO: add component description #}
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="basic-choice-tile">Basic Choice Tile</h2>
+      {# TODO: add section description #}
+    </header>
+
+    <div class="example" id="vue-choiceDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <hx-select-control>
+            <select id="selSize" v-model="size">
+              <option v-for="_size in sizes" :value="_size">
+                {% raw %}{{_size.label}}{% endraw %}
+              </option>
+            </select>
+            <hx-select></hx-select>
+            <label for="selSize">
+              Size
+            </label>
+          </hx-select-control>
+
+          <hx-text-control>
+            <input
+              id="txtTitle"
+              type="text"
+              v-model="title"
+            />
+            <label for="txtTitle">
+              Title
+            </label>
+          </hx-text-control>
+
+          <hx-textarea-control>
+            <textarea
+              id="txtDescription"
+              v-model="description"
+            ></textarea>
+            <label for="txtDescription">
+              Description
+            </label>
+          </hx-textarea-control>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkIsChecked"
+                type="checkbox"
+                v-model="isChecked"
+              />
+              <label for="chkIsChecked">
+                <hx-checkbox></hx-checkbox>
+                Checked
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkIsDisabled"
+                type="checkbox"
+                v-model="isDisabled"
+              />
+              <label for="chkIsDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkIsInvalid"
+                type="checkbox"
+                v-model="isInvalid"
+              />
+              <label for="chkIsInvalid">
+                <hx-checkbox></hx-checkbox>
+                Invalid
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkIsSubdued"
+                type="checkbox"
+                v-model="isSubdued"
+              />
+              <label for="chkIsSubdued">
+                <hx-checkbox></hx-checkbox>
+                Subdued
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+        </form>
+      </header>
+
+      <div class="choice-tile-demo">
+        <label class="hxChoice">
+          <input
+            name="foo"
+            type="radio"
+            :checked="isChecked"
+            :disabled="isDisabled"
+            :invalid="isInvalid"
+            @click="onClick"
+          />
+          <hx-tile :class="tileClasses">
+            <hx-icon type="checkmark"></hx-icon>
+            <div class="hx-tile-icon">
+              <hx-icon type="account"></hx-icon>
+            </div>
+            {% raw %}
+            <header>{{title}}</header>
+            <p>{{description}}</p>
+            {% endraw %}
+          </hx-tile>
+        </label>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="option-grid">Option Grid</h2>
+      {# TODO: add section description #}
+    </header>
+
+    <div class="example">
+      <div>
+        <div class="hxRow">
+          <label class="hxChoice hxCol hxSpan-4-xs">
+            <input type="radio" name="sample" value="1" checked />
+            <hx-tile>
+              <hx-icon type="checkmark"></hx-icon>
+              <div class="hx-tile-icon">
+                <hx-icon type="server"></hx-icon>
+              </div>
+              <header>Servers</header>
+              <p>Servers description</p>
+            </hx-tile>
+          </label>
+          <label class="hxChoice hxCol hxSpan-4-xs">
+            <input type="radio" name="sample" value="2" />
+            <hx-tile>
+              <hx-icon type="checkmark"></hx-icon>
+              <div class="hx-tile-icon">
+                <hx-icon type="technical-change"></hx-icon>
+              </div>
+              <header>Configurations</header>
+              <p>Configurations description</p>
+            </hx-tile>
+          </label>
+          <label class="hxChoice hxCol hxSpan-4-xs">
+            <input type="radio" name="sample" value="3" />
+            <hx-tile>
+              <hx-icon type="checkmark"></hx-icon>
+              <div class="hx-tile-icon">
+                <hx-icon type="technical-incident"></hx-icon>
+              </div>
+              <header>Incidents</header>
+              <p>Incidents description</p>
+            </hx-tile>
+          </label>
+          <label class="hxChoice hxCol hxSpan-4-xs">
+            <input type="radio" name="sample" value="4" />
+            <hx-tile>
+              <hx-icon type="checkmark"></hx-icon>
+              <div class="hx-tile-icon">
+                <hx-icon type="billing"></hx-icon>
+              </div>
+              <header>Billing</header>
+              <p>Billing description</p>
+            </hx-tile>
+          </label>
+          <label class="hxChoice hxCol hxSpan-4-xs">
+            <input type="radio" name="sample" value="5" />
+            <hx-tile>
+              <hx-icon type="checkmark"></hx-icon>
+              <div class="hx-tile-icon">
+                <hx-icon type="account"></hx-icon>
+              </div>
+              <header>Account</header>
+              <p>Account description</p>
+            </hx-tile>
+          </label>
+          <label class="hxChoice hxCol hxSpan-4-xs">
+            <input type="radio" name="sample" value="6" disabled />
+            <hx-tile>
+              <hx-icon type="checkmark"></hx-icon>
+              <div class="hx-tile-icon">
+                <hx-icon type="minus-circle"></hx-icon>
+              </div>
+              <header>Disabled Tile</header>
+              <p>Disabled Tile description</p>
+            </hx-tile>
+          </label>
+        </div>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+          <div class="hxRow">
+            <label class="hxChoice hxCol hxSpan-4-xs">
+              <input checked type="radio" name="sample" value="1" />
+              <hx-tile>...</hx-tile>
+            </label>
+            <label class="hxChoice hxCol hxSpan-4-xs">
+              <input type="radio" name="sample" value="2" />
+              <hx-tile>...</hx-tile>
+            </label>
+            <label class="hxChoice hxCol hxSpan-4-xs">
+              <input type="radio" name="sample" value="3" />
+              <hx-tile>...</hx-tile>
+            </label>
+            <label class="hxChoice hxCol hxSpan-4-xs">
+              <input type="radio" name="sample" value="4" />
+              <hx-tile>...</hx-tile>
+            </label>
+            <label class="hxChoice hxCol hxSpan-4-xs">
+              <input type="radio" name="sample" value="5" />
+              <hx-tile>...</hx-tile>
+            </label>
+            <label class="hxChoice hxCol hxSpan-4-xs">
+              <input disabled type="radio" name="sample" value="6" />
+              <hx-tile>...</hx-tile>
+            </label>
+          </div>
+        {% endcode %}
+      </footer>
+    </div>
+  </section>
+{% endblock %}

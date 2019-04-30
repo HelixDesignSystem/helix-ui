@@ -1,0 +1,24 @@
+---
+title: Testing - Badge
+crumbs:
+  - path: components/badge
+    label: Badge
+---
+{% extends 'test.njk' %}
+
+{% block content %}
+  <section class="hxRow">
+    <div class="hxCol hxSpan-3-md">
+      <h3>Light DOM White Space</h3>
+      <p>
+        <a href="">
+          Link w/ white space
+          <span class="hxBadge">1</span>
+        </a>
+      </p>
+      <p>
+        <a href="">Link w/o white space<span class="hxBadge">1</span></a>
+      </p>
+    </div>
+  </section>
+{% endblock %}

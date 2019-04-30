@@ -1,0 +1,290 @@
+---
+title: Testing - Button
+crumbs:
+  - path: components/button
+    label: Button
+---
+{% extends 'test.njk' %}
+
+{% block content %}
+  {% set variants = [
+    { label: 'Primary', style: 'hxPrimary' },
+    { label: 'Secondary', style: '' },
+    { label: 'Tertiary', style: 'hxTertiary' }
+  ] %}
+  {% set sizes = [
+    { label: 'SM', style: 'hxSm' },
+    { label: 'MD', style: '' },
+    { label: 'LG', style: 'hxLg' }
+  ] %}
+  {% set inputTypes = [ 'button', 'submit', 'reset' ] %}
+
+  <!-- Button Element -->
+  <section>
+    <h2>Button Element</h2>
+    <p>Using: <code>&lt;button&gt;</code></p>
+    <table class="hxTable hxTable--condensed">
+      {% for _variant in variants %}
+      <tbody>
+        {% for _size in sizes %}
+        <tr>
+          <td>{{_variant.label}} Button ({{_size.label}})</td>
+          <td><button class="hxBtn {{_variant.style}} {{_size.style}}">Normal</button></td>
+          <td><button class="hxBtn {{_variant.style}} {{_size.style}} pseudo-focus">Focused</button></td>
+          <td><button class="hxBtn {{_variant.style}} {{_size.style}} pseudo-hover">Hover</button></td>
+          <td><button class="hxBtn {{_variant.style}} {{_size.style}} pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn {{_variant.style}} {{_size.style}}" disabled>Disabled</button></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      {% endfor %}
+    </table>
+  </section>
+
+  <!-- Anchor Element -->
+  <section>
+    <h2>Anchor Element</h2>
+    <p>Using: <code>&lt;a&gt;</code></p>
+    <table class="hxTable hxTable--condensed">
+      {% for _variant in variants %}
+      <tbody>
+        {% for _size in sizes %}
+        <tr>
+          <td>{{_variant.label}} Anchor ({{_size.label}})</td>
+          <td><a class="hxBtn {{_variant.style}} {{_size.style}}">Normal</a></td>
+          <td><a class="hxBtn {{_variant.style}} {{_size.style}} pseudo-focus">Focused</a></td>
+          <td><a class="hxBtn {{_variant.style}} {{_size.style}} pseudo-hover">Hover</a></td>
+          <td><a class="hxBtn {{_variant.style}} {{_size.style}} pseudo-active">Pressed</a></td>
+          <td><a class="hxBtn {{_variant.style}} {{_size.style}}" disabled>Disabled</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      {% endfor %}
+    </table>
+  </section>
+
+  <!-- Link Element -->
+  <section>
+    <h2>Link Element</h2>
+    <p>Using: <code>&lt;a href="#"&gt;</code></p>
+    <table class="hxTable hxTable--condensed">
+      {% for _variant in variants %}
+      <tbody>
+        {% for _size in sizes %}
+        <tr>
+          <td>{{_variant.label}} Anchor ({{_size.label}})</td>
+          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}}">Normal</a></td>
+          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-focus">Focused</a></td>
+          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-hover">Hover</a></td>
+          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-active">Pressed</a></td>
+          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}}" disabled>Disabled</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      {% endfor %}
+    </table>
+  </section>
+
+  <!-- Input Element -->
+  {% for _type in inputTypes %}
+    <section>
+      <h2>{{_type | title}} Input Element</h2>
+      <p>Using: <code>&lt;input type="{{_type}}" /&gt;</code></p>
+      <table class="hxTable hxTable--condensed">
+        {% for _variant in variants %}
+        <tbody>
+          {% for _size in sizes %}
+          <tr>
+            <td>{{_variant.label}} Anchor ({{_size.label}})</td>
+            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}}" value="Normal"/></td>
+            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-focus" value="Focused"/></td>
+            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-hover" value="Hover"/></td>
+            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-active" value="Pressed"/></td>
+            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}}" disabled value="Disabled"/></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        {% endfor %}
+      </table>
+    </section>
+  {% endfor %}
+
+  <!-- Various Element Children -->
+  <section>
+    <h2>Various Element Children</h2>
+    <!-- konami icons -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="kbd-arrow-up"></hx-icon>
+          <hx-icon type="kbd-arrow-up"></hx-icon>
+          <hx-icon type="kbd-arrow-down"></hx-icon>
+          <hx-icon type="kbd-arrow-down"></hx-icon>
+          <hx-icon type="kbd-arrow-left"></hx-icon>
+          <hx-icon type="kbd-arrow-right"></hx-icon>
+          <hx-icon type="kbd-arrow-left"></hx-icon>
+          <hx-icon type="kbd-arrow-right"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="flag"></hx-icon>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-busy + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-busy></hx-busy>
+          <hx-icon type="filter"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + hx-busy -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="phone"></hx-icon>
+          <hx-busy></hx-busy>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + hx-busy + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="pencil"></hx-icon>
+          <hx-busy></hx-busy>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-busy + hx-icon + hx-busy -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-busy></hx-busy>
+          <hx-icon type="calendar"></hx-icon>
+          <hx-busy></hx-busy>
+        </button>
+      {% endfor %}
+    </p>
+  </section>
+
+  <!-- Supported Markup (text + non-text children ) -->
+  <section>
+    <h2>Supported Markup</h2>
+    <p>
+      The following examples are supported and should have correct spacing.
+    </p>
+    <!-- hx-icon + text -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="angle-left"></hx-icon>
+          <span>prev</span>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- text + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <span>next</span>
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + text + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="cog"></hx-icon>
+          <span>actions</span>
+          <hx-icon type="angle-down"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- text + hx-busy -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}" disabled>
+          <span>Loading</span>
+          <hx-busy></hx-busy>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + text + hx-busy -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="cog"></hx-icon>
+          <span>wrapped text</span>
+          <hx-busy></hx-busy>
+        </button>
+      {% endfor %}
+    </p>
+  </section>
+
+  <hr />
+
+  <!-- Unsupported Markup (text + non-text children ) -->
+  <section>
+    <h2>Unsupported Markup</h2>
+    <p>
+      The following examples are not supported for button children spacing.
+    </p>
+    <!-- hx-icon + text -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="angle-left"></hx-icon>
+          prev
+        </button>
+      {% endfor %}
+    </p>
+    <!-- text + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          next
+          <hx-icon type="angle-right"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + text + hx-icon -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="cog"></hx-icon>
+          actions
+          <hx-icon type="angle-down"></hx-icon>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- text + hx-busy -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}" disabled>
+          Loading
+          <hx-busy></hx-busy>
+        </button>
+      {% endfor %}
+    </p>
+    <!-- hx-icon + text + hx-busy -->
+    <p>
+      {% for _variant in variants %}
+        <button class="hxBtn {{_variant.style}}">
+          <hx-icon type="cog"></hx-icon>
+          unwrapped text
+          <hx-busy></hx-busy>
+        </button>
+      {% endfor %}
+    </p>
+  </section>
+{% endblock %}

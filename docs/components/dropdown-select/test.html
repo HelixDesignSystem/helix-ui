@@ -1,8 +1,12 @@
 ---
 title: Testing - Dropdown Select
+crumbs:
+  - path: components/dropdown-select
+    label: Dropdown Select
 ---
-{% set contentClasses = 'dropdown-select-spec' %}
 {% extends 'test.njk' %}
+{% set contentClasses = 'dropdown-select-spec' %}
+
 {% macro dropdown(id='', isDirty=false, className='', isRequired=false, isDisabled=false, isFocused=false, isValid=true) %}
   {% set isPristine = (className === '') and not isDirty %}
 
@@ -109,14 +113,6 @@ title: Testing - Dropdown Select
     {{stateTable(id, isDirty, className, isRequired=true)}}
   </section>
 {% endmacro %}
-
-{% block page_header %}
-  <nav class="hxBreadcrumb">
-    <a href="components/dropdown-select">Dropdown Select</a>
-    <hx-icon class="delimiter" type="angle-right"></hx-icon>
-    <a href="#">{{page.title}}</a>
-  </nav>
-{% endblock %}
 
 {% block content %}
   <section>

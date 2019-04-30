@@ -1,0 +1,206 @@
+---
+title: Testing - Modal
+crumbs:
+  - path: components/modal
+    label: Modal
+---
+{% import '_utils.njk' as utils %}
+{% extends 'test.njk' %}
+
+{% macro disclosure(label, controls, className="hxBtn") %}
+  <hx-disclosure aria-controls="{{controls}}" class="{{className}}">
+    {{label}}
+  </hx-disclosure>
+{% endmacro %}
+
+{% macro modal(id, className='', scrolls=false, showHead=true, showBody=true, showFoot=true, hasChildren=false) %}
+  <hx-modal id="{{id}}" class="{{className}}">
+    {% if showHead %}
+      <header>
+        <h3>Modal Header</h3>
+      </header>
+    {% endif %}
+
+    {% if showBody %}
+      <hx-div {{'scroll=vertical' if scrolls}}>
+        <p>
+          This is the body of a demo modal.
+          No further actions can happen
+          on the page until this modal is closed.
+        </p>
+
+        {% if hasChildren %}
+          <p>
+            <hx-disclosure class="hxBtn" aria-controls="{{id}}-menu">
+              <hx-icon type="cog"></hx-icon>
+              <span>Actions</span>
+              <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+            </hx-disclosure>
+            &nbsp;
+            {{disclosure('Toggle Popover', id+'-popover')}}
+            &nbsp;
+            <hx-icon id="{{id}}-tooltip" type="help-circle"></hx-icon>
+          </p>
+        {% endif %}
+
+        {{ utils.lorem(8) if scrolls }}
+
+        {% if hasChildren %}
+          <hx-menu id="{{id}}-menu">
+            <hx-menuitem>Action 1</hx-menuitem>
+            <hx-menuitem>Action 2</hx-menuitem>
+            <hx-menuitem>Action 3</hx-menuitem>
+          </hx-menu>
+
+          <hx-popover id="{{id}}-popover" position="bottom-right">
+            <header>
+              Popover Header
+            </header>
+
+            <hx-div>
+              <p>
+                This is my popover body.
+              </p>
+            </hx-div>
+
+            <footer>
+              <button class="hxBtn hxPrimary">Submit</button>
+              <button class="hxBtn">Cancel</button>
+            </footer>
+          </hx-popover>
+
+          <hx-tooltip for="{{id}}-tooltip" position="top">
+            Top
+          </hx-tooltip>
+        {% endif %}
+      </hx-div>
+    {% endif %}
+
+    {% if showFoot %}
+      <footer>
+        <button class="hxBtn hxPrimary">Confirm</button>
+        <button class="hxBtn">Cancel</button>
+      </footer>
+    {% endif %}
+  </hx-modal>
+{% endmacro %}
+
+{# ----- Test Macros ----- #}
+{% macro testFull(n, className, scrolls) %}
+  {% set id="modal-" + n %}
+  {{disclosure('Full', id)}}
+  {{modal(id, className, scrolls)}}
+{% endmacro %}
+{% macro testOnlyBody(n, className, scrolls) %}
+  {% set id="modal-body-only-" + n %}
+  {{disclosure('Body-only', id)}}
+  {{modal(id, className, scrolls, showHead=false, showFoot=false)}}
+{% endmacro %}
+{% macro testNoHeader(n, className, scrolls) %}
+  {% set id="modal-no-header-" + n %}
+  {{disclosure('No Header', id)}}
+  {{modal(id, className, scrolls, showHead=false)}}
+{% endmacro %}
+{% macro testNoFooter(n, className, scrolls) %}
+  {% set id="modal-no-footer-" + n %}
+  {{disclosure('No Footer', id)}}
+  {{modal(id, className, scrolls, showFoot=false)}}
+{% endmacro %}
+{% macro testEmpty(n, className, scrolls) %}
+  {% set id="modal-empty-" + n %}
+  {{disclosure('Empty', id)}}
+  {{modal(id, className, scrolls, showHead=false, showBody=false, showFoot=false)}}
+{% endmacro %}
+{% macro testPositioned(n, className, scrolls) %}
+  {% set id="modal-positioned-children-" + n %}
+  {{disclosure('Positioned Children', id)}}
+  {{modal(id, className, scrolls, hasChildren=true)}}
+{% endmacro %}
+
+{% block content %}
+  {% set modalSizes = {
+    SM: 'hxSm',
+    MD: '',
+    LG: 'hxLg'
+  } %}
+  <!-- BASIC MODALS -->
+  <section>
+    <h2>Basic Modals</h2>
+    {% for size, className in modalSizes %}
+      {% set id = [size, loop.index].join('-') %}
+      <section>
+        <h3>Size: {{size}}</h3>
+        {{testFull(id, className)}}
+        {{testEmpty(id, className)}}
+        {{testOnlyBody(id, className)}}
+        {{testNoFooter(id, className)}}
+        {{testNoHeader(id, className)}}
+        {{testPositioned(id, className)}}
+      </section>
+      <br />
+    {% endfor %}
+  </section>
+
+  <!-- SCROLLING MODALS -->
+  <section>
+    <h2>Scrolling Modals</h2>
+    {% for size, className in modalSizes %}
+      {% set id = [size, 'scrolling', loop.index].join('-') %}
+      <section>
+        <h3>Size: {{size}}</h3>
+        {{testFull(id, className, scrolls=true)}}
+        {{testEmpty(id, className, scrolls=true)}}
+        {{testOnlyBody(id, className, scrolls=true)}}
+        {{testNoFooter(id, className, scrolls=true)}}
+        {{testNoHeader(id, className, scrolls=true)}}
+        {{testPositioned(id, className, scrolls=true)}}
+      </section>
+      <br />
+    {% endfor %}
+  </section>
+
+  <!-- DEPRECATED MARKUP -->
+  <section>
+    <h2>Deprecated Modals</h2>
+    {{disclosure('Deprecated: Basic', 'deprecated-all-modal')}}
+    <hx-modal id="deprecated-all-modal">
+      <hx-modalhead>
+        <h3>Demo Modal Header</h3>
+      </hx-modalhead>
+      <hx-modalbody>
+        <p>
+          This is the body of a demo modal. No further actions can happen
+          on the page until this modal is closed.
+        </p>
+      </hx-modalbody>
+      <hx-modalfoot>
+        <button class="hxBtn hxPrimary">Confirm</button>
+        <button class="hxBtn">Cancel</button>
+      </hx-modalfoot>
+    </hx-modal>
+
+    {{disclosure('Deprecated: Body-only', 'deprecated-body-modal')}}
+    <hx-modal id="deprecated-body-modal">
+      <hx-modalbody>
+        <p>
+          This is the body of a demo modal. No further actions can happen
+          on the page until this modal is closed.
+        </p>
+      </hx-modalbody>
+    </hx-modal>
+
+    {{disclosure('Deprecated: Scrolling', 'deprecated-scroll-modal')}}
+    <hx-modal id="deprecated-scroll-modal">
+      <hx-modalhead>
+        <h3>Demo Modal Header</h3>
+      </hx-modalhead>
+      <hx-modalbody>
+        {{ utils.lorem(6) }}
+      </hx-modalbody>
+      <hx-modalfoot>
+        <button class="hxBtn hxPrimary">Confirm</button>
+        <button class="hxBtn">Cancel</button>
+      </hx-modalfoot>
+    </hx-modal>
+  </section>
+{% endblock %}
