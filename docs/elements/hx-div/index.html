@@ -5,14 +5,16 @@ also:
   components/box: Box
 ---
 {% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element is a utility element
+    to provide a base for styling as well as for implementing scrolling
+    content.
+  </p>
+{% endblock %}
+
 {% block content %}
   <section>
-    <p>
-      The custom <code>{{page.title}}</code> element is a utility element
-      to provide a base for styling as well as for implementing scrolling
-      content.
-    </p>
-
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>

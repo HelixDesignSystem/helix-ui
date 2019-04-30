@@ -5,14 +5,15 @@ also:
   components/files: Files
 ---
 {% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element renders a button to access
+    the system file selector dialog.
+  </p>
+{% endblock %}
+
 {% block content %}
-
   <section>
-    <p>
-      The custom <code>{{page.title}}</code> element renders a button to access
-      the system file selector dialog.
-    </p>
-
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>

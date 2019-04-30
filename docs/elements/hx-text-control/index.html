@@ -1,10 +1,117 @@
 ---
 title: <hx-text-control>
 minver: 0.16.0
+controlElement: <input type="text">
 also:
   components/text-input: Text Input
 ---
 {% extends 'element.njk' %}
+{% import '_utils.njk' as utils %}
+{% block page_header %}
+  <p>
+    The <code>{{page.title}}</code> block element is a container that provides
+    behavior which augments native browser validation capabilities. It is used
+    to build a <a href="components/text-input">Text Input</a> component.
+  </p>
+{% endblock %}
+
 {% block content %}
-  TBD...
+  <section>
+    <dl class="metadata hxList">
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>any element that accepts flow content</dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd>
+          in this order:
+          <ol class="hxList">
+            <li>{{utils.element('input')}} element</li>
+            <li>{{utils.element('label')}} element</li>
+          </ol>
+        </dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd><i>none</i></dd>
+      </div>
+    </dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl class="memberList">
+    <dt>
+      hx-changed {Boolean}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Present if descendant <code>{{page.controlElement}}</code> element
+        has emitted a "change" event.
+      </p>
+    </dd>
+
+    <dt>
+      hx-dirty {Boolean}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Present if descendant <code>{{page.controlElement}}</code> element
+        has emitted a "change" or "blur" event.
+      </p>
+    </dd>
+
+    <dt>
+      hx-touched {Boolean}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Present if descendant <code>{{page.controlElement}}</code> element
+        has emitted a "blur" event.
+      </p>
+    </dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl class="memberList">
+    <dt>
+      controlElement {?HTMLSelectElement}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Returns the first <code>{{page.controlElement}}</code> descendant
+        or <code>null</code> if none are found.
+      </p>
+    </dd>
+
+    <dt>
+      isDirty {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if <code>controlElement</code> has emitted a "change" or "blur" event.
+    </dd>
+
+    <dt>
+      wasChanged {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if <code>controlElement</code> has emitted a "change" event.
+    </dd>
+
+    <dt>
+      wasTouched {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if <code>controlElement</code> has emitted a "blur" event.
+    </dd>
+  </dl>
 {% endblock %}
