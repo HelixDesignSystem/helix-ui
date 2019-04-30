@@ -1,16 +1,12 @@
 ---
 title: Testing - Buttons
+crumbs:
+  - path: components/buttons
+    label: Buttons
 ---
 {% extends 'test.njk' %}
-{% block content %}
-  <section>
-    <nav class="hxBreadcrumb">
-      <a href="components/buttons">Buttons</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">{{page.title}}</a>
-    </nav>
-  </section>
 
+{% block content %}
   {% set variants = [
     { label: 'Primary', style: 'hxPrimary' },
     { label: 'Secondary', style: '' },

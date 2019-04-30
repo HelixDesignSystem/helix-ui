@@ -1,17 +1,12 @@
 ---
 title: Testing - Panels
+crumbs:
+  - path: components/panels
+    label: Panels
 ---
 {% import '_utils.njk' as utils %}
 {% extends 'test.njk' %}
 {% set contentClasses = 'specs-panel' %}
-
-{% block breadcrumbs %}
-  <nav class="hxBreadcrumb">
-    <a href="components/panels">Panels</a>
-    <hx-icon class="delimiter" type="angle-right"></hx-icon>
-    <a href="#">{{page.title}}</a>
-  </nav>
-{% endblock %}
 
 {% block content %}
   <section>

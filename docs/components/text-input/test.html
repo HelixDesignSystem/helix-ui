@@ -1,8 +1,12 @@
 ---
 title: Testing - Text Input
+crumbs:
+  - path: components/text-input
+    label: Text Input
 ---
-{% set contentClasses = 'text-input-spec' %}
 {% extends 'test.njk' %}
+{% set contentClasses = 'text-input-spec' %}
+
 {% macro textInput(id='', isDirty=false, className='', isRequired=false, isDisabled=false, isFocused=false, isValid=true) %}
   {% set isPristine = (className === '') and not isDirty %}
 
@@ -46,14 +50,6 @@ title: Testing - Text Input
     </label>
   </hx-text-control>
 {% endmacro %}
-
-{% block page_header %}
-  <nav class="hxBreadcrumb">
-    <a href="components/text-input">Text Input</a>
-    <hx-icon class="delimiter" type="angle-right"></hx-icon>
-    <a href="#">{{page.title}}</a>
-  </nav>
-{% endblock %}
 
 {% block content %}
   <section>

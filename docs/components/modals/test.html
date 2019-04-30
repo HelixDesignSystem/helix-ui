@@ -1,5 +1,8 @@
 ---
 title: Testing - Modals
+crumbs:
+  - path: components/modals
+    label: Modals
 ---
 {% import '_utils.njk' as utils %}
 {% extends 'test.njk' %}
@@ -115,14 +118,6 @@ title: Testing - Modals
 {% endmacro %}
 
 {% block content %}
-  <section>
-    <nav class="hxBreadcrumb">
-      <a href="components/modals">Modals</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">{{page.title}}</a>
-    </nav>
-  </section>
-
   {% set modalSizes = {
     SM: 'hxSm',
     MD: '',

@@ -1,17 +1,13 @@
 ---
 title: Testing - Accordions
+crumbs:
+  - path: components/accordions
+    label: Accordions
 ---
-{% set contentClasses = 'accordions-test' %}
 {% extends 'test.njk' %}
-{% block content %}
-  <section>
-    <nav class="hxBreadcrumb">
-      <a href="components/accordions">Accordions</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">{{page.title}}</a>
-    </nav>
-  </section>
+{% set contentClasses = 'accordions-test' %}
 
+{% block content %}
   <section>
     <h2>Open Enabled</h2>
     <hx-accordion>

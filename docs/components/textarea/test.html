@@ -1,8 +1,12 @@
 ---
 title: Testing - Textarea
+crumbs:
+  - path: components/textarea
+    label: Textarea
 ---
-{% set contentClasses = 'textarea-spec' %}
 {% extends 'test.njk' %}
+{% set contentClasses = 'textarea-spec' %}
+
 {% macro textarea(id='', isDirty=false, className='', isRequired=false, isDisabled=false, isFocused=false, isValid=true) %}
   {% set isPristine = (className === '') and not isDirty %}
 
@@ -48,14 +52,6 @@ title: Testing - Textarea
     </label>
   </hx-textarea-control>
 {% endmacro %}
-
-{% block page_header %}
-  <nav class="hxBreadcrumb">
-    <a href="components/textarea">Textarea</a>
-    <hx-icon class="delimiter" type="angle-right"></hx-icon>
-    <a href="#">{{page.title}}</a>
-  </nav>
-{% endblock %}
 
 {% block content %}
   <section>

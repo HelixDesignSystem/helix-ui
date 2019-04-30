@@ -1,20 +1,17 @@
 ---
 title: Testing - Menus
+crumbs:
+  - path: components/menus
+    label: Menus
 ---
 {% extends 'test.njk' %}
-{% block content %}
-  <section>
-    <nav class="hxBreadcrumb">
-      <a href="components/menus">Menus</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">{{page.title}}</a>
-    </nav>
-  </section>
 
+{% block content %}
   <section>
     <header>
       <h2 id="menu-in-table-header">Menu Inside a Table Header</h2>
     </header>
+
     <table class="hxTable">
       <thead>
         <tr>
