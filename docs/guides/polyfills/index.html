@@ -2,6 +2,7 @@
 title: Polyfills
 ---
 {% extends 'guide.njk' %}
+
 {% macro nativeTo(api, browser) %}
   {% if api.missing and not api.missing.includes(browser) %}
     <hx-icon class="native-support" type="checkmark"></hx-icon>
@@ -9,10 +10,15 @@ title: Polyfills
     <hx-icon class="polyfill-needed" type="times"></hx-icon>
   {% endif %}
 {% endmacro %}
+
 {% block content %}
   <section>
-    <h2 id="included-polyfills">Included Polyfills</h2>
-    <p class="comfortable">
+    <header>
+      <h2 id="included-polyfills">Included Polyfills</h2>
+      {# TODO: add section description #}
+    </header>
+
+    <p>
       The table below lists the polyfilled JavaScript APIs required for HelixUI to
       function.  Native support for each API is shown in columns corresponding to
       each of the <a href="guides/faq/#supported-browsers">supported browsers</a>.
@@ -21,6 +27,7 @@ title: Polyfills
     </p>
 
     <table class="hxTable hxTable--condensed">
+      {# TODO: add table caption #}
       <thead>
         <tr>
           <th>JavaScript API</th>
@@ -46,21 +53,28 @@ title: Polyfills
         {% endfor %}
       </tbody>
     </table>
-    <p class="hxSubdued hxSubBody">
-      <hx-icon type="info-circle"></hx-icon>
-      Native support is checked against the latest release of each browser.
-    </p>
+
+    <footer>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Native support is checked against the latest release of each browser.
+      </p>
+    </footer>
   </section>
 
   <section>
-    <h2 id="additional-polyfills">Additional Polyfills</h2>
-    <p>
-      If your application requires polyfills beyond those listed above, they will
-      need to be added separately.
-    </p>
+    <header>
+      <h2 id="additional-polyfills">Additional Polyfills</h2>
+      <p>
+        If your application requires polyfills beyond those listed above, they will
+        need to be added separately.
+      </p>
+    </header>
+
     <p>
       Access the following resources to find polyfills.
     </p>
+
     <ul class="hxList">
       <li>
         <a href="https://developer.mozilla.org">MDN documentation</a>

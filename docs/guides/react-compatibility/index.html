@@ -2,52 +2,61 @@
 title: React Compatibility
 ---
 {% extends 'guide.njk' %}
+
 {% block content %}
   <section>
-    <h2 id="significant-white-space">Significant White Space</h2>
-    <p class="comfortable">
-      Similar to vanilla <code>&lt;span&gt;</code> elements, inline elements
-      defined in HelixUI may rely on significant white space surrounding the
-      tag in the HTML.
-    </p>
+    <header>
+      <h2 id="significant-white-space">Significant White Space</h2>
+      <p>
+        Similar to vanilla <code>&lt;span&gt;</code> elements, inline elements
+        defined in HelixUI may rely on significant white space surrounding the
+        tag in the HTML markup.
+      </p>
+    </header>
 
-    <br />
+    <section>
+      <header>
+        <h3>Problem</h3>
+        <p>
+          JSX has been found to remove significant white space in certain scenarios
+          (see demo below).
+        </p>
+      </header>
 
-    <h3>Problem</h3>
-    <p class="comfortable">
-      JSX has been found to remove significant white space in certain scenarios
-      (see demo below).
-    </p>
-    <figure class="hxFigure">
-      <iframe
-        allowfullscreen="true"
-        allowtransparency="true"
-        frameborder="no"
-        scrolling="no"
-        src="//codepen.io/HelixUI/embed/jpVYLQ/?height=265&theme-id=0&default-tab=js,result&embed-version=2"
-        title="Demo - JSX Collapsing Significant White Space"
-      >
-        See the Pen <a href="https://codepen.io/HelixUI/pen/jpVYLQ/">Demo - JSX Collapsing Significant White Space</a>
-        by HelixUI (<a href="https://codepen.io/HelixUI">@HelixUI</a>)
-        on <a href="https://codepen.io">CodePen</a>.
-      </iframe>
-      <figcaption>Demonstration of JSX Collapsing White Space</figcaption>
-    </figure>
+      <figure class="hxFigure">
+        <iframe
+          allowfullscreen="true"
+          allowtransparency="true"
+          frameborder="no"
+          scrolling="no"
+          src="//codepen.io/HelixUI/embed/jpVYLQ/?height=265&theme-id=0&default-tab=js,result&embed-version=2"
+          title="Demo - JSX Collapsing Significant White Space"
+        >
+          See the Pen <a href="https://codepen.io/HelixUI/pen/jpVYLQ/">Demo - JSX Collapsing Significant White Space</a>
+          by HelixUI (<a href="https://codepen.io/HelixUI">@HelixUI</a>)
+          on <a href="https://codepen.io">CodePen</a>.
+        </iframe>
+        <figcaption>Demonstration of JSX Collapsing White Space</figcaption>
+      </figure>
+    </section>
 
-    <br />
+    <section>
+      <header>
+        <h3>Solution</h3>
+        <p>
+          If you have encountered one of the scenarios demonstrated above, there are
+          two strategies available to correct it.
+        </p>
+      </header>
 
-    <h3>Solution</h3>
-    <p class="comfortable">
-      If you have encountered one of the scenarios demonstrated above, there are
-      two strategies available to correct it.
-    </p>
-    <ol class="hxList">
-      <li>
-        Rearrange your JSX markup so that it retains the needed white space.
-      </li>
-      <li>
-        Add a literal white space text node (<code>{' '}</code>) where it is needed.
-      </li>
-    </ol>
+      <ol class="hxList">
+        <li>
+          Rearrange your JSX markup so that it retains the needed white space.
+        </li>
+        <li>
+          Add a literal white space text node (<code>{' '}</code>) where it is needed.
+        </li>
+      </ol>
+    </section>
   </section>
 {% endblock %}
