@@ -1,6 +1,6 @@
 import Util from '../../_util';
 
-if (document.getElementById('vue-choiceDemo')) {
+if (document.getElementById('vue-optionDemo')) {
     let SIZES = [
         { value: 'hxSm', label: 'Small' },
         { value: '', label: 'Medium' },
@@ -8,7 +8,7 @@ if (document.getElementById('vue-choiceDemo')) {
     ];
 
     new Vue({
-        el: '#vue-choiceDemo',
+        el: '#vue-optionDemo',
         data: {
             size: SIZES[1], // Medium
             sizes: SIZES,
@@ -54,7 +54,7 @@ if (document.getElementById('vue-choiceDemo')) {
             },
             snippet: function () {
                 return Util.snippet(`
-                  <label class="hxChoice">
+                  <label class="hxOption">
                     <input type="radio" ${this.radAttrs}>
                     <hx-tile ${this.classAttr}>
                       <hx-icon type="checkmark"></hx-icon>

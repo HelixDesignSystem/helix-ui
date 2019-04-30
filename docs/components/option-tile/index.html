@@ -1,15 +1,15 @@
 ---
-title: Choice Tiles
+title: Option Tile
 minver: 0.4.0
 also:
-  components/choice-tiles/test.html: Testing - Choice Tiles
+  components/option-tile/test.html: Testing - Option Tile
   elements/hx-tile: <hx-tile>
 ---
 {% extends 'component.njk' %}
 {% block content %}
   <section>
-    <h2 id="basic-choice-tile">Basic Choice Tile</h2>
-    <div class="example" id="vue-choiceDemo" v-cloak>
+    <h2 id="basic-option-tile">Basic Option Tile</h2>
+    <div class="example" id="vue-optionDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
           <div>
@@ -50,8 +50,8 @@ also:
         </form>
       </header>
 
-      <div class="choice-tile-demo">
-        <label class="hxChoice">
+      <div class="option-tile-demo">
+        <label class="hxOption">
           <input type="radio" name="foo"
             :checked="isChecked"
             :disabled="isDisabled"
@@ -80,7 +80,7 @@ also:
     <div class="example">
       <div>
         <div class="hxRow">
-          <label class="hxChoice hxCol hxSpan-4-xs">
+          <label class="hxOption hxCol hxSpan-4-xs">
             <input type="radio" name="sample" value="1" checked />
             <hx-tile>
               <hx-icon type="checkmark"></hx-icon>
@@ -91,7 +91,7 @@ also:
               <p>Servers description</p>
             </hx-tile>
           </label>
-          <label class="hxChoice hxCol hxSpan-4-xs">
+          <label class="hxOption hxCol hxSpan-4-xs">
             <input type="radio" name="sample" value="2" />
             <hx-tile>
               <hx-icon type="checkmark"></hx-icon>
@@ -102,7 +102,7 @@ also:
               <p>Configurations description</p>
             </hx-tile>
           </label>
-          <label class="hxChoice hxCol hxSpan-4-xs">
+          <label class="hxOption hxCol hxSpan-4-xs">
             <input type="radio" name="sample" value="3" />
             <hx-tile>
               <hx-icon type="checkmark"></hx-icon>
@@ -113,7 +113,7 @@ also:
               <p>Incidents description</p>
             </hx-tile>
           </label>
-          <label class="hxChoice hxCol hxSpan-4-xs">
+          <label class="hxOption hxCol hxSpan-4-xs">
             <input type="radio" name="sample" value="4" />
             <hx-tile>
               <hx-icon type="checkmark"></hx-icon>
@@ -124,7 +124,7 @@ also:
               <p>Billing description</p>
             </hx-tile>
           </label>
-          <label class="hxChoice hxCol hxSpan-4-xs">
+          <label class="hxOption hxCol hxSpan-4-xs">
             <input type="radio" name="sample" value="5" />
             <hx-tile>
               <hx-icon type="checkmark"></hx-icon>
@@ -135,7 +135,7 @@ also:
               <p>Account description</p>
             </hx-tile>
           </label>
-          <label class="hxChoice hxCol hxSpan-4-xs">
+          <label class="hxOption hxCol hxSpan-4-xs">
             <input type="radio" name="sample" value="6" disabled />
             <hx-tile>
               <hx-icon type="checkmark"></hx-icon>
@@ -152,27 +152,27 @@ also:
       <footer>
         {% code 'html' %}
           <div class="hxRow">
-            <label class="hxChoice hxCol hxSpan-4-xs">
+            <label class="hxOption hxCol hxSpan-4-xs">
               <input checked type="radio" name="sample" value="1" />
               <hx-tile>...</hx-tile>
             </label>
-            <label class="hxChoice hxCol hxSpan-4-xs">
+            <label class="hxOption hxCol hxSpan-4-xs">
               <input type="radio" name="sample" value="2" />
               <hx-tile>...</hx-tile>
             </label>
-            <label class="hxChoice hxCol hxSpan-4-xs">
+            <label class="hxOption hxCol hxSpan-4-xs">
               <input type="radio" name="sample" value="3" />
               <hx-tile>...</hx-tile>
             </label>
-            <label class="hxChoice hxCol hxSpan-4-xs">
+            <label class="hxOption hxCol hxSpan-4-xs">
               <input type="radio" name="sample" value="4" />
               <hx-tile>...</hx-tile>
             </label>
-            <label class="hxChoice hxCol hxSpan-4-xs">
+            <label class="hxOption hxCol hxSpan-4-xs">
               <input type="radio" name="sample" value="5" />
               <hx-tile>...</hx-tile>
             </label>
-            <label class="hxChoice hxCol hxSpan-4-xs">
+            <label class="hxOption hxCol hxSpan-4-xs">
               <input disabled type="radio" name="sample" value="6" />
               <hx-tile>...</hx-tile>
             </label>
