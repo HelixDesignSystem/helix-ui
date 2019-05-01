@@ -1,59 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Testing - Panels - HelixUI</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<base href="/helix-ui/">
+  <title>Testing - Panels - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
 
-<link rel="shortcut icon" href="images/favicon.png">
+  <link rel="shortcut icon" href="images/favicon.png">
 
-<!-- Font Awesome Brand Icons -->
-<link
-  crossorigin="anonymous"
-  href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
-  integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
-  rel="stylesheet"
-/>
-<link
-  crossorigin="anonymous"
-  href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
-  integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
-  rel="stylesheet"
-/>
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
 
-<link rel="stylesheet" href="dist/styles/helix-ui.css">
-<link rel="stylesheet" href="docs.css">
+  
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  
+  <link rel="stylesheet" href="docs.css">
 
-<!-- Converts ES5 custom element constructor functions to ES6 classes -->
-<script src="vendor/custom-elements-es5-adapter.js"></script>
+  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="vendor/custom-elements-es5-adapter.js"></script>
 
-<!-- loader appends polyfills, if needed -->
-<script src="vendor/webcomponents-loader.js"></script>
-
-    
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
   <!-- This link should be the first item a user can tab to. -->
   <a href="#content">Skip to main content</a>
 
   <header id="head">
-<div id="app-header">
-  <nav>
-    <a class="brand-logo" href="">
-      <img src="images/helix-logo.svg" alt="Logo" />
-    </a>
-  </nav>
-  <div>
-    <a
-      class="hxBtn beta-hxDark"
-      target="_blank"
-      href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
-    >
-      Report Bug
-    </a>
-  </div>
-</div>
+    <nav>
+      <a class="brand-logo" href="">
+        <img src="images/helix-logo.svg" alt="Logo" />
+      </a>
+    </nav>
+
+    <div>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/"
+      >
+        <i class="fab fa-github"></i>
+        <span>View Source</span>
+      </a>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
+      >
+        Report Bug
+      </a>
+    </div>
   </header>
 
   <div id="app">
@@ -216,14 +222,14 @@ class="current">
 
 
       
-      <a href="components/panels" class="current">
-    Panels
+      <a href="components/pagination" >
+    Pagination
   </a>
 
 
       
-      <a href="components/pagination" >
-    Pagination
+      <a href="components/panels" class="current">
+    Panels
   </a>
 
 
@@ -450,6 +456,12 @@ class="current">
 
 
       
+      <a href="elements/hx-radio-set" >
+    &lt;hx-radio-set&gt;
+  </a>
+
+
+      
       <a href="elements/hx-radio" >
     &lt;hx-radio&gt;
   </a>
@@ -556,113 +568,263 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox hxLg test-content ">
-    <header>
-      <h1>Testing - Panels</h1>
+      <main role="main" id="content" class="test-content specs-panel">
+            <header>
+            
+  <nav class="hxBreadcrumb">
+    <a href="components/panels">Panels</a>
+    <hx-icon class="delimiter" type="angle-right"></hx-icon>
+    <a href="#">Testing - Panels</a>
+  </nav>
 
-        
-    </header>
+            <h1>
+              Testing - Panels
+
+            </h1>
+
+
+              
+          </header>
 
   <section>
-    <nav class="hxBreadcrumb">
-      <a href="components/panels">Panels</a>
-      <hx-icon class="delimiter" type="angle-right"></hx-icon>
-      <a href="#">Testing - Panels</a>
-    </nav>
+    <header>
+      <h2 id="test-basic-panels">Basic Panels</h2>
+    </header>
+
+    <div class="spec visible">
+      <div class="hxPanel">
+        <header>Panel Header (.hxPanel > header)</header>
+        <hx-div>
+          <p>Panel Body (.hxPanel > hx-div)</p>
+          <p>
+            If it takes you too long to document the backlog PR bottleneck, then
+            you are not detailing enough. If it takes you too long to plan the
+            burndown VOC production release, then you are not satifying enough.
+            If it takes you too long to launch the burndown PR sequence, then you
+            are not coding enough. We must exactly pick up the many MVP software
+            development! If we code off the processes, we can get the numerous
+            emergence down the WIP colocation. If it takes you too long to release
+            the lean MVP pattern, then you are not coding enough.
+          </p>
+        </hx-div>
+        <footer>Panel Footer (.hxPanel > footer)</footer>
+      </div>
+    </div>
   </section>
 
   <section>
-    <h2>Basic Panels</h2>
-    <div class="example">
-      <div class="demo panel-demo">
-        <div class="hxPanel">
-          <header>Panel Header (.hxPanel > header)</header>
-          <hx-div>
-            <p>Panel Body (.hxPanel > hx-div)</p>
-            <p>
-              If it takes you too long to document the backlog PR bottleneck, then
-              you are not detailing enough. If it takes you too long to plan the
-              burndown VOC production release, then you are not satifying enough.
-              If it takes you too long to launch the burndown PR sequence, then you
-              are not coding enough. We must exactly pick up the many MVP software
-              development! If we code off the processes, we can get the numerous
-              emergence down the WIP colocation. If it takes you too long to release
-              the lean MVP pattern, then you are not coding enough.
-            </p>
-          </hx-div>
-          <footer>Panel Footer (.hxPanel > footer)</footer>
-        </div>
+    <header>
+      <h2 id="test-tabbed-panel-content">Tabbed Panel Content</h2>
+    </header>
+
+    <div class="spec scroll">
+      <div class="hxPanel hxTabbed">
+        <header>Panel Header (.hxPanel > header)</header>
+        <hx-tabset>
+          <hx-tablist>
+            <hx-tab>Single Line</hx-tab>
+            <hx-tab>Single Paragraph</hx-tab>
+            <hx-tab>Multi-Paragraph</hx-tab>
+          </hx-tablist>
+          <hx-tabcontent>
+            <hx-tabpanel>
+              <p>Single Line</p>
+            </hx-tabpanel>
+            <hx-tabpanel>
+              <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p>
+            </hx-tabpanel>
+            <hx-tabpanel>
+              <p>Several Paragraphs</p>
+              <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p>
+            </hx-tabpanel>
+          </hx-tabcontent>
+        </hx-tabset>
+        <footer>Panel Footer (.hxPanel > footer)</footer>
       </div>
     </div>
   </section>
 
   <!-- DEPRECATED MARKUP -->
   <section>
-    <h2>Deprecated Panels</h2>
-    <div class="example">
-      <div class="demo panel-demo">
-        <hx-panel>
-          <hx-panelhead>Panel Head (hx-panelhead)</hx-panelhead>
-          <hx-panelbody>
-            <p>Panel Body (hx-panelbody)</p>
-            <p>
-              If it takes you too long to document the backlog PR bottleneck, then
-              you are not detailing enough. If it takes you too long to plan the
-              burndown VOC production release, then you are not satifying enough.
-              If it takes you too long to launch the burndown PR sequence, then you
-              are not coding enough. We must exactly pick up the many MVP software
-              development! If we code off the processes, we can get the numerous
-              emergence down the WIP colocation. If it takes you too long to release
-              the lean MVP pattern, then you are not coding enough.
-            </p>
-          </hx-panelbody>
-          <hx-panelfoot>Panel Foot (hx-panelfoot)</hx-panelfoot>
-        </hx-panel>
-      </div>
+    <header>
+      <h2 id="test-deprecated-panels">Deprecated Panels</h2>
+    </header>
+    <div class="spec visible">
+      <hx-panel>
+        <hx-panelhead>Panel Head (hx-panelhead)</hx-panelhead>
+        <hx-panelbody>
+          <p>Panel Body (hx-panelbody)</p>
+          <p>
+            If it takes you too long to document the backlog PR bottleneck, then
+            you are not detailing enough. If it takes you too long to plan the
+            burndown VOC production release, then you are not satifying enough.
+            If it takes you too long to launch the burndown PR sequence, then you
+            are not coding enough. We must exactly pick up the many MVP software
+            development! If we code off the processes, we can get the numerous
+            emergence down the WIP colocation. If it takes you too long to release
+            the lean MVP pattern, then you are not coding enough.
+          </p>
+        </hx-panelbody>
+        <hx-panelfoot>Panel Foot (hx-panelfoot)</hx-panelfoot>
+      </hx-panel>
     </div>
   </section>
-  </main>
 
-  <aside class="hxSiderail hxBox hxMd">
-    <header>
-      <h1 class="hxHeading-4">On this page:</h1>
-    </header>
 
-    <nav class="article-toc">
-      
-      <hr class="hxDivider" />
-      <a class="top-link" href="#top">Back to Top</a>
-    </nav>
-  </aside>
+  
+  <div class="banner warning">
+    <hx-icon type="exclamation-triangle" class="banner__icon"></hx-icon>
+    <div class="banner__body">
+      <b>UI TESTING:</b>
+      Do not replicate anything on this page within your application.
+    </div>
+  </div>
+
+      </main>
+
+        <aside class="hxSiderail">
+            <header>
+              <h1 class="hxHeading-4">On this page:</h1>
+            </header>
+
+            <nav class="article-toc">
+              
+            <a href="#test-basic-panels">Basic Panels</a>
+        
+
+            <a href="#test-tabbed-panel-content">Tabbed Panel Content</a>
+        
+
+            <a href="#test-deprecated-panels">Deprecated Panels</a>
+        
+                
+              <hr class="hxDivider" />
+              <a class="top-link" href="#top">Back to Top</a>
+            </nav>
+        </aside>
     </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
-<div class="hxCol">
-&copy; 2019 Rackspace US, Inc.
-<nav>
-  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
-  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
-</nav>
-</div>
-<div class="hxCol text-right">
-    <small>
-      Last Updated:
-      2019-04-25
-    </small>
+    <div class="hxCol">
+      &copy; 2019 Rackspace US, Inc.
+      <nav>
+        <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+        <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+      </nav>
+    </div>
 
-  <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0-rc.2" target="_blank">
-      v0.16.0-rc.2
-    </a>)
-  </small>
-</div>
+    <div class="hxCol hxRight">
+        <small>
+          Last Updated:
+          2019-05-01
+        </small>
+
+      <small>
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0" target="_blank">
+          v0.16.0
+        </a>)
+      </small>
+    </div>
   </footer>
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-<script src="dist/scripts/helix-ui.browser.js"></script>
-<script src="docs.js"></script>
+  
 
-    
+  
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  
+  <script src="dist/scripts/helix-ui.browser.js"></script>
+  
+  <script src="docs.js"></script>
 </body>
 </html>

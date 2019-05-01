@@ -2152,7 +2152,7 @@ class HXDisclosureElement extends HXElement {
 
 var shadowMarkup$3 = "<div id='hxDiv'><slot></slot></div>";
 
-var shadowStyles$3 = "@supports (--skip-ie: true) {\n  :host {\n    --padding-base: 0;\n    --padding-top: var(--padding-base);\n    --padding-right: var(--padding-base);\n    --padding-bottom: var(--padding-base);\n    --padding-left: var(--padding-base);\n    --padding: var(--padding-top) var(--padding-right) var(--padding-bottom) var(--padding-left);\n  }\n  :host #hxDiv {\n    padding: var(--padding);\n  }\n}\n";
+var shadowStyles$3 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n@supports (--skip-ie: true) {\n  :host {\n    --padding-base: 0;\n    --padding-top: var(--padding-base);\n    --padding-right: var(--padding-base);\n    --padding-bottom: var(--padding-base);\n    --padding-left: var(--padding-base);\n    --padding: var(--padding-top) var(--padding-right) var(--padding-bottom) var(--padding-left);\n  }\n  :host #hxDiv {\n    padding: var(--padding);\n  }\n}\n";
 
 /**
  * Nullable string denoting direction for scrolling.
@@ -4241,6 +4241,30 @@ class HXRadioSetElement extends HXElement {
         this.removeEventListener('hxtouch', this._onHxtouch);
     }
 
+    /**
+     * @readonly
+     * @type {Boolean} [false]
+     */
+    get isDirty () {
+        return this.hasAttribute(STATE.dirty);
+    }
+
+    /**
+     * @readonly
+     * @type {Boolean} [false]
+     */
+    get wasChanged () {
+        return this.hasAttribute(STATE.changed);
+    }
+
+    /**
+     * @readonly
+     * @type {Boolean} [false]
+     */
+    get wasTouched () {
+        return this.hasAttribute(STATE.touched);
+    }
+
     /** @private */
     _onHxchange (evt) {
         evt.stopPropagation();
@@ -4609,8 +4633,17 @@ class HXSelectElement extends HXElement {
 }
 
 /**
+ * Fires when non-current tab is clicked.
+ *
+ * @event Tab:hxtabclick
+ * @since 0.16.0
+ * @type {CustomEvent}
+ */
+
+/**
  * Defines behavior for the `<hx-tab>` element.
  *
+ * @emits Tab:hxtabclick
  * @extends HXElement
  * @hideconstructor
  * @since 0.2.0
@@ -4624,6 +4657,11 @@ class HXTabElement extends HXElement {
         this.$upgradeProperty('current');
         this.$defaultAttribute('role', 'tab');
         this.setAttribute('aria-selected', this.current);
+        this.addEventListener('click', this._onClick);
+    }
+
+    $onDisconnect () {
+        this.removeEventListener('click', this._onClick);
     }
 
     static get $observedAttributes () {
@@ -4636,15 +4674,26 @@ class HXTabElement extends HXElement {
         }
     }
 
+    /**
+     * True if tab is selected.
+     *
+     * @type {Boolean}
+     */
     get current () {
         return this.hasAttribute('current');
     }
-
     set current (newVal) {
         if (newVal) {
             this.setAttribute('current', true);
         } else {
             this.removeAttribute('current');
+        }
+    }
+
+    /** @private */
+    _onClick () {
+        if (!this.current) {
+            this.$emit('hxtabclick', { bubbles: true });
         }
     }
 }
@@ -4663,6 +4712,11 @@ class HXTabcontentElement extends HXElement {
 
     $onConnect () {
         this.$defaultAttribute('role', 'presentation');
+        this.addEventListener('scroll', onScroll);
+    }
+
+    $onDisconnect () {
+        this.removeEventListener('scroll', onScroll);
     }
 }
 
@@ -4766,6 +4820,7 @@ class HXTabpanelElement extends HXElement {
  * @emits Tabset:tabchange
  * @extends HXElement
  * @hideconstructor
+ * @listens Tab:hxtabclick
  * @since 0.2.0
  */
 class HXTabsetElement extends HXElement {
@@ -4776,7 +4831,6 @@ class HXTabsetElement extends HXElement {
     $onCreate () {
         this.$onConnect = defer(this.$onConnect);
         this._onKeyUp = this._onKeyUp.bind(this);
-        this._onTabClick = this._onTabClick.bind(this);
     }
 
     $onConnect () {
@@ -4786,9 +4840,7 @@ class HXTabsetElement extends HXElement {
         this.currentTab = Number(this.getAttribute('current-tab')) || 0;
         this._tablist.addEventListener('keyup', this._onKeyUp);
         this._tablist.addEventListener('keydown', preventKeyScroll);
-        this.tabs.forEach(tab => {
-            tab.addEventListener('click', this._onTabClick);
-        });
+        this.addEventListener('hxtabclick', this._onHxtabclick);
 
         if (this.hasAttribute('current-tab')) {
             this._activateTab(this.currentTab);
@@ -4798,9 +4850,7 @@ class HXTabsetElement extends HXElement {
     $onDisconnect () {
         this._tablist.removeEventListener('keyup', this._onKeyUp);
         this._tablist.removeEventListener('keydown', preventKeyScroll);
-        this.tabs.forEach(tab => {
-            tab.removeEventListener('click', this._onTabClick);
-        });
+        this.removeEventListener('hxtabclick', this._onHxtabclick);
     }
 
     static get $observedAttributes () {
@@ -4901,21 +4951,6 @@ class HXTabsetElement extends HXElement {
         return this.querySelector('hx-tablist');
     }
 
-    /**
-     * Handle navigating the tabs via arrow keys
-     * @private
-     * @todo migrate keyup listener logic to HXTablistElement
-     */
-    _onKeyUp (evt) {
-        if (evt.keyCode === KEYS.Right) {
-            this.selectNext();
-        }
-
-        if (evt.keyCode === KEYS.Left) {
-            this.selectPrevious();
-        }
-    }
-
     /** @private */
     _activateTab (idx) {
         this.tabs.forEach((tab, tabIdx) => {
@@ -4934,12 +4969,25 @@ class HXTabsetElement extends HXElement {
         });
     }
 
-    /**
-     * @private
-     * @todo migrate tab click listener logic to HXTabElement
-     */
-    _onTabClick (evt) {
+    /** @private */
+    _onHxtabclick (evt) {
+        evt.stopPropagation();
         this.currentTab = this.tabs.indexOf(evt.target);
+    }
+
+    /**
+     * Handle navigating the tabs via arrow keys
+     * @private
+     * @todo migrate keyup listener logic to HXTablistElement
+     */
+    _onKeyUp (evt) {
+        if (evt.keyCode === KEYS.Right) {
+            this.selectNext();
+        }
+
+        if (evt.keyCode === KEYS.Left) {
+            this.selectPrevious();
+        }
     }
 
     /** @private */
@@ -5540,7 +5588,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.16.0-rc.2";
+var version = "0.16.0";
 
 /** @module HelixUI */
 

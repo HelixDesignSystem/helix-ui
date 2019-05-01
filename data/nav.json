@@ -98,12 +98,12 @@
         "path": "navigation"
       },
       {
-        "label": "Panels",
-        "path": "panels"
-      },
-      {
         "label": "Pagination",
         "path": "pagination"
+      },
+      {
+        "label": "Panels",
+        "path": "panels"
       },
       {
         "label": "Pills",
@@ -250,6 +250,10 @@
       {
         "label": "<hx-radio-control>",
         "path": "hx-radio-control"
+      },
+      {
+        "label": "<hx-radio-set>",
+        "path": "hx-radio-set"
       },
       {
         "label": "<hx-radio>",

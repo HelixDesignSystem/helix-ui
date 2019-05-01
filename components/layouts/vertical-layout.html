@@ -1,40 +1,65 @@
 <!DOCTYPE html>
-<html lang="en"><!-- lang is necessary for screen reader compatibility -->
-<title>Vertical Layout Preview - HelixUI</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<base href="/helix-ui/">
+<html lang="en">
+<head>
+  <title>Vertical Layout Preview - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
 
-<link rel="shortcut icon" href="images/favicon.png">
+  <link rel="shortcut icon" href="images/favicon.png">
 
-<!-- Font Awesome Brand Icons -->
-<link
-  crossorigin="anonymous"
-  href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
-  integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
-  rel="stylesheet"
-/>
-<link
-  crossorigin="anonymous"
-  href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
-  integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
-  rel="stylesheet"
-/>
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
 
-<link rel="stylesheet" href="dist/styles/helix-ui.css">
-<link rel="stylesheet" href="docs.css">
+  
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  
+  <link rel="stylesheet" href="docs.css">
 
-<!-- Converts ES5 custom element constructor functions to ES6 classes -->
-<script src="vendor/custom-elements-es5-adapter.js"></script>
+  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="vendor/custom-elements-es5-adapter.js"></script>
 
-<!-- loader appends polyfills, if needed -->
-<script src="vendor/webcomponents-loader.js"></script>
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
+</head>
 <body class="hxVertical" id="top">
-  <!-- Accessibility: This link should be the first item in tab order. -->
+  <!-- This link should be the first item a user can tab to. -->
   <a href="#content">Skip to main content</a>
 
   <header id="head">
-    <!-- Eyebrow Goes Here -->
+    <nav>
+      <a class="brand-logo" href="">
+        <img src="images/helix-logo.svg" alt="Logo" />
+      </a>
+    </nav>
+
+    <div>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/"
+      >
+        <i class="fab fa-github"></i>
+        <span>View Source</span>
+      </a>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
+      >
+        Report Bug
+      </a>
+    </div>
   </header>
 
   <div id="app">
@@ -66,73 +91,87 @@
 
       </nav>
 
-      <main role="main" id="content" class="hxBox hxMd">
-        <nav class="hxBreadcrumb">
-          <a href="#">Home</a>
-          <hx-icon class="delimiter" type="angle-right"></hx-icon>
-          <a href="components/layouts">Layouts</a>
-          <hx-icon class="delimiter" type="angle-right"></hx-icon>
-          <a href="#">Vertical Layout</a>
-        </nav>
+      <main role="main" id="content" class=" ">
+  <header>
+    <nav class="hxBreadcrumb">
+      <a href="#">Home</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="components/layouts">Layouts</a>
+      <hx-icon class="delimiter" type="angle-right"></hx-icon>
+      <a href="#">Vertical Layout</a>
+    </nav>
 
-        <h1>Main Content</h1>
+    <h1>Main Content</h1>
+  </header>
 
-        <ul class="hxList">
-          <li>
-            Footer will be pushed off viewport by lengthy content.
-          </li>
-          <li>
-            All content scrolls vertically as a <i>single document</i>.
-          </li>
-        </ul>
+  <section>
+    <ul class="hxList">
+      <li>
+        Footer will be pushed off viewport by lengthy content.
+      </li>
+      <li>
+        All content scrolls vertically as a <i>single document</i>.
+      </li>
+    </ul>
 
-        <p>
-          <a
-            class="hxBtn hxLg hxPrimary"
-            download="HelixUI-Vertical-index.html"
-            href="files/vertical-layout-template.html"
-          >
-            <hx-icon type="download"></hx-icon>
-            <span>Download Vertical Template</span>
-          </a>
-        </p>
+    <p>
+      <a
+        class="hxBtn hxLg hxPrimary"
+        download="HelixUI-Vertical-index.html"
+        href="files/vertical-layout-template.html"
+      >
+        <hx-icon type="download"></hx-icon>
+        <span>Download Vertical Template</span>
+      </a>
+    </p>
+  </section>
+
       </main>
 
-      <aside class="hxSiderail hxBox hxMd">
-        <h2>Side Rail</h2>
-        <ul class="hxList">
-          <li>
-            A side rail may appear before or after main content.
-          </li>
-        </ul>
-      </aside>
+        <aside class="hxSiderail">
+  <header>
+    <h2>Side Rail</h2>
+  </header>
+
+  <ul class="hxList">
+    <li>
+      A side rail may appear before or after main content.
+    </li>
+  </ul>
+        </aside>
     </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
-<div class="hxCol">
-&copy; 2019 Rackspace US, Inc.
-<nav>
-  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
-  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
-</nav>
-</div>
-<div class="hxCol text-right">
-    <small>
-      Last Updated:
-      2019-02-21
-    </small>
+    <div class="hxCol">
+      &copy; 2019 Rackspace US, Inc.
+      <nav>
+        <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+        <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+      </nav>
+    </div>
 
-  <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0-rc.2" target="_blank">
-      v0.16.0-rc.2
-    </a>)
-  </small>
-</div>
+    <div class="hxCol hxRight">
+        <small>
+          Last Updated:
+          2019-05-01
+        </small>
+
+      <small>
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0" target="_blank">
+          v0.16.0
+        </a>)
+      </small>
+    </div>
   </footer>
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-<script src="dist/scripts/helix-ui.browser.js"></script>
-<script src="docs.js"></script>
+  
+
+  
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  
+  <script src="dist/scripts/helix-ui.browser.js"></script>
+  
+  <script src="docs.js"></script>
 </body>
 </html>

@@ -1,59 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Badges - HelixUI</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<base href="/helix-ui/">
+  <title>Badges - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
 
-<link rel="shortcut icon" href="images/favicon.png">
+  <link rel="shortcut icon" href="images/favicon.png">
 
-<!-- Font Awesome Brand Icons -->
-<link
-  crossorigin="anonymous"
-  href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
-  integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
-  rel="stylesheet"
-/>
-<link
-  crossorigin="anonymous"
-  href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
-  integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
-  rel="stylesheet"
-/>
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
 
-<link rel="stylesheet" href="dist/styles/helix-ui.css">
-<link rel="stylesheet" href="docs.css">
+  
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  
+  <link rel="stylesheet" href="docs.css">
 
-<!-- Converts ES5 custom element constructor functions to ES6 classes -->
-<script src="vendor/custom-elements-es5-adapter.js"></script>
+  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="vendor/custom-elements-es5-adapter.js"></script>
 
-<!-- loader appends polyfills, if needed -->
-<script src="vendor/webcomponents-loader.js"></script>
-
-    
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
   <!-- This link should be the first item a user can tab to. -->
   <a href="#content">Skip to main content</a>
 
   <header id="head">
-<div id="app-header">
-  <nav>
-    <a class="brand-logo" href="">
-      <img src="images/helix-logo.svg" alt="Logo" />
-    </a>
-  </nav>
-  <div>
-    <a
-      class="hxBtn beta-hxDark"
-      target="_blank"
-      href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
-    >
-      Report Bug
-    </a>
-  </div>
-</div>
+    <nav>
+      <a class="brand-logo" href="">
+        <img src="images/helix-logo.svg" alt="Logo" />
+      </a>
+    </nav>
+
+    <div>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/"
+      >
+        <i class="fab fa-github"></i>
+        <span>View Source</span>
+      </a>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
+      >
+        Report Bug
+      </a>
+    </div>
   </header>
 
   <div id="app">
@@ -216,14 +222,14 @@ class="current">
 
 
       
-      <a href="components/panels" >
-    Panels
+      <a href="components/pagination" >
+    Pagination
   </a>
 
 
       
-      <a href="components/pagination" >
-    Pagination
+      <a href="components/panels" >
+    Panels
   </a>
 
 
@@ -450,6 +456,12 @@ class="current">
 
 
       
+      <a href="elements/hx-radio-set" >
+    &lt;hx-radio-set&gt;
+  </a>
+
+
+      
       <a href="elements/hx-radio" >
     &lt;hx-radio&gt;
   </a>
@@ -556,35 +568,39 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox hxMd">
-    <header>
-      <h1>
-        Badges
+      <main role="main" id="content" class="component-content docs-badge">
+          <header>
+            
+              
+
+            <h1>
+              Badges
+
 <min-version id="page-min-version">
-    v0.10.0+
+  v0.10.0+
 </min-version>
 
 <hx-tooltip for="page-min-version" position="right">
-    HelixUI v0.10.0 or later required
+  HelixUI v0.10.0 or later required
 </hx-tooltip>
-      </h1>
+            </h1>
 
-        
+
+  <p>
+    Badges are inline elements that communicate change to an area of the site.
+    They are implemented by applying the <code>.hxBadge</code> CSS class
+    to a <code>&lt;span&gt;</code> element.
+  </p>
+          </header>
+
+  <section>
+    <header>
+      <h2 id="link-badge">Link Badge</h2>
+      <p>
+        Badges may be used with a hyperlink to bring attention to new items at the destination.
+      </p>
     </header>
 
-  <section>
-    <p class="comfortable">
-      Badges are inline elements that communicate change to an area of the site.
-      They are implemented by applying the <code>.hxBadge</code> CSS class
-      to a <code>&lt;span&gt;</code> element.
-    </p>
-  </section>
-
-  <section>
-    <h2 id="link-badge">Link Badge</h2>
-    <p>
-      Badges may be used with a hyperlink to bring attention to new items at the destination.
-    </p>
     <div class="example">
       <div>
         <a href="">
@@ -603,10 +619,13 @@ class="current">
   </section>
 
   <section>
-    <h2 id="icon-badge">Icon Badge</h2>
-    <p>
-      Badges can be combined with icons to create a compact notification.
-    </p>
+    <header>
+      <h2 id="icon-badge">Icon Badge</h2>
+      <p>
+        Badges can be combined with icons to create a compact notification.
+      </p>
+    </header>
+
     <div class="example">
       <div>
         <hx-icon type="bell"></hx-icon>
@@ -645,30 +664,34 @@ class="current">
   </section>
 
   <section>
-    <h2 id="tab-badge">Tab Badge</h2>
-    <p>
-      Badges may be used in tabs to bring attention to new items in unselected tabs.
-    </p>
+    <header>
+      <h2 id="tab-badge">Tab Badge</h2>
+      <p>
+        Badges may be used in tabs to bring attention to new items in unselected tabs.
+      </p>
+    </header>
+
     <div class="example">
       <div>
         <hx-tabset>
           <hx-tablist>
             <hx-tab>
-              First
+              <span>First</span>
               <span class="hxBadge">1</span>
             </hx-tab>
             <hx-tab>
-              Second
+              <span>Second</span>
               <span class="hxBadge">32</span>
             </hx-tab>
-            <hx-tab>Third
+            <hx-tab>
+              <span>Third</span>
               <span class="hxBadge">99+</span>
             </hx-tab>
           </hx-tablist>
           <hx-tabcontent>
-            <hx-tabpanel>...</hx-tabpanel>
-            <hx-tabpanel>...</hx-tabpanel>
-            <hx-tabpanel>...</hx-tabpanel>
+            <hx-tabpanel>Tab 1</hx-tabpanel>
+            <hx-tabpanel>Tab 2</hx-tabpanel>
+            <hx-tabpanel>Tab 3</hx-tabpanel>
           </hx-tabcontent>
         </hx-tabset>
       </div>
@@ -677,22 +700,22 @@ class="current">
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-tabset</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-tablist</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">hx-tab</span>&gt;</span>
-      First
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>First<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBadge"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">hx-tab</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">hx-tab</span>&gt;</span>
-      Second
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Second<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBadge"</span>&gt;</span>32<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">hx-tab</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">hx-tab</span>&gt;</span>
-      Third
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Third<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBadge"</span>&gt;</span>99+<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">hx-tab</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">hx-tablist</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-tabcontent</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tabpanel</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tabpanel</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tabpanel</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tabpanel</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tabpanel</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tabpanel</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tabpanel</span>&gt;</span>Tab 1<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tabpanel</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tabpanel</span>&gt;</span>Tab 2<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tabpanel</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-tabpanel</span>&gt;</span>Tab 3<span class="hljs-tag">&lt;/<span class="hljs-name">hx-tabpanel</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">hx-tabcontent</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-tabset</span>&gt;</span>
 </code></pre>      </footer>
@@ -706,14 +729,15 @@ class="current">
       <li><a href="components/badges/test.html">Testing - Badges</a></li>
   </ul>
 </section>
-  </main>
-  <aside class="hxSiderail hxBox hxMd">
-<header>
-  <h1 class="hxHeading-4">On this page:</h1>
-</header>
+      </main>
 
-<nav class="article-toc">
-  
+        <aside class="hxSiderail">
+            <header>
+              <h1 class="hxHeading-4">On this page:</h1>
+            </header>
+
+            <nav class="article-toc">
+              
             <a href="#link-badge">Link Badge</a>
         
 
@@ -722,40 +746,45 @@ class="current">
 
             <a href="#tab-badge">Tab Badge</a>
         
-    <a href="#see-also">See Also</a>
-  <hr class="hxDivider" />
-  <a class="top-link" href="#top">Back to Top</a>
-</nav>
-  </aside>
+                
+                <a href="#see-also">See Also</a>
+              <hr class="hxDivider" />
+              <a class="top-link" href="#top">Back to Top</a>
+            </nav>
+        </aside>
     </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
-<div class="hxCol">
-&copy; 2019 Rackspace US, Inc.
-<nav>
-  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
-  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
-</nav>
-</div>
-<div class="hxCol text-right">
-    <small>
-      Last Updated:
-      2019-04-25
-    </small>
+    <div class="hxCol">
+      &copy; 2019 Rackspace US, Inc.
+      <nav>
+        <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+        <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+      </nav>
+    </div>
 
-  <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0-rc.2" target="_blank">
-      v0.16.0-rc.2
-    </a>)
-  </small>
-</div>
+    <div class="hxCol hxRight">
+        <small>
+          Last Updated:
+          2019-05-01
+        </small>
+
+      <small>
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0" target="_blank">
+          v0.16.0
+        </a>)
+      </small>
+    </div>
   </footer>
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-<script src="dist/scripts/helix-ui.browser.js"></script>
-<script src="docs.js"></script>
+  
 
-    
+  
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  
+  <script src="dist/scripts/helix-ui.browser.js"></script>
+  
+  <script src="docs.js"></script>
 </body>
 </html>

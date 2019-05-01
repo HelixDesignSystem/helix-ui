@@ -1,59 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Getting Started with HelixUI - HelixUI</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<base href="/helix-ui/">
+  <title>Getting Started with HelixUI - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
 
-<link rel="shortcut icon" href="images/favicon.png">
+  <link rel="shortcut icon" href="images/favicon.png">
 
-<!-- Font Awesome Brand Icons -->
-<link
-  crossorigin="anonymous"
-  href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
-  integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
-  rel="stylesheet"
-/>
-<link
-  crossorigin="anonymous"
-  href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
-  integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
-  rel="stylesheet"
-/>
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
 
-<link rel="stylesheet" href="dist/styles/helix-ui.css">
-<link rel="stylesheet" href="docs.css">
+  
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  
+  <link rel="stylesheet" href="docs.css">
 
-<!-- Converts ES5 custom element constructor functions to ES6 classes -->
-<script src="vendor/custom-elements-es5-adapter.js"></script>
+  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="vendor/custom-elements-es5-adapter.js"></script>
 
-<!-- loader appends polyfills, if needed -->
-<script src="vendor/webcomponents-loader.js"></script>
-
-    
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
   <!-- This link should be the first item a user can tab to. -->
   <a href="#content">Skip to main content</a>
 
   <header id="head">
-<div id="app-header">
-  <nav>
-    <a class="brand-logo" href="">
-      <img src="images/helix-logo.svg" alt="Logo" />
-    </a>
-  </nav>
-  <div>
-    <a
-      class="hxBtn beta-hxDark"
-      target="_blank"
-      href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
-    >
-      Report Bug
-    </a>
-  </div>
-</div>
+    <nav>
+      <a class="brand-logo" href="">
+        <img src="images/helix-logo.svg" alt="Logo" />
+      </a>
+    </nav>
+
+    <div>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/"
+      >
+        <i class="fab fa-github"></i>
+        <span>View Source</span>
+      </a>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
+      >
+        Report Bug
+      </a>
+    </div>
   </header>
 
   <div id="app">
@@ -216,14 +222,14 @@ class="current">
 
 
       
-      <a href="components/panels" >
-    Panels
+      <a href="components/pagination" >
+    Pagination
   </a>
 
 
       
-      <a href="components/pagination" >
-    Pagination
+      <a href="components/panels" >
+    Panels
   </a>
 
 
@@ -450,6 +456,12 @@ class="current">
 
 
       
+      <a href="elements/hx-radio-set" >
+    &lt;hx-radio-set&gt;
+  </a>
+
+
+      
       <a href="elements/hx-radio" >
     &lt;hx-radio&gt;
   </a>
@@ -556,24 +568,31 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox hxMd">
-    <header>
-      <h1>Getting Started with HelixUI</h1>
+      <main role="main" id="content" class="guide-content ">
+          <header>
+            
+              
 
-        
+            <h1>
+              Getting Started with HelixUI
+
+            </h1>
+
+
+  <p>
+    The HelixUI library provides front-end developers a set of reusable CSS
+    classes and HTML Custom Elements that adhere to Helix design standards.
+    Adopting the library will enable developers to build products with consistent
+    markup, styles, and behavior across a variety of frameworks.
+  </p>
+          </header>
+
+  <section>
+    <header>
+      <h2 id="step-1">Step 1: Install HelixUI</h2>
+      
     </header>
 
-  <section>
-    <p class="comfortable">
-      The HelixUI library provides front-end developers a set of reusable CSS
-      classes and HTML Custom Elements that adhere to Helix design standards.
-      Adopting the library will enable developers to build products with consistent
-      markup, styles, and behavior across a variety of frameworks.
-    </p>
-  </section>
-
-  <section>
-    <h2 id="step-1">Step 1: Install HelixUI</h2>
     <hx-tabset class="beta-hxBound">
       <hx-tablist>
         <hx-tab>NPM</hx-tab>
@@ -599,9 +618,9 @@ class="current">
             pre-built assets are available for download.
           </p>
           <p>
-            <a href="downloads/helix-ui-0.16.0-rc.2.tgz" class="hxBtn hxLg hxPrimary">
+            <a href="downloads/helix-ui-0.16.0.tgz" class="hxBtn hxLg hxPrimary">
               <hx-icon type="download"></hx-icon>
-              <span>Download HelixUI (v0.16.0-rc.2)</span>
+              <span>Download HelixUI (v0.16.0)</span>
             </a>
           </p>
           <p class="hxSubBody">
@@ -624,14 +643,14 @@ class="current">
 
           <h3>Development</h3>
           <ul class="hxList">
-            <li><code>https://unpkg.com/helix-ui@0.16.0-rc.2/dist/styles/helix-ui.css</code></li>
-            <li><code>https://unpkg.com/helix-ui@0.16.0-rc.2/dist/scripts/helix-ui.browser.js</code></li>
+            <li><code>https://unpkg.com/helix-ui@0.16.0/dist/styles/helix-ui.css</code></li>
+            <li><code>https://unpkg.com/helix-ui@0.16.0/dist/scripts/helix-ui.browser.js</code></li>
           </ul>
 
           <h3>Production (minified)</h3>
           <ul class="hxList">
-            <li><code>https://unpkg.com/helix-ui@0.16.0-rc.2/dist/styles/helix-ui.min.css</code></li>
-            <li><code>https://unpkg.com/helix-ui@0.16.0-rc.2/dist/scripts/helix-ui.browser.min.js</code></li>
+            <li><code>https://unpkg.com/helix-ui@0.16.0/dist/styles/helix-ui.min.css</code></li>
+            <li><code>https://unpkg.com/helix-ui@0.16.0/dist/scripts/helix-ui.browser.min.js</code></li>
           </ul>
         </hx-tabpanel>
       </hx-tabcontent>
@@ -639,11 +658,14 @@ class="current">
   </section>
 
   <section>
-    <h2 id="step-2">Step 2: Install Polyfills</h2>
-    <p class="comfortable">
-      To ensure that HelixUI has the minimum set of behavior required to function
-      across all supported browsers, the Web Components polyfills must be installed.
-    </p>
+    <header>
+      <h2 id="step-2">Step 2: Install Polyfills</h2>
+      <p>
+        To ensure that HelixUI has the minimum set of behavior required to function
+        across all supported browsers, the Web Components polyfills must be installed.
+      </p>
+    </header>
+
     <ol class="hxList">
       <li>
         Install <code>@webcomponents/webcomponentsjs</code> via one of the methods shown below.
@@ -653,11 +675,13 @@ class="current">
       </li>
       <li>Proceed to "Step 3: Choose a Layout".</li>
     </ol>
+
     <p class="hxSubBody hxSubdued">
       <hx-icon type="info-circle"></hx-icon>
       Version 2.x (or later) is recommended, because it is more efficient
       in loading required polyfill bundles.
     </p>
+
     <hx-tabset class="beta-hxBound">
       <hx-tablist>
         <hx-tab>NPM</hx-tab>
@@ -703,14 +727,21 @@ class="current">
         </hx-tabpanel>
       </hx-tabcontent>
     </hx-tabset>
-    <p class="hxSubdued hxSubBody">
-      <hx-icon type="info-circle"></hx-icon>
-      Visit the <a href="guides/polyfills">Polyfills</a> guide for more details.
-    </p>
+
+    <footer>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Visit the <a href="guides/polyfills">Polyfills</a> guide for more details.
+      </p>
+    </footer>
   </section>
 
   <section>
-    <h2 id="step-3">Step 3: Choose a Layout</h2>
+    <header>
+      <h2 id="step-3">Step 3: Choose a Layout</h2>
+      
+    </header>
+
     <ol class="hxList">
       <li>
         Choose one of the layouts shown below.
@@ -722,11 +753,13 @@ class="current">
         Modify the template markup to conform to your application's file structure.
       </li>
     </ol>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="info-circle"></hx-icon>
       Visit the <a href="components/layouts">Layouts</a> component
       documentation for customization details.
     </p>
+
     <hx-tabset class="beta-hxBound">
       <hx-tablist>
         <hx-tab>Vertical Layout</hx-tab>
@@ -793,26 +826,30 @@ class="current">
   </section>
 
   <section><!-- Create Content -->
-    <h2 id="step-4">Step 4: Add Content</h2>
-    <p>
-      Add content and interactivity to your application using components.
-      Documentation for a component contains interactive demos and details
-      about various interaction patterns.
-    </p>
+    <header>
+      <h2 id="step-4">Step 4: Add Content</h2>
+      <p>
+        Add content and interactivity to your application using components.
+        Documentation for a component contains interactive demos and details
+        about various interaction patterns.
+      </p>
+    </header>
+
     <ol class="hxList">
       <li>Choose a component from the navigation on the left.</li>
       <li>Check the "See Also" section on the component page for more information.</li>
     </ol>
   </section>
 
-  </main>
-  <aside class="hxSiderail hxBox hxMd">
-<header>
-  <h1 class="hxHeading-4">On this page:</h1>
-</header>
+      </main>
 
-<nav class="article-toc">
-  
+        <aside class="hxSiderail">
+            <header>
+              <h1 class="hxHeading-4">On this page:</h1>
+            </header>
+
+            <nav class="article-toc">
+              
             <a href="#step-1">Step 1: Install HelixUI</a>
         
 
@@ -824,39 +861,44 @@ class="current">
 
             <a href="#step-4">Step 4: Add Content</a>
         
-  <hr class="hxDivider" />
-  <a class="top-link" href="#top">Back to Top</a>
-</nav>
-  </aside>
+                
+              <hr class="hxDivider" />
+              <a class="top-link" href="#top">Back to Top</a>
+            </nav>
+        </aside>
     </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
-<div class="hxCol">
-&copy; 2019 Rackspace US, Inc.
-<nav>
-  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
-  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
-</nav>
-</div>
-<div class="hxCol text-right">
-    <small>
-      Last Updated:
-      2019-04-22
-    </small>
+    <div class="hxCol">
+      &copy; 2019 Rackspace US, Inc.
+      <nav>
+        <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+        <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+      </nav>
+    </div>
 
-  <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0-rc.2" target="_blank">
-      v0.16.0-rc.2
-    </a>)
-  </small>
-</div>
+    <div class="hxCol hxRight">
+        <small>
+          Last Updated:
+          2019-05-01
+        </small>
+
+      <small>
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0" target="_blank">
+          v0.16.0
+        </a>)
+      </small>
+    </div>
   </footer>
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-<script src="dist/scripts/helix-ui.browser.js"></script>
-<script src="docs.js"></script>
+  
 
-    
+  
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  
+  <script src="dist/scripts/helix-ui.browser.js"></script>
+  
+  <script src="docs.js"></script>
 </body>
 </html>

@@ -1,59 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Layouts - HelixUI</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<base href="/helix-ui/">
+  <title>Layouts - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
 
-<link rel="shortcut icon" href="images/favicon.png">
+  <link rel="shortcut icon" href="images/favicon.png">
 
-<!-- Font Awesome Brand Icons -->
-<link
-  crossorigin="anonymous"
-  href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
-  integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
-  rel="stylesheet"
-/>
-<link
-  crossorigin="anonymous"
-  href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
-  integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
-  rel="stylesheet"
-/>
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
 
-<link rel="stylesheet" href="dist/styles/helix-ui.css">
-<link rel="stylesheet" href="docs.css">
+  
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  
+  <link rel="stylesheet" href="docs.css">
 
-<!-- Converts ES5 custom element constructor functions to ES6 classes -->
-<script src="vendor/custom-elements-es5-adapter.js"></script>
+  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="vendor/custom-elements-es5-adapter.js"></script>
 
-<!-- loader appends polyfills, if needed -->
-<script src="vendor/webcomponents-loader.js"></script>
-
-    
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
   <!-- This link should be the first item a user can tab to. -->
   <a href="#content">Skip to main content</a>
 
   <header id="head">
-<div id="app-header">
-  <nav>
-    <a class="brand-logo" href="">
-      <img src="images/helix-logo.svg" alt="Logo" />
-    </a>
-  </nav>
-  <div>
-    <a
-      class="hxBtn beta-hxDark"
-      target="_blank"
-      href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
-    >
-      Report Bug
-    </a>
-  </div>
-</div>
+    <nav>
+      <a class="brand-logo" href="">
+        <img src="images/helix-logo.svg" alt="Logo" />
+      </a>
+    </nav>
+
+    <div>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/"
+      >
+        <i class="fab fa-github"></i>
+        <span>View Source</span>
+      </a>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
+      >
+        Report Bug
+      </a>
+    </div>
   </header>
 
   <div id="app">
@@ -216,14 +222,14 @@ class="current">
 
 
       
-      <a href="components/panels" >
-    Panels
+      <a href="components/pagination" >
+    Pagination
   </a>
 
 
       
-      <a href="components/pagination" >
-    Pagination
+      <a href="components/panels" >
+    Panels
   </a>
 
 
@@ -450,6 +456,12 @@ class="current">
 
 
       
+      <a href="elements/hx-radio-set" >
+    &lt;hx-radio-set&gt;
+  </a>
+
+
+      
       <a href="elements/hx-radio" >
     &lt;hx-radio&gt;
   </a>
@@ -556,43 +568,47 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox hxMd">
-    <header>
-      <h1>
-        Layouts
+      <main role="main" id="content" class="component-content ">
+          <header>
+            
+              
+
+            <h1>
+              Layouts
+
 <min-version id="page-min-version">
-    v0.2.0+
+  v0.2.0+
 </min-version>
 
 <hx-tooltip for="page-min-version" position="right">
-    HelixUI v0.2.0 or later required
+  HelixUI v0.2.0 or later required
 </hx-tooltip>
-      </h1>
+            </h1>
 
-        
+
+  <p>
+    The Layouts component provides information about Helix application anatomy
+    for the purposes of advanced customization.
+  </p>
+          </header>
+
+  <section>
+    <header>
+      <h2 id="layout-templates">Layout Templates</h2>
+      
     </header>
 
-  <section>
-    <p class="comfortable">
-      The Layouts component provides information about Helix application anatomy
-      for the purposes of advanced customization.
+    <p>
+      It is highly recommended that you use one of the pre-defined layout
+      templates described below.
     </p>
-    <p class="comfortable">
-      It is highly recommended that you use one of the pre-defined layout templates
-      mentioned in <a href="#layout-templates">Layout Templates</a> below.
-    </p>
-    <p class="comfortable">
-      If you find that the pre-defined templates don't meet your needs,
-      please skip ahead to <a href="#prerequisites">Prerequisites</a> to review
+
+    <p>
+      If you find that the pre-defined templates do not meet your needs, please
+      skip ahead to <a href="#prerequisites">Prerequisites</a> to review
       documentation needed to better understand how to customize your application.
     </p>
-  </section>
 
-  <section>
-    <h2 id="layout-templates">Layout Templates</h2>
-    <p>
-      Download or preview one of the pre-defined layout templates below.
-    </p>
     <p class="hxSubBody hxSubdued">
       <hx-icon type="info-circle"></hx-icon>
       All layout templates are optimized for use in single-page applications (SPAs).
@@ -665,11 +681,16 @@ class="current">
   </section>
 
   <section>
-    <h2 id="prerequisites">Prerequisites</h2>
-    <p class="comfortable">
+    <header>
+      <h2 id="prerequisites">Prerequisites</h2>
+      
+    </header>
+
+    <p>
       To get the most out of this documentation, developers are
       expected to:
     </p>
+
     <ol class="hxList">
       <li>
         Review the instructions in the
@@ -688,11 +709,14 @@ class="current">
   </section>
 
   <section>
-    <h2 id="layout-anatomy">Layout Anatomy</h2>
-    <p class="comfortable">
-      Layouts are composed of several different areas. Understanding the purpose
-      for each area should help you locate the best place to add custom containers.
-    </p>
+    <header>
+      <h2 id="layout-anatomy">Layout Anatomy</h2>
+      <p>
+        Layouts are composed of several different areas. Understanding the purpose
+        for each area should help you locate the best place to add custom containers.
+      </p>
+    </header>
+
     <dl class="hxList">
       <div>
         <dt>
@@ -796,15 +820,19 @@ class="current">
   </section>
 
   <section><!-- Body -->
-    <h2 id="document-body">Document Body</h2>
-    <p>
-      The document <code>&lt;body&gt;</code> is the root element
-      for applying CSS needed for any application layout.
-    </p>
+    <header>
+      <h2 id="document-body">Document Body</h2>
+      <p>
+        The document <code>&lt;body&gt;</code> is the root element
+        for applying CSS needed for any application layout.
+      </p>
+    </header>
+
     <p>
       Add one of the following CSS classes to the <code>&lt;body&gt;</code> element
       to begin with pre-defined layout styles.
     </p>
+
     <ul class="hxList">
       <li><code>hxVertical</code> for a vertical layout</li>
       <li><code>hxHorizontal</code> for a horizontal layout</li>
@@ -812,15 +840,19 @@ class="current">
   </section>
 
   <section><!-- App Container -->
-    <h2 id="app-container">App Container</h2>
-    <p>
-      The app container serves as the mounting point
-      for your single-page application.
-    </p>
+    <header>
+      <h2 id="app-container">App Container</h2>
+      <p>
+        The app container serves as the mounting point
+        for your single-page application.
+      </p>
+    </header>
+
     <ul class="hxList">
       <li>It must have an ID of <code>app</code>.</li>
       <li>It can be any block element.</li>
     </ul>
+
     <hx-tabset class="beta-hxBound">
       <hx-tablist>
         <hx-tab>HTML</hx-tab>
@@ -848,20 +880,28 @@ class="current">
   </section>
 
   <section><!-- Stage -->
-    <h2 id="stage-area">Stage</h2>
-    <p class="comfortable">
-      The stage serves as the root element required by client-side frameworks
-      that use virtual DOM technologies (i.e., hyperscript). It can be divided
-      into three areas:
+    <header>
+      <h2 id="stage-area">Stage</h2>
+      <p>
+        The stage serves as the root element required by client-side frameworks
+        that use virtual DOM technologies (e.g., hyperscript).
+      </p>
+    </header>
+
+    <p>
+      The Stage can be divided into three areas:
     </p>
+
     <ol class="hxList">
       <li><a href="#nav-area">Nav</a> (optional)</li>
       <li><a href="#main-content">Main Content</a></li>
       <li>left or right <a href="#side-rail">Side Rail</a> (optional)</li>
     </ol>
+
     <p>
       The stage container must have an ID of <code>stage</code>.
     </p>
+
     <figure class="hxFigure">
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"stage"</span>&gt;</span>
   <span class="hljs-comment">&lt;!-- (optional) Nav --&gt;</span>
@@ -888,10 +928,13 @@ class="current">
   </section>
 
   <section><!-- Nav -->
-    <h2 id="nav-area">Nav</h2>
-    <p>
-      The nav area houses hyperlinks to pages within your application.
-    </p>
+    <header>
+      <h2 id="nav-area">Nav</h2>
+      <p>
+        The nav area houses hyperlinks to pages within your application.
+      </p>
+    </header>
+
     <ul class="hxList">
       <li>
         It must have an ID of <code>nav</code>.
@@ -905,6 +948,7 @@ class="current">
         for content information.
       </li>
     </ul>
+
     <figure class="hxFigure">
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"nav"</span>&gt;</span>
   <span class="hljs-comment">&lt;!-- links to pages within application --&gt;</span>
@@ -914,10 +958,13 @@ class="current">
   </section>
 
   <section><!-- Main Content -->
-    <h2 id="main-content">Main Content</h2>
-    <p>
-      The main content area houses primary page content.
-    </p>
+    <header>
+      <h2 id="main-content">Main Content</h2>
+      <p>
+        The main content area houses primary page content.
+      </p>
+    </header>
+
     <ul class="hxList">
       <li>
         It must have an ID of <code>content</code>.
@@ -931,16 +978,19 @@ class="current">
         legacy support for accessible user agents.
       </li>
     </ul>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="info-circle"></hx-icon>
       The main content area behaves like a non-wrapping grid row
       when used in a horizontal layout.
     </p>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="info-circle"></hx-icon>
       Padding must be applied manually, using <a href="components/box">Box</a>
       component styles.
     </p>
+
     <figure class="hxFigure">
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"main"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"content"</span>&gt;</span>
   <span class="hljs-comment">&lt;!-- primary page content --&gt;</span>
@@ -950,10 +1000,13 @@ class="current">
   </section>
 
   <section><!-- Side Rail -->
-    <h2 id="side-rail">Side Rail</h2>
-    <p>
-      The side rail houses secondary page content.
-    </p>
+    <header>
+      <h2 id="side-rail">Side Rail</h2>
+      <p>
+        The side rail houses secondary page content.
+      </p>
+    </header>
+
     <ul class="hxList">
       <li>
         Use an <code>&lt;aside&gt;</code> element to provide the best support
@@ -963,14 +1016,17 @@ class="current">
         Add the <code>hxSiderail</code> CSS class to apply visual styling.
       </li>
     </ul>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="exclamation-triangle"></hx-icon>
       Avoid using a side rail in a horizontal layout.
     </p>
+
     <p class="hxSubdued hxSubBody">
       <hx-icon type="exclamation-triangle"></hx-icon>
       Avoid adding multiple side rails on a single page.
     </p>
+
     <figure class="hxFigure">
 <pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">aside</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxSiderail"</span>&gt;</span>
   <span class="hljs-comment">&lt;!-- secondary page content --&gt;</span>
@@ -988,14 +1044,15 @@ class="current">
       <li><a href="components/navigation">Navigation</a></li>
   </ul>
 </section>
-  </main>
-  <aside class="hxSiderail hxBox hxMd">
-<header>
-  <h1 class="hxHeading-4">On this page:</h1>
-</header>
+      </main>
 
-<nav class="article-toc">
-  
+        <aside class="hxSiderail">
+            <header>
+              <h1 class="hxHeading-4">On this page:</h1>
+            </header>
+
+            <nav class="article-toc">
+              
             <a href="#layout-templates">Layout Templates</a>
         
 
@@ -1022,40 +1079,45 @@ class="current">
 
             <a href="#side-rail">Side Rail</a>
         
-    <a href="#see-also">See Also</a>
-  <hr class="hxDivider" />
-  <a class="top-link" href="#top">Back to Top</a>
-</nav>
-  </aside>
+                
+                <a href="#see-also">See Also</a>
+              <hr class="hxDivider" />
+              <a class="top-link" href="#top">Back to Top</a>
+            </nav>
+        </aside>
     </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
-<div class="hxCol">
-&copy; 2019 Rackspace US, Inc.
-<nav>
-  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
-  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
-</nav>
-</div>
-<div class="hxCol text-right">
-    <small>
-      Last Updated:
-      2019-04-22
-    </small>
+    <div class="hxCol">
+      &copy; 2019 Rackspace US, Inc.
+      <nav>
+        <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+        <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+      </nav>
+    </div>
 
-  <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0-rc.2" target="_blank">
-      v0.16.0-rc.2
-    </a>)
-  </small>
-</div>
+    <div class="hxCol hxRight">
+        <small>
+          Last Updated:
+          2019-05-01
+        </small>
+
+      <small>
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0" target="_blank">
+          v0.16.0
+        </a>)
+      </small>
+    </div>
   </footer>
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-<script src="dist/scripts/helix-ui.browser.js"></script>
-<script src="docs.js"></script>
+  
 
-    
+  
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  
+  <script src="dist/scripts/helix-ui.browser.js"></script>
+  
+  <script src="docs.js"></script>
 </body>
 </html>

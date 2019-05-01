@@ -1,59 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Typography - HelixUI</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<base href="/helix-ui/">
+  <title>Typography - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
 
-<link rel="shortcut icon" href="images/favicon.png">
+  <link rel="shortcut icon" href="images/favicon.png">
 
-<!-- Font Awesome Brand Icons -->
-<link
-  crossorigin="anonymous"
-  href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
-  integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
-  rel="stylesheet"
-/>
-<link
-  crossorigin="anonymous"
-  href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
-  integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
-  rel="stylesheet"
-/>
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
 
-<link rel="stylesheet" href="dist/styles/helix-ui.css">
-<link rel="stylesheet" href="docs.css">
+  
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  
+  <link rel="stylesheet" href="docs.css">
 
-<!-- Converts ES5 custom element constructor functions to ES6 classes -->
-<script src="vendor/custom-elements-es5-adapter.js"></script>
+  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="vendor/custom-elements-es5-adapter.js"></script>
 
-<!-- loader appends polyfills, if needed -->
-<script src="vendor/webcomponents-loader.js"></script>
-
-    
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
   <!-- This link should be the first item a user can tab to. -->
   <a href="#content">Skip to main content</a>
 
   <header id="head">
-<div id="app-header">
-  <nav>
-    <a class="brand-logo" href="">
-      <img src="images/helix-logo.svg" alt="Logo" />
-    </a>
-  </nav>
-  <div>
-    <a
-      class="hxBtn beta-hxDark"
-      target="_blank"
-      href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
-    >
-      Report Bug
-    </a>
-  </div>
-</div>
+    <nav>
+      <a class="brand-logo" href="">
+        <img src="images/helix-logo.svg" alt="Logo" />
+      </a>
+    </nav>
+
+    <div>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/"
+      >
+        <i class="fab fa-github"></i>
+        <span>View Source</span>
+      </a>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
+      >
+        Report Bug
+      </a>
+    </div>
   </header>
 
   <div id="app">
@@ -216,14 +222,14 @@ class="current">
 
 
       
-      <a href="components/panels" >
-    Panels
+      <a href="components/pagination" >
+    Pagination
   </a>
 
 
       
-      <a href="components/pagination" >
-    Pagination
+      <a href="components/panels" >
+    Panels
   </a>
 
 
@@ -450,6 +456,12 @@ class="current">
 
 
       
+      <a href="elements/hx-radio-set" >
+    &lt;hx-radio-set&gt;
+  </a>
+
+
+      
       <a href="elements/hx-radio" >
     &lt;hx-radio&gt;
   </a>
@@ -556,24 +568,33 @@ class="current">
 
       </nav>
 
-  <main id="content" class="hxBox hxMd">
-    <header>
-      <h1>
-        Typography
+      <main role="main" id="content" class="component-content ">
+          <header>
+            
+              
+
+            <h1>
+              Typography
+
 <min-version id="page-min-version">
-    v0.1.6+
+  v0.1.6+
 </min-version>
 
 <hx-tooltip for="page-min-version" position="right">
-    HelixUI v0.1.6 or later required
+  HelixUI v0.1.6 or later required
 </hx-tooltip>
-      </h1>
+            </h1>
 
-        
-    </header>
+
+  
+          </header>
 
   <section><!-- Typefaces -->
-    <h2 id="typefaces">Typefaces</h2>
+    <header>
+      <h2 id="typefaces">Typefaces</h2>
+      
+    </header>
+
     <div class="example">
       <div class="demo-typography">
         <div class="hxRow">
@@ -597,7 +618,11 @@ class="current">
   </section>
 
   <section><!-- Headings -->
-    <h2 id="headers">Headings</h2>
+    <header>
+      <h2 id="headings">Headings</h2>
+      
+    </header>
+
     <div class="example">
       <div>
         <h1>Heading One</h1>
@@ -660,11 +685,14 @@ class="current">
   </section>
 
   <section><!-- Subdued -->
-    <h2 id="subdued">Subdued</h2>
-    <p>
-      Add the <code>.hxSubdued</code> CSS class to any element to apply a
-      muted appearance.
-    </p>
+    <header>
+      <h2 id="subdued">Subdued</h2>
+      <p>
+        Add the <code>.hxSubdued</code> CSS class to any element to apply a
+        muted appearance.
+      </p>
+    </header>
+
     <div class="example">
       <div>
         <div class="hxSubdued">div.hxSubdued</div>
@@ -683,10 +711,15 @@ class="current">
   </section>
 
   <section><!-- Caption -->
-    <h2 id="caption">Caption</h2>
+    <header>
+      <h2 id="caption">Caption</h2>
+      
+    </header>
+
     <p>
       Apply the Helix "caption" style with any of the following configurations:
     </p>
+
     <ul class="hxList">
       <li>
         A <code>&lt;caption&gt;</code> element within a
@@ -700,6 +733,7 @@ class="current">
         Add the <code>.hxCaption</code> CSS class to any element
       </li>
     </ul>
+
     <div class="example">
       <div>
         <figure class="hxFigure">
@@ -726,14 +760,20 @@ class="current">
   </section>
 
   <section><!-- Sub-Body -->
-    <h2 id="sub-body">Sub-Body</h2>
+    <header>
+      <h2 id="sub-body">Sub-Body</h2>
+      
+    </header>
+
     <p>
       Apply the "sub-body" style with any of the following:
     </p>
+
     <ul class="hxList">
       <li>A <code>&lt;small&gt;</code> element</li>
       <li>Add the <code>.hxSubBody</code> CSS class to any element</li>
     </ul>
+
     <div class="example">
       <div>
         <small>small</small>
@@ -749,17 +789,25 @@ class="current">
   </section>
 
   <section><!-- Links -->
-    <h2 id="links">Links</h2>
-    <p>
-      Links should be used to refer a user to a resource or location.
-    </p>
-    <hx-alert type="info" status="note" persist>
-      Buttons are better suited to initiate in-page actions.
-    </hx-alert>
-    <hx-alert type="warning" status="warning" persist>
-      Adding the <code>disabled</code> attribute to a link <b>will not</b>
-      prevent user interaction.
-    </hx-alert>
+    <header>
+      <h2 id="links">Links</h2>
+      <p>
+        Hyperlinks (a.k.a., links) should be used to navigate a user to a
+        resource or location.
+      </p>
+    </header>
+
+    <ul class="hxList">
+      <li>
+        <a href="components/buttons">Buttons</a> are better suited to
+        initiate in-page actions.
+      </li>
+      <li>
+        Adding the <code>disabled</code> attribute to a link does not
+        prevent user interaction.
+      </li>
+    </ul>
+
     <div class="example">
       <div>
         <a href="#">Link Text</a>
@@ -772,11 +820,14 @@ class="current">
   </section>
 
   <section><!-- Inline Code -->
-    <h2 id="inline-code">Inline Code</h2>
-    <p>
-      Use the <code>&lt;code&gt;</code> element to differentiate descriptive
-      text from code snippets.
-    </p>
+    <header>
+      <h2 id="inline-code">Inline Code</h2>
+      <p>
+        Use the <code>&lt;code&gt;</code> element to differentiate descriptive
+        text from code snippets.
+      </p>
+    </header>
+
     <div class="example">
       <div>
         <p>
@@ -793,11 +844,14 @@ class="current">
   </section>
 
   <section><!-- Keyboard -->
-    <h2 id="keyboard">Keyboard</h2>
-    <p>
-      Use the <code>&lt;kbd&gt;</code> element to differentiate descriptive text
-      from instructional key presses.
-    </p>
+    <header>
+      <h2 id="keyboard">Keyboard</h2>
+      <p>
+        Use the <code>&lt;kbd&gt;</code> element to differentiate descriptive text
+        from instructional key presses.
+      </p>
+    </header>
+
     <div class="example">
       <div>
         <p>
@@ -816,7 +870,11 @@ class="current">
   </section>
 
   <section><!-- Code Block -->
-    <h2 id="code-block">Code Block</h2>
+    <header>
+      <h2 id="code-block">Code Block</h2>
+      
+    </header>
+
     <div class="example">
       <div class="demo">
         <pre><code>[Insert Code Here]</code></pre>
@@ -829,10 +887,12 @@ class="current">
   </section>
 
   <section><!-- Error Text -->
-    <h2 id="error-text">Error Text</h2>
-    <p>
-      <small>Added: v0.4.0</small>
-    </p>
+    <header>
+      <h2 id="error-text">Error Text</h2>
+      <p class="hxSubBody">Added: v0.4.0</p>
+      
+    </header>
+
     <div class="example">
       <div>
         <hx-error>Error message goes here</hx-error>
@@ -845,11 +905,13 @@ class="current">
   </section>
 
   <section><!-- Syntax Highlighting -->
-    <h2 id="syntax-highlighting">Syntax Highlighting</h2>
-    <p>
-      HelixUI provides a built-in theme for use with the
-      <a href="https://highlightjs.org/">highlight.js</a> library.
-    </p>
+    <header>
+      <h2 id="syntax-highlighting">Syntax Highlighting</h2>
+      <p>
+        HelixUI provides a built-in theme for use with the
+        <a href="https://highlightjs.org/">highlight.js</a> library.
+      </p>
+    </header>
 
     <p>
       Below are some examples of the syntax highlighting in action.
@@ -1069,18 +1131,19 @@ you can write text [<span class="hljs-string">with links</span>](<span class="hl
       <li><a href="elements/hx-error">&lt;hx-error&gt;</a></li>
   </ul>
 </section>
-  </main>
-  <aside class="hxSiderail hxBox hxMd">
-<header>
-  <h1 class="hxHeading-4">On this page:</h1>
-</header>
+      </main>
 
-<nav class="article-toc">
-  
+        <aside class="hxSiderail">
+            <header>
+              <h1 class="hxHeading-4">On this page:</h1>
+            </header>
+
+            <nav class="article-toc">
+              
             <a href="#typefaces">Typefaces</a>
         
 
-            <a href="#headers">Headings</a>
+            <a href="#headings">Headings</a>
         
 
             <a href="#subdued">Subdued</a>
@@ -1109,40 +1172,45 @@ you can write text [<span class="hljs-string">with links</span>](<span class="hl
 
             <a href="#syntax-highlighting">Syntax Highlighting</a>
         
-    <a href="#see-also">See Also</a>
-  <hr class="hxDivider" />
-  <a class="top-link" href="#top">Back to Top</a>
-</nav>
-  </aside>
+                
+                <a href="#see-also">See Also</a>
+              <hr class="hxDivider" />
+              <a class="top-link" href="#top">Back to Top</a>
+            </nav>
+        </aside>
     </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
-<div class="hxCol">
-&copy; 2019 Rackspace US, Inc.
-<nav>
-  <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
-  <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
-</nav>
-</div>
-<div class="hxCol text-right">
-    <small>
-      Last Updated:
-      2019-04-22
-    </small>
+    <div class="hxCol">
+      &copy; 2019 Rackspace US, Inc.
+      <nav>
+        <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+        <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+      </nav>
+    </div>
 
-  <small>
-    (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0-rc.2" target="_blank">
-      v0.16.0-rc.2
-    </a>)
-  </small>
-</div>
+    <div class="hxCol hxRight">
+        <small>
+          Last Updated:
+          2019-05-01
+        </small>
+
+      <small>
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.0" target="_blank">
+          v0.16.0
+        </a>)
+      </small>
+    </div>
   </footer>
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-<script src="dist/scripts/helix-ui.browser.js"></script>
-<script src="docs.js"></script>
+  
 
-    
+  
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  
+  <script src="dist/scripts/helix-ui.browser.js"></script>
+  
+  <script src="docs.js"></script>
 </body>
 </html>

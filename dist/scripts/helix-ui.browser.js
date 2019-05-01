@@ -2712,7 +2712,7 @@
 
     var shadowMarkup$3 = "<div id='hxDiv'><slot></slot></div>";
 
-    var shadowStyles$3 = "@supports (--skip-ie: true) {\n  :host {\n    --padding-base: 0;\n    --padding-top: var(--padding-base);\n    --padding-right: var(--padding-base);\n    --padding-bottom: var(--padding-base);\n    --padding-left: var(--padding-base);\n    --padding: var(--padding-top) var(--padding-right) var(--padding-bottom) var(--padding-left);\n  }\n  :host #hxDiv {\n    padding: var(--padding);\n  }\n}\n";
+    var shadowStyles$3 = "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  color: inherit;\n  font: inherit;\n  letter-spacing: inherit;\n}\n@supports (--skip-ie: true) {\n  :host {\n    --padding-base: 0;\n    --padding-top: var(--padding-base);\n    --padding-right: var(--padding-base);\n    --padding-bottom: var(--padding-base);\n    --padding-left: var(--padding-base);\n    --padding: var(--padding-top) var(--padding-right) var(--padding-bottom) var(--padding-left);\n  }\n  :host #hxDiv {\n    padding: var(--padding);\n  }\n}\n";
 
     /**
      * Nullable string denoting direction for scrolling.
@@ -5372,10 +5372,16 @@
                 this.removeEventListener('hxtouch', this._onHxtouch);
             }
 
-            /** @private */
+            /**
+             * @readonly
+             * @type {Boolean} [false]
+             */
 
         }, {
             key: '_onHxchange',
+
+
+            /** @private */
             value: function _onHxchange(evt) {
                 evt.stopPropagation();
                 this.$defaultAttribute(STATE.changed, '');
@@ -5398,6 +5404,33 @@
             value: function _onHxtouch(evt) {
                 evt.stopPropagation();
                 this.$defaultAttribute(STATE.touched, '');
+            }
+        }, {
+            key: 'isDirty',
+            get: function get$$1() {
+                return this.hasAttribute(STATE.dirty);
+            }
+
+            /**
+             * @readonly
+             * @type {Boolean} [false]
+             */
+
+        }, {
+            key: 'wasChanged',
+            get: function get$$1() {
+                return this.hasAttribute(STATE.changed);
+            }
+
+            /**
+             * @readonly
+             * @type {Boolean} [false]
+             */
+
+        }, {
+            key: 'wasTouched',
+            get: function get$$1() {
+                return this.hasAttribute(STATE.touched);
             }
         }], [{
             key: 'is',
@@ -5871,8 +5904,17 @@
     }(HXElement);
 
     /**
+     * Fires when non-current tab is clicked.
+     *
+     * @event Tab:hxtabclick
+     * @since 0.16.0
+     * @type {CustomEvent}
+     */
+
+    /**
      * Defines behavior for the `<hx-tab>` element.
      *
+     * @emits Tab:hxtabclick
      * @extends HXElement
      * @hideconstructor
      * @since 0.2.0
@@ -5891,12 +5933,35 @@
                 this.$upgradeProperty('current');
                 this.$defaultAttribute('role', 'tab');
                 this.setAttribute('aria-selected', this.current);
+                this.addEventListener('click', this._onClick);
+            }
+        }, {
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
+                this.removeEventListener('click', this._onClick);
             }
         }, {
             key: '$onAttributeChange',
             value: function $onAttributeChange(attr, oldVal, newVal) {
                 if (attr === 'current') {
                     this.setAttribute('aria-selected', newVal !== null);
+                }
+            }
+
+            /**
+             * True if tab is selected.
+             *
+             * @type {Boolean}
+             */
+
+        }, {
+            key: '_onClick',
+
+
+            /** @private */
+            value: function _onClick() {
+                if (!this.current) {
+                    this.$emit('hxtabclick', { bubbles: true });
                 }
             }
         }, {
@@ -5944,6 +6009,12 @@
             key: '$onConnect',
             value: function $onConnect() {
                 this.$defaultAttribute('role', 'presentation');
+                this.addEventListener('scroll', onScroll);
+            }
+        }, {
+            key: '$onDisconnect',
+            value: function $onDisconnect() {
+                this.removeEventListener('scroll', onScroll);
             }
         }], [{
             key: 'is',
@@ -6081,6 +6152,7 @@
      * @emits Tabset:tabchange
      * @extends HXElement
      * @hideconstructor
+     * @listens Tab:hxtabclick
      * @since 0.2.0
      */
     var HXTabsetElement = function (_HXElement) {
@@ -6096,22 +6168,17 @@
             value: function $onCreate() {
                 this.$onConnect = defer(this.$onConnect);
                 this._onKeyUp = this._onKeyUp.bind(this);
-                this._onTabClick = this._onTabClick.bind(this);
             }
         }, {
             key: '$onConnect',
             value: function $onConnect() {
-                var _this2 = this;
-
                 this.$upgradeProperty('current-tab');
                 this.$defaultAttribute('id', 'tabset-' + generateId());
                 this._setupIds();
                 this.currentTab = Number(this.getAttribute('current-tab')) || 0;
                 this._tablist.addEventListener('keyup', this._onKeyUp);
                 this._tablist.addEventListener('keydown', preventKeyScroll);
-                this.tabs.forEach(function (tab) {
-                    tab.addEventListener('click', _this2._onTabClick);
-                });
+                this.addEventListener('hxtabclick', this._onHxtabclick);
 
                 if (this.hasAttribute('current-tab')) {
                     this._activateTab(this.currentTab);
@@ -6120,13 +6187,9 @@
         }, {
             key: '$onDisconnect',
             value: function $onDisconnect() {
-                var _this3 = this;
-
                 this._tablist.removeEventListener('keyup', this._onKeyUp);
                 this._tablist.removeEventListener('keydown', preventKeyScroll);
-                this.tabs.forEach(function (tab) {
-                    tab.removeEventListener('click', _this3._onTabClick);
-                });
+                this.removeEventListener('hxtabclick', this._onHxtabclick);
             }
         }, {
             key: '$onAttributeChange',
@@ -6192,28 +6255,10 @@
             /** @private */
 
         }, {
-            key: '_onKeyUp',
+            key: '_activateTab',
 
-
-            /**
-             * Handle navigating the tabs via arrow keys
-             * @private
-             * @todo migrate keyup listener logic to HXTablistElement
-             */
-            value: function _onKeyUp(evt) {
-                if (evt.keyCode === KEYS.Right) {
-                    this.selectNext();
-                }
-
-                if (evt.keyCode === KEYS.Left) {
-                    this.selectPrevious();
-                }
-            }
 
             /** @private */
-
-        }, {
-            key: '_activateTab',
             value: function _activateTab(idx) {
                 this.tabs.forEach(function (tab, tabIdx) {
                     if (idx === tabIdx) {
@@ -6231,15 +6276,31 @@
                 });
             }
 
+            /** @private */
+
+        }, {
+            key: '_onHxtabclick',
+            value: function _onHxtabclick(evt) {
+                evt.stopPropagation();
+                this.currentTab = this.tabs.indexOf(evt.target);
+            }
+
             /**
+             * Handle navigating the tabs via arrow keys
              * @private
-             * @todo migrate tab click listener logic to HXTabElement
+             * @todo migrate keyup listener logic to HXTablistElement
              */
 
         }, {
-            key: '_onTabClick',
-            value: function _onTabClick(evt) {
-                this.currentTab = this.tabs.indexOf(evt.target);
+            key: '_onKeyUp',
+            value: function _onKeyUp(evt) {
+                if (evt.keyCode === KEYS.Right) {
+                    this.selectNext();
+                }
+
+                if (evt.keyCode === KEYS.Left) {
+                    this.selectPrevious();
+                }
             }
 
             /** @private */
@@ -6247,11 +6308,11 @@
         }, {
             key: '_setupIds',
             value: function _setupIds() {
-                var _this4 = this;
+                var _this2 = this;
 
                 var tabsetId = this.getAttribute('id');
                 this.tabs.forEach(function (tab, idx) {
-                    var tabpanel = _this4.tabpanels[idx];
+                    var tabpanel = _this2.tabpanels[idx];
                     // Default tab and panel ID
                     var tabId = tabsetId + '-tab-' + idx;
                     var tabpanelId = tabsetId + '-panel-' + idx;
@@ -7072,7 +7133,7 @@
         HXTooltipElement: HXTooltipElement
     });
 
-    var version = "0.16.0-rc.2";
+    var version = "0.16.0";
 
     /** @module HelixUI */
 
