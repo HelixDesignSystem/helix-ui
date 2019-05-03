@@ -1,0 +1,53 @@
+---
+title: Testing - Pill
+crumbs:
+  - path: components/pill
+    label: Pill
+---
+{% extends 'test.njk' %}
+
+{% block content %}
+  <section>
+    <h2>Outside Tables</h2>
+    <p>
+      <hx-pill persist>Persistent</hx-pill>
+      <hx-pill>Dismissible</hx-pill>
+    </p>
+  </section>
+
+  <section>
+    <h2>Inside Tables</h2>
+    <table class="hxTable">
+      <tbody>
+        <tr>
+          <td>
+            <hx-pill persist>Persistent</hx-pill>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <hx-pill>Dismissable</hx-pill>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Inside Tables (Condensed)</h2>
+    <table class="hxTable hxTable--condensed">
+      <tbody>
+        <tr>
+          <td>
+            <hx-pill persist>Persistent</hx-pill>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <hx-pill>Dismissable</hx-pill>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

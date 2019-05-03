@@ -1,0 +1,75 @@
+---
+title: Horizontal Layout Preview
+---
+{% extends 'application.njk' %}
+{% set bodyClass = 'hxHorizontal' %}
+
+{% block app_nav %}
+  {% include 'partials/lorem-nav.njk' %}
+{% endblock %}
+
+{% block main %}
+  <div class="hxPanel hxSpan-7-xs">
+    <header class="hxBox hxMd">
+      <nav class="hxBreadcrumb">
+        <a href="#">Home</a>
+        <hx-icon class="delimiter" type="angle-right"></hx-icon>
+        <a href="components/layout">Layout</a>
+        <hx-icon class="delimiter" type="angle-right"></hx-icon>
+        <a href="#">Horizontal Layout</a>
+      </nav>
+      <h1>Primary Panel</h1>
+    </header>
+
+    <hx-div class="hxMd">
+      <ul class="hxList">
+        <li>
+          Horizontal layout enables two variable width panels, entitled
+          "primary" and "secondary", to operate adjacent to one another.
+          User selections or interactions with the primary panel
+          facilitate information displayed on secondary panels.
+        </li>
+        <li>
+          Although data is correlated between each panel, panels can
+          scroll independently.
+        </li>
+        <li>
+          Panel widths cannot be adjusted manually by the user.
+        </li>
+        <li>
+          Columns can be adjusted based on the density of information
+          displaying so each panel is optimized for readability.
+        </li>
+      </ul>
+
+      <p>
+        <a
+          class="hxBtn hxLg hxPrimary"
+          download="HelixUI-Horizontal-index.html"
+          href="files/horizontal-layout-template.html"
+        >
+          <hx-icon type="download"></hx-icon>
+          <span>Download Horizontal Template</span>
+        </a>
+      </p>
+    </hx-div>
+
+    <footer class="hxBox hxMd">
+      Primary Panel Footer (optional)
+    </footer>
+  </div>
+
+  <div class="hxPanel hxSpan-5-xs">
+    <header class="hxBox hxMd">
+      <h2>Secondary Panel Header</h2>
+    </header>
+
+    <hx-div class="hxMd">
+      Secondary Panel Body
+    </hx-div>
+
+    <footer class="hxBox hxMd">
+      Secondary Panel Footer (optional)
+    </footer>
+  </div>
+{% endblock %}

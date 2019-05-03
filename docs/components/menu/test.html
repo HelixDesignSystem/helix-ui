@@ -1,0 +1,33 @@
+---
+title: Testing - Menu
+crumbs:
+  - path: components/menu
+    label: Menu
+---
+{% extends 'test.njk' %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="menu-in-table-header">Menu Inside a Table Header</h2>
+    </header>
+
+    <table class="hxTable">
+      <thead>
+        <tr>
+          <th>
+            Table Header
+            <hx-disclosure aria-controls="cogMenuId" class="hxBtn hxCog">
+              <hx-icon type="cog"></hx-icon>
+            </hx-disclosure>
+            <hx-menu id="cogMenuId" open>
+              <hx-menuitem>Action 1</hx-menuitem>
+              <hx-menuitem>Action 2</hx-menuitem>
+              <hx-menuitem>Action 3</hx-menuitem>
+            </hx-menu>
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </section>
+{% endblock %}
