@@ -53,7 +53,6 @@ export class HXTooltipElement extends _ProtoClass {
         this.$defaultAttribute('id', `tip-${generateId()}`);
         this.$defaultAttribute('role', 'tooltip');
 
-        this.addEventListener('reposition', this._onReposition);
         this._connectToControl();
     }
 
@@ -61,7 +60,6 @@ export class HXTooltipElement extends _ProtoClass {
     $onDisconnect () {
         super.$onDisconnect();
 
-        this.removeEventListener('reposition', this._onReposition);
         this._detachListeners();
     }
 
@@ -74,14 +72,8 @@ export class HXTooltipElement extends _ProtoClass {
     $onAttributeChange (attr, oldVal, newVal) {
         super.$onAttributeChange(attr, oldVal, newVal);
 
-        switch (attr) {
-            case 'for':
-                this._connectToControl();
-                break;
-
-            case 'position':
-                this._setShadowPosition(newVal);
-                break;
+        if (attr === 'for') {
+            this._connectToControl();
         }
     }
 
@@ -109,6 +101,14 @@ export class HXTooltipElement extends _ProtoClass {
     }
     set htmlFor (value) {
         this.setAttribute('for', value);
+    }
+
+    /**
+     * @override
+     * @param {NormalizedPositionString}
+     */
+    setShadowPosition (position) {
+        this._elRoot.setAttribute('position', position);
     }
 
     /** @private */
@@ -286,16 +286,6 @@ export class HXTooltipElement extends _ProtoClass {
                 this.open = false;
             }
         }
-    }
-
-    /** @private */
-    _onReposition () {
-        this._setShadowPosition(this.optimumPosition);
-    }
-
-    /** @private */
-    _setShadowPosition (position) {
-        this._elRoot.setAttribute('position', position);
     }
 
     /**

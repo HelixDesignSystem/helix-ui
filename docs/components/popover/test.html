@@ -7,8 +7,10 @@ crumbs:
 {% extends 'test.njk' %}
 
 {% block content %}
+  {# TODO: Write tests to set shadow position on open and render. #}
+
   <section>
-    <h2>Appearance</h2>
+    <h2 id="appearance">Appearance</h2>
     <div class="popover-appearance">
       <hx-popover>
         <hx-div>
@@ -27,7 +29,7 @@ crumbs:
   </section>
 
   <section>
-    <h2>Full Markup Appearance</h2>
+    <h2 id="full-markup-appearance">Full Markup Appearance</h2>
     <div class="popover-appearance">
       <hx-popover position="right-bottom">
         <header>
@@ -158,7 +160,7 @@ crumbs:
   </section>
 
   <section>
-    <h2>Scrolling Content (Body and Foot)</h2>
+    <h2 id="scrolling-content-body-foot">Scrolling Content (Body and Foot)</h2>
     <div class="popover-appearance">
       <hx-popover position="left">
         <hx-div scroll="vertical">
@@ -196,7 +198,7 @@ crumbs:
   </section>
 
   <section>
-    <h2>Scrolling Content (Body only)</h2>
+    <h2 id="scrolling-content-body">Scrolling Content (Body only)</h2>
     <div class="popover-appearance">
       <hx-popover position="left">
         <hx-div scroll="vertical">
@@ -368,6 +370,35 @@ crumbs:
     </hx-div>
   </section>
 
+  <section>
+    <header>
+      <h2 id="popover-in-table-header">Popover Inside a Table Header</h2>
+    </header>
+    <table class="hxTable">
+      <thead>
+        <tr>
+          <th>
+            Table Header
+            <hx-disclosure aria-controls="testPopover" class="hxBtn" open>
+              <hx-icon type="cog"></hx-icon>
+            </hx-disclosure>
+            <hx-popover id="testPopover" open position="right">
+              <header>
+                Popover Header
+              </header>
+
+              <hx-div>
+                <p>
+                  This is my popover body.
+                </p>
+              </hx-div>
+            </hx-popover>
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </section>
+
   <h2>Deprecated Markup</h2>
 
   <section>
@@ -522,34 +553,5 @@ crumbs:
         </hx-popover-body>
       </hx-popover>
     </div>
-  </section>
-
-  <section>
-    <header>
-      <h2 id="popover-in-table-header">Popover Inside a Table Header</h2>
-    </header>
-    <table class="hxTable">
-      <thead>
-        <tr>
-          <th>
-            Table Header
-            <hx-disclosure aria-controls="testPopover" class="hxBtn" open>
-              <hx-icon type="cog"></hx-icon>
-            </hx-disclosure>
-            <hx-popover id="testPopover" open position="right">
-              <header>
-                Popover Header
-              </header>
-
-              <hx-div>
-                <p>
-                  This is my popover body.
-                </p>
-              </hx-div>
-            </hx-popover>
-          </th>
-        </tr>
-      </thead>
-    </table>
   </section>
 {% endblock %}
