@@ -121,4 +121,156 @@ also:
       </footer>
     </div>
   </section>
+
+  <section>
+    <header>
+      <h2 id="dynamic-tabset">Dynamic Tabset</h2>
+      {# TODO: add section description #}
+    </header>
+
+    <div class="example" id="vue-dynamicTabsetDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm" @submit.prevent>
+          <div>
+            <label for="numCurrentTab" class="beta-hxFieldName">
+              Current Tab
+            </label>
+            <br />
+            <input
+              class="hxTextCtrl"
+              id="numCurrentTab"
+              min="0"
+              step="1"
+              type="number"
+              v-model.number="currentTab"
+              :max="tabs.length - 1"
+            />
+          </div>
+
+          <section>
+            <p class="beta-hxFieldName">
+              Increase Tab Count
+            </p>
+            <p class="hxBtnGroup">
+              <button
+                class="hxBtn"
+                type="button"
+                @click="addTab('start')"
+              >
+                <hx-icon type="plus"></hx-icon>
+                <span>Prepend New</span>
+              </button>
+
+              <button
+               class="hxBtn"
+               type="button"
+               @click="addTab('end')"
+              >
+                <hx-icon type="plus"></hx-icon>
+                <span>Append New</span>
+              </button>
+            </p>
+          </section>
+
+          <section>
+            <p class="beta-hxFieldName">
+              Decrease Tab Count
+            </p>
+            <p class="hxBtnGroup">
+              <button
+                class="hxBtn"
+                type="button"
+                @click="removeTab('start')"
+              >
+                <hx-icon type="minus"></hx-icon>
+                <span>Remove First</span>
+              </button>
+
+              <button
+                class="hxBtn"
+                type="button"
+                @click="removeTab('end')"
+              >
+                <hx-icon type="minus"></hx-icon>
+                <span>Remove Last</span>
+              </button>
+            </p>
+          </section>
+
+          <fieldset>
+            <legend>Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkAutoUpdate"
+                type="checkbox"
+                v-model="autoUpdate"
+              />
+              <label for="chkAutoUpdate">
+                <hx-checkbox></hx-checkbox>
+                Update on change
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+
+          <hr class="hxDivider" />
+
+          <footer>
+            <p class="beta-hxButtonSet">
+              <button
+                class="hxBtn hxPrimary"
+                type="button"
+                :disabled="autoUpdate"
+                @click="update"
+              >
+                Update Tabset
+              </button>
+
+              <button
+                class="hxBtn hxTertiary"
+                type="button"
+                @click="reset"
+              >
+                <span>Reset Tabset</span>
+                <hx-icon type="undo"></hx-icon>
+              </button>
+            </p>
+          </footer>
+        </form>
+      </header>
+
+      {% raw %}
+      <div>
+        <hx-tabset
+          ref="tabset"
+          :current-tab="currentTab"
+          @tabchange="onTabchange"
+        >
+          <hx-tablist>
+            <hx-tab v-for="tab in tabs" :key="tab.id">
+              Tab #{{tab.id}}
+            </hx-tab>
+          </hx-tablist>
+
+          <hx-tabcontent>
+            <hx-tabpanel v-for="tab in tabs" :key="tab.id">
+              Tab Panel #{{tab.id}}
+            </hx-tabpanel>
+          </hx-tabcontent>
+        </hx-tabset>
+      </div>
+      {% endraw %}
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+
+    <footer>
+      <p class="hxSubBody hxSubdued">
+        <hx-icon type="info-circle"></hx-icon>
+        Refer to <a href="elements/hx-tabset#managing-state">"Managing State"</a>
+        in <code>&lt;hx-tabset&gt;</code> documentation, for more details.
+      </p>
+    </footer>
+  </section>
 {% endblock %}
