@@ -172,9 +172,6 @@ min-version {
   font-size: 0.875rem;
   font-weight: 300;
 }
-.article-toc hr {
-  border-top-color: #d8d8d8;
-}
 .example {
   border: 1px solid #e0e0e0;
 }

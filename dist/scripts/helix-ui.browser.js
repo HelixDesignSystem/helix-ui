@@ -4290,6 +4290,7 @@
                     get(_Positionable.prototype.__proto__ || Object.getPrototypeOf(_Positionable.prototype), '$onAttributeChange', this).call(this, attr, oldVal, newVal);
 
                     if (attr === 'position') {
+                        this.setShadowPosition(newVal);
                         this.reposition();
                     }
                 }
@@ -4326,10 +4327,23 @@
                         this.style.left = x + 'px';
 
                         this._optimumPosition = position;
+                        this.setShadowPosition(position);
 
                         this.$emit('reposition');
                     }
                 }
+
+                /**
+                 * Used to communicate position changes to Shadow DOM for subclasses that care.
+                 *
+                 * @abstract
+                 * @ignore
+                 * @param {NormalizedPositionString}
+                 */
+
+            }, {
+                key: 'setShadowPosition',
+                value: function setShadowPosition(position) {} // eslint-disable-line no-unused-vars
 
                 /**
                  * Add active event listeners (e.g, document `click`)
@@ -5094,55 +5108,17 @@
                 this.POSITION_OFFSET = 20;
             }
 
-            /** @override */
-
-        }, {
-            key: '$onConnect',
-            value: function $onConnect() {
-                get(HXPopoverElement.prototype.__proto__ || Object.getPrototypeOf(HXPopoverElement.prototype), '$onConnect', this).call(this);
-                this.addEventListener('reposition', this._onReposition);
-            }
-        }, {
-            key: '$onDisconnect',
-            value: function $onDisconnect() {
-                get(HXPopoverElement.prototype.__proto__ || Object.getPrototypeOf(HXPopoverElement.prototype), '$onDisconnect', this).call(this);
-                this.removeEventListener('reposition', this._onReposition);
-            }
-
-            /** @override */
-
-        }, {
-            key: '$onAttributeChange',
-            value: function $onAttributeChange(attr, oldVal, newVal) {
-                get(HXPopoverElement.prototype.__proto__ || Object.getPrototypeOf(HXPopoverElement.prototype), '$onAttributeChange', this).call(this, attr, oldVal, newVal);
-
-                if (attr === 'position') {
-                    this._setShadowPosition(newVal);
-                }
-            }
-
             /** @private */
 
         }, {
-            key: '_onReposition',
+            key: 'setShadowPosition',
 
 
             /**
-             * Update visual display of arrow in Shadow DOM based on optimal position.
-             * @private
-             */
-            value: function _onReposition() {
-                this._setShadowPosition(this.optimumPosition);
-            }
-
-            /**
-             * @private
+             * @override
              * @param {NormalizedPositionString}
              */
-
-        }, {
-            key: '_setShadowPosition',
-            value: function _setShadowPosition(position) {
+            value: function setShadowPosition(position) {
                 this._elRoot.setAttribute('position', position);
             }
         }, {
@@ -6179,10 +6155,7 @@
                 this._tablist.addEventListener('keyup', this._onKeyUp);
                 this._tablist.addEventListener('keydown', preventKeyScroll);
                 this.addEventListener('hxtabclick', this._onHxtabclick);
-
-                if (this.hasAttribute('current-tab')) {
-                    this._activateTab(this.currentTab);
-                }
+                this.update();
             }
         }, {
             key: '$onDisconnect',
@@ -6201,6 +6174,8 @@
                     }
                 }
             }
+
+            /* ---------- PUBLIC MEMBERS ---------- */
 
             /**
              * Zero-based index of the currently active tab.
@@ -6252,13 +6227,33 @@
                 this.tabs[this.currentTab].focus();
             }
 
+            /**
+             * Synchronize DOM state with element configuration.
+             * Useful for when the number of <hx-tab> and <hx-tabpanel>
+             * elements changes after tabset connects to the DOM.
+             */
+
+        }, {
+            key: 'update',
+            value: function update() {
+                this._activateTab(this.currentTab);
+            }
+
+            /* ---------- PRIVATE PROPERTIES ---------- */
+
             /** @private */
 
         }, {
             key: '_activateTab',
 
 
-            /** @private */
+            /* ---------- PRIVATE METHODS ---------- */
+
+            /** @private
+             *
+             * activates tab/panel pair with matching index
+             * deactivates all other tab/panel pairs
+            */
             value: function _activateTab(idx) {
                 this.tabs.forEach(function (tab, tabIdx) {
                     if (idx === tabIdx) {
@@ -6282,7 +6277,17 @@
             key: '_onHxtabclick',
             value: function _onHxtabclick(evt) {
                 evt.stopPropagation();
-                this.currentTab = this.tabs.indexOf(evt.target);
+                var newIdx = this.tabs.indexOf(evt.target);
+
+                if (newIdx === this.currentTab) {
+                    // update visual state if user clicks newly added tab
+                    // whose index matches the current tabset configuration
+                    this.update();
+                } else {
+                    // otherwise, update logical state, which in turn
+                    // updates visual state
+                    this.currentTab = newIdx;
+                }
             }
 
             /**
@@ -6347,7 +6352,7 @@
                 }
 
                 if (isNaN(idx)) {
-                    throw new TypeError('\'currentTab\' expects an numeric index. Got ' + (typeof idx === 'undefined' ? 'undefined' : _typeof(idx)) + ' instead.');
+                    throw new TypeError('\'currentTab\' expects a numeric index. Got ' + (typeof idx === 'undefined' ? 'undefined' : _typeof(idx)) + ' instead.');
                 }
 
                 if (idx < 0 || idx >= this.tabs.length) {
@@ -6356,6 +6361,8 @@
 
                 this.setAttribute('current-tab', idx);
             }
+
+            /* ---------- PUBLIC METHODS ---------- */
 
             /**
              * All `<hx-tabpanel>` elements within the tabset.
@@ -6746,7 +6753,6 @@
                 this.$defaultAttribute('id', 'tip-' + generateId());
                 this.$defaultAttribute('role', 'tooltip');
 
-                this.addEventListener('reposition', this._onReposition);
                 this._connectToControl();
             }
 
@@ -6757,7 +6763,6 @@
             value: function $onDisconnect() {
                 get(HXTooltipElement.prototype.__proto__ || Object.getPrototypeOf(HXTooltipElement.prototype), '$onDisconnect', this).call(this);
 
-                this.removeEventListener('reposition', this._onReposition);
                 this._detachListeners();
             }
 
@@ -6771,14 +6776,8 @@
             value: function $onAttributeChange(attr, oldVal, newVal) {
                 get(HXTooltipElement.prototype.__proto__ || Object.getPrototypeOf(HXTooltipElement.prototype), '$onAttributeChange', this).call(this, attr, oldVal, newVal);
 
-                switch (attr) {
-                    case 'for':
-                        this._connectToControl();
-                        break;
-
-                    case 'position':
-                        this._setShadowPosition(newVal);
-                        break;
+                if (attr === 'for') {
+                    this._connectToControl();
                 }
             }
 
@@ -6790,6 +6789,20 @@
              * @readonly
              * @returns {HTMLElement|undefined}
              */
+
+        }, {
+            key: 'setShadowPosition',
+
+
+            /**
+             * @override
+             * @param {NormalizedPositionString}
+             */
+            value: function setShadowPosition(position) {
+                this._elRoot.setAttribute('position', position);
+            }
+
+            /** @private */
 
         }, {
             key: '_attachListeners',
@@ -6981,22 +6994,6 @@
                 }
             }
 
-            /** @private */
-
-        }, {
-            key: '_onReposition',
-            value: function _onReposition() {
-                this._setShadowPosition(this.optimumPosition);
-            }
-
-            /** @private */
-
-        }, {
-            key: '_setShadowPosition',
-            value: function _setShadowPosition(position) {
-                this._elRoot.setAttribute('position', position);
-            }
-
             /**
              * Show Tooltip after delay
              *
@@ -7043,9 +7040,6 @@
             set: function set$$1(value) {
                 this.setAttribute('for', value);
             }
-
-            /** @private */
-
         }, {
             key: '_elRoot',
             get: function get$$1() {
@@ -7133,7 +7127,7 @@
         HXTooltipElement: HXTooltipElement
     });
 
-    var version = "0.16.0";
+    var version = "0.16.1";
 
     /** @module HelixUI */
 

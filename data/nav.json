@@ -26,72 +26,72 @@
     "path": "components",
     "children": [
       {
-        "label": "Accordions",
-        "path": "accordions"
+        "label": "Accordion",
+        "path": "accordion"
       },
       {
-        "label": "Alerts",
-        "path": "alerts"
+        "label": "Alert",
+        "path": "alert"
       },
       {
-        "label": "Badges",
-        "path": "badges"
+        "label": "Badge",
+        "path": "badge"
       },
       {
         "label": "Box",
         "path": "box"
       },
       {
-        "label": "Breadcrumbs",
-        "path": "breadcrumbs"
+        "label": "Breadcrumb",
+        "path": "breadcrumb"
       },
       {
-        "label": "Buttons",
-        "path": "buttons"
+        "label": "Button",
+        "path": "button"
       },
       {
-        "label": "Checkboxes",
-        "path": "checkboxes"
+        "label": "Checkbox",
+        "path": "checkbox"
       },
       {
-        "label": "Choice Tiles",
-        "path": "choice-tiles"
+        "label": "Choice Tile",
+        "path": "choice-tile"
       },
       {
         "label": "Dropdown Select",
         "path": "dropdown-select"
       },
       {
-        "label": "Files",
-        "path": "files"
+        "label": "File",
+        "path": "file"
       },
       {
         "label": "Grid",
         "path": "grid"
       },
       {
-        "label": "Icons",
-        "path": "icons"
+        "label": "Icon",
+        "path": "icon"
       },
       {
-        "label": "Layouts",
-        "path": "layouts"
+        "label": "Layout",
+        "path": "layout"
       },
       {
-        "label": "Lists",
-        "path": "lists"
+        "label": "List",
+        "path": "list"
       },
       {
-        "label": "Loaders",
-        "path": "loaders"
+        "label": "Loader",
+        "path": "loader"
       },
       {
-        "label": "Menus",
-        "path": "menus"
+        "label": "Menu",
+        "path": "menu"
       },
       {
-        "label": "Modals",
-        "path": "modals"
+        "label": "Modal",
+        "path": "modal"
       },
       {
         "label": "Navigation",
@@ -102,40 +102,40 @@
         "path": "pagination"
       },
       {
-        "label": "Panels",
-        "path": "panels"
+        "label": "Panel",
+        "path": "panel"
       },
       {
-        "label": "Pills",
-        "path": "pills"
+        "label": "Pill",
+        "path": "pill"
       },
       {
-        "label": "Popovers",
-        "path": "popovers"
+        "label": "Popover",
+        "path": "popover"
       },
       {
-        "label": "Radios",
-        "path": "radios"
+        "label": "Radio",
+        "path": "radio"
       },
       {
-        "label": "Reveals",
-        "path": "reveals"
+        "label": "Reveal",
+        "path": "reveal"
       },
       {
         "label": "Search",
         "path": "search"
       },
       {
-        "label": "Selector Strips",
-        "path": "selector-strips"
+        "label": "Selector Strip",
+        "path": "selector-strip"
       },
       {
-        "label": "Tables",
-        "path": "tables"
+        "label": "Table",
+        "path": "table"
       },
       {
-        "label": "Tabs",
-        "path": "tabs"
+        "label": "Tabset",
+        "path": "tabset"
       },
       {
         "label": "Text Input",
@@ -146,12 +146,12 @@
         "path": "textarea"
       },
       {
-        "label": "Toasts",
-        "path": "toasts"
+        "label": "Toast",
+        "path": "toast"
       },
       {
-        "label": "Tooltips",
-        "path": "tooltips"
+        "label": "Tooltip",
+        "path": "tooltip"
       },
       {
         "label": "Typography",
@@ -164,12 +164,12 @@
     "path": "elements",
     "children": [
       {
-        "label": "<hx-accordion-panel>",
-        "path": "hx-accordion-panel"
-      },
-      {
         "label": "<hx-accordion>",
         "path": "hx-accordion"
+      },
+      {
+        "label": "<hx-accordion-panel>",
+        "path": "hx-accordion-panel"
       },
       {
         "label": "<hx-alert>",
@@ -180,12 +180,12 @@
         "path": "hx-busy"
       },
       {
-        "label": "<hx-checkbox-control>",
-        "path": "hx-checkbox-control"
-      },
-      {
         "label": "<hx-checkbox>",
         "path": "hx-checkbox"
+      },
+      {
+        "label": "<hx-checkbox-control>",
+        "path": "hx-checkbox-control"
       },
       {
         "label": "<hx-disclosure>",
@@ -248,6 +248,10 @@
         "path": "hx-progress"
       },
       {
+        "label": "<hx-radio>",
+        "path": "hx-radio"
+      },
+      {
         "label": "<hx-radio-control>",
         "path": "hx-radio-control"
       },
@@ -256,28 +260,24 @@
         "path": "hx-radio-set"
       },
       {
-        "label": "<hx-radio>",
-        "path": "hx-radio"
-      },
-      {
         "label": "<hx-reveal>",
         "path": "hx-reveal"
-      },
-      {
-        "label": "<hx-search-assistance>",
-        "path": "hx-search-assistance"
       },
       {
         "label": "<hx-search>",
         "path": "hx-search"
       },
       {
-        "label": "<hx-select-control>",
-        "path": "hx-select-control"
+        "label": "<hx-search-assistance>",
+        "path": "hx-search-assistance"
       },
       {
         "label": "<hx-select>",
         "path": "hx-select"
+      },
+      {
+        "label": "<hx-select-control>",
+        "path": "hx-select-control"
       },
       {
         "label": "<hx-status>",

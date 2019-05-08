@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Table - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
+
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
+  
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  
+  <link rel="stylesheet" href="docs.css">
+
+  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="vendor/custom-elements-es5-adapter.js"></script>
+
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
+</head>
+<body class="hxVertical" id="top">
+  <!-- This link should be the first item a user can tab to. -->
+  <a href="#content">Skip to main content</a>
+
+  <header id="head">
+    <nav>
+      <a class="brand-logo" href="">
+        <img src="images/helix-logo.svg" alt="Logo" />
+      </a>
+    </nav>
+
+    <div>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/"
+      >
+        <i class="fab fa-github"></i>
+        <span>View Source</span>
+      </a>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
+      >
+        Report Bug
+      </a>
+    </div>
+  </header>
+
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
+
+
+
+  
+    
+  <hx-disclosure
+    aria-controls="nav-guides"
+>
+    Guides
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-guides" >
+      
+      <a href="guides/getting-started" >
+    Getting Started
+  </a>
+
+
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+  <hx-disclosure
+    aria-controls="nav-components"
+class="current">
+    Components
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-components" open>
+      
+      <a href="components/accordion" >
+    Accordion
+  </a>
+
+
+      
+      <a href="components/alert" >
+    Alert
+  </a>
+
+
+      
+      <a href="components/badge" >
+    Badge
+  </a>
+
+
+      
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
+      <a href="components/breadcrumb" >
+    Breadcrumb
+  </a>
+
+
+      
+      <a href="components/button" >
+    Button
+  </a>
+
+
+      
+      <a href="components/checkbox" >
+    Checkbox
+  </a>
+
+
+      
+      <a href="components/choice-tile" >
+    Choice Tile
+  </a>
+
+
+      
+      <a href="components/dropdown-select" >
+    Dropdown Select
+  </a>
+
+
+      
+      <a href="components/file" >
+    File
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
+  </a>
+
+
+      
+      <a href="components/icon" >
+    Icon
+  </a>
+
+
+      
+      <a href="components/layout" >
+    Layout
+  </a>
+
+
+      
+      <a href="components/list" >
+    List
+  </a>
+
+
+      
+      <a href="components/loader" >
+    Loader
+  </a>
+
+
+      
+      <a href="components/menu" >
+    Menu
+  </a>
+
+
+      
+      <a href="components/modal" >
+    Modal
+  </a>
+
+
+      
+      <a href="components/navigation" >
+    Navigation
+  </a>
+
+
+      
+      <a href="components/pagination" >
+    Pagination
+  </a>
+
+
+      
+      <a href="components/panel" >
+    Panel
+  </a>
+
+
+      
+      <a href="components/pill" >
+    Pill
+  </a>
+
+
+      
+      <a href="components/popover" >
+    Popover
+  </a>
+
+
+      
+      <a href="components/radio" >
+    Radio
+  </a>
+
+
+      
+      <a href="components/reveal" >
+    Reveal
+  </a>
+
+
+      
+      <a href="components/search" >
+    Search
+  </a>
+
+
+      
+      <a href="components/selector-strip" >
+    Selector Strip
+  </a>
+
+
+      
+      <a href="components/table" class="current">
+    Table
+  </a>
+
+
+      
+      <a href="components/tabset" >
+    Tabset
+  </a>
+
+
+      
+      <a href="components/text-input" >
+    Text Input
+  </a>
+
+
+      
+      <a href="components/textarea" >
+    Textarea
+  </a>
+
+
+      
+      <a href="components/toast" >
+    Toast
+  </a>
+
+
+      
+      <a href="components/tooltip" >
+    Tooltip
+  </a>
+
+
+      
+      <a href="components/typography" >
+    Typography
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+  <hx-disclosure
+    aria-controls="nav-elements"
+>
+    Custom Elements
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-elements" >
+      
+      <a href="elements/hx-accordion" >
+    &lt;hx-accordion&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-accordion-panel" >
+    &lt;hx-accordion-panel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-alert" >
+    &lt;hx-alert&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-busy" >
+    &lt;hx-busy&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-checkbox" >
+    &lt;hx-checkbox&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-checkbox-control" >
+    &lt;hx-checkbox-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-disclosure" >
+    &lt;hx-disclosure&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-div" >
+    &lt;hx-div&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-drop-fence" >
+    &lt;hx-drop-fence&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-drop-zone" >
+    &lt;hx-drop-zone&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-error" >
+    &lt;hx-error&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-icon" >
+    &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-input" >
+    &lt;hx-file-input&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-icon" >
+    &lt;hx-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menu" >
+    &lt;hx-menu&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem" >
+    &lt;hx-menuitem&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-modal" >
+    &lt;hx-modal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-pill" >
+    &lt;hx-pill&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover" >
+    &lt;hx-popover&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-progress" >
+    &lt;hx-progress&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-radio" >
+    &lt;hx-radio&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-radio-control" >
+    &lt;hx-radio-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-radio-set" >
+    &lt;hx-radio-set&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-reveal" >
+    &lt;hx-reveal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search" >
+    &lt;hx-search&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search-assistance" >
+    &lt;hx-search-assistance&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-select" >
+    &lt;hx-select&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-select-control" >
+    &lt;hx-select-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-status" >
+    &lt;hx-status&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tab" >
+    &lt;hx-tab&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabcontent" >
+    &lt;hx-tabcontent&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tablist" >
+    &lt;hx-tablist&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabpanel" >
+    &lt;hx-tabpanel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabset" >
+    &lt;hx-tabset&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-text-control" >
+    &lt;hx-text-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-textarea-control" >
+    &lt;hx-textarea-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tile" >
+    &lt;hx-tile&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-toast" >
+    &lt;hx-toast&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tooltip" >
+    &lt;hx-tooltip&gt;
+  </a>
+
+
+  </hx-reveal>
+
+
+      </nav>
+
+      <main role="main" id="content" class="component-content ">
+          <header>
+
+            <h1>
+              Table
+
+<min-version id="page-min-version">
+  v0.1.7+
+</min-version>
+
+<hx-tooltip for="page-min-version" position="right">
+  HelixUI v0.1.7 or later required
+</hx-tooltip>
+            </h1>
+
+
+  
+          </header>
+
+  <section>
+    <header>
+      <h2 id="basic-table">Basic Table</h2>
+      
+    </header>
+
+    <div class="example" id="vue-tableDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend class="beta-hxFieldName">Data Density</legend>
+            <hx-radio-control>
+              <input
+                id="radNormal"
+                name="density"
+                type="radio"
+                v-model="isCondensed"
+                :value="false"
+              />
+              <label for="radNormal">
+                <hx-radio></hx-radio>
+                Normal
+              </label>
+            </hx-radio-control>
+
+            <hx-radio-control>
+              <input
+                id="radCondensed"
+                name="density"
+                type="radio"
+                v-model="isCondensed"
+                :value="true"
+              />
+              <label for="radCondensed">
+                <hx-radio></hx-radio>
+                Condensed
+              </label>
+            </hx-radio-control>
+          </fieldset>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkBound"
+                type="checkbox"
+                v-model="isBound"
+              />
+              <label for="chkBound">
+                <hx-checkbox></hx-checkbox>
+                Bound
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkHoverable"
+                type="checkbox"
+                v-model="isHoverable"
+              />
+              <label for="chkHoverable">
+                <hx-checkbox></hx-checkbox>
+                Hoverable
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <table :class="cssClasses">
+          <caption>Most popular Twitter accounts</caption>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Handle</th>
+              <th class="hxRight">Followers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Katy Perry</td>
+              <td>
+                <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
+              </td>
+              <td class="hxRight">100,381,853</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Justin Beiber</td>
+              <td>
+                <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
+              </td>
+              <td class="hxRight">97,350,145</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Barack Obama</td>
+              <td>
+                <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
+              </td>
+              <td class="hxRight">91,387,642</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3" class="hxRight">Total</td>
+              <td class="hxRight">289,119,640</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{cssClasses}}"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+</code></pre>      </footer>
+    </div>
+  </section>
+
+  <section><!-- Selection Table -->
+    <header>
+      <h2 id="selection-table">Selection Table</h2>
+      <p>
+        Use the <code>.hxControl</code> CSS class on table cells that contain
+        a checkbox.
+      </p>
+    </header>
+
+    <div class="example">
+      <div>
+        <table class="hxTable">
+          <caption>Most popular Twitter accounts</caption>
+          <thead>
+            <tr>
+              <th class="hxControl">
+                
+                <input type="checkbox" />
+              </th>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Handle</th>
+              <th class="hxRight">Followers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="hxControl">
+                
+                <input type="checkbox" />
+              </th>
+              <td>1</td>
+              <td>Katy Perry</td>
+              <td>
+                <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
+              </td>
+              <td class="hxRight">100,381,853</td>
+            </tr>
+            <tr>
+              <th class="hxControl">
+                
+                <input type="checkbox" />
+              </th>
+              <td>2</td>
+              <td>Justin Beiber</td>
+              <td>
+                <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
+              </td>
+              <td class="hxRight">97,350,145</td>
+            </tr>
+            <tr>
+              <th class="hxControl">
+                
+                <input type="checkbox" />
+              </th>
+              <td>3</td>
+              <td>Barack Obama</td>
+              <td>
+                <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
+              </td>
+              <td class="hxRight">91,387,642</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" class="hxRight">Total</td>
+              <td class="hxRight">289,119,640</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTable"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">caption</span>&gt;</span>Most popular Twitter accounts<span class="hljs-tag">&lt;/<span class="hljs-name">caption</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxControl"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Rank<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Handle<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRight"</span>&gt;</span>Followers<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxControl"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Katy Perry<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://twitter.com/katyperry"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span>&gt;</span>@katyperry<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRight"</span>&gt;</span>100,381,853<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tfoot</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">tfoot</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+</code></pre>      </footer>
+    </div>
+  </section>
+
+  <section><!-- Action Table -->
+    <header>
+      <h2 id="action-table">Action Table</h2>
+      <p>
+        Use the <code>.hxControl</code> CSS class on table cells that contain
+        a cog menu.
+      </p>
+    </header>
+
+    <div class="example">
+      <div>
+        <table class="hxTable">
+          <caption>Most popular Twitter accounts</caption>
+          <thead>
+            <tr>
+              <th class="hxControl"></th>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Handle</th>
+              <th class="hxRight">Followers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="hxControl">
+                <hx-disclosure aria-controls="menu-1">
+                  <hx-icon type="cog"></hx-icon>
+                </hx-disclosure>
+                <hx-menu id="menu-1">
+                  <hx-menuitem>Action 1</hx-menuitem>
+                  <hx-menuitem>Action 2</hx-menuitem>
+                  <hx-menuitem>Action 3</hx-menuitem>
+                </hx-menu>
+              </td>
+              <td>1</td>
+              <td>Katy Perry</td>
+              <td>
+                <a href="https://twitter.com/katyperry" target="_blank">@katyperry</a>
+              </td>
+              <td class="hxRight">100,381,853</td>
+            </tr>
+            <tr>
+              <td class="hxControl">
+                <hx-disclosure aria-controls="menu-2">
+                  <hx-icon type="cog"></hx-icon>
+                </hx-disclosure>
+                <hx-menu id="menu-2">
+                  <hx-menuitem>Action 1</hx-menuitem>
+                  <hx-menuitem>Action 2</hx-menuitem>
+                  <hx-menuitem>Action 3</hx-menuitem>
+                </hx-menu>
+              </td>
+              <td>2</td>
+              <td>Justin Beiber</td>
+              <td>
+                <a href="https://twitter.com/justinbeiber" target="_blank">@justinbeiber</a>
+              </td>
+              <td class="hxRight">97,350,145</td>
+            </tr>
+            <tr>
+              <td class="hxControl">
+                <hx-disclosure aria-controls="menu-3">
+                  <hx-icon type="cog"></hx-icon>
+                </hx-disclosure>
+                <hx-menu id="menu-3">
+                  <hx-menuitem>Action 1</hx-menuitem>
+                  <hx-menuitem>Action 2</hx-menuitem>
+                  <hx-menuitem>Action 3</hx-menuitem>
+                </hx-menu>
+              </td>
+              <td>3</td>
+              <td>Barack Obama</td>
+              <td>
+                <a href="https://twitter.com/BarackObama" target="_blank">@BarackObama</a>
+              </td>
+              <td class="hxRight">91,387,642</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" class="hxRight">Total</td>
+              <td class="hxRight">289,119,640</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTable"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">caption</span>&gt;</span>Most popular Twitter accounts<span class="hljs-tag">&lt;/<span class="hljs-name">caption</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxControl"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Rank<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Handle<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRight"</span>&gt;</span>Followers<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxControl"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">hx-disclosure</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"menu-1"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"cog"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">hx-disclosure</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">hx-menu</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"menu-1"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 1<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 2<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hx-menuitem</span>&gt;</span>Action 3<span class="hljs-tag">&lt;/<span class="hljs-name">hx-menuitem</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">hx-menu</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Katy Perry<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://twitter.com/katyperry"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span>&gt;</span>@katyperry<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRight"</span>&gt;</span>100,381,853<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tfoot</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"4"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRight"</span>&gt;</span>Total<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxRight"</span>&gt;</span>289,119,640<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tfoot</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+</code></pre>      </footer>
+    </div>
+  </section>
+
+      </main>
+
+        <aside class="hxSiderail">
+            <header>
+              <h1 class="hxHeading-4">On this page:</h1>
+            </header>
+
+            <nav class="article-toc">
+              
+            <a href="#basic-table">Basic Table</a>
+        
+
+            <a href="#selection-table">Selection Table</a>
+        
+
+            <a href="#action-table">Action Table</a>
+        
+                
+              <hr class="hxDivider" />
+              <a class="top-link" href="#top">Back to Top</a>
+            </nav>
+        </aside>
+    </div>
+  </div>
+
+  <footer id="foot" class="hxRow hxGutterless">
+    <div class="hxCol">
+      &copy; 2019 Rackspace US, Inc.
+      <nav>
+        <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+        <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+      </nav>
+    </div>
+
+    <div class="hxCol hxRight">
+        <small>
+          Last Updated:
+          2019-05-03
+        </small>
+
+      <small>
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.1" target="_blank">
+          v0.16.1
+        </a>)
+      </small>
+    </div>
+  </footer>
+
+  
+
+  
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  
+  <script src="dist/scripts/helix-ui.browser.js"></script>
+  
+  <script src="docs.js"></script>
+</body>
+</html>

@@ -707,6 +707,9 @@ a[href].hxBtnGroup.hxLink > .hxBtn[disabled] {
 /* ================================================== *\
  * BETA STYLES
 \* ================================================== */
+.beta-hxButtonSet > .hxBtn + .hxBtn {
+  margin-left: 0.5rem;
+}
 .hxBtn.beta-hxDark,
 a[href].hxBtn.beta-hxDark {
   border-color: #16b9d4;
@@ -4241,8 +4244,8 @@ p + * {
   margin-top: 0.5rem;
 }
 hr.hxDivider {
-  border-color: currentColor;
+  border-color: rgba(0, 0, 0, 0.1) transparent rgba(255, 255, 255, 0.2);
   border-style: solid;
-  border-width: 1px 0 0;
+  border-width: 1px 0;
   margin: 0.75rem 0;
 }

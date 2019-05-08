@@ -3431,6 +3431,7 @@ const Positionable = (superclass) => {
             super.$onAttributeChange(attr, oldVal, newVal);
 
             if (attr === 'position') {
+                this.setShadowPosition(newVal);
                 this.reposition();
             }
         }
@@ -3529,10 +3530,20 @@ const Positionable = (superclass) => {
                 this.style.left = `${x}px`;
 
                 this._optimumPosition = position;
+                this.setShadowPosition(position);
 
                 this.$emit('reposition');
             }
         }
+
+        /**
+         * Used to communicate position changes to Shadow DOM for subclasses that care.
+         *
+         * @abstract
+         * @ignore
+         * @param {NormalizedPositionString}
+         */
+        setShadowPosition (position) {} // eslint-disable-line no-unused-vars
 
         /**
          * Add active event listeners (e.g, document `click`)
@@ -4048,44 +4059,16 @@ class HXPopoverElement extends _ProtoClass$1 {
         this.POSITION_OFFSET = 20;
     }
 
-    /** @override */
-    $onConnect () {
-        super.$onConnect();
-        this.addEventListener('reposition', this._onReposition);
-    }
-
-    $onDisconnect () {
-        super.$onDisconnect();
-        this.removeEventListener('reposition', this._onReposition);
-    }
-
-    /** @override */
-    $onAttributeChange (attr, oldVal, newVal) {
-        super.$onAttributeChange(attr, oldVal, newVal);
-
-        if (attr === 'position') {
-            this._setShadowPosition(newVal);
-        }
-    }
-
     /** @private */
     get _elRoot () {
         return this.shadowRoot.getElementById('hxPopover');
     }
 
     /**
-     * Update visual display of arrow in Shadow DOM based on optimal position.
-     * @private
-     */
-    _onReposition () {
-        this._setShadowPosition(this.optimumPosition);
-    }
-
-    /**
-     * @private
+     * @override
      * @param {NormalizedPositionString}
      */
-    _setShadowPosition (position) {
+    setShadowPosition (position) {
         this._elRoot.setAttribute('position', position);
     }
 }
@@ -4841,10 +4824,7 @@ class HXTabsetElement extends HXElement {
         this._tablist.addEventListener('keyup', this._onKeyUp);
         this._tablist.addEventListener('keydown', preventKeyScroll);
         this.addEventListener('hxtabclick', this._onHxtabclick);
-
-        if (this.hasAttribute('current-tab')) {
-            this._activateTab(this.currentTab);
-        }
+        this.update();
     }
 
     $onDisconnect () {
@@ -4866,6 +4846,8 @@ class HXTabsetElement extends HXElement {
         }
     }
 
+    /* ---------- PUBLIC MEMBERS ---------- */
+
     /**
      * Zero-based index of the currently active tab.
      * @type {Number}
@@ -4880,7 +4862,7 @@ class HXTabsetElement extends HXElement {
         }
 
         if (isNaN(idx)) {
-            throw new TypeError(`'currentTab' expects an numeric index. Got ${typeof idx} instead.`);
+            throw new TypeError(`'currentTab' expects a numeric index. Got ${typeof idx} instead.`);
         }
 
         if (idx < 0 || idx >= this.tabs.length) {
@@ -4889,6 +4871,8 @@ class HXTabsetElement extends HXElement {
 
         this.setAttribute('current-tab', idx);
     }
+
+    /* ---------- PUBLIC METHODS ---------- */
 
     /**
      * All `<hx-tabpanel>` elements within the tabset.
@@ -4946,12 +4930,29 @@ class HXTabsetElement extends HXElement {
         this.tabs[this.currentTab].focus();
     }
 
+    /**
+     * Synchronize DOM state with element configuration.
+     * Useful for when the number of <hx-tab> and <hx-tabpanel>
+     * elements changes after tabset connects to the DOM.
+     */
+    update () {
+        this._activateTab(this.currentTab);
+    }
+
+    /* ---------- PRIVATE PROPERTIES ---------- */
+
     /** @private */
     get _tablist () {
         return this.querySelector('hx-tablist');
     }
 
-    /** @private */
+    /* ---------- PRIVATE METHODS ---------- */
+
+    /** @private
+     *
+     * activates tab/panel pair with matching index
+     * deactivates all other tab/panel pairs
+    */
     _activateTab (idx) {
         this.tabs.forEach((tab, tabIdx) => {
             if (idx === tabIdx) {
@@ -4972,7 +4973,17 @@ class HXTabsetElement extends HXElement {
     /** @private */
     _onHxtabclick (evt) {
         evt.stopPropagation();
-        this.currentTab = this.tabs.indexOf(evt.target);
+        let newIdx = this.tabs.indexOf(evt.target);
+
+        if (newIdx === this.currentTab) {
+            // update visual state if user clicks newly added tab
+            // whose index matches the current tabset configuration
+            this.update();
+        } else {
+            // otherwise, update logical state, which in turn
+            // updates visual state
+            this.currentTab = newIdx;
+        }
     }
 
     /**
@@ -5277,7 +5288,6 @@ class HXTooltipElement extends _ProtoClass$3 {
         this.$defaultAttribute('id', `tip-${generateId()}`);
         this.$defaultAttribute('role', 'tooltip');
 
-        this.addEventListener('reposition', this._onReposition);
         this._connectToControl();
     }
 
@@ -5285,7 +5295,6 @@ class HXTooltipElement extends _ProtoClass$3 {
     $onDisconnect () {
         super.$onDisconnect();
 
-        this.removeEventListener('reposition', this._onReposition);
         this._detachListeners();
     }
 
@@ -5298,14 +5307,8 @@ class HXTooltipElement extends _ProtoClass$3 {
     $onAttributeChange (attr, oldVal, newVal) {
         super.$onAttributeChange(attr, oldVal, newVal);
 
-        switch (attr) {
-            case 'for':
-                this._connectToControl();
-                break;
-
-            case 'position':
-                this._setShadowPosition(newVal);
-                break;
+        if (attr === 'for') {
+            this._connectToControl();
         }
     }
 
@@ -5333,6 +5336,14 @@ class HXTooltipElement extends _ProtoClass$3 {
     }
     set htmlFor (value) {
         this.setAttribute('for', value);
+    }
+
+    /**
+     * @override
+     * @param {NormalizedPositionString}
+     */
+    setShadowPosition (position) {
+        this._elRoot.setAttribute('position', position);
     }
 
     /** @private */
@@ -5512,16 +5523,6 @@ class HXTooltipElement extends _ProtoClass$3 {
         }
     }
 
-    /** @private */
-    _onReposition () {
-        this._setShadowPosition(this.optimumPosition);
-    }
-
-    /** @private */
-    _setShadowPosition (position) {
-        this._elRoot.setAttribute('position', position);
-    }
-
     /**
      * Show Tooltip after delay
      *
@@ -5588,7 +5589,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.16.0";
+var version = "0.16.1";
 
 /** @module HelixUI */
 
