@@ -114,6 +114,7 @@ export const Positionable = (superclass) => {
             super.$onAttributeChange(attr, oldVal, newVal);
 
             if (attr === 'position') {
+                this.setShadowPosition(newVal);
                 this.reposition();
             }
         }
@@ -212,10 +213,20 @@ export const Positionable = (superclass) => {
                 this.style.left = `${x}px`;
 
                 this._optimumPosition = position;
+                this.setShadowPosition(position);
 
                 this.$emit('reposition');
             }
         }
+
+        /**
+         * Used to communicate position changes to Shadow DOM for subclasses that care.
+         *
+         * @abstract
+         * @ignore
+         * @param {NormalizedPositionString}
+         */
+        setShadowPosition (position) {} // eslint-disable-line no-unused-vars
 
         /**
          * Add active event listeners (e.g, document `click`)
