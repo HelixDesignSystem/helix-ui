@@ -46,19 +46,71 @@ also:
   </section>
 
   <section>
-    <h2 id="methods">Methods</h2>
+    <header>
+      <h2 id="managing-state">Managing State</h2>
+      <p>
+        Keeping logical and visual states in sync can be tricky.
+      </p>
+    </header>
+
+    <p>
+      Logical state should be considered the source of truth when updating visual state.
+      Logical state is defined by attributes and properties of <code>{{page.title}}</code>,
+      while visual state is defined by the appearance and configuration of its children.
+    </p>
+
+    <ul class="hxList">
+      <li>
+        If the logical state is incorrect, updating the <code>current-tab</code> attribute
+        should be enough to fix the inconsistency.
+      </li>
+
+      <li>
+        In all other cases, calling the <code>update()</code> method on
+        <code>{{page.title}}</code> should fix visual inconsistencies.
+      </li>
+    </ul>
+  </section>
+
+
+  <section>
+    <header>
+      <h2 id="methods">Methods</h2>
+    </header>
+
     <dl>
-      <dt>selectNext()</dt>
+      <dt id="method-selectNext">selectNext()</dt>
       <dd>
-        Selects the next tab in the tabset. If the last tab is currently active,
-        selects the first tab.
+        <p>
+          Selects the next tab in the tabset.
+        </p>
+        <p class="hxSubdued hxSubBody">
+          <hx-icon type="info-circle"></hx-icon>
+          Selects the first tab, if the last tab is currently active.
+        </p>
       </dd>
-    </dl>
-    <dl>
-      <dt>selectPrevious()</dt>
+
+      <dt id="method-selectPrevious">selectPrevious()</dt>
       <dd>
-        Selects the previous tab in the tabset. If the first tab is currently
-        active, selects the last tab.
+        <p>
+          Selects the previous tab in the tabset.
+        <p>
+        <p class="hxSubdued hxSubBody">
+          <hx-icon type="info-circle"></hx-icon>
+          Selects the last tab, if the first tab is currently active.
+        </p>
+      </dd>
+
+      <dt id="method-update">update()</dt>
+      <dd>
+        <p>
+          Synchronize visual appearance with element configuration.
+        </p>
+        <p class="hxSubdued hxSubBody">
+          <hx-icon type="info-circle"></hx-icon>
+          Useful when <code>&lt;hx-tab&gt;</code> and <code>&lt;hx-tabpanel&gt;</code>
+          elements are added/removed dynamically.
+        </p>
       </dd>
     </dl>
   </section>
@@ -66,10 +118,14 @@ also:
 
 {% block attributes %}
   <dl>
-    <dt>current-tab</dt>
+    <dt>current-tab {Number}</dt>
     <dd>
       <p>
         Zero-based index of the currently active tab.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Automatically updates visual state, when changed.
       </p>
     </dd>
   </dl>

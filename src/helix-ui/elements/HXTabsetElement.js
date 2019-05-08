@@ -39,10 +39,7 @@ export class HXTabsetElement extends HXElement {
         this._tablist.addEventListener('keyup', this._onKeyUp);
         this._tablist.addEventListener('keydown', preventKeyScroll);
         this.addEventListener('hxtabclick', this._onHxtabclick);
-
-        if (this.hasAttribute('current-tab')) {
-            this._activateTab(this.currentTab);
-        }
+        this.update();
     }
 
     $onDisconnect () {
@@ -64,6 +61,8 @@ export class HXTabsetElement extends HXElement {
         }
     }
 
+    /* ---------- PUBLIC MEMBERS ---------- */
+
     /**
      * Zero-based index of the currently active tab.
      * @type {Number}
@@ -78,7 +77,7 @@ export class HXTabsetElement extends HXElement {
         }
 
         if (isNaN(idx)) {
-            throw new TypeError(`'currentTab' expects an numeric index. Got ${typeof idx} instead.`);
+            throw new TypeError(`'currentTab' expects a numeric index. Got ${typeof idx} instead.`);
         }
 
         if (idx < 0 || idx >= this.tabs.length) {
@@ -87,6 +86,8 @@ export class HXTabsetElement extends HXElement {
 
         this.setAttribute('current-tab', idx);
     }
+
+    /* ---------- PUBLIC METHODS ---------- */
 
     /**
      * All `<hx-tabpanel>` elements within the tabset.
@@ -144,12 +145,29 @@ export class HXTabsetElement extends HXElement {
         this.tabs[this.currentTab].focus();
     }
 
+    /**
+     * Synchronize DOM state with element configuration.
+     * Useful for when the number of <hx-tab> and <hx-tabpanel>
+     * elements changes after tabset connects to the DOM.
+     */
+    update () {
+        this._activateTab(this.currentTab);
+    }
+
+    /* ---------- PRIVATE PROPERTIES ---------- */
+
     /** @private */
     get _tablist () {
         return this.querySelector('hx-tablist');
     }
 
-    /** @private */
+    /* ---------- PRIVATE METHODS ---------- */
+
+    /** @private
+     *
+     * activates tab/panel pair with matching index
+     * deactivates all other tab/panel pairs
+    */
     _activateTab (idx) {
         this.tabs.forEach((tab, tabIdx) => {
             if (idx === tabIdx) {
@@ -170,7 +188,17 @@ export class HXTabsetElement extends HXElement {
     /** @private */
     _onHxtabclick (evt) {
         evt.stopPropagation();
-        this.currentTab = this.tabs.indexOf(evt.target);
+        let newIdx = this.tabs.indexOf(evt.target);
+
+        if (newIdx === this.currentTab) {
+            // update visual state if user clicks newly added tab
+            // whose index matches the current tabset configuration
+            this.update();
+        } else {
+            // otherwise, update logical state, which in turn
+            // updates visual state
+            this.currentTab = newIdx;
+        }
     }
 
     /**
