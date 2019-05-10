@@ -593,6 +593,81 @@ class="current">
       
     </header>
 
+    <div class="example" id="vue-radioBasicDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <hx-text-control>
+            <input
+              id="radLabel"
+              type="text"
+              v-model="radioLabel"
+            />
+            <label for="radLabel">
+              Radio Label
+            </label>
+          </hx-text-control>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+            <hx-checkbox-control>
+              <input id="chkIsRadChecked" type="checkbox" v-model="isChecked" />
+              <label for="chkIsRadChecked">
+                <hx-checkbox></hx-checkbox>
+                Checked
+              </label>
+            </hx-checkbox-control>
+            <hx-checkbox-control>
+              <input id="chkIsRadDisabled" type="checkbox" v-model="isDisabled" />
+              <label for="chkIsRadDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
+            <hx-checkbox-control>
+              <input id="chkIsRadRequired" type="checkbox" v-model="isRequired" />
+              <label for="chkIsRadRequired">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-radio-control>
+          <input
+            type="radio"
+            id="radBasicDemo"
+            :checked="isChecked"
+            :disabled="isDisabled"
+            :required="isRequired"
+          />
+          <label for="radBasicDemo">
+            <hx-radio></hx-radio>
+{{radioLabel}}
+          </label>
+        </hx-radio-control>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="info-circle"></hx-icon>
+      Webkit-based browsers (e.g., Chrome, Safari, etc.) do not match the
+      <code>:required</code> CSS psuedo-class to radios in a single-item
+      radio group.
+    </p>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="radio-set">Radio Set</h2>
+      
+    </header>
+
     <div class="example" id="vue-radioDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
@@ -673,15 +748,6 @@ class="current">
         <pre><code v-text="snippet"></code></pre>
       </footer>
     </div>
-
-    <footer>
-      <p class="hxSubdued hxSubBody">
-        <hx-icon type="info-circle"></hx-icon>
-        Webkit-based browsers (e.g., Chrome, Safari, etc.) do not match the
-        <code>:required</code> CSS psuedo-class to radios in a single-item
-        radio group.
-      </p>
-    </footer>
   </section>
 
 <section>
@@ -704,6 +770,9 @@ class="current">
               
             <a href="#basic-radio">Basic Radio</a>
         
+
+            <a href="#radio-set">Radio Set</a>
+        
                 
                 <a href="#see-also">See Also</a>
               <hr class="hxDivider" />
@@ -725,7 +794,7 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-05-03
+          2019-05-10
         </small>
 
       <small>
