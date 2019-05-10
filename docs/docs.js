@@ -19,6 +19,7 @@ import './components/modal/modal-demo';
 import './components/panel/panel-demo';
 import './components/pill/pill-demo';
 import './components/popover/popover-demo';
+import './components/radio/radio-basic-demo';
 import './components/radio/radio-demo';
 import './components/reveal/reveal-demo';
 import './components/search/search-demo';

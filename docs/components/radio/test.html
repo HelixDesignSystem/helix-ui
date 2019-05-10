@@ -7,7 +7,18 @@ crumbs:
 {% extends 'test.njk' %}
 {% set contentClasses = 'radio-spec' %}
 
-{% macro radio(id='', name='', isDirty=false, isRequired=false, isChecked=false, isDisabled=false, isFocused=false, isHovered=false, isValid=true) %}
+{% macro radio(
+    id='',
+    name='',
+    state='',
+    isChecked=false,
+    isDirty=false,
+    isDisabled=false,
+    isFocused=false,
+    isHovered=false,
+    isRequired=false,
+    isValid=true)
+%}
   {% set isPristine = not isDirty %}
 
   {% set idAttr -%}
@@ -42,7 +53,13 @@ crumbs:
     <label for="{{idAttr | trim}}">
       <hx-radio></hx-radio>
       {{ id if id !=='' }}-
-      {{ 'Dirty' if isDirty else 'Pristine' }},
+      {% if state === 'dirty' %}
+        Dirty,
+      {% elif state === 'cssInvalid' %}
+        Visually Invalid,
+      {% else %}
+        Pristine,
+      {% endif %}
       {{ 'Required' if isRequired else 'Optional' }},
       {{ 'Disabled' if isDisabled else 'Enabled' }},
       {{ 'Valid' if isValid else 'Invalid' }},
@@ -57,10 +74,19 @@ crumbs:
   </hx-radio-control>
 {% endmacro %}
 
-{% macro radioSet(id='', className='', isDirty=false, isDisabled=false, isFocused=false, isHovered=false, isRequired=false, isValid=true) %}
-  {% set focused2 = (isFocused and isValid) %}
+{% macro radioSet(
+    state='',
+    className='',
+    isDirty=false,
+    isDisabled=false,
+    isFocused=false,
+    isHovered=false,
+    isRequired=false,
+    isValid=true)
+%}
+
   {% set name -%}radioSet-
-    {{- id -}}
+    {{- state -}}
     {{- 'Required' if isRequired else 'Optional' -}}
     {{- 'Disabled' if isDisabled else 'Enabled' -}}
     {{- 'Valid' if isValid else 'Invalid' -}}
@@ -72,15 +98,38 @@ crumbs:
     {% if isDirty %}hx-dirty {% endif %}
     {% if className !== '' %}class="{{className}}" {% endif %}
   >
-    {{ radio(id='Radio1', name=name, isDirty=isDirty, isHovered=isHovered, isDisabled=isDisabled, isRequired=isRequired, isValid=isValid, isChecked=false) }}
-    {{ radio(id='Radio2', name=name, isDirty=isDirty, isHovered=isHovered, isDisabled=isDisabled, isRequired=isRequired, isValid=isValid, isChecked=isValid, isFocused=focused2) }}
+    {{ radio(
+        id='Radio1',
+        className=className,
+        name=name,
+        state=state,
+        isChecked=false,
+        isDisabled=isDisabled,
+        isDirty=isDirty,
+        isHovered=isHovered,
+        isRequired=isRequired,
+        isValid=isValid)
+    }}
+    {{ radio(
+        id='Radio2',
+        className=className,
+        name=name,
+        state=state,
+        isChecked=isValid,
+        isDirty=isDirty,
+        isDisabled=isDisabled,
+        isFocused=isFocused,
+        isHovered=isHovered,
+        isRequired=isRequired,
+        isValid=isValid)
+    }}
   </hx-radio-set>
 {% endmacro %}
 
 {% block content %}
   <section>
     <header>
-      <h2 id="test-pristine">Pristine</h2>
+      <h2 id="test-pristine-state">Pristine</h2>
       <code>&lt;hx-radio-set&gt;</code>
     </header>
 
@@ -103,7 +152,7 @@ crumbs:
           </tr>
           <tr>
             <td>{{radioSet('pristine', isFocused=true)}}</td>
-            <td>N/A</td>
+            <td>{{radioSet('pristine', isFocused=true, isValid=false)}}</td>
           </tr>
           <tr>
             <td>{{radioSet('pristine', isHovered=true)}}</td>
@@ -159,7 +208,7 @@ crumbs:
           </tr>
           <tr>
             <td>{{radioSet('pristine', isFocused=true, isRequired=true)}}</td>
-            <td>N/A</td>
+            <td>{{radioSet('pristine', isFocused=true, isRequired=true, isValid=false)}}</td>
           </tr>
           <tr>
             <td>{{radioSet('pristine', isHovered=true, isRequired=true)}}</td>
@@ -199,7 +248,7 @@ crumbs:
 
   <section>
     <header>
-      <h2 id="test-dirty">Dirty</h2>
+      <h2 id="test-dirty-state">Dirty</h2>
       <code>&lt;hx-radio-set hx-dirty&gt;</code>
     </header>
 
@@ -222,7 +271,7 @@ crumbs:
           </tr>
           <tr>
             <td>{{radioSet('dirty', isDirty=true, isFocused=true)}}</td>
-            <td>N/A</td>
+            <td>{{radioSet('dirty', isDirty=true, isFocused=true, isValid=false)}}</td>
           </tr>
           <tr>
             <td>{{radioSet('dirty', isDirty=true, isHovered=true)}}</td>
@@ -278,7 +327,7 @@ crumbs:
           </tr>
           <tr>
             <td>{{radioSet('dirty', isDirty=true, isFocused=true, isRequired=true)}}</td>
-            <td>N/A</td>
+            <td>{{radioSet('dirty', isDirty=true, isFocused=true, isRequired=true, isValid=false)}}</td>
           </tr>
           <tr>
             <td>{{radioSet('dirty', isDirty=true, isHovered=true, isRequired=true)}}</td>
@@ -318,7 +367,7 @@ crumbs:
 
   <section>
     <header>
-      <h2 id="test-visually-invalid">Visually Invalid</h2>
+      <h2 id="test-visually-invalid-state">Visually Invalid</h2>
       <code>&lt;hx-radio-set class="hxInvalid"&gt;</code>
     </header>
 
@@ -341,7 +390,7 @@ crumbs:
           </tr>
           <tr>
             <td>{{radioSet('cssInvalid', className='hxInvalid', isFocused=true)}}</td>
-            <td>N/A</td>
+            <td>{{radioSet('cssInvalid', className='hxInvalid', isFocused=true, isValid=false)}}</td>
           </tr>
           <tr>
             <td>{{radioSet('cssInvalid', className='hxInvalid', isHovered=true)}}</td>
@@ -397,7 +446,7 @@ crumbs:
           </tr>
           <tr>
             <td>{{radioSet('cssInvalid', className='hxInvalid', isFocused=true, isRequired=true)}}</td>
-            <td>N/A</td>
+            <td>{{radioSet('cssInvalid', className='hxInvalid', isFocused=true, isRequired=true, isValid=false)}}</td>
           </tr>
           <tr>
             <td>{{radioSet('cssInvalid', className='hxInvalid', isHovered=true, isRequired=true)}}</td>
