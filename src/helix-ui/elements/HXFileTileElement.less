@@ -10,46 +10,43 @@
   }
 
   #hxFileTile {
-    background-color: @gray-50;
-    border-radius: 2px;
-    border: 2px solid transparent;
-    color: @gray-900;
     display: flex;
     font-size: 0.875rem; //14px
     height: 100%;
     width: 100%;
   }
 
+  // TODO: add hooks for overriding retry button colors?
   #hxRetry {
     #Button.basic();
     #Button.small();
     #Button.tertiary();
 
     hx-icon {
-      // FIXME
       margin-left: 0.25rem !important;
     }
   }
 
   #hxDismiss {
+    color: var(--hxDismiss-color, inherit);
     flex-shrink: 0;
     font-size: 1rem;
     line-height: 0;
     padding: 0.5rem 0.75rem;
 
     &:hover {
-      color: @cyan-500;
+      color: var(--hxDismiss-color--hover, @cyan-500);
     }
 
     &:focus {
-      border-color: @cyan-700;
-      box-shadow: @focus-glow;
+      box-shadow: var(--hxDismiss-boxShadow--focus, @focus-glow);
       outline: 0;
     }
   }
 
   #hxIconWrapper {
     align-items: center;
+    color: var(--hxIcon-color, inherit);
     display: flex;
     flex: 0 0 48px;
     height: 100%;
@@ -73,10 +70,11 @@
   }
 
   #hxName {
-    color: @cyan-900;
+    color: var(--hxName-color, @cyan-900);
     display: flex;
     font-weight: 500;
 
+    // truncation children
     > span {
       white-space: pre;
 
@@ -84,6 +82,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
       &:last-child {
         flex-shrink: 0;
       }
@@ -98,33 +97,35 @@
   }
 
   #hxLink {
-    color: @gray-900;
     display: flex;
     flex-grow: 1;
     overflow: hidden;
 
-    &[href]:hover {
-      color: @cyan-500;
+    &[href] {
+      color: var(--hxLink-color, inherit);
 
-      #hxIconWrapper {
-        > hx-file-icon {
-          display: none;
+      &:hover {
+        color: var(--hxLink-color--hover, @cyan-500);
+
+        #hxIconWrapper {
+          > hx-file-icon {
+            display: none;
+          }
+
+          > hx-icon {
+            display: inline-block;
+          }
         }
 
-        > hx-icon {
-          display: inline-block;
+        #hxName {
+          color: inherit;
         }
-      }
+      }//hovered with href
 
-      #hxName {
-        color: inherit;
+      &:focus {
+        box-shadow: var(--hxLink-boxShadow--focus, @focus-glow);
+        outline: 0;
       }
-    }//hovered with href
-
-    &:focus {
-      border-color: @cyan-700;
-      box-shadow: @focus-glow;
-      outline: 0;
     }
   }//#hxLink
 
@@ -143,13 +144,12 @@
 }
 
 :host([invalid]) {
-  #hxFileTile {
-    border-color: @red-900;
+  #hxIconWrapper {
+    color: var(--hxIcon-color, @gray-750);
   }
 
-  #hxIconWrapper,
   #hxName {
-    color: @gray-750;
+    color: var(--hxName-color, @gray-750);
   }
 
   #hxState--downloadable {
@@ -161,14 +161,18 @@
   }
 }
 
+// TODO: hook for progress bar fill color
 :host([progress]) {
-  #hxLink {
-    color: @gray-600;
+  #hxDismiss {
+    color: var(--hxDismiss-color, @gray-900);
   }
 
-  #hxIconWrapper,
+  #hxIconWrapper {
+    color: var(--hxIcon-color, @gray-750);
+  }
+
   #hxName {
-    color: @gray-750;
+    color: var(--hxName-color, @gray-750);
   }
 
   #hxState--downloadable {

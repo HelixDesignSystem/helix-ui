@@ -2,9 +2,11 @@
 @import "./_positioning";
 
 #hxTooltip {
-  background-color: @gray-0;
+  background-color: var(--hxBackgroundColor, @gray-0);
+  border-color: var(--hxBorderColor, @gray-300);
   border-radius: 2px;
-  border: 1px solid @gray-300;
+  border-style: solid;
+  border-width: 1px;
   box-shadow: @layering-shadow;
   padding: 0.75rem;
 }
