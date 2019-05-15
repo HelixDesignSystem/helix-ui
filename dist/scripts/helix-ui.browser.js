@@ -7127,7 +7127,7 @@
         HXTooltipElement: HXTooltipElement
     });
 
-    var version = "0.16.1";
+    var version = "0.16.2";
 
     /** @module HelixUI */
 
