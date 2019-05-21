@@ -3,9 +3,6 @@
 
 :host {
   #hxPill {
-    background-color: @gray-400;
-    border-radius: 1em;
-    color: @gray-900;
     display: flex;
     height: 100%;
     padding: 0 1rem;
@@ -16,7 +13,7 @@
   #hxDismiss {
     #Button.reset();
     align-items: center;
-    color: @gray-600;
+    color: var(--hxDismiss-color, @gray-600);
     display: inline-flex;
     height: 1.5em;
     justify-content: center;
@@ -28,7 +25,7 @@
     }
 
     &:hover {
-      color: @gray-1000;
+      color: var(--hxDismiss-color--hover, @gray-1000);
     }
   }
 }

@@ -1,3 +1,52 @@
+@import (reference) 'vars';
+
 hx-toast {
+  background-color: @gray-0;
+  box-shadow: @layering-shadow;
+  color: @gray-900;
   display: block;
+  min-height: 3.5rem;
+  position: relative;
+  width: 22rem;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  // Background Border
+  &::before {
+    border: 1px solid @gray-300;
+  }
+
+  // Accent Border
+  &::after {
+    border-left: 8px solid currentColor;
+  }
+
+  // VARIANTS
+  &[type="info"] {
+    &::after {
+      border-left-color: @purple-500;
+    }
+  }
+
+  &[type="error"] {
+    &::after {
+      border-left-color: @red-900
+    }
+  }
+
+  &[type="success"] {
+    &::after {
+      border-left-color: @green-500;
+    }
+  }
 }

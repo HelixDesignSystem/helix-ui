@@ -2,7 +2,9 @@
 @import "./_positioning";
 
 #hxPopover {
-  background-color: @gray-0;
-  border: solid 1px @gray-300;
+  background-color: var(--hxBackgroundColor, @gray-0);
+  border-color: var(--hxBorderColor, @gray-300);
+  border-style: solid;
+  border-width: 1px;
   box-shadow: @layering-shadow;
 }

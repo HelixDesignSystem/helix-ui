@@ -1,10 +1,5 @@
 @import "./HXElement";
 
-:host {
-  --hxCheckbox__minus-display: none;
-  --hxCheckbox__tick-display: none;
-}
-
 #hxCheckbox {
   align-items: center;
   display: grid;
@@ -25,9 +20,9 @@
 }
 
 #hxMinus {
-  display: var(--hxCheckbox__minus-display);
+  display: var(--hxMinus-display, none);
 }
 
 #hxTick {
-  display: var(--hxCheckbox__tick-display);
+  display: var(--hxTick-display, none);
 }

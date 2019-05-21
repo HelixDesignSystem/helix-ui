@@ -1,3 +1,5 @@
+@import (reference) 'vars';
+
 // Hide ShadowDOM content for IE
 #hxSelect {
   display: none;
@@ -22,7 +24,7 @@
 
   #hxTrigger {
     align-items: center;
-    background-color: var(--hxSelect__trigger-background);
+    background-color: var(--hxTrigger-backgroundColor, @gray-0);
     box-sizing: border-box;
     color: inherit;
     display: flex;

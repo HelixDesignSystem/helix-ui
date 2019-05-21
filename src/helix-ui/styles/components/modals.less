@@ -8,14 +8,15 @@ hx-modal:extend(.hxComponent) {
   position: fixed;
   top: 0;
   width: 100vw;
+  z-index: @modal-z-index;
+
+  &[open] {
+    display: block;
+  }
 }
 
 #hxContent.hx-modal,
 hx-modal {
-  &[open] {
-    display: block;
-  }
-
   > header {
     flex-shrink: 0;
     line-height: 1;
@@ -31,8 +32,8 @@ hx-modal {
   }
 
   > hx-div {
-    --padding-left: @space[md];
-    --padding-right: @space[md];
+    --hxPaddingLeft: @space[md];
+    --hxPaddingRight: @space[md];
     flex-grow: 1;
     order: 2;
 
@@ -45,7 +46,7 @@ hx-modal {
     }
 
     &:last-child {
-      --padding-bottom: @space[md];
+      --hxPaddingBottom: @space[md];
 
       #HXDiv.shadyRoot({
         padding-bottom: @space[md];
@@ -64,27 +65,13 @@ hx-modal {
       margin-left: @space[md];
     }
   }
-
-  // DEPRECATED: remove in v1.0.0
-  hx-modalhead {
-    flex-shrink: 0;
-    order: 1;
-  }
-
-  hx-modalbody {
-    flex-grow: 1;
-    order: 2;
-  }
-
-  hx-modalfoot {
-    flex-shrink: 0;
-    order: 3;
-  }
 }
 
-// DEPRECATED: remove in v1.0.0
+/* ----- DEPRECATED: remove in v1.0.0 ----- */
 hx-modalbody {
   display: block;
+  flex-grow: 1;
+  order: 2;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0 1.25rem;
@@ -100,7 +87,9 @@ hx-modalbody {
 
 hx-modalfoot {
   display: flex;
+  flex-shrink: 0;
   justify-content: center;
+  order: 3;
   padding: 1.25rem;
 
   .hxBtn + .hxBtn {
@@ -110,7 +99,9 @@ hx-modalfoot {
 
 hx-modalhead {
   display: block;
+  flex-shrink: 0;
   line-height: 1;
+  order: 1;
   padding: 1.25rem;
 
   h1, h2, h3, h4, h5, h6 {

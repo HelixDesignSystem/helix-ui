@@ -5,21 +5,21 @@
 // to apply ShadyCSS overrides in the LightDOM.
 @supports (--skip-ie: true) {
   :host {
-    --padding-base: 0;
+    --hxPadding--base: 0;
 
-    --padding-top: var(--padding-base);
-    --padding-right: var(--padding-base);
-    --padding-bottom: var(--padding-base);
-    --padding-left: var(--padding-base);
+    --hxPaddingTop: var(--hxPadding--base);
+    --hxPaddingRight: var(--hxPadding--base);
+    --hxPaddingBottom: var(--hxPadding--base);
+    --hxPaddingLeft: var(--hxPadding--base);
 
-    --padding:
-      var(--padding-top)
-      var(--padding-right)
-      var(--padding-bottom)
-      var(--padding-left);
+    --hxPadding:
+      var(--hxPaddingTop)
+      var(--hxPaddingRight)
+      var(--hxPaddingBottom)
+      var(--hxPaddingLeft);
 
     #hxDiv {
-      padding: var(--padding);
+      padding: var(--hxPadding, 0);
     }
   }
 }

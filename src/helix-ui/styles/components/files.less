@@ -64,7 +64,19 @@ hx-file-input {
 }
 
 hx-file-tile {
+  background-color: @gray-50;
+  border-radius: 2px;
+  border: 2px solid transparent;
+  color: @gray-900;
   display: block;
   height: 3.75rem;
   width: 25rem; // 400px
+
+  &[progress] {
+    color: @gray-600;
+  }
+
+  &[invalid] {
+    border-color: @red-900;
+  }
 }
