@@ -4,7 +4,7 @@ minver: 0.12.0
 also:
   components/file/test-drop-fence.html: Testing - Drop Fence
   components/file/test-drop-zone.html: Testing - Drop Zone
-  components/file/test-file-selector.html: Testing - File Selector
+  components/file/test-file-input.html: Testing - File Input
   components/file/test-file-tile.html: Testing - File Tile
   components/icon: Icon
   elements/hx-drop-fence: <hx-drop-fence>
@@ -42,11 +42,17 @@ also:
           <hx-drop-fence>
             <p>
               Drop files here or
-              <hx-file-input
-                class="hxTertiary"
-                label="browse your files">
-                <input type="file" />
-              </hx-file-input>.
+              <hx-file-control>
+                <input
+                  id="fileInputDropZoneDemo"
+                  type="file"
+                />
+                <label for="fileInputDropZoneDemo">
+                  <hx-file-input class="hxBtn hxTertiary">
+                    browse your files
+                  </hx-file-input>
+                </label>
+              </hx-file-control>
             </p>
           </hx-drop-fence>
         </hx-drop-zone>
@@ -58,11 +64,17 @@ also:
             <hx-drop-fence>
               <p>
                 Drop files here or
-                <hx-file-input
-                  class="hxTertiary"
-                  label="browse your files">
-                  <input type="file" />
-                </hx-file-input>.
+                <hx-file-control>
+                  <input
+                    id="fileInputDropZoneDemo"
+                    type="file"
+                  />
+                  <label for="fileInputDropZoneDemo">
+                    <hx-file-input class="hxBtn hxTertiary">
+                      browse your files
+                    </hx-file-input>
+                  </label>
+                </hx-file-control>
               </p>
             </hx-drop-fence>
           </hx-drop-zone>
@@ -73,7 +85,7 @@ also:
 
   <section>
     <header>
-      <h2 id="file-selector">File Selector</h2>
+      <h2 id="file-input">File Input</h2>
       <p class="hxSubBody">Added: v0.13.0</p>
       {# TODO: add section description #}
     </header>
@@ -131,6 +143,18 @@ also:
             <legend class="beta-hxFieldName">Control Options</legend>
             <hx-checkbox-control>
               <input
+                id="chkIsDisabled"
+                type="checkbox"
+                v-model="isDisabled"
+              />
+              <label for="chkIsDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
                 id="chkIsMultiple"
                 type="checkbox"
                 v-model="isMultiple"
@@ -145,22 +169,36 @@ also:
       </header>
 
       <div>
-        <hx-file-input
-          :class="variant.val"
-          :icon="icon"
-          :label="label"
-        >
+        <hx-file-control>
           <input
+            id="fileInputDemo"
             type="file"
+            :disabled="isDisabled"
             :multiple="isMultiple"
           />
-        </hx-file-input>
+          <label for="fileInputDemo">
+            <hx-file-input
+              :class="variant.val"
+              :icon="icon"
+            >
+              {% raw %}{{label}}{% endraw %}
+            </hx-file-input>
+          </label>
+        </hx-file-control>
       </div>
 
       <footer>
         <pre><code v-text="snippet"></code></pre>
       </footer>
     </div>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      Microsoft browsers never match the <code>input[type="file"]:active</code> CSS selector.
+    </p>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      Microsoft browsers apply two tab stops on <code>&lt;input type="file"&gt;</code> elements.
+    </p>
   </section>
 
   <section>

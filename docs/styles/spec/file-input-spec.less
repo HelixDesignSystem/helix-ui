@@ -1,0 +1,38 @@
+@import (reference) 'components/buttons';
+@import (reference) 'components/files/hx-file-control';
+
+.file-input-spec {
+  hx-file-control {
+    input[type="file"].mock-focus ~ label > hx-file-input {
+      &:extend(hx-file-control > input[type="file"]:focus ~ label > hx-file-input);
+    }
+
+    input[type="file"].mock-active ~ label > hx-file-input {
+      &.hxBtn {
+        &:extend(hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn);
+      }
+
+      &.hxBtn.hxPrimary {
+        &:extend(hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn.hxPrimary);
+      }
+
+      &.hxBtn.hxTertiary {
+        &:extend(hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn.hxTertiary);
+      }
+    }
+
+    hx-file-input.mock-hover {
+      &.hxBtn {
+        &:extend(.hxBtn:hover);
+      }
+
+      &.hxBtn.hxPrimary {
+        &:extend(.hxBtn.hxPrimary:hover);
+      }
+
+      &.hxBtn.hxTertiary {
+        &:extend(.hxBtn.hxTertiary:hover);
+      }
+    }
+  }
+}

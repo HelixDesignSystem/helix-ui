@@ -10,6 +10,7 @@ export { HXDropFenceElement } from './HXDropFenceElement';
 export { HXDropZoneElement } from './HXDropZoneElement';
 export { HXElement } from './HXElement';
 export { HXErrorElement } from './HXErrorElement';
+export { HXFileControlElement } from './HXFileControlElement';
 export { HXFileIconElement } from './HXFileIconElement';
 export { HXFileInputElement } from './HXFileInputElement';
 export { HXFileTileElement } from './HXFileTileElement';

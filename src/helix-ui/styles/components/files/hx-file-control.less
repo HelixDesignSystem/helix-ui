@@ -1,0 +1,84 @@
+// ----- LAYOUT -----
+hx-file-control {
+  > * {
+    margin: 0;
+  }
+
+  > label {
+    display: inline-block;
+    padding: 0;
+  }
+
+  > input[type="file"] {
+    #Mix.hideInput();
+    background: none;
+
+    &::-ms-browse,
+    &::-ms-value { 
+      opacity: 0.01;
+    }
+  }
+}
+
+hx-file-control > input[type="file"]:focus {
+  ~ label > hx-file-input {
+    box-shadow: @focus-glow;
+  }
+}
+
+hx-file-control > input[type="file"]:active {
+  ~ label > hx-file-input {
+    // TODO refactor button mixins
+    &.hxBtn {
+      background-color: @cyan-700;
+      border-color: transparent;
+      color: @gray-0;
+    }
+
+    // TODO refactor button mixins
+    &.hxBtn.hxPrimary {
+      background-color: @cyan-700;
+      border-color: transparent;
+      color: @gray-0;
+    }
+
+    // TODO refactor button mixins
+    &.hxBtn.hxTertiary {
+      background-color: transparent;
+      border-color: transparent;
+      color: @cyan-700;
+    }
+  }
+}
+
+/* ========== DISABLED ========== */
+hx-file-control > input[type="file"]:disabled {
+  ~ label {
+    color: @gray-700;
+
+    > hx-file-input {
+      cursor: not-allowed;
+
+      // TODO refactor button mixins
+      &.hxBtn {
+        background-color: transparent;
+        border-color: @gray-400;
+        color: @gray-400;
+      }
+
+      // TODO refactor button mixins
+      &.hxBtn.hxPrimary {
+        background-color: @gray-400;
+        border-color: transparent;
+        color: @gray-700;
+      }
+
+      // TODO refactor button mixins
+      &.hxBtn.hxTertiary {
+        background-color: transparent;
+        border-color: transparent;
+        color: @gray-400;
+      }
+    }
+  }
+}

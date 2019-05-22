@@ -17,41 +17,18 @@ export class HXFileInputElement extends HXElement {
         return `<style>${shadowStyles}</style>${shadowMarkup}`;
     }
 
-    $onCreate () {
-        this._onClick = this._onClick.bind(this);
-    }
-
     $onConnect () {
         this.$upgradeProperty('icon');
-        this.$upgradeProperty('label');
-        this._elButton.addEventListener('click', this._onClick);
-    }
-
-    $onDisconnect () {
-        this._elButton.removeEventListener('click', this._onClick);
     }
 
     static get $observedAttributes () {
-        return [ 'icon', 'label' ];
+        return [ 'icon' ];
     }
 
     $onAttributeChange (attr, oldVal, newVal) {
-        switch (attr) {
-            case 'icon':
-                this._elIcon.type = newVal;
-                break;
-            case 'label':
-                this._elLabel.innerText = newVal;
-                break;
+        if (attr === 'icon') {
+            this._elIcon.type = newVal;
         }
-    }
-
-    /**
-     * @readonly
-     * @type {HTMLInputElement}
-     */
-    get fileInput () {
-        return this.querySelector('input[type="file"]');
     }
 
     /**
@@ -65,44 +42,8 @@ export class HXFileInputElement extends HXElement {
         this.setAttribute('icon', newVal);
     }
 
-    /**
-     * Label to display within the file selector.
-     * @type {String}
-     */
-    get label () {
-        return this.getAttribute('label');
-    }
-    set label (newVal) {
-        this.setAttribute('label', newVal);
-    }
-
-    /**
-     * Simulate a mouse click on the element.
-     */
-    click () {
-        if (this.fileInput) {
-            this.fileInput.click();
-        }
-    }
-
-    /** @private */
-    get _elButton () {
-        return this.shadowRoot.getElementById('hxButton');
-    }
-
     /** @private */
     get _elIcon () {
         return this.shadowRoot.getElementById('hxIcon');
-    }
-
-    /** @private */
-    get _elLabel () {
-        return this.shadowRoot.getElementById('hxLabel');
-    }
-
-    /** @private */
-    _onClick (evt) {
-        evt.preventDefault();
-        this.click();
     }
 }
