@@ -90,21 +90,23 @@ export class HXTabsetElement extends HXElement {
     /* ---------- PUBLIC METHODS ---------- */
 
     /**
-     * All `<hx-tabpanel>` elements within the tabset.
+     * All `<hx-tabpanel>` elements associated with the tabset.
      * @readonly
      * @type {HXTabpanelElement[]}
      */
     get tabpanels () {
-        return Array.from(this.querySelectorAll('hx-tabpanel'));
+        let _selector = `#${this.id} > hx-tabcontent > hx-tabpanel`;
+        return Array.from(this.querySelectorAll(_selector));
     }
 
     /**
-     * All `<hx-tab>` elements within the tabset.
+     * All `<hx-tab>` elements associated with the tabset.
      * @readonly
      * @type {HXTabElement[]}
      */
     get tabs () {
-        return Array.from(this.querySelectorAll('hx-tablist > hx-tab'));
+        let _selector = `#${this.id} > hx-tablist > hx-tab`;
+        return Array.from(this.querySelectorAll(_selector));
     }
 
     /**
