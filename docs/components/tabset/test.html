@@ -1,0 +1,123 @@
+---
+title: Testing - Tabset
+crumbs:
+  - path: components/tabset
+    label: Tabset
+---
+{% extends 'test.njk' %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2>Appearance (default)</h2>
+    </header>
+
+    <hx-tabset>
+      <hx-tablist>
+        <hx-tab>Tab A</hx-tab>
+        <hx-tab>Tab B</hx-tab>
+        <hx-tab>Tab C</hx-tab>
+      </hx-tablist>
+      <hx-tabcontent>
+        <hx-tabpanel>
+          <h3>Panel A</h3>
+        </hx-tabpanel>
+        <hx-tabpanel>
+          <h3>Panel B</h3>
+        </hx-tabpanel>
+        <hx-tabpanel>
+          <h3>Panel C</h3>
+        </hx-tabpanel>
+      </hx-tabcontent>
+    </hx-tabset>
+  </section>
+
+  <section>
+    <header>
+      <h2>Nested Tabset</h2>
+    </header>
+
+    <hx-tabset>
+      <hx-tablist>
+        <hx-tab>Tab D</hx-tab>
+        <hx-tab>Tab E</hx-tab>
+        <hx-tab>Tab F</hx-tab>
+      </hx-tablist>
+
+      <hx-tabcontent>
+        <hx-tabpanel>
+          <h3>Panel D</h3>
+          <p>This panel should be open, by default.</p>
+
+          <hx-tabset>
+            <hx-tablist>
+              <hx-tab>Tab D1</hx-tab>
+              <hx-tab>Tab D2</hx-tab>
+              <hx-tab>Tab D3</hx-tab>
+            </hx-tablist>
+            <hx-tabcontent>
+              <hx-tabpanel>
+                <h4>Panel D1</h4>
+                <p>This panel should be open, by default.</p>
+              </hx-tabpanel>
+              <hx-tabpanel>
+                <h4>Panel D2</h4>
+              </hx-tabpanel>
+              <hx-tabpanel>
+                <h4>Panel D3</h4>
+              </hx-tabpanel>
+            </hx-tabcontent>
+          </hx-tabset>
+        </hx-tabpanel>
+
+        <hx-tabpanel>
+          <h3>Panel E</h3>
+
+          <hx-tabset>
+            <hx-tablist>
+              <hx-tab>Tab E1</hx-tab>
+              <hx-tab>Tab E2</hx-tab>
+              <hx-tab>Tab E3</hx-tab>
+            </hx-tablist>
+            <hx-tabcontent>
+              <hx-tabpanel>
+                <h4>Panel E1</h4>
+                <p>This panel should be open, by default.</p>
+              </hx-tabpanel>
+              <hx-tabpanel>
+                <h4>Panel E2</h4>
+              </hx-tabpanel>
+              <hx-tabpanel>
+                <h4>Panel E3</h4>
+              </hx-tabpanel>
+            </hx-tabcontent>
+          </hx-tabset>
+        </hx-tabpanel>
+
+        <hx-tabpanel>
+          <h3>Panel F</h3>
+
+          <hx-tabset>
+            <hx-tablist>
+              <hx-tab>Tab F1</hx-tab>
+              <hx-tab>Tab F2</hx-tab>
+              <hx-tab>Tab F3</hx-tab>
+            </hx-tablist>
+            <hx-tabcontent>
+              <hx-tabpanel>
+                <h4>Panel F1</h4>
+                <p>This panel should be open, by default.</p>
+              </hx-tabpanel>
+              <hx-tabpanel>
+                <h4>Panel F2</h4>
+              </hx-tabpanel>
+              <hx-tabpanel>
+                <h4>Panel F3</h4>
+              </hx-tabpanel>
+            </hx-tabcontent>
+          </hx-tabset>
+        </hx-tabpanel>
+      </hx-tabcontent>
+    </hx-tabset>
+  </section>
+{% endblock %}
