@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>&lt;hx-file-icon&gt; - HelixUI</title>
+  <title>Testing - Tabset - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -108,11 +108,11 @@
     
   <hx-disclosure
     aria-controls="nav-components"
->
+class="current">
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-components" >
+  <hx-reveal id="nav-components" open>
       
       <a href="components/accordion" >
     Accordion
@@ -276,7 +276,7 @@
 
 
       
-      <a href="components/tabset" >
+      <a href="components/tabset" class="current">
     Tabset
   </a>
 
@@ -318,11 +318,11 @@
     
   <hx-disclosure
     aria-controls="nav-elements"
-class="current">
+>
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-elements" open>
+  <hx-reveal id="nav-elements" >
       
       <a href="elements/hx-accordion" >
     &lt;hx-accordion&gt;
@@ -390,7 +390,7 @@ class="current">
 
 
       
-      <a href="elements/hx-file-icon" class="current">
+      <a href="elements/hx-file-icon" >
     &lt;hx-file-icon&gt;
   </a>
 
@@ -568,103 +568,147 @@ class="current">
 
       </nav>
 
-      <main role="main" id="content" class="element-content ">
+      <main role="main" id="content" class="test-content ">
             <header>
+              <nav class="hxBreadcrumb">
+                  <a href="components/tabset">Tabset</a>
+                  <hx-icon class="delimiter" type="angle-right"></hx-icon>
+                <a href="#">Testing - Tabset</a>
+              </nav>
 
             <h1>
-              &lt;hx-file-icon&gt;
+              Testing - Tabset
 
-<min-version id="page-min-version">
-  v0.9.0+
-</min-version>
-
-<hx-tooltip for="page-min-version" position="right">
-  HelixUI v0.9.0 or later required
-</hx-tooltip>
             </h1>
 
 
-  <p>
-    The custom <code>&lt;hx-file-icon&gt;</code> element renders a "file" icon with
-    a customizable image and extension.
-  </p>
+              
           </header>
 
   <section>
-    <dl class="metadata hxList">
-      <div>
-        <dt>Permitted Parents</dt>
-        <dd>any element that accepts flow content</dd>
-      </div>
-      <div>
-        <dt>Permitted Children</dt>
-        <dd>none (content will be removed upon element upgrade)</dd>
-      </div>
-      <div>
-        <dt>Events</dt>
-        <dd><em>none</em></dd>
-      </div>
-    </dl>
+    <header>
+      <h2>Appearance (default)</h2>
+    </header>
+
+    <hx-tabset>
+      <hx-tablist>
+        <hx-tab>Tab A</hx-tab>
+        <hx-tab>Tab B</hx-tab>
+        <hx-tab>Tab C</hx-tab>
+      </hx-tablist>
+      <hx-tabcontent>
+        <hx-tabpanel>
+          <h3>Panel A</h3>
+        </hx-tabpanel>
+        <hx-tabpanel>
+          <h3>Panel B</h3>
+        </hx-tabpanel>
+        <hx-tabpanel>
+          <h3>Panel C</h3>
+        </hx-tabpanel>
+      </hx-tabcontent>
+    </hx-tabset>
+  </section>
+
+  <section>
+    <header>
+      <h2>Nested Tabset</h2>
+    </header>
+
+    <hx-tabset>
+      <hx-tablist>
+        <hx-tab>Tab D</hx-tab>
+        <hx-tab>Tab E</hx-tab>
+        <hx-tab>Tab F</hx-tab>
+      </hx-tablist>
+
+      <hx-tabcontent>
+        <hx-tabpanel>
+          <h3>Panel D</h3>
+          <p>This panel should be open, by default.</p>
+
+          <hx-tabset>
+            <hx-tablist>
+              <hx-tab>Tab D1</hx-tab>
+              <hx-tab>Tab D2</hx-tab>
+              <hx-tab>Tab D3</hx-tab>
+            </hx-tablist>
+            <hx-tabcontent>
+              <hx-tabpanel>
+                <h4>Panel D1</h4>
+                <p>This panel should be open, by default.</p>
+              </hx-tabpanel>
+              <hx-tabpanel>
+                <h4>Panel D2</h4>
+              </hx-tabpanel>
+              <hx-tabpanel>
+                <h4>Panel D3</h4>
+              </hx-tabpanel>
+            </hx-tabcontent>
+          </hx-tabset>
+        </hx-tabpanel>
+
+        <hx-tabpanel>
+          <h3>Panel E</h3>
+
+          <hx-tabset>
+            <hx-tablist>
+              <hx-tab>Tab E1</hx-tab>
+              <hx-tab>Tab E2</hx-tab>
+              <hx-tab>Tab E3</hx-tab>
+            </hx-tablist>
+            <hx-tabcontent>
+              <hx-tabpanel>
+                <h4>Panel E1</h4>
+                <p>This panel should be open, by default.</p>
+              </hx-tabpanel>
+              <hx-tabpanel>
+                <h4>Panel E2</h4>
+              </hx-tabpanel>
+              <hx-tabpanel>
+                <h4>Panel E3</h4>
+              </hx-tabpanel>
+            </hx-tabcontent>
+          </hx-tabset>
+        </hx-tabpanel>
+
+        <hx-tabpanel>
+          <h3>Panel F</h3>
+
+          <hx-tabset>
+            <hx-tablist>
+              <hx-tab>Tab F1</hx-tab>
+              <hx-tab>Tab F2</hx-tab>
+              <hx-tab>Tab F3</hx-tab>
+            </hx-tablist>
+            <hx-tabcontent>
+              <hx-tabpanel>
+                <h4>Panel F1</h4>
+                <p>This panel should be open, by default.</p>
+              </hx-tabpanel>
+              <hx-tabpanel>
+                <h4>Panel F2</h4>
+              </hx-tabpanel>
+              <hx-tabpanel>
+                <h4>Panel F3</h4>
+              </hx-tabpanel>
+            </hx-tabcontent>
+          </hx-tabset>
+        </hx-tabpanel>
+      </hx-tabcontent>
+    </hx-tabset>
   </section>
 
 
   
-  <section>
-    <header>
-      <h2 id="attributes">Attributes</h2>
-      <p>
-        Attributes enable declarative configuration of an element,
-        via HTML markup.
-      </p>
-    </header>
+  <div class="banner warning">
+    <hx-icon type="exclamation-triangle" class="banner__icon"></hx-icon>
+    <div class="banner__body">
+      <b>UI TESTING:</b>
+      Do not replicate anything on this page within your application.
+    </div>
+  </div>
 
-  <dl>
-    <dt>extension {String} <i>(optional)</i></dt>
-    <dd>
-      Sets the extension of the file icon.
-    </dd>
-
-    <dt>type {String}</dt>
-    <dd>
-      Changes the displayed icon to one of the
-      <a href="components/icon/#available-icons">available icons</a>
-    </dd>
-  </dl>
-  </section>
-
-  
-  <section>
-    <header>
-      <h2 id="properties">Properties</h2>
-      <p>
-        JavaScript properties enable programmatic access to an element's
-        configuration and state.
-      </p>
-    </header>
-
-  <dl>
-    <dt>extension {String}</dt>
-    <dd>
-      <p>
-        Manipulates the <code>extension</code> attribute.
-      </p>
-    </dd>
-
-    <dt>type {String}</dt>
-    <dd>
-      Changes the displayed icon to one of the
-      <a href="components/icon/#available-icons">available icons</a>
-    </dd>
-  </dl>
-  </section>
-
-<section>
-  <h2 id="see-also">See Also</h2>
-  <ul class="hxList">
-      <li><a href="components/icon">Icon</a></li>
-      <li><a href="elements/hx-icon">&lt;hx-icon&gt;</a></li>
-  </ul>
-</section>
       </main>
 
         <aside class="hxSiderail">
@@ -674,9 +718,7 @@ class="current">
 
             <nav class="article-toc">
               
-  <a href="#attributes">Attributes</a>
-  <a href="#properties">Properties</a>
-                <a href="#see-also">See Also</a>
+                
               <hr class="hxDivider" />
               <a class="top-link" href="#top">Back to Top</a>
             </nav>
@@ -696,7 +738,7 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-05-06
+          2019-06-05
         </small>
 
       <small>
