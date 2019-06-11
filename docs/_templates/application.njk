@@ -71,6 +71,10 @@
       </nav>
 
       <main role="main" id="content" class="{{mainClass}} {{contentClasses}}">
+        {% block banner %}
+          {# page banner goes here #}
+        {% endblock %}
+
         {% block main %}
           <header>
             {% if page.crumbs %}

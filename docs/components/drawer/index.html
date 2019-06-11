@@ -1,0 +1,127 @@
+---
+title: Drawer
+also:
+  components/drawer/test.html: Testing - Drawer
+  elements/hx-drawer: <hx-drawer>
+---
+{% extends 'component.njk' %}
+{% import '_utils.njk' as utils %}
+
+{% block page_header %}
+  <p>
+    The {{page.title}} provides a temporary overlay dialog, anchored
+    to the right side of the screen.
+  </p>
+{% endblock %}
+
+{% block content %}
+    <section>
+      <header>
+        <h2 id="basic-drawer">Basic Drawer</h2>
+      </header>
+
+      <div class="example" id="vue-drawerDemo">
+        <header>
+          <form class="beta-hxForm">
+            <hx-text-control>
+              <input
+                id="txtTitle"
+                type="text"
+                v-model="title"
+              />
+              <label for="txtTitle">
+                Title
+              </label>
+            </hx-text-control>
+
+            <hx-select-control>
+              <select id="selSize" v-model="size">
+                <option v-for="_size in sizes" :value="_size">
+                  {% raw %}{{_size.label}}{% endraw %}
+                </option>
+              </select>
+              <hx-select></hx-select>
+              <label for="selSize">
+                Size
+              </label>
+            </hx-select-control>
+
+            <fieldset>
+              <label>Options</label>
+
+              <hx-checkbox-control>
+                <input
+                  id="chkHasPadding"
+                  type="checkbox"
+                  v-model="hasPadding"
+                />
+                <label for="chkHasPadding">
+                  <hx-checkbox></hx-checkbox>
+                  Padded Content
+                </label>
+              </hx-checkbox-control>
+
+              <hx-checkbox-control>
+                <input
+                  aria-describedby="helpLengthyBody"
+                  id="chkLengthyBody"
+                  type="checkbox"
+                  v-model="hasLengthyContent"
+                />
+                <label for="chkLengthyBody">
+                  <hx-checkbox></hx-checkbox>
+                  Lengthy Content
+                </label>
+                <p id="helpLengthyBody">(triggers scrolling)</p>
+              </hx-checkbox-control>
+            </fieldset>
+          </form>
+        </header>
+
+        <div>
+          <hx-disclosure
+            aria-controls="demo-drawer"
+            class="hxBtn"
+          >
+            Toggle Drawer
+          </hx-disclosure>
+
+          <hx-drawer
+            :class="drawerClasses"
+            id="demo-drawer"
+          >
+            <header>
+              <h3 v-text="title"></h3>
+            </header>
+
+            <hx-div :class="bodyClasses">
+              <template v-if="hasLengthyContent">
+                {{ utils.lorem(10) }}
+              </template>
+              <template v-else>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                  sed do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua. Gravida rutrum quisque non tellus. Sagittis vitae
+                  et leo duis ut diam quam nulla. Diam vel quam elementum
+                  pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+                  malesuada proin libero nunc. Ultricies integer quis auctor
+                  elit sed vulputate mi sit amet. Egestas dui id ornare arcu
+                  odio ut. In iaculis nunc sed augue.
+                </p>
+              </template>
+            </hx-div>
+
+            <footer>
+              <button class="hxBtn hxPrimary">Save Changes</button>
+              <button class="hxBtn">Cancel</button>
+            </footer>
+          </hx-drawer>
+        </div>
+
+        <footer>
+          <pre><code v-text="snippet"></code></pre>
+        </footer>
+      </div>
+    </section>
+{% endblock %}

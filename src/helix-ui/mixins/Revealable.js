@@ -42,6 +42,11 @@ export const Revealable = (superclass) => {
             if (attr === 'open') {
                 let isOpen = (newVal !== null);
                 this.setAttribute('aria-hidden', !isOpen);
+                // TODO: Emit events only when setting the 'open' property.
+                // - emit 'open' when open=true
+                // - emit 'close' when open=false
+                // - allow user to cancel the event, if desired
+                // - ensure that Positionable is updated accordingly
                 this.$emit(isOpen ? 'open' : 'close');
             }
         }

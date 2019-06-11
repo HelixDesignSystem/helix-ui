@@ -1,0 +1,54 @@
+@import (reference) 'vars';
+
+hx-drawer:not([hx-defined]) {
+  display: none; // prevent FOUC
+}
+
+// These styles should not be shared with ShadyDOM
+hx-drawer:extend(.hxComponent) {
+  background-color: @gray-100;
+  display: block;
+  height: 0;
+  padding: 0;
+  position: fixed;
+  width: 0;
+  z-index: @drawer-z-index;
+}
+
+#hxDrawer.hx-drawer, // ShadyDOM for polyfilled browsers
+hx-drawer {
+  > * {
+    flex-shrink: 0; // most children shouldn't shrink
+  }
+
+  > header {
+    font-size: 1.25rem;
+    order: 1;
+    padding: 0.75rem 2.75rem 0.75rem 0.75rem;
+
+    > * {
+      font-size: inherit;
+    }
+  }
+
+  > hx-alert {
+    order: 2;
+  }
+
+  > hx-div {
+    background-color: @gray-0;
+    border-top: 1px solid @gray-400;
+    flex-grow: 1;
+    flex-shrink: 1; // necessary for scrolling
+    order: 3;
+    overflow-y: auto;
+  }
+
+  > footer {
+    background-color: @gray-0;
+    border-top: 1px solid @gray-400;
+    flex-grow: 9999; // consume as much space as possible
+    order: 4;
+    padding: 0.75rem;
+  }
+}

@@ -6,6 +6,7 @@ export { HXCheckboxControlElement } from './HXCheckboxControlElement';
 export { HXCheckboxElement } from './HXCheckboxElement';
 export { HXDisclosureElement } from './HXDisclosureElement';
 export { HXDivElement } from './HXDivElement';
+export { HXDrawerElement } from './HXDrawerElement';
 export { HXDropFenceElement } from './HXDropFenceElement';
 export { HXDropZoneElement } from './HXDropZoneElement';
 export { HXElement } from './HXElement';

@@ -16,12 +16,7 @@
 /* ---------------------------------------- *\
  * MIXINS
 \* ---------------------------------------- */
-.sticky(vertical) {
-  bottom: 1rem;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 1rem;
-}
+// TBD
 
 /* ---------------------------------------- *\
  * RESETS
@@ -109,12 +104,6 @@ body.hxVertical {
         margin-bottom: 0;
       }
     }
-
-    // PROTOTYPE: vertical spacing
-    // nested to prevent matching the global nav
-    header {
-      margin-bottom: 1rem;
-    }
   }
 
   .hxSiderail {
@@ -169,7 +158,6 @@ min-version {
 // ----- BANNER ---------------
 // currently used by test page layout to display a warning to readers
 .banner {
-  .sticky(vertical);
   -ms-grid-columns: auto 1fr;
   -ms-grid-row-align: baseline;
   align-items: baseline;
@@ -180,9 +168,7 @@ min-version {
   display: grid;
   grid-template-areas: 'icon content';
   grid-template-columns: auto 1fr;
-  margin-top: 3rem;
   padding: 1rem;
-  z-index: 1150; // popover < banner < modal
 
   > * {
     margin: 0;
@@ -219,8 +205,10 @@ min-version {
 
 // Table Of Contents
 .article-toc {
-  .sticky(vertical);
   display: block;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 1rem;
 
   > a {
     display: block;
@@ -388,22 +376,8 @@ min-version {
 /* ----- Test Page Styling ----- */
 .test-content {
   box-shadow: inset 0 0 0 0.5rem @yellow-900;
-  overflow: visible !important; // allow banner to be sticky
 
   section {
-    > * {
-      // FIXME: breaks positioned elements
-      margin: 1rem 0;
-
-      &:first-child {
-        margin-top: 0;
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-
     > section {
       margin-bottom: 2rem;
       margin-left: 2rem;
@@ -436,6 +410,7 @@ min-version {
 @import 'spec/button-spec';
 @import 'spec/checkbox-spec';
 @import 'spec/choice-tile-spec';
+@import 'spec/drawer-spec';
 @import 'spec/dropdown-select-spec';
 @import 'spec/file-input-spec';
 @import 'spec/panel-spec';
