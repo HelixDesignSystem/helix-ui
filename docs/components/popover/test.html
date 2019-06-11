@@ -5,6 +5,7 @@ crumbs:
     label: Popover
 ---
 {% extends 'test.njk' %}
+{% set contentClasses = 'popover-spec' %}
 
 {% block content %}
   {# TODO: Write tests to set shadow position on open and render. #}
@@ -264,7 +265,7 @@ crumbs:
     </hx-popover>
   </section>
 
-  <section id="popover-in-scrolling-container" class="test">
+  <section id="popover-in-scrolling-container">
     <h2>Within Scrollable Container</h2>
     <ul class="hxList">
       <li>TODO: Should we hide the popover when its relative element isn't visible (scrolls out of view)?</li>
