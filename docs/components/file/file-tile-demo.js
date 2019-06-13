@@ -46,14 +46,14 @@ import Util from '../../_util';
                 },
                 downloadableSnippet: function () {
                     return Util.snippet(`
-                        <hx-file-input
+                        <hx-file-tile
                           details="${this.details}"
                           href="${this.href}"
                           icon="${this.icon}"
                           name="${this.name}"
                           ${this.readonly ? 'readonly' : ''}
                         >
-                        </hx-file-input>
+                        </hx-file-tile>
                     `);
                 },
             },
