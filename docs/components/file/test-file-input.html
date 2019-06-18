@@ -1,0 +1,538 @@
+---
+title: Testing - File Input
+crumbs:
+  - path: components/file
+    label: File
+---
+{% extends 'test.njk' %}
+{% set contentClasses = 'file-input-spec' %}
+
+{% block content %}
+  <section>
+    <h2>File Inputs (Icon and Label)</h2>
+    <h3>Primary</h3>
+    <p>
+      <hx-file-control>
+        <input
+          id="primaryWithLabel"
+          type="file"
+        />
+        <label for="primaryWithLabel">
+          <hx-file-input
+            class="hxBtn hxPrimary"
+            icon="upload">
+            Primary with Label
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+
+    <p>
+      <hx-file-control>
+        <input
+          class="mock-focus"
+          id="primaryWithLabel-focus"
+          type="file"
+        />
+        <label for="primaryWithLabel-focus">
+          <hx-file-input
+            class="hxBtn hxPrimary"
+            icon="upload">
+            Primary with Label (Focus)
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+
+    <p>
+      <hx-file-control>
+        <input
+          id="primaryWithLabel-hover"
+          type="file"
+        />
+        <label for="primaryWithLabel-hover">
+          <hx-file-input
+            class="hxBtn hxPrimary mock-hover"
+            icon="upload">
+            Primary with Label (Hover)
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+
+    <p>
+      <hx-file-control>
+        <input
+          class="mock-active"
+          id="primaryWithLabel-active"
+          type="file"
+        />
+        <label for="primaryWithLabel-active">
+          <hx-file-input
+            class="hxBtn hxPrimary"
+            icon="upload">
+            Primary with Label (Pressed)
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+
+    <p>
+      <hx-file-control>
+        <input
+          disabled
+          id="primaryWithLabel-disabled"
+          type="file"
+        />
+        <label for="primaryWithLabel-disabled">
+          <hx-file-input
+            class="hxBtn hxPrimary"
+            icon="upload">
+            Primary with Label (Disabled)
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+  </section>
+
+  <section>
+    <h3>Secondary</h3>
+    <p>
+      <hx-file-control>
+        <input
+          id="secondaryWithLabel"
+          type="file"
+        />
+        <label for="secondaryWithLabel">
+          <hx-file-input
+            class="hxBtn"
+            icon="upload">
+            Secondary with Label
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+
+    <p>
+      <hx-file-control>
+        <input
+          class="mock-focus"
+          id="secondaryWithLabel-focus"
+          type="file"
+        />
+        <label for="secondaryWithLabel-focus">
+          <hx-file-input
+            class="hxBtn"
+            icon="upload">
+            Secondary with Label (Focus)
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+
+    <p>
+      <hx-file-control>
+        <input
+          id="secondaryWithLabel-hover"
+          type="file"
+        />
+        <label for="secondaryWithLabel-hover">
+          <hx-file-input
+            class="hxBtn mock-hover"
+            icon="upload">
+            Secondary with Label (Hover)
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+
+    <p>
+      <hx-file-control>
+        <input
+          class="mock-active"
+          id="secondaryWithLabel-active"
+          type="file"
+        />
+        <label for="secondaryWithLabel-active">
+          <hx-file-input
+            class="hxBtn"
+            icon="upload">
+            Secondary with Label (Pressed)
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+
+    <p>
+      <hx-file-control>
+        <input
+          disabled
+          id="secondaryWithLabel-disabled"
+          type="file"
+        />
+        <label for="secondaryWithLabel-disabled">
+          <hx-file-input
+            class="hxBtn"
+            icon="upload">
+            Secondary with Label (Disabled)
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+  </section>
+
+  <section>
+    <h3>Tertiary</h3>
+    <p>
+      <hx-file-control>
+        <input
+          id="tertiaryWithLabel"
+          type="file"
+        />
+        <label for="tertiaryWithLabel">
+          <hx-file-input
+            class="hxBtn hxTertiary"
+            icon="upload">
+            Tertiary with Label
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+
+    <p>
+      <hx-file-control>
+        <input
+          class="mock-focus"
+          id="tertiaryWithLabel-focus"
+          type="file"
+        />
+        <label for="tertiaryWithLabel-focus">
+          <hx-file-input
+            class="hxBtn hxTertiary"
+            icon="upload">
+            Tertiary with Label (Focus)
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+
+    <p>
+      <hx-file-control>
+        <input
+          id="tertiaryWithLabel-hover"
+          type="file"
+        />
+        <label for="tertiaryWithLabel-hover">
+          <hx-file-input
+            class="hxBtn hxTertiary mock-hover"
+            icon="upload">
+            Tertiary with Label (Hover)
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+
+    <p>
+      <hx-file-control>
+        <input
+          class="mock-active"
+          id="tertiaryWithLabel-active"
+          type="file"
+        />
+        <label for="tertiaryWithLabel-active">
+          <hx-file-input
+            class="hxBtn hxTertiary"
+            icon="upload">
+            Tertiary with Label (Pressed)
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+
+    <p>
+      <hx-file-control>
+        <input
+          disabled
+          id="tertiaryWithLabel-disabled"
+          type="file"
+        />
+        <label for="tertiaryWithLabel-disabled">
+          <hx-file-input
+            class="hxBtn hxTertiary"
+            icon="upload">
+            Tertiary with Label (Disabled)
+          </hx-file-input>
+        </label>
+      </hx-file-control>
+    </p>
+  </section>
+
+  <section>
+    <h2>File Inputs Without Label (Icon Only)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Normal</th>
+          <th>Focus</th>
+          <th>Hover</th>
+          <th>Pressed</th>
+          <th>Disabled</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">
+            Primary
+          </th>
+          <td>
+            <hx-file-control>
+              <input
+                id="primaryWithIcon"
+                type="file"
+              />
+              <label for="primaryWithIcon">
+                <hx-file-input
+                  class="hxBtn hxPrimary"
+                  icon="paperclip"
+                  title="attach file">
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+          <td>
+            <hx-file-control>
+              <input
+                class="mock-focus"
+                id="primaryWithIcon-focus"
+                type="file"
+              />
+              <label for="primaryWithIcon-focus">
+                <hx-file-input
+                  class="hxBtn hxPrimary"
+                  icon="paperclip"
+                  title="attach file">
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+          <td>
+            <hx-file-control>
+              <input
+                id="primaryWithIcon-hover"
+                type="file"
+              />
+              <label for="primaryWithIcon-hover">
+                <hx-file-input
+                  class="hxBtn hxPrimary mock-hover"
+                  icon="paperclip"
+                  title="attach file">
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+          <td>
+            <hx-file-control>
+              <input
+                class="mock-active"
+                id="primaryWithIcon-active"
+                type="file"
+              />
+              <label for="primaryWithIcon-active">
+                <hx-file-input
+                  class="hxBtn hxPrimary"
+                  icon="paperclip"
+                  title="attach file">
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+          <td>
+            <hx-file-control>
+              <input
+                disabled
+                id="primaryWithIcon-disabled"
+                type="file"
+              />
+              <label for="primaryWithIcon-disabled">
+                <hx-file-input
+                  class="hxBtn hxPrimary"
+                  icon="paperclip"
+                  title="attach file">
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            Secondary
+          </th>
+          <td>
+            <hx-file-control>
+              <input
+                id="secondaryWithIcon"
+                type="file"
+              />
+              <label for="secondaryWithIcon">
+                <hx-file-input
+                  class="hxBtn"
+                  icon="paperclip"
+                  title="attach file">
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+          <td>
+            <hx-file-control>
+              <input
+              class="mock-focus"
+                id="secondaryWithIcon-focus"
+                type="file"
+              />
+              <label for="secondaryWithIcon-focus">
+                <hx-file-input
+                  class="hxBtn"
+                  icon="paperclip"
+                  title="attach file">
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+          <td>
+            <hx-file-control>
+              <input
+                id="secondaryWithIcon-hover"
+                type="file"
+              />
+              <label for="secondaryWithIcon-hover">
+                <hx-file-input
+                  class="hxBtn mock-hover"
+                  icon="paperclip"
+                  title="attach file">
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+          <td>
+            <hx-file-control>
+              <input
+                class="mock-active"
+                id="secondaryWithIcon-active"
+                type="file"
+              />
+              <label for="secondaryWithIcon-active">
+                <hx-file-input
+                  class="hxBtn"
+                  icon="paperclip"
+                  title="attach file">
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+          <td>
+            <hx-file-control>
+              <input
+              disabled
+                id="secondaryWithIcon-disabled"
+                type="file"
+              />
+              <label for="secondaryWithIcon-disabled">
+                <hx-file-input
+                  class="hxBtn"
+                  icon="paperclip"
+                  title="attach file">
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            Tertiary
+          </th>
+          <td>
+            <hx-file-control>
+              <input
+                id="tertiaryWithIcon"
+                type="file"
+              />
+              <label for="tertiaryWithIcon">
+                <hx-file-input
+                  class="hxBtn hxTertiary"
+                  icon="paperclip"
+                  title="attach file">
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+          <td>
+            <hx-file-control>
+              <input
+                class="mock-focus"
+                id="tertiaryWithIcon-focus"
+                type="file"
+              />
+              <label for="tertiaryWithIcon-focus">
+                <hx-file-input
+                  class="hxBtn hxTertiary"
+                  icon="paperclip"
+                  title="attach file">
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+          <td>
+            <hx-file-control>
+              <input
+                id="tertiaryWithIcon-hover"
+                type="file"
+              />
+              <label for="tertiaryWithIcon-hover">
+                <hx-file-input
+                  class="hxBtn hxTertiary mock-hover"
+                  icon="paperclip"
+                  title="attach file">
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+          <td>
+            <hx-file-control>
+              <input
+                class="mock-active"
+                id="tertiaryWithIcon-active"
+                type="file"
+              />
+              <label for="tertiaryWithIcon-active">
+                <hx-file-input
+                  class="hxBtn hxTertiary"
+                  icon="paperclip"
+                  title="attach file"
+                  >
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+          <td>
+            <hx-file-control>
+              <input
+                disabled
+                id="tertiaryWithIcon-disabled"
+                type="file"
+              />
+              <label for="tertiaryWithIcon-disabled">
+                <hx-file-input
+                  class="hxBtn hxTertiary"
+                  icon="paperclip"
+                  title="attach file"
+                  >
+                </hx-file-input>
+              </label>
+            </hx-file-control>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+{% endblock %}
