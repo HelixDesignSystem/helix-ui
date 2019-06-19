@@ -1,4 +1,109 @@
 @import (reference) 'mixins';
+@import (reference) "./SearchControl";
+
+// ----- LAYOUT -----
+/*
+    auto    1fr    auto
+  +-------+-------+-------+
+  | lbl   | lbl   | lbl   | auto
+  +-------+-------+-------+
+  | icon  | input | btn   | auto
+  +-------+-------+-------+
+  | extra | extra | extra | auto
+  +-------+-------+-------+
+*/
+
+
+hx-search-control {
+  -ms-grid-column-align: start;
+  -ms-grid-columns: 2rem 1fr auto;
+  -ms-grid-rows: auto auto auto;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas:
+    'lbl   lbl   lbl'
+    '.     input btn'
+    'extra extra extra';
+  grid-template-columns: 2rem 1fr auto;
+  grid-template-rows: auto auto auto;
+
+  > input[type="search"] {
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    grid-area: input;
+    height: 2rem;
+    min-width: 8rem; // ~16 chars
+    z-index: 1;
+
+    // reset for IE as well
+    &::-ms-clear {
+      display: none;
+      height: 0;
+      width : 0;
+    }
+
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  > input[type="search"]:focus ~ hx-search,
+  > button.hxClear:focus ~ hx-search {  // make more specific
+    border-color: @cyan-700;
+    box-shadow: @focus-glow;
+  }
+
+  button {
+    -ms-grid-column: 3;
+    -ms-grid-row: 2;
+    background-color: transparent;
+    border: none;
+    color: @cyan-700;
+    cursor: pointer;
+    font-size: 1rem;
+    grid-area: btn;
+    line-height: 1;
+    outline: none;
+    padding: 0.5rem;
+    z-index: 1;
+
+    &:focus {
+      outline: 1px dotted @gray-700;
+      outline-offset: -6px;
+    }
+  }
+
+  hx-search {
+    -ms-grid-column-span: 3;
+    -ms-grid-row: 2;
+    background-color: @gray-0;
+    border-radius: 2px;
+    border: 1px solid @gray-500;
+    grid-column: ~"1 / span 3";
+    grid-row: 2;
+    z-index: 0;
+  }
+
+   > label {
+    @justify: start;
+    -ms-grid-column-align: @justify;
+    color: @gray-800;
+    display: inline-block;
+    font-size: 0.875rem;
+    grid-area: lbl;
+    justify-self: @justify;
+  }
+}
 
 hx-search-assistance:extend(.hxComponent) {
   #Positionable.base();
@@ -50,6 +155,40 @@ hx-search-assistance:extend(.hxComponent) {
 hx-search {
   display: block;
   height: 2rem;
+}
+
+// ----- PRESTINE ----------
+hx-search-control > hx-search {
+  .SearchControl(pristine);
+}
+
+hx-search-control > input[type="search"]:focus ~ hx-search {
+  .SearchControl(pristine-focus);
+}
+
+// ----- INVALID ----------
+hx-search-control[hx-dirty] > input[type="search"]:enabled:invalid ~ hx-search,
+hx-search-control.hxInvalid > input[type="search"]:enabled ~ hx-search {
+  .SearchControl(invalid);
+}
+
+hx-search-control[hx-dirty] > input[type="search"]:enabled:invalid:focus ~ hx-search,
+hx-search-control.hxInvalid > input[type="search"]:enabled:focus ~ hx-search {
+  .SearchControl(invalid-focus);
+}
+
+// ----- DISABLED ----------
+hx-search-control > input[type="search"]:disabled ~ hx-search {
+  .SearchControl(disabled);
+  #Mix.disabledPlaceholder();
+  background-color: @gray-50;
+  border: 1px solid @gray-500;
+  color: @gray-400;
+
+
+  &:focus {
+    .SearchControl(disabled-focus);
+  }
 }
 
 .hxSearchSuggestion {

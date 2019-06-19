@@ -27,6 +27,7 @@ export { HXRadioElement } from './hx-radio/index.js';
 export { HXRadioSetElement } from './hx-radio-set/index.js';
 export { HXRevealElement } from './hx-reveal/index.js';
 export { HXSearchAssistanceElement } from './hx-search-assistance/index.js';
+export { HXSearchControlElement } from './hx-search-control/index.js';
 export { HXSearchElement } from './hx-search/index.js';
 export { HXSelectControlElement } from './hx-select-control/index.js';
 export { HXSelectElement } from './hx-select/index.js';

@@ -1,168 +1,22 @@
 @import (reference) "mixins";
 @import "../_base";
 
-// TODO: add CSS custom props for theming hooks
-
-input::-ms-clear {
-  display: none;
-}
-
 :host {
-  display: block;
-  font-size: 1rem;
-  height: 2rem;
-  min-width: 8rem;
-
   #hxSearch {
-    display: flex;
-    height: 100%;
-    position: relative;
+    -ms-grid-column-align: start;
+    -ms-grid-columns: auto 1fr auto;
+    -ms-grid-rows: auto auto auto;
+    display: -ms-grid;
+
+    display: -ms-grid;
+    display: grid;
+    grid-template-columns: 2rem 1fr;
   }
 
   #hxIcon {
+    background: none;
     color: @gray-700;
-    flex-shrink: 0;
     line-height: 1;
-    order: 1;
-    padding: 0.5rem;
-    z-index: 1;
+    margin: 0.5rem;
   }
-
-  #hxNativeControl {
-    #Mix.placeholder();
-    #Mix.resetFocus();
-
-    background-color: transparent;
-    border: none;
-    color: @gray-900;
-    cursor: inherit;
-    flex-grow: 1;
-    font-weight: 400;
-    min-width: 0;
-    order: 2;
-    width: 0; // disables user agent width
-    z-index: 1;
-
-    &:focus {
-      ~ #hxClear {
-        color: @cyan-700;
-      }
-
-      ~ #hxCustomControl {
-        border-color: @cyan-700;
-        box-shadow: @focus-glow;
-      }
-    }
-  }
-
-  #hxCustomControl {
-    background-color: @gray-0;
-    border-radius: 2px;
-    border: 1px solid @gray-500;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 0; // sits behind everything
-  }
-
-  #hxClear {
-    #Mix.resetFocus();
-
-    background-color: transparent;
-    border: none;
-    color: @gray-700;
-    cursor: pointer;
-    flex-shrink: 0;
-    line-height: 1;
-    order: 3;
-    padding: 0.5rem;
-    z-index: 1;
-
-    &:focus {
-      hx-icon {
-        outline-offset: 2px;
-        outline: 1px dotted currentColor;
-      }
-
-      ~ * {
-        color: @cyan-700;
-      }
-
-      ~ #hxCustomControl {
-        border-color: @cyan-700;
-        box-shadow: @focus-glow;
-      }
-    }//:focus
-  }
-}//default
-
-:host([invalid]) {
-  color: @red-900;
-
-  // ----- IDLE -----
-
-  #hxIcon,
-  #hxClear {
-    color: inherit;
-  }
-
-  #hxCustomControl {
-    border-color: @red-900;
-    border-width: 2px;
-  }
-
-  // ----- FOCUS -----
-
-  #hxClear:focus {
-    hx-icon {
-      outline-color: currentColor;
-    }
-  }
-
-  #hxNativeControl:focus {
-    ~ #hxClear {
-      color: @red-900;
-    }
-  }
-
-  // make sure that our custom control doesn't lose focus style
-  // when we tab between #hxSearch and #hxClear
-  #hxClear:focus,
-  #hxNativeControl:focus {
-    ~ #hxCustomControl {
-      box-shadow: @focus-glow-invalid;
-      border-color: @red-900;
-    }
-  }
-}//[invalid]
-
-:host([disabled]) {
-  color: @gray-400;
-
-  #hxSearch {
-    color: inherit;
-    cursor: not-allowed;
-  }
-
-  #hxIcon {
-    color: inherit;
-  }
-
-  #hxClear {
-    display: none;
-  }
-
-  #hxNativeControl {
-    #Mix.disabledPlaceholder();
-
-    color: inherit;
-  }
-
-  #hxCustomControl {
-    background-color: @gray-50;
-    border-color: @gray-300;
-    border-width: 1px;
-  }
-}//[disabled]
+}

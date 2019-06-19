@@ -1,0 +1,59 @@
+@import (reference) 'mixins';
+
+/*
+  Generic mixins to style text and text-like form controls
+  - <searcharea> elements
+  - all <input> elements, excluding:
+    - <input type="checkbox" />
+    - <input type="color" />
+    - <input type="radio" />
+    - <input type="range" />
+*/
+
+// input
+// searcharea
+.SearchControl(pristine) {
+  #Mix.placeholder();
+  background-color: @gray-0;
+  border-radius: 2px;
+  border: 1px solid @gray-500;
+  color: @gray-900;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+// input:focus
+// searcharea:focus
+.SearchControl(pristine-focus) {
+  border: 1px solid @cyan-700;
+  box-shadow: @focus-glow;
+  outline: 0;
+}
+
+// input:invalid
+// searcharea:invalid
+.SearchControl(invalid) {
+  border: 2px solid @red-900;
+}
+
+// input:invalid:focus
+// searcharea:invalid:focus
+.SearchControl(invalid-focus) {
+  border: 2px solid @red-900;
+  box-shadow: @focus-glow-invalid;
+}
+
+// input:disabled
+// searcharea:disabled
+.SearchControl(disabled) {
+  #Mix.disabledPlaceholder();
+  background-color: @gray-50;
+  border: 1px solid @gray-500;
+  color: @gray-400;
+}
+
+// input:disabled:focus
+// searcharea:disabled:focus
+.SearchControl(disabled-focus) {
+  border: 1px solid @gray-500;
+}
