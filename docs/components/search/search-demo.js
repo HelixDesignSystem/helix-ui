@@ -4,36 +4,60 @@ if (document.getElementById('vue-searchDemo')) {
     new Vue({
         el: '#vue-searchDemo',
         data: {
+            hasAsterisk: false,
+            hasOptional: false,
             isDisabled: false,
-            isInvalid: false,
-            searchValue: '',
-            placeholder: '',
-        },
-        methods: {
-            // fires on 'input' and 'clear' events
-            onSearchUpdate: function (evt) {
-                this.searchValue = evt.target.value;
-            },
-            onChkChange: function (evt, datum) {
-                this[datum] = evt.currentTarget.checked;
-            },
+            isRequired: false,
+            label: 'Username',
         },
         computed: {
-            hasPlaceholder: function () {
-                return (this.placeholder !== '');
+            attrDisabled: function () {
+                return (this.isDisabled ? 'disabled' : '');
             },
-            hasValue: function () {
-                return (this.searchValue && this.searchValue !== '');
+            attrRequired: function () {
+                return (this.isRequired ? 'required' : '');
+            },
+            lblClasses: function () {
+                let classes = [];
+
+                if (this.hasAsterisk) {
+                    classes.push('hxRequired');
+                }
+
+                if (this.hasOptional) {
+                    classes.push('hxOptional');
+                }
+
+                let classNames = classes.join(' ');
+
+                return (classNames === '' ? '' : `class="${classNames}"`);
             },
             snippet: function () {
                 return Util.snippet(`
-                    <hx-search
-                        ${this.isDisabled ? 'disabled' : ''}
-                        ${this.isInvalid ? 'invalid' : ''}
-                        ${this.hasPlaceholder ? `placeholder="${this.placeholder}"` : ''}
-                        ${this.hasValue ? `value="${this.searchValue}"` : ''}>
-                        <!-- inner content will be removed -->
-                    </hx-search>
+                  <hx-search-control>
+                    <input
+                      id="demoSearch"
+                      type="search"
+                      ${this.attrDisabled}
+                      ${this.attrRequired}
+                      ${this.hasValue ? `value="${this.searchValue}"` : ''}
+                    />
+                    <button
+                      type="button"
+                      class="hxClear"
+                      aria-label="Clear search"
+                      hidden
+                    >
+                      <hx-icon type="times"></hx-icon>
+                    </button>
+                    <hx-search</hx-search>
+                    <label
+                      for="demoSearch"
+                      ${this.lblClasses}
+                    >
+                      ${this.label}
+                    </label>
+                  </hx-search-control>
                 `);
             },
         },
@@ -56,6 +80,9 @@ if (document.getElementById('vue-searchAssistanceDemo')) {
             },
             onBlur: function () {
                 this.$refs.search.open = false;
+            },
+            onReset: function () {
+                this.searchValue = '';
             },
         },
         computed: {

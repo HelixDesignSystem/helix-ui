@@ -1,0 +1,33 @@
+/*
+  Mixins to style <hx-search> facade states.
+*/
+
+.SearchFacade(pristine-focus) {
+  border: 1px solid @cyan-700;
+  box-shadow: @focus-glow;
+}
+
+.SearchFacade(invalid) {
+  border: 2px solid @red-900;
+}
+
+.SearchFacade(invalid-focus) {
+  border: 2px solid @red-900;
+  box-shadow: @focus-glow-invalid;
+}
+
+.SearchFacade(disabled) {
+  background-color: @gray-50;
+  border: 1px solid @gray-500;
+  color: @gray-400;
+}
+
+.SearchFacade(disabled-focus) {
+  border: 1px solid @gray-500;
+}
+
+// TODO: Rename/move mixin
+.SearchFacade(button-focus) {
+  outline: 1px dotted @gray-700;
+  outline-offset: -6px;
+}
