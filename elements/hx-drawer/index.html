@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Testing - File Selector - HelixUI</title>
+  <title>&lt;hx-drawer&gt; - HelixUI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/helix-ui/">
@@ -108,11 +108,11 @@
     
   <hx-disclosure
     aria-controls="nav-components"
-class="current">
+>
     Components
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-components" open>
+  <hx-reveal id="nav-components" >
       
       <a href="components/accordion" >
     Accordion
@@ -162,13 +162,19 @@ class="current">
 
 
       
+      <a href="components/drawer" >
+    Drawer
+  </a>
+
+
+      
       <a href="components/dropdown-select" >
     Dropdown Select
   </a>
 
 
       
-      <a href="components/file" class="current">
+      <a href="components/file" >
     File
   </a>
 
@@ -318,11 +324,11 @@ class="current">
     
   <hx-disclosure
     aria-controls="nav-elements"
->
+class="current">
     Custom Elements
     <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
   </hx-disclosure>
-  <hx-reveal id="nav-elements" >
+  <hx-reveal id="nav-elements" open>
       
       <a href="elements/hx-accordion" >
     &lt;hx-accordion&gt;
@@ -368,6 +374,12 @@ class="current">
       
       <a href="elements/hx-div" >
     &lt;hx-div&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-drawer" class="current">
+    &lt;hx-drawer&gt;
   </a>
 
 
@@ -568,109 +580,172 @@ class="current">
 
       </nav>
 
-      <main role="main" id="content" class="test-content ">
+      <main role="main" id="content" class="element-content ">
+          
+
             <header>
-              <nav class="hxBreadcrumb">
-                  <a href="components/file">File</a>
-                  <hx-icon class="delimiter" type="angle-right"></hx-icon>
-                <a href="#">Testing - File Selector</a>
-              </nav>
 
             <h1>
-              Testing - File Selector
+              &lt;hx-drawer&gt;
 
             </h1>
 
 
-              
+  <p>
+    The <code>&lt;hx-drawer&gt;</code> is a container for a drawer dialog,
+    anchored to the right-side of the screen.  It is used to build a
+    <a href="components/drawer">Drawer</a> component.
+  </p>
           </header>
 
-  <h2>Upload File Selectors</h2>
   <section>
-    <h3>Primary with Label</h3>
-    <hx-file-input
-      class="hxPrimary"
-      label="Upload File">
-      <input type="file" />
-    </hx-file-input>
-  </section>
+    <dl class="metadata hxList">
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>any</dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd>
+          In this order:
+          <ol class="hxList">
+            <li>
+                <code>&lt;header&gt;</code>
 
-  <section>
-    <h3>Secondary with Label</h3>
-    <hx-file-input
-      label="Upload File">
-      <input type="file" />
-    </hx-file-input>
-  </section>
+            </li>
+            <li>
+                <a href="elements/hx-alert">
+      <code>&lt;hx-alert&gt;</code>
 
-  <section>
-    <h3>Tertiary with Label</h3>
-    <hx-file-input
-      class="hxTertiary"
-      label="Upload File">
-      <input type="file" />
-    </hx-file-input>
-  </section>
+  </a>
 
-  <section>
-    <h3>Tertiary without Label</h3>
-    <hx-file-input
-      class="hxTertiary">
-      <input type="file" />
-    </hx-file-input>
-  </section>
+              <small>(optional)</small>
+            </li>
+            <li>
+                <a href="elements/hx-div">
+      <code>&lt;hx-div&gt;</code>
 
-  <br />
+  </a>
 
-  <h2>Attach File Selectors</h2>
-  <section>
-    <h3>Primary with Label</h3>
-    <hx-file-input
-      class="hxPrimary"
-      icon="paperclip"
-      label="Attach File">
-      <input type="file" />
-    </hx-file-input>
-  </section>
+            </li>
+            <li>
+                <code>&lt;footer&gt;</code>
 
-  <section>
-    <h3>Secondary with Label</h3>
-    <hx-file-input
-      icon="paperclip"
-      label="Attach File">
-      <input type="file" />
-    </hx-file-input>
-  </section>
+            </li>
+            <li>
+              <p>
+                Fixed position elements with <code>slot="fixed"</code> attribute.
+                <small>(optional)</small>
+              </p>
+              <ul>
+                <li>  <a href="elements/hx-menu">
+      <code>&lt;hx-menu&gt;</code>
 
-  <section>
-    <h3>Tertiary with Label</h3>
-    <hx-file-input
-      class="hxTertiary"
-      icon="paperclip"
-      label="Attach File">
-      <input type="file" />
-    </hx-file-input>
-  </section>
+  </a>
+</li>
+                <li>  <a href="elements/hx-popover">
+      <code>&lt;hx-popover&gt;</code>
 
-  <section>
-    <h3>Tertiary with Icon-Only</h3>
-    <hx-file-input
-      class="hxTertiary"
-      icon="paperclip">
-      <input type="file" />
-    </hx-file-input>
+  </a>
+</li>
+                <li>  <a href="elements/hx-search-assistance">
+      <code>&lt;hx-search-assistance&gt;</code>
+
+  </a>
+</li>
+                <li>  <a href="elements/hx-tooltip">
+      <code>&lt;hx-tooltip&gt;</code>
+
+  </a>
+</li>
+              </ul>
+              <p class="hxSubBody">
+                <hx-icon type="exclamation-triangle"></hx-icon>
+                Elements will fail to position without <code>slot="fixed"</code>.
+              </p>
+              <p class="hxSubBody">
+                <hx-icon type="exclamation-triangle"></hx-icon>
+                Fixed position elements <i>must</i> be immediate children of
+                <code>&lt;hx-drawer&gt;</code>.
+              </p>
+            </li>
+          </ol>
+        </dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd>
+          Any of the following:
+          <ul class="hxList">
+            <li>
+              <code>close</code> <small>(cancelable)</small>
+            </li>
+            <li>
+              <code>open</code> <small>(cancelable)</small>
+            </li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
   </section>
 
 
   
-  <div class="banner warning">
-    <hx-icon type="exclamation-triangle" class="banner__icon"></hx-icon>
-    <div class="banner__body">
-      <b>UI TESTING:</b>
-      Do not replicate anything on this page within your application.
-    </div>
-  </div>
+  <section>
+    <header>
+      <h2 id="attributes">Attributes</h2>
+      <p>
+        Attributes enable declarative configuration of an element,
+        via HTML markup.
+      </p>
+    </header>
 
+  <dl>
+    <dt>open</dt>
+    <dd>
+      <p>Opens the drawer.</p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Does not emit events on change.
+      </p>
+    </dd>
+  </dl>
+  </section>
+
+  
+  <section>
+    <header>
+      <h2 id="properties">Properties</h2>
+      <p>
+        JavaScript properties enable programmatic access to an element's
+        configuration and state.
+      </p>
+    </header>
+
+  <dl>
+    <dt>open {Boolean [false]}</dt>
+    <dd>
+      <p>
+        Determines if the drawer is open.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Emits <code>open</code> event when set to <code>true</code>.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Emits <code>close</code> event when set to <code>false</code>.
+      </p>
+    </dd>
+  </dl>
+  </section>
+
+<section>
+  <h2 id="see-also">See Also</h2>
+  <ul class="hxList">
+      <li><a href="components/drawer">Drawer</a></li>
+  </ul>
+</section>
       </main>
 
         <aside class="hxSiderail">
@@ -680,7 +755,9 @@ class="current">
 
             <nav class="article-toc">
               
-                
+  <a href="#attributes">Attributes</a>
+  <a href="#properties">Properties</a>
+                <a href="#see-also">See Also</a>
               <hr class="hxDivider" />
               <a class="top-link" href="#top">Back to Top</a>
             </nav>
@@ -700,12 +777,12 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-05-06
+          2019-06-26
         </small>
 
       <small>
-        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.3" target="_blank">
-          v0.16.3
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.0" target="_blank">
+          v0.17.0
         </a>)
       </small>
     </div>

@@ -58,6 +58,10 @@
         "path": "choice-tile"
       },
       {
+        "label": "Drawer",
+        "path": "drawer"
+      },
+      {
         "label": "Dropdown Select",
         "path": "dropdown-select"
       },
@@ -194,6 +198,10 @@
       {
         "label": "<hx-div>",
         "path": "hx-div"
+      },
+      {
+        "label": "<hx-drawer>",
+        "path": "hx-drawer"
       },
       {
         "label": "<hx-drop-fence>",

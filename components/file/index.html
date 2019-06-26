@@ -162,6 +162,12 @@ class="current">
 
 
       
+      <a href="components/drawer" >
+    Drawer
+  </a>
+
+
+      
       <a href="components/dropdown-select" >
     Dropdown Select
   </a>
@@ -372,6 +378,12 @@ class="current">
 
 
       
+      <a href="elements/hx-drawer" >
+    &lt;hx-drawer&gt;
+  </a>
+
+
+      
       <a href="elements/hx-drop-fence" >
     &lt;hx-drop-fence&gt;
   </a>
@@ -569,6 +581,8 @@ class="current">
       </nav>
 
       <main role="main" id="content" class="component-content ">
+          
+
           <header>
 
             <h1>
@@ -610,11 +624,17 @@ class="current">
           <hx-drop-fence>
             <p>
               Drop files here or
-              <hx-file-input
-                class="hxTertiary"
-                label="browse your files">
-                <input type="file" />
-              </hx-file-input>.
+              <hx-file-control>
+                <input
+                  id="fileInputDropZoneDemo"
+                  type="file"
+                />
+                <label for="fileInputDropZoneDemo">
+                  <hx-file-input class="hxBtn hxTertiary">
+                    browse your files
+                  </hx-file-input>
+                </label>
+              </hx-file-control>
             </p>
           </hx-drop-fence>
         </hx-drop-zone>
@@ -625,11 +645,17 @@ class="current">
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-drop-fence</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
       Drop files here or
-      <span class="hljs-tag">&lt;<span class="hljs-name">hx-file-input</span>
-        <span class="hljs-attr">class</span>=<span class="hljs-string">"hxTertiary"</span>
-        <span class="hljs-attr">label</span>=<span class="hljs-string">"browse your files"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> /&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-input</span>&gt;</span>.
+      <span class="hljs-tag">&lt;<span class="hljs-name">hx-file-control</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+          <span class="hljs-attr">id</span>=<span class="hljs-string">"fileInputDropZoneDemo"</span>
+          <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span>
+        /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"fileInputDropZoneDemo"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">hx-file-input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxTertiary"</span>&gt;</span>
+            browse your files
+          <span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-input</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">hx-file-control</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">hx-drop-fence</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">hx-drop-zone</span>&gt;</span>
@@ -639,7 +665,7 @@ class="current">
 
   <section>
     <header>
-      <h2 id="file-selector">File Selector</h2>
+      <h2 id="file-input">File Input</h2>
       <p class="hxSubBody">Added: v0.13.0</p>
       
     </header>
@@ -697,6 +723,18 @@ class="current">
             <legend class="beta-hxFieldName">Control Options</legend>
             <hx-checkbox-control>
               <input
+                id="chkIsDisabled"
+                type="checkbox"
+                v-model="isDisabled"
+              />
+              <label for="chkIsDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
                 id="chkIsMultiple"
                 type="checkbox"
                 v-model="isMultiple"
@@ -711,22 +749,36 @@ class="current">
       </header>
 
       <div>
-        <hx-file-input
-          :class="variant.val"
-          :icon="icon"
-          :label="label"
-        >
+        <hx-file-control>
           <input
+            id="fileInputDemo"
             type="file"
+            :disabled="isDisabled"
             :multiple="isMultiple"
           />
-        </hx-file-input>
+          <label for="fileInputDemo">
+            <hx-file-input
+              :class="variant.val"
+              :icon="icon"
+            >
+{{label}}
+            </hx-file-input>
+          </label>
+        </hx-file-control>
       </div>
 
       <footer>
         <pre><code v-text="snippet"></code></pre>
       </footer>
     </div>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      Microsoft browsers never match the <code>input[type="file"]:active</code> CSS selector.
+    </p>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      Microsoft browsers apply two tab stops on <code>&lt;input type="file"&gt;</code> elements.
+    </p>
   </section>
 
   <section>
@@ -919,7 +971,7 @@ class="current">
   <ul class="hxList">
       <li><a href="components/file/test-drop-fence.html">Testing - Drop Fence</a></li>
       <li><a href="components/file/test-drop-zone.html">Testing - Drop Zone</a></li>
-      <li><a href="components/file/test-file-selector.html">Testing - File Selector</a></li>
+      <li><a href="components/file/test-file-input.html">Testing - File Input</a></li>
       <li><a href="components/file/test-file-tile.html">Testing - File Tile</a></li>
       <li><a href="components/icon">Icon</a></li>
       <li><a href="elements/hx-drop-fence">&lt;hx-drop-fence&gt;</a></li>
@@ -940,7 +992,7 @@ class="current">
             <a href="#drop-zone">Drop Zone</a>
         
 
-            <a href="#file-selector">File Selector</a>
+            <a href="#file-input">File Input</a>
         
 
             <a href="#file-tile">File Tile</a>
@@ -966,12 +1018,12 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-06-04
+          2019-06-21
         </small>
 
       <small>
-        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.3" target="_blank">
-          v0.16.3
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.0" target="_blank">
+          v0.17.0
         </a>)
       </small>
     </div>

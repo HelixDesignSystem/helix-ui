@@ -162,6 +162,12 @@ class="current">
 
 
       
+      <a href="components/drawer" >
+    Drawer
+  </a>
+
+
+      
       <a href="components/dropdown-select" >
     Dropdown Select
   </a>
@@ -372,6 +378,12 @@ class="current">
 
 
       
+      <a href="elements/hx-drawer" >
+    &lt;hx-drawer&gt;
+  </a>
+
+
+      
       <a href="elements/hx-drop-fence" >
     &lt;hx-drop-fence&gt;
   </a>
@@ -569,7 +581,16 @@ class="current">
       </nav>
 
       <main role="main" id="content" class="test-content ">
-            <header>
+  
+  <div class="banner warning">
+    <hx-icon type="exclamation-triangle" class="banner__icon"></hx-icon>
+    <div class="banner__body">
+      <b>UI TESTING:</b>
+      Do not replicate anything on this page within your application.
+    </div>
+  </div>
+
+          <header>
               <nav class="hxBreadcrumb">
                   <a href="components/choice-tile">Choice Tile</a>
                   <hx-icon class="delimiter" type="angle-right"></hx-icon>
@@ -588,7 +609,7 @@ class="current">
   <section>
     <h2>Default</h2>
     <code>input + hx-tile</code>
-    <div class="hxRow choice-tile-demo">
+    <div class="hxRow choice-tile-spec">
       <!-- input -->
       <label class="hxChoice">
         <input type="radio" name="default1" />
@@ -633,7 +654,7 @@ class="current">
   <section>
     <h2>Subdued</h2>
     <code>input + hx-tile.hxSubdued</code>
-    <div class="hxRow choice-tile-demo">
+    <div class="hxRow choice-tile-spec">
       <!-- input + .hxSubdued -->
       <label class="hxChoice">
         <input type="radio" name="subdued1" />
@@ -678,7 +699,7 @@ class="current">
   <section>
     <h2>Checked</h2>
     <code>input:checked + hx-tile</code>
-    <div class="hxRow choice-tile-demo">
+    <div class="hxRow choice-tile-spec">
       <!-- input:checked -->
       <label class="hxChoice">
         <input type="radio" name="checked1" checked />
@@ -724,7 +745,7 @@ class="current">
     <h2>Checked + Subdued</h2>
     <code>input:checked + hx-tile.hxSubdued</code>
     <p>Checked should override Subdued</p>
-    <div class="hxRow choice-tile-demo">
+    <div class="hxRow choice-tile-spec">
       <!-- input:checked + .hxSubdued -->
       <label class="hxChoice">
         <input type="radio" name="checkSub1" checked />
@@ -769,7 +790,7 @@ class="current">
   <section>
     <h2>Invalid</h2>
     <code>input[invalid] + hx-tile</code>
-    <div class="hxRow choice-tile-demo">
+    <div class="hxRow choice-tile-spec">
       <!-- input[invalid] -->
       <label class="hxChoice">
         <input type="radio" name="invalid1" invalid />
@@ -815,7 +836,7 @@ class="current">
     <h2>Invalid + Subdued</h2>
     <code>input[invalid] + hx-tile.hxSubdued</code>
     <p>Invalid should override Subdued</p>
-    <div class="hxRow choice-tile-demo">
+    <div class="hxRow choice-tile-spec">
       <!-- input[invalid] + .hxSubdued -->
       <label class="hxChoice">
         <input type="radio" name="invalidSub1" invalid />
@@ -859,7 +880,7 @@ class="current">
 
   <section>
     <h2>Disabled</h2>
-    <div class="hxRow choice-tile-demo">
+    <div class="hxRow choice-tile-spec">
       <!-- input[disabled] -->
       <label class="hxChoice">
         <input type="radio" name="disabled1" disabled />
@@ -892,7 +913,7 @@ class="current">
     <h2>Invalid + Checked</h2>
     <code>input[invalid]:checked + hx-tile</code>
     <p>Invalid should override Checked</p>
-    <div class="hxRow choice-tile-demo">
+    <div class="hxRow choice-tile-spec">
       <!-- input[invalid]:checked -->
       <label class="hxChoice">
         <input type="radio" name="invalidCheck1" invalid checked />
@@ -938,7 +959,7 @@ class="current">
     <h2>Invalid + Checked + Subdued</h2>
     <code>input[invalid]:checked + hx-tile</code>
     <p>Invalid should override Checked and Subdued</p>
-    <div class="hxRow choice-tile-demo">
+    <div class="hxRow choice-tile-spec">
       <!-- input[invalid]:checked + .hxSubdued -->
       <label class="hxChoice">
         <input type="radio" name="invChkSub1" invalid checked />
@@ -984,7 +1005,7 @@ class="current">
     <h2>Disabled + Checked</h2>
     <code>input[disabled] + hx-tile</code>
     <p>Disabled should override Checked</p>
-    <div class="hxRow choice-tile-demo">
+    <div class="hxRow choice-tile-spec">
       <!-- input[disabled]:checked -->
       <label class="hxChoice">
         <input type="radio" name="disChk1" disabled checked />
@@ -1017,7 +1038,7 @@ class="current">
     <h2>Disabled + Invalid</h2>
     <code>input[disabled][invalid] + hx-tile</code>
     <p>Disabled should override Invalid</p>
-    <div class="hxRow choice-tile-demo">
+    <div class="hxRow choice-tile-spec">
       <!-- input[disabled][invalid] -->
       <label class="hxChoice">
         <input type="radio" name="invDis1" disabled invalid />
@@ -1050,7 +1071,7 @@ class="current">
     <h2>Disabled + Invalid + Checked</h2>
     <code>input[disabled][invalid]:checked + hx-tile</code>
     <p>Disabled should override Invalid and Checked</p>
-    <div class="hxRow choice-tile-demo">
+    <div class="hxRow choice-tile-spec">
       <!-- input[disabled][invalid]:checked -->
       <label class="hxChoice">
         <input type="radio" name="invChkDis1" disabled invalid checked />
@@ -1078,16 +1099,6 @@ class="current">
       </label>
     </div>
   </section>
-
-
-  
-  <div class="banner warning">
-    <hx-icon type="exclamation-triangle" class="banner__icon"></hx-icon>
-    <div class="banner__body">
-      <b>UI TESTING:</b>
-      Do not replicate anything on this page within your application.
-    </div>
-  </div>
 
       </main>
 
@@ -1118,12 +1129,12 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-05-06
+          2019-06-14
         </small>
 
       <small>
-        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.16.3" target="_blank">
-          v0.16.3
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.0" target="_blank">
+          v0.17.0
         </a>)
       </small>
     </div>

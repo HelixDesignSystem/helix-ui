@@ -70,9 +70,6 @@ body.hxVertical main > *:first-child {
 body.hxVertical main > *:last-child {
   margin-bottom: 0;
 }
-body.hxVertical main header {
-  margin-bottom: 1rem;
-}
 body.hxVertical .hxSiderail {
   padding: 1.25rem;
 }
@@ -111,10 +108,6 @@ min-version {
   justify-content: center;
 }
 .banner {
-  bottom: 1rem;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 1rem;
   -ms-grid-columns: auto 1fr;
   -ms-grid-row-align: baseline;
   align-items: baseline;
@@ -125,9 +118,7 @@ min-version {
   display: grid;
   grid-template-areas: 'icon content';
   grid-template-columns: auto 1fr;
-  margin-top: 3rem;
   padding: 1rem;
-  z-index: 1150;
 }
 .banner > * {
   margin: 0;
@@ -156,11 +147,10 @@ min-version {
   }
 }
 .article-toc {
-  bottom: 1rem;
+  display: block;
   position: -webkit-sticky;
   position: sticky;
   top: 1rem;
-  display: block;
 }
 .article-toc > a {
   display: block;
@@ -277,16 +267,6 @@ min-version {
 /* ----- Test Page Styling ----- */
 .test-content {
   box-shadow: inset 0 0 0 0.5rem #fbc02d;
-  overflow: visible !important;
-}
-.test-content section > * {
-  margin: 1rem 0;
-}
-.test-content section > *:first-child {
-  margin-top: 0;
-}
-.test-content section > *:last-child {
-  margin-bottom: 0;
 }
 .test-content section > section {
   margin-bottom: 2rem;
@@ -337,127 +317,6 @@ min-version {
 .example > div.scroll-box-demo > hx-div[scroll="both"],
 .example > div.scroll-box-demo > hx-div[scroll="horizontal"] {
   white-space: nowrap;
-}
-.hxBtn.pseudo-focus {
-  outline: none;
-}
-.hxBtn.pseudo-hover,
-a[href].hxBtn.pseudo-hover {
-  background-color: #16b9d4;border-color: transparent;color: #ffffff;
-}
-.hxBtn.pseudo-active,
-a[href].hxBtn.pseudo-active {
-  background-color: #0e94a6;border-color: transparent;color: #ffffff;
-}
-.hxBtn.pseudo-focus {
-  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);
-}
-.hxBtn.hxPrimary.pseudo-hover,
-a[href].hxBtn.hxPrimary.pseudo-hover,
-.hxBtnGroup.hxPrimary > .hxBtn.pseudo-hover,
-a[href].hxBtnGroup.hxPrimary > .hxBtn.pseudo-hover,
-.hxBtn--primary.pseudo-hover,
-a[href].hxBtn--primary.pseudo-hover {
-  background-color: #16b9d4;border-color: transparent;color: #ffffff;
-}
-.hxBtn.hxPrimary.pseudo-active,
-a[href].hxBtn.hxPrimary.pseudo-active,
-.hxBtnGroup.hxPrimary > .hxBtn.pseudo-active,
-a[href].hxBtnGroup.hxPrimary > .hxBtn.pseudo-active,
-.hxBtn--primary.pseudo-active,
-a[href].hxBtn--primary.pseudo-active {
-  background-color: #0e94a6;border-color: transparent;color: #ffffff;
-}
-.hxBtn.hxPrimary.pseudo-focus,
-a[href].hxBtn.hxPrimary.pseudo-focus,
-.hxBtnGroup.hxPrimary > .hxBtn.pseudo-focus,
-a[href].hxBtnGroup.hxPrimary > .hxBtn.pseudo-focus,
-.hxBtn--primary.pseudo-focus,
-a[href].hxBtn--primary.pseudo-focus {
-  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);outline: none;
-}
-.hxBtn.hxTertiary.pseudo-hover,
-a[href].hxBtn.hxTertiary.pseudo-hover,
-.hxBtnGroup.hxTertiary > .hxBtn.pseudo-hover,
-a[href].hxBtnGroup.hxTertiary > .hxBtn.pseudo-hover,
-.hxBtn.hxLink.pseudo-hover,
-a[href].hxBtn.hxLink.pseudo-hover,
-.hxBtn--link.pseudo-hover,
-a[href].hxBtn--link.pseudo-hover,
-.hxBtnGroup.hxLink > .hxBtn.pseudo-hover,
-a[href].hxBtnGroup.hxLink > .hxBtn.pseudo-hover {
-  background-color: transparent;border-color: transparent;color: #16b9d4;
-}
-.hxBtn.hxTertiary.pseudo-active,
-a[href].hxBtn.hxTertiary.pseudo-active,
-.hxBtnGroup.hxTertiary > .hxBtn.pseudo-active,
-a[href].hxBtnGroup.hxTertiary > .hxBtn.pseudo-active,
-.hxBtn.hxLink.pseudo-active,
-a[href].hxBtn.hxLink.pseudo-active,
-.hxBtn--link.pseudo-active,
-a[href].hxBtn--link.pseudo-active,
-.hxBtnGroup.hxLink > .hxBtn.pseudo-active,
-a[href].hxBtnGroup.hxLink > .hxBtn.pseudo-active {
-  background-color: transparent;border-color: transparent;color: #0e94a6;
-}
-.hxBtn.hxTertiary.pseudo-focus,
-a[href].hxBtn.hxTertiary.pseudo-focus,
-.hxBtnGroup.hxTertiary > .hxBtn.pseudo-focus,
-a[href].hxBtnGroup.hxTertiary > .hxBtn.pseudo-focus,
-.hxBtn.hxLink.pseudo-focus,
-a[href].hxBtn.hxLink.pseudo-focus,
-.hxBtn--link.pseudo-focus,
-a[href].hxBtn--link.pseudo-focus,
-.hxBtnGroup.hxLink > .hxBtn.pseudo-focus,
-a[href].hxBtnGroup.hxLink > .hxBtn.pseudo-focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-.hxBtn[class*="pseudo"] {
-  pointer-events: none;
-}
-.choice-tile-demo label.hxChoice > input.pseudo-focus + hx-tile.hxSubdued,
-.choice-tile-demo label.hxChoice > input + hx-tile.pseudo-hover.hxSubdued,
-.choice-tile-demo label.hxChoice > input.pseudo-focus + hx-tile.hxSubdued,
-.choice-tile-demo label.hxChoice > input + hx-tile.hxSubdued.pseudo-hover {
-  opacity: 1;
-}
-.choice-tile-demo label.hxChoice > input + hx-tile.pseudo-hover {
-  background-color: #e4f9f9;border-color: #16b9d4;
-}
-.choice-tile-demo label.hxChoice > input.pseudo-focus + hx-tile {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-.choice-tile-demo label.hxChoice > input:checked + hx-tile.pseudo-hover {
-  border-color: #16b9d4;
-}
-.choice-tile-demo label.hxChoice > input:checked.pseudo-focus + hx-tile {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-.choice-tile-demo label.hxChoice > input[invalid] + hx-tile.pseudo-hover {
-  background-color: #ffcdd2;border-color: #d32f2f;color: #424242;
-}
-.choice-tile-demo label.hxChoice > input[invalid].pseudo-focus + hx-tile {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-.choice-tile-demo label.hxChoice > input[disabled] + hx-tile.pseudo-hover {
-  background-color: #fafafa;border-color: #e0e0e0;border-width: 1px;color: #757575;cursor: not-allowed;
-}
-.choice-tile-demo label.hxChoice > input[disabled] + hx-tile.pseudo-hover > p {
-  color: inherit;
-}
-.choice-tile-demo label.hxChoice > input[disabled] + hx-tile.pseudo-hover hx-tile-description {
-  color: inherit;
-}
-.choice-tile-demo label.hxChoice > input[disabled] + hx-tile.pseudo-hover hx-icon {
-  color: #bdbdbd;
-}
-.choice-tile-demo label.hxChoice > input {
-  /* Default (focus, hover) */
-  /* Subdued (focus, hover) */
-  /* Checked (focus, hover) */
-  /* Invalid (focus, hover) */
-  /* Invalid + Checked (focus, hover) */
-  /* Disabled */
 }
 .grid-demo > .demo-container {
   border: 1px dashed #9e9e9e;
@@ -745,27 +604,6 @@ hx-icon.danger {
   max-height: 30rem;
   min-height: 20rem;
 }
-.popover-demo {
-  align-items: center;
-  display: flex;
-  height: 400px;
-  justify-content: center;
-}
-.popover-appearance {
-  display: flex;
-  flex-wrap: wrap;
-  z-index: 0;
-}
-.popover-appearance hx-popover {
-  display: block;
-  margin: 20px;
-  position: relative;
-}
-.test#popover-in-scrolling-container hx-div[scroll="vertical"] {
-  border: 1px solid;
-  height: 15rem;
-  width: 30rem;
-}
 .docs-tabset #demo-basic {
   height: 22rem;
   max-height: 40rem;
@@ -803,6 +641,92 @@ a.pseudo-active {
 }
 .demo-typography .weight-bold {
   font-weight: 700;
+}
+.button-spec .hxBtn.pseudo-focus {
+  outline: none;
+}
+.button-spec .hxBtn.pseudo-hover,
+a[href].button-spec .hxBtn.pseudo-hover,
+.file-input-spec hx-file-control hx-file-input.mock-hover.hxBtn {
+  background-color: #16b9d4;border-color: transparent;color: #ffffff;
+}
+.button-spec .hxBtn.pseudo-active,
+a[href].button-spec .hxBtn.pseudo-active {
+  background-color: #0e94a6;border-color: transparent;color: #ffffff;
+}
+.button-spec .hxBtn.pseudo-focus {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.button-spec .hxBtn.hxPrimary.pseudo-hover,
+a[href].button-spec .hxBtn.hxPrimary.pseudo-hover,
+.file-input-spec hx-file-control hx-file-input.mock-hover.hxBtn.hxPrimary,
+.button-spec .hxBtnGroup.hxPrimary > .hxBtn.pseudo-hover,
+a[href].button-spec .hxBtnGroup.hxPrimary > .hxBtn.pseudo-hover,
+.file-input-spec hx-file-control hx-file-input.mock-hover.hxBtnGroup.hxPrimary > .hxBtn,
+.button-spec .hxBtn--primary.pseudo-hover,
+a[href].button-spec .hxBtn--primary.pseudo-hover,
+.file-input-spec hx-file-control hx-file-input.mock-hover.hxBtn--primary {
+  background-color: #16b9d4;border-color: transparent;color: #ffffff;
+}
+.button-spec .hxBtn.hxPrimary.pseudo-active,
+a[href].button-spec .hxBtn.hxPrimary.pseudo-active,
+.button-spec .hxBtnGroup.hxPrimary > .hxBtn.pseudo-active,
+a[href].button-spec .hxBtnGroup.hxPrimary > .hxBtn.pseudo-active,
+.button-spec .hxBtn--primary.pseudo-active,
+a[href].button-spec .hxBtn--primary.pseudo-active {
+  background-color: #0e94a6;border-color: transparent;color: #ffffff;
+}
+.button-spec .hxBtn.hxPrimary.pseudo-focus,
+a[href].button-spec .hxBtn.hxPrimary.pseudo-focus,
+.button-spec .hxBtnGroup.hxPrimary > .hxBtn.pseudo-focus,
+a[href].button-spec .hxBtnGroup.hxPrimary > .hxBtn.pseudo-focus,
+.button-spec .hxBtn--primary.pseudo-focus,
+a[href].button-spec .hxBtn--primary.pseudo-focus {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);outline: none;
+}
+.button-spec .hxBtn.hxTertiary.pseudo-hover,
+a[href].button-spec .hxBtn.hxTertiary.pseudo-hover,
+.file-input-spec hx-file-control hx-file-input.mock-hover.hxBtn.hxTertiary,
+.button-spec .hxBtnGroup.hxTertiary > .hxBtn.pseudo-hover,
+a[href].button-spec .hxBtnGroup.hxTertiary > .hxBtn.pseudo-hover,
+.file-input-spec hx-file-control hx-file-input.mock-hover.hxBtnGroup.hxTertiary > .hxBtn,
+.button-spec .hxBtn.hxLink.pseudo-hover,
+a[href].button-spec .hxBtn.hxLink.pseudo-hover,
+.file-input-spec hx-file-control hx-file-input.mock-hover.hxBtn.hxLink,
+.button-spec .hxBtn--link.pseudo-hover,
+a[href].button-spec .hxBtn--link.pseudo-hover,
+.file-input-spec hx-file-control hx-file-input.mock-hover.hxBtn--link,
+.button-spec .hxBtnGroup.hxLink > .hxBtn.pseudo-hover,
+a[href].button-spec .hxBtnGroup.hxLink > .hxBtn.pseudo-hover,
+.file-input-spec hx-file-control hx-file-input.mock-hover.hxBtnGroup.hxLink > .hxBtn {
+  background-color: transparent;border-color: transparent;color: #16b9d4;
+}
+.button-spec .hxBtn.hxTertiary.pseudo-active,
+a[href].button-spec .hxBtn.hxTertiary.pseudo-active,
+.button-spec .hxBtnGroup.hxTertiary > .hxBtn.pseudo-active,
+a[href].button-spec .hxBtnGroup.hxTertiary > .hxBtn.pseudo-active,
+.button-spec .hxBtn.hxLink.pseudo-active,
+a[href].button-spec .hxBtn.hxLink.pseudo-active,
+.button-spec .hxBtn--link.pseudo-active,
+a[href].button-spec .hxBtn--link.pseudo-active,
+.button-spec .hxBtnGroup.hxLink > .hxBtn.pseudo-active,
+a[href].button-spec .hxBtnGroup.hxLink > .hxBtn.pseudo-active {
+  background-color: transparent;border-color: transparent;color: #0e94a6;
+}
+.button-spec .hxBtn.hxTertiary.pseudo-focus,
+a[href].button-spec .hxBtn.hxTertiary.pseudo-focus,
+.button-spec .hxBtnGroup.hxTertiary > .hxBtn.pseudo-focus,
+a[href].button-spec .hxBtnGroup.hxTertiary > .hxBtn.pseudo-focus,
+.button-spec .hxBtn.hxLink.pseudo-focus,
+a[href].button-spec .hxBtn.hxLink.pseudo-focus,
+.button-spec .hxBtn--link.pseudo-focus,
+a[href].button-spec .hxBtn--link.pseudo-focus,
+.button-spec .hxBtnGroup.hxLink > .hxBtn.pseudo-focus,
+a[href].button-spec .hxBtnGroup.hxLink > .hxBtn.pseudo-focus {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.button-spec .hxBtn[class*="pseudo"] {
+  pointer-events: none;
 }
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-focus {
   box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
@@ -890,6 +814,59 @@ a.pseudo-active {
     display: inline-block;
   }
 }
+.choice-tile-spec label.hxChoice > input.pseudo-focus + hx-tile.hxSubdued,
+.choice-tile-spec label.hxChoice > input + hx-tile.pseudo-hover.hxSubdued,
+.choice-tile-spec label.hxChoice > input.pseudo-focus + hx-tile.hxSubdued,
+.choice-tile-spec label.hxChoice > input + hx-tile.hxSubdued.pseudo-hover {
+  opacity: 1;
+}
+.choice-tile-spec label.hxChoice > input + hx-tile.pseudo-hover {
+  background-color: #e4f9f9;border-color: #16b9d4;
+}
+.choice-tile-spec label.hxChoice > input.pseudo-focus + hx-tile {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.choice-tile-spec label.hxChoice > input:checked + hx-tile.pseudo-hover {
+  border-color: #16b9d4;
+}
+.choice-tile-spec label.hxChoice > input:checked.pseudo-focus + hx-tile {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.choice-tile-spec label.hxChoice > input[invalid] + hx-tile.pseudo-hover {
+  background-color: #ffcdd2;border-color: #d32f2f;color: #424242;
+}
+.choice-tile-spec label.hxChoice > input[invalid].pseudo-focus + hx-tile {
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.choice-tile-spec label.hxChoice > input[disabled] + hx-tile.pseudo-hover {
+  background-color: #fafafa;border-color: #e0e0e0;border-width: 1px;color: #757575;cursor: not-allowed;
+}
+.choice-tile-spec label.hxChoice > input[disabled] + hx-tile.pseudo-hover > p {
+  color: inherit;
+}
+.choice-tile-spec label.hxChoice > input[disabled] + hx-tile.pseudo-hover hx-tile-description {
+  color: inherit;
+}
+.choice-tile-spec label.hxChoice > input[disabled] + hx-tile.pseudo-hover hx-icon {
+  color: #bdbdbd;
+}
+.choice-tile-spec label.hxChoice > input {
+  /* Default (focus, hover) */
+  /* Subdued (focus, hover) */
+  /* Checked (focus, hover) */
+  /* Invalid (focus, hover) */
+  /* Invalid + Checked (focus, hover) */
+  /* Disabled */
+}
+.drawer-spec .dialog-helpers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow-x: visible;
+}
+.drawer-spec .dialog-helpers > * {
+  flex-shrink: 0;
+}
 .dropdown-select-spec hx-select-control {
   /* ----- Pristine --------------- */
   /* ----- Invalid ---------------*/
@@ -931,6 +908,24 @@ a.pseudo-active {
   border: 2px solid #d32f2f;
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }
+.file-input-spec hx-file-control input[type="file"].mock-focus ~ label > hx-file-input {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+.file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxBtn {
+  background-color: #0e94a6;border-color: transparent;color: #ffffff;
+}
+.file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxBtn.hxPrimary,
+.file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxBtnGroup.hxPrimary > .hxBtn,
+.file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxBtn--primary {
+  background-color: #0e94a6;border-color: transparent;color: #ffffff;
+}
+.file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxBtn.hxTertiary,
+.file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxBtnGroup.hxTertiary > .hxBtn,
+.file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxBtn.hxLink,
+.file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxBtn--link,
+.file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxBtnGroup.hxLink > .hxBtn {
+  background-color: transparent;border-color: transparent;color: #0e94a6;
+}
 .specs-panel .spec.scroll {
   height: 20rem;
   overflow: hidden;
@@ -953,6 +948,21 @@ a.pseudo-active {
 .specs-panel .spec.visible hx-panel > footer,
 .specs-panel .spec.visible .hxPanel > footer {
   border-top: 1px dashed #9e9e9e;
+}
+.popover-spec #popover-in-scrolling-container hx-div[scroll="vertical"] {
+  border: 1px solid;
+  height: 15rem;
+  width: 30rem;
+}
+.popover-spec .popover-appearance {
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 0;
+}
+.popover-spec .popover-appearance hx-popover {
+  display: block;
+  margin: 20px;
+  position: relative;
 }
 .radio-spec hx-radio-control > input[type="radio"].mock-focus {
   box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);

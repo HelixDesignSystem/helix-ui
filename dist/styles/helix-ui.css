@@ -252,6 +252,7 @@ pre code {
   white-space: pre;
 }
 .hxComponent,
+hx-drawer,
 hx-menu,
 hx-modal,
 hx-popover,
@@ -296,9 +297,6 @@ hx-alert {
   display: block;
   font-weight: 300;
   line-height: 1.25rem;
-}
-hx-alert:not(:last-child) {
-  margin-bottom: 1rem;
 }
 hx-alert[type="info"] {
   background-color: #bbdefb;
@@ -579,7 +577,7 @@ a[href].hxBtn.beta-hxDark:active {
 a[href].hxBtn:focus,
 .hxBtn.beta-hxDark:focus,
 a[href].hxBtn.beta-hxDark:focus {
-  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
 }
 .hxBtn[disabled],
 a[href].hxBtn[disabled] {
@@ -635,7 +633,7 @@ a[href].hxBtn.hxPrimary:focus,
 a[href].hxBtnGroup.hxPrimary > .hxBtn:focus,
 .hxBtn--primary:focus,
 a[href].hxBtn--primary:focus {
-  box-shadow: 0 0 4px 0 rgba(14, 148, 166, 0.5);
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
   outline: none;
 }
 .hxBtn.hxPrimary[disabled],
@@ -1219,6 +1217,53 @@ hx-tile.hxSm hx-tile-description {
 hx-tile hx-tile-title + * {
   margin-top: 0.5rem;
 }
+hx-drawer:not([hx-defined]) {
+  display: none;
+}
+hx-drawer {
+  background-color: #eeeeee;
+  display: block;
+  height: 0;
+  padding: 0;
+  position: fixed;
+  width: 0;
+  z-index: 50;
+}
+#hxDrawer.hx-drawer > *,
+hx-drawer > * {
+  flex-shrink: 0;
+}
+#hxDrawer.hx-drawer > header,
+hx-drawer > header {
+  font-size: 1.25rem;
+  order: 1;
+  padding: 0.75rem 2.75rem 0.75rem 0.75rem;
+}
+#hxDrawer.hx-drawer > header > *,
+hx-drawer > header > * {
+  font-size: inherit;
+}
+#hxDrawer.hx-drawer > hx-alert,
+hx-drawer > hx-alert {
+  order: 2;
+}
+#hxDrawer.hx-drawer > hx-div,
+hx-drawer > hx-div {
+  background-color: #ffffff;
+  border-top: 1px solid #d8d8d8;
+  flex-grow: 1;
+  flex-shrink: 1;
+  order: 3;
+  overflow-y: auto;
+}
+#hxDrawer.hx-drawer > footer,
+hx-drawer > footer {
+  background-color: #ffffff;
+  border-top: 1px solid #d8d8d8;
+  flex-grow: 9999;
+  order: 4;
+  padding: 0.75rem;
+}
 hx-select {
   display: block;
   pointer-events: none;
@@ -1363,6 +1408,85 @@ hx-select-control.hxInvalid > select:enabled:focus ~ hx-select {
   border: 2px solid #d32f2f;
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }
+hx-file-control > * {
+  margin: 0;
+}
+hx-file-control > label {
+  display: inline-block;
+  padding: 0;
+}
+hx-file-control > input[type="file"] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  box-shadow: none;
+  height: 1px;
+  margin: -1px;
+  outline: none;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  z-index: -10;
+  background: none;
+}
+hx-file-control > input[type="file"]::-ms-browse,
+hx-file-control > input[type="file"]::-ms-value {
+  opacity: 0.01;
+}
+hx-file-control > input[type="file"]:focus ~ label > hx-file-input {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn {
+  background-color: #0e94a6;
+  border-color: transparent;
+  color: #ffffff;
+}
+hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn.hxPrimary,
+hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtnGroup.hxPrimary > .hxBtn,
+hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn--primary {
+  background-color: #0e94a6;
+  border-color: transparent;
+  color: #ffffff;
+}
+hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn.hxTertiary,
+hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtnGroup.hxTertiary > .hxBtn,
+hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn.hxLink,
+hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn--link,
+hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtnGroup.hxLink > .hxBtn {
+  background-color: transparent;
+  border-color: transparent;
+  color: #0e94a6;
+}
+/* ========== DISABLED ========== */
+hx-file-control > input[type="file"]:disabled ~ label {
+  color: #757575;
+}
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input {
+  cursor: not-allowed;
+}
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn {
+  background-color: transparent;
+  border-color: #d8d8d8;
+  color: #d8d8d8;
+}
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn.hxPrimary,
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtnGroup.hxPrimary > .hxBtn,
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn--primary {
+  background-color: #d8d8d8;
+  border-color: transparent;
+  color: #757575;
+}
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn.hxTertiary,
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtnGroup.hxTertiary > .hxBtn,
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn.hxLink,
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn--link,
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtnGroup.hxLink > .hxBtn {
+  background-color: transparent;
+  border-color: transparent;
+  color: #d8d8d8;
+}
 hx-drop-fence {
   padding: 1.25rem;
   border: 1px dashed #9e9e9e;
@@ -1395,24 +1519,6 @@ hx-drop-zone[drag="over"]::after {
 }
 hx-file-icon {
   display: inline-block;
-}
-hx-file-input {
-  display: inline-block;
-  position: relative;
-}
-hx-file-input input[type="file"] {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  border: 0;
-  height: 1px;
-  margin: -1px;
-  outline: none;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  z-index: -10;
 }
 hx-file-tile {
   background-color: #f5f5f5;
@@ -2923,7 +3029,7 @@ hx-popover {
   top: 0;
   max-width: 32rem;
   min-width: 20rem;
-  z-index: 1100;
+  z-index: 1000;
 }
 hx-popover[open] {
   margin: 0;
@@ -3990,7 +4096,7 @@ hx-tooltip {
   top: 0;
   font-size: 0.875rem;
   max-width: 25rem;
-  z-index: 1000;
+  z-index: 1100;
 }
 hx-tooltip[open] {
   margin: 0;

@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Testing - Drawer - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
+
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/brands.css"
+    integrity="sha384-nT8r1Kzllf71iZl81CdFzObMsaLOhqBU1JD2+XoAALbdtWaXDOlWOZTR4v1ktjPE"
+    rel="stylesheet"
+  />
+  
+  <link
+    crossorigin="anonymous"
+    href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css"
+    integrity="sha384-HbmWTHay9psM8qyzEKPc8odH4DsOuzdejtnr+OFtDmOcIVnhgReQ4GZBH7uwcjf6"
+    rel="stylesheet"
+  />
+
+  
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  
+  <link rel="stylesheet" href="docs.css">
+
+  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="vendor/custom-elements-es5-adapter.js"></script>
+
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
+</head>
+<body class="hxVertical" id="top">
+  <!-- This link should be the first item a user can tab to. -->
+  <a href="#content">Skip to main content</a>
+
+  <header id="head">
+    <nav>
+      <a class="brand-logo" href="">
+        <img src="images/helix-logo.svg" alt="Logo" />
+      </a>
+    </nav>
+
+    <div>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/"
+      >
+        <i class="fab fa-github"></i>
+        <span>View Source</span>
+      </a>
+      <a
+        class="hxBtn beta-hxDark"
+        href="https://github.com/rackerlabs/helix-ui/issues/new?template=bug-report.md&labels=Bug:+Unconfirmed"
+      >
+        Report Bug
+      </a>
+    </div>
+  </header>
+
+  <div id="app">
+    <div id="stage">
+      <nav id="nav" class="hxNav">
+
+
+
+  
+    
+  <hx-disclosure
+    aria-controls="nav-guides"
+>
+    Guides
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-guides" >
+      
+      <a href="guides/getting-started" >
+    Getting Started
+  </a>
+
+
+      
+      <a href="guides/faq" >
+    FAQ
+  </a>
+
+
+      
+      <a href="guides/react-compatibility" >
+    React Compatibility
+  </a>
+
+
+      
+      <a href="guides/polyfills" >
+    Polyfills
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+  <hx-disclosure
+    aria-controls="nav-components"
+class="current">
+    Components
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-components" open>
+      
+      <a href="components/accordion" >
+    Accordion
+  </a>
+
+
+      
+      <a href="components/alert" >
+    Alert
+  </a>
+
+
+      
+      <a href="components/badge" >
+    Badge
+  </a>
+
+
+      
+      <a href="components/box" >
+    Box
+  </a>
+
+
+      
+      <a href="components/breadcrumb" >
+    Breadcrumb
+  </a>
+
+
+      
+      <a href="components/button" >
+    Button
+  </a>
+
+
+      
+      <a href="components/checkbox" >
+    Checkbox
+  </a>
+
+
+      
+      <a href="components/choice-tile" >
+    Choice Tile
+  </a>
+
+
+      
+      <a href="components/drawer" class="current">
+    Drawer
+  </a>
+
+
+      
+      <a href="components/dropdown-select" >
+    Dropdown Select
+  </a>
+
+
+      
+      <a href="components/file" >
+    File
+  </a>
+
+
+      
+      <a href="components/grid" >
+    Grid
+  </a>
+
+
+      
+      <a href="components/icon" >
+    Icon
+  </a>
+
+
+      
+      <a href="components/layout" >
+    Layout
+  </a>
+
+
+      
+      <a href="components/list" >
+    List
+  </a>
+
+
+      
+      <a href="components/loader" >
+    Loader
+  </a>
+
+
+      
+      <a href="components/menu" >
+    Menu
+  </a>
+
+
+      
+      <a href="components/modal" >
+    Modal
+  </a>
+
+
+      
+      <a href="components/navigation" >
+    Navigation
+  </a>
+
+
+      
+      <a href="components/pagination" >
+    Pagination
+  </a>
+
+
+      
+      <a href="components/panel" >
+    Panel
+  </a>
+
+
+      
+      <a href="components/pill" >
+    Pill
+  </a>
+
+
+      
+      <a href="components/popover" >
+    Popover
+  </a>
+
+
+      
+      <a href="components/radio" >
+    Radio
+  </a>
+
+
+      
+      <a href="components/reveal" >
+    Reveal
+  </a>
+
+
+      
+      <a href="components/search" >
+    Search
+  </a>
+
+
+      
+      <a href="components/selector-strip" >
+    Selector Strip
+  </a>
+
+
+      
+      <a href="components/table" >
+    Table
+  </a>
+
+
+      
+      <a href="components/tabset" >
+    Tabset
+  </a>
+
+
+      
+      <a href="components/text-input" >
+    Text Input
+  </a>
+
+
+      
+      <a href="components/textarea" >
+    Textarea
+  </a>
+
+
+      
+      <a href="components/toast" >
+    Toast
+  </a>
+
+
+      
+      <a href="components/tooltip" >
+    Tooltip
+  </a>
+
+
+      
+      <a href="components/typography" >
+    Typography
+  </a>
+
+
+  </hx-reveal>
+
+
+  
+    
+  <hx-disclosure
+    aria-controls="nav-elements"
+>
+    Custom Elements
+    <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
+  </hx-disclosure>
+  <hx-reveal id="nav-elements" >
+      
+      <a href="elements/hx-accordion" >
+    &lt;hx-accordion&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-accordion-panel" >
+    &lt;hx-accordion-panel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-alert" >
+    &lt;hx-alert&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-busy" >
+    &lt;hx-busy&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-checkbox" >
+    &lt;hx-checkbox&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-checkbox-control" >
+    &lt;hx-checkbox-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-disclosure" >
+    &lt;hx-disclosure&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-div" >
+    &lt;hx-div&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-drawer" >
+    &lt;hx-drawer&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-drop-fence" >
+    &lt;hx-drop-fence&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-drop-zone" >
+    &lt;hx-drop-zone&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-error" >
+    &lt;hx-error&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-icon" >
+    &lt;hx-file-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-input" >
+    &lt;hx-file-input&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-file-tile" >
+    &lt;hx-file-tile&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-icon" >
+    &lt;hx-icon&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menu" >
+    &lt;hx-menu&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-menuitem" >
+    &lt;hx-menuitem&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-modal" >
+    &lt;hx-modal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-pill" >
+    &lt;hx-pill&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-popover" >
+    &lt;hx-popover&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-progress" >
+    &lt;hx-progress&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-radio" >
+    &lt;hx-radio&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-radio-control" >
+    &lt;hx-radio-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-radio-set" >
+    &lt;hx-radio-set&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-reveal" >
+    &lt;hx-reveal&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search" >
+    &lt;hx-search&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-search-assistance" >
+    &lt;hx-search-assistance&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-select" >
+    &lt;hx-select&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-select-control" >
+    &lt;hx-select-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-status" >
+    &lt;hx-status&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tab" >
+    &lt;hx-tab&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabcontent" >
+    &lt;hx-tabcontent&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tablist" >
+    &lt;hx-tablist&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabpanel" >
+    &lt;hx-tabpanel&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tabset" >
+    &lt;hx-tabset&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-text-control" >
+    &lt;hx-text-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-textarea-control" >
+    &lt;hx-textarea-control&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tile" >
+    &lt;hx-tile&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-toast" >
+    &lt;hx-toast&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-tooltip" >
+    &lt;hx-tooltip&gt;
+  </a>
+
+
+  </hx-reveal>
+
+
+      </nav>
+
+      <main role="main" id="content" class="test-content drawer-spec">
+  
+  <div class="banner warning">
+    <hx-icon type="exclamation-triangle" class="banner__icon"></hx-icon>
+    <div class="banner__body">
+      <b>UI TESTING:</b>
+      Do not replicate anything on this page within your application.
+    </div>
+  </div>
+
+          <header>
+              <nav class="hxBreadcrumb">
+                  <a href="components/drawer">Drawer</a>
+                  <hx-icon class="delimiter" type="angle-right"></hx-icon>
+                <a href="#">Testing - Drawer</a>
+              </nav>
+
+            <h1>
+              Testing - Drawer
+
+            </h1>
+
+
+              
+          </header>
+
+  <section><!-- Supplemental Interactions -->
+    <header>
+      <h2>Supplemental Interactions</h2>
+      <p>Interact with in-page content to trigger supplemental behavior while a drawer is open.</p>
+    </header>
+
+    <section>
+      <header>
+        <h3>Dialogs</h3>
+      </header>
+
+      <!-- body modal -->
+      <div class="dialog-helpers">
+        <hx-disclosure aria-controls="body-modal" class="hxBtn">
+          Open Modal
+        </hx-disclosure>
+
+        <hx-disclosure aria-controls="body-popover-a" class="hxBtn">
+          Popover A &rarr;
+        </hx-disclosure>
+
+        <hx-disclosure aria-controls="body-popover-b" class="hxBtn">
+          Popover B &rarr;
+        </hx-disclosure>
+
+        <hx-disclosure aria-controls="body-popover-c" class="hxBtn">
+          Popover C &rarr;
+        </hx-disclosure>
+      </div>
+
+      <hx-modal id="body-modal">
+        <header>
+          <h4>Modal Header</h4>
+        </header>
+
+        <hx-div>
+          <p>Modal Body - outside of hx-drawer</p>
+        </hx-div>
+
+        <footer>
+          <button class="hxBtn hxPrimary">Confirm</button>
+          <button class="hxBtn">Cancel</button>
+        </footer>
+      </hx-modal>
+      <hx-popover id="body-popover-a" position="right-middle">
+        <header>Popover A</header>
+        <hx-div>
+          <p>
+            If it takes you too long to spike the lean XP bottleneck, then you
+            are not launching enough. The best way to satisfy relative feedback
+            is to periodically groom their technical debt. We must quickly
+            rank the minimum PR product owner! A simple criteria always takes
+            less time than a parallel one.
+          </p>
+        </hx-div>
+      </hx-popover>
+      <hx-popover id="body-popover-b" position="right-middle">
+        <header>Popover B</header>
+        <hx-div>
+          <p>
+            If it takes you too long to spike the lean XP bottleneck, then you
+            are not launching enough. The best way to satisfy relative feedback
+            is to periodically groom their technical debt. We must quickly
+            rank the minimum PR product owner! A simple criteria always takes
+            less time than a parallel one.
+          </p>
+        </hx-div>
+      </hx-popover>
+      <hx-popover id="body-popover-c" position="right-middle">
+        <header>Popover C</header>
+        <hx-div>
+          <p>
+            If it takes you too long to spike the lean XP bottleneck, then you
+            are not launching enough. The best way to satisfy relative feedback
+            is to periodically groom their technical debt. We must quickly
+            rank the minimum PR product owner! A simple criteria always takes
+            less time than a parallel one.
+          </p>
+        </hx-div>
+      </hx-popover>
+    </section>
+  </section>
+
+  <section><!-- Basic Drawer -->
+    <header>
+      <h2>Basic Drawer</h2>
+    </header>
+
+    <hx-disclosure aria-controls="basic-drawer" class="hxBtn">
+      Toggle Basic Drawer
+    </hx-disclosure>
+    <hx-drawer id="basic-drawer">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <hx-div>
+        <p>Drawer Body</p>
+        <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p>
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+
+    <!-- padded -->
+    <hx-disclosure aria-controls="padded-drawer" class="hxBtn">
+      Toggle Padded Drawer
+    </hx-disclosure>
+    <hx-drawer id="padded-drawer">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <hx-div class="hxMd">
+        <p>Drawer Body with padding.</p>
+        <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p>
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+  </section>
+
+  <section><!-- Missing Content -->
+    <header>
+      <h2>Missing Content</h2>
+    </header>
+
+    <!-- without header -->
+    <hx-disclosure aria-controls="drawer-sans-header" class="hxBtn">
+      Toggle Drawer w/o Header
+    </hx-disclosure>
+    <hx-drawer id="drawer-sans-header">
+      <hx-div>
+        <p>Drawer Body</p>
+        <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p>
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+
+    <!-- without body -->
+    <hx-disclosure aria-controls="drawer-sans-body" class="hxBtn">
+      Toggle Drawer w/o Body
+    </hx-disclosure>
+    <hx-drawer id="drawer-sans-body">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+
+    <!-- without footer -->
+    <hx-disclosure aria-controls="drawer-sans-footer" class="hxBtn">
+      Toggle Drawer w/o Footer
+    </hx-disclosure>
+    <hx-drawer id="drawer-sans-footer">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <hx-div>
+        <p>Drawer Body</p>
+        <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p>
+      </hx-div>
+    </hx-drawer>
+  </section>
+
+  <section><!-- Additional Content -->
+    <header>
+      <h2>Additional Content</h2>
+    </header>
+
+    <!-- long title -->
+    <hx-disclosure aria-controls="drawer-with-long-title" class="hxBtn">
+      Drawer with Long Title
+    </hx-disclosure>
+    <hx-drawer id="drawer-with-long-title">
+      <header>
+        <h2>Drawer Head with a really really really really really long title. Did I mention it's long?</h2>
+      </header>
+
+      <hx-div>
+        <p>Drawer Body</p>
+        <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p>
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+
+    <!-- with error banner -->
+    <hx-disclosure aria-controls="drawer-with-error" class="hxBtn">
+      Toggle Drawer with Error
+    </hx-disclosure>
+    <hx-drawer id="drawer-with-error">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <hx-alert status="error" type="error">
+        Message goes here.
+      </hx-alert>
+
+      <hx-div class="hxMd">
+        <p>Drawer Body with padding.</p>
+        <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p>
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+
+    <hx-disclosure aria-controls="scrolling-drawer" class="hxBtn">
+      Toggle Scrolling Drawer
+    </hx-disclosure>
+    <hx-drawer id="scrolling-drawer">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <hx-div>
+        <p>Drawer Body with scrolling content.</p>
+        <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p>
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+
+    <hx-disclosure aria-controls="scrolling-drawer-with-padding" class="hxBtn">
+      Toggle Scrolling Drawer w/ Padding
+    </hx-disclosure>
+    <hx-drawer id="scrolling-drawer-with-padding">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <hx-div class="hxMd">
+        <p>Scrolling Drawer Body with padding.</p>
+        <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p><p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque
+      non tellus. Sagittis vitae et leo duis ut diam quam nulla. Diam vel quam
+      elementum pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+      malesuada proin libero nunc. Ultricies integer quis auctor elit sed
+      vulputate mi sit amet. Egestas dui id ornare arcu odio ut. In iaculis nunc
+      sed augue. Pellentesque adipiscing commodo elit at imperdiet dui accumsan
+      sit amet. Erat velit scelerisque in dictum non. Auctor augue mauris augue
+      neque gravida in fermentum et. Posuere sollicitudin aliquam ultrices
+      sagittis orci a scelerisque purus. Ullamcorper dignissim cras tincidunt
+      lobortis feugiat vivamus at augue. Tincidunt vitae semper quis lectus
+      nulla. Purus ut faucibus pulvinar elementum integer enim neque volutpat.
+      Etiam sit amet nisl purus in mollis nunc. Diam sit amet nisl suscipit.
+      Nulla pharetra diam sit amet nisl. Arcu odio ut sem nulla.
+    </p>
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+  </section>
+
+  <section><!-- Positionable Descendants -->
+    <header>
+      <h2>Positionable Descendants</h2>
+    </header>
+
+    <section>
+      <header>
+        <h3>Slotted, Child Positionable</h3>
+        <p><code>hx-drawer &gt; [slot="fixed"]</code></p>
+        <p>This configuration should work as expected.</p>
+      </header>
+
+      <hx-disclosure aria-controls="drawer-with-slotted-positionable-children" class="hxBtn">
+        Drawer with Slotted Positionable Children
+      </hx-disclosure>
+
+      <hx-drawer id="drawer-with-slotted-positionable-children">
+        <header>
+          <h4>Drawer with Slotted Positionable Children</h4>
+        </header>
+
+        <hx-div class="hxMd">
+          <p>Drawer Body</p>
+          <p>
+            <hx-icon type="info-circle" id="info1"></hx-icon>
+            <hx-disclosure aria-controls="popover1" class="hxBtn">
+              Toggle Popover #1
+            </hx-disclosure>
+          </p>
+        </hx-div>
+
+        <footer>
+          <p>Drawer Foot</p>
+        </footer>
+
+        <!-- slotted positionable children -->
+
+        <hx-tooltip slot="fixed" for="info1" position="left-middle">
+          <header>Tooltip #1</header>
+          <p>
+            <code>hx-drawer &gt; hx-tooltip[slot="fixed"]</code>
+          </p>
+        </hx-tooltip>
+
+        <hx-popover slot="fixed" id="popover1" position="left-middle">
+          <header>
+            Popover #1
+          </header>
+
+          <hx-div>
+            <p>This popover is a slotted child of hx-drawer.</p>
+            <p><code>hx-drawer &gt; hx-popover[slot="fixed"]</code></p>
+          </hx-div>
+        </hx-popover>
+      </hx-drawer>
+    </section>
+
+    <section>
+      <header>
+        <h3>Unslotted, Child Positionable</h3>
+        <p><code>hx-drawer &gt; {hx-positionable}</code></p>
+        <p>This configuration should fail to position Positionable components.</p>
+      </header>
+
+      <hx-disclosure aria-controls="drawer-with-unslotted-positionable-children" class="hxBtn">
+        Drawer with Unslotted Positionable Children
+      </hx-disclosure>
+
+      <hx-drawer id="drawer-with-unslotted-positionable-children">
+        <header>
+          <h4>Drawer with Unslotted Positionable Children</h4>
+        </header>
+
+        <hx-div class="hxMd">
+          <p>Drawer Body</p>
+          <p>
+            <hx-icon type="info-circle" id="info2"></hx-icon>
+            <hx-disclosure aria-controls="popover2" class="hxBtn">
+              Toggle Popover #2
+            </hx-disclosure>
+          </p>
+        </hx-div>
+
+        <footer>
+          <p>Drawer Foot</p>
+        </footer>
+
+        <!-- unslotted positionable children (should be broken) -->
+
+        <hx-tooltip for="info2" position="left-middle">
+          <header>Tooltip #2</header>
+          <p>
+            <code>hx-drawer &gt; hx-tooltip</code>
+          </p>
+        </hx-tooltip>
+
+        <hx-popover id="popover2" position="left-middle">
+          <header>
+            Popover #2
+          </header>
+
+          <hx-div>
+            <p>This popover is an unslotted child of hx-drawer.</p>
+            <p><code>hx-draewr &gt; hx-popover</code></p>
+          </hx-div>
+        </hx-popover>
+      </hx-drawer>
+    </section>
+
+    <section>
+      <header>
+        <h3>Positionable Grandchildren</h3>
+        <p><code>hx-drawer &gt; hx-div &gt; {hx-positionable}</code></p>
+        <p>This configuration should fail to position Positionable components.</p>
+      </header>
+
+      <hx-disclosure aria-controls="drawer-with-positionable-grandchildren" class="hxBtn">
+        Drawer with Positionable Grandchildren
+      </hx-disclosure>
+
+      <hx-drawer id="drawer-with-positionable-grandchildren">
+        <header>
+          <h4>Drawer with Positionable Grandchildren</h4>
+        </header>
+
+        <hx-div class="hxMd">
+          <p>Drawer Body</p>
+          <p>
+            <hx-icon type="info-circle" id="info3"></hx-icon>
+            <hx-disclosure aria-controls="popover3" class="hxBtn">
+              Toggle Popover #3
+            </hx-disclosure>
+          </p>
+
+          <!-- positionable grandchildren (should be broken) -->
+
+          <hx-tooltip for="info3" position="left-middle">
+            <header>Tooltip #3</header>
+            <p>
+              <code>hx-drawer &gt; hx-div &gt; hx-tooltip</code>
+            </p>
+          </hx-tooltip>
+
+          <hx-popover id="popover3" position="left-middle">
+            <header>
+              Popover #3
+            </header>
+
+            <hx-div>
+              <p>This popover is a grandchild of hx-drawer (child of hx-div).</p>
+              <p><code>hx-drawer &gt; hx-div &gt; hx-popover</code>)</p>
+            </hx-div>
+          </hx-popover>
+        </hx-div>
+
+        <footer>
+          <p>Drawer Foot</p>
+        </footer>
+      </hx-drawer>
+    </section>
+  </section>
+
+      </main>
+
+        <aside class="hxSiderail">
+            <header>
+              <h1 class="hxHeading-4">On this page:</h1>
+            </header>
+
+            <nav class="article-toc">
+              
+                
+              <hr class="hxDivider" />
+              <a class="top-link" href="#top">Back to Top</a>
+            </nav>
+        </aside>
+    </div>
+  </div>
+
+  <footer id="foot" class="hxRow hxGutterless">
+    <div class="hxCol">
+      &copy; 2019 Rackspace US, Inc.
+      <nav>
+        <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
+        <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
+      </nav>
+    </div>
+
+    <div class="hxCol hxRight">
+        <small>
+          Last Updated:
+          2019-06-26
+        </small>
+
+      <small>
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.0" target="_blank">
+          v0.17.0
+        </a>)
+      </small>
+    </div>
+  </footer>
+
+  
+
+  
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  
+  <script src="dist/scripts/helix-ui.browser.js"></script>
+  
+  <script src="docs.js"></script>
+</body>
+</html>
