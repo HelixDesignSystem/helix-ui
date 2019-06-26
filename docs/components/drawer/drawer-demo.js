@@ -19,13 +19,13 @@ if (document.getElementById('vue-drawerDemo')) {
         computed: {
             attrBodyClass: function () {
                 if (this.bodyClasses !== '') {
-                    return `class="${this.bodyClasses}`;
+                    return `class="${this.bodyClasses}"`;
                 }
                 return '';
             },
             attrDrawerClass: function () {
                 if (this.drawerClasses !== '') {
-                    return `class="${this.drawerClasses}`;
+                    return `class="${this.drawerClasses}"`;
                 }
                 return '';
             },
