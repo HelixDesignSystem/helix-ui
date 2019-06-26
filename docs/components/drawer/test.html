@@ -1,0 +1,433 @@
+---
+title: Testing - Drawer
+crumbs:
+  - path: components/drawer
+    label: Drawer
+---
+{% import '_utils.njk' as utils %}
+{% extends 'test.njk' %}
+{% set contentClasses = 'drawer-spec' %}
+
+{% block content %}
+  <section><!-- Supplemental Interactions -->
+    <header>
+      <h2>Supplemental Interactions</h2>
+      <p>Interact with in-page content to trigger supplemental behavior while a drawer is open.</p>
+    </header>
+
+    <section>
+      <header>
+        <h3>Dialogs</h3>
+      </header>
+
+      <!-- body modal -->
+      <div class="dialog-helpers">
+        <hx-disclosure aria-controls="body-modal" class="hxBtn">
+          Open Modal
+        </hx-disclosure>
+
+        <hx-disclosure aria-controls="body-popover-a" class="hxBtn">
+          Popover A &rarr;
+        </hx-disclosure>
+
+        <hx-disclosure aria-controls="body-popover-b" class="hxBtn">
+          Popover B &rarr;
+        </hx-disclosure>
+
+        <hx-disclosure aria-controls="body-popover-c" class="hxBtn">
+          Popover C &rarr;
+        </hx-disclosure>
+      </div>
+
+      <hx-modal id="body-modal">
+        <header>
+          <h4>Modal Header</h4>
+        </header>
+
+        <hx-div>
+          <p>Modal Body - outside of hx-drawer</p>
+        </hx-div>
+
+        <footer>
+          <button class="hxBtn hxPrimary">Confirm</button>
+          <button class="hxBtn">Cancel</button>
+        </footer>
+      </hx-modal>
+      <hx-popover id="body-popover-a" position="right-middle">
+        <header>Popover A</header>
+        <hx-div>
+          <p>
+            If it takes you too long to spike the lean XP bottleneck, then you
+            are not launching enough. The best way to satisfy relative feedback
+            is to periodically groom their technical debt. We must quickly
+            rank the minimum PR product owner! A simple criteria always takes
+            less time than a parallel one.
+          </p>
+        </hx-div>
+      </hx-popover>
+      <hx-popover id="body-popover-b" position="right-middle">
+        <header>Popover B</header>
+        <hx-div>
+          <p>
+            If it takes you too long to spike the lean XP bottleneck, then you
+            are not launching enough. The best way to satisfy relative feedback
+            is to periodically groom their technical debt. We must quickly
+            rank the minimum PR product owner! A simple criteria always takes
+            less time than a parallel one.
+          </p>
+        </hx-div>
+      </hx-popover>
+      <hx-popover id="body-popover-c" position="right-middle">
+        <header>Popover C</header>
+        <hx-div>
+          <p>
+            If it takes you too long to spike the lean XP bottleneck, then you
+            are not launching enough. The best way to satisfy relative feedback
+            is to periodically groom their technical debt. We must quickly
+            rank the minimum PR product owner! A simple criteria always takes
+            less time than a parallel one.
+          </p>
+        </hx-div>
+      </hx-popover>
+    </section>
+  </section>
+
+  <section><!-- Basic Drawer -->
+    <header>
+      <h2>Basic Drawer</h2>
+    </header>
+
+    <hx-disclosure aria-controls="basic-drawer" class="hxBtn">
+      Toggle Basic Drawer
+    </hx-disclosure>
+    <hx-drawer id="basic-drawer">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <hx-div>
+        <p>Drawer Body</p>
+        {{ utils.lorem(1) }}
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+
+    <!-- padded -->
+    <hx-disclosure aria-controls="padded-drawer" class="hxBtn">
+      Toggle Padded Drawer
+    </hx-disclosure>
+    <hx-drawer id="padded-drawer">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <hx-div class="hxMd">
+        <p>Drawer Body with padding.</p>
+        {{ utils.lorem(1) }}
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+  </section>
+
+  <section><!-- Missing Content -->
+    <header>
+      <h2>Missing Content</h2>
+    </header>
+
+    <!-- without header -->
+    <hx-disclosure aria-controls="drawer-sans-header" class="hxBtn">
+      Toggle Drawer w/o Header
+    </hx-disclosure>
+    <hx-drawer id="drawer-sans-header">
+      <hx-div>
+        <p>Drawer Body</p>
+        {{ utils.lorem(1) }}
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+
+    <!-- without body -->
+    <hx-disclosure aria-controls="drawer-sans-body" class="hxBtn">
+      Toggle Drawer w/o Body
+    </hx-disclosure>
+    <hx-drawer id="drawer-sans-body">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+
+    <!-- without footer -->
+    <hx-disclosure aria-controls="drawer-sans-footer" class="hxBtn">
+      Toggle Drawer w/o Footer
+    </hx-disclosure>
+    <hx-drawer id="drawer-sans-footer">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <hx-div>
+        <p>Drawer Body</p>
+        {{ utils.lorem(1) }}
+      </hx-div>
+    </hx-drawer>
+  </section>
+
+  <section><!-- Additional Content -->
+    <header>
+      <h2>Additional Content</h2>
+    </header>
+
+    <!-- long title -->
+    <hx-disclosure aria-controls="drawer-with-long-title" class="hxBtn">
+      Drawer with Long Title
+    </hx-disclosure>
+    <hx-drawer id="drawer-with-long-title">
+      <header>
+        <h2>Drawer Head with a really really really really really long title. Did I mention it's long?</h2>
+      </header>
+
+      <hx-div>
+        <p>Drawer Body</p>
+        {{ utils.lorem(1) }}
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+
+    <!-- with error banner -->
+    <hx-disclosure aria-controls="drawer-with-error" class="hxBtn">
+      Toggle Drawer with Error
+    </hx-disclosure>
+    <hx-drawer id="drawer-with-error">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <hx-alert status="error" type="error">
+        Message goes here.
+      </hx-alert>
+
+      <hx-div class="hxMd">
+        <p>Drawer Body with padding.</p>
+        {{ utils.lorem(1) }}
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+
+    <hx-disclosure aria-controls="scrolling-drawer" class="hxBtn">
+      Toggle Scrolling Drawer
+    </hx-disclosure>
+    <hx-drawer id="scrolling-drawer">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <hx-div>
+        <p>Drawer Body with scrolling content.</p>
+        {{ utils.lorem(6) }}
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+
+    <hx-disclosure aria-controls="scrolling-drawer-with-padding" class="hxBtn">
+      Toggle Scrolling Drawer w/ Padding
+    </hx-disclosure>
+    <hx-drawer id="scrolling-drawer-with-padding">
+      <header>
+        <h2>Drawer Head</h2>
+      </header>
+
+      <hx-div class="hxMd">
+        <p>Scrolling Drawer Body with padding.</p>
+        {{ utils.lorem(6) }}
+      </hx-div>
+
+      <footer>
+        <p>Drawer Foot</p>
+      </footer>
+    </hx-drawer>
+  </section>
+
+  <section><!-- Positionable Descendants -->
+    <header>
+      <h2>Positionable Descendants</h2>
+    </header>
+
+    <section>
+      <header>
+        <h3>Slotted, Child Positionable</h3>
+        <p><code>hx-drawer &gt; [slot="fixed"]</code></p>
+        <p>This configuration should work as expected.</p>
+      </header>
+
+      <hx-disclosure aria-controls="drawer-with-slotted-positionable-children" class="hxBtn">
+        Drawer with Slotted Positionable Children
+      </hx-disclosure>
+
+      <hx-drawer id="drawer-with-slotted-positionable-children">
+        <header>
+          <h4>Drawer with Slotted Positionable Children</h4>
+        </header>
+
+        <hx-div class="hxMd">
+          <p>Drawer Body</p>
+          <p>
+            <hx-icon type="info-circle" id="info1"></hx-icon>
+            <hx-disclosure aria-controls="popover1" class="hxBtn">
+              Toggle Popover #1
+            </hx-disclosure>
+          </p>
+        </hx-div>
+
+        <footer>
+          <p>Drawer Foot</p>
+        </footer>
+
+        <!-- slotted positionable children -->
+
+        <hx-tooltip slot="fixed" for="info1" position="left-middle">
+          <header>Tooltip #1</header>
+          <p>
+            <code>hx-drawer &gt; hx-tooltip[slot="fixed"]</code>
+          </p>
+        </hx-tooltip>
+
+        <hx-popover slot="fixed" id="popover1" position="left-middle">
+          <header>
+            Popover #1
+          </header>
+
+          <hx-div>
+            <p>This popover is a slotted child of hx-drawer.</p>
+            <p><code>hx-drawer &gt; hx-popover[slot="fixed"]</code></p>
+          </hx-div>
+        </hx-popover>
+      </hx-drawer>
+    </section>
+
+    <section>
+      <header>
+        <h3>Unslotted, Child Positionable</h3>
+        <p><code>hx-drawer &gt; {hx-positionable}</code></p>
+        <p>This configuration should fail to position Positionable components.</p>
+      </header>
+
+      <hx-disclosure aria-controls="drawer-with-unslotted-positionable-children" class="hxBtn">
+        Drawer with Unslotted Positionable Children
+      </hx-disclosure>
+
+      <hx-drawer id="drawer-with-unslotted-positionable-children">
+        <header>
+          <h4>Drawer with Unslotted Positionable Children</h4>
+        </header>
+
+        <hx-div class="hxMd">
+          <p>Drawer Body</p>
+          <p>
+            <hx-icon type="info-circle" id="info2"></hx-icon>
+            <hx-disclosure aria-controls="popover2" class="hxBtn">
+              Toggle Popover #2
+            </hx-disclosure>
+          </p>
+        </hx-div>
+
+        <footer>
+          <p>Drawer Foot</p>
+        </footer>
+
+        <!-- unslotted positionable children (should be broken) -->
+
+        <hx-tooltip for="info2" position="left-middle">
+          <header>Tooltip #2</header>
+          <p>
+            <code>hx-drawer &gt; hx-tooltip</code>
+          </p>
+        </hx-tooltip>
+
+        <hx-popover id="popover2" position="left-middle">
+          <header>
+            Popover #2
+          </header>
+
+          <hx-div>
+            <p>This popover is an unslotted child of hx-drawer.</p>
+            <p><code>hx-draewr &gt; hx-popover</code></p>
+          </hx-div>
+        </hx-popover>
+      </hx-drawer>
+    </section>
+
+    <section>
+      <header>
+        <h3>Positionable Grandchildren</h3>
+        <p><code>hx-drawer &gt; hx-div &gt; {hx-positionable}</code></p>
+        <p>This configuration should fail to position Positionable components.</p>
+      </header>
+
+      <hx-disclosure aria-controls="drawer-with-positionable-grandchildren" class="hxBtn">
+        Drawer with Positionable Grandchildren
+      </hx-disclosure>
+
+      <hx-drawer id="drawer-with-positionable-grandchildren">
+        <header>
+          <h4>Drawer with Positionable Grandchildren</h4>
+        </header>
+
+        <hx-div class="hxMd">
+          <p>Drawer Body</p>
+          <p>
+            <hx-icon type="info-circle" id="info3"></hx-icon>
+            <hx-disclosure aria-controls="popover3" class="hxBtn">
+              Toggle Popover #3
+            </hx-disclosure>
+          </p>
+
+          <!-- positionable grandchildren (should be broken) -->
+
+          <hx-tooltip for="info3" position="left-middle">
+            <header>Tooltip #3</header>
+            <p>
+              <code>hx-drawer &gt; hx-div &gt; hx-tooltip</code>
+            </p>
+          </hx-tooltip>
+
+          <hx-popover id="popover3" position="left-middle">
+            <header>
+              Popover #3
+            </header>
+
+            <hx-div>
+              <p>This popover is a grandchild of hx-drawer (child of hx-div).</p>
+              <p><code>hx-drawer &gt; hx-div &gt; hx-popover</code>)</p>
+            </hx-div>
+          </hx-popover>
+        </hx-div>
+
+        <footer>
+          <p>Drawer Foot</p>
+        </footer>
+      </hx-drawer>
+    </section>
+  </section>
+{% endblock %}

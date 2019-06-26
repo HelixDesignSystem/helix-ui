@@ -78,11 +78,17 @@
 @grid-gutter-size: 20px;
 @grid-column-unit: (100% / @grid-column-count);
 // Breakpoints
-@grid-break-wrist: 0em;
-@grid-break-palm: 40em; // ~640px
-@grid-break-lap: 64em; // ~1024px
-@grid-break-desk: 75em; // ~1200px
-@grid-break-wall: 90em; // ~1440px
+@screen-xs: 0em;
+@screen-sm: 40em; // ~640px
+@screen-md: 64em; // ~1024px
+@screen-lg: 75em; // ~1200px
+@screen-xl: 90em; // ~1440px
+// Breakpoint Aliases
+@grid-break-wrist: @screen-xs;
+@grid-break-palm: @screen-sm;
+@grid-break-lap: @screen-md;
+@grid-break-desk: @screen-lg;
+@grid-break-wall: @screen-xl;
 
 // ==== FOCUS STATE =====
 @focus-glow: 0 0 4px fade(@cyan-700, 50%);
@@ -92,10 +98,11 @@
 @app-nav-width: 15rem;
 
 // ==== Z-INDEX =====
+@drawer-z-index: 50;
 @menu-z-index: 100;
 @search-assistance-z-index: 100;
-@tooltip-z-index: 1000;
-@popover-z-index: 1100;
+@popover-z-index: 1000;
+@tooltip-z-index: 1100;
 @modal-z-index: 1200;
 
 @space: {

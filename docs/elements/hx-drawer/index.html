@@ -1,0 +1,113 @@
+---
+title: <hx-drawer>
+also:
+  components/drawer: Drawer
+---
+{% extends 'element.njk' %}
+{% import '_utils.njk' as utils %}
+{% block page_header %}
+  <p>
+    The <code>{{page.title}}</code> is a container for a drawer dialog,
+    anchored to the right-side of the screen.  It is used to build a
+    <a href="components/drawer">Drawer</a> component.
+  </p>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <dl class="metadata hxList">
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>any</dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd>
+          In this order:
+          <ol class="hxList">
+            <li>
+              {{ utils.element('header') }}
+            </li>
+            <li>
+              {{ utils.customElement('hx-alert') }}
+              <small>(optional)</small>
+            </li>
+            <li>
+              {{ utils.customElement('hx-div') }}
+            </li>
+            <li>
+              {{ utils.element('footer') }}
+            </li>
+            <li>
+              <p>
+                Fixed position elements with <code>slot="fixed"</code> attribute.
+                <small>(optional)</small>
+              </p>
+              <ul>
+                <li>{{ utils.customElement('hx-menu') }}</li>
+                <li>{{ utils.customElement('hx-popover') }}</li>
+                <li>{{ utils.customElement('hx-search-assistance') }}</li>
+                <li>{{ utils.customElement('hx-tooltip') }}</li>
+              </ul>
+              <p class="hxSubBody">
+                <hx-icon type="exclamation-triangle"></hx-icon>
+                Elements will fail to position without <code>slot="fixed"</code>.
+              </p>
+              <p class="hxSubBody">
+                <hx-icon type="exclamation-triangle"></hx-icon>
+                Fixed position elements <i>must</i> be immediate children of
+                <code>{{page.title}}</code>.
+              </p>
+            </li>
+          </ol>
+        </dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd>
+          Any of the following:
+          <ul class="hxList">
+            <li>
+              <code>close</code> <small>(cancelable)</small>
+            </li>
+            <li>
+              <code>open</code> <small>(cancelable)</small>
+            </li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl>
+    <dt>open</dt>
+    <dd>
+      <p>Opens the drawer.</p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Does not emit events on change.
+      </p>
+    </dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl>
+    <dt>open {Boolean [false]}</dt>
+    <dd>
+      <p>
+        Determines if the drawer is open.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Emits <code>open</code> event when set to <code>true</code>.
+      </p>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Emits <code>close</code> event when set to <code>false</code>.
+      </p>
+    </dd>
+  </dl>
+{% endblock %}
