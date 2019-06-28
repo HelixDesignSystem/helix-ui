@@ -20,33 +20,35 @@ minver: 0.1.7
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Data Density</legend>
-            <hx-radio-control>
-              <input
-                id="radNormal"
-                name="density"
-                type="radio"
-                v-model="isCondensed"
-                :value="false"
-              />
-              <label for="radNormal">
-                <hx-radio></hx-radio>
-                Normal
-              </label>
-            </hx-radio-control>
+            <hx-radio-set>
+              <hx-radio-control>
+                <input
+                  :value="false"
+                  id="radNormal"
+                  name="density"
+                  type="radio"
+                  v-model="isCondensed"
+                />
+                <label for="radNormal">
+                  <hx-radio></hx-radio>
+                  Normal
+                </label>
+              </hx-radio-control>
 
-            <hx-radio-control>
-              <input
-                id="radCondensed"
-                name="density"
-                type="radio"
-                v-model="isCondensed"
-                :value="true"
-              />
-              <label for="radCondensed">
-                <hx-radio></hx-radio>
-                Condensed
-              </label>
-            </hx-radio-control>
+              <hx-radio-control>
+                <input
+                  :value="true"
+                  id="radCondensed"
+                  name="density"
+                  type="radio"
+                  v-model="isCondensed"
+                />
+                <label for="radCondensed">
+                  <hx-radio></hx-radio>
+                  Condensed
+                </label>
+              </hx-radio-control>
+            </hx-radio-set>
           </fieldset>
 
           <fieldset>
