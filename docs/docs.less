@@ -27,11 +27,6 @@
  * BASE
 \* ---------------------------------------- */
 
-// keep line length to a readable size
-p {
-  max-width: 80ch;
-}
-
 // ensure any embedded codepen fits in with the rest of the app
 iframe[src*="codepen.io"] {
   border: 2px solid @gray-900;
@@ -432,3 +427,10 @@ dl:not(.hxList) {
 /* Beta Auto Grid Styles */
 .hxRow.hxAuto > .hxCol { flex-grow: 0; }
 .hxRow .hxCol.hxAuto { flex: 0 0 auto; }
+
+// keep line size at a readable length
+p.comfortable,
+header > p,
+.guide-content p {
+  max-width: 80ch;
+}
