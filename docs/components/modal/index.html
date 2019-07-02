@@ -27,20 +27,22 @@ also:
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Size</legend>
-            <hx-radio-control v-for="(_size, idx) in sizes">
-              <input
-                :id="'radSize' + idx"
-                :value="_size"
-                name="size"
-                type="radio"
-                v-model="size"
-              />
-              <label :for="'radSize' + idx">
-                <hx-radio></hx-radio>
-                {% raw %}{{_size.label}}{% endraw %}
-              </label>
-              <p v-if="_size.default">(default)</p>
-            </hx-radio-control>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_size, idx) in sizes">
+                <input
+                  :id="'radSize' + idx"
+                  :value="_size"
+                  name="size"
+                  type="radio"
+                  v-model="size"
+                />
+                <label :for="'radSize' + idx">
+                  <hx-radio></hx-radio>
+                  {% raw %}{{_size.label}}{% endraw %}
+                </label>
+                <p v-if="_size.default">(default)</p>
+              </hx-radio-control>
+            </hx-radio-set>
           </fieldset>
 
           <fieldset>

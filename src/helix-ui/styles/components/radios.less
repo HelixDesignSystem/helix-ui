@@ -13,6 +13,18 @@ hx-radio {
 
 hx-radio-set {
   display: block;
+
+  > * {
+    margin: 0.25rem 0; // FIXME: solve with spacing system
+
+    &:first-child {
+      margin-top: 0; // FIXME: solve with spacing system
+    }
+
+    &:last-child {
+      margin-bottom: 0; // FIXME: solve with spacing system
+    }
+  }
 }
 
 // LAYOUT GEOMETRY

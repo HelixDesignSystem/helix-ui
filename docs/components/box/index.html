@@ -189,19 +189,21 @@ also:
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Scroll Direction</legend>
-            <hx-radio-control v-for="(_direction, idx) in directions">
-              <input
-                :id="'radDirection' + idx"
-                :value="_direction"
-                name="direction"
-                type="radio"
-                v-model="direction"
-              />
-              <label :for="'radDirection' + idx">
-                <hx-radio></hx-radio>
-                {% raw %}{{_direction}}{% endraw %}
-              </label>
-            </hx-radio-control>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_direction, idx) in directions">
+                <input
+                  :id="'radDirection' + idx"
+                  :value="_direction"
+                  name="direction"
+                  type="radio"
+                  v-model="direction"
+                />
+                <label :for="'radDirection' + idx">
+                  <hx-radio></hx-radio>
+                  {% raw %}{{_direction}}{% endraw %}
+                </label>
+              </hx-radio-control>
+            </hx-radio-set>
           </fieldset>
 
           <fieldset>
