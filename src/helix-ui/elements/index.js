@@ -4,6 +4,7 @@ export { HXAlertElement } from './HXAlertElement';
 export { HXBusyElement } from './HXBusyElement';
 export { HXCheckboxControlElement } from './HXCheckboxControlElement';
 export { HXCheckboxElement } from './HXCheckboxElement';
+export { HXCheckboxSetElement } from './HXCheckboxSetElement';
 export { HXDisclosureElement } from './HXDisclosureElement';
 export { HXDivElement } from './HXDivElement';
 export { HXDrawerElement } from './HXDrawerElement';
