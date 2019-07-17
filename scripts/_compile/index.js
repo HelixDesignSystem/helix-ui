@@ -7,7 +7,7 @@
 const CleanCSS = require('clean-css');
 const LESS = require('less');
 const path = require('path');
-const { ensureDir } = require('fs-extra');
+const { ensureDir, pathExists } = require('fs-extra');
 
 const CONFIG = require('../_config');
 const { exec, readFile, writeFile } = require('../_util');
@@ -18,21 +18,27 @@ async function compileStyles () {
 
     let cfg = {
         entry: `${CONFIG.sourceDir}/helix-ui.less`,
+        theme: `${CONFIG.sourceDir}/helix-ui-theme.less`,
         dest: `${CONFIG.distDir}/styles`,
     };
     let devFile = `${cfg.dest}/helix-ui.css`;
     let minFile = `${cfg.dest}/helix-ui.min.css`;
 
     let srcContent = await readFile(cfg.entry, 'utf-8');
+    let chkTheme = await pathExists(cfg.theme);
 
     let output = '';
     try {
+        if (chkTheme) {
+            srcContent += await readFile(cfg.theme, 'utf-8');
+        }
+
         output = await LESS.render(srcContent, {
             paths: CONFIG.less.paths.map((filepath) => {
                 return path.join(CONFIG.root, filepath);
             }),
             filename: path.basename(cfg.entry),
-            rewriteUrls: true,
+            rewriteUrls: 'all',
         });
     } catch (err) {
         console.log(`[COMPILE:Styles] Error: ${err.message}`);
