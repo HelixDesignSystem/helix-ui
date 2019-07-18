@@ -13,8 +13,7 @@
     }
 
     /* ----- Changed / Touched --------------- */
-    &[hx-changed],
-    &[hx-touched] {
+    &[hx-dirty] {
       > textarea:invalid.mock-focus {
         .TextControl(invalid-focus);
       }
