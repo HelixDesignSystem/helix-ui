@@ -90,19 +90,20 @@
       "test/run_unit.js"
     ]
   },
-  "repository": "https://github.com/rackerlabs/helix-ui.git",
+  "repository": "https://github.com/HelixDesignSystem/helix-ui.git",
   "author": "Ryan Johnson <rhino.citguy@gmail.com>",
   "contributors": [
     "Andrew Yurisich",
     "Cathy Siller",
     "Evan Nabors",
+    "James Thompson",
     "Shaleen Agarwal",
     "Steven Salinas",
     "Ty Taylor"
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/rackerlabs/helix-ui/issues"
+    "url": "https://github.com/HelixDesignSystem/helix-ui/issues"
   },
-  "homepage": "https://github.com/rackerlabs/helix-ui#readme"
+  "homepage": "https://github.com/HelixDesignSystem/helix-ui#readme"
 }
