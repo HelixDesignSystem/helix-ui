@@ -1,0 +1,68 @@
+.menu-positioning-spec {
+  [id^="target"] {
+    align-items: center;
+    background-color: @gray-300;
+    display: flex;
+    height: 6rem;
+    justify-content: center;
+    position: fixed;
+    width: 6rem;
+  }
+
+  // vertical target alignment
+  [id$="quad1"],
+  [id$="quad4"] {
+    top: 33%;
+  }
+
+  [id$="quad2"],
+  [id$="quad3"] {
+    top: 67%;
+  }
+
+  // horizontal target alignment
+  [id$="quad1"],
+  [id$="quad2"] {
+    left: 67%;
+  }
+
+  [id$="quad3"],
+  [id$="quad4"] {
+    left: 33%;
+  }
+
+  #target-center,
+  #target-quad1,
+  #target-quad2,
+  #target-quad3,
+  #target-quad4 {
+    transform: translate(-50%, -50%);
+  }
+
+  #target-center {
+    height: 9rem;
+    left: 50%;
+    top: 50%;
+    width: 9rem;
+  }
+
+  #target-topLeft {
+    left: 0;
+    top: 0;
+  }
+
+  #target-topRight {
+    right: 0;
+    top: 0;
+  }
+
+  #target-bottomLeft {
+    bottom: 0;
+    left: 0;
+  }
+
+  #target-bottomRight {
+    bottom: 0;
+    right: 0;
+  }
+}

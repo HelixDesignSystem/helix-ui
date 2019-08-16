@@ -233,43 +233,63 @@ export function normalizePosition (position) {
 export function optimizePositionForCollisions (position, collides) {
     let { xAlign, yAlign } = getAlignment(position);
 
-    // COLLIDE TOP
-    // 'top-*' -> 'bottom-*' (CHANGE)
-    // '{H}-top' -> '{H}-bottom' (CHANGE)
-    // 'bottom-*' -> 'bottom-*' (no change)
-    // '{H}-bottom' -> '{H}-bottom' (no change)
-    // '{H}-start|middle|end' -> '{H}-start|middle|end' (no change)
-    if (collides.top && yAlign === 'top') {
+    // ----- COLLIDE WITH TOP EDGE -----
+    // CHANGE
+    // - 'top-*'            -> 'bottom-*'
+    // - '(left|right)-top' -> '(left|right)-bottom'
+    // - '(left|right)-end' -> '(left|right)-start'
+    //
+    // IGNORE
+    // - 'bottom-*'
+    // - '{H}-bottom'
+    // - '{H}-start'
+    // - '{H}-middle'
+    if (collides.top && yAlign.match(/top|end/)) {
         position = invertPositionVertically(position);
     }
 
-    // COLLIDE BOTTOM
-    // 'bottom-*' -> 'top-*' (CHANGE)
-    // '{H}-bottom' -> '{H}-top' (CHANGE)
-    // 'top-*' -> 'top-*' (no change)
-    // '{H}-top' -> '{H}-top' (no change)
-    // '{H}-start|middle|end' -> '{H}-start|middle|end' (no change)
-    if (collides.bottom && yAlign === 'bottom') {
+    // ----- COLLIDE WITH BOTTOM EDGE -----
+    // CHANGE
+    // - 'bottom-*'            -> 'top-*'
+    // - '(left|right)-bottom' -> '(left|right)-top'
+    // - '(left|right)-start'  -> '(left|right)-end'
+    //
+    // IGNORE
+    // - 'top-*'
+    // - '{H}-top'
+    // - '{H}-middle'
+    // - '{H}-end'
+    if (collides.bottom && yAlign.match(/bottom|start/)) {
         position = invertPositionVertically(position);
     }
 
-    // COLLIDE LEFT
-    // 'left-*' -> 'right-*' (CHANGE)
-    // '{V}-left' -> '{V}-right' (CHANGE)
-    // 'right-*' -> 'right-*' (no change)
-    // '{V}-right' -> '{V}-right' (no change)
-    // '{V}-start|center|end' -> '{V}-start|center|end' (no change)
-    if (collides.left && xAlign === 'left') {
+    // ----- COLLIDE WITH LEFT EDGE -----
+    // CHANGE
+    // - 'left-*'            -> 'right-*'
+    // - '(top|bottom)-left' -> '(top|bottom)-right'
+    // - '(top|bottom)-end'  -> '(top|bottom)-start'
+    //
+    // IGNORE
+    // - 'right-*'
+    // - '{V}-right'
+    // - '{V}-start'
+    // - '{V}-center'
+    if (collides.left && xAlign.match(/left|end/)) {
         position = invertPositionHorizontally(position);
     }
 
-    // COLLIDE RIGHT
-    // 'right-*' -> 'left-*' (CHANGE)
-    // '{V}-right' -> '{V}-left' (CHANGE)
-    // 'left-*' -> 'left-*' (no change)
-    // '{V}-left' -> '{V}-left' (no change)
-    // '{V}-start|center|end' -> '{V}-start|center|end' (no change)
-    if (collides.right && xAlign === 'right') {
+    // ----- COLLIDE WITH RIGHT EDGE -----
+    // CHANGE
+    // - 'right-*'            -> 'left-*'
+    // - '(top|bottom)-right' -> '(top|bottom)-left'
+    // - '(top|bottom)-start' -> '(top|bottom)-end'
+    //
+    // IGNORE
+    // - 'left-*'
+    // - '(top|bottom)-left'
+    // - '(top|bottom)-center'
+    // - '(top|bottom)-end'
+    if (collides.right && xAlign.match(/right|start/)) {
         position = invertPositionHorizontally(position);
     }
 
