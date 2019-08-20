@@ -1,0 +1,202 @@
+---
+title: Testing - Menu Positioning
+---
+{% extends 'no-frame.njk' %}
+{% set contentClasses = 'menu-positioning-spec' %}
+
+{% block content %}
+  <div id="target-center">Target</div>
+  <div id="target-quad1">Target</div>
+  <div id="target-quad2">Target</div>
+  <div id="target-quad3">Target</div>
+  <div id="target-quad4">Target</div>
+  <div id="target-topLeft">Target</div>
+  <div id="target-topRight">Target</div>
+  <div id="target-bottomRight">Target</div>
+  <div id="target-bottomLeft">Target</div>
+
+  <!-- CENTER TARGET -->
+  <hx-menu relative-to="target-center" position="top" open>
+    <section>
+      <header>"top" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+  <hx-menu relative-to="target-center" position="left" open>
+    <section>
+      <header>"left" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+  <hx-menu relative-to="target-center" position="right" open>
+    <section>
+      <header>"right" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+  <hx-menu relative-to="target-center" position="bottom" open>
+    <section>
+      <header>"bottom" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+
+  <!-- QUAD 1 TARGET -->
+  <hx-menu relative-to="target-quad1" position="right-start" open>
+    <section>
+      <header>"right-start" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+  <hx-menu relative-to="target-quad1" position="top-end" open>
+    <section>
+      <header>"top-end" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+
+  <!-- QUAD 2 TARGET -->
+  <hx-menu relative-to="target-quad2" position="right-end" open>
+    <section>
+      <header>"right-end" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+  <hx-menu relative-to="target-quad2" position="bottom-end" open>
+    <section>
+      <header>"bottom-end" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+
+  <!-- QUAD 3 TARGET -->
+  <hx-menu relative-to="target-quad3" position="left-end" open>
+    <section>
+      <header>"left-end" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+  <hx-menu relative-to="target-quad3" position="bottom-start" open>
+    <section>
+      <header>"bottom-start" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+
+  <!-- QUAD 4 TARGET -->
+  <hx-menu relative-to="target-quad4" position="left-start" open>
+    <section>
+      <header>"left-start" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+  <hx-menu relative-to="target-quad4" position="top-start" open>
+    <section>
+      <header>"top-start" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+
+
+  <!-- SMART REPOSITIONING -->
+  <!--
+    Intentionally positioned offscreen so that we can test if
+    repositioning logic is working.
+  -->
+
+  <!-- TOP RIGHT TARGET -->
+  <hx-menu relative-to="target-topRight" position="right-end" open>
+    <section>
+      <header>"right-end" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+  <hx-menu relative-to="target-topRight" position="top-start" open>
+    <section>
+      <header>"top-start" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+
+  <!-- BOTTOM RIGHT TARGET -->
+  <hx-menu relative-to="target-bottomRight" position="bottom-start" open>
+    <section>
+      <header>"bottom-start" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+  <hx-menu relative-to="target-bottomRight" position="right-start" open>
+    <section>
+      <header>"right-start" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+
+  <!-- BOTTOM LEFT TARGET -->
+  <hx-menu relative-to="target-bottomLeft" position="bottom-end" open>
+    <section>
+      <header>"bottom-end" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+  <hx-menu relative-to="target-bottomLeft" position="left-start" open>
+    <section>
+      <header>"left-start" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+
+  <!-- TOP LEFT TARGET -->
+  <hx-menu relative-to="target-topLeft" position="left-end" open>
+    <section>
+      <header>"left-end" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+  <hx-menu relative-to="target-topLeft" position="top-end" open>
+    <section>
+      <header>"top-end" Menu</header>
+      <hx-menuitem>Action 1</hx-menuitem>
+      <hx-menuitem>Action 2</hx-menuitem>
+      <hx-menuitem>Action 3</hx-menuitem>
+    </section>
+  </hx-menu>
+{% endblock %}

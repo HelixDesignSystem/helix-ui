@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{{site.language}}">
+<head>
+  <title>{% if page.title %}{{page.title}} - {% endif %}{{site.title}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="{{site.baseHref}}">
+
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  {# HelixUI Styles (generated from src/) #}
+  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  {# Documentation Styles (generated from docs/) #}
+  <link rel="stylesheet" href="docs.css">
+
+  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
+  <script src="vendor/custom-elements-es5-adapter.js"></script>
+
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
+</head>
+<body>
+  <main role="main" class="{{mainClass}} {{contentClasses}}">
+    {% block content %}
+      {# page content goes here #}
+    {% endblock %}
+  </main>
+
+  {# Vue for Interactive Demos #}
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  {# HelixUI Behavior (generated from src/) #}
+  <script src="dist/scripts/helix-ui.browser.js"></script>
+  {# Documentation Behavior (generated from docs/) #}
+  <script src="docs.js"></script>
+</body>
+</html>
