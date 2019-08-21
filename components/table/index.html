@@ -612,33 +612,35 @@ class="current">
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Data Density</legend>
-            <hx-radio-control>
-              <input
-                id="radNormal"
-                name="density"
-                type="radio"
-                v-model="isCondensed"
-                :value="false"
-              />
-              <label for="radNormal">
-                <hx-radio></hx-radio>
-                Normal
-              </label>
-            </hx-radio-control>
+            <hx-radio-set>
+              <hx-radio-control>
+                <input
+                  :value="false"
+                  id="radNormal"
+                  name="density"
+                  type="radio"
+                  v-model="isCondensed"
+                />
+                <label for="radNormal">
+                  <hx-radio></hx-radio>
+                  Normal
+                </label>
+              </hx-radio-control>
 
-            <hx-radio-control>
-              <input
-                id="radCondensed"
-                name="density"
-                type="radio"
-                v-model="isCondensed"
-                :value="true"
-              />
-              <label for="radCondensed">
-                <hx-radio></hx-radio>
-                Condensed
-              </label>
-            </hx-radio-control>
+              <hx-radio-control>
+                <input
+                  :value="true"
+                  id="radCondensed"
+                  name="density"
+                  type="radio"
+                  v-model="isCondensed"
+                />
+                <label for="radCondensed">
+                  <hx-radio></hx-radio>
+                  Condensed
+                </label>
+              </hx-radio-control>
+            </hx-radio-set>
           </fieldset>
 
           <fieldset>
@@ -998,12 +1000,12 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-05-06
+          2019-08-12
         </small>
 
       <small>
-        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.0" target="_blank">
-          v0.17.0
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.2" target="_blank">
+          v0.17.2
         </a>)
       </small>
     </div>

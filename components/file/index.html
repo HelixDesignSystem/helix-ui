@@ -686,37 +686,41 @@ class="current">
 
           <fieldset>
             <legend class="beta-hxFieldName">Button Variant</legend>
-            <hx-radio-control v-for="(_variant, idx) in variants">
-              <input
-                :id="'radSelectorVariant' + idx"
-                :value="_variant"
-                name="variant"
-                type="radio"
-                v-model="variant"
-              />
-              <label :for="'radSelectorVariant' + idx">
-                <hx-radio></hx-radio>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_variant, idx) in variants">
+                <input
+                  :id="'radSelectorVariant' + idx"
+                  :value="_variant"
+                  name="variant"
+                  type="radio"
+                  v-model="variant"
+                />
+                <label :for="'radSelectorVariant' + idx">
+                  <hx-radio></hx-radio>
 {{_variant.label}}
-              </label>
-              <p v-if="_variant.default">(default)</p>
-            </hx-radio-control>
+                </label>
+                <p v-if="_variant.default">(default)</p>
+              </hx-radio-control>
+            </hx-radio-set>
           </fieldset>
 
           <fieldset>
             <legend class="beta-hxFieldName">Icon</legend>
-            <hx-radio-control v-for="(_icon, idx) in icons">
-              <input
-                :id="'radSelectorIcon' + idx"
-                :value="_icon"
-                name="icon"
-                type="radio"
-                v-model="icon"
-              />
-              <label :for="'radSelectorIcon' + idx">
-                <hx-radio></hx-radio>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_icon, idx) in icons">
+                <input
+                  :id="'radSelectorIcon' + idx"
+                  :value="_icon"
+                  name="icon"
+                  type="radio"
+                  v-model="icon"
+                />
+                <label :for="'radSelectorIcon' + idx">
+                  <hx-radio></hx-radio>
 {{_icon}}
-              </label>
-            </hx-radio-control>
+                </label>
+              </hx-radio-control>
+            </hx-radio-set>
           </fieldset>
 
           <fieldset>
@@ -816,47 +820,49 @@ class="current">
 
           <fieldset>
             <legend class="beta-hxFieldName">State</legend>
-            <hx-radio-control>
-              <input
-                id="radTileDownloadable"
-                name="file-state"
-                type="radio"
-                v-model="state"
-                value="downloadable"
-              />
-              <label for="radTileDownloadable">
-                <hx-radio></hx-radio>
-                Downloadable
-              </label>
-            </hx-radio-control>
+            <hx-radio-set>
+              <hx-radio-control>
+                <input
+                  id="radTileDownloadable"
+                  name="file-state"
+                  type="radio"
+                  v-model="state"
+                  value="downloadable"
+                />
+                <label for="radTileDownloadable">
+                  <hx-radio></hx-radio>
+                  Downloadable
+                </label>
+              </hx-radio-control>
 
-            <hx-radio-control>
-              <input
-                id="radTileLoading"
-                name="file-state"
-                type="radio"
-                v-model="state"
-                value="loading"
-              />
-              <label for="radTileLoading">
-                <hx-radio></hx-radio>
-                Loading
-              </label>
-            </hx-radio-control>
+              <hx-radio-control>
+                <input
+                  id="radTileLoading"
+                  name="file-state"
+                  type="radio"
+                  v-model="state"
+                  value="loading"
+                />
+                <label for="radTileLoading">
+                  <hx-radio></hx-radio>
+                  Loading
+                </label>
+              </hx-radio-control>
 
-            <hx-radio-control>
-              <input
-                id="radTileInvalid"
-                name="file-state"
-                type="radio"
-                v-model="state"
-                value="invalid"
-              />
-              <label for="radTileInvalid">
-                <hx-radio></hx-radio>
-                Invalid
-              </label>
-            </hx-radio-control>
+              <hx-radio-control>
+                <input
+                  id="radTileInvalid"
+                  name="file-state"
+                  type="radio"
+                  v-model="state"
+                  value="invalid"
+                />
+                <label for="radTileInvalid">
+                  <hx-radio></hx-radio>
+                  Invalid
+                </label>
+              </hx-radio-control>
+            </hx-radio-set>
           </fieldset>
 
           <template v-if="isDownloadable">
@@ -1018,12 +1024,12 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-06-21
+          2019-08-12
         </small>
 
       <small>
-        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.0" target="_blank">
-          v0.17.0
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.2" target="_blank">
+          v0.17.2
         </a>)
       </small>
     </div>

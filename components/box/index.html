@@ -770,19 +770,21 @@ class="current">
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Scroll Direction</legend>
-            <hx-radio-control v-for="(_direction, idx) in directions">
-              <input
-                :id="'radDirection' + idx"
-                :value="_direction"
-                name="direction"
-                type="radio"
-                v-model="direction"
-              />
-              <label :for="'radDirection' + idx">
-                <hx-radio></hx-radio>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_direction, idx) in directions">
+                <input
+                  :id="'radDirection' + idx"
+                  :value="_direction"
+                  name="direction"
+                  type="radio"
+                  v-model="direction"
+                />
+                <label :for="'radDirection' + idx">
+                  <hx-radio></hx-radio>
 {{_direction}}
-              </label>
-            </hx-radio-control>
+                </label>
+              </hx-radio-control>
+            </hx-radio-set>
           </fieldset>
 
           <fieldset>
@@ -973,12 +975,12 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-06-24
+          2019-08-12
         </small>
 
       <small>
-        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.0" target="_blank">
-          v0.17.0
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.2" target="_blank">
+          v0.17.2
         </a>)
       </small>
     </div>
