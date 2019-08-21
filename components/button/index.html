@@ -629,38 +629,42 @@ class="current">
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Variant</legend>
-            <hx-radio-control v-for="(_variant, idx) in variants">
-              <input
-                :id="'radBasicVariant' + idx"
-                :value="_variant"
-                name="variant"
-                type="radio"
-                v-model="variant"
-              />
-              <label :for="'radBasicVariant' + idx">
-                <hx-radio></hx-radio>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_variant, idx) in variants">
+                <input
+                  :id="'radBasicVariant' + idx"
+                  :value="_variant"
+                  name="variant"
+                  type="radio"
+                  v-model="variant"
+                />
+                <label :for="'radBasicVariant' + idx">
+                  <hx-radio></hx-radio>
 {{_variant.label}}
-              </label>
-              <p v-if="_variant.default">(default)</p>
-            </hx-radio-control>
+                </label>
+                <p v-if="_variant.default">(default)</p>
+              </hx-radio-control>
+            </hx-radio-set>
           </fieldset>
 
           <fieldset>
             <legend class="beta-hxFieldName">Size</legend>
-            <hx-radio-control v-for="(_size, idx) in sizes">
-              <input
-                :id="'radBasicSize' + idx"
-                :value="_size"
-                name="size"
-                type="radio"
-                v-model="size"
-              />
-              <label :for="'radBasicSize' + idx">
-                <hx-radio></hx-radio>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_size, idx) in sizes">
+                <input
+                  :id="'radBasicSize' + idx"
+                  :value="_size"
+                  name="size"
+                  type="radio"
+                  v-model="size"
+                />
+                <label :for="'radBasicSize' + idx">
+                  <hx-radio></hx-radio>
 {{_size.label}}
-              </label>
-              <p v-if="_size.default">(default)</p>
-            </hx-radio-control>
+                </label>
+                <p v-if="_size.default">(default)</p>
+              </hx-radio-control>
+            </hx-radio-set>
           </fieldset>
         </form>
       </header>
@@ -734,38 +738,42 @@ class="current">
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Variant</legend>
-            <hx-radio-control v-for="(_variant, idx) in variants">
-              <input
-                :id="'radGroupVariant' + idx"
-                :value="_variant"
-                name="variant"
-                type="radio"
-                v-model="variant"
-              />
-              <label :for="'radGroupVariant' + idx">
-                <hx-radio></hx-radio>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_variant, idx) in variants">
+                <input
+                  :id="'radGroupVariant' + idx"
+                  :value="_variant"
+                  name="variant"
+                  type="radio"
+                  v-model="variant"
+                />
+                <label :for="'radGroupVariant' + idx">
+                  <hx-radio></hx-radio>
 {{_variant.label}}
-              </label>
-              <p v-if="_variant.default">(default)</p>
-            </hx-radio-control>
+                </label>
+                <p v-if="_variant.default">(default)</p>
+              </hx-radio-control>
+            </hx-radio-set>
           </fieldset>
 
           <fieldset>
             <legend class="beta-hxFieldName">Size</legend>
-            <hx-radio-control v-for="(_size, idx) in sizes">
-              <input
-                :id="'radGroupSize' + idx"
-                :value="_size"
-                name="size"
-                type="radio"
-                v-model="size"
-              />
-              <label :for="'radGroupSize' + idx">
-                <hx-radio></hx-radio>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_size, idx) in sizes">
+                <input
+                  :id="'radGroupSize' + idx"
+                  :value="_size"
+                  name="size"
+                  type="radio"
+                  v-model="size"
+                />
+                <label :for="'radGroupSize' + idx">
+                  <hx-radio></hx-radio>
 {{_size.label}}
-              </label>
-              <p v-if="_size.default">(default)</p>
-            </hx-radio-control>
+                </label>
+                <p v-if="_size.default">(default)</p>
+              </hx-radio-control>
+            </hx-radio-set>
           </fieldset>
         </form>
       </header>
@@ -838,12 +846,12 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-05-06
+          2019-08-12
         </small>
 
       <small>
-        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.0" target="_blank">
-          v0.17.0
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.2" target="_blank">
+          v0.17.2
         </a>)
       </small>
     </div>

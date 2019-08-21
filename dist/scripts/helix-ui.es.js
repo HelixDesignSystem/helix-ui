@@ -560,43 +560,63 @@ function normalizePosition (position) {
 function optimizePositionForCollisions (position, collides) {
     let { xAlign, yAlign } = getAlignment(position);
 
-    // COLLIDE TOP
-    // 'top-*' -> 'bottom-*' (CHANGE)
-    // '{H}-top' -> '{H}-bottom' (CHANGE)
-    // 'bottom-*' -> 'bottom-*' (no change)
-    // '{H}-bottom' -> '{H}-bottom' (no change)
-    // '{H}-start|middle|end' -> '{H}-start|middle|end' (no change)
-    if (collides.top && yAlign === 'top') {
+    // ----- COLLIDE WITH TOP EDGE -----
+    // CHANGE
+    // - 'top-*'            -> 'bottom-*'
+    // - '(left|right)-top' -> '(left|right)-bottom'
+    // - '(left|right)-end' -> '(left|right)-start'
+    //
+    // IGNORE
+    // - 'bottom-*'
+    // - '{H}-bottom'
+    // - '{H}-start'
+    // - '{H}-middle'
+    if (collides.top && yAlign.match(/top|end/)) {
         position = invertPositionVertically(position);
     }
 
-    // COLLIDE BOTTOM
-    // 'bottom-*' -> 'top-*' (CHANGE)
-    // '{H}-bottom' -> '{H}-top' (CHANGE)
-    // 'top-*' -> 'top-*' (no change)
-    // '{H}-top' -> '{H}-top' (no change)
-    // '{H}-start|middle|end' -> '{H}-start|middle|end' (no change)
-    if (collides.bottom && yAlign === 'bottom') {
+    // ----- COLLIDE WITH BOTTOM EDGE -----
+    // CHANGE
+    // - 'bottom-*'            -> 'top-*'
+    // - '(left|right)-bottom' -> '(left|right)-top'
+    // - '(left|right)-start'  -> '(left|right)-end'
+    //
+    // IGNORE
+    // - 'top-*'
+    // - '{H}-top'
+    // - '{H}-middle'
+    // - '{H}-end'
+    if (collides.bottom && yAlign.match(/bottom|start/)) {
         position = invertPositionVertically(position);
     }
 
-    // COLLIDE LEFT
-    // 'left-*' -> 'right-*' (CHANGE)
-    // '{V}-left' -> '{V}-right' (CHANGE)
-    // 'right-*' -> 'right-*' (no change)
-    // '{V}-right' -> '{V}-right' (no change)
-    // '{V}-start|center|end' -> '{V}-start|center|end' (no change)
-    if (collides.left && xAlign === 'left') {
+    // ----- COLLIDE WITH LEFT EDGE -----
+    // CHANGE
+    // - 'left-*'            -> 'right-*'
+    // - '(top|bottom)-left' -> '(top|bottom)-right'
+    // - '(top|bottom)-end'  -> '(top|bottom)-start'
+    //
+    // IGNORE
+    // - 'right-*'
+    // - '{V}-right'
+    // - '{V}-start'
+    // - '{V}-center'
+    if (collides.left && xAlign.match(/left|end/)) {
         position = invertPositionHorizontally(position);
     }
 
-    // COLLIDE RIGHT
-    // 'right-*' -> 'left-*' (CHANGE)
-    // '{V}-right' -> '{V}-left' (CHANGE)
-    // 'left-*' -> 'left-*' (no change)
-    // '{V}-left' -> '{V}-left' (no change)
-    // '{V}-start|center|end' -> '{V}-start|center|end' (no change)
-    if (collides.right && xAlign === 'right') {
+    // ----- COLLIDE WITH RIGHT EDGE -----
+    // CHANGE
+    // - 'right-*'            -> 'left-*'
+    // - '(top|bottom)-right' -> '(top|bottom)-left'
+    // - '(top|bottom)-start' -> '(top|bottom)-end'
+    //
+    // IGNORE
+    // - 'left-*'
+    // - '(top|bottom)-left'
+    // - '(top|bottom)-center'
+    // - '(top|bottom)-end'
+    if (collides.right && xAlign.match(/right|start/)) {
         position = invertPositionHorizontally(position);
     }
 
@@ -2007,6 +2027,73 @@ class HXCheckboxElement extends HXElement {
     /** @override */
     static get template () {
         return `<style>${shadowStyles$2}</style>${shadowMarkup$2}`;
+    }
+}
+
+/**
+ * Defines behavior for the `<hx-checkbox-set>` element.
+ *
+ * @extends HXElement
+ * @hideconstructor
+ * @since 0.18.0
+ */
+class HXCheckboxSetElement extends HXElement {
+    static get is () {
+        return 'hx-checkbox-set';
+    }
+
+    $onConnect () {
+        this.addEventListener('hxchange', this._onHxchange);
+        this.addEventListener('hxdirty', this._onHxdirty);
+        this.addEventListener('hxtouch', this._onHxtouch);
+    }
+
+    $onDisconnect () {
+        this.removeEventListener('hxchange', this._onHxchange);
+        this.removeEventListener('hxdirty', this._onHxdirty);
+        this.removeEventListener('hxtouch', this._onHxtouch);
+    }
+
+    /**
+     * @readonly
+     * @type {Boolean} [false]
+     */
+    get isDirty () {
+        return this.hasAttribute(STATE.dirty);
+    }
+
+    /**
+     * @readonly
+     * @type {Boolean} [false]
+     */
+    get wasChanged () {
+        return this.hasAttribute(STATE.changed);
+    }
+
+    /**
+     * @readonly
+     * @type {Boolean} [false]
+     */
+    get wasTouched () {
+        return this.hasAttribute(STATE.touched);
+    }
+
+    /** @private */
+    _onHxchange (evt) {
+        evt.stopPropagation();
+        this.$defaultAttribute(STATE.changed, '');
+    }
+
+    /** @private */
+    _onHxdirty (evt) {
+        evt.stopPropagation();
+        this.$defaultAttribute(STATE.dirty, '');
+    }
+
+    /** @private */
+    _onHxtouch (evt) {
+        evt.stopPropagation();
+        this.$defaultAttribute(STATE.touched, '');
     }
 }
 
@@ -5663,6 +5750,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXBusyElement: HXBusyElement,
     HXCheckboxControlElement: HXCheckboxControlElement,
     HXCheckboxElement: HXCheckboxElement,
+    HXCheckboxSetElement: HXCheckboxSetElement,
     HXDisclosureElement: HXDisclosureElement,
     HXDivElement: HXDivElement,
     HXDrawerElement: HXDrawerElement,
@@ -5701,7 +5789,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.17.0";
+var version = "0.17.2";
 
 /** @module HelixUI */
 

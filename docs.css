@@ -13,9 +13,6 @@
 /* ---------------------------------------- *\
  * BASE
 \* ---------------------------------------- */
-p {
-  max-width: 80ch;
-}
 iframe[src*="codepen.io"] {
   border: 2px solid #424242;
   height: 25rem;
@@ -926,6 +923,60 @@ a[href].button-spec .hxBtnGroup.hxLink > .hxBtn.pseudo-focus {
 .file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxBtnGroup.hxLink > .hxBtn {
   background-color: transparent;border-color: transparent;color: #0e94a6;
 }
+.menu-positioning-spec [id^="target"] {
+  align-items: center;
+  background-color: #e0e0e0;
+  display: flex;
+  height: 6rem;
+  justify-content: center;
+  position: fixed;
+  width: 6rem;
+}
+.menu-positioning-spec [id$="quad1"],
+.menu-positioning-spec [id$="quad4"] {
+  top: 33%;
+}
+.menu-positioning-spec [id$="quad2"],
+.menu-positioning-spec [id$="quad3"] {
+  top: 67%;
+}
+.menu-positioning-spec [id$="quad1"],
+.menu-positioning-spec [id$="quad2"] {
+  left: 67%;
+}
+.menu-positioning-spec [id$="quad3"],
+.menu-positioning-spec [id$="quad4"] {
+  left: 33%;
+}
+.menu-positioning-spec #target-center,
+.menu-positioning-spec #target-quad1,
+.menu-positioning-spec #target-quad2,
+.menu-positioning-spec #target-quad3,
+.menu-positioning-spec #target-quad4 {
+  transform: translate(-50%, -50%);
+}
+.menu-positioning-spec #target-center {
+  height: 9rem;
+  left: 50%;
+  top: 50%;
+  width: 9rem;
+}
+.menu-positioning-spec #target-topLeft {
+  left: 0;
+  top: 0;
+}
+.menu-positioning-spec #target-topRight {
+  right: 0;
+  top: 0;
+}
+.menu-positioning-spec #target-bottomLeft {
+  bottom: 0;
+  left: 0;
+}
+.menu-positioning-spec #target-bottomRight {
+  bottom: 0;
+  right: 0;
+}
 .specs-panel .spec.scroll {
   height: 20rem;
   overflow: hidden;
@@ -1026,8 +1077,7 @@ a[href].button-spec .hxBtnGroup.hxLink > .hxBtn.pseudo-focus {
 .text-input-spec hx-text-control > input[type="text"]:disabled.mock-focus {
   border: 1px solid #bdbdbd;
 }
-.text-input-spec hx-text-control[hx-changed] > input[type="text"]:invalid.mock-focus,
-.text-input-spec hx-text-control[hx-touched] > input[type="text"]:invalid.mock-focus {
+.text-input-spec hx-text-control[hx-dirty] > input[type="text"]:invalid.mock-focus {
   border: 2px solid #d32f2f;
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }
@@ -1049,8 +1099,7 @@ a[href].button-spec .hxBtnGroup.hxLink > .hxBtn.pseudo-focus {
 .textarea-spec hx-textarea-control > textarea:disabled.mock-focus {
   border: 1px solid #bdbdbd;
 }
-.textarea-spec hx-textarea-control[hx-changed] > textarea:invalid.mock-focus,
-.textarea-spec hx-textarea-control[hx-touched] > textarea:invalid.mock-focus {
+.textarea-spec hx-textarea-control[hx-dirty] > textarea:invalid.mock-focus {
   border: 2px solid #d32f2f;
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }
@@ -1071,4 +1120,9 @@ dl:not(.hxList) dd {
 }
 .hxRow .hxCol.hxAuto {
   flex: 0 0 auto;
+}
+p.comfortable,
+header > p,
+.guide-content p {
+  max-width: 80ch;
 }

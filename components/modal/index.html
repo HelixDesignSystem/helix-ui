@@ -612,20 +612,22 @@ class="current">
         <form class="beta-hxForm">
           <fieldset>
             <legend class="beta-hxFieldName">Size</legend>
-            <hx-radio-control v-for="(_size, idx) in sizes">
-              <input
-                :id="'radSize' + idx"
-                :value="_size"
-                name="size"
-                type="radio"
-                v-model="size"
-              />
-              <label :for="'radSize' + idx">
-                <hx-radio></hx-radio>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_size, idx) in sizes">
+                <input
+                  :id="'radSize' + idx"
+                  :value="_size"
+                  name="size"
+                  type="radio"
+                  v-model="size"
+                />
+                <label :for="'radSize' + idx">
+                  <hx-radio></hx-radio>
 {{_size.label}}
-              </label>
-              <p v-if="_size.default">(default)</p>
-            </hx-radio-control>
+                </label>
+                <p v-if="_size.default">(default)</p>
+              </hx-radio-control>
+            </hx-radio-set>
           </fieldset>
 
           <fieldset>
@@ -867,12 +869,12 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-05-06
+          2019-08-12
         </small>
 
       <small>
-        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.0" target="_blank">
-          v0.17.0
+        (<a href="https://github.com/rackerlabs/helix-ui/releases/v0.17.2" target="_blank">
+          v0.17.2
         </a>)
       </small>
     </div>
