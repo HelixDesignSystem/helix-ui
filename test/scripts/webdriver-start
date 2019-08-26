@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # https://stackoverflow.com/a/4785518/881224
-LINK="https://github.com/rackerlabs/helix-ui/wiki/Testing#java"
+LINK="https://github.com/HelixDesignSystem/helix-ui/wiki/Testing#java"
 which java >/dev/null 2>&1 || { echo ${LINK}; echo "Install java and try again. Aborting." >&2; exit 1; }
 
 java -Dwebdriver.gecko.driver=bin/selenium/geckodriver \
