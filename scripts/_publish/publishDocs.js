@@ -15,9 +15,10 @@ async function publishDocs () {
     console.log('DOCS: Publishing to GitHub Pages'); // See https://github.com/tschaub/gh-pages#options
     let cfg = {
         add: false, // replace all gh-pages content, do not append
-        silent: false,
         dotfiles: false,
-        message: `(${PKG.version}) Updated: ${moment().format('YYYY-MM-DD HH:mm:ss')}`
+        message: `(${PKG.version}) Updated: ${moment().format('YYYY-MM-DD HH:mm:ss')}`,
+        remote: 'upstream',
+        silent: false,
     };
 
     try {
