@@ -13,10 +13,8 @@
   "files": [
     "dist/"
   ],
-  "peerDependencies": {
-    "@webcomponents/webcomponentsjs": "^1.2.4 || ^2.0.4"
-  },
   "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.0.4",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-external-helpers": "^6.22.0",
@@ -62,6 +60,9 @@
     "webpack": "4.x",
     "whatwg-fetch": "^2.0.4"
   },
+  "bundledDependencies": [
+    "@webcomponents/webcomponentsjs"
+  ],
   "scripts": {
     "apidocs": "jsdoc -c jsdoc.conf.json",
     "clean": "rm -fr node_modules",
