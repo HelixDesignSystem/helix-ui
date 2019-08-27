@@ -105,5 +105,6 @@
   "bugs": {
     "url": "https://github.com/HelixDesignSystem/helix-ui/issues"
   },
-  "homepage": "https://github.com/HelixDesignSystem/helix-ui#readme"
+  "homepage": "https://github.com/HelixDesignSystem/helix-ui#readme",
+  "os": [ "!win32" ]
 }
