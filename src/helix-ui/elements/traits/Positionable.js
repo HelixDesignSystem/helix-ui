@@ -1,10 +1,10 @@
-import { Revealable } from './Revealable';
-import { mix } from '../utils';
-import { offsetFunctionMap } from '../utils/offset';
+import { Revealable } from './Revealable.js';
+import { mix } from '../../utils';
+import { offsetFunctionMap } from '../../utils/offset';
 import {
     normalizePosition,
     optimizePositionForCollisions,
-} from '../utils/alignment';
+} from '../../utils/alignment';
 
 /**
  * @typedef {Object} OptimumPositionMetadata
