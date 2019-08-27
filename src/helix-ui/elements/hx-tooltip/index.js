@@ -1,9 +1,9 @@
-import { HXElement } from './HXElement';
-import shadowMarkup from './HXTooltipElement.html';
-import shadowStyles from './HXTooltipElement.less';
+import { HXElement } from '../HXElement.js';
+import { Positionable } from '../traits/Positionable.js';
+import { KEYS, defer, mix, generateId } from '../../utils';
 
-import { Positionable } from '../mixins/Positionable';
-import { KEYS, defer, mix, generateId } from '../utils';
+import shadowMarkup from './_shadow.html';
+import shadowStyles from './_shadow.less';
 
 const TOOLTIP_DELAY = 500;
 

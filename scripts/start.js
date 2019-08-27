@@ -40,8 +40,10 @@ browserSync.init({
             match: [
                 `${CONFIG.docsDir}/*`,
                 `${CONFIG.docsDir}/**/*`,
+                // Light DOM CSS changes
                 `${CONFIG.sourceDir}/*.less`,
                 `${CONFIG.sourceDir}/helix-ui/styles/**/*.less`,
+                // Ignore raw API data files
                 `!${CONFIG.docsDir}/api/*`,
                 `!${CONFIG.docsDir}/api/**/*`,
             ],
@@ -56,8 +58,11 @@ browserSync.init({
             match: [
                 `${CONFIG.sourceDir}/*.js`,
                 `${CONFIG.sourceDir}/**/*.js`,
+                // OLD Shadow DOM
                 `${CONFIG.sourceDir}/helix-ui/elements/*.less`, // (+) ShadowDOM CSS
                 `${CONFIG.sourceDir}/helix-ui/elements/*.html`, // (+) ShadowDOM Markup
+                // NEW Shadow DOM
+                `${CONFIG.sourceDir}/helix-ui/elements/**/_shadow.*`,
             ],
             fn: _.debounce(compileScripts, 1500),
         },

@@ -1,7 +1,6 @@
-import { HXElement } from './HXElement';
-
-import { mix } from '../utils';
-import { Positionable } from '../mixins/Positionable';
+import { HXElement } from '../HXElement.js';
+import { Positionable } from '../traits/Positionable.js';
+import { mix } from '../../utils';
 
 class _ProtoClass extends mix(HXElement, Positionable) {}
 

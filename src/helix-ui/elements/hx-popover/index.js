@@ -1,9 +1,9 @@
-import { HXElement } from './HXElement';
-import shadowMarkup from './HXPopoverElement.html';
-import shadowStyles from './HXPopoverElement.less';
+import { HXElement } from '../HXElement.js';
+import { Positionable } from '../traits/Positionable.js';
+import { mix } from '../../utils';
 
-import { Positionable } from '../mixins/Positionable';
-import { mix } from '../utils';
+import shadowMarkup from './_shadow.html';
+import shadowStyles from './_shadow.less';
 
 class _ProtoClass extends mix(HXElement, Positionable) {}
 
