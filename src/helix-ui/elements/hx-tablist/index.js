@@ -1,4 +1,4 @@
-import { HXElement } from './HXElement';
+import { HXElement } from '../HXElement.js';
 
 /**
  * Defines behavior for the `<hx-tablist>` element.

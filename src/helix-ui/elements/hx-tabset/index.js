@@ -1,6 +1,5 @@
-import { HXElement } from './HXElement';
-
-import { KEYS, defer, generateId, preventKeyScroll } from '../utils';
+import { HXElement } from '../HXElement.js';
+import { KEYS, defer, generateId, preventKeyScroll } from '../../utils';
 
 /**
  * Fires when the currently active tab changes.
