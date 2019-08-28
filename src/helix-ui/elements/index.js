@@ -38,6 +38,6 @@ export { HXTablistElement } from './HXTablistElement';
 export { HXTabpanelElement } from './HXTabpanelElement';
 export { HXTabsetElement } from './HXTabsetElement';
 export { HXTextControlElement } from './HXTextControlElement';
-export { HXTextareaControlElement } from './HXTextareaControlElement';
+export { HXTextareaControlElement } from './hx-textarea-control/index.js';
 export { HXToastElement } from './HXToastElement';
 export { HXTooltipElement } from './hx-tooltip/index.js';
