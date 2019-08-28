@@ -1,6 +1,7 @@
-import { HXElement } from './HXElement';
-import shadowMarkup from './HXAlertElement.html';
-import shadowStyles from './HXAlertElement.less';
+import { HXElement } from '../HXElement.js';
+
+import shadowMarkup from './_shadow.html';
+import shadowStyles from './_shadow.less';
 
 const ICONS = {
     'error': 'exclamation-circle',
