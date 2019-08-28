@@ -1,6 +1,7 @@
-import { HXElement } from './HXElement';
-import shadowMarkup from './HXAccordionPanelElement.html';
-import shadowStyles from './HXAccordionPanelElement.less';
+import { HXElement } from '../HXElement.js';
+
+import shadowMarkup from './_shadow.html';
+import shadowStyles from './_shadow.less';
 
 /**
  * Fires when the element's contents are concealed.

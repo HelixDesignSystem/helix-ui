@@ -1,5 +1,5 @@
-export { HXAccordionElement } from './HXAccordionElement';
-export { HXAccordionPanelElement } from './HXAccordionPanelElement';
+export { HXAccordionElement } from './hx-accordion/index.js';
+export { HXAccordionPanelElement } from './hx-accordion-panel/index.js';
 export { HXAlertElement } from './HXAlertElement';
 export { HXBusyElement } from './HXBusyElement';
 export { HXCheckboxControlElement } from './HXCheckboxControlElement';
