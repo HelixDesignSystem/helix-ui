@@ -1,6 +1,6 @@
-import { HXElement } from './HXElement';
+import { HXElement } from '../HXElement.js';
 
-import { defer } from '../utils';
+import { defer } from '../../utils';
 
 /**
  * Fires in single-panel mode, when the current panel changes.
