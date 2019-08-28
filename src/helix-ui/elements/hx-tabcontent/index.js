@@ -1,6 +1,5 @@
-import { HXElement } from './HXElement';
-
-import { onScroll } from '../utils';
+import { HXElement } from '../HXElement.js';
+import { onScroll } from '../../utils';
 
 /**
  * Defines behavior for the `<hx-tabcontent>` element.
