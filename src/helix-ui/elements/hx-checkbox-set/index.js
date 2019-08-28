@@ -1,5 +1,5 @@
-import { HXElement } from './HXElement';
-import { STATE } from './HXFormControlElement';
+import { HXElement } from '../HXElement.js';
+import { STATE } from '../HXFormControlElement.js';
 
 /**
  * Defines behavior for the `<hx-checkbox-set>` element.
