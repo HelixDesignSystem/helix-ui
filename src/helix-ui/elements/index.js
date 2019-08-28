@@ -39,5 +39,5 @@ export { HXTabpanelElement } from './hx-tabpanel/index.js';
 export { HXTabsetElement } from './hx-tabset/index.js';
 export { HXTextControlElement } from './HXTextControlElement';
 export { HXTextareaControlElement } from './HXTextareaControlElement';
-export { HXToastElement } from './HXToastElement';
+export { HXToastElement } from './hx-toast/index.js';
 export { HXTooltipElement } from './hx-tooltip/index.js';
