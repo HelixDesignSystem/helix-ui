@@ -11,7 +11,7 @@ export { HXDrawerElement } from './HXDrawerElement';
 export { HXDropFenceElement } from './HXDropFenceElement';
 export { HXDropZoneElement } from './HXDropZoneElement';
 export { HXElement } from './HXElement';
-export { HXErrorElement } from './HXErrorElement';
+export { HXErrorElement } from './hx-error/index.js';
 export { HXFileControlElement } from './HXFileControlElement';
 export { HXFileIconElement } from './HXFileIconElement';
 export { HXFileInputElement } from './HXFileInputElement';
