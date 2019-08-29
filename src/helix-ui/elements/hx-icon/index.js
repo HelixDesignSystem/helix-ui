@@ -1,8 +1,8 @@
-import { HXElement } from './HXElement';
-import shadowMarkup from './HXIconElement.html';
-import shadowStyles from './HXIconElement.less';
+import { HXElement } from '../HXElement.js';
+import ICONS from '../../icons/index.js';
 
-import ICONS from '../icons';
+import shadowMarkup from './_shadow.html';
+import shadowStyles from './_shadow.less';
 
 const DIV = document.createElement('div');
 
