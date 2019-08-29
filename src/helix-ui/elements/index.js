@@ -20,7 +20,7 @@ export { HXFormControlElement } from './HXFormControlElement';
 export { HXIconElement } from './HXIconElement';
 export { HXMenuElement } from './hx-menu/index.js';
 export { HXMenuitemElement } from './HXMenuitemElement';
-export { HXModalElement } from './HXModalElement';
+export { HXModalElement } from './hx-modal/index.js';
 export { HXPillElement } from './hx-pill/index.js';
 export { HXPopoverElement } from './hx-popover/index.js';
 export { HXProgressElement } from './hx-progress/index.js';
