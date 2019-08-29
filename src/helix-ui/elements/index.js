@@ -17,7 +17,7 @@ export { HXFileIconElement } from './hx-file-icon/index.js';
 export { HXFileInputElement } from './hx-file-input/index.js';
 export { HXFileTileElement } from './hx-file-tile/index.js';
 export { HXFormControlElement } from './HXFormControlElement';
-export { HXIconElement } from './HXIconElement';
+export { HXIconElement } from './hx-icon/index.js';
 export { HXMenuElement } from './hx-menu/index.js';
 export { HXMenuitemElement } from './HXMenuitemElement';
 export { HXModalElement } from './HXModalElement';
