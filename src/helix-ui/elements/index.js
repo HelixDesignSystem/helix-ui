@@ -19,7 +19,7 @@ export { HXFileTileElement } from './hx-file-tile/index.js';
 export { HXFormControlElement } from './HXFormControlElement';
 export { HXIconElement } from './hx-icon/index.js';
 export { HXMenuElement } from './hx-menu/index.js';
-export { HXMenuitemElement } from './HXMenuitemElement';
+export { HXMenuitemElement } from './hx-menuitem/index.js';
 export { HXModalElement } from './hx-modal/index.js';
 export { HXPillElement } from './hx-pill/index.js';
 export { HXPopoverElement } from './hx-popover/index.js';
