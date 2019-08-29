@@ -29,7 +29,7 @@ export { HXRadioElement } from './HXRadioElement';
 export { HXRadioSetElement } from './HXRadioSetElement';
 export { HXRevealElement } from './HXRevealElement';
 export { HXSearchAssistanceElement } from './hx-search-assistance/index.js';
-export { HXSearchElement } from './HXSearchElement';
+export { HXSearchElement } from './hx-search/index.js';
 export { HXSelectControlElement } from './hx-select-control/index.js';
 export { HXSelectElement } from './hx-select/index.js';
 export { HXTabElement } from './hx-tab/index.js';
