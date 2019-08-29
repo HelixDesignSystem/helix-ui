@@ -21,7 +21,7 @@ export { HXIconElement } from './HXIconElement';
 export { HXMenuElement } from './hx-menu/index.js';
 export { HXMenuitemElement } from './HXMenuitemElement';
 export { HXModalElement } from './HXModalElement';
-export { HXPillElement } from './HXPillElement';
+export { HXPillElement } from './hx-pill/index.js';
 export { HXPopoverElement } from './hx-popover/index.js';
 export { HXProgressElement } from './hx-progress/index.js';
 export { HXRadioControlElement } from './hx-radio-control/index.js';
