@@ -6,7 +6,7 @@ export { HXCheckboxControlElement } from './hx-checkbox-control/index.js';
 export { HXCheckboxElement } from './hx-checkbox/index.js';
 export { HXCheckboxSetElement } from './hx-checkbox-set/index.js';
 export { HXDisclosureElement } from './hx-disclosure/index.js';
-export { HXDivElement } from './HXDivElement';
+export { HXDivElement } from './hx-div/index.js';
 export { HXDrawerElement } from './HXDrawerElement';
 export { HXDropFenceElement } from './hx-drop-fence/index.js';
 export { HXDropZoneElement } from './hx-drop-zone/index.js';
