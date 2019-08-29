@@ -1,7 +1,7 @@
 export { HXAccordionElement } from './hx-accordion/index.js';
 export { HXAccordionPanelElement } from './hx-accordion-panel/index.js';
 export { HXAlertElement } from './hx-alert/index.js';
-export { HXBusyElement } from './HXBusyElement';
+export { HXBusyElement } from './hx-busy/index.js';
 export { HXCheckboxControlElement } from './hx-checkbox-control/index.js';
 export { HXCheckboxElement } from './hx-checkbox/index.js';
 export { HXCheckboxSetElement } from './hx-checkbox-set/index.js';
@@ -23,7 +23,7 @@ export { HXMenuitemElement } from './HXMenuitemElement';
 export { HXModalElement } from './HXModalElement';
 export { HXPillElement } from './HXPillElement';
 export { HXPopoverElement } from './hx-popover/index.js';
-export { HXProgressElement } from './HXProgressElement';
+export { HXProgressElement } from './hx-progress/index.js';
 export { HXRadioControlElement } from './HXRadioControlElement';
 export { HXRadioElement } from './HXRadioElement';
 export { HXRadioSetElement } from './HXRadioSetElement';
