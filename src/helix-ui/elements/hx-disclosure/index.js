@@ -1,6 +1,5 @@
-import { HXElement } from './HXElement';
-
-import { KEYS, defer, preventKeyScroll } from '../utils';
+import { HXElement } from '../HXElement.js';
+import { KEYS, defer, preventKeyScroll } from '../../utils';
 
 /**
  * Defines behavior for the `<hx-disclosure>` element.
