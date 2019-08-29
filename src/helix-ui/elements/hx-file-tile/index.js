@@ -1,6 +1,7 @@
-import { HXElement } from './HXElement';
-import shadowMarkup from './HXFileTileElement.html';
-import shadowStyles from './HXFileTileElement.less';
+import { HXElement } from '../HXElement.js';
+
+import shadowMarkup from './_shadow.html';
+import shadowStyles from './_shadow.less';
 
 // number of characters to avoid truncation at start/end of file name
 const PRE_TRUNC = 14;

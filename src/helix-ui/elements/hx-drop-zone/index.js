@@ -1,4 +1,4 @@
-import { HXElement } from './HXElement';
+import { HXElement } from '../HXElement.js';
 
 export class HXDropZoneElement extends HXElement {
     static get is () {
@@ -40,8 +40,8 @@ export class HXDropZoneElement extends HXElement {
         return this.getAttribute('drag');
     }
 
-    /** 
-     * @private 
+    /**
+     * @private
      * @returns {Boolean}
      */
     _isFileDrag (evt) {
@@ -57,7 +57,7 @@ export class HXDropZoneElement extends HXElement {
         }
     }
 
-    // #2 this gets called when the dragged item leaves the document 
+    // #2 this gets called when the dragged item leaves the document
     // (leaves to a child element or window altogether)
     /** @private */
     _onDocDragLeave () {
@@ -78,7 +78,7 @@ export class HXDropZoneElement extends HXElement {
         window.clearTimeout(this._docDragLeaveTimeout);
     }
 
-    // #4 this gets called when the dragged item leaves the zone 
+    // #4 this gets called when the dragged item leaves the zone
     // (leaves to a child element or zone altogether)
     /** @private */
     _onDragLeave () {
