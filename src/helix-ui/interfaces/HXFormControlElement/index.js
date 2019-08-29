@@ -1,4 +1,4 @@
-import { HXElement } from './HXElement.js';
+import { HXElement } from '../HXElement/index.js';
 
 export const STATE = {
     changed: 'hx-changed',

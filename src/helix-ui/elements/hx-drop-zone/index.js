@@ -1,4 +1,4 @@
-import { HXElement } from '../HXElement.js';
+import { HXElement } from '../../interfaces/HXElement/index.js';
 
 export class HXDropZoneElement extends HXElement {
     static get is () {

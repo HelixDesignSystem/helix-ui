@@ -1,5 +1,5 @@
-import { HXElement } from '../HXElement.js';
-import { STATE } from '../HXFormControlElement.js';
+import { HXElement } from '../../interfaces/HXElement/index.js';
+import { STATE } from '../../interfaces/HXFormControlElement/index.js';
 
 /**
   * Defines behavior for the `<hx-radio-set>` element.

@@ -1,4 +1,4 @@
-import { HXElement } from '../HXElement.js';
+import { HXElement } from '../../interfaces/HXElement/index.js';
 import { KEYS, defer, generateId, preventKeyScroll } from '../../utils';
 
 /**
