@@ -1,4 +1,4 @@
-import { HXElement } from '../HXElement.js';
+import { HXElement } from '../../interfaces/HXElement/index.js';
 import { onScroll } from '../../utils';
 
 import shadowMarkup from './_shadow.html';

@@ -1,4 +1,4 @@
-import { HXFormControlElement } from '../HXFormControlElement.js';
+import { HXFormControlElement } from '../../interfaces/HXFormControlElement/index.js';
 
 /**
  * Defines behavior for the `<hx-textarea-control>` element.

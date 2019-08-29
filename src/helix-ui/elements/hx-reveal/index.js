@@ -1,4 +1,4 @@
-import { HXElement } from '../HXElement.js';
+import { HXElement } from '../../interfaces/HXElement/index.js';
 
 /**
  * Fires when the element's contents are concealed.

@@ -1,4 +1,4 @@
-import { HXElement } from '../HXElement.js';
+import { HXElement } from '../../interfaces/HXElement/index.js';
 
 import shadowMarkup from './_shadow.html';
 import shadowStyles from './_shadow.less';

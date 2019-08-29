@@ -1,4 +1,4 @@
-import { HXElement } from '../HXElement.js';
+import { HXElement } from '../../interfaces/HXElement/index.js';
 import { Positionable } from '../traits/Positionable.js';
 import { mix } from '../../utils';
 
