@@ -1,6 +1,7 @@
-import { HXElement } from './HXElement';
-import shadowMarkup from './HXPillElement.html';
-import shadowStyles from './HXPillElement.less';
+import { HXElement } from '../HXElement.js';
+
+import shadowMarkup from './_shadow.html';
+import shadowStyles from './_shadow.less';
 
 /**
  * Fires when the dismiss button ("X") is pressed.
