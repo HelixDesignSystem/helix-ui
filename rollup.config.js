@@ -28,7 +28,7 @@ let babelPlugin = babel({
 let lessPlugin = less({
     options: {
         paths: [
-            'src/helix-ui/styles',
+            'src/less', // TODO: centralize path in config
         ]
     }
 });

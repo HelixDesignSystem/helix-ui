@@ -17,7 +17,7 @@ async function compileStyles () {
     console.log('SRC: Compiling CSS');
 
     let cfg = {
-        entry: `${CONFIG.sourceDir}/helix-ui.less`,
+        entry: `${CONFIG.sourceDir}/_bundle.less`,
         dest: `${CONFIG.distDir}/styles`,
     };
     let devFile = `${cfg.dest}/helix-ui.css`;
