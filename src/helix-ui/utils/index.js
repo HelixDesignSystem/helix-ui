@@ -1,8 +1,8 @@
 /**
  * @module HelixUI/Utils
  */
-import Alignment from './alignment';
-import Offset from './offset';
+import Alignment from './alignment/index.js';
+import Offset from './offset/index.js';
 export { default as ICONS } from './icons/index.js';
 
 /**
