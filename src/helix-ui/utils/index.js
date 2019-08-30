@@ -3,6 +3,7 @@
  */
 import Alignment from './alignment';
 import Offset from './offset';
+export { default as ICONS } from './icons/index.js';
 
 /**
  * Key/value map of key names and their keycode.

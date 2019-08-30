@@ -1,5 +1,5 @@
 import { HXElement } from '../../interfaces/HXElement/index.js';
-import ICONS from '../../icons/index.js';
+import { ICONS } from '../../utils';
 
 import shadowMarkup from './_shadow.html';
 import shadowStyles from './_shadow.less';
