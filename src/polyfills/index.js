@@ -1,2 +1,2 @@
-import './ChildNode';
-import './Element';
+import './ChildNode/index.js';
+import './Element/index.js';
