@@ -42,7 +42,7 @@ browserSync.init({
                 `${CONFIG.docsDir}/**/*`,
                 // Light DOM CSS changes
                 `${CONFIG.sourceDir}/*.less`,
-                `${CONFIG.sourceDir}/helix-ui/styles/**/*.less`,
+                `${CONFIG.sourceDir}/less/**/*.less`,
                 // Ignore raw API data files
                 `!${CONFIG.docsDir}/api/*`,
                 `!${CONFIG.docsDir}/api/**/*`,

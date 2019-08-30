@@ -28,7 +28,7 @@ CONFIG.site = {
 CONFIG.less = {
     paths: [
         `${CONFIG.docsDir}/styles`,
-        `${CONFIG.sourceDir}/helix-ui/styles`
+        `${CONFIG.sourceDir}/less`
     ],
 };
 
