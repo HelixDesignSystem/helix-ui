@@ -40,10 +40,9 @@ let eslintPlugin = eslint({
 });
 
 let browserConfig = {
-    input: 'src/browser-entry.js',
+    input: 'src/_bundle.umd.js',
     output: {
         file: 'dist/scripts/helix-ui.browser.js',
-        footer: 'HelixUI.initialize();', // initialize on load
         format: 'umd',
         name: 'HelixUI',
         sourcemap: false,
@@ -59,10 +58,10 @@ let browserConfig = {
 };
 
 export default [
-    // src/browser-entry.js --> dist/helix-ui.browser.js (UMD)
+    // src/_bundle.umd.js --> dist/*/helix-ui.browser.js (UMD)
     browserConfig,
 
-    // src/browser-entry.js --> dist/helix-ui.browser.min.js (UMD)
+    // src/_bundle.umd.js --> dist/*/helix-ui.browser.min.js (UMD)
     {
         ...browserConfig,
         output: {
