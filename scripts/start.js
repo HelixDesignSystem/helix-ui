@@ -59,10 +59,10 @@ browserSync.init({
                 `${CONFIG.sourceDir}/*.js`,
                 `${CONFIG.sourceDir}/**/*.js`,
                 // OLD Shadow DOM
-                `${CONFIG.sourceDir}/helix-ui/elements/*.less`, // (+) ShadowDOM CSS
-                `${CONFIG.sourceDir}/helix-ui/elements/*.html`, // (+) ShadowDOM Markup
+                `${CONFIG.sourceDir}/elements/*.less`, // (+) ShadowDOM CSS
+                `${CONFIG.sourceDir}/elements/*.html`, // (+) ShadowDOM Markup
                 // NEW Shadow DOM
-                `${CONFIG.sourceDir}/helix-ui/elements/**/_shadow.*`,
+                `${CONFIG.sourceDir}/elements/**/_shadow.*`,
             ],
             fn: _.debounce(compileScripts, 1500),
         },
