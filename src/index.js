@@ -1,6 +1,6 @@
 /** @module HelixUI */
 import * as Elements from './elements';
-export { version as VERSION } from '../../package.json';
+export { version as VERSION } from '../package.json';
 export { default as Utils } from './utils';
 
 /**

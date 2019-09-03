@@ -75,10 +75,10 @@ export default [
         ],
     },
 
-    // src/helix-ui/index.js --> dist/helix-ui.js (CJS)
-    // src/helix-ui/index.js --> dist/helix-ui.es.js (ESM)
+    // src/index.js --> dist/helix-ui.js (CJS)
+    // src/index.js --> dist/helix-ui.es.js (ESM)
     {
-        input: 'src/helix-ui/index.js',
+        input: 'src/index.js',
         output: [
             {
                 file: pkg.main,
