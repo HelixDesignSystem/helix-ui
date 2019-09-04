@@ -6,10 +6,8 @@
 @form-asterisk-offset: @form-asterisk-size + @form-asterisk-gap;
 
 // ---------- MIXINS ----------
-@import (reference) './forms/FieldName';
-@import (reference) './forms/SelectControl';
-@import (reference) './forms/SelectFacade';
-@import (reference) './forms/TextControl';
+@import (reference) './FieldName';
+@import (reference) './TextControl';
 
 .HelpText() {
   color: @gray-750;
@@ -138,7 +136,7 @@
   correctly announce text content (as they already do).
 */
 .hxRequired {
-  background-image: data-uri('image/svg+xml;base64', '../../images/asterisk.svg');
+  background-image: data-uri('image/svg+xml;base64', '../../../images/asterisk.svg');
   background-position: 0 25%;
   background-repeat: no-repeat;
   background-size: @form-asterisk-size @form-asterisk-size; // IE needs both values
@@ -152,3 +150,6 @@
     content: ' (optional)';
   }
 }
+
+// DEPRECATED
+@import './_hxTextCtrl-DEPRECATED'; // remove in v1.0.0
