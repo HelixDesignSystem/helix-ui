@@ -6,6 +6,7 @@
  */
 
 const LESS = require('less');
+const SASS = require('node-sass');
 const path = require('path');
 const tar = require('tar');
 const webpack = require('webpack');
@@ -20,16 +21,33 @@ const Markup = require('./markup');
 
 async function generateStyles () {
     console.log('Generating CSS');
+    let outDir = CONFIG.publicDir;
 
-    let srcContent = await readFile(`${CONFIG.docsDir}/docs.less`, 'utf-8');
+    let scssStyles = await generateScss();
+    let lessStyles = await generateLess();
 
-    let output = '';
+    let combinedCss = scssStyles + lessStyles;
+
+    await ensureDir(outDir);
+    await writeFile(`${outDir}/docs.css`, combinedCss);
+    console.log('Generating CSS [DONE]');
+}
+
+/**
+ * @returns {string} styles rendered from LESS
+ */
+async function generateLess () {
+    let filename = 'docs.less';
+    let inFile = path.join(CONFIG.docsDir, filename);
+    let srcContent = await readFile(inFile, 'utf-8');
+
+    let rendered = {};
     try {
-        output = await LESS.render(srcContent, {
+        rendered = await LESS.render(srcContent, {
             paths: CONFIG.less.paths.map((filepath) => {
                 return path.join(CONFIG.root, filepath);
             }),
-            filename: 'docs.less',
+            filename,
         });
     } catch (err) {
         console.log(`[GENERATE:Styles] Error: ${err.message}`);
@@ -37,9 +55,21 @@ async function generateStyles () {
         return;
     }
 
-    await ensureDir(CONFIG.publicDir);
-    await writeFile(`${CONFIG.publicDir}/docs.css`, output.css);
-}//generateStyles()
+    return rendered.css;
+}
+
+/**
+ * @returns {string} styles rendered from SASS
+ */
+async function generateScss () {
+    let rendered = await SASS.renderSync({
+        ...CONFIG.sass,
+        file: path.join(CONFIG.docsDir, 'index.scss'),
+        outputStyle: 'expanded',
+    });
+
+    return rendered.css.toString();
+}
 
 async function generateMarkup () {
     console.log('Generating HTML');

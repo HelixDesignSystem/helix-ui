@@ -5,10 +5,10 @@ hx-accordion.beta-hxStepper {
   counter-reset: step;
 
   hx-accordion-panel {
-    border-top: 1px solid @gray-300;
+    border-top: 1px solid $gray-300;
 
     &:last-child {
-      border-bottom: 1px solid @gray-300;
+      border-bottom: 1px solid $gray-300;
     }
 
     header[slot="header"] {
@@ -23,34 +23,34 @@ hx-accordion.beta-hxStepper {
       // TODO: clarify mouse hover/click behavior with Design
       &:hover {
         .beta-hxStepCounter {
-          background-color: @cyan-500;
-          color: @gray-0;
+          background-color: $cyan-500;
+          color: $gray-0;
         }
       }
     }
 
     &[open] { // NOTE: no spec!
       .beta-hxStepCounter {
-        background-color: @cyan-500;
-        color: @gray-0;
+        background-color: $cyan-500;
+        color: $gray-0;
       }
     }
 
     &[disabled] {
       .beta-hxStepCounter {
-        background-color: @gray-400;
-        color: @gray-700;
+        background-color: $gray-400;
+        color: $gray-700;
       }
 
       .beta-hxStepLabel {
-        color: @gray-700; // NOTE: no spec!
+        color: $gray-700; // NOTE: no spec!
       }
 
       header[slot="header"] {
         &:hover {
           .beta-hxStepCounter {
-            background-color: @gray-400;
-            color: @gray-700;
+            background-color: $gray-400;
+            color: $gray-700;
           }
         }
       }//header
@@ -58,9 +58,9 @@ hx-accordion.beta-hxStepper {
   }//hx-accordion-panel
 
   .beta-hxStepCounter {
-    background-color: @cyan-900; // to spec
+    background-color: $cyan-900; // to spec
     border-radius: 3rem; // ensure circle
-    color: @gray-0; // to spec
+    color: $gray-0; // to spec
     counter-increment: step;
     flex-shrink: 0;
     font-size: 1.5rem; // to spec
@@ -78,7 +78,7 @@ hx-accordion.beta-hxStepper {
   }
 
   .beta-hxStepLabel {
-    color: @gray-900; // TODO: verify with Design, based on old heading spec
+    color: $gray-900; // TODO: verify with Design, based on old heading spec
     flex-basis: 50%; // NOTE: no spec!
     font-size: 1.5rem; // TODO: verify with Design, based on old heading spec
     font-weight: 400; // TODO: verify with Design, based on old headin spec

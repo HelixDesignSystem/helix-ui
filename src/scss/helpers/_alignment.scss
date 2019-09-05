@@ -10,13 +10,13 @@
 
 // DEPRECATED: remove in v1.0.0
 .text-left {
-  &:extend(.hxLeft);
+  @extend .hxLeft;
 }
 .text-center {
-  &:extend(.hxCenter);
+  @extend .hxCenter;
 }
 .text-right {
-  &:extend(.hxRight);
+  @extend .hxRight;
 }
 .text-justify {
   text-align: justify;

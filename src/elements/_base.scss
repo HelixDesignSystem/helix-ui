@@ -1,0 +1,9 @@
+@import "vars";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  // TODO: convert below properties into .inheritTypography() mixin
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+}

@@ -1,7 +1,5 @@
 @import (reference) 'vars';
 @import (reference) 'mixins';
-@import (reference) 'components/layout/index';
-@import (reference) 'components/typography/index';
 
 hx-popover:extend(.hxComponent) {
   #Positionable.base();
@@ -36,9 +34,12 @@ hx-popover {
   }
 
   > header {
-    &:extend(.hxHeading-4);
+    color: @gray-900;
     flex-shrink: 0;
+    font-size: 1rem;
+    font-weight: 500;
     padding: @space[md];
+    text-transform: none;
   }
 
   > hx-div:not([scroll]) {
@@ -112,10 +113,12 @@ hx-popover-foot {
 }
 
 hx-popover-head {
-  &:extend(.hxHeading-4);
-
+  color: @gray-900;
   display: block;
   flex-shrink: 0;
+  font-size: 1rem;
+  font-weight: 500;
   padding: 1.25rem;
+  text-transform: none;
 }
 

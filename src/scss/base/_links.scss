@@ -1,0 +1,12 @@
+a[href] {
+  background-color: transparent;
+  color: $blue-700;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    color: $blue-500;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
