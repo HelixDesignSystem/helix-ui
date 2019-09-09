@@ -37,7 +37,7 @@
     "json5": "1.x",
     "less": "3.x",
     "less-loader": "^4.0.5",
-    "lodash": "^4.17.15",
+    "lodash": "4.x",
     "mocha": "^5.2.0",
     "moment": "^2.18.1",
     "node-sass": "^4.12.0",
