@@ -1,4 +1,4 @@
-@import (reference) "components/typography/index";
+@import (reference) "vars";
 
 // Table style resets
 .hxTable {
@@ -71,7 +71,9 @@
   margin: 1.5rem 0;
 
   caption {
-    &:extend(.hxCaption);
+    color: @gray-800;
+    font-size: 0.875rem;
+    font-weight: 300;
   }
 
   thead {

@@ -32,5 +32,12 @@ CONFIG.less = {
     ],
 };
 
+CONFIG.sass = {
+    includePaths: [
+        `${CONFIG.sourceDir}/scss`
+    ],
+    precision: 4,
+}
+
 /* Define Exports */
 module.exports = CONFIG;

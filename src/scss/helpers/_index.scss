@@ -3,8 +3,8 @@
     - NO Elements Selectors
     - NO !important
 \* ============================= */
-@import 'helpers/alignment';
-@import 'helpers/wrapping';
+@import "alignment";
+@import "wrapping";
 
 .hxTruncate {
   overflow-x: hidden;

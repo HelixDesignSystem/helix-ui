@@ -41,8 +41,12 @@ browserSync.init({
                 `${CONFIG.docsDir}/*`,
                 `${CONFIG.docsDir}/**/*`,
                 // Light DOM CSS changes
+                // LESS sources
                 `${CONFIG.sourceDir}/*.less`,
                 `${CONFIG.sourceDir}/less/**/*.less`,
+                // SCSS sources
+                `${CONFIG.sourceDir}/*.scss`,
+                `${CONFIG.sourceDir}/scss/**/*.scss`,
                 // Ignore raw API data files
                 `!${CONFIG.docsDir}/api/*`,
                 `!${CONFIG.docsDir}/api/**/*`,
