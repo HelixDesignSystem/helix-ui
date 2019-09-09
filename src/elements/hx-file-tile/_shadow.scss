@@ -1,12 +1,12 @@
-@import "../_base";
+@import "../base";
 @import "base/links";
-@import "components/loader/index";
-@import (reference) "components/button/index";
+@import "components/loader/hx-progress";
+@import "components/button/mixins";
 
 :host {
   // reset buttons
   button {
-    #Button.reset();
+    @include button-reset;
   }
 
   #hxFileTile {
@@ -18,9 +18,9 @@
 
   // TODO: add hooks for overriding retry button colors?
   #hxRetry {
-    #Button.basic();
-    #Button.small();
-    #Button.tertiary();
+    @include button-basic;
+    @include button-small;
+    @include button-tertiary;
 
     hx-icon {
       margin-left: 0.25rem !important;
@@ -35,11 +35,11 @@
     padding: 0.5rem 0.75rem;
 
     &:hover {
-      color: var(--hxDismiss-color--hover, @cyan-500);
+      color: var(--hxDismiss-color--hover, $cyan-500);
     }
 
     &:focus {
-      box-shadow: var(--hxDismiss-boxShadow--focus, @focus-glow);
+      box-shadow: var(--hxDismiss-boxShadow--focus, $focus-glow);
       outline: 0;
     }
   }
@@ -70,7 +70,7 @@
   }
 
   #hxName {
-    color: var(--hxName-color, @cyan-900);
+    color: var(--hxName-color, $cyan-900);
     display: flex;
     font-weight: 500;
 
@@ -105,7 +105,7 @@
       color: var(--hxLink-color, inherit);
 
       &:hover {
-        color: var(--hxLink-color--hover, @cyan-500);
+        color: var(--hxLink-color--hover, $cyan-500);
 
         #hxIconWrapper {
           > hx-file-icon {
@@ -123,7 +123,7 @@
       }//hovered with href
 
       &:focus {
-        box-shadow: var(--hxLink-boxShadow--focus, @focus-glow);
+        box-shadow: var(--hxLink-boxShadow--focus, $focus-glow);
         outline: 0;
       }
     }
@@ -145,11 +145,11 @@
 
 :host([invalid]) {
   #hxIconWrapper {
-    color: var(--hxIcon-color, @gray-750);
+    color: var(--hxIcon-color, $gray-750);
   }
 
   #hxName {
-    color: var(--hxName-color, @gray-750);
+    color: var(--hxName-color, $gray-750);
   }
 
   #hxState--downloadable {
@@ -164,15 +164,15 @@
 // TODO: hook for progress bar fill color
 :host([progress]) {
   #hxDismiss {
-    color: var(--hxDismiss-color, @gray-900);
+    color: var(--hxDismiss-color, $gray-900);
   }
 
   #hxIconWrapper {
-    color: var(--hxIcon-color, @gray-750);
+    color: var(--hxIcon-color, $gray-750);
   }
 
   #hxName {
-    color: var(--hxName-color, @gray-750);
+    color: var(--hxName-color, $gray-750);
   }
 
   #hxState--downloadable {
