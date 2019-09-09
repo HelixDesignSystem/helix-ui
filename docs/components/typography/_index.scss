@@ -1,4 +1,4 @@
-@import (reference) 'base/links';
+@import "base/links";
 
 .demo-typography {
   .font-roboto {
@@ -18,6 +18,6 @@
 
 a {
   &.pseudo-active {
-    &:extend(a[href]:active);
+    @extend a[href]:active;
   }
 }

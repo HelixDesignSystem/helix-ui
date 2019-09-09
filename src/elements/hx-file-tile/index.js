@@ -1,7 +1,7 @@
 import { HXElement } from '../../interfaces/HXElement/index.js';
 
 import shadowMarkup from './_shadow.html';
-import shadowStyles from './_shadow.less';
+import shadowStyles from './_shadow.scss';
 
 // number of characters to avoid truncation at start/end of file name
 const PRE_TRUNC = 14;
