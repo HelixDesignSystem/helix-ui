@@ -1,0 +1,26 @@
+@import "mixins/mozilla";
+@import "mixins/standard";
+@import "mixins/webkit";
+
+// Useful to visually hide form controls in-place
+// in order to style sibling elements
+// <div>
+//   <input id="foo" /><!-- hide me -->
+//   <label for="foo"><!-- style me --></label>
+// </div>
+@mixin hide-input { // less: #Mix.hideInput()
+  @include moz-reset-appearance;
+  @include webkit-reset-appearance;
+  @include std-reset-appearance;
+
+  border: 0;
+  box-shadow: none;
+  height: 1px;
+  margin: -1px;
+  outline: none;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  z-index: -10;
+}

@@ -1,0 +1,44 @@
+@import "vars";
+@import "mixins/microsoft";
+@import "mixins/mozilla";
+@import "mixins/standard";
+@import "mixins/webkit";
+
+// "private" mixin to apply styles in multiple content blocks where selectors cannot be extended
+@mixin __default { // .u-placeholder()
+  color: $gray-750;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+// https://css-tricks.com/snippets/css/style-placeholder-text/
+@mixin placeholder-base { // less: #Mix.placeholder()
+  // DO NOT @extend!
+  @include moz-set-placeholder {
+    @include __default;
+  }
+
+  @include ms-set-placeholder {
+    @include __default;
+  }
+
+  @include webkit-set-placeholder {
+    @include __default;
+  }
+
+  @include std-set-placeholder {
+    @include __default;
+  }
+}
+
+@mixin placeholder-disabled { // less: #Mix.disabledPlaceholder()
+  @include reset-placeholder;
+}
+
+@mixin placeholder-reset { // less: #Reset.placeholder()
+  @include ms-reset-placeholder;
+  @include moz-reset-placeholder;
+  @include webkit-reset-placeholder;
+  @include std-reset-placeholder;
+}
