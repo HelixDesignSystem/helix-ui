@@ -1,0 +1,81 @@
+/// Mixins for Firefox (-moz- prefixed CSS)
+
+/// ========================================
+/// SET mixins require defining a content block
+/// ========================================
+
+@mixin moz-set-focus-inner { // less: #Moz.set.focus-inner({})
+  &::-moz-focus-inner {
+    @content;
+  }
+}
+
+@mixin moz-set-focusring { // less: #Moz.set.focusring({})
+  // yes, one colon (:)
+  &:-moz-focusring {
+    @content;
+  }
+}
+
+@mixin moz-set-ui-invalid { // less: #Moz.set.ui-invalid({})
+  // yes, one colon (:)
+  &:-moz-ui-invalid {
+    @content;
+  }
+}
+
+@mixin moz-set-placeholder { // less: #Moz.set.placeholder({})
+  &::-moz-placeholder {
+    @content;
+  }
+}
+
+/// ========================================
+/// RESET mixins are applied within a ruleset
+/// ========================================
+
+@mixin moz-reset-appearance { // less: #Moz.reset.appearance()
+  -moz-appearance: none;
+}
+
+// Removes the dotted border that appears around the
+// element with keyboard focus.
+@mixin moz-reset-focus { // less: #Moz.reset.focus()
+  @include moz-set-focus-inner {
+    border: 0;
+    outline: none;
+  }
+}
+
+// replaces `color` with `text-shadow` of given @color
+// (eliminates the dotted focus ring)
+@mixin moz-reset-focusring($color: #000) { // less: #Moz.rest.focusring(<color>)
+  @include moz-set-focusring {
+    // FF uses color to draw the ring. make it transparent
+    color: transparent;
+    // however we still need to display <option> text
+    text-shadow: 0 0 0 $color;
+  }
+}
+
+// This removes the red glow that appears when a validatable
+// form control element matches the :invalid pseudo-class.
+@mixin moz-reset-invalid { // less: #Moz.reset.invalid()
+  @include moz-set-ui-invalid {
+    box-shadow: none;
+    border: 0;
+    outline: 0;
+  }
+}
+
+@mixin moz-reset-placeholder { // less: #Moz.reset.placeholder()
+  @include moz-set-placeholder {
+    color: inherit;
+  }
+}
+
+@mixin moz-reset-select { // less: #Moz.reset.select()
+  @include moz-reset-appearance;
+  @include moz-reset-invalid;
+}
+

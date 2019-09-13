@@ -1,0 +1,7 @@
+@import "mozilla";
+@import "standard";
+
+@mixin reset-focus { // less: #Mix.resetFocus()
+  @include moz-reset-focus;
+  @include std-reset-focus;
+}

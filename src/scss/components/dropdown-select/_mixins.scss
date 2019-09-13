@@ -1,0 +1,12 @@
+@import "mixins/microsoft";
+@import "mixins/mozilla";
+@import "mixins/standard";
+@import "mixins/webkit";
+
+@mixin reset-select { // less: #Reset.select()
+  @include ms-reset-select;
+  @include moz-reset-select;
+  @include webkit-reset-select;
+  @include std-reset-select;
+  font: inherit;
+}

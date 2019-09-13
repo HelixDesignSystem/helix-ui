@@ -1,0 +1,10 @@
+@mixin is-positionable { // less: #Positionable.base()
+  display: none;
+  left: 0;
+  position: fixed;
+  top: 0;
+
+  &[open] {
+    margin: 0;
+  }
+}

@@ -1,0 +1,27 @@
+// Mixins for Webkit-based browsers (-webkit- prefixed CSS)
+
+/// ========================================
+/// SET mixins require defining a content block
+/// ========================================
+@mixin webkit-set-placeholder { // #Webkit.set.placeholder({})
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+/// ========================================
+/// RESET mixins are applied within a ruleset
+/// ========================================
+@mixin webkit-reset-appearance { // less: #Webkit.reset.appearance()
+  -webkit-appearance: none;
+}
+
+@mixin webkit-reset-placeholder { // less: #Webkit.reset.placeholder()
+  @include webkit-set-placeholder {
+    color: inherit;
+  }
+}
+
+@mixin webkit-reset-select { // less: #Webkit.reset.select()
+  @include webkit-reset-appearance;
+}
