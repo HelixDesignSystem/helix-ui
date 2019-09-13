@@ -71,7 +71,7 @@
     "compile": "scripts/compile.js",
     "test:coverage": "nyc --reporter=lcov mocha",
     "pregenerate": "yarn compile",
-    "generate": "scripts/generate.js",
+    "generate": "scripts/generate-dne.js",
     "preghpages": "yarn generate",
     "ghpages": "scripts/publish.js",
     "install:clean": "rm -fr node_modules && yarn install",
