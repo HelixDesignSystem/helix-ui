@@ -1,9 +1,13 @@
-@import "../_base";
-@import (reference) "components/box/index";
-@import (reference) "components/button/index";
+@import "../base";
+@import "components/box/mixins";
+@import "components/button/mixins";
+
+button {
+  @include button-reset;
+}
 
 #hxToast {
-  #Box.sm();
+  @include hxBox(sm);
   display: flex;
 }
 
@@ -31,8 +35,11 @@
 }
 
 #hxCta {
-  &:extend(.hxBtn);
-  &:extend(.hxBtn.hxTertiary);
+  @include button-base;
+  @include button-medium;
+  // NOTE: button-tertiary is bringing in more than necessary, but it won't be
+  // an issue once we refactor Toast to define CTA elements in Light DOM.
+  @include button-tertiary;
   text-transform: uppercase;
 
   &:empty {
@@ -41,8 +48,7 @@
 }
 
 #hxDismiss {
-  #Button.reset();
-  color: var(--hxDismiss-color, @gray-700);
+  color: var(--hxDismiss-color, $gray-700);
   flex-shrink: 0;
   font-size: 0.75rem;
   height: 2.25rem;
@@ -55,18 +61,18 @@
 
 :host([type="info"]) {
   #hxIconWrapper {
-    color: var(--hxIcon-color, @purple-500);
+    color: var(--hxIcon-color, $purple-500);
   }
 }
 
 :host([type="error"]) {
   #hxIconWrapper {
-    color: var(--hxIcon-color, @red-900);
+    color: var(--hxIcon-color, $red-900);
   }
 }
 
 :host([type="success"]) {
   #hxIconWrapper {
-    color: var(--hxIcon-color, @green-500);
+    color: var(--hxIcon-color, $green-500);
   }
 }

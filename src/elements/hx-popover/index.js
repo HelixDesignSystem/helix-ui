@@ -3,7 +3,7 @@ import { Positionable } from '../traits/Positionable.js';
 import { mix } from '../../utils';
 
 import shadowMarkup from './_shadow.html';
-import shadowStyles from './_shadow.less';
+import shadowStyles from './_shadow.scss';
 
 class _ProtoClass extends mix(HXElement, Positionable) {}
 

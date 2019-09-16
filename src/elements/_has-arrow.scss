@@ -1,0 +1,279 @@
+/// Positioning with Arrows (tooltitps, popovers, etc.)
+@import "vars";
+
+/// ------------------------------------------------ ///
+/// -------------------- CONFIG -------------------- ///
+/// ------------------------------------------------ ///
+
+// Distance from tip to nearest tooltip corner
+$arrow-offset: 1.25rem; // 20px
+
+// length of one side of the square arrow container
+// 13px chosen because the hypotenuse calculates closest to 16px (per spec)
+$arrow-box-side: 13px;
+
+// Calculate long side (i.e., the hypotenuse of the arrow container)
+//$arrow-hypotenuse: sqrt(2 * $arrow-box-side * $arrow-box-side); // 18.3848px
+// sqrt(2 * boxSide * boxSide) = sqrt(2 * 13 * 13) = sqrt(338) = 18.3848px
+$arrow-hypotenuse: 18.3848px;
+
+// Calculate height of arrow from base to tip
+// floor(9.1925) => 9px
+$arrow-height: floor($arrow-hypotenuse / 2);
+
+// Calculate inward distance for positioning
+// subtract 1px due to imperfect rounding
+$arrow-margin: $arrow-height - 1;
+
+$border-color: $gray-300;
+$border-width: 1px;
+
+/// ------------------------------------------------ ///
+/// -------------------- MIXINS -------------------- ///
+/// ------------------------------------------------ ///
+
+@mixin __children { // was #Arrow.children({})
+  &::before,
+  &::after {
+    @content;
+  }
+}
+
+@mixin __shadow($shadowSide: none) { // was #Arrow.shadow({})
+  $borderShadow: 0 0 0 $border-width var(--hxBorderColor, $border-color);
+  $leftShadow: -3px 3px 3px 0 $shadow-color;
+  $rightShadow: 3px 3px 3px 0 $shadow-color;
+
+  &::before {
+    @if $shadowSide == left {
+      box-shadow: $borderShadow, $leftShadow;
+    } @else if $shadowSide == right {
+      box-shadow: $borderShadow, $rightShadow;
+    } @else {
+      box-shadow: $borderShadow;
+    }
+
+    @content;
+  }
+}
+
+@mixin __body { // was #Arrow.body({ ... })
+  &::after {
+    @content;
+  }
+}
+
+// NOTE: not an exact 1:1 replacement for #Arrow.rotate(deg, from)
+@mixin __rotateChildren($deg: 0deg, $from: center) {
+  @include __children {
+    transform-origin: $from;
+    transform: rotate($deg);
+    @content;
+  }
+}
+
+.has-arrow {
+  margin: 0;
+  position: relative;
+
+  @include __shadow {
+    z-index: -1;
+  }
+
+  @include __children {
+    content: '';
+    display: block;
+    height: $arrow-box-side;
+    position: absolute;
+    width: $arrow-box-side;
+  }
+
+  /// ======================================== ///
+  ///  TOP POSITIONS
+  /// ======================================== ///
+  &[position^="top"] {
+    margin-bottom: $arrow-margin;
+
+    @include __children {
+      bottom: -($arrow-margin);
+    }
+
+    @include __body {
+      background-image: linear-gradient(
+        to bottom left,
+        transparent 50%,
+        var(--hxBackgroundColor, $gray-0) 50%
+      );
+    }
+  }
+
+  &[position="top"], // DEPRECATED: remove in v1.0.0
+  &[position="top-center"] {
+    @include __shadow(left);
+    @include __rotateChildren(-45deg, bottom left) {
+      left: 50%;
+    }
+  }
+
+  &[position="top-right"] {
+    @include __shadow(left);
+    @include __rotateChildren(-45deg, bottom left) {
+      left: $arrow-offset;
+    }
+  }
+
+  &[position="top-left"] {
+    @include __body {
+      background-image: linear-gradient(
+        to bottom right,
+        transparent 50%,
+        var(--hxBackgroundColor, $gray-0) 50%
+      );
+    }
+    @include __shadow(right);
+    @include __rotateChildren(45deg, bottom right) {
+      right: $arrow-offset;
+    }
+  }
+
+  /// ======================================== ///
+  ///  RIGHT POSITIONS
+  /// ======================================== ///
+  &[position^="right"] {
+    margin-left: $arrow-margin;
+
+    @include __children {
+      left: -($arrow-margin);
+    }
+
+    @include __body {
+      background-image: linear-gradient(
+        to top left,
+        transparent 50%,
+        var(--hxBackgroundColor, $gray-0) 50%
+      );
+    }
+  }
+
+  &[position="right"], // DEPRECATED: remove in v1.0.0
+  &[position="right-middle"] {
+    @include __shadow(left);
+    @include __rotateChildren(-45deg, top left) {
+      top: 50%; // offset, tip centered
+    }
+  }
+
+  &[position="right-bottom"] {
+    @include __shadow(left);
+    @include __rotateChildren(-45deg, top left) {
+      top: $arrow-offset;
+    }
+  }
+
+  &[position="right-top"] {
+    @include __body {
+      background-image: linear-gradient(
+        to bottom left,
+        transparent 50%,
+        var(--hxBackgroundColor, $gray-0) 50%
+      );
+    }
+    @include __shadow(right);
+    @include __rotateChildren(45deg, bottom left) {
+      bottom: $arrow-offset;
+    }
+  }
+
+  /// ======================================== ///
+  ///  BOTTOM POSITIONS
+  /// ======================================== ///
+  &[position^="bottom"] {
+    margin-top: $arrow-margin;
+
+    @include __children {
+      top: -($arrow-margin);
+    }
+
+    @include __body {
+      background-image: linear-gradient(
+        to top left,
+        transparent 50%,
+        var(--hxBackgroundColor, $gray-0) 50%
+      );
+    }
+  }
+
+  &[position="bottom"], // DEPRECATED: remove in v1.0.0
+  &[position="bottom-center"] {
+    @include __rotateChildren(45deg, top left) {
+      left: 50%; // offset, tip centered
+    }
+  }
+
+  &[position="bottom-right"] {
+    @include __rotateChildren(45deg, top left) {
+      left: $arrow-offset;
+    }
+  }
+
+  &[position="bottom-left"] {
+    @include __body {
+      background-image: linear-gradient(
+        to top right,
+        transparent 50%,
+        var(--hxBackgroundColor, $gray-0) 50%
+      );
+    }
+    @include __rotateChildren(-45deg, top right) {
+      right: $arrow-offset;
+    }
+  }
+
+  /// ======================================== ///
+  ///  LEFT POSITIONS
+  /// ======================================== ///
+  &[position^="left"] {
+    margin-right: $arrow-margin;
+
+    @include __children {
+      right: -($arrow-margin);
+    }
+
+    @include __body {
+      background-image: linear-gradient(
+        to top right,
+        transparent 50%,
+        var(--hxBackgroundColor, $gray-0) 50%
+      );
+    }
+  }
+
+  &[position="left"], // DEPRECATED: remove in v1.0.0
+  &[position="left-middle"] {
+    @include __shadow(right);
+    @include __rotateChildren(45deg, top right) {
+      top: 50%; // offset, tip centered
+    }
+  }
+
+  &[position="left-bottom"] {
+    @include __shadow(right);
+    @include __rotateChildren(45deg, top right) {
+      top: $arrow-offset;
+    }
+  }
+
+  &[position="left-top"] {
+    @include __body {
+      background-image: linear-gradient(
+        to bottom right,
+        transparent 50%,
+        var(--hxBackgroundColor, $gray-0) 50%
+      );
+    }
+    @include __shadow(left);
+    @include __rotateChildren(-45deg, bottom right) {
+      bottom: $arrow-offset;
+    }
+  }
+}

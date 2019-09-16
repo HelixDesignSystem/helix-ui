@@ -1,4 +1,4 @@
-@import (reference) 'vars';
+@import "vars";
 
 // Hide ShadowDOM content for IE
 #hxSelect {
@@ -6,13 +6,12 @@
 }
 
 // Show ShadowDOM content for evergreen browsers
+//
+//   auto                        2.5rem
+// +---------------------------+---------+
+// | . ("window")              | trigger | auto
+// +---------------------------+---------+
 @supports (display: grid) {
-  /*
-      auto                        2.5rem
-    +---------------------------+---------+
-    | . ("window")              | trigger | auto
-    +---------------------------+---------+
-  */
   #hxSelect {
     box-sizing: border-box;
     display: grid;
@@ -24,7 +23,7 @@
 
   #hxTrigger {
     align-items: center;
-    background-color: var(--hxTrigger-backgroundColor, @gray-0);
+    background-color: var(--hxTrigger-backgroundColor, $gray-0);
     box-sizing: border-box;
     color: inherit;
     display: flex;
