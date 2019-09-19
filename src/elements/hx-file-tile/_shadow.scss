@@ -18,7 +18,7 @@
 
   // TODO: add hooks for overriding retry button colors?
   #hxRetry {
-    @include button-basic;
+    @include button-common;
     @include button-small;
     @include button-tertiary;
 
