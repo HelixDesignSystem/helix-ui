@@ -1,5 +1,5 @@
 @import "vars";
-@import "mixins/focus";
+@import "mixins";
 @import "components/form/mixins";
 
 .hxSelector {
@@ -52,7 +52,7 @@
 
     input {
       @include reset-focus;
-      @include hide-input;
+      @include hxInput(visuallyHidden);
 
       // unchecked (focused)
       &:focus + span {

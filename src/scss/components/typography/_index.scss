@@ -1,6 +1,6 @@
 @import "vars";
 
-/* ========== HEADINGS ========== */
+/// ========== HEADINGS ==========
 h1,
 .hxHeading-1 {
   color: $gray-900;
@@ -58,7 +58,6 @@ hx-error {
   color: $gray-750;
 }
 
-
 .hxFigure figcaption,
 .hxCaption {
   color: $gray-800;
@@ -72,7 +71,7 @@ hx-error {
 
 @import "hljs";
 
-/* ===== DEPRECATED Remove in v1.0.0 ===== */
+/// ===== DEPRECATED Remove in v1.0.0 =====
 .hxPageTitle {
   @extend .hxHeading-1;
 }

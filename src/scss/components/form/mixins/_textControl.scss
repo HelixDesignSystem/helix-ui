@@ -1,0 +1,71 @@
+/// ==========================================================================
+///  Generic mixins to style text and text-like form controls
+///  - <textarea> elements
+///  - all <input> elements, excluding:
+///    - <input type="checkbox" />
+///    - <input type="color" />
+///    - <input type="radio" />
+///    - <input type="range" />
+/// ==========================================================================
+@import "vars";
+@import "placeholder";
+
+// Parity: OK
+// Efficiency: Needs Work
+@mixin __default($focused: false) {
+  @if $focused {
+    border: 1px solid $cyan-700;
+    box-shadow: $focus-glow;
+    outline: 0;
+  }
+  @else {
+    @include hxPlaceholder;
+    background-color: $gray-0;
+    border-radius: 2px;
+    border: 1px solid $gray-500;
+    color: $gray-900;
+    font-family: inherit;
+    font-size: 1rem;
+  }
+}
+
+// Parity: OK
+// Efficiency: OK
+@mixin __invalid($focused: false) {
+  border: 2px solid $red-900;
+
+  @if $focused {
+    box-shadow: $focus-glow-invalid;
+  }
+}
+
+// Parity: OK
+// Efficiency: Needs Work
+@mixin __disabled($focused: false) {
+  border: 1px solid $gray-500;
+
+  @if not $focused {
+    @include hxPlaceholder(disabled);
+    background-color: $gray-50;
+    color: $gray-400;
+  }
+}
+
+// LESS                            SCSS
+// .TextControl(pristine)       -> hxTextControl;
+// .TextControl(pristine-focus) -> hxTextControl($focused: true);
+// .TextControl(invalid)        -> hxTextControl(invalid);
+// .TextControl(invalid-focus)  -> hxTextControl(invalid, $focused: true);
+// .TextControl(disabled)       -> hxTextControl(disabled);
+// .TextControl(disabled-focus) -> hxTextControl(disabled, $focused: true);
+@mixin hxTextControl($state: null, $focused: false) {
+  @if $state == invalid {
+    @include __invalid($focused);
+  }
+  @else if $state == disabled {
+    @include __disabled($focused);
+  }
+  @else {
+    @include __default($focused);
+  }
+}

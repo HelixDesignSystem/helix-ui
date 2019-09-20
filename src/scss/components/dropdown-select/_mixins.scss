@@ -1,12 +1,38 @@
-@import "mixins/microsoft";
-@import "mixins/mozilla";
-@import "mixins/standard";
-@import "mixins/webkit";
+@import "mixins";
 
-@mixin reset-select { // less: #Reset.select()
-  @include ms-reset-select;
-  @include moz-reset-select;
-  @include webkit-reset-select;
-  @include std-reset-select;
+@mixin __reset {
+  @include appearance(none);
   font: inherit;
+
+  // Firefox
+  &:-moz-ui-invalid {
+    box-shadow: none;
+    border: 0;
+    outline: 0;
+  }
+
+  // IE and Edge
+  &::-ms-value {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+  }
+
+  &::-ms-expand {
+    background-color: transparent;
+    border: 0;
+    color: inherit;
+    margin: 0;
+  }
+}
+
+// LESS               SCSS
+// #Reset.select() -> hxSelect(reset)
+@mixin hxSelect($state: null) {
+  @if $state == reset {
+    @include __reset;
+  }
+  @else {
+    // do nothing
+  }
 }

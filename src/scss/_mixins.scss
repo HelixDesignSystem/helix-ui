@@ -1,0 +1,67 @@
+/// Mixin for standard `appearance` property
+@mixin appearance($value) {
+  -moz-appearance: $value;
+  -webkit-appearance: $value;
+  appearance: $value;
+}
+
+/// Mixin for standard `:focus-visible` pseudo-class
+@mixin focus-visible {
+  // Firefox uses non-standard selector
+  &:-moz-focusring { @content; }
+  // standards-compliant selector
+  &:focus-visible { @content; }
+}
+
+/// Mixin for standard `::placeholder` pseudo-element
+/// https://developer.mozilla.org/en-US/docs/Web/CSS/::placeholder#Browser_compatibility
+/// https://css-tricks.com/snippets/css/style-placeholder-text/
+@mixin placeholder {
+  // Firefox (< 51)
+  &::-moz-placeholder { @content; }
+  // Edge
+  &::-ms-input-placeholder { @content; }
+  // Chrome (< 57), Opera (< 44), Safari (< 10.1), Edge
+  &::-webkit-input-placeholder { @content; }
+  // standards-compliant selector
+  &::placeholder { @content; }
+}
+
+/// Mixin for standard `:placeholder-shown` pseudo-class
+/// https://developer.mozilla.org/en-US/docs/Web/CSS/:placeholder-shown#Browser_compatibility
+//
+/// - Edge hasn't added support for ANY selector
+@mixin placeholder-shown {
+  // Firefox (< 51) uses non-standard, prefixed selector
+  &:-moz-placeholder { @content; }
+  // IE10+ uses non-standard, prefixed selector
+  &:-ms-input-placeholder { @content; }
+  // standards-compliant selector
+  &:placeholder-shown { @content; }
+}
+
+/// -------------------- TRAITS --------------------
+
+@mixin is-positionable { // replaces #Positionable.base()
+  display: none;
+  left: 0;
+  position: fixed;
+  top: 0;
+
+  &[open] {
+    margin: 0;
+  }
+}
+
+/// -------------------- LEGACY --------------------
+
+@mixin reset-focus { // replaces #Mix.resetFocus()
+  &::-moz-focus-inner {
+    border: 0;
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
