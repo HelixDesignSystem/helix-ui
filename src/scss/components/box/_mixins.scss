@@ -1,0 +1,19 @@
+@import "vars";
+
+// TODO: refactor and find a better home for this mixin
+@mixin hxDiv-shadyRoot { // less: #HXDiv.shadyRoot({...})
+  > #hxDiv {
+    @content;
+  }
+}
+
+// less: #Box.xs()    -> hxBox(xs)
+// less: #Box.sm()    -> hxBox(sm)
+// less: #Box.md()    -> hxBox(md) or box() or box
+// less: #Box.lg()    -> hxBox(lg)
+// less: #Box.xl()    -> hxBox(xl)
+// less: #Box.xxl()   -> hxBox(xxl)
+// less: #Box.flush() -> hxBox(flush)
+@mixin hxBox($size: md) {
+  padding: map-get($space, $size);
+}
