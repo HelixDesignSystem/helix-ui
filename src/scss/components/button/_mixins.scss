@@ -1,6 +1,6 @@
 @import "vars";
 
-@mixin button-reset {
+@mixin button-reset { // less: #Button.reset()
   background-color: transparent;
   border: 0;
   color: inherit;
@@ -13,10 +13,14 @@
   padding: 0;
 }
 
-@mixin button-basic {
+@mixin button-base {
   border-radius: 2px;
   display: inline-flex;
   justify-content: center;
+}
+
+@mixin button-common { // less: #Button.basic()
+  @include button-base;
 
   > * + * {
     margin-left: 0.5rem;
@@ -35,7 +39,9 @@
   }
 }
 
-@mixin button-primary {
+/// ---------- BUTTON WEIGHTS ----------
+
+@mixin button-primary { // less: #Button.primary()
   background-color: $cyan-900;
   color: $gray-0;
 
@@ -63,7 +69,7 @@
   }
 }
 
-@mixin button-secondary {
+@mixin button-secondary { // less: #Button.secondary()
   border: 1px solid $cyan-900;
   color: $cyan-900;
 
@@ -90,9 +96,9 @@
   }
 }
 
-@mixin button-tertiary {
+@mixin button-tertiary { // less: #Button.tertiary()
   background-color: transparent;
-  border: none;
+  border: 0;
   color: $cyan-900;
   padding-left: 0;
   padding-right: 0;
@@ -120,16 +126,18 @@
   }
 }
 
-@mixin button-small {
+/// ---------- BUTTON SIZES ----------
+
+@mixin button-small { // less: #Button.small()
   padding: 0.125rem 0.5rem; // 2px 8px
 }
 
-@mixin button-medium {
+@mixin button-medium { // less: #Button.medium()
   font-size: 0.875rem;
-  padding: 8px 12px;
+  padding: 0.5rem 0.75rem; // 8px 12px;
 }
 
-@mixin button-large {
+@mixin button-large { // less: #Button.large()
   font-size: 1rem;
   padding: 1rem;
 }
