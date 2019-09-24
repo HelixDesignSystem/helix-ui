@@ -32,14 +32,14 @@ $border-width: 1px;
 /// -------------------- MIXINS -------------------- ///
 /// ------------------------------------------------ ///
 
-@mixin __children { // was #Arrow.children({})
+@mixin __arrowChildren { // was #Arrow.children({})
   &::before,
   &::after {
     @content;
   }
 }
 
-@mixin __shadow($shadowSide: none) { // was #Arrow.shadow({})
+@mixin __arrowShadow($shadowSide: none) { // was #Arrow.shadow({})
   $borderShadow: 0 0 0 $border-width var(--hxBorderColor, $border-color);
   $leftShadow: -3px 3px 3px 0 $shadow-color;
   $rightShadow: 3px 3px 3px 0 $shadow-color;
@@ -57,15 +57,15 @@ $border-width: 1px;
   }
 }
 
-@mixin __body { // was #Arrow.body({ ... })
+@mixin __arrowBody { // was #Arrow.body({ ... })
   &::after {
     @content;
   }
 }
 
 // NOTE: not an exact 1:1 replacement for #Arrow.rotate(deg, from)
-@mixin __rotateChildren($deg: 0deg, $from: center) {
-  @include __children {
+@mixin __arrowChildren--rotated($deg: 0deg, $from: center) {
+  @include __arrowChildren {
     transform-origin: $from;
     transform: rotate($deg);
     @content;
@@ -76,11 +76,11 @@ $border-width: 1px;
   margin: 0;
   position: relative;
 
-  @include __shadow {
+  @include __arrowShadow {
     z-index: -1;
   }
 
-  @include __children {
+  @include __arrowChildren {
     content: '';
     display: block;
     height: $arrow-box-side;
@@ -94,11 +94,11 @@ $border-width: 1px;
   &[position^="top"] {
     margin-bottom: $arrow-margin;
 
-    @include __children {
+    @include __arrowChildren {
       bottom: -($arrow-margin);
     }
 
-    @include __body {
+    @include __arrowBody {
       background-image: linear-gradient(
         to bottom left,
         transparent 50%,
@@ -109,29 +109,29 @@ $border-width: 1px;
 
   &[position="top"], // DEPRECATED: remove in v1.0.0
   &[position="top-center"] {
-    @include __shadow(left);
-    @include __rotateChildren(-45deg, bottom left) {
+    @include __arrowShadow(left);
+    @include __arrowChildren--rotated(-45deg, bottom left) {
       left: 50%;
     }
   }
 
   &[position="top-right"] {
-    @include __shadow(left);
-    @include __rotateChildren(-45deg, bottom left) {
+    @include __arrowShadow(left);
+    @include __arrowChildren--rotated(-45deg, bottom left) {
       left: $arrow-offset;
     }
   }
 
   &[position="top-left"] {
-    @include __body {
+    @include __arrowBody {
       background-image: linear-gradient(
         to bottom right,
         transparent 50%,
         var(--hxBackgroundColor, $gray-0) 50%
       );
     }
-    @include __shadow(right);
-    @include __rotateChildren(45deg, bottom right) {
+    @include __arrowShadow(right);
+    @include __arrowChildren--rotated(45deg, bottom right) {
       right: $arrow-offset;
     }
   }
@@ -142,11 +142,11 @@ $border-width: 1px;
   &[position^="right"] {
     margin-left: $arrow-margin;
 
-    @include __children {
+    @include __arrowChildren {
       left: -($arrow-margin);
     }
 
-    @include __body {
+    @include __arrowBody {
       background-image: linear-gradient(
         to top left,
         transparent 50%,
@@ -157,29 +157,29 @@ $border-width: 1px;
 
   &[position="right"], // DEPRECATED: remove in v1.0.0
   &[position="right-middle"] {
-    @include __shadow(left);
-    @include __rotateChildren(-45deg, top left) {
+    @include __arrowShadow(left);
+    @include __arrowChildren--rotated(-45deg, top left) {
       top: 50%; // offset, tip centered
     }
   }
 
   &[position="right-bottom"] {
-    @include __shadow(left);
-    @include __rotateChildren(-45deg, top left) {
+    @include __arrowShadow(left);
+    @include __arrowChildren--rotated(-45deg, top left) {
       top: $arrow-offset;
     }
   }
 
   &[position="right-top"] {
-    @include __body {
+    @include __arrowBody {
       background-image: linear-gradient(
         to bottom left,
         transparent 50%,
         var(--hxBackgroundColor, $gray-0) 50%
       );
     }
-    @include __shadow(right);
-    @include __rotateChildren(45deg, bottom left) {
+    @include __arrowShadow(right);
+    @include __arrowChildren--rotated(45deg, bottom left) {
       bottom: $arrow-offset;
     }
   }
@@ -190,11 +190,11 @@ $border-width: 1px;
   &[position^="bottom"] {
     margin-top: $arrow-margin;
 
-    @include __children {
+    @include __arrowChildren {
       top: -($arrow-margin);
     }
 
-    @include __body {
+    @include __arrowBody {
       background-image: linear-gradient(
         to top left,
         transparent 50%,
@@ -205,26 +205,26 @@ $border-width: 1px;
 
   &[position="bottom"], // DEPRECATED: remove in v1.0.0
   &[position="bottom-center"] {
-    @include __rotateChildren(45deg, top left) {
+    @include __arrowChildren--rotated(45deg, top left) {
       left: 50%; // offset, tip centered
     }
   }
 
   &[position="bottom-right"] {
-    @include __rotateChildren(45deg, top left) {
+    @include __arrowChildren--rotated(45deg, top left) {
       left: $arrow-offset;
     }
   }
 
   &[position="bottom-left"] {
-    @include __body {
+    @include __arrowBody {
       background-image: linear-gradient(
         to top right,
         transparent 50%,
         var(--hxBackgroundColor, $gray-0) 50%
       );
     }
-    @include __rotateChildren(-45deg, top right) {
+    @include __arrowChildren--rotated(-45deg, top right) {
       right: $arrow-offset;
     }
   }
@@ -235,11 +235,11 @@ $border-width: 1px;
   &[position^="left"] {
     margin-right: $arrow-margin;
 
-    @include __children {
+    @include __arrowChildren {
       right: -($arrow-margin);
     }
 
-    @include __body {
+    @include __arrowBody {
       background-image: linear-gradient(
         to top right,
         transparent 50%,
@@ -250,29 +250,29 @@ $border-width: 1px;
 
   &[position="left"], // DEPRECATED: remove in v1.0.0
   &[position="left-middle"] {
-    @include __shadow(right);
-    @include __rotateChildren(45deg, top right) {
+    @include __arrowShadow(right);
+    @include __arrowChildren--rotated(45deg, top right) {
       top: 50%; // offset, tip centered
     }
   }
 
   &[position="left-bottom"] {
-    @include __shadow(right);
-    @include __rotateChildren(45deg, top right) {
+    @include __arrowShadow(right);
+    @include __arrowChildren--rotated(45deg, top right) {
       top: $arrow-offset;
     }
   }
 
   &[position="left-top"] {
-    @include __body {
+    @include __arrowBody {
       background-image: linear-gradient(
         to bottom right,
         transparent 50%,
         var(--hxBackgroundColor, $gray-0) 50%
       );
     }
-    @include __shadow(left);
-    @include __rotateChildren(-45deg, bottom right) {
+    @include __arrowShadow(left);
+    @include __arrowChildren--rotated(-45deg, bottom right) {
       bottom: $arrow-offset;
     }
   }
