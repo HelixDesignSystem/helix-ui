@@ -1,44 +1,39 @@
 @import "vars";
-@import "mixins/microsoft";
-@import "mixins/mozilla";
-@import "mixins/standard";
-@import "mixins/webkit";
+@import "mixins";
 
-// "private" mixin to apply styles in multiple content blocks where selectors cannot be extended
-@mixin __default { // .u-placeholder()
-  color: $gray-750;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 1;
-}
-
-// https://css-tricks.com/snippets/css/style-placeholder-text/
-@mixin placeholder-base { // less: #Mix.placeholder()
-  // DO NOT @extend!
-  @include moz-set-placeholder {
-    @include __default;
-  }
-
-  @include ms-set-placeholder {
-    @include __default;
-  }
-
-  @include webkit-set-placeholder {
-    @include __default;
-  }
-
-  @include std-set-placeholder {
-    @include __default;
+@mixin __default {
+  @include placeholder {
+    color: $gray-750;
+    font-style: italic;
+    font-weight: 400;
+    opacity: 1;
   }
 }
 
-@mixin placeholder-disabled { // less: #Mix.disabledPlaceholder()
-  @include reset-placeholder;
+@mixin __disabled {
+  @include placeholder {
+    color: inherit;
+  }
 }
 
-@mixin placeholder-reset { // less: #Reset.placeholder()
-  @include ms-reset-placeholder;
-  @include moz-reset-placeholder;
-  @include webkit-reset-placeholder;
-  @include std-reset-placeholder;
+@mixin __reset {
+  @include placeholder {
+    color: inherit;
+  }
+}
+
+// LESS                          SCSS
+// #Mix.disabledPlaceholder() -> hxPlaceholder(disabled)
+// #Mix.placeholder()         -> hxPlaceholder
+// #Reset.placeholder()       -> hxPlaceholder(reset)
+@mixin hxPlaceholder($state: null) {
+  @if $state == reset {
+    @include __reset;
+  }
+  @else if $state == disabled {
+    @include __disabled;
+  }
+  @else {
+    @include __default;
+  }
 }
