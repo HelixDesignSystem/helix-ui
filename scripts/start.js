@@ -57,16 +57,31 @@ browserSync.init({
             }, 1500),
         },
 
-        // Recompile toolkit scripts if any JS file changes in source directory
         {
             match: [
-                `${CONFIG.sourceDir}/*.js`,
+                // ANY JavaScript file change should trigger a recompile
+                //
+                // example:
+                //  - src/index.js
+                //  - src/_bundle.umd.js
+                //  - src/elements/index.js
                 `${CONFIG.sourceDir}/**/*.js`,
-                // OLD Shadow DOM
-                `${CONFIG.sourceDir}/elements/*.less`, // (+) ShadowDOM CSS
-                `${CONFIG.sourceDir}/elements/*.html`, // (+) ShadowDOM Markup
-                // NEW Shadow DOM
-                `${CONFIG.sourceDir}/elements/**/_shadow.*`,
+
+                // ANY custom element source file should trigger a recompile,
+                // because they all contribute to JavaScript assets.
+                //
+                // example:
+                //  - src/elements/_base.less
+                //  - src/elements/hx-icon/_shadow.html
+                //  - src/elements/hx-accordion-panel/_shadow.scss
+                `${CONFIG.sourceDir}/elements/**/*`,
+
+                // ANY icon change should trigger a recompile,
+                // because they all contribute to JavaScript assets.
+                `${CONFIG.sourceDir}/images/icons/*`,
+
+                // ignore changes to test files
+                `!${CONFIG.sourceDir}/**/*.spec.js`,
             ],
             fn: _.debounce(compileScripts, 1500),
         },
@@ -74,10 +89,11 @@ browserSync.init({
         // Generate API docs when src files change
         {
             match: [
-                `${CONFIG.sourceDir}/*.js`,
+                // ANY JavaScript file in the src/ directory should
+                // trigger generation of API docs...
                 `${CONFIG.sourceDir}/**/*.js`,
-                `${CONFIG.sourceDir}/*.md`,
-                `${CONFIG.sourceDir}/**/*.md`,
+                // ... excluding spec files
+                `!${CONFIG.sourceDir}/**/*.spec.js`,
             ],
             fn: _.debounce(generateApis, 1500),
         },
