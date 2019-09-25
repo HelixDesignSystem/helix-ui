@@ -1,120 +1,5 @@
-/* ========== CONFIGURATION ========== *\
-  - @import
-  - @keyframes
-  - LESS/CSS Variables
-  - LESS Mixins
-  - NO Element Selectors
-  - NO Pseudo Selectors
-  - NO !important
-\* ========== CONFIGURATION ========== */
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 100;
-  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v20/KFOiCnqEu92Fr1Mu51QrEzAdKg.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 300;
-  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v20/KFOjCnqEu92Fr1Mu51TjASc6CsE.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v20/KFOkCnqEu92Fr1Mu51xIIzc.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 500;
-  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v20/KFOjCnqEu92Fr1Mu51S7ACc6CsE.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v20/KFOjCnqEu92Fr1Mu51TzBic6CsE.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 100;
-  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v20/KFOkCnqEu92Fr1MmgVxIIzc.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fBBc9.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxP.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fBBc9.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmWUlfBBc9.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: italic;
-  font-weight: 100;
-  src: local('Roboto Mono Thin Italic'), local('RobotoMono-ThinItalic'), url(https://fonts.gstatic.com/s/robotomono/v7/L0xlDF4xlVMF-BfR8bXMIjhOkx6mWJqD.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: italic;
-  font-weight: 300;
-  src: local('Roboto Mono Light Italic'), local('RobotoMono-LightItalic'), url(https://fonts.gstatic.com/s/robotomono/v7/L0xmDF4xlVMF-BfR8bXMIjhOk9a0T72jAw.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Roboto Mono Italic'), local('RobotoMono-Italic'), url(https://fonts.gstatic.com/s/robotomono/v7/L0x7DF4xlVMF-BfR8bXMIjhOm32WXw.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Roboto Mono Bold Italic'), local('RobotoMono-BoldItalic'), url(https://fonts.gstatic.com/s/robotomono/v7/L0xmDF4xlVMF-BfR8bXMIjhOk8azT72jAw.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 100;
-  src: local('Roboto Mono Thin'), local('RobotoMono-Thin'), url(https://fonts.gstatic.com/s/robotomono/v7/L0x7DF4xlVMF-BfR8bXMIjAom32WXw.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Roboto Mono Light'), local('RobotoMono-Light'), url(https://fonts.gstatic.com/s/robotomono/v7/L0xkDF4xlVMF-BfR8bXMIjDgiWqxf7o.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto Mono'), local('RobotoMono-Regular'), url(https://fonts.gstatic.com/s/robotomono/v7/L0x5DF4xlVMF-BfR8bXMIjhLq3o.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Roboto Mono Bold'), local('RobotoMono-Bold'), url(https://fonts.gstatic.com/s/robotomono/v7/L0xkDF4xlVMF-BfR8bXMIjDwjmqxf7o.ttf) format('truetype');
-}
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,100,100italic,300,300italic,400italic,700,700italic");
 @keyframes hx-spin {
   0% {
     transform: rotate(0deg);
@@ -123,24 +8,17 @@
     transform: rotate(360deg);
   }
 }
-/* ========== RESETS ========== *\
-  - Element & Pseudo Selectors
-  - No Class Selectors
-  - NO !important
-\* ========== RESETS ========== */
-/*
-  Reset the box-sizing
-  https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
-*/
+
 html {
   box-sizing: border-box;
 }
+
 *,
 *::before,
 *::after {
   box-sizing: inherit;
 }
-/* HTML5 display reset for older browsers */
+
 article,
 aside,
 details,
@@ -155,36 +33,37 @@ nav,
 section {
   display: block;
 }
+
 [hidden] {
   display: none !important;
 }
+
 small {
   font-size: 0.75rem;
 }
+
 caption {
   padding: 0;
   text-align: left;
 }
-/* ========== BASE ========== *\
-  - Elements Selectors ONLY
-  - No Class Selectors
-  - NO !important
-\* ========================== */
+
 a[href] {
   background-color: transparent;
   color: #0d74d1;
   text-decoration: none;
 }
-a[href]:hover,
-a[href]:active {
+
+a[href]:hover, a[href]:active {
   color: #3391ff;
   cursor: pointer;
   text-decoration: none;
 }
+
 html {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
 }
+
 body {
   color: #424242;
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -192,25 +71,18 @@ body {
   font-weight: 400;
   line-height: 1.5;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   line-height: 1.5;
   margin: 0;
 }
-h1 + *,
-h2 + *,
-h3 + *,
-h4 + *,
-h5 + *,
-h6 + * {
+
+h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + * {
   margin-top: 0.5rem;
 }
+
 kbd {
   background: none;
   border-radius: 0;
@@ -221,10 +93,12 @@ kbd {
   font-weight: 700;
   padding: 0;
 }
+
 pre,
 code {
   font-family: "Roboto Mono", monospace;
 }
+
 code {
   background-color: inherit;
   border-radius: 0;
@@ -232,6 +106,7 @@ code {
   font-weight: 300;
   padding: 0;
 }
+
 pre {
   background-color: #f5f5f5;
   border-radius: 2px;
@@ -245,12 +120,654 @@ pre {
   padding: 0.5rem 1rem;
   width: 100%;
 }
+
 pre code {
   display: block;
   font-weight: inherit;
   text-shadow: none;
   white-space: pre;
 }
+
+hx-accordion-panel {
+  display: block;
+}
+
+hx-accordion-panel:not([open]) > *:not([slot="header"]):not(#hxToggle) {
+  display: none;
+}
+
+hx-accordion-panel > #hxToggle.hx-accordion-panel,
+hx-accordion-panel > [slot="header"] {
+  padding: 0.5rem 0;
+}
+
+hx-accordion {
+  display: block;
+}
+
+/* ======================================= *\
+ * BETA BETA BETA BETA BETA BETA BETA BETA *
+\* ======================================= */
+hx-accordion.beta-hxStepper {
+  counter-reset: step;
+}
+
+hx-accordion.beta-hxStepper hx-accordion-panel {
+  border-top: 1px solid #e0e0e0;
+}
+
+hx-accordion.beta-hxStepper hx-accordion-panel:last-child {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"] {
+  display: flex;
+  padding: 1rem;
+}
+
+hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"] > * {
+  display: flex;
+  align-items: center;
+}
+
+hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"]:hover .beta-hxStepCounter {
+  background-color: #16b9d4;
+  color: #ffffff;
+}
+
+hx-accordion.beta-hxStepper hx-accordion-panel[open] .beta-hxStepCounter {
+  background-color: #16b9d4;
+  color: #ffffff;
+}
+
+hx-accordion.beta-hxStepper hx-accordion-panel[disabled] .beta-hxStepCounter {
+  background-color: #d8d8d8;
+  color: #757575;
+}
+
+hx-accordion.beta-hxStepper hx-accordion-panel[disabled] .beta-hxStepLabel {
+  color: #757575;
+}
+
+hx-accordion.beta-hxStepper hx-accordion-panel[disabled] header[slot="header"]:hover .beta-hxStepCounter {
+  background-color: #d8d8d8;
+  color: #757575;
+}
+
+hx-accordion.beta-hxStepper .beta-hxStepCounter {
+  background-color: #0c7c84;
+  border-radius: 3rem;
+  color: #ffffff;
+  counter-increment: step;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  height: 2.25rem;
+  position: relative;
+  width: 2.25rem;
+}
+
+hx-accordion.beta-hxStepper .beta-hxStepCounter::before {
+  content: counter(step);
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+hx-accordion.beta-hxStepper .beta-hxStepLabel {
+  color: #424242;
+  flex-basis: 50%;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-left: 1rem;
+}
+
+hx-accordion.beta-hxStepper .beta-hxStepValue {
+  flex-basis: 50%;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+hx-accordion.beta-hxStepper .beta-hxSubmitButtons .hxBtn + .hxBtn {
+  margin-left: 0.5rem;
+}
+
+hx-alert {
+  background-color: #d8d8d8;
+  color: #000000;
+  display: block;
+  font-weight: 300;
+  line-height: 1.25rem;
+}
+
+hx-alert[type="info"] {
+  background-color: #bbdefb;
+  color: #000000;
+}
+
+hx-alert[type="error"] {
+  background-color: #d32f2f;
+  color: #ffffff;
+}
+
+hx-alert[type="success"] {
+  background-color: #4caf51;
+  color: #ffffff;
+}
+
+hx-alert[type="warning"] {
+  background-color: #ffeb3b;
+  color: #000000;
+}
+
+/* DEPRECATED: Remove in v1.0.0 */
+.hxAlert {
+  background-color: #bbdefb;
+  color: #000000;
+  display: flex;
+  font-weight: 300;
+  line-height: 1.25em;
+}
+
+.hxAlert > * {
+  padding-bottom: 0.875em;
+  padding-top: 0.875em;
+}
+
+.hxAlert--error {
+  background-color: #d32f2f;
+  color: #ffffff;
+}
+
+.hxAlert--warning {
+  background-color: #ffeb3b;
+}
+
+.hxAlert--success {
+  background-color: #4caf51;
+  color: #ffffff;
+}
+
+.hxAlert__icon {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 1em;
+  margin-left: 1em;
+}
+
+.hxAlert__text {
+  flex-grow: 1;
+  margin-left: 1em;
+}
+
+.hxAlert__status {
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.hxAlert__status:after {
+  content: ":";
+}
+
+.hxAlert__action {
+  margin-left: 1em;
+  text-align: right;
+}
+
+.hxAlert__action a {
+  color: inherit;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.hxAlert__action a:hover {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.hxAlert__dismiss {
+  background-color: transparent;
+  border: none;
+  line-height: 1;
+  padding: 1rem;
+}
+
+.hxBadge {
+  align-items: center;
+  background-color: #d32f2f;
+  border-radius: 1em;
+  color: #ffffff;
+  display: inline-flex;
+  height: 1.25em;
+  justify-content: center;
+  min-width: 1.25em;
+  padding: 0 0.25em;
+  text-align: center;
+}
+
+hx-icon + .hxBadge {
+  font-size: 0.625rem;
+  margin-left: -0.75rem;
+  padding: 0 3px;
+  vertical-align: top;
+}
+
+/* ========== hxBreadcrumbs ========== */
+.hxBreadcrumb {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.hxBreadcrumb > a {
+  margin-right: 0.5rem;
+  text-transform: capitalize;
+}
+
+.hxBreadcrumb > a:last-of-type {
+  color: #9e9e9e;
+  font-weight: 300;
+  pointer-events: none;
+}
+
+.hxBreadcrumb .delimiter {
+  color: #9e9e9e;
+  font-size: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+hx-icon {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+}
+
+hx-busy {
+  animation-play-state: running;
+  animation: hx-spin 0.8s linear infinite;
+  border-color: transparent currentColor currentColor;
+  border-radius: 1em;
+  border-style: solid;
+  border-width: 2px;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 1em;
+  transform-box: border-box;
+  transform-origin: 0.5em 0.5em 0.5em;
+  vertical-align: middle;
+  width: 1em;
+}
+
+hx-busy[paused] {
+  animation-play-state: paused;
+}
+
+hx-progress {
+  background-color: #d8d8d8;
+  border-radius: 1em;
+  color: #16b9d4;
+  display: block;
+  height: 0.5rem;
+  overflow: hidden;
+}
+
+.hxSelector {
+  border-radius: 2px;
+  color: #0c7c84;
+  display: inline-flex;
+  font-size: 0.875rem;
+  font-weight: 500;
+  height: 2rem;
+  padding: 1px;
+  position: relative;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+.hxSelector::before, .hxSelector::after {
+  bottom: 0;
+  content: '';
+  display: block;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.hxSelector::before {
+  background-color: #ffffff;
+}
+
+.hxSelector::after {
+  border: 1px solid #bdbdbd;
+}
+
+.hxSelector label {
+  flex-grow: 1;
+  flex-shrink: 0;
+  height: 100%;
+  position: relative;
+  z-index: 0;
+}
+
+.hxSelector label span {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  line-height: 1;
+  padding: 0 0.75rem;
+  text-transform: uppercase;
+}
+
+.hxSelector label input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  box-shadow: none;
+  height: 1px;
+  margin: -1px;
+  outline: none;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  z-index: -10;
+}
+
+.hxSelector label input::-moz-focus-inner {
+  border: 0;
+  outline: none;
+}
+
+.hxSelector label input:focus {
+  outline: none;
+}
+
+.hxSelector label input:focus + span {
+  background-color: #b6e3eb;
+  color: #0c7c84;
+}
+
+.hxSelector label input:checked + span {
+  background-color: #0c7c84;
+  color: #ffffff;
+}
+
+.hxSelector label input:checked:focus + span {
+  box-shadow: 0 0 4px 0 #0c7c84;
+}
+
+.hxSelector label input:active + span {
+  background-color: #0e94a6;
+  color: #ffffff;
+}
+
+.hxSelector label input[invalid] + span {
+  background-color: #ffffff;
+  border: 2px solid #d32f2f;
+  color: #d32f2f;
+}
+
+.hxSelector label input[invalid]:checked + span {
+  background-color: #ffcdd2;
+}
+
+.hxSelector label input[invalid]:focus + span {
+  box-shadow: 0 0 4px 0 #d32f2f;
+}
+
+.hxSelector label input[disabled] + span {
+  background-color: transparent;
+  color: #d8d8d8;
+  cursor: not-allowed;
+}
+
+.hxSelector.hxRadio {
+  border-radius: 3rem;
+  overflow-y: hidden;
+  padding: 0;
+}
+
+.hxSelector.hxRadio::after {
+  border-radius: 3rem;
+}
+
+.hxSelector.hxRadio input + span {
+  border-radius: 3rem;
+}
+
+h1,
+.hxHeading-1,
+.hxPageTitle {
+  color: #424242;
+  font-size: 3rem;
+  font-weight: 100;
+  text-transform: none;
+}
+
+h2,
+.hxHeading-2,
+.hxSectionTitle {
+  color: #424242;
+  font-size: 2rem;
+  font-weight: 300;
+  text-transform: none;
+}
+
+h3,
+.hxHeading-3,
+.hxSubSectionTitle {
+  color: #424242;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-transform: none;
+}
+
+h4,
+.hxHeading-4,
+.hxContainerTitle {
+  color: #424242;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: none;
+}
+
+h5,
+.hxHeading-5 {
+  color: #616161;
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+h6 {
+  color: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: none;
+}
+
+hx-error {
+  color: #d32f2f;
+}
+
+.hxSubdued {
+  color: #6b6b6b;
+}
+
+.hxFigure figcaption,
+.hxCaption {
+  color: #616161;
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.hxSubBody {
+  font-size: 0.75rem;
+}
+
+.hljs-type {
+  font-style: italic;
+}
+
+.hljs-literal {
+  color: #3391ff;
+}
+
+.hljs-number {
+  color: #3391ff;
+}
+
+.hljs-regexp {
+  color: #dd6105;
+}
+
+.hljs-string {
+  color: #0d47a1;
+}
+
+.hljs-subst {
+  font-weight: 700;
+}
+
+.hljs-symbol {
+  font-weight: 100;
+}
+
+.hljs-class {
+  font-weight: 700;
+}
+
+.hljs-title {
+  color: #000000;
+}
+
+.hljs-params {
+  font-style: italic;
+}
+
+.hljs-comment {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.hljs-doctag {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.hljs-meta {
+  color: #c2185b;
+  font-weight: 700;
+}
+
+.hljs-section {
+  font-weight: 700;
+}
+
+.hljs-code {
+  font-weight: 300;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: 700;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+.hljs-selector-tag, .hljs-selector-id, .hljs-selector-class {
+  color: #000000;
+}
+
+.hljs-selector-pseudo {
+  font-weight: 300;
+  font-style: italic;
+}
+
+.hljs-template-tag {
+  font-weight: 300;
+}
+
+.hljs-template-variable {
+  color: #3391ff;
+}
+
+.hljs-addition {
+  background-color: #4caf51;
+}
+
+.hljs-deletion {
+  background-color: #f8bbd0;
+}
+
+.hxLabel {
+  color: #6b6b6b;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.hxLeft, .text-left {
+  text-align: left !important;
+}
+
+.hxCenter, .text-center {
+  text-align: center !important;
+}
+
+.hxRight, .text-right {
+  text-align: right !important;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.hxForceWordBreak {
+  word-break: break-all;
+}
+
+.hxNoWrap, .text-nowrap {
+  white-space: nowrap;
+}
+
+.hxTruncate {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hxFigure {
+  margin: 1em 0;
+}
+
+p {
+  margin: 0;
+}
+
+p + * {
+  margin-top: 0.5rem;
+}
+
+hr.hxDivider {
+  border-color: rgba(0, 0, 0, 0.1) transparent rgba(255, 255, 255, 0.2);
+  border-style: solid;
+  border-width: 1px 0;
+  margin: 0.75rem 0;
+}
+
+/* END: SCSS-generated Styles */
 .hxComponent,
 hx-drawer,
 hx-menu,
@@ -278,119 +795,6 @@ hx-tooltip {
     - Complex CSS Selectors
     - NO !important
 \* ========== COMPONENTS ========== */
-hx-accordion-panel {
-  display: block;
-}
-hx-accordion-panel:not([open]) > *:not([slot="header"]):not(#hxToggle) {
-  display: none;
-}
-hx-accordion-panel > #hxToggle.hx-accordion-panel,
-hx-accordion-panel > [slot="header"] {
-  padding: 0.5rem 0;
-}
-hx-accordion {
-  display: block;
-}
-hx-alert {
-  background-color: #d8d8d8;
-  color: #000000;
-  display: block;
-  font-weight: 300;
-  line-height: 1.25rem;
-}
-hx-alert[type="info"] {
-  background-color: #bbdefb;
-  color: #000000;
-}
-hx-alert[type="error"] {
-  background-color: #d32f2f;
-  color: #ffffff;
-}
-hx-alert[type="success"] {
-  background-color: #4caf51;
-  color: #ffffff;
-}
-hx-alert[type="warning"] {
-  background-color: #ffeb3b;
-  color: #000000;
-}
-/* DEPRECATED: Remove in v1.0.0 */
-.hxAlert {
-  background-color: #bbdefb;
-  color: #000000;
-  display: flex;
-  font-weight: 300;
-  line-height: 1.25em;
-}
-.hxAlert > * {
-  padding-bottom: 0.875em;
-  padding-top: 0.875em;
-}
-.hxAlert--error {
-  background-color: #d32f2f;
-  color: #ffffff;
-}
-.hxAlert--warning {
-  background-color: #ffeb3b;
-}
-.hxAlert--success {
-  background-color: #4caf51;
-  color: #ffffff;
-}
-.hxAlert__icon {
-  flex-grow: 0;
-  flex-shrink: 0;
-  flex-basis: 1em;
-  margin-left: 1em;
-}
-.hxAlert__text {
-  flex-grow: 1;
-  margin-left: 1em;
-}
-.hxAlert__status {
-  font-weight: 500;
-  text-transform: uppercase;
-}
-.hxAlert__status:after {
-  content: ":";
-}
-.hxAlert__action {
-  margin-left: 1em;
-  text-align: right;
-}
-.hxAlert__action a {
-  color: inherit;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-.hxAlert__action a:hover {
-  color: inherit;
-  text-decoration: underline;
-}
-.hxAlert__dismiss {
-  background-color: transparent;
-  border: none;
-  line-height: 1;
-  padding: 1rem;
-}
-.hxBadge {
-  align-items: center;
-  background-color: #d32f2f;
-  border-radius: 1em;
-  color: #ffffff;
-  display: inline-flex;
-  height: 1.25em;
-  justify-content: center;
-  min-width: 1.25em;
-  padding: 0 0.25em;
-  text-align: center;
-}
-hx-icon + .hxBadge {
-  font-size: 0.625rem;
-  margin-left: -0.75rem;
-  padding: 0 3px;
-  vertical-align: top;
-}
 .hxBox.hxXs {
   padding: 0.5rem;
 }
@@ -489,33 +893,6 @@ hx-div.hxFlush > #hxDiv {
 .hxBox-xl {
   padding: 1.5rem;
 }
-/* ========== hxBreadcrumbs ========== */
-.hxBreadcrumb {
-  align-content: center;
-  align-items: center;
-  display: flex;
-  font-size: 0.75rem;
-  font-weight: 500;
-  height: 1.75rem;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-}
-.hxBreadcrumb > a {
-  margin-right: 0.5rem;
-}
-.hxBreadcrumb > a:last-of-type {
-  color: #9e9e9e;
-  font-weight: 300;
-  pointer-events: none;
-}
-.hxBreadcrumb .delimiter {
-  color: #9e9e9e;
-  font-size: 0.5rem;
-  margin-right: 0.5rem;
-}
-/* ================================================== *\
- * MIXINS
-\* ================================================== */
 /* ================================================== *\
  * COMPONENT STYLES
 \* ================================================== */
@@ -1001,6 +1378,9 @@ hx-checkbox-control > input[type="checkbox"]:disabled ~ label > hx-checkbox:hove
   color: #bdbdbd;
 }
 @supports (--modern: true) {
+  hx-checkbox-control {
+    position: relative;
+  }
   hx-checkbox-control > label > hx-checkbox {
     display: inline-block;
   }
@@ -1086,6 +1466,9 @@ hx-tile.hxSubdued:hover {
   padding: 0 10px;
 }
 /* ========== COMMON ========== */
+label.hxChoice {
+  position: relative;
+}
 label.hxChoice > input {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -1207,6 +1590,9 @@ hx-tile-title {
   display: block;
   font-size: 1rem;
   font-weight: 700;
+}
+hx-tile {
+  position: relative;
 }
 hx-tile hx-tile-title {
   margin-bottom: 0;
@@ -1407,6 +1793,9 @@ hx-select-control[hx-dirty] > select:enabled:invalid:focus ~ hx-select,
 hx-select-control.hxInvalid > select:enabled:focus ~ hx-select {
   border: 2px solid #d32f2f;
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+hx-file-control {
+  position: relative;
 }
 hx-file-control > * {
   margin: 0;
@@ -1633,6 +2022,77 @@ hx-file-tile[invalid] {
 .hxOptional::after {
   color: #757575;
   content: ' (optional)';
+}
+.hxTextCtrl {
+  background-color: #ffffff;
+  border-radius: 2px;
+  border: 1px solid #bdbdbd;
+  color: #424242;
+  display: block;
+  font-size: 1rem;
+  height: 2rem;
+  padding: 0 0.75rem;
+  width: 100%;
+}
+.hxTextCtrl::-moz-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+.hxTextCtrl::-ms-input-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+.hxTextCtrl::-webkit-input-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+.hxTextCtrl::placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+textarea.hxTextCtrl {
+  min-height: 5.75rem;
+  resize: vertical;
+  padding: 0.5rem;
+}
+.hxTextCtrl:focus {
+  border-color: #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  outline: 0;
+}
+.hxTextCtrl:focus[invalid] {
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+.hxTextCtrl[invalid] {
+  border: 2px solid #d32f2f;
+}
+.hxTextCtrl[disabled] {
+  background-color: #f5f5f5;
+  border-color: #e0e0e0;
+  border-width: 1px;
+  color: #d8d8d8;
+  cursor: not-allowed;
+  resize: none;
+}
+.hxTextCtrl[disabled]::-ms-input-placeholder {
+  color: inherit;
+}
+.hxTextCtrl[disabled]::-moz-placeholder {
+  color: inherit;
+}
+.hxTextCtrl[disabled]::-webkit-input-placeholder {
+  color: inherit;
+}
+.hxTextCtrl[disabled]::placeholder {
+  color: inherit;
 }
 /* ===== GRID ===== */
 .hxRow {
@@ -2308,11 +2768,6 @@ hx-file-tile[invalid] {
   }
 }
 /* ===== end:GRID ===== */
-hx-icon {
-  display: inline-block;
-  height: 1em;
-  width: 1em;
-}
 /* ======================================= *\
   +-----------------------+
   | "header" area         |
@@ -2566,46 +3021,6 @@ hx-dt {
 }
 hx-def {
   display: flex;
-}
-/*
-  NOTE: This implementation is known to be slightly buggy with IE11.
-  In various scenarious, IE11 will render the element with a
-  "squigglevision"-like appearance. We were unable to pinpoint what
-  causes the bug, but factors contributing to it are sub-pixel calculations,
-  display + animation property issues, and even border-radius of the parent.
-
-  There's very little we can do about it, because the bug resides in the
-  IE rendering engine (which is no longer receiving updates). Design is aware
-  of the issue, and has noted that the issue is acceptable for IE compatibility.
-
-  1: explicitly set transform-box for IE/Edge compatibility
-  2: explicitly set transform-origin with full X/Y/Z values for IE/Edge compatibility
-*/
-hx-busy {
-  animation-play-state: running;
-  animation: hx-spin 0.8s linear infinite;
-  border-color: transparent currentColor currentColor;
-  border-radius: 1em;
-  border-style: solid;
-  border-width: 2px;
-  box-sizing: border-box;
-  display: inline-block;
-  height: 1em;
-  transform-box: border-box;
-  transform-origin: 0.5em 0.5em 0.5em;
-  vertical-align: middle;
-  width: 1em;
-}
-hx-busy[paused] {
-  animation-play-state: paused;
-}
-hx-progress {
-  background-color: #d8d8d8;
-  border-radius: 1em;
-  color: #16b9d4;
-  display: block;
-  height: 0.5rem;
-  overflow: hidden;
 }
 hx-menu {
   display: none;
@@ -3056,8 +3471,12 @@ hx-popover[open] {
 }
 #hxPopover.hx-popover > header,
 hx-popover > header {
+  color: #424242;
   flex-shrink: 0;
+  font-size: 1rem;
+  font-weight: 500;
   padding: 1.25rem;
+  text-transform: none;
 }
 #hxPopover.hx-popover > hx-div:not([scroll]),
 hx-popover > hx-div:not([scroll]) {
@@ -3122,9 +3541,13 @@ hx-popover-foot .hxBtn + .hxBtn {
   margin-left: 1.25rem;
 }
 hx-popover-head {
+  color: #424242;
   display: block;
   flex-shrink: 0;
+  font-size: 1rem;
+  font-weight: 500;
   padding: 1.25rem;
+  text-transform: none;
 }
 hx-radio {
   border-radius: 1rem;
@@ -3316,6 +3739,9 @@ hx-radio-control > input[type="radio"]:disabled ~ label > hx-radio:hover {
   color: #bdbdbd;
 }
 @supports (--modern: true) {
+  hx-radio-control {
+    position: relative;
+  }
   hx-radio-control > input[type="radio"] {
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -3421,186 +3847,6 @@ hx-search {
 .hxSearchSuggestion:hover {
   background-color: #e4f9f9;
 }
-.hxSelector {
-  border-radius: 2px;
-  color: #0c7c84;
-  display: inline-flex;
-  font-size: 0.875rem;
-  font-weight: 500;
-  height: 2rem;
-  padding: 1px;
-  position: relative;
-  white-space: nowrap;
-  z-index: 0;
-}
-.hxSelector::before,
-.hxSelector::after {
-  bottom: 0;
-  content: '';
-  display: block;
-  left: 0;
-  pointer-events: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.hxSelector::before {
-  background-color: #ffffff;
-}
-.hxSelector::after {
-  border: 1px solid #bdbdbd;
-}
-.hxSelector label {
-  flex-grow: 1;
-  flex-shrink: 0;
-  height: 100%;
-  z-index: 0;
-}
-.hxSelector label span {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  line-height: 1;
-  padding: 0 0.75rem;
-  text-transform: uppercase;
-}
-.hxSelector label input {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  border: 0;
-  box-shadow: none;
-  height: 1px;
-  margin: -1px;
-  outline: none;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  z-index: -10;
-}
-.hxSelector label input::-moz-focus-inner {
-  border: 0;
-  outline: none;
-}
-.hxSelector label input:focus {
-  outline: none;
-}
-.hxSelector label input:focus + span {
-  background-color: #b6e3eb;
-  color: #0c7c84;
-}
-.hxSelector label input:checked + span {
-  background-color: #0c7c84;
-  color: #ffffff;
-}
-.hxSelector label input:checked:focus + span {
-  box-shadow: 0 0 4px 0 #0c7c84;
-}
-.hxSelector label input:active + span {
-  background-color: #0e94a6;
-  color: #ffffff;
-}
-.hxSelector label input[invalid] + span {
-  background-color: #ffffff;
-  border: 2px solid #d32f2f;
-  color: #d32f2f;
-}
-.hxSelector label input[invalid]:checked + span {
-  background-color: #ffcdd2;
-}
-.hxSelector label input[invalid]:focus + span {
-  box-shadow: 0 0 4px 0 #d32f2f;
-}
-.hxSelector label input[disabled] + span {
-  background-color: transparent;
-  color: #d8d8d8;
-  cursor: not-allowed;
-}
-.hxSelector.hxRadio {
-  border-radius: 3rem;
-  overflow-y: hidden;
-  padding: 0;
-}
-.hxSelector.hxRadio::after {
-  border-radius: 3rem;
-}
-.hxSelector.hxRadio input + span {
-  border-radius: 3rem;
-}
-/* ======================================= *\
- * BETA BETA BETA BETA BETA BETA BETA BETA *
-\* ======================================= */
-hx-accordion.beta-hxStepper {
-  counter-reset: step;
-}
-hx-accordion.beta-hxStepper hx-accordion-panel {
-  border-top: 1px solid #e0e0e0;
-}
-hx-accordion.beta-hxStepper hx-accordion-panel:last-child {
-  border-bottom: 1px solid #e0e0e0;
-}
-hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"] {
-  display: flex;
-  padding: 1rem;
-}
-hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"] > * {
-  display: flex;
-  align-items: center;
-}
-hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"]:hover .beta-hxStepCounter {
-  background-color: #16b9d4;
-  color: #ffffff;
-}
-hx-accordion.beta-hxStepper hx-accordion-panel[open] .beta-hxStepCounter {
-  background-color: #16b9d4;
-  color: #ffffff;
-}
-hx-accordion.beta-hxStepper hx-accordion-panel[disabled] .beta-hxStepCounter {
-  background-color: #d8d8d8;
-  color: #757575;
-}
-hx-accordion.beta-hxStepper hx-accordion-panel[disabled] .beta-hxStepLabel {
-  color: #757575;
-}
-hx-accordion.beta-hxStepper hx-accordion-panel[disabled] header[slot="header"]:hover .beta-hxStepCounter {
-  background-color: #d8d8d8;
-  color: #757575;
-}
-hx-accordion.beta-hxStepper .beta-hxStepCounter {
-  background-color: #0c7c84;
-  border-radius: 3rem;
-  color: #ffffff;
-  counter-increment: step;
-  flex-shrink: 0;
-  font-size: 1.5rem;
-  height: 2.25rem;
-  position: relative;
-  width: 2.25rem;
-}
-hx-accordion.beta-hxStepper .beta-hxStepCounter::before {
-  content: counter(step);
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-hx-accordion.beta-hxStepper .beta-hxStepLabel {
-  color: #424242;
-  flex-basis: 50%;
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin-left: 1rem;
-}
-hx-accordion.beta-hxStepper .beta-hxStepValue {
-  flex-basis: 50%;
-  font-size: 1rem;
-  font-weight: 500;
-  margin-left: 0.5rem;
-}
-hx-accordion.beta-hxStepper .beta-hxSubmitButtons .hxBtn + .hxBtn {
-  margin-left: 0.5rem;
-}
 .hxTable {
   background-color: transparent;
   border-collapse: collapse;
@@ -3661,6 +3907,11 @@ hx-accordion.beta-hxStepper .beta-hxSubmitButtons .hxBtn + .hxBtn {
 */
 .hxTable {
   margin: 1.5rem 0;
+}
+.hxTable caption {
+  color: #616161;
+  font-size: 0.875rem;
+  font-weight: 300;
 }
 .hxTable thead {
   border-color: transparent;
@@ -4117,285 +4368,4 @@ hx-tooltip[open] {
 hx-tooltip > header {
   font-weight: 500;
   margin-bottom: 0.5rem;
-}
-/* ========== HEADINGS ========== */
-h1,
-.hxHeading-1,
-.hxPageTitle {
-  color: #424242;
-  font-size: 3rem;
-  font-weight: 100;
-  text-transform: none;
-}
-h2,
-.hxHeading-2,
-.hxSectionTitle {
-  color: #424242;
-  font-size: 2rem;
-  font-weight: 300;
-  text-transform: none;
-}
-h3,
-.hxHeading-3,
-.hxSubSectionTitle {
-  color: #424242;
-  font-size: 1.5rem;
-  font-weight: 400;
-  text-transform: none;
-}
-h4,
-.hxHeading-4,
-#hxPopover.hx-popover > header,
-hx-popover > header,
-hx-popover-head,
-.hxContainerTitle {
-  color: #424242;
-  font-size: 1rem;
-  font-weight: 500;
-  text-transform: none;
-}
-h5,
-.hxHeading-5 {
-  color: #616161;
-  font-size: 0.75rem;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-h6 {
-  color: inherit;
-  font-size: 1rem;
-  font-weight: 500;
-  text-transform: none;
-}
-hx-error {
-  color: #d32f2f;
-}
-.hxSubdued {
-  color: #6b6b6b;
-}
-.hxFigure figcaption,
-.hxCaption,
-.hxTable caption {
-  color: #616161;
-  font-size: 0.875rem;
-  font-weight: 300;
-}
-.hxSubBody {
-  font-size: 0.75rem;
-}
-/* ===== Helix Theme for Highlight.js ===== */
-.hljs {
-  /* ---- General Purpose ----- */
-  /* ----- Meta ----- */
-  /* ----- Tags, Attributes, Configs ----- */
-  /* ----- Markup ----- */
-  /* ----- CSS ----- */
-  /* ----- Templates ----- */
-  /* ----- diff ----- */
-}
-.hljs-type {
-  font-style: italic;
-}
-.hljs-literal {
-  color: #3391ff;
-}
-.hljs-number {
-  color: #3391ff;
-}
-.hljs-regexp {
-  color: #dd6105;
-}
-.hljs-string {
-  color: #0d47a1;
-}
-.hljs-subst {
-  font-weight: 700;
-}
-.hljs-symbol {
-  font-weight: 100;
-}
-.hljs-class {
-  font-weight: 700;
-}
-.hljs-title {
-  color: #000000;
-}
-.hljs-params {
-  font-style: italic;
-}
-.hljs-comment {
-  font-style: italic;
-  font-weight: 300;
-}
-.hljs-doctag {
-  font-style: italic;
-  font-weight: 300;
-}
-.hljs-meta {
-  color: #c2185b;
-  font-weight: 700;
-}
-.hljs-section {
-  font-weight: 700;
-}
-.hljs-code {
-  font-weight: 300;
-}
-.hljs-emphasis {
-  font-style: italic;
-}
-.hljs-strong {
-  font-weight: 700;
-}
-.hljs-link {
-  text-decoration: underline;
-}
-.hljs-selector-tag,
-.hljs-selector-id,
-.hljs-selector-class {
-  color: #000000;
-}
-.hljs-selector-pseudo {
-  font-weight: 300;
-  font-style: italic;
-}
-.hljs-template-tag {
-  font-weight: 300;
-}
-.hljs-template-variable {
-  color: #3391ff;
-}
-.hljs-addition {
-  background-color: #4caf51;
-}
-.hljs-deletion {
-  background-color: #f8bbd0;
-}
-/* ===== DEPRECATED Remove in v1.0.0 ===== */
-.hxLabel {
-  color: #6b6b6b;
-  font-size: 1rem;
-  font-weight: 500;
-}
-.hxTextCtrl {
-  background-color: #ffffff;
-  border-radius: 2px;
-  border: 1px solid #bdbdbd;
-  color: #424242;
-  display: block;
-  font-size: 1rem;
-  height: 2rem;
-  padding: 0 0.75rem;
-  width: 100%;
-}
-.hxTextCtrl::-moz-placeholder {
-  color: #6b6b6b;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 1;
-}
-.hxTextCtrl::-ms-input-placeholder {
-  color: #6b6b6b;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 1;
-}
-.hxTextCtrl::-webkit-input-placeholder {
-  color: #6b6b6b;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 1;
-}
-.hxTextCtrl::placeholder {
-  color: #6b6b6b;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 1;
-}
-textarea.hxTextCtrl {
-  min-height: 5.75rem;
-  resize: vertical;
-  padding: 0.5rem;
-}
-.hxTextCtrl:focus {
-  border-color: #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-  outline: 0;
-}
-.hxTextCtrl:focus[invalid] {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-.hxTextCtrl[invalid] {
-  border: 2px solid #d32f2f;
-}
-.hxTextCtrl[disabled] {
-  background-color: #f5f5f5;
-  border-color: #e0e0e0;
-  border-width: 1px;
-  color: #d8d8d8;
-  cursor: not-allowed;
-  resize: none;
-}
-.hxTextCtrl[disabled]::-ms-input-placeholder {
-  color: inherit;
-}
-.hxTextCtrl[disabled]::-moz-placeholder {
-  color: inherit;
-}
-.hxTextCtrl[disabled]::-webkit-input-placeholder {
-  color: inherit;
-}
-.hxTextCtrl[disabled]::placeholder {
-  color: inherit;
-}
-/* ========== HELPERS ========== *\
-    - Class Selectors ONLY
-    - NO Elements Selectors
-    - NO !important
-\* ============================= */
-.hxLeft,
-.text-left {
-  text-align: left !important;
-}
-.hxCenter,
-.text-center {
-  text-align: center !important;
-}
-.hxRight,
-.text-right {
-  text-align: right !important;
-}
-.text-justify {
-  text-align: justify;
-}
-.hxForceWordBreak {
-  word-break: break-all;
-}
-.hxNoWrap,
-.text-nowrap {
-  white-space: nowrap;
-}
-.hxTruncate {
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-/* ========== OVERRIDES ========== *\
-    - A.K.A. "Shame" File
-    - Allow !important
-\* =============================== */
-.hxFigure {
-  margin: 1em 0;
-}
-p {
-  margin: 0;
-}
-p + * {
-  margin-top: 0.5rem;
-}
-hr.hxDivider {
-  border-color: rgba(0, 0, 0, 0.1) transparent rgba(255, 255, 255, 0.2);
-  border-style: solid;
-  border-width: 1px 0;
-  margin: 0.75rem 0;
 }

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: interfaces/HXElement/index.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: interfaces/HXElement/index.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Keep track of prepared templates
+const TEMPLATE_CACHE = {};
+
+/**
+ * Define functionality common to all HelixUI elements.
+ *
+ * @extends external:HTMLElement
+ * @hideconstructor
+ * @since 0.2.0
+ */
+export class HXElement extends HTMLElement {
+    /**
+     * Defines the name of the element to register in the Custom Element registry
+     *
+     * @abstract
+     * @default undefined
+     * @type {String}
+     */
+    static get is () {}
+
+    /**
+     * Defines the innerHTML of the ShadowDOM.
+     *
+     * If undefined, no Shadow Root will be created.
+     *
+     * @abstract
+     * @default undefined
+     * @type {String}
+     */
+    static get template () {}
+
+    /**
+     * Defines a list of attributes to watch for changes
+     * (in addition to those defined by {@link HXElement.observedAttributes}).
+     *
+     * @abstract
+     * @default []
+     * @ignore
+     * @type {Array&lt;String>}
+     */
+    static get $observedAttributes () {
+        return [];
+    }
+
+    /**
+     * HelixUI lifecycle callback called at the end of construction.
+     *
+     * Use this callback to apply pre-connect setup logic.
+     *
+     * @abstract
+     * @ignore
+     */
+    $onCreate () {}
+
+    /**
+     * HelixUI lifecycle method called at the end of the connectedCallback()
+     * Custom Element lifecycle method.
+     *
+     * Use this callback to initialize an element's behavior.
+     *
+     * @abstract
+     * @ignore
+     */
+    $onConnect () {}
+
+    /**
+     * HelixUI lifecycle method. Called at the end of {@link HXElement.disconnectedCallback}.
+     *
+     * @abstract
+     * @ignore
+     */
+    $onDisconnect () {}
+
+    /**
+     * HelixUI lifecycle method called when an observed attribute's value changes.
+     *
+     * @abstract
+     * @ignore
+     * @param {String} attr - name of the attribute that changed
+     * @param {String} newVal - value of the attribute after the change
+     * @param {String} oldVal - value of the attribute before the change
+     */
+    $onAttributeChange (attr, oldVal, newVal) {} // eslint-disable-line no-unused-vars
+
+    /**
+     * Register class with the customElements registry.
+     * Note: the custom element is only registered if the "is" class property is defined.
+     */
+    static $define () {
+        if (this.is) {
+            customElements.define(this.is, this);
+        }
+    }
+
+    // Called when an instance is created
+    constructor () {
+        super();
+        this._$setupShadowDOM();
+
+        this.$onAttributeChange = this.$onAttributeChange.bind(this);
+        this.$onConnect = this.$onConnect.bind(this);
+        this.$onCreate = this.$onCreate.bind(this);
+        this.$onDisconnect = this.$onDisconnect.bind(this);
+        this.$relayEvent = this.$relayEvent.bind(this);
+
+        this.$onCreate();
+    }//constructor
+
+    // Called when an instance of the element is attached to the DOM.
+    connectedCallback () {
+        this._$tabIndex = this.getAttribute('tabindex');
+        this.$upgradeProperty('disabled');
+        this.setAttribute('hx-defined', '');
+        this.$onConnect();
+    }
+
+    // Called when an instance of the element is removed from the DOM.
+    disconnectedCallback () {
+        this.$onDisconnect();
+    }
+
+    /**
+     * Custom Elements API property used to determine when to call the
+     * attributeChangedCallback() lifecycle method.
+     *
+     * @default ['disabled']
+     * @ignore
+     * @see HXElement.$observedAttributes
+     * @type {Array&lt;String>}
+     */
+    static get observedAttributes () {
+        let common = [ 'disabled' ];
+        let extra = this.$observedAttributes;
+        return [ ...common, ...extra ];
+    }
+
+    // Called when an attribute is SET (not just when it changes).
+    attributeChangedCallback (attr, oldVal, newVal) {
+        if (attr === 'disabled') {
+            if (newVal !== null) {
+                this.removeAttribute('tabindex');
+                this.setAttribute('aria-disabled', true);
+                this.blur();
+            } else {
+                if (this._$tabIndex) {
+                    this.setAttribute('tabindex', this._$tabIndex);
+                }
+                this.removeAttribute('aria-disabled');
+            }
+        }
+
+        // Always call $onAttributeChange, so that we can run additional
+        // logic against common attributes in subclasses, too.
+        if (newVal !== oldVal) {
+            this.$onAttributeChange(attr, oldVal, newVal);
+        }
+    }//attributeChangedCallback
+
+    /* ===== PUBLIC PROPERTIES ===== */
+
+    /**
+     * Indicates whether the element is disabled.
+     * A disabled element is nonfunctional and noninteractive.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get disabled () {
+        return this.hasAttribute('disabled');
+    }
+    set disabled (value) {
+        if (value) {
+            this.setAttribute('disabled', '');
+        } else {
+            this.removeAttribute('disabled');
+        }
+    }
+
+    /* ===== PUBLIC METHODS ===== */
+
+    /**
+     * Assign a value to an HTML attribute, if the attribute isn't present.
+     *
+     * @param {String} name - name of the attribute to set
+     * @param {String} val - value to assign
+     * @see https://goo.gl/MUFHD8
+     */
+    $defaultAttribute (name, val) {
+        if (!this.hasAttribute(name)) {
+            this.setAttribute(name, val);
+        }
+    }
+
+    /**
+     * Emit a custom event
+     *
+     * @param {String} evtName - name of event
+     * @param {Object} opts - options to configure the event
+     * @param {Boolean} [opts.cancelable=true] - whether the event can be canceled
+     * @param {Boolean} [opts.bubbles=false] - whether the event bubbles up the DOM tree
+     * @param {*} [opts.detail] - additional information to communicated along with the event
+     *
+     * @returns {Boolean}
+     * Returns true if the event was not canceled by an event listener.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent
+     */
+    $emit (evtName, opts) {
+        let options = Object.assign({}, {
+            cancelable: true,
+            bubbles: false,
+        }, opts);
+
+        let evt = new CustomEvent(evtName, options);
+
+        return this.dispatchEvent(evt);
+    }//$emit
+
+    /**
+     * Relay an event within the ShadowDOM, retargeting the event to the custom element
+     *
+     * @param {Event} oldEvent - event to relay
+     * @returns {Boolean} Returns true if the event was not canceled by an event listener.
+     */
+    $relayEvent (oldEvent) {
+        // Emit new event of same name
+        let newEvent = new CustomEvent(oldEvent.type, {
+            bubbles: oldEvent.bubbles,
+            cancelable: oldEvent.cancelable,
+        });
+        return this.dispatchEvent(newEvent);
+    }//$relayEvent()
+
+    /**
+     * Relay events that do not bubble. For instance, `focus` and `blur` events
+     * on an `&lt;input>` within the ShadowDOM.
+     *
+     * @param {HTMLElement} el - element to attach non-bubbling event listeners
+     */
+    $relayNonBubblingEvents (el) {
+        el.addEventListener('focus', this.$relayEvent);
+        el.addEventListener('blur', this.$relayEvent);
+    }
+
+    /**
+     * Remove events relayed by `$relayNonBubblingEvents`
+     *
+     * @param {HTMLElement} el - element to remove non-bubbline event listeners
+     */
+    $removeNonBubblingRelays (el) {
+        el.removeEventListener('focus', this.$relayEvent);
+        el.removeEventListener('blur', this.$relayEvent);
+    }
+
+    /**
+     * Captures the value from the unupgraded instance and deletes the property
+     * so it does not shadow the custom element's own property setter. This way,
+     * when the element's definition does finally load, it can immediately
+     * reflect the correct state.
+     *
+     * @param {String} prop - property name to upgrade
+     * @see https://goo.gl/MDp6j5
+     */
+    $upgradeProperty (prop) {
+        if (this.hasOwnProperty(prop)) {
+            let value = this[prop];
+            delete this[prop];
+            this[prop] = value;
+        }
+    }
+
+    /* ===== PRIVATE PROPERTIES ===== */
+    // TBD
+
+    /* ===== PRIVATE METHODS ===== */
+
+    /**
+     * @private
+     * @description
+     * Prepares a template for injection into the shadow root
+     * @param {String} strTemplate - HTML template content
+     * @returns {HTMLTemplate}
+     */
+    _$prepareTemplate (strTemplate) {
+        let _elementName = this.constructor.is;
+
+        if (TEMPLATE_CACHE[_elementName]) {
+            return TEMPLATE_CACHE[_elementName];
+        }
+
+        let _template = document.createElement('template');
+        _template.innerHTML = strTemplate;
+
+        if (window.ShadyCSS) {
+            // modifies 'template' variable in-place
+            ShadyCSS.prepareTemplate(_template, _elementName);
+        }
+
+        // cache prepared template, so it isn't prepared more than once
+        TEMPLATE_CACHE[_elementName] = _template;
+
+        return _template;
+    }//_$prepareTemplate()
+
+    /**
+     * @private
+     * @description
+     * If a ShadowDOM needs to be setup, this method handles:
+     *
+     * 1. preparing the &lt;template> element
+     * 2. attaching a shadow root
+     * 3. applying ShadyDOM styling (if needed)
+     * 4. stamping the template
+     */
+    _$setupShadowDOM () {
+        // Don't do anything unless the "template" class property is defined.
+        if (this.constructor.template) {
+            let _template = this._$prepareTemplate(this.constructor.template);
+            this.attachShadow({ mode: 'open' });
+            if (window.ShadyCSS) {
+                ShadyCSS.styleElement(this);
+            }
+            this.shadowRoot.appendChild(_template.content.cloneNode(true));
+        }
+    }//_$setupShadowDOM()
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Alignment.html">HelixUI/Utils/Alignment</a></li><li><a href="module-HelixUI_Utils_Offset.html">HelixUI/Utils/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-DOMRect.html">DOMRect</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionElementHXElement.html">HXElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAccordionPanelElementHXElement.html">HXElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXAlertElementHXElement.html">HXElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXBusyElementHXElement.html">HXElement</a></li><li><a href="HXCheckboxControlElement.html">HXCheckboxControlElement</a></li><li><a href="HXCheckboxControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXCheckboxElementHXElement.html">HXElement</a></li><li><a href="HXCheckboxSetElement.html">HXCheckboxSetElement</a></li><li><a href="HXCheckboxSetElementHXElement.html">HXElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDisclosureElementHXElement.html">HXElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDivElementHXElement.html">HXElement</a></li><li><a href="HXDrawerElement.html">HXDrawerElement</a></li><li><a href="HXDrawerElementHXElement.html">HXElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXDropFenceElementHXElement.html">HXElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXErrorElementHXElement.html">HXElement</a></li><li><a href="HXFileControlElement.html">HXFileControlElement</a></li><li><a href="HXFileControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileIconElementHXElement.html">HXElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileInputElementHXElement.html">HXElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXFileTileElementHXElement.html">HXElement</a></li><li><a href="HXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXIconElementHXElement.html">HXElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuElementHXElement.html">HXElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXMenuitemElementHXElement.html">HXElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXModalElementHXElement.html">HXElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPillElementHXElement.html">HXElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXPopoverElementHXElement.html">HXElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXProgressElementHXElement.html">HXElement</a></li><li><a href="HXRadioControlElement.html">HXRadioControlElement</a></li><li><a href="HXRadioControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXRadioElement.html">HXRadioElement</a></li><li><a href="HXRadioElementHXElement.html">HXElement</a></li><li><a href="HXRadioSetElement.html">HXRadioSetElement</a></li><li><a href="HXRadioSetElementHXElement.html">HXElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXRevealElementHXElement.html">HXElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchAssistanceElementHXElement.html">HXElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXSearchElementHXElement.html">HXElement</a></li><li><a href="HXSelectControlElement.html">HXSelectControlElement</a></li><li><a href="HXSelectControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXSelectElement.html">HXSelectElement</a></li><li><a href="HXSelectElementHXElement.html">HXElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabcontentElementHXElement.html">HXElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTabElementHXElement.html">HXElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTablistElementHXElement.html">HXElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabpanelElementHXElement.html">HXElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXTabsetElementHXElement.html">HXElement</a></li><li><a href="HXTextareaControlElement.html">HXTextareaControlElement</a></li><li><a href="HXTextareaControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXTextControlElement.html">HXTextControlElement</a></li><li><a href="HXTextControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXToastElementHXElement.html">HXElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li><li><a href="HXTooltipElementHXElement.html">HXElement</a></li></ul><h3>Interfaces</h3><ul><li><a href="Positionable.html">Positionable</a></li><li><a href="Revealable.html">Revealable</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Drawer:close">Drawer:close</a></li><li><a href="global.html#event:Drawer:open">Drawer:open</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Revealable:close">Revealable:close</a></li><li><a href="global.html#event:Revealable:open">Revealable:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:Tab:hxtabclick">Tab:hxtabclick</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Sep 25 2019 17:28:05 GMT-0500 (CDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

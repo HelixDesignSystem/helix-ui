@@ -1,3 +1,42 @@
+a[href] {
+  background-color: transparent;
+  color: #0d74d1;
+  text-decoration: none;
+}
+
+a[href]:hover, a[href]:active, a.pseudo-active {
+  color: #3391ff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.demo-typography .font-roboto {
+  font-family: "Roboto", sans-serif;
+}
+
+.demo-typography .font-roboto-mono {
+  font-family: "Roboto Mono", monospace;
+}
+
+.demo-typography .weight-thin {
+  font-weight: 100;
+}
+
+.demo-typography .weight-light {
+  font-weight: 300;
+}
+
+.demo-typography .weight-regular {
+  font-weight: 400;
+}
+
+.demo-typography .weight-medium {
+  font-weight: 500;
+}
+
+.demo-typography .weight-bold {
+  font-weight: 700;
+}
 /* ==================================================== *\
  * Styles below are NOT distributed with HelixUI assets *
 \* ==================================================== */
@@ -614,30 +653,6 @@ hx-icon.danger {
 .tooltip-appearance > hx-tooltip {
   margin: 1.25rem;
   position: relative;
-}
-a.pseudo-active {
-  color: #3391ff;cursor: pointer;text-decoration: none;
-}
-.demo-typography .font-roboto {
-  font-family: "Roboto", sans-serif;
-}
-.demo-typography .font-roboto-mono {
-  font-family: "Roboto Mono", monospace;
-}
-.demo-typography .weight-thin {
-  font-weight: 100;
-}
-.demo-typography .weight-light {
-  font-weight: 300;
-}
-.demo-typography .weight-regular {
-  font-weight: 400;
-}
-.demo-typography .weight-medium {
-  font-weight: 500;
-}
-.demo-typography .weight-bold {
-  font-weight: 700;
 }
 .button-spec .hxBtn.pseudo-focus {
   outline: none;

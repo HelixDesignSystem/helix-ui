@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: utils/offset/index.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: utils/offset/index.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module HelixUI/Utils/Offset
+ * @description
+ * Utilities to calculate coordinates of an offset element
+ * in relation to a relative element.
+ *
+ * @example &lt;caption>Positioning a menu below a button&lt;/caption>
+ * let elOffset = document.querySelector('menu');
+ * let elReference = document.querySelector('button');
+ *
+ * // grab bounding DOMRects
+ * let offRect = elOffset.getBoundingClientRect();
+ * let refRect = elRef.getBoundingClientRect();
+ *
+ * // Calculate coordinates
+ * let { x, y } = getBottom(offRect, refRect);
+ */
+
+/**
+ * @external DOMRect
+ * @description Object returned by Element.getBoundingClientRect().
+ *
+ * - MDN: [DOMRect](https://developer.mozilla.org/en-US/docs/Web/API/DOMRect)
+ */
+
+/**
+ * @global
+ * @typedef {Number} Coordinate
+ * @description Numeric, pixel coordinate
+ */
+
+/**
+ * @typedef {Object} OffsetDelta
+ * @description
+ * Calculated metadata
+ *
+ * @prop {Integer} dH - height difference between target element and offset element
+ * @prop {Integer} dW - width difference between target element and offset element
+ * @prop {Integer} dX - X delta (a positive value shifts the target RIGHT)
+ * @prop {Integer} dY - Y delta (a positive value shifts the target DOWN)
+ */
+
+/**
+ * @typedef {Object} OffsetOptions
+ * @description
+ * Offset configuration object
+ *
+ * @default {}
+ * @prop {Integer} [dX=0] - X offset (a positive value shifts the target RIGHT)
+ * @prop {Integer} [dY=0] - Y offset (a positive value shifts the target DOWN)
+ */
+
+/**
+ * @typedef {Object} XYCoordinates
+ * @global
+ *
+ * @prop {Coordinate} x - X coordinate
+ * @prop {Coordinate} y - Y coordinate
+ */
+
+/**
+ * Utility function to calculate delta metadata
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {OffsetDelta}
+ */
+function _getDeltas (off, ref, opts = {}) {
+    // height delta
+    let dH = ref.height - off.height;
+    // width delta
+    let dW = ref.width - off.width;
+    // X delta
+    let dX = opts.dX || 0;
+    // Y delta
+    let dY = opts.dY || 0;
+
+    return { dH, dW, dX, dY };
+}
+
+/**
+ * Calculate { x, y } coordinates needed to center align two elements.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getCenter (off, ref, opts = {}) {
+    let { dW, dH, dX, dY } = _getDeltas(off, ref, opts);
+
+    let x = ref.left + (dW / 2) + dX;
+    let y = ref.top + (dH / 2) + dY;
+
+    return { x, y };
+}
+
+/**
+ * Calculate { x, y } coordinates needed to position a target element above a
+ * reference element, with their y-axes aligned.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getTop (off, ref, opts) {
+    let { dY } = _getDeltas(off, ref, opts);
+    let { x } = getCenter(off, ref, opts);
+    let y = ref.top - off.height + dY;
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element below a
+ * reference element, with their y-axes aligned.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getBottom (off, ref, opts) {
+    let { dY } = _getDeltas(off, ref, opts);
+    let { x } = getCenter(off, ref, opts);
+    let y = ref.top + ref.height + dY;
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element left of a
+ * reference element, with their x-axes aligned.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getLeft (off, ref, opts) {
+    let { dX } = _getDeltas(off, ref, opts);
+    let { y } = getCenter(off, ref, opts);
+    let x = ref.left - off.width + dX;
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element right of a
+ * reference element, with their x-axes aligned.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getRight (off, ref, opts) {
+    let { dX } = _getDeltas(off, ref, opts);
+    let { y } = getCenter(off, ref, opts);
+    let x = ref.left + ref.width + dX;
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element above and to the
+ * left of a reference element, so that the right edge of the target element aligns
+ * with the y-axis of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getTopLeft (off, ref, opts) {
+    let { x: xT, y } = getTop(off, ref, opts);
+    let x = xT - (off.width / 2);
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element above and to the
+ * left of a reference element, so that the left edge of the target element aligns
+ * with the left edge of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getTopStart (off, ref, opts) {
+    let { dX } = _getDeltas(off, ref, opts);
+    let x = ref.left + dX;
+    let { y } = getTop(off, ref, opts);
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element above and to the
+ * right of a reference element, so that the right edge of the target element aligns
+ * with the right edge of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getTopEnd (off, ref, opts) {
+    let { dX } = _getDeltas(off, ref, opts);
+    let x = ref.right - off.width + dX;
+    let { y } = getTop(off, ref, opts);
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element above and to the
+ * right of a reference element, so that the left edge of the target element aligns
+ * with the y-axis of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getTopRight (off, ref, opts) {
+    let { x: xT, y } = getTop(off, ref, opts);
+    let x = xT + (off.width / 2);
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element right and slightly higher
+ * than the target element, so that the bottom edge of the target element aligns with the
+ * x-axis of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getRightTop (off, ref, opts) {
+    let { y: yR, x } = getRight(off, ref, opts);
+    let y = yR - (off.height / 2);
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element right and slightly higher
+ * than the target element, so that the top edge of the target element aligns with the
+ * top edge of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getRightStart (off, ref, opts) {
+    let { dY } = _getDeltas(off, ref, opts);
+    let { x } = getRight(off, ref, opts);
+    let y = ref.top + dY;
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element right and slightly lower
+ * than the target element, so that the bottom edge of the target element aligns with the
+ * bottom edge of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getRightEnd (off, ref, opts) {
+    let { dY } = _getDeltas(off, ref, opts);
+    let { x } = getRight(off, ref, opts);
+    let y = ref.bottom - off.height + dY;
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element right and
+ * slightly lower than the target element, so that the top edge of the target
+ * element aligns with the x-axis of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getRightBottom (off, ref, opts) {
+    let { x, y: yR } = getRight(off, ref, opts);
+    let y = yR + (off.height / 2);
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element below and to the
+ * right of a reference element, so that the left edge of the target element aligns
+ * with the y-axis of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getBottomRight (off, ref, opts) {
+    let { x: xB, y } = getBottom(off, ref, opts);
+    let x = xB + (off.width / 2);
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element below and to the
+ * right of a reference element, so that the right edge of the target element aligns
+ * with the right edge of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getBottomEnd (off, ref, opts) {
+    let { dX } = _getDeltas(off, ref, opts);
+    let x = ref.right - off.width + dX;
+    let { y } = getBottom(off, ref, opts);
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element below and to the
+ * left of a reference element, so that the left edge of the target element aligns
+ * with the left edge of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getBottomStart (off, ref, opts) {
+    let { dX } = _getDeltas(off, ref, opts);
+    let { y } = getBottom(off, ref, opts);
+    let x = ref.left + dX;
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element below and to the
+ * left of a reference element, so that the right edge of the target element aligns
+ * with the y-axis of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getBottomLeft (off, ref, opts) {
+    let { x: xB, y } = getBottom(off, ref, opts);
+    let x = xB - (off.width / 2);
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element left and slightly lower
+ * than the target element, so that the top edge of the target element aligns with the
+ * x-axis of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getLeftBottom (off, ref, opts) {
+    let { x, y: yL } = getLeft(off, ref, opts);
+    let y = yL + (off.height / 2);
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element left and slightly lower
+ * than the target element, so that the bottom edge of the target element aligns with the
+ * bottom edge of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getLeftEnd (off, ref, opts) {
+    let { dY } = _getDeltas(off, ref, opts);
+
+    let { x } = getLeft(off, ref, opts);
+    let y = ref.bottom - off.height + dY;
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element left and slightly higher
+ * than the target element, so that the top edge of the target element aligns with the
+ * top edge of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getLeftStart (off, ref, opts) {
+    let { dY } = _getDeltas(off, ref, opts);
+    let { x } = getLeft(off, ref, opts);
+    let y = ref.top + dY;
+
+    return { x, y };
+}
+
+/**
+ * Calculate (x,y) coordinates needed to position a target element left and slightly higher
+ * than the target element, so that the bottom edge of the target element aligns with the
+ * x-axis of the reference element.
+ *
+ * @param {DOMRect} off - bounding rectangle for the target element
+ * @param {DOMRect} ref - bounding rectangle for the reference element
+ * @param {OffsetOptions} [opts={}] - offset configuration
+ * @returns {XYCoordinates}
+ */
+export function getLeftTop (off, ref, opts) {
+    let { x, y: yL } = getLeft(off, ref, opts);
+    let y = yL - (off.height / 2);
+
+    return { x, y };
+}
+
+/**
+ * Key/value map of position values and their respective offset calculation function
+ *
+ * @enum {Function}
+ * @name offsetFunctionMap
+ */
+const fnMap = {
+    'bottom-center': getBottom,
+    'bottom-end': getBottomEnd,
+    'bottom-left': getBottomLeft,
+    'bottom-right': getBottomRight,
+    'bottom-start': getBottomStart,
+    'center-middle': getCenter,
+    'left-bottom': getLeftBottom,
+    'left-end': getLeftEnd,
+    'left-middle': getLeft,
+    'left-start': getLeftStart,
+    'left-top': getLeftTop,
+    'right-bottom': getRightBottom,
+    'right-end': getRightEnd,
+    'right-middle': getRight,
+    'right-start': getRightStart,
+    'right-top': getRightTop,
+    'top-center': getTop,
+    'top-end': getTopEnd,
+    'top-left': getTopLeft,
+    'top-right': getTopRight,
+    'top-start': getTopStart,
+};
+// position aliases
+fnMap['left'] = fnMap['left-middle'];
+fnMap['top'] = fnMap['top-center'];
+fnMap['right'] = fnMap['right-middle'];
+fnMap['bottom'] = fnMap['bottom-center'];
+fnMap['center'] = fnMap['center-middle'];
+
+export const offsetFunctionMap = fnMap;
+
+export default {
+    getBottom,
+    getBottomEnd,
+    getBottomLeft,
+    getBottomRight,
+    getBottomStart,
+    getCenter,
+    getLeft,
+    getLeftBottom,
+    getLeftEnd,
+    getLeftStart,
+    getLeftTop,
+    getRight,
+    getRightBottom,
+    getRightEnd,
+    getRightStart,
+    getTop,
+    getTopEnd,
+    getTopLeft,
+    getTopRight,
+    getTopStart,
+    offsetFunctionMap,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Alignment.html">HelixUI/Utils/Alignment</a></li><li><a href="module-HelixUI_Utils_Offset.html">HelixUI/Utils/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-DOMRect.html">DOMRect</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionElementHXElement.html">HXElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAccordionPanelElementHXElement.html">HXElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXAlertElementHXElement.html">HXElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXBusyElementHXElement.html">HXElement</a></li><li><a href="HXCheckboxControlElement.html">HXCheckboxControlElement</a></li><li><a href="HXCheckboxControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXCheckboxElementHXElement.html">HXElement</a></li><li><a href="HXCheckboxSetElement.html">HXCheckboxSetElement</a></li><li><a href="HXCheckboxSetElementHXElement.html">HXElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDisclosureElementHXElement.html">HXElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDivElementHXElement.html">HXElement</a></li><li><a href="HXDrawerElement.html">HXDrawerElement</a></li><li><a href="HXDrawerElementHXElement.html">HXElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXDropFenceElementHXElement.html">HXElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXErrorElementHXElement.html">HXElement</a></li><li><a href="HXFileControlElement.html">HXFileControlElement</a></li><li><a href="HXFileControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileIconElementHXElement.html">HXElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileInputElementHXElement.html">HXElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXFileTileElementHXElement.html">HXElement</a></li><li><a href="HXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXIconElementHXElement.html">HXElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuElementHXElement.html">HXElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXMenuitemElementHXElement.html">HXElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXModalElementHXElement.html">HXElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPillElementHXElement.html">HXElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXPopoverElementHXElement.html">HXElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXProgressElementHXElement.html">HXElement</a></li><li><a href="HXRadioControlElement.html">HXRadioControlElement</a></li><li><a href="HXRadioControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXRadioElement.html">HXRadioElement</a></li><li><a href="HXRadioElementHXElement.html">HXElement</a></li><li><a href="HXRadioSetElement.html">HXRadioSetElement</a></li><li><a href="HXRadioSetElementHXElement.html">HXElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXRevealElementHXElement.html">HXElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchAssistanceElementHXElement.html">HXElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXSearchElementHXElement.html">HXElement</a></li><li><a href="HXSelectControlElement.html">HXSelectControlElement</a></li><li><a href="HXSelectControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXSelectElement.html">HXSelectElement</a></li><li><a href="HXSelectElementHXElement.html">HXElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabcontentElementHXElement.html">HXElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTabElementHXElement.html">HXElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTablistElementHXElement.html">HXElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabpanelElementHXElement.html">HXElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXTabsetElementHXElement.html">HXElement</a></li><li><a href="HXTextareaControlElement.html">HXTextareaControlElement</a></li><li><a href="HXTextareaControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXTextControlElement.html">HXTextControlElement</a></li><li><a href="HXTextControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXToastElementHXElement.html">HXElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li><li><a href="HXTooltipElementHXElement.html">HXElement</a></li></ul><h3>Interfaces</h3><ul><li><a href="Positionable.html">Positionable</a></li><li><a href="Revealable.html">Revealable</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Drawer:close">Drawer:close</a></li><li><a href="global.html#event:Drawer:open">Drawer:open</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Revealable:close">Revealable:close</a></li><li><a href="global.html#event:Revealable:open">Revealable:open</a></li><li><a href="global.html#event:Search:blur">Search:blur</a></li><li><a href="global.html#event:Search:clear">Search:clear</a></li><li><a href="global.html#event:Search:focus">Search:focus</a></li><li><a href="global.html#event:Tab:hxtabclick">Tab:hxtabclick</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Sep 25 2019 17:28:05 GMT-0500 (CDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
