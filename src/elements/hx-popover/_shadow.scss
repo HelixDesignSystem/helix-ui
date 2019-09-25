@@ -1,0 +1,11 @@
+@import "vars";
+@import "../base";
+@import "../has-arrow";
+
+#hxPopover {
+  background-color: var(--hxBackgroundColor, $gray-0);
+  border-color: var(--hxBorderColor, $gray-300);
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: $layering-shadow;
+}

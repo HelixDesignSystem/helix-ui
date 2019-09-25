@@ -1,4 +1,4 @@
-@import "../_base";
+@import "../base";
 
 #hxCheckbox {
   align-items: center;
@@ -10,7 +10,7 @@
   width: 100%;
 }
 
-/* icons */
+// icons
 #hxMinus,
 #hxTick {
   grid-area: icon;

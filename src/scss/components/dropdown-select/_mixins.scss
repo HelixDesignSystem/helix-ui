@@ -1,6 +1,6 @@
 @import "mixins";
 
-@mixin __reset {
+@mixin __select--reset {
   @include appearance(none);
   font: inherit;
 
@@ -30,7 +30,7 @@
 // #Reset.select() -> hxSelect(reset)
 @mixin hxSelect($state: null) {
   @if $state == reset {
-    @include __reset;
+    @include __select--reset;
   }
   @else {
     // do nothing

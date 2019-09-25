@@ -1,9 +1,10 @@
-@import "../_base";
-@import (reference) "components/button/index";
+@import "vars";
+@import "../base";
+@import "components/button/mixins";
 
 #hxBackdrop {
   align-items: center;
-  background-color: var(--hxBackdrop-backgroundColor, @backdrop-color);
+  background-color: var(--hxBackdrop-backgroundColor, $backdrop-color);
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -13,9 +14,9 @@
 }
 
 #hxModal {
-  @box-shadow: 0px 7px 9px 0 fade(@gray-1000, 30%);
-  background-color: var(--hxBackgroundColor, @gray-0);
-  box-shadow: var(--hxBoxShadow, @box-shadow);
+  $box-shadow: 0px 7px 9px 0 rgba($gray-1000, 0.3);
+  background-color: var(--hxBackgroundColor, $gray-0);
+  box-shadow: var(--hxBoxShadow, $box-shadow);
   display: flex;
   min-height: 3.5rem;
   min-width: 25rem; // 400px
@@ -36,8 +37,8 @@
 }
 
 #hxClose {
-  #Button.reset();
-  color: var(--hxClose-color, @gray-700);
+  @include button-reset;
+  color: var(--hxClose-color, $gray-700);
   height: 1rem;
   position: absolute;
   right: 1.25rem;

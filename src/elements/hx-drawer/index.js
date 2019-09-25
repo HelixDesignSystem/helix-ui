@@ -1,7 +1,7 @@
 import { HXElement } from '../../interfaces/HXElement/index.js';
 
 import shadowMarkup from './_shadow.html';
-import shadowStyles from './_shadow.less';
+import shadowStyles from './_shadow.scss';
 
 /**
  * Cancelable event that fires when the element's

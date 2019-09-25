@@ -1,7 +1,7 @@
 @import "vars";
 @import "mixins";
 
-@mixin __default {
+@mixin __placeholder {
   @include placeholder {
     color: $gray-750;
     font-style: italic;
@@ -10,13 +10,13 @@
   }
 }
 
-@mixin __disabled {
+@mixin __placeholder--disabled {
   @include placeholder {
     color: inherit;
   }
 }
 
-@mixin __reset {
+@mixin __placeholder--reset {
   @include placeholder {
     color: inherit;
   }
@@ -28,12 +28,12 @@
 // #Reset.placeholder()       -> hxPlaceholder(reset)
 @mixin hxPlaceholder($state: null) {
   @if $state == reset {
-    @include __reset;
+    @include __placeholder--reset;
   }
   @else if $state == disabled {
-    @include __disabled;
+    @include __placeholder--disabled;
   }
   @else {
-    @include __default;
+    @include __placeholder;
   }
 }

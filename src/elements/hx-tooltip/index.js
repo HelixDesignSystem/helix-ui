@@ -3,7 +3,7 @@ import { Positionable } from '../traits/Positionable.js';
 import { KEYS, defer, mix, generateId } from '../../utils';
 
 import shadowMarkup from './_shadow.html';
-import shadowStyles from './_shadow.less';
+import shadowStyles from './_shadow.scss';
 
 const TOOLTIP_DELAY = 500;
 

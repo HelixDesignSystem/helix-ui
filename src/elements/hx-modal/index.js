@@ -2,7 +2,7 @@ import { HXElement } from '../../interfaces/HXElement/index.js';
 import { KEYS } from '../../utils';
 
 import shadowMarkup from './_shadow.html';
-import shadowStyles from './_shadow.less';
+import shadowStyles from './_shadow.scss';
 
 /**
  * Fires when the element is concealed.

@@ -1,9 +1,9 @@
-@import "../_base";
-@import (reference) "components/button/index";
+@import "../base";
+@import "components/button/mixins";
 
 #hxClose {
-  #Button.reset();
-  color: var(--hxClose-color, @gray-700);
+  @include button-reset;
+  color: var(--hxClose-color, $gray-700);
   font-size: 1rem;
   height: 2.75rem; // 44px for a11y
   position: absolute;
@@ -24,16 +24,14 @@
   position: fixed;
 }
 
-/* ========== Width and Animation ========== */
+/// ========== Width and Animation ========== ///
 
 // Fallbacks/Defaults
-@media (min-width: @screen-xs) {
-  /*
-    Close Transitions
-    ---------------------------
-    transform   0.18s   ease-in
-    box-shadow  0.18s   linear
-  */
+@media (min-width: $screen-xs) {
+  // Close Transitions
+  // ---------------------------
+  // transform   0.18s   ease-in
+  // box-shadow  0.18s   linear
   :host #hxDrawer {
     transition-duration: 0.18s;
     transition-property: transform, box-shadow;
@@ -41,12 +39,10 @@
     width: 90vw;
   }
 
-  /*
-    Open Transitions
-    ---------------------------
-    transform   0.36s   ease-out
-    box-shadow  0.36s   linear
-  */
+  // Open Transitions
+  // ---------------------------
+  // transform   0.36s   ease-out
+  // box-shadow  0.36s   linear
   :host([open]) #hxDrawer {
     box-shadow: -4px 0 32px 0 rgba(0, 0, 0, 0.24);
     transform: translateX(-100%);
@@ -55,7 +51,7 @@
   }
 }
 
-@media (min-width: @screen-sm) {
+@media (min-width: $screen-sm) {
   // Medium Drawer (default)
   :host #hxDrawer {
     transition-duration: 0.17s;
@@ -84,7 +80,7 @@
   }
 }
 
-@media (min-width: @screen-md) {
+@media (min-width: $screen-md) {
   // Medium Drawer (default)
   :host #hxDrawer {
     transition-duration: 0.18s;
@@ -113,7 +109,7 @@
   }
 }
 
-@media (min-width: @screen-lg) {
+@media (min-width: $screen-lg) {
   // Medium Drawer (default)
   :host #hxDrawer {
     transition-duration: 0.19s;
@@ -142,7 +138,7 @@
   }
 }
 
-@media (min-width: @screen-xl) {
+@media (min-width: $screen-xl) {
   // Medium Drawer (default)
   :host #hxDrawer {
     transition-duration: 0.2s;

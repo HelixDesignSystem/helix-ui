@@ -2,7 +2,7 @@ import { HXElement } from '../../interfaces/HXElement/index.js';
 import { ICONS } from '../../utils';
 
 import shadowMarkup from './_shadow.html';
-import shadowStyles from './_shadow.less';
+import shadowStyles from './_shadow.scss';
 
 const DIV = document.createElement('div');
 
