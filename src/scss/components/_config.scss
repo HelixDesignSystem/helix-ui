@@ -1,0 +1,21 @@
+@import "vars";
+
+// intended to be @extend'ed, in order to combine
+// styles into a single selector block for multiple elements
+%hxComponent {
+  color: $gray-900;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.5;
+  text-align: left;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+}
