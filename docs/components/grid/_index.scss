@@ -1,0 +1,52 @@
+@import "components/grid/config";
+
+// Automatically Set Column Content based on breakpoint (lg-2, md-8, etc.)
+@mixin __make-demo-columns ($size) {
+  @for $i from 1 through $grid-column-count {
+    .demoCol.hxSpan-#{$i}-#{$size} {
+      &::before {
+        content: '#{$i}-#{$size}';
+      }
+    }
+    @if $size == xs {
+      .demoCol.hxSpan-#{$i} {
+        @extend .demoCol.hxSpan-#{$i}-xs;
+      }
+    }
+  }
+}
+
+.grid-demo {
+  & > .demo-container {
+    border: $demo-container-border;
+  }
+
+  .example-styled-container {
+    background-color: $cyan-100;
+    border-radius: 0;
+    border: 1px solid $cyan-500;
+    height: 100%;
+    padding: 1em 0.5em;
+  }
+
+  .hxCol {
+    background-clip: content-box;
+    background-color: $demo-fill-color;
+    font-size: 0.75rem;
+  }
+
+  #querySize::before {
+    display: block;
+    font-variant: small-caps;
+    font-weight: bold;
+  }
+
+  @each $breakpoint, $minWidth in $screen {
+    @media (min-width: $minWidth) {
+      #querySize::before {
+        content: 'Size: #{$breakpoint}';
+      }
+      @include __make-demo-columns($breakpoint);
+    }
+  }
+}

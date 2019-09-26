@@ -1,0 +1,97 @@
+@import "vars";
+
+/// ========== VARIABLES ========== ///
+// Number of columns in the grid.
+$grid-column-count: 12;
+// Width of a single column
+$grid-column-unit: (100% / $grid-column-count);
+
+
+/// ========== MIXINS ========== ///
+@mixin grid-column { // replaces #grid.column()
+  flex-grow: 1;
+  margin: 0 0 $gutter-size;
+  min-width: 0;
+  padding: 0 ($gutter-size * 0.5);
+}
+
+@mixin grid-row {
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -#{($gutter-size * 0.5)} -#{$gutter-size};
+  padding: 0;
+
+  & + & {
+    margin-top: $gutter-size;
+  }
+
+  @content;
+}
+
+@mixin grid-span($n) { // replaces #grid.span(n)
+  $basis: ($n * $grid-column-unit);
+  flex: 0 0 $basis;
+  max-width: $basis;
+}
+
+@mixin grid-offset($n) { // replaces #grid.offset(n)
+  margin-left: ($n * $grid-column-unit) !important;
+}
+
+// @private
+@mixin __make-grid-columns($b) { // replaces .make-grid-columns()
+  @for $i from 1 through $grid-column-count {
+    .hxSpan-#{$i}-#{$b} {
+      @include grid-span($i);
+    }
+    @if $b == xs {
+      .hxSpan-#{$i} {
+        @extend .hxSpan-#{$i}-xs;
+      }
+    }
+  }
+}
+
+// @private
+@mixin __make-grid-offsets($b) { // replaces .make-grid-offsets()
+  @for $i from 1 through $grid-column-count {
+    .hxOffset-#{$i}-#{$b} {
+      @include grid-offset($i);
+    }
+    @if $b == xs {
+      .hxOffset-#{$i} {
+        @extend .hxOffset-#{$i}-xs;
+      }
+    }
+  }
+}
+
+// @private
+@mixin __make-grid-orders($b) { // replaces .make-grid-orders()
+  @for $i from 1 through $grid-column-count {
+    .hxOrder-#{$i}-#{$b} {
+      order: $i;
+    }
+    @if $b == xs {
+      .hxOrder-#{$i} {
+        @extend .hxOrder-#{$i}-xs;
+      }
+    }
+  }
+}
+
+// Generates CSS grid classes for all defined responsive breakpoints
+@mixin grid-classes {
+  @each $breakpoint, $minWidth in $screen {
+    @media (min-width: $minWidth) {
+      @include __make-grid-columns($breakpoint);
+      @include __make-grid-offsets($breakpoint);
+      @include __make-grid-orders($breakpoint);
+    }
+  }
+}
+
+
+/// ========== PLACEHOLDERS ========== ///
+// n/a
