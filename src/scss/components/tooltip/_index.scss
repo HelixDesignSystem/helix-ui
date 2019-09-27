@@ -1,11 +1,14 @@
-@import (reference) 'mixins';
+@import "vars";
+@import "mixins";
+@import "../config";
 
-hx-tooltip:extend(.hxComponent) {
-  #Positionable.base();
+hx-tooltip {
+  @extend %hxComponent;
+  @include is-positionable;
 
   font-size: 0.875rem;
   max-width: 25rem; // 400px
-  z-index: @tooltip-z-index;
+  z-index: $tooltip-z-index;
 
   &[open] {
     display: inline-block;
