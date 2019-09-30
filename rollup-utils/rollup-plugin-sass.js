@@ -29,8 +29,8 @@ export default function plugin (opts={}) {
                 });
 
                 return `export default ${JSON.stringify(rendered.css.toString())};`;
-            } catch (error) {
-                throw error;
+            } catch (err) {
+                throw new Error(err.formatted);
             }
         }
     };
