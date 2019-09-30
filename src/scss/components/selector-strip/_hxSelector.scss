@@ -1,0 +1,126 @@
+@import "mixins";
+@import "components/form/config";
+
+.hxSelector {
+  border-radius: 2px;
+  color: $cyan-900;
+  display: inline-flex;
+  font-size: 0.875rem;
+  font-weight: 500;
+  height: 2rem;
+  padding: 1px;
+  position: relative;
+  white-space: nowrap;
+  z-index: 0;
+
+  &::before,
+  &::after {
+    bottom: 0;
+    content: '';
+    display: block;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &::before {
+    background-color: $gray-0;
+  }
+
+  &::after {
+    border: 1px solid $gray-500;
+  }
+
+  label {
+    flex-grow: 1;
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+    z-index: 0;
+
+    span {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      line-height: 1;
+      padding: 0 0.75rem;
+      text-transform: uppercase;
+    }
+
+    input {
+      @include reset-focus;
+      @include hxInput(visuallyHidden);
+
+      // unchecked (focused)
+      &:focus + span {
+        background-color: $cyan-100;
+        color: $cyan-900;
+      }
+
+      // checked (unfocused)
+      &:checked + span {
+        background-color: $cyan-900;
+        color: $gray-0;
+      }
+
+      // checked (focused)
+      &:checked:focus + span {
+        box-shadow: 0 0 4px 0 $cyan-900;
+      }
+
+      // pressed (checked or unchecked)
+      &:active + span {
+        background-color: $cyan-700;
+        color: $gray-0;
+      }
+
+      // invalid (unchecked)
+      &[invalid] + span {
+        background-color: $gray-0;
+        border: 2px solid $red-900;
+        color: $red-900;
+      }
+
+      // invalid (checked)
+      &[invalid]:checked + span {
+        background-color: $red-100;
+      }
+
+      // invalid (focused)
+      &[invalid]:focus + span {
+        box-shadow: 0 0 4px 0 $red-900;
+      }
+
+      //invalid (pressed)
+      //TODO: need specs
+
+      //disabled (unchecked)
+      &[disabled] + span {
+        background-color: transparent;
+        color: $gray-400;
+        cursor: not-allowed;
+      }
+
+      //disabled (checked)
+      //TODO: need specs
+    }//input
+  }//label
+
+  &.hxRadio {
+    $radius: 3rem;
+
+    border-radius: $radius;
+    overflow-y: hidden;
+    padding: 0;
+
+    &::after {
+      border-radius: $radius;
+    }
+
+    input + span {
+      border-radius: $radius;
+    }
+  }//.hxRadio
+}//.hxSelector

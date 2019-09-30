@@ -1,13 +1,17 @@
-@import "../base";
-@import "components/box/mixins";
-@import "components/button/mixins";
+// import configs
+@import "components/box/config";
+@import "components/button/config";
 
+// inline external styles
+@import "../base";
+
+// define Shadow DOM styles
 button {
   @include button-reset;
 }
 
 #hxToast {
-  @include hxBox(sm);
+  @include box-size(sm);
   display: flex;
 }
 

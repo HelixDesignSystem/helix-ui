@@ -1,10 +1,18 @@
+/// ========== VARIABLES ========== ///
+@import "vars";
+
+
+/// ========== MIXINS ========== ///
 @import "mixins";
 
-@mixin __select--reset {
+// LESS               SCSS
+// #Reset.select() -> select-reset
+@mixin select-reset {
   @include appearance(none);
   font: inherit;
 
   // Firefox
+  // TODO: is this still needed?
   &:-moz-ui-invalid {
     box-shadow: none;
     border: 0;
@@ -26,13 +34,6 @@
   }
 }
 
-// LESS               SCSS
-// #Reset.select() -> hxSelect(reset)
-@mixin hxSelect($state: null) {
-  @if $state == reset {
-    @include __select--reset;
-  }
-  @else {
-    // do nothing
-  }
-}
+
+/// ========== PLACEHOLDERS ========== ///
+// n/a

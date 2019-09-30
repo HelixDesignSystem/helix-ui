@@ -1,0 +1,10 @@
+// remove Firefox's non-standard red glow on invalid form controls
+input,
+select,
+textarea {
+  &:-moz-ui-invalid {
+    border: 0;
+    box-shadow: none;
+    outline: 0;
+  }
+}

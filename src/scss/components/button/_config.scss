@@ -1,5 +1,8 @@
+/// ========== VARIABLES ========== ///
 @import "vars";
 
+
+/// ========== MIXINS ========== ///
 @mixin button-reset { // less: #Button.reset()
   background-color: transparent;
   border: 0;
@@ -141,3 +144,7 @@
   font-size: 1rem;
   padding: 1rem;
 }
+
+
+/// ========== PLACEHOLDERS ========== ///
+// n/a
