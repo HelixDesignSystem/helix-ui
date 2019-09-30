@@ -1,8 +1,12 @@
+// =========================== //
+// DEPRECATED! Update to SCSS! //
+// =========================== //
+
 // GRID CONFIG
 @col-padding: (@grid-gutter-size * 0.5);
-@row-margin: -(@col-padding);
 
 // ----- GRID MIXINS ----- //
+// DEPRECATED! Use SCSS, instead!
 #grid {
   .column() {
     flex-grow: 1;
@@ -21,112 +25,3 @@
     margin-left: (@n * @grid-column-unit) !important;
   }
 }//#grid
-
-
-// hxCol-{N}-xs
-// hxCol-{N}
-.make-grid-columns (@size, @n) when (@n > 0) and (@size = xs) {
-  .hxSpan-@{n}-@{size},
-  .hxSpan-@{n} {
-    #grid.span(@n);
-  }
-  .make-grid-columns(@size, (@n - 1));
-}
-// hxCol-{N}-{size}
-.make-grid-columns (@size, @n) when (@n > 0) and not (@size = xs) {
-  .hxSpan-@{n}-@{size} {
-    #grid.span(@n);
-  }
-  .make-grid-columns(@size, (@n - 1));
-}
-
-// hxOffset-{N}-xs
-// hxOffset-{N}
-.make-grid-offsets (@size, @n) when (@n > 0) and (@size = xs) {
-  .hxOffset-@{n}-@{size},
-  .hxOffset-@{n} {
-    #grid.offset(@n);
-  }
-  .make-grid-offsets(@size, (@n - 1));
-}
-// hxOffset-{N}-{size}
-.make-grid-offsets (@size, @n) when (@n > 0) and not (@size = xs) {
-  .hxOffset-@{n}-@{size} {
-    #grid.offset(@n);
-  }
-  .make-grid-offsets(@size, (@n - 1));
-}
-
-// hxOrder-{N}-xs
-// hxOrder-{N}
-.make-grid-orders (@size, @n) when (@n > 0) and (@size = xs) {
-  .hxOrder-@{n}-@{size},
-  .hxOrder-@{n} {
-    order: @n;
-  }
-  .make-grid-orders(@size, (@n - 1));
-}
-// hxOrder-{N}-{size}
-.make-grid-orders (@size, @n) when (@n > 0) and not (@size = xs) {
-  .hxOrder-@{n}-@{size} {
-    order: @n;
-  }
-  .make-grid-orders(@size, (@n - 1));
-}
-
-.make-grid (@size) {
-  // 1 to N
-  .make-grid-columns(@size, @grid-column-count);
-  // 0 to N
-  .make-grid-offsets(@size, @grid-column-count);
-  // 1 to N
-  .make-grid-orders(@size, @grid-column-count);
-}
-//end:mixins
-
-/* ===== GRID ===== */
-.hxRow {
-  border: 0;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 @row-margin -(@grid-gutter-size);
-  padding: 0;
-
-  & + & {
-    margin-top: @grid-gutter-size;
-  }
-
-  & > .hxCol {
-    #grid.column();
-  }
-
-  &.hxGutterless {
-    margin: 0;
-
-    & > .hxRow + .hxRow {
-      margin-top: 0;
-    }
-
-    & > .hxCol {
-      margin: 0;
-      padding: 0;
-    }
-  }
-}
-
-@media (min-width: @grid-break-wrist) {
-  .make-grid(xs);
-}
-@media (min-width: @grid-break-palm) {
-  .make-grid(sm);
-}
-@media (min-width: @grid-break-lap) {
-  .make-grid(md);
-}
-@media (min-width: @grid-break-desk) {
-  .make-grid(lg);
-}
-@media (min-width: @grid-break-wall) {
-  .make-grid(xl);
-}
-/* ===== end:GRID ===== */

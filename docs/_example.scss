@@ -1,0 +1,99 @@
+@import "vars";
+
+/// ========================================= ///
+/// ===== Interactive Example Component ===== ///
+/// ========================================= ///
+
+@mixin checkered-background {
+  $tileSize: 10px;
+  $color1: rgba(black, 0.02);
+  $color2: rgba(white, 0.15);
+  $img: linear-gradient(-45deg,
+    $color1 25%,
+    $color2 25%,
+    $color2 75%,
+    $color1 75%,
+    $color1
+  );
+
+  background-color: $gray-0;
+  background-image: $img, $img;
+  background-position: 0 0, $tileSize $tileSize;
+  background-size: (2 * $tileSize) (2 * $tileSize);
+}
+
+// <div class="example">
+//   <header><!-- CONFIG FORM HERE --></header>
+//   <div><!-- DEMO HERE --></div>
+//   <footer><!-- CODE SNIPPET HERE --></footer>
+// </div>
+.example {
+  border: 1px solid $gray-300;
+
+  // CONFIGURATON
+  > header {
+    background-color: $gray-100;
+    border-color: $gray-300;
+    border-style: solid;
+    border-width: 0 0 1px;
+    margin: 0 !important;
+    padding: 1.25rem;
+  }
+
+  // LIVE DEMO
+  > div {
+    @include checkered-background;
+    padding: 2rem;
+  }
+
+  // CODE SNIPPET
+  > footer {
+    overflow: hidden;
+
+    pre {
+      border-radius: 0;
+      border-width: 1px 0 0;
+    }
+  }
+
+  &.resizable {
+    > div {
+      overflow: hidden;
+      resize: vertical;
+    }
+  }
+
+  @media (min-width: map-get($screen, lg)) {
+    -ms-grid-columns: auto 1fr;
+    -ms-grid-rows: 1fr auto;
+    display: -ms-grid;
+    display: grid;
+    grid-template-areas:
+      'config demo'
+      'config code';
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr auto;
+
+    > header {
+      -ms-grid-column: 1;
+      -ms-grid-row-span: 2;
+      -ms-grid-row: 1;
+      border-width: 0 1px 0 0;
+      grid-area: config;
+      width: 20rem;
+    }
+
+    > div {
+      -ms-grid-column: 2;
+      -ms-grid-row: 1;
+      border-width: 0 0 1px 0;
+      grid-area: demo;
+    }
+
+    > footer {
+      -ms-grid-column: 2;
+      -ms-grid-row: 2;
+      grid-area: code;
+    }
+  }
+}

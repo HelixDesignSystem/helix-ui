@@ -27,7 +27,7 @@
 /// ========== Width and Animation ========== ///
 
 // Fallbacks/Defaults
-@media (min-width: $screen-xs) {
+@media (min-width: map-get($screen, xs)) {
   // Close Transitions
   // ---------------------------
   // transform   0.18s   ease-in
@@ -51,7 +51,7 @@
   }
 }
 
-@media (min-width: $screen-sm) {
+@media (min-width: map-get($screen, sm)) {
   // Medium Drawer (default)
   :host #hxDrawer {
     transition-duration: 0.17s;
@@ -80,7 +80,7 @@
   }
 }
 
-@media (min-width: $screen-md) {
+@media (min-width: map-get($screen, md)) {
   // Medium Drawer (default)
   :host #hxDrawer {
     transition-duration: 0.18s;
@@ -109,7 +109,7 @@
   }
 }
 
-@media (min-width: $screen-lg) {
+@media (min-width: map-get($screen, lg)) {
   // Medium Drawer (default)
   :host #hxDrawer {
     transition-duration: 0.19s;
@@ -138,7 +138,7 @@
   }
 }
 
-@media (min-width: $screen-xl) {
+@media (min-width: map-get($screen, xl)) {
   // Medium Drawer (default)
   :host #hxDrawer {
     transition-duration: 0.2s;

@@ -71,25 +71,6 @@ $layering-shadow: 0 3px 3px 0 $shadow-color;
 $font-sans-serif: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-monospace: "Roboto Mono", monospace;
 
-// ===== GRID =====
-// Number of columns in the grid.
-$grid-column-count: 12;
-// Padding between columns.
-$grid-gutter-size: 20px;
-$grid-column-unit: (100% / $grid-column-count);
-// Breakpoints
-$screen-xs: 0em;
-$screen-sm: 40em; // ~640px
-$screen-md: 64em; // ~1024px
-$screen-lg: 75em; // ~1200px
-$screen-xl: 90em; // ~1440px
-// Breakpoint Aliases
-$grid-break-wrist: $screen-xs;
-$grid-break-palm: $screen-sm;
-$grid-break-lap: $screen-md;
-$grid-break-desk: $screen-lg;
-$grid-break-wall: $screen-xl;
-
 // ==== FOCUS STATE =====
 $focus-glow: 0 0 4px rgba($cyan-700, 0.5);
 $focus-glow-disabled: $focus-glow;
@@ -113,4 +94,19 @@ $space: (
   xl: 3rem,
   xxl: 4.5rem,
   flush: 0
+);
+
+// ---------------------------------------- //
+// ----------------- GRID ----------------- //
+// ---------------------------------------- //
+$gutter-size: 20px;
+
+// Responsive Breakpoints
+// key order matters (must be from smallest to largest breakpoint)
+$screen: (
+  xs: 0em,
+  sm: 40em, // ~640px
+  md: 64em, // ~1024px
+  lg: 75em, // ~1200px
+  xl: 90em, // ~1440px
 );

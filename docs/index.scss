@@ -1,2 +1,11 @@
-// Load all styles for documentation
+@import "vars";
+
+// DOCS VARS
+$demo-container-border: 1px dashed $gray-600;
+$demo-fill-color: rgba($orange-500, 0.25);
+$demo-padding-color: $magenta-100;
+
+@import "example";
+
+// Component-specific Doc Styles
 @import "components/index";
