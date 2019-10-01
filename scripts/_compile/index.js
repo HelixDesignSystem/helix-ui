@@ -75,12 +75,28 @@ async function compileLess () {
  * values are CSS stylesheet strings
  */
 async function compileScss () {
+    let rendered;
+
     // SASS -> CSS (full)
-    let rendered = await SASS.renderSync({
-        ...CONFIG.sass,
-        file: `${CONFIG.sourceDir}/scss/index.scss`,
-        outputStyle: 'expanded',
-    });
+    try {
+        rendered = await SASS.renderSync({
+            ...CONFIG.sass,
+            file: `${CONFIG.sourceDir}/scss/index.scss`,
+            outputStyle: 'expanded',
+        });
+    } catch (err) {
+        // failed render
+        console.error(err.formatted);
+
+        let cssMessage = `/* ${err.formatted} */`;
+        return {
+            css: cssMessage,
+            minified: cssMessage,
+        };
+    }
+
+    // successful render
+
     let css = rendered.css.toString();
 
     // CSS (full) -> CSS (minified)

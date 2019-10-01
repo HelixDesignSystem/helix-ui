@@ -1,11 +1,13 @@
-@import "vars";
+// import configs
 @import "mixins";
-@import "components/form/mixins";
+@import "components/form/config";
 
+// inline external styles
 @import "../base";
 
 // TODO: add CSS custom props for theming hooks
 
+// define Shadow DOM styles
 input::-ms-clear {
   display: none;
 }

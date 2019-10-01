@@ -1,0 +1,33 @@
+// import configs
+@import "vars"; // global
+@import "config"; // local
+
+.hxBox {
+  &.hxXs {
+    @include box-size(xs);
+  }
+
+  &.hxSm {
+    @include box-size(sm);
+  }
+
+  &.hxMd {
+    @include box-size(md);
+  }
+
+  &.hxLg {
+    @include box-size(lg);
+  }
+
+  &.hxXl {
+    @include box-size(xl);
+  }
+
+  &.hx2x {
+    @include box-size(xxl);
+  }
+
+  &.hxFlush {
+    @include box-size(flush);
+  }
+}

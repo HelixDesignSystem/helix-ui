@@ -1,8 +1,12 @@
+// import configs
+@import "components/button/config";
+
+// inline external styles
 @import "../base";
 @import "base/links";
 @import "components/loader/hx-progress";
-@import "components/button/mixins";
 
+// define Shadow DOM styles
 :host {
   // reset buttons
   button {

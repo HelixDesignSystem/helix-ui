@@ -1,0 +1,106 @@
+// import configs
+@import "vars"; // global
+@import "config"; // local
+
+hx-div {
+  display: block;
+  padding: 0 !important; // avoid unfixable padding-block-end bug
+
+  &[scroll="horizontal"] {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  &[scroll="vertical"] {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  &[scroll="both"] {
+    overflow: auto;
+  }
+
+  &[scroll="none"] {
+    overflow: visible;
+  }
+}
+
+// ===== Polyfilled browsers =====
+// CSS specificity overrides selectors in the next block
+hx-div {
+  &.hxXs {
+    @include hxDiv-shadyRoot {
+      @include box-size(xs);
+    }
+  }
+
+  &.hxSm {
+    @include hxDiv-shadyRoot {
+      @include box-size(sm);
+    }
+  }
+
+  &.hxMd {
+    @include hxDiv-shadyRoot {
+      @include box-size(md);
+    }
+  }
+
+  &.hxLg {
+    @include hxDiv-shadyRoot {
+      @include box-size(lg);
+    }
+  }
+
+  &.hxXl {
+    @include hxDiv-shadyRoot {
+      @include box-size(xl);
+    }
+  }
+
+  &.hx2x {
+    @include hxDiv-shadyRoot {
+      @include box-size(xxl);
+    }
+  }
+
+  &.hxFlush {
+    @include hxDiv-shadyRoot {
+      @include box-size(flush);
+    }
+  }
+}
+
+// ===== Modern Browsers =====
+// Should only apply to browsers with ShadowDOM support.
+@supports (--modern: true) {
+  hx-div {
+    &.hxXs {
+      --hxPadding--base: #{map-get($space, xs)};
+    }
+
+    &.hxSm {
+      --hxPadding--base: #{map-get($space, sm)};
+    }
+
+    &.hxMd {
+      --hxPadding--base: #{map-get($space, md)};
+    }
+
+    &.hxLg {
+      --hxPadding--base: #{map-get($space, lg)};
+    }
+
+    &.hxXl {
+      --hxPadding--base: #{map-get($space, xl)};
+    }
+
+    &.hx2x {
+      --hxPadding--base: #{map-get($space, xxl)};
+    }
+
+    &.hxFlush {
+      --hxPadding--base: #{map-get($space, flush)};
+    }
+  }
+}

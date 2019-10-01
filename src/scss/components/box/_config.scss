@@ -1,0 +1,28 @@
+/// ========== VARIABLES ========== ///
+@import "vars";
+
+
+/// ========== MIXINS ========== ///
+
+// TODO: refactor and find a better home for this mixin
+@mixin hxDiv-shadyRoot { // less: #HXDiv.shadyRoot({...})
+  > #hxDiv {
+    @content;
+  }
+}
+
+// LESS            SCSS
+// #Box.xs()    -> box-size(xs)
+// #Box.sm()    -> box-size(sm)
+// #Box.md()    -> box-size(md)
+// #Box.lg()    -> box-size(lg)
+// #Box.xl()    -> box-size(xl)
+// #Box.xxl()   -> box-size(xxl)
+// #Box.flush() -> box-size(flush)
+@mixin box-size($size: null) {
+  padding: map-get($space, $size);
+}
+
+
+/// ========== PLACEHOLDERS ========== ///
+// n/a

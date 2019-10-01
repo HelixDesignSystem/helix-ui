@@ -1,6 +1,10 @@
-@import "../base";
-@import "components/button/mixins";
+// import configs
+@import "components/button/config";
 
+// inline external styles
+@import "../base";
+
+// define Shadow DOM styles
 :host {
   #hxPill {
     display: flex;
