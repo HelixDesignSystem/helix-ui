@@ -1,5 +1,5 @@
-@import "mixins";
-@import "components/form/config";
+@import "config";
+@import "../form/config";
 
 .hxSelector {
   border-radius: 2px;
