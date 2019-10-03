@@ -67,27 +67,27 @@
 
 // Panel with tabset as its body.
 .hxPanel.hxTabbed {
-  @head-bg: @gray-100;
-  @body-bg: @gray-0;
-  @foot-bg: @gray-0;
+  $head-bg: $gray-100;
+  $body-bg: $gray-0;
+  $foot-bg: $gray-0;
 
-  background-color: @head-bg;
+  background-color: $head-bg;
 
   > hx-tabset {
     > hx-tablist {
       > hx-tab[current] {
-        background-color: @body-bg;
+        background-color: $body-bg;
       }
     }
 
     > hx-tabcontent {
-      background-color: @body-bg;
+      background-color: $body-bg;
       min-height: auto;
     }
   }
 
   > footer {
-    background-color: @foot-bg;
+    background-color: $foot-bg;
   }
 }
 
