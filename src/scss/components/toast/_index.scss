@@ -1,9 +1,9 @@
-@import (reference) 'vars';
+@import "vars";
 
 hx-toast {
-  background-color: @gray-0;
-  box-shadow: @layering-shadow;
-  color: @gray-900;
+  background-color: $gray-0;
+  box-shadow: $layering-shadow;
+  color: $gray-900;
   display: block;
   min-height: 3.5rem;
   position: relative;
@@ -23,7 +23,7 @@ hx-toast {
 
   // Background Border
   &::before {
-    border: 1px solid @gray-300;
+    border: 1px solid $gray-300;
   }
 
   // Accent Border
@@ -34,19 +34,19 @@ hx-toast {
   // VARIANTS
   &[type="info"] {
     &::after {
-      border-left-color: @purple-500;
+      border-left-color: $purple-500;
     }
   }
 
   &[type="error"] {
     &::after {
-      border-left-color: @red-900
+      border-left-color: $red-900
     }
   }
 
   &[type="success"] {
     &::after {
-      border-left-color: @green-500;
+      border-left-color: $green-500;
     }
   }
 }
