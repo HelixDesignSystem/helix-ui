@@ -1,50 +1,49 @@
-@import (reference) 'vars';
-@import (reference) 'components/box/index';
+@import 'vars';
 
 // NOTE: be aware of changes needed in the base/typography.less
-@header-height: 3.5rem; // 56px
-@footer-height: 2.5rem; // 40px
+$header-height: 3.5rem; // 56px
+$footer-height: 2.5rem; // 40px
 
-/* ======================================= *\
-  +-----------------------+
-  | "header" area         |
-  |                       |
-  | +-(#head)-----------+ |
-  | | global nav        | |
-  | +-------------------+ |
-  +-----------------------+
-  | "app" area            |
-  |                       |
-  | +-(#stage)----------+ |
-  | | +-(#nav)--------+ | |
-  | | | product nav   | | |
-  | | +---------------+ | |
-  | |                   | |
-  | | +-(#content)----+ | |
-  | | | ...           | | |
-  | | +---------------+ | |
-  | |                   | |
-  | | +-(.hxSiderail)-+ | |
-  | | | ...           | | |
-  | | +---------------+ | |
-  | +-------------------+ |
-  |                       |
-  +-----------------------+
-  | "footer" area         |
-  |                       |
-  | +-(#foot)-----------+ |
-  | | #foot             | |
-  | +-------------------+ |
-  +-----------------------+
-\* ======================================= */
+/// =======================================
+///  +-----------------------+
+///  | "header" area         |
+///  |                       |
+///  | +-(#head)-----------+ |
+///  | | global nav        | |
+///  | +-------------------+ |
+///  +-----------------------+
+///  | "app" area            |
+///  |                       |
+///  | +-(#stage)----------+ |
+///  | | +-(#nav)--------+ | |
+///  | | | product nav   | | |
+///  | | +---------------+ | |
+///  | |                   | |
+///  | | +-(#content)----+ | |
+///  | | | ...           | | |
+///  | | +---------------+ | |
+///  | |                   | |
+///  | | +-(.hxSiderail)-+ | |
+///  | | | ...           | | |
+///  | | +---------------+ | |
+///  | +-------------------+ |
+///  |                       |
+///  +-----------------------+
+///  | "footer" area         |
+///  |                       |
+///  | +-(#foot)-----------+ |
+///  | | #foot             | |
+///  | +-------------------+ |
+///  +-----------------------+
+/// =======================================
 
-/* ---------- Base/Common Styling ---------- */
+// ---------- Base/Common Styling ----------
 html {
   height: 100%;
 }
 
 body {
-  background-color: @gray-25;
+  background-color: $gray-25;
   height: 100%;
   margin: 0;
 }
@@ -57,20 +56,20 @@ a[href="#content"] {
   top: -100px;
 
   &:focus {
-    background-color: @orange-100;
-    border: 1px solid @orange-700;
-    color: @gray-1000;
+    background-color: $orange-100;
+    border: 1px solid $orange-700;
+    color: $gray-1000;
     left: 50%;
     padding: 0.5rem;
     top: 0.5rem;
-    transform: tranlateX(-50%);
+    transform: translateX(-50%);
   }
 }
 
 #head {
-  background-color: @gray-1000;
+  background-color: $gray-1000;
   flex-shrink: 0;
-  height: @header-height;
+  height: $header-height;
 }
 
 #app {
@@ -88,7 +87,7 @@ a[href="#content"] {
 
 #nav { // Left Nav
   flex-shrink: 0;
-  width: @app-nav-width;
+  width: $app-nav-width;
 }
 
 #content {
@@ -98,18 +97,18 @@ a[href="#content"] {
 }
 
 .hxSiderail {
-  background-color: @gray-100;
+  background-color: $gray-100;
   flex-shrink: 0;
   width: 25%; // 3 of 12 columns
 }
 
 #foot {
   align-items: center;
-  background-color: @gray-950;
-  color: @gray-300;
+  background-color: $gray-950;
+  color: $gray-300;
   display: flex;
   flex-shrink: 0;
-  height: @footer-height;
+  height: $footer-height;
   padding: 0 20px;
 
   nav {
@@ -121,31 +120,31 @@ a[href="#content"] {
   }
 
   a[href] {
-    color: @cyan-500;
+    color: $cyan-500;
   }
 }//#foot
 
-/* ========== VERTICAL LAYOUT ========== */
+// ========== VERTICAL LAYOUT ==========
 body.hxVertical {
   display: flex;
   flex-direction: column;
 }
 
-/* ========== HORIZONTAL LAYOUT ========== */
+// ========== HORIZONTAL LAYOUT ==========
 body.hxHorizontal {
-  /* Legacy Grid Implementation */
+  // Legacy Grid Implementation
   display: -ms-grid;
   -ms-grid-columns: 1fr;
-  -ms-grid-rows: @header-height 1fr @footer-height;
+  -ms-grid-rows: $header-height 1fr $footer-height;
 
-  /* Modern Grid Implementation */
+  // Modern Grid Implementation
   display: grid;
   grid-template-areas:
     'header'
     'app'
     'footer';
   grid-template-columns: 1fr;
-  grid-template-rows: @header-height 1fr @footer-height;
+  grid-template-rows: $header-height 1fr $footer-height;
 
   #head {
     // Legacy Grid
@@ -184,7 +183,7 @@ body.hxHorizontal {
 
     > hx-panel + hx-panel, // DEPRECATED, remove in v1.0.0
     > .hxPanel + .hxPanel {
-      border-left: 1px solid @gray-300;
+      border-left: 1px solid $gray-300;
     }
   }
 
