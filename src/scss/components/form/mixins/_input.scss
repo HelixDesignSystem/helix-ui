@@ -20,6 +20,7 @@
 // </div>
 @mixin __input--visuallyHidden {
   @include appearance(none);
+
   border: 0;
   box-shadow: none;
   height: 1px;

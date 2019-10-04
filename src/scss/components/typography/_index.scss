@@ -75,15 +75,19 @@ hx-error {
 .hxPageTitle {
   @extend .hxHeading-1;
 }
+
 .hxSectionTitle {
   @extend .hxHeading-2;
 }
+
 .hxSubSectionTitle {
   @extend .hxHeading-3;
 }
+
 .hxContainerTitle {
   @extend .hxHeading-4;
 }
+
 .hxLabel {
   color: $gray-750;
   font-size: 1rem;

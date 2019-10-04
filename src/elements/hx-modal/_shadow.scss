@@ -17,7 +17,8 @@
 }
 
 #hxModal {
-  $box-shadow: 0px 7px 9px 0 rgba($gray-1000, 0.3);
+  $box-shadow: 0 7px 9px 0 rgba($gray-1000, 0.3);
+
   background-color: var(--hxBackgroundColor, $gray-0);
   box-shadow: var(--hxBoxShadow, $box-shadow);
   display: flex;
@@ -41,6 +42,7 @@
 
 #hxClose {
   @include button-reset;
+
   color: var(--hxClose-color, $gray-700);
   height: 1rem;
   position: absolute;

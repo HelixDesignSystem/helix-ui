@@ -1,4 +1,4 @@
-@import 'vars';
+@import "vars";
 
 // NOTE: be aware of changes needed in the base/typography.less
 $header-height: 3.5rem; // 56px
@@ -92,7 +92,7 @@ a[href="#content"] {
 
 #content {
   flex-grow: 1;
-  min-width: 0px;
+  min-width: 0;
   overflow: auto; // ...because IE
 }
 
@@ -132,44 +132,34 @@ body.hxVertical {
 
 // ========== HORIZONTAL LAYOUT ==========
 body.hxHorizontal {
-  // Legacy Grid Implementation
-  display: -ms-grid;
   -ms-grid-columns: 1fr;
   -ms-grid-rows: $header-height 1fr $footer-height;
-
-  // Modern Grid Implementation
-  display: grid;
+  display: -ms-grid; // Legacy Grid (IE)
+  display: grid; // Modern Grid
   grid-template-areas:
-    'header'
-    'app'
-    'footer';
+    "header"
+    "app"
+    "footer";
   grid-template-columns: 1fr;
   grid-template-rows: $header-height 1fr $footer-height;
 
   #head {
-    // Legacy Grid
     -ms-grid-column: 1;
     -ms-grid-row: 1;
-
-    // Modern Grid
     grid-area: header;
   }
 
   #app {
-    overflow: hidden;
-
-    // Legacy Grid
     -ms-grid-column: 1;
     -ms-grid-row: 2;
-
-    // Modern Grid
     grid-area: app;
+    overflow: hidden;
   }
 
   #stage {
     height: 100%;
-    width: 100%;
     overflow: hidden;
+    width: 100%;
   }
 
   #nav {
@@ -188,11 +178,8 @@ body.hxHorizontal {
   }
 
   #foot {
-    // Legacy Grid
     -ms-grid-column: 1;
     -ms-grid-row: 3;
-
-    // Modern Grid
     grid-area: footer;
   }
 }//body.hxHorizontal

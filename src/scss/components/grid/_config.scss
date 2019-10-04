@@ -31,6 +31,7 @@ $grid-column-unit: (100% / $grid-column-count);
 
 @mixin grid-span($n) { // replaces #grid.span(n)
   $basis: ($n * $grid-column-unit);
+
   flex: 0 0 $basis;
   max-width: $basis;
 }

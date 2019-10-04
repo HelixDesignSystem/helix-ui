@@ -6,12 +6,10 @@
 @supports (--skip-ie: true) {
   :host {
     --hxPadding--base: 0;
-
     --hxPaddingTop: var(--hxPadding--base);
     --hxPaddingRight: var(--hxPadding--base);
     --hxPaddingBottom: var(--hxPadding--base);
     --hxPaddingLeft: var(--hxPadding--base);
-
     --hxPadding:
       var(--hxPaddingTop)
       var(--hxPaddingRight)

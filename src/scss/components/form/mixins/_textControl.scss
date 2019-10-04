@@ -20,6 +20,7 @@
   }
   @else {
     @include hxPlaceholder;
+
     background-color: $gray-0;
     border-radius: 2px;
     border: 1px solid $gray-500;
@@ -46,6 +47,7 @@
 
   @if not $focused {
     @include hxPlaceholder(disabled);
+
     background-color: $gray-50;
     color: $gray-400;
   }

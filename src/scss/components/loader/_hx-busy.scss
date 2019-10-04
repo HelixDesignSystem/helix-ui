@@ -11,7 +11,6 @@
 // 1: explicitly set transform-box for IE/Edge compatibility
 // 2: explicitly set transform-origin with full X/Y/Z values for IE/Edge compatibility
 hx-busy {
-  animation-play-state: running;
   animation: hx-spin 0.8s linear infinite;
   border-color: transparent currentColor currentColor;
   border-radius: 1em;
