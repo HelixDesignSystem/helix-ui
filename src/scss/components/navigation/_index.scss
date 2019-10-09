@@ -1,16 +1,16 @@
 // LEFT-HAND NAVIGATION
 .hxNav {
-  @vpad: 0.5rem;
-  @rpad: 0.75rem;
+  $vpad: 0.5rem;
+  $rpad: 0.75rem;
 
-  @indent-by: 1.25rem;
-  @l1-indent: 1 * @indent-by;
-  @l2-indent: 2 * @indent-by;
-  @l3-indent: 3 * @indent-by;
-  @l4-indent: 4 * @indent-by;
+  $indent-by: 1.25rem;
+  $l1-indent: 1 * $indent-by;
+  $l2-indent: 2 * $indent-by;
+  $l3-indent: 3 * $indent-by;
+  $l4-indent: 4 * $indent-by;
 
-  background-color: @gray-975;
-  color: @gray-400;
+  background-color: $gray-975;
+  color: $gray-400;
   font-size: 0.875rem; /* ~14px */
   letter-spacing: 0.75px;
   padding-top: 2rem;
@@ -19,31 +19,26 @@
     color: inherit;
     cursor: pointer;
     display: block;
-    padding: @vpad @rpad @vpad @l1-indent;
+    padding: $vpad $rpad $vpad $l1-indent;
     position: relative;
 
     &:hover {
-      background-color: @gray-800;
-      color: @gray-0;
-    }
-
-    .icon-transform {
-      transform+_: translateY(-50%);
+      background-color: $gray-800;
+      color: $gray-0;
     }
 
     .toggle-icon {
-      .icon-transform();
       font-size: 0.75em;
       pointer-events: none;
       position: absolute;
       right: 0.75rem;
       top: 50%;
+      transform: translateY(-50%);
     }
 
     &[aria-expanded="true"] {
       .toggle-icon {
-        .icon-transform();
-        transform+_: scaleY(-1);
+         transform: translateY(-50%) scaleY(-1);
       }
     }
   }
@@ -57,31 +52,31 @@
     color: inherit;
     display: block;
     font-weight: 300;
-    padding: @vpad @rpad @vpad @l1-indent;
+    padding: $vpad $rpad $vpad $l1-indent;
     text-decoration: none;
 
     &.current {
-      background-color: @gray-900;
-      color: @gray-0;
+      background-color: $gray-900;
+      color: $gray-0;
     }
 
     &:hover {
-      background-color: @gray-800;
-      color: @gray-0;
+      background-color: $gray-800;
+      color: $gray-0;
     }
   }
 
   hx-reveal {
     a[href],
     hx-disclosure {
-      padding-left: @l2-indent;
+      padding-left: $l2-indent;
     }
 
     // Level 2
     hx-reveal {
       a[href],
       hx-disclosure {
-        padding-left: @l3-indent;
+        padding-left: $l3-indent;
       }
 
       hx-disclosure {
@@ -92,7 +87,7 @@
       hx-reveal {
         a[href],
         hx-disclosure {
-          padding-left: @l4-indent;
+          padding-left: $l4-indent;
         }
       }
     }
