@@ -24,35 +24,51 @@ also:
         <form class="beta-hxForm">
           <hx-text-control>
             <input
-              id="txtPlaceholder"
+              id="txtLabel"
               type="text"
-              v-model="placeholder"
+              v-model="label"
             />
-            <label for="txtPlaceholder">
-              Placeholder
-            </label>
-          </hx-text-control>
-
-          <hx-text-control>
-            <input
-              id="txtValue"
-              type="text"
-              v-model="searchValue"
-            />
-            <label for="txtValue">
-              Value
+            <label for="txtLabel">
+              Label Text
             </label>
           </hx-text-control>
 
           <fieldset>
-            <legend class="beta-hxFieldName">Options</legend>
+            <legend class="beta-hxFieldName">Label Annotation</legend>
             <hx-checkbox-control>
               <input
-                id="chkIsDisabled"
+                id="chkHasAsterisk"
+                type="checkbox"
+                v-model="hasAsterisk"
+              />
+              <label for="chkHasAsterisk">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkHasOptional"
+                type="checkbox"
+                v-model="hasOptional"
+              />
+              <label for="chkHasOptional">
+                <hx-checkbox></hx-checkbox>
+                Optional
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Control Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkDisabled"
                 type="checkbox"
                 v-model="isDisabled"
               />
-              <label for="chkIsDisabled">
+              <label for="chkDisabled">
                 <hx-checkbox></hx-checkbox>
                 Disabled
               </label>
@@ -60,28 +76,46 @@ also:
 
             <hx-checkbox-control>
               <input
-                id="chkIsInvalid"
+                id="chkRequired"
                 type="checkbox"
-                v-model="isInvalid"
+                v-model="isRequired"
               />
-              <label for="chkIsInvalid">
+              <label for="chkRequired">
                 <hx-checkbox></hx-checkbox>
-                Invalid
+                Required
               </label>
+              <p>
+                (Invalid styling applied <i>after</i> user interaction.)
+              </p>
             </hx-checkbox-control>
           </fieldset>
         </form>
       </header>
 
       <div>
-        <hx-search
-          :disabled="isDisabled"
-          :invalid="isInvalid"
-          :placeholder="placeholder"
-          :value="searchValue"
-          @clear="onSearchUpdate"
-          @input="onSearchUpdate"
-        ></hx-search>
+        <hx-search-control>
+          <input
+            id="srchInputDemo"
+            type="search"
+            :disabled="isDisabled"
+            :required="isRequired"
+          />
+          <button
+            type="button"
+            class="hxClear"
+            aria-label="Clear search"
+            hidden
+          >
+            <hx-icon type="times"></hx-icon>
+          </button>
+          <hx-search></hx-search>
+          <label
+            for="srchInputDemo"
+            :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }"
+          >
+            {% raw %}{{label}}{% endraw %}
+          </label>
+        </hx-search-control>
       </div>
 
       <footer>
@@ -99,15 +133,29 @@ also:
 
     <div class="example" id="vue-searchAssistanceDemo" v-cloak>
       <div>
-        <hx-search
-          :value="searchValue"
-          @blur="onBlur"
-          @clear="onUpdate"
-          @focus="onFocus"
-          @input="onUpdate"
-          id="assisted-hx-search"
-        ></hx-search>
-        <hx-search-assistance relative-to="assisted-hx-search" ref="search">
+        <hx-search-control id="assisted-hx-search-control">
+          <input
+            id="assisted-hx-search"
+            type="search"
+            @blur="onBlur"
+            @focus="onFocus"
+            @input="onUpdate"
+          />
+          <button
+            type="button"
+            class="hxClear"
+            aria-label="Clear search"
+            hidden
+            @click="onReset"
+          >
+            <hx-icon type="times"></hx-icon>
+          </button>
+          <hx-search></hx-search>
+          <label for="assisted-hx-search">
+            Search for stuff...
+          </label>
+        </hx-search-control>
+        <hx-search-assistance relative-to="assisted-hx-search-control" ref="search">
           {% raw %}
           <header>Search for "{{searchValue}}"</header>
           <section v-if="hasValue">
@@ -122,13 +170,27 @@ also:
 
       <footer>
         {% code 'html' %}
-          <hx-search
-            id="assisted-search"
-            onblur="hideAssistance()"
-            onfocus="showAssistance()"
-            value="item"
-          ></hx-search>
-          <hx-search-assistance relative-to="assisted-search">
+          <hx-search-control id="assisted-search-control">
+            <input
+              id="assisted-search"
+              type="search"
+              onblur="hideAssistance()"
+              onfocus="showAssistance()"
+            />
+            <button
+              type="button"
+              class="hxClear"
+              aria-label="Clear Search"
+              hidden
+            >
+              <hx-icon type="times"></hx-icon>
+            </button>
+            <hx-search></hx-search>
+            <label for="assisted-search">
+              Search for stuff...
+            </label>
+          </hx-search-control>
+          <hx-search-assistance relative-to="assisted-search-control">
             <header>Search for "item"</header>
             <section>
               <header>Category Header</header>

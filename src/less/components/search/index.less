@@ -1,4 +1,117 @@
-@import (reference) 'mixins';
+@import (reference) "mixins";
+@import (reference) "./SearchFacade";
+
+// ----- LAYOUT -----
+/*
+    auto    1fr    auto
+  +-------+-------+-------+
+  | lbl   | lbl   | lbl   | auto
+  +-------+-------+-------+
+  | icon  | input | btn   | auto
+  +-------+-------+-------+
+  | extra | extra | extra | auto
+  +-------+-------+-------+
+*/
+
+
+hx-search-control {
+  -ms-grid-column-align: start;
+  -ms-grid-columns: 2rem 1fr auto;
+  -ms-grid-rows: auto auto auto;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas:
+    'lbl   lbl   lbl'
+    '.     input btn'
+    'extra extra extra';
+  grid-template-columns: 2rem 1fr auto;
+  grid-template-rows: auto auto auto;
+
+  > input[type="search"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    grid-area: input;
+    height: 2rem;
+    min-width: 8rem; // ~16 chars
+    z-index: 1;
+
+    &::-ms-clear {
+      display: none;
+      height: 0;
+      width : 0;
+    }
+
+    // Removes default Safari cancel button
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  > input[type="search"]:focus ~ hx-search,
+  > button.hxClear:focus ~ hx-search {
+    border-color: @cyan-700;
+    box-shadow: @focus-glow;
+  }
+
+  button {
+    -ms-grid-column: 3;
+    -ms-grid-row: 2;
+    background-color: transparent;
+    border: none;
+    color: @gray-700;
+    cursor: pointer;
+    font-size: 1rem;
+    grid-area: btn;
+    height: 100%;
+    line-height: 1;
+    outline: 0;
+    padding: 0.5rem;
+    z-index: 1;
+
+    &:focus {
+      outline: 1px dotted @gray-700;
+      outline-offset: -6px;
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+      outline: 0;
+    }
+  }
+
+  hx-search {
+    -ms-grid-column-span: 3;
+    -ms-grid-row: 2;
+    background-color: @gray-0;
+    border-radius: 2px;
+    border: 1px solid @gray-500;
+    grid-column: 1 / span 3;
+    grid-row: 2;
+    z-index: 0;
+  }
+
+   > label {
+    -ms-grid-column-align: start;
+    -ms-grid-column-span: 3;
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    color: @gray-800;
+    display: inline-block;
+    font-size: 0.875rem;
+    grid-area: lbl;
+    justify-self: start;
+  }
+}
 
 hx-search-assistance:extend(.hxComponent) {
   #Positionable.base();
@@ -50,6 +163,41 @@ hx-search-assistance:extend(.hxComponent) {
 hx-search {
   display: block;
   height: 2rem;
+}
+
+// ----- PRISTINE ----------
+hx-search-control > input[type="search"]:focus ~ hx-search {
+  .SearchFacade(pristine-focus);
+}
+
+// ----- INVALID ----------
+hx-search-control[hx-dirty] > input[type="search"]:enabled:invalid ~ hx-search,
+hx-search-control.hxInvalid > input[type="search"]:enabled ~ hx-search {
+  .SearchFacade(invalid);
+}
+
+hx-search-control[hx-dirty] > input[type="search"]:enabled:invalid:focus ~ hx-search,
+hx-search-control.hxInvalid > input[type="search"]:enabled:focus ~ hx-search {
+  .SearchFacade(invalid-focus);
+}
+
+input[type="search"]:-moz-ui-invalid { // removes Firefox invalid focus ring
+  border: 0;
+  box-shadow: none;
+  outline: 0;
+}
+
+// ----- DISABLED ----------
+hx-search-control > input[type="search"]:disabled ~ hx-search {
+  .SearchFacade(disabled);
+
+  &:focus {
+    .SearchFacade(disabled-focus);
+  }
+}
+
+hx-search-control > input[type="search"]:disabled ~ .hxClear {
+  display: none;
 }
 
 .hxSearchSuggestion {

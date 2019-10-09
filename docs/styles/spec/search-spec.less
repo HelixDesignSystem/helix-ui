@@ -1,0 +1,46 @@
+@import (reference) "components/search/index";
+
+.search-spec {
+  hx-search-control {
+    /* --------------- Pristine --------------- */
+    > input[type="search"].mock-focus ~ hx-search,
+    > button.hxClear.mock-focus ~ hx-search {
+      .SearchFacade(pristine-focus);
+    }
+
+    /* --------------- Disabled --------------- */
+    > input[type="search"]:disabled {
+      ~ hx-search {
+        .SearchFacade(disabled);
+      }
+
+      &.mock-focus ~ hx-search {
+        .SearchFacade(disabled-focus);
+      }
+    }
+
+    /* --------------- Changed / Touched --------------- */
+    &[hx-dirty] {
+      > input[type="search"]:enabled.mock-focus ~ hx-search {
+        .SearchFacade(pristine-focus);
+      }
+
+      > input[type="search"]:invalid.mock-focus ~ hx-search {
+        .SearchFacade(invalid-focus);
+      }
+    }
+
+    /* --------------- Invalid --------------- */
+    &.hxInvalid {
+      > input[type="search"]:enabled.mock-focus ~ hx-search,
+      > button.hxClear.mock-focus ~ hx-search {
+        .SearchFacade(invalid-focus);
+      }
+    }
+
+    /* --------------- Mock-Focus on <button> --------------- */
+    > input[type="search"] ~ button.mock-focus {
+      .SearchFacade(button-focus);
+    }
+  }
+}
