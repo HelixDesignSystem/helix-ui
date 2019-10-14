@@ -1,4 +1,4 @@
-@import (reference) "vars";
+@import "vars";
 
 // Table style resets
 .hxTable {
@@ -48,30 +48,28 @@
 }
 
 // ===== States =====
-@state-selected-bg: @cyan-50;
+$state-selected-bg: $cyan-50;
 
 // ===== Tables =====
-@table-border-color: @gray-300;
+$table-border-color: $gray-300;
 
-/* ========== Tables ========== */
+// ========== Tables ==========
 
-/*
-  ---------
-  | thead |
-      +
-  ---------
-  | tbody |
-  ---------
-      +
-  | tfoot |
-  ---------
-*/
+///  ---------
+///  | thead |
+///      +
+///  ---------
+///  | tbody |
+///  ---------
+///      +
+///  | tfoot |
+///  ---------
 
 .hxTable {
   margin: 1.5rem 0;
 
   caption {
-    color: @gray-800;
+    color: $gray-800;
     font-size: 0.875rem;
     font-weight: 300;
   }
@@ -95,13 +93,13 @@
   }//thead
 
   tbody {
-    border-color: @table-border-color transparent;
+    border-color: $table-border-color transparent;
     border-style: solid;
     border-width: 1px;
 
     tr {
       + tr {
-        border-top: 1px solid @table-border-color;
+        border-top: 1px solid $table-border-color;
       }
 
       th,
@@ -113,7 +111,7 @@
       &.hxSelected {
         td,
         th {
-          background-color: @state-selected-bg;
+          background-color: $state-selected-bg;
         }
       }
     }
@@ -137,7 +135,7 @@
   td,
   th {
     &.hxControl {
-      color: @gray-700;
+      color: $gray-700;
       width: 1rem;
     }
   }
@@ -145,7 +143,7 @@
   // VARIANTS
   &.hxBound {
     tbody {
-      border-color: @table-border-color;
+      border-color: $table-border-color;
     }
   }//.hxBound
 
@@ -155,7 +153,7 @@
         &:hover {
           td,
           th {
-            background-color: @gray-50;
+            background-color: $gray-50;
           }
         }
       }
@@ -181,16 +179,16 @@
 
 // Use .hxTable.hxBound instead
 .hxTable--bordered {
-  &:extend(.hxTable.hxBound all);
+  @extend .hxTable.hxBound;
 }
 
 // Use .hxTable.hxHoverable instead
 .hxTable--hover {
-  &:extend(.hxTable.hxHoverable all);
+  @extend .hxTable.hxHoverable;
 }
 
 // Use (th,td).hxControl instead
 .hxTable__control-col {
-  color: @gray-700;
+  color: $gray-700;
   width: 1rem;
 }
