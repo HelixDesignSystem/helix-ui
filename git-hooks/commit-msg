@@ -1,0 +1,123 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+
+const { TYPES, Err } = require('./commit');
+
+/**
+ * @param string header
+ * @returns object - object with the following keys:
+ *  - isBreaking: true if header implies a breaking change with an exclamation point
+ *  - scope: matched value for the optional <scope> portion of the header
+ *  - summary: matched value for the <summary> portion of the header
+ *  - type: matched value for the <type> portion of the header
+ */
+function parseHeader (header) {
+    // See https://regex101.com/r/FRRac2/10
+    let pattern = /^(?<type>\w+)(\((?<scope>.*)\))?(?<isBreaking>!)?: (?<summary>.+)$/;
+
+    // check header for matches against the regex pattern
+    let matches = pattern.exec(header);
+
+    // default capture group values if there are no matches
+    let groups = {
+        isBreaking: null,
+        scope: null,
+        summary: null,
+        type: null,
+    };
+
+    // replace default capture group values with the real values
+    if (matches && matches.groups) {
+        groups = matches.groups;
+    }
+
+    return {
+        ...groups,
+        isBreaking: !!groups.isBreaking,
+        matches,
+    };
+}
+
+/**
+ * Validate format of the message header
+ *
+ * @param string header
+ * @returns boolean
+ */
+function isValidHeader (header) {
+    let { matches, type, scope } = parsed = parseHeader(header);
+
+    if (!matches) {
+        Err.incorrectFormat(header);
+        return false;
+    }
+
+    if (!TYPES.hasOwnProperty(type)) {
+        Err.unknownType(header, type);
+        return false;
+    }
+
+    if (typeof scope === 'string' && scope.trim() === '') {
+        Err.emptyScope(header);
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * Split raw commit message into an array of message lines (excluding comments)
+ *
+ * @param string message - commit message contents
+ * @returns array<string>
+ */
+function getLinesWithoutComments (message) {
+    let allLines = message.split('\n');
+
+    // filter out comments
+    let nonCommentLines = allLines.filter( line => !line.match(/^#/) );
+
+    return nonCommentLines;
+}
+
+/**
+ * git uses the first non-empty, non-comment line as the header
+ * for the commit message, so we need to do the same
+ *
+ * @param string message - full git commit message (may be multi-line)
+ * @returns string - first non-empty, non-comment line of text
+ */
+function getFirstMessageLine (message) {
+    let nonCommentLines = getLinesWithoutComments(message);
+
+    // exclude empty/blank lines
+    let linesWithContent = nonCommentLines.filter( line => line.trim().length );
+
+    // if no usable content, print error and exit 1 to fail hook
+    if (linesWithContent.length === 0) {
+        Err.unusableContent(message);
+        process.exit(1);
+    }
+
+    // return first non-empty, non-comment line of text
+    return linesWithContent[0];
+}
+
+(function () {
+    console.log('[commit-msg] checking git commit message format');
+
+    let msgBuffer = fs.readFileSync(path.resolve(__dirname, '..', process.argv[2]));
+    let msgString = msgBuffer.toString();
+    let strHeader = getFirstMessageLine(msgString);
+    let isValid = isValidHeader(strHeader);
+
+    if (!isValid) {
+        // exit with non-zero status code to fail hook
+        process.exit(1);
+    } else {
+        // exit with zero status code to pass hook
+        process.exit(0);
+    }
+})()
