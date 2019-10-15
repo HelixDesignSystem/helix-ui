@@ -1,25 +1,25 @@
-//* ===== LAYOUT & APPEARANCE =============== */
+// ===== LAYOUT & APPEARANCE ===============
 hx-tab {
   border-radius: 2px 2px 0 0;
   border: 1px solid transparent;
-  color: @gray-700;
+  color: $gray-700;
   cursor: pointer;
   font-size: 0.875rem;
   font-weight: 500;
 
   &:hover {
-    color: @cyan-500;
+    color: $cyan-500;
   }
 
   &:focus {
-    color: @cyan-700;
+    color: $cyan-700;
     z-index: 1; // keeps focus ring in front of adjacent tabs
   }
 
   &[current] {
     background-color: inherit;
-    border-color: @gray-300 @gray-300 transparent;
-    color: @cyan-900;
+    border-color: $gray-300 $gray-300 transparent;
+    color: $cyan-900;
   }
 
   > * + * {
@@ -31,7 +31,7 @@ hx-tabcontent {
   -ms-grid-columns: 1fr;
   -ms-grid-rows: 1fr;
   background-color: inherit;
-  border-color: @gray-300 transparent;
+  border-color: $gray-300 transparent;
   border-style: solid;
   border-width: 1px;
   display: -ms-grid;
@@ -94,29 +94,29 @@ hx-tabset {
   }
 }
 
-//* ===== UNDEFINED =============== */
+// ===== UNDEFINED ===============
 
 // Ensure that at least one tab/panel pair appears to be open,
 // before <hx-tabset> upgrades.
 hx-tabset:not([hx-defined]) {
   hx-tab:first-of-type {
-    &:extend(hx-tab[current]);
+    background-color: $gray-0;
   }
 
   hx-tabpanel:first-of-type {
-    &:extend(hx-tabpanel[open]);
+    display: block;
   }
 }
 
-//* ===== OVERRIDES =============== */
+// ===== OVERRIDES ===============
 
 hx-tabset.beta-hxBound {
   hx-tab[current] {
-    background-color: @gray-0;
+    background-color: $gray-0;
   }
 
   hx-tabcontent {
-    background-color: @gray-0;
-    border-color: @gray-300;
+    background-color: $gray-0;
+    border-color: $gray-300;
   }
 }
