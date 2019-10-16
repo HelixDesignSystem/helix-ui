@@ -105,12 +105,27 @@ also:
       <div class="hxRow">
         <div class="hxCol hxSpan-12-xs hxSpan-6-md hxSpan-4-xl">
           <p>
-            <hx-search
-              :placeholder="searchPlaceholder"
-              :value="filter"
-              @input="onFilterUpdate"
-              @clear="onFilterUpdate"
-            ></hx-search>
+            <hx-search-control>
+              <input
+                id="demoSearchIcons"
+                type="search"
+                :placeholder="searchPlaceholder"
+                :value="filter"
+                @input="onFilterUpdate"
+              />
+              <button
+                type="button"
+                class="hxClear"
+                hidden
+                @click="onValueClear"
+              >
+                <hx-icon type="times"></hx-icon>
+              </button>
+              <hx-search></hx-search>
+              <label for="demoSearchIcons">
+                Search Icons
+              </label>
+            </hx-search-control>
           </p>
           <p v-if="hasFilter">
             <small v-if="filteredIcons.length > 0">

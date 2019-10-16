@@ -1,0 +1,35 @@
+@import "vars";
+
+//
+//  Mixins to style <hx-search> facade states.
+//
+
+@mixin SearchFacadePristineFocus {
+  border: 1px solid $cyan-700;
+  box-shadow: $focus-glow;
+}
+
+@mixin SearchFacadeInvalid {
+  border: 2px solid $red-900;
+}
+
+@mixin SearchFacadeInvalidFocus {
+  border: 2px solid $red-900;
+  box-shadow: $focus-glow-invalid;
+}
+
+@mixin SearchFacadeDisabled {
+  background-color: $gray-50;
+  border: 1px solid $gray-500;
+  color: $gray-400;
+}
+
+@mixin SearchFacadeDisabledFocus {
+  border: 1px solid $gray-500;
+}
+
+// TODO: Rename/move mixin
+@mixin SearchFacadeButtonFocus {
+  outline: 1px dotted $gray-700;
+  outline-offset: -6px;
+}

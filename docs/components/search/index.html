@@ -1,15 +1,19 @@
 ---
 title: Search
-minver: 0.4.0
+minver: 0.18.0
 also:
   components/search/test.html: Testing - Search
   elements/hx-search: <hx-search>
   elements/hx-search-assistance: <hx-search-assistance>
+  elements/hx-search-control: <hx-search-control>
 ---
 {% extends 'component.njk' %}
 
 {% block page_header %}
-  {# TODO: add component description #}
+  <p>
+    The {{page.title}} component provides augmented markup, validation, and interaction for a
+    native <code>&lt;input type="search"&gt;</code> element.
+  </p>
 {% endblock %}
 
 {% block content %}

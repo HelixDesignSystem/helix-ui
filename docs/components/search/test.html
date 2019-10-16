@@ -328,4 +328,84 @@ crumbs:
       </table>
     </section>
   </section>
+
+  <section>
+    <header>
+      <h2 id="test-extra-long-value">Extra Long Value</h2>
+      <code>&lt;input type="search"&gt;</code>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol hxSpan-4">
+        <hx-search-control>
+          <input
+            id="search-with-extra-long-value"
+            type="search"
+            value="This is an extra long search value that tests its rendered appearance"
+          />
+          <button
+            type="button"
+            class="hxClear"
+            aria-label="Clear search"
+            hidden
+          >
+            <hx-icon type="times"></hx-icon>
+          </button>
+          <hx-search></hx-search>
+          <label
+            for="search-with-extra-long-value"
+          >
+            Search with Extra Long Value
+          </label>
+        </hx-search-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <hx-search-control class="hxInvalid">
+          <input
+            id="search-with-extra-long-value-hxinvalid"
+            type="search"
+            value="This is an extra long search value that tests its rendered appearance"
+          />
+          <button
+            type="button"
+            class="hxClear"
+            aria-label="Clear search"
+            hidden
+          >
+            <hx-icon type="times"></hx-icon>
+          </button>
+          <hx-search></hx-search>
+          <label
+            for="search-with-extra-long-value-hxinvalid"
+          >
+            Search with Extra Long Value
+          </label>
+        </hx-search-control>
+      </div>
+        <div class="hxCol hxSpan-4">
+          <hx-search-control>
+            <input
+              id="search-with-extra-long-value-disabled"
+              type="search"
+              value="This is an extra long search value that tests its rendered appearance"
+              disabled
+            />
+            <button
+              type="button"
+              class="hxClear"
+              aria-label="Clear search"
+              hidden
+            >
+              <hx-icon type="times"></hx-icon>
+            </button>
+            <hx-search></hx-search>
+            <label
+              for="search-with-extra-long-value-disabled"
+            >
+              Search with Extra Long Value
+            </label>
+          </hx-search-control>
+        </div>
+    </div>
+  </section>
 {% endblock %}
