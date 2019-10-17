@@ -9,3 +9,6 @@ $demo-padding-color: $magenta-100;
 
 // Component-specific Doc Styles
 @import "components/index";
+
+// Spec Styles for component test pages
+@import "components/drawer/spec";
