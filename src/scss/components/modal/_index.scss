@@ -1,13 +1,15 @@
-@import (reference) 'vars';
+@import "vars";
+@import "../config";
 
-hx-modal:extend(.hxComponent) {
+hx-modal {
+  @extend %hxComponent;
   display: none;
   height: 100vh;
   left: 0;
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: @modal-z-index;
+  z-index: $modal-z-index;
 
   &[open] {
     display: block;
@@ -20,7 +22,7 @@ hx-modal {
     flex-shrink: 0;
     line-height: 1;
     order: 1;
-    padding: @space[md];
+    padding: map-get($space, md);
 
     // TODO: refactor this
     h1, h2, h3, h4, h5, h6 {
@@ -31,25 +33,26 @@ hx-modal {
   }
 
   > hx-div {
-    --hxPaddingLeft: @space[md];
-    --hxPaddingRight: @space[md];
+    --hxPaddingLeft: #{map-get($space, md)};
+    --hxPaddingRight: #{map-get($space, md)};
+
     flex-grow: 1;
     order: 2;
 
-    #HXDiv.shadyRoot({
-      padding: 0 @space[md];
-    });
+    @include hxDiv-shadyRoot {
+      padding: 0 map-get($space, md);
+    };
 
     &:first-child {
       margin-top: 4rem;
     }
 
     &:last-child {
-      --hxPaddingBottom: @space[md];
+      --hxPaddingBottom: #{map-get($space, md)};
 
-      #HXDiv.shadyRoot({
-        padding-bottom: @space[md];
-      });
+      @include hxDiv-shadyRoot {
+        padding-bottom: map-get($space, md);
+      };
     }
   }
 
@@ -58,15 +61,15 @@ hx-modal {
     flex-shrink: 0;
     justify-content: center;
     order: 3;
-    padding: @space[md];
+    padding: map-get($space, md);
 
     .hxBtn + .hxBtn {
-      margin-left: @space[md];
+      margin-left: map-get($space, md);
     }
   }
 }
 
-/* ----- DEPRECATED: remove in v1.0.0 ----- */
+// ----- DEPRECATED: remove in v1.0.0 -----
 hx-modalbody {
   display: block;
   flex-grow: 1;
