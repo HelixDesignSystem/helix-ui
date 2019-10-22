@@ -1,18 +1,19 @@
-@import (reference) 'mixins';
-@import (reference) 'components/box/index';
+@import "mixins";
+@import "../config";
+@import "components/box/config";
 
-hx-menu:extend(.hxComponent) {
-  #Positionable.base();
-
-  background-color: @gray-0;
-  border: 1px solid @gray-300;
-  box-shadow: @layering-shadow;
+hx-menu {
+  @extend %hxComponent;
+  @include is-positionable;
+  background-color: $gray-0;
+  border: 1px solid $gray-300;
+  box-shadow: $layering-shadow;
   max-width: 20rem;
   min-width: 10rem;
-  z-index: @menu-z-index;
+  z-index: $menu-z-index;
 
   &[open] {
-    #Box.sm();
+    @include box-size(sm);
     display: block;
   }
 
@@ -20,7 +21,7 @@ hx-menu:extend(.hxComponent) {
     display: block;
 
     header {
-      color: @gray-600;
+      color: $gray-600;
       font-size: 0.875rem;
       font-weight: 500;
       text-transform: uppercase;
@@ -32,18 +33,16 @@ hx-menu:extend(.hxComponent) {
   }
 }
 
-/*
-  Most of the styles mimic those of .hxBtn.hxLink.
+ // Most of the styles mimic those of .hxBtn.hxLink.
 
-  However, because the generated CSS would end up being
-  equally specific, extended definitions seem to take
-  priority, so we can't use &:extend() here.
-*/
+ // However, because the generated CSS would end up being
+ // equally specific, extended definitions seem to take
+ // priority, so we can't use @extend here.
 hx-menuitem {
   background-color: transparent;
   border-radius: 2px;
   border: none;
-  color: @cyan-900;
+  color: $cyan-900;
   cursor: pointer;
   display: block;
   font-size: 0.875rem;
@@ -55,13 +54,13 @@ hx-menuitem {
   &:hover {
     background-color: transparent;
     border-color: transparent;
-    color: @cyan-500;
+    color: $cyan-500;
   }
 
   &:active {
     background-color: transparent;
     border-color: transparent;
-    color: @cyan-700;
+    color: $cyan-700;
   }
 
   &:focus {
@@ -71,7 +70,7 @@ hx-menuitem {
   &[disabled] {
     background-color: transparent;
     border-color: transparent;
-    color: @gray-400;
+    color: $gray-400;
   }
 
   &.hxBtn--link { // DEPRECATED: Remove in v1.0.0
@@ -84,7 +83,7 @@ hx-menuitem-group {
   display: block;
 
   header {
-    color: @gray-600;
+    color: $gray-600;
     font-size: 0.875rem;
     font-weight: 500;
     text-transform: uppercase;
