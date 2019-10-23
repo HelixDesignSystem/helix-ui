@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Check for linting errors
+echo "[pre-commit] check linting"
+npm run lint

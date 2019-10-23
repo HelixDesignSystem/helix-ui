@@ -16,7 +16,7 @@ async function publishDocs () {
     let cfg = {
         add: false, // replace all gh-pages content, do not append
         dotfiles: false,
-        message: `(${PKG.version}) Updated: ${moment().format('YYYY-MM-DD HH:mm:ss')}`,
+        message: `publish(docs): v${PKG.version} (${moment().format('YYYY-MM-DD HH:mm:ss')})`,
         remote: 'upstream',
         silent: false,
     };

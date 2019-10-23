@@ -81,7 +81,7 @@
     "rollup": "rollup -c rollup.config.js",
     "preserve": "yarn clean:public && yarn generate",
     "serve": "scripts/serve.js",
-    "prestart": "yarn clean:public && yarn generate",
+    "prestart": "scripts/setup-git-hooks.sh && yarn clean:public && yarn generate",
     "start": "scripts/start.js",
     "test:unit": "mocha test/run_unit.js",
     "test": "cd test; yarn test"
