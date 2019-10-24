@@ -1,7 +1,7 @@
 .menu-positioning-spec {
   [id^="target"] {
     align-items: center;
-    background-color: @gray-300;
+    background-color: $gray-300;
     display: flex;
     height: 6rem;
     justify-content: center;

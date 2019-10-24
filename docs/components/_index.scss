@@ -1,4 +1,6 @@
-// load styles required to demonstrate each component
-
+/// load styles required to demonstrate each component
 @import "grid/index";
 @import "typography/index";
+
+/// load styles needed to test component visuals
+@import "menu/spec";
