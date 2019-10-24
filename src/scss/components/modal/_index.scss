@@ -3,6 +3,7 @@
 
 hx-modal {
   @extend %hxComponent;
+
   display: none;
   height: 100vh;
   left: 0;
@@ -41,7 +42,7 @@ hx-modal {
 
     @include hxDiv-shadyRoot {
       padding: 0 map-get($space, md);
-    };
+    }
 
     &:first-child {
       margin-top: 4rem;
@@ -52,7 +53,7 @@ hx-modal {
 
       @include hxDiv-shadyRoot {
         padding-bottom: map-get($space, md);
-      };
+      }
     }
   }
 

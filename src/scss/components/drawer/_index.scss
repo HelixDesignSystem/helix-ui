@@ -8,6 +8,7 @@ hx-drawer:not([hx-defined]) {
 // These styles should not be shared with ShadyDOM
 hx-drawer {
   @extend %hxComponent;
+
   background-color: $gray-100;
   display: block;
   height: 0;

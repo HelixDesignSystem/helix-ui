@@ -12,6 +12,7 @@ button {
 
 #hxToast {
   @include box-size(sm);
+
   display: flex;
 }
 
@@ -44,6 +45,7 @@ button {
   // NOTE: button-tertiary is bringing in more than necessary, but it won't be
   // an issue once we refactor Toast to define CTA elements in Light DOM.
   @include button-tertiary;
+
   text-transform: uppercase;
 
   &:empty {

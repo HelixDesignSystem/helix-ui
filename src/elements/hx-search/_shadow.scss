@@ -17,10 +17,9 @@ input::-ms-clear {
     -ms-grid-column-align: start;
     -ms-grid-columns: 2rem 1fr;
     -ms-grid-rows: 1fr;
-    display: -ms-grid;
-
     align-items: center;
-    display: grid;
+    display: -ms-grid; // Legacy (IE)
+    display: grid; // Modern
     grid-template-columns: 2rem 1fr;
     height: 100%;
   }

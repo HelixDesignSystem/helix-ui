@@ -9,6 +9,7 @@
 // #Reset.select() -> select-reset
 @mixin select-reset {
   @include appearance(none);
+
   font: inherit;
 
   // Firefox

@@ -16,6 +16,7 @@
 
   #hxDismiss {
     @include button-reset;
+
     align-items: center;
     color: var(--hxDismiss-color, $gray-600);
     display: inline-flex;

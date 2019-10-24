@@ -73,8 +73,8 @@ hx-tabset {
   display: -ms-grid;
   display: grid;
   grid-template-areas:
-    'list'
-    'content';
+    "list"
+    "content";
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   max-height: 100%;

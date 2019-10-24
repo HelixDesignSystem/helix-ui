@@ -43,9 +43,9 @@
   .hxPanel {
     display: grid;
     grid-template-areas:
-      'head'
-      'body'
-      'foot';
+      "head"
+      "body"
+      "foot";
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
 

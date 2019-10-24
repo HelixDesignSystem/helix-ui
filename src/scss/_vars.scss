@@ -59,7 +59,7 @@ $red-500: #f44336;
 $red-900: #d32f2f;
 // Shadow
 $shadow-color: rgba($gray-1000, 0.16);
-$backdrop-color: rgba($gray-1000, 0.60);
+$backdrop-color: rgba($gray-1000, 0.6);
 
 // ===== SHADOWS =====
 // Tooltips, Menus, Popovers, etc.
@@ -68,7 +68,7 @@ $layering-shadow: 0 3px 3px 0 $shadow-color;
 //$focusing-shadow: TBD
 
 // ===== FONTS =====
-$font-sans-serif: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-sans-serif: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $font-monospace: "Roboto Mono", monospace;
 
 // ==== FOCUS STATE =====
@@ -103,6 +103,7 @@ $gutter-size: 20px;
 
 // Responsive Breakpoints
 // key order matters (must be from smallest to largest breakpoint)
+// stylelint-disable length-zero-no-unit
 $screen: (
   xs: 0em,
   sm: 40em, // ~640px
@@ -110,3 +111,4 @@ $screen: (
   lg: 75em, // ~1200px
   xl: 90em, // ~1440px
 );
+// stylelint-enable

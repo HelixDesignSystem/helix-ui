@@ -18,6 +18,8 @@ browserSync.emitter.on('init', () => {
     exec('yarn webdriver:start', { cwd: CONFIG.testDir }); // don't log anything to the dev server
 });
 
+const lintStylesGlob = `${CONFIG.sourceDir}/**/*.{scss,css}`;
+
 browserSync.init({
     logLevel: 'debug',
     notify: false,
@@ -96,6 +98,19 @@ browserSync.init({
                 `!${CONFIG.sourceDir}/**/*.spec.js`,
             ],
             fn: _.debounce(generateApis, 1500),
+        },
+
+        {
+            match: [
+                lintStylesGlob,
+            ],
+            fn: _.debounce(() => {
+                let _cmd = `stylelint --color "${lintStylesGlob}"`;
+                let _proc = exec(_cmd, { cwd: CONFIG.root });
+
+                _proc.stdout.pipe(process.stdout);
+                _proc.stderr.pipe(process.stderr);
+            }),
         },
 
         // Only copy when files change in dist/

@@ -15,7 +15,7 @@ $arrow-box-side: 13px;
 // Calculate long side (i.e., the hypotenuse of the arrow container)
 //$arrow-hypotenuse: sqrt(2 * $arrow-box-side * $arrow-box-side); // 18.3848px
 // sqrt(2 * boxSide * boxSide) = sqrt(2 * 13 * 13) = sqrt(338) = 18.3848px
-$arrow-hypotenuse: 18.3848px;
+$arrow-hypotenuse: 18.385px;
 
 // Calculate height of arrow from base to tip
 // floor(9.1925) => 9px
@@ -81,7 +81,7 @@ $border-width: 1px;
   }
 
   @include __arrowChildren {
-    content: '';
+    content: "";
     display: block;
     height: $arrow-box-side;
     position: absolute;
@@ -99,11 +99,12 @@ $border-width: 1px;
     }
 
     @include __arrowBody {
-      background-image: linear-gradient(
-        to bottom left,
-        transparent 50%,
-        var(--hxBackgroundColor, $gray-0) 50%
-      );
+      background-image:
+        linear-gradient(
+          to bottom left,
+          transparent 50%,
+          var(--hxBackgroundColor, $gray-0) 50%
+        );
     }
   }
 
@@ -124,11 +125,12 @@ $border-width: 1px;
 
   &[position="top-left"] {
     @include __arrowBody {
-      background-image: linear-gradient(
-        to bottom right,
-        transparent 50%,
-        var(--hxBackgroundColor, $gray-0) 50%
-      );
+      background-image:
+        linear-gradient(
+          to bottom right,
+          transparent 50%,
+          var(--hxBackgroundColor, $gray-0) 50%
+        );
     }
     @include __arrowShadow(right);
     @include __arrowChildren--rotated(45deg, bottom right) {
@@ -147,11 +149,12 @@ $border-width: 1px;
     }
 
     @include __arrowBody {
-      background-image: linear-gradient(
-        to top left,
-        transparent 50%,
-        var(--hxBackgroundColor, $gray-0) 50%
-      );
+      background-image:
+        linear-gradient(
+          to top left,
+          transparent 50%,
+          var(--hxBackgroundColor, $gray-0) 50%
+        );
     }
   }
 
@@ -172,11 +175,12 @@ $border-width: 1px;
 
   &[position="right-top"] {
     @include __arrowBody {
-      background-image: linear-gradient(
-        to bottom left,
-        transparent 50%,
-        var(--hxBackgroundColor, $gray-0) 50%
-      );
+      background-image:
+        linear-gradient(
+          to bottom left,
+          transparent 50%,
+          var(--hxBackgroundColor, $gray-0) 50%
+        );
     }
     @include __arrowShadow(right);
     @include __arrowChildren--rotated(45deg, bottom left) {
@@ -195,11 +199,12 @@ $border-width: 1px;
     }
 
     @include __arrowBody {
-      background-image: linear-gradient(
-        to top left,
-        transparent 50%,
-        var(--hxBackgroundColor, $gray-0) 50%
-      );
+      background-image:
+        linear-gradient(
+          to top left,
+          transparent 50%,
+          var(--hxBackgroundColor, $gray-0) 50%
+        );
     }
   }
 
@@ -218,11 +223,12 @@ $border-width: 1px;
 
   &[position="bottom-left"] {
     @include __arrowBody {
-      background-image: linear-gradient(
-        to top right,
-        transparent 50%,
-        var(--hxBackgroundColor, $gray-0) 50%
-      );
+      background-image:
+        linear-gradient(
+          to top right,
+          transparent 50%,
+          var(--hxBackgroundColor, $gray-0) 50%
+        );
     }
     @include __arrowChildren--rotated(-45deg, top right) {
       right: $arrow-offset;
@@ -240,11 +246,12 @@ $border-width: 1px;
     }
 
     @include __arrowBody {
-      background-image: linear-gradient(
-        to top right,
-        transparent 50%,
-        var(--hxBackgroundColor, $gray-0) 50%
-      );
+      background-image:
+        linear-gradient(
+          to top right,
+          transparent 50%,
+          var(--hxBackgroundColor, $gray-0) 50%
+        );
     }
   }
 
@@ -265,11 +272,12 @@ $border-width: 1px;
 
   &[position="left-top"] {
     @include __arrowBody {
-      background-image: linear-gradient(
-        to bottom right,
-        transparent 50%,
-        var(--hxBackgroundColor, $gray-0) 50%
-      );
+      background-image:
+        linear-gradient(
+          to bottom right,
+          transparent 50%,
+          var(--hxBackgroundColor, $gray-0) 50%
+        );
     }
     @include __arrowShadow(left);
     @include __arrowChildren--rotated(-45deg, bottom right) {

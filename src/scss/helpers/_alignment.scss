@@ -1,9 +1,11 @@
 .hxLeft {
   text-align: left !important;
 }
+
 .hxCenter {
   text-align: center !important;
 }
+
 .hxRight {
   text-align: right !important;
 }
@@ -12,12 +14,15 @@
 .text-left {
   @extend .hxLeft;
 }
+
 .text-center {
   @extend .hxCenter;
 }
+
 .text-right {
   @extend .hxRight;
 }
+
 .text-justify {
   text-align: justify;
 }
