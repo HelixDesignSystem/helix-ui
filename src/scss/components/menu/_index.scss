@@ -5,6 +5,7 @@
 hx-menu {
   @extend %hxComponent;
   @include is-positionable;
+
   background-color: $gray-0;
   border: 1px solid $gray-300;
   box-shadow: $layering-shadow;
@@ -14,6 +15,7 @@ hx-menu {
 
   &[open] {
     @include box-size(sm);
+
     display: block;
   }
 
@@ -33,11 +35,11 @@ hx-menu {
   }
 }
 
- // Most of the styles mimic those of .hxBtn.hxLink.
-
- // However, because the generated CSS would end up being
- // equally specific, extended definitions seem to take
- // priority, so we can't use @extend here.
+// Most of the styles mimic those of .hxBtn.hxLink.
+//
+// However, because the generated CSS would end up being
+// equally specific, extended definitions seem to take
+// priority, so we can't use @extend here.
 hx-menuitem {
   background-color: transparent;
   border-radius: 2px;
