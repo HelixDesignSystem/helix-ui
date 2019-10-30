@@ -1,12 +1,14 @@
-@import (reference) 'vars';
-@import (reference) 'mixins';
+@import "vars";
+@import "mixins";
+@import "../config";
 
-hx-popover:extend(.hxComponent) {
-  #Positionable.base();
+hx-popover {
+  @extend %hxComponent;
+  @include is-positionable;
 
   max-width: 32rem; //~512px
   min-width: 20rem; //~320px
-  z-index: @popover-z-index;
+  z-index: $popover-z-index;
 
   > hx-popover-head, // DEPRECATED: remove in v1.0.0
   > header {
@@ -34,11 +36,11 @@ hx-popover {
   }
 
   > header {
-    color: @gray-900;
+    color: $gray-900;
     flex-shrink: 0;
     font-size: 1rem;
     font-weight: 500;
-    padding: @space[md];
+    padding: map-get($space, md);
     text-transform: none;
   }
 
@@ -47,39 +49,40 @@ hx-popover {
   }
 
   > hx-div {
-    --hxPaddingLeft: @space[md];
-    --hxPaddingRight: @space[md];
+    --hxPaddingLeft: #{map-get($space, md)};
+    --hxPaddingRight: #{map-get($space, md)};
+
     flex-grow: 1;
     max-height: 20rem; //~320px
 
-    #HXDiv.shadyRoot({
-      padding: 0 @space[md];
-    });
+    @include hxDiv-shadyRoot {
+      padding: 0 map-get($space, md);
+    }
 
     &:first-child {
-      --hxPaddingTop: @space[md];
+      --hxPaddingTop: #{map-get($space, md)};
 
-      #HXDiv.shadyRoot({
-        padding-top: @space[md];
-      });
+      @include hxDiv-shadyRoot {
+        padding-top: map-get($space, md);
+      }
     }
 
     &:last-child {
-      --hxPaddingBottom: @space[md];
+      --hxPaddingBottom: #{map-get($space, md)};
 
-      #HXDiv.shadyRoot({
-        padding-bottom: @space[md];
-      });
+      @include hxDiv-shadyRoot {
+        padding-bottom: map-get($space, md);
+      }
     }
   }
 
   > footer {
     flex-shrink: 0;
-    padding: @space[md];
+    padding: map-get($space, md);
 
     // TODO: replace with .hxButtonSet
     .hxBtn + .hxBtn {
-      margin-left: @space[md];
+      margin-left: map-get($space, md);
     }
   }
 }
@@ -113,7 +116,7 @@ hx-popover-foot {
 }
 
 hx-popover-head {
-  color: @gray-900;
+  color: $gray-900;
   display: block;
   flex-shrink: 0;
   font-size: 1rem;
@@ -121,4 +124,3 @@ hx-popover-head {
   padding: 1.25rem;
   text-transform: none;
 }
-
