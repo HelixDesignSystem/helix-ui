@@ -1,146 +1,6 @@
 @import "config";
 
 /// ==================================================
-/// MIXINS - DEPRECATED! Use SCSS instead!
-/// ==================================================
-
-#Button {
-  @mixin reset() {
-    background-color: transparent;
-    border: 0;
-    color: inherit;
-    cursor: pointer;
-    display: inline-block;
-    font: inherit;
-    font-weight: 500;
-    line-height: 1;
-    margin: 0;
-    padding: 0;
-  }
-
-  @mixin basic() {
-    border-radius: 2px;
-    display: inline-flex;
-    justify-content: center;
-
-    > * + * {
-      margin-left: 0.5rem;
-    }
-
-    &:focus {
-      outline: none;
-    }
-
-    &[disabled] {
-      cursor: not-allowed;
-
-      &:focus {
-        box-shadow: none;
-      }
-    }
-  }
-
-  @mixin primary() {
-    background-color: $cyan-900;
-    color: $gray-0;
-
-    &:hover {
-      background-color: $cyan-500;
-      border-color: transparent;
-      color: $gray-0;
-    }
-
-    &:active {
-      background-color: $cyan-700;
-      border-color: transparent;
-      color: $gray-0;
-    }
-
-    &:focus {
-      box-shadow: $focus-glow;
-      outline: none;
-    }
-
-    &[disabled] {
-      background-color: $gray-400;
-      border-color: transparent;
-      color: $gray-700;
-    }
-  }
-
-  @mixin secondary() {
-    border: 1px solid $cyan-900;
-    color: $cyan-900;
-
-    &:hover {
-      background-color: $cyan-500;
-      border-color: transparent;
-      color: $gray-0;
-    }
-
-    &:active {
-      background-color: $cyan-700;
-      border-color: transparent;
-      color: $gray-0;
-    }
-
-    &:focus {
-      box-shadow: $focus-glow;
-    }
-
-    &[disabled] {
-      background-color: transparent;
-      border-color: $gray-400;
-      color: $gray-400;
-    }
-  }
-
-  @mixin tertiary() {
-    background-color: transparent;
-    border: none;
-    color: $cyan-900;
-    padding-left: 0;
-    padding-right: 0;
-
-    &:hover {
-      background-color: transparent;
-      border-color: transparent;
-      color: $cyan-500;
-    }
-
-    &:active {
-      background-color: transparent;
-      border-color: transparent;
-      color: $cyan-700;
-    }
-
-    &:focus {
-      box-shadow: $focus-glow;
-    }
-
-    &[disabled] {
-      background-color: transparent;
-      border-color: transparent;
-      color: $gray-400;
-    }
-  }
-
-  @mixin small() {
-    padding: 0.125rem 0.5rem; // 2px 8px
-  }
-
-  @mixin medium() {
-    font-size: 0.875rem;
-    padding: 8px 12px;
-  }
-
-  @mixin large() {
-    font-size: 1rem;
-    padding: 1rem;
-  }
-}
-
-/// ==================================================
 ///  COMPONENT STYLES
 /// ==================================================
 
@@ -233,7 +93,7 @@ a[href].hxBtn {
       width: 1rem;
     }
 
-    &:hover, &:active  {
+    &:hover, &:active {
       background-color: transparent;
 
       hx-icon {
@@ -242,7 +102,7 @@ a[href].hxBtn {
     }
 
     &:focus {
-      box-shadow: 0 0 4px 0 fade($cyan-500, 50%);
+      box-shadow: 0 0 4px 0 rgba($cyan-500, 0.5);
       outline: none;
     }
 
@@ -275,16 +135,16 @@ a[href].hxBtn.beta-hxDark {
     @extend .hxBtn:hover;
 
     color: $gray-0;
-
   }
+
   &:active {
     @extend .hxBtn:active;
-
   }
+
   &:focus {
     @extend .hxBtn:focus;
 
-    box-shadow: 0 0 4px 2px fade($cyan-500, 60%);
+    box-shadow: 0 0 4px 2px rgba($cyan-500, 0.6);
   }
 }
 
