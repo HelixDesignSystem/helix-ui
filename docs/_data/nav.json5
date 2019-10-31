@@ -92,6 +92,7 @@
             { label: '<hx-reveal>', path: 'hx-reveal' },
             { label: '<hx-search>', path: 'hx-search' },
             { label: '<hx-search-assistance>', path: 'hx-search-assistance' },
+            { label: '<hx-search-control>', path: 'hx-search-control' },
             { label: '<hx-select>', path: 'hx-select' },
             { label: '<hx-select-control>', path: 'hx-select-control' },
             { label: '<hx-status>', path: 'hx-status' },

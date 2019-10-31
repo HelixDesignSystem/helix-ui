@@ -1,46 +1,46 @@
-@import (reference) "components/search/index";
+@import "components/search/SearchFacade";
 
 .search-spec {
   hx-search-control {
-    /* --------------- Pristine --------------- */
+    // --------------- Pristine ---------------
     > input[type="search"].mock-focus ~ hx-search,
     > button.hxClear.mock-focus ~ hx-search {
-      .SearchFacade(pristine-focus);
+      @include SearchFacadePristineFocus;
     }
 
-    /* --------------- Disabled --------------- */
+    // --------------- Disabled ---------------
     > input[type="search"]:disabled {
       ~ hx-search {
-        .SearchFacade(disabled);
+        @include SearchFacadeDisabled;
       }
 
       &.mock-focus ~ hx-search {
-        .SearchFacade(disabled-focus);
+        @include SearchFacadeDisabledFocus;
       }
     }
 
-    /* --------------- Changed / Touched --------------- */
+    // --------------- Changed / Touched ---------------
     &[hx-dirty] {
       > input[type="search"]:enabled.mock-focus ~ hx-search {
-        .SearchFacade(pristine-focus);
+        @include SearchFacadePristineFocus;
       }
 
       > input[type="search"]:invalid.mock-focus ~ hx-search {
-        .SearchFacade(invalid-focus);
+        @include SearchFacadeInvalidFocus;
       }
     }
 
-    /* --------------- Invalid --------------- */
+    // --------------- Invalid ---------------
     &.hxInvalid {
       > input[type="search"]:enabled.mock-focus ~ hx-search,
       > button.hxClear.mock-focus ~ hx-search {
-        .SearchFacade(invalid-focus);
+        @include SearchFacadeInvalidFocus;
       }
     }
 
-    /* --------------- Mock-Focus on <button> --------------- */
+    // --------------- Mock-Focus on <button> ---------------
     > input[type="search"] ~ button.mock-focus {
-      .SearchFacade(button-focus);
+      @include SearchFacadeButtonFocus;
     }
   }
 }

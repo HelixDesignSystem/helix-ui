@@ -1,15 +1,16 @@
 ---
 title: <hx-search>
-minver: 0.4.0
+minver: 0.18.0
 also:
   components/search: Search
-  elements/hx-search-assistance: <hx-search-assistance>
+  elements/hx-search-control: <hx-search-control>
 ---
 {% extends 'element.njk' %}
+{% import '_utils.njk' as utils %}
 {% block page_header %}
   <p>
-    The custom <code>{{page.title}}</code> element renders a search control
-    that accepts user input.
+    The <code>{{page.title}}</code> inline element is a stylistic facade
+    used to build a <a href="components/search">Search</a> component.
   </p>
 {% endblock %}
 
@@ -18,76 +19,16 @@ also:
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>
-        <dd>any</dd>
+        <dd>{{ utils.customElement('hx-search-control') }}</dd>
       </div>
       <div>
         <dt>Permitted Children</dt>
-        <dd>none (content will be removed upon element upgrade)</dd>
+        <dd><i>none</i></dd>
       </div>
       <div>
         <dt>Events</dt>
-        <dd>
-          Any of the following:
-          <ul class="hxList">
-            <li><code>blur</code> (doesn't bubble)</li>
-            <li><code>clear</code> on clear</li>
-            <li><code>focus</code> (doesn't bubble)</li>
-            <li><code>input</code> as user types</li>
-          </ul>
-        </dd>
+        <dd><i>none</i></dd>
       </div>
     </dl>
   </section>
-
-  <section>
-    <h2 id="methods">Methods</h2>
-    <dl>
-      <dt>focus()</dt>
-      <dd>Overrides default HTMLElement behavior to focus the input in the Shadow DOM.</dd>
-
-      <dt>clear()</dt>
-      <dd>Simulates pressing "x" to clear the value of the input.</dd>
-    </dl>
-  </section>
-{% endblock %}
-
-{% block attributes %}
-  <dl>
-    <dt>disabled</dt>
-    <dd>Disables user interaction</dd>
-
-    <dt>invalid</dt>
-    <dd>Marks input as invalid</dd>
-
-    <dt>placeholder</dt>
-    <dd>Hint of what can be entered into the control</dd>
-
-    <dt>value</dt>
-    <dd>Initial value of the control</dd>
-  </dl>
-{% endblock %}
-
-{% block properties %}
-  <dl>
-    <dt>disabled {Boolean [false]}</dt>
-    <dd>
-      Get / Set the disabled state of the control.
-    </dd>
-
-    <dt>invalid {Boolean [false]}</dt>
-    <dd>
-      Get / Set the invalid state of the control.
-    </dd>
-
-    <dt>placeholder {String}</dt>
-    <dd>
-      Get / Set the control's placeholder text.
-      The placeholder text must not contain carriage returns or line-feeds
-    </dd>
-
-    <dt>value {String}</dt>
-    <dd>
-      Get / Set the current value of the control.
-    </dd>
-  </dl>
 {% endblock %}

@@ -1,15 +1,15 @@
 import Util from '../../_util';
 
 (function () {
-    const TYPES = [ 
+    const TYPES = [
         '',
         'key',
-        'mime-archive', 
+        'mime-archive',
         'mime-audio',
         'mime-code',
         'mime-data',
         'mime-image',
-        'mime-system', 
+        'mime-system',
         'mime-text',
         'mime-video',
         'paperclip',
@@ -38,7 +38,7 @@ import Util from '../../_util';
                 },
                 snippet: function () {
                     return Util.snippet(`
-                        <hx-file-icon 
+                        <hx-file-icon
                           ${this.attrExtension}
                           ${this.attrType}>
                         </hx-file-icon>
@@ -72,6 +72,9 @@ if (document.getElementById('vue-availableIcons')) {
         methods: {
             onFilterUpdate: function (evt) {
                 this.filter = evt.currentTarget.value || '';
+            },
+            onValueClear: function () {
+                this.filter = '';
             },
             matchesName: function (icon) {
                 let _name = icon.name.toLowerCase();
