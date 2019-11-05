@@ -1,14 +1,15 @@
-@import (reference) "mixins";
-@import (reference) "components/form/index";
+@import "mixins";
+@import "components/form/config";
 
-// ----- LAYOUT ----------
-/* (columnar-flexbox)
-  +-------------+
-  | label       |
-  +-------------+
-  | textarea    |
-  +-------------+
-*/
+/// ----- LAYOUT ----------
+/// (flexbox - column layout)
+///  +-------------+
+///  | label       |
+///  +-------------+
+///  | textarea    |
+///  +-------------+
+///
+
 hx-textarea-control {
   display: flex;
   flex-direction: column;
@@ -42,41 +43,42 @@ hx-textarea-control {
 // ----- PRISTINE ----------
 hx-textarea-control {
   > label {
-    .FieldName();
+    @include hxFieldName;
   }
 
   > textarea {
-    .TextControl(pristine);
+    @include hxTextControl;
 
     &:focus {
-      .TextControl(pristine-focus);
+      @include hxTextControl($focused: true);
     }
   }
-}//hx-textarea-control
+}
 
 // ----- INVALID ----------
-/*
-  1. Prevent IE from incorrectly matching textarea:disabled:invalid
-*/
+//
+// 1. Prevent IE from incorrectly matching textarea:disabled:invalid
+//
 hx-textarea-control[hx-dirty] > textarea:enabled:invalid, /* 1 */
 hx-textarea-control.hxInvalid > textarea:enabled {
-  .TextControl(invalid);
+  @include hxTextControl(invalid);
 
   &:focus {
-    .TextControl(invalid-focus);
+    @include hxTextControl(invalid, $focused: true);
   }
 }
 
 // ----- DISABLED ----------
 hx-textarea-control > textarea:disabled {
-  .TextControl(disabled);
+  @include hxTextControl(disabled);
+
   resize: none;
 
   ~ label {
-    .FieldName(disabled);
+    @include hxFieldName(disabled);
   }
 
   &:focus {
-    .TextControl(disabled-focus);
+    @include hxTextControl(disabled, $focused: true);
   }
 }
