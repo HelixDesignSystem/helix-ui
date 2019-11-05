@@ -1,0 +1,127 @@
+@import "components/form/config";
+
+// ----- LAYOUT ----------
+
+///   auto*      1fr       auto*
+///  +----------+---------+----------+
+///  | label    | label   | label    | auto
+///  +----------+---------+----------+
+///  | [prefix] | control | [suffix] | auto
+///  +----------+---------+----------+
+///
+///  * column will collapse if content not present
+
+hx-text-control {
+  $ctrl-columns: auto 1fr auto;
+  $ctrl-rows: auto auto;
+  $ctrl-row-align: center;
+
+  -ms-grid-columns: $ctrl-columns;
+  -ms-grid-rows: $ctrl-rows;
+  align-items: $ctrl-row-align;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas:
+    "label  label   label"
+    "prefix control suffix";
+  grid-template-columns: $ctrl-columns;
+  grid-template-rows: $ctrl-rows;
+
+  // blacklist
+  > * {
+    display: none;
+  }
+
+  // whitelist
+  > label,
+  > input[type="text"],
+  > .hxPrefix,
+  > .hxSuffix {
+    display: block;
+  }
+
+  > label {
+    $justify: start;
+
+    -ms-grid-column-align: $justify;
+    -ms-grid-column-span: 3;
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    grid-area: label;
+    justify-self: $justify;
+  }
+
+  > input[type="text"] {
+    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+    grid-area: control;
+    height: 2rem;
+    min-width: 8rem; // ~16 chars
+    padding: 0 0.75rem;
+  }
+
+  > .hxPrefix {
+    $justify: end;
+
+    -ms-grid-column-align: $justify;
+    -ms-grid-column: 1;
+    -ms-grid-row-align: $ctrl-row-align; // because IE
+    -ms-grid-row: 2;
+    grid-area: prefix;
+    justify-self: $justify;
+    margin-right: 0.25rem;
+  }
+
+  > .hxSuffix {
+    $justify: start;
+
+    -ms-grid-column-align: $justify;
+    -ms-grid-column: 3;
+    -ms-grid-row-align: $ctrl-row-align; // because IE
+    -ms-grid-row: 2;
+    grid-area: suffix;
+    justify-self: $justify;
+    margin-left: 0.25rem;
+  }
+}
+
+// ----- PRISTINE ----------
+hx-text-control {
+  > label {
+    @include hxFieldName();
+  }
+
+  > input[type="text"] {
+    @include hxTextControl;
+
+    &:focus {
+      @include hxTextControl($focused: true);
+    }
+  }
+}
+
+// ----- INVALID ----------
+
+//  1. Prevent IE from incorrectly matching input:disabled:invalid
+
+hx-text-control[hx-dirty] > input[type="text"]:enabled:invalid, // 1
+hx-text-control.hxInvalid > input[type="text"]:enabled {
+  @include hxTextControl(invalid);
+
+  &:focus {
+    @include hxTextControl(invalid, $focused: true);
+  }
+}
+
+// ----- DISABLED ----------
+hx-text-control > input[type="text"]:disabled {
+  @include hxTextControl(disabled);
+
+  ~ label {
+    @include hxFieldName(disabled);
+  }
+
+  &:focus {
+    @include hxTextControl(disabled, $focused: true);
+  }
+}

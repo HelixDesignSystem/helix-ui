@@ -1,27 +1,27 @@
-@import (reference) 'components/form/index';
+@import "components/form/mixins/textControl";
 
 .text-input-spec {
   hx-text-control {
     /* ----- Pristine --------------- */
     > input[type="text"].mock-focus {
-      .TextControl(pristine-focus);
+      @include hxTextControl($focused: true);
     }
 
     /* ----- Disabled --------------- */
     > input[type="text"]:disabled.mock-focus {
-      .TextControl(disabled-focus);
+      @include hxTextControl(disabled, $focused: true);
     }
 
     /* ----- Changed / Touched --------------- */
     &[hx-dirty] {
       > input[type="text"]:invalid.mock-focus {
-        .TextControl(invalid-focus);
+        @include hxTextControl(invalid, $focused: true);
       }
     }
 
     /* ----- Styled Invalid --------------- */
     &.hxInvalid > input[type="text"]:enabled.mock-focus {
-      .TextControl(invalid-focus);
+      @include hxTextControl(invalid, $focused: true);
     }
   }
 }
