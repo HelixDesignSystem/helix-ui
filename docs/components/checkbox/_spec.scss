@@ -1,0 +1,108 @@
+@import "components/checkbox/config";
+
+.checkbox-spec {
+  hx-checkbox-control {
+    > label {
+      > hx-checkbox {
+        display: none;
+      }
+    }
+
+    // ----- PRISTINE -----
+    > input[type="checkbox"] {
+      // imitate :focus
+      &.mock-focus {
+        @include hxCheckboxControl($pseudo-state: focus);
+
+        ~ label > hx-checkbox {
+          @include hxCheckboxFacade($pseudo-state: focus);
+        }
+      }
+
+      // imitate :hover
+      &.mock-hover {
+        @include hxCheckboxControl($pseudo-state: hover);
+
+        ~ label > hx-checkbox {
+          @include hxCheckboxFacade($pseudo-state: hover);
+        }
+      }
+
+      // ----- DISABLED -----
+      // imitate :disabled:focus
+      &:disabled.mock-focus {
+        @include hxCheckboxControl(disabled, focus);
+
+        ~ label > hx-checkbox {
+          @include hxCheckboxFacade(disabled, focus);
+        }
+      }
+
+      // imitate :disabled:hover
+      &:disabled.mock-hover {
+        @include hxCheckboxControl(disabled, hover);
+
+        ~ label > hx-checkbox {
+          @include hxCheckboxFacade(disabled, hover);
+        }
+      }
+    }
+
+    // ----- INVALID -----
+    &[hx-dirty] {
+      > input[type="checkbox"]:invalid {
+        // imitate :focus
+        &.mock-focus {
+          @include hxCheckboxControl(invalid, focus);
+
+          ~ label > hx-checkbox {
+            @include hxCheckboxFacade(invalid, focus);
+          }
+        }
+
+        // imitate :hover
+        &.mock-hover {
+          @include hxCheckboxControl(invalid, hover);
+
+          ~ label > hx-checkbox {
+            @include hxCheckboxFacade(invalid, hover);
+          }
+        }
+      }
+    }
+
+    &.hxInvalid {
+      > input[type="checkbox"]:enabled {
+        // imitate :focus
+        &.mock-focus {
+          @include hxCheckboxControl(invalid, focus);
+
+          ~ label > hx-checkbox {
+            @include hxCheckboxFacade(invalid, focus);
+          }
+        }
+
+        // imitate :hover
+        &.mock-hover {
+          @include hxCheckboxControl(invalid, hover);
+
+          ~ label > hx-checkbox {
+            @include hxCheckboxFacade(invalid, hover);
+          }
+        }
+      }
+    }
+  }
+}
+
+@supports (--modern: true) {
+  .checkbox-spec {
+    hx-checkbox-control {
+      > label {
+        > hx-checkbox {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
