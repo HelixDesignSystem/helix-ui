@@ -1,6 +1,8 @@
 'use strict';
 import 'whatwg-fetch';
 
+HelixUI.initialize();
+
 import './_config';
 import './components/accordion/accordion-demo';
 import './components/alert/alert-demo';

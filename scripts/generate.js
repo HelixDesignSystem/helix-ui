@@ -4,8 +4,8 @@
 const { copyDocs, copyDist } = require('./_util/copy');
 const { generateAll } = require('./_generate');
 
-(function () {
-    copyDist();
-    copyDocs();
-    generateAll();
+(async function () {
+    await copyDist();
+    await copyDocs();
+    await generateAll();
 })();

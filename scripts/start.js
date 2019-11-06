@@ -1,22 +1,34 @@
 #!/usr/bin/env node
 'use strict';
 
+require = require('esm')(module);
+
 const _ = require('lodash');
 const browserSync = require('browser-sync').create();
 const exec = require('child_process').exec;
 
 const CONFIG = require('./_config');
-const { compileScripts, compileStyles } = require('./_compile');
 const { copyDist } = require('./_util/copy');
 const { generateAll, generateApis } = require('./_generate');
 
 const serverRoutes = {};
 serverRoutes[CONFIG.site.baseHref] = CONFIG.publicDir;
 
-browserSync.emitter.on('init', () => {
-    console.log('Starting a selenium webdriver instance...');
-    exec('yarn webdriver:start', { cwd: CONFIG.testDir }); // don't log anything to the dev server
-});
+// new pipeline functionality
+const {
+    bundleStyles,
+    bundleBrowsers: bundleBrowserScripts,
+} = require('../tasks/bundle');
+
+/**
+ * 2019-11-01: Disabling Selenium, because it's currently not
+ * being used and wasting system resources
+ */
+
+//browserSync.emitter.on('init', () => {
+//    console.log('Starting a selenium webdriver instance...');
+//    exec('yarn webdriver:start', { cwd: CONFIG.testDir }); // don't log anything to the dev server
+//});
 
 const lintStylesGlob = `${CONFIG.sourceDir}/**/*.{scss,css}`;
 
@@ -54,7 +66,7 @@ browserSync.init({
                 `!${CONFIG.docsDir}/api/**/*`,
             ],
             fn: _.debounce(function () {
-                compileStyles();
+                bundleStyles();
                 generateAll();
             }, 1500),
         },
@@ -65,7 +77,7 @@ browserSync.init({
                 //
                 // example:
                 //  - src/index.js
-                //  - src/_bundle.umd.js
+                //  - src/_bundle.*.js
                 //  - src/elements/index.js
                 `${CONFIG.sourceDir}/**/*.js`,
 
@@ -85,7 +97,9 @@ browserSync.init({
                 // ignore changes to test files
                 `!${CONFIG.sourceDir}/**/*.spec.js`,
             ],
-            fn: _.debounce(compileScripts, 1500),
+            fn: _.debounce(() => {
+                bundleBrowserScripts();
+            }, 1500),
         },
 
         // Generate API docs when src files change

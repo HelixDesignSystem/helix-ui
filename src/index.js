@@ -1,7 +1,9 @@
 /** @module HelixUI */
 import * as Elements from './elements';
-export { version as VERSION } from '../package.json';
-export { default as Utils } from './utils';
+import { version as VERSION } from '../package.json';
+import * as Utils from './utils';
+
+const { waitForWebComponents } = Utils;
 
 /**
  * @external CustomEvent
@@ -50,26 +52,45 @@ function _defineElements () {
 }
 
 /**
- * Initialize HelixUI when Web Components are ready.
+ * @description
+ * Initialize HelixUI when polyfills are ready.
+ *
+ * @example <caption>No Arugments (backward-compatible behavior)</caption>
+ * function start () {
+ *   // continue...
+ * }
+ * HelixUI.initialize();
+ * start();
+ *
+ *
+ * @example <caption>Then-able</caption>
+ * function start () {
+ *   // continue...
+ * }
+ * HelixUI.initialize().then(start);
+ *
+ *
+ * @example <caption>Async/Await</caption>
+ * function start () {
+ *   // continue...
+ * }
+ *
+ * async function load () {
+ *   await HelixUI.initialize();
+ *   start();
+ * }
+ *
+ * load();
+ *
+ * @returns {Promise}
  */
 export function initialize () {
-    if (window.WebComponents) {
-        // Polyfill detected
-        if (window.WebComponents.ready) {
-            // polyfill already finished loading, initialize immediately
-            _defineElements();
-        } else {
-            // initialize when polyfill has finished loading
-            window.addEventListener('WebComponentsReady', function () {
-                _defineElements();
-            });
-        }
-    } else {
-        // No polyfills detected, initialize immediately
-        _defineElements();
-    }
+    return waitForWebComponents()
+        .then(_defineElements);
 }
 
 export {
     Elements,
+    Utils,
+    VERSION,
 };
