@@ -17,20 +17,27 @@ const server = app.listen(3000, () => {
     console.log('Use CTRL-C to stop the server.');
 });
 
+/**
+ * 2019-11-01: Selenium isn't being used, right now, so I've
+ * commented it out to speed up pipeline procesing. This will
+ * need to be re-enabled when we get browser tests up and running.
+ */
+
 // Start Selenium
-const selenium = exec('yarn webdriver:start', { cwd: CONFIG.testDir });
-if (selenium) {
-    console.log('selenium started');
-}
+//const selenium = exec('yarn webdriver:start', { cwd: CONFIG.testDir });
+//if (selenium) {
+//    console.log('selenium started');
+//}
+
 
 // Cleanup on Exit
 process.on('SIGINT', function () {
     console.log('Stopping...');
 
     // Cleanup Selenium
-    if (selenium) {
-        selenium.kill();
-    }
+    //if (selenium) {
+    //    selenium.kill();
+    //}
 
     // Close Server
     server.close(() => {

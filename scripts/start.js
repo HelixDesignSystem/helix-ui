@@ -137,17 +137,18 @@ browserSync.init({
         },
 
         // Re-transpile test files
-        {
-            match: [
-                `${CONFIG.testDir}/**/*.ts`,
-                `!${CONFIG.testDir}/node_modules/**`,
-                `!${CONFIG.testDir}/built/**/*`,
-            ],
-            fn: _.debounce(() => {
-                const tsc = exec('yarn build', { cwd: CONFIG.testDir });
-                tsc.stdout.pipe(process.stdout);
-                tsc.stderr.pipe(process.stderr);
-            }, 1500),
-        },
+        // 2019-11-01: temporarily disabled (unused; wasting cpu cycles)
+        //{
+        //    match: [
+        //        `${CONFIG.testDir}/**/*.ts`,
+        //        `!${CONFIG.testDir}/node_modules/**`,
+        //        `!${CONFIG.testDir}/built/**/*`,
+        //    ],
+        //    fn: _.debounce(() => {
+        //        const tsc = exec('yarn build', { cwd: CONFIG.testDir });
+        //        tsc.stdout.pipe(process.stdout);
+        //        tsc.stderr.pipe(process.stderr);
+        //    }, 1500),
+        //},
     ],
 });
