@@ -280,6 +280,10 @@
         "path": "hx-search-assistance"
       },
       {
+        "label": "<hx-search-control>",
+        "path": "hx-search-control"
+      },
+      {
         "label": "<hx-select>",
         "path": "hx-select"
       },

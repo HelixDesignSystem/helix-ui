@@ -24,12 +24,9 @@
   />
 
   
-  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  <link rel="stylesheet" href="dist/css/helix-ui.css">
   
   <link rel="stylesheet" href="docs.css">
-
-  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
-  <script src="vendor/custom-elements-es5-adapter.js"></script>
 
   <!-- loader appends polyfills, if needed -->
   <script src="vendor/webcomponents-loader.js"></script>
@@ -498,6 +495,12 @@ class="current">
 
 
       
+      <a href="elements/hx-search-control" >
+    &lt;hx-search-control&gt;
+  </a>
+
+
+      
       <a href="elements/hx-select" >
     &lt;hx-select&gt;
   </a>
@@ -589,18 +592,18 @@ class="current">
               &lt;hx-search&gt;
 
 <min-version id="page-min-version">
-  v0.4.0+
+  v0.18.0+
 </min-version>
 
 <hx-tooltip for="page-min-version" position="right">
-  HelixUI v0.4.0 or later required
+  HelixUI v0.18.0 or later required
 </hx-tooltip>
             </h1>
 
 
   <p>
-    The custom <code>&lt;hx-search&gt;</code> element renders a search control
-    that accepts user input.
+    The <code>&lt;hx-search&gt;</code> inline element is a stylistic facade
+    used to build a <a href="components/search">Search</a> component.
   </p>
           </header>
 
@@ -608,35 +611,20 @@ class="current">
     <dl class="metadata hxList">
       <div>
         <dt>Permitted Parents</dt>
-        <dd>any</dd>
+        <dd>  <a href="elements/hx-search-control">
+      <code>&lt;hx-search-control&gt;</code>
+
+  </a>
+</dd>
       </div>
       <div>
         <dt>Permitted Children</dt>
-        <dd>none (content will be removed upon element upgrade)</dd>
+        <dd><i>none</i></dd>
       </div>
       <div>
         <dt>Events</dt>
-        <dd>
-          Any of the following:
-          <ul class="hxList">
-            <li><code>blur</code> (doesn't bubble)</li>
-            <li><code>clear</code> on clear</li>
-            <li><code>focus</code> (doesn't bubble)</li>
-            <li><code>input</code> as user types</li>
-          </ul>
-        </dd>
+        <dd><i>none</i></dd>
       </div>
-    </dl>
-  </section>
-
-  <section>
-    <h2 id="methods">Methods</h2>
-    <dl>
-      <dt>focus()</dt>
-      <dd>Overrides default HTMLElement behavior to focus the input in the Shadow DOM.</dd>
-
-      <dt>clear()</dt>
-      <dd>Simulates pressing "x" to clear the value of the input.</dd>
     </dl>
   </section>
 
@@ -651,19 +639,10 @@ class="current">
       </p>
     </header>
 
-  <dl>
-    <dt>disabled</dt>
-    <dd>Disables user interaction</dd>
-
-    <dt>invalid</dt>
-    <dd>Marks input as invalid</dd>
-
-    <dt>placeholder</dt>
-    <dd>Hint of what can be entered into the control</dd>
-
-    <dt>value</dt>
-    <dd>Initial value of the control</dd>
-  </dl>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        This element does not have any configurable attributes.
+      </p>
   </section>
 
   
@@ -676,35 +655,17 @@ class="current">
       </p>
     </header>
 
-  <dl>
-    <dt>disabled {Boolean [false]}</dt>
-    <dd>
-      Get / Set the disabled state of the control.
-    </dd>
-
-    <dt>invalid {Boolean [false]}</dt>
-    <dd>
-      Get / Set the invalid state of the control.
-    </dd>
-
-    <dt>placeholder {String}</dt>
-    <dd>
-      Get / Set the control's placeholder text.
-      The placeholder text must not contain carriage returns or line-feeds
-    </dd>
-
-    <dt>value {String}</dt>
-    <dd>
-      Get / Set the current value of the control.
-    </dd>
-  </dl>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        This element does not have any configurable properties.
+      </p>
   </section>
 
 <section>
   <h2 id="see-also">See Also</h2>
   <ul class="hxList">
       <li><a href="components/search">Search</a></li>
-      <li><a href="elements/hx-search-assistance">&lt;hx-search-assistance&gt;</a></li>
+      <li><a href="elements/hx-search-control">&lt;hx-search-control&gt;</a></li>
   </ul>
 </section>
       </main>
@@ -716,8 +677,6 @@ class="current">
 
             <nav class="article-toc">
               
-            <a href="#methods">Methods</a>
-        
   <a href="#attributes">Attributes</a>
   <a href="#properties">Properties</a>
                 <a href="#see-also">See Also</a>
@@ -740,12 +699,12 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-08-23
+          2019-10-31
         </small>
 
       <small>
-        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.18.0-rc.0" target="_blank">
-          v0.18.0-rc.0
+        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.18.0-rc.1" target="_blank">
+          v0.18.0-rc.1
         </a>)
       </small>
     </div>
@@ -756,7 +715,7 @@ class="current">
   
   <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
   
-  <script src="dist/scripts/helix-ui.browser.js"></script>
+  <script src="dist/js/helix-ui.js"></script>
   
   <script src="docs.js"></script>
 </body>

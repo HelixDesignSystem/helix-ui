@@ -1,7 +1,18 @@
-'use strict';
+/*! @license @nocompile
+Copyright 2019 Rackspace US, Inc.
 
-Object.defineProperty(exports, '__esModule', { value: true });
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
 // Keep track of prepared templates
 const TEMPLATE_CACHE = {};
 
@@ -630,17 +641,18 @@ function optimizePositionForCollisions (position, collides) {
     return position;
 }
 
-var Alignment = {
-    getAlignment,
-    getCrossAxis,
-    getHorizontalAlignment,
-    getMainAxis,
-    getVerticalAlignment,
-    invertPositionHorizontally,
-    invertPositionVertically,
-    normalizePosition,
-    optimizePositionForCollisions,
-};
+var index = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    getAlignment: getAlignment,
+    getCrossAxis: getCrossAxis,
+    getHorizontalAlignment: getHorizontalAlignment,
+    getMainAxis: getMainAxis,
+    getVerticalAlignment: getVerticalAlignment,
+    invertPositionHorizontally: invertPositionHorizontally,
+    invertPositionVertically: invertPositionVertically,
+    normalizePosition: normalizePosition,
+    optimizePositionForCollisions: optimizePositionForCollisions
+});
 
 /**
  * @module HelixUI/Utils/Offset
@@ -1127,29 +1139,31 @@ fnMap['center'] = fnMap['center-middle'];
 
 const offsetFunctionMap = fnMap;
 
-var Offset = {
-    getBottom,
-    getBottomEnd,
-    getBottomLeft,
-    getBottomRight,
-    getBottomStart,
-    getCenter,
-    getLeft,
-    getLeftBottom,
-    getLeftEnd,
-    getLeftStart,
-    getLeftTop,
-    getRight,
-    getRightBottom,
-    getRightEnd,
-    getRightStart,
-    getTop,
-    getTopEnd,
-    getTopLeft,
-    getTopRight,
-    getTopStart,
-    offsetFunctionMap,
-};
+var index$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    getCenter: getCenter,
+    getTop: getTop,
+    getBottom: getBottom,
+    getLeft: getLeft,
+    getRight: getRight,
+    getTopLeft: getTopLeft,
+    getTopStart: getTopStart,
+    getTopEnd: getTopEnd,
+    getTopRight: getTopRight,
+    getRightTop: getRightTop,
+    getRightStart: getRightStart,
+    getRightEnd: getRightEnd,
+    getRightBottom: getRightBottom,
+    getBottomRight: getBottomRight,
+    getBottomEnd: getBottomEnd,
+    getBottomStart: getBottomStart,
+    getBottomLeft: getBottomLeft,
+    getLeftBottom: getLeftBottom,
+    getLeftEnd: getLeftEnd,
+    getLeftStart: getLeftStart,
+    getLeftTop: getLeftTop,
+    offsetFunctionMap: offsetFunctionMap
+});
 
 var _account = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M15.2 2c.44 0 .8.36.8.8v10.4c0 .44-.36.8-.8.8h-2.4a1.2 1.2 0 1 0-2.4 0H5.6a1.2 1.2 0 0 0-2.4 0H.8c-.44 0-.8-.36-.8-.8V2.8c0-.44.36-.8.8-.8h14.4zM9 10.562v-.437a.44.44 0 0 0-.242-.392c-.075-.037-1.859-.92-3.258-.92s-3.183.883-3.258.92a.44.44 0 0 0-.242.392v.437c0 .242.196.438.438.438h6.125A.438.438 0 0 0 9 10.562zm-5.287-4.74v.875c0 .965.785 1.75 1.75 1.75s1.75-.785 1.75-1.75v-.875c0-.965-.785-1.75-1.75-1.75s-1.75.785-1.75 1.75zM10 11h4v-1h-4v1zm0-3h4V7h-4v1zm0-3h4V4h-4v1z'/></svg>";
 
@@ -1402,6 +1416,19 @@ MAP['input-time'] = MAP['clock'];
  * @module HelixUI/Utils
  */
 
+const NOOP = () => {};
+
+/**
+ * @description
+ * Returns argument if it's a function, otherwise returns a noop.
+ *
+ * @param {function|*} [fn=noop] - possible function
+ * @returns {function}
+ */
+function ensureFn (fn = NOOP) {
+    return (typeof fn === 'function') ? fn : NOOP;
+}
+
 /**
  * Key/value map of key names and their keycode.
  *
@@ -1565,18 +1592,91 @@ function replaceWith (txtReplacement) {
     /* eslint-enable no-console */
 }
 
-// Not everything needs to be part of the default export
-var index = {
-    Alignment,
-    KEYS,
-    Offset,
-    defer,
-    generateId,
-    mix,
-    onScroll,
-    preventKeyScroll,
-    replaceWith,
-};
+/**
+ * @description
+ * Run callback after WebComponents polyfills have finished loading
+ *
+ * @example
+ * function start () {
+ *   // do stuff...
+ * }
+ *
+ * onWebComponentsReady(start);
+ *
+ * @param {function} [cb=noop] - callback to run
+ */
+function onWebComponentsReady (cb = NOOP) {
+    let _callback = ensureFn(cb);
+
+    if (window.WebComponents) {
+        // Polyfill detected
+        if (window.WebComponents.ready) {
+            // polyfill already finished loading, execute callback immediately
+            _callback();
+        } else {
+            // execute callback when polyfill has finished loading
+            window.addEventListener('WebComponentsReady', function () {
+                _callback();
+            });
+        }
+    } else {
+        // No polyfills detected, execute callback immediately
+        _callback();
+    }
+}
+
+/**
+ * @description
+ * Asynchronous version of onWebComponentsReady()
+ *
+ * @example <caption>Then-able</caption>
+ * function start () {
+ *   // do stuff...
+ * }
+ *
+ * waitForWebComponents().then(start);
+ *
+ *
+ * @example <caption>Async/Await</caption>
+ * function start () {
+ *   // do stuff...
+ * }
+ *
+ * async function load () {
+ *   await waitForWebComponents();
+ *   start();
+ * }
+ *
+ * load();
+ *
+ * @returns {Promise}
+ */
+function waitForWebComponents () {
+    return new Promise((resolve, reject) => {
+        try {
+            onWebComponentsReady(resolve);
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
+var Utils = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ensureFn: ensureFn,
+    KEYS: KEYS,
+    defer: defer,
+    generateId: generateId,
+    mix: mix,
+    onScroll: onScroll,
+    preventKeyScroll: preventKeyScroll,
+    replaceWith: replaceWith,
+    onWebComponentsReady: onWebComponentsReady,
+    waitForWebComponents: waitForWebComponents,
+    Alignment: index,
+    Offset: index$1,
+    ICONS: MAP
+});
 
 /**
  * Fires in single-panel mode, when the current panel changes.
@@ -1711,10 +1811,10 @@ class HXAccordionElement extends HXElement {
     }
 
     /** @private */
-    _openPanel (index$$1) {
+    _openPanel (index) {
         if (this._isNavigable) {
             this.panels.forEach((panel, idx) => {
-                if (Number(index$$1) === idx) {
+                if (Number(index) === idx) {
                     panel.open = true;
                     panel.focus();
                 } else  {
@@ -2261,7 +2361,7 @@ class HXCheckboxControlElement extends HXFormControlElement {
 
 var shadowMarkup$2 = "<div id='hxCheckbox'><hx-icon type='checkmark' id='hxTick'></hx-icon><hx-icon type='minus' id='hxMinus'></hx-icon></div>";
 
-var shadowStyles$2 = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n#hxCheckbox { align-items: center; display: grid; font-size: 10px; grid-template-areas: 'icon'; height: 100%; justify-content: center; width: 100%; }\n\n#hxMinus, #hxTick { grid-area: icon; height: 1em; line-height: 1; width: 1em; }\n\n#hxMinus { display: var(--hxMinus-display, none); }\n\n#hxTick { display: var(--hxTick-display, none); }\n";
+var shadowStyles$2 = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n#hxCheckbox { align-items: center; display: grid; font-size: 10px; grid-template-areas: \"icon\"; height: 100%; justify-content: center; width: 100%; }\n\n#hxMinus, #hxTick { grid-area: icon; height: 1em; line-height: 1; width: 1em; }\n\n#hxMinus { display: var(--hxMinus-display, none); }\n\n#hxTick { display: var(--hxTick-display, none); }\n";
 
 /**
  * Applies Shadow DOM to the `<hx-checkbox>` facade element.
@@ -2454,8 +2554,6 @@ class HXDisclosureElement extends HXElement {
             case KEYS.Space:
             case KEYS.Enter:
                 this.click();
-                break;
-            default:
                 break;
         }
     }
@@ -4041,7 +4139,7 @@ class HXMenuitemElement extends HXElement {
 
 var shadowMarkup$b = "<div id='hxBackdrop'><div id='hxModal'><button type='button' id='hxClose'><hx-icon type='times'></hx-icon></button><div id='hxContent'><slot></slot></div></div></div>";
 
-var shadowStyles$b = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n#hxBackdrop { align-items: center; background-color: var(--hxBackdrop-backgroundColor, rgba(0, 0, 0, 0.6)); display: flex; flex-direction: column; height: 100%; justify-content: center; padding: 1.25rem; width: 100%; }\n\n#hxModal { background-color: var(--hxBackgroundColor, #ffffff); box-shadow: var(--hxBoxShadow, 0px 7px 9px 0 rgba(0, 0, 0, 0.3)); display: flex; min-height: 3.5rem; min-width: 25rem; position: relative; }\n\n@supports (--modern: true) { #hxModal { min-height: 12.5rem; } }\n\n#hxContent { display: flex; flex-direction: column; overflow: hidden; width: 100%; }\n\n#hxClose { background-color: transparent; border: 0; color: inherit; cursor: pointer; display: inline-block; font: inherit; font-weight: 500; line-height: 1; margin: 0; padding: 0; color: var(--hxClose-color, #757575); height: 1rem; position: absolute; right: 1.25rem; top: 1.25rem; }\n\n:host(.hxSm) #hxModal { max-width: 30rem; width: 40%; }\n\n:host #hxModal { max-width: 50rem; width: 60%; }\n\n:host(.hxLg) #hxModal { max-width: 70rem; width: 80%; }\n";
+var shadowStyles$b = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n#hxBackdrop { align-items: center; background-color: var(--hxBackdrop-backgroundColor, rgba(0, 0, 0, 0.6)); display: flex; flex-direction: column; height: 100%; justify-content: center; padding: 1.25rem; width: 100%; }\n\n#hxModal { background-color: var(--hxBackgroundColor, #ffffff); box-shadow: var(--hxBoxShadow, 0 7px 9px 0 rgba(0, 0, 0, 0.3)); display: flex; min-height: 3.5rem; min-width: 25rem; position: relative; }\n\n@supports (--modern: true) { #hxModal { min-height: 12.5rem; } }\n\n#hxContent { display: flex; flex-direction: column; overflow: hidden; width: 100%; }\n\n#hxClose { background-color: transparent; border: 0; color: inherit; cursor: pointer; display: inline-block; font: inherit; font-weight: 500; line-height: 1; margin: 0; padding: 0; color: var(--hxClose-color, #757575); height: 1rem; position: absolute; right: 1.25rem; top: 1.25rem; }\n\n:host(.hxSm) #hxModal { max-width: 30rem; width: 40%; }\n\n:host #hxModal { max-width: 50rem; width: 60%; }\n\n:host(.hxLg) #hxModal { max-width: 70rem; width: 80%; }\n";
 
 /**
  * Fires when the element is concealed.
@@ -4230,7 +4328,7 @@ class HXPillElement extends HXElement {
 
 var shadowMarkup$d = "<div id='hxPopover' class='has-arrow'><slot></slot></div>";
 
-var shadowStyles$d = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n.has-arrow { margin: 0; position: relative; }\n\n.has-arrow::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0); z-index: -1; }\n\n.has-arrow::before, .has-arrow::after { content: ''; display: block; height: 13px; position: absolute; width: 13px; }\n\n.has-arrow[position^=\"top\"] { margin-bottom: 8px; }\n\n.has-arrow[position^=\"top\"]::before, .has-arrow[position^=\"top\"]::after { bottom: -8px; }\n\n.has-arrow[position^=\"top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top-center\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top\"]::after, .has-arrow[position=\"top-center\"]::before, .has-arrow[position=\"top-center\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 50%; }\n\n.has-arrow[position=\"top-right\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-right\"]::before, .has-arrow[position=\"top-right\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 1.25rem; }\n\n.has-arrow[position=\"top-left\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top-left\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-left\"]::before, .has-arrow[position=\"top-left\"]::after { transform-origin: bottom right; transform: rotate(45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"right\"] { margin-left: 8px; }\n\n.has-arrow[position^=\"right\"]::before, .has-arrow[position^=\"right\"]::after { left: -8px; }\n\n.has-arrow[position^=\"right\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right\"]::after, .has-arrow[position=\"right-middle\"]::before, .has-arrow[position=\"right-middle\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 50%; }\n\n.has-arrow[position=\"right-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-bottom\"]::before, .has-arrow[position=\"right-bottom\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 1.25rem; }\n\n.has-arrow[position=\"right-top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-top\"]::before, .has-arrow[position=\"right-top\"]::after { transform-origin: bottom left; transform: rotate(45deg); bottom: 1.25rem; }\n\n.has-arrow[position^=\"bottom\"] { margin-top: 8px; }\n\n.has-arrow[position^=\"bottom\"]::before, .has-arrow[position^=\"bottom\"]::after { top: -8px; }\n\n.has-arrow[position^=\"bottom\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom\"]::before, .has-arrow[position=\"bottom\"]::after, .has-arrow[position=\"bottom-center\"]::before, .has-arrow[position=\"bottom-center\"]::after { transform-origin: top left; transform: rotate(45deg); left: 50%; }\n\n.has-arrow[position=\"bottom-right\"]::before, .has-arrow[position=\"bottom-right\"]::after { transform-origin: top left; transform: rotate(45deg); left: 1.25rem; }\n\n.has-arrow[position=\"bottom-left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom-left\"]::before, .has-arrow[position=\"bottom-left\"]::after { transform-origin: top right; transform: rotate(-45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"left\"] { margin-right: 8px; }\n\n.has-arrow[position^=\"left\"]::before, .has-arrow[position^=\"left\"]::after { right: -8px; }\n\n.has-arrow[position^=\"left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left\"]::after, .has-arrow[position=\"left-middle\"]::before, .has-arrow[position=\"left-middle\"]::after { transform-origin: top right; transform: rotate(45deg); top: 50%; }\n\n.has-arrow[position=\"left-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-bottom\"]::before, .has-arrow[position=\"left-bottom\"]::after { transform-origin: top right; transform: rotate(45deg); top: 1.25rem; }\n\n.has-arrow[position=\"left-top\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-top\"]::before, .has-arrow[position=\"left-top\"]::after { transform-origin: bottom right; transform: rotate(-45deg); bottom: 1.25rem; }\n\n#hxPopover { background-color: var(--hxBackgroundColor, #ffffff); border-color: var(--hxBorderColor, #e0e0e0); border-style: solid; border-width: 1px; box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16); }\n";
+var shadowStyles$d = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n.has-arrow { margin: 0; position: relative; }\n\n.has-arrow::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0); z-index: -1; }\n\n.has-arrow::before, .has-arrow::after { content: \"\"; display: block; height: 13px; position: absolute; width: 13px; }\n\n.has-arrow[position^=\"top\"] { margin-bottom: 8px; }\n\n.has-arrow[position^=\"top\"]::before, .has-arrow[position^=\"top\"]::after { bottom: -8px; }\n\n.has-arrow[position^=\"top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top-center\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top\"]::after, .has-arrow[position=\"top-center\"]::before, .has-arrow[position=\"top-center\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 50%; }\n\n.has-arrow[position=\"top-right\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-right\"]::before, .has-arrow[position=\"top-right\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 1.25rem; }\n\n.has-arrow[position=\"top-left\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top-left\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-left\"]::before, .has-arrow[position=\"top-left\"]::after { transform-origin: bottom right; transform: rotate(45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"right\"] { margin-left: 8px; }\n\n.has-arrow[position^=\"right\"]::before, .has-arrow[position^=\"right\"]::after { left: -8px; }\n\n.has-arrow[position^=\"right\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right\"]::after, .has-arrow[position=\"right-middle\"]::before, .has-arrow[position=\"right-middle\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 50%; }\n\n.has-arrow[position=\"right-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-bottom\"]::before, .has-arrow[position=\"right-bottom\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 1.25rem; }\n\n.has-arrow[position=\"right-top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-top\"]::before, .has-arrow[position=\"right-top\"]::after { transform-origin: bottom left; transform: rotate(45deg); bottom: 1.25rem; }\n\n.has-arrow[position^=\"bottom\"] { margin-top: 8px; }\n\n.has-arrow[position^=\"bottom\"]::before, .has-arrow[position^=\"bottom\"]::after { top: -8px; }\n\n.has-arrow[position^=\"bottom\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom\"]::before, .has-arrow[position=\"bottom\"]::after, .has-arrow[position=\"bottom-center\"]::before, .has-arrow[position=\"bottom-center\"]::after { transform-origin: top left; transform: rotate(45deg); left: 50%; }\n\n.has-arrow[position=\"bottom-right\"]::before, .has-arrow[position=\"bottom-right\"]::after { transform-origin: top left; transform: rotate(45deg); left: 1.25rem; }\n\n.has-arrow[position=\"bottom-left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom-left\"]::before, .has-arrow[position=\"bottom-left\"]::after { transform-origin: top right; transform: rotate(-45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"left\"] { margin-right: 8px; }\n\n.has-arrow[position^=\"left\"]::before, .has-arrow[position^=\"left\"]::after { right: -8px; }\n\n.has-arrow[position^=\"left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left\"]::after, .has-arrow[position=\"left-middle\"]::before, .has-arrow[position=\"left-middle\"]::after { transform-origin: top right; transform: rotate(45deg); top: 50%; }\n\n.has-arrow[position=\"left-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-bottom\"]::before, .has-arrow[position=\"left-bottom\"]::after { transform-origin: top right; transform: rotate(45deg); top: 1.25rem; }\n\n.has-arrow[position=\"left-top\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-top\"]::before, .has-arrow[position=\"left-top\"]::after { transform-origin: bottom right; transform: rotate(-45deg); bottom: 1.25rem; }\n\n#hxPopover { background-color: var(--hxBackgroundColor, #ffffff); border-color: var(--hxBorderColor, #e0e0e0); border-style: solid; border-width: 1px; box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16); }\n";
 
 class _ProtoClass$1 extends mix(HXElement, Positionable) {}
 
@@ -4556,44 +4654,89 @@ class HXSearchAssistanceElement extends _ProtoClass$2 {
     }
 }
 
-var shadowMarkup$g = "<label id='hxSearch'><input type='text' role='search' id='hxNativeControl' autocomplete='off'> <button type='button' id='hxClear' hidden aria-label='Clear search'><hx-icon type='times'></hx-icon></button><div id='hxIcon'><hx-icon type='search'></hx-icon></div><div id='hxCustomControl'></div></label>";
-
-var shadowStyles$g = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\ninput::-ms-clear { display: none; }\n\n:host { display: block; font-size: 1rem; height: 2rem; min-width: 8rem; }\n\n:host #hxSearch { display: flex; height: 100%; position: relative; }\n\n:host #hxIcon { color: #757575; flex-shrink: 0; line-height: 1; order: 1; padding: 0.5rem; z-index: 1; }\n\n:host #hxNativeControl { background-color: transparent; border: none; color: #424242; cursor: inherit; flex-grow: 1; font-weight: 400; min-width: 0; order: 2; width: 0; z-index: 1; }\n\n:host #hxNativeControl::-moz-placeholder { color: #6b6b6b; font-style: italic; font-weight: 400; opacity: 1; }\n\n:host #hxNativeControl::-ms-input-placeholder { color: #6b6b6b; font-style: italic; font-weight: 400; opacity: 1; }\n\n:host #hxNativeControl::-webkit-input-placeholder { color: #6b6b6b; font-style: italic; font-weight: 400; opacity: 1; }\n\n:host #hxNativeControl::placeholder { color: #6b6b6b; font-style: italic; font-weight: 400; opacity: 1; }\n\n:host #hxNativeControl::-moz-focus-inner { border: 0; outline: none; }\n\n:host #hxNativeControl:focus { outline: none; }\n\n:host #hxNativeControl:focus ~ #hxClear { color: #0e94a6; }\n\n:host #hxNativeControl:focus ~ #hxCustomControl { border-color: #0e94a6; box-shadow: 0 0 4px rgba(14, 148, 166, 0.5); }\n\n:host #hxCustomControl { background-color: #ffffff; border-radius: 2px; border: 1px solid #bdbdbd; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 0; }\n\n:host #hxClear { background-color: transparent; border: none; color: #757575; cursor: pointer; flex-shrink: 0; line-height: 1; order: 3; padding: 0.5rem; z-index: 1; }\n\n:host #hxClear::-moz-focus-inner { border: 0; outline: none; }\n\n:host #hxClear:focus { outline: none; }\n\n:host #hxClear:focus hx-icon { outline-offset: 2px; outline: 1px dotted currentColor; }\n\n:host #hxClear:focus ~ * { color: #0e94a6; }\n\n:host #hxClear:focus ~ #hxCustomControl { border-color: #0e94a6; box-shadow: 0 0 4px rgba(14, 148, 166, 0.5); }\n\n:host([invalid]) { color: #d32f2f; }\n\n:host([invalid]) #hxIcon, :host([invalid]) #hxClear { color: inherit; }\n\n:host([invalid]) #hxCustomControl { border-color: #d32f2f; border-width: 2px; }\n\n:host([invalid]) #hxClear:focus hx-icon { outline-color: currentColor; }\n\n:host([invalid]) #hxNativeControl:focus ~ #hxClear { color: #d32f2f; }\n\n:host([invalid]) #hxClear:focus ~ #hxCustomControl, :host([invalid]) #hxNativeControl:focus ~ #hxCustomControl { box-shadow: 0 0 4px rgba(211, 47, 47, 0.5); border-color: #d32f2f; }\n\n:host([disabled]) { color: #d8d8d8; }\n\n:host([disabled]) #hxSearch { color: inherit; cursor: not-allowed; }\n\n:host([disabled]) #hxIcon { color: inherit; }\n\n:host([disabled]) #hxClear { display: none; }\n\n:host([disabled]) #hxNativeControl { color: inherit; }\n\n:host([disabled]) #hxNativeControl::-moz-placeholder { color: inherit; }\n\n:host([disabled]) #hxNativeControl::-ms-input-placeholder { color: inherit; }\n\n:host([disabled]) #hxNativeControl::-webkit-input-placeholder { color: inherit; }\n\n:host([disabled]) #hxNativeControl::placeholder { color: inherit; }\n\n:host([disabled]) #hxCustomControl { background-color: #f5f5f5; border-color: #e0e0e0; border-width: 1px; }\n";
-
 /**
- * Fires when the element loses focus.
+ * Defines behavior for the `<hx-select-control>` element.
  *
- * - **does not bubble**
- *
- * @event Search:blur
- * @since 0.6.0
- * @type {CustomEvent}
+ * @extends HXFormControlElement
+ * @hideconstructor
+ * @since 0.16.0
  */
+class HXSearchControlElement extends HXFormControlElement {
+    /** @override */
+    static get is () {
+        return 'hx-search-control';
+    }
 
-/**
- * Fires when the clear button ("X") is pressed.
- *
- * @event Search:clear
- * @since 0.5.0
- * @type {CustomEvent}
- */
+    $onCreate () {
+        this._onControlInput = this._onControlInput.bind(this);
+        this._onResetClick = this._onResetClick.bind(this);
+    }
 
-/**
- * Fires when the element receives focus.
- *
- * - **does not bubble**
- *
- * @event Search:focus
- * @since 0.6.0
- * @type {CustomEvent}
- */
+    $onConnect () {
+        this._showHideReset(this.controlElement);
+
+        this._btnReset.addEventListener('click', this._onResetClick);
+        this.controlElement.addEventListener('input', this._onControlInput);
+    }
+
+    $onDisconnect () {
+        this._btnReset.removeEventListener('click', this._onResetClick);
+        this.controlElement.removeEventListener('input', this._onControlInput);
+    }
+
+    /**
+     * Fetch the first `<input type="search">` descendant
+     *
+     * @override
+     * @readonly
+     * @type {?HTMLInputElement}
+     */
+    get controlElement () {
+        return this.querySelector('input[type="search"]');
+    }
+
+    /** @private */
+    get _btnReset () {
+        return this.querySelector('button.hxClear');
+    }
+
+    /**
+     * Show or hide reset based off of the input value.
+     * @private
+     */
+    _onControlInput (evt) {
+        this._showHideReset(evt.target);
+    }
+
+    /**
+     * Clear value and focus input when user presses "X" via the UI.
+     * @private
+     */
+    _onResetClick (evt) {
+        evt.preventDefault();
+        this.controlElement.value = '';
+        this.controlElement.focus();
+        this._btnReset.hidden = true;
+    }
+
+    /**
+     * Determines whether to show/hide reset ONLY when the input is "enabled".
+     * Light DOM CSS handles hiding the reset button when "disabled".
+     * @private
+     */
+    _showHideReset (elInput) {
+        let hasValue = (elInput.value !== '');
+        this._btnReset.hidden = !hasValue;
+    }
+}
+
+var shadowMarkup$g = "<div id='hxSearch'><hx-icon id='hxIcon' type='search'></hx-icon></div>";
+
+var shadowStyles$g = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\ninput::-ms-clear { display: none; }\n\n:host #hxSearch { -ms-grid-column-align: start; -ms-grid-columns: 2rem 1fr; -ms-grid-rows: 1fr; align-items: center; display: -ms-grid; display: grid; grid-template-columns: 2rem 1fr; height: 100%; }\n\n:host #hxIcon { color: #757575; line-height: 1; margin: auto 0.5em; }\n";
 
 /**
  * Defines behavior for the `<hx-search>` element.
  *
- * @emits Search:blur
- * @emits Search:clear
- * @emits Search:focus
  * @extends HXElement
  * @hideconstructor
  * @see HXSearchAssistanceElement
@@ -4606,163 +4749,6 @@ class HXSearchElement extends HXElement {
 
     static get template () {
         return `<style>${shadowStyles$g}</style>${shadowMarkup$g}`;
-    }
-
-    $onCreate () {
-        this._onClearClick = this._onClearClick.bind(this);
-        this._onSearchInput = this._onSearchInput.bind(this);
-    }
-
-    $onConnect () {
-        this.$upgradeProperty('invalid');
-        this.$upgradeProperty('placeholder');
-        this.$upgradeProperty('value');
-
-        this._btnClear.addEventListener('click', this._onClearClick);
-        this._elSearch.addEventListener('input', this._onSearchInput);
-
-        this.$relayNonBubblingEvents(this._elSearch);
-    }
-
-    $onDisconnect () {
-        this._btnClear.removeEventListener('click', this._onClearClick);
-        this._elSearch.removeEventListener('input', this._onSearchInput);
-
-        this.$removeNonBubblingRelays(this._elSearch);
-    }
-
-    static get $observedAttributes () {
-        return [
-            'disabled',
-            'placeholder',
-            'value',
-        ];
-    }
-
-    $onAttributeChange (attr, oldVal, newVal) {
-        const hasValue = (newVal !== null);
-
-        switch (attr) {
-            case 'disabled': {
-                this._elSearch.disabled = hasValue;
-                break;
-            }
-
-            case 'placeholder': {
-                this._elSearch.placeholder = newVal;
-                break;
-            }
-
-            case 'value': {
-                if (this._elSearch.value !== newVal) {
-                    this._elSearch.value = newVal;
-                }
-
-                if (hasValue) {
-                    this._btnClear.hidden = (newVal === '');
-                } else {
-                    this._btnClear.hidden = true;
-                }
-                break;
-            }
-        }
-    }
-
-    /**
-     * @default [false]
-     * @type {Boolean}
-     */
-    get invalid () {
-        return this.hasAttribute('invalid');
-    }
-    set invalid (isInvalid) {
-        if (isInvalid) {
-            this.setAttribute('invalid', '');
-        } else {
-            this.removeAttribute('invalid');
-        }
-    }
-
-    /**
-     * @default ['']
-     * @type {String}
-     */
-    get placeholder () {
-        return this.getAttribute('placeholder');
-    }
-    set placeholder (newVal) {
-        if (newVal) {
-            this.setAttribute('placeholder', newVal);
-        } else {
-            this.removeAttribute('placeholder');
-        }
-    }
-
-    /**
-     * @default ['']
-     * @type {String}
-     */
-    get value () {
-        return this.getAttribute('value');
-    }
-    set value (newVal) {
-        if (newVal) {
-            this.setAttribute('value', newVal);
-        } else {
-            this.removeAttribute('value');
-        }
-    }
-
-    /**
-     * Simulate pressing "X" to clear input value
-     */
-    clear () {
-        if (this.value !== '') {
-            this.value = '';
-            this.$emit('clear');
-        }
-    }
-
-    /**
-     * Override HTMLElement#focus(), because we need to focus the
-     * inner `<input>` instead of the outer `<hx-search>`.
-     */
-    focus () {
-        this._elSearch.focus();
-    }
-
-    /** @private */
-    get _btnClear () {
-        return this.shadowRoot.getElementById('hxClear');
-    }
-
-    /** @private */
-    get _elSearch () {
-        return this.shadowRoot.getElementById('hxNativeControl');
-    }
-
-    /**
-     * Clear value and focus input when user presses "X" via the UI.
-     * @private
-     */
-    _onClearClick (evt) {
-        evt.preventDefault();
-        this.clear();
-        this.focus();
-    }
-
-    /**
-     * Keep state in sync with `<input>`
-     *
-     * 1. synchronize `value`
-     * 2. determine whether to reveal the clear button
-     *
-     * @private
-     */
-    _onSearchInput (evt) {
-        this.value = evt.target.value;
-        let hasValue = (evt.target.value !== '');
-        this._btnClear.hidden = !hasValue;
     }
 }
 
@@ -4793,7 +4779,7 @@ class HXSelectControlElement extends HXFormControlElement {
 
 var shadowMarkup$h = "<div id='hxSelect'><div id='hxTrigger'><hx-icon type='angle-down'></hx-icon></div></div>";
 
-var shadowStyles$h = "#hxSelect { display: none; }\n\n@supports (display: grid) { #hxSelect { box-sizing: border-box; display: grid; grid-template-areas: '. trigger'; grid-template-columns: auto 2.5rem; height: 100%; width: 100%; }\n  #hxTrigger { align-items: center; background-color: var(--hxTrigger-backgroundColor, #ffffff); box-sizing: border-box; color: inherit; display: flex; grid-area: trigger; height: 100%; justify-content: center; } }\n";
+var shadowStyles$h = "#hxSelect { display: none; }\n\n@supports (display: grid) { #hxSelect { box-sizing: border-box; display: grid; grid-template-areas: \". trigger\"; grid-template-columns: auto 2.5rem; height: 100%; width: 100%; }\n  #hxTrigger { align-items: center; background-color: var(--hxTrigger-backgroundColor, #ffffff); box-sizing: border-box; color: inherit; display: flex; grid-area: trigger; height: 100%; justify-content: center; } }\n";
 
 /**
  * Applies Shadow DOM to the `<hx-select>` facade element.
@@ -5439,7 +5425,7 @@ class HXToastElement extends HXElement {
 
 var shadowMarkup$j = "<div id='hxTooltip' class='has-arrow'><slot></slot></div>";
 
-var shadowStyles$j = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n.has-arrow { margin: 0; position: relative; }\n\n.has-arrow::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0); z-index: -1; }\n\n.has-arrow::before, .has-arrow::after { content: ''; display: block; height: 13px; position: absolute; width: 13px; }\n\n.has-arrow[position^=\"top\"] { margin-bottom: 8px; }\n\n.has-arrow[position^=\"top\"]::before, .has-arrow[position^=\"top\"]::after { bottom: -8px; }\n\n.has-arrow[position^=\"top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top-center\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top\"]::after, .has-arrow[position=\"top-center\"]::before, .has-arrow[position=\"top-center\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 50%; }\n\n.has-arrow[position=\"top-right\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-right\"]::before, .has-arrow[position=\"top-right\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 1.25rem; }\n\n.has-arrow[position=\"top-left\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top-left\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-left\"]::before, .has-arrow[position=\"top-left\"]::after { transform-origin: bottom right; transform: rotate(45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"right\"] { margin-left: 8px; }\n\n.has-arrow[position^=\"right\"]::before, .has-arrow[position^=\"right\"]::after { left: -8px; }\n\n.has-arrow[position^=\"right\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right\"]::after, .has-arrow[position=\"right-middle\"]::before, .has-arrow[position=\"right-middle\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 50%; }\n\n.has-arrow[position=\"right-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-bottom\"]::before, .has-arrow[position=\"right-bottom\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 1.25rem; }\n\n.has-arrow[position=\"right-top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-top\"]::before, .has-arrow[position=\"right-top\"]::after { transform-origin: bottom left; transform: rotate(45deg); bottom: 1.25rem; }\n\n.has-arrow[position^=\"bottom\"] { margin-top: 8px; }\n\n.has-arrow[position^=\"bottom\"]::before, .has-arrow[position^=\"bottom\"]::after { top: -8px; }\n\n.has-arrow[position^=\"bottom\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom\"]::before, .has-arrow[position=\"bottom\"]::after, .has-arrow[position=\"bottom-center\"]::before, .has-arrow[position=\"bottom-center\"]::after { transform-origin: top left; transform: rotate(45deg); left: 50%; }\n\n.has-arrow[position=\"bottom-right\"]::before, .has-arrow[position=\"bottom-right\"]::after { transform-origin: top left; transform: rotate(45deg); left: 1.25rem; }\n\n.has-arrow[position=\"bottom-left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom-left\"]::before, .has-arrow[position=\"bottom-left\"]::after { transform-origin: top right; transform: rotate(-45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"left\"] { margin-right: 8px; }\n\n.has-arrow[position^=\"left\"]::before, .has-arrow[position^=\"left\"]::after { right: -8px; }\n\n.has-arrow[position^=\"left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left\"]::after, .has-arrow[position=\"left-middle\"]::before, .has-arrow[position=\"left-middle\"]::after { transform-origin: top right; transform: rotate(45deg); top: 50%; }\n\n.has-arrow[position=\"left-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-bottom\"]::before, .has-arrow[position=\"left-bottom\"]::after { transform-origin: top right; transform: rotate(45deg); top: 1.25rem; }\n\n.has-arrow[position=\"left-top\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-top\"]::before, .has-arrow[position=\"left-top\"]::after { transform-origin: bottom right; transform: rotate(-45deg); bottom: 1.25rem; }\n\n#hxTooltip { background-color: var(--hxBackgroundColor, #ffffff); border-color: var(--hxBorderColor, #e0e0e0); border-radius: 2px; border-style: solid; border-width: 1px; box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16); padding: 0.75rem; }\n";
+var shadowStyles$j = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n.has-arrow { margin: 0; position: relative; }\n\n.has-arrow::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0); z-index: -1; }\n\n.has-arrow::before, .has-arrow::after { content: \"\"; display: block; height: 13px; position: absolute; width: 13px; }\n\n.has-arrow[position^=\"top\"] { margin-bottom: 8px; }\n\n.has-arrow[position^=\"top\"]::before, .has-arrow[position^=\"top\"]::after { bottom: -8px; }\n\n.has-arrow[position^=\"top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top-center\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top\"]::after, .has-arrow[position=\"top-center\"]::before, .has-arrow[position=\"top-center\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 50%; }\n\n.has-arrow[position=\"top-right\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-right\"]::before, .has-arrow[position=\"top-right\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 1.25rem; }\n\n.has-arrow[position=\"top-left\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top-left\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-left\"]::before, .has-arrow[position=\"top-left\"]::after { transform-origin: bottom right; transform: rotate(45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"right\"] { margin-left: 8px; }\n\n.has-arrow[position^=\"right\"]::before, .has-arrow[position^=\"right\"]::after { left: -8px; }\n\n.has-arrow[position^=\"right\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right\"]::after, .has-arrow[position=\"right-middle\"]::before, .has-arrow[position=\"right-middle\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 50%; }\n\n.has-arrow[position=\"right-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-bottom\"]::before, .has-arrow[position=\"right-bottom\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 1.25rem; }\n\n.has-arrow[position=\"right-top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-top\"]::before, .has-arrow[position=\"right-top\"]::after { transform-origin: bottom left; transform: rotate(45deg); bottom: 1.25rem; }\n\n.has-arrow[position^=\"bottom\"] { margin-top: 8px; }\n\n.has-arrow[position^=\"bottom\"]::before, .has-arrow[position^=\"bottom\"]::after { top: -8px; }\n\n.has-arrow[position^=\"bottom\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom\"]::before, .has-arrow[position=\"bottom\"]::after, .has-arrow[position=\"bottom-center\"]::before, .has-arrow[position=\"bottom-center\"]::after { transform-origin: top left; transform: rotate(45deg); left: 50%; }\n\n.has-arrow[position=\"bottom-right\"]::before, .has-arrow[position=\"bottom-right\"]::after { transform-origin: top left; transform: rotate(45deg); left: 1.25rem; }\n\n.has-arrow[position=\"bottom-left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom-left\"]::before, .has-arrow[position=\"bottom-left\"]::after { transform-origin: top right; transform: rotate(-45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"left\"] { margin-right: 8px; }\n\n.has-arrow[position^=\"left\"]::before, .has-arrow[position^=\"left\"]::after { right: -8px; }\n\n.has-arrow[position^=\"left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left\"]::after, .has-arrow[position=\"left-middle\"]::before, .has-arrow[position=\"left-middle\"]::after { transform-origin: top right; transform: rotate(45deg); top: 50%; }\n\n.has-arrow[position=\"left-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-bottom\"]::before, .has-arrow[position=\"left-bottom\"]::after { transform-origin: top right; transform: rotate(45deg); top: 1.25rem; }\n\n.has-arrow[position=\"left-top\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-top\"]::before, .has-arrow[position=\"left-top\"]::after { transform-origin: bottom right; transform: rotate(-45deg); bottom: 1.25rem; }\n\n#hxTooltip { background-color: var(--hxBackgroundColor, #ffffff); border-color: var(--hxBorderColor, #e0e0e0); border-radius: 2px; border-style: solid; border-width: 1px; box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16); padding: 0.75rem; }\n";
 
 const TOOLTIP_DELAY = 500;
 
@@ -5748,6 +5734,7 @@ class HXTooltipElement extends _ProtoClass$3 {
 
 
 var Elements = /*#__PURE__*/Object.freeze({
+    __proto__: null,
     HXAccordionElement: HXAccordionElement,
     HXAccordionPanelElement: HXAccordionPanelElement,
     HXAlertElement: HXAlertElement,
@@ -5777,6 +5764,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXRadioSetElement: HXRadioSetElement,
     HXRevealElement: HXRevealElement,
     HXSearchAssistanceElement: HXSearchAssistanceElement,
+    HXSearchControlElement: HXSearchControlElement,
     HXSearchElement: HXSearchElement,
     HXSelectControlElement: HXSelectControlElement,
     HXSelectElement: HXSelectElement,
@@ -5791,9 +5779,11 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.18.0-rc.0";
+var version = "0.18.0-rc.1";
 
 /** @module HelixUI */
+
+const { waitForWebComponents: waitForWebComponents$1 } = Utils;
 
 /**
  * @external CustomEvent
@@ -5842,27 +5832,49 @@ function _defineElements () {
 }
 
 /**
- * Initialize HelixUI when Web Components are ready.
+ * @description
+ * Initialize HelixUI when polyfills are ready.
+ *
+ * @example <caption>No Arugments (backward-compatible behavior)</caption>
+ * function start () {
+ *   // continue...
+ * }
+ * HelixUI.initialize();
+ * start();
+ *
+ *
+ * @example <caption>Then-able</caption>
+ * function start () {
+ *   // continue...
+ * }
+ * HelixUI.initialize().then(start);
+ *
+ *
+ * @example <caption>Async/Await</caption>
+ * function start () {
+ *   // continue...
+ * }
+ *
+ * async function load () {
+ *   await HelixUI.initialize();
+ *   start();
+ * }
+ *
+ * load();
+ *
+ * @returns {Promise}
  */
 function initialize () {
-    if (window.WebComponents) {
-        // Polyfill detected
-        if (window.WebComponents.ready) {
-            // polyfill already finished loading, initialize immediately
-            _defineElements();
-        } else {
-            // initialize when polyfill has finished loading
-            window.addEventListener('WebComponentsReady', function () {
-                _defineElements();
-            });
-        }
-    } else {
-        // No polyfills detected, initialize immediately
-        _defineElements();
-    }
+    return waitForWebComponents$1()
+        .then(_defineElements);
 }
 
-exports.initialize = initialize;
-exports.Elements = Elements;
-exports.VERSION = version;
-exports.Utils = index;
+var HelixUI = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    initialize: initialize,
+    Elements: Elements,
+    Utils: Utils,
+    VERSION: version
+});
+
+export default HelixUI;

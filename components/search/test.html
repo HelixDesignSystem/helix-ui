@@ -24,12 +24,9 @@
   />
 
   
-  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  <link rel="stylesheet" href="dist/css/helix-ui.css">
   
   <link rel="stylesheet" href="docs.css">
-
-  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
-  <script src="vendor/custom-elements-es5-adapter.js"></script>
 
   <!-- loader appends polyfills, if needed -->
   <script src="vendor/webcomponents-loader.js"></script>
@@ -498,6 +495,12 @@ class="current">
 
 
       
+      <a href="elements/hx-search-control" >
+    &lt;hx-search-control&gt;
+  </a>
+
+
+      
       <a href="elements/hx-select" >
     &lt;hx-select&gt;
   </a>
@@ -580,7 +583,7 @@ class="current">
 
       </nav>
 
-      <main role="main" id="content" class="test-content ">
+      <main role="main" id="content" class="test-content search-spec">
   
   <div class="banner warning">
     <hx-icon type="exclamation-triangle" class="banner__icon"></hx-icon>
@@ -607,98 +610,1610 @@ class="current">
           </header>
 
   <section>
-    <h2>Appearance</h2>
-    <table class="hxTable hxTable--condensed">
-      <tbody>
-        <tr>
-          <th>Default</th>
-          <td data-dom-diff="hxSearch-default">
-            <hx-search></hx-search>
-          </td>
-          <td data-dom-diff="hxSearch-default-with-placeholder">
-            <hx-search placeholder="Search..."></hx-search>
-          </td>
-          <td data-dom-diff="hxSearch-default-with-value">
-            <hx-search value="kittens"></hx-search>
-          </td>
-        </tr>
-        <tr>
-          <th>Invalid</th>
-          <td data-dom-diff="hxSearch-invalid">
-            <hx-search invalid></hx-search>
-          </td>
-          <td data-dom-diff="hxSearch-invalid-with-placeholder">
-            <hx-search invalid placeholder="Search..."></hx-search>
-          </td>
-          <td data-dom-diff="hxSearch-invalid-with-value">
-            <hx-search invalid value="kittens"></hx-search>
-          </td>
-        </tr>
-        <tr>
-          <th>Disabled</th>
-          <td data-dom-diff="hxSearch-disabled">
-            <hx-search disabled></hx-search>
-          </td>
-          <td data-dom-diff="hxSearch-disabled-with-placeholder">
-            <hx-search disabled placeholder="Search..."></hx-search>
-          </td>
-          <td data-dom-diff="hxSearch-disabled-with-value">
-            <hx-search disabled value="kittens"></hx-search>
-          </td>
-        </tr>
-        <tr>
-          <th>Disabled and Invalid</th>
-          <td data-dom-diff="hxSearch-disabled-invalid">
-            <hx-search invalid disabled></hx-search>
-          </td>
-          <td data-dom-diff="hxSearch-disabled-invalid-with-placeholder">
-            <hx-search invalid disabled placeholder="Search..."></hx-search>
-          </td>
-          <td data-dom-diff="hxSearch-disabled-invalid-with-value">
-            <hx-search invalid disabled value="kittens"></hx-search>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <header>
+      <h2 id="test-pristine">Pristine</h2>
+      <code>&lt;hx-search-control&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;input type="search"&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pOEV-b-pristine"
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pOEV-b-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Valid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pOEV-f-pristine"
+class="mock-focus"     />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pOEV-f-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Valid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+            <td>
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pOEI-b-pristine"
+        data-mock-invalid
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pOEI-b-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Invalid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pOEI-f-pristine"
+class="mock-focus"         data-mock-invalid
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pOEI-f-pristine">
+        Pristine,
+      Optional,
+      Enabled,
+      Invalid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pODV-b-pristine"
+disabled     />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pODV-b-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Valid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pODV-f-pristine"
+class="mock-focus" disabled     />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pODV-f-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Valid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+            <td>
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pODI-b-pristine"
+disabled         data-mock-invalid
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pODI-b-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Invalid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pODI-f-pristine"
+class="mock-focus" disabled         data-mock-invalid
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pODI-f-pristine">
+        Pristine,
+      Optional,
+      Disabled,
+      Invalid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;input type="search" required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pREV-b-pristine"
+        required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pREV-b-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Valid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pREV-f-pristine"
+class="mock-focus"         required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pREV-f-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Valid
+        (focus)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pREV-bs-pristine"
+        required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear mock-focus"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pREV-bs-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Valid
+        (sub-focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+            <td>
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pREI-b-pristine"
+        required
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pREI-b-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Invalid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pREI-f-pristine"
+class="mock-focus"         required
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pREI-f-pristine">
+        Pristine,
+      Required,
+      Enabled,
+      Invalid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pRDV-b-pristine"
+disabled         required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pRDV-b-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Valid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pRDV-f-pristine"
+class="mock-focus" disabled         required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pRDV-f-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Valid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+            <td>
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pRDI-b-pristine"
+disabled         required
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pRDI-b-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Invalid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+  >
+    <input
+      type="search"
+      id="searchInput-pRDI-f-pristine"
+class="mock-focus" disabled         required
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pRDI-f-pristine">
+        Pristine,
+      Required,
+      Disabled,
+      Invalid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
   </section>
 
   <section>
-    <h2>Declarative APIs</h2>
-    <div class="hxRow">
-      <div class="hxCol hxSpan-4">
-        <p>
-          <hx-search id="testSearch"></hx-search>
-        </p>
-        <p>
-          <button class="hxBtn" type="button" id="btnFocus">focus()</button>
-          <button class="hxBtn" type="button" id="btnClear">clear()</button>
-          <button class="hxBtn" type="button" id="btnFocusThenBlur">focus() (blur() after 2s)</button>
-        </p>
-      </div>
-    </div>
+    <header>
+      <h2 id="test-dirty">Dirty</h2>
+      <code>&lt;hx-search-control hx-dirty&gt;</code>
+    </header>
+
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;input type="search"&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dOEV-b-dirty"
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dOEV-b-dirty">
+Dirty,      Optional,
+      Enabled,
+      Valid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dOEV-f-dirty"
+class="mock-focus"     />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dOEV-f-dirty">
+Dirty,      Optional,
+      Enabled,
+      Valid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+            <td>
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dOEI-b-dirty"
+        data-mock-invalid
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dOEI-b-dirty">
+Dirty,      Optional,
+      Enabled,
+      Invalid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dOEI-f-dirty"
+class="mock-focus"         data-mock-invalid
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dOEI-f-dirty">
+Dirty,      Optional,
+      Enabled,
+      Invalid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dODV-b-dirty"
+disabled     />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dODV-b-dirty">
+Dirty,      Optional,
+      Disabled,
+      Valid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dODV-f-dirty"
+class="mock-focus" disabled     />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dODV-f-dirty">
+Dirty,      Optional,
+      Disabled,
+      Valid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+            <td>
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dODI-b-dirty"
+disabled         data-mock-invalid
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dODI-b-dirty">
+Dirty,      Optional,
+      Disabled,
+      Invalid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dODI-f-dirty"
+class="mock-focus" disabled         data-mock-invalid
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dODI-f-dirty">
+Dirty,      Optional,
+      Disabled,
+      Invalid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;input type="search" required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dREV-b-dirty"
+        required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dREV-b-dirty">
+Dirty,      Required,
+      Enabled,
+      Valid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dREV-f-dirty"
+class="mock-focus"         required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dREV-f-dirty">
+Dirty,      Required,
+      Enabled,
+      Valid
+        (focus)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dREV-bs-dirty"
+        required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear mock-focus"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dREV-bs-dirty">
+Dirty,      Required,
+      Enabled,
+      Valid
+        (sub-focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+            <td>
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dREI-b-dirty"
+        required
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dREI-b-dirty">
+Dirty,      Required,
+      Enabled,
+      Invalid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dREI-f-dirty"
+class="mock-focus"         required
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dREI-f-dirty">
+Dirty,      Required,
+      Enabled,
+      Invalid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dRDV-b-dirty"
+disabled         required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dRDV-b-dirty">
+Dirty,      Required,
+      Disabled,
+      Valid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dRDV-f-dirty"
+class="mock-focus" disabled         required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dRDV-f-dirty">
+Dirty,      Required,
+      Disabled,
+      Valid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+            <td>
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dRDI-b-dirty"
+disabled         required
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dRDI-b-dirty">
+Dirty,      Required,
+      Disabled,
+      Invalid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+hx-dirty   >
+    <input
+      type="search"
+      id="searchInput-dRDI-f-dirty"
+class="mock-focus" disabled         required
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-dRDI-f-dirty">
+Dirty,      Required,
+      Disabled,
+      Invalid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
   </section>
 
-  <script>
-    (function () {
-      let elSearch = document.getElementById('testSearch');
+  <section>
+    <header>
+      <h2 id="test-visually-invalid">Visually Invalid</h2>
+      <code>&lt;hx-search-control class="hxInvalid"&gt;</code>
+    </header>
 
-      document.getElementById('btnFocus').addEventListener('click', function () {
-        elSearch.focus();
-      });
+    <section>
+      <header>
+        <h3>Optional</h3>
+        <code>&lt;input type="search"&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
 
-      document.getElementById('btnClear').addEventListener('click', function () {
-        elSearch.clear();
-      });
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pOEV-b-invalid"
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pOEV-b-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Valid
+        (blur)
+    </label>
+  </hx-search-control>
 
-      document.getElementById('btnFocusThenBlur').addEventListener('click', function () {
-        elSearch.focus();
+              
 
-        setTimeout(function () {
-          elSearch.blur();
-        }, 2000);
-      });
-    })();
-  </script>
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pOEV-f-invalid"
+class="mock-focus"     />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pOEV-f-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Valid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+            <td>
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pOEI-b-invalid"
+        data-mock-invalid
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pOEI-b-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Invalid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pOEI-f-invalid"
+class="mock-focus"         data-mock-invalid
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pOEI-f-invalid">
+.hxInvalid,      Optional,
+      Enabled,
+      Invalid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pODV-b-invalid"
+disabled     />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pODV-b-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Valid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pODV-f-invalid"
+class="mock-focus" disabled     />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pODV-f-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Valid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+            <td>
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pODI-b-invalid"
+disabled         data-mock-invalid
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pODI-b-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Invalid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pODI-f-invalid"
+class="mock-focus" disabled         data-mock-invalid
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pODI-f-invalid">
+.hxInvalid,      Optional,
+      Disabled,
+      Invalid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <header>
+        <h3>Required</h3>
+        <code>&lt;input type="search" required&gt;</code>
+      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>:valid</th>
+            <th>:invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pREV-b-invalid"
+        required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pREV-b-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Valid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pREV-f-invalid"
+class="mock-focus"         required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pREV-f-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Valid
+        (focus)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pREV-bs-invalid"
+        required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear mock-focus"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pREV-bs-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Valid
+        (sub-focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+            <td>
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pREI-b-invalid"
+        required
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pREI-b-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Invalid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pREI-f-invalid"
+class="mock-focus"         required
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pREI-f-invalid">
+.hxInvalid,      Required,
+      Enabled,
+      Invalid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pRDV-b-invalid"
+disabled         required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pRDV-b-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Valid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pRDV-f-invalid"
+class="mock-focus" disabled         required
+value="value"    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pRDV-f-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Valid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+            <td>
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pRDI-b-invalid"
+disabled         required
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pRDI-b-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Invalid
+        (blur)
+    </label>
+  </hx-search-control>
+
+              
+
+  <hx-search-control
+class="hxInvalid"   >
+    <input
+      type="search"
+      id="searchInput-pRDI-f-invalid"
+class="mock-focus" disabled         required
+    />
+    <button
+      type="button"
+      aria-label="Clear search"
+        class="hxClear"
+      hidden
+    >
+      <hx-icon type="times"></hx-icon>
+    </button>
+    <hx-search></hx-search>
+    <label for="searchInput-pRDI-f-invalid">
+.hxInvalid,      Required,
+      Disabled,
+      Invalid
+        (focus)
+    </label>
+  </hx-search-control>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-extra-long-value">Extra Long Value</h2>
+      <code>&lt;input type="search"&gt;</code>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol hxSpan-4">
+        <hx-search-control>
+          <input
+            id="search-with-extra-long-value"
+            type="search"
+            value="This is an extra long search value that tests its rendered appearance"
+          />
+          <button
+            type="button"
+            class="hxClear"
+            aria-label="Clear search"
+            hidden
+          >
+            <hx-icon type="times"></hx-icon>
+          </button>
+          <hx-search></hx-search>
+          <label
+            for="search-with-extra-long-value"
+          >
+            Search with Extra Long Value
+          </label>
+        </hx-search-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <hx-search-control class="hxInvalid">
+          <input
+            id="search-with-extra-long-value-hxinvalid"
+            type="search"
+            value="This is an extra long search value that tests its rendered appearance"
+          />
+          <button
+            type="button"
+            class="hxClear"
+            aria-label="Clear search"
+            hidden
+          >
+            <hx-icon type="times"></hx-icon>
+          </button>
+          <hx-search></hx-search>
+          <label
+            for="search-with-extra-long-value-hxinvalid"
+          >
+            Search with Extra Long Value
+          </label>
+        </hx-search-control>
+      </div>
+        <div class="hxCol hxSpan-4">
+          <hx-search-control>
+            <input
+              id="search-with-extra-long-value-disabled"
+              type="search"
+              value="This is an extra long search value that tests its rendered appearance"
+              disabled
+            />
+            <button
+              type="button"
+              class="hxClear"
+              aria-label="Clear search"
+              hidden
+            >
+              <hx-icon type="times"></hx-icon>
+            </button>
+            <hx-search></hx-search>
+            <label
+              for="search-with-extra-long-value-disabled"
+            >
+              Search with Extra Long Value
+            </label>
+          </hx-search-control>
+        </div>
+    </div>
+  </section>
 
       </main>
 
@@ -709,6 +2224,17 @@ class="current">
 
             <nav class="article-toc">
               
+            <a href="#test-pristine">Pristine</a>
+        
+
+            <a href="#test-dirty">Dirty</a>
+        
+
+            <a href="#test-visually-invalid">Visually Invalid</a>
+        
+
+            <a href="#test-extra-long-value">Extra Long Value</a>
+        
                 
               <hr class="hxDivider" />
               <a class="top-link" href="#top">Back to Top</a>
@@ -729,12 +2255,12 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-09-23
+          2019-10-31
         </small>
 
       <small>
-        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.18.0-rc.0" target="_blank">
-          v0.18.0-rc.0
+        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.18.0-rc.1" target="_blank">
+          v0.18.0-rc.1
         </a>)
       </small>
     </div>
@@ -745,7 +2271,7 @@ class="current">
   
   <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
   
-  <script src="dist/scripts/helix-ui.browser.js"></script>
+  <script src="dist/js/helix-ui.js"></script>
   
   <script src="docs.js"></script>
 </body>

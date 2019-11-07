@@ -24,12 +24,9 @@
   />
 
   
-  <link rel="stylesheet" href="dist/styles/helix-ui.css">
+  <link rel="stylesheet" href="dist/css/helix-ui.css">
   
   <link rel="stylesheet" href="docs.css">
-
-  <!-- Converts ES5 custom element constructor functions to ES6 classes -->
-  <script src="vendor/custom-elements-es5-adapter.js"></script>
 
   <!-- loader appends polyfills, if needed -->
   <script src="vendor/webcomponents-loader.js"></script>
@@ -498,6 +495,12 @@ class="current">
 
 
       
+      <a href="elements/hx-search-control" >
+    &lt;hx-search-control&gt;
+  </a>
+
+
+      
       <a href="elements/hx-select" >
     &lt;hx-select&gt;
   </a>
@@ -589,16 +592,19 @@ class="current">
               Search
 
 <min-version id="page-min-version">
-  v0.4.0+
+  v0.18.0+
 </min-version>
 
 <hx-tooltip for="page-min-version" position="right">
-  HelixUI v0.4.0 or later required
+  HelixUI v0.18.0 or later required
 </hx-tooltip>
             </h1>
 
 
-  
+  <p>
+    The Search component provides augmented markup, validation, and interaction for a
+    native <code>&lt;input type="search"&gt;</code> element.
+  </p>
           </header>
 
   <section>
@@ -612,35 +618,51 @@ class="current">
         <form class="beta-hxForm">
           <hx-text-control>
             <input
-              id="txtPlaceholder"
+              id="txtLabel"
               type="text"
-              v-model="placeholder"
+              v-model="label"
             />
-            <label for="txtPlaceholder">
-              Placeholder
-            </label>
-          </hx-text-control>
-
-          <hx-text-control>
-            <input
-              id="txtValue"
-              type="text"
-              v-model="searchValue"
-            />
-            <label for="txtValue">
-              Value
+            <label for="txtLabel">
+              Label Text
             </label>
           </hx-text-control>
 
           <fieldset>
-            <legend class="beta-hxFieldName">Options</legend>
+            <legend class="beta-hxFieldName">Label Annotation</legend>
             <hx-checkbox-control>
               <input
-                id="chkIsDisabled"
+                id="chkHasAsterisk"
+                type="checkbox"
+                v-model="hasAsterisk"
+              />
+              <label for="chkHasAsterisk">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkHasOptional"
+                type="checkbox"
+                v-model="hasOptional"
+              />
+              <label for="chkHasOptional">
+                <hx-checkbox></hx-checkbox>
+                Optional
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Control Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkDisabled"
                 type="checkbox"
                 v-model="isDisabled"
               />
-              <label for="chkIsDisabled">
+              <label for="chkDisabled">
                 <hx-checkbox></hx-checkbox>
                 Disabled
               </label>
@@ -648,28 +670,46 @@ class="current">
 
             <hx-checkbox-control>
               <input
-                id="chkIsInvalid"
+                id="chkRequired"
                 type="checkbox"
-                v-model="isInvalid"
+                v-model="isRequired"
               />
-              <label for="chkIsInvalid">
+              <label for="chkRequired">
                 <hx-checkbox></hx-checkbox>
-                Invalid
+                Required
               </label>
+              <p>
+                (Invalid styling applied <i>after</i> user interaction.)
+              </p>
             </hx-checkbox-control>
           </fieldset>
         </form>
       </header>
 
       <div>
-        <hx-search
-          :disabled="isDisabled"
-          :invalid="isInvalid"
-          :placeholder="placeholder"
-          :value="searchValue"
-          @clear="onSearchUpdate"
-          @input="onSearchUpdate"
-        ></hx-search>
+        <hx-search-control>
+          <input
+            id="srchInputDemo"
+            type="search"
+            :disabled="isDisabled"
+            :required="isRequired"
+          />
+          <button
+            type="button"
+            class="hxClear"
+            aria-label="Clear search"
+            hidden
+          >
+            <hx-icon type="times"></hx-icon>
+          </button>
+          <hx-search></hx-search>
+          <label
+            for="srchInputDemo"
+            :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }"
+          >
+{{label}}
+          </label>
+        </hx-search-control>
       </div>
 
       <footer>
@@ -687,15 +727,29 @@ class="current">
 
     <div class="example" id="vue-searchAssistanceDemo" v-cloak>
       <div>
-        <hx-search
-          :value="searchValue"
-          @blur="onBlur"
-          @clear="onUpdate"
-          @focus="onFocus"
-          @input="onUpdate"
-          id="assisted-hx-search"
-        ></hx-search>
-        <hx-search-assistance relative-to="assisted-hx-search" ref="search">
+        <hx-search-control id="assisted-hx-search-control">
+          <input
+            id="assisted-hx-search"
+            type="search"
+            @blur="onBlur"
+            @focus="onFocus"
+            @input="onUpdate"
+          />
+          <button
+            type="button"
+            class="hxClear"
+            aria-label="Clear search"
+            hidden
+            @click="onReset"
+          >
+            <hx-icon type="times"></hx-icon>
+          </button>
+          <hx-search></hx-search>
+          <label for="assisted-hx-search">
+            Search for stuff...
+          </label>
+        </hx-search-control>
+        <hx-search-assistance relative-to="assisted-hx-search-control" ref="search">
           <header>Search for "{{searchValue}}"</header>
           <section v-if="hasValue">
             <header>Category Header</header>
@@ -708,13 +762,27 @@ class="current">
       </div>
 
       <footer>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-search</span>
-  <span class="hljs-attr">id</span>=<span class="hljs-string">"assisted-search"</span>
-  <span class="hljs-attr">onblur</span>=<span class="hljs-string">"hideAssistance()"</span>
-  <span class="hljs-attr">onfocus</span>=<span class="hljs-string">"showAssistance()"</span>
-  <span class="hljs-attr">value</span>=<span class="hljs-string">"item"</span>
-&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-search</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">hx-search-assistance</span> <span class="hljs-attr">relative-to</span>=<span class="hljs-string">"assisted-search"</span>&gt;</span>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-search-control</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"assisted-search-control"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+    <span class="hljs-attr">id</span>=<span class="hljs-string">"assisted-search"</span>
+    <span class="hljs-attr">type</span>=<span class="hljs-string">"search"</span>
+    <span class="hljs-attr">onblur</span>=<span class="hljs-string">"hideAssistance()"</span>
+    <span class="hljs-attr">onfocus</span>=<span class="hljs-string">"showAssistance()"</span>
+  /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+    <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span>
+    <span class="hljs-attr">class</span>=<span class="hljs-string">"hxClear"</span>
+    <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Clear Search"</span>
+    <span class="hljs-attr">hidden</span>
+  &gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"times"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-search</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-search</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"assisted-search"</span>&gt;</span>
+    Search for stuff...
+  <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">hx-search-control</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hx-search-assistance</span> <span class="hljs-attr">relative-to</span>=<span class="hljs-string">"assisted-search-control"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>Search for "item"<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>Category Header<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
@@ -740,6 +808,7 @@ class="current">
       <li><a href="components/search/test.html">Testing - Search</a></li>
       <li><a href="elements/hx-search">&lt;hx-search&gt;</a></li>
       <li><a href="elements/hx-search-assistance">&lt;hx-search-assistance&gt;</a></li>
+      <li><a href="elements/hx-search-control">&lt;hx-search-control&gt;</a></li>
   </ul>
 </section>
       </main>
@@ -777,12 +846,12 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-09-23
+          2019-10-31
         </small>
 
       <small>
-        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.18.0-rc.0" target="_blank">
-          v0.18.0-rc.0
+        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.18.0-rc.1" target="_blank">
+          v0.18.0-rc.1
         </a>)
       </small>
     </div>
@@ -793,7 +862,7 @@ class="current">
   
   <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
   
-  <script src="dist/scripts/helix-ui.browser.js"></script>
+  <script src="dist/js/helix-ui.js"></script>
   
   <script src="docs.js"></script>
 </body>
