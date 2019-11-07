@@ -482,27 +482,3 @@ fnMap['bottom'] = fnMap['bottom-center'];
 fnMap['center'] = fnMap['center-middle'];
 
 export const offsetFunctionMap = fnMap;
-
-export default {
-    getBottom,
-    getBottomEnd,
-    getBottomLeft,
-    getBottomRight,
-    getBottomStart,
-    getCenter,
-    getLeft,
-    getLeftBottom,
-    getLeftEnd,
-    getLeftStart,
-    getLeftTop,
-    getRight,
-    getRightBottom,
-    getRightEnd,
-    getRightStart,
-    getTop,
-    getTopEnd,
-    getTopLeft,
-    getTopRight,
-    getTopStart,
-    offsetFunctionMap,
-};

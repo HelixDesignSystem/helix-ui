@@ -298,15 +298,3 @@ export function optimizePositionForCollisions (position, collides) {
 
     return position;
 }
-
-export default {
-    getAlignment,
-    getCrossAxis,
-    getHorizontalAlignment,
-    getMainAxis,
-    getVerticalAlignment,
-    invertPositionHorizontally,
-    invertPositionVertically,
-    normalizePosition,
-    optimizePositionForCollisions,
-};

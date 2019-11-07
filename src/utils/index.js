@@ -1,9 +1,22 @@
 /**
  * @module HelixUI/Utils
  */
-import Alignment from './alignment/index.js';
-import Offset from './offset/index.js';
-export { default as ICONS } from './icons/index.js';
+import * as Alignment from './alignment';
+import * as Offset from './offset';
+export { default as ICONS } from './icons';
+
+const NOOP = () => {};
+
+/**
+ * @description
+ * Returns argument if it's a function, otherwise returns a noop.
+ *
+ * @param {function|*} [fn=noop] - possible function
+ * @returns {function}
+ */
+export function ensureFn (fn = NOOP) {
+    return (typeof fn === 'function') ? fn : NOOP;
+}
 
 /**
  * Key/value map of key names and their keycode.
@@ -168,15 +181,76 @@ export function replaceWith (txtReplacement) {
     /* eslint-enable no-console */
 }
 
-// Not everything needs to be part of the default export
-export default {
+/**
+ * @description
+ * Run callback after WebComponents polyfills have finished loading
+ *
+ * @example
+ * function start () {
+ *   // do stuff...
+ * }
+ *
+ * onWebComponentsReady(start);
+ *
+ * @param {function} [cb=noop] - callback to run
+ */
+export function onWebComponentsReady (cb = NOOP) {
+    let _callback = ensureFn(cb);
+
+    if (window.WebComponents) {
+        // Polyfill detected
+        if (window.WebComponents.ready) {
+            // polyfill already finished loading, execute callback immediately
+            _callback();
+        } else {
+            // execute callback when polyfill has finished loading
+            window.addEventListener('WebComponentsReady', function () {
+                _callback();
+            });
+        }
+    } else {
+        // No polyfills detected, execute callback immediately
+        _callback();
+    }
+}
+
+/**
+ * @description
+ * Asynchronous version of onWebComponentsReady()
+ *
+ * @example <caption>Then-able</caption>
+ * function start () {
+ *   // do stuff...
+ * }
+ *
+ * waitForWebComponents().then(start);
+ *
+ *
+ * @example <caption>Async/Await</caption>
+ * function start () {
+ *   // do stuff...
+ * }
+ *
+ * async function load () {
+ *   await waitForWebComponents();
+ *   start();
+ * }
+ *
+ * load();
+ *
+ * @returns {Promise}
+ */
+export function waitForWebComponents () {
+    return new Promise((resolve, reject) => {
+        try {
+            onWebComponentsReady(resolve);
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
+export {
     Alignment,
-    KEYS,
     Offset,
-    defer,
-    generateId,
-    mix,
-    onScroll,
-    preventKeyScroll,
-    replaceWith,
 };

@@ -71,18 +71,18 @@ async function generateScss () {
     return rendered.css.toString();
 }
 
-async function generateMarkup () {
+function generateMarkupSync () {
     console.log('Generating HTML');
-
     let cfg = {
         files: [
             '*.html',
             '**/*.html',
+            '!files/**', // ignore docs/files
         ],
     };
 
     // This is not async
-    await Markup.renderEach(cfg.files, (err, file) => {
+    Markup.renderEach(cfg.files, (err, file) => {
         if (err) {
             throw err;
         }
@@ -91,7 +91,7 @@ async function generateMarkup () {
         ensureDirSync(path.dirname(destPath));
         writeFile(destPath, file.content);
     });
-}//generateMarkup()
+}//generateMarkupSync()
 
 async function generateApis () {
     console.log('Generate API docs');
@@ -138,7 +138,7 @@ async function generateDownloads () {
 
     downloads.forEach(async function (dl) {
         console.log(`Generating ${dl.name}.tgz`);
-        let tmpDir = dl.name;
+        let tmpDir = `_tmp/${dl.name}`;
 
         // Ensure a clean slate
         await remove(tmpDir);
@@ -158,10 +158,13 @@ async function generateDownloads () {
     });
 }//generateDownloads
 
-// See https://webpack.js.org/api/node/
+/**
+ * See https://webpack.js.org/api/node/
+ * @async
+ * @returns {Promise}
+ */
 function generateScripts () {
     console.log('Generating JavaScript');
-
     let sourcePath = `${CONFIG.root}/${CONFIG.sourceDir}`;
     let publicPath = `${CONFIG.root}/${CONFIG.publicDir}`;
 
@@ -200,7 +203,14 @@ function generateScripts () {
                     exclude: /(node_modules|bower_components)/,
                     use: [
                         'babel-loader',
-                        'eslint-loader',
+                        {
+                            loader: 'eslint-loader',
+                            options: {
+                                globals: [
+                                    'HelixUI',
+                                ],
+                            },
+                        },
                     ]
                 }
             ]
@@ -208,34 +218,44 @@ function generateScripts () {
         plugins: []
     });
 
-    compiler.run((err, stats) => {
-        if (err) {
-            console.log('ERROR: running running webpack');
-            console.log(err.message);
-        }
-
-        console.log(stats.toString({
-            chunks: false,  // Makes the build much quieter
-            colors: true    // Shows colors in the console
-        }))
+    return new Promise((resolve, reject) => {
+        compiler.run((err, stats) => {
+            if (err) {
+                console.log('ERROR: running webpack');
+                console.log(err.message);
+                reject(err);
+            } else {
+                let out = stats.toString({
+                    chunks: false,  // Makes the build much quieter
+                    colors: true    // Shows colors in the console
+                });
+                console.log(out);
+                resolve(out);
+            }
+        });
     });
 }//generateScripts()
 
 async function generateAll () {
     await ensureDir(CONFIG.publicDir);
-    generateScripts();
-    generateApis();
-    generateMarkup();
-    generateStyles();
-    generateJSON();
-    generateDownloads();
+
+    generateMarkupSync();
+
+    // wait for all async functions to finish
+    await Promise.all([
+        generateScripts(),
+        generateApis(),
+        generateStyles(),
+        generateJSON(),
+        generateDownloads(),
+    ]);
 }//generateAll()
 
 module.exports = {
     generateAll,
     generateApis,
     generateDownloads,
-    generateMarkup,
+    generateMarkupSync,
     generateScripts,
     generateStyles,
 };
