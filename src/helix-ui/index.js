@@ -60,10 +60,14 @@ export function initialize () {
             // polyfill already finished loading, initialize immediately
             _defineElements();
         } else {
-            // initialize when polyfill has finished loading
-            window.addEventListener('WebComponentsReady', function () {
+            let wcrHandler = function () {
                 _defineElements();
-            });
+                // remove listener to prevent defining elements more than once,
+                // in the event that 'WebComponentsReady' fires more than once
+                window.removeEventListener('WebComponentsReady', wcrHandler);
+            };
+            // initialize when polyfill has finished loading
+            window.addEventListener('WebComponentsReady', wcrHandler);
         }
     } else {
         // No polyfills detected, initialize immediately
