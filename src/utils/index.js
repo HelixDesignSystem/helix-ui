@@ -203,10 +203,13 @@ export function onWebComponentsReady (cb = NOOP) {
             // polyfill already finished loading, execute callback immediately
             _callback();
         } else {
-            // execute callback when polyfill has finished loading
-            window.addEventListener('WebComponentsReady', function () {
+            let wcrHandler = function () {
                 _callback();
-            });
+                // remove listener to prevent additional execution of the handler
+                window.removeEventListener('WebComponentsReady', wcrHandler);
+            };
+            // execute callback when polyfill has finished loading
+            window.addEventListener('WebComponentsReady', wcrHandler);
         }
     } else {
         // No polyfills detected, execute callback immediately
