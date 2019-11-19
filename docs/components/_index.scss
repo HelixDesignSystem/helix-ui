@@ -3,6 +3,7 @@
 @import "typography/index";
 
 /// load styles needed to test component visuals
+@import "choice-tile/spec";
 @import "menu/spec";
 @import "popover/spec";
 @import "textarea/spec";
