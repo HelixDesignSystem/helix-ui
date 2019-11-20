@@ -1,0 +1,29 @@
+// LESS               SCSS
+// #Reset.select() -> select-reset
+@mixin select-reset {
+  @include appearance(none);
+
+  font: inherit;
+
+  // Firefox
+  // TODO: is this still needed?
+  &:-moz-ui-invalid {
+    box-shadow: none;
+    border: 0;
+    outline: 0;
+  }
+
+  // IE and Edge
+  &::-ms-value {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+  }
+
+  &::-ms-expand {
+    background-color: transparent;
+    border: 0;
+    color: inherit;
+    margin: 0;
+  }
+}

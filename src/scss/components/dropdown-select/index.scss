@@ -1,9 +1,4 @@
-@import (reference) 'vars';
-
-// ===== MIXINS ==========
-@import (reference) './SelectControl';
-@import (reference) './SelectFacade';
-
+@import "./config";
 
 // ----- BASE ELEMENTS ---------------
 hx-select {
@@ -13,31 +8,31 @@ hx-select {
 
 // ----- RESETS ---------------
 hx-select-control > select {
-  #Reset.select();
+  @include select-reset();
 }
 
 // ----- LAYOUT ---------------
-/*
-    1fr
-  +------------+
-  | label      | auto
-  +------------+
-  | control    | 2rem
-  +------------+
-*/
+///
+///    1fr
+///  +------------+
+///  | label      | auto
+///  +------------+
+///  | control    | 2rem
+///  +------------+
+///
 hx-select-control {
-  @ctrl-columns: 1fr;
-  @ctrl-rows: auto 2rem;
+  $ctrl-columns: 1fr;
+  $ctrl-rows: auto 2rem;
 
-  -ms-grid-columns: @ctrl-columns;
-  -ms-grid-rows: @ctrl-rows;
+  -ms-grid-columns: $ctrl-columns;
+  -ms-grid-rows: $ctrl-rows;
   display: -ms-grid;
   display: grid;
   grid-template-areas:
-    'label'
-    'control';
-  grid-template-columns: @ctrl-columns;
-  grid-template-rows: @ctrl-rows;
+    "label"
+    "control";
+  grid-template-columns: $ctrl-columns;
+  grid-template-rows: $ctrl-rows;
 
   // ----- blacklist -----
   > * {
@@ -46,14 +41,14 @@ hx-select-control {
 
   // ----- whitelist -----
   > label {
-    @justify: start; // don't stretch!
+    $justify: start; // don't stretch!
 
-    -ms-grid-column-align: @justify;
+    -ms-grid-column-align: $justify;
     -ms-grid-column: 1;
     -ms-grid-row: 1;
     display: block;
     grid-area: label;
-    justify-self: @justify;
+    justify-self: $justify;
   }
 
   > select,
@@ -70,74 +65,73 @@ hx-select-control {
     border: none;
     padding-left: 0.75rem;
     width: 100%; // prevent overflow for lengthy option text
-
     // Adjust native trigger for MS browsers (mainly IE)
     // Edge will obscure it with <hx-select>.
-    #MS.set.expand({
+    &::-ms-expand {
       padding: 0 0.75rem;
-    });
+    }
   }
 }
 
 // ----- PRISTINE ---------------
 hx-select-control > select {
-  .SelectControl(pristine);
+  @include hxSelectControl;
 
   ~ label {
-    .FieldName();
+    @include hxFieldName;
   }
 
   ~ hx-select {
-    .SelectFacade(pristine);
+    @include hxSelectFacade;
   }
 
   &:focus {
-    .SelectControl(pristine-focus);
+    @include hxSelectControl($focused: true);
 
     ~ hx-select {
-      .SelectFacade(pristine-focus);
+      @include hxSelectFacade($focused: true);
     }
   }
 }
 
 // ----- DISABLED ---------------
 hx-select-control > select:disabled {
-  .SelectControl(disabled);
+  @include hxSelectControl(disabled);
 
   ~ label {
-    .FieldName(disabled);
+    @include hxFieldName(disabled);
   }
 
   ~ hx-select {
-    .SelectFacade(disabled);
+    @include hxSelectFacade(disabled);
   }
 
   &:focus {
-    .SelectControl(disabled-focus);
+    @include hxSelectControl(disabled, true);
 
     ~ hx-select {
-      .SelectFacade(disabled-focus);
+      @include hxSelectFacade(disabled, true);
     }
   }
 }
 
 // ----- INVALID ---------------
-/*
-  1. Prevent IE from incorrectly matching select:disabled:invalid
-*/
+///
+///  1. Prevent IE from incorrectly matching select:disabled:invalid
+///
 hx-select-control[hx-dirty] > select:enabled:invalid, /* 1 */
 hx-select-control.hxInvalid > select:enabled {
-  .SelectControl(invalid);
+  @include hxSelectControl(invalid);
 
   ~ hx-select {
-    .SelectFacade(invalid);
+    @include hxSelectFacade(invalid);
   }
 
   &:focus {
-    .SelectControl(invalid-focus);
+    @include hxSelectControl(invalid, true);
 
     ~ hx-select {
-      .SelectFacade(invalid-focus);
+      @include hxSelectFacade(invalid, true);
     }
   }
 }
