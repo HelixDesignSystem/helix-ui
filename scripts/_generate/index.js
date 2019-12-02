@@ -138,7 +138,7 @@ async function generateDownloads () {
 
     downloads.forEach(async function (dl) {
         console.log(`Generating ${dl.name}.tgz`);
-        let tmpDir = `_tmp/${dl.name}`;
+        let tmpDir = `${CONFIG.tmpDir}/${dl.name}`;
 
         // Ensure a clean slate
         await remove(tmpDir);
@@ -151,7 +151,8 @@ async function generateDownloads () {
         await tar.create({
             file: `${destDir}/${dl.name}.tgz`,
             gzip: true,
-        }, [tmpDir]);
+            cwd: CONFIG.tmpDir,
+        }, [dl.name]);
 
         // Cleanup temporary files
         await remove(tmpDir);
