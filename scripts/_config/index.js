@@ -11,6 +11,7 @@ CONFIG.sourceDir = 'src';
 CONFIG.docsDir = 'docs';
 CONFIG.testDir = 'test';
 CONFIG.distDir = 'dist';
+CONFIG.tmpDir = '_tmp';
 
 // Component Explorer configuration
 // Used directly for "site" rendering context
