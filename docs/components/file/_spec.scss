@@ -1,7 +1,25 @@
 @import 'components/button/config';
+@import 'components/file/mixins/hxFileControl';
 
 .file-input-spec {
   hx-file-control {
+    input[type="file"].mock-focus ~ label > hx-file-input {
+      @include hxFileControl($pseudo-state: focus);
+     }
+     
+     input[type="file"].mock-active ~ label > hx-file-input {
+       &.hxBtn{
+      @include hxButton-active--secondary;
+      }
+      &.hxPrimary {
+        @include hxButton-active--primary;
+      }
+
+      &.hxTertiary {
+        @include hxButton-active--tertiary;
+      }
+    }
+
     hx-file-input.hxBtn.mock-hover {
       @include hxButton-hover--secondary;
 
