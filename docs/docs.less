@@ -82,30 +82,6 @@ iframe[src*="codepen.io"] {
   }
 }
 
-body.hxVertical {
-  main {
-    #Box.lg();
-
-    // PROTOTYPE: vertical spacing
-    > * {
-      // NOTE: do not apply the below margin in a horizontal layout
-      margin: 3rem 0;
-
-      &:first-child {
-        margin-top: 0;
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  .hxSiderail {
-    #Box.md();
-  }
-}
-
 /* ---------------------------------------- *\
  * COMPONENTS
 \* ---------------------------------------- */
@@ -147,74 +123,6 @@ min-version {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-}
-
-// ----- BANNER ---------------
-// currently used by test page layout to display a warning to readers
-.banner {
-  -ms-grid-columns: auto 1fr;
-  -ms-grid-row-align: baseline;
-  align-items: baseline;
-  background-color: @gray-0;
-  border: 2px solid currentColor;
-  color: @gray-950;
-  display: -ms-grid;
-  display: grid;
-  grid-template-areas: 'icon content';
-  grid-template-columns: auto 1fr;
-  padding: 1rem;
-
-  > * {
-    margin: 0;
-  }
-
-  .banner__icon {
-    -ms-grid-column: 1;
-    -ms-grid-row: 1;
-    grid-area: icon;
-    margin-right: 1rem; // because IE
-  }
-
-  .banner__body {
-    -ms-grid-column: 2;
-    -ms-grid-row: 1;
-    grid-area: content;
-  }
-
-  &.warning {
-    background-color: @yellow-500;
-    border: 2px solid @yellow-900;
-  }
-}
-@supports (display: grid) {
-  .banner {
-    grid-gap: 1rem;
-
-    .banner__icon {
-      margin: 0; // because IE
-    }
-  }
-}
-//end:BANNER
-
-// Table Of Contents
-.article-toc {
-  display: block;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 1rem;
-
-  > a {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    text-decoration: none;
-  }
-
-  .top-link {
-    font-size: 0.875rem;
-    font-weight: 300;
   }
 }
 
@@ -280,25 +188,6 @@ min-version {
   }
 }
 
-/* ----- Test Page Styling ----- */
-.test-content {
-  box-shadow: inset 0 0 0 0.5rem @yellow-900;
-
-  section {
-    > section {
-      margin-bottom: 2rem;
-      margin-left: 2rem;
-    }
-
-    > table {
-      border: 1px solid @gray-400;
-
-      td, th {
-        padding: 1em;
-      }
-    }
-  }
-}
 
 /* ---------------------------------------- *\
  * HELPERS
@@ -319,24 +208,3 @@ min-version {
 @import 'spec/file-input-spec';
 @import 'spec/panel-spec';
 @import 'spec/radio-spec';
-
-/* ---------------------------------------- *\
- * OVERRIDES (a.k.a. "shame")
-\* ---------------------------------------- */
-dl:not(.hxList) {
-  dd {
-    margin-bottom: 0.5em;
-    margin-left: 1em;
-  }
-}
-
-/* Beta Auto Grid Styles */
-.hxRow.hxAuto > .hxCol { flex-grow: 0; }
-.hxRow .hxCol.hxAuto { flex: 0 0 auto; }
-
-// keep line size at a readable length
-p.comfortable,
-header > p,
-.guide-content p {
-  max-width: 80ch;
-}

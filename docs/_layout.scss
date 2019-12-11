@@ -1,0 +1,93 @@
+body.hxVertical {
+  main {
+    // Fallback layout (stacked)
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      order: 10;
+      padding: map-get($space, lg);
+      grid-area: body;
+    }
+
+    > header {
+      background-color: $gray-50;
+      border-color: $gray-100;
+      border-style: solid;
+      border-width: 0 0 1px;
+      grid-area: header;
+      order: 1;
+
+      > * + * {
+        margin-top: map-get($space, sm);
+      }
+    }
+
+    > aside {
+      background-color: $gray-0;
+      border-color: $gray-100;
+      border-style: solid;
+      border-width: 0 0 1px;
+      grid-area: aside;
+      order: 3;
+      width: 100%; // override .hxSiderail
+    }
+
+    /*
+     * +----------------+
+     * | header         | auto
+     * +------+---------+
+     * | body | [aside] | 1fr
+     * +------+---------+
+     *   1fr    auto
+     */
+    @include supports-grid {
+      display: grid;
+      grid-template-areas:
+        "header header"
+        "body   aside";
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto 1fr;
+      overflow: visible !important; // override #content
+
+      > aside {
+        border-width: 0 0 0 1px; // override stacked layout
+        min-width: $app-nav-width;
+        width: 25vw; // override stacked layout
+      }
+    }
+  }
+
+  // ===== VERTICAL SPACING RHYTHM ===== //
+  main {
+    > div {
+      // L1
+      > * + *,
+      > * + section {
+        margin-top: map-get($space, xxl);
+      }
+
+      > section {
+        //margin-bottom: 0;
+
+        // L2
+        > * + section {
+          margin-top: map-get($space, lg);
+        }
+
+        > section {
+          // L3
+          > * + section {
+            margin-top: map-get($space, sm);
+          }
+        }
+      }
+    }
+
+    > aside {
+      > * + * {
+        margin-top: map-get($space, lg);
+      }
+    }
+  }
+}

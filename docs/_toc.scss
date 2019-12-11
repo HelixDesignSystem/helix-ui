@@ -1,0 +1,28 @@
+// table of contents
+.toc {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 1rem;
+
+  > a {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+  }
+
+  // hide if no grid support
+  .top-link {
+    font-size: 0.875rem;
+    font-weight: 300;
+
+    // hide if stacked layout
+    display: none;
+    // show if grid layout
+    @include supports-grid {
+      display: block;
+    }
+  }
+}

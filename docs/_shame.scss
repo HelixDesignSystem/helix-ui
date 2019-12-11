@@ -1,0 +1,16 @@
+dl:not(.hxList) {
+  dd {
+    margin-bottom: 0.5em;
+    margin-left: 1em;
+  }
+}
+
+/* Beta Auto Grid Styles */
+.hxRow.hxAuto > .hxCol { flex-grow: 0; }
+.hxRow .hxCol.hxAuto { flex: 0 0 auto; }
+
+// keep line size at a readable length
+p.comfortable,
+header > p {
+  max-width: 80ch;
+}
