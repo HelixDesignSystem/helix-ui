@@ -50,7 +50,7 @@ if (document.getElementById('vue-searchDemo')) {
                     >
                       <hx-icon type="times"></hx-icon>
                     </button>
-                    <hx-search</hx-search>
+                    <hx-search></hx-search>
                     <label
                       for="demoSearch"
                       ${this.lblClasses}
