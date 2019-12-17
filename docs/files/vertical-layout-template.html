@@ -4,14 +4,12 @@
   <title>Vertical - App Title</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="shortcut icon" href="images/favicon.png" />
+  <link rel="shortcut icon" href="%ASSET_PATH%/images/favicon.png" />
 
-  <!-- DO NOT BUNDLE: HelixUI Styles -->
-  <link rel="stylesheet" href="path/to/helix-ui/dist/styles/helix-ui.min.css" />
-  <!-- DO NOT COMPILE: Converts ES5 custom element constructor functions to ES6 classes -->
-  <script src="path/to/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+  <link rel="stylesheet" href="%ASSET_PATH%/helix-ui.min.css" />
+
   <!-- DO NOT COMPILE: Appends polyfills to <head> if needed by user's browser. -->
-  <script src="path/to/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="%ASSET_PATH%/webcomponents-loader.js"></script>
 </head>
 <body class="hxVertical" id="top">
   <!-- Accessibility: This link should be the first item in tab order. -->
@@ -63,18 +61,27 @@
   </div>
 
   <footer id="foot">
-    &copy; 2018 Rackspace US, Inc.
+    &copy; 2017-2019 Rackspace US, Inc.
     <nav>
       <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
       <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
     </nav>
   </footer>
 
-  <!--
-    DO NOT BUNDLE: ES5-compiled assets specifically for use in the browser.
-    Provides additional polyfills and automatically initializes HelixUI.
-  -->
-  <script src="path/to/helix-ui/scripts/helix-ui.browser.min.js"></script>
+  <!-- UMD for Legacy Browsers (ES5) -->
+  <script nomodule src="%ASSET_PATH%/helix-ui.min.js"></script>
+  <script nomodule>
+    HelixUI.initialize();
+  </script>
+
+  <!-- ESM for Modern Browsers (ES6+) -->
+  <script type="module">
+    import HelixUI from '/%ASSET_PATH%/helix-ui.module.min.js';
+
+    HelixUI.initialize();
+  </script>
+
+  <!-- App Scripts Go Here -->
 
   <a id="bottom"></a>
 </body>

@@ -9,6 +9,7 @@ export const docsDir = 'docs'
 export const pubDir = 'public';
 export const srcDir = 'src';
 export const testDir = 'test';
+export const tmpDir = '_tmp';
 
 // Component Explorer Docs Configuration
 // Used directly for "site" rendering context

@@ -10,9 +10,9 @@ const SASS = require('node-sass');
 const path = require('path');
 const tar = require('tar');
 const webpack = require('webpack');
-const { copy, ensureDir, ensureDirSync, remove } = require('fs-extra');
+const { ensureDir, ensureDirSync } = require('fs-extra');
+const { src, dest } = require('gulp');
 
-const pkg = require('../../package.json');
 const CONFIG = require('../_config');
 const { exec, readFile, writeFile } = require('../_util');
 
@@ -120,42 +120,15 @@ async function generateJSON () {
  * Generates downloadable *.tgz assets
  */
 async function generateDownloads () {
-    let destDir = `${CONFIG.publicDir}/downloads`;
+    console.log('Generate *.tgz Downloads');
+    await exec(`yarn gulp archive`, { cwd: CONFIG.root });
 
-    let downloads = [
-        {
-            src: CONFIG.distDir,
-            name: `helix-ui-${pkg.version}`,
-        },
-        {
-            src: `${CONFIG.sourceDir}/images/icons`,
-            name: `helix-ui-${pkg.version}-icons`,
-        }
+    let globs = [
+        `${CONFIG.tmpDir}/*.tgz`,
     ];
 
-    // Make sure destination exists
-    await ensureDir(destDir);
-
-    downloads.forEach(async function (dl) {
-        console.log(`Generating ${dl.name}.tgz`);
-        let tmpDir = `_tmp/${dl.name}`;
-
-        // Ensure a clean slate
-        await remove(tmpDir);
-
-        // Create temporary directory so we can customize
-        // the name of the uncompressed output.
-        await ensureDir(tmpDir);
-
-        await copy(dl.src, tmpDir);
-        await tar.create({
-            file: `${destDir}/${dl.name}.tgz`,
-            gzip: true,
-        }, [tmpDir]);
-
-        // Cleanup temporary files
-        await remove(tmpDir);
-    });
+    return src(globs)
+        .pipe(dest(`${CONFIG.publicDir}/downloads`));
 }//generateDownloads
 
 /**

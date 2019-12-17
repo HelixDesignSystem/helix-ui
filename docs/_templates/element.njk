@@ -7,8 +7,10 @@
   <a href="#properties">Properties</a>
 {% endblock %}
 
-{% block main %}
-  {{super()}}
+{% block contentWrapper %}
+  {% block content %}
+    {# page content goes here #}
+  {% endblock %}
 
   {# ATTRIBUTES #}
   <section>
@@ -45,4 +47,8 @@
       </p>
     {% endblock %}
   </section>
+
+  {% if page.also %}
+    {% include 'partials/see-also.njk' %}
+  {% endif %}
 {% endblock %}

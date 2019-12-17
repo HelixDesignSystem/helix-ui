@@ -1,0 +1,46 @@
+// currently used by test page layout to display a warning to readers
+.banner {
+  -ms-grid-columns: auto 1fr;
+  -ms-grid-row-align: baseline;
+  align-items: baseline;
+  background-color: $gray-0;
+  border: 2px solid currentColor;
+  color: $gray-950;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: 'icon content';
+  grid-template-columns: auto 1fr;
+  padding: 1rem;
+
+  > * {
+    margin: 0;
+  }
+
+  &.warning {
+    background-color: $yellow-500;
+    border: 2px solid $yellow-900;
+  }
+}
+
+.banner__icon {
+  -ms-grid-column: 1;
+  -ms-grid-row: 1;
+  grid-area: icon;
+  margin-right: 1rem; // because IE
+}
+
+.banner__body {
+  -ms-grid-column: 2;
+  -ms-grid-row: 1;
+  grid-area: content;
+}
+
+@include supports-grid {
+  .banner {
+    grid-gap: 1rem;
+  }
+
+  .banner__icon {
+    margin: 0; // because IE
+  }
+}

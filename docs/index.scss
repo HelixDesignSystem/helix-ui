@@ -5,11 +5,27 @@ $demo-container-border: 1px dashed $gray-600;
 $demo-fill-color: rgba($orange-500, 0.25);
 $demo-padding-color: $magenta-100;
 
-@import "example";
+@mixin supports-grid {
+  @supports (display: grid) {
+    @content;
+  }
+}
+
+// BASE
+@import "./layout";
+@import "./test-content";
+
+// COMPONENTS
+@import "./banner";
+@import "./example";
+@import "./toc";
 
 // Component-specific Doc Styles
-@import "components/index";
+@import "./components/index";
 
 // Spec Styles for component test pages
-@import "components/drawer/spec";
-@import "components/search/spec";
+@import "./components/drawer/spec";
+@import "./components/search/spec";
+
+// OVERRIDES
+@import "./shame";

@@ -1,0 +1,19 @@
+/* ----- Test Page Styling ----- */
+.test-content {
+  border: 0.5rem solid $yellow-900;
+
+  section {
+    > section {
+      margin-bottom: 2rem;
+      margin-left: 2rem;
+    }
+
+    > table {
+      border: 1px solid $gray-400;
+
+      td, th {
+        padding: 1em;
+      }
+    }
+  }
+}

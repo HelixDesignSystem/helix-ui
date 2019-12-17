@@ -5,273 +5,315 @@ title: Getting Started with HelixUI
 
 {% block page_header %}
   <p>
-    The HelixUI library provides front-end developers a set of reusable CSS
-    classes and HTML Custom Elements that adhere to Helix design standards.
-    Adopting the library will enable developers to build products with consistent
-    markup, styles, and behavior across a variety of frameworks.
+    This guide provides an opinionated set of instructions for installing
+    and setting up HelixUI and its dependencies for use in a simple static
+    HTML project with the following assumptions.
   </p>
+  <ul class="hxList">
+    <li>A bundler is not being used.</li>
+    <li>
+      The <code>public/</code> directory is the web root for
+      serving files via a web server.
+    </li>
+  </ul>
 {% endblock %}
 
 {% block content %}
+  {# Step 1: install assets #}
   <section>
     <header>
-      <h2 id="step-1">Step 1: Install HelixUI</h2>
-      {# TODO: add section description #}
-    </header>
-
-    <hx-tabset class="beta-hxBound">
-      <hx-tablist>
-        <hx-tab>NPM</hx-tab>
-        <hx-tab>Download</hx-tab>
-        <hx-tab>unpkg</hx-tab>
-      </hx-tablist>
-      <hx-tabcontent>
-        <hx-tabpanel class="hxBox hxLg">
-          <p>
-            Using <a href="https://npmjs.com">npm</a>:
-          </p>
-          {% code "bash" %}
-            npm install helix-ui
-          {% endcode %}
-          <br />
-
-          <p>
-            If you prefer <a href="https://yarnpkg.com/">Yarn</a>, use the following command:
-          </p>
-          {% code "bash" %}
-            yarn add helix-ui
-          {% endcode %}
-        </hx-tabpanel>
-        <hx-tabpanel class="hxBox hxLg">
-          <p>
-            If HelixUI is not available in your chosen package manager,
-            pre-built assets are available for download.
-          </p>
-          <p>
-            <a href="downloads/helix-ui-{{VERSION}}.tgz" class="hxBtn hxLg hxPrimary">
-              <hx-icon type="download"></hx-icon>
-              <span>Download HelixUI (v{{VERSION}})</span>
-            </a>
-          </p>
-          <p class="hxSubBody">
-            <em>
-              Assets do not include 3rd party dependencies (e.g.,
-              <a
-                href="https://www.webcomponents.org/polyfills"
-                rel="noopener noreferrer"
-                target="_blank"
-              >web component polyfills</a>
-              ).
-            </em>
-          </p>
-        </hx-tabpanel>
-        <hx-tabpanel class="hxBox hxLg">
-          <p>
-            Alternatively, you can load HelixUI directly from
-            <a href="https://unpkg.com">unpkg.com</a> via the following URLs.
-          </p>
-
-          <h3>Development</h3>
-          <ul class="hxList">
-            <li><code>https://unpkg.com/helix-ui@{{VERSION}}/dist/styles/helix-ui.css</code></li>
-            <li><code>https://unpkg.com/helix-ui@{{VERSION}}/dist/scripts/helix-ui.browser.js</code></li>
-          </ul>
-
-          <h3>Production (minified)</h3>
-          <ul class="hxList">
-            <li><code>https://unpkg.com/helix-ui@{{VERSION}}/dist/styles/helix-ui.min.css</code></li>
-            <li><code>https://unpkg.com/helix-ui@{{VERSION}}/dist/scripts/helix-ui.browser.min.js</code></li>
-          </ul>
-        </hx-tabpanel>
-      </hx-tabcontent>
-    </hx-tabset>
-  </section>
-
-  <section>
-    <header>
-      <h2 id="step-2">Step 2: Install Polyfills</h2>
+      <h2 id="installing">1 - Installing HelixUI Assets</h2>
       <p>
-        To ensure that HelixUI has the minimum set of behavior required to function
-        across all supported browsers, the Web Components polyfills must be installed.
+        First and foremost, we need to obtain the assets required
+        to configure our application.
       </p>
     </header>
 
-    <ol class="hxList">
-      <li>
-        Install <code>@webcomponents/webcomponentsjs</code> via one of the methods shown below.
-      </li>
-      <li>
-        Copy or extract the polyfills into your application's target output directory.
-      </li>
-      <li>Proceed to "Step 3: Choose a Layout".</li>
-    </ol>
-
-    <p class="hxSubBody hxSubdued">
-      <hx-icon type="info-circle"></hx-icon>
-      Version 2.x (or later) is recommended, because it is more efficient
-      in loading required polyfill bundles.
+    <p>
+      To install HelixUI and its dependencies, run the following
+      from the root of your project.
     </p>
 
-    <hx-tabset class="beta-hxBound">
-      <hx-tablist>
-        <hx-tab>NPM</hx-tab>
-        <hx-tab>Download</hx-tab>
-        <hx-tab>unpkg</hx-tab>
-      </hx-tablist>
-      <hx-tabcontent>
-        <hx-tabpanel class="hxBox hxLg">
-          <p>
-            Using <a href="https://npmjs.com">npm</a>:
-          </p>
-          {% code "bash" %}
-            npm install @webcomponents/webcomponentsjs
-          {% endcode %}
-          <br />
+    <figure>
+      {% code "bash" %}
+        npm install helix-ui
+      {% endcode %}
+    </figure>
 
-          <p>
-            If you prefer <a href="https://yarnpkg.com/">Yarn</a>, use the following command:
-          </p>
-          {% code "bash" %}
-            yarn add @webcomponents/webcomponentsjs
-          {% endcode %}
-        </hx-tabpanel>
-        <hx-tabpanel class="hxBox hxLg">
-          <p>
-            Download and extract one of the archives listed in the
-            <a
-              href="https://github.com/webcomponents/webcomponentsjs/releases"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              webcomponentsjs releases
-              <hx-icon type="external-link"></hx-icon>
-            </a>.
-          </p>
-        </hx-tabpanel>
-        <hx-tabpanel class="hxBox hxLg">
-          <p>
-            Alternatively, you can load the polyfills directly from
-            <a href="https://unpkg.com">unpkg.com</a> via the following URLs.
-          </p>
+    <p>
+      Once complete, assets should be available in
+      <code>node_modules/helix-ui/</code>.
+    </p>
 
-          <ul class="hxList">
-            <li><code>https://unpkg.com/@webcomponents/webcomponentsjs@2/webcomponents-loader.js</code></li>
-            <li><code>https://unpkg.com/@webcomponents/webcomponentsjs@2/custom-elements-es5-adapter.js</code></li>
-          </ul>
-        </hx-tabpanel>
-      </hx-tabcontent>
-    </hx-tabset>
-
-    <footer>
-      <p class="hxSubdued hxSubBody">
+    <footer class="hxSubdued hxSubBody">
+      <p>
         <hx-icon type="info-circle"></hx-icon>
-        Visit the <a href="guides/polyfills">Polyfills</a> guide for more details.
+        Alternative installation methods are documented
+        in the <a href="guides/faq/#no-npm">FAQ</a>.
       </p>
     </footer>
   </section>
 
+  {# Step 2: copy assets into app #}
   <section>
     <header>
-      <h2 id="step-3">Step 3: Choose a Layout</h2>
-      {# TODO: add section description #}
-    </header>
-
-    <ol class="hxList">
-      <li>
-        Choose one of the layouts shown below.
-      </li>
-      <li>
-        Download the template into your project folder.
-      </li>
-      <li>
-        Modify the template markup to conform to your application's file structure.
-      </li>
-    </ol>
-
-    <p class="hxSubdued hxSubBody">
-      <hx-icon type="info-circle"></hx-icon>
-      Visit the <a href="components/layout">Layout</a> component
-      documentation for customization details.
-    </p>
-
-    <hx-tabset class="beta-hxBound">
-      <hx-tablist>
-        <hx-tab>Vertical Layout</hx-tab>
-        <hx-tab>Horizontal Layout</hx-tab>
-      </hx-tablist>
-      <hx-tabcontent>
-        <hx-tabpanel class="hxBox hxLg">
-          <p>
-            Lengthy content can push the footer below the bottom of the viewport.
-          </p>
-          <p>
-            <img src="images/thumbs/vertical-layout.png" alt="vertical layout thumbnail" />
-          </p>
-          <p>
-            <a
-              class="hxBtn hxPrimary"
-              download="HelixUI-Vertical-index.html"
-              href="files/vertical-layout-template.html"
-            >
-              <hx-icon type="download"></hx-icon>
-              <span>Download Template</span>
-            </a>
-            &nbsp;
-            <a
-              href="components/layout/vertical-layout.html"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Preview Layout
-              <hx-icon type="external-link"></hx-icon>
-            </a>
-          </p>
-        </hx-tabpanel>
-        <hx-tabpanel class="hxBox hxLg">
-          <p>
-            Content is arranged horizontally in panels
-            while the footer remains visible at all times.
-          </p>
-          <p>
-            <img src="images/thumbs/horizontal-layout.png" alt="vertical layout thumbnail" />
-          </p>
-          <p>
-            <a
-              class="hxBtn hxPrimary"
-              download="HelixUI-Horizontal-index.html"
-              href="files/horizontal-layout-template.html"
-            >
-              <hx-icon type="download"></hx-icon>
-              <span>Download Template</span>
-            </a>
-            &nbsp;
-            <a
-              href="components/layout/horizontal-layout.html"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Preview Layout
-              <hx-icon type="external-link"></hx-icon>
-            </a>
-          </p>
-        </hx-tabpanel>
-      </hx-tabcontent>
-    </hx-tabset>
-  </section>
-
-  <section><!-- Create Content -->
-    <header>
-      <h2 id="step-4">Step 4: Add Content</h2>
+      <h2 id="copy-assets-into-app">2 - Copy Assets into App</h2>
       <p>
-        Add content and interactivity to your application using components.
-        Documentation for a component contains interactive demos and details
-        about various interaction patterns.
+        Even though we've installed the required assets, they're not
+        where the web server can serve them.
       </p>
     </header>
 
-    <ol class="hxList">
-      <li>Choose a component from the navigation on the left.</li>
-      <li>Check the "See Also" section on the component page for more information.</li>
-    </ol>
+    <p>
+      In order to serve the required assets, run the following
+      commands from the root of your project.
+    </p>
+
+    <figure>
+      {% code 'bash' %}
+        # Web Components Polyfill Loader
+        cp node_modules/helix-ui/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js public/assets
+
+        # Web Components Polyfill Bundles (injected as needed by loader above)
+        cp -R node_modules/helix-ui/node_modules/@webcomponents/webcomponentsjs/bundles public/assets
+
+        # production-ready, browser-compatible HelixUI JavaScript bundles
+        cp node_modules/helix-ui/dist/js/*.min.js public/assets
+
+        # production-ready HelixUI Stylesheets
+        cp node_modules/helix-ui/dist/css/*.min.css public/assets
+      {% endcode %}
+    </figure>
+
+    <p>
+      Once complete, the directory structure of <code>public/</code>
+      should resemble the following:
+    </p>
+
+    <figure>
+      {% code 'bash' %}
+        public/
+        ├ assets/
+        │ ├ bundles/
+        │ │ └ ...
+        │ ├ helix-ui.min.css
+        │ ├ helix-ui.min.js
+        │ ├ helix-ui.module.min.js
+        │ └ webcomponents-loader.js
+        └ index.html
+      {% endcode %}
+    </figure>
+  </section>
+
+  {# Step 3: consume assets #}
+  <section>
+    <header>
+      <h2 id="consuming-assets">3 - Consuming Assets</h2>
+      <p>
+        Now that assets are in a location that can be served by a web server,
+        we need to update <code>public/index.html</code> in order to make
+        use of the assets.
+      </p>
+    </header>
+
+    {# Step 3.1 - test content #}
+    <section>
+      <header>
+        <h3>3.1 - Add test content</h3>
+      </header>
+
+      <p>
+        To validate that assets are loading as we progress, let's add
+        the following to the <code>&lt;body&gt;</code> of our markup.
+      </p>
+
+      <figure>
+        {% code 'html' %}
+          <h1>Hello HelixUI!</h1>
+          <p>
+            <hx-icon type="checkmark-circle"></hx-icon>
+          </p>
+        {% endcode %}
+      </figure>
+
+      <p>
+        When viewed in a browser, the heading should be visible but you won't
+        see any icon. This is because <code>&lt;hx-icon&gt;</code> hasn't
+        been upgraded yet to a custom element (handled as part of
+        <code>HelixUI.initialize()</code> functionality).  We'll fix the icon
+        in a later step.
+      </p>
+    </section>
+
+    {# Step 3.2 - HelixUI CSS #}
+    <section>
+      <header>
+        <h3>3.2 - Load HelixUI Styles</h3>
+      </header>
+
+      <p>
+        To load HelixUI styles, add the following markup
+        to the <code>&lt;head&gt;</code> element.
+      </p>
+
+      <figure>
+        {% code 'html' %}
+          <link rel="stylesheet" href="assets/helix-ui.min.css" />
+        {% endcode %}
+      </figure>
+
+      <p>
+        If configured correctly, the <code>&lt;h1&gt;</code> element
+        should be rendered in a thin, sans-serif font.
+      </p>
+    </section>
+
+    {# Step 3.3 - polyfills #}
+    <section>
+      <header>
+        <h3>3.3 - Load Polyfills</h3>
+      </header>
+
+      <p>
+        The Web Components polyfills are built specifically to be
+        run directly in the browser (uncompiled and unbundled).
+        As such, we'll add the following markup to the
+        <code>&lt;head&gt;</code> of our document.
+      </p>
+
+      <figure>
+        {% code 'html' %}
+          <script src="assets/webcomponents-loader.js"></script>
+        {% endcode %}
+      </figure>
+
+      <p>
+        The <code>webcomponents-loader.js</code> polyfill script uses feature
+        detection to identify the minimum polyfill bundle required by the
+        current browser.  If the browser requires polyfills, an additional
+        <code>&lt;script&gt;</code> element (loading a polyfill bundle from
+        <code>assets/bundles/</code>) will be injected after the loader.
+      </p>
+    </section>
+
+    {# Step 3.4 - HelixUI JS #}
+    <section>
+      <header>
+        <h3>3.4 - Load HelixUI Scripts</h3>
+      </header>
+
+      <p>
+        In order to load HelixUI in a way that is compatible with the largest
+        set of browsers, add the following markup to the bottom of the
+        <code>&lt;body&gt;</code> element.
+      </p>
+
+      <figure>
+        {% code 'html' %}
+          <!-- Legacy Browsers (ES5 UMD Module) -->
+          <script nomodule src="assets/helix-ui.min.js"></script>
+          <script nomodule>
+            HelixUI.initialize();
+          </script>
+
+          <!-- Modern Browsers (ES6 ES Module) -->
+          <script type="module">
+            import HelixUI from '/assets/helix-ui.module.min.js';
+
+            HelixUI.initialize();
+          </script>
+        {% endcode %}
+      </figure>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        See the <a href="guides/faq/#js-bundles">FAQ</a> for more information
+        about the different JavaScript bundles.
+      </p>
+
+      <p>
+        Once complete, <code>&lt;hx-icon&gt;</code> should render a visible SVG image.
+      </p>
+    </section>
+  </section>
+
+  {# Step 4: validate configuration #}
+  <section>
+    <header>
+      <h2 id="verify">4 - Verify Configuration</h2>
+    </header>
+
+    <hx-alert type="success" status="CONGRATULATIONS!" persist>
+      You've successfully configured your application to use {{site.title}}!
+    </hx-alert>
+    <br />{# TODO: FIXME: update CSS to avoid this hack #}
+
+    <p>
+      The markup in <code>public/index.html</code> should resemble the following markup.
+    </p>
+    <figure>
+      {% code 'html' %}
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <!-- Step 3.2 -->
+            <link rel="stylesheet" href="assets/helix-ui.min.css" />
+
+            <!-- Step 3.3 -->
+            <script src="assets/webcomponents-loader.js"></script>
+            <!-- additional <script> may appear here -->
+            <!--/Step 3.3 -->
+          </head>
+          <body>
+            <!-- Step 3.1 -->
+            <h1>Hello HelixUI!</h1>
+            <p>
+              <hx-icon type="checkmark-circle"></hx-icon>
+            </p>
+            <!--/Step 3.1 -->
+
+            <!-- Step 3.4 -->
+            <!-- Legacy Browsers (ES5 UMD Module) -->
+            <script nomodule src="assets/helix-ui.min.js"></script>
+            <script nomodule>
+              HelixUI.initialize();
+            </script>
+
+            <!-- Modern Browsers (ES6 ES Module) -->
+            <script type="module">
+              import HelixUI from '/assets/helix-ui.module.min.js';
+
+              HelixUI.initialize();
+            </script>
+            <!--/Step 3.4 -->
+          </body>
+        </html>
+      {% endcode %}
+    </figure>
+  </section>
+
+  {# Next Steps #}
+  <section>
+    <header>
+      <h2 id="next-steps">Next Steps</h2>
+    </header>
+
+    <p>
+      Now that everything is wired up correctly, here are some
+      suggestions for what to do next.
+    </p>
+
+    <ul class="hxList">
+      <li>
+        Configure a <a href="components/layout">Layout</a>
+        to arrange page content consistently across your application.
+      </li>
+
+      <li>
+        <p>
+          Explore the documentation to learn how you can add meaningful
+          interactivity to your application.
+        </p>
+      </li>
+    </ul>
   </section>
 {% endblock %}
