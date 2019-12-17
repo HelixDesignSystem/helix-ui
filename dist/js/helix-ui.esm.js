@@ -15,7 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }());
 
 /*! @license @nocompile
-Copyright 2019 Rackspace US, Inc.
+Copyright 2017-2019 Rackspace US, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -2092,10 +2092,15 @@ function onWebComponentsReady() {
       // polyfill already finished loading, execute callback immediately
       _callback();
     } else {
-      // execute callback when polyfill has finished loading
-      window.addEventListener('WebComponentsReady', function () {
-        _callback();
-      });
+      var wcrHandler = function wcrHandler() {
+        _callback(); // remove listener to prevent additional execution of the handler
+
+
+        window.removeEventListener('WebComponentsReady', wcrHandler);
+      }; // execute callback when polyfill has finished loading
+
+
+      window.addEventListener('WebComponentsReady', wcrHandler);
     }
   } else {
     // No polyfills detected, execute callback immediately
@@ -7649,7 +7654,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.18.0-rc.1";
+var version = "0.18.0";
 
 /** @module HelixUI */
 var waitForWebComponents$1 = waitForWebComponents;

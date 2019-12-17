@@ -2187,6 +2187,262 @@ hx-popover-head {
   text-transform: none;
 }
 
+hx-radio {
+  border-radius: 1rem;
+  display: inline-block;
+  height: 1rem;
+  vertical-align: baseline;
+  width: 1rem;
+}
+
+hx-radio-set {
+  display: block;
+}
+
+hx-radio-set > * {
+  margin: 0.25rem 0;
+}
+
+hx-radio-set > *:first-child {
+  margin-top: 0;
+}
+
+hx-radio-set > *:last-child {
+  margin-bottom: 0;
+}
+
+hx-radio-control {
+  -ms-grid-column-align: start;
+  -ms-grid-columns: auto 1fr;
+  -ms-grid-rows: auto auto;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: "ctrl lbl" ".    help";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  justify-items: start;
+}
+
+hx-radio-control > * {
+  margin: 0;
+}
+
+hx-radio-control > label {
+  -ms-grid-column: 2;
+  -ms-grid-row: 1;
+  grid-area: lbl;
+  -ms-grid-columns: auto 1fr;
+  -ms-grid-rows: auto;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-areas: "facade txt";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  padding: 0;
+}
+
+hx-radio-control > label > hx-radio {
+  -ms-grid-column: 1;
+  -ms-grid-row: 1;
+  display: none;
+  grid-area: facade;
+  margin-top: 0.25rem;
+}
+
+hx-radio-control > p {
+  -ms-grid-column: 2;
+  -ms-grid-row: 2;
+  grid-area: help;
+}
+
+hx-radio-control > input[type="radio"] {
+  -ms-grid-column: 1;
+  -ms-grid-row: 1;
+  border-radius: 1rem;
+  grid-area: ctrl;
+  height: 1rem;
+  margin: 0.25rem 0.5rem 0 0;
+  width: 1rem;
+}
+
+hx-radio-control > input[type="radio"]::-ms-check {
+  box-sizing: border-box;
+}
+
+hx-radio-control > label > hx-radio {
+  background-color: #ffffff;
+  border: 1px solid currentColor;
+  color: #bdbdbd;
+}
+
+hx-radio-control > p {
+  color: #6b6b6b;
+  font-size: 0.75rem;
+}
+
+hx-radio-control > input[type="radio"] {
+  color: #bdbdbd;
+}
+
+hx-radio-control > input[type="radio"]::-ms-check {
+  background-color: #ffffff;
+  border: 1px solid currentColor;
+  color: inherit;
+}
+
+hx-radio-control > input[type="radio"]:focus {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+
+hx-radio-control > input[type="radio"]:focus ~ label > hx-radio {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+
+hx-radio-control > input[type="radio"]:hover {
+  color: #16b9d4;
+}
+
+hx-radio-control > input[type="radio"]:hover::-ms-check {
+  background-color: #e4f9f9;
+  color: #16b9d4;
+}
+
+hx-radio-control > input[type="radio"]:checked {
+  color: #0c7c84;
+}
+
+hx-radio-control > input[type="radio"]:checked ~ label > hx-radio {
+  border: 1px solid currentColor;
+  color: #0c7c84;
+  position: relative;
+}
+
+hx-radio-control > input[type="radio"]:checked ~ label > hx-radio::after {
+  background-color: currentColor;
+  border-radius: 1rem;
+  content: "";
+  height: 0.5rem;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.5rem;
+}
+
+hx-radio-control > input[type="radio"]:valid ~ label > hx-radio:hover {
+  background-color: #e4f9f9;
+  border: 1px solid currentColor;
+  color: #16b9d4;
+}
+
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid,
+hx-radio-set.hxInvalid input[type="radio"]:enabled {
+  color: #d32f2f;
+}
+
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid::-ms-check,
+hx-radio-set.hxInvalid input[type="radio"]:enabled::-ms-check {
+  border-width: 2px;
+}
+
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid ~ label > hx-radio,
+hx-radio-set.hxInvalid input[type="radio"]:enabled ~ label > hx-radio {
+  border: 2px solid currentColor;
+  color: #d32f2f;
+}
+
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid:focus,
+hx-radio-set.hxInvalid input[type="radio"]:enabled:focus {
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid:focus ~ label > hx-radio,
+hx-radio-set.hxInvalid input[type="radio"]:enabled:focus ~ label > hx-radio {
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid:hover::-ms-check,
+hx-radio-set.hxInvalid input[type="radio"]:enabled:hover::-ms-check {
+  background-color: #ffcdd2;
+  border: 2px solid currentColor;
+  color: #d32f2f;
+}
+
+hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid ~ label > hx-radio:hover,
+hx-radio-set.hxInvalid input[type="radio"]:enabled ~ label > hx-radio:hover {
+  background-color: #ffcdd2;
+  border: 2px solid currentColor;
+  color: #d32f2f;
+}
+
+hx-radio-control > input[type="radio"]:disabled {
+  color: #bdbdbd;
+  cursor: not-allowed;
+}
+
+hx-radio-control > input[type="radio"]:disabled::-ms-check {
+  background-color: #eeeeee;
+  border: 1px solid currentColor;
+  color: #bdbdbd;
+}
+
+hx-radio-control > input[type="radio"]:disabled:focus {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+
+hx-radio-control > input[type="radio"]:disabled:hover::-ms-check {
+  background-color: #eeeeee;
+  border: 1px solid currentColor;
+  color: #bdbdbd;
+}
+
+hx-radio-control > input[type="radio"]:disabled ~ label {
+  color: #757575;
+}
+
+hx-radio-control > input[type="radio"]:disabled ~ label > hx-radio {
+  border: 1px solid currentColor;
+  color: #bdbdbd;
+  cursor: not-allowed;
+}
+
+hx-radio-control > input[type="radio"]:disabled ~ label > hx-radio, hx-radio-control > input[type="radio"]:disabled ~ label > hx-radio:hover {
+  background-color: #eeeeee;
+  border: 1px solid currentColor;
+  color: #bdbdbd;
+}
+
+@supports (--modern: true) {
+  hx-radio-control {
+    position: relative;
+  }
+  hx-radio-control > input[type="radio"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 0;
+    box-shadow: none;
+    height: 1px;
+    margin: -1px;
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    z-index: -10;
+  }
+  hx-radio-control > input[type="radio"]::-ms-check {
+    display: none;
+  }
+  hx-radio-control > label > hx-radio {
+    display: inline-block;
+  }
+  hx-radio-control > p {
+    margin-left: 1.5rem;
+  }
+}
+
 hx-disclosure {
   cursor: pointer;
   display: inline-block;
@@ -2851,6 +3107,273 @@ hx-tabset.beta-hxBound hx-tab[current] {
 hx-tabset.beta-hxBound hx-tabcontent {
   background-color: #ffffff;
   border-color: #e0e0e0;
+}
+
+hx-textarea-control {
+  display: flex;
+  flex-direction: column;
+}
+
+hx-textarea-control > * {
+  display: none;
+}
+
+hx-textarea-control > label,
+hx-textarea-control > textarea {
+  display: block;
+}
+
+hx-textarea-control > label {
+  align-self: flex-start;
+  order: 1;
+}
+
+hx-textarea-control > textarea {
+  min-height: 6rem;
+  order: 2;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0.5rem;
+  resize: vertical;
+}
+
+hx-textarea-control > label {
+  color: #616161;
+  font-size: 0.875rem;
+}
+
+hx-textarea-control > textarea {
+  background-color: #ffffff;
+  border-radius: 2px;
+  border: 1px solid #bdbdbd;
+  color: #424242;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+hx-textarea-control > textarea::-moz-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-textarea-control > textarea::-ms-input-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-textarea-control > textarea::-webkit-input-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-textarea-control > textarea::placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-textarea-control > textarea:focus {
+  border: 1px solid #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  outline: 0;
+}
+
+hx-textarea-control[hx-dirty] > textarea:enabled:invalid,
+hx-textarea-control.hxInvalid > textarea:enabled {
+  border: 2px solid #d32f2f;
+}
+
+hx-textarea-control[hx-dirty] > textarea:enabled:invalid:focus,
+hx-textarea-control.hxInvalid > textarea:enabled:focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+hx-textarea-control > textarea:disabled {
+  border: 1px solid #bdbdbd;
+  background-color: #f5f5f5;
+  color: #d8d8d8;
+  resize: none;
+}
+
+hx-textarea-control > textarea:disabled::-moz-placeholder {
+  color: inherit;
+}
+
+hx-textarea-control > textarea:disabled::-ms-input-placeholder {
+  color: inherit;
+}
+
+hx-textarea-control > textarea:disabled::-webkit-input-placeholder {
+  color: inherit;
+}
+
+hx-textarea-control > textarea:disabled::placeholder {
+  color: inherit;
+}
+
+hx-textarea-control > textarea:disabled ~ label {
+  color: #757575;
+}
+
+hx-textarea-control > textarea:disabled:focus {
+  border: 1px solid #bdbdbd;
+}
+
+hx-text-control {
+  -ms-grid-columns: auto 1fr auto;
+  -ms-grid-rows: auto auto;
+  align-items: center;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: "label  label   label" "prefix control suffix";
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto;
+}
+
+hx-text-control > * {
+  display: none;
+}
+
+hx-text-control > label,
+hx-text-control > input[type="text"],
+hx-text-control > .hxPrefix,
+hx-text-control > .hxSuffix {
+  display: block;
+}
+
+hx-text-control > label {
+  -ms-grid-column-align: start;
+  -ms-grid-column-span: 3;
+  -ms-grid-column: 1;
+  -ms-grid-row: 1;
+  grid-area: label;
+  justify-self: start;
+}
+
+hx-text-control > input[type="text"] {
+  -ms-grid-column: 2;
+  -ms-grid-row: 2;
+  grid-area: control;
+  height: 2rem;
+  min-width: 8rem;
+  padding: 0 0.75rem;
+}
+
+hx-text-control > .hxPrefix {
+  -ms-grid-column-align: end;
+  -ms-grid-column: 1;
+  -ms-grid-row-align: center;
+  -ms-grid-row: 2;
+  grid-area: prefix;
+  justify-self: end;
+  margin-right: 0.25rem;
+}
+
+hx-text-control > .hxSuffix {
+  -ms-grid-column-align: start;
+  -ms-grid-column: 3;
+  -ms-grid-row-align: center;
+  -ms-grid-row: 2;
+  grid-area: suffix;
+  justify-self: start;
+  margin-left: 0.25rem;
+}
+
+hx-text-control > label {
+  color: #616161;
+  font-size: 0.875rem;
+}
+
+hx-text-control > input[type="text"] {
+  background-color: #ffffff;
+  border-radius: 2px;
+  border: 1px solid #bdbdbd;
+  color: #424242;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+hx-text-control > input[type="text"]::-moz-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-text-control > input[type="text"]::-ms-input-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-text-control > input[type="text"]::-webkit-input-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-text-control > input[type="text"]::placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-text-control > input[type="text"]:focus {
+  border: 1px solid #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  outline: 0;
+}
+
+hx-text-control[hx-dirty] > input[type="text"]:enabled:invalid,
+hx-text-control.hxInvalid > input[type="text"]:enabled {
+  border: 2px solid #d32f2f;
+}
+
+hx-text-control[hx-dirty] > input[type="text"]:enabled:invalid:focus,
+hx-text-control.hxInvalid > input[type="text"]:enabled:focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+hx-text-control > input[type="text"]:disabled {
+  border: 1px solid #bdbdbd;
+  background-color: #f5f5f5;
+  color: #d8d8d8;
+}
+
+hx-text-control > input[type="text"]:disabled::-moz-placeholder {
+  color: inherit;
+}
+
+hx-text-control > input[type="text"]:disabled::-ms-input-placeholder {
+  color: inherit;
+}
+
+hx-text-control > input[type="text"]:disabled::-webkit-input-placeholder {
+  color: inherit;
+}
+
+hx-text-control > input[type="text"]:disabled::placeholder {
+  color: inherit;
+}
+
+hx-text-control > input[type="text"]:disabled ~ label {
+  color: #757575;
+}
+
+hx-text-control > input[type="text"]:disabled:focus {
+  border: 1px solid #bdbdbd;
 }
 
 hx-drawer, hx-menu, hx-modal, hx-popover, hx-search-assistance, hx-tooltip {
@@ -4295,469 +4818,4 @@ textarea.hxTextCtrl {
 }
 .hxTextCtrl[disabled]::placeholder {
   color: inherit;
-}
-hx-radio {
-  border-radius: 1rem;
-  display: inline-block;
-  height: 1rem;
-  vertical-align: baseline;
-  width: 1rem;
-}
-hx-radio-set {
-  display: block;
-}
-hx-radio-set > * {
-  margin: 0.25rem 0;
-}
-hx-radio-set > *:first-child {
-  margin-top: 0;
-}
-hx-radio-set > *:last-child {
-  margin-bottom: 0;
-}
-hx-radio-control {
-  -ms-grid-column-align: start;
-  -ms-grid-columns: auto 1fr;
-  -ms-grid-rows: auto auto;
-  display: -ms-grid;
-  display: grid;
-  grid-template-areas: 'ctrl lbl' '.    help';
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto;
-  justify-items: start;
-}
-hx-radio-control > * {
-  margin: 0;
-}
-hx-radio-control > label {
-  -ms-grid-column: 2;
-  -ms-grid-row: 1;
-  grid-area: lbl;
-  -ms-grid-column: auto 1fr;
-  -ms-grid-row: auto;
-  display: -ms-grid;
-  display: grid;
-  grid-gap: 0.5rem;
-  grid-template-areas: 'facade txt';
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto;
-  padding: 0;
-}
-hx-radio-control > label > hx-radio {
-  -ms-grid-column: 1;
-  -ms-grid-row: 1;
-  display: none;
-  grid-area: facade;
-  margin-top: 0.25rem;
-}
-hx-radio-control > p {
-  -ms-grid-column: 2;
-  -ms-grid-row: 2;
-  grid-area: help;
-}
-hx-radio-control > input[type="radio"] {
-  -ms-grid-column: 1;
-  -ms-grid-row: 1;
-  border-radius: 1rem;
-  grid-area: ctrl;
-  height: 1rem;
-  margin: 0.25rem 0.5rem 0 0;
-  width: 1rem;
-}
-hx-radio-control > input[type="radio"]::-ms-check {
-  box-sizing: border-box;
-}
-hx-radio-control > label > hx-radio {
-  background-color: #ffffff;
-  border: 1px solid currentColor;
-  color: #bdbdbd;
-}
-hx-radio-control > p {
-  color: #6b6b6b;
-  font-size: 0.75rem;
-}
-hx-radio-control > input[type="radio"] {
-  color: #bdbdbd;
-}
-hx-radio-control > input[type="radio"]::-ms-check {
-  background-color: #ffffff;
-  border: 1px solid currentColor;
-  color: inherit;
-}
-hx-radio-control > input[type="radio"]:focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-hx-radio-control > input[type="radio"]:focus ~ label > hx-radio {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-hx-radio-control > input[type="radio"]:hover {
-  color: #16b9d4;
-}
-hx-radio-control > input[type="radio"]:hover::-ms-check {
-  background-color: #e4f9f9;
-  color: #16b9d4;
-}
-hx-radio-control > input[type="radio"]:checked {
-  color: #0c7c84;
-}
-hx-radio-control > input[type="radio"]:checked ~ label > hx-radio {
-  border: 1px solid currentColor;
-  color: #0c7c84;
-  position: relative;
-}
-hx-radio-control > input[type="radio"]:checked ~ label > hx-radio::after {
-  background-color: currentColor;
-  border-radius: 1rem;
-  content: "";
-  height: 0.5rem;
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 0.5rem;
-}
-hx-radio-control > input[type="radio"]:valid ~ label > hx-radio:hover {
-  background-color: #e4f9f9;
-  border: 1px solid currentColor;
-  color: #16b9d4;
-}
-hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid,
-hx-radio-set.hxInvalid input[type="radio"]:enabled {
-  color: #d32f2f;
-}
-hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid::-ms-check,
-hx-radio-set.hxInvalid input[type="radio"]:enabled::-ms-check {
-  border-width: 2px;
-}
-hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid ~ label > hx-radio,
-hx-radio-set.hxInvalid input[type="radio"]:enabled ~ label > hx-radio {
-  border: 2px solid currentColor;
-  color: #d32f2f;
-}
-hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid:focus,
-hx-radio-set.hxInvalid input[type="radio"]:enabled:focus {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid:focus ~ label > hx-radio,
-hx-radio-set.hxInvalid input[type="radio"]:enabled:focus ~ label > hx-radio {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid:hover::-ms-check,
-hx-radio-set.hxInvalid input[type="radio"]:enabled:hover::-ms-check {
-  background-color: #ffcdd2;
-  border: 2px solid currentColor;
-  color: #d32f2f;
-}
-hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid ~ label > hx-radio:hover,
-hx-radio-set.hxInvalid input[type="radio"]:enabled ~ label > hx-radio:hover {
-  background-color: #ffcdd2;
-  border: 2px solid currentColor;
-  color: #d32f2f;
-}
-hx-radio-control > input[type="radio"]:disabled {
-  color: #bdbdbd;
-  cursor: not-allowed;
-}
-hx-radio-control > input[type="radio"]:disabled::-ms-check {
-  background-color: #eeeeee;
-  border: 1px solid currentColor;
-  color: #bdbdbd;
-}
-hx-radio-control > input[type="radio"]:disabled:focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-hx-radio-control > input[type="radio"]:disabled:hover::-ms-check {
-  background-color: #eeeeee;
-  border: 1px solid currentColor;
-  color: #bdbdbd;
-}
-hx-radio-control > input[type="radio"]:disabled ~ label {
-  color: #757575;
-}
-hx-radio-control > input[type="radio"]:disabled ~ label > hx-radio {
-  border: 1px solid currentColor;
-  color: #bdbdbd;
-  cursor: not-allowed;
-}
-hx-radio-control > input[type="radio"]:disabled ~ label > hx-radio,
-hx-radio-control > input[type="radio"]:disabled ~ label > hx-radio:hover {
-  background-color: #eeeeee;
-  border: 1px solid currentColor;
-  color: #bdbdbd;
-}
-@supports (--modern: true) {
-  hx-radio-control {
-    position: relative;
-  }
-  hx-radio-control > input[type="radio"] {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    border: 0;
-    box-shadow: none;
-    height: 1px;
-    margin: -1px;
-    outline: none;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    z-index: -10;
-  }
-  hx-radio-control > input[type="radio"]::-ms-check {
-    display: none;
-  }
-  hx-radio-control > label > hx-radio {
-    display: inline-block;
-  }
-  hx-radio-control > p {
-    margin-left: 1.5rem;
-  }
-}
-/*
-   auto*      1fr       auto*
-  +----------+---------+----------+
-  | label    | label   | label    | auto
-  +----------+---------+----------+
-  | [prefix] | control | [suffix] | auto
-  +----------+---------+----------+
-
-  * column will collapse if content not present
-
-*/
-hx-text-control {
-  -ms-grid-columns: auto 1fr auto;
-  -ms-grid-rows: auto auto;
-  align-items: center;
-  display: -ms-grid;
-  display: grid;
-  grid-template-areas: 'label  label   label' 'prefix control suffix';
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: auto auto;
-}
-hx-text-control > * {
-  display: none;
-}
-hx-text-control > label,
-hx-text-control > input[type="text"],
-hx-text-control > .hxPrefix,
-hx-text-control > .hxSuffix {
-  display: block;
-}
-hx-text-control > label {
-  -ms-grid-column-align: start;
-  -ms-grid-column-span: 3;
-  -ms-grid-column: 1;
-  -ms-grid-row: 1;
-  grid-area: label;
-  justify-self: start;
-}
-hx-text-control > input[type="text"] {
-  -ms-grid-column: 2;
-  -ms-grid-row: 2;
-  grid-area: control;
-  height: 2rem;
-  min-width: 8rem;
-  padding: 0 0.75rem;
-}
-hx-text-control > .hxPrefix {
-  -ms-grid-column-align: end;
-  -ms-grid-column: 1;
-  -ms-grid-row-align: center;
-  -ms-grid-row: 2;
-  grid-area: prefix;
-  justify-self: end;
-  margin-right: 0.25rem;
-}
-hx-text-control > .hxSuffix {
-  -ms-grid-column-align: start;
-  -ms-grid-column: 3;
-  -ms-grid-row-align: center;
-  -ms-grid-row: 2;
-  grid-area: suffix;
-  justify-self: start;
-  margin-left: 0.25rem;
-}
-hx-text-control > label {
-  color: #616161;
-  font-size: 0.875rem;
-}
-hx-text-control > input[type="text"] {
-  background-color: #ffffff;
-  border-radius: 2px;
-  border: 1px solid #bdbdbd;
-  color: #424242;
-  font-family: inherit;
-  font-size: 1rem;
-}
-hx-text-control > input[type="text"]::-moz-placeholder {
-  color: #6b6b6b;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 1;
-}
-hx-text-control > input[type="text"]::-ms-input-placeholder {
-  color: #6b6b6b;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 1;
-}
-hx-text-control > input[type="text"]::-webkit-input-placeholder {
-  color: #6b6b6b;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 1;
-}
-hx-text-control > input[type="text"]::placeholder {
-  color: #6b6b6b;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 1;
-}
-hx-text-control > input[type="text"]:focus {
-  border: 1px solid #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-  outline: 0;
-}
-/*
-  1. Prevent IE from incorrectly matching input:disabled:invalid
-*/
-hx-text-control[hx-dirty] > input[type="text"]:enabled:invalid,
-hx-text-control.hxInvalid > input[type="text"]:enabled {
-  border: 2px solid #d32f2f;
-}
-hx-text-control[hx-dirty] > input[type="text"]:enabled:invalid:focus,
-hx-text-control.hxInvalid > input[type="text"]:enabled:focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-hx-text-control > input[type="text"]:disabled {
-  background-color: #f5f5f5;
-  border: 1px solid #bdbdbd;
-  color: #d8d8d8;
-}
-hx-text-control > input[type="text"]:disabled::-ms-input-placeholder {
-  color: inherit;
-}
-hx-text-control > input[type="text"]:disabled::-moz-placeholder {
-  color: inherit;
-}
-hx-text-control > input[type="text"]:disabled::-webkit-input-placeholder {
-  color: inherit;
-}
-hx-text-control > input[type="text"]:disabled::placeholder {
-  color: inherit;
-}
-hx-text-control > input[type="text"]:disabled ~ label {
-  color: #757575;
-}
-hx-text-control > input[type="text"]:disabled:focus {
-  border: 1px solid #bdbdbd;
-}
-/* (columnar-flexbox)
-  +-------------+
-  | label       |
-  +-------------+
-  | textarea    |
-  +-------------+
-*/
-hx-textarea-control {
-  display: flex;
-  flex-direction: column;
-}
-hx-textarea-control > * {
-  display: none;
-}
-hx-textarea-control > label,
-hx-textarea-control > textarea {
-  display: block;
-}
-hx-textarea-control > label {
-  align-self: flex-start;
-  order: 1;
-}
-hx-textarea-control > textarea {
-  min-height: 6rem;
-  order: 2;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 0.5rem;
-  resize: vertical;
-}
-hx-textarea-control > label {
-  color: #616161;
-  font-size: 0.875rem;
-}
-hx-textarea-control > textarea {
-  background-color: #ffffff;
-  border-radius: 2px;
-  border: 1px solid #bdbdbd;
-  color: #424242;
-  font-family: inherit;
-  font-size: 1rem;
-}
-hx-textarea-control > textarea::-moz-placeholder {
-  color: #6b6b6b;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 1;
-}
-hx-textarea-control > textarea::-ms-input-placeholder {
-  color: #6b6b6b;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 1;
-}
-hx-textarea-control > textarea::-webkit-input-placeholder {
-  color: #6b6b6b;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 1;
-}
-hx-textarea-control > textarea::placeholder {
-  color: #6b6b6b;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 1;
-}
-hx-textarea-control > textarea:focus {
-  border: 1px solid #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-  outline: 0;
-}
-/*
-  1. Prevent IE from incorrectly matching textarea:disabled:invalid
-*/
-hx-textarea-control[hx-dirty] > textarea:enabled:invalid,
-hx-textarea-control.hxInvalid > textarea:enabled {
-  border: 2px solid #d32f2f;
-}
-hx-textarea-control[hx-dirty] > textarea:enabled:invalid:focus,
-hx-textarea-control.hxInvalid > textarea:enabled:focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-hx-textarea-control > textarea:disabled {
-  background-color: #f5f5f5;
-  border: 1px solid #bdbdbd;
-  color: #d8d8d8;
-  resize: none;
-}
-hx-textarea-control > textarea:disabled::-ms-input-placeholder {
-  color: inherit;
-}
-hx-textarea-control > textarea:disabled::-moz-placeholder {
-  color: inherit;
-}
-hx-textarea-control > textarea:disabled::-webkit-input-placeholder {
-  color: inherit;
-}
-hx-textarea-control > textarea:disabled::placeholder {
-  color: inherit;
-}
-hx-textarea-control > textarea:disabled ~ label {
-  color: #757575;
-}
-hx-textarea-control > textarea:disabled:focus {
-  border: 1px solid #bdbdbd;
 }

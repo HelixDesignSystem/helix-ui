@@ -584,9 +584,9 @@ class="current">
       </nav>
 
       <main role="main" id="content" class="guide-content ">
-          
-
           <header>
+              
+
 
             <h1>
               Frequently Asked Questions
@@ -597,6 +597,8 @@ class="current">
               
           </header>
 
+          <div>
+  
   <section>
     <header>
       <h2 id="what-are-web-components">What are Web Components?</h2>
@@ -661,6 +663,7 @@ class="current">
     </footer>
   </section>
 
+  
   <section>
     <header>
       <h2 id="supported-browsers">Which Browsers are Supported?</h2>
@@ -700,6 +703,7 @@ class="current">
     </footer>
   </section>
 
+  
   <section>
     <header>
       <h2 id="supported-frameworks">Which Frameworks are Supported?</h2>
@@ -742,15 +746,270 @@ class="current">
     </footer>
   </section>
 
-      </main>
+  
+  <section>
+    <header>
+      <h2 id="no-npm">Can I install HelixUI if I don't use NPM?</h2>
+      <p>
+        While NPM is the preferred strategy, there are alternative
+        means to consume HelixUI.
+      </p>
+    </header>
 
-        <aside class="hxSiderail">
-            <header>
-              <h1 class="hxHeading-4">On this page:</h1>
-            </header>
+    <p>
+      Please explore alternative installation methods below.
+    </p>
 
-            <nav class="article-toc">
-              
+    <hx-tabset class="beta-hxBound">
+      <hx-tablist>
+        <hx-tab>Download</hx-tab>
+        <hx-tab>UNPKG</hx-tab>
+      </hx-tablist>
+      <hx-tabcontent>
+        <hx-tabpanel class="hxBox hxLg">
+          <p>
+            Download ready-to-use assets that can be dropped into
+            any HTML project.
+          </p>
+
+          <p>
+            <hx-file-tile
+              details="HelixUI + Polyfills"
+              href="downloads/helix-ui-0.18.0.tgz"
+              icon="mime-archive"
+              name="helix-ui-0.18.0.tgz"
+              readonly
+            ></hx-file-tile>
+          </p>
+
+          <p>
+            The same assets mentioned in the
+            <a href="guides/getting-started">Getting Started</a>
+            guide are also available in the download.
+          </p>
+
+          <dl class="hxList metadata">
+            <div>
+              <dt>HelixUI Styles</dt>
+              <dd>
+                <code>helix-ui-0.18.0/dist/css/</code>
+              </dd>
+            </div>
+            <div>
+              <dt>HelixUI Scripts</dt>
+              <dd>
+                <code>helix-ui-0.18.0/dist/js/</code>
+              </dd>
+            </div>
+            <div>
+              <dt>Web Components Polyfills</dt>
+              <dd>
+                <code>helix-ui-0.18.0/node_modules/@webcomponents/webcomponentsjs/</code>
+              </dd>
+            </div>
+          </dl>
+        </hx-tabpanel>
+
+        <hx-tabpanel class="hxBox hxLg">
+          <p>
+            <a href="https://unpkg.com">UNPKG</a> is a great way to experiment
+            with HelixUI.  You can browse available assets at
+            <a href="https://unpkg.com/helix-ui/">https://unpkg.com/helix-ui/</a>.
+          </p>
+
+          <dl class="hxList metadata">
+            <div>
+              <dt>HelixUI Styles</dt>
+              <dd>
+                <code><a href="https://unpkg.com/helix-ui/dist/css/">https://unpkg.com/helix-ui/dist/css/</a></code>
+              </dd>
+            </div>
+            <div>
+              <dt>HelixUI Scripts</dt>
+              <dd>
+                <code><a href="https://unpkg.com/helix-ui/dist/js/">https://unpkg.com/helix-ui/dist/js/</a></code>
+              </dd>
+            </div>
+            <div>
+              <dt>Web Components Polyfills</dt>
+              <dd>
+                <code><a href="https://unpkg.com/helix-ui/node_modules/@webcomponents/webcomponentsjs/">https://unpkg.com/helix-ui/node_modules/@webcomponents/webcomponentsjs/</a></code>
+              </dd>
+            </div>
+          </dl>
+
+          <footer class="hxSubBody hxSubdued">
+            <p>
+              <hx-icon type="exclamation-triangle"></hx-icon>
+              UNPKG is not recommended for use in a production environment.
+            </p>
+          </footer>
+        </hx-tabpanel>
+      </hx-tabcontent>
+    </hx-tabset>
+  </section>
+
+  
+  <section>
+    <header>
+      <h2 id="js-bundles">Why are there so many JavaScript files?</h2>
+      <p>
+        In the <code>dist/js/</code> directory of the <code>helix-ui</code>
+        NPM package, you'll find several different JavaScript assets.
+        Here is an overview of their intended use and how they differ.
+      </p>
+    </header>
+
+    <table class="hxTable hxBound">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Development</th>
+          <th>Production</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">
+            <a href="#umd-for-legacy-browsers">UMD for Legacy Browsers</a><br />
+            <small class="hxSubdued">ECMAScript 5 / ES5</small>
+          </th>
+          <td><code>helix-ui.js</code></td>
+          <td><code>helix-ui.min.js</code></td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <a href="#cjs-for-legacy-bundlers">CommonJS for Legacy Bundlers</a><br />
+            <small class="hxSubdued">ECMAScript 5 / ES5</small>
+          </th>
+          <td><code>helix-ui.cjs.js</code></td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <a href="#esm-for-modern-bundlers">ESM for Modern Bundlers</a><br />
+            <small class="hxSubdued">ECMAScript 5 / ES5</small>
+          </th>
+          <td><code>helix-ui.esm.js</code></td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <a href="#esm-for-modern-browsers">ESM for Modern Browsers</a><br />
+            <small class="hxSubdued">ECMAScript 2015+ / ES6+</small>
+          </th>
+          <td><code>helix-ui.module.js</code></td>
+          <td><code>helix-ui.module.min.js</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <section>
+      <header>
+        <h3 id="umd-for-legacy-browsers" class="skip-toc">
+          UMD for Legacy Browsers
+        </h3>
+      </header>
+
+      <ul class="hxList">
+        <li>ECMAScript 5 / ES5 Syntax</li>
+        <li>
+          <code>pkg.unpkg</code>
+          (<a href="https://unpkg.com/helix-ui">https://unpkg.com/helix-ui</a>)
+        </li>
+        <li>
+          Intended to be used by <i>legacy</i> browsers that
+          <a href="https://caniuse.com/#feat=es6-module">don't support ES Modules</a>.
+        </li>
+      </ul>
+
+<pre><code class="html"><span class="hljs-comment">&lt;!-- ignored by modern browsers --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">nomodule</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"path/to/helix-ui[.min].js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+      <footer>
+        <p class="hxSubdued hxSubBody">
+          <hx-icon type="info-circle"></hx-icon>
+          See <a href="#esm-for-modern-browsers">ESM for Modern Browsers</a>
+        </p>
+      </footer>
+    </section>
+
+    <section>
+      <header>
+        <h3 id="cjs-for-legacy-bundlers" class="skip-toc">
+          CommonJS for Legacy Bundlers
+        </h3>
+      </header>
+
+      <ul class="hxList">
+        <li>ECMAScript 5 / ES5 Syntax</li>
+        <li><code>pkg.main</code></li>
+        <li>
+          Intended for use with <i>legacy</i> bundlers like
+          <a href="http://browserify.org/">browserify</a> and
+          <a href="https://webpack.github.io/">webpack v1</a>.
+        </li>
+      </ul>
+
+<pre><code class="javascript"><span class="hljs-keyword">var</span> HelixUI = <span class="hljs-built_in">require</span>(<span class="hljs-string">'helix-ui'</span>);
+
+<span class="hljs-comment">// ...</span>
+</code></pre>    </section>
+
+    <section>
+      <header>
+        <h3 id="esm-for-modern-bundlers" class="skip-toc">
+          ESM for Modern Bundlers
+        </h3>
+      </header>
+
+      <ul>
+        <li>ECMAScript 5 / ES5 Syntax</li>
+        <li><code>pkg.module</code></li>
+        <li>
+          Intended for use with <i>modern</i> bundlers like
+          <a href="https://webpack.js.org/">webpack v2+</a> or
+          <a href="https://rollupjs.org/">Rollup</a>.
+        </li>
+      </ul>
+
+<pre><code class="javascript"><span class="hljs-keyword">import</span> HelixUI <span class="hljs-keyword">from</span> <span class="hljs-string">'helix-ui'</span>;
+
+<span class="hljs-comment">// ...</span>
+</code></pre>    </section>
+
+    <section>
+      <header>
+        <h3 id="esm-for-modern-browsers" class="skip-toc">
+          ESM for Modern Browsers
+        </h3>
+      </header>
+
+      <ul>
+        <li>ECMAScript 2015+ / ES6+ Syntax</li>
+        <li>
+          Intended to be used by <i>modern</i> browsers that
+          <a href="https://caniuse.com/#feat=es6-module">support ES Modules</a>.
+        </li>
+      </ul>
+
+<pre><code class="html"><span class="hljs-comment">&lt;!-- ignored by legacy browsers --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"path/to/helix-ui.module[.min].js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+      <footer>
+        <p class="hxSubdued hxSubBody">
+          <hx-icon type="info-circle"></hx-icon>
+          See <a href="#umd-for-legacy-browsers">UMD for Legacy Browsers</a>
+        </p>
+      </footer>
+    </section>
+  </section>
+
+          </div>
+
+            <aside class="hxSiderail">
+                <nav class="toc" aria-label="table of contents">
+                  
             <a href="#what-are-web-components">What are Web Components?</a>
         
 
@@ -759,17 +1018,24 @@ class="current">
 
             <a href="#supported-frameworks">Which Frameworks are Supported?</a>
         
-                
-              <hr class="hxDivider" />
-              <a class="top-link" href="#top">Back to Top</a>
-            </nav>
-        </aside>
+
+            <a href="#no-npm">Can I install HelixUI if I don't use NPM?</a>
+        
+
+            <a href="#js-bundles">Why are there so many JavaScript files?</a>
+        
+                    
+                  <hr class="hxDivider" />
+                  <a class="top-link" href="#top">Back to Top</a>
+                </nav>
+            </aside>
+      </main>
     </div>
   </div>
 
   <footer id="foot" class="hxRow hxGutterless">
     <div class="hxCol">
-      &copy; 2019 Rackspace US, Inc.
+      &copy; 2017-2019 Rackspace US, Inc.
       <nav>
         <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
         <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
@@ -779,18 +1045,16 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2019-08-23
+          2019-12-16
         </small>
 
       <small>
-        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.18.0-rc.1" target="_blank">
-          v0.18.0-rc.1
+        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.18.0" target="_blank">
+          v0.18.0
         </a>)
       </small>
     </div>
   </footer>
-
-  
 
   
   <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>

@@ -1,3 +1,140 @@
+body.hxVertical main {
+  display: flex;
+  flex-direction: column;
+  /*
+     * +----------------+
+     * | header         | auto
+     * +------+---------+
+     * | body | [aside] | 1fr
+     * +------+---------+
+     *   1fr    auto
+     */
+}
+
+body.hxVertical main > * {
+  order: 10;
+  padding: 2rem;
+  grid-area: body;
+}
+
+body.hxVertical main > header {
+  background-color: #f5f5f5;
+  border-color: #eeeeee;
+  border-style: solid;
+  border-width: 0 0 1px;
+  grid-area: header;
+  order: 1;
+}
+
+body.hxVertical main > header > * + * {
+  margin-top: 0.75rem;
+}
+
+body.hxVertical main > aside {
+  background-color: #ffffff;
+  border-color: #eeeeee;
+  border-style: solid;
+  border-width: 0 0 1px;
+  grid-area: aside;
+  order: 3;
+  width: 100%;
+}
+
+@supports (display: grid) {
+  body.hxVertical main {
+    display: grid;
+    grid-template-areas: "header header" "body   aside";
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto 1fr;
+    overflow: visible !important;
+  }
+  body.hxVertical main > aside {
+    border-width: 0 0 0 1px;
+    min-width: 15rem;
+    width: 25vw;
+  }
+}
+
+body.hxVertical main > div > * + *,
+body.hxVertical main > div > * + section {
+  margin-top: 4.5rem;
+}
+
+body.hxVertical main > div > section > * + section {
+  margin-top: 2rem;
+}
+
+body.hxVertical main > div > section > section > * + section {
+  margin-top: 0.75rem;
+}
+
+body.hxVertical main > aside > * + * {
+  margin-top: 2rem;
+}
+
+/* ----- Test Page Styling ----- */
+.test-content {
+  border: 0.5rem solid #fbc02d;
+}
+
+.test-content section > section {
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+}
+
+.test-content section > table {
+  border: 1px solid #d8d8d8;
+}
+
+.test-content section > table td, .test-content section > table th {
+  padding: 1em;
+}
+
+.banner {
+  -ms-grid-columns: auto 1fr;
+  -ms-grid-row-align: baseline;
+  align-items: baseline;
+  background-color: #ffffff;
+  border: 2px solid currentColor;
+  color: #333333;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: 'icon content';
+  grid-template-columns: auto 1fr;
+  padding: 1rem;
+}
+
+.banner > * {
+  margin: 0;
+}
+
+.banner.warning {
+  background-color: #ffeb3b;
+  border: 2px solid #fbc02d;
+}
+
+.banner__icon {
+  -ms-grid-column: 1;
+  -ms-grid-row: 1;
+  grid-area: icon;
+  margin-right: 1rem;
+}
+
+.banner__body {
+  -ms-grid-column: 2;
+  -ms-grid-row: 1;
+  grid-area: content;
+}
+
+@supports (display: grid) {
+  .banner {
+    grid-gap: 1rem;
+  }
+  .banner__icon {
+    margin: 0;
+  }
+}
+
 .example {
   border: 1px solid #e0e0e0;
 }
@@ -61,6 +198,33 @@
     -ms-grid-column: 2;
     -ms-grid-row: 2;
     grid-area: code;
+  }
+}
+
+.toc {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 1rem;
+}
+
+.toc > a {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+}
+
+.toc .top-link {
+  font-size: 0.875rem;
+  font-weight: 300;
+  display: none;
+}
+
+@supports (display: grid) {
+  .toc .top-link {
+    display: block;
   }
 }
 
@@ -421,6 +585,53 @@ a[href]:hover, a[href]:active, a.pseudo-active {
   position: relative;
 }
 
+.textarea-spec hx-textarea-control > textarea.mock-focus {
+  border: 1px solid #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  outline: 0;
+}
+
+.textarea-spec hx-textarea-control > textarea:disabled.mock-focus {
+  border: 1px solid #bdbdbd;
+}
+
+.textarea-spec hx-textarea-control[hx-dirty] > textarea:invalid.mock-focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+.textarea-spec hx-textarea-control.hxInvalid > textarea:enabled.mock-focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+.text-input-spec hx-text-control {
+  /* ----- Pristine --------------- */
+  /* ----- Disabled --------------- */
+  /* ----- Changed / Touched --------------- */
+  /* ----- Styled Invalid --------------- */
+}
+
+.text-input-spec hx-text-control > input[type="text"].mock-focus {
+  border: 1px solid #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  outline: 0;
+}
+
+.text-input-spec hx-text-control > input[type="text"]:disabled.mock-focus {
+  border: 1px solid #bdbdbd;
+}
+
+.text-input-spec hx-text-control[hx-dirty] > input[type="text"]:invalid.mock-focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+.text-input-spec hx-text-control.hxInvalid > input[type="text"]:enabled.mock-focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
 .drawer-spec .dialog-helpers {
   display: flex;
   flex-wrap: wrap;
@@ -467,6 +678,25 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 .search-spec hx-search-control > input[type="search"] ~ button.mock-focus {
   outline: 1px dotted #757575;
   outline-offset: -6px;
+}
+
+dl:not(.hxList) dd {
+  margin-bottom: 0.5em;
+  margin-left: 1em;
+}
+
+/* Beta Auto Grid Styles */
+.hxRow.hxAuto > .hxCol {
+  flex-grow: 0;
+}
+
+.hxRow .hxCol.hxAuto {
+  flex: 0 0 auto;
+}
+
+p.comfortable,
+header > p {
+  max-width: 80ch;
 }
 /* ==================================================== *\
  * Styles below are NOT distributed with HelixUI assets *
@@ -525,21 +755,6 @@ iframe[src*="codepen.io"] {
 #head .brand-logo img {
   height: 2rem;
 }
-body.hxVertical main {
-  padding: 2rem;
-}
-body.hxVertical main > * {
-  margin: 3rem 0;
-}
-body.hxVertical main > *:first-child {
-  margin-top: 0;
-}
-body.hxVertical main > *:last-child {
-  margin-bottom: 0;
-}
-body.hxVertical .hxSiderail {
-  padding: 1.25rem;
-}
 /* ---------------------------------------- *\
  * COMPONENTS
 \* ---------------------------------------- */
@@ -573,61 +788,6 @@ min-version {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-.banner {
-  -ms-grid-columns: auto 1fr;
-  -ms-grid-row-align: baseline;
-  align-items: baseline;
-  background-color: #ffffff;
-  border: 2px solid currentColor;
-  color: #333333;
-  display: -ms-grid;
-  display: grid;
-  grid-template-areas: 'icon content';
-  grid-template-columns: auto 1fr;
-  padding: 1rem;
-}
-.banner > * {
-  margin: 0;
-}
-.banner .banner__icon {
-  -ms-grid-column: 1;
-  -ms-grid-row: 1;
-  grid-area: icon;
-  margin-right: 1rem;
-}
-.banner .banner__body {
-  -ms-grid-column: 2;
-  -ms-grid-row: 1;
-  grid-area: content;
-}
-.banner.warning {
-  background-color: #ffeb3b;
-  border: 2px solid #fbc02d;
-}
-@supports (display: grid) {
-  .banner {
-    grid-gap: 1rem;
-  }
-  .banner .banner__icon {
-    margin: 0;
-  }
-}
-.article-toc {
-  display: block;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 1rem;
-}
-.article-toc > a {
-  display: block;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  text-decoration: none;
-}
-.article-toc .top-link {
-  font-size: 0.875rem;
-  font-weight: 300;
 }
 .media {
   display: flex;
@@ -671,21 +831,6 @@ min-version {
 }
 .guide-content hx-icon.polyfill-needed {
   color: #d32f2f;
-}
-/* ----- Test Page Styling ----- */
-.test-content {
-  box-shadow: inset 0 0 0 0.5rem #fbc02d;
-}
-.test-content section > section {
-  margin-bottom: 2rem;
-  margin-left: 2rem;
-}
-.test-content section > table {
-  border: 1px solid #d8d8d8;
-}
-.test-content section > table td,
-.test-content section > table th {
-  padding: 1em;
 }
 /* ---------------------------------------- *\
  * HELPERS
@@ -1133,67 +1278,4 @@ a[href].button-spec .hxBtnGroup.hxLink > .hxBtn.pseudo-focus {
   .radio-spec hx-radio-control > label > hx-radio {
     display: inline-block;
   }
-}
-.text-input-spec hx-text-control {
-  /* ----- Pristine --------------- */
-  /* ----- Disabled --------------- */
-  /* ----- Changed / Touched --------------- */
-  /* ----- Styled Invalid --------------- */
-}
-.text-input-spec hx-text-control > input[type="text"].mock-focus {
-  border: 1px solid #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-  outline: 0;
-}
-.text-input-spec hx-text-control > input[type="text"]:disabled.mock-focus {
-  border: 1px solid #bdbdbd;
-}
-.text-input-spec hx-text-control[hx-dirty] > input[type="text"]:invalid.mock-focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-.text-input-spec hx-text-control.hxInvalid > input[type="text"]:enabled.mock-focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-.textarea-spec hx-textarea-control {
-  /* ----- Pristine --------------- */
-  /* ----- Disabled --------------- */
-  /* ----- Changed / Touched --------------- */
-  /* ----- Styled Invalid --------------- */
-}
-.textarea-spec hx-textarea-control > textarea.mock-focus {
-  border: 1px solid #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-  outline: 0;
-}
-.textarea-spec hx-textarea-control > textarea:disabled.mock-focus {
-  border: 1px solid #bdbdbd;
-}
-.textarea-spec hx-textarea-control[hx-dirty] > textarea:invalid.mock-focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-.textarea-spec hx-textarea-control.hxInvalid > textarea:enabled.mock-focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-/* ---------------------------------------- *\
- * OVERRIDES (a.k.a. "shame")
-\* ---------------------------------------- */
-dl:not(.hxList) dd {
-  margin-bottom: 0.5em;
-  margin-left: 1em;
-}
-/* Beta Auto Grid Styles */
-.hxRow.hxAuto > .hxCol {
-  flex-grow: 0;
-}
-.hxRow .hxCol.hxAuto {
-  flex: 0 0 auto;
-}
-p.comfortable,
-header > p,
-.guide-content p {
-  max-width: 80ch;
 }
