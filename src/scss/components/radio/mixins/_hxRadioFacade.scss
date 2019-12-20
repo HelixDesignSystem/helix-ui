@@ -1,0 +1,55 @@
+// ===== Mixins for <hx-radio> facade states =====
+
+// ========== PRISTINE ==========
+@mixin __radioFacade($pseudo-state: null) {
+  @if $pseudo-state == focus {
+    box-shadow: $focus-glow;
+  }
+  @else {
+    background-color: $cyan-50;
+    border: 1px solid currentColor;
+    color: $cyan-500;
+  }
+}
+
+// ========== INVALID ==========
+@mixin __radioFacade--invalid($pseudo-state: null) {
+  @if $pseudo-state == focus {
+    box-shadow: $focus-glow-invalid;
+  }
+  @else if $pseudo-state == hover {
+    background-color: $red-100;
+    border: 2px solid currentColor;
+    color: $red-900;
+  }
+  @else {
+    border: 2px solid currentColor;
+    color: $red-900;
+  }
+}
+
+// ========== DISABLED ==========
+@mixin __radioFacade--disabled($pseudo-state: null) {
+  @if $pseudo-state == hover {
+    background-color: $gray-100;
+    border: 1px solid currentColor;
+    color: $gray-500;
+  }
+  @else {
+    border: 1px solid currentColor;
+    color: $gray-500;
+    cursor: not-allowed;
+  }
+}
+
+@mixin hxRadioFacade($state: null, $pseudo-state: null) {
+  @if $state == invalid {
+    @include __radioFacade--invalid($pseudo-state);
+  }
+  @else if $state == disabled {
+    @include __radioFacade--disabled($pseudo-state);
+  }
+  @else {
+    @include __radioFacade($pseudo-state);
+  }
+}

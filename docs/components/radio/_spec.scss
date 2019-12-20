@@ -1,0 +1,73 @@
+@import "components/radio/config";
+
+.radio-spec {
+  hx-radio-control {
+    > label {
+      > hx-radio {
+        display: none;
+      }
+    }
+
+    > input[type="radio"] {
+      &.mock-focus {
+        @include hxRadioControl($pseudo-state: focus);
+
+        ~ label > hx-radio {
+          @include hxRadioFacade($pseudo-state: focus);
+        }
+      }
+
+      &.mock-hover {
+        @include hxRadioControl($pseudo-state: hover);
+
+        ~ label > hx-radio {
+          @include hxRadioFacade($pseudo-state: hover);
+        }
+      }
+
+      &:disabled.mock-focus {
+        @include hxRadioControl(disabled, focus);
+
+        ~ label > hx-radio {
+          @include hxRadioFacade(disabled, focus);
+        }
+      }
+
+      &:disabled.mock-hover {
+        @include hxRadioControl(disabled, hover);
+
+        ~ label > hx-radio {
+          @include hxRadioFacade(disabled, hover);
+        }
+      }
+    }
+  }
+
+  // INVALID STATE
+  hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid,
+  hx-radio-set.hxInvalid input[type="radio"]:enabled {
+    &.mock-focus {
+      @include hxRadioControl(invalid, focus);
+
+      ~ label > hx-radio {
+        @include hxRadioFacade(invalid, focus);
+      }
+    }
+
+    &.mock-hover {
+      @include hxRadioControl(invalid, hover);
+
+      ~ label > hx-radio {
+        @include hxRadioFacade(invalid, hover);
+      }
+    }
+  }
+}
+
+@supports (--modern: true) {
+  .radio-spec {
+    hx-radio-control > label > hx-radio {
+      display: inline-block;
+    }
+  }
+}
