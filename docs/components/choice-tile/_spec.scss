@@ -1,0 +1,48 @@
+@import "components/choice-tile/mixins/hxChoiceTile";
+
+.choice-tile-spec {
+  label.hxChoice > input {
+    // Default (focus, hover)
+    &.pseudo-focus + hx-tile {
+      @include hxChoiceTile($pseudo-state: focus);
+    }
+    & + hx-tile.pseudo-hover {
+      @include hxChoiceTile($pseudo-state: hover);
+    }
+
+    // Subdued ( hover)
+    & + hx-tile.hxSubdued.pseudo-hover {
+      @include hxChoiceTile--subdued($pseudo-state: hover);
+    }
+
+    // Invalid (focus, hover)
+    &[invalid].pseudo-focus + hx-tile {
+      @include hxChoiceTile--invalid($pseudo-state: focus);
+    }
+    &[invalid] + hx-tile.pseudo-hover {
+      @include hxChoiceTile--invalid($pseudo-state: hover);
+    }
+
+    // Invalid + Checked (focus, hover)
+    // &[invalid]:checked.pseudo-focus + hx-tile {
+    //   &:extend(label.hxChoice > input[invalid]:checked:focus + hx-tile all);
+    // }
+    // &[invalid]:checked + hx-tile.pseudo-hover {
+    //   &:extend(label.hxChoice > input[invalid]:checked + hx-tile:hover all);
+    // }
+
+    // Disabled
+    &:disabled + hx-tile.pseudo-hover {
+      @include hxChoiceTile--disabled;
+    }
+    // &[disabled][invalid] + hx-tile.pseudo-hover {
+    //   // &:extend(label.hxChoice > input[disabled][invalid] + hx-tile:hover all);
+    // }
+    // &[disabled]:checked + hx-tile.pseudo-hover {
+    //   // &:extend(label.hxChoice > input[disabled]:checked + hx-tile:hover all);
+    // }
+    // &[disabled][invalid]:checked + hx-tile.pseudo-hover {
+    //   // &:extend(label.hxChoice > input[disabled][invalid]:checked + hx-tile:hover all);
+    // }
+  }
+}
