@@ -1,6 +1,4 @@
-@import (reference) 'vars';
-@import (reference) 'mixins';
-@import (reference) 'components/form/index';
+@import "./config";
 
 // ========== BASE ELEMENTS ==========
 hx-checkbox {
@@ -9,7 +7,7 @@ hx-checkbox {
   width: 1rem;
 }
 
-/* ========== LAYOUT ========== */
+// ========== LAYOUT ==========
 hx-checkbox-control {
   -ms-grid-column-align: start;
   -ms-grid-columns: auto 1fr;
@@ -17,8 +15,8 @@ hx-checkbox-control {
   display: -ms-grid;
   display: grid;
   grid-template-areas:
-    'ctrl lbl'
-    '.    help';
+    "ctrl lbl"
+    ".    help";
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
   justify-items: start;
@@ -38,7 +36,7 @@ hx-checkbox-control {
     -ms-grid-rows: auto;
     display: -ms-grid;
     display: grid;
-    grid-template-areas: 'facade .';
+    grid-template-areas: "facade .";
     grid-template-columns: auto 1fr;
     grid-template-rows: auto;
     grid-gap: 0.5rem;
@@ -75,55 +73,35 @@ hx-checkbox-control {
   }
 }
 
-/* ========== PRISTINE ========== */
+// ========== PRISTINE ==========
 hx-checkbox {
-  background-color: @gray-0;
+  background-color: $gray-0;
   border-radius: 2px;
-  border: 1px solid @gray-500;
+  border: 1px solid $gray-500;
 }
 
 hx-checkbox-control {
   > p {
-    .HelpText();
+    @include hxHelpText;
   }
 
   > input[type="checkbox"] {
-    color: @gray-500;
-
-    &::-ms-check {
-      background-color: @gray-0;
-      border-color: currentColor;
-      border-style: solid;
-      border-width: 1px;
-      color: inherit;
-    }
+    @include hxCheckboxControl;
 
     &:focus {
-      box-shadow: @focus-glow;
-
-      &::-ms-check {
-        border-color: @cyan-700;
-      }
+      @include hxCheckboxControl($pseudo-state: focus);
 
       ~ label > hx-checkbox {
-        border-color: @cyan-700;
-        box-shadow: @focus-glow;
+        @include hxCheckboxFacade($pseudo-state: focus);
       }
     }
 
     &:hover {
-      color: @cyan-500;
-
-      &::-ms-check {
-        background-color: @cyan-50;
-        color: @cyan-500;
-      }
+      @include hxCheckboxControl($pseudo-state: hover);
     }
 
     ~ label > hx-checkbox:hover {
-      background-color: @cyan-50;
-      border-color: @cyan-500;
-      color: @cyan-500;
+      @include hxCheckboxFacade($pseudo-state: hover);
     }
 
     &:checked {
@@ -142,120 +120,73 @@ hx-checkbox-control {
 
     &:checked,
     &:indeterminate {
-      color: @cyan-900;
+      color: $cyan-900;
 
       ~ label > hx-checkbox {
-        border-color: @cyan-900;
-        color: @cyan-900;
+        border-color: $cyan-900;
+        color: $cyan-900;
       }
     }
 
     &:valid {
       ~ label > hx-checkbox:hover {
-        background-color: @cyan-50;
-        border-color: @cyan-500;
-        color: @cyan-500;
+        @include hxCheckboxFacade($pseudo-state: hover);
       }
     }
   }
 }
 
-/* ========== INVALID ========== */
-.isInvalid() {
-  color: @red-900;
-
-  &::-ms-check {
-    border-width: 2px;
-    border-color: @red-900 !important;
-    color: @red-900 !important;
-  }
+// ========== INVALID ==========
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid,
+hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled {
+  @include hxCheckboxControl(invalid);
 
   &:focus {
-    box-shadow: @focus-glow-invalid;
-
-    &::-ms-check {
-      border-color: @red-900;
-    }
+    @include hxCheckboxControl(invalid, focus);
 
     ~ label > hx-checkbox {
-      border-color: @red-900;
-      box-shadow: @focus-glow-invalid;
+      @include hxCheckboxFacade(invalid, focus);
     }
   }
 
   &:hover {
-    &::-ms-check {
-      background-color: @red-100;
-    }
+    @include hxCheckboxControl(invalid, hover);
   }
 
   ~ label > hx-checkbox {
-    border: 2px solid @red-900;
-    color: @red-900;
+    @include hxCheckboxFacade(invalid);
 
     &:hover {
-      background-color: @red-100;
-      border-color: @red-900;
-      color: @red-900;
+      @include hxCheckboxFacade(invalid, hover);
     }
   }
 }
 
-hx-checkbox-control {
-  &[hx-dirty] {
-    > input[type="checkbox"]:invalid {
-      .isInvalid();
-    }
-  }
-
-  &.hxInvalid {
-    > input[type="checkbox"]:enabled {
-      .isInvalid();
-    }
-  }
-}
-
-/* ========== DISABLED ========== */
+// ========== DISABLED ==========
 hx-checkbox-control > input[type="checkbox"]:disabled {
-  color: @gray-500;
-  cursor: not-allowed;
-
-  &::-ms-check {
-    background-color: @gray-100 !important; // simplest way of styling
-    border-width: 1px;
-  }
+  @include hxCheckboxControl(disabled);
 
   &:focus {
-    &::-ms-check {
-      border-color: @gray-500;
-      box-shadow: @focus-glow-disabled;
-    }
+    @include hxCheckboxControl(disabled, focus);
 
     ~ label > hx-checkbox {
-      border-color: @gray-500;
+      @include hxCheckboxFacade(disabled, focus);
     }
   }
 
   &:hover {
-    &::-ms-check {
-      background-color: @gray-100;
-      border-color: @gray-500;
-      color: @gray-500;
-    }
+    @include hxCheckboxControl(disabled, hover);
   }
 
   ~ label {
-    color: @gray-700;
+    color: $gray-700;
 
     > hx-checkbox {
-      border-width: 1px;
-      cursor: not-allowed;
+      @include hxCheckboxFacade(disabled);
 
       &,
       &:hover {
-        background-color: @gray-100;
-        border-color: @gray-500;
-        color: @gray-500;
+        @include hxCheckboxFacade(disabled, hover);
       }
     }
   }
@@ -266,7 +197,7 @@ hx-checkbox-control > input[type="checkbox"]:disabled {
   hx-checkbox-control {
     position: relative;
 
-    > label > hx-checkbox  {
+    > label > hx-checkbox {
       display: inline-block;
     }
 
@@ -275,7 +206,7 @@ hx-checkbox-control > input[type="checkbox"]:disabled {
     }
 
     > input[type="checkbox"] {
-      #Mix.hideInput();
+      @include hxInput(visuallyHidden);
 
       &::-ms-check {
         display: none;
