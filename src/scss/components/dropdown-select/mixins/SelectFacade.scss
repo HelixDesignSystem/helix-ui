@@ -1,0 +1,56 @@
+//Mixins to style <hx-select>
+
+@mixin __selectFacade($focused: false) {
+  @if $focused {
+    border: 1px solid $cyan-700;
+    box-shadow: $focus-glow;
+  }
+  @else {
+    border: 1px solid $gray-500;
+    color: $gray-900;
+  }
+}
+
+@mixin __selectFacade--invalid($focused: false) {
+  @if $focused {
+    border: 2px solid $red-900;
+    box-shadow: $focus-glow-invalid;
+  }
+  @else {
+    border: 2px solid $red-900;
+    color: $gray-900;
+  }
+}
+
+@mixin __selectFacade--disabled($focused: false) {
+  @if $focused {
+    border: 1px solid $gray-500;
+    box-shadow: $focus-glow;
+  }
+  @else {
+    --hxTrigger-backgroundColor: #{$gray-100};
+
+    border: 1px solid $gray-500;
+    color: $gray-700;
+  }
+}
+
+
+// LESS                            SCSS
+// .SelectFacade(pristine)       -> hxSelectFacade;
+// .SelectFacade(pristine-focus) -> hxSelectFacade($focused: true);
+// .SelectFacade(invalid)        -> hxSelectFacade(invalid);
+// .SelectFacade(invalid-focus)  -> hxSelectFacade(invalid, $focused: true);
+// .SelectFacade(disabled)       -> hxSelectFacade(disabled);
+// .SelectFacade(disabled-focus) -> hxSelectFacade(disabled, $focused: true);
+@mixin hxSelectFacade($state: null, $focused: false) {
+  @if $state == invalid {
+    @include __selectFacade--invalid($focused);
+  }
+  @else if $state == disabled {
+    @include __selectFacade--disabled($focused);
+  }
+  @else {
+    @include __selectFacade($focused);
+  }
+}

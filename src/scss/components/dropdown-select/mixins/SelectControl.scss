@@ -1,0 +1,65 @@
+// Mixins to style a native <select> control.
+
+@mixin __selectControl($focused: false) {
+  @if $focused {
+    outline: none;
+
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 $gray-900;
+    }
+  }
+  @else {
+    background-color: $gray-0;
+    color: $gray-900;
+  }
+}
+
+@mixin __selectControl--invalid($focused: false) {
+  @if $focused {
+    outline: none;
+
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 $gray-900;
+    }
+  }
+  @else {
+    background-color: $gray-0;
+    color: $gray-900;
+  }
+}
+
+@mixin __selectControl--disabled($focused: false) {
+  @if $focused {
+    outline: none;
+
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 $gray-900;
+    }
+  }
+  @else {
+    background-color: $gray-100;
+    color: $gray-700;
+  }
+}
+
+// LESS                            SCSS
+// .SelectControl(pristine)       -> hxSelectControl;
+// .SelectControl(pristine-focus) -> hxSelectControl($focused: true);
+// .SelectControl(invalid)        -> hxSelectControl(invalid);
+// .SelectControl(invalid-focus)  -> hxSelectControl(invalid, $focused: true);
+// .SelectControl(disabled)       -> hxSelectControl(disabled);
+// .SelectControl(disabled-focus) -> hxSelectControl(disabled, $focused: true);
+@mixin hxSelectControl($state: null, $focused: false) {
+  @if $state == invalid {
+    @include __selectControl--invalid($focused);
+  }
+  @else if $state == disabled {
+    @include __selectControl--disabled($focused);
+  }
+  @else {
+    @include __selectControl($focused);
+  }
+}

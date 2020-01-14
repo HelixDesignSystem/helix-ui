@@ -1,21 +1,21 @@
-@import (reference) 'components/dropdown-select/index';
+@import "components/dropdown-select/config";
 
 .dropdown-select-spec {
   hx-select-control {
     /* ----- Pristine --------------- */
     > select.mock-focus {
-      .SelectControl(pristine-focus);
+      @include hxSelectControl($focused: true);
 
       ~ hx-select {
-        .SelectFacade(pristine-focus);
+        @include hxSelectFacade($focused: true);
       }
 
       /* ----- Disabled --------------- */
       &:disabled {
-        .SelectControl(disabled-focus);
+        @include hxSelectControl(disabled, true);
 
         ~ hx-select {
-          .SelectFacade(disabled-focus);
+          @include hxSelectFacade(disabled, true);
         }
       }
     }
@@ -23,10 +23,10 @@
     /* ----- Invalid ---------------*/
     &.hxInvalid > select.mock-focus:enabled,
     &[hx-dirty] > select.mock-focus:enabled:invalid {
-      .SelectControl(invalid-focus);
+      @include hxSelectControl(invalid, true);
 
       ~ hx-select {
-        .SelectFacade(invalid-focus);
+        @include hxSelectFacade(invalid, true);
       }
     }
   }
