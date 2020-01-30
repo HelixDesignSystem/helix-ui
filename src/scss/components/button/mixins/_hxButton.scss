@@ -1,0 +1,233 @@
+@mixin hxButton($weight: secondary, $size: medium) {
+  border-radius: $corner-radius;
+  display: inline-flex;
+  justify-content: center;
+
+  > * + * {
+    // ensure white space between children
+    margin-left: 0.5rem;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  @include hxButton-size($size);
+  @include hxButton-weight($weight);
+}
+
+/// =========================== ///
+/// ========== RESET ========== ///
+/// =========================== ///
+
+@mixin hxButton--reset {
+  background-color: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  font: inherit;
+  font-weight: 500;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+/// ============================= ///
+/// ========== WEIGHTS ========== ///
+/// ============================= ///
+
+@mixin hxButton-weight($weight) {
+  @if $weight == primary {
+    @include hxButton--primary;
+  }
+  @else if $weight == secondary {
+    @include hxButton--secondary;
+  }
+  @else if $weight == tertiary {
+    @include hxButton--tertiary;
+  }
+  @else {
+    // weightless (no additional styles)
+  }
+}
+
+/// =========================== ///
+/// ========== SIZES ========== ///
+/// =========================== ///
+
+@mixin hxButton-size($size) {
+  @if $size == small {
+    padding: 0.125rem 0.5rem;
+  }
+  @else if $size == medium {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+  }
+  @else if $size == large {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+  @else {
+    // no additional styles
+  }
+}
+
+/// ------------------------------------ ///
+/// ---------- PRIMARY BUTTON ---------- ///
+/// ------------------------------------ ///
+
+@mixin hxButton--primary {
+  background-color: $cyan-900;
+  color: $gray-0;
+
+  &:hover {
+    @include hxButton-hover--primary;
+  }
+
+  &:active {
+    @include hxButton-active--primary;
+  }
+
+  &:focus {
+    @include hxButton-focus--primary;
+  }
+
+  &[disabled] {
+    @include hxButton-disabled--primary;
+  }
+}
+
+@mixin hxButton-active--primary {
+  background-color: $cyan-700;
+  border-color: transparent;
+  color: $gray-0;
+}
+
+@mixin hxButton-disabled--primary {
+  background-color: $gray-400;
+  border-color: transparent;
+  color: $gray-700;
+}
+
+@mixin hxButton-focus--primary {
+  box-shadow: $focus-glow;
+  outline: none;
+}
+
+@mixin hxButton-hover--primary {
+  background-color: $cyan-500;
+  border-color: transparent;
+  color: $gray-0;
+}
+
+/// -------------------------------------- ///
+/// ---------- SECONDARY BUTTON ---------- ///
+/// -------------------------------------- ///
+
+@mixin hxButton--secondary {
+  border: 1px solid $cyan-900;
+  color: $cyan-900;
+
+  &:hover {
+    @include hxButton-hover--secondary;
+  }
+
+  &:active {
+    @include hxButton-active--secondary;
+  }
+
+  &:focus {
+    @include hxButton-focus--secondary;
+  }
+
+  &[disabled] {
+    @include hxButton-disabled--secondary;
+  }
+}
+
+@mixin hxButton-active--secondary {
+  background-color: $cyan-700;
+  border-color: transparent;
+  color: $gray-0;
+}
+
+@mixin hxButton-disabled--secondary {
+  background-color: transparent;
+  border-color: $gray-400;
+  color: $gray-400;
+}
+
+@mixin hxButton-focus--secondary {
+  box-shadow: $focus-glow;
+}
+
+@mixin hxButton-hover--secondary {
+  background-color: $cyan-500;
+  border-color: transparent;
+  color: $gray-0;
+}
+
+
+/// ------------------------------------- ///
+/// ---------- TERTIARY BUTTON ---------- ///
+/// ------------------------------------- ///
+
+@mixin hxButton--tertiary {
+  background-color: transparent;
+  border: 0;
+  color: $cyan-900;
+
+  // TODO: remove horizontal padding overrides so as to conform to redline specs
+  //
+  // Be aware that horizontal padding will affect the appearance of inline tertiary buttons.
+  // (e.g., <hx-file-tile> within a drop fence, "retry" button of <hx-file-tile>, etc.)
+  padding-left: 0;
+  padding-right: 0;
+
+  &:hover {
+    @include hxButton-hover--tertiary;
+  }
+
+  &:active {
+    @include hxButton-active--tertiary;
+  }
+
+  &:focus {
+    @include hxButton-focus--tertiary;
+  }
+
+  &[disabled] {
+    @include hxButton-disabled--tertiary;
+  }
+}
+
+@mixin hxButton-active--tertiary {
+  background-color: transparent;
+  border-color: transparent;
+  color: $cyan-700;
+}
+
+@mixin hxButton-disabled--tertiary {
+  background-color: transparent;
+  border-color: transparent;
+  color: $gray-400;
+}
+
+@mixin hxButton-focus--tertiary {
+  box-shadow: $focus-glow;
+}
+
+@mixin hxButton-hover--tertiary {
+  background-color: transparent;
+  border-color: transparent;
+  color: $cyan-500;
+}

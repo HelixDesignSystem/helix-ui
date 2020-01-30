@@ -1,4 +1,3 @@
-@import (reference) 'components/button/index';
 @import (reference) 'components/file/index';
 
 .file-input-spec {
@@ -18,20 +17,6 @@
 
       &.hxBtn.hxTertiary {
         &:extend(hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn.hxTertiary);
-      }
-    }
-
-    hx-file-input.mock-hover {
-      &.hxBtn {
-        &:extend(.hxBtn:hover);
-      }
-
-      &.hxBtn.hxPrimary {
-        &:extend(.hxBtn.hxPrimary:hover);
-      }
-
-      &.hxBtn.hxTertiary {
-        &:extend(.hxBtn.hxTertiary:hover);
       }
     }
   }

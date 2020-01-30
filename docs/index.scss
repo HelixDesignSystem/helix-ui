@@ -26,6 +26,10 @@ $demo-padding-color: $magenta-100;
 // Spec Styles for component test pages
 @import "./components/drawer/spec";
 @import "./components/search/spec";
+@import "./components/button/spec";
+
+// BETA
+@import "./darkButtons";
 
 // OVERRIDES
 @import "./shame";

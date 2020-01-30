@@ -31,25 +31,16 @@ hx-file-control > input[type="file"]:focus {
 
 hx-file-control > input[type="file"]:active {
   ~ label > hx-file-input {
-    // TODO refactor button mixins
     &.hxBtn {
-      background-color: $cyan-700;
-      border-color: transparent;
-      color: $gray-0;
+      @include hxButton-active--secondary;
     }
 
-    // TODO refactor button mixins
     &.hxBtn.hxPrimary {
-      background-color: $cyan-700;
-      border-color: transparent;
-      color: $gray-0;
+      @include hxButton-active--primary;
     }
 
-    // TODO refactor button mixins
     &.hxBtn.hxTertiary {
-      background-color: transparent;
-      border-color: transparent;
-      color: $cyan-700;
+      @include hxButton-active--tertiary;
     }
   }
 }
@@ -62,25 +53,16 @@ hx-file-control > input[type="file"]:disabled {
     > hx-file-input {
       cursor: not-allowed;
 
-      // TODO refactor button mixins
       &.hxBtn {
-        background-color: transparent;
-        border-color: $gray-400;
-        color: $gray-400;
+        @include hxButton-disabled--secondary;
       }
 
-      // TODO refactor button mixins
       &.hxBtn.hxPrimary {
-        background-color: $gray-400;
-        border-color: transparent;
-        color: $gray-700;
+        @include hxButton-disabled--primary;
       }
 
-      // TODO refactor button mixins
       &.hxBtn.hxTertiary {
-        background-color: transparent;
-        border-color: transparent;
-        color: $gray-400;
+        @include hxButton-disabled--tertiary;
       }
     }
   }

@@ -1,0 +1,7 @@
+.hxButtonSet {
+  display: flex; // remove extra inline white space
+
+  > .hxBtn + .hxBtn {
+    margin-left: map-get($space, md);
+  }
+}

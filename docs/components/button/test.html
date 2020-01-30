@@ -7,6 +7,16 @@ crumbs:
 {% extends 'test.njk' %}
 {% set contentClasses = 'button-spec' %}
 
+{# TODO
+  - additional state combos
+    - Focused + Pressed (:focus:active)
+    - Focused + Hover (:focus:hover)
+    - Disabled + Hover (:disabled:hover)
+  - Cog Button states (.hxBtn.hxCog)
+  - Deprecated Stuff
+    - .hxBtnGroup (should look like .hxButtonBar)
+#}
+
 {% block content %}
   {% set variants = [
     { label: 'Primary', style: 'hxPrimary' },
@@ -31,9 +41,9 @@ crumbs:
         <tr>
           <td>{{_variant.label}} Button ({{_size.label}})</td>
           <td><button class="hxBtn {{_variant.style}} {{_size.style}}">Normal</button></td>
-          <td><button class="hxBtn {{_variant.style}} {{_size.style}} pseudo-focus">Focused</button></td>
-          <td><button class="hxBtn {{_variant.style}} {{_size.style}} pseudo-hover">Hover</button></td>
-          <td><button class="hxBtn {{_variant.style}} {{_size.style}} pseudo-active">Pressed</button></td>
+          <td><button class="hxBtn {{_variant.style}} {{_size.style}} mock-focus">Focused</button></td>
+          <td><button class="hxBtn {{_variant.style}} {{_size.style}} mock-hover">Hover</button></td>
+          <td><button class="hxBtn {{_variant.style}} {{_size.style}} mock-active">Pressed</button></td>
           <td><button class="hxBtn {{_variant.style}} {{_size.style}}" disabled>Disabled</button></td>
         </tr>
         {% endfor %}
@@ -53,9 +63,9 @@ crumbs:
         <tr>
           <td>{{_variant.label}} Anchor ({{_size.label}})</td>
           <td><a class="hxBtn {{_variant.style}} {{_size.style}}">Normal</a></td>
-          <td><a class="hxBtn {{_variant.style}} {{_size.style}} pseudo-focus">Focused</a></td>
-          <td><a class="hxBtn {{_variant.style}} {{_size.style}} pseudo-hover">Hover</a></td>
-          <td><a class="hxBtn {{_variant.style}} {{_size.style}} pseudo-active">Pressed</a></td>
+          <td><a class="hxBtn {{_variant.style}} {{_size.style}} mock-focus">Focused</a></td>
+          <td><a class="hxBtn {{_variant.style}} {{_size.style}} mock-hover">Hover</a></td>
+          <td><a class="hxBtn {{_variant.style}} {{_size.style}} mock-active">Pressed</a></td>
           <td><a class="hxBtn {{_variant.style}} {{_size.style}}" disabled>Disabled</a></td>
         </tr>
         {% endfor %}
@@ -75,9 +85,9 @@ crumbs:
         <tr>
           <td>{{_variant.label}} Anchor ({{_size.label}})</td>
           <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}}">Normal</a></td>
-          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-focus">Focused</a></td>
-          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-hover">Hover</a></td>
-          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-active">Pressed</a></td>
+          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}} mock-focus">Focused</a></td>
+          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}} mock-hover">Hover</a></td>
+          <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}} mock-active">Pressed</a></td>
           <td><a href="#" class="hxBtn {{_variant.style}} {{_size.style}}" disabled>Disabled</a></td>
         </tr>
         {% endfor %}
@@ -98,9 +108,9 @@ crumbs:
           <tr>
             <td>{{_variant.label}} Anchor ({{_size.label}})</td>
             <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}}" value="Normal"/></td>
-            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-focus" value="Focused"/></td>
-            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-hover" value="Hover"/></td>
-            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}} pseudo-active" value="Pressed"/></td>
+            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}} mock-focus" value="Focused"/></td>
+            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}} mock-hover" value="Hover"/></td>
+            <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}} mock-active" value="Pressed"/></td>
             <td><input type="{{_type}}" class="hxBtn {{_variant.style}} {{_size.style}}" disabled value="Disabled"/></td>
           </tr>
           {% endfor %}

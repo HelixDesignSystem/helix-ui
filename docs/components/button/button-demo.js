@@ -5,7 +5,7 @@
         { label: 'Large', val: 'hxLg' },
     ];
 
-    const VARIANTS = [
+    const WEIGHTS = [
         { label: 'Primary', val: 'hxPrimary' },
         { label: 'Secondary', val: '', default: true },
         { label: 'Tertiary', val: 'hxTertiary' },
@@ -17,8 +17,8 @@
             data: {
                 size: SIZES[1],
                 sizes: SIZES,
-                variant: VARIANTS[1],
-                variants: VARIANTS,
+                weight: WEIGHTS[1],
+                weights: WEIGHTS,
             },
             computed: {
                 classes: function () {
@@ -26,8 +26,8 @@
                     if (this.size.val !== '') {
                         out.push(this.size.val);
                     }
-                    if (this.variant.val !== '') {
-                        out.push(this.variant.val);
+                    if (this.weight.val !== '') {
+                        out.push(this.weight.val);
                     }
                     return out.join(' ');
                 },
@@ -35,27 +35,27 @@
         });
     }//#vue-basicButtonDemo
 
-    if (document.getElementById('vue-buttonGroupDemo')) {
+    if (document.getElementById('vue-buttonBarDemo')) {
         new Vue({
-            el: '#vue-buttonGroupDemo',
+            el: '#vue-buttonBarDemo',
             data: {
                 size: SIZES[1],
                 sizes: SIZES,
-                variant: VARIANTS[1],
-                variants: VARIANTS,
+                weight: WEIGHTS[1],
+                weights: WEIGHTS,
             },
             computed: {
                 classes: function () {
-                    let out = [ 'hxBtnGroup' ];
+                    let out = [ 'hxButtonBar' ];
                     if (this.size.val !== '') {
                         out.push(this.size.val);
                     }
-                    if (this.variant.val !== '') {
-                        out.push(this.variant.val);
+                    if (this.weight.val !== '') {
+                        out.push(this.weight.val);
                     }
                     return out.join(' ');
                 },
             },
         });
-    }//#vue-buttonGroupDemo
+    }//#vue-buttonBarDemo
 })();

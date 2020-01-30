@@ -27,3 +27,20 @@ hr.hxDivider {
   border-width: 1px 0;
   margin: 0.75rem 0;
 }
+
+// HACK: do one (or both) of the following:
+//
+//  1) add padding helper classes modeled after .hxBox classes to support
+//     modification of horizontal padding
+//
+//    - consumer would need to manually apply a .hxFlush-horizontal class
+//      to a tertiary <hx-file-input> when it's placed inline with text
+//
+//  2) tweak the design specs to place the <hx-file-input> below text
+//
+// This should only apply to <hx-file-input class="hxBtn hxTertiary"> when
+// it appears inline with text in a drop fence.
+hx-drop-fence p hx-file-control hx-file-input.hxBtn.hxTertiary {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}

@@ -1,0 +1,26 @@
+.hxBtnGroup {
+  @include hxButtonBar;
+}
+
+.hxBtn--primary {
+  @include hxButton--primary;
+}
+
+.hxBtn.hxLink,
+.hxBtn--link {
+  @include hxButton--tertiary;
+}
+
+.hxBtn--sm {
+  @include hxButton-size(small);
+}
+
+.hxBtn--lg {
+  @include hxButton-size(large);
+}
+
+.hxBtnGroup.hxLink {
+  > .hxBtn {
+    @include hxButton-weight(tertiary);
+  }
+}
