@@ -424,6 +424,9 @@ function (_HTMLElement) {
       this._$tabIndex = this.getAttribute('tabindex');
       this.$upgradeProperty('disabled');
       this.setAttribute('hx-defined', '');
+
+      this._$styleElement();
+
       this.$onConnect();
     } // Called when an instance of the element is removed from the DOM.
 
@@ -639,15 +642,28 @@ function (_HTMLElement) {
         this.attachShadow({
           mode: 'open'
         });
-
-        if (window.ShadyCSS) {
-          ShadyCSS.styleElement(this);
-        }
-
         this.shadowRoot.appendChild(_template.content.cloneNode(true));
       }
     } //_$setupShadowDOM()
 
+    /**
+     * @description
+     * Style the element using ShadyCSS, if needed.
+     *
+     * @note: has the potential to modify the `[class]` attribute
+     * of the element, so avoid running in the constructor.
+     */
+
+  }, {
+    key: "_$styleElement",
+    value: function _$styleElement() {
+      // short circuit if browser natively supports ShadowDOM
+      if (!window.ShadyCSS) {
+        return;
+      }
+
+      ShadyCSS.styleElement(this);
+    }
   }, {
     key: "disabled",
     get: function get() {
@@ -7654,7 +7670,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.18.0";
+var version = "0.18.1";
 
 /** @module HelixUI */
 var waitForWebComponents$1 = waitForWebComponents;

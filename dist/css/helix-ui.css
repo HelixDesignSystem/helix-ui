@@ -503,6 +503,493 @@ hx-div.hxFlush > #hxDiv {
   margin-right: 0.5rem;
 }
 
+hx-checkbox {
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+}
+
+hx-checkbox-control {
+  -ms-grid-column-align: start;
+  -ms-grid-columns: auto 1fr;
+  -ms-grid-rows: auto auto;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: "ctrl lbl" ".    help";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  justify-items: start;
+}
+
+hx-checkbox-control > * {
+  margin: 0;
+}
+
+hx-checkbox-control > label {
+  -ms-grid-column: 2;
+  -ms-grid-row: 1;
+  grid-area: lbl;
+  -ms-grid-columns: auto 1fr;
+  -ms-grid-rows: auto;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: "facade .";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  grid-gap: 0.5rem;
+  padding: 0;
+}
+
+hx-checkbox-control > label > hx-checkbox {
+  -ms-grid-column: 1;
+  -ms-grid-row: 1;
+  display: none;
+  grid-area: facade;
+  margin-top: 0.25rem;
+}
+
+hx-checkbox-control > p {
+  -ms-grid-column: 2;
+  -ms-grid-row: 2;
+  grid-area: help;
+}
+
+hx-checkbox-control > input[type="checkbox"] {
+  -ms-grid-column: 1;
+  -ms-grid-row: 1;
+  display: inline-block;
+  grid-area: ctrl;
+  height: 1rem;
+  margin: 0.25rem 0.5rem 0 0;
+  width: 1rem;
+}
+
+hx-checkbox-control > input[type="checkbox"]::-ms-check {
+  box-sizing: border-box;
+  display: block;
+}
+
+hx-checkbox {
+  background-color: #ffffff;
+  border-radius: 2px;
+  border: 1px solid #bdbdbd;
+}
+
+hx-checkbox-control > p {
+  color: #6b6b6b;
+  font-size: 0.75rem;
+}
+
+hx-checkbox-control > input[type="checkbox"] {
+  color: #bdbdbd;
+}
+
+hx-checkbox-control > input[type="checkbox"]::-ms-check {
+  background-color: #ffffff;
+  border-color: currentColor;
+  border-style: solid;
+  border-width: 1px;
+  color: inherit;
+}
+
+hx-checkbox-control > input[type="checkbox"]:focus {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+
+hx-checkbox-control > input[type="checkbox"]:focus::-ms-check {
+  border-color: #0e94a6;
+}
+
+hx-checkbox-control > input[type="checkbox"]:focus ~ label > hx-checkbox {
+  border-color: #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+
+hx-checkbox-control > input[type="checkbox"]:hover {
+  color: #16b9d4;
+}
+
+hx-checkbox-control > input[type="checkbox"]:hover::-ms-check {
+  background-color: #e4f9f9;
+  color: #16b9d4;
+}
+
+hx-checkbox-control > input[type="checkbox"] ~ label > hx-checkbox:hover {
+  background-color: #e4f9f9;
+  border-color: #16b9d4;
+  color: #16b9d4;
+}
+
+hx-checkbox-control > input[type="checkbox"]:checked ~ label > hx-checkbox {
+  --hxMinus-display: none;
+  --hxTick-display: block;
+}
+
+hx-checkbox-control > input[type="checkbox"]:indeterminate ~ label > hx-checkbox {
+  --hxMinus-display: block;
+  --hxTick-display: none;
+}
+
+hx-checkbox-control > input[type="checkbox"]:checked, hx-checkbox-control > input[type="checkbox"]:indeterminate {
+  color: #0c7c84;
+}
+
+hx-checkbox-control > input[type="checkbox"]:checked ~ label > hx-checkbox, hx-checkbox-control > input[type="checkbox"]:indeterminate ~ label > hx-checkbox {
+  border-color: #0c7c84;
+  color: #0c7c84;
+}
+
+hx-checkbox-control > input[type="checkbox"]:valid ~ label > hx-checkbox:hover {
+  background-color: #e4f9f9;
+  border-color: #16b9d4;
+  color: #16b9d4;
+}
+
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid,
+hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled {
+  color: #d32f2f;
+}
+
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid::-ms-check,
+hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled::-ms-check {
+  border-width: 2px;
+  border-color: #d32f2f !important;
+  color: #d32f2f !important;
+}
+
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:focus,
+hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:focus {
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:focus::-ms-check,
+hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:focus::-ms-check {
+  border-color: #d32f2f;
+}
+
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:focus ~ label > hx-checkbox,
+hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:focus ~ label > hx-checkbox {
+  border-color: #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:hover::-ms-check,
+hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:hover::-ms-check {
+  background-color: #ffcdd2;
+}
+
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid ~ label > hx-checkbox,
+hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled ~ label > hx-checkbox {
+  border: 2px solid #d32f2f;
+  color: #d32f2f;
+}
+
+hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid ~ label > hx-checkbox:hover,
+hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled ~ label > hx-checkbox:hover {
+  background-color: #ffcdd2;
+  border-color: #d32f2f;
+  color: #d32f2f;
+}
+
+hx-checkbox-control > input[type="checkbox"]:disabled {
+  color: #bdbdbd;
+  cursor: not-allowed;
+}
+
+hx-checkbox-control > input[type="checkbox"]:disabled::-ms-check {
+  background-color: #eeeeee !important;
+  border-width: 1px;
+}
+
+hx-checkbox-control > input[type="checkbox"]:disabled:focus::-ms-check {
+  border-color: #bdbdbd;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+
+hx-checkbox-control > input[type="checkbox"]:disabled:focus ~ label > hx-checkbox {
+  border-color: #bdbdbd;
+}
+
+hx-checkbox-control > input[type="checkbox"]:disabled:hover::-ms-check {
+  background-color: #eeeeee;
+  border-color: #bdbdbd;
+  color: #bdbdbd;
+}
+
+hx-checkbox-control > input[type="checkbox"]:disabled ~ label {
+  color: #757575;
+}
+
+hx-checkbox-control > input[type="checkbox"]:disabled ~ label > hx-checkbox {
+  border-width: 1px;
+  cursor: not-allowed;
+}
+
+hx-checkbox-control > input[type="checkbox"]:disabled ~ label > hx-checkbox, hx-checkbox-control > input[type="checkbox"]:disabled ~ label > hx-checkbox:hover {
+  background-color: #eeeeee;
+  border-color: #bdbdbd;
+  color: #bdbdbd;
+}
+
+@supports (--modern: true) {
+  hx-checkbox-control {
+    position: relative;
+  }
+  hx-checkbox-control > label > hx-checkbox {
+    display: inline-block;
+  }
+  hx-checkbox-control > p {
+    margin-left: 1.5rem;
+  }
+  hx-checkbox-control > input[type="checkbox"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 0;
+    box-shadow: none;
+    height: 1px;
+    margin: -1px;
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    z-index: -10;
+  }
+  hx-checkbox-control > input[type="checkbox"]::-ms-check {
+    display: none;
+  }
+}
+
+hx-tile {
+  padding: 1.25rem;
+  border-radius: 2px;
+  display: inline-block;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+hx-tile > header {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+hx-tile > p {
+  font-size: 0.75rem;
+}
+
+hx-tile.hxSm {
+  padding: 0.75rem;
+}
+
+hx-tile.hxSm > p {
+  display: none;
+}
+
+hx-tile.hxSm hx-icon[type="checkmark"] {
+  right: 0.75rem;
+  top: 0.75rem;
+}
+
+hx-tile.hxLg {
+  padding: 1.75rem;
+}
+
+hx-tile.hxLg hx-icon[type="checkmark"] {
+  right: 1.75rem;
+  top: 1.75rem;
+}
+
+hx-tile > header + *,
+hx-tile .hx-tile-icon + * {
+  margin-top: 0.5rem;
+}
+
+hx-tile .hx-tile-icon hx-icon {
+  font-size: 1.75rem;
+}
+
+hx-tile hx-icon[type="checkmark"] {
+  display: none;
+  font-size: 1rem;
+  right: 1.25rem;
+  top: 1.25rem;
+}
+
+hx-tile.hxSubdued {
+  opacity: 0.7;
+}
+
+hx-tile.hxSubdued:hover {
+  opacity: 1;
+}
+
+.hxRow > label.hxChoice {
+  flex-grow: 1;
+  margin: 0 0 20px;
+  min-width: 0;
+  padding: 0 10px;
+}
+
+label.hxChoice {
+  position: relative;
+}
+
+label.hxChoice > input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  box-shadow: none;
+  height: 1px;
+  margin: -1px;
+  outline: none;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  z-index: -10;
+}
+
+label.hxChoice > input::-moz-focus-inner {
+  border: 0;
+  outline: none;
+}
+
+label.hxChoice > input:focus {
+  outline: none;
+}
+
+label.hxChoice > input:checked + hx-tile hx-icon[type="checkmark"] {
+  display: block;
+  position: absolute;
+}
+
+label.hxChoice > input + hx-tile:hover.hxSubdued,
+label.hxChoice > input[disabled] + hx-tile.hxSubdued,
+label.hxChoice > input[invalid] + hx-tile.hxSubdued {
+  opacity: 1;
+}
+
+label.hxChoice > input + hx-tile {
+  background-color: #ffffff;
+  border: solid 1px #d8d8d8;
+  color: #424242;
+  cursor: pointer;
+}
+
+label.hxChoice > input + hx-tile .hx-tile-icon {
+  color: #757575;
+}
+
+label.hxChoice > input + hx-tile:hover {
+  background-color: #e4f9f9;
+  border-color: #16b9d4;
+}
+
+label.hxChoice > input:focus + hx-tile {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+
+label.hxChoice > input:checked + hx-tile {
+  border-color: #0c7c84;
+  color: #0c7c84;
+}
+
+label.hxChoice > input:checked + hx-tile .hx-tile-icon {
+  color: #0c7c84;
+}
+
+label.hxChoice > input:checked + hx-tile > p {
+  color: #424242;
+}
+
+label.hxChoice > input:checked + hx-tile hx-tile-description {
+  color: #424242;
+}
+
+label.hxChoice > input[invalid] + hx-tile {
+  border-color: #d32f2f;
+  border-width: 2px;
+  color: #d32f2f;
+}
+
+label.hxChoice > input[invalid] + hx-tile > p {
+  color: #424242;
+}
+
+label.hxChoice > input[invalid] + hx-tile hx-tile-description {
+  color: #424242;
+}
+
+label.hxChoice > input[invalid] + hx-tile .hx-tile-icon {
+  color: inherit;
+}
+
+label.hxChoice > input[invalid] + hx-tile:hover {
+  background-color: #ffcdd2;
+  border-color: #d32f2f;
+  color: #424242;
+}
+
+label.hxChoice > input[invalid]:focus + hx-tile {
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+label.hxChoice > input[disabled] + hx-tile,
+label.hxChoice > input[disabled] + hx-tile:hover {
+  background-color: #fafafa;
+  border-color: #e0e0e0;
+  border-width: 1px;
+  color: #757575;
+  cursor: not-allowed;
+}
+
+label.hxChoice > input[disabled] + hx-tile > p,
+label.hxChoice > input[disabled] + hx-tile:hover > p {
+  color: inherit;
+}
+
+label.hxChoice > input[disabled] + hx-tile hx-tile-description,
+label.hxChoice > input[disabled] + hx-tile:hover hx-tile-description {
+  color: inherit;
+}
+
+label.hxChoice > input[disabled] + hx-tile hx-icon,
+label.hxChoice > input[disabled] + hx-tile:hover hx-icon {
+  color: #bdbdbd;
+}
+
+hx-tile-description {
+  display: block;
+  font-size: 0.75rem;
+}
+
+hx-tile-title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+hx-tile {
+  position: relative;
+}
+
+hx-tile hx-tile-title {
+  margin-bottom: 0;
+}
+
+hx-tile.hxSm hx-tile-description {
+  display: none;
+}
+
+hx-tile hx-tile-title + * {
+  margin-top: 0.5rem;
+}
+
 hx-drawer, hx-menu, hx-modal, hx-popover, hx-search-assistance, hx-tooltip {
   color: #424242;
   font-family: "Roboto", sans-serif;
@@ -576,12 +1063,312 @@ hx-drawer > footer {
   padding: 0.75rem;
 }
 
+hx-select {
+  display: block;
+  pointer-events: none;
+}
+
+hx-select-control > select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  font: inherit;
+}
+
+hx-select-control > select:-moz-ui-invalid {
+  box-shadow: none;
+  border: 0;
+  outline: 0;
+}
+
+hx-select-control > select::-ms-value {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+hx-select-control > select::-ms-expand {
+  background-color: transparent;
+  border: 0;
+  color: inherit;
+  margin: 0;
+}
+
+hx-select-control {
+  -ms-grid-columns: 1fr;
+  -ms-grid-rows: auto 2rem;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: "label" "control";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 2rem;
+}
+
+hx-select-control > * {
+  display: none;
+}
+
+hx-select-control > label {
+  -ms-grid-column-align: start;
+  -ms-grid-column: 1;
+  -ms-grid-row: 1;
+  display: block;
+  grid-area: label;
+  justify-self: start;
+}
+
+hx-select-control > select,
+hx-select-control > hx-select {
+  -ms-grid-column: 1;
+  -ms-grid-row: 2;
+  border-radius: 2px;
+  display: block;
+  grid-area: control;
+  margin: 0;
+}
+
+hx-select-control > select {
+  border: none;
+  padding-left: 0.75rem;
+  width: 100%;
+}
+
+hx-select-control > select::-ms-expand {
+  padding: 0 0.75rem;
+}
+
+hx-select-control > select {
+  background-color: #ffffff;
+  color: #424242;
+}
+
+hx-select-control > select ~ label {
+  color: #616161;
+  font-size: 0.875rem;
+}
+
+hx-select-control > select ~ hx-select {
+  border: 1px solid #bdbdbd;
+  color: #424242;
+}
+
+hx-select-control > select:focus {
+  outline: none;
+}
+
+hx-select-control > select:focus:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #424242;
+}
+
+hx-select-control > select:focus ~ hx-select {
+  border: 1px solid #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+
+hx-select-control > select:disabled {
+  background-color: #eeeeee;
+  color: #757575;
+}
+
+hx-select-control > select:disabled ~ label {
+  color: #757575;
+}
+
+hx-select-control > select:disabled ~ hx-select {
+  --hxTrigger-backgroundColor: #eeeeee;
+  border: 1px solid #bdbdbd;
+  color: #757575;
+}
+
+hx-select-control > select:disabled:focus {
+  outline: none;
+}
+
+hx-select-control > select:disabled:focus:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #424242;
+}
+
+hx-select-control > select:disabled:focus ~ hx-select {
+  border: 1px solid #bdbdbd;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+
+hx-select-control[hx-dirty] > select:enabled:invalid,
+hx-select-control.hxInvalid > select:enabled {
+  background-color: #ffffff;
+  color: #424242;
+}
+
+hx-select-control[hx-dirty] > select:enabled:invalid ~ hx-select,
+hx-select-control.hxInvalid > select:enabled ~ hx-select {
+  border: 2px solid #d32f2f;
+  color: #424242;
+}
+
+hx-select-control[hx-dirty] > select:enabled:invalid:focus,
+hx-select-control.hxInvalid > select:enabled:focus {
+  outline: none;
+}
+
+hx-select-control[hx-dirty] > select:enabled:invalid:focus:-moz-focusring,
+hx-select-control.hxInvalid > select:enabled:focus:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #424242;
+}
+
+hx-select-control[hx-dirty] > select:enabled:invalid:focus ~ hx-select,
+hx-select-control.hxInvalid > select:enabled:focus ~ hx-select {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
 input:-moz-ui-invalid,
 select:-moz-ui-invalid,
 textarea:-moz-ui-invalid {
   border: 0;
   box-shadow: none;
   outline: 0;
+}
+
+hx-drop-fence {
+  padding: 1.25rem;
+  border: 1px dashed #9e9e9e;
+  display: block;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+hx-drop-zone {
+  display: block;
+  min-height: 0;
+  padding: 0 !important;
+  position: relative;
+}
+
+hx-drop-zone::after {
+  border: 4px dashed #16b9d4;
+  content: "";
+  display: none;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+hx-drop-zone[drag]::after {
+  display: block;
+}
+
+hx-drop-zone[drag="over"]::after {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-style: solid;
+}
+
+hx-file-control {
+  position: relative;
+}
+
+hx-file-control > * {
+  margin: 0;
+}
+
+hx-file-control > label {
+  display: inline-block;
+  padding: 0;
+}
+
+hx-file-control > input[type="file"] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  box-shadow: none;
+  height: 1px;
+  margin: -1px;
+  outline: none;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  z-index: -10;
+  background: none;
+}
+
+hx-file-control > input[type="file"]::-ms-browse, hx-file-control > input[type="file"]::-ms-value {
+  opacity: 0.01;
+}
+
+hx-file-control > input[type="file"]:focus ~ label > hx-file-input {
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+
+hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn {
+  background-color: #0e94a6;
+  border-color: transparent;
+  color: #ffffff;
+}
+
+hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn.hxPrimary {
+  background-color: #0e94a6;
+  border-color: transparent;
+  color: #ffffff;
+}
+
+hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn.hxTertiary {
+  background-color: transparent;
+  border-color: transparent;
+  color: #0e94a6;
+}
+
+hx-file-control > input[type="file"]:disabled ~ label {
+  color: #757575;
+}
+
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input {
+  cursor: not-allowed;
+}
+
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn {
+  background-color: transparent;
+  border-color: #d8d8d8;
+  color: #d8d8d8;
+}
+
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn.hxPrimary {
+  background-color: #d8d8d8;
+  border-color: transparent;
+  color: #757575;
+}
+
+hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn.hxTertiary {
+  background-color: transparent;
+  border-color: transparent;
+  color: #d8d8d8;
+}
+
+hx-file-icon {
+  display: inline-block;
+}
+
+hx-file-tile {
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  border: 2px solid transparent;
+  color: #424242;
+  display: block;
+  height: 3.75rem;
+  width: 25rem;
+}
+
+hx-file-tile[progress] {
+  color: #9e9e9e;
+}
+
+hx-file-tile[invalid] {
+  border-color: #d32f2f;
 }
 
 @media (min-width: 0em) {
@@ -3931,724 +4718,6 @@ a[href].hxBtn.beta-hxDark:focus {
 /* ================================================== *\
  * DEPRECATED STYLES
 \* ================================================== */
-hx-checkbox {
-  display: inline-block;
-  height: 1rem;
-  width: 1rem;
-}
-/* ========== LAYOUT ========== */
-hx-checkbox-control {
-  -ms-grid-column-align: start;
-  -ms-grid-columns: auto 1fr;
-  -ms-grid-rows: auto auto;
-  display: -ms-grid;
-  display: grid;
-  grid-template-areas: 'ctrl lbl' '.    help';
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto;
-  justify-items: start;
-}
-hx-checkbox-control > * {
-  margin: 0;
-}
-hx-checkbox-control > label {
-  -ms-grid-column: 2;
-  -ms-grid-row: 1;
-  grid-area: lbl;
-  -ms-grid-columns: auto 1fr;
-  -ms-grid-rows: auto;
-  display: -ms-grid;
-  display: grid;
-  grid-template-areas: 'facade .';
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto;
-  grid-gap: 0.5rem;
-  padding: 0;
-}
-hx-checkbox-control > label > hx-checkbox {
-  -ms-grid-column: 1;
-  -ms-grid-row: 1;
-  display: none;
-  grid-area: facade;
-  margin-top: 0.25rem;
-}
-hx-checkbox-control > p {
-  -ms-grid-column: 2;
-  -ms-grid-row: 2;
-  grid-area: help;
-}
-hx-checkbox-control > input[type="checkbox"] {
-  -ms-grid-column: 1;
-  -ms-grid-row: 1;
-  display: inline-block;
-  grid-area: ctrl;
-  height: 1rem;
-  margin: 0.25rem 0.5rem 0 0;
-  width: 1rem;
-}
-hx-checkbox-control > input[type="checkbox"]::-ms-check {
-  box-sizing: border-box;
-  display: block;
-}
-/* ========== PRISTINE ========== */
-hx-checkbox {
-  background-color: #ffffff;
-  border-radius: 2px;
-  border: 1px solid #bdbdbd;
-}
-hx-checkbox-control > p {
-  color: #6b6b6b;
-  font-size: 0.75rem;
-}
-hx-checkbox-control > input[type="checkbox"] {
-  color: #bdbdbd;
-}
-hx-checkbox-control > input[type="checkbox"]::-ms-check {
-  background-color: #ffffff;
-  border-color: currentColor;
-  border-style: solid;
-  border-width: 1px;
-  color: inherit;
-}
-hx-checkbox-control > input[type="checkbox"]:focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-hx-checkbox-control > input[type="checkbox"]:focus::-ms-check {
-  border-color: #0e94a6;
-}
-hx-checkbox-control > input[type="checkbox"]:focus ~ label > hx-checkbox {
-  border-color: #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-hx-checkbox-control > input[type="checkbox"]:hover {
-  color: #16b9d4;
-}
-hx-checkbox-control > input[type="checkbox"]:hover::-ms-check {
-  background-color: #e4f9f9;
-  color: #16b9d4;
-}
-hx-checkbox-control > input[type="checkbox"] ~ label > hx-checkbox:hover {
-  background-color: #e4f9f9;
-  border-color: #16b9d4;
-  color: #16b9d4;
-}
-hx-checkbox-control > input[type="checkbox"]:checked ~ label > hx-checkbox {
-  --hxMinus-display: none;
-  --hxTick-display: block;
-}
-hx-checkbox-control > input[type="checkbox"]:indeterminate ~ label > hx-checkbox {
-  --hxMinus-display: block;
-  --hxTick-display: none;
-}
-hx-checkbox-control > input[type="checkbox"]:checked,
-hx-checkbox-control > input[type="checkbox"]:indeterminate {
-  color: #0c7c84;
-}
-hx-checkbox-control > input[type="checkbox"]:checked ~ label > hx-checkbox,
-hx-checkbox-control > input[type="checkbox"]:indeterminate ~ label > hx-checkbox {
-  border-color: #0c7c84;
-  color: #0c7c84;
-}
-hx-checkbox-control > input[type="checkbox"]:valid ~ label > hx-checkbox:hover {
-  background-color: #e4f9f9;
-  border-color: #16b9d4;
-  color: #16b9d4;
-}
-/* ========== INVALID ========== */
-hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid {
-  color: #d32f2f;
-}
-hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid::-ms-check {
-  border-width: 2px;
-  border-color: #d32f2f !important;
-  color: #d32f2f !important;
-}
-hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:focus {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:focus::-ms-check {
-  border-color: #d32f2f;
-}
-hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:focus ~ label > hx-checkbox {
-  border-color: #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:hover::-ms-check {
-  background-color: #ffcdd2;
-}
-hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid ~ label > hx-checkbox {
-  border: 2px solid #d32f2f;
-  color: #d32f2f;
-}
-hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid ~ label > hx-checkbox:hover {
-  background-color: #ffcdd2;
-  border-color: #d32f2f;
-  color: #d32f2f;
-}
-hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled {
-  color: #d32f2f;
-}
-hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled::-ms-check {
-  border-width: 2px;
-  border-color: #d32f2f !important;
-  color: #d32f2f !important;
-}
-hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:focus {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:focus::-ms-check {
-  border-color: #d32f2f;
-}
-hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:focus ~ label > hx-checkbox {
-  border-color: #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:hover::-ms-check {
-  background-color: #ffcdd2;
-}
-hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled ~ label > hx-checkbox {
-  border: 2px solid #d32f2f;
-  color: #d32f2f;
-}
-hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled ~ label > hx-checkbox:hover {
-  background-color: #ffcdd2;
-  border-color: #d32f2f;
-  color: #d32f2f;
-}
-/* ========== DISABLED ========== */
-hx-checkbox-control > input[type="checkbox"]:disabled {
-  color: #bdbdbd;
-  cursor: not-allowed;
-}
-hx-checkbox-control > input[type="checkbox"]:disabled::-ms-check {
-  background-color: #eeeeee !important;
-  border-width: 1px;
-}
-hx-checkbox-control > input[type="checkbox"]:disabled:focus::-ms-check {
-  border-color: #bdbdbd;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-hx-checkbox-control > input[type="checkbox"]:disabled:focus ~ label > hx-checkbox {
-  border-color: #bdbdbd;
-}
-hx-checkbox-control > input[type="checkbox"]:disabled:hover::-ms-check {
-  background-color: #eeeeee;
-  border-color: #bdbdbd;
-  color: #bdbdbd;
-}
-hx-checkbox-control > input[type="checkbox"]:disabled ~ label {
-  color: #757575;
-}
-hx-checkbox-control > input[type="checkbox"]:disabled ~ label > hx-checkbox {
-  border-width: 1px;
-  cursor: not-allowed;
-}
-hx-checkbox-control > input[type="checkbox"]:disabled ~ label > hx-checkbox,
-hx-checkbox-control > input[type="checkbox"]:disabled ~ label > hx-checkbox:hover {
-  background-color: #eeeeee;
-  border-color: #bdbdbd;
-  color: #bdbdbd;
-}
-@supports (--modern: true) {
-  hx-checkbox-control {
-    position: relative;
-  }
-  hx-checkbox-control > label > hx-checkbox {
-    display: inline-block;
-  }
-  hx-checkbox-control > p {
-    margin-left: 1.5rem;
-  }
-  hx-checkbox-control > input[type="checkbox"] {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    border: 0;
-    box-shadow: none;
-    height: 1px;
-    margin: -1px;
-    outline: none;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    z-index: -10;
-  }
-  hx-checkbox-control > input[type="checkbox"]::-ms-check {
-    display: none;
-  }
-}
-hx-tile {
-  padding: 1.25rem;
-  border-radius: 2px;
-  display: inline-block;
-  height: 100%;
-  position: relative;
-  text-align: center;
-  width: 100%;
-}
-hx-tile > header {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 0;
-}
-hx-tile > p {
-  font-size: 0.75rem;
-}
-hx-tile.hxSm {
-  padding: 0.75rem;
-}
-hx-tile.hxSm > p {
-  display: none;
-}
-hx-tile.hxSm hx-icon[type="checkmark"] {
-  right: 0.75rem;
-  top: 0.75rem;
-}
-hx-tile.hxLg {
-  padding: 1.75rem;
-}
-hx-tile.hxLg hx-icon[type="checkmark"] {
-  right: 1.75rem;
-  top: 1.75rem;
-}
-hx-tile > header + *,
-hx-tile .hx-tile-icon + * {
-  margin-top: 0.5rem;
-}
-hx-tile .hx-tile-icon hx-icon {
-  font-size: 1.75rem;
-}
-hx-tile hx-icon[type="checkmark"] {
-  display: none;
-  font-size: 1rem;
-  right: 1.25rem;
-  top: 1.25rem;
-}
-hx-tile.hxSubdued {
-  opacity: 0.7;
-}
-hx-tile.hxSubdued:hover {
-  opacity: 1;
-}
-.hxRow > label.hxChoice {
-  flex-grow: 1;
-  margin: 0 0 20px;
-  min-width: 0;
-  padding: 0 10px;
-}
-/* ========== COMMON ========== */
-label.hxChoice {
-  position: relative;
-}
-label.hxChoice > input {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  border: 0;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  z-index: -10;
-}
-label.hxChoice > input:focus::-moz-focus-inner {
-  border: 0;
-  outline: none;
-}
-label.hxChoice > input:focus:focus {
-  outline: none;
-}
-label.hxChoice > input:checked + hx-tile hx-icon[type="checkmark"] {
-  display: block;
-  position: absolute;
-}
-/* ========== SUBDUED ========== */
-label.hxChoice > input:focus + hx-tile.hxSubdued,
-label.hxChoice > input + hx-tile:hover.hxSubdued,
-label.hxChoice > input[disabled] + hx-tile.hxSubdued,
-label.hxChoice > input:checked + hx-tile.hxSubdued,
-label.hxChoice > input[invalid] + hx-tile.hxSubdued {
-  opacity: 1;
-}
-/* ========== DEFAULT ========== */
-label.hxChoice > input + hx-tile {
-  background-color: #ffffff;
-  border: solid 1px #d8d8d8;
-  color: #424242;
-  cursor: pointer;
-}
-label.hxChoice > input + hx-tile .hx-tile-icon {
-  color: #757575;
-}
-label.hxChoice > input + hx-tile:hover {
-  background-color: #e4f9f9;
-  border-color: #16b9d4;
-}
-label.hxChoice > input:focus + hx-tile {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-/* ========== CHECKED ========== */
-label.hxChoice > input:checked + hx-tile {
-  border-color: #0c7c84;
-  color: #0c7c84;
-}
-label.hxChoice > input:checked + hx-tile .hx-tile-icon {
-  color: #0c7c84;
-}
-label.hxChoice > input:checked + hx-tile > p {
-  color: #424242;
-}
-label.hxChoice > input:checked + hx-tile hx-tile-description {
-  color: #424242;
-}
-label.hxChoice > input:checked + hx-tile:hover {
-  border-color: #16b9d4;
-}
-label.hxChoice > input:checked:focus + hx-tile {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-/* ========== INVALID ========== */
-label.hxChoice > input[invalid] + hx-tile {
-  border-color: #d32f2f;
-  border-width: 2px;
-  color: #d32f2f;
-}
-label.hxChoice > input[invalid] + hx-tile > p {
-  color: #424242;
-}
-label.hxChoice > input[invalid] + hx-tile hx-tile-description {
-  color: #424242;
-}
-label.hxChoice > input[invalid] + hx-tile .hx-tile-icon {
-  color: inherit;
-}
-label.hxChoice > input[invalid] + hx-tile:hover {
-  background-color: #ffcdd2;
-  border-color: #d32f2f;
-  color: #424242;
-}
-label.hxChoice > input[invalid]:focus + hx-tile {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-/* ========== DISABLED ========== */
-label.hxChoice > input[disabled] + hx-tile,
-label.hxChoice > input[disabled] + hx-tile:hover {
-  background-color: #fafafa;
-  border-color: #e0e0e0;
-  border-width: 1px;
-  color: #757575;
-  cursor: not-allowed;
-}
-label.hxChoice > input[disabled] + hx-tile > p,
-label.hxChoice > input[disabled] + hx-tile:hover > p {
-  color: inherit;
-}
-label.hxChoice > input[disabled] + hx-tile hx-tile-description,
-label.hxChoice > input[disabled] + hx-tile:hover hx-tile-description {
-  color: inherit;
-}
-label.hxChoice > input[disabled] + hx-tile hx-icon,
-label.hxChoice > input[disabled] + hx-tile:hover hx-icon {
-  color: #bdbdbd;
-}
-hx-tile-description {
-  display: block;
-  font-size: 0.75rem;
-}
-hx-tile-title {
-  display: block;
-  font-size: 1rem;
-  font-weight: 700;
-}
-hx-tile {
-  position: relative;
-}
-hx-tile hx-tile-title {
-  margin-bottom: 0;
-}
-hx-tile.hxSm hx-tile-description {
-  display: none;
-}
-hx-tile hx-tile-title + * {
-  margin-top: 0.5rem;
-}
-hx-select {
-  display: block;
-  pointer-events: none;
-}
-hx-select-control > select {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  font: inherit;
-}
-hx-select-control > select::-ms-value {
-  background-color: transparent;
-  color: inherit;
-  padding: 0;
-}
-hx-select-control > select::-ms-expand {
-  background-color: transparent;
-  border: 0;
-  color: inherit;
-  margin: 0;
-}
-hx-select-control > select:-moz-ui-invalid {
-  box-shadow: none;
-  border: 0;
-  outline: 0;
-}
-/*
-    1fr
-  +------------+
-  | label      | auto
-  +------------+
-  | control    | 2rem
-  +------------+
-*/
-hx-select-control {
-  -ms-grid-columns: 1fr;
-  -ms-grid-rows: auto 2rem;
-  display: -ms-grid;
-  display: grid;
-  grid-template-areas: 'label' 'control';
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 2rem;
-}
-hx-select-control > * {
-  display: none;
-}
-hx-select-control > label {
-  -ms-grid-column-align: start;
-  -ms-grid-column: 1;
-  -ms-grid-row: 1;
-  display: block;
-  grid-area: label;
-  justify-self: start;
-}
-hx-select-control > select,
-hx-select-control > hx-select {
-  -ms-grid-column: 1;
-  -ms-grid-row: 2;
-  border-radius: 2px;
-  display: block;
-  grid-area: control;
-  margin: 0;
-}
-hx-select-control > select {
-  border: none;
-  padding-left: 0.75rem;
-  width: 100%;
-}
-hx-select-control > select::-ms-expand {
-  padding: 0 0.75rem;
-}
-hx-select-control > select {
-  background-color: #ffffff;
-  color: #424242;
-}
-hx-select-control > select ~ label {
-  color: #616161;
-  font-size: 0.875rem;
-}
-hx-select-control > select ~ hx-select {
-  border: 1px solid #bdbdbd;
-  color: #424242;
-}
-hx-select-control > select:focus {
-  outline: none;
-}
-hx-select-control > select:focus:-moz-focusring {
-  color: transparent;
-  text-shadow: 0 0 0 #424242;
-}
-hx-select-control > select:focus ~ hx-select {
-  border: 1px solid #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-hx-select-control > select:disabled {
-  background-color: #eeeeee;
-  color: #757575;
-}
-hx-select-control > select:disabled ~ label {
-  color: #757575;
-}
-hx-select-control > select:disabled ~ hx-select {
-  --hxTrigger-backgroundColor: #eeeeee;
-  border: 1px solid #bdbdbd;
-  color: #757575;
-}
-hx-select-control > select:disabled:focus {
-  outline: none;
-}
-hx-select-control > select:disabled:focus:-moz-focusring {
-  color: transparent;
-  text-shadow: 0 0 0 #424242;
-}
-hx-select-control > select:disabled:focus ~ hx-select {
-  border: 1px solid #bdbdbd;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-/*
-  1. Prevent IE from incorrectly matching select:disabled:invalid
-*/
-hx-select-control[hx-dirty] > select:enabled:invalid,
-hx-select-control.hxInvalid > select:enabled {
-  background-color: #ffffff;
-  color: #424242;
-}
-hx-select-control[hx-dirty] > select:enabled:invalid ~ hx-select,
-hx-select-control.hxInvalid > select:enabled ~ hx-select {
-  border: 2px solid #d32f2f;
-  color: #424242;
-}
-hx-select-control[hx-dirty] > select:enabled:invalid:focus,
-hx-select-control.hxInvalid > select:enabled:focus {
-  outline: none;
-}
-hx-select-control[hx-dirty] > select:enabled:invalid:focus:-moz-focusring,
-hx-select-control.hxInvalid > select:enabled:focus:-moz-focusring {
-  color: transparent;
-  text-shadow: 0 0 0 #424242;
-}
-hx-select-control[hx-dirty] > select:enabled:invalid:focus ~ hx-select,
-hx-select-control.hxInvalid > select:enabled:focus ~ hx-select {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
-}
-hx-file-control {
-  position: relative;
-}
-hx-file-control > * {
-  margin: 0;
-}
-hx-file-control > label {
-  display: inline-block;
-  padding: 0;
-}
-hx-file-control > input[type="file"] {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  border: 0;
-  box-shadow: none;
-  height: 1px;
-  margin: -1px;
-  outline: none;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  z-index: -10;
-  background: none;
-}
-hx-file-control > input[type="file"]::-ms-browse,
-hx-file-control > input[type="file"]::-ms-value {
-  opacity: 0.01;
-}
-hx-file-control > input[type="file"]:focus ~ label > hx-file-input {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
-}
-hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn {
-  background-color: #0e94a6;
-  border-color: transparent;
-  color: #ffffff;
-}
-hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn.hxPrimary,
-hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtnGroup.hxPrimary > .hxBtn,
-hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn--primary {
-  background-color: #0e94a6;
-  border-color: transparent;
-  color: #ffffff;
-}
-hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn.hxTertiary,
-hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtnGroup.hxTertiary > .hxBtn,
-hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn.hxLink,
-hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtn--link,
-hx-file-control > input[type="file"]:active ~ label > hx-file-input.hxBtnGroup.hxLink > .hxBtn {
-  background-color: transparent;
-  border-color: transparent;
-  color: #0e94a6;
-}
-/* ========== DISABLED ========== */
-hx-file-control > input[type="file"]:disabled ~ label {
-  color: #757575;
-}
-hx-file-control > input[type="file"]:disabled ~ label > hx-file-input {
-  cursor: not-allowed;
-}
-hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn {
-  background-color: transparent;
-  border-color: #d8d8d8;
-  color: #d8d8d8;
-}
-hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn.hxPrimary,
-hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtnGroup.hxPrimary > .hxBtn,
-hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn--primary {
-  background-color: #d8d8d8;
-  border-color: transparent;
-  color: #757575;
-}
-hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn.hxTertiary,
-hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtnGroup.hxTertiary > .hxBtn,
-hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn.hxLink,
-hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtn--link,
-hx-file-control > input[type="file"]:disabled ~ label > hx-file-input.hxBtnGroup.hxLink > .hxBtn {
-  background-color: transparent;
-  border-color: transparent;
-  color: #d8d8d8;
-}
-hx-drop-fence {
-  padding: 1.25rem;
-  border: 1px dashed #9e9e9e;
-  display: block;
-  font-size: 0.875rem;
-  text-align: center;
-}
-hx-drop-zone {
-  display: block;
-  min-height: 0;
-  padding: 0 !important;
-  position: relative;
-}
-hx-drop-zone::after {
-  border: 4px dashed #16b9d4;
-  content: '';
-  display: none;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-hx-drop-zone[drag]::after {
-  display: block;
-}
-hx-drop-zone[drag="over"]::after {
-  background-color: rgba(255, 255, 255, 0.6);
-  border-style: solid;
-}
-hx-file-icon {
-  display: inline-block;
-}
-hx-file-tile {
-  background-color: #f5f5f5;
-  border-radius: 2px;
-  border: 2px solid transparent;
-  color: #424242;
-  display: block;
-  height: 3.75rem;
-  width: 25rem;
-}
-hx-file-tile[progress] {
-  color: #9e9e9e;
-}
-hx-file-tile[invalid] {
-  border-color: #d32f2f;
-}
 .beta-hxForm fieldset {
   border: none;
   padding: 0;

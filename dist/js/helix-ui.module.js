@@ -126,6 +126,7 @@ class HXElement extends HTMLElement {
         this._$tabIndex = this.getAttribute('tabindex');
         this.$upgradeProperty('disabled');
         this.setAttribute('hx-defined', '');
+        this._$styleElement();
         this.$onConnect();
     }
 
@@ -332,12 +333,25 @@ class HXElement extends HTMLElement {
         if (this.constructor.template) {
             let _template = this._$prepareTemplate(this.constructor.template);
             this.attachShadow({ mode: 'open' });
-            if (window.ShadyCSS) {
-                ShadyCSS.styleElement(this);
-            }
             this.shadowRoot.appendChild(_template.content.cloneNode(true));
         }
     }//_$setupShadowDOM()
+
+    /**
+     * @description
+     * Style the element using ShadyCSS, if needed.
+     *
+     * @note: has the potential to modify the `[class]` attribute
+     * of the element, so avoid running in the constructor.
+     */
+    _$styleElement () {
+        // short circuit if browser natively supports ShadowDOM
+        if (!window.ShadyCSS) {
+            return;
+        }
+
+        ShadyCSS.styleElement(this);
+    }
 }
 
 /**
@@ -5782,7 +5796,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.18.0";
+var version = "0.18.1";
 
 /** @module HelixUI */
 
