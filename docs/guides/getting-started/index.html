@@ -72,16 +72,16 @@ title: Getting Started with HelixUI
     <figure>
       {% code 'bash' %}
         # Web Components Polyfill Loader
-        cp node_modules/helix-ui/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js public/assets
+        cp node_modules/helix-ui/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js public/vendor
 
         # Web Components Polyfill Bundles (injected as needed by loader above)
-        cp -R node_modules/helix-ui/node_modules/@webcomponents/webcomponentsjs/bundles public/assets
+        cp -R node_modules/helix-ui/node_modules/@webcomponents/webcomponentsjs/bundles public/vendor
 
         # production-ready, browser-compatible HelixUI JavaScript bundles
-        cp node_modules/helix-ui/dist/js/*.min.js public/assets
+        cp node_modules/helix-ui/dist/js/*.min.js public/vendor
 
         # production-ready HelixUI Stylesheets
-        cp node_modules/helix-ui/dist/css/*.min.css public/assets
+        cp node_modules/helix-ui/dist/css/*.min.css public/vendor
       {% endcode %}
     </figure>
 
@@ -93,7 +93,7 @@ title: Getting Started with HelixUI
     <figure>
       {% code 'bash' %}
         public/
-        ├ assets/
+        ├ vendor/
         │ ├ bundles/
         │ │ └ ...
         │ ├ helix-ui.min.css
@@ -158,7 +158,7 @@ title: Getting Started with HelixUI
 
       <figure>
         {% code 'html' %}
-          <link rel="stylesheet" href="assets/helix-ui.min.css" />
+          <link rel="stylesheet" href="vendor/helix-ui.min.css" />
         {% endcode %}
       </figure>
 
@@ -183,7 +183,7 @@ title: Getting Started with HelixUI
 
       <figure>
         {% code 'html' %}
-          <script src="assets/webcomponents-loader.js"></script>
+          <script src="vendor/webcomponents-loader.js"></script>
         {% endcode %}
       </figure>
 
@@ -192,7 +192,7 @@ title: Getting Started with HelixUI
         detection to identify the minimum polyfill bundle required by the
         current browser.  If the browser requires polyfills, an additional
         <code>&lt;script&gt;</code> element (loading a polyfill bundle from
-        <code>assets/bundles/</code>) will be injected after the loader.
+        <code>vendor/bundles/</code>) will be injected after the loader.
       </p>
     </section>
 
@@ -211,14 +211,14 @@ title: Getting Started with HelixUI
       <figure>
         {% code 'html' %}
           <!-- Legacy Browsers (ES5 UMD Module) -->
-          <script nomodule src="assets/helix-ui.min.js"></script>
+          <script nomodule src="vendor/helix-ui.min.js"></script>
           <script nomodule>
             HelixUI.initialize();
           </script>
 
           <!-- Modern Browsers (ES6 ES Module) -->
           <script type="module">
-            import HelixUI from '/assets/helix-ui.module.min.js';
+            import HelixUI from '/vendor/helix-ui.module.min.js';
 
             HelixUI.initialize();
           </script>
@@ -256,10 +256,10 @@ title: Getting Started with HelixUI
         <html lang="en">
           <head>
             <!-- Step 3.2 -->
-            <link rel="stylesheet" href="assets/helix-ui.min.css" />
+            <link rel="stylesheet" href="vendor/helix-ui.min.css" />
 
             <!-- Step 3.3 -->
-            <script src="assets/webcomponents-loader.js"></script>
+            <script src="vendor/webcomponents-loader.js"></script>
             <!-- additional <script> may appear here -->
             <!--/Step 3.3 -->
           </head>
@@ -273,14 +273,14 @@ title: Getting Started with HelixUI
 
             <!-- Step 3.4 -->
             <!-- Legacy Browsers (ES5 UMD Module) -->
-            <script nomodule src="assets/helix-ui.min.js"></script>
+            <script nomodule src="vendor/helix-ui.min.js"></script>
             <script nomodule>
               HelixUI.initialize();
             </script>
 
             <!-- Modern Browsers (ES6 ES Module) -->
             <script type="module">
-              import HelixUI from '/assets/helix-ui.module.min.js';
+              import HelixUI from '/vendor/helix-ui.module.min.js';
 
               HelixUI.initialize();
             </script>
