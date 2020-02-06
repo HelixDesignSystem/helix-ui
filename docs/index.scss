@@ -20,7 +20,8 @@ $demo-padding-color: $magenta-100;
 @import "./example";
 @import "./toc";
 
-// Component-specific Doc Styles
+// DOC STYLES
+@import "./guides/index";
 @import "./components/index";
 
 // Spec Styles for component test pages

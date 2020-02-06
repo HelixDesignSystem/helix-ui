@@ -20,7 +20,7 @@
   {
     name: 'Element.attachShadow()',
     mdn: 'API/Element/attachShadow',
-    missing: ['edge', 'ie'],
+    missing: ['ie'],
     polyfill: 'webcomponentsjs',
   },
   {
@@ -32,7 +32,7 @@
   {
     name: 'Element.shadowRoot',
     mdn: 'API/Element/shadowRoot',
-    missing: ['edge', 'ie'],
+    missing: ['ie'],
     polyfill: 'webcomponentsjs',
   },
   {
@@ -50,13 +50,13 @@
   {
     name: 'Node.isConnected',
     mdn: 'API/Node/isConnected',
-    missing: ['edge', 'ie'],
+    missing: ['ie'],
     polyfill: 'webcomponentsjs',
   },
   {
     name: 'Node.getRootNode()',
     mdn: 'API/Node/getRootNode',
-    missing: ['edge', 'ie'],
+    missing: ['ie'],
     polyfill: 'webcomponentsjs',
   },
   {
@@ -74,7 +74,7 @@
   {
     name: 'Window.customElements',
     mdn: 'API/Window/customElements',
-    missing: ['edge', 'ie'],
+    missing: ['ie'],
     polyfill: 'webcomponentsjs',
   },
 ]

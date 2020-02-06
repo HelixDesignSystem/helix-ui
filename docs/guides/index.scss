@@ -1,0 +1,12 @@
+.guide-content {
+  // polyfills compatibility table
+  hx-icon {
+    &.native-support {
+      color: $blue-500;
+    }
+
+    &.polyfill-needed {
+      color: $red-900;
+    }
+  }
+}
