@@ -32,6 +32,18 @@ const {
 
 const lintStylesGlob = `${CONFIG.sourceDir}/**/*.{scss,css}`;
 
+function _regenDocs () {
+    bundleStyles();
+    generateAll();
+}
+
+function _regenSrc () {
+    bundleBrowserScripts();
+
+    // always regenerate docs when source files change
+    _regenDocs();
+}
+
 browserSync.init({
     logLevel: 'debug',
     notify: false,
@@ -54,52 +66,22 @@ browserSync.init({
             match: [
                 `${CONFIG.docsDir}/*`,
                 `${CONFIG.docsDir}/**/*`,
-                // Light DOM CSS changes
-                // LESS sources
-                `${CONFIG.sourceDir}/*.less`,
-                `${CONFIG.sourceDir}/less/**/*.less`,
-                // SCSS sources
-                `${CONFIG.sourceDir}/*.scss`,
-                `${CONFIG.sourceDir}/scss/**/*.scss`,
                 // Ignore raw API data files
                 `!${CONFIG.docsDir}/api/*`,
                 `!${CONFIG.docsDir}/api/**/*`,
             ],
-            fn: _.debounce(function () {
-                bundleStyles();
-                generateAll();
-            }, 1500),
+            fn: _.debounce(_regenDocs, 1500),
         },
 
         {
             match: [
-                // ANY JavaScript file change should trigger a recompile
-                //
-                // example:
-                //  - src/index.js
-                //  - src/_bundle.*.js
-                //  - src/elements/index.js
-                `${CONFIG.sourceDir}/**/*.js`,
-
-                // ANY custom element source file should trigger a recompile,
-                // because they all contribute to JavaScript assets.
-                //
-                // example:
-                //  - src/elements/_base.less
-                //  - src/elements/hx-icon/_shadow.html
-                //  - src/elements/hx-accordion-panel/_shadow.scss
-                `${CONFIG.sourceDir}/elements/**/*`,
-
-                // ANY icon change should trigger a recompile,
-                // because they all contribute to JavaScript assets.
-                `${CONFIG.sourceDir}/images/icons/*`,
+                // Changes to any source file can modify compiled JS output
+                `${CONFIG.sourceDir}/**/*`,
 
                 // ignore changes to test files
                 `!${CONFIG.sourceDir}/**/*.spec.js`,
             ],
-            fn: _.debounce(() => {
-                bundleBrowserScripts();
-            }, 1500),
+            fn: _.debounce(_regenSrc, 1500),
         },
 
         // Generate API docs when src files change
