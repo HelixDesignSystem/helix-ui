@@ -41,7 +41,7 @@
 }
 
 #hxClose {
-  @include button-reset;
+  @include hxButton--reset;
 
   color: var(--hxClose-color, $gray-700);
   height: 1rem;

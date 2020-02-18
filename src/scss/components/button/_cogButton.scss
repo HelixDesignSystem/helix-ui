@@ -1,0 +1,30 @@
+.hxBtn.hxCog {
+  border: none;
+  padding: 0.25rem;
+
+  hx-icon {
+    color: $gray-900;
+    height: 1rem;
+    width: 1rem;
+  }
+
+  &:active,
+  &:hover {
+    background-color: transparent;
+
+    hx-icon {
+      color: $gray-700;
+    }
+  }
+
+  &:focus {
+    box-shadow: 0 0 4px 0 rgba($cyan-500, 0.5);
+    outline: none;
+  }
+
+  &[disabled] {
+    hx-icon {
+      color: $gray-500;
+    }
+  }
+}

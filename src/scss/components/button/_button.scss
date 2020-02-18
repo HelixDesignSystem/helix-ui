@@ -1,0 +1,23 @@
+.hxBtn,
+a[href].hxBtn {
+  @include hxButton--reset;
+  @include hxButton;
+
+  // ----- SIZE VARIANTS -----
+  &.hxSm {
+    @include hxButton-size(small);
+  }
+
+  &.hxLg {
+    @include hxButton-size(large);
+  }
+
+  // ----- WEIGHT VARIANTS -----
+  &.hxPrimary {
+    @include hxButton-weight(primary);
+  }
+
+  &.hxTertiary {
+    @include hxButton-weight(tertiary);
+  }
+}

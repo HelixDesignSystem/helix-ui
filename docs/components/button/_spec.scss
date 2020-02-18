@@ -1,0 +1,46 @@
+@import "components/button/config";
+
+.button-spec {
+  .hxBtn {
+    &[class*="mock"] {
+      pointer-events: none;
+    }
+
+    // SECONDARY
+    &.mock-hover {
+      @include hxButton-hover--secondary;
+    }
+    &.mock-active {
+      @include hxButton-active--secondary;
+    }
+    &.mock-focus {
+      @include hxButton-focus--secondary;
+    }
+
+    // PRIMARY
+    &.hxPrimary {
+      &.mock-hover {
+        @include hxButton-hover--primary;
+      }
+      &.mock-active {
+        @include hxButton-active--primary;
+      }
+      &.mock-focus {
+        @include hxButton-focus--primary;
+      }
+    }
+
+    // TERTIARY
+    &.hxTertiary {
+      &.mock-hover {
+        @include hxButton-hover--tertiary;
+      }
+      &.mock-active {
+        @include hxButton-active--tertiary;
+      }
+      &.mock-focus {
+        @include hxButton-focus--tertiary;
+      }
+    }
+  }
+}

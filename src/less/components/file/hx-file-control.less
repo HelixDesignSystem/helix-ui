@@ -30,21 +30,21 @@ hx-file-control > input[type="file"]:focus {
 
 hx-file-control > input[type="file"]:active {
   ~ label > hx-file-input {
-    // TODO refactor button mixins
+    // TODO: use hxButton-active--secondary when migrating to SCSS
     &.hxBtn {
       background-color: @cyan-700;
       border-color: transparent;
       color: @gray-0;
     }
 
-    // TODO refactor button mixins
+    // TODO: use hxButton-active--primary when migrating to SCSS
     &.hxBtn.hxPrimary {
       background-color: @cyan-700;
       border-color: transparent;
       color: @gray-0;
     }
 
-    // TODO refactor button mixins
+    // TODO: use hxButton-active--tertiary when migrating to SCSS
     &.hxBtn.hxTertiary {
       background-color: transparent;
       border-color: transparent;
@@ -61,21 +61,21 @@ hx-file-control > input[type="file"]:disabled {
     > hx-file-input {
       cursor: not-allowed;
 
-      // TODO refactor button mixins
+      // TODO: use hxButton-disabled--secondary when migrating to SCSS
       &.hxBtn {
         background-color: transparent;
         border-color: @gray-400;
         color: @gray-400;
       }
 
-      // TODO refactor button mixins
+      // TODO: use hxButton-disabled--primary when migrating to SCSS
       &.hxBtn.hxPrimary {
         background-color: @gray-400;
         border-color: transparent;
         color: @gray-700;
       }
 
-      // TODO refactor button mixins
+      // TODO: use hxButton-disabled--tertiary when migrating to SCSS
       &.hxBtn.hxTertiary {
         background-color: transparent;
         border-color: transparent;

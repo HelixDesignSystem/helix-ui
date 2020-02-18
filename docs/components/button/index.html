@@ -18,6 +18,7 @@ also:
 {% endblock %}
 
 {% block content %}
+  {# SINGLE BUTTON #}
   <section>
     <header>
       <h2 id="basic-button">Basic Button</h2>
@@ -43,21 +44,21 @@ also:
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend class="beta-hxFieldName">Variant</legend>
+            <legend class="beta-hxFieldName">Weight</legend>
             <hx-radio-set>
-              <hx-radio-control v-for="(_variant, idx) in variants">
+              <hx-radio-control v-for="(_weight, idx) in weights">
                 <input
-                  :id="'radBasicVariant' + idx"
-                  :value="_variant"
-                  name="variant"
+                  :id="'radBasicWeight' + idx"
+                  :value="_weight"
+                  name="weight"
                   type="radio"
-                  v-model="variant"
+                  v-model="weight"
                 />
-                <label :for="'radBasicVariant' + idx">
+                <label :for="'radBasicWeight' + idx">
                   <hx-radio></hx-radio>
-                  {% raw %}{{_variant.label}}{% endraw %}
+                  {% raw %}{{_weight.label}}{% endraw %}
                 </label>
-                <p v-if="_variant.default">(default)</p>
+                <p v-if="_weight.default">(default)</p>
               </hx-radio-control>
             </hx-radio-set>
           </fieldset>
@@ -135,40 +136,36 @@ also:
     </footer>
   </section>
 
+  {# BUTTON BAR #}
   <section>
     <header>
-      <h2 id="button-group">Button Group</h2>
+      <h2 id="button-bar">Button Bar</h2>
       <p>
-        A button group is built by placing several buttons within a
-        <code>&lt;div&gt;</code> element having the <code>.hxBtnGroup</code>
+        A button bar is built by placing several buttons within a
+        <code>&lt;div&gt;</code> element having the <code>.hxButtonBar</code>
         CSS class.
       </p>
     </header>
 
-    <p>
-      Button variant classes are added to the wrapper instead of the individual
-      buttons in order to apply the same style to all buttons within the group.
-    </p>
-
-    <div class="example" id="vue-buttonGroupDemo" v-cloak>
+    <div class="example" id="vue-buttonBarDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend class="beta-hxFieldName">Variant</legend>
+            <legend class="beta-hxFieldName">Weight</legend>
             <hx-radio-set>
-              <hx-radio-control v-for="(_variant, idx) in variants">
+              <hx-radio-control v-for="(_weight, idx) in weights">
                 <input
-                  :id="'radGroupVariant' + idx"
-                  :value="_variant"
-                  name="variant"
+                  :id="'radBarWeight' + idx"
+                  :value="_weight"
+                  name="weight"
                   type="radio"
-                  v-model="variant"
+                  v-model="weight"
                 />
-                <label :for="'radGroupVariant' + idx">
+                <label :for="'radBarWeight' + idx">
                   <hx-radio></hx-radio>
-                  {% raw %}{{_variant.label}}{% endraw %}
+                  {% raw %}{{_weight.label}}{% endraw %}
                 </label>
-                <p v-if="_variant.default">(default)</p>
+                <p v-if="_weight.default">(default)</p>
               </hx-radio-control>
             </hx-radio-set>
           </fieldset>
@@ -178,13 +175,13 @@ also:
             <hx-radio-set>
               <hx-radio-control v-for="(_size, idx) in sizes">
                 <input
-                  :id="'radGroupSize' + idx"
+                  :id="'radBarSize' + idx"
                   :value="_size"
                   name="size"
                   type="radio"
                   v-model="size"
                 />
-                <label :for="'radGroupSize' + idx">
+                <label :for="'radBarSize' + idx">
                   <hx-radio></hx-radio>
                   {% raw %}{{_size.label}}{% endraw %}
                 </label>
@@ -214,6 +211,54 @@ also:
               <hx-icon type="angle-down"></hx-icon>
             </button>
           </div>{% endraw %}
+        {% endcode %}
+      </footer>
+    </div>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      Size and Weight classes are applied to the <em>entire</em> bar, not to individual buttons.
+    </p>
+  </section>
+
+  {# BUTTON SET #}
+  <section>
+    <header>
+      <h2 id="button-set">Button Set</h2>
+      {# TODO: add section description #}
+    </header>
+
+    <div class="example">
+      <div>
+        <div class="hxButtonSet">
+          <button class="hxBtn hxPrimary">
+            Primary Button
+          </button>
+
+          <button class="hxBtn">
+            Secondary Button
+          </button>
+
+          <button class="hxBtn hxTertiary">
+            Tertiary Button
+          </button>
+        </div>
+      </div>
+
+      <footer>
+        {% code 'html' %}
+        <div class="hxButtonSet">
+          <button class="hxBtn hxPrimary">
+            Primary Button
+          </button>
+
+          <button class="hxBtn">
+            Secondary Button
+          </button>
+
+          <button class="hxBtn hxTertiary">
+            Tertiary Button
+          </button>
+        </div>
         {% endcode %}
       </footer>
     </div>

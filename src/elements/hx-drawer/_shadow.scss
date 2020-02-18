@@ -6,7 +6,7 @@
 
 // define Shadow DOM styles
 #hxClose {
-  @include button-reset;
+  @include hxButton--reset;
 
   color: var(--hxClose-color, $gray-700);
   font-size: 1rem;

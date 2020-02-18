@@ -10,7 +10,7 @@
 :host {
   // reset buttons
   button {
-    @include button-reset;
+    @include hxButton--reset;
   }
 
   #hxFileTile {
@@ -20,11 +20,8 @@
     width: 100%;
   }
 
-  // TODO: add hooks for overriding retry button colors?
   #hxRetry {
-    @include button-common;
-    @include button-small;
-    @include button-tertiary;
+    @include hxButton(tertiary, small);
 
     hx-icon {
       margin-left: 0.25rem !important;

@@ -1,0 +1,17 @@
+@import 'components/button/config';
+
+.file-input-spec {
+  hx-file-control {
+    hx-file-input.hxBtn.mock-hover {
+      @include hxButton-hover--secondary;
+
+      &.hxPrimary {
+        @include hxButton-hover--primary;
+      }
+
+      &.hxTertiary {
+        @include hxButton-hover--tertiary;
+      }
+    }
+  }
+}
