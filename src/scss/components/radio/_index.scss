@@ -1,6 +1,4 @@
-@import  "vars";
-@import  "../form/mixins/input";
-@import  "../form/mixins/helpText";
+@import "./config";
 
 // BASE STYLES
 hx-radio {
@@ -106,29 +104,18 @@ hx-radio-control {
   }
 
   > input[type="radio"] {
-    color: $gray-500;
-
-    &::-ms-check {
-      background-color: $gray-0;
-      border: 1px solid currentColor;
-      color: inherit;
-    }
+    @include hxRadioControl;
 
     &:focus {
-      box-shadow: $focus-glow;
+      @include hxRadioControl($pseudo-state: focus);
 
       ~ label > hx-radio {
-        box-shadow: $focus-glow;
+        @include hxRadioFacade($pseudo-state: focus);
       }
     }
 
     &:hover {
-      color: $cyan-500;
-
-      &::-ms-check {
-        background-color: $cyan-50;
-        color: $cyan-500;
-      }
+      @include hxRadioControl($pseudo-state: hover);
     }
 
     &:checked {
@@ -154,9 +141,7 @@ hx-radio-control {
     }
 
     &:valid ~ label > hx-radio:hover {
-      background-color: $cyan-50;
-      border: 1px solid currentColor;
-      color: $cyan-500;
+      @include hxRadioFacade($pseudo-state: hover);
     }
   }
 }
@@ -164,62 +149,40 @@ hx-radio-control {
 // INVALID STATE
 hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid,
 hx-radio-set.hxInvalid input[type="radio"]:enabled {
-  color: $red-900;
-
-  &::-ms-check {
-    border-width: 2px;
-  }
+  @include hxRadioControl(invalid);
 
   ~ label > hx-radio {
-    border: 2px solid currentColor;
-    color: $red-900;
+    @include hxRadioFacade(invalid);
   }
 
   &:focus {
-    box-shadow: $focus-glow-invalid;
+    @include hxRadioControl(invalid, focus);
 
     ~ label > hx-radio {
-      box-shadow: $focus-glow-invalid;
+      @include hxRadioFacade(invalid, focus);
     }
   }
 
-  // native/ie11 styles
-  &:hover::-ms-check {
-    background-color: $red-100;
-    border: 2px solid currentColor;
-    color: $red-900;
+  &:hover {
+    @include hxRadioControl(invalid, hover);
   }
 
   // facade styles
   ~ label > hx-radio:hover {
-    background-color: $red-100;
-    border: 2px solid currentColor;
-    color: $red-900;
+    @include hxRadioFacade(invalid, hover);
   }
 }
 
 // DISABLED STATE
 hx-radio-control > input[type="radio"]:disabled {
-  color: $gray-500;
-  cursor: not-allowed;
-
-  // ie11 styles
-  &::-ms-check {
-    background-color: $gray-100;
-    border: 1px solid currentColor;
-    color: $gray-500;
-  }
+  @include hxRadioControl(disabled);
 
   &:focus {
-    box-shadow: $focus-glow-disabled;
+    @include hxRadioControl(disabled, focus);
   }
 
   &:hover {
-    &::-ms-check {
-      background-color: $gray-100;
-      border: 1px solid currentColor;
-      color: $gray-500;
-    }
+    @include hxRadioControl(disabled, hover);
   }
 
   // facade styles
@@ -227,15 +190,11 @@ hx-radio-control > input[type="radio"]:disabled {
     color: $gray-700;
 
     > hx-radio {
-      border: 1px solid currentColor;
-      color: $gray-500;
-      cursor: not-allowed;
+      @include hxRadioFacade(disabled);
 
       &,
       &:hover {
-        background-color: $gray-100;
-        border: 1px solid currentColor;
-        color: $gray-500;
+        @include hxRadioFacade(disabled, hover);
       }
     }
   }

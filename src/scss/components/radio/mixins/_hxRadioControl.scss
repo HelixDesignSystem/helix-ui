@@ -1,0 +1,82 @@
+// ===== Mixins for <hx-radio-control> states =====
+
+// ========== PRISTINE ==========
+@mixin __radioControl($pseudo-state: null) {
+  @if $pseudo-state == focus {
+    box-shadow: $focus-glow;
+  }
+  @else if $pseudo-state == hover {
+    color: $cyan-500;
+
+    &::-ms-check {
+      background-color: $cyan-50;
+      color: $cyan-500;
+    }
+  }
+  @else {
+    color: $gray-500;
+
+    &::-ms-check {
+      background-color: $gray-0;
+      border: 1px solid currentColor;
+      color: inherit;
+    }
+  }
+}
+
+// ========== INVALID ==========
+@mixin __radioControl--invalid($pseudo-state: null) {
+  @if $pseudo-state == focus {
+    box-shadow: $focus-glow-invalid;
+  }
+  @else if $pseudo-state == hover {
+    &::-ms-check {
+      background-color: $red-100;
+      border: 2px solid currentColor;
+      color: $red-900;
+    }
+  }
+  @else {
+    color: $red-900;
+
+    &::-ms-check {
+      border-width: 2px;
+    }
+  }
+}
+
+// ========== DISABLED ==========
+@mixin __radioControl--disabled($pseudo-state: null) {
+  @if $pseudo-state == focus {
+    box-shadow: $focus-glow-disabled;
+  }
+  @else if $pseudo-state == hover {
+    &::-ms-check {
+      background-color: $gray-100;
+      border: 1px solid currentColor;
+      color: $gray-500;
+    }
+  }
+  @else {
+    color: $gray-500;
+    cursor: not-allowed;
+
+    &::-ms-check {
+      background-color: $gray-100;
+      border: 1px solid currentColor;
+      color: $gray-500;
+    }
+  }
+}
+
+@mixin hxRadioControl($state: null, $pseudo-state: null) {
+  @if $state == invalid {
+    @include __radioControl--invalid($pseudo-state);
+  }
+  @else if $state == disabled {
+    @include __radioControl--disabled($pseudo-state);
+  }
+  @else {
+    @include __radioControl($pseudo-state);
+  }
+}
