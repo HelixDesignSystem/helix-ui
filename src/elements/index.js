@@ -10,6 +10,7 @@ export { HXDivElement } from './hx-div/index.js';
 export { HXDrawerElement } from './hx-drawer/index.js';
 export { HXDropFenceElement } from './hx-drop-fence/index.js';
 export { HXDropZoneElement } from './hx-drop-zone/index.js';
+export { HXEmailControl } from './hx-email-control/index.js';
 export { HXErrorElement } from './hx-error/index.js';
 export { HXFileControlElement } from './hx-file-control/index.js';
 export { HXFileIconElement } from './hx-file-icon/index.js';
