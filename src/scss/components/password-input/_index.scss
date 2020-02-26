@@ -1,0 +1,172 @@
+@import "components/form/config";
+@import "mixins";
+
+// ----- LAYOUT ----------
+
+///   auto*      1fr       auto*
+///  +----------+---------+----------+
+///  | label    | label   | label    | auto
+///  +----------+---------+----------+
+///  | [prefix] | control | [suffix] | auto
+///  +----------+---------+----------+
+///  | help     | help    | help     | auto
+///  +----------+---------+----------+
+///  | error    | error   | error    | auto
+///  +----------+---------+----------+
+///
+///  column will collapse if content not present
+
+hx-password-control {
+  $ctrl-columns: auto 1fr auto;
+  $ctrl-rows: auto auto auto auto;
+  $ctrl-row-align: center;
+
+  -ms-grid-columns: $ctrl-columns;
+  -ms-grid-rows: $ctrl-rows;
+  align-items: $ctrl-row-align;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas:
+    "label  label   label"
+    "prefix control suffix"
+    "help   help    help"
+    "error  error   error";
+  grid-template-columns: $ctrl-columns;
+  grid-template-rows: $ctrl-rows;
+
+  // blacklist
+  > * {
+    display: none;
+  }
+
+  // whitelist
+  > label,
+  > input[type="password"],
+  > .hxPrefix,
+  > .hxSuffix,
+  > p {
+    display: block;
+  }
+
+  > label {
+    $justify: start;
+
+    -ms-grid-column-align: $justify;
+    -ms-grid-column-span: 3;
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    grid-area: label;
+    justify-self: $justify;
+  }
+
+  > input[type="password"] {
+    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+    grid-area: control;
+    height: 2rem;
+    min-width: 8rem; // ~16 chars
+    padding: 0 0.75rem;
+  }
+
+  > .hxPrefix {
+    $justify: end;
+
+    -ms-grid-column-align: $justify;
+    -ms-grid-column: 1;
+    -ms-grid-row-align: $ctrl-row-align; // because IE
+    -ms-grid-row: 2;
+    grid-area: prefix;
+    justify-self: $justify;
+    margin-right: 0.25rem;
+  }
+
+  > .hxSuffix {
+    $justify: start;
+
+    -ms-grid-column-align: $justify;
+    -ms-grid-column: 3;
+    -ms-grid-row-align: $ctrl-row-align; // because IE
+    -ms-grid-row: 2;
+    grid-area: suffix;
+    justify-self: $justify;
+    margin-left: 0.25rem;
+  }
+
+  > p,
+  p.hxHelpText {
+    $justify: start;
+
+    -ms-grid-column-align: $justify;
+    -ms-grid-column-span: 3;
+    -ms-grid-column: 1;
+    -ms-grid-row: 3;
+    -ms-grid-row-align: $ctrl-row-align; // because IE
+    grid-area: help;
+    justify-self: $justify;
+  }
+
+  > p.hxErrorText {
+    $justify: start;
+
+    -ms-grid-column-align: $justify;
+    -ms-grid-column-span: 3;
+    -ms-grid-column: 1;
+    -ms-grid-row: 4;
+    -ms-grid-row-align: $ctrl-row-align; // because IE
+    grid-area: error;
+    justify-self: $justify;
+  }
+}
+
+// ----- PRISTINE ----------
+hx-password-control {
+  > label {
+    @include hxFieldName();
+  }
+
+  > input[type="password"] {
+    @include hxTextControl;
+
+    &:focus {
+      @include hxTextControl($focused: true);
+    }
+  }
+
+  > p,
+  p.hxHelpText {
+    @include hxHelpText();  // default styles
+  }
+
+  > p.hxErrorText {
+    color: $red-900;
+    font-size: 0.75rem;
+    margin-top: 0;
+    width: 100%; // for IE11
+  }
+}
+
+// ----- INVALID ----------
+
+//  1. Prevent IE from incorrectly matching input:disabled:invalid
+
+hx-password-control[hx-dirty] > input[type="password"]:enabled:invalid, // 1
+hx-password-control.hxInvalid > input[type="password"]:enabled {
+  @include hxTextControl(invalid);
+
+  &:focus {
+    @include hxTextControl(invalid, $focused: true);
+  }
+}
+
+// ----- DISABLED ----------
+hx-password-control > input[type="password"]:disabled {
+  @include hxTextControl(disabled);
+
+  ~ label {
+    @include hxFieldName(disabled);
+  }
+
+  &:focus {
+    @include hxTextControl(disabled, $focused: true);
+  }
+}

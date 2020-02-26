@@ -20,6 +20,7 @@ import './components/list/list-demo';
 import './components/loader/loader-demo';
 import './components/modal/modal-demo';
 import './components/panel/panel-demo';
+import './components/password/password-demo';
 import './components/pill/pill-demo';
 import './components/popover/popover-demo';
 import './components/radio/radio-basic-demo';

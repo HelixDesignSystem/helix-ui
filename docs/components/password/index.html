@@ -1,0 +1,140 @@
+---
+title: Password Input
+minver: 0.20.0
+also:
+  components/password/test.html: Testing - Password Input
+  elements/hx-password-control/index.html: <hx-password-control>
+---
+{% extends 'component.njk' %}
+
+{% block page_header %}
+  <p>
+    The {{page.title}} component provides markup to define
+    an input control when a user must enter or update the
+    password.
+  </p>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="basic-password-input">Basic Password Input</h2>
+      {# TODO: add section description #}
+    </header>
+
+    <div class="example" id="vue-passwordInputDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend class="beta-hxFieldName">Label Annotation</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkHasAsterisk"
+                type="checkbox"
+                v-model="hasAsterisk"
+              />
+              <label for="chkHasAsterisk">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Control Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkDisabled"
+                type="checkbox"
+                v-model="isDisabled"
+              />
+              <label for="chkDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+              <p>
+                (Invalid styling applied <i>after</i> user interaction.)
+              </p>
+            </hx-checkbox-control>
+          </fieldset>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Optional Text</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkHasHelpText"
+                type="checkbox"
+                v-model="helpTextToDisplay"
+              />
+              <label for="chkHasHelpText">
+                <hx-checkbox></hx-checkbox>
+                Help Text
+              </label>
+            </hx-checkbox-control>
+            <hx-checkbox-control>
+              <input
+                id="chkHasError"
+                type="checkbox"
+                v-model="errorTextToDisplay"
+              />
+              <label for="chkHasError">
+                <hx-checkbox></hx-checkbox>
+                Error Text
+              </label>
+            </hx-checkbox-control>
+
+            <hx-text-control>
+              <label> Help Text</label>
+              <input type="text" v-model="helpText" :disabled="!helpTextToDisplay">
+             </hx-text-control>
+
+             <hx-text-control>
+                <label> Error Text</label>
+              <input type="text" v-model="errorText" :disabled="!errorTextToDisplay">
+             </hx-text-control>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-password-control>
+          <input
+            id="pwdInputDemo"
+            type="password"
+            v-model = "Password"
+            :disabled="isDisabled"
+            :required="isRequired"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          />
+          <label
+            for="pwdInputDemo"
+            :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }"
+          >
+          {% raw %}{{label}}{% endraw %}
+          </label>
+          <p class="hxHelpText" :hidden="!helpTextToDisplay">
+            {% raw %}{{helpText}} {% endraw %}
+          </p>
+          <p class="hxErrorText" :hidden="!errorTextToDisplay">
+            <hx-error>
+              {% raw %}{{errorText}} {% endraw %}
+            </hx-error>
+          </p>
+        </hx-password-control>
+       </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+
+    <footer>
+      <p class="hxSubBody hxSubdued">
+        <hx-icon type="exclamation-triangle"></hx-icon>
+        The <code>&lt;input&gt;</code> element <i>must</i> have the
+        <code>type="password"</code> attribute, in order for CSS styles
+        to apply.
+      </p>
+    </footer>
+  </section>
+{% endblock %}
