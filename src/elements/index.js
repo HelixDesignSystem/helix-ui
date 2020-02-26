@@ -19,6 +19,7 @@ export { HXIconElement } from './hx-icon/index.js';
 export { HXMenuElement } from './hx-menu/index.js';
 export { HXMenuitemElement } from './hx-menuitem/index.js';
 export { HXModalElement } from './hx-modal/index.js';
+export { HXPasswordElement } from './hx-password-control/index.js';
 export { HXPillElement } from './hx-pill/index.js';
 export { HXPopoverElement } from './hx-popover/index.js';
 export { HXProgressElement } from './hx-progress/index.js';

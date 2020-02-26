@@ -1,0 +1,106 @@
+@import "components/form/config";
+@import "mixins";
+
+hx-password-control {
+  $ctrl-columns: auto 1fr auto;
+  $ctrl-rows: auto auto;
+  $ctrl-row-align: center;
+
+  -ms-grid-columns: $ctrl-columns;
+  -ms-grid-rows: $ctrl-rows;
+  align-items: $ctrl-row-align;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas:
+    "label  label   label"
+    "prefix control suffix";
+  grid-template-columns: $ctrl-columns;
+  grid-template-rows: $ctrl-rows;
+
+  // blacklist
+  > * {
+    display: none;
+  }
+
+  // whitelist
+  > label,
+  > input[type="password"],
+  > .hxPrefix,
+  > .hxSuffix {
+    display: block;
+  }
+
+  > label {
+    $justify: start;
+
+    -ms-grid-column-align: $justify;
+    -ms-grid-column-span: 3;
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    grid-area: label;
+    justify-self: $justify;
+  }
+
+  > input[type="password"] {
+    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+    grid-area: control;
+    height: 2rem;
+    min-width: 8rem; // ~16 chars
+    padding: 0 0.75rem;
+  }
+}
+
+// ----- PRISTINE ----------
+hx-password-control {
+  > label {
+    font-size: 14px;
+    line-height: 1.5;
+    color: $gray-800;
+  }
+
+  > input[type="password"] {
+    height: 32px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: $gray-900;
+    background-color: $gray-0;
+    border: 1px solid $gray-500;
+
+    &:focus {
+      @include hxTextControl($focused: true);
+    }
+  }
+}
+
+.hxPwdError {
+  font-size: 12px;
+  line-height: 1.5;
+  color: $gray-750;
+}
+
+// ----- INVALID ----------
+
+//  1. Prevent IE from incorrectly matching input:disabled:invalid
+
+hx-password-control[hx-dirty] > input[type="password"]:enabled:invalid, // 1
+hx-password-control.hxInvalid > input[type="password"]:enabled {
+  @include hxTextControl(invalid);
+
+  &:focus {
+    @include hxTextControl(invalid, $focused: true);
+  }
+}
+
+// ----- DISABLED ----------
+hx-password-control > input[type="password"]:disabled {
+  @include hxTextControl(disabled);
+
+  ~ label {
+    @include hxFieldName(disabled);
+  }
+
+  &:focus {
+    @include hxTextControl(disabled, $focused: true);
+  }
+}

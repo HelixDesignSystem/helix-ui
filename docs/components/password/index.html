@@ -1,0 +1,143 @@
+---
+title: Password
+minver: 0.19.0
+also:
+  components/password/test.html: Testing - Password
+  elements/hx-password-control/index.html: <hx-password-control>
+---
+{% extends 'component.njk' %}
+
+{% block page_header %}
+  <p>
+    Use {{page.title}} anytime a user must enter or update a password.
+  </p>
+  <p>
+    NOTE: This document is the BETA version of this input.
+  </p>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="basic-password-input">Password</h2>
+      {# TODO: add section description #}
+    </header>
+     <p>Build out the password entry interaction including:
+        Meeting or not meeting password requirements.  Consider a popover on focus that interactively displays met criteria.
+        Showing and hiding password text.
+    </p>
+
+    <div class="example" id="vue-passwordInputDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <hx-password-control>
+            <input
+              id="pwdLabel"
+              type="password"
+              v-model="label"
+              minlength="8"
+              placeholder="Please Enter Password"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              required
+            />
+            <label for="pwdLabel">
+              Label Text
+            </label>
+          </hx-password-control>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Label Annotation</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkHasAsterisk"
+                type="checkbox"
+                v-model="hasAsterisk"
+              />
+              <label for="chkHasAsterisk">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkHasOptional"
+                type="checkbox"
+                v-model="hasOptional"
+              />
+              <label for="chkHasOptional">
+                <hx-checkbox></hx-checkbox>
+                Optional
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Control Options</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkDisabled"
+                type="checkbox"
+                v-model="isDisabled"
+              />
+              <label for="chkDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
+
+            <hx-checkbox-control>
+              <input
+                id="chkRequired"
+                type="checkbox"
+                v-model="isRequired"
+              />
+              <label for="chkRequired">
+                <hx-checkbox></hx-checkbox>
+                Required
+              </label>
+              <p>
+                (Invalid styling applied <i>after</i> user interaction.)
+              </p>
+            </hx-checkbox-control>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-password-control>
+          <input
+            id="pwdInputDemo"
+            type="password"
+            :disabled="isDisabled"
+            :required="isRequired"
+            v-model="label"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          />
+          <label
+            for="pwdInputDemo"
+            :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }"
+          >
+            Password
+          </label>
+        </hx-password-control>
+        <p class="hxPwdError">
+          At least 8 characters with 1 uppercase, 1 lowercase, and 1 number
+      </p>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+
+    <footer>
+      <p class="hxSubBody hxSubdued">
+        <hx-icon type="exclamation-triangle"></hx-icon>
+        The <code>&lt;input&gt;</code> element <i>must</i> have the
+        <code>type="password"</code> attribute, in order for CSS styles
+        to apply.
+      </p>
+    </footer>
+  </section>
+{% endblock %}
