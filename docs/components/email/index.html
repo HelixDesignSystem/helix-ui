@@ -1,0 +1,101 @@
+---
+title: Email
+minver: 0.19.0
+also:
+  components/email/test.html: Testing - Email
+  elements/hx-email-control/index.html: <hx-email-control>
+---
+{% extends 'component.njk' %}
+
+{% block page_header %}
+<p>
+  The {{page.title}} component provides markup to define a
+  single-line text control.
+</p>
+{% endblock %}
+
+{% block content %}
+<section>
+  <header>
+    <h2 id="basic-text-input">Basic Email Input</h2>
+    {# TODO: add section description #}
+  </header>
+
+  <div class="example" id="vue-emailInputDemo" v-cloak>
+    <header>
+      <form class="beta-hxForm">
+        <hx-email-control>
+          <input id="txtLabel" type="text" v-model="label" />
+          <label for="txtLabel">
+            Label Email
+          </label>
+        </hx-email-control>
+
+        <fieldset>
+          <legend class="beta-hxFieldName">Label Annotation</legend>
+          <hx-checkbox-control>
+            <input id="chkHasAsterisk" type="checkbox" v-model="hasAsterisk" />
+            <label for="chkHasAsterisk">
+              <hx-checkbox></hx-checkbox>
+              Required
+            </label>
+          </hx-checkbox-control>
+
+          <hx-checkbox-control>
+            <input id="chkHasOptional" type="checkbox" v-model="hasOptional" />
+            <label for="chkHasOptional">
+              <hx-checkbox></hx-checkbox>
+              Optional
+            </label>
+          </hx-checkbox-control>
+        </fieldset>
+
+        <fieldset>
+          <legend class="beta-hxFieldName">Control Options</legend>
+          <hx-checkbox-control>
+            <input id="chkDisabled" type="checkbox" v-model="isDisabled" />
+            <label for="chkDisabled">
+              <hx-checkbox></hx-checkbox>
+              Disabled
+            </label>
+          </hx-checkbox-control>
+
+          <hx-checkbox-control>
+            <input id="chkRequired" type="checkbox" v-model="isRequired" />
+            <label for="chkRequired">
+              <hx-checkbox></hx-checkbox>
+              Required
+            </label>
+            <p>
+              (Invalid styling applied <i>after</i> user interaction.)
+            </p>
+          </hx-checkbox-control>
+        </fieldset>
+      </form>
+    </header>
+
+    <div>
+      <hx-email-control>
+        <input id="txtInputDemo" type="email" :disabled="isDisabled" :required="isRequired" />
+        <label for="txtInputDemo" :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }">
+          {% raw %}{{label}}{% endraw %}
+        </label>
+      </hx-email-control>
+    </div>
+
+    <footer>
+      <pre><code v-text="snippet"></code></pre>
+    </footer>
+  </div>
+
+  <footer>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      The <code>&lt;input&gt;</code> element <i>must</i> have the
+      <code>type="email"</code> attribute, in order for CSS styles
+      to apply.
+    </p>
+  </footer>
+</section>
+
+{% endblock %}
