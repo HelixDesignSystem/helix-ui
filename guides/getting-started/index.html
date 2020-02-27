@@ -659,16 +659,16 @@ class="current">
 
     <figure>
 <pre><code class="bash"><span class="hljs-comment"># Web Components Polyfill Loader</span>
-cp node_modules/helix-ui/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js public/assets
+cp node_modules/helix-ui/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js public/vendor
 
 <span class="hljs-comment"># Web Components Polyfill Bundles (injected as needed by loader above)</span>
-cp -R node_modules/helix-ui/node_modules/@webcomponents/webcomponentsjs/bundles public/assets
+cp -R node_modules/helix-ui/node_modules/@webcomponents/webcomponentsjs/bundles public/vendor
 
 <span class="hljs-comment"># production-ready, browser-compatible HelixUI JavaScript bundles</span>
-cp node_modules/helix-ui/dist/js/*.min.js public/assets
+cp node_modules/helix-ui/dist/js/*.min.js public/vendor
 
 <span class="hljs-comment"># production-ready HelixUI Stylesheets</span>
-cp node_modules/helix-ui/dist/css/*.min.css public/assets
+cp node_modules/helix-ui/dist/css/*.min.css public/vendor
 </code></pre>    </figure>
 
     <p>
@@ -678,7 +678,7 @@ cp node_modules/helix-ui/dist/css/*.min.css public/assets
 
     <figure>
 <pre><code class="bash">public/
-├ assets/
+├ vendor/
 │ ├ bundles/
 │ │ └ ...
 │ ├ helix-ui.min.css
@@ -739,7 +739,7 @@ cp node_modules/helix-ui/dist/css/*.min.css public/assets
       </p>
 
       <figure>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"assets/helix-ui.min.css"</span> /&gt;</span>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"vendor/helix-ui.min.css"</span> /&gt;</span>
 </code></pre>      </figure>
 
       <p>
@@ -762,7 +762,7 @@ cp node_modules/helix-ui/dist/css/*.min.css public/assets
       </p>
 
       <figure>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"assets/webcomponents-loader.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"vendor/webcomponents-loader.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>      </figure>
 
       <p>
@@ -770,7 +770,7 @@ cp node_modules/helix-ui/dist/css/*.min.css public/assets
         detection to identify the minimum polyfill bundle required by the
         current browser.  If the browser requires polyfills, an additional
         <code>&lt;script&gt;</code> element (loading a polyfill bundle from
-        <code>assets/bundles/</code>) will be injected after the loader.
+        <code>vendor/bundles/</code>) will be injected after the loader.
       </p>
     </section>
 
@@ -788,14 +788,14 @@ cp node_modules/helix-ui/dist/css/*.min.css public/assets
 
       <figure>
 <pre><code class="html"><span class="hljs-comment">&lt;!-- Legacy Browsers (ES5 UMD Module) --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">nomodule</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"assets/helix-ui.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">nomodule</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"vendor/helix-ui.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">nomodule</span>&gt;</span>
   HelixUI.initialize();
 <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-comment">&lt;!-- Modern Browsers (ES6 ES Module) --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="javascript">
-  <span class="hljs-keyword">import</span> HelixUI <span class="hljs-keyword">from</span> <span class="hljs-string">'/assets/helix-ui.module.min.js'</span>;
+  <span class="hljs-keyword">import</span> HelixUI <span class="hljs-keyword">from</span> <span class="hljs-string">'/vendor/helix-ui.module.min.js'</span>;
 
   HelixUI.initialize();
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
@@ -831,10 +831,10 @@ cp node_modules/helix-ui/dist/css/*.min.css public/assets
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- Step 3.2 --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"assets/helix-ui.min.css"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"vendor/helix-ui.min.css"</span> /&gt;</span>
 
     <span class="hljs-comment">&lt;!-- Step 3.3 --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"assets/webcomponents-loader.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"vendor/webcomponents-loader.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- additional &lt;script&gt; may appear here --&gt;</span>
     <span class="hljs-comment">&lt;!--/Step 3.3 --&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
@@ -848,14 +848,14 @@ cp node_modules/helix-ui/dist/css/*.min.css public/assets
 
     <span class="hljs-comment">&lt;!-- Step 3.4 --&gt;</span>
     <span class="hljs-comment">&lt;!-- Legacy Browsers (ES5 UMD Module) --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">nomodule</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"assets/helix-ui.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">nomodule</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"vendor/helix-ui.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">nomodule</span>&gt;</span>
       HelixUI.initialize();
     <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
     <span class="hljs-comment">&lt;!-- Modern Browsers (ES6 ES Module) --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="javascript">
-      <span class="hljs-keyword">import</span> HelixUI <span class="hljs-keyword">from</span> <span class="hljs-string">'/assets/helix-ui.module.min.js'</span>;
+      <span class="hljs-keyword">import</span> HelixUI <span class="hljs-keyword">from</span> <span class="hljs-string">'/vendor/helix-ui.module.min.js'</span>;
 
       HelixUI.initialize();
     </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
@@ -921,7 +921,7 @@ cp node_modules/helix-ui/dist/css/*.min.css public/assets
 
   <footer id="foot" class="hxRow hxGutterless">
     <div class="hxCol">
-      &copy; 2017-2019 Rackspace US, Inc.
+      &copy; 2017-2020 Rackspace US, Inc.
       <nav>
         <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
         <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
@@ -931,12 +931,12 @@ cp node_modules/helix-ui/dist/css/*.min.css public/assets
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2020-01-30
+          2020-02-05
         </small>
 
       <small>
-        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.18.1" target="_blank">
-          v0.18.1
+        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.19.0" target="_blank">
+          v0.19.0
         </a>)
       </small>
     </div>

@@ -1,5 +1,5 @@
 /*! @license @nocompile
-Copyright 2017-2019 Rackspace US, Inc.
+Copyright 2017-2020 Rackspace US, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -5288,7 +5288,7 @@ class HXTextareaControlElement extends HXFormControlElement {
 
 var shadowMarkup$i = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-var shadowStyles$i = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\nbutton { background-color: transparent; border: 0; color: inherit; cursor: pointer; display: inline-block; font: inherit; font-weight: 500; line-height: 1; margin: 0; padding: 0; }\n\n#hxToast { padding: 0.75rem; display: flex; }\n\n#hxIconWrapper { align-items: center; color: var(--hxIcon-color, inherit); display: flex; margin: 0 0.75rem 0 0.5rem; }\n\n#hxIconWrapper hx-icon { font-size: 2rem; }\n\n#hxContent { flex-grow: 1; margin-right: 1.5rem; text-align: right; word-wrap: break-word; }\n\n#hxContent div { font-size: 0.875rem; text-align: left; }\n\n#hxCta { border-radius: 2px; display: inline-flex; justify-content: center; font-size: 0.875rem; padding: 0.5rem 0.75rem; background-color: transparent; border: 0; color: #0c7c84; padding-left: 0; padding-right: 0; text-transform: uppercase; }\n\n#hxCta:hover { background-color: transparent; border-color: transparent; color: #16b9d4; }\n\n#hxCta:active { background-color: transparent; border-color: transparent; color: #0e94a6; }\n\n#hxCta:focus { box-shadow: 0 0 4px rgba(14, 148, 166, 0.5); }\n\n#hxCta[disabled] { background-color: transparent; border-color: transparent; color: #d8d8d8; }\n\n#hxCta:empty { display: none; }\n\n#hxDismiss { color: var(--hxDismiss-color, #757575); flex-shrink: 0; font-size: 0.75rem; height: 2.25rem; padding: 0.75rem; position: absolute; right: 0; top: 0; width: 2.25rem; }\n\n:host([type=\"info\"]) #hxIconWrapper { color: var(--hxIcon-color, #3b44a9); }\n\n:host([type=\"error\"]) #hxIconWrapper { color: var(--hxIcon-color, #d32f2f); }\n\n:host([type=\"success\"]) #hxIconWrapper { color: var(--hxIcon-color, #4caf51); }\n";
+var shadowStyles$i = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\nbutton { background-color: transparent; border: 0; color: inherit; cursor: pointer; display: inline-block; font: inherit; font-weight: 500; line-height: 1; margin: 0; padding: 0; }\n\n#hxToast { padding: 0.75rem; display: flex; }\n\n#hxIconWrapper { align-items: center; color: var(--hxIcon-color, inherit); display: flex; margin: 0 0.75rem 0 0.5rem; }\n\n#hxIconWrapper hx-icon { font-size: 2rem; }\n\n#hxContent { flex-grow: 1; margin-right: 1.5rem; text-align: right; word-wrap: break-word; }\n\n#hxContent div { font-size: 0.875rem; text-align: left; }\n\n#hxCta { border-radius: 2px; display: inline-flex; justify-content: center; font-size: 0.875rem; padding: 0.5rem 0.75rem; background-color: transparent; border: 0; color: #0c7c84; padding-left: 0; padding-right: 0; text-transform: uppercase; }\n\n#hxCta > * + * { margin-left: 0.5rem; }\n\n#hxCta:focus { outline: none; }\n\n#hxCta[disabled] { cursor: not-allowed; }\n\n#hxCta[disabled]:focus { box-shadow: none; }\n\n#hxCta:hover { background-color: transparent; border-color: transparent; color: #16b9d4; }\n\n#hxCta:active { background-color: transparent; border-color: transparent; color: #0e94a6; }\n\n#hxCta:focus { box-shadow: 0 0 4px rgba(14, 148, 166, 0.5); }\n\n#hxCta[disabled] { background-color: transparent; border-color: transparent; color: #d8d8d8; }\n\n#hxCta:empty { display: none; }\n\n#hxDismiss { color: var(--hxDismiss-color, #757575); flex-shrink: 0; font-size: 0.75rem; height: 2.25rem; padding: 0.75rem; position: absolute; right: 0; top: 0; width: 2.25rem; }\n\n:host([type=\"info\"]) #hxIconWrapper { color: var(--hxIcon-color, #3b44a9); }\n\n:host([type=\"error\"]) #hxIconWrapper { color: var(--hxIcon-color, #d32f2f); }\n\n:host([type=\"success\"]) #hxIconWrapper { color: var(--hxIcon-color, #4caf51); }\n";
 
 const ICONS$1 = {
     'error': 'exclamation-circle',
@@ -5796,7 +5796,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.18.1";
+var version = "0.19.0";
 
 /** @module HelixUI */
 

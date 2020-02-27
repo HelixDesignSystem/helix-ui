@@ -607,6 +607,7 @@ class="current">
           </header>
 
           <div>
+  
   <section>
     <header>
       <h2 id="basic-button">Basic Button</h2>
@@ -632,21 +633,21 @@ class="current">
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend class="beta-hxFieldName">Variant</legend>
+            <legend class="beta-hxFieldName">Weight</legend>
             <hx-radio-set>
-              <hx-radio-control v-for="(_variant, idx) in variants">
+              <hx-radio-control v-for="(_weight, idx) in weights">
                 <input
-                  :id="'radBasicVariant' + idx"
-                  :value="_variant"
-                  name="variant"
+                  :id="'radBasicWeight' + idx"
+                  :value="_weight"
+                  name="weight"
                   type="radio"
-                  v-model="variant"
+                  v-model="weight"
                 />
-                <label :for="'radBasicVariant' + idx">
+                <label :for="'radBasicWeight' + idx">
                   <hx-radio></hx-radio>
-{{_variant.label}}
+{{_weight.label}}
                 </label>
-                <p v-if="_variant.default">(default)</p>
+                <p v-if="_weight.default">(default)</p>
               </hx-radio-control>
             </hx-radio-set>
           </fieldset>
@@ -722,40 +723,36 @@ class="current">
     </footer>
   </section>
 
+  
   <section>
     <header>
-      <h2 id="button-group">Button Group</h2>
+      <h2 id="button-bar">Button Bar</h2>
       <p>
-        A button group is built by placing several buttons within a
-        <code>&lt;div&gt;</code> element having the <code>.hxBtnGroup</code>
+        A button bar is built by placing several buttons within a
+        <code>&lt;div&gt;</code> element having the <code>.hxButtonBar</code>
         CSS class.
       </p>
     </header>
 
-    <p>
-      Button variant classes are added to the wrapper instead of the individual
-      buttons in order to apply the same style to all buttons within the group.
-    </p>
-
-    <div class="example" id="vue-buttonGroupDemo" v-cloak>
+    <div class="example" id="vue-buttonBarDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
           <fieldset>
-            <legend class="beta-hxFieldName">Variant</legend>
+            <legend class="beta-hxFieldName">Weight</legend>
             <hx-radio-set>
-              <hx-radio-control v-for="(_variant, idx) in variants">
+              <hx-radio-control v-for="(_weight, idx) in weights">
                 <input
-                  :id="'radGroupVariant' + idx"
-                  :value="_variant"
-                  name="variant"
+                  :id="'radBarWeight' + idx"
+                  :value="_weight"
+                  name="weight"
                   type="radio"
-                  v-model="variant"
+                  v-model="weight"
                 />
-                <label :for="'radGroupVariant' + idx">
+                <label :for="'radBarWeight' + idx">
                   <hx-radio></hx-radio>
-{{_variant.label}}
+{{_weight.label}}
                 </label>
-                <p v-if="_variant.default">(default)</p>
+                <p v-if="_weight.default">(default)</p>
               </hx-radio-control>
             </hx-radio-set>
           </fieldset>
@@ -765,13 +762,13 @@ class="current">
             <hx-radio-set>
               <hx-radio-control v-for="(_size, idx) in sizes">
                 <input
-                  :id="'radGroupSize' + idx"
+                  :id="'radBarSize' + idx"
                   :value="_size"
                   name="size"
                   type="radio"
                   v-model="size"
                 />
-                <label :for="'radGroupSize' + idx">
+                <label :for="'radBarSize' + idx">
                   <hx-radio></hx-radio>
 {{_size.label}}
                 </label>
@@ -802,6 +799,52 @@ class="current">
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>      </footer>
     </div>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      Size and Weight classes are applied to the <em>entire</em> bar, not to individual buttons.
+    </p>
+  </section>
+
+  
+  <section>
+    <header>
+      <h2 id="button-set">Button Set</h2>
+      
+    </header>
+
+    <div class="example">
+      <div>
+        <div class="hxButtonSet">
+          <button class="hxBtn hxPrimary">
+            Primary Button
+          </button>
+
+          <button class="hxBtn">
+            Secondary Button
+          </button>
+
+          <button class="hxBtn hxTertiary">
+            Tertiary Button
+          </button>
+        </div>
+      </div>
+
+      <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxButtonSet"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxPrimary"</span>&gt;</span>
+    Primary Button
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>
+    Secondary Button
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxTertiary"</span>&gt;</span>
+    Tertiary Button
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>      </footer>
+    </div>
   </section>
 
 <section>
@@ -823,7 +866,10 @@ class="current">
             <a href="#basic-button">Basic Button</a>
         
 
-            <a href="#button-group">Button Group</a>
+            <a href="#button-bar">Button Bar</a>
+        
+
+            <a href="#button-set">Button Set</a>
         
                     
                     <a href="#see-also">See Also</a>
@@ -837,7 +883,7 @@ class="current">
 
   <footer id="foot" class="hxRow hxGutterless">
     <div class="hxCol">
-      &copy; 2017-2019 Rackspace US, Inc.
+      &copy; 2017-2020 Rackspace US, Inc.
       <nav>
         <a href="https://www.rackspace.com/information/legal/websiteterms">Website Terms</a>
         <a href="https://www.rackspace.com/information/legal/privacystatement">Privacy Policy</a>
@@ -847,12 +893,12 @@ class="current">
     <div class="hxCol hxRight">
         <small>
           Last Updated:
-          2020-01-30
+          2020-02-24
         </small>
 
       <small>
-        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.18.1" target="_blank">
-          v0.18.1
+        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.19.0" target="_blank">
+          v0.19.0
         </a>)
       </small>
     </div>
