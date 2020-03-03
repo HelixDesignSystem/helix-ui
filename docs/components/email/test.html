@@ -27,18 +27,16 @@ crumbs:
     <input
       type="email"
       id="{{idAttr | trim}}"
-      {% set regExp = r/^\w+([\.-]?\w+)+@\w+([\.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/ %}
       {% if isFocused %}class="mock-focus" {% endif %}
       {% if isDisabled %}disabled {% endif %}
+      {% set regExp = r/^\w+([\.-]?\w+)+@\w+([\.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/ %}
       {% if isRequired %}
         required
         {% if isValid %}value="abc@email.com"{% endif %}
       {% elif not isValid %}
         data-mock-invalid
       {% endif %}
-      
-      
-    />
+      />
     <label for="{{idAttr | trim}}">
       {% if isPristine %}
         Pristine,

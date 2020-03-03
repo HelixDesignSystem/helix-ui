@@ -26,9 +26,6 @@ also:
       <form class="beta-hxForm">
         <hx-email-control>
           <input id="txtLabel" type="text" v-model="label" />
-          <label for="txtLabel">
-            Label Email
-          </label>
         </hx-email-control>
 
         <fieldset>
@@ -76,8 +73,8 @@ also:
 
     <div>
       <hx-email-control>
-        <input id="txtInputDemo" type="email" :disabled="isDisabled" :required="isRequired" />
-        <label for="txtInputDemo" :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }">
+        <input id="emailInputDemo" type="email" placeholder="Please Enter Email" :disabled="isDisabled" :required="isRequired" />
+        <label for="emailInputDemo" :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }">
           {% raw %}{{label}}{% endraw %}
         </label>
       </hx-email-control>
