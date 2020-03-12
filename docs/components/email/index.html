@@ -45,6 +45,20 @@ also:
               Optional
             </label>
           </hx-checkbox-control>
+          <hx-checkbox-control>
+              <input id="chkHasHelpText" type="checkbox" v-model="hasHelpText" />
+              <label for="chkHasHelpText">
+                <hx-checkbox></hx-checkbox>
+                HelpText
+              </label>
+            </hx-checkbox-control>
+            <hx-checkbox-control>
+                <input id="chkHasErrorText" type="checkbox" v-model="hasErrorText" />
+                <label for="chkHasErrorText">
+                  <hx-checkbox></hx-checkbox>
+                  ErrorText
+                </label>
+              </hx-checkbox-control>
         </fieldset>
 
         <fieldset>
@@ -67,17 +81,44 @@ also:
               (Invalid styling applied <i>after</i> user interaction.)
             </p>
           </hx-checkbox-control>
+          <hx-checkbox-control :class="{ hxHelpText: hasHelpText}" style="display: none;">
+              <label> HelpText</label>
+            <input type="text" v-model="helpText">
+           </hx-checkbox-control>
+           <hx-checkbox-control :class="{hxErrorTextForInput: hasErrorText}" style="display: none;">
+              <label> ErrorText</label>
+            <input type="text" v-model="errorText">
+           </hx-checkbox-control>
         </fieldset>
       </form>
     </header>
 
     <div>
       <hx-email-control>
+          <!-- <label >
+              {% raw %}{{helptext}}{% endraw %}
+            </label> -->
         <input id="emailInputDemo" type="email" placeholder="Please Enter Email" :disabled="isDisabled" :required="isRequired" />
         <label for="emailInputDemo" :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }">
           {% raw %}{{label}}{% endraw %}
         </label>
+        <span>
+            Please enter a valid email ID
+           </span>
+       
       </hx-email-control>
+      <hx-checkbox-control>
+          <p :class="{ hxHelpText: hasHelpText}"  style="display: none;">
+             {% raw %}{{helpText}} {% endraw %}
+         </p>
+      </hx-checkbox-control>
+      <hx-checkbox-control>
+         <p :class="{ hxErrorText: hasErrorText}" style="display: none;">
+            <hx-icon type="exclamation-triangle" style="margin-top: 6px;"></hx-icon>
+            {% raw %}{{errorText}} {% endraw %}
+        </p>
+        </hx-checkbox-control>
+     
     </div>
 
     <footer>

@@ -6,9 +6,13 @@ if (document.getElementById('vue-emailInputDemo')) {
         data: {
             hasAsterisk: false,
             hasOptional: false,
+            hasHelpText : false,
+            hasErrorText: false,
             isDisabled: false,
             isRequired: false,
             label: 'Email',
+            helpText: 'abc@abc.com',
+            errorText: 'Please enter valid email',
         },
         computed: {
             attrDisabled: function () {
@@ -26,6 +30,14 @@ if (document.getElementById('vue-emailInputDemo')) {
 
                 if (this.hasOptional) {
                     classes.push('hxOptional');
+                }
+
+                if (this.hasHelpText) {
+                    classes.push('hxOptional1');
+                }
+
+                if (this.hasErrorText) {
+                    classes.push('hxErrorText');
                 }
 
                 let classNames = classes.join(' ');
@@ -47,6 +59,8 @@ if (document.getElementById('vue-emailInputDemo')) {
                       >
                         ${this.label}
                       </label>
+                      <p>${this.helpText}</p>
+                      <p>${this.errorText}</p>
                     </hx-email-control>
                 `);
             },
