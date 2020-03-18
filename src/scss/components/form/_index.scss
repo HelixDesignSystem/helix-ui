@@ -151,19 +151,11 @@ $form-asterisk-offset: $form-asterisk-size + $form-asterisk-gap;
   }
 }
 
-.hxHelpText {
-  display: contents !important;
-}
-
 .hxErrorText {
   color: $red-900;
   font-size: 12px;
-  display: contents !important;
 }
 
-.hxErrorTextForInput {
-  display: contents !important;
-}
 
 // DEPRECATED
 @import "./deprecated"; // remove in v1.0.0

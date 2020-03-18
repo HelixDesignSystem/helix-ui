@@ -81,11 +81,11 @@ also:
               (Invalid styling applied <i>after</i> user interaction.)
             </p>
           </hx-checkbox-control>
-          <hx-checkbox-control :class="{ hxHelpText: hasHelpText}" style="display: none;">
+          <hx-checkbox-control :class="{ hxHelpText: hasHelpText}" v-if="helpTextToDisplay" style="display: inline-block;">
               <label> HelpText</label>
             <input type="text" v-model="helpText">
            </hx-checkbox-control>
-           <hx-checkbox-control :class="{hxErrorTextForInput: hasErrorText}" style="display: none;">
+           <hx-checkbox-control :class="{hxErrorTextForInput: hasErrorText}" v-if="errorTextToDisplay" style="display: inline-block;">
               <label> ErrorText</label>
             <input type="text" v-model="errorText">
            </hx-checkbox-control>
@@ -108,12 +108,12 @@ also:
        
       </hx-email-control>
       <hx-checkbox-control>
-          <p :class="{ hxHelpText: hasHelpText}"  style="display: none;">
+          <p :class="{ hxHelpText: hasHelpText}"  v-if="helpTextToDisplay" style="margin-left: inherit;">
              {% raw %}{{helpText}} {% endraw %}
          </p>
       </hx-checkbox-control>
       <hx-checkbox-control>
-         <p :class="{ hxErrorText: hasErrorText}" style="display: none;">
+         <p :class="{ hxErrorText: hasErrorText}" v-if="errorTextToDisplay" style="margin-left: inherit;">
             <hx-icon type="exclamation-triangle" style="margin-top: 6px;"></hx-icon>
             {% raw %}{{errorText}} {% endraw %}
         </p>

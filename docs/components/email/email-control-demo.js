@@ -13,6 +13,10 @@ if (document.getElementById('vue-emailInputDemo')) {
             label: 'Email',
             helpText: 'abc@abc.com',
             errorText: 'Please enter valid email',
+            errorTextToDisplay: false,
+            helpTextToDisplay: false,
+            displayTrue :true,
+            displayFalse: false,
         },
         computed: {
             attrDisabled: function () {
@@ -34,10 +38,16 @@ if (document.getElementById('vue-emailInputDemo')) {
 
                 if (this.hasHelpText) {
                     classes.push('hxOptional1');
+                    this.helpTextToDisplay = this.displayTrue;
+                } else {
+                    this.helpTextToDisplay = this.displayFalse;
                 }
 
                 if (this.hasErrorText) {
                     classes.push('hxErrorText');
+                    this.errorTextToDisplay = this.displayTrue;
+                } else {
+                    this.errorTextToDisplay = this.displayFalse;
                 }
 
                 let classNames = classes.join(' ');
