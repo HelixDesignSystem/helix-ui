@@ -154,6 +154,23 @@ $form-asterisk-offset: $form-asterisk-size + $form-asterisk-gap;
 .hxErrorText {
   color: $red-900;
   font-size: 12px;
+  margin-left: inherit;
+}
+
+hx-checkbox-control {
+  > input[type="text"]:focus {
+    border: 1px solid $cyan-700;
+    box-shadow: $focus-glow;
+    outline: 0;
+  }
+}
+
+.align {
+  display: inline;
+}
+
+.hxHelpText {
+  margin-left: inherit;
 }
 
 // DEPRECATED

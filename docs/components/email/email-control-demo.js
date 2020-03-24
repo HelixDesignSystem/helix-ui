@@ -37,7 +37,7 @@ if (document.getElementById('vue-emailInputDemo')) {
                 }
 
                 if (this.hasHelpText) {
-                    classes.push('hxOptional1');
+                    classes.push('hxHelpText');
                     this.helpTextToDisplay = this.displayTrue;
                 } else {
                     this.helpTextToDisplay = this.displayFalse;
