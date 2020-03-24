@@ -9,7 +9,7 @@ import { HXFormControlElement } from '../../interfaces/HXFormControlElement/inde
 ///
 export class HXEmailControl extends HXFormControlElement {
     // @override 
-    static get is() {
+    static get is () {
         return 'hx-email-control';
     }
 
@@ -22,7 +22,7 @@ export class HXEmailControl extends HXFormControlElement {
     /// @readonly
     /// @type {?HTMLInputElement}
     ///
-    get controlElement() {
+    get controlElement () {
         return this.querySelector('input:not([type]), input[type="email"]');
     }
 }
