@@ -34,6 +34,7 @@
 // Efficiency: OK
 @mixin __textControl--invalid($focused: false) {
   border: 2px solid $red-900;
+
   @if $focused {
     box-shadow: $focus-glow-invalid;
   }

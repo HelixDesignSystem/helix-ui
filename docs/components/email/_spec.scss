@@ -2,24 +2,24 @@
 
 .email-input-spec {
   hx-email-control {
-    /* ----- Pristine --------------- */
+    // ----- Pristine ---------------
     > input[type="email"].mock-focus {
       @include hxTextControl($focused: true);
     }
 
-    /* ----- Disabled --------------- */
+    // ----- Disabled --------------- 
     > input[type="email"]:disabled.mock-focus {
       @include hxTextControl(disabled, $focused: true);
     }
 
-    /* ----- Changed / Touched --------------- */
+    // ----- Changed / Touched --------------- 
     &[hx-dirty] {
       > input[type="email"]:invalid.mock-focus {
         @include hxTextControl(invalid, $focused: true);
       }
     }
 
-    /* ----- Styled Invalid --------------- */
+    // ----- Styled Invalid --------------- 
     &.hxInvalid > input[type="email"]:enabled.mock-focus {
       @include hxTextControl(invalid, $focused: true);
     }
