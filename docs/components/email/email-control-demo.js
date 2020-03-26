@@ -6,7 +6,7 @@ if (document.getElementById('vue-emailInputDemo')) {
         data: {
             hasAsterisk: false,
             hasOptional: false,
-            hasHelpText : false,
+            hasHelpText: false,
             hasErrorText: false,
             isDisabled: false,
             isRequired: false,
@@ -15,7 +15,7 @@ if (document.getElementById('vue-emailInputDemo')) {
             errorText: 'Please enter valid email',
             errorTextToDisplay: false,
             helpTextToDisplay: false,
-            displayTrue :true,
+            displayTrue: true,
             displayFalse: false,
         },
         computed: {
@@ -36,23 +36,35 @@ if (document.getElementById('vue-emailInputDemo')) {
                     classes.push('hxOptional');
                 }
 
+                let classNames = classes.join(' ');
+
+                return (classNames === '' ? '' : `class="${classNames}"`);
+            },
+            helpTextClass: function () {
+                let textClasses = [];
+
                 if (this.hasHelpText) {
-                    classes.push('hxHelpText');
+                    textClasses.push('hxHelpText');
                     this.helpTextToDisplay = this.displayTrue;
                 } else {
                     this.helpTextToDisplay = this.displayFalse;
                 }
 
+                let textClassNames = textClasses.join(' ');
+
+                return (textClassNames === '' ? '' : `class="${textClassNames}"`);
+            },
+            errorTextClass: function () {
+                let errorTextClasses = [];
                 if (this.hasErrorText) {
-                    classes.push('hxErrorText');
+                    errorTextClasses.push('hxErrorText');
                     this.errorTextToDisplay = this.displayTrue;
                 } else {
                     this.errorTextToDisplay = this.displayFalse;
                 }
+                let errorTextClassNames = errorTextClasses.join(' ');
 
-                let classNames = classes.join(' ');
-
-                return (classNames === '' ? '' : `class="${classNames}"`);
+                return (errorTextClassNames === '' ? '' : `class="${errorTextClassNames}"`);
             },
             snippet: function () {
                 return Util.snippet(`
@@ -69,8 +81,8 @@ if (document.getElementById('vue-emailInputDemo')) {
                       >
                         ${this.label}
                       </label>
-                      <p>${this.helpText}</p>
-                      <p>${this.errorText}</p>
+                      <p ${this.helpTextClass} >${this.helpText}</p>
+                      <p ${this.errorTextClass} >${this.errorText}</p>
                     </hx-email-control>
                 `);
             },

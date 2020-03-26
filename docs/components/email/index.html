@@ -68,6 +68,8 @@ also:
               (Invalid styling applied <i>after</i> user interaction.)
             </p>
           </hx-checkbox-control>
+        </fieldset>
+        <fieldset>
           <legend class="beta-hxFieldName">Optional Text</legend>
           <hx-checkbox-control>
             <input id="chkHasHelpText" type="checkbox" v-model="hasHelpText" />
@@ -83,15 +85,15 @@ also:
                 ErrorText
               </label>
             </hx-checkbox-control>
-          <hx-checkbox-control class="align">
+            <hx-checkbox-control class="align" > 
               <label> HelpText</label>
-            <input  type="text" v-model="helpText">
+            <input  type="text" v-model="helpText" :disabled="!helpTextToDisplay" >
            </hx-checkbox-control>
            <hx-checkbox-control class="align" >
               <label> ErrorText</label>
-            <input  type="text" v-model="errorText">
+            <input  type="text" v-model="errorText" :disabled="!errorTextToDisplay"> 
            </hx-checkbox-control>
-        </fieldset>
+          </fieldset>
       </form>
     </header>
 
