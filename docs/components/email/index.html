@@ -3,7 +3,7 @@ title: Email
 minver: 0.20.0
 also:
   components/email/test.html: Testing - Email
-  elements/hx-email-control/index.html: <hx-checkbox-control>
+  elements/hx-email-control/index.html: <hx-text-control>
 ---
 {% extends 'component.njk' %}
 
@@ -85,14 +85,14 @@ also:
                 ErrorText
               </label>
             </hx-checkbox-control>
-            <hx-checkbox-control class="align" > 
+            <hx-text-control class="align" > 
               <label> HelpText</label>
             <input  type="text" v-model="helpText" :disabled="!helpTextToDisplay" >
-           </hx-checkbox-control>
-           <hx-checkbox-control class="align" >
+           </hx-text-control>
+           <hx-text-control class="align" >
               <label> ErrorText</label>
             <input  type="text" v-model="errorText" :disabled="!errorTextToDisplay"> 
-           </hx-checkbox-control>
+           </hx-text-control>
           </fieldset>
       </form>
     </header>
