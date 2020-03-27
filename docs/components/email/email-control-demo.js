@@ -17,6 +17,7 @@ if (document.getElementById('vue-emailInputDemo')) {
             helpTextToDisplay: false,
             displayTrue: true,
             displayFalse: false,
+            isHelpText : '',
         },
         computed: {
             attrDisabled: function () {
@@ -46,6 +47,7 @@ if (document.getElementById('vue-emailInputDemo')) {
                 if (this.hasHelpText) {
                     textClasses.push('hxHelpText');
                     this.helpTextToDisplay = this.displayTrue;
+                    this.isHelpText = '<p ${this.helpTextClass}  >${this.helpText}</p>';
                 } else {
                     this.helpTextToDisplay = this.displayFalse;
                 }
@@ -81,7 +83,7 @@ if (document.getElementById('vue-emailInputDemo')) {
                       >
                         ${this.label}
                       </label>
-                      <p ${this.helpTextClass} >${this.helpText}</p>
+                      <p ${this.helpTextClass}  >${this.helpText}</p>
                       <p ${this.errorTextClass} >${this.errorText}</p>
                     </hx-email-control>
                 `);

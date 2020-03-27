@@ -12,7 +12,9 @@ hx-email-control {
   display: grid;
   grid-template-areas:
     "label  label   label"
-    "prefix control suffix";
+    "prefix control suffix"
+    "help   help    help"
+    "error  error   error";
   grid-template-columns: $ctrl-columns;
   grid-template-rows: $ctrl-rows;
 
@@ -72,6 +74,29 @@ hx-email-control {
     justify-self: $justify;
     margin-left: 0.25rem;
   }
+
+  > p,
+  p.hxHelpText {
+    $justify: start;
+
+    -ms-grid-column-align: $justify;
+    -ms-grid-column-span: 3;
+    -ms-grid-column: 1;
+    -ms-grid-row: 3;
+    grid-area: help;
+    justify-self: $justify;
+  }
+
+  > p.hxErrorText {
+    $justify: start;
+
+    -ms-grid-column-align: $justify;
+    -ms-grid-column-span: 3;
+    -ms-grid-column: 1;
+    -ms-grid-row: 4;
+    grid-area: error;
+    justify-self: $justify;
+  }
 }
 
 // ----- PRISTINE ----------
@@ -87,6 +112,49 @@ hx-email-control {
       @include hxTextControl($focused: true);
     }
   }
+}
+
+> p {
+  margin-top: inherit;
+  @include hxHelpText();  // default styles
+
+  .hxHelpText {
+    @include hxHelpText();
+  }
+
+  .hxErrorText {
+    color: $red-900;
+    font-size: 0.75rem;
+  }
+}
+
+.hxOptional {
+  &::after {
+    color: $gray-700;
+    content: " (optional)";
+  }
+}
+
+.hxErrorText {
+  color: $red-900;
+  font-size: 12px;
+  margin-left: inherit;
+}
+
+hx-checkbox-control {
+  > input[type="text"]:focus {
+    border: 1px solid $cyan-700;
+    box-shadow: $focus-glow;
+    outline: 0;
+  }
+}
+
+.align {
+  display: inline;
+}
+
+.hxHelpText {
+  margin-left: inherit;
 }
 
 // ----- INVALID ----------

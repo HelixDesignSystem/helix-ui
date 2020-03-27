@@ -3,14 +3,14 @@ title: Email
 minver: 0.20.0
 also:
   components/email/test.html: Testing - Email
-  elements/hx-email-control/index.html: <hx-text-control>
+  elements/hx-email-control/index.html: <hx-email-control>
 ---
 {% extends 'component.njk' %}
 
 {% block page_header %}
 <p>
-  The {{page.title}} component provides markup to define a
-  single-line text control.
+  The {{page.title}} component provides markup to define
+  an email address input control.
 </p>
 {% endblock %}
 
@@ -88,7 +88,7 @@ also:
             <hx-text-control class="align" > 
               <label> HelpText</label>
             <input  type="text" v-model="helpText" :disabled="!helpTextToDisplay" >
-           </hx-text-control>
+           </hx-email-control>
            <hx-text-control class="align" >
               <label> ErrorText</label>
             <input  type="text" v-model="errorText" :disabled="!errorTextToDisplay"> 
@@ -99,9 +99,6 @@ also:
 
     <div>
       <hx-email-control>
-          <!-- <label >
-              {% raw %}{{helptext}}{% endraw %}
-            </label> -->
         <input id="emailInputDemo" type="email" placeholder="Please Enter Email" :disabled="isDisabled" :required="isRequired" />
         <label for="emailInputDemo" :class="{ hxOptional: hasOptional, hxRequired: hasAsterisk }">
           {% raw %}{{label}}{% endraw %}
@@ -111,17 +108,18 @@ also:
            </span>
        
       </hx-email-control>
-      <hx-checkbox-control>
+      <hx-password-control>
           <p :class="{ hxHelpText: hasHelpText}"  v-if="helpTextToDisplay">
              {% raw %}{{helpText}} {% endraw %}
          </p>
-      </hx-checkbox-control>
-      <hx-checkbox-control >
+      </hx-password-control>
+      <hx-password-control >
          <p :class="{ hxErrorText: hasErrorText}" v-if="errorTextToDisplay">
-            <hx-icon type="exclamation-triangle"></hx-icon>
-            {% raw %}{{errorText}} {% endraw %}
+            <hx-error>
+              {% raw %}{{errorText}} {% endraw %}
+            </hx-error>
         </p>
-        </hx-checkbox-control>
+      </hx-password-control>
      
     </div>
 

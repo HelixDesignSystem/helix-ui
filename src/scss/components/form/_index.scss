@@ -144,34 +144,5 @@ $form-asterisk-offset: $form-asterisk-size + $form-asterisk-gap;
   padding-left: $form-asterisk-offset;
 }
 
-.hxOptional {
-  &::after {
-    color: $gray-700;
-    content: " (optional)";
-  }
-}
-
-.hxErrorText {
-  color: $red-900;
-  font-size: 12px;
-  margin-left: inherit;
-}
-
-hx-checkbox-control {
-  > input[type="text"]:focus {
-    border: 1px solid $cyan-700;
-    box-shadow: $focus-glow;
-    outline: 0;
-  }
-}
-
-.align {
-  display: inline;
-}
-
-.hxHelpText {
-  margin-left: inherit;
-}
-
 // DEPRECATED
 @import "./deprecated"; // remove in v1.0.0
