@@ -148,14 +148,16 @@
     </div>
 
     <div class="hxCol hxRight">
-      {% if page.updated %}
+{# The date provided does not correlate to release date.  TODO: remove? #}
+{#  {% if page.updated %}
         <small>
           Last Updated:
           {{ page.updated.format(site.dateFormat) }}
         </small>
       {% endif %}
-
+#}
       <small>
+        Latest Release:
         (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v{{VERSION}}" target="_blank">
           v{{VERSION}}
         </a>)
