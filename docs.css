@@ -752,6 +752,33 @@ a[href]:hover, a[href]:active, a.pseudo-active {
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }
 
+.email-input-spec hx-email-control {
+  /* ----- Pristine --------------- */
+  /* ----- Disabled --------------- */
+  /* ----- Changed / Touched --------------- */
+  /* ----- Styled Invalid --------------- */
+}
+
+.email-input-spec hx-email-control > input[type="email"].mock-focus {
+  border: 1px solid #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  outline: 0;
+}
+
+.email-input-spec hx-email-control > input[type="email"]:disabled.mock-focus {
+  border: 1px solid #bdbdbd;
+}
+
+.email-input-spec hx-email-control[hx-dirty] > input[type="email"]:invalid.mock-focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+.email-input-spec hx-email-control.hxInvalid > input[type="email"]:enabled.mock-focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
 .file-input-spec hx-file-control input[type="file"].mock-focus ~ label > hx-file-input {
   box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
 }
@@ -997,6 +1024,26 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .text-input-spec hx-text-control.hxInvalid > input[type="text"]:enabled.mock-focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+.password-spec hx-password-control > input[type="password"].mock-focus {
+  border: 1px solid #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  outline: 0;
+}
+
+.password-spec hx-password-control > input[type="password"]:disabled.mock-focus {
+  border: 1px solid #bdbdbd;
+}
+
+.password-spec hx-password-control[hx-dirty] > input[type="password"]:invalid.mock-focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+.password-spec hx-password-control.hxInvalid > input[type="password"]:enabled.mock-focus {
   border: 2px solid #d32f2f;
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }

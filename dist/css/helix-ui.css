@@ -1698,6 +1698,188 @@ hx-select-control.hxInvalid > select:enabled:focus ~ hx-select {
   box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
 }
 
+hx-email-control {
+  -ms-grid-columns: auto 1fr auto;
+  -ms-grid-rows: auto auto auto auto;
+  align-items: center;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: "label  label   label" "prefix control suffix" "help   help    help" "error  error   error";
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto auto auto;
+}
+
+hx-email-control > * {
+  display: none;
+}
+
+hx-email-control > label,
+hx-email-control > input[type="email"],
+hx-email-control > .hxPrefix,
+hx-email-control > .hxSuffix,
+hx-email-control > p {
+  display: block;
+}
+
+hx-email-control > label {
+  -ms-grid-column-align: start;
+  -ms-grid-column-span: 3;
+  -ms-grid-column: 1;
+  -ms-grid-row: 1;
+  grid-area: label;
+  justify-self: start;
+}
+
+hx-email-control > input[type="email"] {
+  -ms-grid-column: 2;
+  -ms-grid-row: 2;
+  grid-area: control;
+  height: 2rem;
+  min-width: 8rem;
+  padding: 0 0.75rem;
+}
+
+hx-email-control > .hxPrefix {
+  -ms-grid-column-align: end;
+  -ms-grid-column: 1;
+  -ms-grid-row-align: center;
+  -ms-grid-row: 2;
+  grid-area: prefix;
+  justify-self: end;
+  margin-right: 0.25rem;
+}
+
+hx-email-control > .hxSuffix {
+  -ms-grid-column-align: start;
+  -ms-grid-column: 3;
+  -ms-grid-row-align: center;
+  -ms-grid-row: 2;
+  grid-area: suffix;
+  justify-self: start;
+  margin-left: 0.25rem;
+}
+
+hx-email-control > p,
+hx-email-control p.hxHelpText {
+  -ms-grid-column-align: start;
+  -ms-grid-column-span: 3;
+  -ms-grid-column: 1;
+  -ms-grid-row: 3;
+  grid-area: help;
+  justify-self: start;
+}
+
+hx-email-control > p.hxErrorText {
+  -ms-grid-column-align: start;
+  -ms-grid-column-span: 3;
+  -ms-grid-column: 1;
+  -ms-grid-row: 4;
+  grid-area: error;
+  justify-self: start;
+}
+
+hx-email-control > label {
+  color: #616161;
+  font-size: 0.875rem;
+}
+
+hx-email-control > input[type="email"] {
+  background-color: #ffffff;
+  border-radius: 2px;
+  border: 1px solid #bdbdbd;
+  color: #424242;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+hx-email-control > input[type="email"]::-moz-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-email-control > input[type="email"]::-ms-input-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-email-control > input[type="email"]::-webkit-input-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-email-control > input[type="email"]::placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-email-control > input[type="email"]:focus {
+  border: 1px solid #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  outline: 0;
+}
+
+hx-email-control > p,
+hx-email-control p.hxHelpText {
+  color: #6b6b6b;
+  font-size: 0.75rem;
+}
+
+hx-email-control > p.hxErrorText {
+  color: #d32f2f;
+  font-size: 0.75rem;
+  margin-top: 0;
+  width: 100%;
+}
+
+hx-email-control[hx-dirty] > input[type="email"]:enabled:invalid,
+hx-email-control.hxInvalid > input[type="email"]:enabled {
+  border: 2px solid #d32f2f;
+}
+
+hx-email-control[hx-dirty] > input[type="email"]:enabled:invalid:focus,
+hx-email-control.hxInvalid > input[type="email"]:enabled:focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+hx-email-control > input[type="email"]:disabled {
+  border: 1px solid #bdbdbd;
+  background-color: #f5f5f5;
+  color: #d8d8d8;
+}
+
+hx-email-control > input[type="email"]:disabled::-moz-placeholder {
+  color: inherit;
+}
+
+hx-email-control > input[type="email"]:disabled::-ms-input-placeholder {
+  color: inherit;
+}
+
+hx-email-control > input[type="email"]:disabled::-webkit-input-placeholder {
+  color: inherit;
+}
+
+hx-email-control > input[type="email"]:disabled::placeholder {
+  color: inherit;
+}
+
+hx-email-control > input[type="email"]:disabled ~ label {
+  color: #757575;
+}
+
+hx-email-control > input[type="email"]:disabled:focus {
+  border: 1px solid #bdbdbd;
+}
+
 input:-moz-ui-invalid,
 select:-moz-ui-invalid,
 textarea:-moz-ui-invalid {
@@ -3417,6 +3599,190 @@ hx-panelbody,
 hx-panelfoot,
 hx-panelhead {
   display: block;
+}
+
+hx-password-control {
+  -ms-grid-columns: auto 1fr auto;
+  -ms-grid-rows: auto auto auto auto;
+  align-items: center;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: "label  label   label" "prefix control suffix" "help   help    help" "error  error   error";
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto auto auto;
+}
+
+hx-password-control > * {
+  display: none;
+}
+
+hx-password-control > label,
+hx-password-control > input[type="password"],
+hx-password-control > .hxPrefix,
+hx-password-control > .hxSuffix,
+hx-password-control > p {
+  display: block;
+}
+
+hx-password-control > label {
+  -ms-grid-column-align: start;
+  -ms-grid-column-span: 3;
+  -ms-grid-column: 1;
+  -ms-grid-row: 1;
+  grid-area: label;
+  justify-self: start;
+}
+
+hx-password-control > input[type="password"] {
+  -ms-grid-column: 2;
+  -ms-grid-row: 2;
+  grid-area: control;
+  height: 2rem;
+  min-width: 8rem;
+  padding: 0 0.75rem;
+}
+
+hx-password-control > .hxPrefix {
+  -ms-grid-column-align: end;
+  -ms-grid-column: 1;
+  -ms-grid-row-align: center;
+  -ms-grid-row: 2;
+  grid-area: prefix;
+  justify-self: end;
+  margin-right: 0.25rem;
+}
+
+hx-password-control > .hxSuffix {
+  -ms-grid-column-align: start;
+  -ms-grid-column: 3;
+  -ms-grid-row-align: center;
+  -ms-grid-row: 2;
+  grid-area: suffix;
+  justify-self: start;
+  margin-left: 0.25rem;
+}
+
+hx-password-control > p,
+hx-password-control p.hxHelpText {
+  -ms-grid-column-align: start;
+  -ms-grid-column-span: 3;
+  -ms-grid-column: 1;
+  -ms-grid-row: 3;
+  -ms-grid-row-align: center;
+  grid-area: help;
+  justify-self: start;
+}
+
+hx-password-control > p.hxErrorText {
+  -ms-grid-column-align: start;
+  -ms-grid-column-span: 3;
+  -ms-grid-column: 1;
+  -ms-grid-row: 4;
+  -ms-grid-row-align: center;
+  grid-area: error;
+  justify-self: start;
+}
+
+hx-password-control > label {
+  color: #616161;
+  font-size: 0.875rem;
+}
+
+hx-password-control > input[type="password"] {
+  background-color: #ffffff;
+  border-radius: 2px;
+  border: 1px solid #bdbdbd;
+  color: #424242;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+hx-password-control > input[type="password"]::-moz-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-password-control > input[type="password"]::-ms-input-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-password-control > input[type="password"]::-webkit-input-placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-password-control > input[type="password"]::placeholder {
+  color: #6b6b6b;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+
+hx-password-control > input[type="password"]:focus {
+  border: 1px solid #0e94a6;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  outline: 0;
+}
+
+hx-password-control > p,
+hx-password-control p.hxHelpText {
+  color: #6b6b6b;
+  font-size: 0.75rem;
+}
+
+hx-password-control > p.hxErrorText {
+  color: #d32f2f;
+  font-size: 0.75rem;
+  margin-top: 0;
+  width: 100%;
+}
+
+hx-password-control[hx-dirty] > input[type="password"]:enabled:invalid,
+hx-password-control.hxInvalid > input[type="password"]:enabled {
+  border: 2px solid #d32f2f;
+}
+
+hx-password-control[hx-dirty] > input[type="password"]:enabled:invalid:focus,
+hx-password-control.hxInvalid > input[type="password"]:enabled:focus {
+  border: 2px solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+hx-password-control > input[type="password"]:disabled {
+  border: 1px solid #bdbdbd;
+  background-color: #f5f5f5;
+  color: #d8d8d8;
+}
+
+hx-password-control > input[type="password"]:disabled::-moz-placeholder {
+  color: inherit;
+}
+
+hx-password-control > input[type="password"]:disabled::-ms-input-placeholder {
+  color: inherit;
+}
+
+hx-password-control > input[type="password"]:disabled::-webkit-input-placeholder {
+  color: inherit;
+}
+
+hx-password-control > input[type="password"]:disabled::placeholder {
+  color: inherit;
+}
+
+hx-password-control > input[type="password"]:disabled ~ label {
+  color: #757575;
+}
+
+hx-password-control > input[type="password"]:disabled:focus {
+  border: 1px solid #bdbdbd;
 }
 
 hx-pill {

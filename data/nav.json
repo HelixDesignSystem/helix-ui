@@ -66,6 +66,10 @@
         "path": "dropdown-select"
       },
       {
+        "label": "Email Input",
+        "path": "email"
+      },
+      {
         "label": "File",
         "path": "file"
       },
@@ -108,6 +112,10 @@
       {
         "label": "Panel",
         "path": "panel"
+      },
+      {
+        "label": "Password Input",
+        "path": "password"
       },
       {
         "label": "Pill",
@@ -216,6 +224,10 @@
         "path": "hx-error"
       },
       {
+        "label": "<hx-email-control>",
+        "path": "hx-email-control"
+      },
+      {
         "label": "<hx-file-icon>",
         "path": "hx-file-icon"
       },
@@ -242,6 +254,10 @@
       {
         "label": "<hx-modal>",
         "path": "hx-modal"
+      },
+      {
+        "label": "<hx-password-control>",
+        "path": "hx-password-control"
       },
       {
         "label": "<hx-pill>",
