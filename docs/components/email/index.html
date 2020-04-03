@@ -1,0 +1,172 @@
+---
+title: Email Input
+minver: 0.20.0
+also:
+  components/email/test.html: Testing - Email Input
+  elements/hx-email-control/index.html: <hx-email-control>
+---
+{% extends 'component.njk' %}
+
+{% block page_header %}
+<p>
+  The {{page.title}} component provides supplmental markup to define
+  and style an email address input control.
+</p>
+{% endblock %}
+
+{% block content %}
+<section>
+  <header>
+    <h2 id="basic-email-input">Basic Email Input</h2>
+    {# TODO: add section description #}
+  </header>
+
+  <div class="example" id="vue-emailInputDemo" v-cloak>
+    <header>
+      <form class="beta-hxForm">
+        <fieldset>
+          <legend class="beta-hxFieldName">Label Annotation</legend>
+          <hx-radio-set>
+            <hx-radio-control>
+              <input
+                id="radHasAsterisk"
+                name="radReqOp"
+                type="radio"
+                value="hxRequired"
+                v-model="labelState"
+              />
+              <label for="radHasAsterisk">
+                <hx-radio></hx-radio>
+                Required
+              </label>
+            </hx-radio-control>
+            <hx-radio-control>
+              <input
+                id="radHasOptional"
+                name="radReqOp"
+                type="radio"
+                value="hxOptional"
+                v-model="labelState"
+              />
+              <label for="radHasOptional">
+                <hx-radio></hx-radio>
+                Optional
+              </label>
+            </hx-radio-control>
+          </hx-radio-set>
+        </fieldset>
+
+        <fieldset>
+          <legend class="beta-hxFieldName">Control Options</legend>
+          <hx-checkbox-control>
+            <input id="chkDisabled" type="checkbox" v-model="isDisabled" />
+            <label for="chkDisabled">
+              <hx-checkbox></hx-checkbox>
+              Disabled
+            </label>
+          </hx-checkbox-control>
+
+          <hx-checkbox-control>
+            <input id="chkRequired" type="checkbox" v-model="isRequired" />
+            <label for="chkRequired">
+              <hx-checkbox></hx-checkbox>
+              Required
+            </label>
+            <p>
+              (Invalid styling applied <i>after</i> user interaction.)
+            </p>
+          </hx-checkbox-control>
+        </fieldset>
+
+        <fieldset>
+          <legend class="beta-hxFieldName">Optional Text</legend>
+          <hx-checkbox-control>
+            <input
+              id="chkHasHelpText"
+              type="checkbox"
+              v-model="helpTextToDisplay"
+            />
+            <label for="chkHasHelpText">
+              <hx-checkbox></hx-checkbox>
+              Help Text
+            </label>
+          </hx-checkbox-control>
+          <hx-checkbox-control>
+            <input
+              id="chkHasErrorText"
+              type="checkbox"
+              v-model="errorTextToDisplay"
+            />
+            <label for="chkHasErrorText">
+                <hx-checkbox></hx-checkbox>
+                Error Text
+            </label>
+          </hx-checkbox-control>
+          <hx-text-control>
+            <input
+              id="txtHelpText"
+              type="text"
+              v-model="helpText"
+              :disabled="!helpTextToDisplay"
+            />
+            <label for="txtHelpText">
+              Help Text
+            </label>
+          </hx-text-control>
+          <hx-text-control>
+            <input
+              id="txtErrorText"
+              type="text"
+              v-model="errorText"
+              :disabled="!errorTextToDisplay"
+            />
+            <label for="txtErrorText">
+              Error Text
+            </label>
+          </hx-text-control>
+        </fieldset>
+      </form>
+    </header>
+
+    <div>
+      <hx-email-control>
+        <input
+          id="emailInputDemo"
+          type="email"
+          placeholder="Please enter your email"
+          :disabled="isDisabled"
+          :required="isRequired"
+        />
+        <label
+          for="emailInputDemo"
+          :class="labelState"
+        >
+          {% raw %}{{label}}{% endraw %}
+        </label>
+        <p class="hxHelpText" :hidden="!helpTextToDisplay">
+          {% raw %}{{helpText}} {% endraw %}
+        </p>
+        <p class="hxErrorText" :hidden="!errorTextToDisplay">
+          <hx-error>
+            {% raw %}{{errorText}} {% endraw %}
+          </hx-error>
+        </p>
+      </hx-email-control>
+    </div>
+
+    <footer>
+      <pre><code v-text="snippet"></code></pre>
+    </footer>
+  </div>
+
+  <footer>
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      The <code>&lt;input&gt;</code> element <i>must</i> have the
+      <code>type="email"</code> attribute, in order for CSS styles
+      to apply.
+    </p>
+  </footer>
+</section>
+
+{% endblock %}
