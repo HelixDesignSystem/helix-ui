@@ -10,6 +10,7 @@ import _angleUp from '../../images/icons/angle-up.svg';
 import _bell from '../../images/icons/bell.svg';
 import _billing from '../../images/icons/billing.svg';
 import _calendar from '../../images/icons/calendar.svg';
+import _chart from '../../images/icons/chart.svg';
 import _checkmark from '../../images/icons/checkmark.svg';
 import _checkmarkCircle from '../../images/icons/checkmark-circle.svg';
 import _clock from '../../images/icons/clock.svg';
@@ -25,6 +26,8 @@ import _file from '../../images/icons/file.svg';
 import _filter from '../../images/icons/filter.svg';
 import _flag from '../../images/icons/flag.svg';
 import _globe from '../../images/icons/globe.svg';
+import _heartbeatOutline from '../../images/icons/heartbeat-outline.svg';
+import _heartbeatFill from '../../images/icons/heartbeat-fill.svg';
 import _helpCircle from '../../images/icons/help-circle.svg';
 import _infoCircle from '../../images/icons/info-circle.svg';
 import _inputFile from '../../images/icons/input-file.svg';
@@ -53,7 +56,6 @@ import _mimeText from '../../images/icons/mime-text.svg';
 import _mimeVideo from '../../images/icons/mime-video.svg';
 import _minus from '../../images/icons/minus.svg';
 import _minusCircle from '../../images/icons/minus-circle.svg';
-import _monitoring from '../../images/icons/monitoring.svg';
 import _paperclip from '../../images/icons/paperclip.svg';
 import _payment from '../../images/icons/payment.svg';
 import _pencil from '../../images/icons/pencil.svg';
@@ -63,6 +65,7 @@ import _plusOrMinus from '../../images/icons/plus-or-minus.svg';
 import _redo from '../../images/icons/redo.svg';
 import _search from '../../images/icons/search.svg';
 import _server from '../../images/icons/server.svg';
+import _shieldLock from '../../images/icons/shield-lock.svg';
 import _serverConfig from '../../images/icons/server-config.svg';
 import _serverIncident from '../../images/icons/server-incident.svg';
 import _sort from '../../images/icons/sort.svg';
@@ -91,6 +94,7 @@ const MAP = {
     'bell': _bell,
     'billing': _billing,
     'calendar': _calendar,
+    'chart': _chart,
     'checkmark': _checkmark,
     'checkmark-circle': _checkmarkCircle,
     'clock': _clock,
@@ -106,6 +110,8 @@ const MAP = {
     'filter': _filter,
     'flag': _flag,
     'globe': _globe,
+    'heartbeat-outline': _heartbeatOutline,
+    'heartbeat-fill': _heartbeatFill,
     'help-circle': _helpCircle,
     'info-circle': _infoCircle,
     'input-file': _inputFile,
@@ -134,7 +140,7 @@ const MAP = {
     'mime-video': _mimeVideo,
     'minus': _minus,
     'minus-circle': _minusCircle,
-    'monitoring': _monitoring,
+    'monitoring': _chart,
     'paperclip': _paperclip,
     'payment': _payment,
     'pencil': _pencil,
@@ -144,6 +150,7 @@ const MAP = {
     'redo': _redo,
     'search': _search,
     'server': _server,
+    'shield-lock': _shieldLock,
     'server-config': _serverConfig,
     'server-incident': _serverIncident,
     'sort': _sort,

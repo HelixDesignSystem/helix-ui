@@ -59,8 +59,12 @@
         ],
     },
     {
-        name: 'checkmark',
-        minver: '0.1.0',
+      name: 'chart',
+      minver: '0.20.0',
+    },
+    {
+      name: 'checkmark',
+      minver: '0.1.0',
     },
     {
         name: 'checkmark-circle',
@@ -148,11 +152,25 @@
         minver: '0.7.0',
     },
     {
-        name: 'help-circle',
-        minver: '0.1.10',
-        keywords: [
-            'question',
-        ],
+      name: 'help-circle',
+      minver: '0.1.10',
+      keywords: [
+        'question',
+      ],
+    },
+    {
+      name: 'heartbeat-fill',
+      minver: '0.20.0',
+      keywords: [
+        'monitoring',
+      ],
+    },
+    {
+      name: 'heartbeat-outline',
+      minver: '0.20.0',
+      keywords: [
+        'monitoring',
+      ],
     },
     {
         name: 'info-circle',
@@ -411,6 +429,8 @@
     {
         name: 'monitoring',
         minver: '0.1.10',
+        deprecated: true,
+        replacement: 'heartbeat-fill, heartbeat-outline, or chart',
         keywords: [
             'graph',
         ],
@@ -477,6 +497,13 @@
     {
         name: 'server',
         minver: '0.1.10',
+    },
+    {
+      name: 'shield-lock',
+      minver: '0.20.0',
+      keywords: [
+        'security',
+      ],
     },
     {
         name: 'server-config',
