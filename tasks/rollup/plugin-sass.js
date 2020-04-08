@@ -1,5 +1,5 @@
 import sass from 'node-sass';
-import { createFilter } from 'rollup-pluginutils';
+import { createFilter } from '@rollup/pluginutils';
 
 export default function plugin (opts={}) {
     let cfg = {
