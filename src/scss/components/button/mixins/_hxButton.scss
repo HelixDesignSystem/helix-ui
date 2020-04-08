@@ -186,12 +186,11 @@
   border: 0;
   color: $cyan-900;
 
-  // TODO: remove horizontal padding overrides so as to conform to redline specs
-  //
-  // Be aware that horizontal padding will affect the appearance of inline tertiary buttons.
-  // (e.g., <hx-file-tile> within a drop fence, "retry" button of <hx-file-tile>, etc.)
-  padding-left: 0;
-  padding-right: 0;
+  // This class will be removed in HelixUI-v1.0.0.
+  &.hxDeprecated {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   &:hover {
     @include hxButton-hover--tertiary;
