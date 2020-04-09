@@ -2,8 +2,8 @@ import { eslint } from 'rollup-plugin-eslint'; // NEEDED?
 import { terser } from 'rollup-plugin-terser';
 import pBabel from 'rollup-plugin-babel';
 import pHtml from 'rollup-plugin-html';
-import pJson from 'rollup-plugin-json';
-import pResolve from 'rollup-plugin-node-resolve';
+import pJson from '@rollup/plugin-json';
+import pResolve from '@rollup/plugin-node-resolve';
 
 import pSass from './plugin-sass';
 
