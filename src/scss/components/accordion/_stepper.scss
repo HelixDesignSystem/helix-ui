@@ -1,9 +1,9 @@
 @import "vars";
 
-/* ======================================= *\
- * BETA BETA BETA BETA BETA BETA BETA BETA *
-\* ======================================= */
-hx-accordion.beta-hxStepper {
+/// =======================================================
+/// * Stepper is an <hx-accordion> implementation pattern *
+/// =======================================================
+hx-accordion.hxStepper {
   counter-reset: step;
 
   hx-accordion-panel {
@@ -24,7 +24,7 @@ hx-accordion.beta-hxStepper {
 
       // TODO: clarify mouse hover/click behavior with Design
       &:hover {
-        .beta-hxStepCounter {
+        .hxStepCounter {
           background-color: $cyan-500;
           color: $gray-0;
         }
@@ -32,25 +32,25 @@ hx-accordion.beta-hxStepper {
     }
 
     &[open] { // NOTE: no spec!
-      .beta-hxStepCounter {
+      .hxStepCounter {
         background-color: $cyan-500;
         color: $gray-0;
       }
     }
 
     &[disabled] {
-      .beta-hxStepCounter {
+      .hxStepCounter {
         background-color: $gray-400;
         color: $gray-700;
       }
 
-      .beta-hxStepLabel {
+      .hxStepLabel {
         color: $gray-700; // NOTE: no spec!
       }
 
       header[slot="header"] {
         &:hover {
-          .beta-hxStepCounter {
+          .hxStepCounter {
             background-color: $gray-400;
             color: $gray-700;
           }
@@ -59,7 +59,7 @@ hx-accordion.beta-hxStepper {
     }//[disabled]
   }//hx-accordion-panel
 
-  .beta-hxStepCounter {
+  .hxStepCounter {
     background-color: $cyan-900; // to spec
     border-radius: 3rem; // ensure circle
     color: $gray-0; // to spec
@@ -79,7 +79,7 @@ hx-accordion.beta-hxStepper {
     }
   }
 
-  .beta-hxStepLabel {
+  .hxStepLabel {
     color: $gray-900; // TODO: verify with Design, based on old heading spec
     flex-basis: 50%; // NOTE: no spec!
     font-size: 1.5rem; // TODO: verify with Design, based on old heading spec
@@ -87,16 +87,20 @@ hx-accordion.beta-hxStepper {
     margin-left: 1rem; // TODO: verify with Design, doesn't comply with spacing system
   }
 
-  .beta-hxStepValue {
+  .hxStepValue {
     flex-basis: 50%; // NOTE: no spec!
     font-size: 1rem; // TODO: verify with Design, based on old heading spec
     font-weight: 500; // TODO: verify with Design, based on old heading spec
     margin-left: 0.5rem; // NOTE: no spec!
   }
 
-  .beta-hxSubmitButtons {
+  .hxStepButton {
     .hxBtn + .hxBtn {
       margin-left: 0.5rem;
     }
   }
-}//.beta-hxStepper
+
+  div {
+    margin-left: 3rem;
+  }
+}//.hxStepper

@@ -1,6 +1,6 @@
 ---
 title: Stepper
-beta: true
+minver: 0.21.0
 also:
   components/accordion: Accordion
   elements/hx-accordion: <hx-accordion>
@@ -16,27 +16,27 @@ also:
   <section>
     <header>
       <h2 id="basic-stepper">Basic Stepper</h2>
-      {# TODO: add section description #}
+      A basic stepper will allow a user to expand and collapse as many panels as desired.
     </header>
 
     <div class="example" id="vue-stepperDemo" v-cloak>
       <div>
         <hx-accordion
-          class="beta-hxStepper"
+          class="hxStepper"
           current-panel="0"
           ref="accordion">
 
           <hx-accordion-panel>
             <header slot="header">
-              <span class="beta-hxStepCounter"></span>
-              <span class="beta-hxStepLabel">Account</span>
-              <span class="beta-hxStepValue">Acme Corp Inc.</span>
+              <span class="hxStepCounter"></span>
+              <span class="hxStepLabel">Account</span>
+              <span class="hxStepValue">Acme Corp Inc.</span>
             </header>
             <div class="hxBox hxMd">
               <p>
                 <em>Content Goes Here</em>
               </p>
-              <p class="beta-hxSubmitButtons">
+              <p class="hxStepButton">
                 <button class="hxBtn hxPrimary" @click="nextStep">Next Step</button>
                 <button class="hxBtn hxLink">Cancel</button>
               </p>
@@ -45,15 +45,15 @@ also:
 
           <hx-accordion-panel>
             <header slot="header">
-              <span class="beta-hxStepCounter"></span>
-              <span class="beta-hxStepLabel">Topic</span>
-              <span class="beta-hxStepValue">Technical Incident</span>
+              <span class="hxStepCounter"></span>
+              <span class="hxStepLabel">Topic</span>
+              <span class="hxStepValue">Technical Incident</span>
             </header>
-            <div class="hxBox hxMd">
+            <div class="hxBox hxMd ">
               <p>
                 <em>Content Goes Here</em>
               </p>
-              <p class="beta-hxSubmitButtons">
+              <p class="hxStepButton">
                 <button class="hxBtn hxPrimary" @click="nextStep">Next Step</button>
                 <button class="hxBtn" @click="prevStep">Prev Step</button>
                 <button class="hxBtn hxLink">Cancel</button>
@@ -63,15 +63,15 @@ also:
 
           <hx-accordion-panel>
             <header slot="header">
-              <span class="beta-hxStepCounter"></span>
-              <span class="beta-hxStepLabel">Issue Details</span>
-              <span class="beta-hxStepValue"></span>
+              <span class="hxStepCounter"></span>
+              <span class="hxStepLabel">Issue Details</span>
+              <span class="hxStepValue"></span>
             </header>
-            <div class="hxBox hxMd">
+            <div class="hxBox hxMd ">
               <p>
                 <em>Content Goes Here</em>
               </p>
-              <p class="beta-hxSubmitButtons">
+              <p class="hxStepButton">
                 <button class="hxBtn hxPrimary">Submit</button>
                 <button class="hxBtn" @click="prevStep">Prev Step</button>
                 <button class="hxBtn hxLink">Cancel</button>
@@ -83,20 +83,20 @@ also:
 
       <footer>
         {% code 'html' %}
-          <hx-accordion class="beta-hxStepper" current-panel="0">
+          <hx-accordion class="hxStepper" current-panel="0">
             <hx-accordion-panel>
               <header slot="header">
-                <span class="beta-hxStepCounter">
+                <span class="hxStepCounter">
                   <!-- CSS will handle filling in the step number -->
                 </span>
-                <span class="beta-hxStepLabel">Account</span>
-                <span class="beta-hxStepValue">Acme Corp Inc.</span>
+                <span class="hxStepLabel">Account</span>
+                <span class="hxStepValue">Acme Corp Inc.</span>
               </header>
               <div class="hxBox hxMd">
                 <p>
                   <em>Content Goes Here</em>
                 </p>
-                <p class="beta-hxSubmitButtons">
+                <p class="hxStepButton">
                   <button class="hxBtn hxPrimary">Next Step</button>
                   <button class="hxBtn">Prev Step</button>
                   <button class="hxBtn hxLink">Cancel</button>

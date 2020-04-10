@@ -2,9 +2,9 @@
 
 #hxToggle {
   background-color: transparent;
-  border: 0;
+  border: 1px;
   cursor: pointer;
-  padding: 0;
+  padding: 0 1rem 0 0;
   text-align: left;
   width: 100%;
 
@@ -40,4 +40,9 @@
   &[aria-expanded="true"] {
     display: block;
   }
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 4px 0 $cyan-700;
 }
