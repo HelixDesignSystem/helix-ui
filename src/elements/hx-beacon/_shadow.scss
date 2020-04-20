@@ -1,0 +1,46 @@
+// inline external styles
+@import "../base";
+
+// define Shadow DOM styles
+#hxBeaconPulse {
+  background-color: $gray-0;
+  border-radius: 1rem;
+  box-shadow: 0 0 2px 2px $gray-600;
+  display: block;
+  height: 1rem;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 1rem;
+  cursor: pointer;
+
+  &::before {
+    -webkit-animation: hx-pulse 2s infinite linear;
+    animation: hx-pulse 2s infinite linear;
+    border-radius: 3rem;
+    box-shadow: 0 0 1px 1px $gray-750;
+    content: "";
+    height: 1rem;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    width: 1rem;
+    cursor: pointer;
+  }
+}
+
+@keyframes hx-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}

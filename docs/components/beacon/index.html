@@ -1,0 +1,80 @@
+---
+title: Beacon
+minver: 0.22.0
+also:
+  elements/hx-beacon: <hx-beacon>
+---
+{% extends 'component.njk' %}
+
+{% block page_header %}
+  <p>
+    A beacon is an animation that attracts a user's attention
+    to a new feature or advanced functionality in a control panel.
+  </p>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="single-beacon">Beacon</h2>
+      <p>
+        The custom <code>{{page.title}}</code> element provides an animation
+        that attracts a user's attention to a new feature
+        or advanced functionality in a control panel. A beacon disappears after a user clicks it.
+      </p>
+    </header>
+
+    <div class="example" id="vue-beaconDemo" v-cloak>
+      <div>
+        <hx-beacon
+          @dismiss="onEvent"
+        >
+        </hx-beacon>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+     </footer>
+    </div>
+  </section>
+
+
+  <section>
+    <header>
+      <h2 id="basic-menu">Basic Menu with Beacon</h2>
+    </header>
+    <p>
+      This is an example implementation of <code>&lt;hx-beacon&gt;</code>.   We leave it to HelixUI implementors
+      to decide what works best for their applications.
+    </p>
+
+    <div class="example">
+      <div>
+        <hx-disclosure class="hxBtn menuPosition" aria-controls="basicMenuId">
+          <hx-icon type="cog"></hx-icon>
+          <span>Actions</span>
+          <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+        </hx-disclosure>
+        <hx-menu id="basicMenuId">
+          <hx-menuitem>Action 1</hx-menuitem>
+          <hx-menuitem>Action 2</hx-menuitem>
+          <hx-menuitem>Action 3</hx-menuitem>
+        </hx-menu>
+        <hx-beacon @dismiss="onEvent" class ="beaconPosition"></hx-beacon>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="accessibility">Accessibility</h2>
+    </header>
+
+    <ul class="hxList">
+      <li>
+        A beacon is an animation that attracts a user's attention
+    to a new feature or advanced functionality in a control panel.
+      </li>
+    </ul>
+  </section>
+{% endblock %}

@@ -1,0 +1,48 @@
+---
+title: <hx-beacon>
+minver: 0.22.0
+also:
+  components/beacon: Beacon
+---
+{% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element provides an animation
+    that attracts a user's attention to a new feature
+    or advanced functionality in a control panel. A beacon disappears after a user clicks it.
+  </p>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <dl class="metadata hxList">
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>Any that accept Phrasing Content</dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd>Phrasing Content</dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd>
+          Any of the following:
+          <ul class="hxList">
+            <li>
+              <code>dismiss</code> - User click on beacon.It will disappears
+            </li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <h2 id="methods">Methods</h2>
+    <dl>
+      <dt>dismiss()</dt>
+      <dd>Dismiss the beacon (removes element from the DOM).</dd>
+    </dl>
+  </section>
+{% endblock %}
