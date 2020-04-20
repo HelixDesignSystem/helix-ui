@@ -1,0 +1,103 @@
+---
+title: Beacon
+minver: 0.23.0
+also:
+  elements/hx-beacon: <hx-beacon>
+---
+{% extends 'component.njk' %}
+
+{% block page_header %}
+  <p>
+    A {{page.title}} is an animation that attracts a user's attention
+    to a new feature or advanced functionality in a control panel.
+  </p>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="basic-beacon">Basic Beacon</h2>
+    </header>
+    <p>
+      A beacon will emit a <code>dismiss</code> event and it will also be removed
+      from the DOM, when a user clicks it.
+    </p>
+    <div class="example" id="vue-beaconDemo" v-cloak>
+      <div>
+        <hx-beacon
+          @dismiss="onEvent"
+        >
+        </hx-beacon>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+     </footer>
+    </div>
+  </section>
+
+
+  <section>
+    <header>
+      <h2 id="beacon-with-inline-styles">Beacon with Inline Styles</h2>
+    </header>
+    <p>
+      This is an example implementation of <code>&lt;hx-beacon&gt;</code>.
+      We leave it to HelixUI implementors to decide what works best for their
+      applications.
+    </p>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+        The parent element of the {{page.title}} must have
+        <code>position:relative</code> set.  Additionally, you may have to
+        use <b>inline or additional styles</b> to adjust the
+        <code>&lt;hx-beacon&gt;</code> position. Valid styles are <b>top</b>,
+        <b>bottom</b>, <b>left</b>, <b>right</b>.   (Please see demo snippet below)
+    </p>
+    <div class="example" id="vue-beacon-inline-styles" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <hx-text-control>
+              <input
+                id="txtBeaconInlineStyles"
+                type="text"
+                v-model="beaconInlineStyles"
+              />
+              <label for="txtBeaconInlineStyles">
+                Beacon Inline Styles
+              </label>
+            </hx-text-control>
+            <p class="hxSubdued hxSubBody">
+              <hx-icon type="info-circle"></hx-icon>
+              Use percentages and/or pixel values to adjust the position
+              relative to the parent element.
+            </p>
+          </fieldset>
+        </form>
+      </header>
+
+      <div style="position: relative; border: 1px dashed black;"> <!-- demo snippet -->
+        <hx-beacon
+          @dismiss="onEvent"
+          :style="beaconInlineStyles"
+        >
+        </hx-beacon>
+        <hx-disclosure class="hxBtn" aria-controls="basicMenuId">
+          <hx-icon type="cog"></hx-icon>
+          <span>Actions</span>
+          <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+        </hx-disclosure>
+        <hx-menu id="basicMenuId" :open="isOpen">
+          <hx-menuitem>Action 1</hx-menuitem>
+          <hx-menuitem>Action 2</hx-menuitem>
+          <hx-menuitem>Action 3</hx-menuitem>
+        </hx-menu>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippetInlineStyles"></code></pre>
+      </footer>
+    </div>
+  </section>
+{% endblock %}

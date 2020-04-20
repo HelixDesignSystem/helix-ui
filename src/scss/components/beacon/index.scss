@@ -1,0 +1,17 @@
+/// ========== VARIABLES ========== ///
+@import "vars";
+
+/// ========== hxBeacon ========== ///
+hx-beacon {
+  background-color: $gray-0;
+  border-radius: 1rem;
+  box-shadow: 0 0 2px 2px $gray-600;
+  display: block;
+  height: 1rem;
+  margin: 0;
+  opacity: 0.5;
+  padding: 0;
+  position: absolute;  // parent container must be "position: relative"
+  width: 1rem;
+  cursor: pointer;
+}

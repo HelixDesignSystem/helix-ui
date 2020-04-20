@@ -6,6 +6,7 @@ HelixUI.initialize();
 import './_config';
 import './components/accordion/accordion-demo';
 import './components/alert/alert-demo';
+import './components/beacon/beacon-demo.js';
 import './components/box/box-demo';
 import './components/button/button-demo';
 import './components/checkbox/checkbox-demo';

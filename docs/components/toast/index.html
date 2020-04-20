@@ -7,11 +7,10 @@ also:
 {% extends 'component.njk' %}
 
 {% block page_header %}
-  <hx-alert type="info" status="note" persist>
-    Currently, only CTA and dismiss functionality of the toast itself has been
-    implemented. Positioning, stacking, animation, etc. functionality will be coming soon.
-  </hx-alert>
-  {# TODO: add component description #}
+    <p>
+      {{page.title}} provides a user with information for action
+      outside of the user's current context.
+    </p>
 {% endblock %}
 
 {% block content %}
