@@ -11,7 +11,7 @@ public/
 .deploy*/
 dist/
 lib/
-_*/
+_tmp/
 
 # Removing Coverage Reports folder created.
 coverage
