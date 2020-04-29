@@ -52,6 +52,7 @@
             { label: 'Reveal', path: 'reveal' },
             { label: 'Search', path: 'search' },
             { label: 'Selector Strip', path: 'selector-strip' },
+            { label: 'Stepper', path: 'stepper' },
             { label: 'Table', path: 'table' },
             { label: 'Tabset', path: 'tabset' },
             { label: 'Text Input', path: 'text-input' },
