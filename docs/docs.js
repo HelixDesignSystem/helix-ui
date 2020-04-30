@@ -11,6 +11,7 @@ import './components/button/button-demo';
 import './components/checkbox/checkbox-demo';
 import './components/choice-tile/choice-tile-demo';
 import './components/drawer/drawer-demo';
+import './components/drawer/slotted-drawer-demo';
 import './components/dropdown-select/select-demo';
 import './components/email/email-control-demo';
 import './components/file/drop-zone-demo';

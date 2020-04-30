@@ -1,5 +1,6 @@
 ---
 title: Drawer
+minver: 0.17.0
 also:
   components/drawer/test.html: Testing - Drawer
   elements/hx-drawer: <hx-drawer>
@@ -124,4 +125,128 @@ also:
         </footer>
       </div>
     </section>
+
+    <section>
+        <header>
+            <h2 id="drawer-positionable-elements">Drawer with Positionable Child Elements</h2>
+            <p>
+              <hx-icon type="info-circle"></hx-icon>
+               Positionable elements (e.g., <code>&lt;hx-tooltip&gt;</code> and
+               <code>&lt;hx-popover&gt;</code>) need to be direct children of the
+               <code>&lt;hx-drawer&gt;</code> element, and placed in a named slot.
+               Positionable elements require the <code>[slot="fixed]</code> attribute.
+            </p>
+          </header>
+  
+        <div class="example" id="vue-slottedDrawerDemo" >
+          <header>
+            <form class="beta-hxForm">
+              <hx-text-control>
+                <input
+                  id="txtSlottedDrawerTitle"
+                  type="text"
+                  v-model="drawerTitle"
+                />
+                <label for="txtSlottedDrawerTitle">
+                  Title
+                </label>
+              </hx-text-control>
+              <fieldset>
+                <label>Options</label>
+  
+                <hx-checkbox-control>
+                  <input
+                    id="chkHasSlottedPadding"
+                    type="checkbox"
+                    v-model="hasSlottedPadding"
+                  />
+                  <label for="chkHasSlottedPadding">
+                    <hx-checkbox></hx-checkbox>
+                    Padded Content
+                  </label>
+                </hx-checkbox-control>
+  
+                <hx-checkbox-control>
+                  <input
+                    aria-describedby="helpLengthyBody"
+                    id="chkSlottedLengthyBody"
+                    type="checkbox"
+                    v-model="hasSlottedLengthyContent"
+                  />
+                  <label for="chkSlottedLengthyBody">
+                    <hx-checkbox></hx-checkbox>
+                    Lengthy Content
+                  </label>
+                  <p id="helpLengthyBody">(triggers scrolling)</p>
+                </hx-checkbox-control>
+              </fieldset>
+            </form>
+          </header>
+  
+          <div>
+              <hx-disclosure aria-controls="drawer-with-slotted-positionable-element" class="hxBtn">
+                  Drawer with Slotted Positionable Element
+                </hx-disclosure>
+          
+                <hx-drawer id="drawer-with-slotted-positionable-element">
+                  <header>
+                    <h4 v-text="drawerTitle"></h4>
+                  </header>
+                  <hx-div :class="bodyClasses">
+                      <template v-if="hasSlottedLengthyContent">
+                        {{ utils.lorem(2) }}
+                      </template>
+                      <template v-else>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                          sed do eiusmod tempor incididunt ut labore et dolore magna
+                          aliqua. Gravida rutrum quisque non tellus. Sagittis vitae
+                          et leo duis ut diam quam nulla. Diam vel quam elementum
+                          pulvinar etiam non. Pulvinar sapien et ligula ullamcorper
+                          malesuada proin libero nunc. Ultricies integer quis auctor
+                          elit sed vulputate mi sit amet. Egestas dui id ornare arcu
+                          odio ut. In iaculis nunc sed augue.
+                        </p>
+
+                      </template>
+                      <p>
+                          <hx-icon type="info-circle" id="info1"></hx-icon>
+                          <hx-disclosure aria-controls="popover1" class="hxBtn">
+                            Toggle Popover #1
+                          </hx-disclosure>
+                        </p>
+                    </hx-div>
+          
+                  <footer>
+                      <button class="hxBtn hxPrimary">Save Changes</button>
+                      <button class="hxBtn">Cancel</button>
+                  </footer>
+          
+                  <!-- slotted positionable children -->
+          
+                  <hx-tooltip slot="fixed" for="info1" position="left-middle">
+                    <header>Tooltip #1</header>
+                    <p>
+                      <code>hx-drawer &gt; hx-tooltip[slot="fixed"]</code>
+                    </p>
+                  </hx-tooltip>
+          
+                  <hx-popover slot="fixed" id="popover1" position="left-middle">
+                    <header>
+                      Popover #1
+                    </header>
+          
+                    <hx-div>
+                      <p>This popover is a slotted child of hx-drawer.</p>
+                      <p><code>hx-drawer &gt; hx-popover[slot="fixed"]</code></p>
+                    </hx-div>
+                  </hx-popover>
+                </hx-drawer>
+          </div>
+  
+          <footer>
+            <pre><code v-text="snippet"></code></pre>
+          </footer>
+        </div>
+      </section>
 {% endblock %}
