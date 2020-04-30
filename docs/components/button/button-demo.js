@@ -58,4 +58,58 @@
             },
         });
     }//#vue-buttonBarDemo
+
+    if (document.getElementById('vue-deprecatedBasicButton')) {
+        new Vue({
+            el: '#vue-deprecatedBasicButton',
+            data: {
+                size: SIZES[0],
+                sizes: SIZES,
+                weight: WEIGHTS[2],
+                deprecated: true,
+            },
+            computed: {
+                classes: function () {
+                    let out = [ 'hxBtn' ];
+                    if (this.size.val !== '') {
+                        out.push(this.size.val);
+                    }
+                    if (this.weight.val !== '') {
+                        out.push(this.weight.val);
+                    }
+                    if (this.deprecated) {
+                        out.push('hxDeprecated');
+                    }
+                    return out.join(' ');
+                },
+            },
+        });
+    }//#vue-deprecatedBasicButton
+
+    if (document.getElementById('vue-deprecatedButtonBar')) {
+        new Vue({
+            el: '#vue-deprecatedButtonBar',
+            data: {
+                size: SIZES[0],
+                sizes: SIZES,
+                weight: WEIGHTS[2],
+                deprecated: true,
+            },
+            computed: {
+                classes: function () {
+                    let out = [ 'hxButtonBar' ];
+                    if (this.size.val !== '') {
+                        out.push(this.size.val);
+                    }
+                    if (this.weight.val !== '') {
+                        out.push(this.weight.val);
+                    }
+                    if (this.deprecated) {
+                        out.push('hxDeprecated');
+                    }
+                    return out.join(' ');
+                },
+            },
+        });
+    }//#vue-deprecatedButtonBar
 })();

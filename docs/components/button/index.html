@@ -263,4 +263,149 @@ also:
       </footer>
     </div>
   </section>
-{% endblock %}
+
+  {# DEPRECATED BASIC BUTTON #}
+  <section>
+    <header>
+      <h2 id="button-bar">Deprecated Markup - Basic Button</h2>
+      <p>
+        <hx-icon type="info-circle"></hx-icon>
+        Tertiary Button zero padding styles are <code>deprecated</code> as of <code>HelixUI-v0.21.0</code>
+         release. If needed for backward compatibility, please add the class <code>hxDeprecated</code> to
+         your Tertiary Button markup.
+      </p>
+    </header>
+
+    <div class="example" id="vue-deprecatedBasicButton" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend class="beta-hxFieldName">Size</legend>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_size, idx) in sizes">
+                <input
+                  :id="'BasicButtonSize' + idx"
+                  :value="_size"
+                  name="size"
+                  type="radio"
+                  v-model="size"
+                />
+                <label :for="'BasicButtonSize' + idx">
+                  <hx-radio></hx-radio>
+                  {% raw %}{{_size.label}}{% endraw %}
+                </label>
+                <p v-if="_size.default">(default)</p>
+              </hx-radio-control>
+            </hx-radio-set>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <p>
+          <button :class="classes" type="button">
+            Press Me
+          </button>
+        </p>
+        <p>
+          <button :class="classes" disabled>
+            <span>Loading</span>
+            <hx-busy></hx-busy>
+          </button>
+        </p>
+        <p>
+          <a href="#" :class="classes">
+            <hx-icon type="download"></hx-icon>
+            <span>Download</span>
+          </a>
+        </p>
+      </div>
+
+      <footer>
+        {% code 'html' %}{% raw %}
+          <!-- text-only (no span necessary) -->
+          <button class="{{classes}}">
+            Press Me
+          </button>
+
+          <!-- text + non-text (span around text required) -->
+          <button class="{{classes}}" disabled>
+            <span>Loading</span>
+            <hx-busy></hx-busy>
+          </button>
+
+          <!-- non-text + text (span around text required) -->
+          <a href="#" class="{{classes}}">
+            <hx-icon type="download"></hx-icon>
+            <span>Download</span>
+          </a>{% endraw %}
+        {% endcode %}
+      </footer>
+    </div>
+  </section>
+
+  {# DEPRECATED BUTTON BAR #}
+  <section>
+    <header>
+      <h2 id="button-bar">Deprecated Markup - Button Bar</h2>
+      <p>
+        <hx-icon type="info-circle"></hx-icon>
+        Tertiary Button zero padding styles are <code>deprecated</code> as of <code>HelixUI-v0.21.0</code>
+         release. If needed for backward compatibility, please add the class <code>hxDeprecated</code> to
+         your Tertiary Button markup.
+      </p>
+    </header>
+
+    <div class="example" id="vue-deprecatedButtonBar" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend class="beta-hxFieldName">Size</legend>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_size, idx) in sizes">
+                <input
+                  :id="'ButtonBarSize' + idx"
+                  :value="_size"
+                  name="size"
+                  type="radio"
+                  v-model="size"
+                />
+                <label :for="'ButtonBarSize' + idx">
+                  <hx-radio></hx-radio>
+                  {% raw %}{{_size.label}}{% endraw %}
+                </label>
+                <p v-if="_size.default">(default)</p>
+              </hx-radio-control>
+            </hx-radio-set>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <div :class="classes">
+          <button class="hxBtn">First</button>
+          <button class="hxBtn">Second</button>
+          <button class="hxBtn">
+            <hx-icon type="angle-down"></hx-icon>
+          </button>
+        </div>
+      </div>
+
+      <footer>
+        {% code 'html' %}{% raw %}
+          <div class="{{classes}}">
+            <button class="hxBtn">First</button>
+            <button class="hxBtn">Second</button>
+            <button class="hxBtn">
+              <hx-icon type="angle-down"></hx-icon>
+            </button>
+          </div>{% endraw %}
+        {% endcode %}
+      </footer>
+    </div>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      Size and Tertiary classes are applied to the <em>entire</em> bar, not to individual buttons.
+    </p>
+  </section>
+  {% endblock %}
