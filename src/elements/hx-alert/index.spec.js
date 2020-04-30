@@ -1,7 +1,5 @@
 import { fixture, expect } from '@open-wc/testing';
 
-import HelixUI from '../../../dist/js/helix-ui.module.js';
-
 /**
  * <hx-alert> component tests
  *
@@ -11,12 +9,6 @@ import HelixUI from '../../../dist/js/helix-ui.module.js';
 describe('<hx-alert> tests', () => {
 
     const template = '<hx-alert>';
-
-    it('should initialize HelixUI', async () => {
-        await HelixUI.initialize(); // get hook
-
-        expect(HelixUI.Elements).to.not.be.undefined;
-    });
 
     it('render the Shadow Root mode open', async () => {
         const el = /** @type { HXAlertElement } */ await fixture(template);
