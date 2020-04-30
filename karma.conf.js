@@ -5,7 +5,6 @@ const merge = require('deepmerge');
 module.exports = config => {
   config.set(
     merge(createDefaultConfig(config), {
-    //   basePath: '',
       files: [
         // runs all files ending with .test in the test folder,
         // can be overwritten by passing a --grep flag. examples:
@@ -14,7 +13,11 @@ module.exports = config => {
         // npm run test -- --grep test/bar/*
         //{ pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' },
         { pattern:
-            config.grep ? config.grep : 'public/dist/js/helix-ui.module.*.js',
+            config.grep ? config.grep : 'dist/js/helix-ui.js',
+            type: 'js'
+        },
+        { pattern:
+            config.grep ? config.grep : 'dist/js/helix-ui.module.js',
             type: 'module'
         },
         { pattern:
@@ -42,7 +45,7 @@ module.exports = config => {
           },
       },
       // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-      logLevel: config.LOG_DEBUG,
+      logLevel: config.LOG_INFO,
     }),
   );
   return config;

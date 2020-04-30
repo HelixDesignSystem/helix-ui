@@ -6,7 +6,6 @@ import { fixture, expect } from '@open-wc/testing';
  * @type HXBusyElement
  *
  */
-
 describe('<hx-busy> tests', () => {
     const template = '<hx-busy>';
 

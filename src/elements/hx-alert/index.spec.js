@@ -1,7 +1,6 @@
 import { fixture, expect } from '@open-wc/testing';
 
-// FIXME: https://stackoverflow.com/questions/57318234/importing-node-core-modules-breaks-karma-tests-using-open-wc-testing-karma
-import HelixUI from 'https://unpkg.com/helix-ui@0.20.0/dist/js/helix-ui.js';
+import HelixUI from '../../../dist/js/helix-ui.module.js';
 
 /**
  * <hx-alert> component tests
