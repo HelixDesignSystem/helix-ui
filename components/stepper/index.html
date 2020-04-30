@@ -285,6 +285,12 @@ class="current">
 
 
       
+      <a href="components/stepper" class="current">
+    Stepper
+  </a>
+
+
+      
       <a href="components/table" >
     Table
   </a>
@@ -615,12 +621,15 @@ class="current">
             <h1>
               Stepper
 
+<min-version id="page-min-version">
+  v0.21.0+
+</min-version>
+
+<hx-tooltip for="page-min-version" position="right">
+  HelixUI v0.21.0 or later required
+</hx-tooltip>
             </h1>
 
-              
-              <hx-alert type="warning" status="BETA" persist>
-                Not recommended for production use.
-              </hx-alert>
 
   
           </header>
@@ -629,27 +638,27 @@ class="current">
   <section>
     <header>
       <h2 id="basic-stepper">Basic Stepper</h2>
-      
+      A basic stepper will allow a user to expand and collapse as many panels as desired.
     </header>
 
     <div class="example" id="vue-stepperDemo" v-cloak>
       <div>
         <hx-accordion
-          class="beta-hxStepper"
+          class="hxStepper"
           current-panel="0"
           ref="accordion">
 
           <hx-accordion-panel>
             <header slot="header">
-              <span class="beta-hxStepCounter"></span>
-              <span class="beta-hxStepLabel">Account</span>
-              <span class="beta-hxStepValue">Acme Corp Inc.</span>
+              <span class="hxStepCounter"></span>
+              <span class="hxStepLabel">Account</span>
+              <span class="hxStepValue">Acme Corp Inc.</span>
             </header>
             <div class="hxBox hxMd">
               <p>
                 <em>Content Goes Here</em>
               </p>
-              <p class="beta-hxSubmitButtons">
+              <p class="hxStepButton">
                 <button class="hxBtn hxPrimary" @click="nextStep">Next Step</button>
                 <button class="hxBtn hxLink">Cancel</button>
               </p>
@@ -658,15 +667,15 @@ class="current">
 
           <hx-accordion-panel>
             <header slot="header">
-              <span class="beta-hxStepCounter"></span>
-              <span class="beta-hxStepLabel">Topic</span>
-              <span class="beta-hxStepValue">Technical Incident</span>
+              <span class="hxStepCounter"></span>
+              <span class="hxStepLabel">Topic</span>
+              <span class="hxStepValue">Technical Incident</span>
             </header>
-            <div class="hxBox hxMd">
+            <div class="hxBox hxMd ">
               <p>
                 <em>Content Goes Here</em>
               </p>
-              <p class="beta-hxSubmitButtons">
+              <p class="hxStepButton">
                 <button class="hxBtn hxPrimary" @click="nextStep">Next Step</button>
                 <button class="hxBtn" @click="prevStep">Prev Step</button>
                 <button class="hxBtn hxLink">Cancel</button>
@@ -676,15 +685,15 @@ class="current">
 
           <hx-accordion-panel>
             <header slot="header">
-              <span class="beta-hxStepCounter"></span>
-              <span class="beta-hxStepLabel">Issue Details</span>
-              <span class="beta-hxStepValue"></span>
+              <span class="hxStepCounter"></span>
+              <span class="hxStepLabel">Issue Details</span>
+              <span class="hxStepValue"></span>
             </header>
-            <div class="hxBox hxMd">
+            <div class="hxBox hxMd ">
               <p>
                 <em>Content Goes Here</em>
               </p>
-              <p class="beta-hxSubmitButtons">
+              <p class="hxStepButton">
                 <button class="hxBtn hxPrimary">Submit</button>
                 <button class="hxBtn" @click="prevStep">Prev Step</button>
                 <button class="hxBtn hxLink">Cancel</button>
@@ -695,20 +704,20 @@ class="current">
       </div>
 
       <footer>
-<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-accordion</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"beta-hxStepper"</span> <span class="hljs-attr">current-panel</span>=<span class="hljs-string">"0"</span>&gt;</span>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">hx-accordion</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxStepper"</span> <span class="hljs-attr">current-panel</span>=<span class="hljs-string">"0"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">hx-accordion-panel</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"header"</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"beta-hxStepCounter"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxStepCounter"</span>&gt;</span>
         <span class="hljs-comment">&lt;!-- CSS will handle filling in the step number --&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"beta-hxStepLabel"</span>&gt;</span>Account<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"beta-hxStepValue"</span>&gt;</span>Acme Corp Inc.<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxStepLabel"</span>&gt;</span>Account<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxStepValue"</span>&gt;</span>Acme Corp Inc.<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBox hxMd"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>Content Goes Here<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"beta-hxSubmitButtons"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxStepButton"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxPrimary"</span>&gt;</span>Next Step<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Prev Step<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn hxLink"</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
@@ -762,8 +771,8 @@ class="current">
 
       <small>
         Latest Release:
-        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.20.0" target="_blank">
-          v0.20.0
+        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.21.0" target="_blank">
+          v0.21.0
         </a>)
       </small>
     </div>

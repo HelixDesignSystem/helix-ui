@@ -285,6 +285,12 @@ class="current">
 
 
       
+      <a href="components/stepper" >
+    Stepper
+  </a>
+
+
+      
       <a href="components/table" >
     Table
   </a>
@@ -871,6 +877,147 @@ class="current">
     </div>
   </section>
 
+  
+  <section>
+    <header>
+      <h2 id="button-bar">Deprecated Markup - Basic Button</h2>
+      <p>
+        <hx-icon type="info-circle"></hx-icon>
+        Tertiary Button zero padding styles are <code>deprecated</code> as of <code>HelixUI-v0.21.0</code>
+         release. If needed for backward compatibility, please add the class <code>hxDeprecated</code> to
+         your Tertiary Button markup.
+      </p>
+    </header>
+
+    <div class="example" id="vue-deprecatedBasicButton" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend class="beta-hxFieldName">Size</legend>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_size, idx) in sizes">
+                <input
+                  :id="'BasicButtonSize' + idx"
+                  :value="_size"
+                  name="size"
+                  type="radio"
+                  v-model="size"
+                />
+                <label :for="'BasicButtonSize' + idx">
+                  <hx-radio></hx-radio>
+{{_size.label}}
+                </label>
+                <p v-if="_size.default">(default)</p>
+              </hx-radio-control>
+            </hx-radio-set>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <p>
+          <button :class="classes" type="button">
+            Press Me
+          </button>
+        </p>
+        <p>
+          <button :class="classes" disabled>
+            <span>Loading</span>
+            <hx-busy></hx-busy>
+          </button>
+        </p>
+        <p>
+          <a href="#" :class="classes">
+            <hx-icon type="download"></hx-icon>
+            <span>Download</span>
+          </a>
+        </p>
+      </div>
+
+      <footer>
+<pre><code class="html"><span class="hljs-comment">&lt;!-- text-only (no span necessary) --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{classes}}"</span>&gt;</span>
+  Press Me
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- text + non-text (span around text required) --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{classes}}"</span> <span class="hljs-attr">disabled</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Loading<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-busy</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-busy</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- non-text + text (span around text required) --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{classes}}"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"download"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Download<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>      </footer>
+    </div>
+  </section>
+
+  
+  <section>
+    <header>
+      <h2 id="button-bar">Deprecated Markup - Button Bar</h2>
+      <p>
+        <hx-icon type="info-circle"></hx-icon>
+        Tertiary Button zero padding styles are <code>deprecated</code> as of <code>HelixUI-v0.21.0</code>
+         release. If needed for backward compatibility, please add the class <code>hxDeprecated</code> to
+         your Tertiary Button markup.
+      </p>
+    </header>
+
+    <div class="example" id="vue-deprecatedButtonBar" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <legend class="beta-hxFieldName">Size</legend>
+            <hx-radio-set>
+              <hx-radio-control v-for="(_size, idx) in sizes">
+                <input
+                  :id="'ButtonBarSize' + idx"
+                  :value="_size"
+                  name="size"
+                  type="radio"
+                  v-model="size"
+                />
+                <label :for="'ButtonBarSize' + idx">
+                  <hx-radio></hx-radio>
+{{_size.label}}
+                </label>
+                <p v-if="_size.default">(default)</p>
+              </hx-radio-control>
+            </hx-radio-set>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <div :class="classes">
+          <button class="hxBtn">First</button>
+          <button class="hxBtn">Second</button>
+          <button class="hxBtn">
+            <hx-icon type="angle-down"></hx-icon>
+          </button>
+        </div>
+      </div>
+
+      <footer>
+<pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"{{classes}}"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>First<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>Second<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hxBtn"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hx-icon</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"angle-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">hx-icon</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>      </footer>
+    </div>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      Size and Tertiary classes are applied to the <em>entire</em> bar, not to individual buttons.
+    </p>
+  </section>
+
 <section>
   <h2 id="see-also">See Also</h2>
   <ul class="hxList">
@@ -894,6 +1041,12 @@ class="current">
         
 
             <a href="#button-set">Button Set</a>
+        
+
+            <a href="#button-bar">Deprecated Markup - Basic Button</a>
+        
+
+            <a href="#button-bar">Deprecated Markup - Button Bar</a>
         
                     
                     <a href="#see-also">See Also</a>
@@ -919,8 +1072,8 @@ class="current">
 
       <small>
         Latest Release:
-        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.20.0" target="_blank">
-          v0.20.0
+        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.21.0" target="_blank">
+          v0.21.0
         </a>)
       </small>
     </div>

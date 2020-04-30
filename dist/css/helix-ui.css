@@ -145,56 +145,53 @@ hx-accordion {
   display: block;
 }
 
-/* ======================================= *\
- * BETA BETA BETA BETA BETA BETA BETA BETA *
-\* ======================================= */
-hx-accordion.beta-hxStepper {
+hx-accordion.hxStepper {
   counter-reset: step;
 }
 
-hx-accordion.beta-hxStepper hx-accordion-panel {
+hx-accordion.hxStepper hx-accordion-panel {
   border-top: 1px solid #e0e0e0;
 }
 
-hx-accordion.beta-hxStepper hx-accordion-panel:last-child {
+hx-accordion.hxStepper hx-accordion-panel:last-child {
   border-bottom: 1px solid #e0e0e0;
 }
 
-hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"] {
+hx-accordion.hxStepper hx-accordion-panel header[slot="header"] {
   display: flex;
   padding: 1rem;
 }
 
-hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"] > * {
+hx-accordion.hxStepper hx-accordion-panel header[slot="header"] > * {
   display: flex;
   align-items: center;
 }
 
-hx-accordion.beta-hxStepper hx-accordion-panel header[slot="header"]:hover .beta-hxStepCounter {
+hx-accordion.hxStepper hx-accordion-panel header[slot="header"]:hover .hxStepCounter {
   background-color: #16b9d4;
   color: #ffffff;
 }
 
-hx-accordion.beta-hxStepper hx-accordion-panel[open] .beta-hxStepCounter {
+hx-accordion.hxStepper hx-accordion-panel[open] .hxStepCounter {
   background-color: #16b9d4;
   color: #ffffff;
 }
 
-hx-accordion.beta-hxStepper hx-accordion-panel[disabled] .beta-hxStepCounter {
+hx-accordion.hxStepper hx-accordion-panel[disabled] .hxStepCounter {
   background-color: #d8d8d8;
   color: #757575;
 }
 
-hx-accordion.beta-hxStepper hx-accordion-panel[disabled] .beta-hxStepLabel {
+hx-accordion.hxStepper hx-accordion-panel[disabled] .hxStepLabel {
   color: #757575;
 }
 
-hx-accordion.beta-hxStepper hx-accordion-panel[disabled] header[slot="header"]:hover .beta-hxStepCounter {
+hx-accordion.hxStepper hx-accordion-panel[disabled] header[slot="header"]:hover .hxStepCounter {
   background-color: #d8d8d8;
   color: #757575;
 }
 
-hx-accordion.beta-hxStepper .beta-hxStepCounter {
+hx-accordion.hxStepper .hxStepCounter {
   background-color: #0c7c84;
   border-radius: 3rem;
   color: #ffffff;
@@ -206,7 +203,7 @@ hx-accordion.beta-hxStepper .beta-hxStepCounter {
   width: 2.25rem;
 }
 
-hx-accordion.beta-hxStepper .beta-hxStepCounter::before {
+hx-accordion.hxStepper .hxStepCounter::before {
   content: counter(step);
   left: 50%;
   position: absolute;
@@ -214,7 +211,7 @@ hx-accordion.beta-hxStepper .beta-hxStepCounter::before {
   transform: translate(-50%, -50%);
 }
 
-hx-accordion.beta-hxStepper .beta-hxStepLabel {
+hx-accordion.hxStepper .hxStepLabel {
   color: #424242;
   flex-basis: 50%;
   font-size: 1.5rem;
@@ -222,15 +219,19 @@ hx-accordion.beta-hxStepper .beta-hxStepLabel {
   margin-left: 1rem;
 }
 
-hx-accordion.beta-hxStepper .beta-hxStepValue {
+hx-accordion.hxStepper .hxStepValue {
   flex-basis: 50%;
   font-size: 1rem;
   font-weight: 500;
   margin-left: 0.5rem;
 }
 
-hx-accordion.beta-hxStepper .beta-hxSubmitButtons .hxBtn + .hxBtn {
+hx-accordion.hxStepper .hxStepButton .hxBtn + .hxBtn {
   margin-left: 0.5rem;
+}
+
+hx-accordion.hxStepper div {
+  margin-left: 3rem;
 }
 
 hx-alert {
@@ -619,6 +620,10 @@ a[href].hxBtn.hxTertiary {
   background-color: transparent;
   border: 0;
   color: #0c7c84;
+}
+
+.hxBtn.hxTertiary.hxDeprecated,
+a[href].hxBtn.hxTertiary.hxDeprecated {
   padding-left: 0;
   padding-right: 0;
 }
@@ -705,6 +710,9 @@ a[href].hxBtn.hxTertiary[disabled] {
   background-color: transparent;
   border: 0;
   color: #0c7c84;
+}
+
+.hxButtonBar.hxTertiary > .hxBtn.hxDeprecated {
   padding-left: 0;
   padding-right: 0;
 }
@@ -836,6 +844,9 @@ a[href].hxBtn.hxTertiary[disabled] {
   background-color: transparent;
   border: 0;
   color: #0c7c84;
+}
+
+.hxBtnGroup.hxTertiary > .hxBtn.hxDeprecated {
   padding-left: 0;
   padding-right: 0;
 }
@@ -908,6 +919,10 @@ a[href].hxBtn.hxTertiary[disabled] {
   background-color: transparent;
   border: 0;
   color: #0c7c84;
+}
+
+.hxBtn.hxLink.hxDeprecated,
+.hxBtn--link.hxDeprecated {
   padding-left: 0;
   padding-right: 0;
 }
@@ -951,6 +966,9 @@ a[href].hxBtn.hxTertiary[disabled] {
   background-color: transparent;
   border: 0;
   color: #0c7c84;
+}
+
+.hxBtnGroup.hxLink > .hxBtn.hxDeprecated {
   padding-left: 0;
   padding-right: 0;
 }

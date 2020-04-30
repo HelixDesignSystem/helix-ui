@@ -8,9 +8,9 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 (function () {
-  'use strict';
+    'use strict';
 
-  (function(){if(void 0===window.Reflect||void 0===window.customElements||window.customElements.polyfillWrapFlushCallback)return;const a=HTMLElement;window.HTMLElement={HTMLElement:function HTMLElement(){return Reflect.construct(a,[],this.constructor)}}.HTMLElement,HTMLElement.prototype=a.prototype,HTMLElement.prototype.constructor=HTMLElement,Object.setPrototypeOf(HTMLElement,a);})();
+    (function(){if(void 0===window.Reflect||void 0===window.customElements||window.customElements.polyfillWrapFlushCallback)return;const a=HTMLElement;window.HTMLElement={HTMLElement:function HTMLElement(){return Reflect.construct(a,[],this.constructor)}}.HTMLElement,HTMLElement.prototype=a.prototype,HTMLElement.prototype.constructor=HTMLElement,Object.setPrototypeOf(HTMLElement,a);})();
 
 }());
 
@@ -84,6 +84,8 @@ limitations under the License.
     }
 
     function _typeof(obj) {
+      "@babel/helpers - typeof";
+
       if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
         _typeof = function (obj) {
           return typeof obj;
@@ -150,7 +152,7 @@ limitations under the License.
       return _setPrototypeOf(o, p);
     }
 
-    function isNativeReflectConstruct() {
+    function _isNativeReflectConstruct() {
       if (typeof Reflect === "undefined" || !Reflect.construct) return false;
       if (Reflect.construct.sham) return false;
       if (typeof Proxy === "function") return true;
@@ -164,7 +166,7 @@ limitations under the License.
     }
 
     function _construct(Parent, args, Class) {
-      if (isNativeReflectConstruct()) {
+      if (_isNativeReflectConstruct()) {
         _construct = Reflect.construct;
       } else {
         _construct = function _construct(Parent, args, Class) {
@@ -234,6 +236,25 @@ limitations under the License.
       return _assertThisInitialized(self);
     }
 
+    function _createSuper(Derived) {
+      var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+      return function () {
+        var Super = _getPrototypeOf(Derived),
+            result;
+
+        if (hasNativeReflectConstruct) {
+          var NewTarget = _getPrototypeOf(this).constructor;
+
+          result = Reflect.construct(Super, arguments, NewTarget);
+        } else {
+          result = Super.apply(this, arguments);
+        }
+
+        return _possibleConstructorReturn(this, result);
+      };
+    }
+
     function _superPropBase(object, property) {
       while (!Object.prototype.hasOwnProperty.call(object, property)) {
         object = _getPrototypeOf(object);
@@ -265,23 +286,36 @@ limitations under the License.
     }
 
     function _toConsumableArray(arr) {
-      return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+      return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
     }
 
     function _arrayWithoutHoles(arr) {
-      if (Array.isArray(arr)) {
-        for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-        return arr2;
-      }
+      if (Array.isArray(arr)) return _arrayLikeToArray(arr);
     }
 
     function _iterableToArray(iter) {
-      if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+      if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+    }
+
+    function _unsupportedIterableToArray(o, minLen) {
+      if (!o) return;
+      if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+      var n = Object.prototype.toString.call(o).slice(8, -1);
+      if (n === "Object" && o.constructor) n = o.constructor.name;
+      if (n === "Map" || n === "Set") return Array.from(o);
+      if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+    }
+
+    function _arrayLikeToArray(arr, len) {
+      if (len == null || len > arr.length) len = arr.length;
+
+      for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+      return arr2;
     }
 
     function _nonIterableSpread() {
-      throw new TypeError("Invalid attempt to spread non-iterable instance");
+      throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
     }
 
     // Keep track of prepared templates
@@ -294,10 +328,10 @@ limitations under the License.
      * @since 0.2.0
      */
 
-    var HXElement =
-    /*#__PURE__*/
-    function (_HTMLElement) {
+    var HXElement = /*#__PURE__*/function (_HTMLElement) {
       _inherits(HXElement, _HTMLElement);
+
+      var _super = _createSuper(HXElement);
 
       _createClass(HXElement, [{
         key: "$onCreate",
@@ -407,7 +441,7 @@ limitations under the License.
 
         _classCallCheck(this, HXElement);
 
-        _this = _possibleConstructorReturn(this, _getPrototypeOf(HXElement).call(this));
+        _this = _super.call(this);
 
         _this._$setupShadowDOM();
 
@@ -692,7 +726,7 @@ limitations under the License.
       }]);
 
       return HXElement;
-    }(_wrapNativeSuper(HTMLElement));
+    }( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
 
     /**
      * @module HelixUI/Utils/Alignment
@@ -2210,15 +2244,15 @@ limitations under the License.
      * @since 0.4.0
      */
 
-    var HXAccordionElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXAccordionElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXAccordionElement, _HXElement);
+
+      var _super = _createSuper(HXAccordionElement);
 
       function HXAccordionElement() {
         _classCallCheck(this, HXAccordionElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXAccordionElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXAccordionElement, [{
@@ -2384,7 +2418,7 @@ limitations under the License.
 
     var shadowMarkup = "<button type='button' id='hxToggle' aria-controls='body' aria-expanded='false'><div class='header'><span class='header__content'><slot name='header'></slot></span><hx-icon class='header__icon' type='angle-down'></hx-icon></div></button><div id='hxBody' aria-expanded='false'><slot></slot></div>";
 
-    var shadowStyles = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n#hxToggle { background-color: transparent; border: 0; cursor: pointer; padding: 0; text-align: left; width: 100%; }\n\n#hxToggle[aria-expanded=\"true\"] .header__icon { transform: scaleY(-1); }\n\n#hxToggle[disabled] { cursor: not-allowed; }\n\n.header { align-items: center; display: flex; }\n\n.header__content { flex-shrink: 0; flex-grow: 1; }\n\n.header__icon { flex-shrink: 0; margin-left: 0.5rem; }\n\n#hxBody { display: none; }\n\n#hxBody[aria-expanded=\"true\"] { display: block; }\n";
+    var shadowStyles = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n#hxToggle { background-color: transparent; border: 1px; cursor: pointer; padding: 0 1rem 0 0; text-align: left; width: 100%; }\n\n#hxToggle[aria-expanded=\"true\"] .header__icon { transform: scaleY(-1); }\n\n#hxToggle[disabled] { cursor: not-allowed; }\n\n.header { align-items: center; display: flex; }\n\n.header__content { flex-shrink: 0; flex-grow: 1; }\n\n.header__icon { flex-shrink: 0; margin-left: 0.5rem; }\n\n#hxBody { display: none; }\n\n#hxBody[aria-expanded=\"true\"] { display: block; }\n\nbutton:focus { outline: none; box-shadow: 0 0 4px 0 #0e94a6; }\n";
 
     /**
      * Fires when the element's contents are concealed.
@@ -2412,15 +2446,15 @@ limitations under the License.
      * @since 0.4.0
      */
 
-    var HXAccordionPanelElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXAccordionPanelElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXAccordionPanelElement, _HXElement);
+
+      var _super = _createSuper(HXAccordionPanelElement);
 
       function HXAccordionPanelElement() {
         _classCallCheck(this, HXAccordionPanelElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXAccordionPanelElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXAccordionPanelElement, [{
@@ -2560,15 +2594,15 @@ limitations under the License.
      * @since 0.6.0
      */
 
-    var HXAlertElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXAlertElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXAlertElement, _HXElement);
+
+      var _super = _createSuper(HXAlertElement);
 
       function HXAlertElement() {
         _classCallCheck(this, HXAlertElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXAlertElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXAlertElement, [{
@@ -2793,15 +2827,15 @@ limitations under the License.
      * @since 0.4.0
      */
 
-    var HXBusyElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXBusyElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXBusyElement, _HXElement);
+
+      var _super = _createSuper(HXBusyElement);
 
       function HXBusyElement() {
         _classCallCheck(this, HXBusyElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXBusyElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXBusyElement, [{
@@ -2874,10 +2908,10 @@ limitations under the License.
      * @since 0.16.0
      */
 
-    var HXFormControlElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXFormControlElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXFormControlElement, _HXElement);
+
+      var _super = _createSuper(HXFormControlElement);
 
       /** @override */
       function HXFormControlElement() {
@@ -2885,7 +2919,7 @@ limitations under the License.
 
         _classCallCheck(this, HXFormControlElement);
 
-        _this = _possibleConstructorReturn(this, _getPrototypeOf(HXFormControlElement).call(this));
+        _this = _super.call(this);
         _this._onCtrlBlur = _this._onCtrlBlur.bind(_assertThisInitialized(_this));
         _this._onCtrlChange = _this._onCtrlChange.bind(_assertThisInitialized(_this));
         return _this;
@@ -3042,15 +3076,15 @@ limitations under the License.
      * @since 0.16.0
      */
 
-    var HXCheckboxControlElement =
-    /*#__PURE__*/
-    function (_HXFormControlElement) {
+    var HXCheckboxControlElement = /*#__PURE__*/function (_HXFormControlElement) {
       _inherits(HXCheckboxControlElement, _HXFormControlElement);
+
+      var _super = _createSuper(HXCheckboxControlElement);
 
       function HXCheckboxControlElement() {
         _classCallCheck(this, HXCheckboxControlElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXCheckboxControlElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXCheckboxControlElement, [{
@@ -3089,15 +3123,15 @@ limitations under the License.
      * @hideconstructor
      */
 
-    var HXCheckboxElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXCheckboxElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXCheckboxElement, _HXElement);
+
+      var _super = _createSuper(HXCheckboxElement);
 
       function HXCheckboxElement() {
         _classCallCheck(this, HXCheckboxElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXCheckboxElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXCheckboxElement, null, [{
@@ -3127,15 +3161,15 @@ limitations under the License.
      * @since 0.18.0
      */
 
-    var HXCheckboxSetElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXCheckboxSetElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXCheckboxSetElement, _HXElement);
+
+      var _super = _createSuper(HXCheckboxSetElement);
 
       function HXCheckboxSetElement() {
         _classCallCheck(this, HXCheckboxSetElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXCheckboxSetElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXCheckboxSetElement, [{
@@ -3224,15 +3258,15 @@ limitations under the License.
      * @since 0.2.0
      */
 
-    var HXDisclosureElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXDisclosureElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXDisclosureElement, _HXElement);
+
+      var _super = _createSuper(HXDisclosureElement);
 
       function HXDisclosureElement() {
         _classCallCheck(this, HXDisclosureElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXDisclosureElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXDisclosureElement, [{
@@ -3415,15 +3449,15 @@ limitations under the License.
      * @hideconstructor
      */
 
-    var HXDivElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXDivElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXDivElement, _HXElement);
+
+      var _super = _createSuper(HXDivElement);
 
       function HXDivElement() {
         _classCallCheck(this, HXDivElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXDivElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXDivElement, [{
@@ -3519,15 +3553,15 @@ limitations under the License.
      * @hideconstructor
      */
 
-    var HXDrawerElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXDrawerElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXDrawerElement, _HXElement);
+
+      var _super = _createSuper(HXDrawerElement);
 
       function HXDrawerElement() {
         _classCallCheck(this, HXDrawerElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXDrawerElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXDrawerElement, [{
@@ -3692,15 +3726,15 @@ limitations under the License.
      * @since 0.14.0
      */
 
-    var HXDropFenceElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXDropFenceElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXDropFenceElement, _HXElement);
+
+      var _super = _createSuper(HXDropFenceElement);
 
       function HXDropFenceElement() {
         _classCallCheck(this, HXDropFenceElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXDropFenceElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXDropFenceElement, null, [{
@@ -3718,15 +3752,15 @@ limitations under the License.
       return HXDropFenceElement;
     }(HXElement);
 
-    var HXDropZoneElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXDropZoneElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXDropZoneElement, _HXElement);
+
+      var _super = _createSuper(HXDropZoneElement);
 
       function HXDropZoneElement() {
         _classCallCheck(this, HXDropZoneElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXDropZoneElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXDropZoneElement, [{
@@ -3885,15 +3919,15 @@ limitations under the License.
      * @since 0.20.0
      */
 
-    var HXEmailControl =
-    /*#__PURE__*/
-    function (_HXFormControlElement) {
+    var HXEmailControl = /*#__PURE__*/function (_HXFormControlElement) {
       _inherits(HXEmailControl, _HXFormControlElement);
+
+      var _super = _createSuper(HXEmailControl);
 
       function HXEmailControl() {
         _classCallCheck(this, HXEmailControl);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXEmailControl).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXEmailControl, [{
@@ -3935,15 +3969,15 @@ limitations under the License.
      * @since 0.4.0
      */
 
-    var HXErrorElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXErrorElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXErrorElement, _HXElement);
+
+      var _super = _createSuper(HXErrorElement);
 
       function HXErrorElement() {
         _classCallCheck(this, HXErrorElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXErrorElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXErrorElement, null, [{
@@ -3968,15 +4002,15 @@ limitations under the License.
      * @hideconstructor
      */
 
-    var HXFileControlElement =
-    /*#__PURE__*/
-    function (_HXFormControlElement) {
+    var HXFileControlElement = /*#__PURE__*/function (_HXFormControlElement) {
       _inherits(HXFileControlElement, _HXFormControlElement);
+
+      var _super = _createSuper(HXFileControlElement);
 
       function HXFileControlElement() {
         _classCallCheck(this, HXFileControlElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXFileControlElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXFileControlElement, [{
@@ -4015,15 +4049,15 @@ limitations under the License.
      * @hideconstructor
      */
 
-    var HXFileIconElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXFileIconElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXFileIconElement, _HXElement);
+
+      var _super = _createSuper(HXFileIconElement);
 
       function HXFileIconElement() {
         _classCallCheck(this, HXFileIconElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXFileIconElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXFileIconElement, [{
@@ -4109,15 +4143,15 @@ limitations under the License.
      * @hideconstructor
      */
 
-    var HXFileInputElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXFileInputElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXFileInputElement, _HXElement);
+
+      var _super = _createSuper(HXFileInputElement);
 
       function HXFileInputElement() {
         _classCallCheck(this, HXFileInputElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXFileInputElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXFileInputElement, [{
@@ -4174,7 +4208,7 @@ limitations under the License.
 
     var shadowMarkup$9 = "<div id='hxFileTile'><a id='hxLink'><div id='hxIconWrapper'><hx-file-icon id='hxIcon'></hx-file-icon><hx-icon type='download'></hx-icon></div><div id='hxContentWrapper'><div id='hxName'></div><div id='hxState--downloadable'><div id='hxDetails'></div></div><div id='hxState--loading'><hx-progress id='hxProgress'></hx-progress></div><div id='hxState--invalid'><button id='hxRetry' type='button'><span>Retry</span><hx-icon type='redo'></hx-icon></button></div></div></a><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-    var shadowStyles$9 = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\na[href] { background-color: transparent; color: #0d74d1; text-decoration: none; }\n\na[href]:hover, a[href]:active { color: #3391ff; cursor: pointer; text-decoration: none; }\n\nhx-progress { background-color: #d8d8d8; border-radius: 1em; color: #16b9d4; display: block; height: 0.5rem; overflow: hidden; }\n\n:host button { background-color: transparent; border: 0; color: inherit; cursor: pointer; display: inline-block; font: inherit; font-weight: 500; line-height: 1; margin: 0; padding: 0; }\n\n:host #hxFileTile { display: flex; font-size: 0.875rem; height: 100%; width: 100%; }\n\n:host #hxRetry { border-radius: 2px; display: inline-flex; justify-content: center; padding: 0.125rem 0.5rem; background-color: transparent; border: 0; color: #0c7c84; padding-left: 0; padding-right: 0; }\n\n:host #hxRetry > * + * { margin-left: 0.5rem; }\n\n:host #hxRetry:focus { outline: none; }\n\n:host #hxRetry[disabled] { cursor: not-allowed; }\n\n:host #hxRetry[disabled]:focus { box-shadow: none; }\n\n:host #hxRetry:hover { background-color: transparent; border-color: transparent; color: #16b9d4; }\n\n:host #hxRetry:active { background-color: transparent; border-color: transparent; color: #0e94a6; }\n\n:host #hxRetry:focus { box-shadow: 0 0 4px rgba(14, 148, 166, 0.5); }\n\n:host #hxRetry[disabled] { background-color: transparent; border-color: transparent; color: #d8d8d8; }\n\n:host #hxRetry hx-icon { margin-left: 0.25rem !important; }\n\n:host #hxDismiss { color: var(--hxDismiss-color, inherit); flex-shrink: 0; font-size: 1rem; line-height: 0; padding: 0.5rem 0.75rem; }\n\n:host #hxDismiss:hover { color: var(--hxDismiss-color--hover, #16b9d4); }\n\n:host #hxDismiss:focus { box-shadow: var(--hxDismiss-boxShadow--focus, 0 0 4px rgba(14, 148, 166, 0.5)); outline: 0; }\n\n:host #hxIconWrapper { align-items: center; color: var(--hxIcon-color, inherit); display: flex; flex: 0 0 48px; height: 100%; justify-content: center; line-height: 0; padding: 0.5rem 0 0.5rem 0.5rem; }\n\n:host #hxIconWrapper > hx-icon { display: none; font-size: 2rem; }\n\n:host #hxContentWrapper { display: flex; flex-direction: column; flex-grow: 1; justify-content: center; overflow: hidden; padding: 0.5rem 0 0.5rem 0.5rem; }\n\n:host #hxName { color: var(--hxName-color, #0c7c84); display: flex; font-weight: 500; }\n\n:host #hxName > span { white-space: pre; }\n\n:host #hxName > span:first-child { overflow: hidden; text-overflow: ellipsis; }\n\n:host #hxName > span:last-child { flex-shrink: 0; }\n\n:host #hxDetails { font-weight: 300; overflow: hidden; text-overflow: ellipsis; white-space: pre; }\n\n:host #hxLink { display: flex; flex-grow: 1; overflow: hidden; }\n\n:host #hxLink[href] { color: var(--hxLink-color, inherit); }\n\n:host #hxLink[href]:hover { color: var(--hxLink-color--hover, #16b9d4); }\n\n:host #hxLink[href]:hover #hxIconWrapper > hx-file-icon { display: none; }\n\n:host #hxLink[href]:hover #hxIconWrapper > hx-icon { display: inline-block; }\n\n:host #hxLink[href]:hover #hxName { color: inherit; }\n\n:host #hxLink[href]:focus { box-shadow: var(--hxLink-boxShadow--focus, 0 0 4px rgba(14, 148, 166, 0.5)); outline: 0; }\n\n:host #hxState--loading hx-progress { display: inline-block; width: 100%; }\n\n:host #hxState--loading, :host #hxState--invalid { display: none; }\n\n:host([invalid]) #hxIconWrapper { color: var(--hxIcon-color, #6b6b6b); }\n\n:host([invalid]) #hxName { color: var(--hxName-color, #6b6b6b); }\n\n:host([invalid]) #hxState--downloadable { display: none; }\n\n:host([invalid]) #hxState--invalid { display: block; }\n\n:host([progress]) #hxDismiss { color: var(--hxDismiss-color, #424242); }\n\n:host([progress]) #hxIconWrapper { color: var(--hxIcon-color, #6b6b6b); }\n\n:host([progress]) #hxName { color: var(--hxName-color, #6b6b6b); }\n\n:host([progress]) #hxState--downloadable { display: none; }\n\n:host([progress]) #hxState--loading { display: block; }\n\n:host([readonly]) #hxDismiss { display: none; }\n\n:host([readonly]) #hxContentWrapper { padding: 0.5rem; }\n";
+    var shadowStyles$9 = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\na[href] { background-color: transparent; color: #0d74d1; text-decoration: none; }\n\na[href]:hover, a[href]:active { color: #3391ff; cursor: pointer; text-decoration: none; }\n\nhx-progress { background-color: #d8d8d8; border-radius: 1em; color: #16b9d4; display: block; height: 0.5rem; overflow: hidden; }\n\n:host button { background-color: transparent; border: 0; color: inherit; cursor: pointer; display: inline-block; font: inherit; font-weight: 500; line-height: 1; margin: 0; padding: 0; }\n\n:host #hxFileTile { display: flex; font-size: 0.875rem; height: 100%; width: 100%; }\n\n:host #hxRetry { border-radius: 2px; display: inline-flex; justify-content: center; padding: 0.125rem 0.5rem; background-color: transparent; border: 0; color: #0c7c84; }\n\n:host #hxRetry > * + * { margin-left: 0.5rem; }\n\n:host #hxRetry:focus { outline: none; }\n\n:host #hxRetry[disabled] { cursor: not-allowed; }\n\n:host #hxRetry[disabled]:focus { box-shadow: none; }\n\n:host #hxRetry.hxDeprecated { padding-left: 0; padding-right: 0; }\n\n:host #hxRetry:hover { background-color: transparent; border-color: transparent; color: #16b9d4; }\n\n:host #hxRetry:active { background-color: transparent; border-color: transparent; color: #0e94a6; }\n\n:host #hxRetry:focus { box-shadow: 0 0 4px rgba(14, 148, 166, 0.5); }\n\n:host #hxRetry[disabled] { background-color: transparent; border-color: transparent; color: #d8d8d8; }\n\n:host #hxRetry hx-icon { margin-left: 0.25rem !important; }\n\n:host #hxDismiss { color: var(--hxDismiss-color, inherit); flex-shrink: 0; font-size: 1rem; line-height: 0; padding: 0.5rem 0.75rem; }\n\n:host #hxDismiss:hover { color: var(--hxDismiss-color--hover, #16b9d4); }\n\n:host #hxDismiss:focus { box-shadow: var(--hxDismiss-boxShadow--focus, 0 0 4px rgba(14, 148, 166, 0.5)); outline: 0; }\n\n:host #hxIconWrapper { align-items: center; color: var(--hxIcon-color, inherit); display: flex; flex: 0 0 48px; height: 100%; justify-content: center; line-height: 0; padding: 0.5rem 0 0.5rem 0.5rem; }\n\n:host #hxIconWrapper > hx-icon { display: none; font-size: 2rem; }\n\n:host #hxContentWrapper { display: flex; flex-direction: column; flex-grow: 1; justify-content: center; overflow: hidden; padding: 0.5rem 0 0.5rem 0.5rem; }\n\n:host #hxName { color: var(--hxName-color, #0c7c84); display: flex; font-weight: 500; }\n\n:host #hxName > span { white-space: pre; }\n\n:host #hxName > span:first-child { overflow: hidden; text-overflow: ellipsis; }\n\n:host #hxName > span:last-child { flex-shrink: 0; }\n\n:host #hxDetails { font-weight: 300; overflow: hidden; text-overflow: ellipsis; white-space: pre; }\n\n:host #hxLink { display: flex; flex-grow: 1; overflow: hidden; }\n\n:host #hxLink[href] { color: var(--hxLink-color, inherit); }\n\n:host #hxLink[href]:hover { color: var(--hxLink-color--hover, #16b9d4); }\n\n:host #hxLink[href]:hover #hxIconWrapper > hx-file-icon { display: none; }\n\n:host #hxLink[href]:hover #hxIconWrapper > hx-icon { display: inline-block; }\n\n:host #hxLink[href]:hover #hxName { color: inherit; }\n\n:host #hxLink[href]:focus { box-shadow: var(--hxLink-boxShadow--focus, 0 0 4px rgba(14, 148, 166, 0.5)); outline: 0; }\n\n:host #hxState--loading hx-progress { display: inline-block; width: 100%; }\n\n:host #hxState--loading, :host #hxState--invalid { display: none; }\n\n:host([invalid]) #hxIconWrapper { color: var(--hxIcon-color, #6b6b6b); }\n\n:host([invalid]) #hxName { color: var(--hxName-color, #6b6b6b); }\n\n:host([invalid]) #hxState--downloadable { display: none; }\n\n:host([invalid]) #hxState--invalid { display: block; }\n\n:host([progress]) #hxDismiss { color: var(--hxDismiss-color, #424242); }\n\n:host([progress]) #hxIconWrapper { color: var(--hxIcon-color, #6b6b6b); }\n\n:host([progress]) #hxName { color: var(--hxName-color, #6b6b6b); }\n\n:host([progress]) #hxState--downloadable { display: none; }\n\n:host([progress]) #hxState--loading { display: block; }\n\n:host([readonly]) #hxDismiss { display: none; }\n\n:host([readonly]) #hxContentWrapper { padding: 0.5rem; }\n";
 
     var PRE_TRUNC = 14;
     /**
@@ -4212,15 +4246,15 @@ limitations under the License.
      * @since 0.12.0
      */
 
-    var HXFileTileElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXFileTileElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXFileTileElement, _HXElement);
+
+      var _super = _createSuper(HXFileTileElement);
 
       function HXFileTileElement() {
         _classCallCheck(this, HXFileTileElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXFileTileElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXFileTileElement, [{
@@ -4599,15 +4633,15 @@ limitations under the License.
      * @since 0.1.0
      */
 
-    var HXIconElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXIconElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXIconElement, _HXElement);
+
+      var _super = _createSuper(HXIconElement);
 
       function HXIconElement() {
         _classCallCheck(this, HXIconElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXIconElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXIconElement, [{
@@ -4736,15 +4770,15 @@ limitations under the License.
      */
     var Revealable = function Revealable(superclass) {
       /** @lends Revealable */
-      var _Revealable =
-      /*#__PURE__*/
-      function (_superclass) {
+      var _Revealable = /*#__PURE__*/function (_superclass) {
         _inherits(_Revealable, _superclass);
+
+        var _super = _createSuper(_Revealable);
 
         function _Revealable() {
           _classCallCheck(this, _Revealable);
 
-          return _possibleConstructorReturn(this, _getPrototypeOf(_Revealable).apply(this, arguments));
+          return _super.apply(this, arguments);
         }
 
         _createClass(_Revealable, [{
@@ -4866,15 +4900,15 @@ limitations under the License.
      */
 
     var Positionable = function Positionable(superclass) {
-      var ProtoClass =
-      /*#__PURE__*/
-      function (_mix) {
+      var ProtoClass = /*#__PURE__*/function (_mix) {
         _inherits(ProtoClass, _mix);
+
+        var _super = _createSuper(ProtoClass);
 
         function ProtoClass() {
           _classCallCheck(this, ProtoClass);
 
-          return _possibleConstructorReturn(this, _getPrototypeOf(ProtoClass).apply(this, arguments));
+          return _super.apply(this, arguments);
         }
 
         return ProtoClass;
@@ -4882,15 +4916,15 @@ limitations under the License.
       /** @lends Positionable */
 
 
-      var _Positionable =
-      /*#__PURE__*/
-      function (_ProtoClass) {
+      var _Positionable = /*#__PURE__*/function (_ProtoClass) {
         _inherits(_Positionable, _ProtoClass);
+
+        var _super2 = _createSuper(_Positionable);
 
         function _Positionable() {
           _classCallCheck(this, _Positionable);
 
-          return _possibleConstructorReturn(this, _getPrototypeOf(_Positionable).apply(this, arguments));
+          return _super2.apply(this, arguments);
         }
 
         _createClass(_Positionable, [{
@@ -5382,15 +5416,15 @@ limitations under the License.
       return _Positionable;
     };
 
-    var _ProtoClass =
-    /*#__PURE__*/
-    function (_mix) {
+    var _ProtoClass = /*#__PURE__*/function (_mix) {
       _inherits(_ProtoClass, _mix);
+
+      var _super = _createSuper(_ProtoClass);
 
       function _ProtoClass() {
         _classCallCheck(this, _ProtoClass);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(_ProtoClass).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       return _ProtoClass;
@@ -5405,15 +5439,15 @@ limitations under the License.
      */
 
 
-    var HXMenuElement =
-    /*#__PURE__*/
-    function (_ProtoClass2) {
+    var HXMenuElement = /*#__PURE__*/function (_ProtoClass2) {
       _inherits(HXMenuElement, _ProtoClass2);
+
+      var _super2 = _createSuper(HXMenuElement);
 
       function HXMenuElement() {
         _classCallCheck(this, HXMenuElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXMenuElement).apply(this, arguments));
+        return _super2.apply(this, arguments);
       }
 
       _createClass(HXMenuElement, [{
@@ -5453,15 +5487,15 @@ limitations under the License.
      * @since 0.2.0
      */
 
-    var HXMenuitemElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXMenuitemElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXMenuitemElement, _HXElement);
+
+      var _super = _createSuper(HXMenuitemElement);
 
       function HXMenuitemElement() {
         _classCallCheck(this, HXMenuitemElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXMenuitemElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXMenuitemElement, [{
@@ -5509,15 +5543,15 @@ limitations under the License.
      * @since 0.2.1
      */
 
-    var HXModalElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXModalElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXModalElement, _HXElement);
+
+      var _super = _createSuper(HXModalElement);
 
       function HXModalElement() {
         _classCallCheck(this, HXModalElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXModalElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXModalElement, [{
@@ -5625,15 +5659,15 @@ limitations under the License.
      * @since 0.20.0
      */
 
-    var HXPasswordElement =
-    /*#__PURE__*/
-    function (_HXFormControlElement) {
+    var HXPasswordElement = /*#__PURE__*/function (_HXFormControlElement) {
       _inherits(HXPasswordElement, _HXFormControlElement);
+
+      var _super = _createSuper(HXPasswordElement);
 
       function HXPasswordElement() {
         _classCallCheck(this, HXPasswordElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXPasswordElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXPasswordElement, [{
@@ -5683,15 +5717,15 @@ limitations under the License.
      * @since 0.8.0
      */
 
-    var HXPillElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXPillElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXPillElement, _HXElement);
+
+      var _super = _createSuper(HXPillElement);
 
       function HXPillElement() {
         _classCallCheck(this, HXPillElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXPillElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXPillElement, [{
@@ -5777,15 +5811,15 @@ limitations under the License.
 
     var shadowStyles$d = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n.has-arrow { margin: 0; position: relative; }\n\n.has-arrow::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0); z-index: -1; }\n\n.has-arrow::before, .has-arrow::after { content: \"\"; display: block; height: 13px; position: absolute; width: 13px; }\n\n.has-arrow[position^=\"top\"] { margin-bottom: 8px; }\n\n.has-arrow[position^=\"top\"]::before, .has-arrow[position^=\"top\"]::after { bottom: -8px; }\n\n.has-arrow[position^=\"top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top-center\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top\"]::after, .has-arrow[position=\"top-center\"]::before, .has-arrow[position=\"top-center\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 50%; }\n\n.has-arrow[position=\"top-right\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-right\"]::before, .has-arrow[position=\"top-right\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 1.25rem; }\n\n.has-arrow[position=\"top-left\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top-left\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-left\"]::before, .has-arrow[position=\"top-left\"]::after { transform-origin: bottom right; transform: rotate(45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"right\"] { margin-left: 8px; }\n\n.has-arrow[position^=\"right\"]::before, .has-arrow[position^=\"right\"]::after { left: -8px; }\n\n.has-arrow[position^=\"right\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right\"]::after, .has-arrow[position=\"right-middle\"]::before, .has-arrow[position=\"right-middle\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 50%; }\n\n.has-arrow[position=\"right-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-bottom\"]::before, .has-arrow[position=\"right-bottom\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 1.25rem; }\n\n.has-arrow[position=\"right-top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-top\"]::before, .has-arrow[position=\"right-top\"]::after { transform-origin: bottom left; transform: rotate(45deg); bottom: 1.25rem; }\n\n.has-arrow[position^=\"bottom\"] { margin-top: 8px; }\n\n.has-arrow[position^=\"bottom\"]::before, .has-arrow[position^=\"bottom\"]::after { top: -8px; }\n\n.has-arrow[position^=\"bottom\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom\"]::before, .has-arrow[position=\"bottom\"]::after, .has-arrow[position=\"bottom-center\"]::before, .has-arrow[position=\"bottom-center\"]::after { transform-origin: top left; transform: rotate(45deg); left: 50%; }\n\n.has-arrow[position=\"bottom-right\"]::before, .has-arrow[position=\"bottom-right\"]::after { transform-origin: top left; transform: rotate(45deg); left: 1.25rem; }\n\n.has-arrow[position=\"bottom-left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom-left\"]::before, .has-arrow[position=\"bottom-left\"]::after { transform-origin: top right; transform: rotate(-45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"left\"] { margin-right: 8px; }\n\n.has-arrow[position^=\"left\"]::before, .has-arrow[position^=\"left\"]::after { right: -8px; }\n\n.has-arrow[position^=\"left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left\"]::after, .has-arrow[position=\"left-middle\"]::before, .has-arrow[position=\"left-middle\"]::after { transform-origin: top right; transform: rotate(45deg); top: 50%; }\n\n.has-arrow[position=\"left-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-bottom\"]::before, .has-arrow[position=\"left-bottom\"]::after { transform-origin: top right; transform: rotate(45deg); top: 1.25rem; }\n\n.has-arrow[position=\"left-top\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-top\"]::before, .has-arrow[position=\"left-top\"]::after { transform-origin: bottom right; transform: rotate(-45deg); bottom: 1.25rem; }\n\n#hxPopover { background-color: var(--hxBackgroundColor, #ffffff); border-color: var(--hxBorderColor, #e0e0e0); border-style: solid; border-width: 1px; box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16); }\n";
 
-    var _ProtoClass$1 =
-    /*#__PURE__*/
-    function (_mix) {
+    var _ProtoClass$1 = /*#__PURE__*/function (_mix) {
       _inherits(_ProtoClass, _mix);
+
+      var _super = _createSuper(_ProtoClass);
 
       function _ProtoClass() {
         _classCallCheck(this, _ProtoClass);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(_ProtoClass).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       return _ProtoClass;
@@ -5800,15 +5834,15 @@ limitations under the License.
      */
 
 
-    var HXPopoverElement =
-    /*#__PURE__*/
-    function (_ProtoClass2) {
+    var HXPopoverElement = /*#__PURE__*/function (_ProtoClass2) {
       _inherits(HXPopoverElement, _ProtoClass2);
+
+      var _super2 = _createSuper(HXPopoverElement);
 
       function HXPopoverElement() {
         _classCallCheck(this, HXPopoverElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXPopoverElement).apply(this, arguments));
+        return _super2.apply(this, arguments);
       }
 
       _createClass(HXPopoverElement, [{
@@ -5883,15 +5917,15 @@ limitations under the License.
      */
 
 
-    var HXProgressElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXProgressElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXProgressElement, _HXElement);
+
+      var _super = _createSuper(HXProgressElement);
 
       function HXProgressElement() {
         _classCallCheck(this, HXProgressElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXProgressElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXProgressElement, [{
@@ -5966,15 +6000,15 @@ limitations under the License.
      * @since 0.16.0
      */
 
-    var HXRadioControlElement =
-    /*#__PURE__*/
-    function (_HXFormControlElement) {
+    var HXRadioControlElement = /*#__PURE__*/function (_HXFormControlElement) {
       _inherits(HXRadioControlElement, _HXFormControlElement);
+
+      var _super = _createSuper(HXRadioControlElement);
 
       function HXRadioControlElement() {
         _classCallCheck(this, HXRadioControlElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXRadioControlElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXRadioControlElement, [{
@@ -6013,15 +6047,15 @@ limitations under the License.
      * @hideconstructor
      */
 
-    var HXRadioElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXRadioElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXRadioElement, _HXElement);
+
+      var _super = _createSuper(HXRadioElement);
 
       function HXRadioElement() {
         _classCallCheck(this, HXRadioElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXRadioElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXRadioElement, null, [{
@@ -6051,15 +6085,15 @@ limitations under the License.
       * @since 0.16.0
       */
 
-    var HXRadioSetElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXRadioSetElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXRadioSetElement, _HXElement);
+
+      var _super = _createSuper(HXRadioSetElement);
 
       function HXRadioSetElement() {
         _classCallCheck(this, HXRadioSetElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXRadioSetElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXRadioSetElement, [{
@@ -6167,15 +6201,15 @@ limitations under the License.
      * @since 0.2.0
      */
 
-    var HXRevealElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXRevealElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXRevealElement, _HXElement);
+
+      var _super = _createSuper(HXRevealElement);
 
       function HXRevealElement() {
         _classCallCheck(this, HXRevealElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXRevealElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXRevealElement, [{
@@ -6228,15 +6262,15 @@ limitations under the License.
       return HXRevealElement;
     }(HXElement);
 
-    var _ProtoClass$2 =
-    /*#__PURE__*/
-    function (_mix) {
+    var _ProtoClass$2 = /*#__PURE__*/function (_mix) {
       _inherits(_ProtoClass, _mix);
+
+      var _super = _createSuper(_ProtoClass);
 
       function _ProtoClass() {
         _classCallCheck(this, _ProtoClass);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(_ProtoClass).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       return _ProtoClass;
@@ -6252,15 +6286,15 @@ limitations under the License.
      */
 
 
-    var HXSearchAssistanceElement =
-    /*#__PURE__*/
-    function (_ProtoClass2) {
+    var HXSearchAssistanceElement = /*#__PURE__*/function (_ProtoClass2) {
       _inherits(HXSearchAssistanceElement, _ProtoClass2);
+
+      var _super2 = _createSuper(HXSearchAssistanceElement);
 
       function HXSearchAssistanceElement() {
         _classCallCheck(this, HXSearchAssistanceElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXSearchAssistanceElement).apply(this, arguments));
+        return _super2.apply(this, arguments);
       }
 
       _createClass(HXSearchAssistanceElement, [{
@@ -6290,15 +6324,15 @@ limitations under the License.
      * @since 0.16.0
      */
 
-    var HXSearchControlElement =
-    /*#__PURE__*/
-    function (_HXFormControlElement) {
+    var HXSearchControlElement = /*#__PURE__*/function (_HXFormControlElement) {
       _inherits(HXSearchControlElement, _HXFormControlElement);
+
+      var _super = _createSuper(HXSearchControlElement);
 
       function HXSearchControlElement() {
         _classCallCheck(this, HXSearchControlElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXSearchControlElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXSearchControlElement, [{
@@ -6403,15 +6437,15 @@ limitations under the License.
      * @since 0.4.0
      */
 
-    var HXSearchElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXSearchElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXSearchElement, _HXElement);
+
+      var _super = _createSuper(HXSearchElement);
 
       function HXSearchElement() {
         _classCallCheck(this, HXSearchElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXSearchElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXSearchElement, null, [{
@@ -6437,15 +6471,15 @@ limitations under the License.
      * @since 0.16.0
      */
 
-    var HXSelectControlElement =
-    /*#__PURE__*/
-    function (_HXFormControlElement) {
+    var HXSelectControlElement = /*#__PURE__*/function (_HXFormControlElement) {
       _inherits(HXSelectControlElement, _HXFormControlElement);
+
+      var _super = _createSuper(HXSelectControlElement);
 
       function HXSelectControlElement() {
         _classCallCheck(this, HXSelectControlElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXSelectControlElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXSelectControlElement, [{
@@ -6485,15 +6519,15 @@ limitations under the License.
      * @since 0.16.0
      */
 
-    var HXSelectElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXSelectElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXSelectElement, _HXElement);
+
+      var _super = _createSuper(HXSelectElement);
 
       function HXSelectElement() {
         _classCallCheck(this, HXSelectElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXSelectElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXSelectElement, null, [{
@@ -6532,15 +6566,15 @@ limitations under the License.
      * @since 0.2.0
      */
 
-    var HXTabElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXTabElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXTabElement, _HXElement);
+
+      var _super = _createSuper(HXTabElement);
 
       function HXTabElement() {
         _classCallCheck(this, HXTabElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXTabElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXTabElement, [{
@@ -6615,15 +6649,15 @@ limitations under the License.
      * @since 0.2.0
      */
 
-    var HXTabcontentElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXTabcontentElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXTabcontentElement, _HXElement);
+
+      var _super = _createSuper(HXTabcontentElement);
 
       function HXTabcontentElement() {
         _classCallCheck(this, HXTabcontentElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXTabcontentElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXTabcontentElement, [{
@@ -6655,15 +6689,15 @@ limitations under the License.
      * @since 0.2.0
      */
 
-    var HXTablistElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXTablistElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXTablistElement, _HXElement);
+
+      var _super = _createSuper(HXTablistElement);
 
       function HXTablistElement() {
         _classCallCheck(this, HXTablistElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXTablistElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXTablistElement, [{
@@ -6707,15 +6741,15 @@ limitations under the License.
      * @since 0.2.0
      */
 
-    var HXTabpanelElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXTabpanelElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXTabpanelElement, _HXElement);
+
+      var _super = _createSuper(HXTabpanelElement);
 
       function HXTabpanelElement() {
         _classCallCheck(this, HXTabpanelElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXTabpanelElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXTabpanelElement, [{
@@ -6788,15 +6822,15 @@ limitations under the License.
      * @since 0.2.0
      */
 
-    var HXTabsetElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXTabsetElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXTabsetElement, _HXElement);
+
+      var _super = _createSuper(HXTabsetElement);
 
       function HXTabsetElement() {
         _classCallCheck(this, HXTabsetElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXTabsetElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXTabsetElement, [{
@@ -7076,15 +7110,15 @@ limitations under the License.
      * @since 0.16.0
      */
 
-    var HXTextControlElement =
-    /*#__PURE__*/
-    function (_HXFormControlElement) {
+    var HXTextControlElement = /*#__PURE__*/function (_HXFormControlElement) {
       _inherits(HXTextControlElement, _HXFormControlElement);
+
+      var _super = _createSuper(HXTextControlElement);
 
       function HXTextControlElement() {
         _classCallCheck(this, HXTextControlElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXTextControlElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXTextControlElement, [{
@@ -7122,15 +7156,15 @@ limitations under the License.
      * @since 0.16.0
      */
 
-    var HXTextareaControlElement =
-    /*#__PURE__*/
-    function (_HXFormControlElement) {
+    var HXTextareaControlElement = /*#__PURE__*/function (_HXFormControlElement) {
       _inherits(HXTextareaControlElement, _HXFormControlElement);
+
+      var _super = _createSuper(HXTextareaControlElement);
 
       function HXTextareaControlElement() {
         _classCallCheck(this, HXTextareaControlElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXTextareaControlElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXTextareaControlElement, [{
@@ -7160,7 +7194,7 @@ limitations under the License.
 
     var shadowMarkup$i = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-    var shadowStyles$i = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\nbutton { background-color: transparent; border: 0; color: inherit; cursor: pointer; display: inline-block; font: inherit; font-weight: 500; line-height: 1; margin: 0; padding: 0; }\n\n#hxToast { padding: 0.75rem; display: flex; }\n\n#hxIconWrapper { align-items: center; color: var(--hxIcon-color, inherit); display: flex; margin: 0 0.75rem 0 0.5rem; }\n\n#hxIconWrapper hx-icon { font-size: 2rem; }\n\n#hxContent { flex-grow: 1; margin-right: 1.5rem; text-align: right; word-wrap: break-word; }\n\n#hxContent div { font-size: 0.875rem; text-align: left; }\n\n#hxCta { border-radius: 2px; display: inline-flex; justify-content: center; font-size: 0.875rem; padding: 0.5rem 0.75rem; background-color: transparent; border: 0; color: #0c7c84; padding-left: 0; padding-right: 0; text-transform: uppercase; }\n\n#hxCta > * + * { margin-left: 0.5rem; }\n\n#hxCta:focus { outline: none; }\n\n#hxCta[disabled] { cursor: not-allowed; }\n\n#hxCta[disabled]:focus { box-shadow: none; }\n\n#hxCta:hover { background-color: transparent; border-color: transparent; color: #16b9d4; }\n\n#hxCta:active { background-color: transparent; border-color: transparent; color: #0e94a6; }\n\n#hxCta:focus { box-shadow: 0 0 4px rgba(14, 148, 166, 0.5); }\n\n#hxCta[disabled] { background-color: transparent; border-color: transparent; color: #d8d8d8; }\n\n#hxCta:empty { display: none; }\n\n#hxDismiss { color: var(--hxDismiss-color, #757575); flex-shrink: 0; font-size: 0.75rem; height: 2.25rem; padding: 0.75rem; position: absolute; right: 0; top: 0; width: 2.25rem; }\n\n:host([type=\"info\"]) #hxIconWrapper { color: var(--hxIcon-color, #3b44a9); }\n\n:host([type=\"error\"]) #hxIconWrapper { color: var(--hxIcon-color, #d32f2f); }\n\n:host([type=\"success\"]) #hxIconWrapper { color: var(--hxIcon-color, #4caf51); }\n";
+    var shadowStyles$i = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\nbutton { background-color: transparent; border: 0; color: inherit; cursor: pointer; display: inline-block; font: inherit; font-weight: 500; line-height: 1; margin: 0; padding: 0; }\n\n#hxToast { padding: 0.75rem; display: flex; }\n\n#hxIconWrapper { align-items: center; color: var(--hxIcon-color, inherit); display: flex; margin: 0 0.75rem 0 0.5rem; }\n\n#hxIconWrapper hx-icon { font-size: 2rem; }\n\n#hxContent { flex-grow: 1; margin-right: 1.5rem; text-align: right; word-wrap: break-word; }\n\n#hxContent div { font-size: 0.875rem; text-align: left; }\n\n#hxCta { border-radius: 2px; display: inline-flex; justify-content: center; font-size: 0.875rem; padding: 0.5rem 0.75rem; background-color: transparent; border: 0; color: #0c7c84; text-transform: uppercase; }\n\n#hxCta > * + * { margin-left: 0.5rem; }\n\n#hxCta:focus { outline: none; }\n\n#hxCta[disabled] { cursor: not-allowed; }\n\n#hxCta[disabled]:focus { box-shadow: none; }\n\n#hxCta.hxDeprecated { padding-left: 0; padding-right: 0; }\n\n#hxCta:hover { background-color: transparent; border-color: transparent; color: #16b9d4; }\n\n#hxCta:active { background-color: transparent; border-color: transparent; color: #0e94a6; }\n\n#hxCta:focus { box-shadow: 0 0 4px rgba(14, 148, 166, 0.5); }\n\n#hxCta[disabled] { background-color: transparent; border-color: transparent; color: #d8d8d8; }\n\n#hxCta:empty { display: none; }\n\n#hxDismiss { color: var(--hxDismiss-color, #757575); flex-shrink: 0; font-size: 0.75rem; height: 2.25rem; padding: 0.75rem; position: absolute; right: 0; top: 0; width: 2.25rem; }\n\n:host([type=\"info\"]) #hxIconWrapper { color: var(--hxIcon-color, #3b44a9); }\n\n:host([type=\"error\"]) #hxIconWrapper { color: var(--hxIcon-color, #d32f2f); }\n\n:host([type=\"success\"]) #hxIconWrapper { color: var(--hxIcon-color, #4caf51); }\n";
 
     var ICONS$1 = {
       'error': 'exclamation-circle',
@@ -7193,15 +7227,15 @@ limitations under the License.
      * @since 0.7.0
      */
 
-    var HXToastElement =
-    /*#__PURE__*/
-    function (_HXElement) {
+    var HXToastElement = /*#__PURE__*/function (_HXElement) {
       _inherits(HXToastElement, _HXElement);
+
+      var _super = _createSuper(HXToastElement);
 
       function HXToastElement() {
         _classCallCheck(this, HXToastElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXToastElement).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       _createClass(HXToastElement, [{
@@ -7357,15 +7391,15 @@ limitations under the License.
 
     var TOOLTIP_DELAY = 500;
 
-    var _ProtoClass$3 =
-    /*#__PURE__*/
-    function (_mix) {
+    var _ProtoClass$3 = /*#__PURE__*/function (_mix) {
       _inherits(_ProtoClass, _mix);
+
+      var _super = _createSuper(_ProtoClass);
 
       function _ProtoClass() {
         _classCallCheck(this, _ProtoClass);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(_ProtoClass).apply(this, arguments));
+        return _super.apply(this, arguments);
       }
 
       return _ProtoClass;
@@ -7380,15 +7414,15 @@ limitations under the License.
      */
 
 
-    var HXTooltipElement =
-    /*#__PURE__*/
-    function (_ProtoClass2) {
+    var HXTooltipElement = /*#__PURE__*/function (_ProtoClass2) {
       _inherits(HXTooltipElement, _ProtoClass2);
+
+      var _super2 = _createSuper(HXTooltipElement);
 
       function HXTooltipElement() {
         _classCallCheck(this, HXTooltipElement);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(HXTooltipElement).apply(this, arguments));
+        return _super2.apply(this, arguments);
       }
 
       _createClass(HXTooltipElement, [{
@@ -7779,7 +7813,7 @@ limitations under the License.
         HXTooltipElement: HXTooltipElement
     });
 
-    var version = "0.20.0";
+    var version = "0.21.0";
 
     /** @module HelixUI */
     var waitForWebComponents$1 = waitForWebComponents;
