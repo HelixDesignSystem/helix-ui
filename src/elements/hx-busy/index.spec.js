@@ -9,14 +9,6 @@ import { fixture, expect } from '@open-wc/testing';
 describe('<hx-busy> tests', () => {
     const template = '<hx-busy>';
 
-    it('should verify HelixUI is initialized', async () => {
-        if (HelixUI.Elements === undefined ) {
-            await HelixUI.initialize();
-        }
-
-        expect(HelixUI.Elements).to.not.be.undefined;
-    });
-
     it('should be instantiated with hx-defined attribute', async () => {
         const el = /** @type {HXBusyElement} */ await fixture(template);
 

@@ -12,17 +12,11 @@ module.exports = config => {
         // npm run test -- --grep test/foo/bar.test.js
         // npm run test -- --grep test/bar/*
         //{ pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' },
-        { pattern:
-            config.grep ? config.grep : 'dist/js/helix-ui.js',
-            type: 'js'
+        { pattern: 'karma-init.js',
+          type: 'module'
         },
-        { pattern:
-            config.grep ? config.grep : 'dist/js/helix-ui.module.js',
-            type: 'module'
-        },
-        { pattern:
-            config.grep ? config.grep : 'src/elements/**/*.spec.js',
-            type: 'module'
+        { pattern: config.grep ? config.grep : 'src/elements/**/*.spec.js',
+          type: 'module'
         },
       ],
       esm: {
