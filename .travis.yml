@@ -1,12 +1,15 @@
-sudo: required
-dist: trusty
+sudo: false
+dist: xenial
+os:
+  - linux
 language: node_js
 node_js:
   - '12'
 notifications:
   email: false
 addons:
-  firefox: '61.0'
+  firefox: latest
+  chrome: stable
   #sauce_connect: true
 branch:
   only:
