@@ -6,33 +6,75 @@ import { fixture, expect } from '@open-wc/testing';
  * @type HXErrorElement
  *
  */
-describe('<hx-error> tests', () => {
-
+describe('<hx-error> component tests', () => {
     const template = '<hx-error>';
 
-    it('render the Shadow Root mode open', async () => {
-        const el = /** @type { HXErrorElement } */ await fixture(template);
-        const mode = el.shadowRoot.mode;
+    describe('test instantiate element', () => {
+        it('should be instantiated with hx-defined attribute', async () => {
+            const component = /** @type {HXErrorElement} */ await fixture(template);
+            const attr = component.hasAttribute('hx-defined');
 
-        expect(mode).to.equal("open");
+            expect(attr).to.be.true;
+        });
+
+        it('should not be hidden', async () => {
+            const component = /** @type {HXErrorElement} */ await fixture(template);
+            const prop = component.hidden;
+
+            expect(prop).to.be.false;
+        });
+
+        it(`the rendered Light DOM should NOT equal simple template ${template}`, async () => {
+            const component = /** @type {HXErrorElement} */ await fixture(template);
+
+            expect(component).lightDom.to.not.equal(template);
+        });
+
     });
 
-    it('should be instantiated with hx-defined attribute', async () => {
-        const el = /** @type { HXErrorElement } */ await fixture(template);
+    describe('test Shadow DOM', () => {
+        describe('verify render', () => {
+            it('should have a static Shadow DOM', async function () {
+                const component = /** @type { HXErrorElement } */ await fixture(template);
+                const shadow = component.shadowRoot.innerHTML;
 
-        expect(el).to.have.attribute('hx-defined');
-    });
+                expect(component).shadowDom.to.equal(shadow);
+            });
 
-    it(`rendered Light DOM should NOT equal simple template ${template}`, async () => {
-        const el = /** @type { HXErrorElement } */ await fixture(template);
+            it('should render the Shadow Root mode open', async () => {
+                const component = /** @type { HXErrorElement } */ await fixture(template);
+                const mode = component.shadowRoot.mode;
 
-        expect(el).lightDom.to.not.equal(template);
-    });
+                expect(mode).to.equal("open");
+            });
 
-    it('should have a static Shadow DOM', async function () {
-        const el = /** @type { HXErrorElement } */ await fixture(template);
-        const sd = el.shadowRoot.innerHTML; 
+            it('should have a single <slot>', async () => {
+                const component = /** @type { HXErrorElement } */ await fixture(template);
+                const shadow = component.shadowRoot;
+                const query = shadow.querySelectorAll('slot');
+                const len = query.length;
 
-        expect(el).shadowDom.to.equal(sd);
+                expect(len).to.be.equal(1);
+            });
+
+            it('should have an unnamed <slot>', async () => {
+                const component = /** @type { HXErrorElement } */ await fixture(template);
+                const name = component.slot;
+
+                expect(name).to.be.equal('');
+            });
+        });
+
+        describe('verify Shadow DOM markup', () => {
+            it('markup should contain a #hxIconWrapper <span>', async () => {
+                const spanId = 'hxIcon';
+                const component = /** @type { HXErrorElement } */ await fixture(template);
+                const shadow = component.shadowRoot;
+                const query = shadow.getElementById(spanId);
+                const queryId = query.id;
+
+                expect(queryId).to.equal(spanId);
+            });
+        });
     });
 });
