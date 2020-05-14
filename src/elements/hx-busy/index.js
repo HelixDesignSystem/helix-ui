@@ -12,10 +12,6 @@ export class HXBusyElement extends HXElement {
         return 'hx-busy';
     }
 
-    static get template () {
-        return '';
-    }
-
     $onConnect () {
         this.$upgradeProperty('paused');
         this.$defaultAttribute('aria-hidden', true);
