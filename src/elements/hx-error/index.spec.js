@@ -66,7 +66,7 @@ describe('<hx-error> component tests', () => {
         });
 
         describe('verify Shadow DOM markup', () => {
-            it('markup should contain a #hxIconWrapper <span>', async () => {
+            it('markup should contain a #hxIcon <span>', async () => {
                 const spanId = 'hxIcon';
                 const component = /** @type { HXErrorElement } */ await fixture(template);
                 const shadow = component.shadowRoot;
