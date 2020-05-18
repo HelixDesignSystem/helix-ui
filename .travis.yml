@@ -1,4 +1,3 @@
-sudo: false
 dist: xenial
 os:
   - linux
@@ -10,8 +9,7 @@ notifications:
 addons:
   firefox: latest
   chrome: stable
-  #sauce_connect: true
-branch:
+branches:
   only:
   - master
 install:
@@ -26,6 +24,14 @@ before_script:
   #- while ! curl --silent http://localhost:3000 > /dev/null 2>&1; do sleep 1; done
 script:
   - yarn lint
-  #- yarn test:coverage
   - yarn generate
-  - yarn test
+  - yarn compile --prod
+  - if [[ "$TRAVIS_EVENT_TYPE" != false ]]; then
+      echo "Pull request detected.  Running standard test suite first...";
+      yarn test;
+      echo "Running Sauce tests...";
+      yarn test:sauce || travis_terminate 1;
+    else
+      echo "Pull request was NOT detected. Running standard test suite...";
+      yarn test || travis_terminate 1;
+    fi

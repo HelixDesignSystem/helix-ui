@@ -61,7 +61,11 @@ describe('<hx-error> component tests', () => {
                 const component = /** @type { HXErrorElement } */ await fixture(template);
                 const name = component.slot;
 
-                expect(name).to.be.equal('');
+                if ( name !== null ) {
+                    expect(name).to.be.equal('');
+                } else {
+                    expect(name).to.be.null; // IE11 and Legacy Edge
+                }
             });
         });
 
