@@ -76,7 +76,7 @@ describe('<hx-progress> component tests', () => {
 
         it('should have role attribute set to progressbar', async () => {
             const defaultValue = 'progressbar';
-            const component = /** @type {HXBusyElement} */ await fixture(template);
+            const component = /** @type {HXProgressElement} */ await fixture(template);
             const attr = component.getAttribute('role');
 
             expect(attr).to.be.equal(String(defaultValue));
@@ -108,14 +108,14 @@ describe('<hx-progress> component tests', () => {
     describe('test Shadow DOM', () => {
         describe('verify render', () => {
             it('should have a static Shadow DOM', async function () {
-                const component = /** @type { HXErrorElement } */ await fixture(template);
+                const component = /** @type { HXProgressElement } */ await fixture(template);
                 const shadow = component.shadowRoot.innerHTML;
 
                 expect(component).shadowDom.to.equal(shadow);
             });
 
             it('should render the Shadow Root mode open', async () => {
-                const component = /** @type { HXErrorElement } */ await fixture(template);
+                const component = /** @type { HXProgressElement } */ await fixture(template);
                 const mode = component.shadowRoot.mode;
 
                 expect(mode).to.equal("open");
@@ -126,7 +126,7 @@ describe('<hx-progress> component tests', () => {
         describe('verify Shadow DOM markup', () => {
             it('markup should contain a #hxFill <span>', async () => {
                 const spanId = 'hxFill';
-                const component = /** @type { HXErrorElement } */ await fixture(template);
+                const component = /** @type { HXProgressElement } */ await fixture(template);
                 const shadow = component.shadowRoot;
                 const query = shadow.getElementById(spanId);
                 const queryId = query.id;
