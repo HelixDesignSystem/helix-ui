@@ -63,88 +63,98 @@ describe('<hx-alert> component tests', () => {
                 const component = /** @type { HXAlertElement } */ await fixture(template);
                 const name = component.slot;
 
-                expect(name).to.be.equal('');
+                if ( name !== null ) {
+                    expect(name).to.be.equal('');
+                } else {
+                    expect(name).to.be.null;  // IE11, Legacy Edge, and older browsers
+                }
             });
         });
 
         describe('verify Shadow DOM markup', () => {
             it('markup should contain a #hxIconWrapper <span>', async () => {
-                const spanId = 'hxIconWrapper';
+                const elSelector = 'span#hxIconWrapper';
+                const id = 'hxIconWrapper';
                 const component = /** @type { HXAlertElement } */ await fixture(template);
                 const shadow = component.shadowRoot;
-                const query = shadow.getElementById(spanId);
+                const query = shadow.querySelector(elSelector);
                 const queryId = query.id;
 
-                expect(queryId).to.equal(spanId);
+                expect(queryId).to.equal(id);
             });
 
             it('markup should contain a #hxIconWrapper <span> with an info-circle type <hx-icon>', async () => {
-                const spanId = '#hxIconWrapper > hx-icon';
+                const elSelector = 'span#hxIconWrapper > hx-icon';
                 const iconType = 'info-circle';
                 const component = /** @type { HXAlertElement } */ await fixture(template);
                 const shadow = component.shadowRoot;
-                const query = shadow.querySelector(spanId);
+                const query = shadow.querySelector(elSelector);
                 const queryId = query.type;
 
                 expect(queryId).to.equal(iconType);
             });
 
             it('markup should contain a #hxContent <span>', async () => {
-                const spanId = 'hxContent';
+                const elSelector = 'span#hxContent';
+                const id = 'hxContent';
                 const component = /** @type { HXAlertElement } */ await fixture(template);
                 const shadow = component.shadowRoot;
-                const query = shadow.getElementById(spanId);
+                const query = shadow.querySelector(elSelector);
                 const queryId = query.id;
 
-                expect(queryId).to.equal(spanId);
+                expect(queryId).to.equal(id);
             });
 
             it('markup should contain a #hxContent <span> with #hxStatus <span>', async () => {
-                const spanId = '#hxContent > #hxStatus';
+                const elSelector = 'span#hxContent > span#hxStatus';
+                const id = 'hxStatus';
                 const component = /** @type { HXAlertElement } */ await fixture(template);
                 const shadow = component.shadowRoot;
-                const query = shadow.querySelector(spanId);
-                const name = query.localName;
+                const query = shadow.querySelector(elSelector);
+                const queryId = query.id;
 
-                expect(name).to.equal('span');
+                expect(queryId).to.equal(id);
             });
 
-            it('markup should contain a #hxContent <span> with <slot>', async () => {
-                const templateSelector = '#hxContent > slot';
+            it('markup should contain a #hxContent <span>', async () => {
+                const elSelector = 'span#hxContent';
+                const id = 'hxContent';
                 const component = /** @type { HXAlertElement } */ await fixture(template);
                 const shadow = component.shadowRoot;
-                const query = shadow.querySelector(templateSelector);
-                const name = query.localName;
+                const query = shadow.querySelector(elSelector);
+                const queryId = query.id;
 
-                expect(name).to.equal('slot');
+                expect(queryId).to.equal(id);
             });
 
             it('markup should contain a #hxCta button', async () => {
-                const btnId = 'hxCta';
+                const elSelector = 'button#hxCta';
+                const id = 'hxCta';
                 const component = /** @type { HXAlertElement } */ await fixture(template);
                 const shadow = component.shadowRoot;
-                const query = shadow.getElementById(btnId);
+                const query = shadow.querySelector(elSelector);
                 const queryId = query.id;
 
-                expect(queryId).to.equal(btnId);
+                expect(queryId).to.equal(id);
             });
 
             it('markup should contain a #hxDismiss button', async () => {
-                const btnId = 'hxDismiss';
+                const elSelector = 'button#hxDismiss';
+                const id = 'hxDismiss';
                 const component = /** @type { HXAlertElement } */ await fixture(template);
                 const shadow = component.shadowRoot;
-                const query = shadow.getElementById(btnId);
+                const query = shadow.querySelector(elSelector);
                 const queryId = query.id;
 
-                expect(queryId).to.equal(btnId);
+                expect(queryId).to.equal(id);
             });
 
             it('markup should contain a #hxDismiss button with a times type <hx-icon>', async () => {
-                const templateSelector = '#hxDismiss > hx-icon';
+                const elSelector = 'button#hxDismiss > hx-icon';
                 const iconType = 'times';
                 const component = /** @type { HXAlertElement } */ await fixture(template);
                 const shadow = component.shadowRoot;
-                const query = shadow.querySelector(templateSelector);
+                const query = shadow.querySelector(elSelector);
                 const queryId = query.type;
 
                 expect(queryId).to.equal(iconType);
@@ -201,13 +211,13 @@ describe('<hx-alert> component tests', () => {
     describe('test adding content and click event listener', () => {
         it('should be able to add miscellaneous Light DOM content', async () => {
             const component = /** @type {HXAlertElement} */ await fixture(template);
-            const content = 'misc content to Light DOM';
+            const content = 'add misc content to Light DOM';
 
-            expect(component.innerText).to.equal('');
+            expect(component.textContent).to.equal('');
 
             component.textContent = content;
 
-            expect(component.innerText).to.equal(component.textContent);
+            expect(component.textContent).to.equal(content);
         });
 
         it('should fire a click event', async () => {

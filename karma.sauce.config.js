@@ -68,7 +68,7 @@ module.exports = config => {
 				testName: 'HelixUI Component Unit Tests',
                 public: "public restricted",
                 recordVideo: false,
-                // recordLogs: false,
+                recordLogs: false,
 			},
 			customLaunchers: customLaunchers,
 			browsers: Object.keys(customLaunchers),
