@@ -26,6 +26,7 @@ import _file from '../../images/icons/file.svg';
 import _filter from '../../images/icons/filter.svg';
 import _flag from '../../images/icons/flag.svg';
 import _globe from '../../images/icons/globe.svg';
+import _grid from '../../images/icons/grid.svg';
 import _heartbeatOutline from '../../images/icons/heartbeat-outline.svg';
 import _heartbeatFill from '../../images/icons/heartbeat-fill.svg';
 import _helpCircle from '../../images/icons/help-circle.svg';
@@ -45,6 +46,7 @@ import _kbdShift from '../../images/icons/kbd-shift.svg';
 import _kbdSpace from '../../images/icons/kbd-space.svg';
 import _kbdTab from '../../images/icons/kbd-tab.svg';
 import _key from '../../images/icons/key.svg';
+import _list from '../../images/icons/list.svg';
 import _lock from '../../images/icons/lock.svg';
 import _mimeArchive from '../../images/icons/mime-archive.svg';
 import _mimeAudio from '../../images/icons/mime-audio.svg';
@@ -110,6 +112,7 @@ const MAP = {
     'filter': _filter,
     'flag': _flag,
     'globe': _globe,
+    'grid': _grid,
     'heartbeat-outline': _heartbeatOutline,
     'heartbeat-fill': _heartbeatFill,
     'help-circle': _helpCircle,
@@ -129,6 +132,7 @@ const MAP = {
     'kbd-space': _kbdSpace,
     'kbd-tab': _kbdTab,
     'key': _key,
+    'list': _list,
     'lock': _lock,
     'mime-archive': _mimeArchive,
     'mime-audio': _mimeAudio,
