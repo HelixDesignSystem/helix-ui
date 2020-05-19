@@ -27,6 +27,7 @@ script:
   - yarn generate
   - yarn compile --prod
   - if [[ "$TRAVIS_EVENT_TYPE" != false ]]; then
+      bash ./travis/run_on_pull_request;
       echo "Pull request detected.  Running standard test suite first...";
       yarn test;
       echo "Running Sauce tests...";
