@@ -148,8 +148,12 @@
         minver: '0.7.0',
     },
     {
-        name: 'globe',
-        minver: '0.7.0',
+      name: 'globe',
+      minver: '0.7.0',
+    },
+    {
+      name: 'grid',
+      minver: '0.22.0',
     },
     {
       name: 'help-circle',
@@ -277,12 +281,20 @@
         ],
     },
     {
-        name: 'lock',
-        minver: '0.1.0',
-        keywords: [
-            'locked',
-            'padlock',
-        ],
+      name: 'list',
+      minver: '0.22.0',
+      keywords: [
+        'list',
+        'toggle',
+      ],
+    },
+    {
+      name: 'lock',
+      minver: '0.1.0',
+      keywords: [
+        'locked',
+        'padlock',
+      ],
     },
     {
         name: 'mime-archive',
