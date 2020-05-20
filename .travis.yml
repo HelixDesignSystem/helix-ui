@@ -12,27 +12,22 @@ addons:
 branches:
   only:
   - master
-install:
-  - npm i -g yarn
-  - travis_retry yarn install
-  #- cd test; travis_retry yarn install; yarn run webdriver:update; cd -;
-before_script:
-  - export DISPLAY=:99.0
-  #- sh -e /etc/init.d/xvfb start
-  #- jdk_switcher use oraclejdk8
-  #- yarn serve > /dev/null 2>&1 &
-  #- while ! curl --silent http://localhost:3000 > /dev/null 2>&1; do sleep 1; done
-script:
-  - yarn lint
-  - yarn generate
-  - yarn compile --prod
-  - if [[ "$TRAVIS_EVENT_TYPE" != false ]]; then
-      bash ./travis/run_on_pull_request;
-      echo "Pull request detected.  Running standard test suite first...";
-      yarn test;
-      echo "Running Sauce tests...";
-      yarn test:sauce || travis_terminate 1;
-    else
-      echo "Pull request was NOT detected. Running standard test suite...";
-      yarn test || travis_terminate 1;
-    fi
+cache:
+  yarn: true
+jobs:
+  include:
+    - stage: component-tests
+      script:
+        - yarn lint
+        - yarn generate
+        - yarn compile --prod
+        - |
+          if [ $TRAVIS_PULL_REQUEST != false ] && [ $TRAVIS_SECURE_ENV_VARS == true ]; then
+            echo "Running extended test suite...";
+            yarn test;
+            echo "Running Sauce tests...";
+            yarn test:sauce || travis_terminate 1;
+          else
+            echo "Running standard test suite...";
+            yarn test || travis_terminate 1;
+          fi
