@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/HelixDesignSystem/helix-ui.svg?branch=master)](https://travis-ci.com/HelixDesignSystem/helix-ui)
+
+
 # HelixUI
 The HelixUI library provides front-end developers a set of reusable CSS classes and HTML Custom Elements that adhere to Helix design standards.
 
@@ -14,6 +17,9 @@ markup, styles, and behavior across a variety of frameworks.
 ## Developer Setup
 
 1. [install yarn](https://yarnpkg.com/en/docs/install)
-2. [install test dependencies](https://github.com/helixdesignsystem/helix-ui/wiki/Testing#system-requirements)
-3. `yarn install` to install project dependencies
-4. `yarn start` to begin working
+2. `yarn install` to install project dependencies
+3. `yarn start` to begin working
+
+## Run Component Test Suite
+
+1. `yarn test` run full component test suite
