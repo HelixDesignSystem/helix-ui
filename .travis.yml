@@ -22,7 +22,7 @@ jobs:
         - yarn generate
         - yarn compile --prod
         - |
-          if [ $TRAVIS_PULL_REQUEST != false ] && [ $TRAVIS_SECURE_ENV_VARS == true ]; then
+          if [ $TRAVIS_BRANCH != false ] && [ $TRAVIS_SECURE_ENV_VARS == true ]; then
             echo "Running extended test suite...";
             yarn test;
             echo "Running Sauce tests...";
