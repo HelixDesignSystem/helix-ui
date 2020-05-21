@@ -42,7 +42,7 @@ export class HXDivElement extends HXElement {
         return [ 'scroll' ];
     }
 
-    $onAttributeChange (attr, oldVal, newVal) {
+    $onAttributeChange (attr, newVal) {
         if (attr === 'scroll') {
             if (newVal !== null) {
                 this._resetScroll();
