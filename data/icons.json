@@ -152,6 +152,10 @@
     "minver": "0.7.0"
   },
   {
+    "name": "grid",
+    "minver": "0.22.0"
+  },
+  {
     "name": "help-circle",
     "minver": "0.1.10",
     "keywords": [
@@ -274,6 +278,14 @@
       "ssh",
       "sst",
       "stl"
+    ]
+  },
+  {
+    "name": "list",
+    "minver": "0.22.0",
+    "keywords": [
+      "list",
+      "toggle"
     ]
   },
   {
