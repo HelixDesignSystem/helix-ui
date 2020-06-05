@@ -2,30 +2,33 @@
 const { createDefaultConfig } = require('@open-wc/testing-karma');
 const merge = require('deepmerge');
 
-const customLaunchers = {
-	mac_firefox: {
-		base: 'SauceLabs',
-		browserName: 'firefox',
+/**
+ * SauceLabs supports up to 5 browsers per test run.
+ */
+const batches = {
+    mac_firefox: {
+        base: 'SauceLabs',
+        browserName: 'firefox',
         platform: 'OS X 10.13',
         version: 'latest-1'
-	},
-	mac_safari: {
-		base: 'SauceLabs',
-		browserName: 'safari',
+    },
+    mac_safari: {
+        base: 'SauceLabs',
+        browserName: 'safari',
         platform: 'OS X 10.13',
         version: 'latest-1'
-	},
-	mac_chrome: {
-		base: 'SauceLabs',
-		browserName: 'chrome',
+    },
+    mac_chrome: {
+        base: 'SauceLabs',
+        browserName: 'chrome',
         platform: 'OS X 10.13',
         version: 'latest-1'
-	},
-	win_edge_legacy: {
-		base: 'SauceLabs',
-		browserName: 'microsoftedge',
-		platform: 'Windows 10',
-		version: '18.17763'
+    },
+    win_edge_legacy: {
+        base: 'SauceLabs',
+        browserName: 'microsoftedge',
+        platform: 'Windows 10',
+        version: '18.17763'
     },
     win_10_ie_11: {
         base: 'SauceLabs',
@@ -33,12 +36,12 @@ const customLaunchers = {
         platform: 'Windows 10',
         version: '11.285',
     },
-	// win_edge_chromium: { // Current SL config only allows 5 browsers per test run
-	// 	base: 'SauceLabs',
-	// 	browserName: 'microsoftedge',
-	// 	platform: 'Windows 10',
-	// 	version: 'latest'
-	// },
+    // win_edge_chromium: {
+    //     base: 'SauceLabs',
+    //     browserName: 'microsoftedge',
+    //     platform: 'Windows 10',
+    //     version: 'latest-1'
+    // },
 };
 
 module.exports = config => {
@@ -65,13 +68,14 @@ module.exports = config => {
                 moduleDirs: ['node_modules', 'dist'],
             },
 			sauceLabs: {
-				testName: 'HelixUI Component Unit Tests',
+				testName: 'HelixUI Components - Browser Tests',
                 public: "public restricted",
                 recordVideo: false,
                 recordLogs: false,
+                build: process.env.TRAVIS_BUILD_NUMBER || Date.now(),
 			},
-			customLaunchers: customLaunchers,
-			browsers: Object.keys(customLaunchers),
+			customLaunchers: batches,
+			browsers: Object.keys(batches),
 			reporters: ['dots', 'saucelabs'],
 			singleRun: true,
 			browserDisconnectTimeout : 120000, // default 2000
