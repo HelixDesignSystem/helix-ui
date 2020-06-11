@@ -135,7 +135,15 @@ describe('<hx-modal> component tests', () => {
             const attr = component.hasAttribute('open');
 
             expect(attr).to.be.true;
-        });     
+        });
+        it('should have aria-hidden attribute and set to true', async () => {
+            const component = /** @type {HXModalElement} */ await fixture(template);
+            const hasAttr = component.hasAttribute('aria-hidden');
+            const attr = component.getAttribute('aria-hidden');
+
+            expect(hasAttr).to.be.true;
+            expect(attr).to.be.equal(String(true));
+        });
     });
 
     describe('test for click event listener', () => {
