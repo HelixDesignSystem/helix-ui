@@ -34,6 +34,8 @@ export { HXSearchControlElement } from './hx-search-control/index.js';
 export { HXSearchElement } from './hx-search/index.js';
 export { HXSelectControlElement } from './hx-select-control/index.js';
 export { HXSelectElement } from './hx-select/index.js';
+export { HXSwitchControlElement } from './hx-switch-control/index.js';
+export { HXSwitchElement } from './hx-switch/index';
 export { HXTabElement } from './hx-tab/index.js';
 export { HXTabcontentElement } from './hx-tabcontent/index.js';
 export { HXTablistElement } from './hx-tablist/index.js';

@@ -31,6 +31,8 @@ import './components/radio/radio-demo';
 import './components/reveal/reveal-demo';
 import './components/search/search-demo';
 import './components/stepper/stepper-demo';
+import './components/switch/switch-demo';
+import './components/switch/error-switch-demo';
 import './components/table/table-demo';
 import './components/tabset/tabset-demo';
 import './components/text-input/text-input-demo';
