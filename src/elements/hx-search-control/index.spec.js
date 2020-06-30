@@ -30,28 +30,28 @@ describe('<hx-search-control> component tests', () => {
 
     describe('instantiate element', () => {
         it('should be instantiated with hx-defined attribute', async () => {
-            const component = /** @type {HXSearchControlElement} */ await fixture(template);
-            const attr = component.hasAttribute('hx-defined');
+            const fragment = /** @type {HXSearchControlElement} */ await fixture(mockup);
+            const attr = fragment.hasAttribute('hx-defined');
 
             expect(attr).to.be.true;
         });
 
         it('should not be hidden', async () => {
-            const component = /** @type {HXSearchControlElement} */ await fixture(template);
-            const prop = component.hidden;
+            const fragment = /** @type {HXSearchControlElement} */ await fixture(mockup);
+            const prop = fragment.hidden;
 
             expect(prop).to.be.false;
         });
 
         it(`the rendered light DOM should NOT equal simple template ${template}`, async () => {
-            const component = /** @type {HXSearchControlElement} */ await fixture(template);
+            const fragment = /** @type {HXSearchControlElement} */ await fixture(mockup);
 
-            expect(component).lightDom.to.not.equal(template);
+            expect(fragment).lightDom.to.not.equal(template);
         });
 
         it(`should NOT have a Shadow DOM`, async () => {
-            const component = /** @type {HXSearchControlElement} */ await fixture(template);
-            const shadow = component.shadowRoot;
+            const fragment = /** @type {HXSearchControlElement} */ await fixture(mockup);
+            const shadow = fragment.shadowRoot;
 
             expect(shadow).to.be.null;
         });
@@ -83,12 +83,12 @@ describe('<hx-search-control> component tests', () => {
         });
 
         it('should fire a change event', async () => {
-            const component = /** @type { HXSearchControlElement } */ await fixture(template);
+            const fragment = /** @type { HXSearchControlElement } */ await fixture(mockup);
             const detail = { evt: 'change!' };
             const customEvent = new CustomEvent('change', { detail });
 
-            setTimeout(() => component.dispatchEvent(customEvent));
-            const evt = await oneEvent(component, 'change');
+            setTimeout(() => fragment.dispatchEvent(customEvent));
+            const evt = await oneEvent(fragment, 'change');
 
             expect(evt).to.equal(customEvent);
             expect(evt.detail).to.equal(detail);

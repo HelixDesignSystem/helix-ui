@@ -13,26 +13,23 @@ export class HXSearchControlElement extends HXFormControlElement {
         return 'hx-search-control';
     }
 
-    // $onCreate () {
-    //     this._onControlInput = this._onControlInput.bind(this);
-    //     this._onResetClick = this._onResetClick.bind(this);
-    //     this._onHxchange = this._onHxchange.bind(this);
-    // }
+    $onCreate () {
+        this._onControlInput = this._onControlInput.bind(this);
+        this._onResetClick = this._onResetClick.bind(this);
+    }
 
     $onConnect () {
+        this._showHideReset(this.controlElement);
 
-        this.addEventListener('input', this._onControlInput);
-        this.addEventListener('click', this._onResetClick);
-        this.addEventListener('change', this._onHxchange);
-      
+        this._btnReset.addEventListener('click', this._onResetClick);
+        this.controlElement.addEventListener('input', this._onControlInput);
+        this.controlElement.addEventListener('change', this._onControlInput);
     }
 
     $onDisconnect () {
-
-        this.removeEventListener('input', this._onControlInput);
-        this.removeEventListener('click', this._onResetClick);
-        this.removeEventListener('change', this._onHxchange);
-      
+        this._btnReset.removeEventListener('click', this._onResetClick);
+        this.controlElement.removeEventListener('input', this._onControlInput);
+        this.controlElement.removeEventListener('change', this._onControlInput);
     }
 
     /**
