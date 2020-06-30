@@ -38,6 +38,10 @@
         "path": "badge"
       },
       {
+        "label": "Beacon",
+        "path": "beacon"
+      },
+      {
         "label": "Box",
         "path": "box"
       },
@@ -190,6 +194,10 @@
       {
         "label": "<hx-alert>",
         "path": "hx-alert"
+      },
+      {
+        "label": "<hx-beacon>",
+        "path": "hx-beacon"
       },
       {
         "label": "<hx-busy>",

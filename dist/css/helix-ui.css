@@ -354,6 +354,20 @@ hx-icon + .hxBadge {
   vertical-align: top;
 }
 
+hx-beacon {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 0 2px 2px #9e9e9e;
+  display: block;
+  height: 1rem;
+  margin: 0;
+  opacity: 0.5;
+  padding: 0;
+  position: absolute;
+  width: 1rem;
+  cursor: pointer;
+}
+
 .hxBox.hxXs {
   padding: 0.5rem;
 }
