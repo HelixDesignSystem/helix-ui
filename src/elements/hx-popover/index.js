@@ -37,6 +37,8 @@ export class HXPopoverElement extends _ProtoClass {
     }
 
     /**
+     * This position attribute is for the popover arrow located on the Shadow DOM element root.
+     * 
      * @override
      * @param {NormalizedPositionString}
      */
