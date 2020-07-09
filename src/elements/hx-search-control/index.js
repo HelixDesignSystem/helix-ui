@@ -23,11 +23,13 @@ export class HXSearchControlElement extends HXFormControlElement {
 
         this._btnReset.addEventListener('click', this._onResetClick);
         this.controlElement.addEventListener('input', this._onControlInput);
+        this.controlElement.addEventListener('change', this._onControlInput);
     }
 
     $onDisconnect () {
         this._btnReset.removeEventListener('click', this._onResetClick);
         this.controlElement.removeEventListener('input', this._onControlInput);
+        this.controlElement.removeEventListener('change', this._onControlInput);
     }
 
     /**
