@@ -1,0 +1,37 @@
+---
+title: <hx-eyebrow-control>
+minver: 0.24.0
+also:
+  components/eyebrow: Eyebrow
+---
+{% extends 'element.njk' %}
+{% block page_header %}
+  <p>
+    The custom <code>{{page.title}}</code> element provides a visual
+    indication to the user that they can drag a file into an area.
+  </p>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <dl class="metadata hxList">
+      <div>
+        <dt>Display</dt>
+        <dd>block</dd>
+      </div>
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>any</dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd>flow content</dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd><em>none</em></dd>
+      </div>
+    </dl>
+  </section>
+{% endblock %}
+

@@ -1,0 +1,271 @@
+---
+title: Testing - Eyebrow
+crumbs:
+  - path: components/eyebrow
+    label: Eyebrow
+---
+{% extends 'test.njk' %}
+{% set contentClasses = 'Eyebrow-spec' %}
+
+{% macro dropdown(id='', isDirty=false, className='', isRequired=false, isDisabled=false, isFocused=false, isValid=true) %}
+  {% set isPristine = (className === '') and not isDirty %}
+
+  {% set idAttr -%}hxSelect-
+    {{- 'd' if isDirty else 'p' -}}
+    {{- 'R' if isRequired else 'O' -}}
+    {{- 'D' if isDisabled else 'E' -}}
+    {{- 'V' if isValid else 'I' -}}
+    -
+    {{- 'f' if isFocused else 'b' -}}
+    {%- if id !== '' %}-{{id}}{% endif -%}
+  {%- endset %}
+
+  <hx-select-control
+    {% if className !== '' %}class="{{className}}" {% endif %}
+    {% if isDirty %}hx-dirty {% endif %}
+  >
+    <select
+      id="{{idAttr | trim}}"
+      {% if isFocused %}class="mock-focus" {% endif %}
+      {% if isDisabled %}disabled {% endif %}
+      {% if isRequired %}
+        required
+      {% elif not isValid %}
+        data-mock-invalid
+      {% endif %}
+    >
+      {% if isRequired %}
+        {% if isValid %}
+          <option value="">Invalid Option</option>
+          <option value="valid" selected>Valid Option</option>
+        {% else %}
+          <option value="" selected>Invalid Option</option>
+          <option value="valid">Valid Option</option>
+        {% endif %}
+      {% else %}
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+      {% endif %}
+    </select>
+    <hx-select></hx-select>
+    <label for="{{idAttr | trim}}">
+      {% if isPristine %}
+        Pristine,
+      {% else %}
+        {% if className !== '' %}.{{ className }},{% endif %}
+        {% if isDirty %}Dirty,{% endif %}
+      {% endif %}
+      {{ 'Required' if isRequired else 'Optional' }},
+      {{ 'Disabled' if isDisabled else 'Enabled' }},
+      {{ 'Valid' if isValid else 'Invalid' }}
+      ({{ 'focus' if isFocused else 'blur' }})
+    </label>
+  </hx-select-control>
+{% endmacro %}
+{% macro stateTable(id, isDirty=false, className="", isRequired=false) %}
+  <table>
+    <thead>
+      <tr>
+        <th>:valid</th>
+        <th>:invalid{{ '*' if not isRequired }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><!-- select:enabled -->
+        <td>{{dropdown(id, isDirty, className, isRequired)}}</td>
+        <td>{{dropdown(id, isDirty, className, isRequired, isValid=false)}}</td>
+      </tr>
+      <tr><!-- select:enabled:focus -->
+        <td>{{dropdown(id, isDirty, className, isRequired, isFocused=true)}}</td>
+        <td>{{dropdown(id, isDirty, className, isRequired, isFocused=true, isValid=false)}}</td>
+      </tr>
+      <tr><!-- select:disabled -->
+        <td>{{dropdown(id, isDirty, className, isRequired, isDisabled=true)}}</td>
+        <td>{{dropdown(id, isDirty, className, isRequired, isDisabled=true, isValid=false)}}</td>
+      </tr>
+      <tr><!-- select:disabled:focus -->
+        <td>{{dropdown(id, isDirty, className, isRequired, isDisabled=true, isFocused=true)}}</td>
+        <td>{{dropdown(id, isDirty, className, isRequired, isDisabled=true, isFocused=true, isValid=false)}}</td>
+      </tr>
+    </tbody>
+  </table>
+  {% if not isRequired %}
+    <p class="hxSubBody hxSubdued">
+      <hx-icon type="info-circle"></hx-icon>
+      JavaScript required to match <code>:optional:invalid</code>
+    </p>
+  {% endif %}
+{% endmacro %}
+{% macro stateTables(id, isDirty=false, className="") %}
+  <section id="{{id}}-optional-states">
+    <header>
+      <h3>Optional</h3>
+      <code>&lt;select&gt;</code>
+    </header>
+    {{stateTable(id, isDirty, className, isRequired=false)}}
+  </section>
+
+  <section id="{{id}}-required-states">
+    <header>
+      <h3>Required</h3>
+      <code>&lt;select required&gt;</code>
+    </header>
+    {{stateTable(id, isDirty, className, isRequired=true)}}
+  </section>
+{% endmacro %}
+
+{% block content %}
+  <section>
+    <header>
+      <h2 id="test-pristine">Pristine</h2>
+      <code>&lt;hx-select-control&gt;</code>
+    </header>
+    {{stateTables('pristine')}}
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-dirty">Dirty</h2>
+      <code>&lt;hx-select-control hx-dirty&gt;</code>
+    </header>
+    {{stateTables('changed', isDirty=true)}}
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-visually-invalid">Visually Invalid</h2>
+      <code>&lt;hx-select-control class="hxInvalid"&gt;</code>
+    </header>
+    {{stateTables('invalid', className="hxInvalid")}}
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-layout">Layout</h2>
+      <p class="hxSubdued hxSubBody">
+        <hx-icon type="info-circle"></hx-icon>
+        Extra elements should not be visible.
+      </p>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol hxSpan-4">
+        <code>select + hx-select</code>
+        <hx-select-control>
+          <select>
+            <option>select</option>
+          </select>
+          <hx-select></hx-select>
+        </hx-select-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>select + hx-select + label</code>
+        <hx-select-control>
+          <select>
+            <option>select</option>
+          </select>
+          <hx-select></hx-select>
+          <label>label</label>
+        </hx-select-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>select + label + hx-select</code>
+        <hx-select-control>
+          <select>
+            <option>select</option>
+          </select>
+          <label>label</label>
+          <hx-select></hx-select>
+        </hx-select-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>select + div + hx-select + label</code>
+        <hx-select-control>
+          <select>
+            <option>select</option>
+          </select>
+          <div>div</div>
+          <hx-select></hx-select>
+          <label>label</label>
+        </hx-select-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>select + label + div + hx-select</code>
+        <hx-select-control>
+          <select>
+            <option>select</option>
+          </select>
+          <label>label</label>
+          <div>div</div>
+          <hx-select></hx-select>
+        </hx-select-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>div + select + label + hx-select</code>
+        <hx-select-control>
+          <div>div</div>
+          <select>
+            <option>select</option>
+          </select>
+          <label>label</label>
+          <hx-select></hx-select>
+        </hx-select-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <code>div + select + hx-error + label + hx-select</code>
+        <hx-select-control>
+          <div>div</div>
+          <select>
+            <option>select</option>
+          </select>
+          <hx-error>hx-error</hx-error>
+          <label>label</label>
+          <hx-select></hx-select>
+        </hx-select-control>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="test-misc">Miscellaneous</h2>
+    </header>
+
+    <div class="hxRow">
+      <div class="hxCol hxSpan-4">
+        <label for="selLongOption-enabled">
+          lengthy option - enabled
+        </label>
+        <hx-select-control>
+          <select id="selLongOption-enabled">
+            <option value="1">
+              Option 1 with a long description. I bet you think this description
+              is longer than it actually is, but it's only long enough to show
+              how the arrow obscures the value.
+            </option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+          <hx-select></hx-select>
+        </hx-select-control>
+      </div>
+      <div class="hxCol hxSpan-4">
+        <label for="selLongOption-disabled">
+          lengthy option - disabled
+        </label>
+        <hx-select-control>
+          <select id="selLongOption-disabled" disabled>
+            <option value="1">
+              Option 1 with a long description. I bet you think this description
+              is longer than it actually is, but it's only long enough to show
+              how the arrow obscures the value.
+            </option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+          <hx-select></hx-select>
+        </hx-select-control>
+      </div>
+    </div>
+  </section>
+{% endblock %}

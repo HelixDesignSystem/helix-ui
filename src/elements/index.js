@@ -13,6 +13,7 @@ export { HXDropFenceElement } from './hx-drop-fence/index.js';
 export { HXDropZoneElement } from './hx-drop-zone/index.js';
 export { HXEmailControl } from './hx-email-control/index.js';
 export { HXErrorElement } from './hx-error/index.js';
+export { HXEyebrowElement } from './hx-eyebrow/index.js';
 export { HXFileControlElement } from './hx-file-control/index.js';
 export { HXFileIconElement } from './hx-file-icon/index.js';
 export { HXFileInputElement } from './hx-file-input/index.js';
