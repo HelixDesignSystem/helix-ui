@@ -1,0 +1,187 @@
+// ----- BASE ELEMENTS ---------------
+@import "vars";
+@import "./config";
+
+#hxTopNav {
+  overflow: hidden;
+  width: 100%;
+  background-color: $gray-1000;
+
+  .img-left {
+    float: left;
+    width: 10rem;
+    height: 3.5rem;
+    padding: 1rem 1.25rem;
+
+    &:hover {
+      @include hxTopNavControl($pseudo-state: hover);
+    }
+
+    &:disabled {
+      @include hxTopNavControl(disabled);
+    }
+  }
+
+  img {
+    width: 7.438rem;
+    height: 1.5rem;
+  }
+
+  a:hover {
+    background-color: $gray-900;
+  }
+
+  .straightLine {
+    width: 0.063rem;
+    height: 2.5rem;
+    background-color: $gray-800;
+    margin: 0.5rem 0 0.5rem 0.5rem;
+  }
+
+  .productMenu {
+    display: flex;
+    float: left;
+  }
+
+  #right-menu {
+    float: right;
+    height: 3.5rem;
+    display: flex;
+
+    a {
+      float: left;
+      font-size: 0.813rem;
+      color: $gray-0;
+      text-align: center;
+      padding: 0 0.563rem;
+      text-decoration: none;
+      line-height: 1;
+      height: 3.5rem;
+    }
+
+    hx-icon {
+      color: $gray-0;
+      font-size: 0.938rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      margin: 0.688rem 0 0.313rem;
+    }
+
+    p {
+      color: $gray-0;
+      line-height: 1.5;
+      font-size: 0.625rem;
+    }
+
+    a:hover {
+      background-color: $gray-900;
+    }
+
+    a.disabled {
+      @include hxTopNavControl(disabled);
+
+      &:hover {
+        @include hxTopNavControl(disabled,hover);
+      }
+    }
+
+    a.selected {
+      border-bottom: 0.25rem solid $red-900;
+
+      > hx-icon, p {
+        color: $gray-25;
+      }
+    }
+
+    #topnav-menu:hover, #topnavMenuId hx-menuitem:hover {
+      background-color: $gray-900;
+      color: $gray-0 !important;
+    }
+  }
+
+  #topnav-menu, #topnav-productMenu {
+    background-color: transparent;
+    line-height: 1;
+    font-size: 0.875rem;
+    padding: 0.625rem 1.25rem 0;
+    color: $gray-400;
+    height: 3.5rem;
+    width: auto;
+
+    > hx-icon {
+      width: 0.75rem;
+      color: $gray-400;
+      margin-top: 0.75rem;
+      margin-left: 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    .disabled {
+      @include hxTopNavControl(disabled);
+    }
+  }
+
+  #topnavMenuId, #topnavProductDropdown {
+    background-color: $gray-1000;
+    min-width: 10.5rem;
+    color: $gray-0;
+    border: 0.063rem solid $gray-1000;
+    top: 14.5rem;
+    padding: 0;
+
+    hx-menuitem {
+      color: $gray-400;
+    }
+
+    hx-menuitem.disabled {
+      @include hxTopNavControl(disabled);
+
+      color: $gray-600;
+    }
+
+    .menuKey {
+      font-size: 0.75rem;
+      color: $gray-600;
+      text-transform: none;
+      line-height: 1;
+    }
+
+    .menuValue {
+      color: $gray-400;
+      text-transform: none;
+      line-height: 1;
+    }
+
+    .divider {
+      height: 0.063rem;
+      border-color: $gray-800;
+    }
+
+    .sectionHeader {
+      padding: 1.25rem 1.25rem 1rem;
+    }
+
+    .sectionBody {
+      padding: 1rem 1.25rem;
+    }
+
+    .sectionFooter {
+      padding: 1rem 1.25rem 1.25rem;
+
+      .hxBtn {
+        width: -webkit-fill-available;
+
+        &:hover {
+          color: $cyan-100;
+          border-color: $cyan-100;
+          background-color: $gray-1000;
+        }
+
+        &:active {
+          color: $cyan-700;
+          border-color: $cyan-700;
+        }
+      }
+    }
+  }
+}
