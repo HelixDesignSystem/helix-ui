@@ -47,13 +47,13 @@ if (document.getElementById('vue-emailInputDemo')) {
                 return Util.snippet(`
                     <hx-email-control>
                       <input
-                        id="emailDemo"
+                        id="emailInputDemo"
                         type="email"
                         ${this.attrDisabled}
                         ${this.attrRequired}
                       />
                       <label
-                        for="emailDemo"
+                        for="emailInputDemo"
                         ${this.lblClasses}
                       >
                         ${this.label}
