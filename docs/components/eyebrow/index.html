@@ -17,37 +17,69 @@ also:
 
 {% block content %}
 
-<div class="navbar">
-    <a class="img-left brand-logo" href="#"> <img src="images/helix-logo.svg" alt="Logo" /></a>
-    <div style="float:right;">
-      <a href="#"><span class="circle"></span> <p>Home</p></a>
-      <a href="#"><span class="circle"></span> <p>Menu</p></a>
-      <div class="dropdown">
-        <button class="dropbtn">Dropdown
-        <hx-icon class="hxPrimary" type="angle-down" style="color:#fff;"></hx-icon>
-        </button>
-        <div class="dropdown-content">
-        <a href="#">menu 1</a>
-        <a href="#">menu 2</a>
-        <a href="#">menu 3</a>
-        </div>
-      </div>
-     </div>
-</div>
-
 <section>
   <header>
-    <h2 id="basic-button">Nav bar specifications </h2>
+    <h2 id="grouped-menu">Nav Menu</h2>
   </header>
 
-  <ul class="hxList">
-    <li><code>&lt;Default&gt;</code></li>
-    <li><code>&lt;Hover&gt;</code></li>
-    <li><code>&lt;Selected&gt;</code></li>
-    <li><input type="checkbox"><code>Disabled</code></li>
-  </ul>
-  </section>
+  <div>
+    <div class="navbar">
+      <a class="img-left brand-logo" href="#"> <img src="images/helix-logo.svg" alt="Logo" /></a>
+      <div class = "right-menu">
+        <a href="#">
+          <hx-icon type="checkmark-circle"></hx-icon>
+          <p>Home</p>
+        </a>
 
+        <a href="#">
+          <hx-icon type="checkmark-circle"></hx-icon>
+          <p>Menu</p>
+        </a>
+
+        <div class="dropdown">
+          <button class="dropbtn">Dropdown
+          <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+          </button>
+          <div class="dropdown-content">
+          <a href="#">menu 1</a>
+          <a href="#">menu 2</a>
+          <a href="#">menu 3</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      {% code 'html' %}
+      <div class="navbar">
+        <a class="img-left brand-logo" href="#"> <img src="images/helix-logo.svg" alt="Logo" /></a>
+        <div class = "right-menu">
+          <a href="#" class="active">
+            <hx-icon type="checkmark-circle"></hx-icon>
+            <p>Home</p>
+          </a>
+
+          <a href="#">
+            <hx-icon type="checkmark-circle"></hx-icon>
+            <p>Menu</p>
+          </a>
+
+          <div class="dropdown">
+            <button class="dropbtn">Dropdown
+            <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+            </button>
+            <div class="dropdown-content">
+            <a href="#">menu 1</a>
+            <a href="#">menu 2</a>
+            <a href="#">menu 3</a>
+            </div>
+          </div>
+        </div>
+    </div>
+      {% endcode %}
+    </footer>
+  </div>
+</section>
 
   {# TODO:
     Need centralized documentation of HelixUI form control validation behavior.
