@@ -23,59 +23,93 @@ also:
   </header>
 
   <div>
-    <div class="navbar">
+    <div class="eyebrow">
       <a class="img-left brand-logo" href="#"> <img src="images/helix-logo.svg" alt="Logo" /></a>
       <div class = "right-menu">
         <a href="#">
-          <hx-icon type="checkmark-circle"></hx-icon>
-          <p>Home</p>
+          <hx-icon type="bell"></hx-icon>
+          <p>Notifications</p>
         </a>
 
         <a href="#">
-          <hx-icon type="checkmark-circle"></hx-icon>
-          <p>Menu</p>
+          <hx-icon type="ticketing"></hx-icon>
+          <p>Tickets</p>
         </a>
 
-        <div class="dropdown">
-          <button class="dropbtn">Dropdown
-          <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
-          </button>
-          <div class="dropdown-content">
-          <a href="#">menu 1</a>
-          <a href="#">menu 2</a>
-          <a href="#">menu 3</a>
-          </div>
-        </div>
+        <a href="#">
+          <hx-icon type="support"></hx-icon>
+          <p>Support</p>
+        </a>
+
+        <a href="#">
+          <hx-icon type="billing"></hx-icon>
+          <p>Billing</p>
+        </a>
+
+        <a href="#">
+          <hx-icon type="account"></hx-icon>
+          <p>Account</p>
+        </a>
+
+        <hx-disclosure class="eyebrow-menu" aria-controls="eyebrowMenuId" role="button" aria-expanded="true">
+          <span>Dropdown</span>
+          <hx-icon class="hxPrimary" type="angle-down" hx-defined=""></hx-icon>
+         </hx-disclosure>
+
+        <hx-menu id="eyebrowMenuId"  aria-hidden="false" position="bottom-start" role="menu" aria-expanded="true" open="">
+          <hx-menuitem role="menuitem">Action 1</hx-menuitem>
+          <hx-menuitem role="menuitem">Action 2</hx-menuitem>
+          <hx-menuitem role="menuitem">Action 3</hx-menuitem>
+        </hx-menu>
+
       </div>
     </div>
 
     <footer>
       {% code 'html' %}
-      <div class="navbar">
+      <div class="eyebrow">
         <a class="img-left brand-logo" href="#"> <img src="images/helix-logo.svg" alt="Logo" /></a>
         <div class = "right-menu">
-          <a href="#" class="active">
-            <hx-icon type="checkmark-circle"></hx-icon>
-            <p>Home</p>
+          <a href="#">
+            <hx-icon type="bell"></hx-icon>
+            <p>Notifications</p>
           </a>
 
           <a href="#">
-            <hx-icon type="checkmark-circle"></hx-icon>
-            <p>Menu</p>
+            <hx-icon type="ticketing"></hx-icon>
+            <p>Tickets</p>
           </a>
 
-          <div class="dropdown">
-            <button class="dropbtn">Dropdown
+          <a href="#">
+            <hx-icon type="support"></hx-icon>
+            <p>Support</p>
+          </a>
+
+          <a href="#">
+            <hx-icon type="billing"></hx-icon>
+            <p>Billing</p>
+          </a>
+
+          <a href="#">
+            <hx-icon type="account"></hx-icon>
+            <p>Account</p>
+          </a>
+
+          <hx-disclosure class="eyebrow-menu" aria-controls="eyebrowMenuId"
+            role="button" aria-expanded="true">
+            <span>Dropdown</span>
             <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
-            </button>
-            <div class="dropdown-content">
-            <a href="#">menu 1</a>
-            <a href="#">menu 2</a>
-            <a href="#">menu 3</a>
-            </div>
-          </div>
+           </hx-disclosure>
+
+          <hx-menu id="eyebrowMenuId"  aria-hidden="false" position="bottom-start"
+            role="menu" aria-expanded="true" open="">
+            <hx-menuitem role="menuitem">Action 1</hx-menuitem>
+            <hx-menuitem role="menuitem">Action 2</hx-menuitem>
+            <hx-menuitem role="menuitem">Action 3</hx-menuitem>
+          </hx-menu>
+
         </div>
-    </div>
+      </div>
       {% endcode %}
     </footer>
   </div>

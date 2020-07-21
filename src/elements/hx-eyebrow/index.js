@@ -1,7 +1,7 @@
 import { HXElement } from '../../interfaces/HXElement/index.js';
 
 /**
- * Defines behavior for the `<hx-drop-fence>` element.
+ * Defines behavior for the `<hx-eyebrow-control>` element.
  *
  * @extends HXElement
  * @hideconstructor
