@@ -19,98 +19,57 @@ also:
 
 <section>
   <header>
-    <h2 id="grouped-menu">Nav Menu</h2>
+    <h2 id="icon-badge">Nav Menu</h2>
   </header>
 
-  <div>
-    <div class="eyebrow">
-      <a class="img-left brand-logo" href="#"> <img src="images/helix-logo.svg" alt="Logo" /></a>
-      <div class = "right-menu">
-        <a href="#">
-          <hx-icon type="bell"></hx-icon>
-          <p>Notifications</p>
-        </a>
+  <div id="vue-eyebrowDemo">
+      <div class="eyebrow">
+          <a class="img-left brand-logo" href="#"> <img src="images/helix-logo.svg" alt="Logo" /></a>
+          <div class = "right-menu">
+            <a href="#"
+            :disabled="isDisabled"
+              @click="submitName()"
+            >
+              <hx-icon type="bell"></hx-icon>
+              <p>Notifications</p>
+            </a>
 
-        <a href="#">
-          <hx-icon type="ticketing"></hx-icon>
-          <p>Tickets</p>
-        </a>
+            <a href="#">
+              <hx-icon type="ticketing"></hx-icon>
+              <p>Tickets</p>
+            </a>
 
-        <a href="#">
-          <hx-icon type="support"></hx-icon>
-          <p>Support</p>
-        </a>
+            <a href="#">
+              <hx-icon type="support"></hx-icon>
+              <p>Support</p>
+            </a>
 
-        <a href="#">
-          <hx-icon type="billing"></hx-icon>
-          <p>Billing</p>
-        </a>
+            <a href="#">
+              <hx-icon type="billing"></hx-icon>
+              <p>Billing</p>
+            </a>
 
-        <a href="#">
-          <hx-icon type="account"></hx-icon>
-          <p>Account</p>
-        </a>
+            <a href="#">
+              <hx-icon type="account"></hx-icon>
+              <p>Account</p>
+            </a>
 
-        <hx-disclosure class="eyebrow-menu" aria-controls="eyebrowMenuId" role="button" aria-expanded="true">
-          <span>Dropdown</span>
-          <hx-icon class="hxPrimary" type="angle-down" hx-defined=""></hx-icon>
-         </hx-disclosure>
+            <hx-disclosure class="eyebrow-menu" aria-controls="eyebrowMenuId" role="button" aria-expanded="true">
+              <span>User</span>
+              <hx-icon class="hxPrimary" type="angle-down" hx-defined=""></hx-icon>
+             </hx-disclosure>
 
-        <hx-menu id="eyebrowMenuId"  aria-hidden="false" position="bottom-start" role="menu" aria-expanded="true" open="">
-          <hx-menuitem role="menuitem">Action 1</hx-menuitem>
-          <hx-menuitem role="menuitem">Action 2</hx-menuitem>
-          <hx-menuitem role="menuitem">Action 3</hx-menuitem>
-        </hx-menu>
+            <hx-menu id="eyebrowMenuId"  aria-hidden="false" position="bottom-start" role="menu" aria-expanded="true" open="">
+              <hx-menuitem role="menuitem">Action 1</hx-menuitem>
+              <hx-menuitem role="menuitem">Action 2</hx-menuitem>
+              <hx-menuitem role="menuitem">Action 3</hx-menuitem>
+            </hx-menu>
 
-      </div>
-    </div>
+          </div>
+        </div>
 
     <footer>
-      {% code 'html' %}
-      <div class="eyebrow">
-        <a class="img-left brand-logo" href="#"> <img src="images/helix-logo.svg" alt="Logo" /></a>
-        <div class = "right-menu">
-          <a href="#">
-            <hx-icon type="bell"></hx-icon>
-            <p>Notifications</p>
-          </a>
-
-          <a href="#">
-            <hx-icon type="ticketing"></hx-icon>
-            <p>Tickets</p>
-          </a>
-
-          <a href="#">
-            <hx-icon type="support"></hx-icon>
-            <p>Support</p>
-          </a>
-
-          <a href="#">
-            <hx-icon type="billing"></hx-icon>
-            <p>Billing</p>
-          </a>
-
-          <a href="#">
-            <hx-icon type="account"></hx-icon>
-            <p>Account</p>
-          </a>
-
-          <hx-disclosure class="eyebrow-menu" aria-controls="eyebrowMenuId"
-            role="button" aria-expanded="true">
-            <span>Dropdown</span>
-            <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
-           </hx-disclosure>
-
-          <hx-menu id="eyebrowMenuId"  aria-hidden="false" position="bottom-start"
-            role="menu" aria-expanded="true" open="">
-            <hx-menuitem role="menuitem">Action 1</hx-menuitem>
-            <hx-menuitem role="menuitem">Action 2</hx-menuitem>
-            <hx-menuitem role="menuitem">Action 3</hx-menuitem>
-          </hx-menu>
-
-        </div>
-      </div>
-      {% endcode %}
+       <pre><code v-text="snippet"></code></pre>
     </footer>
   </div>
 </section>
