@@ -1,0 +1,87 @@
+// ----- BASE ELEMENTS ---------------
+@import "vars";
+
+#hxTopnav-primary {
+  overflow: hidden;
+  width: 100%;
+  height: 3.5rem;
+  background-color: $gray-1000;
+
+  .img-left {
+    float: left;
+    width: 9.938rem;
+    height: 3.5rem;
+    padding: 1rem 1.25rem;
+  }
+
+  img {
+    width: 7.438rem;
+    height: 1.5rem;
+  }
+
+  a:hover {
+    background-color: #242424;
+  }
+
+  #right-menu {
+    float: right;
+
+    a {
+      float: left;
+      font-size: 0.813rem;
+      color: $gray-0;
+      text-align: center;
+      padding: 1rem 0.563rem;
+      text-decoration: none;
+      line-height: 1;
+      height: 3.5rem;
+    }
+
+    hx-icon {
+      color: $gray-0;
+      font-size: 0.938rem;
+    }
+
+    p {
+      color: $gray-0;
+      line-height: 1.5;
+    }
+
+    a:hover {
+      background-color: #242424;
+    }
+
+    #topnav-menu {
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+      display: inline-block;
+      font: inherit;
+      font-weight: 500;
+      line-height: 1;
+      border-radius: 2px;
+      justify-content: center;
+      font-size: 0.875rem;
+      padding: 1.375rem 2rem;
+      color: #f5f5f5;
+    }
+
+    #topnav-menu:hover, #eyebrowMenuId hx-menuitem:hover {
+      background-color: #242424 !important;
+      color: #e6dddd !important;
+    }
+
+    #eyebrowMenuId {
+      background-color: $gray-1000;
+      min-width: 7rem;
+      color: $gray-0;
+      margin-top: -3px;
+      border: 1px solid $gray-1000;
+      top: 14.5rem;
+
+      hx-menuitem {
+        color: $gray-0;
+      }
+    }
+  }
+}

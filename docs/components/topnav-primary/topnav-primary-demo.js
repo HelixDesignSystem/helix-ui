@@ -6,9 +6,9 @@ if (document.getElementById('vue-eyebrowDemo')) {
         data: {
             isDisabled: false,
             notifications: 'Notifications',
-            Tickets: 'Tickets',
+            tickets: 'Tickets',
             support: 'Support',
-            billing: 'billing',
+            billing: 'Billing',
             account: 'Account',
             user: 'User',
         },
@@ -18,12 +18,12 @@ if (document.getElementById('vue-eyebrowDemo')) {
             },
             snippet: function () {
                 return Util.snippet(`
-                    <div class="eyebrow">
+                    <div id="hxTopnav-primary">
                     <a class="img-left brand-logo" href="#">
                         <img src="images/helix-logo.svg" alt="Logo" />
                     </a>
-                    <div class = "right-menu">
-                        <a href="#" ${this.attrDisabled}>
+                    <div id="right-menu">
+                        <a href="#">
                             <hx-icon type="bell"></hx-icon>
                             <p>${this.notifications}</p>
                         </a>
@@ -48,14 +48,24 @@ if (document.getElementById('vue-eyebrowDemo')) {
                             <p>${this.account}</p>
                         </a>
 
-                        <hx-disclosure class="eyebrow-menu" aria-controls="eyebrowMenuId" role="button"
-                            aria-expanded="true">
+                        <hx-disclosure
+                            id="topnav-menu"
+                            aria-controls="eyebrowMenuId"
+                            role="button"
+                            aria-expanded="true"
+                        >
                             <span>${this.user}</span>
-                            <hx-icon class="hxPrimary" type="angle-down" hx-defined=""></hx-icon>
+                            <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
                         </hx-disclosure>
 
-                        <hx-menu id="eyebrowMenuId"  aria-hidden="false" position="bottom-start"
-                            role="menu" aria-expanded="true" open="">
+                        <hx-menu
+                            id="eyebrowMenuId"
+                            aria-hidden="false"
+                            position="bottom-start"
+                            role="menu"
+                            aria-expanded="true"
+                             open=""
+                        >
                             <hx-menuitem role="menuitem">Action 1</hx-menuitem>
                             <hx-menuitem role="menuitem">Action 2</hx-menuitem>
                             <hx-menuitem role="menuitem">Action 3</hx-menuitem>

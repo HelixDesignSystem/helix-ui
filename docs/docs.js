@@ -15,7 +15,6 @@ import './components/drawer/drawer-demo';
 import './components/drawer/slotted-drawer-demo';
 import './components/dropdown-select/select-demo';
 import './components/email/email-control-demo';
-import './components/eyebrow/eyebrow-demo';
 import './components/file/drop-zone-demo';
 import './components/file/file-input-demo';
 import './components/file/file-tile-demo';
@@ -40,6 +39,7 @@ import './components/text-input/text-input-demo';
 import './components/textarea/textarea-demo';
 import './components/toast/toast-demo';
 import './components/tooltip/tooltip-demo';
+import './components/topnav-primary/topnav-primary-demo';
 
 (function () {
     let hashAnchors = document.querySelectorAll('[href^="#"]');
