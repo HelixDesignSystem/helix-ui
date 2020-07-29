@@ -9,7 +9,7 @@
     "fs-extra": "^6.0.1",
     "inquirer-promise": "^1.0.0",
     "inquirer-shortcuts": "^1.1.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "opn": "^5.1.0",
     "snappit-visual-regression": "^0.11.0",
     "tslint": "^5.7.0",
