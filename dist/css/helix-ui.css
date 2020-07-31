@@ -4668,6 +4668,218 @@ hx-search-control:not([hx-defined]) > button {
   border-radius: 3rem;
 }
 
+hx-switch-control {
+  -ms-grid-column-align: start;
+  -ms-grid-columns: auto 1fr;
+  -ms-grid-rows: auto auto;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: "ctrl lbl" ".    help";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  justify-items: start;
+  grid-area: facade;
+  margin-top: 0.25rem;
+  position: relative;
+  width: 4.25rem;
+  height: 2rem;
+}
+
+hx-switch-control > input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+hx-switch-control > label > hx-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 2.125rem;
+}
+
+hx-switch-control > label > hx-switch::before {
+  position: absolute;
+  content: "";
+  height: 2rem;
+  width: 2rem;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+hx-switch-control > input[type="checkbox"] ~ label > hx-switch {
+  background-color: #ffffff;
+  border: 0.125rem solid #0c7c84;
+}
+
+hx-switch-control > input[type="checkbox"] ~ label > hx-switch:hover {
+  background-color: #ffffff;
+  border: 0.125rem solid #16b9d4;
+}
+
+hx-switch-control > input[type="checkbox"] ~ label > hx-switch:hover::before {
+  background-color: #ffffff;
+  border: 0.125rem solid #16b9d4;
+  left: -0.12rem;
+}
+
+hx-switch-control > input[type="checkbox"] ~ label > hx-switch:hover::after {
+  color: #16b9d4;
+}
+
+hx-switch-control > input[type="checkbox"] ~ label > hx-switch[offlabel]::after {
+  content: attr(offlabel);
+  text-transform: uppercase;
+  margin-left: 2rem;
+  color: #0c7c84;
+  line-height: 2rem;
+  max-width: 1.813rem;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+hx-switch-control > input[type="checkbox"] ~ label > hx-switch::before {
+  background-color: #ffffff;
+  border: 0.125rem solid #0c7c84;
+  left: -0.125rem;
+  top: -0.062rem;
+}
+
+hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch {
+  background-color: #0c7c84;
+  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+}
+
+hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch::-ms-check {
+  border-color: #0e94a6;
+}
+
+hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch:hover {
+  background-color: #16b9d4;
+}
+
+hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch:hover::before {
+  background-color: #ffffff;
+  left: 0.1rem;
+}
+
+hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch:hover::after {
+  color: #ffffff;
+}
+
+hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch[onlabel]::after {
+  content: attr(onlabel);
+  text-transform: uppercase;
+  margin-left: 0.5rem;
+  color: #ffffff;
+  max-width: 2.125rem;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch::before {
+  margin-left: 2rem;
+  height: 2rem;
+  left: 0.125rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 4.25rem;
+  height: 2.125rem;
+}
+
+hx-switch-control > input[type="checkbox"]:disabled:checked ~ label > hx-switch {
+  cursor: not-allowed;
+  background-color: #bdbdbd;
+  cursor: not-allowed;
+  box-shadow: 0 0 4px rgba(189, 189, 189, 0.5);
+}
+
+hx-switch-control > input[type="checkbox"]:disabled:checked ~ label > hx-switch::before {
+  background-color: #e7e7e7;
+}
+
+hx-switch-control > input[type="checkbox"]:disabled:checked ~ label > hx-switch::after {
+  color: #e7e7e7;
+}
+
+hx-switch-control > input[type="checkbox"]:disabled:checked ~ label > hx-switch::-ms-check {
+  border-color: #bdbdbd;
+  box-shadow: 0 0 4px rgba(189, 189, 189, 0.5);
+}
+
+hx-switch-control > input[type="checkbox"]:disabled ~ label > hx-switch {
+  cursor: not-allowed;
+  background-color: #e7e7e7;
+  border: 0.125rem solid #bdbdbd;
+}
+
+hx-switch-control > input[type="checkbox"]:disabled ~ label > hx-switch:before {
+  background-color: #e7e7e7;
+  border: 0.125rem solid #bdbdbd;
+}
+
+hx-switch-control > input[type="checkbox"]:disabled ~ label > hx-switch::after {
+  color: #bdbdbd;
+}
+
+hx-switch-control > input[invalid]:checked ~ label > hx-switch {
+  background-color: #d32f2f !important;
+  border: 0.125rem solid #d32f2f;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+hx-switch-control > input[invalid]:checked ~ label > hx-switch:after {
+  color: #ffffff !important;
+}
+
+hx-switch-control > input[invalid]:checked ~ label > hx-switch:before {
+  background-color: #ffffff;
+  border: 0.125rem solid #d32f2f;
+}
+
+hx-switch-control > input[invalid]:checked ~ label > hx-switch::-ms-check {
+  border-color: #d32f2f;
+}
+
+hx-switch-control > input[invalid] ~ label > hx-switch {
+  background-color: #ffffff;
+  border: 0.125rem solid #d32f2f !important;
+  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+}
+
+hx-switch-control > input[invalid] ~ label > hx-switch::after {
+  color: #d32f2f !important;
+}
+
+hx-switch-control > input[invalid] ~ label > hx-switch::before {
+  background-color: #ffffff;
+  border: 0.125rem solid #d32f2f !important;
+  content: "\0021";
+  color: #d32f2f;
+  font-size: 1.063rem;
+  text-align: center;
+  line-height: 1.813rem;
+}
+
+hx-switch-control > input[invalid] ~ label > hx-switch::-ms-check {
+  border-color: #d32f2f;
+}
+
 hx-toast {
   background-color: #ffffff;
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16);

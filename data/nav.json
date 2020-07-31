@@ -150,6 +150,10 @@
         "path": "stepper"
       },
       {
+        "label": "Switch",
+        "path": "switch"
+      },
+      {
         "label": "Table",
         "path": "table"
       },
@@ -322,6 +326,10 @@
       {
         "label": "<hx-status>",
         "path": "hx-status"
+      },
+      {
+        "label": "<hx-switch>",
+        "path": "hx-switch"
       },
       {
         "label": "<hx-tab>",

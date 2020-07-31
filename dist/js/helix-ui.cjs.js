@@ -5937,6 +5937,8 @@ var HXPopoverElement = /*#__PURE__*/function (_ProtoClass2) {
     key: "setShadowPosition",
 
     /**
+     * This position attribute is for the popover arrow located on the Shadow DOM element root.
+     * 
      * @override
      * @param {NormalizedPositionString}
      */
@@ -6425,6 +6427,7 @@ var HXSearchControlElement = /*#__PURE__*/function (_HXFormControlElement) {
       this._btnReset.addEventListener('click', this._onResetClick);
 
       this.controlElement.addEventListener('input', this._onControlInput);
+      this.controlElement.addEventListener('change', this._onControlInput);
     }
   }, {
     key: "$onDisconnect",
@@ -6432,6 +6435,7 @@ var HXSearchControlElement = /*#__PURE__*/function (_HXFormControlElement) {
       this._btnReset.removeEventListener('click', this._onResetClick);
 
       this.controlElement.removeEventListener('input', this._onControlInput);
+      this.controlElement.removeEventListener('change', this._onControlInput);
     }
     /**
      * Fetch the first `<input type="search">` descendant
@@ -6624,6 +6628,197 @@ var HXSelectElement = /*#__PURE__*/function (_HXElement) {
 
   return HXSelectElement;
 }(HXElement);
+
+/**
+ * Defines behavior for the `<hx-switch-control>` element which is the
+ * controller for the `<hx-switch>` element.
+ *
+ * @extends HXFormControlElement
+ * @hideconstructor
+ * @since 0.24.0
+ */
+
+var HXSwitchControlElement = /*#__PURE__*/function (_HXFormControlElement) {
+  _inherits(HXSwitchControlElement, _HXFormControlElement);
+
+  var _super = _createSuper(HXSwitchControlElement);
+
+  function HXSwitchControlElement() {
+    _classCallCheck(this, HXSwitchControlElement);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(HXSwitchControlElement, [{
+    key: "controlElement",
+
+    /**
+     * Fetch the first `<input type="checkbox">` descendant.
+     *
+     * @override
+     * @readonly
+     * @type {?HTMLInputElement}
+     */
+    get: function get() {
+      return this.querySelector('input[type="checkbox"]');
+    }
+  }], [{
+    key: "is",
+
+    /** @override */
+    get: function get() {
+      return 'hx-switch-control';
+    }
+  }]);
+
+  return HXSwitchControlElement;
+}(HXFormControlElement);
+
+var shadowMarkup$j = "<!-- TBD -->";
+
+var shadowStyles$j = "";
+
+/**
+ * Defines behavior for the `<hx-switch>` element.
+ * NOTE: `<hx-switch>` can have various default options, or it can be overriden.
+ *
+ * @extends HXFormControlElement
+ * @hideconstructor
+ * @since 0.24.0
+ */
+
+var HXSwitchElement = /*#__PURE__*/function (_HXFormControlElement) {
+  _inherits(HXSwitchElement, _HXFormControlElement);
+
+  var _super = _createSuper(HXSwitchElement);
+
+  function HXSwitchElement() {
+    _classCallCheck(this, HXSwitchElement);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(HXSwitchElement, [{
+    key: "$onConnect",
+    value: function $onConnect() {
+      this.$upgradeProperty('onlabel');
+      this.$upgradeProperty('offlabel');
+
+      if (!this.hasAttribute('onlabel') && !this.hasAttribute('offlabel')) {
+        this.setAttribute('onlabel', '');
+        this.setAttribute('offlabel', '');
+      } else {
+        this.syncLabels();
+      }
+    }
+  }, {
+    key: "$onAttributeChange",
+    // eslint-disable-next-line no-unused-vars
+    value: function $onAttributeChange(attr, oldVal, newVal) {
+      if (attr === 'onlabel') {
+        this.syncLabels();
+      } else {
+        this.syncLabels(true); // sync off label
+      }
+    }
+    /**
+     * Label `off` getter/setter
+     */
+
+  }, {
+    key: "syncLabels",
+    // eslint-disable-next-line complexity
+    value: function syncLabels() {
+      var isOffLabel = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+      if (this.hasAttribute('onlabel') && !isOffLabel) {
+        var attr = this.getAttribute('onlabel').toUpperCase();
+        var off;
+
+        switch (attr) {
+          case 'ON':
+            off = 'OFF';
+            break;
+
+          case 'YES':
+            off = 'NO';
+            break;
+
+          case '':
+            off = '';
+            break;
+        }
+
+        if (this.hasAttribute('offlabel') && off !== undefined) {
+          this.setAttribute('offlabel', off);
+        }
+      } else if (this.hasAttribute('offlabel')) {
+        var _attr = this.getAttribute('offlabel').toUpperCase();
+
+        var on;
+
+        switch (_attr) {
+          case 'OFF':
+            on = 'ON';
+            break;
+
+          case 'NO':
+            on = 'YES';
+            break;
+
+          case '':
+            on = '';
+            break;
+        }
+
+        if (this.hasAttribute('onlabel') && on !== undefined) {
+          this.setAttribute('onlabel', on);
+        }
+      }
+    }
+  }, {
+    key: "offlabel",
+    get: function get() {
+      return this.getAttribute('offlabel');
+    },
+    set: function set(newVal) {
+      this.setAttribute('offlabel', newVal);
+    }
+    /**
+     * Label `on` getter/setter
+     */
+
+  }, {
+    key: "onlabel",
+    get: function get() {
+      return this.getAttribute('onlabel');
+    },
+    set: function set(newVal) {
+      this.setAttribute('onlabel', newVal);
+    }
+  }], [{
+    key: "is",
+
+    /** @override */
+    get: function get() {
+      return 'hx-switch';
+    }
+    /** @override */
+
+  }, {
+    key: "template",
+    get: function get() {
+      return "<style>".concat(shadowStyles$j, "</style>").concat(shadowMarkup$j);
+    }
+  }, {
+    key: "$observedAttributes",
+    get: function get() {
+      return ['onlabel', 'offlabel'];
+    }
+  }]);
+
+  return HXSwitchElement;
+}(HXFormControlElement);
 
 /**
  * Fires when non-current tab is clicked.
@@ -6912,6 +7107,7 @@ var HXTabsetElement = /*#__PURE__*/function (_HXElement) {
   _createClass(HXTabsetElement, [{
     key: "$onCreate",
     value: function $onCreate() {
+      this.$defaultAttribute('id', "tabset-".concat(generateId()));
       this.$onConnect = defer(this.$onConnect);
       this._onKeyUp = this._onKeyUp.bind(this);
     }
@@ -7099,14 +7295,17 @@ var HXTabsetElement = /*#__PURE__*/function (_HXElement) {
         } // Set or keep panel ID
 
 
-        if (tabpanel.hasAttribute('id')) {
-          tabpanelId = tabpanel.getAttribute('id');
-        } else {
-          tabpanel.setAttribute('id', tabpanelId);
-        }
+        if (tabpanel !== undefined) {
+          if (tabpanel.hasAttribute('id')) {
+            tabpanelId = tabpanel.getAttribute('id');
+          } else {
+            tabpanel.setAttribute('id', tabpanelId);
+          } // sync tabpanel to tab
 
-        tab.setAttribute('aria-controls', tabpanelId);
-        tabpanel.setAttribute('aria-labelledby', tabId);
+
+          tabpanel.setAttribute('aria-labelledby', tabId);
+          tab.setAttribute('aria-controls', tabpanelId);
+        }
       });
     }
   }, {
@@ -7124,8 +7323,10 @@ var HXTabsetElement = /*#__PURE__*/function (_HXElement) {
         throw new TypeError("'currentTab' expects a numeric index. Got ".concat(_typeof(idx), " instead."));
       }
 
-      if (idx < 0 || idx >= this.tabs.length) {
-        throw new RangeError('currentTab index is out of bounds');
+      if (this.tabs.length !== 0) {
+        if (idx < 0 || idx >= this.tabs.length) {
+          throw new RangeError('currentTab index is out of bounds');
+        }
       }
 
       this.setAttribute('current-tab', idx);
@@ -7268,9 +7469,9 @@ var HXTextareaControlElement = /*#__PURE__*/function (_HXFormControlElement) {
   return HXTextareaControlElement;
 }(HXFormControlElement);
 
-var shadowMarkup$j = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
+var shadowMarkup$k = "<div id='hxToast'><div id='hxIconWrapper'><hx-icon id='hxIcon' type='info-circle'></hx-icon></div><div id='hxContent'><div><slot></slot></div><button id='hxCta' type='button'></button></div><button id='hxDismiss' type='button'><hx-icon type='times'></hx-icon></button></div>";
 
-var shadowStyles$j = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\nbutton { background-color: transparent; border: 0; color: inherit; cursor: pointer; display: inline-block; font: inherit; font-weight: 500; line-height: 1; margin: 0; padding: 0; }\n\n#hxToast { padding: 0.75rem; display: flex; }\n\n#hxIconWrapper { align-items: center; color: var(--hxIcon-color, inherit); display: flex; margin: 0 0.75rem 0 0.5rem; }\n\n#hxIconWrapper hx-icon { font-size: 2rem; }\n\n#hxContent { flex-grow: 1; margin-right: 1.5rem; text-align: right; word-wrap: break-word; }\n\n#hxContent div { font-size: 0.875rem; text-align: left; }\n\n#hxCta { border-radius: 2px; display: inline-flex; justify-content: center; font-size: 0.875rem; padding: 0.5rem 0.75rem; background-color: transparent; border: 0; color: #0c7c84; text-transform: uppercase; }\n\n#hxCta > * + * { margin-left: 0.5rem; }\n\n#hxCta:focus { outline: none; }\n\n#hxCta[disabled] { cursor: not-allowed; }\n\n#hxCta[disabled]:focus { box-shadow: none; }\n\n#hxCta.hxDeprecated { padding-left: 0; padding-right: 0; }\n\n#hxCta:hover { background-color: transparent; border-color: transparent; color: #16b9d4; }\n\n#hxCta:active { background-color: transparent; border-color: transparent; color: #0e94a6; }\n\n#hxCta:focus { box-shadow: 0 0 4px rgba(14, 148, 166, 0.5); }\n\n#hxCta[disabled] { background-color: transparent; border-color: transparent; color: #d8d8d8; }\n\n#hxCta:empty { display: none; }\n\n#hxDismiss { color: var(--hxDismiss-color, #757575); flex-shrink: 0; font-size: 0.75rem; height: 2.25rem; padding: 0.75rem; position: absolute; right: 0; top: 0; width: 2.25rem; }\n\n:host([type=\"info\"]) #hxIconWrapper { color: var(--hxIcon-color, #3b44a9); }\n\n:host([type=\"error\"]) #hxIconWrapper { color: var(--hxIcon-color, #d32f2f); }\n\n:host([type=\"success\"]) #hxIconWrapper { color: var(--hxIcon-color, #4caf51); }\n";
+var shadowStyles$k = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\nbutton { background-color: transparent; border: 0; color: inherit; cursor: pointer; display: inline-block; font: inherit; font-weight: 500; line-height: 1; margin: 0; padding: 0; }\n\n#hxToast { padding: 0.75rem; display: flex; }\n\n#hxIconWrapper { align-items: center; color: var(--hxIcon-color, inherit); display: flex; margin: 0 0.75rem 0 0.5rem; }\n\n#hxIconWrapper hx-icon { font-size: 2rem; }\n\n#hxContent { flex-grow: 1; margin-right: 1.5rem; text-align: right; word-wrap: break-word; }\n\n#hxContent div { font-size: 0.875rem; text-align: left; }\n\n#hxCta { border-radius: 2px; display: inline-flex; justify-content: center; font-size: 0.875rem; padding: 0.5rem 0.75rem; background-color: transparent; border: 0; color: #0c7c84; text-transform: uppercase; }\n\n#hxCta > * + * { margin-left: 0.5rem; }\n\n#hxCta:focus { outline: none; }\n\n#hxCta[disabled] { cursor: not-allowed; }\n\n#hxCta[disabled]:focus { box-shadow: none; }\n\n#hxCta.hxDeprecated { padding-left: 0; padding-right: 0; }\n\n#hxCta:hover { background-color: transparent; border-color: transparent; color: #16b9d4; }\n\n#hxCta:active { background-color: transparent; border-color: transparent; color: #0e94a6; }\n\n#hxCta:focus { box-shadow: 0 0 4px rgba(14, 148, 166, 0.5); }\n\n#hxCta[disabled] { background-color: transparent; border-color: transparent; color: #d8d8d8; }\n\n#hxCta:empty { display: none; }\n\n#hxDismiss { color: var(--hxDismiss-color, #757575); flex-shrink: 0; font-size: 0.75rem; height: 2.25rem; padding: 0.75rem; position: absolute; right: 0; top: 0; width: 2.25rem; }\n\n:host([type=\"info\"]) #hxIconWrapper { color: var(--hxIcon-color, #3b44a9); }\n\n:host([type=\"error\"]) #hxIconWrapper { color: var(--hxIcon-color, #d32f2f); }\n\n:host([type=\"success\"]) #hxIconWrapper { color: var(--hxIcon-color, #4caf51); }\n";
 
 var ICONS$1 = {
   'error': 'exclamation-circle',
@@ -7449,7 +7650,7 @@ var HXToastElement = /*#__PURE__*/function (_HXElement) {
   }, {
     key: "template",
     get: function get() {
-      return "<style>".concat(shadowStyles$j, "</style>").concat(shadowMarkup$j);
+      return "<style>".concat(shadowStyles$k, "</style>").concat(shadowMarkup$k);
     }
   }, {
     key: "$observedAttributes",
@@ -7461,9 +7662,9 @@ var HXToastElement = /*#__PURE__*/function (_HXElement) {
   return HXToastElement;
 }(HXElement);
 
-var shadowMarkup$k = "<div id='hxTooltip' class='has-arrow'><slot></slot></div>";
+var shadowMarkup$l = "<div id='hxTooltip' class='has-arrow'><slot></slot></div>";
 
-var shadowStyles$k = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n.has-arrow { margin: 0; position: relative; }\n\n.has-arrow::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0); z-index: -1; }\n\n.has-arrow::before, .has-arrow::after { content: \"\"; display: block; height: 13px; position: absolute; width: 13px; }\n\n.has-arrow[position^=\"top\"] { margin-bottom: 8px; }\n\n.has-arrow[position^=\"top\"]::before, .has-arrow[position^=\"top\"]::after { bottom: -8px; }\n\n.has-arrow[position^=\"top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top-center\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top\"]::after, .has-arrow[position=\"top-center\"]::before, .has-arrow[position=\"top-center\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 50%; }\n\n.has-arrow[position=\"top-right\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-right\"]::before, .has-arrow[position=\"top-right\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 1.25rem; }\n\n.has-arrow[position=\"top-left\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top-left\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-left\"]::before, .has-arrow[position=\"top-left\"]::after { transform-origin: bottom right; transform: rotate(45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"right\"] { margin-left: 8px; }\n\n.has-arrow[position^=\"right\"]::before, .has-arrow[position^=\"right\"]::after { left: -8px; }\n\n.has-arrow[position^=\"right\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right\"]::after, .has-arrow[position=\"right-middle\"]::before, .has-arrow[position=\"right-middle\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 50%; }\n\n.has-arrow[position=\"right-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-bottom\"]::before, .has-arrow[position=\"right-bottom\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 1.25rem; }\n\n.has-arrow[position=\"right-top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-top\"]::before, .has-arrow[position=\"right-top\"]::after { transform-origin: bottom left; transform: rotate(45deg); bottom: 1.25rem; }\n\n.has-arrow[position^=\"bottom\"] { margin-top: 8px; }\n\n.has-arrow[position^=\"bottom\"]::before, .has-arrow[position^=\"bottom\"]::after { top: -8px; }\n\n.has-arrow[position^=\"bottom\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom\"]::before, .has-arrow[position=\"bottom\"]::after, .has-arrow[position=\"bottom-center\"]::before, .has-arrow[position=\"bottom-center\"]::after { transform-origin: top left; transform: rotate(45deg); left: 50%; }\n\n.has-arrow[position=\"bottom-right\"]::before, .has-arrow[position=\"bottom-right\"]::after { transform-origin: top left; transform: rotate(45deg); left: 1.25rem; }\n\n.has-arrow[position=\"bottom-left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom-left\"]::before, .has-arrow[position=\"bottom-left\"]::after { transform-origin: top right; transform: rotate(-45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"left\"] { margin-right: 8px; }\n\n.has-arrow[position^=\"left\"]::before, .has-arrow[position^=\"left\"]::after { right: -8px; }\n\n.has-arrow[position^=\"left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left\"]::after, .has-arrow[position=\"left-middle\"]::before, .has-arrow[position=\"left-middle\"]::after { transform-origin: top right; transform: rotate(45deg); top: 50%; }\n\n.has-arrow[position=\"left-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-bottom\"]::before, .has-arrow[position=\"left-bottom\"]::after { transform-origin: top right; transform: rotate(45deg); top: 1.25rem; }\n\n.has-arrow[position=\"left-top\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-top\"]::before, .has-arrow[position=\"left-top\"]::after { transform-origin: bottom right; transform: rotate(-45deg); bottom: 1.25rem; }\n\n#hxTooltip { background-color: var(--hxBackgroundColor, #ffffff); border-color: var(--hxBorderColor, #e0e0e0); border-radius: 2px; border-style: solid; border-width: 1px; box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16); padding: 0.75rem; }\n";
+var shadowStyles$l = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n.has-arrow { margin: 0; position: relative; }\n\n.has-arrow::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0); z-index: -1; }\n\n.has-arrow::before, .has-arrow::after { content: \"\"; display: block; height: 13px; position: absolute; width: 13px; }\n\n.has-arrow[position^=\"top\"] { margin-bottom: 8px; }\n\n.has-arrow[position^=\"top\"]::before, .has-arrow[position^=\"top\"]::after { bottom: -8px; }\n\n.has-arrow[position^=\"top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top-center\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top\"]::after, .has-arrow[position=\"top-center\"]::before, .has-arrow[position=\"top-center\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 50%; }\n\n.has-arrow[position=\"top-right\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-right\"]::before, .has-arrow[position=\"top-right\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 1.25rem; }\n\n.has-arrow[position=\"top-left\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top-left\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-left\"]::before, .has-arrow[position=\"top-left\"]::after { transform-origin: bottom right; transform: rotate(45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"right\"] { margin-left: 8px; }\n\n.has-arrow[position^=\"right\"]::before, .has-arrow[position^=\"right\"]::after { left: -8px; }\n\n.has-arrow[position^=\"right\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right\"]::after, .has-arrow[position=\"right-middle\"]::before, .has-arrow[position=\"right-middle\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 50%; }\n\n.has-arrow[position=\"right-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-bottom\"]::before, .has-arrow[position=\"right-bottom\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 1.25rem; }\n\n.has-arrow[position=\"right-top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-top\"]::before, .has-arrow[position=\"right-top\"]::after { transform-origin: bottom left; transform: rotate(45deg); bottom: 1.25rem; }\n\n.has-arrow[position^=\"bottom\"] { margin-top: 8px; }\n\n.has-arrow[position^=\"bottom\"]::before, .has-arrow[position^=\"bottom\"]::after { top: -8px; }\n\n.has-arrow[position^=\"bottom\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom\"]::before, .has-arrow[position=\"bottom\"]::after, .has-arrow[position=\"bottom-center\"]::before, .has-arrow[position=\"bottom-center\"]::after { transform-origin: top left; transform: rotate(45deg); left: 50%; }\n\n.has-arrow[position=\"bottom-right\"]::before, .has-arrow[position=\"bottom-right\"]::after { transform-origin: top left; transform: rotate(45deg); left: 1.25rem; }\n\n.has-arrow[position=\"bottom-left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom-left\"]::before, .has-arrow[position=\"bottom-left\"]::after { transform-origin: top right; transform: rotate(-45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"left\"] { margin-right: 8px; }\n\n.has-arrow[position^=\"left\"]::before, .has-arrow[position^=\"left\"]::after { right: -8px; }\n\n.has-arrow[position^=\"left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left\"]::after, .has-arrow[position=\"left-middle\"]::before, .has-arrow[position=\"left-middle\"]::after { transform-origin: top right; transform: rotate(45deg); top: 50%; }\n\n.has-arrow[position=\"left-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-bottom\"]::before, .has-arrow[position=\"left-bottom\"]::after { transform-origin: top right; transform: rotate(45deg); top: 1.25rem; }\n\n.has-arrow[position=\"left-top\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-top\"]::before, .has-arrow[position=\"left-top\"]::after { transform-origin: bottom right; transform: rotate(-45deg); bottom: 1.25rem; }\n\n#hxTooltip { background-color: var(--hxBackgroundColor, #ffffff); border-color: var(--hxBorderColor, #e0e0e0); border-radius: 2px; border-style: solid; border-width: 1px; box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16); padding: 0.75rem; }\n";
 
 var TOOLTIP_DELAY = 500;
 
@@ -7827,7 +8028,7 @@ var HXTooltipElement = /*#__PURE__*/function (_ProtoClass2) {
   }, {
     key: "template",
     get: function get() {
-      return "<style>".concat(shadowStyles$k, "</style>").concat(shadowMarkup$k);
+      return "<style>".concat(shadowStyles$l, "</style>").concat(shadowMarkup$l);
     }
   }, {
     key: "$observedAttributes",
@@ -7879,6 +8080,8 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXSearchElement: HXSearchElement,
     HXSelectControlElement: HXSelectControlElement,
     HXSelectElement: HXSelectElement,
+    HXSwitchControlElement: HXSwitchControlElement,
+    HXSwitchElement: HXSwitchElement,
     HXTabElement: HXTabElement,
     HXTabcontentElement: HXTabcontentElement,
     HXTablistElement: HXTablistElement,
@@ -7890,7 +8093,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.23.0";
+var version = "0.24.0";
 
 /** @module HelixUI */
 var waitForWebComponents$1 = waitForWebComponents;
