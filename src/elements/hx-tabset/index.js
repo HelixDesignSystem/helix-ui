@@ -26,6 +26,7 @@ export class HXTabsetElement extends HXElement {
     }
 
     $onCreate () {
+        this.$defaultAttribute('id', `tabset-${generateId()}`);
         this.$onConnect = defer(this.$onConnect);
         this._onKeyUp = this._onKeyUp.bind(this);
     }
@@ -78,9 +79,10 @@ export class HXTabsetElement extends HXElement {
         if (isNaN(idx)) {
             throw new TypeError(`'currentTab' expects a numeric index. Got ${typeof idx} instead.`);
         }
-
-        if (idx < 0 || idx >= this.tabs.length) {
-            throw new RangeError('currentTab index is out of bounds');
+        if (this.tabs.length !== 0) {
+            if (idx < 0 || idx >= this.tabs.length) {
+                throw new RangeError('currentTab index is out of bounds');
+            }
         }
 
         this.setAttribute('current-tab', idx);
@@ -222,6 +224,7 @@ export class HXTabsetElement extends HXElement {
         let tabsetId = this.getAttribute('id');
         this.tabs.forEach((tab, idx) => {
             let tabpanel = this.tabpanels[idx];
+
             // Default tab and panel ID
             let tabId = `${tabsetId}-tab-${idx}`;
             let tabpanelId = `${tabsetId}-panel-${idx}`;
@@ -234,14 +237,17 @@ export class HXTabsetElement extends HXElement {
             }
 
             // Set or keep panel ID
-            if (tabpanel.hasAttribute('id')) {
-                tabpanelId = tabpanel.getAttribute('id');
-            } else {
-                tabpanel.setAttribute('id', tabpanelId);
-            }
+            if (tabpanel !== undefined) {
+                if (tabpanel.hasAttribute('id')) {
+                    tabpanelId = tabpanel.getAttribute('id');
+                } else {
+                    tabpanel.setAttribute('id', tabpanelId);
+                }
 
-            tab.setAttribute('aria-controls', tabpanelId);
-            tabpanel.setAttribute('aria-labelledby', tabId);
+                // sync tabpanel to tab
+                tabpanel.setAttribute('aria-labelledby', tabId);
+                tab.setAttribute('aria-controls', tabpanelId);
+            }
         });
     }
 }

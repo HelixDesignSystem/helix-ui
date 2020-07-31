@@ -142,13 +142,27 @@ describe('<hx-tabset> component tests', () => {
         });
     });
 
+    describe('test event listeners', () => {
+        it('should be able add click event listener', async () => {
+            const fragment = /** @type {HXTabsetElement} */ await fixture(mockup);
+            const detail = { evt: 'click'};
+            const customEvent = new CustomEvent('click', { detail });
+
+            setTimeout(() => fragment.dispatchEvent(customEvent));
+            const evt = await oneEvent(fragment, 'click');
+
+            expect(evt).to.equal(customEvent);
+            expect(evt.detail).to.equal(detail);
+        });
+    });
+
     /**
      * The following block of tests apply to all HelixUI Tab component custom
      * elements.  These tests will be skipped until we implement a solution
      * for dynamically adding tabs (HelixUI Issue#516).
      */
-    describe.skip('tests should FAIL until fix applied to HelixUI Issue#516', () => {
-        it('should FAIL on render with NO ID on <hx-tabset>', async () => {
+    describe('test fix applied to HelixUI Issue#516', () => {
+        it('should render with NO ID on <hx-tabset>', async () => {
             const mockup = `
                 <hx-tabset current-tab="0">
                     <hx-tablist>
@@ -163,53 +177,108 @@ describe('<hx-tabset> component tests', () => {
                     </hx-tabcontent>
                 </hx-tabset>`;
 
+            const fragment = /** @type {HXTabsetElement} */ await fixture(mockup);
+            const attr = fragment.hasAttribute('id');
+            const id = fragment.getAttribute('id');
+
+            expect(attr).to.be.true;
+            expect(id).to.not.be.null;
+        });
+
+        it('should render with NO initial <hx-tab>', async () => {
+            const mockup =`
+                <div class="hxPanel hxTabbed">
+                    <hx-tabset>
+                        <hx-tablist>
+                        </hx-tablist>
+                        <hx-tabcontent>
+                            <hx-tabpanel></hx-tabpanel>
+                        </hx-tabcontent>
+                    </hx-tabset>
+                </div>`;
+
             const elSelector = 'hx-tabset';
             const fragment = /** @type {HXTabsetElement} */ await fixture(mockup);
-            const queryId = fragment.querySelector(elSelector).id;
+            const tabs = fragment.querySelector(elSelector).tabs;
+            const len = tabs.length;
 
-            expect(queryId).to.not.be.null;
+            expect(len).to.be.equal(0);
         });
 
-        it('should FAIL on render with NO initial <hx-tab>', async () => {
+        it('should render with NO tabpanel', async () => {
             const mockup =`
                 <div class="hxPanel hxTabbed">
-                    <hx-tabset id="tab-component-tests">
-                        <hx-tablist id="tablist">
+                    <hx-tabset>
+                        <hx-tablist>
+                            <hx-tab></hx-tab>
+                            <hx-tab></hx-tab>
                         </hx-tablist>
-                        <hx-tabcontent id="tabcontent">
-                          <hx-tabpanel></hx-tabpanel>
+                        <hx-tabcontent>
                         </hx-tabcontent>
                     </hx-tabset>
                 </div>`;
 
+            const elSelector = 'hx-tabset';
             const fragment = /** @type {HXTabsetElement} */ await fixture(mockup);
-            const currentTabId = fragment.querySelector('hx-tab').id;
+            const tabpanels = fragment.querySelector(elSelector).tabpanels;
+            const len = tabpanels.length;
 
-            expect(currentTabId).to.be.null;
+            expect(len).to.be.equal(0);
         });
 
-        it('should FAIL on render with NO initial <hx-tabpanel>', async () => {
+
+        it('should render with an odd number of tabs and tabpanel', async () => {
             const mockup =`
                 <div class="hxPanel hxTabbed">
-                    <hx-tabset id="tab-component-tests">
-                        <hx-tablist id="tablist">
-                            <hx-tab id="tab-1" current="true"></hx-tab>
+                    <hx-tabset>
+                        <hx-tablist>
+                            <hx-tab></hx-tab>
+                            <hx-tab></hx-tab>
                         </hx-tablist>
-                        <hx-tabcontent id="tabcontent">
+                        <hx-tabcontent>
+                            <hx-tabpanel></hx-tabpanel>
                         </hx-tabcontent>
                     </hx-tabset>
                 </div>`;
 
+            const elSelector = 'hx-tabset';
             const fragment = /** @type {HXTabsetElement} */ await fixture(mockup);
-            const queryId = fragment.querySelector('hx-tabpanel').id;
+            const tabpanels = fragment.querySelector(elSelector).tabpanels;
+            const panels = tabpanels.length;
+            const tabs = fragment.querySelector(elSelector).tabs.length;
 
-            expect(queryId).to.be.null;
+            expect(tabs).to.equal(2);
+            expect(panels).to.be.equal(1);
         });
 
-        it('should FAIL on render with NO tabs or tabpanels', async () => {
+        it('should render with an odd number of tabpanels and tab', async () => {
+            const mockup =`
+                <div class="hxPanel hxTabbed">
+                    <hx-tabset>
+                        <hx-tablist>
+                            <hx-tab></hx-tab>
+                        </hx-tablist>
+                        <hx-tabcontent>
+                            <hx-tabpanel></hx-tabpanel>
+                            <hx-tabpanel></hx-tabpanel>
+                        </hx-tabcontent>
+                    </hx-tabset>
+                </div>`;
+
+            const elSelector = 'hx-tabset';
+            const fragment = /** @type {HXTabsetElement} */ await fixture(mockup);
+            const tabpanels = fragment.querySelector(elSelector).tabpanels;
+            const panels = tabpanels.length;
+            const tabs = fragment.querySelector(elSelector).tabs.length;
+
+            expect(tabs).to.equal(1);
+            expect(panels).to.be.equal(2);
+        });
+
+        it('should render with NO tabs or tabpanels', async () => {
             const mockup = `
                 <div class="hxPanel hxTabbed">
-                    <hx-tabset id="tabTest">
+                    <hx-tabset>
                         <hx-tablist>
                         </hx-tablist>
                         <hx-tabcontent>
@@ -217,34 +286,12 @@ describe('<hx-tabset> component tests', () => {
                     </hx-tabset>
                 </div>`;
 
+            const elSelector = 'hx-tabset';
             const fragment = /** @type {HXTabsetElement} */ await fixture(mockup);
-            const queryTabs = fragment.tabs.length;
+            const tabs = fragment.querySelector(elSelector).tabs;
+            const len = tabs.length;
 
-            expect(queryTabs).to.equal(0);
+            expect(len).to.equal(0);
         });
     });
-
-    /**
-     * Event listener fails on render
-     *
-     * FAILED TESTS:
-     *     test event listeners
-     *      ✖ should be able add and remove hxtabclick event listener
-     *          Error: Uncaught RangeError: currentTab index is out of bounds
-     *
-     */
-    describe.skip('test FAIL event listeners', () => {
-        it('should be able add and remove hxtabclick event listener', async () => {
-            const fragment = /** @type {HXTabsetElement} */ await fixture(mockup);
-            const detail = { evt: 'hxtabclick'};
-            const customEvent = new CustomEvent('hxtabclick', { detail });
-
-            setTimeout(() => fragment.dispatchEvent(customEvent));
-            const evt = await oneEvent(fragment, 'hxtabclick');
-
-            expect(evt).to.equal(customEvent);
-            expect(evt.detail).to.equal(detail);
-        });
-    });
-
 });
