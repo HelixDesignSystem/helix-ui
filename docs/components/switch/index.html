@@ -1,0 +1,101 @@
+---
+title: Switch
+minver: 0.24.0
+also:
+  elements/hx-switch: <hx-switch>
+---
+  {% extends 'component.njk' %}
+
+  {% block page_header %}
+    <p>
+      A switch is used when a user needs to make a binary decision, such as,
+      turning a setting on or off, or setting a preference enabling or disabling
+      a device or system.
+    </p>
+  {% endblock %}
+
+  {% block content %}
+  <section>
+    <header>
+      <h2 id="basic-checkbox">Switch</h2>
+      <p></p>
+    </header>
+
+    <div class="example" id="vue-switchDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+
+            <hx-checkbox-control>
+              <input id="chkIsDisabled" type="checkbox" v-model="isDisabled" />
+              <label for="chkIsDisabled">
+                <hx-checkbox></hx-checkbox>
+                Disabled
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-switch-control class="switch">
+          <input type="checkbox" id="switchTest" :disabled="isDisabled" />
+          <label for="switchTest">
+            <hx-switch onlabel="on" offlabel="off" aria-labelledby="switchTest" >
+            </hx-switch>
+          </label>
+        </hx-switch-control>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+
+  </section>
+
+  <!-- start of demo error example section for switch -->
+
+  <section>
+    <header>
+      <h2 id="basic-checkbox">Error Switch</h2>
+    </header>
+
+    <div class="example" id="vue-errorSwitchDemo" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Options</legend>
+
+            <hx-checkbox-control>
+              <input id="chkIsError" type="checkbox" v-model="isInValid" />
+              <label for="chkIsError">
+                <hx-checkbox></hx-checkbox>
+                Error
+              </label>
+            </hx-checkbox-control>
+          </fieldset>
+        </form>
+      </header>
+
+      <div>
+        <hx-switch-control class="switch">
+          <input type="checkbox" id="errorChkDemo" :invalid="isInValid" />
+          <label for="errorChkDemo">
+            <hx-switch onlabel="on" offlabel="off" aria-labelledby="switchTest" >
+            </hx-switch>
+          </label>
+        </hx-switch-control>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+
+  </section>
+  <!-- end of demo error example section for switch -->
+  {% endblock %}

@@ -1,0 +1,146 @@
+@import "./config";
+
+hx-switch-control {
+  -ms-grid-column-align: start;
+  -ms-grid-columns: auto 1fr;
+  -ms-grid-rows: auto auto;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas:
+    "ctrl lbl"
+    ".    help";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  justify-items: start;
+  grid-area: facade;
+  margin-top: 0.25rem; // FIXME: fix with proper inline styling
+  position: relative;
+  width: 4.25rem;
+  height: 2rem;
+
+  > input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  > label > hx-switch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 2.125rem;
+  }
+
+  > label > hx-switch::before {
+    position: absolute;
+    content: "";
+    height: 2rem;
+    width: 2rem;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+}
+
+hx-switch-control > input[type="checkbox"] ~ label {
+  > hx-switch {
+    background-color: $gray-0;
+    border: 0.125rem solid $cyan-900;
+
+    &:hover {
+      @include hxSwitchControl($pseudo-state: hover,$checkBox-state: unchecked);
+    }
+  }
+
+  > hx-switch[offlabel]::after {
+    content: attr(offlabel);
+    text-transform: uppercase;
+    margin-left: 2rem;
+    color: $cyan-900;
+    line-height: 2rem;
+    max-width: 1.813rem;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  > hx-switch::before {
+    background-color: $gray-0;
+    border: 0.125rem solid $cyan-900;
+    left: -0.125rem;
+    top: -0.062rem;
+  }
+}
+
+hx-switch-control > input[type="checkbox"]:checked ~ label {
+  > hx-switch {
+    background-color: $cyan-900;
+    @include hxSwitchControl($pseudo-state: focus);
+
+    &:hover {
+      @include hxSwitchControl($pseudo-state: hover);
+    }
+  }
+
+  > hx-switch[onlabel]::after {
+    content: attr(onlabel);
+    text-transform: uppercase;
+    margin-left: 0.5rem;
+    color: $gray-0;
+    max-width: 2.125rem;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  > hx-switch::before {
+    margin-left: 2rem;
+    height: 2rem;
+    left: 0.125rem;
+  }
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 4.25rem;
+  height: 2.125rem;
+}
+
+// ========== DISABLED ==========
+hx-switch-control > input[type="checkbox"]:disabled {
+  &:checked {
+    ~ label > hx-switch {
+      @include hxSwitchControl(disabled);
+      @include hxSwitchControl(disabled,focus);
+    }
+  }
+
+  ~ label > hx-switch {
+    @include hxSwitchControl(disabled, unchecked);
+  }
+}
+
+// ========== INVALID ==========
+hx-switch-control > input[invalid] {
+  &:checked {
+    ~ label > hx-switch {
+      @include hxSwitchControl(error, null, checked);
+      @include hxSwitchControl(error, focus);
+    }
+  }
+
+  ~ label > hx-switch {
+    @include hxSwitchControl(error, null, unchecked);
+    @include hxSwitchControl(error, focus);
+  }
+}
