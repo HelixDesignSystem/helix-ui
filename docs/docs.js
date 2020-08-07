@@ -38,6 +38,7 @@ import './components/tabset/tabset-demo';
 import './components/text-input/text-input-demo';
 import './components/textarea/textarea-demo';
 import './components/toast/toast-demo';
+import './components/toggle/toggle-demo';
 import './components/tooltip/tooltip-demo';
 
 (function () {

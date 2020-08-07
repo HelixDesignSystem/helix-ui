@@ -1,0 +1,45 @@
+---
+title: <hx-toggle>
+minver: 1.0.0
+also:
+  components/toggle: Toggle
+  elements/hx-toggle-control: <hx-toggle-control>
+---
+{% extends 'element.njk' %}
+{% import '_utils.njk' as utils %}
+{% block page_header %}
+  <p>
+    The <code>{{page.title}}</code> controls the presentation format
+    for information on a control panel page.   It is used to build
+    a <a href="components/toggle">Toggle</a> component.
+  </p>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <dl class="metadata hxList">
+      <div>
+        <dt>Permitted Grandparent</dt>
+        <dd>{{utils.element('hx-toggle-control')}} element</dd>
+      </div>
+      <div>
+        <dt>Permitted Parent</dt>
+        <dd>{{utils.element('label')}} (wrapper) element</dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd><i>none</i></dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd><i>none</i></dd>
+      </div>
+    </dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+{% endblock %}
+
+{% block properties %}
+{% endblock %}
