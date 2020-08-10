@@ -293,5 +293,41 @@ describe('<hx-tabset> component tests', () => {
 
             expect(len).to.equal(0);
         });
+
+        it.skip(`[FEATURE] should add a dynamic tab with id to empty ${template}`, async () => {
+            const mockup = `
+                <hx-tabset>
+                    <hx-tablist>
+                    </hx-tablist>
+                    <hx-tabcontent>
+                    </hx-tabcontent>
+                </hx-tabset>`;
+
+            const elSelector = 'hx-tablist > hx-tab';
+            const fragment = /** @type {HXTabsetElement} */ await fixture(mockup);
+            const tabs = fragment.tabs;
+            let firstTabCount = tabs.length;
+
+
+            // add a tab
+            const tab = document.createElement('hx-tab');
+            tab.innerHTML = "dynamic tab";
+            fragment.querySelector('hx-tablist').appendChild(tab);
+
+            const tabHasId = fragment.querySelector(elSelector).hasAttribute('id');
+            //fragment.update(); // manually add tab
+
+            // add panel
+            const tabpanel = document.createElement('hx-tabpanel');
+            tabpanel.innerHTML = "dynamic tab panel";
+            fragment.querySelector('hx-tabcontent').appendChild(tabpanel);
+            const secoundTabCount = fragment.tabs.length;
+
+            //fragment.update(); // manually add tabpanel
+
+            expect(tabHasId).to.be.true;
+            expect(firstTabCount).to.equal(0);
+            expect(secoundTabCount).to.equal(1);
+        });
     });
 });
