@@ -26,7 +26,9 @@ also:
       <div id="hxTopnav-primary">
           <a class="img-left brand-logo" href="#"> <img src="images/helix-logo.svg" alt="Logo" /></a>
           <div id="right-menu">
-            <a href="#">
+            <a href="#"
+              @click="selectedTag(tab)"
+              :current-tab="currentTab">
               <hx-icon type="bell"></hx-icon>
               <p>Notifications</p>
             </a>

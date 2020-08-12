@@ -46,3 +46,4 @@ export { HXTextControlElement } from './hx-text-control/index.js';
 export { HXTextareaControlElement } from './hx-textarea-control/index.js';
 export { HXToastElement } from './hx-toast/index.js';
 export { HXTooltipElement } from './hx-tooltip/index.js';
+export { HXNavigationControlElement } from './hx-navigation-control/index.js';
