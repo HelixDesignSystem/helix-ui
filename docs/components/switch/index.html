@@ -3,6 +3,7 @@ title: Switch
 minver: 0.24.0
 also:
   elements/hx-switch: <hx-switch>
+  elements/hx-switch-control>: <hx-switch-control>
 ---
   {% extends 'component.njk' %}
 
@@ -15,13 +16,104 @@ also:
   {% endblock %}
 
   {% block content %}
+
+  <!-- start of demo no label example section for switch -->
+
   <section>
     <header>
-      <h2 id="basic-checkbox">Switch</h2>
-      <p></p>
+      <h2 id="default-switch">Default Switch (no labels)</h2>
     </header>
 
-    <div class="example" id="vue-switchDemo" v-cloak>
+    <div class="example" id="vue-switchNoneDemo" v-cloak>
+      <div>
+        <hx-switch-control>
+          <input type="checkbox" id="switchNoneTest" />
+          <label for="switchNoneTest">
+            <hx-switch aria-labelledby="switchNoneTest">
+            </hx-switch>
+          </label>
+        </hx-switch-control>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+
+  </section>
+
+  <!-- end of demo no label example section for switch -->
+
+  <!-- start of demo on/off label example section for switch -->
+
+  <section>
+    <header>
+      <h2 id="on-switch">Switch with <b><i>on/off</i></b> labels</h2>
+    </header>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      The label can be overridden to provide a different label (for i18n support).
+      The character width is limited to 2-3 characters.
+    </p>
+    <div class="example" id="vue-switchOnOffDemo" v-cloak>
+      <div>
+        <hx-switch-control>
+          <input type="checkbox" id="switchOnOffTest" />
+          <label for="switchOnOffTest">
+            <hx-switch onlabel="on" offlabel="off" aria-labelledby="switchOnOffTest">
+            </hx-switch>
+          </label>
+        </hx-switch-control>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+
+  </section>
+
+  <!-- end of demo on/off label example section for switch -->
+
+  <!-- start of demo yes/no label example section for switch -->
+
+  <section>
+    <header>
+      <h2 id="yes-switch">Switch with <b><i>yes/no</i></b> labels</h2>
+    </header>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      The label can be overridden to provide a different label (for i18n support).
+      The character width is limited to 2-3 characters.
+    </p>
+    <div class="example" id="vue-switchYesNoDemo" v-cloak>
+      <div class="hx2x">
+        <hx-switch-control>
+          <input type="checkbox" id="switchYesNoTest" />
+          <label for="switchYesNoTest">
+            <hx-switch onlabel="yes" offlabel="no" aria-labelledby="switchYesNoTest">
+            </hx-switch>
+          </label>
+        </hx-switch-control>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+
+  </section>
+
+  <!-- end of demo yes/no label example section for switch -->
+
+  <!-- start of demo disabled example section for switch -->
+
+  <section>
+    <header>
+      <h2 id="disabled-switch">Disabled Switch</h2>
+    </header>
+
+    <div class="example" id="vue-switchDisabledDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
 
@@ -40,10 +132,10 @@ also:
       </header>
 
       <div>
-        <hx-switch-control class="switch">
-          <input type="checkbox" id="switchTest" :disabled="isDisabled" />
-          <label for="switchTest">
-            <hx-switch onlabel="on" offlabel="off" aria-labelledby="switchTest" >
+        <hx-switch-control>
+          <input type="checkbox" id="switchDisabledTest" :disabled="isDisabled" />
+          <label for="switchDisabledTest">
+            <hx-switch onlabel="on" offlabel="off" aria-labelledby="switchDisabledTest">
             </hx-switch>
           </label>
         </hx-switch-control>
@@ -56,14 +148,16 @@ also:
 
   </section>
 
+  <!-- end of demo disabled example section for switch -->
+
   <!-- start of demo error example section for switch -->
 
   <section>
     <header>
-      <h2 id="basic-checkbox">Error Switch</h2>
+      <h2 id="error-switch">Error Switch</h2>
     </header>
 
-    <div class="example" id="vue-errorSwitchDemo" v-cloak>
+    <div class="example" id="vue-switchErrorDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
 
@@ -82,10 +176,10 @@ also:
       </header>
 
       <div>
-        <hx-switch-control class="switch">
-          <input type="checkbox" id="errorChkDemo" :invalid="isInValid" />
-          <label for="errorChkDemo">
-            <hx-switch onlabel="on" offlabel="off" aria-labelledby="switchTest" >
+        <hx-switch-control>
+          <input type="checkbox" id="switchErrorTest" :invalid="isInValid" />
+          <label for="switchErrorTest">
+            <hx-switch onlabel="on" offlabel="off" aria-labelledby="switchErrorTest">
             </hx-switch>
           </label>
         </hx-switch-control>

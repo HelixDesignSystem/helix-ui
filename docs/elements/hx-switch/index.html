@@ -1,18 +1,17 @@
 ---
 title: <hx-switch>
 minver: 0.24.0
-controlElement: <input type="checkbox">
 also:
   components/switch: Switch
-  elements/hx-switch: <hx-switch>
+  elements/hx-switch-control: <hx-switch-control>
 ---
 {% extends 'element.njk' %}
 {% import '_utils.njk' as utils %}
 {% block page_header %}
   <p>
-    The <code>{{page.title}}</code> block element is a container that provides
-    behavior to augment native browser validation capabilities.  It is used to
-    build a <a href="components/switch">Switch</a> component.
+    The <code>{{page.title}}</code> enables the user to make a binary decision
+    (such as yes or no, and on or off) when configuring a setting or preference.
+    It is used to build a <a href="components/switch">Switch</a> component.
   </p>
 {% endblock %}
 
@@ -20,22 +19,16 @@ also:
   <section>
     <dl class="metadata hxList">
       <div>
-        <dt>Permitted Parents</dt>
-        <dd>any element that accepts flow content</dd>
+        <dt>Permitted Grandparent</dt>
+        <dd>{{utils.element('hx-switch-control')}} element</dd>
+      </div>
+      <div>
+        <dt>Permitted Parent</dt>
+        <dd>{{utils.element('label')}} (wrapper) element</dd>
       </div>
       <div>
         <dt>Permitted Children</dt>
-        <dd>
-          in this order:
-          <ol class="hxList">
-            <li>checkbox {{utils.element('input')}} element</li>
-            <li>{{utils.element('label')}} element</li>
-            <li>
-              {{utils.element('p')}} element for control-level help text
-              <small class="hxSubdued">(optional)</small>
-            </li>
-          </ol>
-        </dd>
+        <dd><i>none</i></dd>
       </div>
       <div>
         <dt>Events</dt>
@@ -46,77 +39,7 @@ also:
 {% endblock %}
 
 {% block attributes %}
-  <dl class="memberList">
-    <dt>
-      hx-changed {Boolean}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      <p>
-        Present if descendant <code>{{page.controlElement}}</code> element
-        has emitted a "change" event.
-      </p>
-    </dd>
-
-    <dt>
-      hx-dirty {Boolean}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      <p>
-        Present if descendant <code>{{page.controlElement}}</code> element
-        has emitted a "change" or "blur" event.
-      </p>
-    </dd>
-
-    <dt>
-      hx-touched {Boolean}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      <p>
-        Present if descendant <code>{{page.controlElement}}</code> element
-        has emitted a "blur" event.
-      </p>
-    </dd>
-  </dl>
 {% endblock %}
 
 {% block properties %}
-  <dl class="memberList">
-    <dt>
-      controlElement {?HTMLInputElement}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      <p>
-        Returns the first <code>{{page.controlElement}}</code> descendant
-        or <code>null</code> if none are found.
-      </p>
-    </dd>
-
-    <dt>
-      isDirty {Boolean [false]}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      True if <code>controlElement</code> has emitted a "change" or "blur" event.
-    </dd>
-
-    <dt>
-      wasChanged {Boolean [false]}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      True if <code>controlElement</code> has emitted a "change" event.
-    </dd>
-
-    <dt>
-      wasTouched {Boolean [false]}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      True if <code>controlElement</code> has emitted a "blur" event.
-    </dd>
-  </dl>
 {% endblock %}
