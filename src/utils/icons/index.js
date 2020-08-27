@@ -24,6 +24,7 @@ import _exclamationTriangle from '../../images/icons/exclamation-triangle.svg';
 import _externalLink from '../../images/icons/external-link.svg';
 import _file from '../../images/icons/file.svg';
 import _filter from '../../images/icons/filter.svg';
+import _fishHook from '../../images/icons/fish-hook.svg';
 import _flag from '../../images/icons/flag.svg';
 import _globe from '../../images/icons/globe.svg';
 import _grid from '../../images/icons/grid.svg';
@@ -110,6 +111,7 @@ const MAP = {
     'external-link': _externalLink,
     'file': _file,
     'filter': _filter,
+    'fish-hook': _fishHook,
     'flag': _flag,
     'globe': _globe,
     'grid': _grid,

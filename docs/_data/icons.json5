@@ -144,8 +144,12 @@
         ],
     },
     {
-        name: 'flag',
-        minver: '0.7.0',
+      name: 'fish-hook',
+      minver: '1.0.0',
+    },
+    {
+      name: 'flag',
+      minver: '0.7.0',
     },
     {
       name: 'globe',
