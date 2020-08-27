@@ -145,7 +145,7 @@
     },
     {
       name: 'fish-hook',
-      minver: '0.25.0',
+      minver: '1.0.0',
     },
     {
       name: 'flag',
