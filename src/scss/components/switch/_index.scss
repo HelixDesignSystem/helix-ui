@@ -1,22 +1,11 @@
 @import "./config";
 
 hx-switch-control {
-  -ms-grid-column-align: start;
-  -ms-grid-columns: auto 1fr;
-  -ms-grid-rows: auto auto;
-  display: -ms-grid;
-  display: grid;
-  grid-template-areas:
-    "ctrl lbl"
-    ".    help";
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto;
-  justify-items: start;
-  grid-area: facade;
+  display: inline-block;
+  height: 2.125rem;
   margin-top: 0.25rem; // FIXME: fix with proper inline styling
   position: relative;
   width: 4.25rem;
-  height: 2rem;
 
   > input {
     opacity: 0;
@@ -107,13 +96,6 @@ hx-switch-control > input[type="checkbox"]:checked ~ label {
     height: 2rem;
     left: 0.125rem;
   }
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 4.25rem;
-  height: 2.125rem;
 }
 
 // ========== DISABLED ==========

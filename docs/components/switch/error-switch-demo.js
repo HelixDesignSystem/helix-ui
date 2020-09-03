@@ -1,8 +1,8 @@
 import Util from '../../_util';
 
-if (document.getElementById('vue-errorSwitchDemo')) {
+if (document.getElementById('vue-switchErrorDemo')) {
     new Vue({
-        el: '#vue-errorSwitchDemo',
+        el: '#vue-switchErrorDemo',
         data: {
             isInValid: false,
             labelState: '',
@@ -14,12 +14,17 @@ if (document.getElementById('vue-errorSwitchDemo')) {
             },
             snippet: function () {
                 return Util.snippet(`
-                    <hx-switch-control class="switch">
-                        <input type="checkbox" id="errorChkDemo" ${this.isInValid ? 'invalid' : '' }/>
-                        <label for="errorChkDemo">
-                            <hx-switch onlabel="on" offlabel="off" aria-labelledby="switchTest">
-                            </hx-switch>
-                        </label>
+                    <hx-switch-control>
+                      <input
+                        type="checkbox"
+                        id="switchErrorTest" ${this.isInValid ? 'invalid' : '' } />
+                      <label for="switchErrorTest">
+                        <hx-switch
+                          onlabel="on"
+                          offlabel="off"
+                          aria-labelledby="switchErrorTest">
+                        </hx-switch>
+                      </label>
                     </hx-switch-control>
                 `);
             },

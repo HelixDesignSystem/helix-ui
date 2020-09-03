@@ -1,4 +1,4 @@
-import { HXFormControlElement } from '../../interfaces/HXFormControlElement/index.js';
+import { HXElement } from '../../interfaces/HXElement/index.js';
 
 import shadowMarkup from './_shadow.html';
 import shadowStyles from './_shadow.scss';
@@ -7,11 +7,11 @@ import shadowStyles from './_shadow.scss';
  * Defines behavior for the `<hx-switch>` element.
  * NOTE: `<hx-switch>` can have various default options, or it can be overriden.
  *
- * @extends HXFormControlElement
+ *@extends HXElement
  * @hideconstructor
  * @since 0.24.0
  */
-export class HXSwitchElement extends HXFormControlElement {
+export class HXSwitchElement extends HXElement {
     /** @override */
     static get is () {
         return 'hx-switch';
@@ -25,6 +25,7 @@ export class HXSwitchElement extends HXFormControlElement {
     $onConnect () {
         this.$upgradeProperty('onlabel');
         this.$upgradeProperty('offlabel');
+        this.$upgradeProperty('toggled');
 
         if (!this.hasAttribute('onlabel') && !this.hasAttribute('offlabel')) {
             this.setAttribute('onlabel', '');
@@ -65,6 +66,20 @@ export class HXSwitchElement extends HXFormControlElement {
     }
     set onlabel (newVal) {
         this.setAttribute('onlabel', newVal);
+    }
+
+    /**
+     * Property reflecting the `toggled` state of the Switch component.
+     */
+    get toggled () {
+        return this.hasAttribute('toggled');
+    }
+    set toggled (isToggled) {
+        if (isToggled) {
+            this.setAttribute('toggled', '');
+        } else {
+            this.removeAttribute('toggled');
+        }
     }
 
     // eslint-disable-next-line complexity

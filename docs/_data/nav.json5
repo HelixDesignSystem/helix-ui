@@ -105,6 +105,7 @@
             { label: '<hx-select-control>', path: 'hx-select-control' },
             { label: '<hx-status>', path: 'hx-status' },
             { label: '<hx-switch>', path: 'hx-switch' },
+            { label: '<hx-switch-control>', path: 'hx-switch-control'},
             { label: '<hx-tab>', path: 'hx-tab' },
             { label: '<hx-tabcontent>', path: 'hx-tabcontent' },
             { label: '<hx-tablist>', path: 'hx-tablist' },
