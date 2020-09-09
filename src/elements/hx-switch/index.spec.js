@@ -46,6 +46,16 @@ describe('<hx-switch> component tests', () => {
 
             expect(attr).to.be.true;
         });
+
+        it('should be able to add toggled attribute', async () => {
+            const fragment = /** @type {HXToggleElement} */ await fixture(mockup);
+            const attr = fragment.hasAttribute('toggled');
+            fragment.toggled = true;
+            const toggledAttr = fragment.hasAttribute('toggled');
+            
+            expect(attr).to.be.false;
+            expect(toggledAttr).to.be.true;
+        });
     });
 
     describe('test for Sync Labels', () => {
