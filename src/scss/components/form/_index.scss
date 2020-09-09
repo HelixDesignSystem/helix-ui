@@ -119,6 +119,78 @@ $form-asterisk-offset: $form-asterisk-size + $form-asterisk-gap;
 }
 //end:COMPONENT
 
+/// ----------  FORM LAYOUT  ---------- ///
+
+.hxForm.beta {
+  > * {
+    margin: 1rem 0; // FIXME: solve with spacing system
+
+    &:first-child {
+      margin-top: 0; // FIXME: solve with spacing system
+    }
+
+    &:last-child {
+      margin-bottom: 0; // FIXME: solve with spacing system
+    }
+  }
+
+  fieldset {
+    > * {
+      margin: 0.25rem 0; // FIXME: solve with spacing system
+
+      &:first-child {
+        margin-top: 0; // FIXME: solve with spacing system
+      }
+
+      &:last-child {
+        margin-bottom: 0; // FIXME: solve with spacing system
+      }
+    }
+
+    > legend {
+      color: $gray-800;
+      font-size: 0.875rem; // ~14px
+    }
+
+    > label {
+      display: block;
+      font-size: 1rem; // NOTE: this may change with checkboxes and radios
+    }
+  }
+
+  select,
+  input[type="range"] {
+    display: block;
+    width: 100%;
+  }
+}
+
+// ----------  PAGE FORM LAYOUT  ---------- //
+form.hxForm.beta {
+  > header {
+    background-color: 1px solid $gray-50;
+    border-color: $gray-100;
+    border-style: solid;
+    border-width: 0 0 1px;
+    padding: $container-padding;
+    border-bottom: 1px solid $gray-100;
+  }
+
+  > section {
+    > header {
+      border-top: 1px solid;
+      border-color: $gray-100;
+    }
+  }
+
+  > footer {
+    background: transparent;
+    border-top: 1px solid;
+    border-color: $gray-100;
+  }
+}
+//end:LAYOUT
+
 /// ---------- FORM HELPERS ----------
 ///
 ///  Screen readers already announce if a field is required, but we need
