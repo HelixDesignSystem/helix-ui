@@ -1,0 +1,39 @@
+@import "../base";
+
+#hxToggleList {
+  margin-left: 2.5rem;
+  margin-top: 0.188rem;
+  color: $cyan-900;
+
+  &:hover {
+    color: $cyan-500;
+  }
+}
+
+#hxToggleGrid {
+  position: absolute;
+  margin-left: 0.5rem;
+  color: $gray-0;
+
+  &:hover {
+    color: $cyan-500;
+  }
+}
+
+:host([toggled]) {
+  #hxToggleList {
+    color: $gray-0;
+
+    &:hover {
+      color: $cyan-500;
+    }
+  }
+
+  #hxToggleGrid {
+    color: $cyan-900;
+
+    &:hover {
+      color: $cyan-500;
+    }
+  }
+}

@@ -1,0 +1,60 @@
+//
+// ===== Mixins for <hx-toggle-control> states =====
+//
+
+// ========== PRISTINE ==========
+@mixin __toggleControl($pseudo-state: null, $checkBox-state: null) {
+  @if $pseudo-state == focus {
+    box-shadow: $focus-glow;
+
+    &::-ms-check {
+      border-color: $cyan-700;
+    }
+  } @else if $pseudo-state == hover {
+    @if $checkBox-state == unchecked {
+      background-color: $gray-0;
+      border: 0.125rem solid $cyan-500;
+
+      &::before {
+        background-color: $gray-0;
+        border: 0.125rem solid $cyan-500;
+        left: -0.12rem;
+      }
+
+      &::after {
+        color: $cyan-500;
+      }
+    } @else {
+      background-color: $cyan-500;
+
+      &::before {
+        background-color: $gray-0;
+        left: 0.1rem;
+      }
+
+      &::after {
+        color: $gray-0;
+      }
+    }
+  } @else {
+    color: $gray-500;
+
+    &::-ms-check {
+      background-color: $gray-0;
+      border-color: currentColor;
+      border-style: solid;
+      border-width: 0.063rem;
+      color: inherit;
+    }
+  }
+}
+
+@mixin hxToggleControl(
+  $state: null,
+  $pseudo-state: null,
+  $checkBox-state: null
+) {
+  @if($state: null) {
+    @include __toggleControl($pseudo-state, $checkBox-state);
+  }
+}

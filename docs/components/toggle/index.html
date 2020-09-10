@@ -1,0 +1,38 @@
+---
+title: Toggle
+minver: 1.0.0
+also:
+  elements/hx-toggle: <hx-toggle>
+  elements/hx-toggle-control: <hx-toggle-control>
+---
+  {% extends 'component.njk' %}
+
+  {% block page_header %}
+    <p>
+      A {{page.title}} controls the presentation format (list || grid) for
+      information on a control panel page.
+    </p>
+  {% endblock %}
+
+  {% block content %}
+  <section>
+    <header>
+      <h2 id="basic-toggle">Toggle</h2>
+    </header>
+    <div class="example" id="vue-toggleDemo" v-cloak>
+      <div>
+        <hx-toggle-control>
+          <input type="checkbox" id="toggleDemo" />
+          <label for="toggleDemo">
+            <hx-toggle aria-labelledby="toggleDemo" >
+            </hx-toggle>
+          </label>
+        </hx-toggle-control>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+  </section>
+  {% endblock %}

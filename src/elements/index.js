@@ -44,4 +44,6 @@ export { HXTabsetElement } from './hx-tabset/index.js';
 export { HXTextControlElement } from './hx-text-control/index.js';
 export { HXTextareaControlElement } from './hx-textarea-control/index.js';
 export { HXToastElement } from './hx-toast/index.js';
+export { HXToggleControlElement } from './hx-toggle-control/index.js';
+export { HXToggleElement } from './hx-toggle/index.js';
 export { HXTooltipElement } from './hx-tooltip/index.js';

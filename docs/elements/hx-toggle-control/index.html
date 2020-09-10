@@ -1,0 +1,141 @@
+---
+title: <hx-toggle-control>
+minver: 1.0.0
+controlElement: <input type="checkbox">
+also:
+  components/toggle: Toggle
+  elements/hx-toggle: <hx-toggle>
+---
+{% extends 'element.njk' %}
+{% import '_utils.njk' as utils %}
+{% block page_header %}
+  <p>
+    The <code>{{page.title}}</code> is a container that provides behavior to
+    augment native browser validation capabilities for the custom
+    <code>&lt;hx-toggle&gt;</code> element.  It is used to build a
+    <a href="components/toggle">Toggle</a> component.
+  </p>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <dl class="metadata hxList">
+      <div>
+        <dt>Permitted Parents</dt>
+        <dd>any element that accepts flow content</dd>
+      </div>
+      <div>
+        <dt>Permitted Children</dt>
+        <dd>
+          in this order:
+          <ol class="hxList">
+            <li>checkbox {{utils.element('input')}} element</li>
+            <li>{{utils.element('label')}} (wrapper) element</li>
+              <ul>
+                <li>{{utils.element('hx-toggle')}} (facade) element</li>
+              </ul>
+          </ol>
+        </dd>
+      </div>
+      <div>
+        <dt>Events</dt>
+        <dd><i>none</i></dd>
+      </div>
+    </dl>
+  </section>
+{% endblock %}
+
+{% block attributes %}
+  <dl class="memberList">
+    <dt>
+      hx-changed {Boolean}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Present if descendant <code>{{page.controlElement}}</code> element
+        has emitted a "change" event.
+      </p>
+    </dd>
+
+    <dt>
+      hx-dirty {Boolean}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Present if descendant <code>{{page.controlElement}}</code> element
+        has emitted a "change" or "blur" event.
+      </p>
+    </dd>
+
+    <dt>
+      hx-touched {Boolean}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Present if descendant <code>{{page.controlElement}}</code> element
+        has emitted a "blur" event.
+      </p>
+    </dd>
+  </dl>
+{% endblock %}
+
+{% block properties %}
+  <dl class="memberList">
+    <dt>
+      controlElement {?HTMLInputElement}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Returns the first <code>{{page.controlElement}}</code> descendant
+        or <code>null</code> if none are found.
+      </p>
+    </dd>
+    <dt>
+      toggle {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Returns the toggled state of the <code>&lt;hx-toggle&gt;</code> element.
+      </p>
+    </dd>
+    <dt>
+      toggleElement {?HXToggleElement}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      <p>
+        Returns the first <code>&lt;hx-toggle&gt;</code> descendant
+        or <code>null</code> if none are found.
+      </p>
+    </dd>
+
+    <dt>
+      isDirty {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if <code>controlElement</code> has emitted a "change" or "blur" event.
+    </dd>
+
+    <dt>
+      wasChanged {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if <code>controlElement</code> has emitted a "change" event.
+    </dd>
+
+    <dt>
+      wasTouched {Boolean [false]}
+      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
+    </dt>
+    <dd>
+      True if <code>controlElement</code> has emitted a "blur" event.
+    </dd>
+  </dl>
+{% endblock %}
