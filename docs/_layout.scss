@@ -91,3 +91,15 @@ body.hxVertical {
     }
   }
 }
+
+// ===== FORMS SUPPORT =====
+body.hxVertical.hxForm.beta,
+body.hxHorizontal.hxForm.beta {
+  main#content > header {
+    background-color: 1px solid $gray-50;
+    border-color: $gray-100;
+    border-style: solid;
+    border-width: 0 0 1px;
+    padding: $container-padding;
+  }
+}
