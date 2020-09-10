@@ -71,4 +71,59 @@ describe('<hx-accordion> component tests', () => {
         });
     });
 
+    /**
+     * Stepper Component Tests
+     *
+     * CSS-based derivative of Accordion Component.
+     *
+     * @type HXAccordionElement
+     */
+    describe('Stepper Component tests', () => {
+        const mockup =`
+            <hx-accordion class="hxStepper" current-panel="0">
+                <hx-accordion-panel>
+                    <header slot="header">
+                        <span class="hxStepCounter"></span>
+                        <span class="hxStepLabel">Account</span>
+                        <span class="hxStepValue">Acme Corp Inc.</span>
+                    </header>
+                    <div class="hxBox hxMd">
+                        <p>
+                            <em>Content Goes Here</em>
+                        </p>
+                        <p class="hxStepButton">
+                            <button class="hxBtn hxPrimary">Next Step</button>
+                            <button class="hxBtn">Prev Step</button>
+                            <button class="hxBtn hxLink">Cancel</button>
+                        </p>
+                    </div>
+                </hx-accordion-panel>
+                <hx-accordion-panel>...</hx-accordion-panel>
+                <hx-accordion-panel>...</hx-accordion-panel>
+            </hx-accordion>`;
+
+        describe('instantiate element', () => {
+            it('should be instantiated with hx-defined attribute', async () => {
+                const fragment = /** @type {HXAccordionElement} */ await fixture(mockup);
+                const attr = fragment.hasAttribute('hx-defined');
+
+                expect(attr).to.be.true;
+            });
+
+            it('should not be hidden', async () => {
+                const fragment = /** @type {HXAccordionElement} */ await fixture(mockup);
+                const prop = fragment.hidden;
+
+                expect(prop).to.be.false;
+            });
+
+            it('should contain hxStepper class', async () => {
+                const className = 'hxStepper';
+                const fragment = /** @type {HXAccordionElement} */ await fixture(mockup);
+                const queryClass = fragment.className;
+
+                expect(queryClass).to.equal(className);
+            });
+        });
+    });
 });
