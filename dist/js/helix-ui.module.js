@@ -1231,6 +1231,8 @@ var _file = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d
 
 var _filter = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M14.811 2.084L9.909 6.986v7.378a.644.644 0 0 1-.387.587.743.743 0 0 1-.25.049.592.592 0 0 1-.447-.189L6.28 12.266a.63.63 0 0 1-.189-.447V6.986L1.19 2.084a.626.626 0 0 1-.14-.696c.1-.229.329-.388.587-.388h12.727c.258 0 .487.16.586.389a.626.626 0 0 1-.139.695'/></svg>";
 
+var _fishHook = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 5.5 L8.5 11.5 L5 11.5 L5 11.5 C5 14.6045752 9.80584391 14.6654492 9.99430837 11.6826221 L10 11.5 L10.0000889 5.82932572 C8.8348501 5.41751442 8 4.30625206 8 3 C8 1.34314575 9.34314575 0 11 0 C12.6568542 0 14 1.34314575 14 3 C14 4.30588222 13.1656226 5.41688515 12.0009007 5.82897577 L12 11.5 C12 17.3333333 3 17.3333333 3 11.5 L3 5.5 Z M11 2 C10.4477153 2 10 2.44771525 10 3 C10 3.55228475 10.4477153 4 11 4 C11.5522847 4 12 3.55228475 12 3 C12 2.44771525 11.5522847 2 11 2 Z'></path></svg>";
+
 var _flag = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 2.5c1.566.783 3.13.95 5.315.303.472-.14.685.1.685.471v7.419c0 .2-.027.322-.281.441-1.899.887-3.813.82-5.719-.134-1.333-.667-2.667-.722-4-.5V14a1 1 0 0 1-2 0V2a1 1 0 0 1 1-1c.496 0 .908.526.987 1C5.32 1.774 6.662 1.831 8 2.5z'/></svg>";
 
 var _globe = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M12.54 13.34a7.007 7.007 0 0 1-2.594 1.39c.434-.64.793-1.495 1.057-2.497a6.535 6.535 0 0 1 1.537 1.108zm-6.602-1.438A6.525 6.525 0 0 1 8 11.57c.72 0 1.414.117 2.062.332C9.59 13.778 8.801 15.003 8 15.003c-.8 0-1.59-1.225-2.062-3.1zM3.46 13.341c.453-.44.97-.814 1.537-1.108.264 1.002.623 1.856 1.057 2.498a7.007 7.007 0 0 1-2.594-1.39zm9.797-.703a7.536 7.536 0 0 0-2.028-1.413c.155-.843.25-1.762.274-2.725H15a6.962 6.962 0 0 1-1.743 4.138zm-7.53-1.79A16.764 16.764 0 0 1 5.501 8.5h4.998a16.764 16.764 0 0 1-.226 2.349A7.532 7.532 0 0 0 8 10.5c-.792 0-1.556.122-2.273.349zm-2.984 1.79A6.962 6.962 0 0 1 1 8.5h3.497c.025.963.119 1.882.274 2.725a7.536 7.536 0 0 0-2.028 1.413zM13.257 3.36A6.962 6.962 0 0 1 15 7.498h-3.497a17.615 17.615 0 0 0-.274-2.725 7.536 7.536 0 0 0 2.028-1.413zm-7.53 1.79c.717.226 1.48.349 2.273.349.792 0 1.556-.123 2.273-.349.123.725.203 1.516.226 2.349H5.501c.023-.833.103-1.624.226-2.349zM2.743 3.36a7.536 7.536 0 0 0 2.028 1.413c-.155.843-.25 1.762-.274 2.725H1A6.962 6.962 0 0 1 2.743 3.36zm9.797-.698c-.453.44-.97.814-1.537 1.108-.264-1.001-.623-1.856-1.057-2.497a7.007 7.007 0 0 1 2.594 1.39zm-6.602 1.44C6.41 2.225 7.199 1 8 1c.8 0 1.59 1.226 2.062 3.101A6.525 6.525 0 0 1 8 4.433c-.72 0-1.414-.116-2.062-.332zM3.46 2.661a7.007 7.007 0 0 1 2.594-1.39c-.434.642-.793 1.497-1.057 2.498A6.535 6.535 0 0 1 3.46 2.662z'/></svg>";
@@ -1374,6 +1376,7 @@ const MAP = {
     'external-link': _externalLink,
     'file': _file,
     'filter': _filter,
+    'fish-hook': _fishHook,
     'flag': _flag,
     'globe': _globe,
     'grid': _grid,
@@ -4941,7 +4944,7 @@ class HXSelectElement extends HXElement {
 }
 
 /**
- * Defines behavior for the `<hx-switch-control>` element which is the
+ * Defines behavior for the `<hx-switch-control>` element, which is the
  * controller for the `<hx-switch>` element.
  *
  * @extends HXFormControlElement
@@ -4954,8 +4957,21 @@ class HXSwitchControlElement extends HXFormControlElement {
         return 'hx-switch-control';
     }
 
+    $onCreate () {
+        this._onClick = this._onClick.bind(this);
+    }
+
+    $onConnect () {
+        this.controlElement.addEventListener('click', this._onClick);
+    }
+
+    $onDisconnect () {
+        this.controlElement.removeEventListener('click', this._onClick);
+    }
+
     /**
-     * Fetch the first `<input type="checkbox">` descendant.
+     * Fetch the first `<input type="checkbox">`
+     * descendant (there should only be one(1)).
      *
      * @override
      * @readonly
@@ -4963,6 +4979,40 @@ class HXSwitchControlElement extends HXFormControlElement {
      */
     get controlElement () {
         return this.querySelector('input[type="checkbox"]');
+    }
+
+    /**
+     * Get Switch Component state.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get toggled () {
+        return this.switchElement.toggled;
+    }
+
+    /**
+     * Fetch the first `<hx-switch>` deccendant (there should only be one(1)).
+     *
+     * @private
+     */
+    get switchElement () {
+        return this.querySelector('hx-switch');
+    }
+
+    /** Determines the toggle state.
+     *
+     * @private
+     */
+    // eslint-disable-next-line no-unused-vars
+    _onClick (evt) {
+        let isChecked = this.controlElement.checked;
+
+        if (isChecked) {
+            this.switchElement.toggled = true;
+        } else {
+            this.switchElement.toggled = false;
+        }
     }
 }
 
@@ -4974,11 +5024,11 @@ var shadowStyles$j = "";
  * Defines behavior for the `<hx-switch>` element.
  * NOTE: `<hx-switch>` can have various default options, or it can be overriden.
  *
- * @extends HXFormControlElement
+ *@extends HXElement
  * @hideconstructor
  * @since 0.24.0
  */
-class HXSwitchElement extends HXFormControlElement {
+class HXSwitchElement extends HXElement {
     /** @override */
     static get is () {
         return 'hx-switch';
@@ -4992,6 +5042,7 @@ class HXSwitchElement extends HXFormControlElement {
     $onConnect () {
         this.$upgradeProperty('onlabel');
         this.$upgradeProperty('offlabel');
+        this.$upgradeProperty('toggled');
 
         if (!this.hasAttribute('onlabel') && !this.hasAttribute('offlabel')) {
             this.setAttribute('onlabel', '');
@@ -5032,6 +5083,20 @@ class HXSwitchElement extends HXFormControlElement {
     }
     set onlabel (newVal) {
         this.setAttribute('onlabel', newVal);
+    }
+
+    /**
+     * Property reflecting the `toggled` state of the Switch component.
+     */
+    get toggled () {
+        return this.hasAttribute('toggled');
+    }
+    set toggled (isToggled) {
+        if (isToggled) {
+            this.setAttribute('toggled', '');
+        } else {
+            this.removeAttribute('toggled');
+        }
     }
 
     // eslint-disable-next-line complexity
@@ -5709,9 +5774,121 @@ class HXToastElement extends HXElement {
     }
 }
 
-var shadowMarkup$l = "<div id='hxTooltip' class='has-arrow'><slot></slot></div>";
+/**
+ * Defines behavior for the `<hx-toggle-control>` element, which is the
+ * controller for the `<hx-toggle>` element.
+ *
+ * @extends HXFormControlElement
+ * @hideconstructor
+ * @since 1.0.0
+ */
+class HXToggleControlElement extends HXFormControlElement {
+    /** @override */
+    static get is () {
+        return 'hx-toggle-control';
+    }
 
-var shadowStyles$l = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n.has-arrow { margin: 0; position: relative; }\n\n.has-arrow::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0); z-index: -1; }\n\n.has-arrow::before, .has-arrow::after { content: \"\"; display: block; height: 13px; position: absolute; width: 13px; }\n\n.has-arrow[position^=\"top\"] { margin-bottom: 8px; }\n\n.has-arrow[position^=\"top\"]::before, .has-arrow[position^=\"top\"]::after { bottom: -8px; }\n\n.has-arrow[position^=\"top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top-center\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top\"]::after, .has-arrow[position=\"top-center\"]::before, .has-arrow[position=\"top-center\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 50%; }\n\n.has-arrow[position=\"top-right\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-right\"]::before, .has-arrow[position=\"top-right\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 1.25rem; }\n\n.has-arrow[position=\"top-left\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top-left\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-left\"]::before, .has-arrow[position=\"top-left\"]::after { transform-origin: bottom right; transform: rotate(45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"right\"] { margin-left: 8px; }\n\n.has-arrow[position^=\"right\"]::before, .has-arrow[position^=\"right\"]::after { left: -8px; }\n\n.has-arrow[position^=\"right\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right\"]::after, .has-arrow[position=\"right-middle\"]::before, .has-arrow[position=\"right-middle\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 50%; }\n\n.has-arrow[position=\"right-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-bottom\"]::before, .has-arrow[position=\"right-bottom\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 1.25rem; }\n\n.has-arrow[position=\"right-top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-top\"]::before, .has-arrow[position=\"right-top\"]::after { transform-origin: bottom left; transform: rotate(45deg); bottom: 1.25rem; }\n\n.has-arrow[position^=\"bottom\"] { margin-top: 8px; }\n\n.has-arrow[position^=\"bottom\"]::before, .has-arrow[position^=\"bottom\"]::after { top: -8px; }\n\n.has-arrow[position^=\"bottom\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom\"]::before, .has-arrow[position=\"bottom\"]::after, .has-arrow[position=\"bottom-center\"]::before, .has-arrow[position=\"bottom-center\"]::after { transform-origin: top left; transform: rotate(45deg); left: 50%; }\n\n.has-arrow[position=\"bottom-right\"]::before, .has-arrow[position=\"bottom-right\"]::after { transform-origin: top left; transform: rotate(45deg); left: 1.25rem; }\n\n.has-arrow[position=\"bottom-left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom-left\"]::before, .has-arrow[position=\"bottom-left\"]::after { transform-origin: top right; transform: rotate(-45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"left\"] { margin-right: 8px; }\n\n.has-arrow[position^=\"left\"]::before, .has-arrow[position^=\"left\"]::after { right: -8px; }\n\n.has-arrow[position^=\"left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left\"]::after, .has-arrow[position=\"left-middle\"]::before, .has-arrow[position=\"left-middle\"]::after { transform-origin: top right; transform: rotate(45deg); top: 50%; }\n\n.has-arrow[position=\"left-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-bottom\"]::before, .has-arrow[position=\"left-bottom\"]::after { transform-origin: top right; transform: rotate(45deg); top: 1.25rem; }\n\n.has-arrow[position=\"left-top\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-top\"]::before, .has-arrow[position=\"left-top\"]::after { transform-origin: bottom right; transform: rotate(-45deg); bottom: 1.25rem; }\n\n#hxTooltip { background-color: var(--hxBackgroundColor, #ffffff); border-color: var(--hxBorderColor, #e0e0e0); border-radius: 2px; border-style: solid; border-width: 1px; box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16); padding: 0.75rem; }\n";
+    $onCreate () {
+        this._onClick = this._onClick.bind(this);
+    }
+
+    $onConnect () {
+        this.controlElement.addEventListener('click', this._onClick);
+    }
+
+    $onDisconnect () {
+        this.controlElement.removeEventListener('click', this._onClick);
+    }
+
+    /**
+     * Fetch the first `<input type="checkbox">`
+     * descendant (there should only be one(1)).
+     *
+     * @override
+     * @readonly
+     * @type {?HTMLInputElement}
+     */
+    get controlElement () {
+        return this.querySelector('input[type="checkbox"]');
+    }
+
+    /**
+     * Fetch the first `<hx-toggle>` deccendant (there should only be one(1)).
+     */
+    get toggleElement () {
+        return this.querySelector('hx-toggle');
+    }
+
+    /**
+     * Get the Toggle Component state.
+     *
+     * @default false
+     * @type {Boolean}
+     */
+    get toggled () {
+        return this.toggleElement.toggled;
+    }
+
+    /** Determines the toggle state.
+     *
+     * @private
+     */
+    // eslint-disable-next-line no-unused-vars
+    _onClick (evt) {
+        let isChecked = this.controlElement.checked;
+
+        if (isChecked) {
+            this.toggleElement.toggled = true;
+        } else {
+            this.toggleElement.toggled = false;
+        }
+    }
+}
+
+var shadowMarkup$l = "<div id='hxToggle'><div id='hxToggleGrid'><hx-icon type='grid'></hx-icon></div><div id='hxToggleList'><hx-icon type='list'></hx-icon></div></div>";
+
+var shadowStyles$l = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n#hxToggleList { margin-left: 2.5rem; margin-top: 0.188rem; color: #0c7c84; }\n\n#hxToggleList:hover { color: #16b9d4; }\n\n#hxToggleGrid { position: absolute; margin-left: 0.5rem; color: #ffffff; }\n\n#hxToggleGrid:hover { color: #16b9d4; }\n\n:host([toggled]) #hxToggleList { color: #ffffff; }\n\n:host([toggled]) #hxToggleList:hover { color: #16b9d4; }\n\n:host([toggled]) #hxToggleGrid { color: #0c7c84; }\n\n:host([toggled]) #hxToggleGrid:hover { color: #16b9d4; }\n";
+
+/**
+ * Defines behavior for the `<hx-toggle>` element.
+ *
+ * @extends HXElement
+ * @hideconstructor
+ * @since 1.0.0
+ */
+class HXToggleElement extends HXElement {
+    /** @override */
+    static get is () {
+        return 'hx-toggle';
+    }
+
+    /** @override */
+    static get template () {
+        return `<style>${shadowStyles$l}</style>${shadowMarkup$l}`;
+    }
+
+    $onConnect () {
+        this.$upgradeProperty('toggled');
+    }
+
+    /**
+     * Property reflected the `toggled` state of [list (default) || grid].
+     */
+    get toggled () {
+        return this.hasAttribute('toggled');
+    }
+    set toggled (isToggled) {
+        if (isToggled) {
+            this.setAttribute('toggled', '');
+        } else {
+            this.removeAttribute('toggled');
+        }
+    }
+}
+
+var shadowMarkup$m = "<div id='hxTooltip' class='has-arrow'><slot></slot></div>";
+
+var shadowStyles$m = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n.has-arrow { margin: 0; position: relative; }\n\n.has-arrow::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0); z-index: -1; }\n\n.has-arrow::before, .has-arrow::after { content: \"\"; display: block; height: 13px; position: absolute; width: 13px; }\n\n.has-arrow[position^=\"top\"] { margin-bottom: 8px; }\n\n.has-arrow[position^=\"top\"]::before, .has-arrow[position^=\"top\"]::after { bottom: -8px; }\n\n.has-arrow[position^=\"top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top-center\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top\"]::before, .has-arrow[position=\"top\"]::after, .has-arrow[position=\"top-center\"]::before, .has-arrow[position=\"top-center\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 50%; }\n\n.has-arrow[position=\"top-right\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-right\"]::before, .has-arrow[position=\"top-right\"]::after { transform-origin: bottom left; transform: rotate(-45deg); left: 1.25rem; }\n\n.has-arrow[position=\"top-left\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"top-left\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"top-left\"]::before, .has-arrow[position=\"top-left\"]::after { transform-origin: bottom right; transform: rotate(45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"right\"] { margin-left: 8px; }\n\n.has-arrow[position^=\"right\"]::before, .has-arrow[position^=\"right\"]::after { left: -8px; }\n\n.has-arrow[position^=\"right\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right\"]::before, .has-arrow[position=\"right\"]::after, .has-arrow[position=\"right-middle\"]::before, .has-arrow[position=\"right-middle\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 50%; }\n\n.has-arrow[position=\"right-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-bottom\"]::before, .has-arrow[position=\"right-bottom\"]::after { transform-origin: top left; transform: rotate(-45deg); top: 1.25rem; }\n\n.has-arrow[position=\"right-top\"]::after { background-image: linear-gradient(to bottom left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"right-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"right-top\"]::before, .has-arrow[position=\"right-top\"]::after { transform-origin: bottom left; transform: rotate(45deg); bottom: 1.25rem; }\n\n.has-arrow[position^=\"bottom\"] { margin-top: 8px; }\n\n.has-arrow[position^=\"bottom\"]::before, .has-arrow[position^=\"bottom\"]::after { top: -8px; }\n\n.has-arrow[position^=\"bottom\"]::after { background-image: linear-gradient(to top left, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom\"]::before, .has-arrow[position=\"bottom\"]::after, .has-arrow[position=\"bottom-center\"]::before, .has-arrow[position=\"bottom-center\"]::after { transform-origin: top left; transform: rotate(45deg); left: 50%; }\n\n.has-arrow[position=\"bottom-right\"]::before, .has-arrow[position=\"bottom-right\"]::after { transform-origin: top left; transform: rotate(45deg); left: 1.25rem; }\n\n.has-arrow[position=\"bottom-left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"bottom-left\"]::before, .has-arrow[position=\"bottom-left\"]::after { transform-origin: top right; transform: rotate(-45deg); right: 1.25rem; }\n\n.has-arrow[position^=\"left\"] { margin-right: 8px; }\n\n.has-arrow[position^=\"left\"]::before, .has-arrow[position^=\"left\"]::after { right: -8px; }\n\n.has-arrow[position^=\"left\"]::after { background-image: linear-gradient(to top right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left-middle\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left\"]::before, .has-arrow[position=\"left\"]::after, .has-arrow[position=\"left-middle\"]::before, .has-arrow[position=\"left-middle\"]::after { transform-origin: top right; transform: rotate(45deg); top: 50%; }\n\n.has-arrow[position=\"left-bottom\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), 3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-bottom\"]::before, .has-arrow[position=\"left-bottom\"]::after { transform-origin: top right; transform: rotate(45deg); top: 1.25rem; }\n\n.has-arrow[position=\"left-top\"]::after { background-image: linear-gradient(to bottom right, transparent 50%, var(--hxBackgroundColor, #ffffff) 50%); }\n\n.has-arrow[position=\"left-top\"]::before { box-shadow: 0 0 0 1px var(--hxBorderColor, #e0e0e0), -3px 3px 3px 0 rgba(0, 0, 0, 0.16); }\n\n.has-arrow[position=\"left-top\"]::before, .has-arrow[position=\"left-top\"]::after { transform-origin: bottom right; transform: rotate(-45deg); bottom: 1.25rem; }\n\n#hxTooltip { background-color: var(--hxBackgroundColor, #ffffff); border-color: var(--hxBorderColor, #e0e0e0); border-radius: 2px; border-style: solid; border-width: 1px; box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16); padding: 0.75rem; }\n";
 
 const TOOLTIP_DELAY = 500;
 
@@ -5731,7 +5908,7 @@ class HXTooltipElement extends _ProtoClass$3 {
     }
 
     static get template () {
-        return `<style>${shadowStyles$l}</style>${shadowMarkup$l}`;
+        return `<style>${shadowStyles$m}</style>${shadowMarkup$m}`;
     }
 
     /** @override */
@@ -6067,10 +6244,12 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTextControlElement: HXTextControlElement,
     HXTextareaControlElement: HXTextareaControlElement,
     HXToastElement: HXToastElement,
+    HXToggleControlElement: HXToggleControlElement,
+    HXToggleElement: HXToggleElement,
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "0.24.0";
+var version = "1.0.0";
 
 /** @module HelixUI */
 

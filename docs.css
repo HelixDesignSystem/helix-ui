@@ -89,6 +89,15 @@ body.hxVertical main > aside > * + * {
   margin-top: 2rem;
 }
 
+body.hxVertical.hxForm.beta main#content > header,
+body.hxHorizontal.hxForm.beta main#content > header {
+  background-color: 1px solid #f5f5f5;
+  border-color: #eeeeee;
+  border-style: solid;
+  border-width: 0 0 1px;
+  padding: 2rem;
+}
+
 /* ----- Test Page Styling ----- */
 .test-content {
   border: 0.5rem solid #fbc02d;

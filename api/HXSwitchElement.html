@@ -127,7 +127,7 @@ NOTE: <code>&lt;hx-switch&gt;</code> can have various default options, or it can
 
 
     <ul>
-        <li><a href="HXFormControlElement.html">HXFormControlElement</a></li>
+        <li><a href="HXElement.html">HXElement</a></li>
     </ul>
 
 
@@ -139,7 +139,7 @@ NOTE: <code>&lt;hx-switch&gt;</code> can have various default options, or it can
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="HXSwitchElementHXFormControlElement.html">HXFormControlElement</a></dt>
+            <dt><a href="HXSwitchElementHXElement.html">HXElement</a></dt>
             <dd></dd>
         </dl>
     
@@ -271,98 +271,14 @@ NOTE: <code>&lt;hx-switch&gt;</code> can have various default options, or it can
 
         
             
-<h4 class="name" id="controlElement"><span class="type-signature">(abstract, nullable) </span>controlElement<span class="type-signature"> :HTMLElement</span></h4>
+<h4 class="name" id="disabled"><span class="type-signature"></span>disabled<span class="type-signature"> :Boolean</span></h4>
 
 
 
 
 <div class="description">
-    <p>This should be overridden by subclasses.</p>
-<p>Logic should make a best effort to return an HTML
-form control element (e.g., <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code>,
-<code>&lt;textarea&gt;</code>, etc.).</p>
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">HTMLElement</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="HXFormControlElement.html#controlElement">HXFormControlElement#controlElement</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy">
-            <li>undefined</li>
-        </ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="interfaces_HXFormControlElement_index.js.html">interfaces/HXFormControlElement/index.js</a>, <a href="interfaces_HXFormControlElement_index.js.html#line90">line 90</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="isDirty"><span class="type-signature">(readonly) </span>isDirty<span class="type-signature"> :Boolean</span></h4>
-
-
-
-
-<div class="description">
-    <p>[false]</p>
+    <p>Indicates whether the element is disabled.
+A disabled element is nonfunctional and noninteractive.</p>
 </div>
 
 
@@ -390,7 +306,7 @@ form control element (e.g., <code>&lt;input&gt;</code>, <code>&lt;select&gt;</co
     
     <dt class="inherited-from">Inherited From:</dt>
     <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="HXFormControlElement.html#isDirty">HXFormControlElement#isDirty</a>
+        <a href="HXElement.html#disabled">HXElement#disabled</a>
     </li></ul></dd>
     
 
@@ -411,11 +327,16 @@ form control element (e.g., <code>&lt;input&gt;</code>, <code>&lt;select&gt;</co
     
 
     
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>false</li>
+        </ul></dd>
+    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="interfaces_HXFormControlElement_index.js.html">interfaces/HXFormControlElement/index.js</a>, <a href="interfaces_HXFormControlElement_index.js.html#line96">line 96</a>
+        <a href="interfaces_HXElement_index.js.html">interfaces/HXElement/index.js</a>, <a href="interfaces_HXElement_index.js.html#line169">line 169</a>
     </li></ul></dd>
     
 
@@ -477,7 +398,7 @@ form control element (e.g., <code>&lt;input&gt;</code>, <code>&lt;select&gt;</co
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="elements_hx-switch_index.js.html">elements/hx-switch/index.js</a>, <a href="elements_hx-switch_index.js.html#line53">line 53</a>
+        <a href="elements_hx-switch_index.js.html">elements/hx-switch/index.js</a>, <a href="elements_hx-switch_index.js.html#line54">line 54</a>
     </li></ul></dd>
     
 
@@ -539,7 +460,7 @@ form control element (e.g., <code>&lt;input&gt;</code>, <code>&lt;select&gt;</co
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="elements_hx-switch_index.js.html">elements/hx-switch/index.js</a>, <a href="elements_hx-switch_index.js.html#line63">line 63</a>
+        <a href="elements_hx-switch_index.js.html">elements/hx-switch/index.js</a>, <a href="elements_hx-switch_index.js.html#line64">line 64</a>
     </li></ul></dd>
     
 
@@ -557,26 +478,16 @@ form control element (e.g., <code>&lt;input&gt;</code>, <code>&lt;select&gt;</co
 
         
             
-<h4 class="name" id="wasChanged"><span class="type-signature">(readonly) </span>wasChanged<span class="type-signature"> :Boolean</span></h4>
+<h4 class="name" id="toggled"><span class="type-signature"></span>toggled<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    <p>[false]</p>
+    <p>Property reflecting the <code>toggled</code> state of the Switch component.</p>
 </div>
 
 
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">Boolean</span>
-
-
-        </li>
-    </ul>
 
 
 
@@ -588,11 +499,6 @@ form control element (e.g., <code>&lt;input&gt;</code>, <code>&lt;select&gt;</co
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="HXFormControlElement.html#wasChanged">HXFormControlElement#wasChanged</a>
-    </li></ul></dd>
     
 
     
@@ -616,84 +522,7 @@ form control element (e.g., <code>&lt;input&gt;</code>, <code>&lt;select&gt;</co
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="interfaces_HXFormControlElement_index.js.html">interfaces/HXFormControlElement/index.js</a>, <a href="interfaces_HXFormControlElement_index.js.html#line104">line 104</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="wasTouched"><span class="type-signature">(readonly) </span>wasTouched<span class="type-signature"> :Boolean</span></h4>
-
-
-
-
-<div class="description">
-    <p>[false]</p>
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">Boolean</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="HXFormControlElement.html#wasTouched">HXFormControlElement#wasTouched</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="interfaces_HXFormControlElement_index.js.html">interfaces/HXFormControlElement/index.js</a>, <a href="interfaces_HXFormControlElement_index.js.html#line112">line 112</a>
+        <a href="elements_hx-switch_index.js.html">elements/hx-switch/index.js</a>, <a href="elements_hx-switch_index.js.html#line74">line 74</a>
     </li></ul></dd>
     
 
@@ -721,7 +550,7 @@ form control element (e.g., <code>&lt;input&gt;</code>, <code>&lt;select&gt;</co
     
 
     
-    <h4 class="name" id="connectedCallback"><span class="type-signature"></span>connectedCallback<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="$defaultAttribute"><span class="type-signature"></span>$defaultAttribute<span class="signature">(name, val)</span><span class="type-signature"></span></h4>
     
 
     
@@ -729,12 +558,7 @@ form control element (e.g., <code>&lt;input&gt;</code>, <code>&lt;select&gt;</co
 
 
 <div class="description">
-    <p>Adds <code>change</code> and <code>blur</code> event listeners to apply
-&quot;changed&quot; and &quot;touched&quot; states to the custom control
-element, in addition to superclass behavior.</p>
-<ul>
-<li>preserves <code>$onConnect()</code> hook for subclasses</li>
-</ul>
+    <p>Assign a value to an HTML attribute, if the attribute isn't present.</p>
 </div>
 
 
@@ -743,6 +567,78 @@ element, in addition to superclass behavior.</p>
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>name of the attribute to set</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>value to assign</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -758,7 +654,7 @@ element, in addition to superclass behavior.</p>
     
     <dt class="inherited-from">Inherited From:</dt>
     <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="HXFormControlElement.html#connectedCallback">HXFormControlElement#connectedCallback</a>
+        <a href="HXElement.html#$defaultAttribute">HXElement#$defaultAttribute</a>
     </li></ul></dd>
     
 
@@ -783,7 +679,660 @@ element, in addition to superclass behavior.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="interfaces_HXFormControlElement_index.js.html">interfaces/HXFormControlElement/index.js</a>, <a href="interfaces_HXFormControlElement_index.js.html#line51">line 51</a>
+        <a href="interfaces_HXElement_index.js.html">interfaces/HXElement/index.js</a>, <a href="interfaces_HXElement_index.js.html#line189">line 189</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://goo.gl/MUFHD8">https://goo.gl/MUFHD8</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="$emit"><span class="type-signature"></span>$emit<span class="signature">(evtName, opts)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Emit a custom event</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>evtName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>name of event</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>options to configure the event</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cancelable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>whether the event can be canceled</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bubbles</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>whether the event bubbles up the DOM tree</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>detail</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>additional information to communicated along with the event</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="HXElement.html#$emit">HXElement#$emit</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="interfaces_HXElement_index.js.html">interfaces/HXElement/index.js</a>, <a href="interfaces_HXElement_index.js.html#line209">line 209</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent">https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Returns true if the event was not canceled by an event listener.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="$relayEvent"><span class="type-signature"></span>$relayEvent<span class="signature">(oldEvent)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Relay an event within the ShadowDOM, retargeting the event to the custom element</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>oldEvent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Event</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>event to relay</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="HXElement.html#$relayEvent">HXElement#$relayEvent</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="interfaces_HXElement_index.js.html">interfaces/HXElement/index.js</a>, <a href="interfaces_HXElement_index.js.html#line226">line 226</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Returns true if the event was not canceled by an event listener.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="$relayNonBubblingEvents"><span class="type-signature"></span>$relayNonBubblingEvents<span class="signature">(el)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Relay events that do not bubble. For instance, <code>focus</code> and <code>blur</code> events
+on an <code>&lt;input&gt;</code> within the ShadowDOM.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>element to attach non-bubbling event listeners</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="HXElement.html#$relayNonBubblingEvents">HXElement#$relayNonBubblingEvents</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="interfaces_HXElement_index.js.html">interfaces/HXElement/index.js</a>, <a href="interfaces_HXElement_index.js.html#line241">line 241</a>
     </li></ul></dd>
     
 
@@ -819,7 +1368,7 @@ element, in addition to superclass behavior.</p>
     
 
     
-    <h4 class="name" id="disconnectedCallback"><span class="type-signature"></span>disconnectedCallback<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="$removeNonBubblingRelays"><span class="type-signature"></span>$removeNonBubblingRelays<span class="signature">(el)</span><span class="type-signature"></span></h4>
     
 
     
@@ -827,11 +1376,7 @@ element, in addition to superclass behavior.</p>
 
 
 <div class="description">
-    <p>Removes event listeners added in connectedCallback,
-in addition to superclass behavior.</p>
-<ul>
-<li>preserves <code>$onDisconnect()</code> hook for subclasses</li>
-</ul>
+    <p>Remove events relayed by <code>$relayNonBubblingEvents</code></p>
 </div>
 
 
@@ -840,6 +1385,55 @@ in addition to superclass behavior.</p>
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>element to remove non-bubbline event listeners</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -855,7 +1449,7 @@ in addition to superclass behavior.</p>
     
     <dt class="inherited-from">Inherited From:</dt>
     <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="HXFormControlElement.html#disconnectedCallback">HXFormControlElement#disconnectedCallback</a>
+        <a href="HXElement.html#$removeNonBubblingRelays">HXElement#$removeNonBubblingRelays</a>
     </li></ul></dd>
     
 
@@ -880,7 +1474,252 @@ in addition to superclass behavior.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="interfaces_HXFormControlElement_index.js.html">interfaces/HXFormControlElement/index.js</a>, <a href="interfaces_HXFormControlElement_index.js.html#line69">line 69</a>
+        <a href="interfaces_HXElement_index.js.html">interfaces/HXElement/index.js</a>, <a href="interfaces_HXElement_index.js.html#line251">line 251</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="$upgradeProperty"><span class="type-signature"></span>$upgradeProperty<span class="signature">(prop)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Captures the value from the unupgraded instance and deletes the property
+so it does not shadow the custom element's own property setter. This way,
+when the element's definition does finally load, it can immediately
+reflect the correct state.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>prop</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>property name to upgrade</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="HXElement.html#$upgradeProperty">HXElement#$upgradeProperty</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="interfaces_HXElement_index.js.html">interfaces/HXElement/index.js</a>, <a href="interfaces_HXElement_index.js.html#line265">line 265</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://goo.gl/MDp6j5">https://goo.gl/MDp6j5</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="_$styleElement"><span class="type-signature"></span>_$styleElement<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Style the element using ShadyCSS, if needed.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="HXElement.html#_$styleElement">HXElement#_$styleElement</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="interfaces_HXElement_index.js.html">interfaces/HXElement/index.js</a>, <a href="interfaces_HXElement_index.js.html#line332">line 332</a>
     </li></ul></dd>
     
 
@@ -926,13 +1765,13 @@ in addition to superclass behavior.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Alignment.html">HelixUI/Utils/Alignment</a></li><li><a href="module-HelixUI_Utils_Offset.html">HelixUI/Utils/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-DOMRect.html">DOMRect</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionElementHXElement.html">HXElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAccordionPanelElementHXElement.html">HXElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXAlertElementHXElement.html">HXElement</a></li><li><a href="HXBeaconElement.html">HXBeaconElement</a></li><li><a href="HXBeaconElementHXElement.html">HXElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXBusyElementHXElement.html">HXElement</a></li><li><a href="HXCheckboxControlElement.html">HXCheckboxControlElement</a></li><li><a href="HXCheckboxControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXCheckboxElementHXElement.html">HXElement</a></li><li><a href="HXCheckboxSetElement.html">HXCheckboxSetElement</a></li><li><a href="HXCheckboxSetElementHXElement.html">HXElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDisclosureElementHXElement.html">HXElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDivElementHXElement.html">HXElement</a></li><li><a href="HXDrawerElement.html">HXDrawerElement</a></li><li><a href="HXDrawerElementHXElement.html">HXElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXDropFenceElementHXElement.html">HXElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXEmailControl.html">HXEmailControl</a></li><li><a href="HXEmailControlHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXErrorElementHXElement.html">HXElement</a></li><li><a href="HXFileControlElement.html">HXFileControlElement</a></li><li><a href="HXFileControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileIconElementHXElement.html">HXElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileInputElementHXElement.html">HXElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXFileTileElementHXElement.html">HXElement</a></li><li><a href="HXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXIconElementHXElement.html">HXElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuElementHXElement.html">HXElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXMenuitemElementHXElement.html">HXElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXModalElementHXElement.html">HXElement</a></li><li><a href="HXPasswordElement.html">HXPasswordElement</a></li><li><a href="HXPasswordElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPillElementHXElement.html">HXElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXPopoverElementHXElement.html">HXElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXProgressElementHXElement.html">HXElement</a></li><li><a href="HXRadioControlElement.html">HXRadioControlElement</a></li><li><a href="HXRadioControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXRadioElement.html">HXRadioElement</a></li><li><a href="HXRadioElementHXElement.html">HXElement</a></li><li><a href="HXRadioSetElement.html">HXRadioSetElement</a></li><li><a href="HXRadioSetElementHXElement.html">HXElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXRevealElementHXElement.html">HXElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchAssistanceElementHXElement.html">HXElement</a></li><li><a href="HXSearchControlElement.html">HXSearchControlElement</a></li><li><a href="HXSearchControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXSearchElementHXElement.html">HXElement</a></li><li><a href="HXSelectControlElement.html">HXSelectControlElement</a></li><li><a href="HXSelectControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXSelectElement.html">HXSelectElement</a></li><li><a href="HXSelectElementHXElement.html">HXElement</a></li><li><a href="HXSwitchControlElement.html">HXSwitchControlElement</a></li><li><a href="HXSwitchControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXSwitchElement.html">HXSwitchElement</a></li><li><a href="HXSwitchElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabcontentElementHXElement.html">HXElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTabElementHXElement.html">HXElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTablistElementHXElement.html">HXElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabpanelElementHXElement.html">HXElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXTabsetElementHXElement.html">HXElement</a></li><li><a href="HXTextareaControlElement.html">HXTextareaControlElement</a></li><li><a href="HXTextareaControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXTextControlElement.html">HXTextControlElement</a></li><li><a href="HXTextControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXToastElementHXElement.html">HXElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li><li><a href="HXTooltipElementHXElement.html">HXElement</a></li></ul><h3>Interfaces</h3><ul><li><a href="Positionable.html">Positionable</a></li><li><a href="Revealable.html">Revealable</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Drawer:close">Drawer:close</a></li><li><a href="global.html#event:Drawer:open">Drawer:open</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Revealable:close">Revealable:close</a></li><li><a href="global.html#event:Revealable:open">Revealable:open</a></li><li><a href="global.html#event:Tab:hxtabclick">Tab:hxtabclick</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-HelixUI.html">HelixUI</a></li><li><a href="module-HelixUI_Utils.html">HelixUI/Utils</a></li><li><a href="module-HelixUI_Utils_Alignment.html">HelixUI/Utils/Alignment</a></li><li><a href="module-HelixUI_Utils_Offset.html">HelixUI/Utils/Offset</a></li></ul><h3>Externals</h3><ul><li><a href="external-CustomEvent.html">CustomEvent</a></li><li><a href="external-DOMRect.html">DOMRect</a></li><li><a href="external-Element.html">Element</a></li><li><a href="external-Event.html">Event</a></li><li><a href="external-HTMLElement.html">HTMLElement</a></li><li><a href="external-HTMLTemplateElement.html">HTMLTemplateElement</a></li></ul><h3>Classes</h3><ul><li><a href="HXAccordionElement.html">HXAccordionElement</a></li><li><a href="HXAccordionElementHXElement.html">HXElement</a></li><li><a href="HXAccordionPanelElement.html">HXAccordionPanelElement</a></li><li><a href="HXAccordionPanelElementHXElement.html">HXElement</a></li><li><a href="HXAlertElement.html">HXAlertElement</a></li><li><a href="HXAlertElementHXElement.html">HXElement</a></li><li><a href="HXBeaconElement.html">HXBeaconElement</a></li><li><a href="HXBeaconElementHXElement.html">HXElement</a></li><li><a href="HXBusyElement.html">HXBusyElement</a></li><li><a href="HXBusyElementHXElement.html">HXElement</a></li><li><a href="HXCheckboxControlElement.html">HXCheckboxControlElement</a></li><li><a href="HXCheckboxControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXCheckboxElement.html">HXCheckboxElement</a></li><li><a href="HXCheckboxElementHXElement.html">HXElement</a></li><li><a href="HXCheckboxSetElement.html">HXCheckboxSetElement</a></li><li><a href="HXCheckboxSetElementHXElement.html">HXElement</a></li><li><a href="HXDisclosureElement.html">HXDisclosureElement</a></li><li><a href="HXDisclosureElementHXElement.html">HXElement</a></li><li><a href="HXDivElement.html">HXDivElement</a></li><li><a href="HXDivElementHXElement.html">HXElement</a></li><li><a href="HXDrawerElement.html">HXDrawerElement</a></li><li><a href="HXDrawerElementHXElement.html">HXElement</a></li><li><a href="HXDropFenceElement.html">HXDropFenceElement</a></li><li><a href="HXDropFenceElementHXElement.html">HXElement</a></li><li><a href="HXElement.html">HXElement</a></li><li><a href="HXEmailControl.html">HXEmailControl</a></li><li><a href="HXEmailControlHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXErrorElement.html">HXErrorElement</a></li><li><a href="HXErrorElementHXElement.html">HXElement</a></li><li><a href="HXFileControlElement.html">HXFileControlElement</a></li><li><a href="HXFileControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXFileIconElement.html">HXFileIconElement</a></li><li><a href="HXFileIconElementHXElement.html">HXElement</a></li><li><a href="HXFileInputElement.html">HXFileInputElement</a></li><li><a href="HXFileInputElementHXElement.html">HXElement</a></li><li><a href="HXFileTileElement.html">HXFileTileElement</a></li><li><a href="HXFileTileElementHXElement.html">HXElement</a></li><li><a href="HXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXIconElement.html">HXIconElement</a></li><li><a href="HXIconElementHXElement.html">HXElement</a></li><li><a href="HXMenuElement.html">HXMenuElement</a></li><li><a href="HXMenuElementHXElement.html">HXElement</a></li><li><a href="HXMenuitemElement.html">HXMenuitemElement</a></li><li><a href="HXMenuitemElementHXElement.html">HXElement</a></li><li><a href="HXModalElement.html">HXModalElement</a></li><li><a href="HXModalElementHXElement.html">HXElement</a></li><li><a href="HXPasswordElement.html">HXPasswordElement</a></li><li><a href="HXPasswordElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXPillElement.html">HXPillElement</a></li><li><a href="HXPillElementHXElement.html">HXElement</a></li><li><a href="HXPopoverElement.html">HXPopoverElement</a></li><li><a href="HXPopoverElementHXElement.html">HXElement</a></li><li><a href="HXProgressElement.html">HXProgressElement</a></li><li><a href="HXProgressElementHXElement.html">HXElement</a></li><li><a href="HXRadioControlElement.html">HXRadioControlElement</a></li><li><a href="HXRadioControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXRadioElement.html">HXRadioElement</a></li><li><a href="HXRadioElementHXElement.html">HXElement</a></li><li><a href="HXRadioSetElement.html">HXRadioSetElement</a></li><li><a href="HXRadioSetElementHXElement.html">HXElement</a></li><li><a href="HXRevealElement.html">HXRevealElement</a></li><li><a href="HXRevealElementHXElement.html">HXElement</a></li><li><a href="HXSearchAssistanceElement.html">HXSearchAssistanceElement</a></li><li><a href="HXSearchAssistanceElementHXElement.html">HXElement</a></li><li><a href="HXSearchControlElement.html">HXSearchControlElement</a></li><li><a href="HXSearchControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXSearchElement.html">HXSearchElement</a></li><li><a href="HXSearchElementHXElement.html">HXElement</a></li><li><a href="HXSelectControlElement.html">HXSelectControlElement</a></li><li><a href="HXSelectControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXSelectElement.html">HXSelectElement</a></li><li><a href="HXSelectElementHXElement.html">HXElement</a></li><li><a href="HXSwitchControlElement.html">HXSwitchControlElement</a></li><li><a href="HXSwitchControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXSwitchElement.html">HXSwitchElement</a></li><li><a href="HXSwitchElementHXElement.html">HXElement</a></li><li><a href="HXTabcontentElement.html">HXTabcontentElement</a></li><li><a href="HXTabcontentElementHXElement.html">HXElement</a></li><li><a href="HXTabElement.html">HXTabElement</a></li><li><a href="HXTabElementHXElement.html">HXElement</a></li><li><a href="HXTablistElement.html">HXTablistElement</a></li><li><a href="HXTablistElementHXElement.html">HXElement</a></li><li><a href="HXTabpanelElement.html">HXTabpanelElement</a></li><li><a href="HXTabpanelElementHXElement.html">HXElement</a></li><li><a href="HXTabsetElement.html">HXTabsetElement</a></li><li><a href="HXTabsetElementHXElement.html">HXElement</a></li><li><a href="HXTextareaControlElement.html">HXTextareaControlElement</a></li><li><a href="HXTextareaControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXTextControlElement.html">HXTextControlElement</a></li><li><a href="HXTextControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXToastElement.html">HXToastElement</a></li><li><a href="HXToastElementHXElement.html">HXElement</a></li><li><a href="HXToggleControlElement.html">HXToggleControlElement</a></li><li><a href="HXToggleControlElementHXFormControlElement.html">HXFormControlElement</a></li><li><a href="HXToggleElement.html">HXToggleElement</a></li><li><a href="HXToggleElementHXElement.html">HXElement</a></li><li><a href="HXTooltipElement.html">HXTooltipElement</a></li><li><a href="HXTooltipElementHXElement.html">HXElement</a></li></ul><h3>Interfaces</h3><ul><li><a href="Positionable.html">Positionable</a></li><li><a href="Revealable.html">Revealable</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Accordion:panelchange">Accordion:panelchange</a></li><li><a href="global.html#event:AccordionPanel:close">AccordionPanel:close</a></li><li><a href="global.html#event:AccordionPanel:open">AccordionPanel:open</a></li><li><a href="global.html#event:Alert:dismiss">Alert:dismiss</a></li><li><a href="global.html#event:Alert:submit">Alert:submit</a></li><li><a href="global.html#event:Drawer:close">Drawer:close</a></li><li><a href="global.html#event:Drawer:open">Drawer:open</a></li><li><a href="global.html#event:FileTile:cancel">FileTile:cancel</a></li><li><a href="global.html#event:FileTile:delete">FileTile:delete</a></li><li><a href="global.html#event:FileTile:retry">FileTile:retry</a></li><li><a href="global.html#event:Modal:close">Modal:close</a></li><li><a href="global.html#event:Modal:open">Modal:open</a></li><li><a href="global.html#event:Pills:dismiss">Pills:dismiss</a></li><li><a href="global.html#event:Reveal:close">Reveal:close</a></li><li><a href="global.html#event:Reveal:open">Reveal:open</a></li><li><a href="global.html#event:Revealable:close">Revealable:close</a></li><li><a href="global.html#event:Revealable:open">Revealable:open</a></li><li><a href="global.html#event:Tab:hxtabclick">Tab:hxtabclick</a></li><li><a href="global.html#event:Tabpanel:close">Tabpanel:close</a></li><li><a href="global.html#event:Tabpanel:open">Tabpanel:open</a></li><li><a href="global.html#event:Tabset:tabchange">Tabset:tabchange</a></li><li><a href="global.html#event:Toast:dismiss">Toast:dismiss</a></li><li><a href="global.html#event:Toast:submit">Toast:submit</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Jul 31 2020 18:13:24 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Sep 10 2020 16:05:03 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

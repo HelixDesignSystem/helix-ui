@@ -333,6 +333,12 @@
 
 
       
+      <a href="components/toggle" >
+    Toggle
+  </a>
+
+
+      
       <a href="components/tooltip" >
     Tooltip
   </a>
@@ -573,6 +579,12 @@ class="current">
 
 
       
+      <a href="elements/hx-switch-control" >
+    &lt;hx-switch-control&gt;
+  </a>
+
+
+      
       <a href="elements/hx-tab" >
     &lt;hx-tab&gt;
   </a>
@@ -627,6 +639,18 @@ class="current">
 
 
       
+      <a href="elements/hx-toggle" >
+    &lt;hx-toggle&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-toggle-control" >
+    &lt;hx-toggle-control&gt;
+  </a>
+
+
+      
       <a href="elements/hx-tooltip" >
     &lt;hx-tooltip&gt;
   </a>
@@ -656,9 +680,9 @@ class="current">
 
 
   <p>
-    The <code>&lt;hx-switch&gt;</code> block element is a container that provides
-    behavior to augment native browser validation capabilities.  It is used to
-    build a <a href="components/switch">Switch</a> component.
+    The <code>&lt;hx-switch&gt;</code> enables the user to make a binary decision
+    (such as yes or no, and on or off) when configuring a setting or preference.
+    It is used to build a <a href="components/switch">Switch</a> component.
   </p>
           </header>
 
@@ -666,25 +690,18 @@ class="current">
   <section>
     <dl class="metadata hxList">
       <div>
-        <dt>Permitted Parents</dt>
-        <dd>any element that accepts flow content</dd>
+        <dt>Permitted Grandparent</dt>
+        <dd>  <code>&lt;hx-switch-control&gt;</code>
+ element</dd>
+      </div>
+      <div>
+        <dt>Permitted Parent</dt>
+        <dd>  <code>&lt;label&gt;</code>
+ (wrapper) element</dd>
       </div>
       <div>
         <dt>Permitted Children</dt>
-        <dd>
-          in this order:
-          <ol class="hxList">
-            <li>checkbox   <code>&lt;input&gt;</code>
- element</li>
-            <li>  <code>&lt;label&gt;</code>
- element</li>
-            <li>
-                <code>&lt;p&gt;</code>
- element for control-level help text
-              <small class="hxSubdued">(optional)</small>
-            </li>
-          </ol>
-        </dd>
+        <dd><i>none</i></dd>
       </div>
       <div>
         <dt>Events</dt>
@@ -703,40 +720,6 @@ class="current">
       </p>
     </header>
 
-  <dl class="memberList">
-    <dt>
-      hx-changed {Boolean}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      <p>
-        Present if descendant <code>&lt;input type=&quot;checkbox&quot;&gt;</code> element
-        has emitted a "change" event.
-      </p>
-    </dd>
-
-    <dt>
-      hx-dirty {Boolean}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      <p>
-        Present if descendant <code>&lt;input type=&quot;checkbox&quot;&gt;</code> element
-        has emitted a "change" or "blur" event.
-      </p>
-    </dd>
-
-    <dt>
-      hx-touched {Boolean}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      <p>
-        Present if descendant <code>&lt;input type=&quot;checkbox&quot;&gt;</code> element
-        has emitted a "blur" event.
-      </p>
-    </dd>
-  </dl>
   </section>
 
   
@@ -749,49 +732,13 @@ class="current">
       </p>
     </header>
 
-  <dl class="memberList">
-    <dt>
-      controlElement {?HTMLInputElement}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      <p>
-        Returns the first <code>&lt;input type=&quot;checkbox&quot;&gt;</code> descendant
-        or <code>null</code> if none are found.
-      </p>
-    </dd>
-
-    <dt>
-      isDirty {Boolean [false]}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      True if <code>controlElement</code> has emitted a "change" or "blur" event.
-    </dd>
-
-    <dt>
-      wasChanged {Boolean [false]}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      True if <code>controlElement</code> has emitted a "change" event.
-    </dd>
-
-    <dt>
-      wasTouched {Boolean [false]}
-      <hx-pill class="hxSubBody" persist>read-only</hx-pill>
-    </dt>
-    <dd>
-      True if <code>controlElement</code> has emitted a "blur" event.
-    </dd>
-  </dl>
   </section>
 
 <section>
   <h2 id="see-also">See Also</h2>
   <ul class="hxList">
       <li><a href="components/switch">Switch</a></li>
-      <li><a href="elements/hx-switch">&lt;hx-switch&gt;</a></li>
+      <li><a href="elements/hx-switch-control">&lt;hx-switch-control&gt;</a></li>
   </ul>
 </section>
           </div>
@@ -824,8 +771,8 @@ class="current">
 
       <small>
         Latest Release:
-        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.24.0" target="_blank">
-          v0.24.0
+        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v1.0.0" target="_blank">
+          v1.0.0
         </a>)
       </small>
     </div>

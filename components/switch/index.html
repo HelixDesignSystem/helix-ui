@@ -333,6 +333,12 @@ class="current">
 
 
       
+      <a href="components/toggle" >
+    Toggle
+  </a>
+
+
+      
       <a href="components/tooltip" >
     Tooltip
   </a>
@@ -573,6 +579,12 @@ class="current">
 
 
       
+      <a href="elements/hx-switch-control" >
+    &lt;hx-switch-control&gt;
+  </a>
+
+
+      
       <a href="elements/hx-tab" >
     &lt;hx-tab&gt;
   </a>
@@ -627,6 +639,18 @@ class="current">
 
 
       
+      <a href="elements/hx-toggle" >
+    &lt;hx-toggle&gt;
+  </a>
+
+
+      
+      <a href="elements/hx-toggle-control" >
+    &lt;hx-toggle-control&gt;
+  </a>
+
+
+      
       <a href="elements/hx-tooltip" >
     &lt;hx-tooltip&gt;
   </a>
@@ -663,13 +687,104 @@ class="current">
           </header>
 
           <div>
+
+  <!-- start of demo no label example section for switch -->
+
   <section>
     <header>
-      <h2 id="basic-checkbox">Switch</h2>
-      <p></p>
+      <h2 id="default-switch">Default Switch (no labels)</h2>
     </header>
 
-    <div class="example" id="vue-switchDemo" v-cloak>
+    <div class="example" id="vue-switchNoneDemo" v-cloak>
+      <div>
+        <hx-switch-control>
+          <input type="checkbox" id="switchNoneTest" />
+          <label for="switchNoneTest">
+            <hx-switch aria-labelledby="switchNoneTest">
+            </hx-switch>
+          </label>
+        </hx-switch-control>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+
+  </section>
+
+  <!-- end of demo no label example section for switch -->
+
+  <!-- start of demo on/off label example section for switch -->
+
+  <section>
+    <header>
+      <h2 id="on-switch">Switch with <b><i>on/off</i></b> labels</h2>
+    </header>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      The label can be overridden to provide a different label (for i18n support).
+      The character width is limited to 2-3 characters.
+    </p>
+    <div class="example" id="vue-switchOnOffDemo" v-cloak>
+      <div>
+        <hx-switch-control>
+          <input type="checkbox" id="switchOnOffTest" />
+          <label for="switchOnOffTest">
+            <hx-switch onlabel="on" offlabel="off" aria-labelledby="switchOnOffTest">
+            </hx-switch>
+          </label>
+        </hx-switch-control>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+
+  </section>
+
+  <!-- end of demo on/off label example section for switch -->
+
+  <!-- start of demo yes/no label example section for switch -->
+
+  <section>
+    <header>
+      <h2 id="yes-switch">Switch with <b><i>yes/no</i></b> labels</h2>
+    </header>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+      The label can be overridden to provide a different label (for i18n support).
+      The character width is limited to 2-3 characters.
+    </p>
+    <div class="example" id="vue-switchYesNoDemo" v-cloak>
+      <div class="hx2x">
+        <hx-switch-control>
+          <input type="checkbox" id="switchYesNoTest" />
+          <label for="switchYesNoTest">
+            <hx-switch onlabel="yes" offlabel="no" aria-labelledby="switchYesNoTest">
+            </hx-switch>
+          </label>
+        </hx-switch-control>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippet"></code></pre>
+      </footer>
+    </div>
+
+  </section>
+
+  <!-- end of demo yes/no label example section for switch -->
+
+  <!-- start of demo disabled example section for switch -->
+
+  <section>
+    <header>
+      <h2 id="disabled-switch">Disabled Switch</h2>
+    </header>
+
+    <div class="example" id="vue-switchDisabledDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
 
@@ -688,10 +803,10 @@ class="current">
       </header>
 
       <div>
-        <hx-switch-control class="switch">
-          <input type="checkbox" id="switchTest" :disabled="isDisabled" />
-          <label for="switchTest">
-            <hx-switch onlabel="on" offlabel="off" aria-labelledby="switchTest" >
+        <hx-switch-control>
+          <input type="checkbox" id="switchDisabledTest" :disabled="isDisabled" />
+          <label for="switchDisabledTest">
+            <hx-switch onlabel="on" offlabel="off" aria-labelledby="switchDisabledTest">
             </hx-switch>
           </label>
         </hx-switch-control>
@@ -704,14 +819,16 @@ class="current">
 
   </section>
 
+  <!-- end of demo disabled example section for switch -->
+
   <!-- start of demo error example section for switch -->
 
   <section>
     <header>
-      <h2 id="basic-checkbox">Error Switch</h2>
+      <h2 id="error-switch">Error Switch</h2>
     </header>
 
-    <div class="example" id="vue-errorSwitchDemo" v-cloak>
+    <div class="example" id="vue-switchErrorDemo" v-cloak>
       <header>
         <form class="beta-hxForm">
 
@@ -730,10 +847,10 @@ class="current">
       </header>
 
       <div>
-        <hx-switch-control class="switch">
-          <input type="checkbox" id="errorChkDemo" :invalid="isInValid" />
-          <label for="errorChkDemo">
-            <hx-switch onlabel="on" offlabel="off" aria-labelledby="switchTest" >
+        <hx-switch-control>
+          <input type="checkbox" id="switchErrorTest" :invalid="isInValid" />
+          <label for="switchErrorTest">
+            <hx-switch onlabel="on" offlabel="off" aria-labelledby="switchErrorTest">
             </hx-switch>
           </label>
         </hx-switch-control>
@@ -751,6 +868,7 @@ class="current">
   <h2 id="see-also">See Also</h2>
   <ul class="hxList">
       <li><a href="elements/hx-switch">&lt;hx-switch&gt;</a></li>
+      <li><a href="elements/hx-switch-control&gt;">&lt;hx-switch-control&gt;</a></li>
   </ul>
 </section>
           </div>
@@ -758,10 +876,19 @@ class="current">
             <aside class="hxSiderail">
                 <nav class="toc" aria-label="table of contents">
                   
-            <a href="#basic-checkbox">Switch</a>
+            <a href="#default-switch">Default Switch (no labels)</a>
         
 
-            <a href="#basic-checkbox">Error Switch</a>
+            <a href="#on-switch">Switch with on/off labels</a>
+        
+
+            <a href="#yes-switch">Switch with yes/no labels</a>
+        
+
+            <a href="#disabled-switch">Disabled Switch</a>
+        
+
+            <a href="#error-switch">Error Switch</a>
         
                     
                     <a href="#see-also">See Also</a>
@@ -787,8 +914,8 @@ class="current">
 
       <small>
         Latest Release:
-        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v0.24.0" target="_blank">
-          v0.24.0
+        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v1.0.0" target="_blank">
+          v1.0.0
         </a>)
       </small>
     </div>
