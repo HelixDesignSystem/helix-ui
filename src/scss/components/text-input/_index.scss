@@ -8,12 +8,16 @@
 ///  +----------+---------+----------+
 ///  | [prefix] | control | [suffix] | auto
 ///  +----------+---------+----------+
+///  | help     | help    | help     | auto
+///  +----------+---------+----------+
+///  | error    | error   | error    | auto
+///  +----------+---------+----------+
 ///
-///  * column will collapse if content not present
+///  column will collapse if content not present
 
 hx-text-control {
   $ctrl-columns: auto 1fr auto;
-  $ctrl-rows: auto auto;
+  $ctrl-rows: auto auto auto auto;
   $ctrl-row-align: center;
 
   -ms-grid-columns: $ctrl-columns;
@@ -23,7 +27,9 @@ hx-text-control {
   display: grid;
   grid-template-areas:
     "label  label   label"
-    "prefix control suffix";
+    "prefix control suffix"
+    "help   help    help"
+    "error  error   error";
   grid-template-columns: $ctrl-columns;
   grid-template-rows: $ctrl-rows;
 
@@ -36,7 +42,8 @@ hx-text-control {
   > label,
   > input[type="text"],
   > .hxPrefix,
-  > .hxSuffix {
+  > .hxSuffix,
+  > p {
     display: block;
   }
 
@@ -83,6 +90,31 @@ hx-text-control {
     justify-self: $justify;
     margin-left: 0.25rem;
   }
+
+  > p,
+  p.hxHelpText {
+    $justify: start;
+
+    -ms-grid-column-align: $justify;
+    -ms-grid-column-span: 3;
+    -ms-grid-column: 1;
+    -ms-grid-row: 3;
+    -ms-grid-row-align: $ctrl-row-align; // because IE
+    grid-area: help;
+    justify-self: $justify;
+  }
+
+  > p.hxErrorText {
+    $justify: start;
+
+    -ms-grid-column-align: $justify;
+    -ms-grid-column-span: 3;
+    -ms-grid-column: 1;
+    -ms-grid-row: 4;
+    -ms-grid-row-align: $ctrl-row-align; // because IE
+    grid-area: error;
+    justify-self: $justify;
+  }
 }
 
 // ----- PRISTINE ----------
@@ -97,6 +129,18 @@ hx-text-control {
     &:focus {
       @include hxTextControl($focused: true);
     }
+  }
+
+  > p,
+  p.hxHelpText {
+    @include hxHelpText();  // default styles
+  }
+
+  > p.hxErrorText {
+    color: $red-900;
+    font-size: 0.75rem;
+    margin-top: 0;
+    width: 100%; // for IE11
   }
 }
 

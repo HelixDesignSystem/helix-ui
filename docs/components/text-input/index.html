@@ -91,6 +91,42 @@ also:
               </p>
             </hx-checkbox-control>
           </fieldset>
+
+          <fieldset>
+            <legend class="beta-hxFieldName">Optional Text</legend>
+            <hx-checkbox-control>
+              <input
+                id="chkHasHelpText"
+                type="checkbox"
+                v-model="helpTextToDisplay"
+              />
+              <label for="chkHasHelpText">
+                <hx-checkbox></hx-checkbox>
+                Help Text
+              </label>
+            </hx-checkbox-control>
+            <hx-checkbox-control>
+              <input
+                id="chkHasError"
+                type="checkbox"
+                v-model="errorTextToDisplay"
+              />
+              <label for="chkHasError">
+                <hx-checkbox></hx-checkbox>
+                Error Text
+              </label>
+            </hx-checkbox-control>
+
+            <hx-text-control>
+              <label> Help Text</label>
+              <input type="text" v-model="helpText" :disabled="!helpTextToDisplay">
+             </hx-text-control>
+
+             <hx-text-control>
+                <label> Error Text</label>
+              <input type="text" v-model="errorText" :disabled="!errorTextToDisplay">
+             </hx-text-control>
+          </fieldset>
         </form>
       </header>
 
@@ -108,6 +144,14 @@ also:
           >
             {% raw %}{{label}}{% endraw %}
           </label>
+          <p class="hxHelpText" :hidden="!helpTextToDisplay">
+            {% raw %}{{helpText}} {% endraw %}
+          </p>
+          <p class="hxErrorText" :hidden="!errorTextToDisplay">
+            <hx-error>
+              {% raw %}{{errorText}} {% endraw %}
+            </hx-error>
+          </p>
         </hx-text-control>
       </div>
 
