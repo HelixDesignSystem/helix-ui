@@ -26,7 +26,6 @@ export class HXTabsetElement extends HXElement {
     }
 
     $onCreate () {
-        this.$defaultAttribute('id', `tabset-${generateId()}`);
         this.$onConnect = defer(this.$onConnect);
         this._onKeyUp = this._onKeyUp.bind(this);
     }
@@ -106,6 +105,8 @@ export class HXTabsetElement extends HXElement {
      * @type {HXTabElement[]}
      */
     get tabs () {
+        this.$defaultAttribute('id', `tabset-${generateId()}`);  // accommodate Angular lifecycle
+
         let _selector = `#${this.id} > hx-tablist > hx-tab`;
         return Array.from(this.querySelectorAll(_selector));
     }
