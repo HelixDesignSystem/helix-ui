@@ -1,4 +1,5 @@
 import { HXElement } from '../../interfaces/HXElement/index.js';
+import { generateId } from '../../utils';
 
 /**
  * Fires when non-current tab is clicked.
@@ -22,6 +23,7 @@ export class HXTabElement extends HXElement {
     }
 
     $onConnect () {
+        this.$defaultAttribute('id', `tab-${generateId()}`);
         this.$upgradeProperty('current');
         this.$defaultAttribute('role', 'tab');
         this.setAttribute('aria-selected', this.current);

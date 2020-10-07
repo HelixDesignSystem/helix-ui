@@ -294,7 +294,7 @@ describe('<hx-tabset> component tests', () => {
             expect(len).to.equal(0);
         });
 
-        it.skip(`[FEATURE] should add a dynamic tab with id to empty ${template}`, async () => {
+        it(`[FEATURE] should add a dynamic tab with id to empty ${template}`, async () => {
             const mockup = `
                 <hx-tabset>
                     <hx-tablist>
@@ -308,14 +308,12 @@ describe('<hx-tabset> component tests', () => {
             const tabs = fragment.tabs;
             let firstTabCount = tabs.length;
 
-
-            // add a tab
+            // add a dyanmic tab
             const tab = document.createElement('hx-tab');
             tab.innerHTML = "dynamic tab";
             fragment.querySelector('hx-tablist').appendChild(tab);
 
             const tabHasId = fragment.querySelector(elSelector).hasAttribute('id');
-            //fragment.update(); // manually add tab
 
             // add panel
             const tabpanel = document.createElement('hx-tabpanel');
@@ -323,11 +321,47 @@ describe('<hx-tabset> component tests', () => {
             fragment.querySelector('hx-tabcontent').appendChild(tabpanel);
             const secoundTabCount = fragment.tabs.length;
 
-            //fragment.update(); // manually add tabpanel
+            fragment.update();
 
             expect(tabHasId).to.be.true;
             expect(firstTabCount).to.equal(0);
             expect(secoundTabCount).to.equal(1);
+        });
+
+        it(`[FEATURE] should add a dynamic tab with id to a populated ${template}`, async () => {
+            const mockup = `
+                <hx-tabset>
+                    <hx-tablist>
+                        <hx-tab id="dynamicTestTab"></hx-tab>
+                    </hx-tablist>
+                    <hx-tabcontent>
+                        <hx-tabpanel id="dynamicTestTabpanel"></hx-tabpanel>
+                    </hx-tabcontent>
+                </hx-tabset>`;
+
+            const elSelector = 'hx-tablist > hx-tab';
+            const fragment = /** @type {HXTabsetElement} */ await fixture(mockup);
+            const tabs = fragment.tabs;
+            let firstTabCount = tabs.length;
+
+            // add a dyanmic tab
+            const tab = document.createElement('hx-tab');
+            tab.innerHTML = "dynamic tab";
+            fragment.querySelector('hx-tablist').appendChild(tab);
+
+            const tabHasId = fragment.querySelector(elSelector).hasAttribute('id');
+
+            // add panel
+            const tabpanel = document.createElement('hx-tabpanel');
+            tabpanel.innerHTML = "dynamic tab panel";
+            fragment.querySelector('hx-tabcontent').appendChild(tabpanel);
+            const secoundTabCount = fragment.tabs.length;
+
+            fragment.update(); // update tab
+
+            expect(tabHasId).to.be.true;
+            expect(firstTabCount).to.equal(1);
+            expect(secoundTabCount).to.equal(2);
         });
     });
 });
