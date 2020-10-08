@@ -9,6 +9,10 @@ if (document.getElementById('vue-textInputDemo')) {
             isDisabled: false,
             isRequired: false,
             label: 'Username',
+            errorTextToDisplay: false,
+            helpTextToDisplay: false,
+            helpText: 'Please enter username.',
+            errorText: 'Username should not be empty',
         },
         computed: {
             attrDisabled: function () {
@@ -32,6 +36,12 @@ if (document.getElementById('vue-textInputDemo')) {
 
                 return (classNames === '' ? '' : `class="${classNames}"`);
             },
+            isHelpTextHidden: function () {
+                return (this.helpTextToDisplay ? '' : 'hidden');
+            },
+            isErrorTextHidden: function () {
+                return (this.errorTextToDisplay ? '' : 'hidden');
+            },
             snippet: function () {
                 return Util.snippet(`
                     <hx-text-control>
@@ -47,6 +57,14 @@ if (document.getElementById('vue-textInputDemo')) {
                       >
                         ${this.label}
                       </label>
+                      <p class="hxHelpText" ${this.isHelpTextHidden}>
+                        ${this.helpText}
+                      </p>
+                      <p class="hxErrorText" ${this.isErrorTextHidden}>
+                        <hx-error>
+                            ${this.errorText}
+                        </hx-error>
+                      </p>
                     </hx-text-control>
                 `);
             },
