@@ -84,6 +84,7 @@ export class HXTabsetElement extends HXElement {
             }
         }
 
+        this._setupIds(); // account for dynamic tabs
         this.setAttribute('current-tab', idx);
     }
 
@@ -155,6 +156,7 @@ export class HXTabsetElement extends HXElement {
      * elements changes after tabset connects to the DOM.
      */
     update () {
+        this._setupIds();
         this._activateTab(this.currentTab);
     }
 
