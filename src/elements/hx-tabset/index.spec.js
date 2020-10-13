@@ -363,5 +363,32 @@ describe('<hx-tabset> component tests', () => {
             expect(firstTabCount).to.equal(1);
             expect(secoundTabCount).to.equal(2);
         });
+
+        it(`should be able to navigate between one or more tabs and tab panels`, async () => {
+            const mockup = `
+                <hx-tabset>
+                    <hx-tablist>
+                        <hx-tab>First</hx-tab>
+                        <hx-tab>Second</hx-tab>
+                        <hx-tab>Third</hx-tab>
+                    </hx-tablist>
+                    <hx-tabcontent>
+                        <hx-tabpanel>tabpanel-1</hx-tabpanel>
+                        <hx-tabpanel>tabpanel-2</hx-tabpanel>
+                        <hx-tabpanel>tabpanel-3</hx-tabpanel>
+                    </hx-tabcontent>
+                </hx-tabset>`;
+
+            const fragment = /** @type {HXTabsetElement} */ await fixture(mockup);
+
+            // Selected tab
+            const selectedTab = fragment.querySelector('hx-tab:nth-child(2)');
+
+            // Data tabpanel
+            const selectedContent = fragment.querySelector('hx-tabpanel:nth-child(2)');
+
+            expect(selectedTab).to.not.be.null;
+            expect(selectedContent).to.not.be.null;
+        });
     });
 });
