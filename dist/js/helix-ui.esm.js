@@ -6925,6 +6925,7 @@ var HXTabElement = /*#__PURE__*/function (_HXElement) {
   _createClass(HXTabElement, [{
     key: "$onConnect",
     value: function $onConnect() {
+      this.$defaultAttribute('id', "tab-".concat(generateId()));
       this.$upgradeProperty('current');
       this.$defaultAttribute('role', 'tab');
       this.setAttribute('aria-selected', this.current);
@@ -7100,6 +7101,7 @@ var HXTabpanelElement = /*#__PURE__*/function (_HXElement) {
   _createClass(HXTabpanelElement, [{
     key: "$onConnect",
     value: function $onConnect() {
+      this.$defaultAttribute('id', "tabpanel-".concat(generateId()));
       this.$defaultAttribute('role', 'tabpanel');
       this.$upgradeProperty('open');
       this.setAttribute('aria-expanded', this.open);
@@ -7181,7 +7183,6 @@ var HXTabsetElement = /*#__PURE__*/function (_HXElement) {
   _createClass(HXTabsetElement, [{
     key: "$onCreate",
     value: function $onCreate() {
-      this.$defaultAttribute('id', "tabset-".concat(generateId()));
       this.$onConnect = defer(this.$onConnect);
       this._onKeyUp = this._onKeyUp.bind(this);
     }
@@ -7282,6 +7283,8 @@ var HXTabsetElement = /*#__PURE__*/function (_HXElement) {
   }, {
     key: "update",
     value: function update() {
+      this._setupIds();
+
       this._activateTab(this.currentTab);
     }
     /* ---------- PRIVATE PROPERTIES ---------- */
@@ -7403,6 +7406,9 @@ var HXTabsetElement = /*#__PURE__*/function (_HXElement) {
         }
       }
 
+      this._setupIds(); // account for dynamic tabs
+
+
       this.setAttribute('current-tab', idx);
     }
     /* ---------- PUBLIC METHODS ---------- */
@@ -7429,6 +7435,8 @@ var HXTabsetElement = /*#__PURE__*/function (_HXElement) {
   }, {
     key: "tabs",
     get: function get() {
+      this.$defaultAttribute('id', "tabset-".concat(generateId())); // accommodate Angular lifecycle
+
       var _selector = "#".concat(this.id, " > hx-tablist > hx-tab");
 
       return Array.from(this.querySelectorAll(_selector));
@@ -8331,7 +8339,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "1.0.0";
+var version = "1.1.0-rc.0";
 
 /** @module HelixUI */
 var waitForWebComponents$1 = waitForWebComponents;

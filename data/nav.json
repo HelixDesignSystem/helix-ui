@@ -106,7 +106,11 @@
         "path": "modal"
       },
       {
-        "label": "Navigation",
+        "label": "Navigation - Top Nav",
+        "path": "topnav"
+      },
+      {
+        "label": "Navigation - Left Nav",
         "path": "navigation"
       },
       {

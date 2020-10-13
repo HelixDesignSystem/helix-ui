@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Testing - Top Navigation - HelixUI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/helix-ui/">
+
+  <link rel="shortcut icon" href="images/favicon.png">
+
+  
+  <link rel="stylesheet" href="dist/css/helix-ui.css">
+  
+  <link rel="stylesheet" href="docs.css">
+
+  <!-- loader appends polyfills, if needed -->
+  <script src="vendor/webcomponents-loader.js"></script>
+</head>
+<body>
+  <main role="main" class=" ">
+<div id="vue-topNavDemo">
+  <div id="hxTopNav">
+    <a class="img-left brand-logo" href="#"> <img src="images/helix-logo.svg" alt="Logo" /></a>
+    <div class="productMenu">
+      <hx-disclosure id="topnav-productMenu" aria-controls="topnavProductDropdown" role="button" aria-expanded="true"
+        class="disabled">
+        <span>Select a Product</span>
+        <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+      </hx-disclosure>
+      <hx-menu id="topnavProductDropdown">
+        <div class="sectionHeader">
+          <hx-menuitem role="menuitem">Product Alpha</hx-menuitem>
+          <hx-menuitem role="menuitem">Product Beta Services</hx-menuitem>
+          <hx-menuitem role="menuitem">Product Charlie Service Offering</hx-menuitem>
+        </div>
+      </hx-menu>
+    </div>
+    <div id="right-menu">
+      <div>
+        <a href="#" @click="selectedTag(tab)" :current-tab="currentTab">
+          <hx-icon type="bell"></hx-icon>
+          <p>Notifications</p>
+        </a>
+
+        <a href="#" class="selected">
+          <hx-icon type="ticketing"></hx-icon>
+          <p>Tickets</p>
+        </a>
+
+        <a href="#">
+          <hx-icon type="support"></hx-icon>
+          <p>Support</p>
+        </a>
+
+        <a href="#" class="disabled" id="billing">
+          <hx-icon type="billing"></hx-icon>
+          <p>Billing</p>
+          <hx-tooltip for="billing" position="bottom-center">
+            You do not have access to this area. Contact an account admin in your organization to request access to
+            this item.
+          </hx-tooltip>
+        </a>
+
+        <a href="#">
+          <hx-icon type="account"></hx-icon>
+          <p>Account</p>
+        </a>
+      </div>
+      <div class="straightLine"></div>
+      <div>
+        <hx-disclosure id="topnav-menu" aria-controls="topnavMenuId" role="button" aria-expanded="true"
+          class="disabled">
+          <span>Jane User</span>
+          <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+        </hx-disclosure>
+        <hx-menu id="topnavMenuId" position="bottom-end">
+          <div class="sectionHeader">
+            <hx-menuitem role="menuitem" class="menuKey">Account Number :</hx-menuitem>
+            <hx-menuitem role="menuitem" class="menuValue">12345678</hx-menuitem>
+          </div>
+          <hr class="divider">
+          <div class="sectionBody">
+            <hx-menuitem role="menuitem" class="menuValue">My Profile & Settings</hx-menuitem>
+          </div>
+          <hr class="divider">
+          <div class="sectionFooter">
+            <button class="hxBtn">Log Out </button>
+          </div>
+        </hx-menu>
+      </div>
+    </div>
+  </div>
+</div>
+  </main>
+
+  
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  
+  <script src="dist/js/helix-ui.js"></script>
+  
+  <script src="docs.js"></script>
+</body>
+</html>

@@ -6931,6 +6931,7 @@ limitations under the License.
       _createClass(HXTabElement, [{
         key: "$onConnect",
         value: function $onConnect() {
+          this.$defaultAttribute('id', "tab-".concat(generateId()));
           this.$upgradeProperty('current');
           this.$defaultAttribute('role', 'tab');
           this.setAttribute('aria-selected', this.current);
@@ -7106,6 +7107,7 @@ limitations under the License.
       _createClass(HXTabpanelElement, [{
         key: "$onConnect",
         value: function $onConnect() {
+          this.$defaultAttribute('id', "tabpanel-".concat(generateId()));
           this.$defaultAttribute('role', 'tabpanel');
           this.$upgradeProperty('open');
           this.setAttribute('aria-expanded', this.open);
@@ -7187,7 +7189,6 @@ limitations under the License.
       _createClass(HXTabsetElement, [{
         key: "$onCreate",
         value: function $onCreate() {
-          this.$defaultAttribute('id', "tabset-".concat(generateId()));
           this.$onConnect = defer(this.$onConnect);
           this._onKeyUp = this._onKeyUp.bind(this);
         }
@@ -7288,6 +7289,8 @@ limitations under the License.
       }, {
         key: "update",
         value: function update() {
+          this._setupIds();
+
           this._activateTab(this.currentTab);
         }
         /* ---------- PRIVATE PROPERTIES ---------- */
@@ -7409,6 +7412,9 @@ limitations under the License.
             }
           }
 
+          this._setupIds(); // account for dynamic tabs
+
+
           this.setAttribute('current-tab', idx);
         }
         /* ---------- PUBLIC METHODS ---------- */
@@ -7435,6 +7441,8 @@ limitations under the License.
       }, {
         key: "tabs",
         get: function get() {
+          this.$defaultAttribute('id', "tabset-".concat(generateId())); // accommodate Angular lifecycle
+
           var _selector = "#".concat(this.id, " > hx-tablist > hx-tab");
 
           return Array.from(this.querySelectorAll(_selector));
@@ -8337,7 +8345,7 @@ limitations under the License.
         HXTooltipElement: HXTooltipElement
     });
 
-    var version = "1.0.0";
+    var version = "1.1.0-rc.0";
 
     /** @module HelixUI */
     var waitForWebComponents$1 = waitForWebComponents;

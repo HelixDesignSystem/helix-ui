@@ -5167,6 +5167,7 @@ class HXTabElement extends HXElement {
     }
 
     $onConnect () {
+        this.$defaultAttribute('id', `tab-${generateId()}`);
         this.$upgradeProperty('current');
         this.$defaultAttribute('role', 'tab');
         this.setAttribute('aria-selected', this.current);
@@ -5281,6 +5282,7 @@ class HXTabpanelElement extends HXElement {
     }
 
     $onConnect () {
+        this.$defaultAttribute('id', `tabpanel-${generateId()}`);
         this.$defaultAttribute('role', 'tabpanel');
         this.$upgradeProperty('open');
         this.setAttribute('aria-expanded', this.open);
@@ -5342,7 +5344,6 @@ class HXTabsetElement extends HXElement {
     }
 
     $onCreate () {
-        this.$defaultAttribute('id', `tabset-${generateId()}`);
         this.$onConnect = defer(this.$onConnect);
         this._onKeyUp = this._onKeyUp.bind(this);
     }
@@ -5401,6 +5402,7 @@ class HXTabsetElement extends HXElement {
             }
         }
 
+        this._setupIds(); // account for dynamic tabs
         this.setAttribute('current-tab', idx);
     }
 
@@ -5422,6 +5424,8 @@ class HXTabsetElement extends HXElement {
      * @type {HXTabElement[]}
      */
     get tabs () {
+        this.$defaultAttribute('id', `tabset-${generateId()}`);  // accommodate Angular lifecycle
+
         let _selector = `#${this.id} > hx-tablist > hx-tab`;
         return Array.from(this.querySelectorAll(_selector));
     }
@@ -5470,6 +5474,7 @@ class HXTabsetElement extends HXElement {
      * elements changes after tabset connects to the DOM.
      */
     update () {
+        this._setupIds();
         this._activateTab(this.currentTab);
     }
 
@@ -6249,7 +6254,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "1.0.0";
+var version = "1.1.0-rc.0";
 
 /** @module HelixUI */
 
