@@ -3,9 +3,9 @@
 
 /// ========== hxBeacon ========== ///
 hx-beacon {
-  background-color: $gray-0;
+  background-color: var(--hxBeacon, $gray-0);
   border-radius: 1rem;
-  box-shadow: 0 0 2px 2px $gray-600;
+  box-shadow: 0 0 2px 2px var(--hxBeacon, $gray-600);
   display: block;
   height: 1rem;
   margin: 0;

@@ -36,7 +36,6 @@ also:
     </div>
   </section>
 
-
   <section>
     <header>
       <h2 id="beacon-with-inline-styles">Beacon with Inline Styles</h2>
@@ -97,6 +96,68 @@ also:
 
       <footer>
         <pre><code v-text="snippetInlineStyles"></code></pre>
+      </footer>
+    </div>
+  </section>
+
+  <section>
+    <header>
+      <h2 id="beacon-with-color-override">Beacon with Color Override</h2>
+    </header>
+    <p>
+      This is an example implementation of <code>&lt;hx-beacon&gt;</code>
+      With color override.
+      Hexidecimal or named color values are valid, though hex values are
+      best practice for consistency.
+    </p>
+    <p class="hxSubdued hxSubBody">
+      <hx-icon type="exclamation-triangle"></hx-icon>
+        User can use <b>--hxBeacon</b> property for overriding the default Beacon
+        component color.
+        (Example:<b>--hxBeacon:#d32f2f or --hxBeacon:red</b>)
+    </p>
+    <div class="example" id="vue-beacon-Override-styles" v-cloak>
+      <header>
+        <form class="beta-hxForm">
+          <fieldset>
+            <hx-text-control>
+              <input
+                id="txtBeaconOverrideStyles"
+                type="text"
+                v-model="beaconOverrideStyles"
+              />
+              <label for="txtBeaconOverrideStyles">
+                Beacon Inline Styles
+              </label>
+            </hx-text-control>
+            <p class="hxSubdued hxSubBody">
+              <hx-icon type="info-circle"></hx-icon>
+              Hexadecimal and named colors are valid values.
+            </p>
+          </fieldset>
+        </form>
+      </header>
+
+      <div style="position: relative; border: 1px dashed black;"> <!-- demo snippet -->
+        <hx-beacon
+          @dismiss="onEvent"
+          :style="beaconOverrideStyles"
+        >
+        </hx-beacon>
+        <hx-disclosure class="hxBtn" aria-controls="overrideMenuId">
+          <hx-icon type="cog"></hx-icon>
+          <span>Actions</span>
+          <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+        </hx-disclosure>
+        <hx-menu id="overrideMenuId" :open="isOpen">
+          <hx-menuitem>Action 1</hx-menuitem>
+          <hx-menuitem>Action 2</hx-menuitem>
+          <hx-menuitem>Action 3</hx-menuitem>
+        </hx-menu>
+      </div>
+
+      <footer>
+        <pre><code v-text="snippetOverrideStyles"></code></pre>
       </footer>
     </div>
   </section>
