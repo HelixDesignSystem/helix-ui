@@ -11,7 +11,7 @@
       -webkit-animation: hx-pulse 2s infinite linear;
       animation: hx-pulse 2s infinite linear;
       border-radius: 3rem;
-      box-shadow: 0 0 1px 1px $gray-750;
+      box-shadow: 0 0 1px 1px var(--hxBeacon, $gray-750);
       content: "";
       height: 1rem;
       left: 0;
