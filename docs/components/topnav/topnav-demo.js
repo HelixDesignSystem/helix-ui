@@ -14,12 +14,8 @@ if (document.getElementById('vue-topNavDemo')) {
             currentTab: 0,
         },
         methods: {
-            selectedTag (selectedTag) {
-                alert('selected icon');
-                this.a.forEach(tab => {
-                    alert('selected icon');
-                    tab.isActive = (tab === selectedTag);
-                });
+            notify () {
+                alert('Your notifications...');
             },
         },
         computed: {
@@ -28,81 +24,84 @@ if (document.getElementById('vue-topNavDemo')) {
             },
             snippet: function () {
                 return Util.snippet(`
-                    <div id="hxTopNav">
-                        <a class="img-left brand-logo" href="#"> <img src="images/helix-logo.svg" alt="Logo" /></a>
-                        <div class="productMenu">
-                            <hx-disclosure id="topnav-productMenu" aria-controls="topnavProductDropdown" 
-                            role="button" 
-                            aria-expanded="true"
-                            class="disabled">
-                            <span>Select a Product</span>
-                            <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+                    <nav id="hxTopNav">
+                        <a class="hxTopNavLogo" href="#">
+                            <img src="images/helix-logo.svg" alt="Brand Logo" />
+                        </a>
+                        <div class="hxTopNavMenu hxTopNavOptionMenu">
+                            <hx-disclosure
+                                aria-controls="topnav-product-options"
+                                role="button"
+                                aria-expanded="true"
+                            >
+                                <span>Select an option</span>
+                                <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
                             </hx-disclosure>
-                            <hx-menu id="topnavProductDropdown">
-                            <div class="sectionHeader">
-                                <hx-menuitem role="menuitem">Product alpha</hx-menuitem>
-                                <hx-menuitem role="menuitem">Product Beta Services</hx-menuitem>
-                                <hx-menuitem role="menuitem">Product Charlie Service Offering</hx-menuitem>
+                            <hx-menu id="topnav-product-options">
+                                <section>
+                                    <hx-menuitem role="menuitem">Option Alpha</hx-menuitem>
+                                    <hx-menuitem role="menuitem">Option Beta Services</hx-menuitem>
+                                    <hx-menuitem role="menuitem">Option Gamma</hx-menuitem>
+                                </section>
+                            </hx-menu>
+                        </div>
+                        <div class="hxTopNavIconMenu">
+                            <div>
+                                <a href="#" @click="notify()">
+                                    <hx-icon type="bell"></hx-icon>
+                                    <p>Notifications</p>
+                                </a>
+
+                                <a href="#" class="selected">
+                                    <hx-icon type="ticketing"></hx-icon>
+                                    <p>Tickets</p>
+                                </a>
+
+                                <a href="#">
+                                    <hx-icon type="support"></hx-icon>
+                                    <p>Support</p>
+                                </a>
+
+                                <a href="#" class="hxDisabled" id="billing">
+                                    <hx-icon type="billing"></hx-icon>
+                                    <p>Billing</p>
+                                    <hx-tooltip for="billing" position="bottom-center">
+                                    You do not have access to this area. Contact an account admin
+                                    in your organization to request access to this item.
+                                    </hx-tooltip>
+                                </a>
+                                <a href="#">
+                                    <hx-icon type="account"></hx-icon>
+                                    <p>Account</p>
+                                </a>
                             </div>
-                            </hx-menu>
+                            <div class="hxSpacer"></div>
+                            <div class="hxTopNavMenu">
+                                <hx-disclosure
+                                    aria-controls="demo-user-menu"
+                                    role="button"
+                                    aria-expanded="true"
+                                >
+                                    <span>Jane User</span>
+                                    <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+                                </hx-disclosure>
+                                <hx-menu id="demo-user-menu" position="bottom-end">
+                                    <section>
+                                        <header>
+                                            <hx-menuitem role="menuitem" class="hxMenuKey">Account Number:</hx-menuitem>
+                                            <hx-menuitem role="menuitem" class="hxMenuValue">12345678</hx-menuitem>
+                                        </header>
+                                        <hr class="hxDivider">
+                                        <hx-menuitem role="menuitem" class="hxMenuValue">My Profile & Settings</hx-menuitem>
+                                        <hr class="hxDivider">
+                                        <footer>
+                                            <button class="hxBtn">Log Out</button>
+                                        </footer>
+                                    </section>
+                                </hx-menu>
+                            </div>
                         </div>
-                        <div id="right-menu">
-                        <div>
-                            <a href="#" @click="selectedTag(tab)" :current-tab="currentTab">
-                            <hx-icon type="bell"></hx-icon>
-                            <p>Notifications</p>
-                            </a>
-
-                            <a href="#" class="selected">
-                            <hx-icon type="ticketing"></hx-icon>
-                            <p>Tickets</p>
-                            </a>
-
-                            <a href="#">
-                            <hx-icon type="support"></hx-icon>
-                            <p>Support</p>
-                            </a>
-
-                            <a href="#" class="disabled" id="billing">
-                            <hx-icon type="billing"></hx-icon>
-                            <p>Billing</p>
-                            <hx-tooltip for="billing" position="bottom-center">
-                                You do not have access to this area. Contact an account admin in your organization 
-                                to request access to this item.
-                            </hx-tooltip>
-                            </a>
-
-                            <a href="#">
-                            <hx-icon type="account"></hx-icon>
-                            <p>Account</p>
-                            </a>
-                        </div>
-                        <div class="straightLine"></div>
-                        <div>
-                            <hx-disclosure id="topnav-menu" aria-controls="topnavMenuId" 
-                            role="button" 
-                            aria-expanded="true"
-                            class="disabled">
-                            <span>Jane User</span>
-                            <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
-                            </hx-disclosure>
-                            <hx-menu id="topnavMenuId" position="bottom-end">
-                                <div class="sectionHeader">
-                                    <hx-menuitem role="menuitem" class="menuKey">Account Number :</hx-menuitem>
-                                    <hx-menuitem role="menuitem" class="menuValue">12345678</hx-menuitem>
-                                </div>
-                                <hr class="divider">
-                                <div class="sectionBody">
-                                    <hx-menuitem role="menuitem" class="menuValue">My Profile & Settings</hx-menuitem>
-                                </div>
-                                <hr class="divider">
-                                <div class="sectionFooter">
-                                    <button class="hxBtn">Log Out </button>
-                                </div>
-                            </hx-menu>
-                        </div>
-                        </div>
-                    </div>
+                    </nav>
             `);
             },
         },
