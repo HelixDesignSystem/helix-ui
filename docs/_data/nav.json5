@@ -44,6 +44,7 @@
             { label: 'Menu', path: 'menu' },
             { label: 'Modal', path: 'modal' },
             { label: 'Navigation - Top Nav', path: 'topnav' },
+            { label: 'Navigation - Sec Nav', path: 'secnav' },
             { label: 'Navigation - Left Nav', path: 'navigation' },
             { label: 'Pagination', path: 'pagination' },
             { label: 'Panel', path: 'panel' },
