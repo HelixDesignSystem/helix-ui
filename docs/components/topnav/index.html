@@ -3,6 +3,8 @@ title: Top Nav
 minver: 1.1.0
 also:
   components/topnav/test.html: Full Page Demo - Top Navigation
+  components/navigation: Left Navigation
+  components/secnav: Secondary Navigation
 ---
   {% extends 'component.njk' %}
 
@@ -35,7 +37,6 @@ also:
         <div class="hxTopNavMenu hxTopNavOptionMenu">
           <hx-disclosure
             aria-controls="topnav-menu-options"
-            role="button"
             aria-expanded="true"
           >
             <span>Select an option</span>
@@ -43,9 +44,9 @@ also:
           </hx-disclosure>
           <hx-menu id="topnav-menu-options">
             <section>
-              <hx-menuitem role="menuitem">Option Alpha</hx-menuitem>
-              <hx-menuitem role="menuitem">Option Beta Services</hx-menuitem>
-              <hx-menuitem role="menuitem">Option Gamma</hx-menuitem>
+              <hx-menuitem>Option Alpha</hx-menuitem>
+              <hx-menuitem>Option Beta Services</hx-menuitem>
+              <hx-menuitem>Option Gamma</hx-menuitem>
             </section>
           </hx-menu>
         </div>
@@ -84,7 +85,6 @@ also:
           <div class="hxTopNavMenu">
             <hx-disclosure
               aria-controls="demo-user-menu"
-              role="button"
               aria-expanded="true"
             >
               <span>Jane User</span>
@@ -93,11 +93,11 @@ also:
             <hx-menu id="demo-user-menu" position="bottom-end">
               <section>
                 <header>
-                  <hx-menuitem role="menuitem" class="hxMenuKey">Account Number:</hx-menuitem>
-                  <hx-menuitem role="menuitem" class="hxMenuValue">12345678</hx-menuitem>
+                  <hx-menuitem class="hxMenuKey">Account Number:</hx-menuitem>
+                  <hx-menuitem class="hxMenuValue">12345678</hx-menuitem>
                 </header>
                 <hr class="hxDivider">
-                <hx-menuitem role="menuitem" class="hxMenuValue">My Profile & Settings</hx-menuitem>
+                <hx-menuitem class="hxMenuValue">My Profile & Settings</hx-menuitem>
                 <hr class="hxDivider">
                 <footer>
                   <button class="hxBtn">Log Out</button>

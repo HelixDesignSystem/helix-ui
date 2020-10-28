@@ -8,35 +8,41 @@
   overflow: hidden;
   width: 100%;
 
-  .navLink {
+  .hxNavLink {
     color: $gray-400;
-    float: left;
+    display: inline-block;
     font-size: 0.875rem;
     height: 3.5rem;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.25rem;
+    text-align: center;
     text-transform: uppercase;
-    width: 10rem;
+    width: auto;
+
+    &:hover {
+      background-color: $gray-900;
+      color: $gray-0 !important;
+    }
   }
 
-  .hxSecNavMenu > hx-disclosure {
+  > hx-disclosure {
     background-color: transparent;
     color: $gray-400;
     font-size: 0.875rem;
     height: 3.5rem;
     line-height: 1;
-    padding: 0.625rem 1.25rem 0;
+    padding: 1rem 1.25rem;
     text-transform: uppercase;
     width: auto;
 
     > hx-icon {
       color: $gray-400;
       font-size: 0.875rem;
-      margin-top: 0.75rem;
-      margin-left: 0.75rem;
+      margin-left: 0.625rem;
+      margin-top: 0.25rem;
       width: 0.75rem;
     }
 
-    .disabled {
+    &[disabled] {
       @include hxSecNavControl(disabled);
     }
 
@@ -46,7 +52,7 @@
     }
   }
 
-  .hxSecNavMenu > hx-menu {
+  > hx-menu {
     background-color: $gray-1000;
     border: 0.063rem solid $gray-1000;
     color: $gray-0;
@@ -63,7 +69,7 @@
       }
     }
 
-    hx-menuitem.disabled {
+    hx-menuitem[disabled] {
       @include hxSecNavControl(disabled);
 
       color: $gray-600;
@@ -72,13 +78,15 @@
     .hxMenuKey {
       color: $gray-600;
       font-size: 0.75rem;
-      text-transform: none;
       line-height: 1;
+      text-transform: none;
     }
 
     .hxMenuValue {
       color: $gray-400;
       line-height: 1;
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
       text-transform: none;
     }
 
@@ -97,7 +105,9 @@
 
     > section > footer {
       .hxBtn {
-        width: -webkit-fill-available;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
 
         &:hover {
           border-color: $cyan-100;
