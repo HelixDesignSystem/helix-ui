@@ -11,8 +11,8 @@
       border-color: $cyan-700;
     }
   } @else if $pseudo-state == hover {
-    color: $gray-0;
     background-color: $gray-900;
+    color: $gray-0;
   } @else {
     color: $gray-500;
 
@@ -46,9 +46,7 @@
   $state: null,
   $pseudo-state: null,
 ) {
-  @if $state == error {
-    @include __topNavControl--error($pseudo-state);
-  } @else if $state == disabled {
+  @if $state == disabled {
     @include __topNavControl--disabled($pseudo-state);
   } @else {
     @include __topNavControl($pseudo-state);
