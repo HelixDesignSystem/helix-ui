@@ -110,6 +110,10 @@
         "path": "topnav"
       },
       {
+        "label": "Navigation - Sec Nav",
+        "path": "secnav"
+      },
+      {
         "label": "Navigation - Left Nav",
         "path": "navigation"
       },

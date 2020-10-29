@@ -2830,7 +2830,7 @@ limitations under the License.
 
     var shadowMarkup$2 = "<div id='hxBeacon'><button id='hxDismiss' type='button'><span id='hxBeaconPulse'></span></button></div>";
 
-    var shadowStyles$2 = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n:host #hxDismiss { background-color: transparent; border: 0; color: inherit; cursor: pointer; display: inline-block; font: inherit; font-weight: 500; line-height: 1; margin: 0; padding: 0; }\n\n:host #hxDismiss #hxBeaconPulse { -webkit-animation: hx-pulse 2s infinite linear; animation: hx-pulse 2s infinite linear; border-radius: 3rem; box-shadow: 0 0 1px 1px #6b6b6b; content: \"\"; height: 1rem; left: 0; margin: 0; padding: 0; position: absolute; top: 0; -webkit-transform-origin: 50% 50%; transform-origin: 50% 50%; width: 1rem; cursor: pointer; }\n\n@keyframes hx-pulse { 0% { transform: scale(1);\n    opacity: 1; }\n  100% { transform: scale(2.5);\n    opacity: 0; } }\n\n@-webkit-keyframes hx-pulse { 0% { transform: scale(1);\n    opacity: 1; }\n  100% { transform: scale(2.5);\n    opacity: 0; } }\n";
+    var shadowStyles$2 = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n:host #hxDismiss { background-color: transparent; border: 0; color: inherit; cursor: pointer; display: inline-block; font: inherit; font-weight: 500; line-height: 1; margin: 0; padding: 0; }\n\n:host #hxDismiss #hxBeaconPulse { -webkit-animation: hx-pulse 2s infinite linear; animation: hx-pulse 2s infinite linear; border-radius: 3rem; box-shadow: 0 0 1px 1px var(--hxBeacon, #6b6b6b); content: \"\"; height: 1rem; left: 0; margin: 0; padding: 0; position: absolute; top: 0; -webkit-transform-origin: 50% 50%; transform-origin: 50% 50%; width: 1rem; cursor: pointer; }\n\n@keyframes hx-pulse { 0% { transform: scale(1);\n    opacity: 1; }\n  100% { transform: scale(2.5);\n    opacity: 0; } }\n\n@-webkit-keyframes hx-pulse { 0% { transform: scale(1);\n    opacity: 1; }\n  100% { transform: scale(2.5);\n    opacity: 0; } }\n";
 
     /**
      * Defines behavior for the `<hx-beacon>` element.
@@ -6596,7 +6596,7 @@ limitations under the License.
 
     var shadowMarkup$i = "<div id='hxSelect'><div id='hxTrigger'><hx-icon type='angle-down'></hx-icon></div></div>";
 
-    var shadowStyles$i = "#hxSelect { display: none; }\n\n@supports (display: grid) { #hxSelect { box-sizing: border-box; display: grid; grid-template-areas: \". trigger\"; grid-template-columns: auto 2.5rem; height: 100%; width: 100%; }\n  #hxTrigger { align-items: center; background-color: var(--hxTrigger-backgroundColor, #ffffff); box-sizing: border-box; color: inherit; display: flex; grid-area: trigger; height: 100%; justify-content: center; } }\n";
+    var shadowStyles$i = "#hxSelect { display: none; }\n\n@supports (display: grid) { #hxSelect { box-sizing: border-box; display: grid; grid-template-areas: \". trigger\"; grid-template-columns: auto 2.5rem; height: 100%; width: 100%; }\n  #hxTrigger { align-items: center; background-color: var(--hxTrigger-backgroundColor, #ffffff); box-sizing: border-box; color: inherit; display: flex; grid-area: trigger; height: 100%; justify-content: center; opacity: 1; } }\n";
 
     /**
      * Applies Shadow DOM to the `<hx-select>` facade element.
@@ -8345,7 +8345,7 @@ limitations under the License.
         HXTooltipElement: HXTooltipElement
     });
 
-    var version = "1.1.0-rc.0";
+    var version = "1.1.0";
 
     /** @module HelixUI */
     var waitForWebComponents$1 = waitForWebComponents;

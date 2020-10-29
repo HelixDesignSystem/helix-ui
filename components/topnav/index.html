@@ -237,6 +237,12 @@ class="current">
 
 
       
+      <a href="components/secnav" >
+    Navigation - Sec Nav
+  </a>
+
+
+      
       <a href="components/navigation" >
     Navigation - Left Nav
   </a>
@@ -686,9 +692,10 @@ class="current">
 
 
   <p>
-    The Top Nav is the top navigation menu bar across all breakpoints within the application frame of a HelixUI interface.
-    Use the Top Nav to provide access to globally available features, such as account settings, billing, tickets,
-    user management and so on.
+    Top Nav is the top navigation menu bar across all breakpoints
+    within the application frame of a HelixUI interface.  Use Top Nav to
+    provide access to globally available features, such as account settings,
+    billing, tickets, user management and so on.
   </p>
           </header>
 
@@ -696,29 +703,38 @@ class="current">
 
   <section>
     <header>
-      <h2 id="icon-badge">Nav Menu</h2>
+      <h2 id="top-navigation">Top Navigation</h2>
+      <h3>
+        See the snippet below in isolation with the
+        <a href="components/topnav/test.html">full-page</a> demo.
+      </h3>
+      <br />
     </header>
 
     <div id="vue-topNavDemo">
-      <div id="hxTopNav">
-        <a class="img-left brand-logo" href="#"> <img src="images/helix-logo.svg" alt="Logo" /></a>
-        <div class="productMenu">
-          <hx-disclosure id="topnav-productMenu" aria-controls="topnavProductDropdown" role="button"
-            aria-expanded="true" class="disabled">
-            <span>Select a Product</span>
+      <nav id="hxTopNav">
+        <a class="hxTopNavLogo" href="#">
+          <img src="images/helix-logo.svg" alt="Brand Logo" />
+        </a>
+        <div class="hxTopNavMenu hxTopNavOptionMenu">
+          <hx-disclosure
+            aria-controls="topnav-menu-options"
+            aria-expanded="true"
+          >
+            <span>Select an option</span>
             <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
           </hx-disclosure>
-          <hx-menu id="topnavProductDropdown">
-            <div class="sectionHeader">
-              <hx-menuitem role="menuitem">Product Alpha</hx-menuitem>
-              <hx-menuitem role="menuitem">Product Beta Services</hx-menuitem>
-              <hx-menuitem role="menuitem">Product Charlie Service Offering</hx-menuitem>
-            </div>
+          <hx-menu id="topnav-menu-options">
+            <section>
+              <hx-menuitem>Option Alpha</hx-menuitem>
+              <hx-menuitem>Option Beta Services</hx-menuitem>
+              <hx-menuitem>Option Gamma</hx-menuitem>
+            </section>
           </hx-menu>
         </div>
-        <div id="right-menu">
-          <a>
-            <a href="#" @click="selectedTag(tab)" :current-tab="currentTab">
+        <div class="hxTopNavIconMenu">
+          <div>
+            <a href="#" @click="notify()">
               <hx-icon type="bell"></hx-icon>
               <p>Notifications</p>
             </a>
@@ -733,12 +749,12 @@ class="current">
               <p>Support</p>
             </a>
 
-            <a href="#" class="disabled" id="billing">
+            <a href="#" class="hxDisabled" id="billing">
               <hx-icon type="billing"></hx-icon>
               <p>Billing</p>
               <hx-tooltip for="billing" position="bottom-center">
-                You do not have access to this area. Contact an account admin in your organization to request access to
-                this item.
+                You do not have access to this area. Contact an account admin
+                in your organization to request access to this item.
               </hx-tooltip>
             </a>
 
@@ -746,31 +762,33 @@ class="current">
               <hx-icon type="account"></hx-icon>
               <p>Account</p>
             </a>
-          </a>
-          <div class="straightLine"></div>
-          <div>
-            <hx-disclosure id="topnav-menu" aria-controls="topnavMenuId" role="button" aria-expanded="true"
-              class="disabled">
+          </div>
+          <div class="hxSpacer"></div>
+          <div class="hxTopNavMenu">
+            <hx-disclosure
+              aria-controls="demo-user-menu"
+              aria-expanded="true"
+            >
               <span>Jane User</span>
               <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
             </hx-disclosure>
-            <hx-menu id="topnavMenuId" position="bottom-end">
-              <div class="sectionHeader">
-                <hx-menuitem role="menuitem" class="menuKey">Account Number :</hx-menuitem>
-                <hx-menuitem role="menuitem" class="menuValue">12345678</hx-menuitem>
-              </div>
-              <hr class="divider">
-              <div class="sectionBody">
-                <hx-menuitem role="menuitem" class="menuValue">My Profile & Settings</hx-menuitem>
-              </div>
-              <hr class="divider">
-              <div class="sectionFooter">
-                <button class="hxBtn">Log Out </button>
-              </div>
+            <hx-menu id="demo-user-menu" position="bottom-end">
+              <section>
+                <header>
+                  <hx-menuitem class="hxMenuKey">Account Number:</hx-menuitem>
+                  <hx-menuitem class="hxMenuValue">12345678</hx-menuitem>
+                </header>
+                <hr class="hxDivider">
+                <hx-menuitem class="hxMenuValue">My Profile & Settings</hx-menuitem>
+                <hr class="hxDivider">
+                <footer>
+                  <button class="hxBtn">Log Out</button>
+                </footer>
+              </section>
             </hx-menu>
           </div>
         </div>
-      </div>
+      </nav>
 
       <footer>
         <pre><code v-text="snippet"></code></pre>
@@ -782,7 +800,8 @@ class="current">
   <h2 id="see-also">See Also</h2>
   <ul class="hxList">
       <li><a href="components/topnav/test.html">Full Page Demo - Top Navigation</a></li>
-      <li><a href="elements/hx-navigation-control">&lt;hx-navigation-control&gt;</a></li>
+      <li><a href="components/navigation">Left Navigation</a></li>
+      <li><a href="components/secnav">Secondary Navigation</a></li>
   </ul>
 </section>
           </div>
@@ -790,7 +809,7 @@ class="current">
             <aside class="hxSiderail">
                 <nav class="toc" aria-label="table of contents">
                   
-            <a href="#icon-badge">Nav Menu</a>
+            <a href="#top-navigation">Top Navigation</a>
         
                     
                     <a href="#see-also">See Also</a>
@@ -816,8 +835,8 @@ class="current">
 
       <small>
         Latest Release:
-        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v1.1.0-rc.0" target="_blank">
-          v1.1.0-rc.0
+        (<a href="https://github.com/HelixDesignSystem/helix-ui/releases/v1.1.0" target="_blank">
+          v1.1.0
         </a>)
       </small>
     </div>

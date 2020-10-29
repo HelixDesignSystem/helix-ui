@@ -19,25 +19,29 @@
 <body>
   <main role="main" class=" ">
 <div id="vue-topNavDemo">
-  <div id="hxTopNav">
-    <a class="img-left brand-logo" href="#"> <img src="images/helix-logo.svg" alt="Logo" /></a>
-    <div class="productMenu">
-      <hx-disclosure id="topnav-productMenu" aria-controls="topnavProductDropdown" role="button" aria-expanded="true"
-        class="disabled">
-        <span>Select a Product</span>
+  <nav id="hxTopNav">
+    <a class="hxTopNavLogo" href="#">
+      <img src="images/helix-logo.svg" alt="Brand Logo" />
+    </a>
+    <div class="hxTopNavMenu hxTopNavOptionMenu">
+      <hx-disclosure
+        aria-controls="topnav-menu-options"
+        aria-expanded="true"
+      >
+        <span>Select an option</span>
         <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
       </hx-disclosure>
-      <hx-menu id="topnavProductDropdown">
-        <div class="sectionHeader">
-          <hx-menuitem role="menuitem">Product Alpha</hx-menuitem>
-          <hx-menuitem role="menuitem">Product Beta Services</hx-menuitem>
-          <hx-menuitem role="menuitem">Product Charlie Service Offering</hx-menuitem>
-        </div>
+      <hx-menu id="topnav-menu-options">
+        <section>
+          <hx-menuitem>Option Alpha</hx-menuitem>
+          <hx-menuitem>Option Beta Services</hx-menuitem>
+          <hx-menuitem>Option Gamma</hx-menuitem>
+        </section>
       </hx-menu>
     </div>
-    <div id="right-menu">
+    <div class="hxTopNavIconMenu">
       <div>
-        <a href="#" @click="selectedTag(tab)" :current-tab="currentTab">
+        <a href="#" @click="notify()">
           <hx-icon type="bell"></hx-icon>
           <p>Notifications</p>
         </a>
@@ -52,12 +56,12 @@
           <p>Support</p>
         </a>
 
-        <a href="#" class="disabled" id="billing">
+        <a href="#" class="hxDisabled" id="billing">
           <hx-icon type="billing"></hx-icon>
           <p>Billing</p>
           <hx-tooltip for="billing" position="bottom-center">
-            You do not have access to this area. Contact an account admin in your organization to request access to
-            this item.
+            You do not have access to this area. Contact an account admin
+            in your organization to request access to this item.
           </hx-tooltip>
         </a>
 
@@ -66,30 +70,32 @@
           <p>Account</p>
         </a>
       </div>
-      <div class="straightLine"></div>
-      <div>
-        <hx-disclosure id="topnav-menu" aria-controls="topnavMenuId" role="button" aria-expanded="true"
-          class="disabled">
+      <div class="hxSpacer"></div>
+      <div class="hxTopNavMenu">
+        <hx-disclosure
+          aria-controls="demo-user-menu"
+          aria-expanded="true"
+        >
           <span>Jane User</span>
           <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
         </hx-disclosure>
-        <hx-menu id="topnavMenuId" position="bottom-end">
-          <div class="sectionHeader">
-            <hx-menuitem role="menuitem" class="menuKey">Account Number :</hx-menuitem>
-            <hx-menuitem role="menuitem" class="menuValue">12345678</hx-menuitem>
-          </div>
-          <hr class="divider">
-          <div class="sectionBody">
-            <hx-menuitem role="menuitem" class="menuValue">My Profile & Settings</hx-menuitem>
-          </div>
-          <hr class="divider">
-          <div class="sectionFooter">
-            <button class="hxBtn">Log Out </button>
-          </div>
+        <hx-menu id="demo-user-menu" position="bottom-end">
+          <section>
+            <header>
+              <hx-menuitem class="hxMenuKey">Account Number:</hx-menuitem>
+              <hx-menuitem class="hxMenuValue">12345678</hx-menuitem>
+            </header>
+            <hr class="hxDivider">
+            <hx-menuitem class="hxMenuValue">My Profile & Settings</hx-menuitem>
+            <hr class="hxDivider">
+            <footer>
+              <button class="hxBtn">Log Out</button>
+            </footer>
+          </section>
         </hx-menu>
       </div>
     </div>
-  </div>
+  </nav>
 </div>
   </main>
 

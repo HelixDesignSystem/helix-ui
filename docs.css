@@ -534,6 +534,42 @@ body.hxHorizontal.hxForm.beta main#content > header {
   }
 }
 
+.icon-media {
+  background-color: #ffffff;
+  border: 1px solid #d8d8d8;
+  height: 100%;
+  padding: 1.25rem;
+}
+
+.icon-media .media__icon {
+  color: #000000;
+  display: flex;
+  font-size: 2em;
+  line-height: 1;
+}
+
+.icon-media .media__body {
+  margin-left: 1.25rem;
+}
+
+hx-icon.size-2x {
+  height: 2em;
+  width: 2em;
+}
+
+hx-icon.size-3x {
+  height: 3em;
+  width: 3em;
+}
+
+hx-icon.danger {
+  color: #d32f2f;
+}
+
+.nav-demo .hxNav {
+  width: 15rem;
+}
+
 a[href] {
   background-color: transparent;
   color: #0d74d1;
@@ -1321,35 +1357,6 @@ min-version {
 /* ---------------------------------------- *\
  * HELPERS
 \* ---------------------------------------- */
-.icon-media {
-  background-color: #ffffff;
-  border: 1px solid #d8d8d8;
-  height: 100%;
-  padding: 1.25rem;
-}
-.icon-media .media__icon {
-  color: #000000;
-  display: flex;
-  font-size: 2em;
-  line-height: 1;
-}
-.icon-media .media__body {
-  margin-left: 1.25rem;
-}
-hx-icon.size-2x {
-  height: 2em;
-  width: 2em;
-}
-hx-icon.size-3x {
-  height: 3em;
-  width: 3em;
-}
-hx-icon.danger {
-  color: #d32f2f;
-}
-.nav-demo .hxNav {
-  width: 15rem;
-}
 .docs-panel #demo-basic {
   height: 15rem;
   max-height: 20rem;
