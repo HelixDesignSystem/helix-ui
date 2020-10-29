@@ -1,19 +1,26 @@
 ---
-title: Navigation
+title: Left Navigation
 minver: 0.2.0
 also:
   components/layout: Layout
+  components/topnav: Top Navigation
+  components/secnav: Secondary Navigation
 ---
 {% extends 'component.njk' %}
 
 {% block page_header %}
-  {# TODO: add component description #}
+  <p>
+    {{page.title}} provides a menu of navigation items that a user
+    clicks to move to another page or location within the application they
+    are using. Because it is easier for a user to scan, left navigation is
+    preferred over secondary navigation.
+  </p>
 {% endblock %}
 
 {% block content %}
   <section>
     <header>
-      <h2 id="vertical-navigation">Vertical Navigation</h2>
+      <h2 id="left-navigation">Left (Vertical) Navigation</h2>
       {# TODO: add section description #}
     </header>
 
