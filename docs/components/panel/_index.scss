@@ -5,14 +5,14 @@
     min-height: 10rem;
 
     .hxPanel {
-      border: @demo-container-border;
+      border: $demo-container-border;
 
       > header {
-        border-bottom: @demo-container-border;
+        border-bottom: $demo-container-border;
       }
 
       > footer {
-        border-top: @demo-container-border;
+        border-top: $demo-container-border;
       }
     }
   }
