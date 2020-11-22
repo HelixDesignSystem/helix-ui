@@ -1,8 +1,10 @@
 @import "vars";
 @import "mixins";
 @import "../config";
+@import "../../base";
+@import "../../elements/_has-arrow";
 
-hx-popover {
+.hx-popover, hx-popover {
   @extend %hxComponent;
   @include is-positionable;
 
@@ -16,6 +18,7 @@ hx-popover {
   }
 
   > hx-popover-body, // DEPRECATED: remove in v1.0.0
+  > .hx-div,
   > hx-div {
     order: 2;
   }
@@ -28,6 +31,7 @@ hx-popover {
 
 // TODO: is there any way to simplify this?
 #hxPopover.hx-popover, // ShadyDOM selector
+.hx-popover,
 hx-popover {
   flex-direction: column;
 
@@ -44,11 +48,11 @@ hx-popover {
     text-transform: none;
   }
 
-  > hx-div:not([scroll]) {
+  > .hx-div:not([scroll]), > hx-div:not([scroll]) {
     overflow: hidden;
   }
 
-  > hx-div {
+  > .hx-div, > hx-div {
     --hxPaddingLeft: #{map-get($space, md)};
     --hxPaddingRight: #{map-get($space, md)};
 
@@ -88,7 +92,7 @@ hx-popover {
 }
 
 // DEPRECATED: remove in v1.0.0
-hx-popover-body {
+.hx-popover-body, hx-popover-body {
   display: block;
   flex-grow: 1;
   max-height: 20rem; //~320px
@@ -105,7 +109,7 @@ hx-popover-body {
   }
 }
 
-hx-popover-foot {
+.hx-popover-foot, hx-popover-foot {
   display: block;
   flex-shrink: 0;
   padding: 1.25rem;
@@ -115,7 +119,7 @@ hx-popover-foot {
   }
 }
 
-hx-popover-head {
+.hx-popover-head, hx-popover-head {
   color: $gray-900;
   display: block;
   flex-shrink: 0;
@@ -123,4 +127,12 @@ hx-popover-head {
   font-weight: 500;
   padding: 1.25rem;
   text-transform: none;
+}
+
+.hx-popover {
+  background-color: var(--hxBackgroundColor, $gray-0);
+  border-color: var(--hxBorderColor, $gray-300);
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: $layering-shadow;
 }

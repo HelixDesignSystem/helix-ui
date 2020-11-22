@@ -16,7 +16,7 @@
       var(--hxPaddingBottom)
       var(--hxPaddingLeft);
 
-    #hxDiv {
+    .hx-div, #hxDiv {
       padding: var(--hxPadding, 0);
     }
   }
