@@ -60,7 +60,7 @@ import {
  * and apply them to an instance.
  */
 export const Positionable = (superclass) => {
-    class ProtoClass extends mix(superclass, Revealable) {}
+    class ProtoClass extends mix(superclass, Revealable) { }
 
     /** @lends Positionable */
     class _Positionable extends ProtoClass {
@@ -82,8 +82,12 @@ export const Positionable = (superclass) => {
 
             this.$upgradeProperty('position');
             this.$upgradeProperty('relativeTo');
+            this.$upgradeProperty('override');
 
             this.$defaultAttribute('position', this.DEFAULT_POSITION);
+            if (!this.hasAttribute('override')) {
+                this.setAttribute('override', '');
+            }
 
             this.addEventListener('open', this.__onOpen);
             this.addEventListener('close', this.__onClose);
@@ -106,7 +110,7 @@ export const Positionable = (superclass) => {
         /** @override */
         static get $observedAttributes () {
             let attrs = super.$observedAttributes;
-            return attrs.concat([ 'position' ]);
+            return attrs.concat([ 'position', 'override' ]);
         }
 
         /** @override */
@@ -115,6 +119,9 @@ export const Positionable = (superclass) => {
 
             if (attr === 'position') {
                 this.setShadowPosition(newVal);
+                this.reposition();
+            } else if (attr === 'override') {
+                this.setOverridePosition(newVal);
                 this.reposition();
             }
         }
@@ -203,7 +210,7 @@ export const Positionable = (superclass) => {
          */
         reposition () {
             if (this.open && this.relativeElement) {
-                let { x, y, position } = this.__calculatePosition();
+                let { x, y, position, override } = this.__calculatePosition();
 
                 /*
                  * FYI: `getClientRect()` (via `getBoundingClientRect()`) may incorrectly calculate
@@ -214,6 +221,8 @@ export const Positionable = (superclass) => {
 
                 this._optimumPosition = position;
                 this.setShadowPosition(position);
+                this._optimumOverride = override;
+                this.setOverridePosition(override);
 
                 this.$emit('reposition');
             }
@@ -226,8 +235,8 @@ export const Positionable = (superclass) => {
          * @ignore
          * @param {NormalizedPositionString}
          */
-        setShadowPosition (position) {} // eslint-disable-line no-unused-vars
-
+        setShadowPosition (position) { } // eslint-disable-line no-unused-vars
+        setOverridePosition (override) { } // eslint-disable-line no-unused-vars
         /**
          * Add active event listeners (e.g, document `click`)
          * These listeners rely on `this.controlElement` to manipulate
@@ -275,6 +284,8 @@ export const Positionable = (superclass) => {
             let relRect = this.relativeElement.getBoundingClientRect();
 
             let position = this.position;
+            let override = this.override;
+
             let deltas = this.__getDeltas(position);
             let calculate = offsetFunctionMap[position];
 
@@ -283,26 +294,25 @@ export const Positionable = (superclass) => {
 
             // check if any edge of the element is off screen
             let isOffscreen = this.__getViewportCollisions(coords);
-
-            if (isOffscreen.anywhere) {
-                let optimumPosition = optimizePositionForCollisions(position, isOffscreen);
+            if (isOffscreen.anywhere && override !== '' && override !== null) {
+                let optimumPosition = optimizePositionForCollisions(override, isOffscreen);
                 let optimumDeltas = this.__getDeltas(optimumPosition);
                 let optimumCalculate = offsetFunctionMap[optimumPosition];
 
                 // recalculate coords based on optimum position
                 let optimumCoords = optimumCalculate(posRect, relRect, optimumDeltas);
-
                 return {
                     position: optimumPosition,
                     x: optimumCoords.x,
-                    y: optimumCoords.y,
+                    y: optimumCoords.y - 20,
+                    override: override,
                 };
             }
-
             return {
                 position,
                 x: coords.x,
                 y: coords.y,
+                override,
             };
         }
 

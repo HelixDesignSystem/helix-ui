@@ -48,6 +48,11 @@ export class HXTooltipElement extends _ProtoClass {
         super.$onConnect();
 
         this.$upgradeProperty('htmlFor');
+        this.$upgradeProperty('override');
+
+        if (!this.hasAttribute('override')) {
+            this.setAttribute('override','');
+        }
 
         // TODO: What if 'id' is blank?
         this.$defaultAttribute('id', `tip-${generateId()}`);
@@ -65,15 +70,16 @@ export class HXTooltipElement extends _ProtoClass {
 
     /** @override */
     static get $observedAttributes () {
-        return super.$observedAttributes.concat([ 'for' ]);
+        return super.$observedAttributes.concat([ 'for', 'override' ]);
     }
 
     /** @override */
     $onAttributeChange (attr, oldVal, newVal) {
         super.$onAttributeChange(attr, oldVal, newVal);
-
         if (attr === 'for') {
             this._connectToControl();
+        } else if (attr === 'override') {
+            this.getAttribute('override');
         }
     }
 
@@ -103,12 +109,24 @@ export class HXTooltipElement extends _ProtoClass {
         this.setAttribute('for', value);
     }
 
+    get override () {
+        let overrideValue = this.getAttribute('override');
+        return overrideValue;
+    }
+    set override (newVal) {
+        this.setAttribute('override', newVal);
+    }
+
     /**
      * @override
      * @param {NormalizedPositionString}
      */
     setShadowPosition (position) {
         this._elRoot.setAttribute('position', position);
+    }
+
+    setOverridePosition (override) {
+        this._elRoot.setAttribute('override', override);
     }
 
     /** @private */
