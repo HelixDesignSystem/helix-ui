@@ -2,16 +2,20 @@
 @import "vars";
 @import "./config";
 
+/// * =================================== * ///
+/// * ====== Secondary Navigation  ====== * ///
+/// * =================================== * ///
+
 #hxSecNav {
   background-color: $gray-975;
   height: 3.5rem;
   overflow: hidden;
-  width: 100%;
+  width: 100vw;
 
   .hxNavLink {
     color: $gray-400;
     display: inline-block;
-    font-size: 0.875rem;
+    font-size: 1rem;
     height: 3.5rem;
     padding: 1rem 1.25rem;
     text-align: center;
@@ -19,15 +23,21 @@
     width: auto;
 
     &:hover {
-      background-color: $gray-900;
+      background-color: $gray-800;
       color: $gray-0 !important;
+    }
+
+    &:active {
+      background-color: $gray-900;
+      color: $gray-0;
     }
   }
 
   > hx-disclosure {
     background-color: transparent;
     color: $gray-400;
-    font-size: 0.875rem;
+    display: inline-block;
+    font-size: 1rem;
     height: 3.5rem;
     line-height: 1;
     padding: 1rem 1.25rem;
@@ -36,7 +46,7 @@
 
     > hx-icon {
       color: $gray-400;
-      font-size: 0.875rem;
+      font-size: 1rem;
       margin-left: 0.625rem;
       margin-top: 0.25rem;
       width: 0.75rem;
@@ -47,14 +57,19 @@
     }
 
     &:hover {
-      background-color: $gray-900;
+      background-color: $gray-800;
       color: $gray-0 !important;
+    }
+
+    &:active {
+      background-color: $gray-900;
+      color: $gray-0;
     }
   }
 
   > hx-menu {
     background-color: $gray-1000;
-    border: 0.063rem solid $gray-1000;
+    border: 1px solid $gray-1000;
     color: $gray-0;
     min-width: 10.5rem;
     padding: 0;
@@ -62,10 +77,16 @@
 
     hx-menuitem {
       color: $gray-400;
+      padding: 0.5rem 1.25rem;
 
       &:hover {
-        background-color: $gray-900;
+        background-color: $gray-800;
         color: $gray-0 !important;
+      }
+
+      &:active {
+        background-color: $gray-900;
+        color: $gray-0;
       }
     }
 
@@ -75,51 +96,19 @@
       color: $gray-600;
     }
 
-    .hxMenuKey {
-      color: $gray-600;
-      font-size: 0.75rem;
-      line-height: 1;
-      text-transform: none;
-    }
-
-    .hxMenuValue {
-      color: $gray-400;
-      line-height: 1;
-      padding-bottom: 0.5rem;
-      padding-top: 0.5rem;
-      text-transform: none;
-    }
-
     .hxDivider {
       border-color: $gray-800;
-      height: 0.063rem;
+      height: 1px;
+      margin: 0.5rem auto 0;
     }
 
     > section > header {
-      padding-bottom: 0.5rem;
+      padding-left: 1.25rem;
+      padding-top: 0.5rem;
     }
 
     > section {
-      padding: 1rem 1.25rem;
-    }
-
-    > section > footer {
-      .hxBtn {
-        margin-left: auto;
-        margin-right: auto;
-        width: 100%;
-
-        &:hover {
-          border-color: $cyan-100;
-          background-color: $gray-1000;
-          color: $cyan-100;
-        }
-
-        &:active {
-          border-color: $cyan-700;
-          color: $cyan-700;
-        }
-      }
+      padding: 0;
     }
   }
 }
