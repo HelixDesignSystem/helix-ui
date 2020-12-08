@@ -4606,13 +4606,13 @@ hx-search-control:not([hx-defined]) > button {
   background-color: #212121;
   height: 3.5rem;
   overflow: hidden;
-  width: 100%;
+  width: 100vw;
 }
 
 #hxSecNav .hxNavLink {
   color: #d8d8d8;
   display: inline-block;
-  font-size: 0.875rem;
+  font-size: 1rem;
   height: 3.5rem;
   padding: 1rem 1.25rem;
   text-align: center;
@@ -4621,14 +4621,20 @@ hx-search-control:not([hx-defined]) > button {
 }
 
 #hxSecNav .hxNavLink:hover {
-  background-color: #424242;
+  background-color: #616161;
   color: #ffffff !important;
+}
+
+#hxSecNav .hxNavLink:active {
+  background-color: #424242;
+  color: #ffffff;
 }
 
 #hxSecNav > hx-disclosure {
   background-color: transparent;
   color: #d8d8d8;
-  font-size: 0.875rem;
+  display: inline-block;
+  font-size: 1rem;
   height: 3.5rem;
   line-height: 1;
   padding: 1rem 1.25rem;
@@ -4638,7 +4644,7 @@ hx-search-control:not([hx-defined]) > button {
 
 #hxSecNav > hx-disclosure > hx-icon {
   color: #d8d8d8;
-  font-size: 0.875rem;
+  font-size: 1rem;
   margin-left: 0.625rem;
   margin-top: 0.25rem;
   width: 0.75rem;
@@ -4653,13 +4659,18 @@ hx-search-control:not([hx-defined]) > button {
 }
 
 #hxSecNav > hx-disclosure:hover {
-  background-color: #424242;
+  background-color: #616161;
   color: #ffffff !important;
+}
+
+#hxSecNav > hx-disclosure:active {
+  background-color: #424242;
+  color: #ffffff;
 }
 
 #hxSecNav > hx-menu {
   background-color: #000000;
-  border: 0.063rem solid #000000;
+  border: 1px solid #000000;
   color: #ffffff;
   min-width: 10.5rem;
   padding: 0;
@@ -4668,11 +4679,17 @@ hx-search-control:not([hx-defined]) > button {
 
 #hxSecNav > hx-menu hx-menuitem {
   color: #d8d8d8;
+  padding: 0.5rem 1.25rem;
 }
 
 #hxSecNav > hx-menu hx-menuitem:hover {
-  background-color: #424242;
+  background-color: #616161;
   color: #ffffff !important;
+}
+
+#hxSecNav > hx-menu hx-menuitem:active {
+  background-color: #424242;
+  color: #ffffff;
 }
 
 #hxSecNav > hx-menu hx-menuitem[disabled] {
@@ -4684,49 +4701,19 @@ hx-search-control:not([hx-defined]) > button {
   color: #9e9e9e;
 }
 
-#hxSecNav > hx-menu .hxMenuKey {
-  color: #9e9e9e;
-  font-size: 0.75rem;
-  line-height: 1;
-  text-transform: none;
-}
-
-#hxSecNav > hx-menu .hxMenuValue {
-  color: #d8d8d8;
-  line-height: 1;
-  padding-bottom: 0.5rem;
-  padding-top: 0.5rem;
-  text-transform: none;
-}
-
 #hxSecNav > hx-menu .hxDivider {
   border-color: #616161;
-  height: 0.063rem;
+  height: 1px;
+  margin: 0.5rem auto 0;
 }
 
 #hxSecNav > hx-menu > section > header {
-  padding-bottom: 0.5rem;
+  padding-left: 1.25rem;
+  padding-top: 0.5rem;
 }
 
 #hxSecNav > hx-menu > section {
-  padding: 1rem 1.25rem;
-}
-
-#hxSecNav > hx-menu > section > footer .hxBtn {
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-}
-
-#hxSecNav > hx-menu > section > footer .hxBtn:hover {
-  border-color: #b6e3eb;
-  background-color: #000000;
-  color: #b6e3eb;
-}
-
-#hxSecNav > hx-menu > section > footer .hxBtn:active {
-  border-color: #0e94a6;
-  color: #0e94a6;
+  padding: 0;
 }
 
 .hxSelector {
@@ -5752,7 +5739,7 @@ hx-tooltip > header {
 #hxTopNav {
   background-color: #000000;
   overflow: hidden;
-  width: 100%;
+  width: 100vw;
 }
 
 #hxTopNav .img-left,
@@ -5794,7 +5781,7 @@ hx-tooltip > header {
   background-color: #616161;
   height: 2.5rem;
   margin: 0.5rem 0 0.5rem 0.5rem;
-  width: 0.063rem;
+  width: 1px;
 }
 
 #hxTopNav .productMenu,
@@ -5952,7 +5939,7 @@ hx-tooltip > header {
 #hxTopNav #topnavProductDropdown,
 #hxTopNav .hxTopNavMenu > hx-menu {
   background-color: #000000;
-  border: 0.063rem solid #000000;
+  border: 1px solid #000000;
   color: #ffffff;
   min-width: 10.5rem;
   padding: 0;
@@ -5963,6 +5950,7 @@ hx-tooltip > header {
 #hxTopNav #topnavProductDropdown hx-menuitem,
 #hxTopNav .hxTopNavMenu > hx-menu hx-menuitem {
   color: #d8d8d8;
+  padding: 1rem 1.25rem;
 }
 
 #hxTopNav #topnavMenuId hx-menuitem[disabled],
@@ -5980,9 +5968,9 @@ hx-tooltip > header {
   color: #9e9e9e;
 }
 
-#hxTopNav #topnavMenuId hx-menuitem:hover,
-#hxTopNav #topnavProductDropdown hx-menuitem:hover,
-#hxTopNav .hxTopNavMenu > hx-menu hx-menuitem:hover {
+#hxTopNav #topnavMenuId hx-menuitem:not(.hxMenuKey):hover,
+#hxTopNav #topnavProductDropdown hx-menuitem:not(.hxMenuKey):hover,
+#hxTopNav .hxTopNavMenu > hx-menu hx-menuitem:not(.hxMenuKey):hover {
   background-color: #424242;
   color: #ffffff !important;
 }
@@ -5996,7 +5984,17 @@ hx-tooltip > header {
   color: #9e9e9e;
   font-size: 0.75rem;
   line-height: 1;
+  padding: 1.25rem 1.25rem 0;
   text-transform: none;
+}
+
+#hxTopNav #topnavMenuId .menuKey:hover,
+#hxTopNav #topnavMenuId .hxMenuKey:hover,
+#hxTopNav #topnavProductDropdown .menuKey:hover,
+#hxTopNav #topnavProductDropdown .hxMenuKey:hover,
+#hxTopNav .hxTopNavMenu > hx-menu .menuKey:hover,
+#hxTopNav .hxTopNavMenu > hx-menu .hxMenuKey:hover {
+  cursor: default;
 }
 
 #hxTopNav #topnavMenuId .menuValue,
@@ -6019,7 +6017,8 @@ hx-tooltip > header {
 #hxTopNav .hxTopNavMenu > hx-menu .divider,
 #hxTopNav .hxTopNavMenu > hx-menu .hxDivider {
   border-color: #616161;
-  height: 0.063rem;
+  height: 1px;
+  margin: 0.5rem auto;
 }
 
 #hxTopNav #topnavMenuId .sectionHeader,
@@ -6031,13 +6030,13 @@ hx-tooltip > header {
   padding-bottom: 0.5rem;
 }
 
-#hxTopNav #topnavMenuId .sectionBody,
-#hxTopNav #topnavMenuId > section,
-#hxTopNav #topnavProductDropdown .sectionBody,
-#hxTopNav #topnavProductDropdown > section,
-#hxTopNav .hxTopNavMenu > hx-menu .sectionBody,
-#hxTopNav .hxTopNavMenu > hx-menu > section {
-  padding: 1rem 1.25rem;
+#hxTopNav #topnavMenuId .sectionFooter,
+#hxTopNav #topnavMenuId > section > footer,
+#hxTopNav #topnavProductDropdown .sectionFooter,
+#hxTopNav #topnavProductDropdown > section > footer,
+#hxTopNav .hxTopNavMenu > hx-menu .sectionFooter,
+#hxTopNav .hxTopNavMenu > hx-menu > section > footer {
+  padding: 0.5rem 1.25rem 1.25rem;
 }
 
 #hxTopNav #topnavMenuId .sectionFooter .hxBtn,
@@ -6046,6 +6045,8 @@ hx-tooltip > header {
 #hxTopNav #topnavProductDropdown > section > footer .hxBtn,
 #hxTopNav .hxTopNavMenu > hx-menu .sectionFooter .hxBtn,
 #hxTopNav .hxTopNavMenu > hx-menu > section > footer .hxBtn {
+  border-color: #16b9d4;
+  color: #16b9d4;
   margin-left: auto;
   margin-right: auto;
   width: 100%;

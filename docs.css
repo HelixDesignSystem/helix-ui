@@ -570,6 +570,47 @@ hx-icon.danger {
   width: 15rem;
 }
 
+.docs-panel #demo-basic {
+  height: 15rem;
+  max-height: 20rem;
+  min-height: 10rem;
+}
+
+.docs-panel #demo-basic .hxPanel {
+  border: 1px dashed #9e9e9e;
+}
+
+.docs-panel #demo-basic .hxPanel > header {
+  border-bottom: 1px dashed #9e9e9e;
+}
+
+.docs-panel #demo-basic .hxPanel > footer {
+  border-top: 1px dashed #9e9e9e;
+}
+
+.docs-panel #demo-tabbed {
+  height: 20rem;
+  max-height: 30rem;
+  min-height: 20rem;
+}
+
+.docs-tabset #demo-basic {
+  height: 22rem;
+  max-height: 40rem;
+  min-height: 22rem;
+}
+
+.tooltip-appearance {
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 0;
+}
+
+.tooltip-appearance > hx-tooltip {
+  margin: 1.25rem;
+  position: relative;
+}
+
 a[href] {
   background-color: transparent;
   color: #0d74d1;
@@ -927,6 +968,34 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 .menu-positioning-spec #target-bottomRight {
   bottom: 0;
   right: 0;
+}
+
+.specs-panel .spec.scroll {
+  height: 20rem;
+  overflow: hidden;
+}
+
+.specs-panel .spec.visible {
+  /* Visualize Invisible Panel Boundaries */
+}
+
+.specs-panel .spec.visible hx-panel,
+.specs-panel .spec.visible .hxPanel {
+  border: 1px dashed #9e9e9e;
+}
+
+.specs-panel .spec.visible hx-panel > hx-panelhead,
+.specs-panel .spec.visible hx-panel > header,
+.specs-panel .spec.visible .hxPanel > hx-panelhead,
+.specs-panel .spec.visible .hxPanel > header {
+  border-bottom: 1px dashed #9e9e9e;
+}
+
+.specs-panel .spec.visible hx-panel > hx-panelfoot,
+.specs-panel .spec.visible hx-panel > footer,
+.specs-panel .spec.visible .hxPanel > hx-panelfoot,
+.specs-panel .spec.visible .hxPanel > footer {
+  border-top: 1px dashed #9e9e9e;
 }
 
 .popover-spec #popover-in-scrolling-container hx-div[scroll="vertical"] {
@@ -1353,63 +1422,4 @@ min-version {
 }
 .guide-content hx-icon.polyfill-needed {
   color: #d32f2f;
-}
-/* ---------------------------------------- *\
- * HELPERS
-\* ---------------------------------------- */
-.docs-panel #demo-basic {
-  height: 15rem;
-  max-height: 20rem;
-  min-height: 10rem;
-}
-.docs-panel #demo-basic .hxPanel {
-  border: 1px dashed #9e9e9e;
-}
-.docs-panel #demo-basic .hxPanel > header {
-  border-bottom: 1px dashed #9e9e9e;
-}
-.docs-panel #demo-basic .hxPanel > footer {
-  border-top: 1px dashed #9e9e9e;
-}
-.docs-panel #demo-tabbed {
-  height: 20rem;
-  max-height: 30rem;
-  min-height: 20rem;
-}
-.docs-tabset #demo-basic {
-  height: 22rem;
-  max-height: 40rem;
-  min-height: 22rem;
-}
-.tooltip-appearance {
-  display: flex;
-  flex-wrap: wrap;
-  z-index: 0;
-}
-.tooltip-appearance > hx-tooltip {
-  margin: 1.25rem;
-  position: relative;
-}
-.specs-panel .spec.scroll {
-  height: 20rem;
-  overflow: hidden;
-}
-.specs-panel .spec.visible {
-  /* Visualize Invisible Panel Boundaries */
-}
-.specs-panel .spec.visible hx-panel,
-.specs-panel .spec.visible .hxPanel {
-  border: 1px dashed #9e9e9e;
-}
-.specs-panel .spec.visible hx-panel > hx-panelhead,
-.specs-panel .spec.visible .hxPanel > hx-panelhead,
-.specs-panel .spec.visible hx-panel > header,
-.specs-panel .spec.visible .hxPanel > header {
-  border-bottom: 1px dashed #9e9e9e;
-}
-.specs-panel .spec.visible hx-panel > hx-panelfoot,
-.specs-panel .spec.visible .hxPanel > hx-panelfoot,
-.specs-panel .spec.visible hx-panel > footer,
-.specs-panel .spec.visible .hxPanel > footer {
-  border-top: 1px dashed #9e9e9e;
 }
