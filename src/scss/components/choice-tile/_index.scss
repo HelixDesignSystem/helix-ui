@@ -18,14 +18,14 @@ hx-tile {
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 0;
-    color: $gray-700;
+    color: var(--hxChoiceTile-header-color, $gray-700);
     line-height: 24px;
     text-align: center;
   }
 
   > p {
     font-size: 0.75rem;
-    color: $gray-700;
+    color: var(--hxChoiceTile-tile-paragraph-color, $gray-700);
   }
 
   &.hxSm {
@@ -113,13 +113,13 @@ label.hxChoice > input[invalid] + hx-tile.hxSubdued {
 // ========== DEFAULT ==========
 // NOTE: These styles may be able to go into default hx-tile defs
 label.hxChoice > input + hx-tile {
-  background-color: $gray-0;
-  border: solid 1px $gray-400;
-  color: $gray-900;
+  background-color: var(--hxChoiceTile-input-bgcolor, $gray-0);
+  border: solid 1px var(--hxChoiceTile-input-hxTile-bordercolor, $gray-400);
+  color: var(--hxChoiceTile-input-color, $gray-900);
   cursor: pointer;
 
   .hx-tile-icon {
-    color: $gray-400;
+    color: var(--hxChoiceTile-hxTile-color, $gray-400);
   }
 }
 
@@ -134,28 +134,28 @@ label.hxChoice > input:focus + hx-tile {
 
 // ========== CHECKED ==========
 label.hxChoice > input:checked + hx-tile {
-  border: 1px solid $purple-300;
-  color: $gray-0;
+  border: 1px solid var(--hxChoiceTile-inputChecked-bordercolor, $purple-300);
+  color: var(--hxChoiceTile-inputChecked-color, $gray-0);
 
   > hx-icon {
-    color: $purple-300;
+    color: var(--hxChoiceTile-inputChecked-hxicon-color, $purple-300);
   }
 
   .hx-tile-icon {
-    color: $purple-300;
+    color: var(--hxChoiceTile-checked-hxTile-color, $purple-300);
   }
 
   > header {
-    color: $purple-300;
+    color: var(--hxChoiceTile-checked-hxTile-header-color, $purple-300);
   }
 
   > p {
-    color: $gray-950;
+    color: var(--hxChoiceTile-checked-paragraph-color, $gray-950);
   }
 
   // DEPRECATED: remove in v1.0.0
   hx-tile-description {
-    color: $gray-900;
+    color: var(--hxChoiceTile-checked-description-color, $gray-900);
   }
 }
 
@@ -164,12 +164,12 @@ label.hxChoice > input[invalid] + hx-tile {
   @include hxChoiceTile--invalid;
 
   > p {
-    color: $gray-900;
+    color: var(--hxChoiceTile-invalid-paragraph-color, $gray-900);
   }
 
   // DEPRECATED: remove in v1.0.0
   hx-tile-description {
-    color: $gray-900;
+    color: var(--hxChoiceTile-invalid-description-color, $gray-900);
   }
 
   .hx-tile-icon {
@@ -199,20 +199,20 @@ label.hxChoice > input[disabled] + hx-tile:hover {
   @include hxChoiceTile--disabled;
 
   > p {
-    color: $gray-500;
+    color: var(--hxChoiceTile-disabled-paragraph-color, $gray-500);
   }
 
   // DEPRECATED: remove in v1.0.0
   hx-tile-description {
-    color: $gray-500;
+    color: var(--hxChoiceTile-disabled-description-color, $gray-500);
   }
 
   > header {
-    color: $gray-500;
+    color: var(--hxChoiceTile-disabled-header-color, $gray-500);
   }
 
   hx-icon {
-    color: $gray-400;
+    color: var(--hxChoiceTile-disabled-hxIcon-color, $gray-400);
   }
 }
 
