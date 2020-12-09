@@ -8,10 +8,9 @@
       color: transparent;
       text-shadow: 0 0 0 $gray-900;
     }
-  }
-  @else {
-    background-color: $gray-0;
-    color: $gray-900;
+  } @else {
+    background-color: var(--hxDropdown-hxSelect-unfocused-backgroundColor, $gray-0);
+    color: var(--hxDropdown-hxSelect-unfocused-color, $gray-900);
   }
 }
 
@@ -23,10 +22,9 @@
       color: transparent;
       text-shadow: 0 0 0 $gray-900;
     }
-  }
-  @else {
-    background-color: $gray-0;
-    color: $gray-900;
+  } @else {
+    background-color: var(--hxDropdown-hxSelect-unfocused-invalid-backgroundColor, $gray-0);
+    color: var(--hxDropdown-hxSelect-unfocused-invalid-color, $gray-900);
   }
 }
 
@@ -38,10 +36,9 @@
       color: transparent;
       text-shadow: 0 0 0 $gray-900;
     }
-  }
-  @else {
-    background-color: $gray-100;
-    color: $gray-700;
+  } @else {
+    background-color: var(--hxDropdown-hxSelect-unfocused-disabled-backgroundColor, $gray-100);
+    color: var(--hxDropdown-hxSelect-unfocused-disabled-color, $gray-700);
     opacity: 1;
   }
 }
@@ -56,11 +53,9 @@
 @mixin hxSelectControl($state: null, $focused: false) {
   @if $state == invalid {
     @include __selectControl--invalid($focused);
-  }
-  @else if $state == disabled {
+  } @else if $state == disabled {
     @include __selectControl--disabled($focused);
-  }
-  @else {
+  } @else {
     @include __selectControl($focused);
   }
 }
