@@ -1,12 +1,12 @@
 @import "base/links";
 
 .demo-typography {
-  .font-roboto {
-    font-family: "Roboto", sans-serif;
+  .font-open-sans {
+    font-family: "Open Sans", "Roboto", sans-serif;
   }
 
-  .font-roboto-mono {
-    font-family: "Roboto Mono", monospace;
+  .font-open-sans-condensed {
+    font-family: "Open Sans Condensed", "Roboto Mono", monospace;
   }
 
   .weight-thin { font-weight: 100; }

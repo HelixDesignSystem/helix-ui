@@ -1,6 +1,6 @@
 ---
 title: Typography
-minver: 0.1.6
+minver: 2.0.0
 also:
   components/typography/test.html: Testing - Typography
   elements/hx-error: <hx-error>
@@ -8,7 +8,10 @@ also:
 {% extends 'component.njk' %}
 
 {% block page_header %}
-  {# TODO: add component description #}
+  <p>
+    This page is updated to the <code>HelixUI-v2.0.0-rc.0 specs</code>
+    for {{page.title}}.
+  </p>
 {% endblock %}
 
 {% block content %}
@@ -21,19 +24,19 @@ also:
     <div class="example">
       <div class="demo-typography">
         <div class="hxRow">
-          <div class="hxCol font-roboto">
-            <p class="weight-thin">100: Roboto Thin</p>
-            <p class="weight-light">300: Roboto Light</p>
-            <p class="weight-regular">400: Roboto Regular</p>
-            <p class="weight-medium">500: Roboto Medium</p>
-            <p class="weight-bold">700: Roboto Bold</p>
+          <div class="hxCol font-open-sans">
+            <p class="weight-thin">100: Open Sans Thin</p>
+            <p class="weight-light">300: Open Sans Light</p>
+            <p class="weight-regular">400: Open Sans Regular</p>
+            <p class="weight-medium">500: Open Sans Medium</p>
+            <p class="weight-bold">700: Open Sans Bold</p>
           </div>
-          <div class="hxCol font-roboto-mono">
-            <p class="weight-thin">100: Roboto Mono Thin</p>
-            <p class="weight-light">300: Roboto Mono Light</p>
-            <p class="weight-regular">400: Roboto Mono Regular</p>
-            <p class="weight-medium">500: Roboto Mono Medium</p>
-            <p class="weight-bold">700: Roboto Mono Bold</p>
+          <div class="hxCol font-open-sans-condensed">
+            <p class="weight-thin">100: Open Sans Condensed Thin</p>
+            <p class="weight-light">300: Open Sans Condensed Light</p>
+            <p class="weight-regular">400: Open Sans Condensed Regular</p>
+            <p class="weight-medium">500: Open Sans Condensed Medium</p>
+            <p class="weight-bold">700: Open Sans Condensed Bold</p>
           </div>
         </div>
       </div>
@@ -436,7 +439,7 @@ also:
           <figure class="hxFigure">
             {% code 'css' %}
               /* CSS Comment */
-              @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,700,700i');
+              @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
               :root {
                 --border-color: #bada55;
               }

@@ -5,24 +5,69 @@ html {
 }
 
 body {
-  color: $gray-900;
+  color: $gray-950;
   font-family: $font-sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  padding-bottom: 1.5rem;
 }
 
 // HEADINGS
+// 2.0 headings
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
-  margin: 0;
+  margin: 0 0 0.5rem;
 
   & + * {
     margin-top: 0.5rem;
   }
 }
+
+// moved to src/scss/components/typography/_index.scss
+// 2.0 specs
+// h1 {
+//   color: $gray-1000;
+//   font-size: 2.625rem;
+//   font-weight: 300;
+//   line-height: 3.125rem;
+// }
+
+// h2 {
+//   color: $gray-1000;
+//   font-size: 2rem;
+//   font-weight: 300;
+//   line-height: 2.5rem;
+// }
+
+// h3 {
+//   color: $gray-1000;
+//   font-size: 1.5rem;
+//   font-weight: 400;
+//   line-height: 2rem;
+// }
+
+// h4 {
+//   color: $gray-1000;
+//   font-size: 1.25rem;
+//   font-weight: 500;
+//   line-height: 1.875rem;
+// }
+
+// h5 {
+//   color: $gray-1000;
+//   font-size: 1rem;
+//   font-weight: 500;
+//   line-height: 1.75rem;
+// }
+
+// // TODO: not to spec - verify h6 specs
+// h6 {
+//   color: $gray-1000;
+//   font-size: 0.75rem;
+//   font-weight: 500;
+//   line-height: 1.625rem;
+// }
 
 kbd {
   background: none;
@@ -37,7 +82,7 @@ kbd {
 
 pre,
 code {
-  font-family: $font-monospace;
+  font-family: $font-sans-serif; // TODO: verify Open Sans Condensed = Roboto Mono in 2.0 specs
 }
 
 code {
