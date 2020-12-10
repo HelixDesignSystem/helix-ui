@@ -30,6 +30,10 @@
         "path": "accordion"
       },
       {
+        "label": "Accordion - Stepper",
+        "path": "stepper"
+      },
+      {
         "label": "Alert",
         "path": "alert"
       },
@@ -94,7 +98,7 @@
         "path": "list"
       },
       {
-        "label": "Loader",
+        "label": "Loader - Busy | Progress",
         "path": "loader"
       },
       {
@@ -152,10 +156,6 @@
       {
         "label": "Selector Strip",
         "path": "selector-strip"
-      },
-      {
-        "label": "Stepper",
-        "path": "stepper"
       },
       {
         "label": "Switch",

@@ -1,8 +1,8 @@
 .metadata {
   padding: 1.25rem;
-  background-color: #e4f9f9;
-  border: 1px solid #b6e3eb;
-  box-shadow: inset 0.5rem 0 0 0 #b6e3eb;
+  background-color: #e5f2fb;
+  border: 1px solid #6ca3e1;
+  box-shadow: inset 0.5rem 0 0 0 #6ca3e1;
 }
 
 .metadata dt {
@@ -100,7 +100,7 @@ body.hxHorizontal.hxForm.beta main#content > header {
 
 /* ----- Test Page Styling ----- */
 .test-content {
-  border: 0.5rem solid #fbc02d;
+  border: 0.5rem solid #b37c00;
 }
 
 .test-content section > section {
@@ -135,8 +135,8 @@ body.hxHorizontal.hxForm.beta main#content > header {
 }
 
 .banner.warning {
-  background-color: #ffeb3b;
-  border: 2px solid #fbc02d;
+  background-color: #ffc749;
+  border: 2px solid #b37c00;
 }
 
 .banner__icon {
@@ -264,27 +264,27 @@ body.hxHorizontal.hxForm.beta main#content > header {
 }
 
 .box-demo .hxXs {
-  box-shadow: inset 0 0 0 0.5rem #f8bbd0;
+  box-shadow: inset 0 0 0 0.5rem #fceff4;
 }
 
 .box-demo .hxSm {
-  box-shadow: inset 0 0 0 0.75rem #f8bbd0;
+  box-shadow: inset 0 0 0 0.75rem #fceff4;
 }
 
 .box-demo .hxMd {
-  box-shadow: inset 0 0 0 1.25rem #f8bbd0;
+  box-shadow: inset 0 0 0 1.25rem #fceff4;
 }
 
 .box-demo .hxLg {
-  box-shadow: inset 0 0 0 2rem #f8bbd0;
+  box-shadow: inset 0 0 0 2rem #fceff4;
 }
 
 .box-demo .hxXl {
-  box-shadow: inset 0 0 0 3rem #f8bbd0;
+  box-shadow: inset 0 0 0 3rem #fceff4;
 }
 
 .box-demo .hx2x {
-  box-shadow: inset 0 0 0 4.5rem #f8bbd0;
+  box-shadow: inset 0 0 0 4.5rem #fceff4;
 }
 
 .example > div.scroll-box-demo {
@@ -305,16 +305,16 @@ body.hxHorizontal.hxForm.beta main#content > header {
 }
 
 .grid-demo .example-styled-container {
-  background-color: #b6e3eb;
+  background-color: #6ca3e1;
   border-radius: 0;
-  border: 1px solid #16b9d4;
+  border: 1px solid #367ed4;
   height: 100%;
   padding: 1em 0.5em;
 }
 
 .grid-demo .hxCol {
   background-clip: content-box;
-  background-color: rgba(245, 124, 0, 0.25);
+  background-color: rgba(250, 144, 0, 0.25);
   font-size: 0.75rem;
 }
 
@@ -563,7 +563,7 @@ hx-icon.size-3x {
 }
 
 hx-icon.danger {
-  color: #d32f2f;
+  color: #760300;
 }
 
 .nav-demo .hxNav {
@@ -613,22 +613,22 @@ hx-icon.danger {
 
 a[href] {
   background-color: transparent;
-  color: #0d74d1;
+  color: #0051b7;
   text-decoration: none;
 }
 
 a[href]:hover, a[href]:active, a.pseudo-active {
-  color: #3391ff;
+  color: #367ed4;
   cursor: pointer;
   text-decoration: none;
 }
 
-.demo-typography .font-roboto {
-  font-family: "Roboto", sans-serif;
+.demo-typography .font-open-sans {
+  font-family: "Open Sans", "Roboto", sans-serif;
 }
 
-.demo-typography .font-roboto-mono {
-  font-family: "Roboto Mono", monospace;
+.demo-typography .font-open-sans-condensed {
+  font-family: "Open Sans Condensed", "Roboto Mono", monospace;
 }
 
 .demo-typography .weight-thin {
@@ -656,36 +656,36 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-focus::-ms-check {
-  border-color: #0e94a6;
+  border-color: #0051b7;
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-focus ~ label > hx-checkbox {
-  border-color: #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  border-color: #0051b7;
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-hover {
-  color: #16b9d4;
+  color: #367ed4;
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-hover::-ms-check {
-  background-color: #e4f9f9;
-  color: #16b9d4;
+  background-color: #e5f2fb;
+  color: #367ed4;
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-hover ~ label > hx-checkbox {
-  background-color: #e4f9f9;
-  border-color: #16b9d4;
-  color: #16b9d4;
+  background-color: #e5f2fb;
+  border-color: #367ed4;
+  color: #367ed4;
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"]:disabled.mock-focus::-ms-check {
   border-color: #bdbdbd;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"]:disabled.mock-focus ~ label > hx-checkbox {
@@ -705,49 +705,49 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-focus {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-focus::-ms-check {
-  border-color: #d32f2f;
+  border-color: #760300;
 }
 
 .checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-focus ~ label > hx-checkbox {
-  border-color: #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  border-color: #760300;
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-hover::-ms-check {
-  background-color: #ffcdd2;
+  background-color: #fddcdc;
 }
 
 .checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-hover ~ label > hx-checkbox {
-  background-color: #ffcdd2;
-  border-color: #d32f2f;
-  color: #d32f2f;
+  background-color: #fddcdc;
+  border-color: #760300;
+  color: #760300;
 }
 
 .checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus::-ms-check {
-  border-color: #d32f2f;
+  border-color: #760300;
 }
 
 .checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus ~ label > hx-checkbox {
-  border-color: #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  border-color: #760300;
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-hover::-ms-check {
-  background-color: #ffcdd2;
+  background-color: #fddcdc;
 }
 
 .checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-hover ~ label > hx-checkbox {
-  background-color: #ffcdd2;
-  border-color: #d32f2f;
-  color: #d32f2f;
+  background-color: #fddcdc;
+  border-color: #760300;
+  color: #760300;
 }
 
 @supports (--modern: true) {
@@ -757,12 +757,12 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .choice-tile-spec label.hxChoice > input.pseudo-focus + hx-tile {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .choice-tile-spec label.hxChoice > input + hx-tile.pseudo-hover {
-  background-color: #e4f9f9;
-  border-color: #16b9d4;
+  background-color: #e5f2fb;
+  border-color: #367ed4;
 }
 
 .choice-tile-spec label.hxChoice > input + hx-tile.hxSubdued.pseudo-hover {
@@ -770,12 +770,12 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .choice-tile-spec label.hxChoice > input[invalid].pseudo-focus + hx-tile {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .choice-tile-spec label.hxChoice > input[invalid] + hx-tile.pseudo-hover {
-  background-color: #ffcdd2;
-  border-color: #d32f2f;
+  background-color: #fddcdc;
+  border-color: #760300;
   color: #424242;
 }
 
@@ -803,8 +803,8 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .dropdown-select-spec hx-select-control > select.mock-focus ~ hx-select {
-  border: 1px solid #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  border: 1px solid #0051b7;
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .dropdown-select-spec hx-select-control > select.mock-focus:disabled {
@@ -818,7 +818,7 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 
 .dropdown-select-spec hx-select-control > select.mock-focus:disabled ~ hx-select {
   border: 1px solid #bdbdbd;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .dropdown-select-spec hx-select-control.hxInvalid > select.mock-focus:enabled,
@@ -834,8 +834,8 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 
 .dropdown-select-spec hx-select-control.hxInvalid > select.mock-focus:enabled ~ hx-select,
 .dropdown-select-spec hx-select-control[hx-dirty] > select.mock-focus:enabled:invalid ~ hx-select {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  border: 2px solid #760300;
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .email-input-spec hx-email-control {
@@ -846,8 +846,8 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .email-input-spec hx-email-control > input[type="email"].mock-focus {
-  border: 1px solid #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  border: 1px solid #0051b7;
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
   outline: 0;
 }
 
@@ -856,27 +856,27 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .email-input-spec hx-email-control[hx-dirty] > input[type="email"]:invalid.mock-focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  border: 2px solid #760300;
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .email-input-spec hx-email-control.hxInvalid > input[type="email"]:enabled.mock-focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  border: 2px solid #760300;
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .file-input-spec hx-file-control input[type="file"].mock-focus ~ label > hx-file-input {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxBtn {
-  background-color: #0e94a6;
+  background-color: #0051b7;
   border-color: transparent;
   color: #ffffff;
 }
 
 .file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxPrimary {
-  background-color: #0e94a6;
+  background-color: #0051b7;
   border-color: transparent;
   color: #ffffff;
 }
@@ -884,17 +884,17 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 .file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxTertiary {
   background-color: transparent;
   border-color: transparent;
-  color: #0e94a6;
+  color: #0051b7;
 }
 
 .file-input-spec hx-file-control hx-file-input.hxBtn.mock-hover {
-  background-color: #16b9d4;
+  background-color: #367ed4;
   border-color: transparent;
   color: #ffffff;
 }
 
 .file-input-spec hx-file-control hx-file-input.hxBtn.mock-hover.hxPrimary {
-  background-color: #16b9d4;
+  background-color: #367ed4;
   border-color: transparent;
   color: #ffffff;
 }
@@ -902,7 +902,7 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 .file-input-spec hx-file-control hx-file-input.hxBtn.mock-hover.hxTertiary {
   background-color: transparent;
   border-color: transparent;
-  color: #16b9d4;
+  color: #367ed4;
 }
 
 .menu-positioning-spec [id^="target"] {
@@ -1021,30 +1021,30 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .radio-spec hx-radio-control > input[type="radio"].mock-focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .radio-spec hx-radio-control > input[type="radio"].mock-focus ~ label > hx-radio {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .radio-spec hx-radio-control > input[type="radio"].mock-hover {
-  color: #16b9d4;
+  color: #367ed4;
 }
 
 .radio-spec hx-radio-control > input[type="radio"].mock-hover::-ms-check {
-  background-color: #e4f9f9;
-  color: #16b9d4;
+  background-color: #e5f2fb;
+  color: #367ed4;
 }
 
 .radio-spec hx-radio-control > input[type="radio"].mock-hover ~ label > hx-radio {
-  background-color: #e4f9f9;
+  background-color: #e5f2fb;
   border: 1px solid currentColor;
-  color: #16b9d4;
+  color: #367ed4;
 }
 
 .radio-spec hx-radio-control > input[type="radio"]:disabled.mock-focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .radio-spec hx-radio-control > input[type="radio"]:disabled.mock-focus ~ label > hx-radio {
@@ -1067,26 +1067,26 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 
 .radio-spec hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid.mock-focus,
 .radio-spec hx-radio-set.hxInvalid input[type="radio"]:enabled.mock-focus {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .radio-spec hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid.mock-focus ~ label > hx-radio,
 .radio-spec hx-radio-set.hxInvalid input[type="radio"]:enabled.mock-focus ~ label > hx-radio {
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .radio-spec hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid.mock-hover::-ms-check,
 .radio-spec hx-radio-set.hxInvalid input[type="radio"]:enabled.mock-hover::-ms-check {
-  background-color: #ffcdd2;
+  background-color: #fddcdc;
   border: 2px solid currentColor;
-  color: #d32f2f;
+  color: #760300;
 }
 
 .radio-spec hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid.mock-hover ~ label > hx-radio,
 .radio-spec hx-radio-set.hxInvalid input[type="radio"]:enabled.mock-hover ~ label > hx-radio {
-  background-color: #ffcdd2;
+  background-color: #fddcdc;
   border: 2px solid currentColor;
-  color: #d32f2f;
+  color: #760300;
 }
 
 @supports (--modern: true) {
@@ -1096,8 +1096,8 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .textarea-spec hx-textarea-control > textarea.mock-focus {
-  border: 1px solid #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  border: 1px solid #0051b7;
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
   outline: 0;
 }
 
@@ -1106,13 +1106,13 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .textarea-spec hx-textarea-control[hx-dirty] > textarea:invalid.mock-focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  border: 2px solid #760300;
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .textarea-spec hx-textarea-control.hxInvalid > textarea:enabled.mock-focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  border: 2px solid #760300;
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .text-input-spec hx-text-control {
@@ -1123,8 +1123,8 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .text-input-spec hx-text-control > input[type="text"].mock-focus {
-  border: 1px solid #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  border: 1px solid #0051b7;
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
   outline: 0;
 }
 
@@ -1133,18 +1133,18 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .text-input-spec hx-text-control[hx-dirty] > input[type="text"]:invalid.mock-focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  border: 2px solid #760300;
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .text-input-spec hx-text-control.hxInvalid > input[type="text"]:enabled.mock-focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  border: 2px solid #760300;
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .password-spec hx-password-control > input[type="password"].mock-focus {
-  border: 1px solid #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  border: 1px solid #0051b7;
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
   outline: 0;
 }
 
@@ -1153,13 +1153,13 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .password-spec hx-password-control[hx-dirty] > input[type="password"]:invalid.mock-focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  border: 2px solid #760300;
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .password-spec hx-password-control.hxInvalid > input[type="password"]:enabled.mock-focus {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  border: 2px solid #760300;
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .drawer-spec .dialog-helpers {
@@ -1175,8 +1175,8 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 
 .search-spec hx-search-control > input[type="search"].mock-focus ~ hx-search,
 .search-spec hx-search-control > button.hxClear.mock-focus ~ hx-search {
-  border: 1px solid #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  border: 1px solid #0051b7;
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .search-spec hx-search-control > input[type="search"]:disabled ~ hx-search {
@@ -1190,19 +1190,19 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .search-spec hx-search-control[hx-dirty] > input[type="search"]:enabled.mock-focus ~ hx-search {
-  border: 1px solid #0e94a6;
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  border: 1px solid #0051b7;
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .search-spec hx-search-control[hx-dirty] > input[type="search"]:invalid.mock-focus ~ hx-search {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  border: 2px solid #760300;
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .search-spec hx-search-control.hxInvalid > input[type="search"]:enabled.mock-focus ~ hx-search,
 .search-spec hx-search-control.hxInvalid > button.hxClear.mock-focus ~ hx-search {
-  border: 2px solid #d32f2f;
-  box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  border: 2px solid #760300;
+  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .search-spec hx-search-control > input[type="search"] ~ button.mock-focus {
@@ -1215,58 +1215,58 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .button-spec .hxBtn.mock-hover {
-  background-color: #16b9d4;
+  background-color: #367ed4;
   border-color: transparent;
   color: #ffffff;
 }
 
 .button-spec .hxBtn.mock-active {
-  background-color: #0e94a6;
+  background-color: #0051b7;
   border-color: transparent;
   color: #ffffff;
 }
 
 .button-spec .hxBtn.mock-focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .button-spec .hxBtn.hxPrimary.mock-hover {
-  background-color: #16b9d4;
+  background-color: #367ed4;
   border-color: transparent;
   color: #ffffff;
 }
 
 .button-spec .hxBtn.hxPrimary.mock-active {
-  background-color: #0e94a6;
+  background-color: #0051b7;
   border-color: transparent;
   color: #ffffff;
 }
 
 .button-spec .hxBtn.hxPrimary.mock-focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
   outline: none;
 }
 
 .button-spec .hxBtn.hxTertiary.mock-hover {
   background-color: transparent;
   border-color: transparent;
-  color: #16b9d4;
+  color: #367ed4;
 }
 
 .button-spec .hxBtn.hxTertiary.mock-active {
   background-color: transparent;
   border-color: transparent;
-  color: #0e94a6;
+  color: #0051b7;
 }
 
 .button-spec .hxBtn.hxTertiary.mock-focus {
-  box-shadow: 0 0 4px rgba(14, 148, 166, 0.5);
+  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .hxBtn.beta-hxDark,
 a[href].hxBtn.beta-hxDark {
-  border-color: #16b9d4;
-  color: #16b9d4;
+  border-color: #367ed4;
+  color: #367ed4;
 }
 
 .hxBtn.beta-hxDark:hover,
@@ -1282,7 +1282,7 @@ a.hxBtn.beta-hxDark.pseudo-active {
 
 .hxBtn.beta-hxDark:focus,
 a[href].hxBtn.beta-hxDark:focus {
-  box-shadow: 0 0 4px 2px rgba(22, 185, 212, 0.6);
+  box-shadow: 0 0 4px 2px rgba(54, 126, 212, 0.6);
 }
 
 dl:not(.hxList) dd {
