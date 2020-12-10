@@ -15,6 +15,7 @@
         path: 'components',
         children: [
             { label: 'Accordion', path: 'accordion' },
+            { label: 'Accordion - Stepper', path: 'stepper' },
             { label: 'Alert', path: 'alert' },
             { label: 'Badge', path: 'badge' },
             { label: 'Beacon', path: 'beacon' },
@@ -40,7 +41,7 @@
                 */
             },
             { label: 'List', path: 'list' },
-            { label: 'Loader', path: 'loader' },
+            { label: 'Loader - Busy | Progress', path: 'loader' },
             { label: 'Menu', path: 'menu' },
             { label: 'Modal', path: 'modal' },
             { label: 'Navigation - Top Nav', path: 'topnav' },
@@ -55,7 +56,6 @@
             { label: 'Reveal', path: 'reveal' },
             { label: 'Search', path: 'search' },
             { label: 'Selector Strip', path: 'selector-strip' },
-            { label: 'Stepper', path: 'stepper' },
             { label: 'Switch', path: 'switch' },
             { label: 'Table', path: 'table' },
             { label: 'Tabset', path: 'tabset' },

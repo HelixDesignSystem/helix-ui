@@ -1,72 +1,96 @@
 @import "vars";
 
 /// ========== HEADINGS ==========
+/// 2.0 specs
 h1,
 .hxHeading-1 {
-  color: $gray-900;
-  font-size: 3rem;
-  font-weight: 100;
+  color: $gray-950;
+  font-size: 2.625rem;
+  font-weight: 300;
+  line-height: 3.125rem;
   text-transform: none;
 }
 
 h2,
 .hxHeading-2 {
-  color: $gray-900;
+  color: $gray-950;
   font-size: 2rem;
   font-weight: 300;
+  line-height: 2.5rem;
   text-transform: none;
 }
 
 h3,
 .hxHeading-3 {
-  color: $gray-900;
+  color: $gray-950;
   font-size: 1.5rem;
   font-weight: 400;
+  line-height: 2rem;
   text-transform: none;
 }
 
 h4,
 .hxHeading-4 {
-  color: $gray-900;
-  font-size: 1rem;
+  color: $gray-950;
+  font-size: 1.25rem;
   font-weight: 500;
+  line-height: 1.875rem;
   text-transform: none;
 }
 
 h5,
 .hxHeading-5 {
-  color: $gray-800;
-  font-size: 0.75rem;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-h6 {
-  color: inherit;
+  color: $gray-950;
   font-size: 1rem;
   font-weight: 500;
+  line-height: 1.75rem;
+  text-transform: none;
+}
+
+// TODO: not to spec - verify h6 specs
+h6 {
+  color: $gray-1000;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.625rem;
   text-transform: none;
 }
 
 // Error Custom Element
 hx-error {
-  color: $red-900;
+  color: $red-500;
 }
 
 // Additional Helper Classes
 .hxSubdued {
-  color: $gray-750;
+  color: $gray-700;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5rem;
 }
 
+// 2.0 specs
 .hxFigure figcaption,
 .hxCaption {
-  color: $gray-800;
+  color: $gray-700;
   font-size: 0.875rem;
   font-weight: 300;
+  line-height: 1.375rem;
 }
 
 .hxSubBody {
+  color: $gray-700;
   font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.375rem;
+}
+
+label,
+.hxLabel {                // deprecated
+  color: $gray-1000;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.375;
 }
 
 @import "hljs";
@@ -88,8 +112,9 @@ hx-error {
   @extend .hxHeading-4;
 }
 
-.hxLabel {
-  color: $gray-750;
-  font-size: 1rem;
-  font-weight: 500;
-}
+// update to 2.0 specs
+// .hxLabel {
+//   color: $gray-750;
+//   font-size: 1rem;
+//   font-weight: 500;
+// }

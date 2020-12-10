@@ -16,7 +16,7 @@ const batches = {
         base: 'SauceLabs',
         browserName: 'safari',
         platform: 'OS X 10.13',
-        version: 'latest-1'
+        version: 'latest-2'
     },
     mac_chrome: {
         base: 'SauceLabs',
