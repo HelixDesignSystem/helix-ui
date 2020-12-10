@@ -131,11 +131,11 @@ hx-email-control {
 
   > p,
   p.hxHelpText {
-    @include hxHelpText();  // default styles
+    @include hxHelpText(); // default styles
   }
 
   > p.hxErrorText {
-    color: $red-900;
+    color: var(--hxemailControl-errorText-color, $red-900);
     font-size: 0.75rem;
     margin-top: 0;
     width: 100%; // for IE11
