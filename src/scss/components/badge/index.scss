@@ -1,8 +1,8 @@
 .hxBadge {
   align-items: center;
-  background-color: $red-900;
+  background-color: var(--hxBadge-bgcolor, $red-900);
   border-radius: 1em;
-  color: $gray-0;
+  color: var(--hxBadge-color, $gray-0);
   display: inline-flex;
   height: 1.25em;
   justify-content: center;
