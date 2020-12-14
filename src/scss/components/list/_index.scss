@@ -24,7 +24,7 @@ dl.hxList {
   dt {
     @include grid-span(2);
 
-    color: $gray-750;
+    color: var(--hxList-dt-color, $gray-750);
     display: block;
     flex-shrink: 1;
     order: 1;
