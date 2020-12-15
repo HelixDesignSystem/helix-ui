@@ -12,14 +12,14 @@
     text-transform: capitalize;
 
     &:last-of-type {
-      color: $gray-600;
+      color: var(--hxBreadcrumb-last-type-color, $gray-600);
       font-weight: 300;
       pointer-events: none;
     }
   }
 
   .delimiter {
-    color: $gray-600;
+    color: var(--hxBreadcrumb-delimiter-color, $gray-600);
     font-size: 0.5rem;
     margin-right: 0.5rem;
   }
