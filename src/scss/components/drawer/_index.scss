@@ -9,7 +9,7 @@ hx-drawer:not([hx-defined]) {
 hx-drawer {
   @extend %hxComponent;
 
-  background-color: $gray-100;
+  background-color: var(--hxDrawer-bgcolor, $gray-100);
   display: block;
   height: 0;
   padding: 0;
@@ -39,8 +39,8 @@ hx-drawer {
   }
 
   > hx-div {
-    background-color: $gray-0;
-    border-top: 1px solid $gray-400;
+    background-color: var(--hxDrawer-hxdiv-bgcolor, $gray-0);
+    border-top: 1px solid var(--hxDrawer-hxdiv-border-top, $gray-400);
     flex-grow: 1;
     flex-shrink: 1; // necessary for scrolling
     order: 3;
@@ -48,8 +48,8 @@ hx-drawer {
   }
 
   > footer {
-    background-color: $gray-0;
-    border-top: 1px solid $gray-400;
+    background-color: var(--hxDrawer-footer-bgcolor, $gray-0);
+    border-top: 1px solid var(--hxDrawer-footer-border-top, $gray-400);
     flex-grow: 9999; // consume as much space as possible
     order: 4;
     padding: 0.75rem;
