@@ -1,6 +1,35 @@
-// ===== COLOR PALETTE 2.0 =====
+// ============================= //
+// ===== COLOR PALETTE 2.0 ===== //
+// ============================= //
 
-// Grays
+// ========================== //
+// ===== PRIMARY COLORS ===== //
+// ========================== //
+
+// Blue - Primary
+$blue-100: #e5f2fb;
+$blue-300: #6ca3e1;
+$blue-500: #367ed4;
+$blue-700: #0051b7;
+$blue-900: #003482;
+
+// Purple - Primary
+$purple-100: #f9e4f8;
+$purple-300: #ad3da5;
+$purple-500: #95098a;
+$purple-700: #7d0572;
+$purple-900: #64005a;
+
+// Teal - Primary
+$teal-100: #9defeb;
+$teal-300: #34cecc;
+$teal-500: #00bebc;
+$teal-700: #00aab0;
+$teal-900: #006e8d;
+
+// ====================== //
+// ===== GRAY SCALE ===== //
+// ====================== //
 $gray-0: #ffffff;
 $gray-25: #fafafa;
 $gray-50: #f5f5f5;
@@ -11,76 +40,101 @@ $gray-400: #d8d8d8;
 $gray-500: #bdbdbd;
 $gray-600: #9e9e9e;
 $gray-700: #757575;
-$gray-750: #6b6b6b; // legacy color var
+$gray-750: #6b6b6b;
 $gray-800: #616161;
 $gray-900: #424242;
 $gray-950: #333333;
 $gray-975: #212121;
 $gray-1000: #000000;
 
-// Cyans
-// Stop gap changing color values instead of names for backward compatibility
+// ========================= //
+// ===== STATUS COLORS ===== //
+// ========================= //
+
+// Blue - Status
+$blue-status-100: #e6eefd;
+$blue-status-500: #296cdc;
+$blue-status-900: #0b377f;
+
+// Green - Status
+$green-status-100: #f5fef9;
+$green-status-500: #008b38;
+$green-status-900: #00461c;
+
+// 1.0 vars with 2.0 color palette values
+$green-100: #f5fef9;
+$green-500: #008b38;
+$green-900: #00461c;
+
+// Yellow - Status
+$yellow-status-100: #ffe7b3;
+$yellow-status-500: #ffc749;
+$yellow-status-900: #b37c00;
+
+// 1.0 vars with 2.0 color palette values
+$yellow-100: #ffe7b3;
+$yellow-500: #ffc749;
+$yellow-900: #b37c00;
+
+// Red - Status
+$red-status-100: #fddcdc;
+$red-status-500: #d6251f;
+$red-status-900: #760300;
+
+// 1.0 vars with 2.0 color palette values
+$red-100: #fddcdc;
+$red-500: #d6251f;
+$red-900: #760300;
+
+
+// ========================== //
+// ===== ACCENT COLORS ===== //
+// ========================== //
+
+// Orange - Accent
+$orange-accent-100: #ffe9cc;
+$orange-accent-500: #fa9000;
+$orange-accent-900: #ce7700;
+
+// 1.0 vars with 2.0 color palette values
+$orange-100: #ffe9cc;
+$orange-500: #fa9000;
+$orange-700: #dd6105; // 1.0 color var
+$orange-900: #ce7700;
+
+// Pink - Accent
+$pink-accent-100: #fceff4;
+$pink-accent-500: #db2b75;
+$pink-accent-900: #960e48;
+
+// Purple - Accent
+$purple-accent-100: #f9e4f8;
+$purple-accent-500: #95098a;
+$purple-accent-900: #64005a;
+
+// Cyan - Accent
+$cyan-accent-100: #f6fafc;
+$cyan-accent-500: #437d9a;
+$cyan-accent-900: #1c3948;
+
+// ======================================== //
+// ===== LEGACY 1.0 COLORS - STOP GAP ===== //
+// ======================================== //
+
+// Cyan - 1.0 specs
+// Stop gap - mapped *BLUE PRIMARY* color values for backward compatibility
 $cyan-50: #e5f2fb;
 $cyan-100: #6ca3e1;
 $cyan-500: #367ed4;
 $cyan-700: #0051b7;
 $cyan-900: #003482;
 
-// Blues - Primary
-$blue-100: #e5f2fb;
-$blue-500: #367ed4;
-$blue-700: #0051b7;
-$blue-900: #003482;
-
-// Blues - Status
-// 2.0 specs
-$blue-status-100: #e6eefd;
-$blue-status-500: #296cdc;
-$blue-status-900: #0b377f;
-
-// Magentas
-// Stop gap mapping Pink color values for backward compatibility
-$magenta-100: #fceff4;
-$magenta-500: #db2b75;
-$magenta-700: #db2b75;
-$magenta-900: #960e48;
-
-// Pinks
-// 2.0 color palette values
-$pink-100: #fceff4;
-$pink-500: #db2b75;
-$pink-900: #960e48;
-
-// Purples
-// 2.0 color palette values
-$purple-100: #f6f2fb;
-$purple-500: #9444fa;
-$purple-900: #500f84;
-
-// Oranges
-// 2.0 color palette values
-$orange-100: #ffe9cc;
-$orange-500: #fa9000;
-$orange-700: #fa9000; // legacy color var (using $orange-500)
-$orange-900: #ce7700;
-
-// Greens
-// 2.0 color palette values
-$green-100: #f5fef9;
-$green-500: #008b38;
-$green-900: #00461c;
-
-// Yellows
-// 2.0 color palette values
-$yellow-100: #ffe7b3;
-$yellow-500: #ffc749;
-$yellow-900: #b37c00;
-
-// Reds
-// 2.0 color palette values
-$red-100: #fddcdc;
-$red-500: #d6251f;
-$red-900: #760300;
+// Magenta - 1.0 specs
+// Stop gap - mapped *PURPLE* color values for backward compatibility
+$magenta-100: #f9e4f8;
+$magenta-500: #95098a;
+$magenta-700: #7d0572;
+$magenta-900: #64005a;
 
 // Shadow
 $shadow-color: rgba($gray-1000, 0.16);
