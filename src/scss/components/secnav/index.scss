@@ -7,41 +7,38 @@
 /// * =================================== * ///
 
 #hxSecNav {
-  background-color: $gray-975;
+  background-color: $gray-0;
   height: 3.5rem;
   overflow: hidden;
   width: 100vw;
+  border-bottom: 0.125rem solid $gray-300;
 
   .hxNavLink {
-    color: $gray-400;
+    color: $gray-700;
     display: inline-block;
     font-size: 1rem;
     height: 3.5rem;
     padding: 1rem 1.25rem;
     text-align: center;
-    text-transform: uppercase;
     width: auto;
 
     &:hover {
-      background-color: $gray-800;
-      color: $gray-0 !important;
+      color: $gray-950 !important;
     }
 
     &:active {
-      background-color: $gray-900;
       color: $gray-0;
     }
   }
 
   > hx-disclosure {
     background-color: transparent;
-    color: $gray-400;
+    color: $gray-700;
     display: inline-block;
     font-size: 1rem;
     height: 3.5rem;
     line-height: 1;
     padding: 1rem 1.25rem;
-    text-transform: uppercase;
     width: auto;
 
     > hx-icon {
@@ -56,36 +53,35 @@
       @include hxSecNavControl(disabled);
     }
 
+    &[aria-expanded="true"] {
+      color: $purple-500;
+    }
+
     &:hover {
-      background-color: $gray-800;
-      color: $gray-0 !important;
+      color: $gray-950 !important;
     }
 
     &:active {
-      background-color: $gray-900;
       color: $gray-0;
     }
   }
 
   > hx-menu {
-    background-color: $gray-1000;
-    border: 1px solid $gray-1000;
-    color: $gray-0;
+    background-color: $gray-0;
     min-width: 10.5rem;
     padding: 0;
     top: 14.5rem;
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.5);
 
     hx-menuitem {
-      color: $gray-400;
+      color: $gray-950;
       padding: 0.5rem 1.25rem;
 
       &:hover {
-        background-color: $gray-800;
-        color: $gray-0 !important;
+        color: $purple-500 !important;
       }
 
       &:active {
-        background-color: $gray-900;
         color: $gray-0;
       }
     }
@@ -97,7 +93,7 @@
     }
 
     .hxDivider {
-      border-color: $gray-800;
+      border-color: $gray-300;
       height: 1px;
       margin: 0.5rem auto 0;
     }
@@ -105,6 +101,7 @@
     > section > header {
       padding-left: 1.25rem;
       padding-top: 0.5rem;
+      text-transform: none;
     }
 
     > section {
