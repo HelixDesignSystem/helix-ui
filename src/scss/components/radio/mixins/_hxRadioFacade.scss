@@ -19,11 +19,11 @@
   }
   @else if $pseudo-state == hover {
     background-color: $red-status-100;
-    border: 2px solid currentColor;
+    border: 1px solid currentColor;
     color: $red-status-900;
   }
   @else {
-    border: 2px solid currentColor;
+    border: 1px solid currentColor;
     color: $red-status-900;
   }
 }
