@@ -6,11 +6,11 @@
     box-shadow: $focus-glow;
   }
   @else if $pseudo-state == hover {
-    color: $cyan-500;
+    color: $blue-700;
 
     &::-ms-check {
-      background-color: $cyan-50;
-      color: $cyan-500;
+      background-color: $gray-0;
+      color: $blue-700;
     }
   }
   @else {
@@ -31,13 +31,13 @@
   }
   @else if $pseudo-state == hover {
     &::-ms-check {
-      background-color: $red-100;
+      background-color: $red-status-100;
       border: 2px solid currentColor;
-      color: $red-900;
+      color: $red-status-900;
     }
   }
   @else {
-    color: $red-900;
+    color: $red-status-900;
 
     &::-ms-check {
       border-width: 2px;

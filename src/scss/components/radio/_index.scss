@@ -119,11 +119,11 @@ hx-radio-control {
     }
 
     &:checked {
-      color: $cyan-900;
+      color: $blue-700;
 
       ~ label > hx-radio {
         border: 1px solid currentColor;
-        color: $cyan-900;
+        color: $blue-700;
         position: relative;
 
         &::after {
@@ -187,7 +187,7 @@ hx-radio-control > input[type="radio"]:disabled {
 
   // facade styles
   ~ label {
-    color: $gray-700;
+    color: $gray-600;
 
     > hx-radio {
       @include hxRadioFacade(disabled);
