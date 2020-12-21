@@ -14,17 +14,16 @@
 // Efficiency: Needs Work
 @mixin __textControl($focused: false) {
   @if $focused {
-    border: 1px solid $cyan-700;
-    box-shadow: $focus-glow;
+    border-bottom: 1px solid $blue-700;
     outline: 0;
   }
   @else {
     @include hxPlaceholder;
 
     background-color: $gray-0;
-    border-radius: 2px;
+    border-radius: 1px;
     border: 1px solid $gray-500;
-    color: $gray-900;
+    color: $gray-800;
     font-family: inherit;
     font-size: 1rem;
   }
@@ -33,7 +32,7 @@
 // Parity: OK
 // Efficiency: OK
 @mixin __textControl--invalid($focused: false) {
-  border: 2px solid $red-900;
+  border-bottom: 1px solid $red-status-500;
 
   @if $focused {
     box-shadow: $focus-glow-invalid;
