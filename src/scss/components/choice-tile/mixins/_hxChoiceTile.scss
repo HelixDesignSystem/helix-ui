@@ -5,11 +5,23 @@
 // ========== Default ==========
 @mixin hxChoiceTile($pseudo-state: null) {
   @if $pseudo-state == focus {
-    box-shadow: $focus-glow;
+    box-shadow: 0 0 4px rgba($purple-700, 0.5);
   }
   @else if $pseudo-state == hover {
-    background-color: $cyan-50;
-    border-color: $cyan-500;
+    background-color: $gray-0;
+    border: 1px solid $purple-700;
+
+    > header {
+      color: $purple-700;
+    }
+
+    > p {
+      color: $gray-950;
+    }
+
+    .hx-tile-icon {
+      color: $purple-700;
+    }
   }
 }
 
@@ -32,19 +44,31 @@
     background-color: $red-100;
     border-color: $red-900;
     color: $gray-900;
+
+    > header {
+      color: inherit;
+    }
   }
   @else {
     border-color: $red-900;
     border-width: 2px;
     color: $red-900;
   }
+
+  .hx-tile-icon {
+    color: $red-900;
+  }
 }
 
 // ========== Disabled ==========
 @mixin hxChoiceTile--disabled {
-  background-color: $gray-25;
-  border-color: $gray-300;
+  background-color: $gray-0;
+  border-color: $gray-400;
   border-width: 1px;
-  color: $gray-700;
+  color: $gray-500;
   cursor: not-allowed;
+
+  > header {
+    color: inherit;
+  }
 }
