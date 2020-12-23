@@ -8,15 +8,15 @@
     box-shadow: $focus-glow;
 
     &::-ms-check {
-      border-color: $cyan-700;
+      border-color: $blue-700;
     }
   }
   @else if $pseudo-state == hover {
-    color: $cyan-500;
+    color: $blue-700;
 
     &::-ms-check {
-      background-color: $cyan-50;
-      color: $cyan-500;
+      background-color: $gray-0;
+      color: $blue-700;
     }
   }
   @else {
@@ -38,21 +38,21 @@
     box-shadow: $focus-glow-invalid;
 
     &::-ms-check {
-      border-color: $red-900;
+      border-color: $red-status-900;
     }
   }
   @else if $pseudo-state == hover {
     &::-ms-check {
-      background-color: $red-100;
+      background-color: $red-status-100;
     }
   }
   @else {
-    color: $red-900;
+    color: $red-status-900;
 
     &::-ms-check {
-      border-width: 2px;
-      border-color: $red-900 !important;
-      color: $red-900 !important;
+      border-width: 1px;
+      border-color: $red-status-900 !important;
+      color: $red-status-900 !important;
     }
   }
 }
@@ -67,7 +67,7 @@
   }
   @else if $pseudo-state == hover {
     &::-ms-check {
-      background-color: $gray-100;
+      background-color: $gray-0;
       border-color: $gray-500;
       color: $gray-500;
     }
@@ -77,7 +77,7 @@
     cursor: not-allowed;
 
     &::-ms-check {
-      background-color: $gray-100 !important; // simplest way of styling
+      background-color: $gray-0 !important; // simplest way of styling
       border-width: 1px;
     }
   }

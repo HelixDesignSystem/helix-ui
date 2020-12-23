@@ -32,7 +32,7 @@
   @else if $pseudo-state == hover {
     &::-ms-check {
       background-color: $red-status-100;
-      border: 2px solid currentColor;
+      border: 1px solid currentColor;
       color: $red-status-900;
     }
   }
@@ -40,7 +40,7 @@
     color: $red-status-900;
 
     &::-ms-check {
-      border-width: 2px;
+      border-width: 1px;
     }
   }
 }

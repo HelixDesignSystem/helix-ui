@@ -120,11 +120,11 @@ hx-checkbox-control {
 
     &:checked,
     &:indeterminate {
-      color: $cyan-900;
+      color: $blue-700;
 
       ~ label > hx-checkbox {
-        border-color: $cyan-900;
-        color: $cyan-900;
+        border-color: $blue-700;
+        color: $blue-700;
       }
     }
 
@@ -179,7 +179,7 @@ hx-checkbox-control > input[type="checkbox"]:disabled {
   }
 
   ~ label {
-    color: $gray-700;
+    color: $gray-600;
 
     > hx-checkbox {
       @include hxCheckboxFacade(disabled);
