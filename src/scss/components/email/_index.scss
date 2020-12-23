@@ -135,7 +135,7 @@ hx-email-control {
   }
 
   > p.hxErrorText {
-    color: var(--hxemailControl-errorText-color, $red-900);
+    color: var(--hxemailControl-errorText-color, $red-status-500);
     font-size: 0.75rem;
     margin-top: 0;
     width: 100%; // for IE11
