@@ -8,18 +8,19 @@ hx-tab {
   font-weight: 500;
 
   &:hover {
-    color: $cyan-500;
+    color: $gray-950;
   }
 
   &:focus {
-    color: $cyan-700;
     z-index: 1; // keeps focus ring in front of adjacent tabs
   }
 
   &[current] {
     background-color: inherit;
-    border-color: $gray-300 $gray-300 transparent;
-    color: $cyan-900;
+    border-bottom: 2px solid $teal-300;
+    color: $gray-950;
+    font-weight: 600;
+    outline: none;
   }
 
   > * + * {
