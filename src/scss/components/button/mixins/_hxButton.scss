@@ -86,7 +86,7 @@
 /// ------------------------------------ ///
 
 @mixin hxButton--primary {
-  background-color: $cyan-900;
+  background-color: $blue-500;
   color: $gray-0;
 
   &:hover {
@@ -107,15 +107,15 @@
 }
 
 @mixin hxButton-active--primary {
-  background-color: $cyan-700;
+  background-color: $blue-900;
   border-color: transparent;
   color: $gray-0;
 }
 
 @mixin hxButton-disabled--primary {
-  background-color: $gray-400;
+  background-color: $gray-500;
   border-color: transparent;
-  color: $gray-700;
+  color: $gray-0;
 }
 
 @mixin hxButton-focus--primary {
@@ -124,7 +124,7 @@
 }
 
 @mixin hxButton-hover--primary {
-  background-color: $cyan-500;
+  background-color: $blue-700;
   border-color: transparent;
   color: $gray-0;
 }
@@ -134,8 +134,8 @@
 /// -------------------------------------- ///
 
 @mixin hxButton--secondary {
-  border: 1px solid $cyan-900;
-  color: $cyan-900;
+  border: 1px solid $blue-900;
+  color: $blue-900;
 
   &:hover {
     @include hxButton-hover--secondary;
@@ -155,15 +155,15 @@
 }
 
 @mixin hxButton-active--secondary {
-  background-color: $cyan-700;
+  background-color: $blue-900;
   border-color: transparent;
   color: $gray-0;
 }
 
 @mixin hxButton-disabled--secondary {
   background-color: transparent;
-  border-color: $gray-400;
-  color: $gray-400;
+  border: 1px solid $gray-500;
+  color: $gray-500;
 }
 
 @mixin hxButton-focus--secondary {
@@ -171,7 +171,7 @@
 }
 
 @mixin hxButton-hover--secondary {
-  background-color: $cyan-500;
+  background-color: $blue-700;
   border-color: transparent;
   color: $gray-0;
 }
@@ -184,7 +184,7 @@
 @mixin hxButton--tertiary {
   background-color: transparent;
   border: 0;
-  color: $cyan-900;
+  color: $blue-500;
 
   // This class will be removed in HelixUI-v1.0.0.
   &.hxDeprecated {
@@ -212,13 +212,13 @@
 @mixin hxButton-active--tertiary {
   background-color: transparent;
   border-color: transparent;
-  color: $cyan-700;
+  color: $blue-900;
 }
 
 @mixin hxButton-disabled--tertiary {
   background-color: transparent;
   border-color: transparent;
-  color: $gray-400;
+  color: $gray-500;
 }
 
 @mixin hxButton-focus--tertiary {
@@ -228,5 +228,5 @@
 @mixin hxButton-hover--tertiary {
   background-color: transparent;
   border-color: transparent;
-  color: $cyan-500;
+  color: $blue-700;
 }
