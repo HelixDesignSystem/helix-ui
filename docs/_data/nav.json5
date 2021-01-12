@@ -23,7 +23,7 @@
             { label: 'Breadcrumb', path: 'breadcrumb' },
             { label: 'Button', path: 'button' },
             { label: 'Checkbox', path: 'checkbox' },
-            { label: 'Choice Tile', path: 'choice-tile' },
+            { label: 'Choice (Option) Tile', path: 'choice-tile' },
             { label: 'Drawer', path: 'drawer' },
             { label: 'Dropdown Select', path: 'dropdown-select' },
             { label: 'Email Input', path: 'email' },
