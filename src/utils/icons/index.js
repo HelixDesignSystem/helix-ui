@@ -16,6 +16,7 @@ import _checkmarkCircle from '../../images/icons/checkmark-circle.svg';
 import _clock from '../../images/icons/clock.svg';
 import _cog from '../../images/icons/cog.svg';
 import _copy from '../../images/icons/copy.svg';
+import _critical from '../../images/icons/critical.svg';
 import _download from '../../images/icons/download.svg';
 import _envelope from '../../images/icons/envelope.svg';
 import _exclamationCircle from '../../images/icons/exclamation-circle.svg';
@@ -31,7 +32,7 @@ import _grid from '../../images/icons/grid.svg';
 import _heartbeatOutline from '../../images/icons/heartbeat-outline.svg';
 import _heartbeatFill from '../../images/icons/heartbeat-fill.svg';
 import _helpCircle from '../../images/icons/help-circle.svg';
-import _infoCircle from '../../images/icons/info-circle.svg';
+import _information from '../../images/icons/information.svg';
 import _inputFile from '../../images/icons/input-file.svg';
 import _kbdArrowDown from '../../images/icons/kbd-arrow-down.svg';
 import _kbdArrowLeft from '../../images/icons/kbd-arrow-left.svg';
@@ -59,9 +60,11 @@ import _mimeText from '../../images/icons/mime-text.svg';
 import _mimeVideo from '../../images/icons/mime-video.svg';
 import _minus from '../../images/icons/minus.svg';
 import _minusCircle from '../../images/icons/minus-circle.svg';
+import _ok from '../../images/icons/ok.svg';
 import _paperclip from '../../images/icons/paperclip.svg';
 import _payment from '../../images/icons/payment.svg';
 import _pencil from '../../images/icons/pencil.svg';
+import _pending from '../../images/icons/pending.svg';
 import _phone from '../../images/icons/phone.svg';
 import _plus from '../../images/icons/plus.svg';
 import _plusOrMinus from '../../images/icons/plus-or-minus.svg';
@@ -80,9 +83,11 @@ import _ticketing from '../../images/icons/ticketing.svg';
 import _times from '../../images/icons/times.svg';
 import _timesCircle from '../../images/icons/times-circle.svg';
 import _trash from '../../images/icons/trash.svg';
+import _unavailable from '../../images/icons/unavailable.svg';
 import _undo from '../../images/icons/undo.svg';
 import _upload from '../../images/icons/upload.svg';
 import _user from '../../images/icons/user.svg';
+import _warning from '../../images/icons/warning.svg';
 
 const MAP = {
     'account': _account,
@@ -103,6 +108,7 @@ const MAP = {
     'clock': _clock,
     'cog': _cog,
     'copy': _copy,
+    'critical': _critical,
     'download': _download,
     'envelope': _envelope,
     'exclamation-circle': _exclamationCircle,
@@ -118,7 +124,7 @@ const MAP = {
     'heartbeat-outline': _heartbeatOutline,
     'heartbeat-fill': _heartbeatFill,
     'help-circle': _helpCircle,
-    'info-circle': _infoCircle,
+    'information': _information,
     'input-file': _inputFile,
     'kbd-arrow-down': _kbdArrowDown,
     'kbd-arrow-left': _kbdArrowLeft,
@@ -147,9 +153,11 @@ const MAP = {
     'minus': _minus,
     'minus-circle': _minusCircle,
     'monitoring': _chart,
+    'ok': _ok,
     'paperclip': _paperclip,
     'payment': _payment,
     'pencil': _pencil,
+    'pending': _pending,
     'phone': _phone,
     'plus': _plus,
     'plus-or-minus': _plusOrMinus,
@@ -168,16 +176,19 @@ const MAP = {
     'times': _times,
     'times-circle': _timesCircle,
     'trash': _trash,
+    'unavailable': _unavailable,
     'undo': _undo,
     'upload': _upload,
     'user': _user,
+    'warning': _warning,
 };
 
-// DEPRECATED: remove in v1.0.0
+// TODO: DEPRECATED icons
 MAP['export'] = MAP['upload'];
 MAP['input-url'] = MAP['globe'];
 MAP['technical-change'] = MAP['server-config'];
 MAP['technical-incident'] = MAP['server-incident'];
 MAP['input-time'] = MAP['clock'];
+MAP['info-circle'] = MAP['information'];
 
 export default MAP;

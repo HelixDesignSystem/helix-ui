@@ -1,7 +1,12 @@
 [
     {
         name: 'account',
-        minver: '0.1.10',
+        minver: '2.0.0',
+        keywords: [
+          'customer',
+          'asset',
+          'platform',
+        ]
     },
     {
         name: 'angle-bottom',
@@ -37,18 +42,20 @@
     },
     {
         name: 'bell',
-        minver: '0.1.10',
+        minver: '2.0.0',
         keywords: [
             'alert',
             'notification',
+            'platform',
         ],
     },
     {
         name: 'billing',
-        minver: '0.1.10',
+        minver: '2.0.0',
         keywords: [
             'invoice',
             'money',
+            'platform',
         ],
     },
     {
@@ -92,6 +99,14 @@
         minver: '0.1.10',
         keywords: [
             'duplicate',
+        ],
+    },
+    {
+        name: 'critical',
+        minver: '2.0.0',
+        keywords: [
+            'urgent',
+            'status',
         ],
     },
     {
@@ -146,6 +161,11 @@
     {
       name: 'fish-hook',
       minver: '1.0.0',
+      keywords: [
+        'phishing',
+        'security',
+        'email',
+      ]
     },
     {
       name: 'flag',
@@ -183,6 +203,16 @@
     {
         name: 'info-circle',
         minver: '0.1.0',
+        deprecated: true,
+        replacement: 'information',
+    },
+    {
+        name: 'information',
+        minver: '2.0.0',
+        keywords: [
+          'information',
+          'status',
+        ]
     },
     {
         name: 'input-file',
@@ -452,6 +482,15 @@
         ],
     },
     {
+        name: 'ok',
+        minver: '2.0.0',
+        keywords: [
+            'ok',
+            'success',
+            'status',
+        ],
+    },
+    {
         name: 'paperclip',
         minver: '0.7.0',
         keywords: [
@@ -471,6 +510,13 @@
         minver: '0.1.10',
         keywords: [
             'edit',
+        ],
+    },
+    {
+        name: 'pending',
+        minver: '2.0.0',
+        keywords: [
+            'status',
         ],
     },
     {
@@ -547,11 +593,12 @@
     },
     {
         name: 'support',
-        minver: '0.1.0',
+        minver: '2.0.0',
         keywords: [
             'assistance',
             'customer service',
             'help',
+            'platform',
         ],
     },
     {
@@ -572,7 +619,13 @@
     },
     {
         name: 'ticketing',
-        minver: '0.1.10',
+        minver: '2.0.0',
+        keywords: [
+          'support',
+          'customer',
+          'device',
+          'platform',
+        ]
     },
     {
         name: 'times',
@@ -601,6 +654,15 @@
         ],
     },
     {
+        name: 'unavailable',
+        minver: '2.0.0',
+        keywords: [
+            'offline',
+            'inaccessible',
+            'status',
+        ],
+    },
+    {
         name: 'undo',
         minver: '0.12.0',
     },
@@ -612,10 +674,19 @@
     },
     {
         name: 'user',
-        minver: '0.1.10',
+        minver: '2.0.0',
         keywords: [
             'customer',
             'person',
+            'platform',
+        ],
+    },
+    {
+        name: 'warning',
+        minver: '2.0.0',
+        keywords: [
+            'error',
+            'status',
         ],
     },
 ]
