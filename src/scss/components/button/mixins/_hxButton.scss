@@ -35,7 +35,8 @@
   cursor: pointer;
   display: inline-block;
   font: inherit;
-  font-weight: 500;
+  font-size: 0.875rem;
+  font-weight: 700; // bold
   line-height: 1;
   margin: 0;
   padding: 0;
@@ -87,6 +88,7 @@
 
 @mixin hxButton--primary {
   background-color: $blue-500;
+  border: none;
   color: $gray-0;
 
   &:hover {
@@ -119,7 +121,7 @@
 }
 
 @mixin hxButton-focus--primary {
-  box-shadow: $focus-glow;
+  box-shadow: 0 0 4px rgba($blue-700, 0.5);
   outline: none;
 }
 
@@ -134,8 +136,9 @@
 /// -------------------------------------- ///
 
 @mixin hxButton--secondary {
-  border: 1px solid $blue-900;
-  color: $blue-900;
+  background-color: transparent;
+  border: 1px solid $blue-500;
+  color: $blue-500;
 
   &:hover {
     @include hxButton-hover--secondary;
@@ -155,9 +158,9 @@
 }
 
 @mixin hxButton-active--secondary {
-  background-color: $blue-900;
-  border-color: transparent;
-  color: $gray-0;
+  background-color: transparent;
+  border: 1px solid $blue-900;
+  color: $blue-900;
 }
 
 @mixin hxButton-disabled--secondary {
@@ -167,13 +170,13 @@
 }
 
 @mixin hxButton-focus--secondary {
-  box-shadow: $focus-glow;
+  box-shadow: 0 0 4px rgba($blue-700, 0.5);
 }
 
 @mixin hxButton-hover--secondary {
-  background-color: $blue-700;
-  border-color: transparent;
-  color: $gray-0;
+  background-color: transparent;
+  border: 1px solid $blue-700;
+  color: $blue-700;
 }
 
 
@@ -183,10 +186,10 @@
 
 @mixin hxButton--tertiary {
   background-color: transparent;
-  border: 0;
+  border: none;
   color: $blue-500;
 
-  // This class will be removed in HelixUI-v1.0.0.
+  // TODO: deprecated Button and Button Bar styles
   &.hxDeprecated {
     padding-left: 0;
     padding-right: 0;
@@ -222,7 +225,8 @@
 }
 
 @mixin hxButton-focus--tertiary {
-  box-shadow: $focus-glow;
+  box-shadow: 0 0 4px rgba($blue-700, 0.5);
+  outline: none;
 }
 
 @mixin hxButton-hover--tertiary {
