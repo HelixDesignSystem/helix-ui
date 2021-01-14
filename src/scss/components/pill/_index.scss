@@ -14,7 +14,7 @@ hx-status {
   display: inline-block;
   font-size: 0.625rem; // 10px
   height: 1rem;
-  line-height: 1;
+  line-height: 0.5rem;
   max-width: 100%;
   overflow: hidden;
   padding: 0.3em 0.8em 0.2em; // 3px 8px 2px
@@ -36,6 +36,8 @@ hx-status {
   &.hxSubdued {
     border-color: $gray-600;
     color: $gray-600;
+    font-size: 0.625rem;
+    line-height: 0.5rem;
   }
 
   &.hxFill {

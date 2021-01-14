@@ -51,6 +51,7 @@ hx-radio-control {
     grid-area: lbl;
 
     // grid parent
+    align-items: center;
     -ms-grid-columns: auto 1fr;
     -ms-grid-rows: auto;
     display: -ms-grid;
@@ -66,7 +67,6 @@ hx-radio-control {
       -ms-grid-row: 1;
       display: none;
       grid-area: facade;
-      margin-top: 0.25rem;
     }
   }
 
