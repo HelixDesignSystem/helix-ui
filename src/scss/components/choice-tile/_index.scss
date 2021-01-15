@@ -18,10 +18,14 @@ hx-tile {
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 0;
+    color: $gray-700;
+    line-height: 24px;
+    text-align: center;
   }
 
   > p {
     font-size: 0.75rem;
+    color: $gray-700;
   }
 
   &.hxSm {
@@ -115,7 +119,7 @@ label.hxChoice > input + hx-tile {
   cursor: pointer;
 
   .hx-tile-icon {
-    color: $gray-700;
+    color: $gray-400;
   }
 }
 
@@ -130,15 +134,23 @@ label.hxChoice > input:focus + hx-tile {
 
 // ========== CHECKED ==========
 label.hxChoice > input:checked + hx-tile {
-  border-color: $cyan-900;
-  color: $cyan-900;
+  border: 1px solid $purple-300;
+  color: $gray-0;
+
+  > hx-icon {
+    color: $purple-300;
+  }
 
   .hx-tile-icon {
-    color: $cyan-900;
+    color: $purple-300;
+  }
+
+  > header {
+    color: $purple-300;
   }
 
   > p {
-    color: $gray-900;
+    color: $gray-950;
   }
 
   // DEPRECATED: remove in v1.0.0
@@ -163,6 +175,14 @@ label.hxChoice > input[invalid] + hx-tile {
   .hx-tile-icon {
     color: inherit;
   }
+
+  > header {
+    color: inherit;
+  }
+
+  hx-icon[type="checkmark"] {
+    color: inherit;
+  }
 }
 
 label.hxChoice > input[invalid] + hx-tile:hover {
@@ -179,16 +199,20 @@ label.hxChoice > input[disabled] + hx-tile:hover {
   @include hxChoiceTile--disabled;
 
   > p {
-    color: inherit;
+    color: $gray-500;
   }
 
   // DEPRECATED: remove in v1.0.0
   hx-tile-description {
-    color: inherit;
+    color: $gray-500;
+  }
+
+  > header {
+    color: $gray-500;
   }
 
   hx-icon {
-    color: $gray-500;
+    color: $gray-400;
   }
 }
 
