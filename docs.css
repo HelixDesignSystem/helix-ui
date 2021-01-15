@@ -757,12 +757,24 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .choice-tile-spec label.hxChoice > input.pseudo-focus + hx-tile {
-  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
+  box-shadow: 0 0 4px rgba(125, 5, 114, 0.5);
 }
 
 .choice-tile-spec label.hxChoice > input + hx-tile.pseudo-hover {
-  background-color: #e5f2fb;
-  border-color: #367ed4;
+  background-color: #ffffff;
+  border: 1px solid #7d0572;
+}
+
+.choice-tile-spec label.hxChoice > input + hx-tile.pseudo-hover > header {
+  color: #7d0572;
+}
+
+.choice-tile-spec label.hxChoice > input + hx-tile.pseudo-hover > p {
+  color: #333333;
+}
+
+.choice-tile-spec label.hxChoice > input + hx-tile.pseudo-hover .hx-tile-icon {
+  color: #7d0572;
 }
 
 .choice-tile-spec label.hxChoice > input + hx-tile.hxSubdued.pseudo-hover {
@@ -770,21 +782,37 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .choice-tile-spec label.hxChoice > input[invalid].pseudo-focus + hx-tile {
-  box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
+  box-shadow: 0 0 4px rgba(214, 37, 31, 0.5);
+}
+
+.choice-tile-spec label.hxChoice > input[invalid].pseudo-focus + hx-tile .hx-tile-icon {
+  color: #d6251f;
 }
 
 .choice-tile-spec label.hxChoice > input[invalid] + hx-tile.pseudo-hover {
   background-color: #fddcdc;
-  border-color: #760300;
+  border-color: #d6251f;
   color: #424242;
 }
 
+.choice-tile-spec label.hxChoice > input[invalid] + hx-tile.pseudo-hover > header {
+  color: inherit;
+}
+
+.choice-tile-spec label.hxChoice > input[invalid] + hx-tile.pseudo-hover .hx-tile-icon {
+  color: #d6251f;
+}
+
 .choice-tile-spec label.hxChoice > input:disabled + hx-tile.pseudo-hover {
-  background-color: #fafafa;
-  border-color: #e0e0e0;
+  background-color: #ffffff;
+  border-color: #d8d8d8;
   border-width: 1px;
-  color: #757575;
+  color: #bdbdbd;
   cursor: not-allowed;
+}
+
+.choice-tile-spec label.hxChoice > input:disabled + hx-tile.pseudo-hover > header {
+  color: inherit;
 }
 
 .dropdown-select-spec hx-select-control {
@@ -869,13 +897,13 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxBtn {
-  background-color: #0051b7;
-  border-color: transparent;
-  color: #ffffff;
+  background-color: transparent;
+  border: 1px solid #003482;
+  color: #003482;
 }
 
 .file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxPrimary {
-  background-color: #0051b7;
+  background-color: #003482;
   border-color: transparent;
   color: #ffffff;
 }
@@ -883,17 +911,17 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 .file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxTertiary {
   background-color: transparent;
   border-color: transparent;
-  color: #0051b7;
+  color: #003482;
 }
 
 .file-input-spec hx-file-control hx-file-input.hxBtn.mock-hover {
-  background-color: #367ed4;
-  border-color: transparent;
-  color: #ffffff;
+  background-color: transparent;
+  border: 1px solid #0051b7;
+  color: #0051b7;
 }
 
 .file-input-spec hx-file-control hx-file-input.hxBtn.mock-hover.hxPrimary {
-  background-color: #367ed4;
+  background-color: #0051b7;
   border-color: transparent;
   color: #ffffff;
 }
@@ -901,7 +929,7 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 .file-input-spec hx-file-control hx-file-input.hxBtn.mock-hover.hxTertiary {
   background-color: transparent;
   border-color: transparent;
-  color: #367ed4;
+  color: #0051b7;
 }
 
 .menu-positioning-spec [id^="target"] {
@@ -1211,15 +1239,15 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .button-spec .hxBtn.mock-hover {
-  background-color: #367ed4;
-  border-color: transparent;
-  color: #ffffff;
+  background-color: transparent;
+  border: 1px solid #0051b7;
+  color: #0051b7;
 }
 
 .button-spec .hxBtn.mock-active {
-  background-color: #0051b7;
-  border-color: transparent;
-  color: #ffffff;
+  background-color: transparent;
+  border: 1px solid #003482;
+  color: #003482;
 }
 
 .button-spec .hxBtn.mock-focus {
@@ -1227,13 +1255,13 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .button-spec .hxBtn.hxPrimary.mock-hover {
-  background-color: #367ed4;
+  background-color: #0051b7;
   border-color: transparent;
   color: #ffffff;
 }
 
 .button-spec .hxBtn.hxPrimary.mock-active {
-  background-color: #0051b7;
+  background-color: #003482;
   border-color: transparent;
   color: #ffffff;
 }
@@ -1246,17 +1274,18 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 .button-spec .hxBtn.hxTertiary.mock-hover {
   background-color: transparent;
   border-color: transparent;
-  color: #367ed4;
+  color: #0051b7;
 }
 
 .button-spec .hxBtn.hxTertiary.mock-active {
   background-color: transparent;
   border-color: transparent;
-  color: #0051b7;
+  color: #003482;
 }
 
 .button-spec .hxBtn.hxTertiary.mock-focus {
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
+  outline: none;
 }
 
 .hxBtn.beta-hxDark,
