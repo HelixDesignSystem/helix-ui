@@ -6,8 +6,8 @@ hx-menu {
   @extend %hxComponent;
   @include is-positionable;
 
-  background-color: $gray-0;
-  border: 1px solid $gray-300;
+  background-color: var(--hxMenu-bgcolor, $gray-0);
+  border: 1px solid var(--hxMenu-border, $gray-300);
   box-shadow: $layering-shadow;
   max-width: 20rem;
   min-width: 10rem;
@@ -23,7 +23,7 @@ hx-menu {
     display: block;
 
     header {
-      color: $gray-600;
+      color: var(--hxMenu-section-header-color, $gray-600);
       font-size: 0.875rem;
       font-weight: 500;
       text-transform: uppercase;
@@ -44,7 +44,7 @@ hx-menuitem {
   background-color: transparent;
   border-radius: 2px;
   border: none;
-  color: $cyan-900;
+  color: var(--hxMenu-hxMenuitem-color, $blue-900);
   cursor: pointer;
   display: block;
   font-size: 0.875rem;
@@ -56,13 +56,13 @@ hx-menuitem {
   &:hover {
     background-color: transparent;
     border-color: transparent;
-    color: $cyan-500;
+    color: var(--hxMenu-hxMenuitem-hover-color, $blue-500);
   }
 
   &:active {
     background-color: transparent;
     border-color: transparent;
-    color: $cyan-700;
+    color: var(--hxMenu-hxMenuitem-active-color, $blue-700);
   }
 
   &:focus {
@@ -72,7 +72,7 @@ hx-menuitem {
   &[disabled] {
     background-color: transparent;
     border-color: transparent;
-    color: $gray-400;
+    color: var(--hxMenu-hxMenuitem-disabled-color, $gray-400);
   }
 
   &.hxBtn--link { // DEPRECATED: Remove in v1.0.0
@@ -85,7 +85,7 @@ hx-menuitem-group {
   display: block;
 
   header {
-    color: $gray-600;
+    color: var(--hxMenu-hxMenuitemGroup-header-color, $gray-600);
     font-size: 0.875rem;
     font-weight: 500;
     text-transform: uppercase;
