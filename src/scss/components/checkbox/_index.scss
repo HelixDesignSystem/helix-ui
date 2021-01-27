@@ -75,9 +75,9 @@ hx-checkbox-control {
 
 // ========== PRISTINE ==========
 hx-checkbox {
-  background-color: $gray-0;
+  background-color: var(--hxCheckbox-bgcolor, $gray-0);
   border-radius: 2px;
-  border: 1px solid $gray-500;
+  border: 1px solid var(--hxCheckbox-border, $gray-500);
 }
 
 hx-checkbox-control {
@@ -120,11 +120,11 @@ hx-checkbox-control {
 
     &:checked,
     &:indeterminate {
-      color: $blue-700;
+      color: var(--hxCheckbox-indeterminate-color, $blue-700);
 
       ~ label > hx-checkbox {
-        border-color: $blue-700;
-        color: $blue-700;
+        border-color: var(--hxCheckbox-indeterminate-label-bordercolor, $blue-700);
+        color: var(--hxCheckbox-indeterminate-label-color, $blue-700);
       }
     }
 
@@ -179,7 +179,7 @@ hx-checkbox-control > input[type="checkbox"]:disabled {
   }
 
   ~ label {
-    color: $gray-600;
+    color: var(--hxCheckbox-disabled-label-color, $gray-600);
 
     > hx-checkbox {
       @include hxCheckboxFacade(disabled);
