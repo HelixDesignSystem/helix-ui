@@ -2,50 +2,27 @@
 // ===== Mixins for top nav states =====
 //
 
-// ========== PRISTINE ==========
-@mixin __topNavControl($pseudo-state: null) {
-  @if $pseudo-state == focus {
-    box-shadow: $focus-glow;
-
-    &::-ms-check {
-      border-color: $cyan-700;
-    }
-  } @else if $pseudo-state == hover {
-    background-color: $gray-900;
-    color: $gray-0;
-  } @else {
-    color: $gray-500;
-
-    &::-ms-check {
-      background-color: $gray-0;
-      border-color: currentColor;
-      border-style: solid;
-      border-width: 0.063rem;
-      color: inherit;
-    }
-  }
-}
-
 // ========== DISABLED ==========
 @mixin __topNavControl--disabled($pseudo-state: null) {
   cursor: not-allowed;
 
-  hx-icon, p {
+  hx-icon,
+  p {
     color: $gray-600;
+    color: var(--hxTopNav-hxTopNavControl-disabled-para-color, $gray-600);
   }
   @if $pseudo-state == hover {
     background-color: $gray-950;
+    background-color: var(--hxTopNav-hxTopNavControl-disabled-hover-bgcolor, $gray-950);
 
     &::-ms-check {
       background-color: $gray-100;
+      background-color: var(--hxTopNav-hxTopNavControl-disabled-hover-ie-bgcolor, $gray-100);
     }
   }
 }
 
-@mixin hxTopNavControl(
-  $state: null,
-  $pseudo-state: null,
-) {
+@mixin hxTopNavControl($state: null, $pseudo-state: null) {
   @if $state == disabled {
     @include __topNavControl--disabled($pseudo-state);
   } @else {
