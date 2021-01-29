@@ -8,41 +8,44 @@
 
 #hxSecNav {
   background-color: $gray-0;
-  height: 3.5rem;
+  background-color: var(--hxSecNav-bgcolor, $gray-0);
+  border-bottom: 0.125rem solid $gray-300;
+  border-bottom: 0.125rem solid var(--hxSecNav-borderbottom, $gray-300);
+  height: 3.8rem;
   overflow: hidden;
   width: 100vw;
-  border-bottom: 0.125rem solid $gray-300;
 
-  .hxNavLink {
-    color: $gray-700;
+  .hxNavLink, > hx-disclosure {
+    color: $gray-950;
+    color: var(--hxSecNav-hxNavLink-color, $gray-950);
     display: inline-block;
     font-size: 1rem;
-    height: 3.5rem;
-    padding: 1rem 1.25rem;
+    height: 3.8rem;
+    padding: 1rem;
     text-align: center;
     width: auto;
+    outline: none;
 
     &:hover {
-      color: $gray-950 !important;
+      color: $purple-500 !important;
+      color: var(--hxSecNav-hxDisclosure-hover-color, $purple-500) !important;
+
+      > hx-icon, > span {
+        color: $purple-500 !important;
+        color: var(--hxSecNav-hxDisclosure-hover-color, $purple-500) !important;
+      }
     }
 
     &:active {
       color: $gray-0;
+      color: var(--hxSecNav-hxNavLink-active-color, $gray-0);
     }
   }
 
   > hx-disclosure {
-    background-color: transparent;
-    color: $gray-700;
-    display: inline-block;
-    font-size: 1rem;
-    height: 3.5rem;
-    line-height: 1;
-    padding: 1rem 1.25rem;
-    width: auto;
-
     > hx-icon {
-      color: $gray-400;
+      color: $gray-600;
+      color: var(--hxSecNav-hxDisclosure-hxIcon-color, $gray-600);
       font-size: 1rem;
       margin-left: 0.625rem;
       margin-top: 0.25rem;
@@ -53,59 +56,98 @@
       @include hxSecNavControl(disabled);
     }
 
+    > span {
+      color: $gray-950;
+      color: var(---hxSecNav-hxDisclosure-span-color, $gray-950);
+      font-size: 1rem;
+      outline: none;
+    }
+
     &[aria-expanded="true"] {
-      color: $purple-500;
-    }
-
-    &:hover {
-      color: $gray-950 !important;
-    }
-
-    &:active {
-      color: $gray-0;
+      > hx-icon, > span {
+        color: $purple-500;
+        color: var(--hxSecNav-hxDisclosure-aria-expanded-color, $purple-500);
+      }
     }
   }
 
   > hx-menu {
     background-color: $gray-0;
-    min-width: 10.5rem;
+    background-color: var(--hxSecNav-hxMenu-bgcolor, $gray-0);
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.5);
     padding: 0;
     top: 14.5rem;
-    box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.5);
+    min-width: 10rem;
 
     hx-menuitem {
       color: $gray-950;
+      color: var(--hxSecNav-hxMenu-hxMenuitem-color, $gray-950);
+      font-size: 1rem;
       padding: 0.5rem 1.25rem;
+
+      &:first-child {
+        padding-top: 1.25rem !important;
+      }
+
+      &:last-child {
+        padding-bottom: 1.25rem !important;
+      }
 
       &:hover {
         color: $purple-500 !important;
+        color: var(--hxSecNav-hxMenu-hxMenuitem-hover-color, $purple-500) !important;
       }
 
       &:active {
         color: $gray-0;
+        color: var(--hxSecNav-hxMenu-hxMenuitem-active-color, $gray-0);
       }
     }
 
-    hx-menuitem[disabled] {
+    hx-menuitem[disabled], hx-menuitem.hxDisabled {
       @include hxSecNavControl(disabled);
-
-      color: $gray-600;
     }
 
     .hxDivider {
       border-color: $gray-300;
-      height: 1px;
-      margin: 0.5rem auto 0;
+      border-color: var(--hxSecNav-hxMenu-hxDivider-border-color, $gray-300);
+      height: 0.06rem;
+      margin: 0 1.25rem;
     }
 
     > section > header {
-      padding-left: 1.25rem;
-      padding-top: 0.5rem;
+      color: $gray-700;
+      color: var(--hxSecNav-hxMenu-section-header-color, $gray-700);
+      font-size: 0.75rem;
+      padding: 1.25rem 1.25rem 0.5rem;
       text-transform: none;
     }
 
     > section {
       padding: 0;
+    }
+  }
+
+  > hx-menu.SecNavDropdownMenu {
+    width: 17.5rem;
+
+    .SecNavLeftMenu {
+      float: left;
+      width: 8.5rem;
+    }
+
+    .hxDividerVertical {
+      background-color: $gray-300;
+      background-color: var(--hxSecNav-hxMenu-hxDividerVertical-bgcolor, $gray-300);
+      float: left;
+      height: 10rem;
+      margin-top: 0.625rem;
+      width: 0.063rem;
+    }
+
+    .SecNavRightMenu {
+      float: left;
+      width: 8.5rem;
     }
   }
 }
