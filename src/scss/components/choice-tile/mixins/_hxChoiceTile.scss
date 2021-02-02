@@ -6,21 +6,20 @@
 @mixin hxChoiceTile($pseudo-state: null) {
   @if $pseudo-state == focus {
     box-shadow: 0 0 4px rgba($purple-700, 0.5);
-  }
-  @else if $pseudo-state == hover {
-    background-color: $gray-0;
-    border: 1px solid $purple-700;
+  } @else if $pseudo-state == hover {
+    background-color: var(--hxChoiceTile-hover-bgcolor, $gray-0);
+    border: 1px solid var(--hxChoiceTile-hover-bordercolor, $purple-700);
 
     > header {
-      color: $purple-700;
+      color: var(--hxChoiceTile-hover-header-color, $purple-700);
     }
 
     > p {
-      color: $gray-950;
+      color: var(--hxChoiceTile-hover-paragraph-color, $gray-950);
     }
 
     .hx-tile-icon {
-      color: $purple-700;
+      color: var(--hxChoiceTile-hover-hxTileIcon-color, $purple-700);
     }
   }
 }
@@ -29,8 +28,7 @@
 @mixin hxChoiceTile--subdued($pseudo-state: null) {
   @if $pseudo-state == hover {
     opacity: 1;
-  }
-  @else {
+  } @else {
     opacity: 0.7;
   }
 }
@@ -39,33 +37,31 @@
 @mixin hxChoiceTile--invalid($pseudo-state: null) {
   @if $pseudo-state == focus {
     box-shadow: 0 0 4px rgba($red-status-500, 0.5);
-  }
-  @else if $pseudo-state == hover {
-    background-color: $red-status-100;
-    border-color: $red-status-500;
-    color: $gray-900;
+  } @else if $pseudo-state == hover {
+    background-color: var(--hxChoiceTile-invalid-hover-bgcolor, $red-status-100);
+    border-color: var(--hxChoiceTile-invalid-hover-borderColor, $red-status-500);
+    color: var(--hxChoiceTile-invalid-hover-color, $gray-900);
 
     > header {
       color: inherit;
     }
-  }
-  @else {
-    border-color: $red-status-500;
+  } @else {
+    border-color: var(--hxChoiceTile-invalid-bordercolor, $red-status-500);
     border-width: 2px;
-    color: $red-status-500;
+    color: var(--hxChoiceTile-invalid-color, $red-status-500);
   }
 
   .hx-tile-icon {
-    color: $red-status-500;
+    color: var(--hxChoiceTile-invalid-hxTileIcon-color, $red-status-500);
   }
 }
 
 // ========== Disabled ==========
 @mixin hxChoiceTile--disabled {
-  background-color: $gray-0;
-  border-color: $gray-400;
+  background-color: var(--hxChoiceTile-disabled-bgcolor, $gray-0);
+  border-color: var(--hxChoiceTile-disabled-bordercolor, $gray-400);
   border-width: 1px;
-  color: $gray-500;
+  color: var(--hxChoiceTile-disabled-color, $gray-500);
   cursor: not-allowed;
 
   > header {
