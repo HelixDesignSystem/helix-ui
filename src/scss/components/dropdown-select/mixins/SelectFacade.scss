@@ -2,39 +2,35 @@
 
 @mixin __selectFacade($focused: false) {
   @if $focused {
-    border: 1px solid $cyan-700;
+    border: 1px solid var(--hxDropdown-hxSelect-focused-borderColor, $blue-700);
     box-shadow: $focus-glow;
-  }
-  @else {
-    border: 1px solid $gray-500;
-    color: $gray-900;
+  } @else {
+    border: 1px solid var(--hxDropdown-hxSelect-unfocused-borderColor, $gray-500);
+    color: var(--hxDropdown-hxSelect-color, $gray-900);
   }
 }
 
 @mixin __selectFacade--invalid($focused: false) {
   @if $focused {
-    border: 2px solid $red-900;
+    border: 2px solid var(--hxDropdown-hxSelect-invalid-focused-borderColor, $red-status-900);
     box-shadow: $focus-glow-invalid;
-  }
-  @else {
-    border: 2px solid $red-900;
-    color: $gray-900;
+  } @else {
+    border: 2px solid var(--hxDropdown-hxSelect-invalid-unfocused-borderColor, $red-status-900);
+    color: var(--hxDropdown-hxSelect-invalid-color, $gray-900);
   }
 }
 
 @mixin __selectFacade--disabled($focused: false) {
   @if $focused {
-    border: 1px solid $gray-500;
+    border: 1px solid var(--hxDropdown-hxSelect-disabled-focused-borderColor, $gray-500);
     box-shadow: $focus-glow;
-  }
-  @else {
+  } @else {
     --hxTrigger-backgroundColor: #{$gray-100};
 
-    border: 1px solid $gray-500;
-    color: $gray-700;
+    border: 1px solid var(--hxDropdown-hxSelect-disabled-unfocused-borderColor, $gray-500);
+    color: var(--hxDropdown-hxSelect-disabled-color, $gray-700);
   }
 }
-
 
 // LESS                            SCSS
 // .SelectFacade(pristine)       -> hxSelectFacade;
@@ -46,11 +42,9 @@
 @mixin hxSelectFacade($state: null, $focused: false) {
   @if $state == invalid {
     @include __selectFacade--invalid($focused);
-  }
-  @else if $state == disabled {
+  } @else if $state == disabled {
     @include __selectFacade--disabled($focused);
-  }
-  @else {
+  } @else {
     @include __selectFacade($focused);
   }
 }
