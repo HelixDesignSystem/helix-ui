@@ -49,6 +49,7 @@ hx-file-control > input[type="file"]:active {
 hx-file-control > input[type="file"]:disabled {
   ~ label {
     color: $gray-700;
+    color: var(--hxFile-hxFileControl-disabled-label-color, $gray-700);
 
     > hx-file-input {
       cursor: not-allowed;

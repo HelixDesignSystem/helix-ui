@@ -2,6 +2,7 @@ hx-drop-fence {
   @include box-size(md);
 
   border: 1px dashed $gray-600;
+  border: 1px dashed var(--hxFile-hxDropFence-border, $gray-600);
   display: block;
   font-size: 0.875rem;
   text-align: center;

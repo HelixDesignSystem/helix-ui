@@ -5,7 +5,8 @@ hx-drop-zone {
   position: relative;
 
   &::after {
-    border: 4px dashed $cyan-500;
+    border: 4px dashed $blue-500;
+    border: 4px dashed var(--hxFile-hxDropZone-after-border, $blue-500);
     content: "";
     display: none;
     height: 100%;
