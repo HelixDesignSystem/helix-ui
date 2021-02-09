@@ -1,9 +1,11 @@
 @import "vars";
 
 hx-progress {
-  background-color: $gray-400;
+  background-color: $gray-400; // fallback css for IE11
+  background-color: var(--hxLoader-hxProgress-bgcolor, $gray-400);
   border-radius: 1em;
-  color: $cyan-500;
+  color: $blue-500;
+  color: var(--hxLoader-hxProgress-color, $blue-500);
   display: block;
   height: 0.5rem;
   overflow: hidden;
