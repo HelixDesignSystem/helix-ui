@@ -1,14 +1,18 @@
 .hxPagination {
   background-color: $gray-0;
+  background-color: var(--hxPagination-bgcolor, $gray-0);
   border: 1px solid $gray-300;
+  border: 1px solid var(--hxPagination-border, $gray-300);
 
   .hxBtn {
     border: none;
     min-width: 2.5rem; //40px
 
     &[aria-current="true"] {
-      background-color: $cyan-900;
+      background-color: $blue-900;
+      background-color: var(--hxPagination-hxBtn-aria-current-bgcolor, $blue-900);
       color: $gray-0;
+      color: var(--hxPagination-hxBtn-aria-current-color, $gray-0);
     }
   }
 }
