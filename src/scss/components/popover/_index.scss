@@ -37,6 +37,7 @@ hx-popover {
 
   > header {
     color: $gray-950;
+    color: var(--hxPopover-header-color, $gray-900);
     flex-shrink: 0;
     line-height: 2rem;
     font-size: 1.5rem;
@@ -119,6 +120,7 @@ hx-popover-foot {
 
 hx-popover-head {
   color: $gray-900;
+  color: var(--hxPopover-head-color, $gray-900);
   display: block;
   flex-shrink: 0;
   font-size: 1rem;
