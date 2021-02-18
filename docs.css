@@ -660,48 +660,48 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-focus::-ms-check {
-  border-color: #0051b7;
+  border-color: var(--hxCheckbox-focus-bordercolor, #0051b7);
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-focus ~ label > hx-checkbox {
-  border-color: #003482;
+  border-color: var(--hxCheckbox-bordercolor-focus, #003482);
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-hover {
-  color: #0051b7;
+  color: var(--hxCheckbox-hover-color, #0051b7);
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-hover::-ms-check {
-  background-color: #ffffff;
-  color: #0051b7;
+  background-color: var(--hxCheckbox-hover-bgcolor, #ffffff);
+  color: var(--hxCheckbox-hover-ie-color, #0051b7);
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-hover ~ label > hx-checkbox {
-  background-color: #ffffff;
-  border-color: #0051b7;
-  color: #0051b7;
+  background-color: var(--hxCheckbox-hover-bgcolor, #ffffff);
+  border-color: var(--hxCheckbox-hover-bordercolor, #0051b7);
+  color: var(--hxCheckbox-hover-color, #0051b7);
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"]:disabled.mock-focus::-ms-check {
-  border-color: #bdbdbd;
+  border-color: var(--hxCheckbox-disabled-bordercolor, #bdbdbd);
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"]:disabled.mock-focus ~ label > hx-checkbox {
-  border-color: #bdbdbd;
+  border-color: var(--hxCheckbox-disabled-bordercolor, #bdbdbd);
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"]:disabled.mock-hover::-ms-check {
-  background-color: #ffffff;
-  border-color: #bdbdbd;
-  color: #bdbdbd;
+  background-color: var(--hxCheckbox-disabled-hover-bgcolor, #ffffff);
+  border-color: var(--hxCheckbox-disabled-hover-bordercolor, #bdbdbd);
+  color: var(--hxCheckbox-disabled-hover-color, #bdbdbd);
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"]:disabled.mock-hover ~ label > hx-checkbox {
-  background-color: #ffffff;
-  border-color: #bdbdbd;
-  color: #bdbdbd;
+  background-color: var(--hxCheckbox-disabled-hover-bgcolor, #ffffff);
+  border-color: var(--hxCheckbox-disabled-hover-bordercolor, #bdbdbd);
+  color: var(--hxCheckbox-disabled-color, #bdbdbd);
 }
 
 .checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-focus {
@@ -709,22 +709,22 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-focus::-ms-check {
-  border-color: #760300;
+  border-color: var(--hxCheckbox-invalid-bordercolor, #760300);
 }
 
 .checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-focus ~ label > hx-checkbox {
-  border-color: #760300;
+  border-color: var(--hxCheckbox-invalid-bordercolor, #760300);
   box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-hover::-ms-check {
-  background-color: #fddcdc;
+  background-color: var(--hxCheckbox-invalid-hover-bgcolor, #fddcdc);
 }
 
 .checkbox-spec hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid.mock-hover ~ label > hx-checkbox {
-  background-color: #fddcdc;
-  border-color: #760300;
-  color: #760300;
+  background-color: var(--hxCheckbox-invalid-hover-bgcolor, #fddcdc);
+  border-color: var(--hxCheckbox-invalid-hover-bordercolor, #760300);
+  color: var(--hxCheckbox-invalid-hover-color, #760300);
 }
 
 .checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus {
@@ -732,22 +732,22 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus::-ms-check {
-  border-color: #760300;
+  border-color: var(--hxCheckbox-invalid-bordercolor, #760300);
 }
 
 .checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-focus ~ label > hx-checkbox {
-  border-color: #760300;
+  border-color: var(--hxCheckbox-invalid-bordercolor, #760300);
   box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 .checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-hover::-ms-check {
-  background-color: #fddcdc;
+  background-color: var(--hxCheckbox-invalid-hover-bgcolor, #fddcdc);
 }
 
 .checkbox-spec hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled.mock-hover ~ label > hx-checkbox {
-  background-color: #fddcdc;
-  border-color: #760300;
-  color: #760300;
+  background-color: var(--hxCheckbox-invalid-hover-bgcolor, #fddcdc);
+  border-color: var(--hxCheckbox-invalid-hover-bordercolor, #760300);
+  color: var(--hxCheckbox-invalid-hover-color, #760300);
 }
 
 @supports (--modern: true) {
@@ -761,20 +761,20 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .choice-tile-spec label.hxChoice > input + hx-tile.pseudo-hover {
-  background-color: #ffffff;
-  border: 1px solid #7d0572;
+  background-color: var(--hxChoiceTile-hover-bgcolor, #ffffff);
+  border: 1px solid var(--hxChoiceTile-hover-bordercolor, #7d0572);
 }
 
 .choice-tile-spec label.hxChoice > input + hx-tile.pseudo-hover > header {
-  color: #7d0572;
+  color: var(--hxChoiceTile-hover-header-color, #7d0572);
 }
 
 .choice-tile-spec label.hxChoice > input + hx-tile.pseudo-hover > p {
-  color: #333333;
+  color: var(--hxChoiceTile-hover-paragraph-color, #333333);
 }
 
 .choice-tile-spec label.hxChoice > input + hx-tile.pseudo-hover .hx-tile-icon {
-  color: #7d0572;
+  color: var(--hxChoiceTile-hover-hxTileIcon-color, #7d0572);
 }
 
 .choice-tile-spec label.hxChoice > input + hx-tile.hxSubdued.pseudo-hover {
@@ -786,13 +786,13 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .choice-tile-spec label.hxChoice > input[invalid].pseudo-focus + hx-tile .hx-tile-icon {
-  color: #d6251f;
+  color: var(--hxChoiceTile-invalid-hxTileIcon-color, #d6251f);
 }
 
 .choice-tile-spec label.hxChoice > input[invalid] + hx-tile.pseudo-hover {
-  background-color: #fddcdc;
-  border-color: #d6251f;
-  color: #424242;
+  background-color: var(--hxChoiceTile-invalid-hover-bgcolor, #fddcdc);
+  border-color: var(--hxChoiceTile-invalid-hover-borderColor, #d6251f);
+  color: var(--hxChoiceTile-invalid-hover-color, #424242);
 }
 
 .choice-tile-spec label.hxChoice > input[invalid] + hx-tile.pseudo-hover > header {
@@ -800,14 +800,14 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .choice-tile-spec label.hxChoice > input[invalid] + hx-tile.pseudo-hover .hx-tile-icon {
-  color: #d6251f;
+  color: var(--hxChoiceTile-invalid-hxTileIcon-color, #d6251f);
 }
 
 .choice-tile-spec label.hxChoice > input:disabled + hx-tile.pseudo-hover {
-  background-color: #ffffff;
-  border-color: #d8d8d8;
+  background-color: var(--hxChoiceTile-disabled-bgcolor, #ffffff);
+  border-color: var(--hxChoiceTile-disabled-bordercolor, #d8d8d8);
   border-width: 1px;
-  color: #bdbdbd;
+  color: var(--hxChoiceTile-disabled-color, #bdbdbd);
   cursor: not-allowed;
 }
 
@@ -831,7 +831,7 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .dropdown-select-spec hx-select-control > select.mock-focus ~ hx-select {
-  border: 1px solid #0051b7;
+  border: 1px solid var(--hxDropdown-hxSelect-focused-borderColor, #0051b7);
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
@@ -845,7 +845,7 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .dropdown-select-spec hx-select-control > select.mock-focus:disabled ~ hx-select {
-  border: 1px solid #bdbdbd;
+  border: 1px solid var(--hxDropdown-hxSelect-disabled-focused-borderColor, #bdbdbd);
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
@@ -862,7 +862,7 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 
 .dropdown-select-spec hx-select-control.hxInvalid > select.mock-focus:enabled ~ hx-select,
 .dropdown-select-spec hx-select-control[hx-dirty] > select.mock-focus:enabled:invalid ~ hx-select {
-  border: 2px solid #760300;
+  border: 2px solid var(--hxDropdown-hxSelect-invalid-focused-borderColor, #760300);
   box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 

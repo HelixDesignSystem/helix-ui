@@ -528,7 +528,6 @@ a[href].hxBtn {
   line-height: 1;
   margin: 0;
   padding: 0;
-  border-radius: 2px;
   display: inline-flex;
   justify-content: center;
   font-size: 0.875rem;
@@ -678,11 +677,11 @@ a[href].hxBtn.hxTertiary[disabled] {
 }
 
 .hxButtonBar > .hxBtn:first-child {
-  border-radius: 2px 0 0 2px;
+  border-radius: 0;
 }
 
 .hxButtonBar > .hxBtn:last-child {
-  border-radius: 0 2px 2px 0;
+  border-radius: 0;
 }
 
 .hxButtonBar > .hxBtn + .hxBtn {
@@ -814,11 +813,11 @@ a[href].hxBtn.hxTertiary[disabled] {
 }
 
 .hxBtnGroup > .hxBtn:first-child {
-  border-radius: 2px 0 0 2px;
+  border-radius: 0;
 }
 
 .hxBtnGroup > .hxBtn:last-child {
-  border-radius: 0 2px 2px 0;
+  border-radius: 0;
 }
 
 .hxBtnGroup > .hxBtn + .hxBtn {
@@ -1040,6 +1039,9 @@ hx-checkbox-control > * {
 }
 
 hx-checkbox-control > label {
+  font-size: 1rem;
+  color: #333333;
+  font-weight: 400;
   -ms-grid-column: 2;
   -ms-grid-row: 1;
   grid-area: lbl;
@@ -1084,9 +1086,9 @@ hx-checkbox-control > input[type="checkbox"]::-ms-check {
 }
 
 hx-checkbox {
-  background-color: #ffffff;
+  background-color: var(--hxCheckbox-bgcolor, #ffffff);
   border-radius: 2px;
-  border: 1px solid #bdbdbd;
+  border: 1px solid var(--hxCheckbox-border, #bdbdbd);
 }
 
 hx-checkbox-control > p {
@@ -1095,11 +1097,11 @@ hx-checkbox-control > p {
 }
 
 hx-checkbox-control > input[type="checkbox"] {
-  color: #bdbdbd;
+  color: var(--hxCheckbox-color, #bdbdbd);
 }
 
 hx-checkbox-control > input[type="checkbox"]::-ms-check {
-  background-color: #ffffff;
+  background-color: var(--hxCheckbox-bgcolor, #ffffff);
   border-color: currentColor;
   border-style: solid;
   border-width: 1px;
@@ -1111,27 +1113,27 @@ hx-checkbox-control > input[type="checkbox"]:focus {
 }
 
 hx-checkbox-control > input[type="checkbox"]:focus::-ms-check {
-  border-color: #0051b7;
+  border-color: var(--hxCheckbox-focus-bordercolor, #0051b7);
 }
 
 hx-checkbox-control > input[type="checkbox"]:focus ~ label > hx-checkbox {
-  border-color: #003482;
+  border-color: var(--hxCheckbox-bordercolor-focus, #003482);
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 hx-checkbox-control > input[type="checkbox"]:hover {
-  color: #0051b7;
+  color: var(--hxCheckbox-hover-color, #0051b7);
 }
 
 hx-checkbox-control > input[type="checkbox"]:hover::-ms-check {
-  background-color: #ffffff;
-  color: #0051b7;
+  background-color: var(--hxCheckbox-hover-bgcolor, #ffffff);
+  color: var(--hxCheckbox-hover-ie-color, #0051b7);
 }
 
 hx-checkbox-control > input[type="checkbox"] ~ label > hx-checkbox:hover {
-  background-color: #ffffff;
-  border-color: #0051b7;
-  color: #0051b7;
+  background-color: var(--hxCheckbox-hover-bgcolor, #ffffff);
+  border-color: var(--hxCheckbox-hover-bordercolor, #0051b7);
+  color: var(--hxCheckbox-hover-color, #0051b7);
 }
 
 hx-checkbox-control > input[type="checkbox"]:checked ~ label > hx-checkbox {
@@ -1145,23 +1147,23 @@ hx-checkbox-control > input[type="checkbox"]:indeterminate ~ label > hx-checkbox
 }
 
 hx-checkbox-control > input[type="checkbox"]:checked, hx-checkbox-control > input[type="checkbox"]:indeterminate {
-  color: #0051b7;
+  color: var(--hxCheckbox-indeterminate-color, #0051b7);
 }
 
 hx-checkbox-control > input[type="checkbox"]:checked ~ label > hx-checkbox, hx-checkbox-control > input[type="checkbox"]:indeterminate ~ label > hx-checkbox {
-  border-color: #0051b7;
-  color: #0051b7;
+  border-color: var(--hxCheckbox-indeterminate-label-bordercolor, #0051b7);
+  color: var(--hxCheckbox-indeterminate-label-color, #0051b7);
 }
 
 hx-checkbox-control > input[type="checkbox"]:valid ~ label > hx-checkbox:hover {
-  background-color: #ffffff;
-  border-color: #0051b7;
-  color: #0051b7;
+  background-color: var(--hxCheckbox-hover-bgcolor, #ffffff);
+  border-color: var(--hxCheckbox-hover-bordercolor, #0051b7);
+  color: var(--hxCheckbox-hover-color, #0051b7);
 }
 
 hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid,
 hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled {
-  color: #760300;
+  color: var(--hxCheckbox-invalid-color, #760300);
 }
 
 hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid::-ms-check,
@@ -1178,35 +1180,35 @@ hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:focus {
 
 hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:focus::-ms-check,
 hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:focus::-ms-check {
-  border-color: #760300;
+  border-color: var(--hxCheckbox-invalid-bordercolor, #760300);
 }
 
 hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:focus ~ label > hx-checkbox,
 hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:focus ~ label > hx-checkbox {
-  border-color: #760300;
+  border-color: var(--hxCheckbox-invalid-bordercolor, #760300);
   box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
 hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid:hover::-ms-check,
 hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled:hover::-ms-check {
-  background-color: #fddcdc;
+  background-color: var(--hxCheckbox-invalid-hover-bgcolor, #fddcdc);
 }
 
 hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid ~ label > hx-checkbox,
 hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled ~ label > hx-checkbox {
-  border: 1px solid #760300;
-  color: #760300;
+  border: 1px solid var(--hxCheckbox-invalid-border, #760300);
+  color: var(--hxCheckbox-invalid-color, #760300);
 }
 
 hx-checkbox-control[hx-dirty] > input[type="checkbox"]:invalid ~ label > hx-checkbox:hover,
 hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled ~ label > hx-checkbox:hover {
-  background-color: #fddcdc;
-  border-color: #760300;
-  color: #760300;
+  background-color: var(--hxCheckbox-invalid-hover-bgcolor, #fddcdc);
+  border-color: var(--hxCheckbox-invalid-hover-bordercolor, #760300);
+  color: var(--hxCheckbox-invalid-hover-color, #760300);
 }
 
 hx-checkbox-control > input[type="checkbox"]:disabled {
-  color: #bdbdbd;
+  color: var(--hxCheckbox-disabled-color, #bdbdbd);
   cursor: not-allowed;
 }
 
@@ -1216,22 +1218,22 @@ hx-checkbox-control > input[type="checkbox"]:disabled::-ms-check {
 }
 
 hx-checkbox-control > input[type="checkbox"]:disabled:focus::-ms-check {
-  border-color: #bdbdbd;
+  border-color: var(--hxCheckbox-disabled-bordercolor, #bdbdbd);
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 hx-checkbox-control > input[type="checkbox"]:disabled:focus ~ label > hx-checkbox {
-  border-color: #bdbdbd;
+  border-color: var(--hxCheckbox-disabled-bordercolor, #bdbdbd);
 }
 
 hx-checkbox-control > input[type="checkbox"]:disabled:hover::-ms-check {
-  background-color: #ffffff;
-  border-color: #bdbdbd;
-  color: #bdbdbd;
+  background-color: var(--hxCheckbox-disabled-hover-bgcolor, #ffffff);
+  border-color: var(--hxCheckbox-disabled-hover-bordercolor, #bdbdbd);
+  color: var(--hxCheckbox-disabled-hover-color, #bdbdbd);
 }
 
 hx-checkbox-control > input[type="checkbox"]:disabled ~ label {
-  color: #9e9e9e;
+  color: var(--hxCheckbox-disabled-label-color, #9e9e9e);
 }
 
 hx-checkbox-control > input[type="checkbox"]:disabled ~ label > hx-checkbox {
@@ -1240,9 +1242,9 @@ hx-checkbox-control > input[type="checkbox"]:disabled ~ label > hx-checkbox {
 }
 
 hx-checkbox-control > input[type="checkbox"]:disabled ~ label > hx-checkbox, hx-checkbox-control > input[type="checkbox"]:disabled ~ label > hx-checkbox:hover {
-  background-color: #ffffff;
-  border-color: #bdbdbd;
-  color: #bdbdbd;
+  background-color: var(--hxCheckbox-disabled-hover-bgcolor, #ffffff);
+  border-color: var(--hxCheckbox-disabled-hover-bordercolor, #bdbdbd);
+  color: var(--hxCheckbox-disabled-color, #bdbdbd);
 }
 
 @supports (--modern: true) {
@@ -1289,14 +1291,14 @@ hx-tile > header {
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 0;
-  color: #757575;
+  color: var(--hxChoiceTile-header-color, #757575);
   line-height: 24px;
   text-align: center;
 }
 
 hx-tile > p {
   font-size: 0.75rem;
-  color: #757575;
+  color: var(--hxChoiceTile-tile-paragraph-color, #757575);
 }
 
 hx-tile.hxSm {
@@ -1393,31 +1395,31 @@ label.hxChoice > input[invalid] + hx-tile.hxSubdued {
 }
 
 label.hxChoice > input + hx-tile {
-  background-color: #ffffff;
-  border: solid 1px #d8d8d8;
-  color: #424242;
+  background-color: var(--hxChoiceTile-input-bgcolor, #ffffff);
+  border: solid 1px var(--hxChoiceTile-input-hxTile-bordercolor, #d8d8d8);
+  color: var(--hxChoiceTile-input-color, #424242);
   cursor: pointer;
 }
 
 label.hxChoice > input + hx-tile .hx-tile-icon {
-  color: #d8d8d8;
+  color: var(--hxChoiceTile-hxTile-color, #d8d8d8);
 }
 
 label.hxChoice > input + hx-tile:hover {
-  background-color: #ffffff;
-  border: 1px solid #7d0572;
+  background-color: var(--hxChoiceTile-hover-bgcolor, #ffffff);
+  border: 1px solid var(--hxChoiceTile-hover-bordercolor, #7d0572);
 }
 
 label.hxChoice > input + hx-tile:hover > header {
-  color: #7d0572;
+  color: var(--hxChoiceTile-hover-header-color, #7d0572);
 }
 
 label.hxChoice > input + hx-tile:hover > p {
-  color: #333333;
+  color: var(--hxChoiceTile-hover-paragraph-color, #333333);
 }
 
 label.hxChoice > input + hx-tile:hover .hx-tile-icon {
-  color: #7d0572;
+  color: var(--hxChoiceTile-hover-hxTileIcon-color, #7d0572);
 }
 
 label.hxChoice > input:focus + hx-tile {
@@ -1425,46 +1427,46 @@ label.hxChoice > input:focus + hx-tile {
 }
 
 label.hxChoice > input:checked + hx-tile {
-  border: 1px solid #ad3da5;
-  color: #ffffff;
+  border: 1px solid var(--hxChoiceTile-inputChecked-bordercolor, #ad3da5);
+  color: var(--hxChoiceTile-inputChecked-color, #ffffff);
 }
 
 label.hxChoice > input:checked + hx-tile > hx-icon {
-  color: #ad3da5;
+  color: var(--hxChoiceTile-inputChecked-hxicon-color, #ad3da5);
 }
 
 label.hxChoice > input:checked + hx-tile .hx-tile-icon {
-  color: #ad3da5;
+  color: var(--hxChoiceTile-checked-hxTile-color, #ad3da5);
 }
 
 label.hxChoice > input:checked + hx-tile > header {
-  color: #ad3da5;
+  color: var(--hxChoiceTile-checked-hxTile-header-color, #ad3da5);
 }
 
 label.hxChoice > input:checked + hx-tile > p {
-  color: #333333;
+  color: var(--hxChoiceTile-checked-paragraph-color, #333333);
 }
 
 label.hxChoice > input:checked + hx-tile hx-tile-description {
-  color: #424242;
+  color: var(--hxChoiceTile-checked-description-color, #424242);
 }
 
 label.hxChoice > input[invalid] + hx-tile {
-  border-color: #d6251f;
+  border-color: var(--hxChoiceTile-invalid-bordercolor, #d6251f);
   border-width: 2px;
-  color: #d6251f;
+  color: var(--hxChoiceTile-invalid-color, #d6251f);
 }
 
 label.hxChoice > input[invalid] + hx-tile .hx-tile-icon {
-  color: #d6251f;
+  color: var(--hxChoiceTile-invalid-hxTileIcon-color, #d6251f);
 }
 
 label.hxChoice > input[invalid] + hx-tile > p {
-  color: #424242;
+  color: var(--hxChoiceTile-invalid-paragraph-color, #424242);
 }
 
 label.hxChoice > input[invalid] + hx-tile hx-tile-description {
-  color: #424242;
+  color: var(--hxChoiceTile-invalid-description-color, #424242);
 }
 
 label.hxChoice > input[invalid] + hx-tile .hx-tile-icon {
@@ -1480,9 +1482,9 @@ label.hxChoice > input[invalid] + hx-tile hx-icon[type="checkmark"] {
 }
 
 label.hxChoice > input[invalid] + hx-tile:hover {
-  background-color: #fddcdc;
-  border-color: #d6251f;
-  color: #424242;
+  background-color: var(--hxChoiceTile-invalid-hover-bgcolor, #fddcdc);
+  border-color: var(--hxChoiceTile-invalid-hover-borderColor, #d6251f);
+  color: var(--hxChoiceTile-invalid-hover-color, #424242);
 }
 
 label.hxChoice > input[invalid] + hx-tile:hover > header {
@@ -1490,7 +1492,7 @@ label.hxChoice > input[invalid] + hx-tile:hover > header {
 }
 
 label.hxChoice > input[invalid] + hx-tile:hover .hx-tile-icon {
-  color: #d6251f;
+  color: var(--hxChoiceTile-invalid-hxTileIcon-color, #d6251f);
 }
 
 label.hxChoice > input[invalid]:focus + hx-tile {
@@ -1498,15 +1500,15 @@ label.hxChoice > input[invalid]:focus + hx-tile {
 }
 
 label.hxChoice > input[invalid]:focus + hx-tile .hx-tile-icon {
-  color: #d6251f;
+  color: var(--hxChoiceTile-invalid-hxTileIcon-color, #d6251f);
 }
 
 label.hxChoice > input[disabled] + hx-tile,
 label.hxChoice > input[disabled] + hx-tile:hover {
-  background-color: #ffffff;
-  border-color: #d8d8d8;
+  background-color: var(--hxChoiceTile-disabled-bgcolor, #ffffff);
+  border-color: var(--hxChoiceTile-disabled-bordercolor, #d8d8d8);
   border-width: 1px;
-  color: #bdbdbd;
+  color: var(--hxChoiceTile-disabled-color, #bdbdbd);
   cursor: not-allowed;
 }
 
@@ -1517,22 +1519,22 @@ label.hxChoice > input[disabled] + hx-tile:hover > header {
 
 label.hxChoice > input[disabled] + hx-tile > p,
 label.hxChoice > input[disabled] + hx-tile:hover > p {
-  color: #bdbdbd;
+  color: var(--hxChoiceTile-disabled-paragraph-color, #bdbdbd);
 }
 
 label.hxChoice > input[disabled] + hx-tile hx-tile-description,
 label.hxChoice > input[disabled] + hx-tile:hover hx-tile-description {
-  color: #bdbdbd;
+  color: var(--hxChoiceTile-disabled-description-color, #bdbdbd);
 }
 
 label.hxChoice > input[disabled] + hx-tile > header,
 label.hxChoice > input[disabled] + hx-tile:hover > header {
-  color: #bdbdbd;
+  color: var(--hxChoiceTile-disabled-header-color, #bdbdbd);
 }
 
 label.hxChoice > input[disabled] + hx-tile hx-icon,
 label.hxChoice > input[disabled] + hx-tile:hover hx-icon {
-  color: #d8d8d8;
+  color: var(--hxChoiceTile-disabled-hxIcon-color, #d8d8d8);
 }
 
 hx-tile-description {
@@ -1710,8 +1712,8 @@ hx-select-control > select::-ms-expand {
 }
 
 hx-select-control > select {
-  background-color: #ffffff;
-  color: #424242;
+  background-color: var(--hxDropdown-hxSelect-unfocused-backgroundColor, #ffffff);
+  color: var(--hxDropdown-hxSelect-unfocused-color, #424242);
 }
 
 hx-select-control > select ~ label {
@@ -1721,8 +1723,8 @@ hx-select-control > select ~ label {
 }
 
 hx-select-control > select ~ hx-select {
-  border: 1px solid #bdbdbd;
-  color: #424242;
+  border: 1px solid var(--hxDropdown-hxSelect-unfocused-borderColor, #bdbdbd);
+  color: var(--hxDropdown-hxSelect-color, #424242);
 }
 
 hx-select-control > select:focus {
@@ -1735,13 +1737,13 @@ hx-select-control > select:focus:-moz-focusring {
 }
 
 hx-select-control > select:focus ~ hx-select {
-  border: 1px solid #0051b7;
+  border: 1px solid var(--hxDropdown-hxSelect-focused-borderColor, #0051b7);
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 hx-select-control > select:disabled {
-  background-color: #eeeeee;
-  color: #757575;
+  background-color: var(--hxDropdown-hxSelect-unfocused-disabled-backgroundColor, #eeeeee);
+  color: var(--hxDropdown-hxSelect-unfocused-disabled-color, #757575);
   opacity: 1;
 }
 
@@ -1751,8 +1753,8 @@ hx-select-control > select:disabled ~ label {
 
 hx-select-control > select:disabled ~ hx-select {
   --hxTrigger-backgroundColor: #eeeeee;
-  border: 1px solid #bdbdbd;
-  color: #757575;
+  border: 1px solid var(--hxDropdown-hxSelect-disabled-unfocused-borderColor, #bdbdbd);
+  color: var(--hxDropdown-hxSelect-disabled-color, #757575);
 }
 
 hx-select-control > select:disabled:focus {
@@ -1765,20 +1767,20 @@ hx-select-control > select:disabled:focus:-moz-focusring {
 }
 
 hx-select-control > select:disabled:focus ~ hx-select {
-  border: 1px solid #bdbdbd;
+  border: 1px solid var(--hxDropdown-hxSelect-disabled-focused-borderColor, #bdbdbd);
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 hx-select-control[hx-dirty] > select:enabled:invalid,
 hx-select-control.hxInvalid > select:enabled {
-  background-color: #ffffff;
-  color: #424242;
+  background-color: var(--hxDropdown-hxSelect-unfocused-invalid-backgroundColor, #ffffff);
+  color: var(--hxDropdown-hxSelect-unfocused-invalid-color, #424242);
 }
 
 hx-select-control[hx-dirty] > select:enabled:invalid ~ hx-select,
 hx-select-control.hxInvalid > select:enabled ~ hx-select {
-  border: 2px solid #760300;
-  color: #424242;
+  border: 2px solid var(--hxDropdown-hxSelect-invalid-unfocused-borderColor, #760300);
+  color: var(--hxDropdown-hxSelect-invalid-color, #424242);
 }
 
 hx-select-control[hx-dirty] > select:enabled:invalid:focus,
@@ -1794,7 +1796,7 @@ hx-select-control.hxInvalid > select:enabled:focus:-moz-focusring {
 
 hx-select-control[hx-dirty] > select:enabled:invalid:focus ~ hx-select,
 hx-select-control.hxInvalid > select:enabled:focus ~ hx-select {
-  border: 2px solid #760300;
+  border: 2px solid var(--hxDropdown-hxSelect-invalid-focused-borderColor, #760300);
   box-shadow: 0 0 4px rgba(118, 3, 0, 0.5);
 }
 
@@ -3345,8 +3347,8 @@ hx-menu {
   left: 0;
   position: fixed;
   top: 0;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
+  background-color: var(--hxMenu-bgcolor, #ffffff);
+  border: 1px solid var(--hxMenu-border, #e0e0e0);
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16);
   max-width: 20rem;
   min-width: 10rem;
@@ -3367,7 +3369,7 @@ hx-menu > section {
 }
 
 hx-menu > section header {
-  color: #9e9e9e;
+  color: var(--hxMenu-section-header-color, #9e9e9e);
   font-size: 0.875rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -3381,7 +3383,7 @@ hx-menuitem {
   background-color: transparent;
   border-radius: 2px;
   border: none;
-  color: #003482;
+  color: var(--hxMenu-hxMenuitem-color, #003482);
   cursor: pointer;
   display: block;
   font-size: 0.875rem;
@@ -3394,13 +3396,13 @@ hx-menuitem {
 hx-menuitem:hover {
   background-color: transparent;
   border-color: transparent;
-  color: #367ed4;
+  color: var(--hxMenu-hxMenuitem-hover-color, #367ed4);
 }
 
 hx-menuitem:active {
   background-color: transparent;
   border-color: transparent;
-  color: #0051b7;
+  color: var(--hxMenu-hxMenuitem-active-color, #0051b7);
 }
 
 hx-menuitem:focus {
@@ -3410,7 +3412,7 @@ hx-menuitem:focus {
 hx-menuitem[disabled] {
   background-color: transparent;
   border-color: transparent;
-  color: #d8d8d8;
+  color: var(--hxMenu-hxMenuitem-disabled-color, #d8d8d8);
 }
 
 hx-menuitem.hxBtn--link {
@@ -3422,7 +3424,7 @@ hx-menuitem-group {
 }
 
 hx-menuitem-group header {
-  color: #9e9e9e;
+  color: var(--hxMenu-hxMenuitemGroup-header-color, #9e9e9e);
   font-size: 0.875rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -4072,11 +4074,13 @@ hx-popover[open] {
 
 #hxPopover.hx-popover > header,
 hx-popover > header {
-  color: #424242;
+  color: #333333;
   flex-shrink: 0;
-  font-size: 1rem;
-  font-weight: 600;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  font-weight: 400;
   padding: 1.25rem;
+  padding-bottom: 0.5rem;
   text-transform: none;
 }
 
@@ -4207,6 +4211,9 @@ hx-radio-control > * {
 }
 
 hx-radio-control > label {
+  font-size: 1rem;
+  color: #333333;
+  font-weight: 400;
   -ms-grid-column: 2;
   -ms-grid-row: 1;
   grid-area: lbl;
@@ -5248,14 +5255,14 @@ hx-switch-control > input[invalid] ~ label > hx-switch::-ms-check {
 hx-tab {
   border-radius: 2px 2px 0 0;
   border: 1px solid transparent;
-  color: #757575;
+  color: var(--hxTabset-hxTab-color, #757575);
   cursor: pointer;
   font-size: 0.875rem;
   font-weight: 500;
 }
 
 hx-tab:hover {
-  color: #333333;
+  color: var(--hxTabset-hxTab-hover-color, #333333);
 }
 
 hx-tab:focus {
@@ -5264,8 +5271,8 @@ hx-tab:focus {
 
 hx-tab[current] {
   background-color: inherit;
-  border-bottom: 2px solid #34cecc;
-  color: #333333;
+  border-bottom: 2px solid var(--hxTabset-hxTab-current-border-bottom, #34cecc);
+  color: var(--hxTabset-hxTab-current-color, #333333);
   font-weight: 600;
   outline: none;
 }
@@ -5340,7 +5347,7 @@ hx-tabset > hx-tabcontent {
 }
 
 hx-tabset:not([hx-defined]) hx-tab:first-of-type {
-  background-color: #ffffff;
+  background-color: var(--hxTabset-hxTab-first-of-type-bgcolor, #ffffff);
 }
 
 hx-tabset:not([hx-defined]) hx-tabpanel:first-of-type {
@@ -5348,12 +5355,12 @@ hx-tabset:not([hx-defined]) hx-tabpanel:first-of-type {
 }
 
 hx-tabset.beta-hxBound hx-tab[current] {
-  background-color: #ffffff;
+  background-color: var(--hxTabset-hxTab-current-bgcolor, #ffffff);
 }
 
 hx-tabset.beta-hxBound hx-tabcontent {
-  background-color: #ffffff;
-  border-color: #e0e0e0;
+  background-color: var(--hxTabset-hxTabcontent-bgcolor, #ffffff);
+  border-color: var(--hxTabset-hxTabcontent-border-color, #e0e0e0);
 }
 
 hx-textarea-control {
