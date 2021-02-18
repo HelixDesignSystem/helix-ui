@@ -151,12 +151,12 @@ $font-sans-serif: "Open Sans", "Roboto", "Helvetica Neue", "Helvetica", "Arial",
 $font-monospace: "Open Sans Condensed", "Roboto Mono", monospace;
 
 // ==== FOCUS STATE =====
-$focus-glow: 0 0 4px rgba($cyan-700, 0.5);
+$focus-glow: 0 0 4px rgba($blue-700, 0.5);
 $focus-glow-disabled: $focus-glow;
-$focus-glow-invalid: 0 0 4px rgba($red-900, 0.5);
+$focus-glow-invalid: 0 0 4px rgba($red-status-900, 0.5);
 
 $app-nav-width: 15rem;
-$corner-radius: 2px;
+//$corner-radius: 2px;  // Deprecated for Button- v2.0 Specs
 
 // ==== Z-INDEX =====
 $drawer-z-index: 50;

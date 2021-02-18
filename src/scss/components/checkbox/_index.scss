@@ -26,6 +26,11 @@ hx-checkbox-control {
   }
 
   > label {
+    // Checkbox v2.0 specs
+    font-size: 1rem;
+    color: $gray-950;
+    font-weight: 400; // normal
+
     // grid child
     -ms-grid-column: 2;
     -ms-grid-row: 1;

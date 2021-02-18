@@ -36,11 +36,13 @@ hx-popover {
   }
 
   > header {
-    color: $gray-900;
+    color: $gray-950;
     flex-shrink: 0;
-    font-size: 1rem;
-    font-weight: 600;
+    line-height: 2rem;
+    font-size: 1.5rem;
+    font-weight: 400;
     padding: map-get($space, md);
+    padding-bottom: 0.5rem;
     text-transform: none;
   }
 
