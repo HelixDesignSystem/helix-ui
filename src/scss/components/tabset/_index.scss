@@ -1,23 +1,33 @@
+/// ---------------------------- ///
+/// ---------- TABSET ---------- ///
+/// ---------------------------- ///
+
 // ===== LAYOUT & APPEARANCE ===============
 hx-tab {
-  border-radius: 2px 2px 0 0;
-  border: 1px solid transparent;
+  border-bottom: 2px solid transparent;
+  color: $gray-700;
   color: var(--hxTabset-hxTab-color, $gray-700);
   cursor: pointer;
   font-size: 0.875rem;
-  font-weight: 500;
 
   &:hover {
+    color: $gray-950;
     color: var(--hxTabset-hxTab-hover-color, $gray-950);
   }
 
+  // v2.0 spec - TBD: new focus states
+  // v2.0 spec - remove browser default focus-ring
   &:focus {
+    box-shadow: none;
+    outline: none;
     z-index: 1; // keeps focus ring in front of adjacent tabs
   }
 
   &[current] {
     background-color: inherit;
+    border-bottom: 2px solid $teal-300;
     border-bottom: 2px solid var(--hxTabset-hxTab-current-border-bottom, $teal-300);
+    color: $gray-950;
     color: var(--hxTabset-hxTab-current-color, $gray-950);
     font-weight: 600;
     outline: none;
@@ -33,6 +43,7 @@ hx-tabcontent {
   -ms-grid-rows: 1fr;
   background-color: inherit;
   border-color: $gray-300 transparent;
+  border-color: var(--hxTabset-hxTabcontent-border-color, $gray-300) transparent;
   border-style: solid;
   border-width: 1px;
   display: -ms-grid;
@@ -64,6 +75,17 @@ hx-tabpanel {
 
   &[open] {
     display: block;
+    overflow-y: auto;
+
+    // IE11 overflow bug
+    @media all and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      height: 20rem;
+    }
+
+    // Chrome86/FF85 focus-ring
+    &:focus-visible {
+      outline: none;
+    }
   }
 }
 
@@ -101,6 +123,7 @@ hx-tabset {
 // before <hx-tabset> upgrades.
 hx-tabset:not([hx-defined]) {
   hx-tab:first-of-type {
+    background-color: $gray-0;
     background-color: var(--hxTabset-hxTab-first-of-type-bgcolor, $gray-0);
   }
 
@@ -113,11 +136,14 @@ hx-tabset:not([hx-defined]) {
 
 hx-tabset.beta-hxBound {
   hx-tab[current] {
+    background-color: $gray-0;
     background-color: var(--hxTabset-hxTab-current-bgcolor, $gray-0);
   }
 
   hx-tabcontent {
+    background-color: $gray-0;
     background-color: var(--hxTabset-hxTabcontent-bgcolor, $gray-0);
+    border-color: $gray-300;
     border-color: var(--hxTabset-hxTabcontent-border-color, $gray-300);
   }
 }
