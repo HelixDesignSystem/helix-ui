@@ -5,6 +5,7 @@ if (document.getElementById('vue-choiceDemo')) {
         { value: 'hxSm', label: 'Small' },
         { value: '', label: 'Medium' },
         { value: 'hxLg', label: 'Large' },
+        { value: 'hxSlim', label: 'Slim' },
     ];
 
     new Vue({
