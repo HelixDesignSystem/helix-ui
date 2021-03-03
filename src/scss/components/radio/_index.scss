@@ -48,6 +48,7 @@ hx-radio-control {
     // Radio v2.0 specs
     font-size: 1rem;
     color: $gray-950;
+    color: var(--hxRadio-radioControl-layout-label-color, $gray-950);
     font-weight: 400; // normal
 
     // grid child
@@ -100,8 +101,10 @@ hx-radio-control {
 hx-radio-control {
   > label > hx-radio {
     background-color: $gray-0;
+    background-color: var(--hxRadio-pristine-radio-bgcolor, $gray-0);
     border: 1px solid currentColor;
     color: $gray-500;
+    color: var(--hxRadio-pristine-radio-color, $gray-500);
   }
 
   > p {
@@ -125,10 +128,12 @@ hx-radio-control {
 
     &:checked {
       color: $blue-700;
+      color: var(--hxRadio-pristine-radio-checked-color, $blue-700);
 
       ~ label > hx-radio {
         border: 1px solid currentColor;
         color: $blue-700;
+        color: var(--hxRadio-pristine-radio-checked-label-color, $blue-700);
         position: relative;
 
         &::after {
@@ -193,6 +198,7 @@ hx-radio-control > input[type="radio"]:disabled {
   // facade styles
   ~ label {
     color: $gray-600;
+    color: var(--hxRadio-disable-radio-label-color, $gray-600);
 
     > hx-radio {
       @include hxRadioFacade(disabled);
