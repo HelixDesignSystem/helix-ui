@@ -1,17 +1,21 @@
 hx-file-tile {
   background-color: $gray-50;
+  background-color: var(--hxFile-hxFileTile-bgcolor, $gray-50);
   border-radius: 2px;
   border: 2px solid transparent;
   color: $gray-900;
+  color: var(--hxFile-hxFileTile-color, $gray-900);
   display: block;
   height: 3.75rem;
   width: 25rem; // 400px
 
   &[progress] {
     color: $gray-600;
+    color: var(--hxFile-hxFileTile-progress-color, $gray-600);
   }
 
   &[invalid] {
-    border-color: $red-900;
+    border-color: $red-status-500;
+    border-color: var(--hxFile-hxFileTile-invalid-border-color, $red-status-500);
   }
 }
