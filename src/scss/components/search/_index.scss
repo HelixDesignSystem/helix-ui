@@ -106,9 +106,10 @@ hx-search-control {
     -ms-grid-column-span: 3;
     -ms-grid-column: 1;
     -ms-grid-row: 1;
-    color: $gray-800;
+    color: $gray-950;
+    font-weight: 600;
     display: inline-block;
-    font-size: 0.875rem;
+    font-size: 1rem;
     grid-area: lbl;
     justify-self: start;
   }
