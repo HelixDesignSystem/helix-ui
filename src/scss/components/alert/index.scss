@@ -1,34 +1,46 @@
 hx-alert {
+  background-color: $gray-400;
   background-color: var(--hxAlert-bgcolor, $gray-400);
+  color: $gray-1000;
   color: var(--hxAlert-color, $gray-1000);
   display: block;
   font-weight: 300;
   line-height: 1.25rem;
 
   &[type="info"] {
+    background-color: $blue-100;
     background-color: var(--hxAlert-info-bgcolor, $blue-100);
+    color: $gray-1000;
     color: var(--hxAlert-info-color, $gray-1000);
   }
 
   &[type="error"] {
-    background-color: var(--hxAlert-error-bgcolor, $red-900);
+    background-color: $red-status-500;
+    background-color: var(--hxAlert-error-bgcolor, $red-status-500);
+    color: $gray-0;
     color: var(--hxAlert-error-color, $gray-0);
   }
 
   &[type="success"] {
+    background-color: $green-500;
     background-color: var(--hxAlert-success-bgcolor, $green-500);
+    color: $gray-0;
     color: var(--hxAlert-success-color, $gray-0);
   }
 
   &[type="warning"] {
+    background-color: $yellow-500;
     background-color: var(--hxAlert-warning-bgcolor, $yellow-500);
+    color: $gray-1000;
     color: var(--hxAlert-warning-color, $gray-1000);
   }
 }
 
 /* DEPRECATED: Remove in v1.0.0 */
 .hxAlert {
+  background-color: $blue-100;
   background-color: var(--hxAlert-bgcolor, $blue-100);
+  color: $gray-1000;
   color: var(--hxAlert-color, $gray-1000);
   display: flex;
   font-weight: 300;
@@ -40,16 +52,21 @@ hx-alert {
   }
 
   &--error {
-    background-color: var(--hxAlert-error-bgcolor, $red-900);
+    background-color: $red-status-500;
+    background-color: var(--hxAlert-error-bgcolor, $red-status-500);
+    color: $gray-0;
     color: var(--hxAlert-error-color, $gray-0);
   }
 
   &--warning {
+    background-color: $yellow-500;
     background-color: var(--hxAlert-warning-bgcolor, $yellow-500);
   }
 
   &--success {
+    background-color: $green-500;
     background-color: var(--hxAlert-success-bgcolor, $green-500);
+    color: $gray-0;
     color: var(--hxAlert-success-color, $gray-0);
   }
 

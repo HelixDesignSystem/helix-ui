@@ -69,7 +69,7 @@ button {
 
 :host([type="error"]) {
   #hxIconWrapper {
-    color: var(--hxIcon-color, $red-900);
+    color: var(--hxIcon-color, $red-status-500);
   }
 }
 
