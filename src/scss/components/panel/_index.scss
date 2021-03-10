@@ -68,8 +68,11 @@
 // Panel with tabset as its body.
 .hxPanel.hxTabbed {
   $head-bg: $gray-100;
+  $head-bg: var(--hxPanel-hxTabbed-head-bgcolor, $gray-100);
   $body-bg: $gray-0;
+  $body-bg: var(--hxPanel-hxTabbed-body-bgcolor, $gray-0);
   $foot-bg: $gray-0;
+  $foot-bg: var(--hxPanel-hxTabbed-foot-bgcolor, $gray-0);
 
   background-color: $head-bg;
 
