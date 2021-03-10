@@ -48,14 +48,11 @@
 @mixin hxButton-weight($weight) {
   @if $weight == primary {
     @include hxButton--primary;
-  }
-  @else if $weight == secondary {
+  } @else if $weight == secondary {
     @include hxButton--secondary;
-  }
-  @else if $weight == tertiary {
+  } @else if $weight == tertiary {
     @include hxButton--tertiary;
-  }
-  @else {
+  } @else {
     // weightless (no additional styles)
   }
 }
@@ -67,16 +64,13 @@
 @mixin hxButton-size($size) {
   @if $size == small {
     padding: 0.125rem 0.5rem;
-  }
-  @else if $size == medium {
+  } @else if $size == medium {
     font-size: 0.875rem;
     padding: 0.5rem 0.75rem;
-  }
-  @else if $size == large {
+  } @else if $size == large {
     font-size: 1rem;
     padding: 1rem;
-  }
-  @else {
+  } @else {
     // no additional styles
   }
 }
@@ -109,13 +103,11 @@
 
 @mixin hxButton-active--primary {
   background-color: $blue-900;
-  border-color: transparent;
   color: $gray-0;
 }
 
 @mixin hxButton-disabled--primary {
   background-color: $gray-500;
-  border-color: transparent;
   color: $gray-0;
 }
 
@@ -126,7 +118,6 @@
 
 @mixin hxButton-hover--primary {
   background-color: $blue-700;
-  border-color: transparent;
   color: $gray-0;
 }
 
@@ -177,7 +168,6 @@
   border: 1px solid $blue-700;
   color: $blue-700;
 }
-
 
 /// ------------------------------------- ///
 /// ---------- TERTIARY BUTTON ---------- ///
