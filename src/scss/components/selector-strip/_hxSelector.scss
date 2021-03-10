@@ -79,8 +79,8 @@
       // invalid (unchecked)
       &[invalid] + span {
         background-color: $gray-0;
-        border: 2px solid $red-900;
-        color: $red-900;
+        border: 2px solid $red-status-500;
+        color: $red-status-500;
       }
 
       // invalid (checked)
@@ -90,7 +90,7 @@
 
       // invalid (focused)
       &[invalid]:focus + span {
-        box-shadow: 0 0 4px 0 $red-900;
+        box-shadow: 0 0 4px 0 $red-status-500;
       }
 
       //invalid (pressed)

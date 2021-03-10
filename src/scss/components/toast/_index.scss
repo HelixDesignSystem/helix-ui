@@ -40,7 +40,7 @@ hx-toast {
 
   &[type="error"] {
     &::after {
-      border-left-color: $red-900;
+      border-left-color: $red-status-500;
     }
   }
 

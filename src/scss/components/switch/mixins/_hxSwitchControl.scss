@@ -55,7 +55,7 @@
     box-shadow: $focus-glow-invalid;
 
     &::-ms-check {
-      border-color: $red-900;
+      border-color: $red-status-500;
     }
   } @else if $pseudo-state == hover {
     &::-ms-check {
@@ -63,8 +63,8 @@
     }
   } @else {
     @if $checkBox-state == checked {
-      background-color: $red-900 !important;
-      border: 0.125rem solid $red-900;
+      background-color: $red-status-500 !important;
+      border: 0.125rem solid $red-status-500;
 
       &:after {
         color: $gray-0 !important;
@@ -72,21 +72,21 @@
 
       &:before {
         background-color: $gray-0;
-        border: 0.125rem solid $red-900;
+        border: 0.125rem solid $red-status-500;
       }
     } @else {
       background-color: $gray-0;
-      border: 0.125rem solid $red-900 !important;
+      border: 0.125rem solid $red-status-500 !important;
 
       &::after {
-        color: $red-900 !important;
+        color: $red-status-500 !important;
       }
 
       &::before {
         background-color: $gray-0;
-        border: 0.125rem solid $red-900 !important;
+        border: 0.125rem solid $red-status-500 !important;
         content: "\0021";// error state exclamation point
-        color: $red-900;
+        color: $red-status-500;
         font-size: 1.063rem;
         text-align: center;
         line-height: 1.813rem;
