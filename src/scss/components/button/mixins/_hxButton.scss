@@ -118,6 +118,7 @@
 
 @mixin hxButton-hover--primary {
   background-color: $blue-700;
+  border: none;
   color: $gray-0;
 }
 
