@@ -10,11 +10,11 @@
 }
 
 @mixin SearchFacadeInvalid {
-  border: 2px solid $red-900;
+  border: 2px solid $red-status-500;
 }
 
 @mixin SearchFacadeInvalidFocus {
-  border: 2px solid $red-900;
+  border: 2px solid $red-status-500;
   box-shadow: $focus-glow-invalid;
 }
 
