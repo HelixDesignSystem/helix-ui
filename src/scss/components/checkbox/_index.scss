@@ -80,9 +80,12 @@ hx-checkbox-control {
 
 // ========== PRISTINE ==========
 hx-checkbox {
+  background-color: $gray-0;
   background-color: var(--hxCheckbox-bgcolor, $gray-0);
-  border-radius: 2px;
-  border: 1px solid var(--hxCheckbox-border, $gray-500);
+  border-color: $gray-500;
+  border-color: var(--hxCheckbox-border, $gray-500);
+  border-style: solid;
+  border-width: 1px;
 }
 
 hx-checkbox-control {
@@ -125,17 +128,22 @@ hx-checkbox-control {
 
     &:checked,
     &:indeterminate {
+      color: $blue-700;
       color: var(--hxCheckbox-indeterminate-color, $blue-700);
 
       ~ label > hx-checkbox {
+        background-color: $blue-700;
+        background-color: var(--hxCheckbox-indeterminate-label-bgcolor, $blue-700);
+        border-color: $blue-700;
         border-color: var(--hxCheckbox-indeterminate-label-bordercolor, $blue-700);
-        color: var(--hxCheckbox-indeterminate-label-color, $blue-700);
+        color: $gray-0;
+        color: var(--hxCheckbox-indeterminate-label-color, $gray-0);
       }
     }
 
     &:valid {
       ~ label > hx-checkbox:hover {
-        @include hxCheckboxFacade($pseudo-state: hover);
+        @include hxCheckboxFacade($pseudo-state: null);  // v2.0 specs
       }
     }
   }
@@ -165,6 +173,20 @@ hx-checkbox-control.hxInvalid > input[type="checkbox"]:enabled {
       @include hxCheckboxFacade(invalid, hover);
     }
   }
+
+  // v2.0 specs
+  &:checked,
+  &:indeterminate {
+    color: $red-status-500;
+    color: var(--hxCheckbox-invalid-checked-color, $red-status-500);
+
+    ~ label > hx-checkbox {
+      background-color: $red-status-100;
+      background-color: var(--hxCheckbox-invalid-checked-bgcolor, $red-status-100);
+      border-color: $red-status-500;
+      border-color: var(--hxCheckbox-invalid-checked-label-bordercolor, $red-status-500);
+    }
+  }
 }
 
 // ========== DISABLED ==========
@@ -184,6 +206,7 @@ hx-checkbox-control > input[type="checkbox"]:disabled {
   }
 
   ~ label {
+    color: $gray-600;
     color: var(--hxCheckbox-disabled-label-color, $gray-600);
 
     > hx-checkbox {
@@ -194,6 +217,19 @@ hx-checkbox-control > input[type="checkbox"]:disabled {
         @include hxCheckboxFacade(disabled, hover);
       }
     }
+  }
+}
+
+// v2.0 specs
+hx-checkbox-control > input[type="checkbox"]:indeterminate:disabled,
+hx-checkbox-control > input[type="checkbox"]:checked:disabled {
+  ~ label > hx-checkbox {
+    background-color: $gray-500;
+    background-color: var(--hxCheckbox-disabled-checked-label-bgcolor, $gray-500);
+    border-color: $gray-500;
+    border-color: var(--hxCheckbox-disabled-checked-label-bordercolor, $gray-500);
+    color: $gray-0;
+    color: var(--hxCheckbox-disabled-checked-label-color, $gray-0);
   }
 }
 

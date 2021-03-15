@@ -1,10 +1,11 @@
-//
-// ===== Mixins for <hx-checkbox> facade states =====
-//
+// ================================================== //
+// ===== Mixins for <hx-checkbox> facade states ===== //
+// ================================================== //
 
 // ========== PRISTINE ==========
 @mixin __checkboxFacade($pseudo-state: null) {
   @if $pseudo-state == focus {
+    border-color: $blue-900;
     border-color: var(--hxCheckbox-bordercolor-focus, $blue-900);
     box-shadow: $focus-glow;
   }
@@ -18,29 +19,35 @@
 // ========== INVALID ==========
 @mixin __checkboxFacade--invalid($pseudo-state: null) {
   @if $pseudo-state == focus {
-    border-color: var(--hxCheckbox-invalid-bordercolor, $red-status-900);
+    border-color: $red-status-500;
+    border-color: var(--hxCheckbox-invalid-bordercolor, $red-status-500);
     box-shadow: $focus-glow-invalid;
   }
   @else if $pseudo-state == hover {
-    background-color: var(--hxCheckbox-invalid-hover-bgcolor, $red-status-100);
-    border-color: var(--hxCheckbox-invalid-hover-bordercolor, $red-status-900);
-    color: var(--hxCheckbox-invalid-hover-color, $red-status-900);
+    border-color: $red-status-500;
+    border-color: var(--hxCheckbox-invalid-hover-bordercolor, $red-status-500);
+    color: $red-status-500;
+    color: var(--hxCheckbox-invalid-hover-color, $red-status-500);
   }
   @else {
-    border: 1px solid var(--hxCheckbox-invalid-border, $red-status-900);
-    color: var(--hxCheckbox-invalid-color, $red-status-900);
+    border: 1px solid $red-status-500;
+    border: 1px solid var(--hxCheckbox-invalid-border, $red-status-500);
+    color: $red-status-500;
+    color: var(--hxCheckbox-invalid-color, $red-status-500);
   }
 }
 
 // ========== DISABLED ==========
 @mixin __checkboxFacade--disabled($pseudo-state: null) {
   @if $pseudo-state == focus {
+    border-color: $gray-500;
     border-color: var(--hxCheckbox-disabled-bordercolor, $gray-500);
   }
   @else if $pseudo-state == hover {
+    background-color: $gray-0;
     background-color: var(--hxCheckbox-disabled-hover-bgcolor, $gray-0);
+    border-color: $gray-500;
     border-color: var(--hxCheckbox-disabled-hover-bordercolor, $gray-500);
-    color: var(--hxCheckbox-disabled-color, $gray-500);
   }
   @else {
     border-width: 1px;

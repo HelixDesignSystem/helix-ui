@@ -24,7 +24,9 @@
         @include hxCheckboxControl($pseudo-state: hover);
 
         ~ label > hx-checkbox {
-          @include hxCheckboxFacade($pseudo-state: hover);
+          @include hxCheckboxFacade($pseudo-state: null);
+
+          border-color: $blue-700;
         }
       }
 
@@ -43,7 +45,12 @@
         @include hxCheckboxControl(disabled, hover);
 
         ~ label > hx-checkbox {
-          @include hxCheckboxFacade(disabled, hover);
+          @include hxCheckboxFacade(disabled, null);
+
+          border-color: $gray-500;
+          border-color: var(--hxCheckbox-disabled-checked-label-bordercolor, $gray-500);
+          color: $gray-0;
+          color: var(--hxCheckbox-disabled-checked-label-color, $gray-0);
         }
       }
     }
