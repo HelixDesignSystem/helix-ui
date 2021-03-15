@@ -17,10 +17,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      uses: actions/setup-node@v1
+    - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
     - run: npm install -g yarn
+    - run: yarn install:clean
     - run: yarn lint
     - run: yarn generate
     - run: yarn compile --prod
