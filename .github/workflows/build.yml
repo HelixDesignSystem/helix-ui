@@ -1,0 +1,27 @@
+# GitHub Action Worflow to support Helix-UI CI Pipeline
+
+name: Helix-UI CI Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - run: npm install -g yarn
+    - run: yarn lint
+    - run: yarn generate
+    - run: yarn compile --prod
+    - run: yarn test
