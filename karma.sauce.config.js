@@ -24,24 +24,24 @@ const batches = {
         platform: 'OS X 10.13',
         version: 'latest-1'
     },
-    win_edge_legacy: {
-        base: 'SauceLabs',
-        browserName: 'microsoftedge',
-        platform: 'Windows 10',
-        version: '18.17763'
-    },
+    // win_edge_legacy: {
+    //     base: 'SauceLabs',
+    //     browserName: 'microsoftedge',
+    //     platform: 'Windows 10',
+    //     version: '18.17763'
+    // },
     win_10_ie_11: {
         base: 'SauceLabs',
         browserName: 'internet explorer',
         platform: 'Windows 10',
         version: '11.285',
     },
-    // win_edge_chromium: {
-    //     base: 'SauceLabs',
-    //     browserName: 'microsoftedge',
-    //     platform: 'Windows 10',
-    //     version: 'latest-1'
-    // },
+    win_edge_chromium: {
+        base: 'SauceLabs',
+        browserName: 'microsoftedge',
+        platform: 'Windows 10',
+        version: 'latest-1'
+    },
 };
 
 module.exports = config => {
@@ -72,7 +72,7 @@ module.exports = config => {
                 public: "public restricted",
                 recordVideo: false,
                 recordLogs: false,
-                build: process.env.TRAVIS_BUILD_NUMBER || Date.now(),
+                build: process.env.GA_RUN_ID || Date.now(),
 			},
 			customLaunchers: batches,
 			browsers: Object.keys(batches),
