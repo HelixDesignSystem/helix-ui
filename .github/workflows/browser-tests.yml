@@ -1,0 +1,35 @@
+# GitHub Action Worflow to support HelixUI SauceLabs Browser Tests
+
+name: HelixUI SauceLabs Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+
+  tests:
+    name: SauceLabs Browser Tests
+
+    runs-on: ubuntu-latest
+    if: ${{ !github.FORK }} # if PR/Push from a fork, exit script
+
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - name: SauceLabs Browser Tests
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 12.x
+      - run: yarn install:clean
+      - run: yarn compile --prod
+
+      - run: yarn test:sauce
+        env:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+          GA_RUN_ID: github-${{ github.WORKFLOW }}-${{ github.RUN_NUMBER }}-RUN-${{ github.RUN_ID }}
+        if: ${{ env.SAUCE_USERNAME != null }}
