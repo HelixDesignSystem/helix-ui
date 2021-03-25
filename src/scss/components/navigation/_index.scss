@@ -9,9 +9,10 @@
   $l3-indent: 3 * $indent-by;
   $l4-indent: 4 * $indent-by;
 
-  background-color: $gray-975;
-  color: $gray-400;
+  background-color: $gray-50;
+  color: $gray-950;
   font-size: 0.875rem; /* ~14px */
+  font-weight: 400;
   letter-spacing: 0.75px;
   padding-top: 2rem;
 
@@ -21,14 +22,15 @@
     display: block;
     padding: $vpad $rpad $vpad $l1-indent;
     position: relative;
+    outline: none;
 
     &:hover {
-      background-color: $gray-800;
-      color: $gray-0;
+      background-color: $gray-200;
+      color: $purple-500;
     }
 
     .toggle-icon {
-      font-size: 0.75em;
+      font-size: 0.75rem;
       pointer-events: none;
       position: absolute;
       right: 0.75rem;
@@ -37,6 +39,9 @@
     }
 
     &[aria-expanded="true"] {
+      color: $purple-500;
+      font-weight: 600;
+
       .toggle-icon {
         transform: translateY(-50%) scaleY(-1);
       }
@@ -51,18 +56,20 @@
   a[href] {
     color: inherit;
     display: block;
-    font-weight: 300;
+    font-weight: 400;
     padding: $vpad $rpad $vpad $l1-indent;
     text-decoration: none;
 
     &.current {
-      background-color: $gray-900;
-      color: $gray-0;
+      border-left: 0.125rem solid $purple-500;
+      color: $purple-500;
+      font-weight: 600;
+      margin-left: 1.25rem;
+      padding-left: 1.125rem;
     }
 
     &:hover {
-      background-color: $gray-800;
-      color: $gray-0;
+      color: $purple-500;
     }
   }
 
@@ -92,4 +99,38 @@
       }
     }
   }//hx-reveal
+}
+
+// ===== SUB-LEFT NAVIGATION =====
+.sub-leftNav, .first-section {
+  > a:active, > a:focus {
+    border-left: 0.125rem solid $purple-500;
+    color: $purple-500;
+    font-weight: 600;
+    outline: none;
+  }
+}
+
+.sub-leftNav a:active, .sub-leftNav a:focus {
+  margin-left: 0.3rem;
+  padding-left: 0.8rem;
+}
+
+nav .first-section {
+  > a:active, > a:focus {
+    margin-left: 1.25rem;
+    padding-left: 1.125rem;
+  }
+}
+
+nav hx-reveal.first-section {
+  > a.hxDisabled {
+    border: none;
+    color: $gray-600 !important;
+    cursor: not-allowed;
+    font-weight: 400;
+    margin-left: 1.25rem;
+    outline: none;
+    padding-left: 1.25rem;
+  }
 }

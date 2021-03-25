@@ -26,7 +26,7 @@ also:
 
     <div class="example">
       <div class="nav-demo">
-        <nav class="hxNav">
+        <nav class="hxNav sub-leftNav">
           <a href="#">Link 1-1</a>
           <a href="#">Link 1-2</a>
           <a href="#">Link 1-3</a>
@@ -35,27 +35,17 @@ also:
             L1 Section
             <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
           </hx-disclosure>
-          <hx-reveal id="section-1" open>
+          <hx-reveal class="first-section" id="section-1" open>
             <a href="#">Link 2-1</a>
-            <a href="#">Link 2-2</a>
+            <a href="#" class="hxDisabled">Link 2-2</a>
             <a href="#">Link 2-3</a>
-
-            <hx-disclosure aria-controls="section-1-2">
-              L2 Section
-              <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-            </hx-disclosure>
-            <hx-reveal id="section-1-2" open>
-              <a href="#">Link 3-1</a>
-              <a href="#">Link 3-2</a>
-              <a href="#">Link 3-3</a>
-            </hx-reveal>
           </hx-reveal>
         </nav>
       </div>
 
       <footer>
         {% code 'html' %}
-          <nav class="hxNav">
+          <nav class="hxNav sub-leftNav">
             <a href="#">Link 1-1</a>
             <a href="#">Link 1-2</a>
             <a href="#">Link 1-3</a>
@@ -64,20 +54,10 @@ also:
               L1 Section
               <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
             </hx-disclosure>
-            <hx-reveal id="section-1" open>
+            <hx-reveal class="first-section" id="section-1" open>
               <a href="#">Link 2-1</a>
-              <a href="#">Link 2-2</a>
+              <a href="#" class="hxDisabled">Link 2-2</a>
               <a href="#">Link 2-3</a>
-
-              <hx-disclosure aria-controls="section-1-2">
-                L2 Section
-                <hx-icon class="toggle-icon" type="angle-down"></hx-icon>
-              </hx-disclosure>
-              <hx-reveal id="section-1-2" open>
-                <a href="#">Link 3-1</a>
-                <a href="#">Link 3-2</a>
-                <a href="#">Link 3-3</a>
-              </hx-reveal>
             </hx-reveal>
           </nav>
         {% endcode %}
