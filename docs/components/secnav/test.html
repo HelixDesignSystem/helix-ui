@@ -91,7 +91,7 @@ title: Testing - Secondary Navigation
       <section>
         <hx-menuitem>Service Offering A</hx-menuitem>
         <hx-menuitem>Service Offering B</hx-menuitem>
-        <hx-menuitem>Service Offering C</hx-menuitem>
+        <hx-menuitem disabled>Service Offering C</hx-menuitem>
         <hx-menuitem>Service Offering D</hx-menuitem>
       </section>
     </hx-menu>
@@ -105,7 +105,7 @@ title: Testing - Secondary Navigation
           L1 Section
         </header>
         <hx-menuitem>Link item 1-1</hx-menuitem>
-        <hx-menuitem class="hxDisabled" id="DisabledField">Link item 1.2</hx-menuitem>
+        <hx-menuitem id="DisabledField" disabled>Link item 1-2</hx-menuitem>
           <hx-tooltip for="DisabledField" position="right-middle">
             You do not have access to this area. Contact an account admin
             in your organization to request access to this item.
@@ -126,16 +126,15 @@ title: Testing - Secondary Navigation
       <span>SecNav Four</span>
       <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
     </hx-disclosure>
-    <hx-menu class = "SecNavDropdownMenu" id="secnav-option-menu-three">
-      <section class="SecNavLeftMenu">
+    <hx-menu class = "hxSecNavTwoColMenu" id="secnav-option-menu-three">
+      <section class="hxLeftColMenu">
           <header>
               L1 Section
           </header>
-          <hx-menuitem>Link item 1.1</hx-menuitem>
-          <hx-menuitem>Link item 1.2</hx-menuitem>
+          <hx-menuitem>Link item 1-1</hx-menuitem>
+          <hx-menuitem>Link item 1-2</hx-menuitem>
       </section>
-      <div class="hxDividerVertical"></div>
-      <section class="SecNavRightMenu">
+      <section class="hxRightColMenu">
           <header>
               L2 Section
           </header>

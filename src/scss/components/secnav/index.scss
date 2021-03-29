@@ -74,10 +74,9 @@
   > hx-menu {
     background-color: $gray-0;
     background-color: var(--hxSecNav-hxMenu-bgcolor, $gray-0);
-    box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     padding: 0;
     top: 14.5rem;
-    min-width: 10rem;
 
     hx-menuitem {
       color: $gray-950;
@@ -86,11 +85,11 @@
       padding: 0.5rem 1.25rem;
 
       &:first-child {
-        padding-top: 1.25rem !important;
+        padding-top: 1.25rem;
       }
 
       &:last-child {
-        padding-bottom: 1.25rem !important;
+        padding-bottom: 1.25rem;
       }
 
       &:hover {
@@ -104,14 +103,11 @@
       }
     }
 
-    hx-menuitem[disabled], hx-menuitem.hxDisabled {
+    hx-menuitem[disabled] {
       @include hxSecNavControl(disabled);
     }
 
     .hxDivider {
-      border-color: $gray-300;
-      border-color: var(--hxSecNav-hxMenu-hxDivider-border-color, $gray-300);
-      height: 0.06rem;
       margin: 0 1.25rem;
     }
 
@@ -128,26 +124,26 @@
     }
   }
 
-  > hx-menu.SecNavDropdownMenu {
-    width: 17.5rem;
-
-    .SecNavLeftMenu {
+  > hx-menu.hxSecNavTwoColMenu {
+    .hxLeftColMenu {
       float: left;
-      width: 8.5rem;
     }
 
-    .hxDividerVertical {
-      background-color: $gray-300;
-      background-color: var(--hxSecNav-hxMenu-hxDividerVertical-bgcolor, $gray-300);
+    .hxRightColMenu {
       float: left;
-      height: 10rem;
-      margin-top: 0.625rem;
-      width: 0.063rem;
-    }
+      border-left-color: $gray-300;
+      border-left-color: var(--hxSecNav-hxMenu-hxTwoColumnMenu-hxRightColMenu-border-left-color, $gray-300);
+      border-left-style: solid;
+      border-left-width: 1px;
+      margin: 1.25rem 0;
 
-    .SecNavRightMenu {
-      float: left;
-      width: 8.5rem;
+      > header {
+        padding-top: 0;
+      }
+
+      > hx-menuitem:last-child {
+        padding-bottom: 0.5rem;
+      }
     }
   }
 }
