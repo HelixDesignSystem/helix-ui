@@ -8,19 +8,24 @@
     box-shadow: $focus-glow;
 
     &::-ms-check {
-      border-color: $cyan-700;
+      border-color: $blue-700;
+      border-color: var(--hxSecNav-hxSecNavControl-pristine-focus-ie-border-color, $blue-700);
     }
   } @else if $pseudo-state == hover {
-    color: $gray-0;
     background-color: $gray-900;
+    background-color: var(--hxSecNav-hxSecNavControl-pristine-hover-bgcolor, $gray-900);
+    color: $gray-0;
+    color: var(--hxSecNav-hxSecNavControl-pristine-hover-color, $gray-0);
   } @else {
     color: $gray-500;
+    color: var(--hxSecNav-hxSecNavControl-pristine-color, $gray-500);
 
     &::-ms-check {
       background-color: $gray-0;
+      background-color: var(--hxSecNav-hxSecNavControl-pristine-ie-bgcolor, $gray-0);
       border-color: currentColor;
       border-style: solid;
-      border-width: 0.063rem;
+      border-width: 1px;
       color: inherit;
     }
   }
@@ -29,23 +34,25 @@
 // ========== DISABLED ==========
 @mixin __secNavControl--disabled($pseudo-state: null) {
   cursor: not-allowed;
+  color: $gray-600 !important;
+  outline: none;
 
-  hx-icon, p {
+  hx-icon, p, hx-menuitem {
     color: $gray-600;
+    color: var(--hxSecNav-hxSecNavControl-disabled-para-color, $gray-600);
   }
   @if $pseudo-state == hover {
     background-color: $gray-950;
+    background-color: var(--hxSecNav-hxSecNavControl-disabled-hover-bgcolor, $gray-950);
 
     &::-ms-check {
       background-color: $gray-100;
+      background-color: var(--hxSecNav-hxSecNavControl-disabled-hover-ie-bgcolor, $gray-100);
     }
   }
 }
 
-@mixin hxSecNavControl(
-  $state: null,
-  $pseudo-state: null,
-) {
+@mixin hxSecNavControl($state: null, $pseudo-state: null) {
   @if $state == disabled {
     @include __secNavControl--disabled($pseudo-state);
   } @else {

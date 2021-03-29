@@ -49,17 +49,17 @@ if (document.getElementById('vue-secNavDemo')) {
                       <hx-icon type="bell"></hx-icon>
                       <p>Notifications</p>
                     </a>
-          
+
                     <a href="#" class="selected">
                       <hx-icon type="ticketing"></hx-icon>
                       <p>Tickets</p>
                     </a>
-          
+
                     <a href="#">
                       <hx-icon type="support"></hx-icon>
                       <p>Support</p>
                     </a>
-          
+
                     <a href="#" class="hxDisabled" id="billing">
                       <hx-icon type="billing"></hx-icon>
                       <p>Billing</p>
@@ -68,7 +68,7 @@ if (document.getElementById('vue-secNavDemo')) {
                         in your organization to request access to this item.
                       </hx-tooltip>
                     </a>
-          
+
                     <a href="#">
                       <hx-icon type="account"></hx-icon>
                       <p>Account</p>
@@ -99,7 +99,7 @@ if (document.getElementById('vue-secNavDemo')) {
                 </div>
               </div>
             </nav>
-          
+
             <!-- Secondary Navigation -->
             <nav id="hxSecNav">
               <a href="#" class="hxNavLink">SecNav One</a>
@@ -109,9 +109,10 @@ if (document.getElementById('vue-secNavDemo')) {
               </hx-disclosure>
               <hx-menu id="secnav-option-menu">
                 <section>
-                  <hx-menuitem>Link item 1</hx-menuitem>
-                  <hx-menuitem>Link item 2</hx-menuitem>
-                  <hx-menuitem>Link item 3</hx-menuitem>
+                    <hx-menuitem>Service Offering A</hx-menuitem>
+                    <hx-menuitem>Service Offering B</hx-menuitem>
+                    <hx-menuitem disabled>Service Offering C</hx-menuitem>
+                    <hx-menuitem>Service Offering D</hx-menuitem>
                 </section>
               </hx-menu>
               <hx-disclosure aria-controls="secnav-option-menu-two">
@@ -124,7 +125,13 @@ if (document.getElementById('vue-secNavDemo')) {
                     L1 Section
                   </header>
                   <hx-menuitem>Link item 1-1</hx-menuitem>
-                  <hx-menuitem>Link item 1-2</hx-menuitem>
+                  <hx-menuitem id="DisabledField" disabled>Link item 1-2</hx-menuitem>
+                    <hx-tooltip for="DisabledField" position="right-middle">
+                        You do not have access to this area. Contact an account admin
+                        in your organization to request access to this item.
+                    </hx-tooltip>
+                  </hx-menuitem>
+                  <hx-menuitem>Link item 1-3</hx-menuitem>
                 </section>
                 <hr class="hxDivider">
                 <section>
@@ -133,6 +140,28 @@ if (document.getElementById('vue-secNavDemo')) {
                   </header>
                   <hx-menuitem>Link item 2-1</hx-menuitem>
                   <hx-menuitem>Link item 2-2</hx-menuitem>
+                </section>
+              </hx-menu>
+              <hx-disclosure aria-controls="secnav-option-menu-three">
+                <span>SecNav Four</span>
+                <hx-icon class="hxPrimary" type="angle-down"></hx-icon>
+              </hx-disclosure>
+              <hx-menu class = "hxSecNavTwoColMenu" id="secnav-option-menu-three">
+                <section class="hxLeftColMenu">
+                    <header>
+                        L1 Section
+                    </header>
+                    <hx-menuitem>Link item 1-1</hx-menuitem>
+                    <hx-menuitem>Link item 1-2</hx-menuitem>
+                </section>
+                <section class="hxRightColMenu">
+                    <header>
+                        L2 Section
+                    </header>
+                    <hx-menuitem>Link item 2-1</hx-menuitem>
+                    <hx-menuitem>Link item 2-2</hx-menuitem>
+                    <hx-menuitem>Link item 2-3</hx-menuitem>
+                    <hx-menuitem>Link item 2-4</hx-menuitem>
                 </section>
               </hx-menu>
             </nav>
