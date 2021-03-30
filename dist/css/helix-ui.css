@@ -4854,38 +4854,51 @@ hx-search-control:not([hx-defined]) > button {
   width: 100vw;
 }
 
-#hxSecNav .hxNavLink, #hxSecNav > hx-disclosure {
+#hxSecNav .hxNavLink,
+#hxSecNav > hx-disclosure {
   color: #333333;
   color: var(--hxSecNav-hxNavLink-color, #333333);
   display: inline-block;
   font-size: 1rem;
-  height: 3.8rem;
-  padding: 1rem;
+  height: 3.75rem;
+  padding: 1.25rem;
   text-align: center;
   width: auto;
   outline: none;
 }
 
-#hxSecNav .hxNavLink:hover, #hxSecNav > hx-disclosure:hover {
+#hxSecNav .hxNavLink:hover,
+#hxSecNav > hx-disclosure:hover {
   color: #95098a !important;
   color: var(--hxSecNav-hxDisclosure-hover-color, #95098a) !important;
 }
 
-#hxSecNav .hxNavLink:hover > hx-icon, #hxSecNav .hxNavLink:hover > span, #hxSecNav > hx-disclosure:hover > hx-icon, #hxSecNav > hx-disclosure:hover > span {
+#hxSecNav .hxNavLink:hover > hx-icon, #hxSecNav .hxNavLink:hover > span,
+#hxSecNav > hx-disclosure:hover > hx-icon,
+#hxSecNav > hx-disclosure:hover > span {
   color: #95098a !important;
   color: var(--hxSecNav-hxDisclosure-hover-color, #95098a) !important;
 }
 
-#hxSecNav .hxNavLink:active, #hxSecNav > hx-disclosure:active {
+#hxSecNav .hxNavLink:active,
+#hxSecNav > hx-disclosure:active {
   color: #ffffff;
   color: var(--hxSecNav-hxNavLink-active-color, #ffffff);
+}
+
+#hxSecNav .hxNavLink {
+  margin-right: -0.25rem;
+}
+
+#hxSecNav > hx-disclosure {
+  margin-right: -0.25rem;
 }
 
 #hxSecNav > hx-disclosure > hx-icon {
   color: #9e9e9e;
   color: var(--hxSecNav-hxDisclosure-hxIcon-color, #9e9e9e);
   font-size: 1rem;
-  margin-left: 0.625rem;
+  margin-left: 0.5rem;
   margin-top: 0.25rem;
   width: 0.75rem;
 }

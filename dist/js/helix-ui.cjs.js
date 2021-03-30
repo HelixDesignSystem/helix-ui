@@ -8357,7 +8357,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "2.3.0-rc.0";
+var version = "2.3.0-rc.1";
 
 /** @module HelixUI */
 var waitForWebComponents$1 = waitForWebComponents;
