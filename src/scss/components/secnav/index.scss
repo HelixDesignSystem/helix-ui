@@ -15,13 +15,14 @@
   overflow: hidden;
   width: 100vw;
 
-  .hxNavLink, > hx-disclosure {
+  .hxNavLink,
+  > hx-disclosure {
     color: $gray-950;
     color: var(--hxSecNav-hxNavLink-color, $gray-950);
     display: inline-block;
     font-size: 1rem;
-    height: 3.8rem;
-    padding: 1rem;
+    height: 3.75rem;
+    padding: 1.25rem;
     text-align: center;
     width: auto;
     outline: none;
@@ -42,12 +43,18 @@
     }
   }
 
+  .hxNavLink {
+    margin-right: -0.25rem;
+  }
+
   > hx-disclosure {
+    margin-right: -0.25rem;
+
     > hx-icon {
       color: $gray-600;
       color: var(--hxSecNav-hxDisclosure-hxIcon-color, $gray-600);
       font-size: 1rem;
-      margin-left: 0.625rem;
+      margin-left: 0.5rem;
       margin-top: 0.25rem;
       width: 0.75rem;
     }
