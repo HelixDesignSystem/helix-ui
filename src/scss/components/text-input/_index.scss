@@ -62,9 +62,9 @@ hx-text-control {
     -ms-grid-column: 2;
     -ms-grid-row: 2;
     grid-area: control;
-    height: 2rem;
-    min-width: 8rem; // ~16 chars
-    padding: 0 0.75rem;
+    height: $rax-spacing-800;
+    min-width: 8rem; //there is no token for min width
+    padding: $rax-spacing-0 $rax-spacing-300;
   }
 
   > .hxPrefix {
@@ -76,7 +76,7 @@ hx-text-control {
     -ms-grid-row: 2;
     grid-area: prefix;
     justify-self: $justify;
-    margin-right: 0.25rem;
+    margin-right: $rax-spacing-100;
   }
 
   > .hxSuffix {
@@ -88,7 +88,7 @@ hx-text-control {
     -ms-grid-row: 2;
     grid-area: suffix;
     justify-self: $justify;
-    margin-left: 0.25rem;
+    margin-left: $rax-spacing-100;
   }
 
   > p,
@@ -137,9 +137,10 @@ hx-text-control {
   }
 
   > p.hxErrorText {
-    color: $red-status-500;
-    font-size: 0.75rem;
-    margin-top: 0;
+    color: $rax-component-input-error-border-bottom-color;
+    color: var(--hxTextControl-hxErrorText, $rax-component-input-error-border-bottom-color);
+    font-size: $rax-font-size-50;
+    margin-top: $rax-spacing-0;
     width: 100%; // for IE11
   }
 }
