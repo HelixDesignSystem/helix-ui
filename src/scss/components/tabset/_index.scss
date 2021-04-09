@@ -4,15 +4,15 @@
 
 // ===== LAYOUT & APPEARANCE ===============
 hx-tab {
-  border-bottom: 2px solid transparent;
-  color: $gray-700;
-  color: var(--hxTabset-hxTab-color, $gray-700);
+  border-bottom: $rax-component-tab-base-border-width solid transparent;
+  color: $rax-component-tab-default-color;
+  color: var(--hxTabset-hxTab-color, $rax-component-tab-default-color);
   cursor: pointer;
-  font-size: 0.875rem;
+  font-size: $rax-font-size-75;
 
   &:hover {
-    color: $gray-950;
-    color: var(--hxTabset-hxTab-hover-color, $gray-950);
+    color: $rax-component-tab-hover-color;
+    color: var(--hxTabset-hxTab-hover-color, $rax-component-tab-hover-color);
   }
 
   // v2.0 spec - TBD: new focus states
@@ -25,16 +25,16 @@ hx-tab {
 
   &[current] {
     background-color: inherit;
-    border-bottom: 2px solid $teal-300;
-    border-bottom: 2px solid var(--hxTabset-hxTab-current-border-bottom, $teal-300);
-    color: $gray-950;
-    color: var(--hxTabset-hxTab-current-color, $gray-950);
-    font-weight: 600;
+    border-bottom: 2px solid $rax-component-tab-active-border-color; // in token $teal-500 is used
+    border-bottom: 2px solid var(--hxTabset-hxTab-current-border-bottom, $rax-component-tab-active-border-color);
+    color: $rax-component-tab-active-color;
+    color: var(--hxTabset-hxTab-current-color, $rax-component-tab-active-color);
+    font-weight: $rax-component-tab-active-font-weight;
     outline: none;
   }
 
   > * + * {
-    margin-left: 0.25rem;
+    margin-left: $rax-spacing-unit;
   }
 }
 
@@ -42,10 +42,10 @@ hx-tabcontent {
   -ms-grid-columns: 1fr;
   -ms-grid-rows: 1fr;
   background-color: inherit;
-  border-color: $gray-300 transparent;
-  border-color: var(--hxTabset-hxTabcontent-border-color, $gray-300) transparent;
-  border-style: solid;
-  border-width: 1px;
+  border-color: $rax-color-gray-300 transparent;
+  border-color: var(--hxTabset-hxTabcontent-border-color, $rax-color-gray-300) transparent;
+  border-style: $rax-component-tab-base-border-style;
+  border-width: $rax-component-tab-base-border-width; //in token border-with is 2px
   display: -ms-grid;
   display: grid;
   grid-template-columns: 1fr;
@@ -58,20 +58,20 @@ hx-tabcontent {
 hx-tablist {
   background-color: inherit;
   display: flex;
-  padding: 0 0.5rem;
+  padding: 0 $rax-spacing-200;
 
   > hx-tab {
     bottom: -1px;
     display: inline-flex;
     flex-shrink: 0;
-    padding: 0.5rem 0.75rem;
+    padding: $rax-spacing-200 $rax-spacing-300;
     position: relative;
   }
 }
 
 hx-tabpanel {
   display: none;
-  padding: 1.5rem 1.25rem;
+  padding: $rax-spacing-600 $rax-spacing-500;
 
   &[open] {
     display: block;
@@ -102,7 +102,7 @@ hx-tabset {
   grid-template-rows: auto 1fr;
   max-height: 100%;
   overflow: hidden;
-  padding-top: 0.25rem; // reserve space to render tab glow
+  padding-top: $rax-spacing-100; // reserve space to render tab glow
 
   > hx-tablist {
     -ms-grid-column: 1;
@@ -123,8 +123,8 @@ hx-tabset {
 // before <hx-tabset> upgrades.
 hx-tabset:not([hx-defined]) {
   hx-tab:first-of-type {
-    background-color: $gray-0;
-    background-color: var(--hxTabset-hxTab-first-of-type-bgcolor, $gray-0);
+    background-color: $rax-color-gray-0;
+    background-color: var(--hxTabset-hxTab-first-of-type-bgcolor, $rax-color-gray-0); //there is no token for bg color
   }
 
   hx-tabpanel:first-of-type {
@@ -136,14 +136,14 @@ hx-tabset:not([hx-defined]) {
 
 hx-tabset.beta-hxBound {
   hx-tab[current] {
-    background-color: $gray-0;
-    background-color: var(--hxTabset-hxTab-current-bgcolor, $gray-0);
+    background-color: $rax-color-gray-0;
+    background-color: var(--hxTabset-hxTab-current-bgcolor, $rax-color-gray-0); //there is no token for bg color
   }
 
   hx-tabcontent {
-    background-color: $gray-0;
-    background-color: var(--hxTabset-hxTabcontent-bgcolor, $gray-0);
-    border-color: $gray-300;
-    border-color: var(--hxTabset-hxTabcontent-border-color, $gray-300);
+    background-color: $rax-color-gray-0;
+    background-color: var(--hxTabset-hxTabcontent-bgcolor, $rax-color-gray-0); //there is no token for bg color
+    border-color: $rax-color-gray-300;
+    border-color: var(--hxTabset-hxTabcontent-border-color, $rax-color-gray-0); // there is no token for border color
   }
 }
