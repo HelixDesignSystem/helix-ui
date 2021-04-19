@@ -5,52 +5,55 @@
 // ========== PRISTINE ==========
 @mixin __checkboxFacade($pseudo-state: null) {
   @if $pseudo-state == focus {
-    border-color: $blue-900;
-    border-color: var(--hxCheckbox-bordercolor-focus, $blue-900);
+    border-color: $rax-color-primary-900;
+    border-color: var(--hxCheckbox-bordercolor-focus, $rax-color-primary-900);
     box-shadow: $focus-glow;
   }
   @else if $pseudo-state == hover {
-    background-color: var(--hxCheckbox-hover-bgcolor, $gray-0);
-    border-color: var(--hxCheckbox-hover-bordercolor, $blue-700);
-    color: var(--hxCheckbox-hover-color, $blue-700);
+    background-color: $rax-component-checkbox-hover-background-color;
+    background-color: var(--hxCheckbox-hover-bgcolor, $rax-component-checkbox-hover-background-color);
+    border-color: $rax-component-checkbox-hover-border-color;
+    border-color: var(--hxCheckbox-hover-bordercolor, $rax-component-checkbox-hover-border-color);
+    color: $rax-component-checkbox-hover-border-color; //in token bg color is used
+    color: var(--hxCheckbox-hover-color, $rax-component-checkbox-hover-border-color);
   }
 }
 
 // ========== INVALID ==========
 @mixin __checkboxFacade--invalid($pseudo-state: null) {
   @if $pseudo-state == focus {
-    border-color: $red-status-500;
-    border-color: var(--hxCheckbox-invalid-bordercolor, $red-status-500);
+    border-color: $rax-component-checkbox-invalid-border-color;
+    border-color: var(--hxCheckbox-invalid-bordercolor, $rax-component-checkbox-invalid-border-color);
     box-shadow: $focus-glow-invalid;
   }
   @else if $pseudo-state == hover {
-    border-color: $red-status-500;
-    border-color: var(--hxCheckbox-invalid-hover-bordercolor, $red-status-500);
-    color: $red-status-500;
-    color: var(--hxCheckbox-invalid-hover-color, $red-status-500);
+    border-color: $rax-component-checkbox-invalid-border-color;
+    border-color: var(--hxCheckbox-invalid-hover-bordercolor, $rax-component-checkbox-invalid-border-color);
+    color: $rax-component-checkbox-invalid-border-color; //in token border color is used
+    color: var(--hxCheckbox-invalid-hover-color, $rax-component-checkbox-invalid-border-color);
   }
   @else {
-    border: 1px solid $red-status-500;
-    border: 1px solid var(--hxCheckbox-invalid-border, $red-status-500);
-    color: $red-status-500;
-    color: var(--hxCheckbox-invalid-color, $red-status-500);
+    border: 1px solid $rax-component-checkbox-invalid-border-color;
+    border: 1px solid var(--hxCheckbox-invalid-border, $rax-component-checkbox-invalid-border-color);
+    color: $rax-component-checkbox-invalid-border-color; //in token border color is used
+    color: var(--hxCheckbox-invalid-color, $rax-component-checkbox-invalid-border-color);
   }
 }
 
 // ========== DISABLED ==========
 @mixin __checkboxFacade--disabled($pseudo-state: null) {
   @if $pseudo-state == focus {
-    border-color: $gray-500;
-    border-color: var(--hxCheckbox-disabled-bordercolor, $gray-500);
+    border-color: $rax-component-checkbox-disabled-border-color;
+    border-color: var(--hxCheckbox-disabled-bordercolor, $rax-component-checkbox-disabled-border-color);
   }
   @else if $pseudo-state == hover {
-    background-color: $gray-0;
-    background-color: var(--hxCheckbox-disabled-hover-bgcolor, $gray-0);
-    border-color: $gray-500;
-    border-color: var(--hxCheckbox-disabled-hover-bordercolor, $gray-500);
+    background-color: $rax-component-checkbox-hover-background-color;
+    background-color: var(--hxCheckbox-disabled-hover-bgcolor, $rax-component-checkbox-hover-background-color);
+    border-color: $rax-component-checkbox-disabled-border-color;
+    border-color: var(--hxCheckbox-disabled-hover-bordercolor, $rax-component-checkbox-disabled-border-color);
   }
   @else {
-    border-width: 1px;
+    border-width: $rax-component-checkbox-base-border-width;
     cursor: not-allowed;
   }
 }
