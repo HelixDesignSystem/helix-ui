@@ -144,6 +144,6 @@ hx-tabset.beta-hxBound {
     background-color: $rax-color-gray-0;
     background-color: var(--hxTabset-hxTabcontent-bgcolor, $rax-color-gray-0); //there is no token for bg color
     border-color: $rax-color-gray-300;
-    border-color: var(--hxTabset-hxTabcontent-border-color, $rax-color-gray-0); // there is no token for border color
+    border-color: var(--hxTabset-hxTabcontent-border-color, $rax-color-gray-300); // there is no token for border color
   }
 }
