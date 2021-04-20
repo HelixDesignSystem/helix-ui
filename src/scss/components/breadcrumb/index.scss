@@ -2,26 +2,29 @@
 .hxBreadcrumb {
   align-content: center;
   align-items: center;
-  color: $blue-500;
+  color: $rax-component-breadcrumb-base-color;
+  color: var(--hxBreadcrumb-color, $rax-component-breadcrumb-base-color);
   display: flex;
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: 1;
+  font-size: $rax-component-breadcrumb-base-font-size;
+  font-weight: $rax-component-breadcrumb-base-font-weight;
+  line-height: $rax-line-height-none;
 
   & > a {
-    margin-right: 0.5rem;
+    margin-right: $rax-spacing-200;
     text-transform: capitalize;
 
     &:last-of-type {
-      color: var(--hxBreadcrumb-last-type-color, $gray-800);
-      font-weight: 600;
+      color: $rax-component-breadcrumb-current-color;
+      color: var(--hxBreadcrumb-last-type-color, $rax-component-breadcrumb-current-color);
+      font-weight: $rax-component-breadcrumb-base-font-weight;
       pointer-events: none;
     }
   }
 
   .delimiter {
-    color: var(--hxBreadcrumb-delimiter-color, $gray-600);
-    font-size: 0.5rem;
-    margin-right: 0.5rem;
+    color: $rax-component-breadcrumb-separator-color;
+    color: var(--hxBreadcrumb-delimiter-color, $rax-component-breadcrumb-separator-color);
+    font-size: 0.5rem;//there is no token for font size
+    margin-right: $rax-spacing-200;
   }
 }
