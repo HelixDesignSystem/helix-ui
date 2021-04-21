@@ -5,23 +5,23 @@
   @if $pseudo-state == focus {
     box-shadow: $focus-glow;
   } @else if $pseudo-state == hover {
-    color: $blue-700;
-    color: var(--hxRadio-pristine-radio-hover-color, $blue-700);
+    color: $rax-component-radio-hover-border-color;
+    color: var(--hxRadio-pristine-radio-hover-color, $rax-component-radio-hover-border-color);
 
     &::-ms-check {
-      background-color: $gray-0;
-      background-color: var(--hxRadio-pristine-radio-hover-ie-bgcolor, $gray-0);
-      color: $blue-700;
-      color: var(--hxRadio-pristine-radio-hover-ie-color, $blue-700);
+      background-color: $rax-component-radio-hover-background-color;
+      background-color: var(--hxRadio-pristine-radio-hover-ie-bgcolor, $rax-component-radio-hover-background-color);
+      color: $rax-component-radio-hover-border-color;
+      color: var(--hxRadio-pristine-radio-hover-ie-color, $rax-component-radio-hover-border-color);
     }
   } @else {
-    color: $gray-500;
-    color: var(--hxRadio-pristine-radio-color, $gray-500);
+    color: $rax-component-radio-default-border-color;
+    color: var(--hxRadio-pristine-radio-color, $rax-component-radio-default-border-color);
 
     &::-ms-check {
-      background-color: $gray-0;
-      background-color: var(--hxRadio-pristine-radio-ie-bgcolor, $gray-0);
-      border: 1px solid currentColor;
+      background-color: $rax-component-radio-default-background-color;
+      background-color: var(--hxRadio-pristine-radio-ie-bgcolor, $rax-component-radio-default-background-color);
+      border: $rax-component-radio-base-border-width solid currentColor;
       color: inherit;
     }
   }
@@ -36,15 +36,15 @@
       background-color: $red-status-100;
       background-color: var(--hxRadio-invalid-radio-hover-ie-bgcolor, $red-status-100);
       border: 1px solid currentColor;
-      color: $red-status-500;
-      color: var(--hxRadio-invalid-radio-hover-ie-color, $red-status-500);
+      color: $rax-color-status-critical-500;
+      color: var(--hxRadio-invalid-radio-hover-ie-color, $rax-color-status-critical-500);
     }
   } @else {
-    color: $red-status-500;
-    color: var(--hxRadio-invalid-radio-color, $red-status-500);
+    color: $rax-component-radio-invalid-border-color;
+    color: var(--hxRadio-invalid-radio-color, $rax-component-radio-invalid-border-color);
 
     &::-ms-check {
-      border-width: 1px;
+      border-width: $rax-component-radio-base-border-width;
     }
   }
 }
@@ -55,23 +55,23 @@
     box-shadow: $focus-glow-disabled;
   } @else if $pseudo-state == hover {
     &::-ms-check {
-      background-color: $gray-100;
-      background-color: var(--hxRadio-disabled-radio-hover-ie-bgcolor, $gray-100);
+      background-color: $rax-color-gray-100;
+      background-color: var(--hxRadio-disabled-radio-hover-ie-bgcolor, $rax-color-gray-100); // no token for hover state
       border: 1px solid currentColor;
       color: $gray-500;
       color: var(--hxRadio-disabled-radio-hover-ie-color, $gray-500);
     }
   } @else {
-    color: $gray-500;
-    color: var(--hxRadio-disabled-radio-color, $gray-500);
+    color: $rax-component-radio-disabled-border-color;
+    color: var(--hxRadio-disabled-radio-color, $rax-component-radio-disabled-border-color);
     cursor: not-allowed;
 
     &::-ms-check {
-      background-color: $gray-100;
-      background-color: var(--hxRadio-disabled-radio-ie-bgcolor, $gray-100);
-      border: 1px solid currentColor;
-      color: $gray-500;
-      color: var(--hxRadio-disabled-radio-ie-color, $gray-500);
+      background-color: $rax-color-gray-100;
+      background-color: var(--hxRadio-disabled-radio-ie-bgcolor, $rax-color-gray-100); //in tokens bg color is $gray-500
+      border: $rax-component-radio-base-border-width solid currentColor;
+      color: $rax-component-radio-disabled-border-color;
+      color: var(--hxRadio-disabled-radio-ie-color, $rax-component-radio-disabled-border-color);
     }
   }
 }
