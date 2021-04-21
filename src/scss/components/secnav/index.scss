@@ -7,6 +7,7 @@
 /// * =================================== * ///
 
 #hxSecNav {
+  display: flex; // prevent browser injected whitespace
   background-color: $gray-0;
   background-color: var(--hxSecNav-bgcolor, $gray-0);
   border-bottom: 0.125rem solid $gray-300;
@@ -19,7 +20,6 @@
   > hx-disclosure {
     color: $gray-950;
     color: var(--hxSecNav-hxNavLink-color, $gray-950);
-    display: inline-block;
     font-size: 1rem;
     height: 3.75rem;
     padding: 1.25rem;
@@ -31,7 +31,8 @@
       color: $purple-500 !important;
       color: var(--hxSecNav-hxDisclosure-hover-color, $purple-500) !important;
 
-      > hx-icon, > span {
+      > hx-icon,
+      > span {
         color: $purple-500 !important;
         color: var(--hxSecNav-hxDisclosure-hover-color, $purple-500) !important;
       }
@@ -41,6 +42,19 @@
       color: $gray-0;
       color: var(--hxSecNav-hxNavLink-active-color, $gray-0);
     }
+
+    .hxPrimary { // override Reveal component defaults
+      font-size: 0.75em;
+      pointer-events: none;
+      transform: translateY(-50%);
+    }
+
+    &[aria-expanded="true"] {
+      .hxPrimary {
+        font-size: 0.75em;
+        transform: translateY(-50%) scaleY(-1);
+      }
+    }
   }
 
   .hxNavLink {
@@ -49,13 +63,14 @@
 
   > hx-disclosure {
     margin-right: -0.25rem;
+    display: flex; // prevent browser injected whitespace
 
     > hx-icon {
       color: $gray-600;
       color: var(--hxSecNav-hxDisclosure-hxIcon-color, $gray-600);
       font-size: 1rem;
       margin-left: 0.5rem;
-      margin-top: 0.25rem;
+      margin-top: 0.813rem; // 13px
       width: 0.75rem;
     }
 
@@ -71,9 +86,10 @@
     }
 
     &[aria-expanded="true"] {
-      > hx-icon, > span {
+      > hx-icon > span {
         color: $purple-500;
         color: var(--hxSecNav-hxDisclosure-aria-expanded-color, $purple-500);
+        transform: translateY(50%) scaleY(-1);
       }
     }
   }
