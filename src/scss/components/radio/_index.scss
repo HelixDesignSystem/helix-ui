@@ -202,6 +202,11 @@ hx-radio-control > input[type="radio"]:disabled {
 
     > hx-radio {
       @include hxRadioFacade(disabled);
+      
+      &,
+      &:hover {
+        @include hxRadioFacade(disabled, hover);
+      }
     }
   }
 }
