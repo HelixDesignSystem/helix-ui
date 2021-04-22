@@ -677,8 +677,11 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-hover::-ms-check {
   background-color: #ffffff;
+  background-color: var(--hxCheckbox-pristine-hover-ie-bgcolor, #ffffff);
   border-color: #0051b7;
+  border-color: var(--hxCheckbox-pristine-hover-ie-border-color, #0051b7);
   color: #0051b7;
+  color: var(--hxCheckbox-pristine-checkbox-hover-ie-color, #0051b7);
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"].mock-hover ~ label > hx-checkbox {
@@ -698,8 +701,11 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"]:disabled.mock-hover::-ms-check {
   background-color: #ffffff;
+  background-color: var(--hxCheckbox-disabled-hover-bgcolor, #ffffff);
   border-color: #bdbdbd;
+  border-color: var(--hxCheckbox-disabled-hover-border-color, #bdbdbd);
   color: #bdbdbd;
+  color: var(--hxCheckbox-disabled-hover-color, #bdbdbd);
 }
 
 .checkbox-spec hx-checkbox-control > input[type="checkbox"]:disabled.mock-hover ~ label > hx-checkbox {
@@ -916,7 +922,9 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 
 .file-input-spec hx-file-control input[type="file"].mock-active ~ label > hx-file-input.hxBtn {
   background-color: transparent;
-  border: 1px solid #003482;
+  border-color: #003482;
+  border-style: solid;
+  border-width: 1px;
   color: #003482;
 }
 
@@ -1112,11 +1120,10 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .radio-spec hx-radio-control > input[type="radio"]:disabled.mock-hover ~ label > hx-radio {
-  background-color: #ffffff;
-  background-color: var(--hxRadio-disabled-radio-facade-hover-bgcolor, #ffffff);
   border: 1px solid currentColor;
   color: #bdbdbd;
-  color: var(--hxRadio-disabled-radio-facade-hover-color, #bdbdbd);
+  color: var(--hxRadio-disabled-radio-facade-color, #bdbdbd);
+  cursor: not-allowed;
 }
 
 .radio-spec hx-radio-set[hx-dirty] input[type="radio"]:enabled:invalid.mock-focus,
@@ -1277,12 +1284,16 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 
 .button-spec .hxBtn.mock-active {
   background-color: transparent;
-  border: 1px solid #003482;
+  border-color: #003482;
+  border-style: solid;
+  border-width: 1px;
   color: #003482;
 }
 
 .button-spec .hxBtn.mock-focus {
-  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
+  background-color: transparent;
+  border: 1px solid #0051b7;
+  color: #0051b7;
 }
 
 .button-spec .hxBtn.hxPrimary.mock-hover {
@@ -1297,7 +1308,8 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .button-spec .hxBtn.hxPrimary.mock-focus {
-  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
+  background-color: #0051b7;
+  color: #ffffff;
   outline: none;
 }
 
@@ -1314,7 +1326,9 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 }
 
 .button-spec .hxBtn.hxTertiary.mock-focus {
-  box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
+  background-color: transparent;
+  border-color: transparent;
+  color: #0051b7;
   outline: none;
 }
 
