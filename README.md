@@ -1,5 +1,8 @@
 [![Build Status](https://travis-ci.com/HelixDesignSystem/helix-ui.svg?branch=master)](https://travis-ci.com/HelixDesignSystem/helix-ui)
 
+[![HelixUI CI Build Pipeline](https://github.com/HelixDesignSystem/helix-ui/actions/workflows/build.yml/badge.svg)](https://github.com/HelixDesignSystem/helix-ui/actions/workflows/build.yml)
+
+[![HelixUI SauceLabs Tests](https://github.com/HelixDesignSystem/helix-ui/actions/workflows/browser-tests.yml/badge.svg)](https://github.com/HelixDesignSystem/helix-ui/actions/workflows/browser-tests.yml)
 
 # HelixUI Web Components Library
 
