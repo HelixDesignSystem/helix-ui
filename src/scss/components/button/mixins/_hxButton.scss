@@ -4,7 +4,7 @@
 
   > * + * {
     // ensure white space between children
-    margin-left: 0.5rem;
+    margin-left: $rax-spacing-200;
   }
 
   &:focus {
@@ -29,16 +29,16 @@
 
 @mixin hxButton--reset {
   background-color: transparent;
-  border: 0;
+  border: $rax-spacing-0;
   color: inherit;
   cursor: pointer;
   display: inline-block;
   font: inherit;
-  font-size: 0.875rem;
-  font-weight: 700; // bold
-  line-height: 1;
-  margin: 0;
-  padding: 0;
+  font-size: $rax-component-button-base-font-size;
+  font-weight: $rax-font-weight-bold; // bold (700)
+  line-height: $rax-line-height-none;
+  margin: $rax-spacing-0;
+  padding: $rax-spacing-0;
 }
 
 /// ============================= ///
@@ -65,24 +65,24 @@
   @if $size == small {
     padding: 0.125rem 0.5rem;
   } @else if $size == medium {
-    font-size: 0.875rem;
-    padding: 0.5rem 0.75rem;
+    font-size: $rax-component-button-base-font-size;
+    padding: $rax-component-button-base-vertical-padding $rax-component-button-base-horizontal-padding;
   } @else if $size == large {
     font-size: 1rem;
-    padding: 1rem;
+    padding: $rax-spacing-400;
   } @else {
     // no additional styles
   }
 }
 
-/// ------------------------------------ ///
-/// ---------- PRIMARY BUTTON ---------- ///
-/// ------------------------------------ ///
+/// --------------------------------------------- ///
+/// ---------- PRIMARY (FILLED) BUTTON ---------- ///
+/// --------------------------------------------- ///
 
 @mixin hxButton--primary {
-  background-color: $blue-500;
+  background-color: $rax-component-button-filled-default-background-color;
   border: none;
-  color: $gray-0;
+  color: $rax-component-button-filled-default-color;
 
   &:hover {
     @include hxButton-hover--primary;
@@ -102,34 +102,35 @@
 }
 
 @mixin hxButton-active--primary {
-  background-color: $blue-900;
-  color: $gray-0;
+  background-color: $rax-component-button-filled-active-background-color;
+  color: $rax-component-button-filled-active-color;
 }
 
 @mixin hxButton-disabled--primary {
-  background-color: $gray-500;
-  color: $gray-0;
+  background-color: $rax-component-button-filled-disabled-background-color;
+  color: $rax-component-button-filled-disabled-color;
 }
 
 @mixin hxButton-focus--primary {
-  box-shadow: 0 0 4px rgba($blue-700, 0.5);
+  background-color: $rax-component-button-filled-focus-background-color;
+  color: $rax-component-button-filled-focus-color;
   outline: none;
 }
 
 @mixin hxButton-hover--primary {
-  background-color: $blue-700;
+  background-color: $rax-component-button-filled-hover-background-color;
   border: none;
-  color: $gray-0;
+  color: $rax-component-button-filled-hover-color;
 }
 
-/// -------------------------------------- ///
-/// ---------- SECONDARY BUTTON ---------- ///
-/// -------------------------------------- ///
+/// ------------------------------------------------ ///
+/// ---------- SECONDARY (OUTLINE) BUTTON ---------- ///
+/// ------------------------------------------------ ///
 
 @mixin hxButton--secondary {
-  background-color: transparent;
-  border: 1px solid $blue-500;
-  color: $blue-500;
+  background-color: $rax-component-button-outline-default-background-color;
+  border: 1px solid $rax-component-button-outline-default-border-color;
+  color: $rax-component-button-outline-default-color;
 
   &:hover {
     @include hxButton-hover--secondary;
@@ -149,35 +150,39 @@
 }
 
 @mixin hxButton-active--secondary {
-  background-color: transparent;
-  border: 1px solid $blue-900;
-  color: $blue-900;
+  background-color: $rax-component-button-outline-default-background-color;
+  border-color: $rax-component-button-outline-active-border-color;
+  border-style: $rax-component-button-base-border-style;
+  border-width: $rax-component-button-base-border-width;
+  color: $rax-component-button-outline-active-color;
 }
 
 @mixin hxButton-disabled--secondary {
-  background-color: transparent;
-  border: 1px solid $gray-500;
-  color: $gray-500;
+  background-color: $rax-component-button-outline-disabled-background-color;
+  border: 1px solid $rax-component-button-outline-disabled-border-color;
+  color: $rax-component-button-outline-disabled-color;
 }
 
 @mixin hxButton-focus--secondary {
-  box-shadow: 0 0 4px rgba($blue-700, 0.5);
+  background-color: $rax-component-button-outline-focus-background-color;
+  border: 1px solid $rax-component-button-outline-focus-border-color;
+  color: $rax-component-button-outline-focus-color;
 }
 
 @mixin hxButton-hover--secondary {
-  background-color: transparent;
-  border: 1px solid $blue-700;
-  color: $blue-700;
+  background-color: $rax-component-button-outline-hover-background-color;
+  border: 1px solid $rax-component-button-outline-focus-border-color;
+  color: $rax-component-button-outline-focus-color;
 }
 
-/// ------------------------------------- ///
-/// ---------- TERTIARY BUTTON ---------- ///
-/// ------------------------------------- ///
+/// --------------------------------------------- ///
+/// ---------- TERTIARY (PLAIN) BUTTON ---------- ///
+/// --------------------------------------------- ///
 
 @mixin hxButton--tertiary {
-  background-color: transparent;
+  background-color: $rax-component-button-plain-default-background-color;
   border: none;
-  color: $blue-500;
+  color: $rax-component-button-plain-default-color;
   padding: 0;
 
   // TODO: deprecated Button and Button Bar styles
@@ -204,24 +209,26 @@
 }
 
 @mixin hxButton-active--tertiary {
-  background-color: transparent;
-  border-color: transparent;
-  color: $blue-900;
+  background-color: $rax-component-button-plain-active-background-color;
+  border-color: $rax-component-button-plain-active-border-color;
+  color: $rax-component-button-plain-active-color;
 }
 
 @mixin hxButton-disabled--tertiary {
-  background-color: transparent;
-  border-color: transparent;
-  color: $gray-500;
+  background-color: $rax-component-button-plain-disabled-background-color;
+  border-color: $rax-component-button-plain-disabled-border-color;
+  color: $rax-component-button-plain-disabled-color;
 }
 
 @mixin hxButton-focus--tertiary {
-  box-shadow: 0 0 4px rgba($blue-700, 0.5);
+  background-color: $rax-component-button-plain-focus-background-color;
+  border-color: $rax-component-button-plain-focus-border-color;
+  color: $rax-component-button-plain-focus-color;
   outline: none;
 }
 
 @mixin hxButton-hover--tertiary {
-  background-color: transparent;
-  border-color: transparent;
-  color: $blue-700;
+  background-color: $rax-component-button-plain-hover-background-color;
+  border-color: $rax-component-button-plain-hover-border-color;
+  color: $rax-component-button-plain-focus-color;
 }
