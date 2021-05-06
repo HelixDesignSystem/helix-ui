@@ -44,6 +44,7 @@ html {
 
 body {
   background-color: $gray-25;
+  background-color: var(--hxLayout-bgcolor, $gray-25);
   height: 100%;
   margin: 0;
 }
@@ -57,8 +58,11 @@ a[href="#content"] {
 
   &:focus {
     background-color: $orange-100;
+    background-color: var(--hxLayout-focused-bgcolor, $orange-100);
     border: 1px solid $orange-700;
+    border: 1px solid var(--hxLayout-focused-border, $orange-700);
     color: $gray-1000;
+    color: var(--hxLayout-focused-color, $gray-1000);
     left: 50%;
     padding: 0.5rem;
     top: 0.5rem;
@@ -68,6 +72,7 @@ a[href="#content"] {
 
 #head {
   background-color: $gray-1000;
+  background-color: var(--hxLayout-head-bgcolor, $gray-1000);
   flex-shrink: 0;
   height: $header-height;
 }
@@ -98,6 +103,7 @@ a[href="#content"] {
 
 .hxSiderail {
   background-color: $gray-100;
+  background-color: var(--hxLayout-sideRail-bgcolor, $gray-100);
   flex-shrink: 0;
   width: 25%; // 3 of 12 columns
 }
@@ -105,7 +111,9 @@ a[href="#content"] {
 #foot {
   align-items: center;
   background-color: $gray-950;
+  background-color: var(--hxLayout-foot-bgcolor, $gray-950);
   color: $gray-300;
+  color: var(--hxLayout-foot-color, $gray-300);
   display: flex;
   flex-shrink: 0;
   height: $footer-height;
@@ -121,6 +129,7 @@ a[href="#content"] {
 
   a[href] {
     color: $cyan-500;
+    color: var(--hxLayout-foot-anchor-color, $cyan-500);
   }
 }//#foot
 
@@ -174,6 +183,7 @@ body.hxHorizontal {
     > hx-panel + hx-panel, // DEPRECATED, remove in v1.0.0
     > .hxPanel + .hxPanel {
       border-left: 1px solid $gray-300;
+      border-left: 1px solid var(--hxLayout-content-color, $gray-300);
     }
   }
 
