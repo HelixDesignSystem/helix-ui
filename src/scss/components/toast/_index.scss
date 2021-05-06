@@ -2,8 +2,10 @@
 
 hx-toast {
   background-color: $gray-0;
+  background-color: var(--hxToast-bgcolor, $gray-0);
   box-shadow: $layering-shadow;
   color: $gray-900;
+  color: var(--hxToast-color, $gray-900);
   display: block;
   min-height: 3.5rem;
   position: relative;
@@ -24,6 +26,7 @@ hx-toast {
   // Background Border
   &::before {
     border: 1px solid $gray-300;
+    border: 1px solid var(--hxToast-border, $gray-300);
   }
 
   // Accent Border
@@ -35,18 +38,21 @@ hx-toast {
   &[type="info"] {
     &::after {
       border-left-color: $purple-500;
+      border-left-color: var(--hxToast-info-border-left-color, $purple-500);
     }
   }
 
   &[type="error"] {
     &::after {
       border-left-color: $red-status-500;
+      border-left-color: var(--hxToast-error-border-left-color, $red-status-500);
     }
   }
 
   &[type="success"] {
     &::after {
       border-left-color: $green-500;
+      border-left-color: var(--hxToast-success-border-left-color, $green-500);
     }
   }
 }
