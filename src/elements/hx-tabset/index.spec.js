@@ -71,6 +71,15 @@ describe('<hx-tabset> component tests', () => {
 
             expect(attr).to.be.true;
         });
+
+        it('should get tabsize on render', async () => {
+            const fragment = /** @type {HXTabsetElement} */ await fixture(mockup);
+            const tab = fragment.hasAttribute('tabsize');
+            const tabPosition = fragment.tabsize;
+
+            expect(tab).to.be.true;
+            expect(tabPosition).to.equal(3);
+        });
     });
 
     describe(`test ${template} getters and setters`, () => {

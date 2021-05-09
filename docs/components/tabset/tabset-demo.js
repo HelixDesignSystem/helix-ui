@@ -9,6 +9,7 @@ function getDefaultData (force = false) {
             { id: 2 },
             { id: 3 },
         ],
+        tabsize: 3,
     };
 
     if (force === true) {
@@ -32,6 +33,8 @@ if (document.getElementById('vue-dynamicTabsetDemo')) {
             if (this.autoUpdate) {
                 this.update();
             }
+
+            this.tabsize = this.tabs.length;
         },
         methods: {
             addTab: function (dir) {
