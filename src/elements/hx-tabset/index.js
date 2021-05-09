@@ -36,7 +36,7 @@ export class HXTabsetElement extends HXElement {
         this.$defaultAttribute('id', `tabset-${generateId()}`);
         this._setupIds();
         this.currentTab = Number(this.getAttribute('current-tab')) || 0;
-        this.tabsize = Number(this.getAttribute('current-tab')) || this.tabs.length;
+        this.tabsize = Number(this.getAttribute('tabsize')) || this.tabs.length;
         this._tablist.addEventListener('keyup', this._onKeyUp);
         this._tablist.addEventListener('keydown', preventKeyScroll);
         this.addEventListener('hxtabclick', this._onHxtabclick);
@@ -103,7 +103,7 @@ export class HXTabsetElement extends HXElement {
      * @type {Number}
      */
     get tabsize () {
-        return Number(this.getAttribute('current-tab')) || this.tabs.length;
+        return Number(this.getAttribute('tabsize')) || this.tabs.length;
     }
     set tabsize (len) {
         this.setAttribute('tabsize', len);
