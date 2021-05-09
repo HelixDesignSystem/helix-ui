@@ -96,13 +96,13 @@ export class HXTabsetElement extends HXElement {
         this.setAttribute('current-tab', idx);
     }
 
-     /* ---------- PUBLIC MEMBERS ---------- */
+    /* ---------- PUBLIC MEMBERS ---------- */
 
     /**
      * Zero-based index of the currently active tab.
      * @type {Number}
      */
-     get tabsize () {
+    get tabsize () {
         return Number(this.getAttribute('current-tab')) || this.tabs.length;
     }
     set tabsize (len) {
