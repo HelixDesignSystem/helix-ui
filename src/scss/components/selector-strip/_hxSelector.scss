@@ -3,7 +3,8 @@
 
 .hxSelector {
   border-radius: 2px;
-  color: $cyan-900;
+  color: $blue-900;
+  color: var(--hxSelector-color, $rax-color-primary-900);
   display: inline-flex;
   font-size: 0.875rem;
   font-weight: 500;
@@ -27,10 +28,12 @@
 
   &::before {
     background-color: $gray-0;
+    background-color: var(--hxSelector-bgcolor, $gray-0);
   }
 
   &::after {
     border: 1px solid $gray-500;
+    border: 1px solid var(--hxSelector-border, $gray-500);
   }
 
   label {
@@ -55,42 +58,54 @@
 
       // unchecked (focused)
       &:focus + span {
-        background-color: $cyan-100;
-        color: $cyan-900;
+        background-color: $blue-300;
+        background-color: var(--hxSelector-unchecked-bgcolor, $rax-color-primary-300);
+        color: $blue-900;
+        color: var(--hxSelector-unchecked-color, $rax-color-primary-900);
       }
 
       // checked (unfocused)
       &:checked + span {
-        background-color: $cyan-900;
+        background-color: $blue-900;
+        background-color: var(--hxSelector-checked-bgcolor, $rax-color-primary-900);
         color: $gray-0;
+        color: var(--hxSelector-checked-color, $gray-0);
       }
 
       // checked (focused)
       &:checked:focus + span {
-        box-shadow: 0 0 4px 0 $cyan-900;
+        box-shadow: 0 0 4px 0 $blue-900;
+        box-shadow: 0 0 4px 0 var(--hxSelector-checked-focus-boxShadow, $rax-color-primary-900);
       }
 
       // pressed (checked or unchecked)
       &:active + span {
-        background-color: $cyan-700;
+        background-color: $blue-700;
+        background-color: var(--hxSelector-active-bgcolor, $rax-color-primary-700);
         color: $gray-0;
+        color: var(--hxSelector-active-color, $gray-0);
       }
 
       // invalid (unchecked)
       &[invalid] + span {
         background-color: $gray-0;
+        background-color: var(--hxSelector-invalid-bgcolor, $gray-0);
         border: 2px solid $red-status-500;
+        border: 2px solid var(--hxSelector-invalid-border, $red-status-500);
         color: $red-status-500;
+        color: var(--hxSelector-invalid-color, $red-status-500);
       }
 
       // invalid (checked)
       &[invalid]:checked + span {
-        background-color: $red-100;
+        background-color: $red-status-100;
+        background-color: var(--hxSelector-invalid-checked-bgcolor, $red-status-100);
       }
 
       // invalid (focused)
       &[invalid]:focus + span {
         box-shadow: 0 0 4px 0 $red-status-500;
+        box-shadow: 0 0 4px 0 var(--hxSelector-invalid-boxShadow, $red-status-500);
       }
 
       //invalid (pressed)
@@ -100,13 +115,14 @@
       &[disabled] + span {
         background-color: transparent;
         color: $gray-400;
+        color: var(--hxSelector-disabled-color, $gray-400);
         cursor: not-allowed;
       }
 
       //disabled (checked)
       //TODO: need specs
-    }//input
-  }//label
+    } //input
+  } //label
 
   &.hxRadio {
     $radius: 3rem;
@@ -122,5 +138,5 @@
     input + span {
       border-radius: $radius;
     }
-  }//.hxRadio
-}//.hxSelector
+  } //.hxRadio
+} //.hxSelector
