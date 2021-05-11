@@ -99,7 +99,7 @@ export class HXTabsetElement extends HXElement {
     /* ---------- PUBLIC MEMBERS ---------- */
 
     /**
-     * Zero-based index of the currently active tab.
+     * Number of Tabs.
      * @type {Number}
      */
     get tabSize () {
