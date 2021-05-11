@@ -32,11 +32,11 @@ export class HXTabsetElement extends HXElement {
 
     $onConnect () {
         this.$upgradeProperty('current-tab');
-        this.$upgradeProperty('tabSize');
+        this.$upgradeProperty('tabsize');
         this.$defaultAttribute('id', `tabset-${generateId()}`);
         this._setupIds();
         this.currentTab = Number(this.getAttribute('current-tab')) || 0;
-        this.tabsize = Number(this.getAttribute('tabsize')) || this.tabs.length;
+        this.tabSize = Number(this.getAttribute('tabsize')) || this.tabs.length;
         this._tablist.addEventListener('keyup', this._onKeyUp);
         this._tablist.addEventListener('keydown', preventKeyScroll);
         this.addEventListener('hxtabclick', this._onHxtabclick);
@@ -102,10 +102,10 @@ export class HXTabsetElement extends HXElement {
      * Zero-based index of the currently active tab.
      * @type {Number}
      */
-    get tabsize () {
+    get tabSize () {
         return Number(this.getAttribute('tabsize')) || this.tabs.length;
     }
-    set tabsize (len) {
+    set tabSize (len) {
         this.setAttribute('tabsize', len);
     }
     
