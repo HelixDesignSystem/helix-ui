@@ -5,31 +5,39 @@
 //
 
 @mixin SearchFacadePristineFocus {
-  border: 1px solid $cyan-700;
+  border: 1px solid $blue-700;
+  border: 1px solid var(--hxSearch-SearchFacadePristineFocus-border, $blue-700);
   box-shadow: $focus-glow;
 }
 
 @mixin SearchFacadeInvalid {
   border: 2px solid $red-status-500;
+  border: 2px solid var(--hxSearch-SearchFacadeInvalid-border, $red-status-500);
 }
 
 @mixin SearchFacadeInvalidFocus {
   border: 2px solid $red-status-500;
+  border: 2px solid var(--hxSearch-SearchFacadeInvalidFocus-border, $red-status-500);
   box-shadow: $focus-glow-invalid;
 }
 
 @mixin SearchFacadeDisabled {
   background-color: $gray-50;
+  background-color: var(--hxSearch-SearchFacadeDisabled-bgcolor, $gray-50);
   border: 1px solid $gray-500;
+  border: 1px solid var(--hxSearch-SearchFacadeDisabled-border, $gray-500);
   color: $gray-400;
+  color: var(--hxSearch-SearchFacadeDisabled-color, $gray-400);
 }
 
 @mixin SearchFacadeDisabledFocus {
   border: 1px solid $gray-500;
+  border: 1px solid var(--hxSearch-SearchFacadeDisabledFocus-border, $gray-500);
 }
 
 // TODO: Rename/move mixin
 @mixin SearchFacadeButtonFocus {
   outline: 1px dotted $gray-700;
+  outline: 1px dotted var(--hxSearch-SearchFacadeButtonFocus-border, $gray-700);
   outline-offset: -6px;
 }
