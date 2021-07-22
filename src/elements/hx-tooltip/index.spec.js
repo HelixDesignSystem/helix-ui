@@ -132,15 +132,6 @@ describe('<hx-tooltip> component tests', () => {
     });
 
     describe('test $onConnect method', () => {
-        it('should have a randomly generated or assigned ID on render', async () => {
-            const fragment = /** @type {HXTooltipElement} */ await fixture(mockup);
-            const attr = fragment.hasAttribute('id');
-            const tooltipId = fragment.getAttribute('id');
-
-            expect(attr).to.be.true;
-            expect(tooltipId).to.not.be.null;
-        });
-
         it('should have role attribute default to tooltip', async () => {
             const roleAttr = 'tooltip';
             const component = /** @type {HXTooltipElement} */ await fixture(template);
