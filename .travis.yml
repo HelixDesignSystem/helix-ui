@@ -26,7 +26,7 @@ jobs:
             echo "Running extended test suite...";
             yarn test;
             echo "Running Sauce tests...";
-            yarn test || travis_terminate 1;
+            yarn test:sauce || travis_terminate 1;
           else
             echo "Running standard test suite...";
             yarn test || travis_terminate 1;

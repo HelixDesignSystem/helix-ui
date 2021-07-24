@@ -16,13 +16,13 @@ const batches = {
         base: 'SauceLabs',
         browserName: 'safari',
         platform: 'OS X 10.13',
-        version: 'latest-2'
+        version: 'latest-1'
     },
     mac_chrome: {
         base: 'SauceLabs',
         browserName: 'chrome',
         platform: 'OS X 10.13',
-        version: 'latest-1'
+        version: '88.0'
     },
     // win_edge_legacy: {
     //     base: 'SauceLabs',
@@ -36,12 +36,12 @@ const batches = {
         platform: 'Windows 10',
         version: '11.285',
     },
-    win_edge_chromium: {
-        base: 'SauceLabs',
-        browserName: 'microsoftedge',
-        platform: 'Windows 10',
-        version: 'latest-1'
-    },
+    // win_edge_chromium: {
+    //     base: 'SauceLabs',
+    //     browserName: 'MicrosoftEdge',
+    //     platform: 'Windows 10',
+    //     version: 'latest-1'
+    // },
 };
 
 module.exports = config => {

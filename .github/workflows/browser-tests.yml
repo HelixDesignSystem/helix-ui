@@ -24,12 +24,13 @@ jobs:
         uses: actions/setup-node@v2.1.5
         with:
           node-version: 12.x
-      - run: yarn install:clean
-      - run: yarn compile --prod
+      # running this test on TravisCI vs GH Actions
+      # - run: yarn install:clean
+      # - run: yarn compile --prod
 
-      - run: yarn test:sauce
-        env:
-          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
-          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-          GA_RUN_ID: github-${{ github.WORKFLOW }}-${{ github.RUN_NUMBER }}-RUN-${{ github.RUN_ID }}
-        if: ${{ env.SAUCE_USERNAME != null }}
+      # - run: yarn test:sauce
+      #   env:
+      #     SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+      #     SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+      #     GA_RUN_ID: github-${{ github.WORKFLOW }}-${{ github.RUN_NUMBER }}-RUN-${{ github.RUN_ID }}
+      #   if: ${{ env.SAUCE_USERNAME != null }}
