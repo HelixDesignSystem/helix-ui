@@ -9,7 +9,7 @@
 
     &::-ms-check {
       border-color: $blue-700;
-      border-color: var(--hxSwitchControl-focus-border-color, $rax-color-primary-700);
+      border-color: var(--hxSwitchControl-focus-border-color, $blue-700);
     }
   } @else if $pseudo-state == hover {
     @if $checkBox-state == unchecked {
