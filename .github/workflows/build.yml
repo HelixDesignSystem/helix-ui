@@ -27,5 +27,4 @@ jobs:
       - run: yarn install:clean
       - run: yarn lint
       - run: yarn generate
-      - run: yarn compile --prod
-      - run: yarn test
+      - run: yarn test:build

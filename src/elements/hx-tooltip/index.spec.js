@@ -131,18 +131,6 @@ describe('<hx-tooltip> component tests', () => {
         });
     });
 
-    describe('test $onConnect method', () => {
-        it('should have role attribute default to tooltip', async () => {
-            const roleAttr = 'tooltip';
-            const component = /** @type {HXTooltipElement} */ await fixture(template);
-            const attr = component.hasAttribute('role');
-            const role = component.getAttribute('role');
-
-            expect(attr).to.be.true;
-            expect(role).to.equal(roleAttr);
-        });
-    });
-
     describe('test <hx-tooltip> getters and setters', () => {
         it('should get *for* value', async () => {
             const forValue = 'icon1';
