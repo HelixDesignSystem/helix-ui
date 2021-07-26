@@ -39,10 +39,12 @@ hx-switch-control {
 hx-switch-control > input[type="checkbox"] ~ label {
   > hx-switch {
     background-color: $gray-0;
-    border: 0.125rem solid $cyan-900;
+    background-color: var(--hxSwitchControl-switch-bgcolor, $gray-0);
+    border: 0.125rem solid $blue-900;
+    border: 0.125rem solid var(--hxSwitchControl-switch-border-color, $blue-900);
 
     &:hover {
-      @include hxSwitchControl($pseudo-state: hover,$checkBox-state: unchecked);
+      @include hxSwitchControl($pseudo-state: hover, $checkBox-state: unchecked);
     }
   }
 
@@ -50,7 +52,8 @@ hx-switch-control > input[type="checkbox"] ~ label {
     content: attr(offlabel);
     text-transform: uppercase;
     margin-left: 2rem;
-    color: $cyan-900;
+    color: $blue-900;
+    color: var(--hxSwitchControl-switch-offlabel-color, $blue-900);
     line-height: 2rem;
     max-width: 1.813rem;
     display: inline-block;
@@ -62,7 +65,9 @@ hx-switch-control > input[type="checkbox"] ~ label {
 
   > hx-switch::before {
     background-color: $gray-0;
-    border: 0.125rem solid $cyan-900;
+    background-color: var(--hxSwitchControl-switch-bgcolor, $gray-0);
+    border: 0.125rem solid $blue-900;
+    border: 0.125rem solid var(--hxSwitchControl-switch-border-color, $blue-900);
     left: -0.125rem;
     top: -0.062rem;
   }
@@ -70,7 +75,8 @@ hx-switch-control > input[type="checkbox"] ~ label {
 
 hx-switch-control > input[type="checkbox"]:checked ~ label {
   > hx-switch {
-    background-color: $cyan-900;
+    background-color: $blue-900;
+    background-color: var(--hxSwitchControl-switch-checked-bgcolor, $blue-900);
     @include hxSwitchControl($pseudo-state: focus);
 
     &:hover {
@@ -83,6 +89,7 @@ hx-switch-control > input[type="checkbox"]:checked ~ label {
     text-transform: uppercase;
     margin-left: 0.5rem;
     color: $gray-0;
+    color: var(--hxSwitchControl-switch-checked-onlabel-color, $gray-0);
     max-width: 2.125rem;
     display: inline-block;
     overflow: hidden;
@@ -103,7 +110,7 @@ hx-switch-control > input[type="checkbox"]:disabled {
   &:checked {
     ~ label > hx-switch {
       @include hxSwitchControl(disabled);
-      @include hxSwitchControl(disabled,focus);
+      @include hxSwitchControl(disabled, focus);
     }
   }
 

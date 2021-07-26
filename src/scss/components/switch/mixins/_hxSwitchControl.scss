@@ -8,39 +8,50 @@
     box-shadow: $focus-glow;
 
     &::-ms-check {
-      border-color: $cyan-700;
+      border-color: $blue-700;
+      border-color: var(--hxSwitchControl-focus-border-color, $blue-700);
     }
   } @else if $pseudo-state == hover {
     @if $checkBox-state == unchecked {
       background-color: $gray-0;
-      border: 0.125rem solid $cyan-500;
+      background-color: var(--hxSwitchControl-hover-unchecked-bgcolor, $gray-0);
+      border: 0.125rem solid $blue-500;
+      border: 0.125rem solid var(--hxSwitchControl-hover-unchecked-border-color, $blue-500);
 
       &::before {
         background-color: $gray-0;
-        border: 0.125rem solid $cyan-500;
+        background-color: var(--hxSwitchControl-hover-unchecked-before-bgcolor, $gray-0);
+        border: 0.125rem solid $blue-500;
+        border: 0.125rem solid var(--hxSwitchControl-hover-unchecked-before-border-color, $blue-500);
         left: -0.12rem;
       }
 
       &::after {
-        color: $cyan-500;
+        color: $blue-500;
+        color: var(--hxSwitchControl-hover-unchecked-after-color, $blue-500);
       }
     } @else {
-      background-color: $cyan-500;
+      background-color: $blue-500;
+      background-color: var(--hxSwitchControl-hover-checked-bgcolor, $blue-500);
 
       &::before {
         background-color: $gray-0;
+        background-color: var(--hxSwitchControl-hover-checked-before-bgcolor, $gray-0);
         left: 0.1rem;
       }
 
       &::after {
         color: $gray-0;
+        color: var(--hxSwitchControl-hover-checked-after-color, $gray-0);
       }
     }
   } @else {
     color: $gray-500;
+    color: var(--hxSwitchControl-switch-color, $gray-500);
 
     &::-ms-check {
       background-color: $gray-0;
+      background-color: var(--hxSwitchControl-switch-bgcolor, $gray-0);
       border-color: currentColor;
       border-style: solid;
       border-width: 0.063rem;
@@ -56,15 +67,18 @@
 
     &::-ms-check {
       border-color: $red-status-500;
+      border-color: var(--hxSwitchControl-error-focus-border-color, $red-status-500);
     }
   } @else if $pseudo-state == hover {
     &::-ms-check {
-      background-color: $red-100;
+      background-color: $red-status-100;
+      background-color: var(--hxSwitchControl-error-hover-bgcolor, $red-status-100);
     }
   } @else {
     @if $checkBox-state == checked {
       background-color: $red-status-500 !important;
       border: 0.125rem solid $red-status-500;
+      border: 0.125rem solid var(--hxSwitchControl-error-checked-border-color, $red-status-500);
 
       &:after {
         color: $gray-0 !important;
@@ -72,10 +86,13 @@
 
       &:before {
         background-color: $gray-0;
+        background-color: var(--hxSwitchControl-error-checked-before-bgcolor, $gray-0);
         border: 0.125rem solid $red-status-500;
+        border: 0.125rem solid var(--hxSwitchControl-error-checked-before-border-color, $red-status-500);
       }
     } @else {
       background-color: $gray-0;
+      background-color: var(--hxSwitchControl-error-unchecked-bgcolor, $gray-0);
       border: 0.125rem solid $red-status-500 !important;
 
       &::after {
@@ -84,9 +101,11 @@
 
       &::before {
         background-color: $gray-0;
+        background-color: var(--hxSwitchControl-error-unchecked-before-bgcolor, $gray-0);
         border: 0.125rem solid $red-status-500 !important;
-        content: "\0021";// error state exclamation point
+        content: "\0021"; // error state exclamation point
         color: $red-status-500;
+        color: var(--hxSwitchControl-error-unchecked-before-color, $red-status-500);
         font-size: 1.063rem;
         text-align: center;
         line-height: 1.813rem;
@@ -103,44 +122,50 @@
 
     &::-ms-check {
       border-color: $gray-500;
+      border-color: var(--hxSwitchControl-disabled-focus-border-color, $gray-500);
       box-shadow: 0 0 4px rgba($gray-500, 0.5);
     }
   } @else if $pseudo-state == hover {
     &::-ms-check {
       background-color: $gray-100;
+      background-color: var(--hxSwitchControl-disabled-hover-bgcolor, $gray-100);
       border-color: $gray-500;
+      border-color: var(--hxSwitchControl-disabled-hover-border-color, $gray-500);
       color: $gray-500;
+      color: var(--hxSwitchControl-disabled-hover-color, $gray-500);
     }
   } @else if $pseudo-state == unchecked {
     background-color: $gray-200;
+    background-color: var(--hxSwitchControl-disabled-unchecked-bgcolor, $gray-200);
     border: 0.125rem solid $gray-500;
 
     &:before {
       background-color: $gray-200;
+      background-color: var(--hxSwitchControl-disabled-unchecked-bgcolor, $gray-200);
       border: 0.125rem solid $gray-500;
     }
 
     &::after {
       color: $gray-500;
+      color: var(--hxSwitchControl-disabled-unchecked-after-color, $gray-500);
     }
   } @else {
     background-color: $gray-500;
+    background-color: var(--hxSwitchControl-disabled-checked-bgcolor, $gray-500);
 
     &::before {
       background-color: $gray-200;
+      background-color: var(--hxSwitchControl-disabled-checked-before-bgcolor, $gray-200);
     }
 
     &::after {
       color: $gray-200;
+      color: var(--hxSwitchControl-disabled-checked-after-bgcolor, $gray-200);
     }
   }
 }
 
-@mixin hxSwitchControl(
-  $state: null,
-  $pseudo-state: null,
-  $checkBox-state: null
-) {
+@mixin hxSwitchControl($state: null, $pseudo-state: null, $checkBox-state: null) {
   @if $state == error {
     @include __switchControl--error($pseudo-state, $checkBox-state);
   } @else if $state == disabled {
