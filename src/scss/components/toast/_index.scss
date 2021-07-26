@@ -51,8 +51,8 @@ hx-toast {
 
   &[type="success"] {
     &::after {
-      border-left-color: $green-500;
-      border-left-color: var(--hxToast-success-border-left-color, $green-500);
+      border-left-color: $green-status-500;
+      border-left-color: var(--hxToast-success-border-left-color, $green-status-500);
     }
   }
 }
