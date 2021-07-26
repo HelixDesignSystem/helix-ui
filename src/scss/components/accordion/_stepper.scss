@@ -7,9 +7,11 @@ hx-accordion.hxStepper {
   counter-reset: step;
 
   hx-accordion-panel {
+    border-top: $gray-300;
     border-top: 1px solid var(--hxAccordian-stepper-panel-border-top, $gray-300);
 
     &:last-child {
+      border-bottom: $gray-300;
       border-bottom: 1px solid var(--hxAccordian-stepper-panel-border-bottom, $gray-300);
     }
 
@@ -25,7 +27,9 @@ hx-accordion.hxStepper {
       // TODO: clarify mouse hover/click behavior with Design
       &:hover {
         .hxStepCounter {
-          background-color: var(--hxAccordian-hover-bgcolor, $cyan-500);
+          background-color: $blue-500;
+          background-color: var(--hxAccordian-hover-bgcolor, $blue-500);
+          color: $gray-0;
           color: var(--hxAccordian-hover-color, $gray-0);
         }
       }
@@ -34,25 +38,32 @@ hx-accordion.hxStepper {
     &[open] {
       // NOTE: no spec!
       .hxStepCounter {
-        background-color: var(--hxAccordian-open-bgcolor, $cyan-500);
+        background-color: $blue-500;
+        background-color: var(--hxAccordian-open-bgcolor, $blue-500);
+        color: $gray-0;
         color: var(--hxAccordian-open-color, $gray-0);
       }
     }
 
     &[disabled] {
       .hxStepCounter {
+        background-color: $gray-400;
         background-color: var(--hxAccordian-disabled-bgcolor, $gray-400);
+        color: $gray-700;
         color: var(--hxAccordian-disabled-color, $gray-700);
       }
 
       .hxStepLabel {
+        color: $gray-700;
         color: var(--hxAccordian-disabled-steplabel-color, $gray-700); // NOTE: no spec!
       }
 
       header[slot="header"] {
         &:hover {
           .hxStepCounter {
+            background-color: $gray-400;
             background-color: var(--hxAccordian-header-hover-bgcolor, $gray-400);
+            color: $gray-700;
             color: var(--hxAccordian-header-hover-color, $gray-700);
           }
         }
@@ -61,8 +72,10 @@ hx-accordion.hxStepper {
   } //hx-accordion-panel
 
   .hxStepCounter {
-    background-color: var(--hxAccordian-stepcounter-bgcolor, $cyan-900); // to spec
+    background-color: $blue-900;
+    background-color: var(--hxAccordian-stepcounter-bgcolor, $blue-900); // to spec
     border-radius: 3rem; // ensure circle
+    color: $gray-0;
     color: var(--hxAccordian-stepcounter-color, $gray-0); // to spec
     counter-increment: step;
     flex-shrink: 0;
@@ -81,6 +94,7 @@ hx-accordion.hxStepper {
   }
 
   .hxStepLabel {
+    color: $gray-900;
     color: var(--hxAccordian-steplabel-color, $gray-900); // TODO: verify with Design, based on old heading spec
     flex-basis: 50%; // NOTE: no spec!
     font-size: 1.5rem; // TODO: verify with Design, based on old heading spec
