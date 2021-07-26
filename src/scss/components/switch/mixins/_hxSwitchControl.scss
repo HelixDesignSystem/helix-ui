@@ -16,23 +16,23 @@
       background-color: $gray-0;
       background-color: var(--hxSwitchControl-hover-unchecked-bgcolor, $gray-0);
       border: 0.125rem solid $blue-500;
-      border: 0.125rem solid var(--hxSwitchControl-hover-unchecked-border-color, $rax-color-primary-500);
+      border: 0.125rem solid var(--hxSwitchControl-hover-unchecked-border-color, $blue-500);
 
       &::before {
         background-color: $gray-0;
         background-color: var(--hxSwitchControl-hover-unchecked-before-bgcolor, $gray-0);
         border: 0.125rem solid $blue-500;
-        border: 0.125rem solid var(--hxSwitchControl-hover-unchecked-before-border-color, $rax-color-primary-500);
+        border: 0.125rem solid var(--hxSwitchControl-hover-unchecked-before-border-color, $blue-500);
         left: -0.12rem;
       }
 
       &::after {
         color: $blue-500;
-        color: var(--hxSwitchControl-hover-unchecked-after-color, $rax-color-primary-500);
+        color: var(--hxSwitchControl-hover-unchecked-after-color, $blue-500);
       }
     } @else {
       background-color: $blue-500;
-      background-color: var(--hxSwitchControl-hover-checked-bgcolor, $rax-color-primary-500);
+      background-color: var(--hxSwitchControl-hover-checked-bgcolor, $blue-500);
 
       &::before {
         background-color: $gray-0;
@@ -72,7 +72,7 @@
   } @else if $pseudo-state == hover {
     &::-ms-check {
       background-color: $red-status-100;
-      background-color: var(--hxSwitchControl-error-hover-bgcolor, $rax-color-status-critical-100);
+      background-color: var(--hxSwitchControl-error-hover-bgcolor, $red-status-100);
     }
   } @else {
     @if $checkBox-state == checked {
