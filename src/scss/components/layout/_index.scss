@@ -57,10 +57,10 @@ a[href="#content"] {
   top: -100px;
 
   &:focus {
-    background-color: $orange-100;
-    background-color: var(--hxLayout-focused-bgcolor, $orange-100);
-    border: 1px solid $orange-700;
-    border: 1px solid var(--hxLayout-focused-border, $orange-700);
+    background-color: $orange-accent-100;
+    background-color: var(--hxLayout-focused-bgcolor, $orange-accent-100);
+    border: 1px solid $orange-accent-500;
+    border: 1px solid var(--hxLayout-focused-border, $orange-accent-500);
     color: $gray-1000;
     color: var(--hxLayout-focused-color, $gray-1000);
     left: 50%;
@@ -128,8 +128,8 @@ a[href="#content"] {
   }
 
   a[href] {
-    color: $cyan-500;
-    color: var(--hxLayout-foot-anchor-color, $cyan-500);
+    color: $blue-500;
+    color: var(--hxLayout-foot-anchor-color, $blue-500);
   }
 }//#foot
 
