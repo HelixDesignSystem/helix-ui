@@ -4,7 +4,7 @@
 .hxSelector {
   border-radius: 2px;
   color: $blue-900;
-  color: var(--hxSelector-color, $rax-color-primary-900);
+  color: var(--hxSelector-color, $blue-900);
   display: inline-flex;
   font-size: 0.875rem;
   font-weight: 500;
@@ -59,15 +59,15 @@
       // unchecked (focused)
       &:focus + span {
         background-color: $blue-300;
-        background-color: var(--hxSelector-unchecked-bgcolor, $rax-color-primary-300);
+        background-color: var(--hxSelector-unchecked-bgcolor, $blue-300);
         color: $blue-900;
-        color: var(--hxSelector-unchecked-color, $rax-color-primary-900);
+        color: var(--hxSelector-unchecked-color, $blue-900);
       }
 
       // checked (unfocused)
       &:checked + span {
         background-color: $blue-900;
-        background-color: var(--hxSelector-checked-bgcolor, $rax-color-primary-900);
+        background-color: var(--hxSelector-checked-bgcolor, $blue-900);
         color: $gray-0;
         color: var(--hxSelector-checked-color, $gray-0);
       }
@@ -75,13 +75,13 @@
       // checked (focused)
       &:checked:focus + span {
         box-shadow: 0 0 4px 0 $blue-900;
-        box-shadow: 0 0 4px 0 var(--hxSelector-checked-focus-boxShadow, $rax-color-primary-900);
+        box-shadow: 0 0 4px 0 var(--hxSelector-checked-focus-boxShadow, $blue-900);
       }
 
       // pressed (checked or unchecked)
       &:active + span {
         background-color: $blue-700;
-        background-color: var(--hxSelector-active-bgcolor, $rax-color-primary-700);
+        background-color: var(--hxSelector-active-bgcolor, $blue-700);
         color: $gray-0;
         color: var(--hxSelector-active-color, $gray-0);
       }
