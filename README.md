@@ -37,4 +37,10 @@ markup, styles, and behavior across a variety of frameworks.
 
 ## Run Component Test Suite
 
-1. `$ yarn test` to run the full component test suite
+### Initial Run (or on code updates)
+
+- `$ yarn test:build` to compile code and run the full component test suite
+
+### Just making changes to tests
+
+- `$ yarn test` to run the full component test suite
