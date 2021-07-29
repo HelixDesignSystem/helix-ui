@@ -35,7 +35,7 @@ body.hxVertical main > * {
 }
 
 body.hxVertical main > header {
-  background-color: #f5f5f5;
+  background-color: #eeeeee;
   border-color: #eeeeee;
   border-style: solid;
   border-width: 0 0 1px;
@@ -1238,37 +1238,46 @@ a[href]:hover, a[href]:active, a.pseudo-active {
 .search-spec hx-search-control > input[type="search"].mock-focus ~ hx-search,
 .search-spec hx-search-control > button.hxClear.mock-focus ~ hx-search {
   border: 1px solid #0051b7;
+  border: 1px solid var(--hxSearch-SearchFacadePristineFocus-border, #0051b7);
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .search-spec hx-search-control > input[type="search"]:disabled ~ hx-search {
   background-color: #f5f5f5;
+  background-color: var(--hxSearch-SearchFacadeDisabled-bgcolor, #f5f5f5);
   border: 1px solid #bdbdbd;
+  border: 1px solid var(--hxSearch-SearchFacadeDisabled-border, #bdbdbd);
   color: #d8d8d8;
+  color: var(--hxSearch-SearchFacadeDisabled-color, #d8d8d8);
 }
 
 .search-spec hx-search-control > input[type="search"]:disabled.mock-focus ~ hx-search {
   border: 1px solid #bdbdbd;
+  border: 1px solid var(--hxSearch-SearchFacadeDisabledFocus-border, #bdbdbd);
 }
 
 .search-spec hx-search-control[hx-dirty] > input[type="search"]:enabled.mock-focus ~ hx-search {
   border: 1px solid #0051b7;
+  border: 1px solid var(--hxSearch-SearchFacadePristineFocus-border, #0051b7);
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 .search-spec hx-search-control[hx-dirty] > input[type="search"]:invalid.mock-focus ~ hx-search {
   border: 2px solid #d6251f;
+  border: 2px solid var(--hxSearch-SearchFacadeInvalidFocus-border, #d6251f);
   box-shadow: 0 0 4px rgba(214, 37, 31, 0.5);
 }
 
 .search-spec hx-search-control.hxInvalid > input[type="search"]:enabled.mock-focus ~ hx-search,
 .search-spec hx-search-control.hxInvalid > button.hxClear.mock-focus ~ hx-search {
   border: 2px solid #d6251f;
+  border: 2px solid var(--hxSearch-SearchFacadeInvalidFocus-border, #d6251f);
   box-shadow: 0 0 4px rgba(214, 37, 31, 0.5);
 }
 
 .search-spec hx-search-control > input[type="search"] ~ button.mock-focus {
   outline: 1px dotted #757575;
+  outline: 1px dotted var(--hxSearch-SearchFacadeButtonFocus-border, #757575);
   outline-offset: -6px;
 }
 

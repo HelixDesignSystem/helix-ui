@@ -147,10 +147,12 @@ hx-accordion.hxStepper {
 }
 
 hx-accordion.hxStepper hx-accordion-panel {
+  border-top: #e0e0e0;
   border-top: 1px solid var(--hxAccordian-stepper-panel-border-top, #e0e0e0);
 }
 
 hx-accordion.hxStepper hx-accordion-panel:last-child {
+  border-bottom: #e0e0e0;
   border-bottom: 1px solid var(--hxAccordian-stepper-panel-border-bottom, #e0e0e0);
 }
 
@@ -165,32 +167,43 @@ hx-accordion.hxStepper hx-accordion-panel header[slot="header"] > * {
 }
 
 hx-accordion.hxStepper hx-accordion-panel header[slot="header"]:hover .hxStepCounter {
+  background-color: #367ed4;
   background-color: var(--hxAccordian-hover-bgcolor, #367ed4);
+  color: #ffffff;
   color: var(--hxAccordian-hover-color, #ffffff);
 }
 
 hx-accordion.hxStepper hx-accordion-panel[open] .hxStepCounter {
+  background-color: #367ed4;
   background-color: var(--hxAccordian-open-bgcolor, #367ed4);
+  color: #ffffff;
   color: var(--hxAccordian-open-color, #ffffff);
 }
 
 hx-accordion.hxStepper hx-accordion-panel[disabled] .hxStepCounter {
+  background-color: #d8d8d8;
   background-color: var(--hxAccordian-disabled-bgcolor, #d8d8d8);
+  color: #757575;
   color: var(--hxAccordian-disabled-color, #757575);
 }
 
 hx-accordion.hxStepper hx-accordion-panel[disabled] .hxStepLabel {
+  color: #757575;
   color: var(--hxAccordian-disabled-steplabel-color, #757575);
 }
 
 hx-accordion.hxStepper hx-accordion-panel[disabled] header[slot="header"]:hover .hxStepCounter {
+  background-color: #d8d8d8;
   background-color: var(--hxAccordian-header-hover-bgcolor, #d8d8d8);
+  color: #757575;
   color: var(--hxAccordian-header-hover-color, #757575);
 }
 
 hx-accordion.hxStepper .hxStepCounter {
+  background-color: #003482;
   background-color: var(--hxAccordian-stepcounter-bgcolor, #003482);
   border-radius: 3rem;
+  color: #ffffff;
   color: var(--hxAccordian-stepcounter-color, #ffffff);
   counter-increment: step;
   flex-shrink: 0;
@@ -209,6 +222,7 @@ hx-accordion.hxStepper .hxStepCounter::before {
 }
 
 hx-accordion.hxStepper .hxStepLabel {
+  color: #424242;
   color: var(--hxAccordian-steplabel-color, #424242);
   flex-basis: 50%;
   font-size: 1.5rem;
@@ -3192,6 +3206,7 @@ html {
 
 body {
   background-color: #fafafa;
+  background-color: var(--hxLayout-bgcolor, #fafafa);
   height: 100%;
   margin: 0;
 }
@@ -3204,8 +3219,11 @@ a[href="#content"] {
 
 a[href="#content"]:focus {
   background-color: #ffe9cc;
-  border: 1px solid #dd6105;
+  background-color: var(--hxLayout-focused-bgcolor, #ffe9cc);
+  border: 1px solid #fa9000;
+  border: 1px solid var(--hxLayout-focused-border, #fa9000);
   color: #000000;
+  color: var(--hxLayout-focused-color, #000000);
   left: 50%;
   padding: 0.5rem;
   top: 0.5rem;
@@ -3214,6 +3232,7 @@ a[href="#content"]:focus {
 
 #head {
   background-color: #000000;
+  background-color: var(--hxLayout-head-bgcolor, #000000);
   flex-shrink: 0;
   height: 3.5rem;
 }
@@ -3244,6 +3263,7 @@ a[href="#content"]:focus {
 
 .hxSiderail {
   background-color: #eeeeee;
+  background-color: var(--hxLayout-sideRail-bgcolor, #eeeeee);
   flex-shrink: 0;
   width: 25%;
 }
@@ -3251,7 +3271,9 @@ a[href="#content"]:focus {
 #foot {
   align-items: center;
   background-color: #333333;
+  background-color: var(--hxLayout-foot-bgcolor, #333333);
   color: #e0e0e0;
+  color: var(--hxLayout-foot-color, #e0e0e0);
   display: flex;
   flex-shrink: 0;
   height: 2.5rem;
@@ -3268,6 +3290,7 @@ a[href="#content"]:focus {
 
 #foot a[href] {
   color: #367ed4;
+  color: var(--hxLayout-foot-anchor-color, #367ed4);
 }
 
 body.hxVertical {
@@ -3317,6 +3340,7 @@ body.hxHorizontal #content {
 body.hxHorizontal #content > hx-panel + hx-panel,
 body.hxHorizontal #content > .hxPanel + .hxPanel {
   border-left: 1px solid #e0e0e0;
+  border-left: 1px solid var(--hxLayout-content-color, #e0e0e0);
 }
 
 body.hxHorizontal #foot {
@@ -3503,7 +3527,9 @@ hx-menu {
   left: 0;
   position: fixed;
   top: 0;
+  background-color: #ffffff;
   background-color: var(--hxMenu-bgcolor, #ffffff);
+  border: 1px solid #e0e0e0;
   border: 1px solid var(--hxMenu-border, #e0e0e0);
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16);
   max-width: 20rem;
@@ -3525,6 +3551,7 @@ hx-menu > section {
 }
 
 hx-menu > section header {
+  color: #9e9e9e;
   color: var(--hxMenu-section-header-color, #9e9e9e);
   font-size: 0.875rem;
   font-weight: 500;
@@ -3539,6 +3566,7 @@ hx-menuitem {
   background-color: transparent;
   border-radius: 2px;
   border: none;
+  color: #003482;
   color: var(--hxMenu-hxMenuitem-color, #003482);
   cursor: pointer;
   display: block;
@@ -3552,12 +3580,14 @@ hx-menuitem {
 hx-menuitem:hover {
   background-color: transparent;
   border-color: transparent;
+  color: #367ed4;
   color: var(--hxMenu-hxMenuitem-hover-color, #367ed4);
 }
 
 hx-menuitem:active {
   background-color: transparent;
   border-color: transparent;
+  color: #0051b7;
   color: var(--hxMenu-hxMenuitem-active-color, #0051b7);
 }
 
@@ -3568,6 +3598,7 @@ hx-menuitem:focus {
 hx-menuitem[disabled] {
   background-color: transparent;
   border-color: transparent;
+  color: #d8d8d8;
   color: var(--hxMenu-hxMenuitem-disabled-color, #d8d8d8);
 }
 
@@ -3580,6 +3611,7 @@ hx-menuitem-group {
 }
 
 hx-menuitem-group header {
+  color: #9e9e9e;
   color: var(--hxMenu-hxMenuitemGroup-header-color, #9e9e9e);
   font-size: 0.875rem;
   font-weight: 500;
@@ -3724,10 +3756,11 @@ hx-modalhead h1:only-child, hx-modalhead h2:only-child, hx-modalhead h3:only-chi
 }
 
 .hxNav {
-  background-color: #212121;
-  color: #d8d8d8;
+  background-color: #f5f5f5;
+  color: #333333;
   font-size: 0.875rem;
   /* ~14px */
+  font-weight: 400;
   letter-spacing: 0.75px;
   padding-top: 2rem;
 }
@@ -3738,20 +3771,26 @@ hx-modalhead h1:only-child, hx-modalhead h2:only-child, hx-modalhead h3:only-chi
   display: block;
   padding: 0.5rem 0.75rem 0.5rem 1.25rem;
   position: relative;
+  outline: none;
 }
 
 .hxNav hx-disclosure:hover {
-  background-color: #616161;
-  color: #ffffff;
+  background-color: #e7e7e7;
+  color: #95098a;
 }
 
 .hxNav hx-disclosure .toggle-icon {
-  font-size: 0.75em;
+  font-size: 0.75rem;
   pointer-events: none;
   position: absolute;
   right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.hxNav hx-disclosure[aria-expanded="true"] {
+  color: #95098a;
+  font-weight: 600;
 }
 
 .hxNav hx-disclosure[aria-expanded="true"] .toggle-icon {
@@ -3765,19 +3804,21 @@ hx-modalhead h1:only-child, hx-modalhead h2:only-child, hx-modalhead h3:only-chi
 .hxNav a[href] {
   color: inherit;
   display: block;
-  font-weight: 300;
+  font-weight: 400;
   padding: 0.5rem 0.75rem 0.5rem 1.25rem;
   text-decoration: none;
 }
 
 .hxNav a[href].current {
-  background-color: #424242;
-  color: #ffffff;
+  border-left: 0.125rem solid #95098a;
+  color: #95098a;
+  font-weight: 600;
+  margin-left: 1.25rem;
+  padding-left: 1.125rem;
 }
 
 .hxNav a[href]:hover {
-  background-color: #616161;
-  color: #ffffff;
+  color: #95098a;
 }
 
 .hxNav hx-reveal a[href],
@@ -3797,6 +3838,33 @@ hx-modalhead h1:only-child, hx-modalhead h2:only-child, hx-modalhead h3:only-chi
 .hxNav hx-reveal hx-reveal hx-reveal a[href],
 .hxNav hx-reveal hx-reveal hx-reveal hx-disclosure {
   padding-left: 5rem;
+}
+
+.hxLeftNavSection > a:active, .hxLeftNavSection > a:focus, .hxLeftNavSubSection > a:active, .hxLeftNavSubSection > a:focus {
+  border-left: 0.125rem solid #95098a;
+  color: #95098a;
+  font-weight: 600;
+  outline: none;
+}
+
+.hxLeftNavSection a:active, .hxLeftNavSection a:focus {
+  margin-left: 0.3rem;
+  padding-left: 0.8rem;
+}
+
+nav .hxLeftNavSubSection > a:active, nav .hxLeftNavSubSection > a:focus {
+  margin-left: 1.25rem;
+  padding-left: 1.125rem;
+}
+
+nav hx-reveal.hxLeftNavSubSection > a.hxDisabled {
+  border: none;
+  color: #9e9e9e !important;
+  cursor: not-allowed;
+  font-weight: 400;
+  margin-left: 1.25rem;
+  outline: none;
+  padding-left: 1.25rem;
 }
 
 .hxPagination {
@@ -4723,6 +4791,7 @@ hx-search-control > input[type="search"]:focus {
 hx-search-control > input[type="search"]:focus ~ hx-search,
 hx-search-control > button.hxClear:focus ~ hx-search {
   border-color: #0051b7;
+  border-color: var(--hxSearch-border-color, #0051b7);
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
@@ -4732,6 +4801,7 @@ hx-search-control button {
   background-color: transparent;
   border: none;
   color: #757575;
+  color: var(--hxSearch-button-color, #757575);
   cursor: pointer;
   font-size: 1rem;
   grid-area: btn;
@@ -4744,6 +4814,7 @@ hx-search-control button {
 
 hx-search-control button:focus {
   outline: 1px dotted #757575;
+  outline: 1px dotted var(--hxSearch-button-focus-outline, #757575);
   outline-offset: -6px;
 }
 
@@ -4756,8 +4827,10 @@ hx-search-control hx-search {
   -ms-grid-column-span: 3;
   -ms-grid-row: 2;
   background-color: #ffffff;
+  background-color: var(--hxSearch-bgcolor, #ffffff);
   border-radius: 2px;
   border: 1px solid #bdbdbd;
+  border: 1px solid var(--hxSearch-border, #bdbdbd);
   grid-column: 1 / span 3;
   grid-row: 2;
   z-index: 0;
@@ -4769,6 +4842,7 @@ hx-search-control > label {
   -ms-grid-column: 1;
   -ms-grid-row: 1;
   color: #333333;
+  color: var(--hxSearch-label-color, #333333);
   font-weight: 600;
   display: inline-block;
   font-size: 1rem;
@@ -4782,8 +4856,10 @@ hx-search-assistance {
   position: fixed;
   top: 0;
   background-color: #ffffff;
+  background-color: var(--hxSearch-hxSearchAssistance-bgcolor, #ffffff);
   border-radius: 2px;
   border: 1px solid #e0e0e0;
+  border: 1px solid var(--hxSearch-hxSearchAssistance-border, #e0e0e0);
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16);
   max-height: 20rem;
   max-width: 32rem;
@@ -4800,6 +4876,7 @@ hx-search-assistance[open] {
 hx-search-assistance > header {
   align-items: center;
   color: #9e9e9e;
+  color: var(--hxSearch-hxSearchAssistance-header-color, #9e9e9e);
   display: flex;
   height: 2.5rem;
   padding: 0 0.75rem;
@@ -4807,6 +4884,7 @@ hx-search-assistance > header {
 
 hx-search-assistance > section {
   border-top: 1px solid #d8d8d8;
+  border-top: 1px solid var(--hxSearch-hxSearchAssistance-section-border-top, #d8d8d8);
   padding: 1rem 0;
 }
 
@@ -4816,6 +4894,7 @@ hx-search-assistance > section > * {
 
 hx-search-assistance > section > header {
   color: #9e9e9e;
+  color: var(--hxSearch-hxSearchAssistance-header-color, #9e9e9e);
   font-size: 0.875rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -4836,17 +4915,20 @@ hx-search {
 
 hx-search-control > input[type="search"]:focus ~ hx-search {
   border: 1px solid #0051b7;
+  border: 1px solid var(--hxSearch-SearchFacadePristineFocus-border, #0051b7);
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 hx-search-control[hx-dirty] > input[type="search"]:enabled:invalid ~ hx-search,
 hx-search-control.hxInvalid > input[type="search"]:enabled ~ hx-search {
   border: 2px solid #d6251f;
+  border: 2px solid var(--hxSearch-SearchFacadeInvalid-border, #d6251f);
 }
 
 hx-search-control[hx-dirty] > input[type="search"]:enabled:invalid:focus ~ hx-search,
 hx-search-control.hxInvalid > input[type="search"]:enabled:focus ~ hx-search {
   border: 2px solid #d6251f;
+  border: 2px solid var(--hxSearch-SearchFacadeInvalidFocus-border, #d6251f);
   box-shadow: 0 0 4px rgba(214, 37, 31, 0.5);
 }
 
@@ -4858,13 +4940,17 @@ input[type="search"]:-moz-ui-invalid {
 
 hx-search-control > input[type="search"]:disabled ~ hx-search {
   background-color: #f5f5f5;
+  background-color: var(--hxSearch-SearchFacadeDisabled-bgcolor, #f5f5f5);
   border: 1px solid #bdbdbd;
+  border: 1px solid var(--hxSearch-SearchFacadeDisabled-border, #bdbdbd);
   color: #d8d8d8;
+  color: var(--hxSearch-SearchFacadeDisabled-color, #d8d8d8);
   cursor: not-allowed;
 }
 
 hx-search-control > input[type="search"]:disabled ~ hx-search:focus {
   border: 1px solid #bdbdbd;
+  border: 1px solid var(--hxSearch-SearchFacadeDisabledFocus-border, #bdbdbd);
 }
 
 hx-search-control > input[type="search"]:disabled ~ .hxClear {
@@ -4879,6 +4965,7 @@ hx-search-control:not([hx-defined]) > button {
   background-color: transparent;
   border: none;
   color: #424242;
+  color: var(--hxSearch-hxSearchSuggestion-color, #424242);
   cursor: pointer;
   display: block;
   font-size: 0.875rem;
@@ -4889,6 +4976,7 @@ hx-search-control:not([hx-defined]) > button {
 
 .hxSearchSuggestion:hover {
   background-color: #e5f2fb;
+  background-color: var(--hxSearch-hxSearchSuggestion-hover-bgcolor, #e5f2fb);
 }
 
 #hxSecNav {
@@ -5073,6 +5161,7 @@ hx-search-control:not([hx-defined]) > button {
 .hxSelector {
   border-radius: 2px;
   color: #003482;
+  color: var(--hxSelector-color, #003482);
   display: inline-flex;
   font-size: 0.875rem;
   font-weight: 500;
@@ -5096,10 +5185,12 @@ hx-search-control:not([hx-defined]) > button {
 
 .hxSelector::before {
   background-color: #ffffff;
+  background-color: var(--hxSelector-bgcolor, #ffffff);
 }
 
 .hxSelector::after {
   border: 1px solid #bdbdbd;
+  border: 1px solid var(--hxSelector-border, #bdbdbd);
 }
 
 .hxSelector label {
@@ -5146,40 +5237,53 @@ hx-search-control:not([hx-defined]) > button {
 
 .hxSelector label input:focus + span {
   background-color: #6ca3e1;
+  background-color: var(--hxSelector-unchecked-bgcolor, #6ca3e1);
   color: #003482;
+  color: var(--hxSelector-unchecked-color, #003482);
 }
 
 .hxSelector label input:checked + span {
   background-color: #003482;
+  background-color: var(--hxSelector-checked-bgcolor, #003482);
   color: #ffffff;
+  color: var(--hxSelector-checked-color, #ffffff);
 }
 
 .hxSelector label input:checked:focus + span {
   box-shadow: 0 0 4px 0 #003482;
+  box-shadow: 0 0 4px 0 var(--hxSelector-checked-focus-boxShadow, #003482);
 }
 
 .hxSelector label input:active + span {
   background-color: #0051b7;
+  background-color: var(--hxSelector-active-bgcolor, #0051b7);
   color: #ffffff;
+  color: var(--hxSelector-active-color, #ffffff);
 }
 
 .hxSelector label input[invalid] + span {
   background-color: #ffffff;
+  background-color: var(--hxSelector-invalid-bgcolor, #ffffff);
   border: 2px solid #d6251f;
+  border: 2px solid var(--hxSelector-invalid-border, #d6251f);
   color: #d6251f;
+  color: var(--hxSelector-invalid-color, #d6251f);
 }
 
 .hxSelector label input[invalid]:checked + span {
   background-color: #fddcdc;
+  background-color: var(--hxSelector-invalid-checked-bgcolor, #fddcdc);
 }
 
 .hxSelector label input[invalid]:focus + span {
   box-shadow: 0 0 4px 0 #d6251f;
+  box-shadow: 0 0 4px 0 var(--hxSelector-invalid-boxShadow, #d6251f);
 }
 
 .hxSelector label input[disabled] + span {
   background-color: transparent;
   color: #d8d8d8;
+  color: var(--hxSelector-disabled-color, #d8d8d8);
   cursor: not-allowed;
 }
 
@@ -5235,22 +5339,29 @@ hx-switch-control > label > hx-switch::before {
 
 hx-switch-control > input[type="checkbox"] ~ label > hx-switch {
   background-color: #ffffff;
+  background-color: var(--hxSwitchControl-switch-bgcolor, #ffffff);
   border: 0.125rem solid #003482;
+  border: 0.125rem solid var(--hxSwitchControl-switch-border-color, #003482);
 }
 
 hx-switch-control > input[type="checkbox"] ~ label > hx-switch:hover {
   background-color: #ffffff;
+  background-color: var(--hxSwitchControl-hover-unchecked-bgcolor, #ffffff);
   border: 0.125rem solid #367ed4;
+  border: 0.125rem solid var(--hxSwitchControl-hover-unchecked-border-color, #367ed4);
 }
 
 hx-switch-control > input[type="checkbox"] ~ label > hx-switch:hover::before {
   background-color: #ffffff;
+  background-color: var(--hxSwitchControl-hover-unchecked-before-bgcolor, #ffffff);
   border: 0.125rem solid #367ed4;
+  border: 0.125rem solid var(--hxSwitchControl-hover-unchecked-before-border-color, #367ed4);
   left: -0.12rem;
 }
 
 hx-switch-control > input[type="checkbox"] ~ label > hx-switch:hover::after {
   color: #367ed4;
+  color: var(--hxSwitchControl-hover-unchecked-after-color, #367ed4);
 }
 
 hx-switch-control > input[type="checkbox"] ~ label > hx-switch[offlabel]::after {
@@ -5258,6 +5369,7 @@ hx-switch-control > input[type="checkbox"] ~ label > hx-switch[offlabel]::after 
   text-transform: uppercase;
   margin-left: 2rem;
   color: #003482;
+  color: var(--hxSwitchControl-switch-offlabel-color, #003482);
   line-height: 2rem;
   max-width: 1.813rem;
   display: inline-block;
@@ -5269,31 +5381,38 @@ hx-switch-control > input[type="checkbox"] ~ label > hx-switch[offlabel]::after 
 
 hx-switch-control > input[type="checkbox"] ~ label > hx-switch::before {
   background-color: #ffffff;
+  background-color: var(--hxSwitchControl-switch-bgcolor, #ffffff);
   border: 0.125rem solid #003482;
+  border: 0.125rem solid var(--hxSwitchControl-switch-border-color, #003482);
   left: -0.125rem;
   top: -0.062rem;
 }
 
 hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch {
   background-color: #003482;
+  background-color: var(--hxSwitchControl-switch-checked-bgcolor, #003482);
   box-shadow: 0 0 4px rgba(0, 81, 183, 0.5);
 }
 
 hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch::-ms-check {
   border-color: #0051b7;
+  border-color: var(--hxSwitchControl-focus-border-color, #0051b7);
 }
 
 hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch:hover {
   background-color: #367ed4;
+  background-color: var(--hxSwitchControl-hover-checked-bgcolor, #367ed4);
 }
 
 hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch:hover::before {
   background-color: #ffffff;
+  background-color: var(--hxSwitchControl-hover-checked-before-bgcolor, #ffffff);
   left: 0.1rem;
 }
 
 hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch:hover::after {
   color: #ffffff;
+  color: var(--hxSwitchControl-hover-checked-after-color, #ffffff);
 }
 
 hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch[onlabel]::after {
@@ -5301,6 +5420,7 @@ hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch[onlabel]:
   text-transform: uppercase;
   margin-left: 0.5rem;
   color: #ffffff;
+  color: var(--hxSwitchControl-switch-checked-onlabel-color, #ffffff);
   max-width: 2.125rem;
   display: inline-block;
   overflow: hidden;
@@ -5318,41 +5438,49 @@ hx-switch-control > input[type="checkbox"]:checked ~ label > hx-switch::before {
 hx-switch-control > input[type="checkbox"]:disabled:checked ~ label > hx-switch {
   cursor: not-allowed;
   background-color: #bdbdbd;
+  background-color: var(--hxSwitchControl-disabled-checked-bgcolor, #bdbdbd);
   cursor: not-allowed;
   box-shadow: 0 0 4px rgba(189, 189, 189, 0.5);
 }
 
 hx-switch-control > input[type="checkbox"]:disabled:checked ~ label > hx-switch::before {
   background-color: #e7e7e7;
+  background-color: var(--hxSwitchControl-disabled-checked-before-bgcolor, #e7e7e7);
 }
 
 hx-switch-control > input[type="checkbox"]:disabled:checked ~ label > hx-switch::after {
   color: #e7e7e7;
+  color: var(--hxSwitchControl-disabled-checked-after-bgcolor, #e7e7e7);
 }
 
 hx-switch-control > input[type="checkbox"]:disabled:checked ~ label > hx-switch::-ms-check {
   border-color: #bdbdbd;
+  border-color: var(--hxSwitchControl-disabled-focus-border-color, #bdbdbd);
   box-shadow: 0 0 4px rgba(189, 189, 189, 0.5);
 }
 
 hx-switch-control > input[type="checkbox"]:disabled ~ label > hx-switch {
   cursor: not-allowed;
   background-color: #e7e7e7;
+  background-color: var(--hxSwitchControl-disabled-unchecked-bgcolor, #e7e7e7);
   border: 0.125rem solid #bdbdbd;
 }
 
 hx-switch-control > input[type="checkbox"]:disabled ~ label > hx-switch:before {
   background-color: #e7e7e7;
+  background-color: var(--hxSwitchControl-disabled-unchecked-bgcolor, #e7e7e7);
   border: 0.125rem solid #bdbdbd;
 }
 
 hx-switch-control > input[type="checkbox"]:disabled ~ label > hx-switch::after {
   color: #bdbdbd;
+  color: var(--hxSwitchControl-disabled-unchecked-after-color, #bdbdbd);
 }
 
 hx-switch-control > input[invalid]:checked ~ label > hx-switch {
   background-color: #d6251f !important;
   border: 0.125rem solid #d6251f;
+  border: 0.125rem solid var(--hxSwitchControl-error-checked-border-color, #d6251f);
   box-shadow: 0 0 4px rgba(214, 37, 31, 0.5);
 }
 
@@ -5362,15 +5490,19 @@ hx-switch-control > input[invalid]:checked ~ label > hx-switch:after {
 
 hx-switch-control > input[invalid]:checked ~ label > hx-switch:before {
   background-color: #ffffff;
+  background-color: var(--hxSwitchControl-error-checked-before-bgcolor, #ffffff);
   border: 0.125rem solid #d6251f;
+  border: 0.125rem solid var(--hxSwitchControl-error-checked-before-border-color, #d6251f);
 }
 
 hx-switch-control > input[invalid]:checked ~ label > hx-switch::-ms-check {
   border-color: #d6251f;
+  border-color: var(--hxSwitchControl-error-focus-border-color, #d6251f);
 }
 
 hx-switch-control > input[invalid] ~ label > hx-switch {
   background-color: #ffffff;
+  background-color: var(--hxSwitchControl-error-unchecked-bgcolor, #ffffff);
   border: 0.125rem solid #d6251f !important;
   box-shadow: 0 0 4px rgba(214, 37, 31, 0.5);
 }
@@ -5381,9 +5513,11 @@ hx-switch-control > input[invalid] ~ label > hx-switch::after {
 
 hx-switch-control > input[invalid] ~ label > hx-switch::before {
   background-color: #ffffff;
+  background-color: var(--hxSwitchControl-error-unchecked-before-bgcolor, #ffffff);
   border: 0.125rem solid #d6251f !important;
   content: "\0021";
   color: #d6251f;
+  color: var(--hxSwitchControl-error-unchecked-before-color, #d6251f);
   font-size: 1.063rem;
   text-align: center;
   line-height: 1.813rem;
@@ -5391,6 +5525,7 @@ hx-switch-control > input[invalid] ~ label > hx-switch::before {
 
 hx-switch-control > input[invalid] ~ label > hx-switch::-ms-check {
   border-color: #d6251f;
+  border-color: var(--hxSwitchControl-error-focus-border-color, #d6251f);
 }
 
 .hxTable {
@@ -5968,8 +6103,10 @@ hx-text-control > input[type="text"]:disabled:focus {
 
 hx-toast {
   background-color: #ffffff;
+  background-color: var(--hxToast-bgcolor, #ffffff);
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16);
   color: #424242;
+  color: var(--hxToast-color, #424242);
   display: block;
   min-height: 3.5rem;
   position: relative;
@@ -5989,6 +6126,7 @@ hx-toast::before, hx-toast::after {
 
 hx-toast::before {
   border: 1px solid #e0e0e0;
+  border: 1px solid var(--hxToast-border, #e0e0e0);
 }
 
 hx-toast::after {
@@ -5997,14 +6135,17 @@ hx-toast::after {
 
 hx-toast[type="info"]::after {
   border-left-color: #95098a;
+  border-left-color: var(--hxToast-info-border-left-color, #95098a);
 }
 
 hx-toast[type="error"]::after {
   border-left-color: #d6251f;
+  border-left-color: var(--hxToast-error-border-left-color, #d6251f);
 }
 
 hx-toast[type="success"]::after {
   border-left-color: #008b38;
+  border-left-color: var(--hxToast-success-border-left-color, #008b38);
 }
 
 hx-toggle-control {

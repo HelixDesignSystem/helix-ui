@@ -1880,7 +1880,7 @@ class HXAccordionElement extends HXElement {
 
 var shadowMarkup = "<button type='button' id='hxToggle' aria-controls='body' aria-expanded='false'><div class='header'><span class='header__content'><slot name='header'></slot></span><hx-icon class='header__icon' type='angle-down'></hx-icon></div></button><div id='hxBody' aria-expanded='false'><slot></slot></div>";
 
-var shadowStyles = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n#hxToggle { background-color: transparent; border: 1px; cursor: pointer; padding: 0 1rem 0 0; text-align: left; width: 100%; }\n\n#hxToggle[aria-expanded=\"true\"] .header__icon { transform: scaleY(-1); }\n\n#hxToggle[disabled] { cursor: not-allowed; }\n\n.header { align-items: center; display: flex; }\n\n.header__content { flex-shrink: 0; flex-grow: 1; }\n\n.header__icon { flex-shrink: 0; margin-left: 0.5rem; }\n\n#hxBody { display: none; }\n\n#hxBody[aria-expanded=\"true\"] { display: block; }\n\nbutton:focus { outline: none; box-shadow: 0 0 4px 0 #0051b7; }\n";
+var shadowStyles = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n#hxToggle { background-color: transparent; border: 1px; cursor: pointer; padding: 0 1rem 0 0; text-align: left; width: 100%; }\n\n#hxToggle[aria-expanded=\"true\"] .header__icon { transform: scaleY(-1); }\n\n#hxToggle[disabled] { cursor: not-allowed; }\n\n.header { align-items: center; display: flex; }\n\n.header__content { flex-shrink: 0; flex-grow: 1; }\n\n.header__icon { flex-shrink: 0; margin-left: 0.5rem; }\n\n#hxBody { display: none; }\n\n#hxBody[aria-expanded=\"true\"] { display: block; }\n\nbutton:focus { outline: none; box-shadow: 0 0 4px 0 #0051b7; box-shadow: 0 0 4px 0 var(--hxAccordianPanel-button-focus-box-shadow, #0051b7); }\n";
 
 /**
  * Fires when the element's contents are concealed.
@@ -5868,7 +5868,7 @@ class HXToggleControlElement extends HXFormControlElement {
 
 var shadowMarkup$l = "<div id='hxToggle'><div id='hxToggleGrid'><hx-icon type='grid'></hx-icon></div><div id='hxToggleList'><hx-icon type='list'></hx-icon></div></div>";
 
-var shadowStyles$l = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n#hxToggleList { margin-left: 2.5rem; margin-top: 0.188rem; color: #003482; }\n\n#hxToggleList:hover { color: #367ed4; }\n\n#hxToggleGrid { position: absolute; margin-left: 0.5rem; color: #ffffff; }\n\n#hxToggleGrid:hover { color: #367ed4; }\n\n:host([toggled]) #hxToggleList { color: #ffffff; }\n\n:host([toggled]) #hxToggleList:hover { color: #367ed4; }\n\n:host([toggled]) #hxToggleGrid { color: #003482; }\n\n:host([toggled]) #hxToggleGrid:hover { color: #367ed4; }\n";
+var shadowStyles$l = "*, *::before, *::after { box-sizing: border-box; color: inherit; font: inherit; letter-spacing: inherit; }\n\n#hxToggleList { margin-left: 2.5rem; margin-top: 0.38rem; color: #003482; }\n\n#hxToggleList:hover { color: #367ed4; }\n\n#hxToggleGrid { position: absolute; margin-left: 0.5rem; color: #ffffff; }\n\n#hxToggleGrid:hover { color: #367ed4; }\n\n:host([toggled]) #hxToggleList { color: #ffffff; }\n\n:host([toggled]) #hxToggleList:hover { color: #367ed4; }\n\n:host([toggled]) #hxToggleGrid { color: #003482; }\n\n:host([toggled]) #hxToggleGrid:hover { color: #367ed4; }\n";
 
 /**
  * Defines behavior for the `<hx-toggle>` element.
@@ -6270,7 +6270,7 @@ var Elements = /*#__PURE__*/Object.freeze({
     HXTooltipElement: HXTooltipElement
 });
 
-var version = "2.3.0";
+var version = "2.4.0-rc.0";
 
 /** @module HelixUI */
 
