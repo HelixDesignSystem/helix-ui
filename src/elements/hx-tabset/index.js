@@ -32,9 +32,11 @@ export class HXTabsetElement extends HXElement {
 
     $onConnect () {
         this.$upgradeProperty('current-tab');
+        this.$upgradeProperty('tabsize');
         this.$defaultAttribute('id', `tabset-${generateId()}`);
         this._setupIds();
         this.currentTab = Number(this.getAttribute('current-tab')) || 0;
+        this.tabSize = Number(this.getAttribute('tabsize')) || this.tabs.length;
         this._tablist.addEventListener('keyup', this._onKeyUp);
         this._tablist.addEventListener('keydown', preventKeyScroll);
         this.addEventListener('hxtabclick', this._onHxtabclick);
@@ -48,13 +50,19 @@ export class HXTabsetElement extends HXElement {
     }
 
     static get $observedAttributes () {
-        return [ 'current-tab' ];
+        return [ 'current-tab', 'tabsize' ];
     }
 
     $onAttributeChange (attr, oldVal, newVal) {
         if (attr === 'current-tab') {
             if (!isNaN(newVal)) {
                 this._activateTab(Number(newVal));
+                this.$emit('tabchange');
+            }
+        }
+        if (attr === 'tabsize') {
+            if (this.currentTab === 0 && !isNaN(newVal)) {
+                this._activateTab(0);
                 this.$emit('tabchange');
             }
         }
@@ -88,6 +96,19 @@ export class HXTabsetElement extends HXElement {
         this.setAttribute('current-tab', idx);
     }
 
+    /* ---------- PUBLIC MEMBERS ---------- */
+
+    /**
+     * Number of Tabs.
+     * @type {Number}
+     */
+    get tabSize () {
+        return Number(this.getAttribute('tabsize')) || this.tabs.length;
+    }
+    set tabSize (len) {
+        this.setAttribute('tabsize', len);
+    }
+    
     /* ---------- PUBLIC METHODS ---------- */
 
     /**

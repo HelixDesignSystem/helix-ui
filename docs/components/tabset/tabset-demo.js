@@ -9,6 +9,7 @@ function getDefaultData (force = false) {
             { id: 2 },
             { id: 3 },
         ],
+        tabSize: 3,
     };
 
     if (force === true) {
@@ -32,6 +33,8 @@ if (document.getElementById('vue-dynamicTabsetDemo')) {
             if (this.autoUpdate) {
                 this.update();
             }
+
+            this.tabSize = this.tabs.length;
         },
         methods: {
             addTab: function (dir) {
@@ -111,7 +114,7 @@ if (document.getElementById('vue-dynamicTabsetDemo')) {
             // isn't smart enough to re-indent HTML tags.
             snippet: function () {
                 return Util.snippet(`
-<hx-tabset current-tab="${this.currentTab}">
+<hx-tabset current-tab="${this.currentTab}" tabsize="${this.tabSize}">
   <hx-tablist>
     ${this._tablist}
   </hx-tablist>
